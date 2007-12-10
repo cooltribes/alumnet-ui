@@ -19,10 +19,10 @@
                 <input type="email" class="form-control" id="inputLastName" placeholder="Enter last name">
             </div>
             <div class="row">
-              <div class="col-xs-1">
+              <div class="col-xs-2">
                 <input type="text" class="form-control" placeholder="DD">
               </div>
-              <div class="col-xs-1">
+              <div class="col-xs-2">
                 <input type="text" class="form-control" placeholder="MM">
               </div>
               <div class="col-xs-2">
