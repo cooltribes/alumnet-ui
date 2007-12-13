@@ -1,6 +1,7 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
-    urlRoot: 'http://localhost:4000/groups'
+    urlRoot: ->
+      AlumNet.api_endpoint + '/groups'
 
     canEditInformation: ->
       membership = this.get('membership')
@@ -16,7 +17,9 @@
 
 
   class Entities.GroupCollection extends Backbone.Collection
-    url: 'http://localhost:4000/groups'
+    url: ->
+      AlumNet.api_endpoint + '/groups'
+
     model: Entities.Group
 
   initializeGroups = ->

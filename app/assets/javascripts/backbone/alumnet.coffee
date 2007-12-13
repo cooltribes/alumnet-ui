@@ -3,6 +3,17 @@
   App = new Marionette.Application
   App.promises = 0
 
+  App.on "start", (options) ->
+    App.api_endpoint = options.api_endpoint
+    App.temp_token = options.temp_token
+    $.ajaxSetup
+      headers:
+        'Authorization': 'Token token="' + App.temp_token + '"'
+        'Accept': 'application/vnd.alumnet+json;version=1'
+
+  if Backbone.history
+    Backbone.history.start()
+
   App.addRegions
     headerRegion: "#header-region"
     mainRegion: "#main-region"
@@ -15,16 +26,8 @@
   App.getCurrentRoute = ->
     Backbone.history.fragment
 
-  App.on "start", ->
-    $.ajaxSetup
-      headers:
-        'Authorization': 'Token token="g4ELv_cMHLbxXR_pk4Hjz-ZWm4MasLTB_ysUHJEz"'
-        'Accept': 'application/vnd.alumnet+json;version=1'
-    if Backbone.history
-      Backbone.history.start()
-
-    # if this.getCurrentRoute() == ""
-    #   App.trigger("groups:home")
+  # if this.getCurrentRoute() == ""
+  #   App.trigger("groups:home")
 
   App.reqres.setHandler 'progress', (promise) ->
     App.promises++
