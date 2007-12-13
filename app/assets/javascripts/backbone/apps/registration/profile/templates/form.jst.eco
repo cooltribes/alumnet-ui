@@ -93,10 +93,10 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="col-sm-offset-6 col-sm-1">
-              <button type="submit" class="btn btn-default">Sign in</button>
+              <button type="submit" class="btn btn-default">Cancel</button>
             </div>
             <div class="col-sm-1">
-              <button type="submit" class="btn btn-default">Sign in</button>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
         </div>
     </div>

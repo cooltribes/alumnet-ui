@@ -9,8 +9,7 @@
       controller = new RegistrationApp.Account.Controller
       controller.showRegister()
 
-    createProfile: ->     
-      console.log("nelson");      
+    createProfile: ->            
       controller = new RegistrationApp.Profile.Controller      
       controller.createProfile()
    
