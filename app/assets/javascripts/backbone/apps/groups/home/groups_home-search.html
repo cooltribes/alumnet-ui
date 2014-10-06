@@ -1,38 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
 		<title>groups_home</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
-
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="stylesheet" href="../../../../../stylesheets/application.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	</head>
 
 	<body>
-		<div>
-			<header>
-			</header>
-			<nav>
+		<div class="all-wrap fixed-nav">
+			<div style="opacity: 1;" id="header_region"><div><div class="clearfix site-nav">
+				<div class="main-nav-main">
+					<ul class="main-nav-left">
+						<li class="logo">
+							<a>
+								<img src="../../../../../images/general/alumnet_logo.png">
+							</a>
+						</li>
+						<li class="link">
+							<a class="groups-link">
+								<img src="../../../../../images/general/icon_groups.png">
+								<span class="text">
+									Groups
+								</span>
+							</a>
+						</li>
+						<li class="link">
+							<a class="events-link">
+								<img src="../../../../../images/general/icon_events_on.png">
+								<span class="text">
+									Events
+								</span>
+							</a>
+						</li>
+						<li class="link">
+							<a class="programs-link">
+								<img src="../../../../../images/general/icon_lamp_on.png">
+								<span class="text">
+									Programs
+									<img class="arrow" src="../../../../../images/general/arrow.png">
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="responsive-nav-trigger">
+								<i class="ico-menu"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="sub-nav">
+					<div class="get-help-data sub-nav-data active">	
+						<ul class="sub-nav-ul">
+							<li>
 
-			</nav>
+								<img class="icon-manage-groups" src="../../../../../images/general/icon_manage_groups.png">
 
-			<div>
+								<a href="#/tasks/new">Manage groups</a>
+							</li>
+						</ul>
+					</div>
+					<div class="right-nav-data sub-nav-data">
+						<ul class="right-nav-top">
+							<li>
+								<a class="app-link app-link-lottery" href="#lottery">
+									<div class="icon">
+										<img src="../../../../../images/general/icon_cup.png">
+									</div>
+									<div class="text">Lottery</div>
+								</a>
+							</li>
+							<li>
+								<a class="app-link app-link-library">
+									<div class="icon">
+										<img src="../../../../../images/general/icon_rectangle.png">
+									</div>
+									<div class="text">Library</div>
+								</a>
+							</li>
+							<li>
+								<a class="app-link app-link-messages">
+									<div class="icon">
+										<img src="../../../../../images/general/icon_chat.png">
+									</div>
+									<div class="text">Messages</div>
+									<span class="nav-count">
+										<span>0</span>
+									</span>
+								</a>
+							</li>
+							<li>
+								<a class="active app-link app-link-dashboard">
+									<div class="icon_username">
+										<ul class="username">
+											<li>
+												Stephen Fry
+												<img class="arrow" src="../../../../../images/general/arrow.png">
+											</li>
+										</ul>	
+									</div>
+									<div class="text">Dashboard</div>
+								</a>
+							</li>
+							<li class="profile-nav-link-wrap">
+								<a class="picture profile-nav-link">								<img src="../../../../../images/general/user_icon.png"></a>
+							</li>
+						</ul>
+						<ul class="profile-nav-data sub-nav-data">
+							<li>
+								<a href="#/profiles/78">
+									Profile
+								</a>
+							</li>
+							<li>
+								<a href="#settings">
+									Settings
+								</a>
+							</li>
+							<li>
+								<a href="#admin">
+									Admin Panel
+								</a>
+							</li>
+							<li>
+								<a href="/sign_out">
+									Logout
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div style="opacity: 1;" class="header-search-region search-header-data"><div><div class="search-data sub-nav-data">
 
+					</div>
+					<div style="opacity: 1;" class="scrollbars search-bar-dropdown"><ul></ul></div></div></div>
+					<div class="notifications-data sub-nav-data sub-nav-dropdown" id="notification_menu_region"></div>
+					<div class="sub-nav-data sub-nav-dropdown tips-data" id="tips_region"></div>
+				</div>
+			</div></div></div>
+
+			<div class="header-region" style="opacity: 1;"><div><div class="premium-container">
+				<h1 class="bold huge-title margin-top">
+					Discover
+				</h1>
 			</div>
+			<ul class="dashboard-todo premium-row-container">
+				<li class="col-mini-4 groups-box">
+					<a href="#" class="white-section no-padding todo">
+						<div class="group-box-left col-mini-6">
 
-			<footer>
+							<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+						</a>
+					</li>
+					<li class="col-mini-4 groups-box">
+						<a href="#" class="white-section no-padding todo">
+							<div class="group-box-left col-mini-6">
 
-			</footer>
-		</div>
-	</body>
-</html>
+								<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+							</a>
+						</li>
+						<li class="col-mini-4 groups-box">
+							<a href="#" class="white-section no-padding todo">
+								<div class="group-box-left col-mini-6">
+
+									<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+								</a>
+							</li>
+													<li class="col-mini-4 groups-box">
+							<a href="#" class="white-section no-padding todo">
+								<div class="group-box-left col-mini-6">
+
+									<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+								</a>
+							</li>
+													<li class="col-mini-4 groups-box">
+							<a href="#" class="white-section no-padding todo">
+								<div class="group-box-left col-mini-6">
+
+									<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+								</a>
+							</li>
+													<li class="col-mini-4 groups-box">
+							<a href="#" class="white-section no-padding todo">
+								<div class="group-box-left col-mini-6">
+
+									<img class="group-dash-image" src="../../../../../images/groups/group_1.jpg"></div>
+									<div class="group-box-right col-mini-6">
+								<strong class="grey"> Group’s name</strong>
+										<p>Improve the relevance of the tasks you are matched to</p>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-6">
+											5/2014
+										</div>
+										<div class="grey-bg col-mini-12">
+											5/2014
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul></div></div></div>
+
+
+
+
+
+
+
+
+
+					</body>
+					</html>
