@@ -1,0 +1,4 @@
+<td><%= @name %></td>
+<td><%= @avatar %></td>
+<td><button class="js-delete">Eliminar</button></td>
+<td><a href="#" class="js-show">Mostrar</a></td>

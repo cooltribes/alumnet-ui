@@ -1,7 +1,7 @@
 @AlumNet.module 'GroupsApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Home.Group extends Marionette.ItemView
-    template: "#row-table"
+    template: 'groups/home/templates/row'
     tagName: 'tr'
     events:
       'click td': 'showDescription'
@@ -24,7 +24,7 @@
 
 
   class Home.Groups extends Marionette.CompositeView
-    template: "#table"
+    template: 'groups/home/templates/table'
     childView: Home.Group
     childViewContainer: "tbody"
     # onChildviewGroupDelete: ->
