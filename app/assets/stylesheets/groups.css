@@ -1,9 +1,11 @@
 .top-bar-groups-link {
     height: 60px;
     color: #2099d0;
+        font-family: "Roboto",sans-serif;
 }
 .sub-bar-groups-link {
     height: 60px;
+     font-family: "Roboto",sans-serif;
     color: #fff;
 }
 .main-groups-area {
@@ -14,26 +16,38 @@
 }
 .groups-big-search {
 }
-.groups-name{
-	font-size: 140%;
+.groups-name {
+    font-family: "Roboto",sans-serif;
+    font-size: 130%;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-transform: none;
 }
 .groups_small_desc {
 	font-size: 90%;
-}
-.groups-name {
-	margin-bottom: 5px;
-	margin-top: 5px;
-	text-transform: none;
+	    font-family: "Roboto",sans-serif;
 }
 .group-box-date
 {
 	text-align: left;
+	    font-family: "Roboto",sans-serif;
 }
-.group-boxlast-post
+.group-box-last-post
 {
 	text-align: left;
+	    font-family: "Roboto",sans-serif;
 }
 .group-box-members
 {
 	text-align: left;
+	    font-family: "Roboto",sans-serif;
+}
+.group-box-join {
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+        font-family: "Roboto",sans-serif;
 }
