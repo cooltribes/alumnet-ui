@@ -1,66 +1,39 @@
-.groups-link {
+.top-bar-groups-link {
     height: 60px;
+    color: #2099d0;
 }
-.profile-link {
+.sub-bar-groups-link {
     height: 60px;
+    color: #fff;
 }
 .main-groups-area {
-margin-top: 100px;
+	margin-top: 100px;
 }
 .group-dash-image.pad-0 {
-    width: 100% !important;
+	width: 100% !important;
 }
-.blue-huge-title {
- color: #2099d0;
+.groups-big-search {
 }
-.big-search {
+.groups-name{
+	font-size: 140%;
 }
-
-.grey-bg{
-	background: #e1ecf1;
-
-
+.groups_small_desc {
+	font-size: 90%;
 }
-.light-blue-bg{
-	background: #8fcce7;
-
-
-}
- 
-
-  .groups-name{
-
-   font-size: 140%;
-   }
-
-.group_small_desc {
-
-      font-size: 90%;
-    }
-
-.border-1-white
-{
-	border:1px solid #fff;
-
-
-}
-
 .groups-name {
-    margin-bottom: 5px;
-    margin-top: 5px;
-    text-transform: none;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	text-transform: none;
 }
-
-
 .group-box-date
- {
- text-align: left;
+{
+	text-align: left;
 }
 .group-boxlast-post
- {
- text-align: left;
+{
+	text-align: left;
 }
 .group-box-members
- {
- text-align: left;
+{
+	text-align: left;
 }
