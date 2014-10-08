@@ -1,0 +1,66 @@
+.groups-link {
+    height: 60px;
+}
+.profile-link {
+    height: 60px;
+}
+.main-groups-area {
+margin-top: 100px;
+}
+.group-dash-image.pad-0 {
+    width: 100% !important;
+}
+.blue-huge-title {
+ color: #2099d0;
+}
+.big-search {
+}
+
+.grey-bg{
+	background: #e1ecf1;
+
+
+}
+.light-blue-bg{
+	background: #8fcce7;
+
+
+}
+ 
+
+  .groups-name{
+
+   font-size: 140%;
+   }
+
+.group_small_desc {
+
+      font-size: 90%;
+    }
+
+.border-1-white
+{
+	border:1px solid #fff;
+
+
+}
+
+.groups-name {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-transform: none;
+}
+
+
+.group-box-date
+ {
+ text-align: left;
+}
+.group-boxlast-post
+ {
+ text-align: left;
+}
+.group-box-members
+ {
+ text-align: left;
+}
