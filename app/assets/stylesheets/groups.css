@@ -1,0 +1,53 @@
+.top-bar-groups-link {
+    height: 60px;
+    color: #2099d0;
+        font-family: "Roboto",sans-serif;
+}
+.sub-bar-groups-link {
+    height: 60px;
+     font-family: "Roboto",sans-serif;
+    color: #fff;
+}
+.main-groups-area {
+	margin-top: 100px;
+}
+.group-dash-image.pad-0 {
+	width: 100% !important;
+}
+.groups-big-search {
+}
+.groups-name {
+    font-family: "Roboto",sans-serif;
+    font-size: 130%;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-transform: none;
+}
+.groups_small_desc {
+	font-size: 90%;
+	    font-family: "Roboto",sans-serif;
+}
+.group-box-date
+{
+	text-align: left;
+	    font-family: "Roboto",sans-serif;
+}
+.group-box-last-post
+{
+	text-align: left;
+	    font-family: "Roboto",sans-serif;
+}
+.group-box-members
+{
+	text-align: left;
+	    font-family: "Roboto",sans-serif;
+}
+.group-box-join {
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+        font-family: "Roboto",sans-serif;
+}
