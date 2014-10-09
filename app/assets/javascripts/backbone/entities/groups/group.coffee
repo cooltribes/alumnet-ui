@@ -1,8 +1,10 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
+    prueba: ->
+      "Hola Armando"
 
   class Entities.GroupCollection extends Backbone.Collection
-    url: 'http://localhost:3000/groups'
+    url: 'http://localhost:4000/groups'
     model: Entities.Group
 
   initializeGroups = ->
