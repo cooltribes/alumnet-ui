@@ -21,6 +21,6 @@
     if Backbone.history
       Backbone.history.start()
 
-    if this.getCurrentRoute() == ""
-      App.trigger("groups:home")
+    # if this.getCurrentRoute() == ""
+    #   App.trigger("groups:home")
   App

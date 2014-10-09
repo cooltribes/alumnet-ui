@@ -2,7 +2,7 @@
 
   class Home.Group extends Marionette.ItemView
     template: 'groups/home/templates/row'
-    tagName: 'tr'
+    className: 'col-md-4 group'
     events:
       'click td': 'showDescription'
       'click .js-delete': 'deleteClicked'
@@ -24,8 +24,9 @@
 
 
   class Home.Groups extends Marionette.CompositeView
+    className: 'container-fluid'
     template: 'groups/home/templates/table'
     childView: Home.Group
-    childViewContainer: "tbody"
+    childViewContainer: ".group-container"
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"
