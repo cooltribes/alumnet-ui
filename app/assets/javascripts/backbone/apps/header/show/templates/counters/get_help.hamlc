@@ -1,0 +1,4 @@
+%a{ href: @link }
+  %span= @title
+  %span.nav-count
+    %span.unread
