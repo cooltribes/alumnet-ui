@@ -1,0 +1,23 @@
+  <div class="col-md-12">
+    <div class="well well-sm pad-0">
+      <div class="col-md-6 pad-0">
+        <img class="group-dash-image pad-0" src="assets/groups/group_1.jpg">
+      </div>
+      <div class="col-md-6 pad-5">
+        <div class="col-md-12 pad-5">
+          <h3 class="groups-name"><%= @name %></h3>
+          <p class="groups_small_desc no-margin"><%= @description %></p>
+        </div>
+        <div class="col-md-12 pad-5">
+          <div class="grey-bg col-md-6 border-1-white"><p class="group-box-date margin-3">5/2014</p>
+          </div>
+          <div class="grey-bg col-md-6 border-1-white"><p class="group-box-last-post margin-3">10:32<small>am</small></p>
+          </div>
+          <div class="grey-bg col-md-12 border-1-white"><p class="group-box-members margin-3">13000</p>
+          </div>
+          <div class="light-blue-bg col-md-12 border-1-white"><p class="group-box-join margin-3">+ join group</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
