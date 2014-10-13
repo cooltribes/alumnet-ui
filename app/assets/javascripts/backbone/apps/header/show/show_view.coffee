@@ -1,4 +1,4 @@
-@Profinda.module "HeaderApp.Show", (Show, App, Backbone, Marionette, $, _) ->
+@AlumNet.module "HeaderApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
   class Show.EmptyNotifications extends App.Views.ItemView
     template: 'header/show/templates/empty_notifications'

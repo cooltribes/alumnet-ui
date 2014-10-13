@@ -1,4 +1,4 @@
-@Profinda.module "HeaderApp.Show", (Show, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module "HeaderApp.Show", (Show, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Show.Controller extends App.Controllers.Base
     initialize: (options) ->

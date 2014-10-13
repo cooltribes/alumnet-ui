@@ -1,4 +1,4 @@
-@Profinda.module "HeaderApp", (HeaderApp, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module "HeaderApp", (HeaderApp, @AlumNet, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
   API =
