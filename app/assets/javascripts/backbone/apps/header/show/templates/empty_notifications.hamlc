@@ -1,1 +1,0 @@
-%h3.empty-notifications-header= I18n.t('site_nav.notification.no_notifications')

@@ -1,8 +1,0 @@
-%a{ href: "##{@edit_profile_url}" }
-  %strong
-    != succeed ':', ->
-      = @tip_no
-  = @label_for("profile_progress.tips.#{@field_name}")
-%span.dismiss-tip.pull-left{ data: { field_name: @field_name } }
-  %i.ico-no
-  .info=I18n.t('actions.skip_this')
