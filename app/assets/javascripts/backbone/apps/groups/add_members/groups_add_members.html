@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>groups_add_members</title>
+	<meta name="description" content="" />
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap-responsive.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+	<!-- App css -->
+	<link rel="stylesheet" href="./css/general.css">
+	<link rel="stylesheet" href="./css/groups.css">
+	<!-- Tooltips -->
+	<link rel="stylesheet" type="text/css" href="css/tooltips/tooltipster.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-light.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-noir.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-punk.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-shadow.css" />
+
+	<!-- Js -->
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="ng-scope" header="">
+		<header id="header" class="navbar navbar-fixed-top">
+			<div class="container-fluid top-nav">  <!-- Top Bar -->
+				<div class="navbar-header col-md-2">
+					<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand pad-0" href="/">
+						<img src="./images/general/alumnet_logo.png">
+					</a>
+				</div>
+				<nav class="top-bar collapse navbar-collapse">
+					<ul class="nav navbar-nav">  <!-- Left Menu top -->
+						<li class="active pad-0">
+							<a class="top-bar-groups-link groups-link">
+								<span class="text-groups-link">
+									Groups
+								</span>
+							</a>
+						</li>
+						<li class="pad-0">
+							<a class="top-bar-groups-link events-link">
+								<span class="text-events-link">
+									Events
+								</span>
+							</a>
+						</li>
+						<li class="pad-0">
+							<a class="top-bar-groups-link programs-link">
+								<span class="text-programs-link">
+									Programs
+								</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav push-right"> <!-- Right menu top -->
+							<li class="pad-0">
+								<a class="top-bar-groups-link cup-link">
+
+								</a>
+							</li>
+							<li class="pad-0">
+								<a class="top-bar-groups-link rectangle-link">
+
+								</a>
+							</li>
+							<li class="pad-0">
+								<a class="top-bar-groups-link chat-link">
+
+								</a>
+							</li>
+							<li class="pad-0">
+								<a class="top-bar-groups-link user-link">
+									<span class="text-user-link">
+										Stephen Fry
+									</span>
+								</a>
+							</li>
+							<li class="pad-0">
+								<a class="top-bar-groups-profile-link pad-5">								<img src="./images/general/user_icon.png">
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
+					<nav class="sub-bar collapse navbar-collapse">
+						<ul class="nav navbar-nav"><!-- Left Menu Top -->
+							<li class="pad-0">
+								<a class="sub-bar-groups-link">
+									<img class="icon-manage-groups" src="./images/general/icon_manage_groups.png">
+									<span class="text">
+										Manage Groups
+									</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav push-right">  <!-- Right Menu Sub -->
+							<li class="pad-0">
+								<a class="sub-bar-groups-link">
+									<img src="./images/groups/icon_discover.png">
+									<span class="text">
+										Discover
+									</span>
+								</a>
+							</li>
+							<li class="pad-0">
+								<a class="sub-bar-groups-link">
+									<img src="./images/groups/icon_invites.png">
+									<span class="text">
+										Invites
+									</span>
+								</a>
+							</li>
+							<li class="new-group-button-li pad-top-10">
+								<button type="button" class="btn btn-default btn-block new-group-button">
+									+ create a new group
+								</button>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		</div>
+		<div class="ng-scope" id="wrapper">  <!-- Main -->
+			<div id="main-wrapper" class="col-md-12">
+				<div id="main-groups">
+					<div class="container-fluid col-md-12 add-members">	
+						<div class="container-fluid ">
+							<h1 class="blue-huge-title margin-top-15 center-text">Add Members to your group
+							</h1>		
+						</div>
+						<div class="container-fluid ">
+							<div class="col-md-3">	</div>
+							<div class="col-md-6">
+
+
+								<div class="input-group col-md-12 center-search">
+									<div class="col-md-10 pad-0">
+										<input class="form-control col-md-12 groups-big-search pad-0" type="text" class="form-control" placeholder="Write a name, email or city..." name="srch-term" id="srch-term">
+									</div>
+									<div class="col-md-2 pad-0">
+										<button class="btn btn-default col-md-12 groups-search-button" type="submit">	
+											<img class="search-icon-blue" src="./images/general/search-icon-blue.png">
+										</button>
+									</div>
+
+								</div>
+							</div>
+							<div class="col-md-3">	</div>
+						</div>
+						<div class="container-fluid ">
+							<h2 class="black-big-title col-md-9 border-bottom-1-grey pad-5 no-margin">Invite members to a group </h2>
+						</div>
+						<div class="container-fluid invite-members-boxes-container">
+							<div class="main-invite-boxes-area grid-wrapper">
+								<div class="invite-box">
+									<div class="col-md-12 pad-0">
+
+										<div class="intite-box-itself">
+											<div class="col-md-10 pad-0">
+												<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+												<p class="member-position">Local Comitee President</p>
+											</div>	<div class="col-md-2 pad-0">
+											<div class="select-invite"></div>	
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="invite-box">
+								<div class="col-md-12 pad-0">
+
+									<div class="invite-box-itself">
+										<div class="col-md-10 pad-0">
+											<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+											<p class="member-position">Local Comitee President</p>
+										</div>	<div class="col-md-2 pad-0">
+										<div class="select-invite"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="invite-box">
+							<div class="col-md-12 pad-0">
+
+								<div class="invite-box-itself">
+									<div class="col-md-10 pad-0">
+										<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+										<p class="member-position">Local Comitee President</p>
+									</div>	<div class="col-md-2 pad-0">
+									<div class="select-invite">invite</div>
+								</div>
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-12">		
+			</div>
+		</div>
+
+
+	</div>
+</div>
+<div footer=""><footer>  <!-- Footer -->
+	<div class="container-fluid">
+		<div class="row">    
+			<div class="col-md-6">          
+			</div>
+			<div class="col-md-6">          
+			</div>
+		</div>
+	</div>
+</footer></div> <!-- End Footer -->
+</div>
+</div>  <!-- End All -->
+</body>
+</html>
