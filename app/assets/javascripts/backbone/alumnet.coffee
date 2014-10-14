@@ -3,6 +3,7 @@
   App = new Marionette.Application
 
   App.addRegions
+    headerRegion: "#header-region"
     mainRegion: "#main-region"
     tableRegion: "#groups-table"
 
@@ -20,6 +21,8 @@
         'Accept': 'application/vnd.alumnet+json;version=1'
     if Backbone.history
       Backbone.history.start()
+      App.module("HeaderApp").start()
+
 
     # if this.getCurrentRoute() == ""
     #   App.trigger("groups:home")
