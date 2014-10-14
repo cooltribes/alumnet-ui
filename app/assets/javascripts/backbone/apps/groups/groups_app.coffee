@@ -2,16 +2,23 @@
   GroupsApp.Router = Marionette.AppRouter.extend
     appRoutes:
       "groups": "listGroups"
+      "groups/new": "createGroup"
 
   API =
     listGroups: ->
-      console.log "routes to group war triggered"
       controller = new GroupsApp.Home.Controller
       controller.listGroups()
+    createGroup: ->
+      controller = new GroupsApp.Create.Controller
+      controller.createGroup()
 
   AlumNet.on "groups:home",  ->
     AlumNet.navigate("groups")
     API.listGroups()
+
+  AlumNet.on "groups:new",  ->
+    AlumNet.navigate("groups/new")
+    API.createGroup()
 
   AlumNet.addInitializer ->
     new GroupsApp.Router
