@@ -1,7 +1,7 @@
-@AlumNet.module 'GroupsApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'HeaderApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Home.Group extends Marionette.ItemView
-    template: 'groups/home/templates/group'
+  ###class Home.Group extends Marionette.ItemView
+    template: 'header/home/templates/group'
     className: 'col-md-4 group'
     events:
       'click td': 'showDescription'
@@ -19,13 +19,13 @@
     showClicked: (e)->
       e.preventDefault()
       e.stopPropagation()
-      this.trigger('group:show', this.model)
+      this.trigger('group:show', this.model)###
 
 
-  class Home.Groups extends Marionette.CompositeView
-    className: 'container-fluid'
-    template: 'groups/home/templates/groups_container'
-    childView: Home.Group
-    childViewContainer: ".group-container"
+  class Home.Header extends Marionette.CompositeView
+    className: 'ng-scope'
+    template: 'header/home/templates/header_container'
+    ###childView: Home.Group
+    childViewContainer: ".group-container"###
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"

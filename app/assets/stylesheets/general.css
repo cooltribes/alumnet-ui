@@ -1,17 +1,36 @@
 body {
-    background-color: #f7f7f7;
+    background:  #f4f4f6!important;
     color: #818181;
     font-family: "Source Sans Pro",sans-serif;
 }
 hr {
     border-color: rgba(220, 220, 220, 0.2);
 }
+.tooltip{
+position:relative!important;
+}
+
+.overlay-subgroups{
+display:none;
+}
+
+
+​div.group-dash-image:hover div.overlay
+{
+ display:block!important;   
+}​
+
+
+
 a, a.list-group-item {
     color: #2a76db;
 }
 a:visited {
 }
 a:hover, a:focus {
+    color: #2a6496;
+    text-decoration: none!important;
+    cursor:pointer;
 }
 h2 {
     text-transform: uppercase;
@@ -48,10 +67,7 @@ h4 {
 .text-muted {
     color: rgba(110, 110, 110, 0.6);
 }
-.well{
-    float:left!important;
-    background: none repeat scroll 0 0 #fff!important;
-}
+
 #wrapper {
     display: inline-block;
     height: 100%;
@@ -65,36 +81,9 @@ h4 {
 #main-wrapper {
     height: 100%;
     margin: 180px auto -51px;
-    overflow-y: auto;
+
     padding: 0;
     background: none repeat scroll 0 0 #f4f4f6;
-}
-@media (min-width: 769px) {
-    #sidebar-wrapper {
-        width: 221px;
-    }
-
-}
-@media (min-width: 769px) {
-    #sidebar-wrapper {
-        width: 221px;
-    }
-
-}
-@media (max-width: 768px) {
-    #wrapper:not(.active) #sidebar-wrapper {
-        width: 50px;
-    }
-    #wrapper:not(.active) #main-wrapper {
-        padding-left: 48px;
-    }
-    #wrapper:not(.active) #menuSm span, #wrapper:not(.active) .nav-sub > li {
-        display: none;
-    }
-}
-#main {
-    min-height: calc(100% - 150px);
-    position: relative;
 }
 footer {
     height: 50px;
@@ -122,6 +111,15 @@ input.form-control:focus {
 .pad-5 {
     padding: 5px !important;
 }
+.pad-5 {
+    padding: 5px !important;
+}
+.pad-2 {
+    padding: 2px !important;
+}
+.pad-10 {
+    padding: 10px !important;
+}
 .pad-0 {
     padding: 0 !important;
 }
@@ -133,6 +131,9 @@ input.form-control:focus {
 }
 .pad-left-5 {
     padding-left: 5px;
+}
+.pad-top-10 {
+    padding-top: 10px;
 }
 .pad-right-5 {
     padding-right: 5px;
@@ -158,6 +159,12 @@ input.form-control:focus {
 .margin-top-30 {
     margin-top: 30px;
 }
+.margin-top-50 {
+    margin-top: 50px;
+}
+.margin-left-15 {
+    margin-left: 15px;
+}
 .margin-bottom-5 {
     margin-bottom: 5px;
 }
@@ -181,6 +188,13 @@ input.form-control:focus {
 .border-1-white
 {
     border:1px solid #fff;
+}
+.border-bottom-1-grey
+{
+    border-bottom:1px solid #c8c8c8;
+}
+.overhidden{
+    overflow:hidden!important;
 }
 .alert-inverse {
     background-color: #2a2a2a;
@@ -243,6 +257,92 @@ input.form-control:focus {
 }
 .nav > li > a:hover, .nav > li > a:focus{
     background-color: #2099d0!important;
+    color: #fff;
+}
+.groups-link
+{
+    background: url("general/icon_groups.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
+}
+.groups-link:hover
+{
+    background: url("general/icon_groups_on.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
+}
+.text-groups-link {
+    margin-left: 25px;
+}
+.events-link
+{
+    background: url("general/icon_events.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
+}
+.events-link:hover
+{
+    background: url("general/icon_events_on.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
+}
+.text-events-link {
+    margin-left: 25px;
+}
+.programs-link
+{
+    background-image: url(general/icon_programs.png), url(general/arrow.png);
+    background-position: 15% center , 85% center;
+    background-repeat: no-repeat;
+}
+.programs-link:hover
+{
+    background-image: url(general/icon_programs_on.png), url(general/arrow_on.png);
+    background-position: 15% center , 85% center;
+    background-repeat: no-repeat;
+}
+.text-programs-link {
+
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.chat-link
+{
+   width: 50px;
+   background: url("general/icon_chat.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.chat-link:hover
+{
+    background: url("general/icon_chat_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.cup-link
+{
+   width: 50px;
+   background: url("general/icon_cup.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.cup-link:hover
+{
+    background: url("general/icon_cup_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.rectangle-link
+{
+   width: 50px;
+   background: url("general/icon_rectangle.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.rectangle-link:hover
+{
+    background: url("general/icon_rectangle_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+}
+.user-link
+{
+    background: url("general/arrow.png") no-repeat scroll 85% center rgba(0, 0, 0, 0)!important;
+}
+.user-link:hover
+{
+    background: url("general/arrow_on.png") no-repeat scroll 85% center rgba(0, 0, 0, 0)!important;
+}
+.text-user-link {
+    margin-right: 25px;
+}
+.sub-bar li a {
+    border-bottom: none!important;
+    color:#fff;
+    text-align: left;
+}
+.sub-bar li a:hover, .sub-bar > li > a:focus {
+    border-bottom: 5px solid #fff!important
 }
 .profile-link {
     height: 60px;
@@ -255,6 +355,19 @@ input.form-control:focus {
 }
 .blue-huge-title {
     color: #2099d0;
-          font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
     font-weight: 300;
+    font-size:350%;
+}
+.black-big-title {
+    font-family: "Roboto";
+    font-size: 210%;
+    font-weight: 300;
+    margin-top: 60px;
+    text-decoration: none;
+    text-transform: none;
+}
+.black
+{
+    color:#000!important;
 }
