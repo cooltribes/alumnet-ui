@@ -1,47 +1,176 @@
 .top-bar-groups-link {
     height: 60px;
     color: #2099d0;
-        font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
+    padding-top: 20px !important;
 }
 .sub-bar-groups-link {
     height: 60px;
-     font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
     color: #fff;
+    padding-top: 20px !important;
+}
+.sub-bar-groups-link {
+    height: 60px;
+    font-family: "Roboto",sans-serif;
+    color: #fff;
+    padding-top: 20px !important;
+}
+.top-bar-groups-profile-link {
+
+    padding-top: 9px !important;
+}
+.new-group-button-li{
+    height: 60px;
+    width:230px;
+
+}
+.groups-container {
+    width: 98% !important;
+}
+.well{
+    float:left!important;
+    background: none repeat scroll 0 0 #fff!important;
+}
+.well-box-text-right{
+    height: 114px!important;
+}
+
+.box {
+    float: left;
+    height: 245px;
+    margin: 10px;
+    width: 395px!important;
+
+}
+.new-group-button{
+    height:40px;
+    background: none repeat scroll 0 0 #8fcce7!important;
+    color:#fff!important;
+    text-transform: uppercase;
+    font-weight: bold!important;
+    border-color: #fff!important;
+}
+.new-group-button:hover{
+    background: none repeat scroll 0 0 #107daf!important;
+}
+.join-group-button {
+    height: 37px;
+}
+.join-group-button:hover {
+    background:#107daf;
+}
+.grey-bg.col-md-6.border-1-white {
+    height: 37px;
+}
+
+.grey-bg.col-md-12.border-1-white {
+    height: 45px;
+}
+
+.inline{
+    display:inline!important;
+}
+
+.grey-bg.col-md-6.border-1-white.inline.pad-0 > img {
+    margin-left: -20px;
 }
 .main-groups-area {
-	margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+.grid-wrapper {
+    margin: 0 auto;
+    width: 425px;   /* 1 column */
 }
 .group-dash-image.pad-0 {
-	width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
 }
 .groups-big-search {
+    border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
+    border-left: 1px solid #c6c6c6 !important;
+    border-style: solid none solid solid !important;
+    border-width: 1px medium 1px 1px !important;
+    color: #666;
+    font-family: "Roboto";
+    font-size: 100%;
+    height: 70px !important;
+    padding: 20px !important;
+    width: 100% !important;
+}
+.groups-search-button {
+    border-left: medium none !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #c6c6c6 !important;
+    height: 70px;
+}
+.groups-right-sort-menu {
+    font-family: "roboto",sans-serif;
+    font-size: 90%;
+    margin-left: 0 !important;
+    padding-left: 0;
+    width: 250px !important;
+    height: 27px!important;
+    text-align: right!important;
+}
+.groups-right-sort-menu li:hover {
+    border-bottom: 3px solid #000;
+    padding-bottom: 5px;
+}
+.groups-right-sort-menu li a:hover {
+    color: #333;
 }
 .groups-name {
     font-family: "Roboto",sans-serif;
-    font-size: 130%;
+    font-size: 19px;
     font-weight: 400;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-top: 0px;
     text-transform: none;
+    float:left;
+    max-width: 140px;
+    overflow: hidden;
 }
 .groups_small_desc {
-	font-size: 90%;
-	    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    font-family: "Roboto",sans-serif;
+    float:left;
 }
 .group-box-date
 {
-	text-align: left;
-	    font-family: "Roboto",sans-serif;
+    color:#bbb;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
 }
 .group-box-last-post
 {
-	text-align: left;
-	    font-family: "Roboto",sans-serif;
+    color:#bbb;
+    font-size: 13px;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
 }
 .group-box-members
 {
-	text-align: left;
-	    font-family: "Roboto",sans-serif;
+    color:#bbb;
+    font-size: 13px;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
+}
+.like-face-small {
+    padding-left: 5px;
+    padding-top: 5px;
+    float:left;
+}
+
+.group-box-members-friends {
+    color: #bbb;
+    float: left;
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    padding-top: 5px;
+    text-align: left;
 }
 .group-box-join {
     color: #fff;
@@ -49,5 +178,90 @@
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-        font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
 }
+.adv-search-link {
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
+}
+.adv-search-link a:hover
+{
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
+}
+.search-icon-blue
+{
+    color:#000!important;
+}
+
+.group-status-icon-public {
+    background: url("/assets/groups/public-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
+    height: 25px;
+    width: 25px;
+    float:right;
+}
+.group-status-icon-closed {
+    background: url("/assets/groups/closed-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
+    height: 25px;
+    width: 25px;
+}
+.groups-right-sort-menu .link {
+    color: #677f8a;
+    font-size: 100%;
+}
+.sub-groups-container {
+
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #485257;
+opacity: 0.9;
+}
+.sub-groups-container ul {
+    color: #fff;
+    font-family: "roboto";
+    list-style: none outside none;
+        padding-left: 0px;
+
+
+}
+.sub-groups-title {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+}
+.sub-groups-container ul li {
+    border-bottom: 1px solid #aaa;
+    height: 30px;
+      padding-top: 5px;
+}
+.sub-groups-container ul li a {
+    color: #c6c6c6;
+        padding-left: 10px;
+           font-size: 13px;
+}
+.sub-groups-container ul li a:hover {
+    color: #fff!important;
+}
+
+
+
+@media (min-width: 810px) {
+    .grid-wrapper {width: 830px;}   /* 2 columns */
+}
+@media (min-width: 1280px) {
+    .grid-wrapper {width: 1215px;} /* 3 columns */
+    .box {margin: 5px!important;}
+}
+@media (min-width: 1650px) {
+    .grid-wrapper {width: 1620px;} /* 4 columns */
+    .box {margin: 2px!important;}
+}
+
