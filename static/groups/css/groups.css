@@ -48,19 +48,28 @@ background: #fff;
 
 }
 .invite-box {
+    background: none repeat scroll 0 0 #fff;
     float: left;
-    height: 105px;
-    width: 395px!important;
-    background:#fff;
-    margin:5px;
-
+  height: 100px;
+    margin: 15px;
+    width: 375px !important;
 }
-.invite-member-name{
-
+.invite-member-name {
+    font-family: "roboto";
+    font-size: 20px;
+    font-weight: 300;
 }
-.select-invite{
-background:#8dcae6; 
-height: 105px;
+
+.member-position {
+    font-family: "roboto";
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.select-invite {
+    background: none repeat scroll 0 0 #8dcae6;
+    color: #fff;
+    height: 100px;
 }
 .blue-text{
  color: #2099d0;
@@ -80,6 +89,14 @@ height: 105px;
     height: 37px;
 }
 .join-group-button:hover {
+    background:#107daf;
+}
+.invite-member-button {
+    border: medium none;
+    height: 100px;
+    width: 100% !important;
+}
+.invite-member-button:hover {
     background:#107daf;
 }
 .grey-bg.col-md-6.border-1-white {
@@ -200,6 +217,14 @@ height: 105px;
     text-align: left;
 }
 .group-box-join {
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto",sans-serif;
+}
+.invite-member {
     color: #fff;
     font-size: 85%;
     font-weight: bold;
