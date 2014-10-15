@@ -1,4 +1,4 @@
-<h1>Create Group</h1>
+<!-- <h1>Create Group</h1>
 <form>
   <label>Name</label>
   <input type="text" id="group-name" name="name">
@@ -7,4 +7,81 @@
   <label>Avatar</label>
   <input type="file" id="group-avatar" name="avatar">
   <button class="js-submit">Save</button>
-</form>
+</form> -->
+
+<div class="ng-scope" id="wrapper">  <!-- Main -->
+  <div id="main-wrapper" class="col-md-12">
+    <div id="main-groups">
+      <div class="container-fluid col-md-9 create-group">
+        <div class="col-md-12">
+          <h1 class="blue-huge-title margin-top-15">Create a new Group</h1>
+          <form>
+            <div class="col-md-12 border-bottom-1-grey">
+              <div class="col-md-6">
+                <div class="add-cover-photo"></div>
+              </div>
+              <div class="col-md-6">
+                <label>Name of the group</label>
+                <div class="input-group">
+                  <input type="text" name="name" id="group-name" class="form-control">
+                  <span class="input-group-addon">00</span>
+                </div>
+                <label>Group's Description</label>
+                <div class="input-group">
+                  <textarea id="group-description" name="description"
+                    class="form-control custom-control" rows="4" style="resize:none"></textarea>
+                  <span class="input-group-addon">00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 border-bottom-1-grey">
+              <div class="col-md-4">
+                <h2 class="black-big-title">Attributes</h2>
+              </div>
+              <div class="col-md-4">
+                <label>Type of Group</label>
+                <select class="form-control" id="group-type" name="type_group">
+                  <option>Open</option>
+                  <option>Closed</option>
+                  <option>Secret</option>
+                </select>
+                <p class="text-small">Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</p>
+              </div>
+              <div class="col-md-4">
+                <label>Official Group</label>
+                <select class="form-control" name="official">
+                  <option>it's not an official group</option>
+                </select>
+              </div>
+            </div>
+  <!--           <div class="col-md-12 border-bottom-1-grey">
+              <div class="col-md-4">
+                <h2 class="black-big-title">Location (optional)</h2>
+              </div>
+              <div class="col-md-4">
+                <label>Country</label>
+                <select class="form-control">
+                  <option>Select a Country</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label>City</label>
+                <select class="form-control">
+                  <option>Select a City</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="col-md-12">
+              <div class="col-md-4"></div>
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-default">CANCEL</button>
+                <button type="submit" class="btn btn-primary">SAVE & ADD MEMBERS</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
