@@ -1,7 +1,7 @@
 body {
-    background:  #f4f4f6!important;
+    background: none repeat scroll 0 0 #e6e6e8!important;
     color: #818181;
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: 'Roboto'
 }
 hr {
     border-color: rgba(220, 220, 220, 0.2);
@@ -50,7 +50,7 @@ h4 {
     text-transform: uppercase;
 }
 .label, .badge {
-    font-family: arial,sans-serif;
+    font-family: 'Roboto';
 }
 .text-primary {
     color: #3b87ec;
@@ -79,14 +79,14 @@ h4 {
     position: absolute;
     top: 0;
     width: 100%;
-    background: none repeat scroll 0 0 #f4f4f6;
+    background: none repeat scroll 0 0 #e6e6e8;
 }
 #main-wrapper {
     height: 100%;
     margin: 180px auto -51px;
 
     padding: 0;
-    background: none repeat scroll 0 0 #f4f4f6;
+    background: none repeat scroll 0 0 #e6e6e8;
 }
 footer {
     height: 50px;
@@ -137,6 +137,12 @@ input.form-control:focus {
 }
 .pad-top-10 {
     padding-top: 10px;
+}
+.pad-top-15 {
+    padding-top: 15px;
+}
+.pad-bottom-15 {
+    padding-bottom: 15px;
 }
 .pad-right-5 {
     padding-right: 5px;
