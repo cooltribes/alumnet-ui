@@ -9,6 +9,9 @@
   initializeGroups = ->
     Entities.groups = new Entities.GroupCollection [
       {name: "dagd", description: "adgdgg"}
+      {name: "dagd", description: "adgdgg"}
+      {name: "dagd", description: "adgdgg"}
+      {name: "dagd", description: "adgdgg"}
     ]
 
   API =

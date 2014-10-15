@@ -11,29 +11,11 @@
             </a>
         </div>
         <nav class="top-bar collapse navbar-collapse">
-            <ul class="nav navbar-nav">  <!-- Left Menu top -->
-                <li class="active pad-0">
-                    <a class="top-bar-groups-link groups-link">
-                        <span class="text-groups-link">
-                            Groups
-                        </span>
-                    </a>
-                </li>
-                <li class="pad-0">
-                    <a class="top-bar-groups-link events-link">
-                        <span class="text-events-link">
-                            Events
-                        </span>
-                    </a>
-                </li>
-                <li class="pad-0">
-                    <a class="top-bar-groups-link programs-link">
-                        <span class="text-programs-link">
-                            Programs
-                        </a>
-                    </li>
+            <ul class="nav navbar-nav js-left-menu">  <!-- Left Menu top -->
+                
+                
             </ul>
-            <ul class="nav navbar-nav push-right"> <!-- Right menu top -->
+            <ul class="nav navbar-nav push-right js-right-menu"> <!-- Right menu top -->
                 <li class="pad-0">
                     <a class="top-bar-groups-link cup-link">
 

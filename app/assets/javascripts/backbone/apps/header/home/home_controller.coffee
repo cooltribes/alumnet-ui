@@ -1,14 +1,15 @@
 @AlumNet.module 'HeaderApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
   class Home.Controller
     show: ->
-      groupsTable = new Home.Header
+      items = AlumNet.request("menu:items", {})
+      menuView = new Home.MenuBar
+        collection: items
         
-      ###groups = AlumNet.request("group:entities", {})
-      groupsTable = new Home.Groups
+      ###groupsTable = new Home.Groups
         collection: groups
       groupsTable.on 'childview:group:delete', (childView, model)->
         groups.remove(model)
       groupsTable.on 'childview:group:show', (childView, model)->
         alert model.escape('description')###
 
-      AlumNet.headerRegion.show(groupsTable)
+      AlumNet.headerRegion.show(menuView)
