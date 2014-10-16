@@ -21,8 +21,6 @@
         'Accept': 'application/vnd.alumnet+json;version=1'
     if Backbone.history
       Backbone.history.start()
-      App.module("HeaderApp").start()    
-      console.log("nelson");  
 
     ###if this.getCurrentRoute() == ""
       App.trigger("home")###

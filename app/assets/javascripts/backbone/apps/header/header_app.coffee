@@ -9,7 +9,7 @@
       controller = new HeaderApp.Home.Controller
       controller.show()    
 
-  AlumNet.on "home",  ->
+  AlumNet.on "header:home",  ->
     AlumNet.navigate("home")
     API.showHeader()
   
@@ -17,3 +17,6 @@
   AlumNet.addInitializer ->    
     new HeaderApp.Router
       controller: API
+
+  HeaderApp.addInitializer ->        
+    AlumNet.trigger("header:home", {});
