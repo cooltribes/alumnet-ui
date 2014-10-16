@@ -35,11 +35,7 @@
 .well-box-text-right{
     height: 114px!important;
 }
-.invite-box-itself{
-background: #fff;
 
-
-}
 .box {
     float: left;
     height: 245px;
@@ -47,30 +43,12 @@ background: #fff;
     width: 395px!important;
 
 }
-.invite-box {
-    float: left;
-    height: 105px;
-    width: 395px!important;
-    background:#fff;
-    margin:5px;
-
-}
-.invite-member-name{
-
-}
-.select-invite{
-background:#8dcae6; 
-height: 105px;
-}
-.blue-text{
- color: #2099d0;
-}
 .new-group-button{
     height:40px;
     background: none repeat scroll 0 0 #8fcce7!important;
     color:#fff!important;
     text-transform: uppercase;
-    font-weight: bold!important; 
+    font-weight: bold!important;
     border-color: #fff!important;
 }
 .new-group-button:hover{
@@ -96,11 +74,6 @@ height: 105px;
 
 .grey-bg.col-md-6.border-1-white.inline.pad-0 > img {
     margin-left: -20px;
-}
-.main-invite-boxes-area {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
 }
 .main-groups-area {
     margin-left: auto;
@@ -277,23 +250,7 @@ opacity: 0.9;
 .sub-groups-container ul li a:hover {
     color: #fff!important;
 }
-.create-group {
-    float: none;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-.add-cover-photo
-{
-width:100%;
-height:290px;
-background: #2099d0;
-}
 
-.add-members-top
-
-{
-
-}
 
 
 @media (min-width: 810px) {
@@ -301,10 +258,9 @@ background: #2099d0;
 }
 @media (min-width: 1280px) {
     .grid-wrapper {width: 1215px;} /* 3 columns */
-    .box {margin: 5px!important;}  
+    .box {margin: 5px!important;}
 }
 @media (min-width: 1650px) {
     .grid-wrapper {width: 1620px;} /* 4 columns */
-    .box {margin: 2px!important;}  
+    .box {margin: 2px!important;}
 }
-

@@ -14,13 +14,10 @@ position:relative!important;
 display:none;
 }
 
-.center-text{
-text-align: center;
-}
 
 ​div.group-dash-image:hover div.overlay
 {
- display:block!important;   
+ display:block!important;
 }​
 
 
