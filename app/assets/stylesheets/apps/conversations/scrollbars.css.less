@@ -1,0 +1,21 @@
+@import 'conf/conf.css.less';
+
+.messages-wrap,
+.other-messages,
+.conversation .messages {
+  &::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  &::-webkit-scrollbar-track {
+    background: mix(@lighter-gray, @white, 20%);
+  }
+  &::-webkit-scrollbar-track:vertical {
+    box-shadow: -1px 0 0 @light-gray;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: @gray;
+    border: 3px solid mix(@lighter-gray, @white, 20%);
+    border-radius: 7px;
+  }
+}

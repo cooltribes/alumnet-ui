@@ -1,0 +1,23 @@
+@import 'conf/conf.css.less';
+
+.dashboard-searches {
+  margin: 10px 0 0 0;
+  list-style: none;
+  .category {
+    font-size: 0.85em;
+    color: @main-text;
+  }
+  li {
+    color: @main-blue;
+    min-height: 0;
+    line-height: 24px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.active {
+      font-weight: 500;
+    }
+  }
+}

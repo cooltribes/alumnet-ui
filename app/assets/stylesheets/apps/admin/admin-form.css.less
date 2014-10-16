@@ -1,0 +1,258 @@
+@import 'conf/conf.css.less';
+
+.admin-form {
+  padding-top: 1em;
+  label,
+  input {
+    .inline-block();
+  }
+  .form-footer {
+    border: 0;
+    margin: 0;
+    padding-bottom: 0;
+    .form-buttons {
+      text-align: right;
+    }
+    button {
+      border-radius: 0;
+      background: @admin-green;
+      border-bottom: 2px solid darken(@admin-green, 5%);
+      &:hover {
+        background: darken(@admin-green, 8%);
+      }
+      &.secondary {
+        background: @gray;
+        border-bottom: 2px solid darken(@gray, 5%);
+        &:hover {
+          background: darken(@gray, 8%);
+        }
+      }
+    }
+  }
+  .error {
+    position: absolute;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 2px;
+    margin-left: -4px;
+    line-height: 1em;
+    text-align: left;
+  }
+  .thumbnail-img {
+    max-height: 42px;
+    max-width: 60px;
+  }
+}
+
+.admin-images-lists {
+  padding: 40px 0 0 0;
+}
+
+.admin-images-list {
+  padding: 0;
+  margin: 0;
+  list-style: 0;
+  display: inline;
+  li {
+    .inline-block();
+    background: @main-bg;
+    border: 6px solid @white;
+    cursor: pointer;
+    &:hover {
+      border: 6px solid @admin-table-red;
+    }
+  }
+  img {
+    height: 64px;
+    width: 64px;
+
+  }
+  &.new {
+    li {
+      position: relative;
+      &:after {
+        content: '+';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background: @admin-green;
+        color: @white;
+        line-height: 20px;
+        font-size: 18px;
+        text-align: center;
+      }
+      &:hover {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.admin-form-controls {
+  margin-bottom: 30px;
+  label {
+    width: 150px;
+    height: 28px;
+    vertical-align: bottom;
+  }
+
+  .admin-file-input {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    background: @admin-green;
+    border-bottom: 2px solid darken(@admin-green, 5%);
+    line-height: 30px;
+    height: 30px;
+    padding: 2px 10px;
+    color: @white;
+    input,
+    i {
+      .inline-block();
+    }
+    input {
+      background: transparent;
+      border: 0;
+    }
+    .file-input-wrap {
+      position: absolute;
+      clip: rect(0px 0px 0px 0px);
+    }
+  }
+}
+
+.admin-input,
+.admin-textarea,
+.admin-checkbox {
+  .inline-block();
+  position: relative;
+}
+label.admin-checkbox {
+  padding: 10px 2em;
+  height: 20px;
+  width: auto;
+}
+
+.admin-textarea {
+  max-width: 100%;
+  textarea {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid @gray;
+    margin: 0;
+    min-height: 6em;
+    max-width: 100%;
+    width: 500px;
+    height: 1em;
+    resize: both;
+    &::-webkit-scrollbar-thumb {
+      background: @gray;
+    }
+  }
+}
+
+.admin-textarea,
+.admin-input {
+  &:after,
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: block;
+    height: 6px;
+    bottom: 0;
+    border-left: 1px solid @gray;
+  }
+  &:after {
+    right: 0;
+  }
+  &:before {
+    left: 0;
+  }
+}
+.admin-input {
+  input[type='email'],
+  input[type='password'],
+  input[type='text'],
+  input[type='number'] {
+    .inline-block();
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid @gray;
+    border-radius: 0;
+    padding: 0.5em 1em;
+    width: 208px;
+    &:focus {
+      border-color: @gray;
+    }
+  }
+  &.text {
+    font-weight: bold;
+    padding: 0.85em 2em 0.85em 0;
+    min-width: 178px;
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+  select {
+    height: 29px;
+    background: none;
+    margin: 0;
+    padding: 0.5em 1em;
+    width: 208px;
+    border-bottom: 1px solid @gray;
+    &:focus {
+      border-width: 0 0 1px 0;
+      outline: none;
+    }
+  }
+}
+
+.admin-form .select2-container {
+  border: 0;
+  background: 0;
+  width: 208px;
+  margin: 0;
+  border-radius: 0;
+  a.select2-choice {
+    padding: 0.2em 1em;
+    border-bottom: 1px solid @gray;
+    border-radius: 0;
+    background: transparent;
+  }
+}
+
+.admin-input-dropdown {
+  a {
+    outline: none;
+  }
+  .select2-search,
+  .select2-results {
+    border: 1px solid @gray;
+    background: @white;
+    border-radius: 0;
+  }
+  .select2-search {
+    border-top: 0;
+    border-bottom: 0;
+  }
+  &.select2-drop.select2-drop-above {
+    .select2-search {
+      padding: 0 4px;
+      border-top: 1px solid @gray;
+    }
+    .select2-results {
+      border-radius: 0;
+    }
+  }
+  input.select2-input {
+    border-radius: 0;
+    &:focus {
+      border-color: @gray;
+    }
+  }
+}

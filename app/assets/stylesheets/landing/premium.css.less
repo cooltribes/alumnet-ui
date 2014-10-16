@@ -1,0 +1,286 @@
+.landing-howto {
+  &.animated {
+    .transition(top ease 300ms)
+  }
+  @media(min-width: 600px){
+    height: 100%;
+    width: 100%;
+    *zoom: 1;
+    z-index: 1;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+
+.landing-howto-push {
+  height: 1000px;
+  display: none;
+  @media(min-width: 600px){
+    display: block;
+  }
+}
+
+.landing-traditional-half,
+.landing-profinda-half {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.landing-halves {
+  position: relative;
+  height: 100%;
+  .inner {
+    padding: 140px 0 30px 0;
+  }
+  h1,
+  .fake-h1 {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-align: center;
+    width: 200%;
+    top: 40px;
+    position: absolute;
+    strong {
+      display: block;
+      font-weight: 700;
+    }
+    @media (min-height: 500px) and (min-width: 600px) {
+      font-size: 32px;
+      line-height: 36px;
+    }
+    @media (min-height: 700px) and (min-width: 800px) {
+      font-size: 52px;
+      line-height: 64px;
+    }
+  }
+
+  .inner,
+  h1,
+  .fake-h1 {
+    .transition(all ease 200ms)
+  }
+  .inner img {
+    max-width: 80%;
+  }
+  h2 {
+    margin-top: 0.5em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding-top: 0;
+    padding-bottom: 20px;
+    font-size: 18px;
+    @media (min-height: 500px) and (min-width: 400px) {
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: 22px;
+    }
+    @media (min-height: 700px) and (min-width: 600px) {
+      font-size: 32px;
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+  }
+}
+
+.howto-fixed .landing-halves {
+  .inner {
+    padding-top: 140px;
+    @media (min-height: 500px) and (min-width: 400px) {
+      padding-top: 190px;
+    }
+    @media (min-height: 800px) {
+      padding-top: 210px;
+    }
+  }
+  h1,
+  .fake-h1 {
+    top: 100px;
+  }
+}
+
+.landing-traditional-half {
+  left: 0;
+  background: @white;
+  color: @black;
+  position: relative;
+  overflow: hidden;
+  .transition(background ease 100ms);
+  h1 {
+    left: 0;
+  }
+  h1,
+  h2 {
+    color: @black;
+  }
+  .points {
+    text-align: right;
+    list-style: none;
+    padding: 0 30px;
+    margin: 0;
+    height: 30%;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: right;
+    position: relative;
+    li {
+      line-height: 1.5em;
+      position: relative;
+      .transition(all ease 300ms);
+      white-space: nowrap;
+      position: absolute;
+
+      @media(min-width: 600px){
+        opacity: 0;
+      }
+      &.point-visible {
+        opacity: 1;
+        margin-right: 0;
+      }
+    }
+    @media (min-height: 500px) and (min-width: 500px) {
+      font-size: 20px;
+      height: 40%;
+    }
+    @media (min-height: 700px) and (min-width: 600px) {
+      font-size: 32px;
+      height: 50%;
+    }
+  }
+  .point-1 {
+    top: 0;
+    left: 10%;
+    font-size: 1em;
+    font-weight: 200;
+    font-family: monospace;
+    span {
+      font-family: cursive;
+    }
+  }
+  .point-2 {
+    right: 4%;
+    top: 5%;
+    font-size: 0.8em;
+    font-weight: 500;
+    font-family: cursive;
+  }
+  .point-3 {
+    right: 20%;
+    top: 15%;
+    font-size: 1.1em;
+    font-weight: 200;
+    font-family: Lucida Console, Monaco, monospace;
+  }
+  .point-4 {
+    font-size: 1.2em;
+    font-family: Times New Roman, Times New Roman, Times, serif;
+    right: 50%;
+    top: 35%;
+  }
+  .point-5 {
+    font-size: 1.0em;
+    font-family: Tahoma, Geneva, sans-serif;
+    right: 4%;
+    top: 50%;
+  }
+  .point-6 {
+    font-size: 0.9em;
+    font-family: cursive;
+    font-weight: 100;
+    left: 10%;
+    top: 60%;
+  }
+  .point-7 {
+    font-size: 0.8em;
+    font-family: Times New Roman, Times New Roman, Times, serif;
+    left: 5%;
+    bottom: 12%;
+    font-weight: 900;
+    text-align: left;
+  }
+  .point-8 {
+    font-size: 0.8em;
+    font-weight: 700;
+    font-family: Lucida Console, Monaco, monospace;
+    right: 5%;
+    bottom: 4%;
+    font-weight: 100;
+  }
+}
+
+.landing-profinda-half {
+  color: @white;
+  right: 0;
+  background: @main-blue;
+  overflow: hidden;
+  li {
+    line-height: 1.5em;
+  }
+  .fake-h1 {
+    right: 0;
+  }
+  i {
+    vertical-align: middle;
+  }
+
+  .points {
+    list-style: none;
+    padding: 0 5px;
+    margin: 0;
+    height: 40%;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    li {
+      .transition(all ease 300ms);
+      height: 25%;
+      white-space: nowrap;
+      @media(min-width: 600px){
+        opacity: 0;
+        margin-left: 200%;
+      }
+      &.point-visible {
+        opacity: 1;
+        margin-left: 0;
+      }
+      i {
+        margin-right: 2%;
+        font-size: 36px;
+      }
+    }
+    @media (min-height: 500px) and (min-width: 400px) {
+      padding: 0 10%;
+      font-size: 20px;
+      height: 40%;
+    }
+    @media (min-width: 400px) {
+      li i {
+        font-size: 64px;
+      }
+    }
+    @media (min-height: 700px) and (min-width: 800px) {
+      font-size: 32px;
+      height: 50%;
+      padding: 0;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media(min-width: 800px) {
+      li i {
+        font-size: 84px;
+      }
+    }
+  }
+}
+

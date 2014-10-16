@@ -1,0 +1,285 @@
+@import 'conf/conf.css.less';
+
+.admin-container {
+  padding: 2em 1.5em;
+  @media(min-width: 400px){
+    padding: 2em;
+  }
+  @media(min-width: 800px){
+    padding: 2em 3em;
+  }
+  h1:first-letter {
+    text-transform:uppercase;
+  }
+  .pagination {
+    .current,
+    a {
+      border-bottom: 1px solid @light-gray;
+    }
+  }
+}
+
+.admin-title {
+  color: @mid-gray;
+  font-weight: bold;
+  font-size: 2.2em;
+  margin-bottom: 1em;
+}
+
+.admin-box {
+  background: @white;
+  position: relative;
+  .icon {
+    font-size: 3.2em;
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    height: 60px;
+    width: 50px;
+    line-height: 60px;
+    text-align: center;
+    color: darken(@admin-blue, 15%);
+  }
+  &.yellow {
+    .admin-box-top {
+      background: @admin-yellow;
+    }
+  }
+  &.green {
+    .admin-box-top {
+      background: @admin-green;
+    }
+  }
+
+  &.with-light-icons {
+    .admin-box-top:before,
+    .admin-box-top:after {
+      .ico();
+      position: absolute;
+      color: rgba(255,255,255, 0.2);
+    }
+
+
+    &.blue {
+      .admin-box-top:after {
+        top: 20px;
+        right: -15px;
+        font-size: 120px;
+        content: "\e643"; // .ico-cog
+      }
+      .admin-box-top:before {
+        top: 4px;
+        right: 95px;
+        font-size: 72px;
+        @media(min-width: 420px){
+          content: "\e643"; // .ico-cog
+        }
+      }
+    }
+    &.yellow {
+      .admin-box-top:after {
+        top: 10px;
+        right: 10px;
+        font-size: 80px;
+        content: "\e645"; // .ico-manage-users
+      }
+    }
+    &.green {
+      .admin-box-top:after {
+        top: 25px;
+        right: 10px;
+        font-size: 72px;
+        content: "\e644"; // .ico-statistics
+      }
+      .admin-box-top:before {
+        top: 35px;
+        right: 82px;
+        font-size: 72px;
+        @media(min-width: 420px){
+          content: "\e644"; // .ico-statistics
+        }
+      }
+    }
+  }
+
+  .admin-box-top {
+    border-right: 4px solid darken(@admin-blue, 12%);
+    background: @admin-blue;
+    color: @white;
+    padding: 1em;
+    position: relative;
+    margin: 0 0 2em 0;
+    h2 {
+      padding-top: 0.15em;
+      margin: 0 40px 0 70px;
+      color: inherit;
+      font-weight: 500;
+      font-size: 2em;
+      line-height: normal;
+      small {
+        color: inherit;
+        display: block;
+        font-size: 0.8em;
+        font-weight: 300;
+        margin-bottom: -0.3em;
+      }
+    }
+  }
+}
+
+.admin-box-tabs {
+  margin: 0 1em 1em 0;
+  li {
+    .inline-block();
+  }
+  a {
+    .inline-block();
+    padding: 0.7em 1em;
+    color: @mid-gray;
+    font-weight: 500;
+    border: 2px solid @light-gray;
+    margin: 0 0 1em 1em;
+    border-radius: 50px;
+    &:hover {
+      border-color: @gray;
+    }
+    &.active {
+      border-color: @admin-blue;
+      color: @admin-blue;
+    }
+  }
+}
+
+.admin-box-more {
+  display: block;
+  padding: 1.2em 1em;
+  background: darken(@admin-blue, 17%);
+  color: @white;
+  text-align: center;
+  font-weight: 500;
+  &:hover {
+    color: @white;
+    opacity: 0.9;
+  }
+}
+
+.admin-box-list {
+  padding: 0 0 1em 0;
+  margin: 0;
+  list-style: none;
+  a {
+    border-left: 5px solid @light-gray;
+    padding: 1em;
+    display: block;
+    margin: 0 0 2px 0;
+    color: @mid-gray;
+    font-weight: 500;
+    &:hover {
+      border-color: @admin-blue;
+      color: @black;
+    }
+  }
+}
+
+.admin-box {
+  &.green {
+    .icon {
+      color: darken(@admin-green, 15%);
+    }
+    .admin-box-top {
+      border-color: darken(@admin-green, 9%);
+    }
+    .admin-box-list a:hover {
+      border-color: @admin-green;
+    }
+    .admin-box-more {
+      background: darken(@admin-green, 17%);
+    }
+    .admin-box-tabs a.active {
+      color: @admin-green;
+      border-color: @admin-green;
+      cursor: default;
+    }
+  }
+  &.yellow {
+    .icon {
+      color: darken(@admin-yellow, 12%);
+    }
+    .admin-box-top {
+      border-color: darken(@admin-yellow, 9%);
+    }
+    .admin-box-list a:hover {
+      border-color: @admin-yellow;
+    }
+    .admin-box-more {
+      background: darken(@admin-yellow, 12%);
+    }
+    .admin-box-tabs a.active {
+      color: @admin-yellow;
+      border-color: @admin-yellow;
+      cursor: default;
+    }
+  }
+}
+
+.admin-tile {
+  .icon {
+    font-size: 3.6em;
+  }
+  .admin-box-top h2 {
+    display: block;
+    margin: 68px 0 0.5em 6px;
+    small {
+      font-size: 0.65em;
+    }
+  }
+  .admin-box-more {
+    .inline-block();
+    margin: 1em 6px;
+    padding: 0.75em 2em;
+    position: relative;
+    z-index: 1;
+  }
+  &.with-light-icons {
+    &.blue {
+      .admin-box-top:after {
+        top: auto;
+        bottom: -50px;
+        right: -75px;
+        font-size: 200px;
+      }
+      .admin-box-top:before {
+        top: auto;
+        bottom: 85px;
+        right: 80px;
+        font-size: 130px;
+      }
+    }
+    &.yellow {
+      .admin-box-top:after {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        font-size: 180px;
+      }
+    }
+    &.green {
+      .admin-box-top:after {
+        top: auto;
+        bottom: -20px;
+        right: 0;
+        font-size: 140px;
+        content: "\e644"; // .ico-statistics
+      }
+      .admin-box-top:before {
+        top: auto;
+        bottom: -20px;
+        right: 142px;
+        font-size: 140px;
+        @media(min-width: 420px){
+          content: "\e644"; // .ico-statistics
+        }
+      }
+    }
+  }
+}

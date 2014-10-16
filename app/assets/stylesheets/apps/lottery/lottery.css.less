@@ -1,0 +1,609 @@
+@import 'conf/conf.css.less';
+
+.basket {
+  border-radius: 65px 65px @radius @radius;
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  .explanation {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: @gray;
+    line-height: normal;
+  }
+  i {
+    margin-right: 0.25em;
+  }
+  &:hover .explanation {
+    color: @main-dark-blue;
+  }
+  .confirm_purchase {
+    margin-bottom: 4px;
+  }
+  .trigger {
+    cursor: pointer;
+    position: relative;
+    z-index: 103;
+  }
+  .details {
+    padding: 0;
+    width: 100%;
+    display: none;
+    background: @main-blue;
+    color: @white;
+    position: absolute;
+    z-index: 103;
+    border-radius: 0 0 @radius @radius;
+    .view-bought {
+      margin: 0;
+    }
+    .prizes-wrapper {
+      a {
+        display: block;
+        font-size: 14px;
+        text-transform: none;
+        border-radius: 0;
+      }
+      &, a:last-child {
+        border-radius: 0 0 @radius @radius;
+      }
+    }
+  }
+  &.open {
+    .lottery-button {
+      background: @main-blue;
+      border-radius: 40px 40px 0 0;
+      i {
+        color: inherit;
+      }
+    }
+    .inner {
+      color: @white;
+    }
+    .details {
+      display: block;
+    }
+    .explanation {
+      display: none;
+    }
+  }
+  .empty-info {
+    display: none;
+    font-size: 0.8em;
+    color: @main-light-blue;
+    margin-bottom: 8px;
+  }
+  &.empty {
+    .empty-info {
+      display: block;
+    }
+    .confirm_purchase {
+      display: none;
+    }
+  }
+
+  .choosen-prize {
+    position: relative;
+    height: 26px;
+    margin-bottom: 10px;
+    line-height: 26px;
+    height: 26px;
+    .name-wrap {
+      display: block;
+      text-align: left;
+      overflow: hidden;
+      margin-right: 50px;
+    }
+    .name {
+      .inline-block();
+      margin-left: 12px;
+      white-space: nowrap;
+    }
+    .quantity {
+      position: absolute;
+      top: 0;
+      right: 24px;
+      background: @main-dark-blue;
+      padding: 0 5px;
+      border-left: 4px solid @main-blue;
+    }
+    .remove {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0px 9px;
+      cursor: pointer;
+    }
+  }
+  .lottery-button {
+    .inner {
+      margin-top: 10px;
+      line-height: 16px;
+      .inline-block();
+      height: 20px;
+    }
+    i {
+      margin-top: -5px;
+    }
+  }
+}
+
+.lottery-header {
+  margin-bottom: 8px;
+  .inner span {
+    font-weight: 500;
+  }
+  h1 {
+    margin-bottom: 0;
+  }
+  .past_winners.hidden {
+    display: none;
+  }
+  .past_winners,
+  .earn_more_points {
+    .inline-block();
+    margin-top: 5px;
+    padding: 4px;
+  }
+}
+
+.earn-more-box {
+  background: @white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  h2, h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  &, h2, h3, p, {
+    color: @black;
+  }
+  .remove {
+    color: @white;
+    padding: 10px 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  ul {
+    list-style: disc;
+  }
+  li {
+    padding: 6px 0;
+    font-size: 16px;
+  }
+  a {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+.prize_items_region {
+  .no-past-lottery {
+    .winners-link {
+      display: none;
+    }
+  }
+  .earn-more-box {
+    font-size: 14px;
+    margin-left: 16px;
+  }
+}
+
+.lottery-button,
+.lottery-button-wrap {
+  .inline-block();
+}
+
+.lottery-button-wrap {
+  position: relative;
+  &.days-left,
+  &.points-to-spend {
+    padding-right: 30px;
+
+    .inner {
+      line-height: 40px;
+    }
+
+    small {
+      line-height: normal;
+      margin-left: 35px;
+      text-transform: uppercase;
+      display: block;
+      text-align: left;
+    }
+    @media(max-width: @media-small-max){
+      display: block;
+      padding-right: 0;
+    }
+  }
+  &.arrow {
+    &:before {
+      content: ' \2192';
+      font-weight: 900;
+      font-weight: normal;
+      font-size: 65px;
+      color:  @gray;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -16px;
+    }
+  }
+}
+
+.lottery-button {
+  border-radius: 65px;
+  line-height: 35px;
+  padding: 16px 28px;
+  color: @black;
+  font-size: 1.1em;
+  background: @white;
+
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  i {
+    font-size: 28px;
+    color: @gray;
+  }
+  .inner {
+    position: relative;
+    height: 52px;
+    line-height: 48px;
+  }
+  .days_left,
+  .points {
+    margin-left: 35px;
+    font-size: 45px;
+    text-align: left;
+  }
+  i {
+    float: left;
+    margin-top: 6%;
+  }
+  &.highlight {
+    background: @highlight;
+    color: @white;
+    i {
+      color: inherit;
+    }
+  }
+
+  @media(max-width: @media-small-max){
+    display: block;
+  }
+}
+
+.lottery-buttons {
+  padding-bottom: 15px;
+  text-align: right;
+  @media(max-width: @media-small-max){
+    text-align: center;
+    .lottery-button-wrap {
+      width: 70%;
+      max-width: 300px;
+      margin: 0 auto 16px auto;
+      width:  100%;
+      &.arrow {
+        padding-right: 0;
+        &:before {
+          content: '';
+        }
+      }
+    }
+    .details {
+      position: relative;
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.lottery-prize {
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: @radius;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  .cost {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1.3em;
+    background: @main-blue;
+    color: @white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    strong {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    small {
+      display: block;
+    }
+  }
+  .image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-top: 0;
+    img {
+      min-width: 100%;
+    }
+    @media (max-width: @media-medium-max) and (min-width: @media-small-min){
+      height: 250px;
+    }
+    &.carousel-image {
+      height: 200px;
+      @media (max-width: @media-medium-max){
+        height: 125px;
+      }
+      @media (max-width: @media-small-max){
+        height: 150px;
+      }
+      @media (max-width: @media-smallest){
+        height: 120px;
+      }
+    }
+  }
+  .name-wrap {
+    display: table;
+    overflow: hidden;
+    height: 80px;
+    padding: 12px 0 10px 0;
+    width: 100%;
+  }
+  .name {
+    font-size: 1.8em;
+    font-weight: 200;
+    line-height: normal;
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    overflow: hidden;
+    opacity: 1;
+  }
+  .name-inner {
+    padding: 0 12px;
+    max-height: 80px;
+    &.name-small {
+      max-height: 60px;
+    }
+  }
+  .win {
+    margin-top: 20px;
+    font-weight: 300;
+    strong {
+      font-size: 2em;
+      font-weight: 300;
+    }
+  }
+  .smile {
+    font-size: 45px;
+  }
+  .prize-inner {
+    position: absolute;
+    width: 100%;
+    bottom: -150px;
+    background: @white;
+    height: 95px;
+    padding: 8px 0;
+    opacity: 0;
+    cursor: default;
+    &.blue {
+      background: @main-blue;
+      color: @white;
+    }
+    .trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px 16px;
+      font-size: 1.2em;
+      color: @dim-gray;
+      display: block;
+      cursor: pointer;
+      &:hover {
+        color: @mid-gray;
+      }
+    }
+  }
+  .cannot-buy {
+    font-size: 1.4em;
+    line-height: normal;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+  .pair {
+    line-height: 22px;
+  }
+  .highlight {
+    font-size: 1.2em;
+    color: @mid-gray;
+  }
+}
+
+.unavailable .lottery-prize .image {
+  .opacity(0.5);
+}
+
+.lottery-prize {
+  .transform(scale3d(1,1,1));
+  .transition(300ms all ease);
+}
+
+.flipped .lottery-prize {
+  .transform(scale3d(1.05,1.05,1));
+  .name {
+    opacity: 0;
+  }
+  .prize-inner {
+    opacity: 1;
+    bottom: 0;
+  }
+  .image {
+    height: 190px;
+    margin-bottom: 10px;
+    img {
+      margin-top: -10px;
+    }
+    @media (max-width: @media-medium-max) and (min-width: @media-small-min){
+      height: 240px;
+    }
+    &.carousel-image {
+      height: 200px - 10px;
+      @media (max-width: @media-medium-max){
+        height: 125px - 10px;
+      }
+      @media (max-width: @media-small-max){
+        height: 150px - 10px;
+      }
+      @media (max-width: @media-smallest){
+        height: 120px - 10px;
+      }
+    }
+  }
+}
+
+.lottery-winners {
+  .carousel {
+    position: relative;
+    text-align: center;
+    padding: 0 45px;
+    margin-bottom: 30px;
+    .user_image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+  .carousel-outer {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 320px;
+    margin-left: 5px;
+    @media (max-width: @media-medium-max){
+      height: 245px;
+    }
+    @media (max-width: @media-small-max){
+      height: 270px;
+    }
+    @media (max-width: @media-smallest){
+      height: 240px;
+    }
+  }
+  .carousel-inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: visible;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    li {
+      .inline-block();
+      width: 33.33333333%;
+      text-align: center;
+      white-space: normal;
+      &.empty {
+        height: 20px;
+        padding: 15px 0;
+      }
+      @media (max-width: @media-small-max) {
+        width: 50%;
+      }
+      @media (max-width: @media-xsmall-max) {
+        width: 100%;
+      }
+    }
+  }
+  .carousel-control {
+    opacity: 1;
+    font-size: 90px;
+    font-weight: 200;
+    width: 60px;
+    height: 120px;
+    line-height: 100px;
+    margin-top: -60px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    &.right {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  .winners {
+    margin: 25px 0;
+    li {
+      text-align: center;
+      margin: 0;
+    }
+  }
+  .winner {
+    text-align: left;
+    min-height: 65px;
+    display: inline-block;
+    width: 220px;
+    position: relative;
+    & > div {
+      vertical-align: top;
+    }
+    img {
+      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+    }
+    .user_image {
+      margin-left: -5px;
+      width: 50px;
+      height: 50px;
+    }
+    .images {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .info {
+      margin: 6px 0 20px 90px;
+    }
+  }
+  .carousel.empty {
+    .carousel-outer {
+      padding-top: 20px;
+      height: auto;
+    }
+    .carousel-inner {
+      position: static;
+    }
+    .carousel-control {
+      display: none;
+    }
+    .smile {
+      line-height: 50px;
+    }
+  }
+}
+
+.lottery-prize img,
+.lottery-prize div,
+.basket .explanation,
+.basket .details a,
+.lottery-winners .carousel-inner {
+  .transition(all 300ms ease);
+}

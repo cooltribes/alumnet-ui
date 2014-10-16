@@ -1,0 +1,55 @@
+
+.landing-testimonials {
+  *zoom: 1;
+  position: relative;
+  z-index: 4;
+  background: @white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  .wrap {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+  .name,
+  blockquote {
+    margin-left: 0;
+  }
+  .name {
+    h3 {
+      text-transform: uppercase;
+    }
+    span {
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 12px;
+      display: block;
+      text-transform: none;
+    }
+  }
+  blockquote {
+    font-style: italic;
+    font-family: serif;
+    font-size: 1.2em;
+    margin-right: 0;
+    i {
+      font-size: 1.6em;
+      color: lighten(@dim-gray, 10%);
+      vertical-align: middle;
+    }
+  }
+  @media(min-width: 400px){
+    img {
+      float: left;
+    }
+    .name,
+    blockquote {
+      margin-left: 80px;
+    }
+  }
+}

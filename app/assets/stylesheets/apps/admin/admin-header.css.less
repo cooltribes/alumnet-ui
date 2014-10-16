@@ -1,0 +1,92 @@
+@import 'conf/conf.css.less';
+
+/* EXAMPLE
+.admin-header
+  .admin-container
+    %h1
+      Configure system
+      %small Registration steps
+
+    %ul.admin-sub-nav
+      %li
+        %a Import Linkedin profile
+      %li
+        %a Profile details
+      %li
+        %a.active Current position
+      %li
+        %a Expertise
+*/
+
+.admin-header {
+  padding-top: 100px;
+  margin-top: -80px;
+  background: #e9eef0;
+  color: #6c6c6c;
+  border-bottom: 3px solid #e3e8ea;
+
+  .admin-container {
+    padding-bottom: 0;
+  }
+
+  h1 {
+    color: inherit;
+    font-weight: bold;
+    font-size: 2em;
+    line-height: normal;
+    small {
+      padding-top: 0.4em;
+      font-size: 0.55em;
+      color: #bbbbbb;
+      font-weight: 100;
+      display: block;
+    }
+    @media(min-width: 800px){
+      font-size: 2.9em;
+    }
+  }
+}
+
+.admin-sub-nav { // us inside .admin-header
+  font-size: 1.1em;
+  margin: 0 0 0.0001em -1em;
+  padding: 0;
+  list-style: none;
+  a,
+  li {
+    .inline-block();
+  }
+  a {
+    color: inherit;
+    font-weight: bold;
+    position: relative;
+    padding: 2em 1em 0.75em 1em;
+    &:after {
+      content: ' ';
+      display: block;
+      height: 3px;
+      position: absolute;
+      top: 100%;
+      left: 1em;
+      right: 1em;
+    }
+    &:hover {
+      &:after {
+        background: @gray;
+      }
+    }
+    &.active {
+      zoom: 1;
+      &:after {
+        background: @main-blue;
+      }
+    }
+  }
+
+  @media(min-width: 800px){
+    font-size: 1.4em;
+    a {
+      padding-top: 3em;
+    }
+  }
+}

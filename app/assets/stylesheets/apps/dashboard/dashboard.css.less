@@ -1,0 +1,41 @@
+@import 'conf/conf.css.less';
+
+.dashboard-box {
+  background: @white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  border-radius: @radius;
+  padding: 10px;
+  h2 {
+    margin-left: @gutter;
+    margin-right: @gutter;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 400;
+    a {
+      margin-left: 10px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}
+
+.dashboard {
+  .mark {
+    margin-left: 6px;
+    .inline-block();
+    line-height: 34px;
+    padding: 0 8px 0 10px;
+    color: @white;
+    font-weight: 600;
+    background: @highlight;
+    border-radius: @radius;
+  }
+
+  .map {  // viewers and company
+    margin: 30px 0;
+    height: 400px;
+    @media (min-width: 700px){
+      height: 550px;
+    }
+  }
+}

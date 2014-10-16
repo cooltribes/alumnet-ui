@@ -27,3 +27,8 @@
     childViewContainer: ".js-left-menu"
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"
+
+  class Home.HeaderProfindaTest extends Marionette.CompositeView
+    # className: 'ng-scope'
+    template: 'header/home/templates/header_profinda'
+    

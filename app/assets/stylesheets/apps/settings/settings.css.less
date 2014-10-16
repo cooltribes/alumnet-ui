@@ -1,0 +1,39 @@
+@import 'conf/conf.css.less';
+
+.settings-nav {
+  margin: 50px 0 0 0;
+  li {
+    margin-bottom: 20px;
+  }
+  .btn {
+    font-size: 14px;
+  }
+  @media (min-width: 360px){
+    .btn {
+      font-size: 16px;
+    }
+  }
+  .errors {
+    color: @form-error-text;
+    font-size: 1.2em;
+  }
+  .messages {
+    color: @main-blue;
+    font-size: 1.2em;
+  }
+}
+
+.settings {
+  form {
+    margin-bottom: 0;
+  }
+  .select-wrap {
+    max-width: 480px;
+    select {
+      width: 100%;
+    }
+    @media (min-width: 992px){
+      max-width: none;
+    }
+  }
+}

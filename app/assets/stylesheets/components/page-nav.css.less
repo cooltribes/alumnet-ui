@@ -1,0 +1,26 @@
+@import 'conf/conf.css.less';
+
+.page-navigation {
+  margin: 0;
+  padding: 0 0 2px 0;
+  li {
+    margin-right: 20px;
+    &, a {
+      .inline-block();
+    }
+    a {
+      color: inherit;
+      font-weight: 300;
+      font-size: 20px;
+      padding: 5px 5px 10px 5px;
+      text-transform: capitalize;
+    }
+    &:hover,
+    &.active {
+      a {
+        color: @main-blue;
+        box-shadow: 0 4px 0 @main-blue;
+      }
+    }
+  }
+}

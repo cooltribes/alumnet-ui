@@ -1,0 +1,139 @@
+@import 'conf/conf.css.less';
+
+@main-nav-height: 60px;
+@sub-nav-min-height: 45px;
+
+.all-wrap.fixed-nav {
+  .border-box();
+  padding-top: 0;
+
+  @media (min-width: 650px){
+    padding-top: @main-nav-height;
+  }
+  @media(min-width: @desktop-nav-at){
+    padding-top: @main-nav-height + @sub-nav-min-height;
+  }
+}
+
+.site-nav {
+  width: 100%;
+  z-index: 200;
+  font-size: 0;
+  background: @site_nav_bg;
+  position: relative;
+
+  @media (min-width: 650px){
+    position: fixed;
+    top: 0;
+  }
+
+  a {
+    position: relative;
+    vertical-align: top;
+  }
+
+  a,
+  li,
+  .logo,
+  .main-nav-left {
+    .inline-block();
+  }
+}
+
+.main-nav {
+  min-height: 60px;
+}
+
+.main-nav-left {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 0;
+  .link i {
+    margin-top: 5px;
+    .inline-block();
+  }
+  a {
+    line-height: 39px;
+    font-size: 20px;
+    padding: 10px;
+    min-width: 28px;
+    text-align: center;
+    color: @white;
+    text-transform: uppercase;
+    font-weight: 300;
+    .transition(all 300ms ease);
+    &.active{
+      background: @main-blue;
+    }
+  }
+  .responsive-nav-trigger {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    height: 32px;
+    padding: 12px 18px 16px 20px;
+    font-size: 24px;
+    .transition(padding 300ms ease);
+    @media (min-width: @desktop-nav-at){
+      display: none;
+    }
+  }
+  .logo {
+    display: none;
+    position: relative;
+    small {
+      position: absolute;
+      top: 45px;
+      right: 10px;
+      display: block;
+      text-transform: none;
+      font-size: 0.4em;
+      line-height: normal;
+      color: @gray;
+      letter-spacing: 1px;
+    }
+    a {
+      width: 140px; // ie8 hack - so logo don't shrink
+      height: 40px;
+      padding: 10px;
+    }
+    img {
+      position: relative;
+      margin-top: -6px;
+      height: 24px;
+      width: 140px;
+      height: 40px;
+      vertical-align: middle;
+    }
+    @media(min-width: 550px){
+      margin: 0 10px;
+      .inline-block();
+    }
+  }
+  .text {
+    font-size: 16px;
+    display: inline;
+  }
+  @media (min-width: 270px){
+    .link i {
+      .inline-block();
+      margin-left: -5px;
+    }
+  }
+  @media (min-width: 340px){
+    .link i {
+      margin-left: 0;
+      margin-right: 3px;
+    }
+  }
+  @media (min-width: 400px){
+    .text,
+    .link i {
+      font-size: 20px;
+    }
+    a {
+      font-size: 22px;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import 'conf/conf.css.less';
+
+.dashboard-todo {
+  text-align: center;
+  .clearfix();
+  strong {
+    display: block;
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  p {
+    display: none;
+    font-size: 12px;
+    min-height: 60px;
+    margin-bottom: 0;
+  }
+  .btn {
+    line-height: 24px;
+    font-size: 12px;
+    padding: 4px 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    max-height: 100%;
+  }
+  .icon {
+    margin-bottom: 16px;
+    font-size: 90px;
+  }
+  @media(min-width: 480px){
+    .btn {
+      font-size: 10px;
+      padding: 3px 12px;
+    }
+  }
+  @media(min-width: 640px){
+    text-align: left;
+    .btn {
+      font-size: 12px;
+    }
+    .todo {
+      padding: 10px;
+    }
+    strong {
+      font-size: 24px;
+      min-height: 0;
+      margin-bottom: 10px;
+    }
+    p {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .btn-wrap {
+      text-align: right;
+    }
+  }
+  @media (min-width: 800px){
+    strong {
+      font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+      min-height: 40px;
+    }
+  }
+}

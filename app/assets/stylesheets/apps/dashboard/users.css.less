@@ -1,0 +1,89 @@
+@import 'conf/conf.css.less';
+
+// used in chats and viewers
+.dashboard-users {
+  margin: 0;
+  list-style: none;
+  @media(min-width: 992px){
+    overflow: auto;
+    max-height: (68px + 5px) * 4;
+    &.high {
+      max-height: 610px;
+    }
+  }
+  li {
+    margin-left: 10px;
+    min-height: 68px;
+    position: relative;
+    margin-top: 5px;
+    .mark {
+      background: @light-gray;
+      float: right;
+    }
+    .active {
+      img {
+        border-color: @highlight;
+      }
+      .desc {
+        font-weight: 500;
+      }
+      .mark {
+        background: @highlight;
+      }
+    }
+    .date span {
+      position: relative;
+      top: 5px;
+    }
+    &:last-child:first-child {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      .date {
+        top: 24px;
+      }
+    }
+  }
+  img {
+    min-width: 50px; // ie8 fix
+    max-width: 50px; // ie8 fix
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+  }
+  .desc {
+    font-weight: 300;
+    padding: 5px 0 20px 0;
+    font-size: 13px;
+    line-height: 15px;
+    .name {
+      font-size: 16px;
+    }
+  }
+  .chat-name-wrap {
+    display: block;
+
+  }
+  .date {
+    position: absolute;
+    top: 9px;
+    right: 0;
+    font-size: 13px;
+    color: @mid-gray;
+    width: 120px;
+    text-align: right;
+  }
+
+  @media (min-width: 480px){
+    .date {
+      right: 15px;
+    }
+    .desc {
+      padding: 12px 150px 16px 65px;
+    }
+    .img-wrap {
+      display: block;
+      float: left;
+    }
+  }
+}

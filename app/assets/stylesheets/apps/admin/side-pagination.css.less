@@ -1,0 +1,23 @@
+// this is used only for announcements - remove this when announcements use
+// common styles
+
+@import 'conf/conf.css.less';
+
+.side-list .pagination {
+  border-top: 1px solid @form-border-gray;
+  border-right: 1px solid @form-border-gray;
+  padding: 20px 10px 16px 10px;
+  margin: 0;
+  a {
+    border: 1px solid @form-border-gray;
+    padding: 10px;
+  }
+  .current {
+    padding: 10px;
+    border: 1px solid @main-blue;
+  }
+  &:empty {
+    border-width: 0;
+    padding: 0;
+  }
+}

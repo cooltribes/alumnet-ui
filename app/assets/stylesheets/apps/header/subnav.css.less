@@ -1,0 +1,177 @@
+@import 'conf/conf.css.less';
+
+@main-nav-height: 60px;
+@sub-nav-min-height: 45px;
+
+.sub-nav {
+  .clearfix();
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: @white;
+  background: @main-blue;
+  ul {
+    margin: 0;
+  }
+  a {
+    .inline-block();
+    padding: 12px 10px;
+    color: @white;
+    min-height: @sub-nav-min-height - 12px*2;
+
+    @media(max-height: 340px), (max-width: @desktop-nav-at) {
+      font-size: 14px;
+    }
+  }
+}
+
+.sub-nav-data {
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  .transition(all 100ms ease);
+  font-size: 12px;
+  @media(min-width: 310px){
+    font-size: inherit;
+  }
+  &.active {
+    max-height: 160px;
+    .transition(all 200ms 100ms ease);
+  }
+
+  li {
+    .inline-block();
+    border: 1px solid transparent; // ie8 hack
+  }
+
+  &.right-nav-data {
+    ul {
+      display: inline;
+    }
+    .tips-link {
+      display: none;
+    }
+    .profile-nav-data {
+      padding: 0;
+    }
+    border-bottom: 0 solid @site_nav_bg;
+    &.active {
+      border-bottom-width: 2px;
+    }
+    &.active {
+      max-height: 350px;
+      @media (min-width: 300px){
+        max-height: @sub-nav-min-height*3;
+      }
+      @media (min-width: 800px){
+        max-height: @sub-nav-min-height;
+      }
+    }
+
+    @media (min-width: @desktop-nav-at){
+      float: right;
+      display: block;
+      opacity: 1;
+      max-height: @sub-nav-min-height;
+      &, &.active {
+        border-bottom-width: 0;
+      }
+      .profile-nav-data {
+        position: relative;
+        display: block;
+        z-index: 6;
+        height: 0;
+        min-height: 0;
+        min-width: 400px; // so it covers searchbar
+        overflow: hidden;
+        text-align: right;
+        opacity: 0;
+        background: @main-blue;
+        .transition(all 100ms ease);
+        &.active {
+          z-index: 9;
+          height: @sub-nav-min-height;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .right-nav-top {
+    .icon {
+      display: none;
+    }
+    .text {
+      display: inline;
+    }
+    @media (min-width: @desktop-nav-at){
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 0;
+      ul,
+      li {
+        font-size: 14px;
+        vertical-align: top;
+        border: 0;
+      }
+      a {
+        padding: 14px;
+        height: 33px;
+      }
+      .text {
+        display: none;
+      }
+      .icon {
+        width: 32px;
+        font-size: 32px;
+        .inline-block();
+        text-align: center;
+        color: @secondary-btn;
+      }
+      .attention {
+        background: @black;
+        height: 32px;
+      }
+      .active {
+        background: @main-blue;
+      }
+      .active,
+      .attention {
+        .icon {
+          color: @white;
+        }
+      }
+      .tips-link {
+        vertical-align: top;
+        color: @secondary-btn;
+        padding: 17px 23px 23px 7px;
+        .inline-block();
+        font-weight: 400;
+        font-size: 13px;
+      }
+    }
+  }
+
+  @media(min-width: 550px){
+    padding: 0 10px;
+  }
+  @media (min-width: @desktop-nav-at){
+    min-height: @sub-nav-min-height;
+    &.give-help-data,
+    &.get-help-data {
+      position: absolute;
+      top: @main-nav-height;
+      left: 0;
+      opacity: 0;
+      overflow: hidden;
+      height: 0;
+      min-height: 0;
+      &.active {
+        height: @sub-nav-min-height;
+        opacity: 1;
+      }
+    }
+  }
+}

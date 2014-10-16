@@ -1,0 +1,98 @@
+@import 'conf/conf.css.less';
+
+@swipe_max_width: 1000px;
+
+body.swipe-open {
+  overflow: hidden;
+  @media (min-width: @desktop-nav-at) {
+    overflow: auto;
+  }
+}
+
+.swipe-content {
+  position: relative;
+  height: 100%;
+  .border-box();
+  @media (min-width: @desktop-nav-at) {
+    padding-top: 105px;
+  }
+}
+
+.swipe-wrap {
+  height: 100%;
+  opacity: 1 !important;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  left: -10px - @swipe_max_width;
+  width: 100%;
+  max-width: @swipe_max_width;
+  z-index: 9999;
+  background: @white;
+  .transition(all 300ms 0ms ease);
+  box-shadow: 0 0 16px rgba(0,0,0,0.2);
+
+  @media(min-width: @desktop-nav-at){
+    z-index: 199;
+  }
+}
+
+#swipe_region.active .swipe-wrap {
+  left: 0;
+}
+
+.swipe-edge-show {
+  position: fixed;
+  z-index: 201;
+  left: 0;
+  top: 89px;
+  color: @white;
+  background: @main-blue;
+  border-radius: 0 @radius @radius 0;
+  padding: 20px 5px;
+  .transition(100ms all ease);
+  @media (min-width: @desktop-nav-at) {
+    top: 133px;
+    z-index: 198;
+  }
+  &:hover {
+    color: @white;
+    padding-left: 15px;
+  }
+}
+
+.swipe-close.btn {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  border: 10px solid @white;
+  line-height: 26px;
+  text-align: center;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  z-index: 5;
+  &:hover {
+    opacity: 1;
+    background: lighten(@secondary-btn, 10%);
+  }
+  @media(min-width: @desktop-nav-at){
+    top: 105px;
+  }
+}
+
+.csstransforms {
+  .swipe-wrap {
+    left: 0;
+    width: 100%;
+    .transform(translate(-100%, 0));
+  }
+  #swipe_region.active .swipe-wrap {
+    .transform(translate(0, 0));
+  }
+}

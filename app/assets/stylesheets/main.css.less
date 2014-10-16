@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow-y: scroll;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  background: image-url('site-bg.jpg') @main-bg;
+  color: @main-text;
+  min-width: 300px;
+}
+
+a {
+  cursor: pointer;
+  color: @main-blue;
+  &:hover {
+    color: @main-dark-blue;
+    text-decoration: none;
+  }
+}
+
+ul {
+  list-style: none;
+}

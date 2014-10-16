@@ -1,0 +1,50 @@
+@import 'conf/conf.css.less';
+
+.card-elems {
+  margin-left: -16px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0;
+  list-style: none;
+
+  @media (max-width: @media-small-max){
+    text-align: center;
+  }
+  .empty {
+    font-size: 14px;
+  }
+  li.empty {
+    margin-left: 16px;
+  }
+}
+
+.card-elem {
+  text-align: left;
+  .inline-block();
+  margin-left: 16px;
+  vertical-align: top;
+  width: 300px;
+  font-size: 14px;
+  h2 {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: help;
+    margin-bottom: 0;
+  }
+  .box {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: @media-large-min){
+    width: 280px;
+  }
+  @media (max-width: @media-medium-max){
+    width: 350px;
+  }
+  @media (max-width: @media-small-max){
+    max-width: 280px;
+    width: 90%;
+  }
+}

@@ -1,0 +1,23 @@
+.big-list {
+  list-style-position: outside;
+  font-size: 24px;
+  color: @light-blue;
+  list-style: none;
+  counter-reset: biglist;
+
+  padding-left: 64px;
+  margin: 0;
+  text-indent: -28px;
+
+  li:before {
+    counter-increment: biglist;
+    content: counter(biglist) " ";
+  }
+
+  span {
+    margin-left: 6px;
+    line-height: 24px;
+    font-size: 16px;
+    color: @black;
+  }
+}

@@ -1,0 +1,209 @@
+@import 'conf/conf.css.less';
+
+.profile-edit-form {
+  footer {
+    margin: 0 11px;
+  }
+  .forgot-password-link {
+    text-align: right;
+    font-size: 0.9em;
+    top: -8px;
+    margin-bottom: -14px;
+    position: relative;
+  }
+}
+
+.profile-positions-list {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+  .profile-position {
+    border-top: 1px solid @light-gray;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    button {
+      margin-top: -6px;
+    }
+  }
+}
+
+.contact-widget {
+  vertical-align: top;
+  white-space: nowrap;
+  margin: 15px 0 30px 0;
+  position: relative;
+
+  select {
+    width: 80px;
+    font-size: 12px;
+    height: 34px;
+    padding-left: 2px;
+    padding-right: 0;
+  }
+  input {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 105px;
+    position: relative;
+    vertical-align: top;
+    display: inline;
+    @media (min-width: 450px){
+      width: 200px;
+    }
+    @media (min-width: 800px){
+      width: 300px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+  a,
+  input {
+    .inline-block();
+  }
+
+  .action-btn {
+    width: 50px;
+    background: @form-active;
+    height: 24px;
+    line-height: 24px;
+    padding: 5px;
+    color: @white;
+    position: static;
+    vertical-align: top;
+    font-size: 12px;
+    margin-top: 4px;
+    &:hover {
+      color: @white;
+      background: darken(@form-active, 5%);
+    }
+  }
+
+  .error {
+    min-height: 24px;
+    margin-bottom: -10px;
+    @media (max-width: @media-xsmall-max){
+      margin-left: -15%;
+    }
+    @media (max-width: @media-smallest){
+      margin-left: 45px;
+    }
+  }
+}
+
+.contact-type-picker {
+  .inline-block();
+  width: 60px;
+  position: relative;
+  vertical-align: top;
+
+  ul {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 7;
+    background: @main-blue;
+    border-radius: @radius;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+  a {
+    text-align: center;
+    padding: 11px 0;
+    margin-right: 16px;
+    height: 27px;
+    width: 100%;
+    border-radius: @radius;
+    color: @main-blue;
+    font-size: 22px;
+  }
+  ul a {
+    color: @white;
+    background: @main-blue;
+    &:hover {
+      border-radius: 0;
+      background: mix(@main-blue, @white, 75%);
+    }
+  }
+  li:first-child a {
+    border-radius: @radius @radius 0 0;
+  }
+  li:last-child a {
+    border-radius: 0 0 @radius @radius;
+  }
+  .current {
+    height: 22px;
+
+    &:after,
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border: 5px solid rgba(255,255,255,0);
+      z-index: 3;
+    }
+    &:before {
+      top: 10px;
+      border-bottom-color: @main-blue;
+    }
+    &:after {
+      top: 23px;
+      border-top-color: @main-blue;
+    }
+  }
+}
+
+.content-drop, // move to components?
+.contact-type-picker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.01);
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'); // ie hack
+  z-index: 5;
+}
+
+.profile-edit-nav {
+  a {
+    background: @secondary-btn;
+    display: block;
+    font-size: 14px;
+    line-height: normal;
+    padding: 10px 5px;
+    &.active {
+      background: @main-blue;
+    }
+  }
+}
+
+.profile-edit-content {
+  padding: 5px;
+  @media (min-width: @desktop-nav-at) {
+    padding: 15px;
+  }
+  .form-footer {
+    border: 0;
+    padding-bottom: 10px;
+  }
+}
+
+.profile-edit-positions-form {
+  .form-footer {
+    padding-top: 5px;
+    border: 0;
+  }
+  .sep,
+  .checkbox-wrapper {
+    vertical-align: super;
+  }
+}

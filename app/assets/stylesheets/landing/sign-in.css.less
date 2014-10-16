@@ -1,0 +1,133 @@
+.sign-in-box {
+  padding-top: 120px;
+  h2 {
+    text-align: center;
+  }
+  .remember,
+  label {
+    width: 100%;
+    max-width: 206px;
+    text-align: left;
+    display: block;
+    margin: 0;
+    color: @mid-gray;
+  }
+  .fields .controls {
+    position: relative;
+    height: 40px;
+    input {
+      left: 0;
+      position: absolute;
+    }
+  }
+  .remember {
+    label, input {
+      display: inline;
+    }
+    .radio input[type="radio"], .checkbox input[type="checkbox"] {
+      margin-left: 0;
+      min-height: 12px;
+    }
+  }
+  .submit {
+    margin-top: 20px;
+  }
+  .required abbr {
+    display: none;
+  }
+  .box {
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .links {
+    text-align: center;
+    a {
+      color: @mid-gray;
+    }
+  }
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+    a,
+    input,
+    button {
+      vertical-align: top;
+      margin-bottom: 10px;
+    }
+  }
+  .help-inline {
+    display: block;
+    margin-top: -5px;
+  }
+  .actions {
+    max-width: 216px;
+  }
+}
+
+.sign-in-split {
+  margin-top: 20px;
+  position: relative;
+  .sign-in-logo {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 170px;
+    text-align: center;
+    a,
+    img {
+      margin-top: 6px;
+    }
+  }
+  .sign-in-form {
+    border-left: 1px solid @light-gray;
+    text-align: left;
+    margin-left: 190px;
+    padding-left: 30px;
+  }
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  input[type="email"] {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: @media-small-max) {
+  .sign-in-box {
+    label {
+      margin: 0 auto;
+    }
+    .actions {
+      max-width: 100%;
+    }
+    .remember {
+      width: 210px;
+      margin: 10px auto;
+    }
+  }
+  .sign-in-logo {
+    a {
+      margin-top: 0;
+    }
+    img {
+      display: none;
+    }
+  }
+  .sign-in-split {
+    text-align: center;
+    .sign-in-logo {
+      position: static;
+      width: 100%;
+      text-align: center;
+    }
+    .sign-in-form {
+      margin: 30px 0;
+      border-left-width: 0;
+      text-align: center;
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+}

@@ -1,0 +1,181 @@
+@import "conf/conf.css.less";
+
+
+.task-stats {
+  font-size: 16px;
+  ul {
+    list-style: none;
+  }
+  .key {
+    font-size: 18px;
+  }
+  .val {
+    font-size: 24px;
+    line-height: normal;
+    font-weight: bold;
+  }
+  li {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .main-stats {
+    margin-top: 50px;
+    .clearfix();
+    .key {
+      font-size: 24px;
+    }
+    .val {
+      font-size: 42px;
+    }
+    a {
+      color: @white;
+    }
+    &:after {
+      content: ' ';
+      display: block;
+      border-bottom: 2px solid @white;
+      margin: @site-margin - @gutter;
+    }
+  }
+  .owner {
+    .img {
+      display: block;
+      float: left;
+    }
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+    .key,
+    .val {
+      margin-left: 58px;
+    }
+  }
+}
+
+.task-additional-info {
+  .info {
+    margin-bottom: 50px;
+  }
+  .participants {
+    img {
+      border-radius: 50%;
+    }
+    a {
+      color: @mid-gray;
+    }
+  }
+  h2 {
+    margin: 10px 0 5px 0;
+    font-size: 40px;
+    font-weight: 400;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
+.reject-wrap {
+  .inline-block();
+  position: relative;
+  a.btn {
+    padding-left: 1.8em;
+    padding-right: 1.8em;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  a {
+    color: @white;
+  }
+  &:hover .reject-reason {
+    display: block;
+  }
+  .reject-reason {
+    display: none;
+    border-radius: 1px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    position: absolute;
+    left: 6px;
+    right: 0;
+    top: 100%;
+    margin-top: -3px;
+    text-transform: none;
+    color: @mid-gray;
+    background: @white;
+    font-size: 9px;
+    padding: 0.3em 0;
+    z-index: 99;
+    text-align: left;
+    &.no-offset {
+      left: 0;
+    }
+    ul {
+      margin: 0;
+    }
+    p {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 0;
+      padding: 0.5em 0.25em;
+      line-height: 1.6em;
+      font-size: 0.95em;
+      span {
+        color: lighten(@mid-gray, 10%);
+        text-transform: none;
+        display: block;
+        font-weight: normal;
+      }
+    }
+    li {
+      color: @main-blue;
+      font-size: 1.1em;
+    }
+    .reject-list li {
+      padding: 0.25em 0.5em;
+      font-size: 1.3em;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    .reason-list-pick li {
+      padding: 0.5em;
+      cursor: pointer;
+      position: relative;
+      &:after {
+        content: ' ';
+        border: 1px solid @main-blue;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        width: 5px;
+        height: 5px;
+        margin-top: -3px;
+      }
+      &:hover {
+        color: @main-dark-blue;
+      }
+      &.selected,
+      &:hover {
+        &:after {
+          background: @main-blue;
+        }
+      }
+    }
+    small {
+      display: block;
+      font-size: 0.6em;
+      text-transform: 0;
+    }
+  }
+}
+
+.footer-reject-wrap .reject-reason {
+  top: auto;
+  bottom: 100%;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}

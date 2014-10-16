@@ -1,0 +1,148 @@
+@import 'conf/conf.css.less';
+
+@footer_mini_height: 251px;
+@footer_small_height: 173px; // min 400
+@footer_medium_height: 117px; // min 640
+@footer_big_height: 63px; // min 800
+
+.all-wrap {  // header styles might add padding top here
+  min-height: 100%;
+  margin-bottom: -@footer_mini_height;
+
+  @media (min-width: 400px){
+    margin-bottom: -@footer_small_height;
+  }
+
+  @media (min-width: 640px){
+    margin-bottom: -@footer_medium_height;
+  }
+
+  @media (min-width: 800px){
+    margin-bottom: -@footer_big_height;
+  }
+
+  &:after {
+    content: ' ';
+    display: block;
+  }
+}
+
+.footer,
+.all-wrap:after {
+  height: @footer_mini_height;
+
+  @media (min-width: 400px){
+    height: @footer_small_height;
+  }
+
+  @media (min-width: 640px){
+    height: @footer_medium_height;
+  }
+
+  @media (min-width: 800px){
+    height: @footer_big_height;
+  }
+}
+
+.footer {
+  margin-top: -@footer_mini_height;
+  .clearfix();
+  position: relative;
+  z-index: 2;
+  background: @footer-bg;
+  color: @white;
+  font-size: 13px;
+  text-align: center;
+  .footer-inner {
+    .clearfix();
+    background: @footer-bg;
+  }
+  [class^="col-"] {
+    position: relative;
+    margin-bottom: 6px;
+  }
+  img {
+    margin-top: 10px;
+  }
+  span {
+    display: block;
+  }
+  ul {
+    font-size: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &.basic {
+      margin-left: 24px;
+    }
+  }
+  a {
+    color: @white;
+  }
+  .copyrights a:hover {
+    text-decoration: none;
+  }
+  .copyrights a span,
+  .legal a {
+    color: @gray;
+  }
+
+  .phone {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    i {
+      font-size: 22px;
+      vertical-align: text-bottom;
+    }
+  }
+
+  .legal {
+    padding-top: 10px;
+    small {
+      display: block;
+    }
+  }
+  .social {
+    padding: 10px;
+    font-size: 34px;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .footer-links {
+    a {
+      .inline-block();
+      padding: 3px 0 3px 5px;
+    }
+    @media(min-width: 400px){
+      li {
+        .inline-block();
+      }
+    }
+  }
+
+  @media (min-width: 400px){
+    margin-top: -@footer_small_height;
+  }
+
+  @media (min-width: 640px){
+    margin-top: -@footer_medium_height;
+    .footer-links {
+      text-align: right;
+    }
+    .social,
+    .legal {
+      text-align: left;
+    }
+  }
+
+  @media (min-width: 800px){
+    margin-top: -@footer_big_height;
+    .legal,
+    .social {
+      float: left;
+    }
+  }
+}

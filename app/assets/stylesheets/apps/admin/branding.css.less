@@ -1,0 +1,67 @@
+@import 'conf/conf.css.less';
+
+.admin-branding {
+  .fileinput-button {
+    padding-top: 10px;
+  }
+  .fileinput-wrap {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+    input {
+      outline: 0;
+      border: 0;
+    }
+  }
+  .loading {
+    vertical-align: top;
+    &.hidden {
+
+    }
+  }
+  .btn {
+    vertical-align: top;
+    margin-right: 1em;
+  }
+  .file {
+    border: 0;
+    background: transparent;
+  }
+  .preview {
+    vertical-align: top;
+    margin: 3px 10px 0 10px;
+    width: 140px;
+    height: 40px;
+  }
+  .errors {
+    color: @error-color;
+    padding-bottom: 0.5em;
+    &:empty {
+      padding: 0;
+    }
+  }
+  .fake-link {
+    font-weight: 300;
+    padding: 10px;
+    font-size: 20px;
+    i {
+      margin: 5px 3px 0 0;
+      vertical-align: text-top;
+    }
+  }
+  .logo-preview {
+    padding: 10px;
+    background: @main-text;
+    color: @white;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 5%;
+    i {
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+  }
+}

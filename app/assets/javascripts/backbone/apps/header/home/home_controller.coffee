@@ -12,4 +12,8 @@
       groupsTable.on 'childview:group:show', (childView, model)->
         alert model.escape('description')###
 
+      menuView = new Home.HeaderProfindaTest
+
+      #AlumNet.headerRegion.show(menuView)      
+      
       AlumNet.headerRegion.show(menuView)

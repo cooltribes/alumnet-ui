@@ -1,0 +1,38 @@
+.ie { // any ie
+  input[type="password"] {
+    font-family: serif; // for some reason Roboto does not show up in here
+  }
+
+  .footer {
+    margin-top: 0 !important;
+  }
+
+  .conversation-brief {
+    position: absolute;
+    &.active {
+      position: static;
+    }
+  }
+  .ie-hide {
+    display: none;
+    visibility: hidden;
+  }
+  .hidden.ie-block {
+    display: block;
+    visibility: visible;
+  }
+  .img-ie-prevent-click-wrap { // prevents wrapped image from being clicked
+    position: relative;
+    .ie-overlay { // ie8 positioned generated content bug
+      content: ' ';
+      display: block;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      background: rgba(255,255,255,0.01);
+      background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'); // ie hack
+    }
+  }
+}

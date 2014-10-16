@@ -1,0 +1,120 @@
+.main-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  .font;
+  z-index: 99;
+  a {
+    color: @landing-blue;
+    position: relative;
+    display: block;
+    &.active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: @black;
+      &:before {
+        content: ' ';
+        position: absolute;
+        top: 50%;
+        margin-top: -4px;
+        height: 8px;
+        width: 8px;
+        left: -16px;
+        background: @black;
+        border-radius: 50%;
+      }
+    }
+  }
+  > li {
+    display: block;
+    float: left;
+    position: relative;
+    > a {
+      text-transform: uppercase;
+      margin-right: 50px;
+      padding-right: 15px;
+      padding-top: 0.8em;
+      padding-bottom: 0.8em;
+
+    }
+    ul {
+      position: absolute;
+      top: 2.9em;
+      list-style: none;
+      font-size: 0.8em;
+      margin: 0;
+      left: 0;
+      text-align: left;
+      white-space: nowrap;
+    }
+    li {
+      line-height: 1.2em;
+    }
+  }
+}
+
+
+@media (max-width: 979px) {
+  .main-nav {
+    right: auto;
+    padding-top: 70px;
+    height: 120%;
+    width: 320px;
+    margin-left: -21px;
+    background: @white;
+    position: absolute;
+    z-index: 99;
+    border-right: 1px solid @gray;
+    box-shadow: inset 0 -10px 10px @dark-gray;
+
+    .inner {
+      padding-left: 20px;
+    }
+
+    ul {
+      position: static;
+      margin: 0 0 0 20px;
+      overflow: visible;
+      a {
+        .font;
+        font-size: 16px;
+        padding: 10px;
+      }
+    }
+    li {
+      position: static;
+      margin-left: 50px;
+      float: none;
+      padding-left: 16px;
+      & > ul {
+        position: static;
+      }
+      li {
+        margin-left: 0;
+        a {
+          float: none;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .global-outer-wrap {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .global-inner-wrap {
+    .transform(translate(-300px, 0));
+    .transition(all 500ms ease);
+    &.active {
+      .transform(translate(0, 0));
+    }
+  }
+
+  .main-wrap {
+    .transform(translate(300px, 0));
+  }
+}

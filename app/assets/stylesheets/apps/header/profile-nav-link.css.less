@@ -1,0 +1,26 @@
+@import 'conf/conf.css.less';
+
+@main-nav-height: 60px;
+@sub-nav-min-height: 45px;
+
+.sub-nav-data li.profile-nav-link-wrap {
+  display: none;
+  @media (min-width: @desktop-nav-at){
+    .inline-block();
+  }
+}
+
+.profile-nav-link {
+  margin-right: 20px;
+  padding-top: 0;
+  position: relative;
+  vertical-align: top;
+  width: 52px;
+  img {
+    margin-top: -5px;
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+}

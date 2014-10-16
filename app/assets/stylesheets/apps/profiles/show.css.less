@@ -1,0 +1,253 @@
+@import 'conf/conf.css.less';
+
+.profile-avatar {
+  margin-right: 10px;
+  img {
+    border-radius: 50%;
+    width: 100%;
+    max-width: 260px;
+    max-height: 260px;
+  }
+}
+
+.profile-top {
+  background-color: @main-dark;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center 60px; // fixed navbar
+  color: @white;
+
+  @media (min-width: 100px){
+    background-image: image-url('premium/profile_bg_320.jpg');
+  }
+  @media (min-width: 321px){
+    background-image: image-url('premium/profile_bg_640.jpg');
+  }
+  @media (min-width: 641px){
+    background-image: image-url('premium/profile_bg_1280.jpg');
+  }
+  @media (min-width: 1200px){
+    background-image: image-url('premium/profile_bg_big.jpg');
+  }
+
+  .update-linkedin-wrap {
+    position: relative;
+    margin: 16px auto;
+    display: block;
+    max-width: 256px;
+    font-size: 17px;
+    text-align: center;
+    @media (min-width: 640px){
+      max-width: 300px;
+      float: right;
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .update-linkedin {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid @linkedin_btn_border_color;
+    border-top: 1px solid @linkedin_btn_border_top_color;
+    box-shadow: inset 0 1px 0 @linkedin_btn_shadow_color;
+    color: @linkedin_btn_color;
+    .gradient(@linkedin_btn_color_top, @linkedin_btn_color_bottom);
+    text-transform: uppercase;
+    text-shadow: 0 -1px 0 @linkedin_btn_text_shadow;
+    padding: 10px 19px;
+    cursor: pointer;
+    font-size: inherit;
+    img {
+      vertical-align: text-bottom;
+      width: 99px;
+      height: 27px;
+      margin-left: 2px;
+    }
+    &:hover {
+      .gradient(@linkedin_btn_color_bottom, @linkedin_btn_color_top);
+    }
+  }
+
+  h1 {
+    color: @white;
+    font-weight: 600;
+    margin-bottom: 0;
+    & > span {
+      font-size: 48px;
+      line-height: 48px;
+      @media (min-width: 640px){
+        font-size: 68px;
+        line-height: 68px;
+      }
+    }
+  }
+  .business_unit {
+    text-transform: uppercase;
+    font-size: 25px;
+    line-height: normal;
+    font-weight: 350;
+    margin-top: 5px;
+  }
+  .job-title {
+    text-transform: uppercase;
+    font-size: 28px;
+    line-height: normal;
+    font-weight: 300;
+    margin-top: 5px;
+  }
+  .reports-to {
+    font-weight: 300;
+    margin-bottom: 10px;
+    font-size: 14px;
+    a {
+      color: @white;
+      border-bottom: 1px solid @lighter-gray;
+      &:hover {
+        border-bottom-color: @main-blue;
+        color: @main-blue;
+      }
+    }
+    a.btn {
+      margin-left: 0.5em;
+      text-decoration: none;
+      border-width: 0;
+      &:hover {
+        color: @white;
+      }
+    }
+  }
+
+  .stats-box {
+    padding-bottom: 0;
+  }
+
+  .contact-info {
+    margin: 0;
+    color: @main-blue;
+    li {
+      margin: 0 0 10px 0;
+    }
+    .icon {
+      .inline-block();
+      width: 32px;
+      text-align: center;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  .inline-list {
+    li {
+      display: inline;
+      &:after {
+        content: ', '
+      }
+      &:last-child:after {
+        content: ' ';
+      }
+    }
+  }
+}
+
+.profile-stats {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  & > li {
+    .clearfix();
+    position: relative;
+    border-bottom: 1px solid @gray;
+    min-height: 42px;
+    padding: 3px 0;
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+  .icon {
+    .inline-block();
+    font-size: 24px;
+  }
+  .key {
+    float: left;
+    padding: 10px 0;
+    span {
+      display: block;
+      font-size: 0.8em;
+      a {
+        margin-bottom: -10px;
+      }
+    }
+  }
+  .with-link .key .icon {
+    float: left;
+    margin-top: -2px;
+  }
+  .icon {
+    color: @gray;
+    width: 32px;
+    vertical-align: middle;
+  }
+  .value {
+    margin-top: 4px;
+    float: right;
+    text-align: right;
+    .rating-small {
+      font-size: 16px;
+      margin-right: -4px;
+    }
+    strong {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    small {
+      margin-top: -6px;
+      display: block;
+      color: @gray;
+    }
+  }
+}
+
+.profile-stats-actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  a,
+  li {
+    .inline-block();
+  }
+  a {
+    padding: 10px;
+    color: @black;
+  }
+  i {
+    vertical-align: middle;
+  }
+}
+
+.profile-details p a {
+  word-break: break-all;
+}
+
+.profile-section,
+.profile-details { // light styles used!
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section_edit {
+    text-transform: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    padding-top: 26px; // box padding
+    padding-right: 20px;  // box padding
+    padding-bottom: 6px;
+    padding-left: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+  }
+}

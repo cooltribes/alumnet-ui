@@ -1,0 +1,194 @@
+@import 'conf/conf.css.less';
+
+@search-widget-width-wide: 370px;
+@search-widget-width-small: 280px;
+@sidebar-drop-max-height: 250px;
+
+.sub-nav-data.mobile-tips-link-data {
+  display: block;
+
+  .tips-link {
+    display: block;
+    font-size: 0.8em;
+    padding: 17px;
+    white-space: nowrap;
+    text-align: center;
+  }
+  @media (min-width: 600px){
+    float: left;
+    .tips-link {
+      float: left;
+      padding-left: 0;
+    }
+  }
+
+  @media (min-width: @desktop-nav-at){
+    display: none;
+  }
+}
+
+.search-header-data {
+  right: 0;
+  width: @search-widget-width-small;
+  position: relative;
+  margin: 0 auto;
+
+  @media(min-width: 500px){
+    width: @search-widget-width-wide;
+  }
+  @media(min-width: 600px){
+    margin: 5px 0 0 0;
+    position: absolute;
+  }
+  .sub-nav-data {
+    padding: 0 20px;
+    text-align: center;
+    *max-height: 90px;
+  }
+  .search-data.sub-nav-data {
+    *display: block;
+    padding: 0;
+    @media(min-width: 500px){
+      margin-right: 20px;
+    }
+  }
+
+  // instead of adding active to .sub-nav-data we add active to parent: .search-header-data
+  // this way the content of .search-header-data might be different view
+  &.active .sub-nav-data {
+    max-height: 90px;
+    .transition(all 200ms 100ms ease);
+  }
+  .search-bar {
+    position: relative;
+    display: block;
+    border: 1px solid @main-dark-blue;
+    color: @black;
+    background: @white;
+    border-radius: @radius;
+    margin: 0 auto 10px auto;
+    text-align: left;
+    height: 34px;
+
+    .submit {
+      border-radius: 0 (@radius - 1) (@radius - 1) 0;
+      position: absolute;
+      right: 0;
+      top: -1px;
+      height: 20px;
+      width: 30px;
+      font-size: 1.1em;
+      text-align: center;
+      padding: 8px 0 7px 2px;
+      background: @main-dark-blue;
+      &:hover {
+        background: lighten(@main-dark-blue, 5%);
+      }
+    }
+
+    .site-nav-search {
+      margin-right: 56px;
+      input {
+        padding: 7px 14px;
+        width: 100%;
+        min-width: 10px;
+        min-height: 20px;
+
+        border-radius: @radius;
+        font-size: 14px;
+        display: block;
+        border: 0;
+        margin: 0;
+        background: @white;
+        outline: 0;
+        &:focus {
+          background: @white;
+        }
+      }
+    }
+  }
+}
+
+.search-bar-dropdown {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: @search-widget-width-small - 32px;
+  border: 1px solid @main-dark-blue;
+  border-top: 0;
+  .box-sizing(border-box);
+  margin: 0 auto;
+  border-radius: 0 0 5px 5px;
+  background: @white;
+  overflow: auto;
+  .transition(all ease 200ms);
+  max-height: 0px;
+  opacity: 0;
+
+  @media(min-width: 500px){
+    width: @search-widget-width-wide - 20px - 32px;
+    right: 20px + 32px;
+  }
+  ul {
+    position: relative;
+  }
+
+  ul:empty {
+    height: 3px;
+  }
+
+  visibility: hidden;
+  &.active {
+    visibility: visible;
+    max-height: @sidebar-drop-max-height;
+  }
+  li {
+    display: block;
+  }
+  mark {
+    font-weight: 600;
+    text-decoration: underline;
+    background: none;
+    color: inherit;
+  }
+}
+
+.ie9 .search-bar-dropdown { // ie border-box + scrollbars issue
+  box-sizing: content-box;
+  width: @search-widget-width-small - 32px - 2px;
+  @media(min-width: 500px){
+    width: @search-widget-width-wide - 20px - 32px - 2px;
+  }
+}
+
+.sub-nav .search-bar-dropdown a {
+  text-align: left;
+  color: @black;
+  display: block;
+  font-size: 13px;
+  padding: 2px 10px;
+  word-break: break-all;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  small {
+    float: right;
+    color: @dim-gray;
+  }
+  .text {
+    display: block;
+    white-space: nowrap;
+    padding-right: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &.selected {
+    background: @light-gray;
+  }
+  &:hover {
+    background: @main-blue;
+    color: @white;
+    small {
+      color: @white;
+    }
+  }
+}

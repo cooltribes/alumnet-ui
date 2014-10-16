@@ -1,0 +1,149 @@
+@import 'conf/conf.css.less';
+
+.search-results {
+  max-width: 1200px;
+  ul {
+    margin: 10px 0;
+  }
+  li {
+    min-height: 50px;
+    padding-bottom: 2em;
+  }
+
+  .sep {
+    margin: 0 1em;
+    color: @dim-gray;
+  }
+
+  .summary,
+  .desc {
+    max-width: 80em;
+    padding-top: 0.4em;
+    line-height: 1.5em;
+    font-size: 0.95em;
+    color: @mid-gray;
+  }
+
+  .rating {
+    font-size: 20px;
+  }
+
+  .search-empty {
+    margin-top: 30px;
+    color: @dim-gray;
+    font-size: 1.2em;
+  }
+
+  .search-profile {
+    min-height: 54px;
+    .more {
+      margin-left: 60px;
+    }
+
+    img {
+      float: left;
+      width: 50px;
+      hegiht: 50px;
+      border-radius: 50%;
+    }
+  }
+
+  .search-task {
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      text-align: middle;
+      margin-top: -6px;
+      margin-left: 4px;
+    }
+  }
+
+  .text {
+    line-height: 1.1em;
+    font-size: 1.8em;
+  }
+
+  .search-class-name {
+    font-size: 0.5em;
+    color: mix(@gray, @dim-gray);
+    &:after {
+      content: ')';
+    }
+    &:before {
+      content: '(';
+    }
+  }
+
+  .key {
+    color: @dim-gray;
+  }
+
+  .time-bar,
+  .match-bar {
+    .inline-block();
+    font-size: 0.8em;
+  }
+
+  .bar {
+    width: 120px;
+    background: @light-gray;
+  }
+  .bar-inner {
+    height: 5px;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .time-bar {
+    color: @highlight;
+    .bar-inner {
+      background: @highlight;
+    }
+  }
+  .match-bar {
+    color: @secondary-btn;
+    .bar-inner {
+      background: @secondary-btn;
+    }
+  }
+
+
+
+  .more-item {
+    display: block;
+    vertical-align: bottom;
+    padding: 6px 0;
+    @media(min-width: 600px){
+      .inline-block();
+      &:after {
+        content: '-';
+        margin: 0 1em;
+        vertical-align: bottom;
+        color: @dim-gray;
+      }
+      &:last-child:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.search-header-term {
+  margin-top: 0.2em;
+  small {
+    font-weight: 300;
+  }
+}
+
+.search-header-term,
+.search-results ul {
+  @media(min-width: 700px){
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  @media(min-width: 1000px){
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}

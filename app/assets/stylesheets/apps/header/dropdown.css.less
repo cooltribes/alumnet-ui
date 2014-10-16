@@ -1,0 +1,85 @@
+@import 'conf/conf.css.less';
+
+.sub-nav-dropdown.sub-nav-data {  // used with .tips-data and .notification-data
+  padding: 0;
+  width: 100%;
+  min-height: 0;
+  max-height: 0;
+  .transform(translate3d(0,0,0)); // transformed object appear higher (event with lower z-index)
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: @white;
+    border: 3px solid @main-blue;
+  }
+
+  &.active {
+    min-height: 44px;
+    max-height: 280px;
+    overflow: auto;
+  }
+
+  @media (min-width: @desktop-nav-at){
+    position: absolute;
+    z-index: 9;
+    top: 61px;
+    right: 20px;
+    background: @main-blue;
+    width: 380px;
+    &.active {
+      border-top-width: 0;
+    }
+  }
+}
+
+.profile-nav-link,
+.tips-link {
+  position: relative;
+
+  &:after,
+  &:before {
+    content: ' ';
+    border: 5px solid transparent;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
+
+  &:after,
+  &.active:after {
+    border-bottom-color: @white;
+    margin-top: -15px;
+  }
+
+  &:before,
+  &.active:before {
+    border-top-color: @white;
+  }
+
+  @media (min-width: 550px) {
+    &:after,
+    &:before {
+      position: absolute;
+      top: 30px;
+      right: 0px;
+    }
+  }
+
+  @media (min-width: @desktop-nav-at) {
+    &:before,
+    &:after {
+      top: 50%;
+      right: 7px;
+    }
+    &:after {
+      border-bottom-color: @secondary-btn;
+    }
+    &:before {
+      border-top-color: @secondary-btn;
+    }
+  }
+}

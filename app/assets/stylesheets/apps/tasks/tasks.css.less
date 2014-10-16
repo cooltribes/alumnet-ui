@@ -1,0 +1,377 @@
+@import 'conf/conf.css.less';
+
+.tasks-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  .clearfix();
+  .box {
+    padding: 12px;
+    box-shadow: 0 0 7px rgba(0,0,0, 0.2);
+    border-radius: @radius;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 400;
+    max-height: 60px;
+    overflow: hidden;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+  }
+  .date {
+    display: block;
+  }
+  .task-header {
+    margin-bottom: 18px;
+    small {
+      font-size: 0.85em;
+      line-height: 1.2em;
+    }
+  }
+  .more-link {
+    font-size: 12px;
+    padding: 5px 0;
+  }
+  .name {
+    color: @dim-gray;
+    display: table-row;
+    zoom: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    vertical-align: middle;
+    height: 42px;
+    text-align: left;
+    padding-left: 52px;
+    font-weight: 300;
+    font-size: 12px;
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      height: 42px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .dim {
+      font-weight: 300;
+      font-size: 0.9em;
+      line-height: 0.8em;
+    }
+  }
+  .author {
+    position: relative;
+    margin-bottom: 20px;
+    img {
+      height: 50px;
+      widows: 50px;
+      border-radius: 50%;
+    }
+    .name {
+      padding-top: 10px;
+      padding-left: 60px;
+    }
+    a {
+      height: auto;
+    }
+  }
+  .reason {
+    font-size: 1.05em;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: @dim-gray;
+  }
+  .time-commitment {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    font-size: 0.76em;
+    font-weight: 300;
+    color: @dim-gray;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    .undefined {
+      color: @gray;
+      font-size: 1.3em;
+      font-weight: 500;
+    }
+    .val {
+      color: @highlight;
+      font-size: 1.3em;
+      font-weight: 500;
+    }
+  }
+
+  .ended .time-commitment .val {
+    color: @dim-gray;
+  }
+
+  .desc {
+    margin: 0 4px 10px 4px;
+    i {
+      margin: 0 12px;
+      vertical-align: bottom;
+      font-size: 26px;
+      color: @secondary-btn;
+    }
+  }
+
+  .details-link {
+    text-align: right;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .fix-height {
+    height: 310px;
+    overflow: hidden;
+
+  }
+  .bar {
+    height: 5px;
+    background: @light-gray;
+  }
+  .bar-inner {
+    height: 5px;
+    max-width: 100%;
+    width: 0;
+    min-width: 2px;
+  }
+  .ended .bar-inner {
+    min-width: 0;
+  }
+  .match-bar {
+    color: @secondary-btn;
+    width: 40%;
+    .bar {
+      margin-right: 20px;
+    }
+    .bar-inner {
+      background: @secondary-btn;
+    }
+  }
+  .time-bar {
+    float: right;
+    color: @highlight;
+    width: 100%;
+    .bar-inner {
+      background: @highlight;
+    }
+  }
+
+  .ended {
+    .time-bar {
+      color: @gray;
+    }
+  }
+
+  .time-bar,
+  .match-bar {
+    margin-bottom: 4px;
+    .inline-block();
+  }
+  .empty {
+    margin-top: 20px;
+    font-size: 2em;
+    color: @dim-gray;
+    padding: 10px;
+    line-height: normal;
+  }
+}
+
+.task-matches {
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  padding: 12px 0 14px 0;
+  margin-bottom: 12px;
+  border-top: 2px solid @light-gray;
+  border-bottom: 2px solid @light-gray;
+  .show {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 13px 0 13px 10px;
+  }
+}
+
+@task-participant-height: 52px;
+.task-participants {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: @task-participant-height * 3;
+  overflow: hidden;
+  img {
+    height: 42px;
+    widows: 42px;
+    border-radius: 50%;
+  }
+  li {
+    height: @task-participant-height;
+    position: relative;
+  }
+  .btn {
+    float: right;
+    padding: 0;
+    font-size: 12px;
+    line-height: 22px;
+    width: 50px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    span {
+      padding: 5px 0;
+      .inline-block();
+      margin-left: 25px;
+      min-width: 25px;
+    }
+    .icon,
+    .highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 25px;
+      border-radius: @radius 0 0 @radius;
+      margin: 0;
+    }
+    &.highlight {
+      background: @highlight;
+      color: @white;
+    }
+    .icon i {
+      margin-left: 6px;
+      font-size: 20px;
+      line-height: 32px;
+    }
+  }
+}
+
+.task-actions {
+  font-size: 0;
+  position: relative;
+  .btn {
+    padding-left: 0;
+    padding-right: 0;
+    text-transform: lowercase;
+    font-size: 14px;
+  }
+  .task-remove-btn {
+    width: 33%;
+    margin-right: 1.5%;
+  }
+  .task-edit-btn {
+    width: 37%;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-right: 1.5%;
+    i {
+      margin-left: -3px;
+      font-size: 1.7em;
+      top: 3px;
+      position: relative;
+    }
+  }
+  .task-show-btn {
+    width: 27%;
+  }
+  .task-participate-btn {
+    font-weight: 500;
+    width: 70%;
+    text-transform: uppercase;
+  }
+  .task-messages-btn {
+    font-weight: 400;
+    width: 28%;
+    margin-right: 1.5%;
+    i {
+      font-size: 1.6em;
+      vertical-align: text-bottom;
+      margin-right: 0.3em;
+    }
+  }
+  span {
+    font-weight: 400;
+    text-transform: none;
+  }
+}
+
+
+.filters-region { // maybe this should be used with library as well?
+  padding-top: 30px;
+  text-align: center;
+  ul {
+    margin: 0;
+  }
+  li {
+    .inline-block();
+  }
+  .categories {
+    i {
+      font-size: 18px;
+      vertical-align: text-bottom;
+      position: relative;
+      top: -1px;
+    }
+  }
+  .btn {
+    font-size: 14px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  @media (min-width: 992px){
+    text-align: right;
+  }
+  .filters-inputs {
+    padding-top: 20px;
+  }
+
+  .inputs {
+    text-align: left;
+    overflow: hidden;
+    .transition(500ms 50ms all ease);
+    max-height: 500px;
+    opacity: 1;
+    &.hidden {
+      .transition(50ms all linear);
+      display: block;
+      visibility: visible;
+      max-height: 0;
+      opacity: 0.5;
+    }
+    @media (min-width: 992px){
+      text-align: right;
+    }
+  }
+
+  .status {
+    text-align: left;
+    margin: 0;
+    @media(min-width: 992px){
+      text-align: right;
+    }
+  }
+}
+
+.stars-explained-list {
+  li {
+    line-height: 30px;
+  }
+  i {
+    position: relative;
+    top: -3px;
+    vertical-align: middle;
+  }
+}
+
+.task-info-wrap {
+  .more-info-trigger {
+    color: @secondary-btn;
+  }
+  .rating-small {
+    font-size: 16px;
+  }
+}

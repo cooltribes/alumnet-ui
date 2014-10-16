@@ -1,0 +1,119 @@
+@import 'conf/conf.css.less';
+
+.invite {
+  .clearfix();
+  position: relative;
+  background: @white;
+  border-radius: @radius;
+  box-shadow: 0 0 7px rgba(0,0,0,0.2);
+  .actions {
+    float: right;
+    text-align: right;
+    margin-right: 4px;
+  }
+  .info {
+    .clearfix();
+  }
+
+  .author {
+    margin-bottom: 10px;
+    max-width: 230px;
+    padding-right: 16px;
+    img {
+      width: 50px;
+      height: 50px;
+      float: left;
+      margin-left: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .by {
+      padding-top: 8px;
+      margin-left: 70px;
+      span {
+        display: block;
+      }
+    }
+  }
+  .desc {
+    margin: 0 10px 10px 10px;
+    padding-top: 10px;
+    i {
+      vertical-align: bottom;
+      margin-right: 20px;
+      font-size: 26px;
+      color: @secondary-btn;
+    }
+    a {
+      padding: 10px;
+    }
+  }
+  @media (min-width: 640px) {
+    .desc {
+      margin-left: 230px;
+    }
+    .author {
+      float: left;
+    }
+  }
+
+  .bars {
+    width: 300px;
+    max-width: 100%;
+    text-align: right;
+    float: right;
+    margin-right: 10px;
+    div {
+      text-align: left;
+    }
+  }
+
+  .bar {
+    height: 5px;
+    background: @light-gray;
+  }
+  .bar-inner {
+    height: 5px;
+    max-width: 100%;
+    width: 0;
+    min-width: 0;
+  }
+  .match-bar {
+    color: @secondary-btn;
+    width: 40%;
+    .bar {
+      margin-right: 20px;
+    }
+    .bar-inner {
+      background: @secondary-btn;
+    }
+  }
+  .time-bar {
+    color: @highlight;
+    width: 55%;
+    &.dim {
+      color: @gray;
+    }
+    .bar-inner {
+      background: @highlight;
+    }
+  }
+
+  .time-bar,
+  .match-bar {
+    margin-bottom: 12px;
+    .inline-block();
+  }
+
+}
+
+.invite-header {
+  margin-bottom: 0;
+  .header-text {
+    line-height: 1.2em;
+    overflow: hidden;
+    color: @main-text;
+    .inline-block();
+    padding: 12px 12px 0 12px;
+  }
+}

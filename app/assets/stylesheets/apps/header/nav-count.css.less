@@ -1,0 +1,41 @@
+@import 'conf/conf.css.less';
+
+.sub-nav .nav-count {
+  margin-left: 8px;
+  font-size: 0.8em;
+  font-weight: 500;
+  line-height: 15px;
+  background: #0097E0;
+  border-radius: @radius-small;
+  .inline-block();
+  span {
+    border-radius: @radius-small;
+    padding: 0 7px;
+  }
+  .nav-highlight {
+    padding: 1px 5px;
+    border-radius: @radius-small 0 0 @radius-small;
+    background: @white;
+    color: #0097E0;
+  }
+  @media(min-width: 310px){
+    line-height: 20px;
+  }
+}
+
+@media (min-width: @desktop-nav-at){
+  .sub-nav .right-nav-top {
+    .nav-count {
+      display: none;
+    }
+    .attention .nav-count {
+      display: block;
+      background: @highlight;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      padding-bottom: 4px;
+      padding-top: 4px;
+    }
+  }
+}

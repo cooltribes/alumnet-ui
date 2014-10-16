@@ -1,0 +1,128 @@
+@import 'conf/conf.css.less';
+
+.announcements-list {
+  position: relative;
+  min-height: 450px;
+  margin: 40px 0;
+  background: none;
+  border-bottom-width: 0;
+  border: 1px solid @form-border-gray;
+  border-left: 0;
+  border-right: 0;
+  color: @form-inner-dark;
+  width: 100%;
+  & > ul {
+    margin: 0;
+    padding: 0;
+    a {
+      border-right: 1px solid @form-border-gray;
+    }
+  }
+  li.show-panel {
+    z-index: 10;
+    position: relative;
+    &.empty {
+      border-width: 0;
+      padding: 30px;
+      font-size: 1.3em;
+      color: @dim-gray;
+      &:hover {
+        background: @form-inner-gray;
+      }
+    }
+  }
+  .announcement-panel.announcement {
+    width: 100%;
+    margin: 0;
+    max-height: 0;
+    .transition(all 200ms ease);
+    border: 0;
+    overflow: hidden;
+    .text-wrap {
+      padding: 0 20px;
+      margin: 0 0 20px 0;
+      max-height: 1000px;
+      overflow: auto;
+    }
+    .header {
+      display: none;
+    }
+  }
+
+  li.show-panel .announcement-panel {
+    max-height: 1500px;
+  }
+
+  @media(min-width: 900px){
+    width: 350px;
+    min-height: 620px;
+    .announcement-panel.announcement {
+      border: 1px solid @form-border-gray;
+      margin: -1px 0 0 -1px;
+      width: 500px;
+      position: absolute;
+      top: 0;
+      left: -900px;
+      opacity: 0;
+      max-height: 0;
+      .transition(all 350ms ease);
+      .header {
+        display: block;
+      }
+      .text-wrap {
+        max-height: 360px;
+      }
+    }
+
+    li.show-panel .announcement-panel {
+      max-height: 1000px;
+      left: 100%;
+      opacity: 1;
+    }
+  }
+  @media(min-width: 1000px){
+    width: 380px;
+    .announcement-panel.announcement {
+      width: 600px;
+    }
+  }
+  @media(min-width: 1280px){
+    width: 450px;
+    .announcement-panel.announcement {
+      width: 800px;
+    }
+  }
+  @media(min-width: 1400px){
+    width: 450px;
+  }
+
+  .pagination {
+    background: @white;
+    border-top-width: 0;
+    border-bottom: 1px solid @form-border-gray;
+  }
+  li {
+    border-top-width: 0;
+    border-bottom: 1px solid @form-border-gray;
+    position: static;
+    background: @white;
+    &.show-panel,
+    &:hover {
+      background: @form-inner-gray;
+    }
+  }
+}
+
+.announcement-item {
+  display: block;
+  padding: 16px 20px;
+  .item-subject {
+    margin: 0;
+    font-weight: 500;
+    color: @form-inner-dark;
+    font-size: 22px;
+  }
+  small {
+    color: @dim-gray;
+  }
+}

@@ -1,0 +1,11 @@
+/*
+ *= require_self
+ *= require libs/bootstrap
+ *= require libs/bootstrap-responsive
+
+ # get all from landing/main
+ *= require landing/main
+
+ # overwrites of landing/main
+ *= require landing_account/main
+*/

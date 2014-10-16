@@ -1,0 +1,106 @@
+@import 'conf/conf.css.less';
+
+.dashboard-viewers-header {
+  margin-top: 120px;
+  vertical-align: bottom;
+  border-bottom: 25px solid @white;
+  h2,
+  .task-pick,
+  .yours-sep {
+    vertical-align: bottom;
+    .inline-block();
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+  .task-pick {
+    background: @white;
+    padding: 14px 16px 0 16px;
+    border-radius: 2px 2px 0 0;
+  }
+  .yours-sep {
+    margin: 16px 20px ;
+  }
+}
+
+.dashboard-viewers {
+  margin-bottom: 80px;
+  &.white-section {
+    padding-top: 0;
+  }
+  .map-wrap,
+  .plot-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 30px;
+  }
+  .plot {
+    width: 100%;
+    min-width: 900px;
+    height:  400px;
+  }
+  .flot-y-axis {
+    margin-left: -30px;
+    font-weight: 500;
+    color: @black;
+  }
+  .flot-x-axis .tickLabel {
+    margin-top: 20px;
+    color: @dim-gray;
+  }
+  .plot-options {
+    .desc ,
+    .option {
+      display: inline;
+      line-height: 42px;
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .sub-tabs {
+    text-align: right;
+    li {
+      .inline-block();
+      font-size: 18px;
+      text-transform: capitalize;
+      font-weight: 300;
+      a:hover,
+      &.active a {
+        color: @black;
+      }
+      &.active a {
+        border-bottom: 4px solid @main-blue;
+      }
+    }
+    a {
+      padding-bottom: 5px;
+      .inline-block();
+      color: @dim-gray;
+      margin: 10px;
+      border-bottom: 4px solid transparent;
+    }
+  }
+
+  .users {
+    padding-top: 20px;
+  }
+  .prev,
+  .dashboard-users li {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 640px;
+  }
+  .dashboard-users .date {
+    right: 5px;
+  }
+}
+
+.graph-tooltip {
+  position: absolute;
+  width: 100px;
+  font-size: 28px;
+  margin-top: -60px;
+  margin-left: -50px;
+  text-align: center;
+}

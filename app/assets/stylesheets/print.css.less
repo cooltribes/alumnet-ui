@@ -1,0 +1,238 @@
+@import "conf/conf.css.less";
+
+@media print {
+  * {
+    color: #000 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+  a {
+    color: #004263 !important;
+  }
+  img {
+    max-width: 5cm !important;
+  }
+  [class^=icon-] {
+    -webkit-print-color-adjust:exact;
+  }
+  .huge-title {
+    margin-bottom: 0;
+    font-size: 14pt !important;
+  }
+  .huge-subtitle {
+    font-size: 12pt !important;
+    color: #555 !important;
+  }
+  .filters-region {
+    display: none;
+  }
+  .rating-small {
+    &:after {
+      content: " (" attr(title) ") ";
+    }
+  }
+  body {
+    font: 10pt Georgia, "Times New Roman", Times, serif;
+  }
+  .all-wrap {
+    min-height: 0;
+    max-height: none;
+    margin-bottom: 0;
+    &:before {
+      content: "www.profinda.com";
+      display: block;
+      border-bottom: 1px solid black;
+    }
+  }
+  #header_region {
+    display: none;
+  }
+  #footer_region {
+    display: none;
+  }
+  #swipe_region {
+    .swipe-edge-show,
+    .other-messages {
+      display: none;
+    }
+  }
+  .premium-box, .box, .white-section {
+    border: 1px solid @light-gray;
+  }
+  .library-item-actions,
+  .dashboard .huge-title,
+  .dashboard-todo,
+  .dashboard-comparision .left,
+  .update-linkedin-wrap {
+    display: none !important;
+  }
+  .profile-top {
+    h1 > span {
+      font-size: 16pt;
+    }
+    .job-title {
+      font-size: 12pt;
+    }
+  }
+  .profile-avatar {
+    width: 3cm;
+    hegiht: 3cm;
+  }
+  .masonry-item {
+    border: 1px solid @light-gray;
+    width: 100% !important;
+    vertical-align: top;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    .inline-block();
+  }
+  .huge-menu a {
+    font-size: 12pt;
+    line-height: normal;
+  }
+
+  // tasks
+  .task {
+    h2 {
+      font-size: 14pt;
+    }
+    .blue-section {
+      padding-top: 0;
+    }
+    .task-name {
+      font-size: 20pt;
+      margin: 0;
+    }
+    .header-actions {
+      display: none;
+    }
+    p {
+      font-size: 11pt;
+    }
+  }
+  .task-stats {
+    margin-top: -40px;
+    li {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .main-stats {
+      margin-top: -10px;
+    }
+    .premium-row-container {
+      .key,
+      .val {
+        font-size: 12pt !important;
+      }
+    }
+    li {
+      .inline-block();
+      width: auto !important;
+      vertical-align: top;
+    }
+  }
+  .tasks-list {
+    .fix-height {
+      height: auto;
+      overflow: visible;
+    }
+  }
+  .task-participants {
+    height: auto;
+  }
+  .task-actions {
+    display: none;
+  }
+  .task-additional-info .info {
+    margin-bottom: 0.2cm;
+  }
+  .task-additional-info.white-section {
+    padding: 0;
+  }
+
+  // metches
+  .matches-list {
+    img {
+      width: 1cm !important;
+      height: 1cm !important;
+    }
+    .person,
+    .person .name,
+    .person .avatar,
+    .person .headline,
+    .person .rating-small,
+    .invite-btn,
+    .match-explain,
+    .match-explain a,
+    .match-explain ul {
+      position: static !important;
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      margin: 0;
+      padding: 0;
+    }
+    .invite-btn a {
+      display: none;
+    }
+    .match-elem {
+      position: relative;
+      display: block;
+      &:after {
+        border-width: 0;
+        display: none;
+      }
+    }
+    .col-6 {
+      width: 100% !important;
+      margin: 0;
+    }
+    .percent-wrap {
+      float: right;
+    }
+    .more {
+      display: none !important;
+    }
+  }
+
+  // profile-list
+  .profiles-list {
+    .avatar {
+      width: 0.75cm;
+      height: 0.75cm;
+    }
+    .box {
+      padding: 0.1cm !important;
+      border: 0;
+      border-radius: 0;
+      box-shadow: 0 0 0 transparent !important;
+    }
+    .headline,
+    .rating-small {
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      vertical-align: middle;
+      line-height: 1cm;
+    }
+    .rating-small {
+      float: right;
+    }
+    .headline {
+      font-size: 0.9em;
+    }
+    .col-6 {
+      margin-bottom: 0;
+    }
+    .role {
+      width: auto;
+      text-align: left;
+    }
+    .data,
+    .name {
+      font-size: 10pt;
+    }
+  }
+
+}

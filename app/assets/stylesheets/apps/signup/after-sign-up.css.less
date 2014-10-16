@@ -1,0 +1,199 @@
+@import 'conf/conf.css.less';
+
+.after-sign-up-form {
+  margin-top: 50px;
+  label {
+    font-size: 16px;
+  }
+  h1 {
+    margin-bottom: 0;
+    @media (max-width: @media-medium-max){
+      font-size: 38px;
+    }
+    @media (max-width: @media-small-max){
+      text-align: center;
+      font-size: 32px;
+    }
+  }
+  .checkbox {
+    position: relative;
+    font-size: 20px;
+    .help-inline.error {
+      font-size: 16px;
+      position: absolute;
+      top: 32px;
+      left: 14px;
+    }
+  }
+}
+
+.after-sign-up-links,
+.after-sign-up-company-details {
+  padding-bottom: 0;
+  .input, .control-group {
+    display: inline;
+  }
+}
+
+.select2-search-hidden {
+  display: none;
+}
+
+.select2-container.icon-select2 {
+  width: 60px;
+  min-width: 60px;
+  .select2-choice {
+    background: @form-active;
+    & > .select2-chosen {
+      margin-right: 16px;
+    }
+  }
+  .select2-choice .select2-arrow b {
+    background-image: image-url('profinda-icons.png') !important;
+    background-position: -18px -143px;
+  }
+  &.select2-dropdown-open .select2-choice .select2-arrow b {
+    background-position: 0 -143px;
+  }
+}
+
+.icon-select2.select2-container .select2-choice {
+  & > .select2-chosen {
+    text-align: center;
+    margin-right: 16px;
+  }
+}
+
+.select2-drop.icon-select2 .select2-results {
+  .select2-result-label {
+    text-align: center;
+  }
+}
+
+.upload-avatar-size-limit {
+  max-width: 500px;
+  max-height: 500px;
+  text-align: center;
+  margin: 0 auto;
+  img {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+  }
+  .img-wrap {
+    position: relative;
+    max-width: 500px;
+    max-height: 400px;
+    min-height: 100px;
+    &.loading {
+      padding: 0;
+      width: 100%;
+      img,
+      .saved {
+        visibility: hidden;
+        display: none;
+      }
+    }
+  }
+  .saved {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    display: none;
+  }
+}
+
+.form-horizontal .profile_picture .controls {  // ie fix
+  padding-left: 0;
+}
+
+.registration-nav {
+  ul {
+    line-height: 1px;
+    line-height: 0;
+    width: 100%;
+    list-style: none;
+    margin: 0 0 -5px 0;
+    vertical-align: bottom;
+    position: relative;
+    z-index: 1;
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    &:after {
+      content: ' ';
+      .inline-block();
+      width: 100%;
+      max-width: 100%;
+      height: 0;
+      font-size: 0px;
+      visibility: hidden;
+    }
+  }
+  li {
+    .inline-block();
+    vertical-align: bottom;
+    *margin-bottom: -18px;
+  }
+  .fake-a {
+    color: darken(@gray, 10%);
+    border-bottom: 3px solid @main-bg;
+    @media (max-width: @media-smallest){
+      color: darken(@gray, 30%);
+    }
+  }
+  .fake-a,
+  a {
+    font-size: 18px;
+    font-weight: 300;
+    padding: 16px 4px;
+    text-align: center;
+    display: block;
+
+    @media (min-width: @media-large-min){
+      font-size: 22px;
+    }
+    @media (max-width: @media-medium-max){
+      font-size: 16px;
+    }
+    @media (max-width: @media-small-max){
+      font-size: 14px;
+    }
+    @media (max-width: @media-xsmall-max){
+      font-size: 12px;
+      padding: 10px 2px;
+    }
+    @media (max-width: @media-smallest){
+      font-size: 10px;
+      padding: 10px 2px;
+    }
+  }
+
+  a,
+  a:hover {
+    color: @black;
+    border-bottom: 3px solid @main-blue;
+    text-decoration: none;
+  }
+
+
+  @media (max-width: @media-small-max){
+    ul {
+      text-align: left;
+      line-height: normal;
+      display: table;
+      width: 100%;
+      border-spacing:0;
+      border-collapse:collapse;
+    }
+    li {
+      display: table-cell;
+      max-width: 20%;
+      width: 20%;
+      vertical-align: bottom;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@import 'conf/conf.css.less';
+
+.profile-experiences {
+  .experience {
+    cursor: pointer;
+    color:  @mid-gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    i {
+      color: @dim-gray;
+    }
+  }
+  .empty {
+    color: @dim-gray;
+  }
+  .name {
+    font-weight: 500;
+    small {
+      font-weight: normal;
+      font-size: 0.9em;
+      display: inline;
+    }
+  }
+  i {
+    position: relative;
+    top: -4px;
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  .current-position {
+    color: @black;
+  }
+  .info {
+    margin-left: 25px;
+  }
+  .lists {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    min-height: 25px;
+    margin-bottom: 2px;
+  }
+
+  small {
+    display: block;
+  }
+
+  .location {
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+
+  .dates,
+  .department {
+    font-size: 0.85em;
+    line-height: 1.3em;
+  }
+
+  .brands-list {
+    margin-top: 16px;
+  }
+
+  .more-info {
+    padding-bottom: 0;
+    display: block;
+    margin-bottom: 0.7em;
+    .transition(~"max-height 400ms ease, opacity 400ms ease");
+    opacity: 1;
+    max-height: 6000px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .experience {
+    .info-toggle {
+      text-align: center;
+      .inline-block();
+      font-size: 0.9em;
+      background: @light-gray;
+      color: @dim-gray;
+      padding: 5px 10px;
+      border-radius: 3px;
+      line-height: 0.8em;
+    }
+    .show-more {
+      display: none;
+    }
+    &.trimmed {
+      position: relative;
+      .more-info {
+        margin-bottom: 0;
+        max-height: 0;
+        opacity: 0.4;
+        display: block;
+        visibility: visible;
+        overflow: hidden;
+        .transition(all 0 linear);
+      }
+      .show-less {
+        display: none;
+      }
+      .show-more {
+        display: inline;
+      }
+    }
+  }
+
+  .past-experience-edit {
+    position: relative;
+    z-index: 1;
+  }
+
+  .icon {
+    width: 24px;
+    .inline-block();
+    float: left;
+    text-align: center;
+    i {
+      margin-top: -3px;
+      margin-left: -3px;
+    }
+  }
+
+  .desc {
+    margin-left: 24px;
+  }
+
+  .sectors-list .icon i {
+    margin-top: 1px;
+  }
+  .projects-list .icon i {
+    margin-top: -2px;
+  }
+}

@@ -1,0 +1,172 @@
+@import "conf/conf.css.less";
+
+.profile-invite {
+  padding: 10px 20px;
+  box-shadow: none;
+  background: transparent;
+  a.btn {
+    font-size: 0.9em;
+    color: @white;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 30px;
+    line-height: 30px;
+    &:hover {
+      background: @main-dark-blue;
+    }
+    &:after {
+      content: '\25BC';
+      display: inline;
+      font-size: 0.6em;
+      position: relative;
+      top: -0.2em;
+      margin-left: 0.2em;
+    }
+  }
+  small {
+    display: block;
+    color: @dim-gray;
+    font-size: 0.8em;
+    line-height: 1.1em;
+    text-align: center;
+  }
+  .count {
+    display: none;
+    color: @dim-gray;
+  }
+  &.invited .count {
+    display: block;
+  }
+}
+.profile-invite-tasks {
+  font-size: 14px;
+  text-align: left;
+  border: 1px solid @main-blue;
+  background: @white;
+  position: absolute;
+  top: 36px;
+  right: 20px;
+  width: 82%;
+  z-index: 6;
+  border-radius: 3px 0 3px 3px;
+  max-width: 400px;
+  min-height: 70px;
+  max-height: 240px;
+  overflow: auto;
+  display: none;
+  .empty {
+    padding: 0.5em;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: lighter;
+    a {
+      .inline-block();
+      padding: 1em;
+      background: transparent;
+      color: @dim-gray;
+      &:hover {
+        background: transparent;
+        span {
+          color: @main-dark-blue;
+        }
+      }
+    }
+    span {
+      padding-top: 0.5em;
+      display: block;
+      color: @main-blue;
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: @main-blue;
+    border: 3px solid @white;
+    border-radius: @radius;
+  }
+  &.active {
+    display: block;
+  }
+  ul {
+    margin: 0;
+  }
+  a {
+    display: block;
+    padding: 12px 16px;
+    color: @black;
+    &:hover {
+      background: mix(@white, @lighter-gray);
+    }
+    &.invited {
+      color: @mid-gray;
+      .badge {
+        .inline-block();
+      }
+    }
+  }
+  strong {
+    font-size: 1em;
+    margin-right: 0.5em;
+  }
+  .badge {
+    display: none;
+    font-weight: lighter;
+    font-size: 0.95em;
+    border-radius: 3px;
+  }
+  small {
+    display: block;
+    color: @dim-gray;
+  }
+}
+
+
+.profiles-list .profile-invite {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.premium-profile {
+  .profile-invite {
+    margin-top: 22px;
+    padding-left: 0;
+    padding-right: 0;
+    @media(min-width: 640px){
+      text-align: right;
+    }
+    a.btn {
+      height: 32px;
+      line-height: 32px;
+    }
+    .count {
+      margin-top: 5px;
+      font-size: 13px;
+      color: @white;
+      font-weight: lighter;
+      br {
+        display: none;
+      }
+    }
+  }
+  .profile-invite-tasks {
+    width: 260px;
+    right: 50%;
+    margin-right: -130px;
+    border-radius: 3px;
+    @media(min-width: 360px){
+      width: 320px;
+      margin-right: -160px;
+    }
+    @media(min-width: 640px){
+      margin-right: 0;
+      right: 0;
+      top: 60px;
+      width: 380px;
+      border-radius: 3px 0 3px 3px;
+    }
+  }
+}

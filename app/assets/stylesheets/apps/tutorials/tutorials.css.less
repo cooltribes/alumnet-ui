@@ -1,0 +1,48 @@
+@import 'conf/conf.css.less';
+
+.tutorials {
+  margin-top: @margin;
+  ul {
+    margin: 0;
+    a {
+      display: block;
+      padding: 10px;
+      border-bottom: 1px solid @gray;
+    }
+    li:last-child a {
+      border-bottom-width: 0;
+    }
+  }
+  .time {
+    float: right;
+    color: @dim-gray;
+    position: relative;
+    right: -5px;
+    font-size: 0.8em;
+    @media(min-width: 620px){
+      font-size: 0.9em;
+    }
+  }
+  iframe {
+    border: 0;
+  }
+  .iframe-wrap {
+    background: #000;
+    height: 185px;
+    @media (min-width: 320px){
+      height: 245px;
+    }
+    @media (min-width: 480px){
+      height: 385px;
+    }
+    @media (min-width: 650px){
+      height: 340px;
+    }
+    @media (min-width: 980px){
+      height: 420px;
+    }
+    @media (min-width: 1200px){
+      height: 520px;
+    }
+  }
+}

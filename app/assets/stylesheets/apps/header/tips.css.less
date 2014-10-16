@@ -1,0 +1,56 @@
+@import "conf/conf.css.less";
+
+.tips-link {
+  cursor: pointer;
+  &.active {
+    small {
+      color: @white;
+    }
+  }
+  .progress_completion {
+    width: 150px;
+    .inline-block();
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.tips-data.sub-nav-data {
+  font-weight: 300;
+  a,
+  li {
+    .border-box();
+  }
+
+  a {
+    width: 100%;
+  }
+  @media (min-width: @desktop-nav-at){
+    width: 500px;
+  }
+  li {
+    width: 100%;
+    display: inline-flex;
+    &:hover {
+      background: mix(@main-dark-blue, @main-blue);
+    }
+  }
+  .dismiss-tip {
+    text-align: center;
+    cursor: pointer;
+    color: mix(@white, @main-blue);
+    padding: 6px 10px;
+    &:hover {
+      &, .info {
+        color: @highlight;
+      }
+    }
+    .info {
+      white-space: nowrap;
+      color: @white;
+      font-size: 0.7em;
+      line-height: 1em;
+      margin-top: -2px;
+    }
+  }
+}

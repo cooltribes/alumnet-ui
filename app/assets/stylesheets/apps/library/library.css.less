@@ -1,0 +1,193 @@
+@import 'conf/conf.css.less';
+
+.library-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  .empty {
+    padding: 30px 0;
+    font-size: 1.5em;
+    color: @dim-gray;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.library-item {
+  iframe {
+    max-width: 100%;
+    height: 200px;
+  }
+
+  &.video-item {
+    .title {
+      margin-top: 5px;
+    }
+    .embed-html {
+      height: 205px;
+      background: @black;
+    }
+    .thumbnail {
+      position: relative;
+      display: block;
+      min-height: 200px;
+      background: black;
+    }
+    img {
+      width: 100%;
+    }
+    .video-overlay {
+      background: image-url('video-overlay.png') 50% 50% no-repeat;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-height: 100px;
+
+
+    }
+    .library-item-actions {
+      padding: 0;
+    }
+  }
+
+  .video-description{
+    margin-top: 12px;
+  }
+
+  &.premium-box-blue,
+  &.premium-box {
+    padding-bottom: 0;
+  }
+  h2 {
+    font-weight: 600;
+    word-break: break-all;
+    margin-bottom: 12px;
+    margin-bottom: 0;
+  }
+  .reason,
+  .date,
+  .tags {
+    font-size: 0.9em;
+  }
+  .tags {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+    i {
+      font-size: 16px;
+    }
+    &.big {
+      margin: 16px 0;
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+
+
+  .author-info {
+    margin-top: 10px;
+    min-height: 42px;
+    img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      float: left;
+    }
+    .by {
+      margin-left: 50px;
+      font-weight: 300;
+    }
+    .author {
+      font-weight: 500;
+    }
+  }
+
+
+  .lib-remove-btn {
+    width: 15%;
+    margin-right: 1%;
+  }
+
+  .lib-edit-btn {
+    width: 33%;
+    margin-right: 1%;
+  }
+
+  .lib-download-btn {
+    width: 50%;
+  }
+
+  .library-item-actions {
+    font-size: 0;
+    .clearfix();
+    padding-bottom: 20px;
+    text-align: right;
+    .btn {
+      font-size: 12px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    i {
+      font-size: 20px;
+      vertical-align: middle;
+      top: -3px;
+      position: relative;
+    }
+  }
+  .library-item-footer {
+    background: @main-dark-blue;
+    position: relative;
+    padding: 10px 0;
+    font-size: 0.9em;
+
+    &:empty {
+      display: none;
+    }
+
+    &:before,
+    &:after {
+      content: ' ';
+      width: 20px; // 20 is .remium-box padding
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background: @main-dark-blue;
+    }
+    &:before {
+      right: -20px;
+      border-radius: 0 0 5px 0;
+    }
+    &:after {
+      left: -20px;
+      border-radius: 0 0 0 5px;
+    }
+  }
+}
+
+.library-filters {
+  margin-top: @margin;
+  label {
+    text-align: left;
+  }
+}
+
+.clearable-datepicker {
+  position: relative;
+  input {
+    padding: 5px 10px;
+  }
+  .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: 600;
+    &:hover {
+      color: @main-blue;
+    }
+  }
+}

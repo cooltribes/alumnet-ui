@@ -1,0 +1,53 @@
+@import 'conf/conf.css.less';
+
+.narrow-container {
+  width: 100%;
+  margin: 0;
+  position: static;
+  form,
+  footer ul {
+    width: 260px;
+    max-width: 100%;
+    @media (min-width: @media-xsmall-min) {
+      width: 340px;
+    }
+  }
+  form {
+    margin: 0 auto;
+  }
+  footer ul {
+    padding-left: 14px;
+  }
+  @media (min-width: @media-small-min) {
+    padding-bottom: 16px;
+    width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.contact-us-form {
+  margin: 10px auto;
+  textarea {
+    resize: vertical;
+  }
+  label {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  textarea,
+  input {
+    width: 100%;
+  }
+  .submit {
+    display: block;
+    width: 314px;
+    margin: 0 auto;
+    input {
+      width: 314px;
+    }
+  }
+  .label-group {
+    margin-left: -14px;
+  }
+}

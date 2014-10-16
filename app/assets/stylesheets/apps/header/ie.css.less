@@ -1,0 +1,26 @@
+@import 'conf/conf.css.less';
+
+.ie {
+  .sub-nav-data {
+    display: none;
+    &.search-data,
+    &.active {
+      display: block;
+    }
+
+    @media (min-width: @desktop-nav-at){
+      &.search-and-completion {
+        display: block;
+      }
+      &.right-nav-data {
+        display: block;
+        .profile-nav-data {
+          display: none;
+          &.active {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

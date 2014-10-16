@@ -1,0 +1,46 @@
+@import 'conf/conf.css.less';
+
+.task-review {
+  form {
+    margin-bottom: 0;
+  }
+  .more-info-trigger {
+    cursor: pointer;
+    padding: 10px;
+  }
+  .rate-widget {
+    margin: 16px auto 16px auto;
+    height: 32px;
+  }
+  .spinner-wrap {
+    margin-top: 9px;
+  }
+  .more-info {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  .loader {
+    position: absolute;
+    display: block;
+    clip: rect(0 0 0 0);
+    top: 16px;
+    right: 12px;
+    opacity: 0;
+    .transition(opacity linear 500ms);
+    &.active {
+      clip: auto;
+      opacity: 1;
+    }
+
+    @media (min-width: @media-large-min) {
+      right: 18px;
+    }
+
+    @media (min-width: @media-small-min) and (max-width: @media-medium-max) {
+      right: 2px;
+    }
+  }
+}
