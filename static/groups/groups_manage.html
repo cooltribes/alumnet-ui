@@ -32,14 +32,7 @@
 
 	</head>
 	<body>
-		<script>
-		$(document).ready(function() {
-			$('div.group-image-container').hover(function() {
-				$(this).children('.overlay-subgroups').fadeIn();
-			}, function() {
-				$(this).children('.overlay-subgroups').fadeOut();
-			});
-		});</script>
+
 		<div class="ng-scope" header=""><header id="header" class="navbar navbar-fixed-top">
 			<div class="container-fluid top-nav">  <!-- Top Bar -->
 				<div class="navbar-header col-md-2">
@@ -144,354 +137,303 @@
 		<div class="ng-scope" id="wrapper">  <!-- Main -->
 			<div id="main-wrapper" class="col-md-12">
 				<div id="main-groups">
-					<div class="container-fluid">
-						<div class="col-md-3">
-							<h1 class="blue-huge-title margin-top-15">Discover
-							</h1>
-						</div>
-						<div class="col-md-6">
-							<form class="navbar-form" role="search">
-								<div class="input-group col-md-12">
-									<div class="col-md-10 pad-0">
-										<input class="form-control col-md-12 groups-big-search pad-0" type="text" class="form-control" placeholder="Search for groups, posts, members..." name="srch-term" id="srch-term">
-									</div>
-									<div class="col-md-2 pad-0">
-										<button class="btn btn-default col-md-12 groups-search-button" type="submit">	
-											<img class="search-icon-blue" src="./images/general/search-icon-blue.png">
-										</button>
-									</div>
-									<div class="icol-md-12 pull-right">
-										<a class="adv-search-link">Advanced Search</a>
-									</div>
+
+
+					<div class="container-fluid groups-container">   <!-- Begin group container -->
+						<div class="main-groups-area">
+							<div class="col-md-9 pad-15">
+								<h2 class="black-big-title  pad-5 margin-top-50">Manage Groups </h2>
+								
+							</div>
+							<div class="col-md-3 pad-15">
+								<div class="col-md-10 pad-0 margin-top-50">
+									<input id="srch-term" class="form-control col-md-12 groups-small-search pad-0" type="text" name="srch-term" placeholder="Write the name of the group">
 								</div>
-							</form>
-						</div>
-						<div class="col-md-3">
-							<div class="pull-right">
-								<a class="groups-view-icon pad-2 margin-top-5">
-									<img class="margin-top-30" src="./images/groups/icon-change-view1.png">
-								</a>
-								<a class="groups-view-icon pad-2 margin-top-5">
-									<img class="margin-top-30" src="./images/groups/icon-change-view2.png"></a>
+								<div class="col-md-2 pad-0 margin-top-50">
+									<button class="btn btn-default col-md-12 groups-search-small-button" type="submit">
+										<img class="search-icon-blue" src="./images/general/search-icon-blue.png">
+									</button>
 								</div>
 							</div>
+						
+
+						<div class="col-md-12"> 
+							<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
+									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
+								</div>
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
+									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
+							</div>
+
+
+
+
+
 						</div>
-						<div class="container-fluid">
-							<div class="col-md-12 inline margin-top-50 margin-bottom-15">
-								<div class="h2-container">
-									<h2 class="black-big-title col-md-9 border-bottom-1-grey pad-5 no-margin">Suggested groups
-									</h2>
+							<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
+									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
 								</div>
-								<div class="col-md-3 pull-right margin-top-15 border-bottom-1-grey pad-0">
-									<ul class="pull-right groups-right-sort-menu no-margin">
-										<li class="inline margin-left-15">
-											<a class="link">All
-											</a>
-										</li>
-										<li class="inline margin-left-15">
-											<a class="link">Only Official
-											</a>
-										</li>
-										<li class="inline margin-left-15">
-											<a class="link">Only Public
-											</a>
-										</li>
-									</ul>
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
+									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
 								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
 							</div>
+
+
+
+
+
 						</div>
-						<div class="container-fluid groups-container">   <!-- Begin group container -->
-							<div class="main-groups-area grid-wrapper">
-								<div class="box">
-									<div class="col-md-12 pad-10">
-										<div class="well well-md pad-0">
-											<div class="col-md-6 pad-0 overhidden group-image-container">
-												<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
-												<div class="overlay-subgroups sub-groups-menu">
-													<div class="sub-groups-container">
-														<ul class="subgroups-ul">
-															<h5 class="sub-groups-title">Sub-Groups (13)</h5>
-															<li class="">
-																<a href="">Subgroups 1</a>
-															</li>
-															<li class="">
-																<a href="">Subgroups 2</a>
-															</li>
-															<li class="">
-																<a href="">Subgroups 3</a>
-															</li>
-															<li class="">
-																<a href="">Subgroups 4</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 pad-0 well-right">
-												<div class="col-md-12 pad-10 well-box-text-right">
-													<h3 class="groups-name margin-bottom-5">Group Name
-													</h3>
-													<span class="group-status-icon-public pull-right">
-													</span>
-													<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...
-													</p>
-												</div>
-												<div class="col-md-12 pad-0 well-right-small-boxes">
-													<div class="grey-bg col-md-6 border-1-white pad-5">
-														<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-														<p class="group-box-date margin-3">5/2014
-														</p>
-													</div>
-													<div class="grey-bg col-md-6 border-1-white pad-5">
-														<img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png"><p class="group-box-last-post margin-3">10:32
-														<small>am
-														</small>
-													</p>
-												</div>
-												<div class="grey-bg col-md-6 border-1-white pad-5">
-													<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png">
-													<p class="group-box-members margin-3">13000
-													</p>
-												</div>
-												<div class="grey-bg col-md-6 border-1-white inline pad-0">
-													<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-													<img class="like-face-small" src="./images/groups/people-like-face.png">
-													<p class="group-box-members-friends margin-3">13000
-													</p>
-												</div>
-												<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-												</button>
-											</div>
-										</div>
+							<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
 									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
 								</div>
-							</div>
-							<div class="box">
-								<div class="col-md-12 pad-10">
-									<div class="well well-md pad-0">
-										<div class="col-md-6 pad-0 overhidden">
-											<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
-										</div>
-										<div class="col-md-6 pad-0 well-right">
-											<div class="col-md-12 pad-10 well-box-text-right">
-												<h3 class="groups-name margin-bottom-5">Group Name
-												</h3>
-												<span class="group-status-icon-closed pull-right">
-												</span>
-												<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
-											</div>
-											<div class="col-md-12 pad-0 well-right-small-boxes">
-												<div class="grey-bg col-md-6 border-1-white pad-5">
-													<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-													<p class="group-box-date margin-3">5/2014
-													</p>
-												</div>
-												<div class="grey-bg col-md-6 border-1-white pad-5"><img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png">
-													<p class="group-box-last-post margin-3">10:32
-														<small>am
-														</small>
-													</p>
-												</div>
-												<div class="grey-bg col-md-6 border-1-white pad-5">
-													<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png"><p class="group-box-members margin-3">13000
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white inline pad-0">
-												<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-												<img class="like-face-small" src="./images/groups/people-like-face.png">
-												<p class="group-box-members-friends margin-3">+1
-												</p>
-											</div>
-											<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-											</button>
-										</div>
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
 									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
 								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
 							</div>
+
+
+
+
+
 						</div>
-						<div class="box">
-							<div class="col-md-12 pad-10">
-								<div class="well well-md pad-0">
-									<div class="col-md-6 pad-0 overhidden">
-										<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
+
+
+								<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
 									</div>
-									<div class="col-md-6 pad-0 well-right">
-										<div class="col-md-12 pad-10 well-box-text-right">
-											<h3 class="groups-name margin-bottom-5">Group Name
-											</h3>
-											<span class="group-status-icon-closed pull-right">
-											</span>
-											<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...
-											</p>
-										</div>
-										<div class="col-md-12 pad-0 well-right-small-boxes">
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-												<p class="group-box-date margin-3">5/2014
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png">
-												<p class="group-box-last-post margin-3">10:32
-													<small>am
-													</small>
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png">
-												<p class="group-box-members margin-3">13000
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white inline pad-0">
-												<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-												<img class="like-face-small" src="./images/groups/people-like-face.png">
-												<p class="group-box-members-friends margin-3">+12000
-												</p>
-											</div>
-											<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-											</button>
-										</div>
-									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
 								</div>
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
+									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
 							</div>
+
+
+
+
+
 						</div>
-						<div class="box">
-							<div class="col-md-12 pad-10">
-								<div class="well well-md pad-0">
-									<div class="col-md-6 pad-0 overhidden">
-										<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
+									<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
 									</div>
-									<div class="col-md-6 pad-0 well-right">
-										<div class="col-md-12 pad-10 well-box-text-right">
-											<h3 class="groups-name margin-bottom-5">Group Name
-											</h3>
-											<span class="group-status-icon-public pull-right">
-											</span>
-											<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...
-											</p>
-										</div>
-										<div class="col-md-12 pad-0 well-right-small-boxes">
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-												<p class="group-box-date margin-3">5/2014
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png">
-												<p class="group-box-last-post margin-3">10:32
-													<small>am
-													</small>
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png">
-												<p class="group-box-members margin-3">13000
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white inline pad-0">
-												<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-												<img class="like-face-small" src="./images/groups/people-like-face.png">
-												<p class="group-box-members-friends margin-3">+50
-												</p>
-											</div>
-											<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-											</button>
-										</div>
-									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
 								</div>
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
+									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
 							</div>
+
+
+
+
+
 						</div>
-						<div class="box">
-							<div class="col-md-12 pad-10">
-								<div class="well well-md pad-0">
-									<div class="col-md-6 pad-0 overhidden">
-										<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
+									<div class="manage-group-box col-md-6 pad-0">
+								<div class="col-md-6 pad-0">
+									<div class="manage-group-image-container col-md-2 pad-0">
+										<img class="manage-group-image" src="./images/groups/manage-groups-group-image.png">
 									</div>
-									<div class="col-md-6 pad-0 well-right">
-										<div class="col-md-12 pad-10 well-box-text-right">
-											<h3 class="groups-name margin-bottom-5">Group Name
-											</h3>
-											<span class="group-status-icon-closed pull-right">
-											</span>
-											<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...
-											</p>
-										</div>
-										<div class="col-md-12 pad-0 well-right-small-boxes">
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-												<p class="group-box-date margin-3">5/2014
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png">
-												<p class="group-box-last-post margin-3">10:32
-													<small>am
-													</small>
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png">
-												<p class="group-box-members margin-3">13000
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white inline pad-0">
-												<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-												<img class="like-face-small" src="./images/groups/people-like-face.png">
-												<p class="group-box-members-friends margin-3">+1200
-												</p>
-											</div>
-											<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-											</button>
-										</div>
-									</div>
+									<h3 class="manage-group-name margin-bottom-5">Group Name</h3>
+									<p class="manage_groups_small_desc no-margin text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...</p>
+
 								</div>
-							</div>
-						</div>
-						<div class="box">
-							<div class="col-md-12 pad-10">
-								<div class="well well-md pad-0">
-									<div class="col-md-6 pad-0 overhidden">
-										<img class="group-dash-image pad-0" src="./images/groups/group_1.jpg">
+								<div class="col-md-6 pad-0">
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+										<p class="group-box-date margin-3">5/2014
+										</p>
 									</div>
-									<div class="col-md-6 pad-0 well-right">
-										<div class="col-md-12 pad-10 well-box-text-right">
-											<h3 class="groups-name margin-bottom-5">Group Name
-											</h3>
-											<span class="group-status-icon-closed pull-right">
-											</span>
-											<p class="groups_small_desc no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, sem tincidunt porttitor...
-											</p>
-										</div>
-										<div class="col-md-12 pad-0 well-right-small-boxes">
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_clock.png">
-												<p class="group-box-date margin-3">5/2014
-												</p>
-											</div>
-											<div class="grey-bg col-md-6 border-1-white pad-5">
-												<img class="no-margin pad-5 pull-left" src="./images/groups/icon_document.png"><p class="group-box-last-post margin-3">10:32
-												<small>am
-												</small>
-											</p>
-										</div>
-										<div class="grey-bg col-md-6 border-1-white pad-5">
-											<img class="no-margin pad-5 pull-left" src="./images/groups/icon_members.png">
-											<p class="group-box-members margin-3">13000
-											</p>
-										</div>
-										<div class="grey-bg col-md-6 border-1-white inline pad-0">
-											<img class="no-margin like-face-small" src="./images/groups/people-like-face.png">
-											<img class="like-face-small" src="./images/groups/people-like-face.png">
-											<p class="group-box-members-friends margin-3">+150
-											</p>
-										</div>
-										<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
-										</button>
-									</div>
+									<div class="grey-bg col-md-6 border-1-white pad-5">
+										<img src="./images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+										<small>am
+										</small>
+									</p>
 								</div>
+								<div class="grey-bg col-md-6 border-1-white pad-5">
+									<img src="./images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+									<p class="group-box-members margin-3">13000
+									</p>
+								</div>
+								<div class="grey-bg col-md-6 border-1-white inline pad-0">
+									<img src="./images/groups/people-like-face.png" class="no-margin like-face-small">
+									<img src="./images/groups/people-like-face.png" class="like-face-small">
+									<p class="group-box-members-friends margin-3">13000
+									</p>
+								</div>
+								<button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+								</button>
+
+
+
+
 							</div>
+
+
+
+
+
 						</div>
 					</div>
+
+</div>
+
 				</div>
 			</div><!-- End group container -->
 		</div>
