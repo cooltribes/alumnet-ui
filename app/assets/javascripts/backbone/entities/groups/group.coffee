@@ -4,6 +4,10 @@
     validation:
       name:
         required: true
+      description:
+        required: true
+      avatar:
+        required: true
 
 
   class Entities.GroupCollection extends Backbone.Collection

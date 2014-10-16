@@ -1,375 +1,267 @@
 .top-bar-groups-link {
-  height: 60px;
-  color: #2099d0;
-  font-family: "Roboto",sans-serif;
-  padding-top: 20px !important;
+    height: 60px;
+    color: #2099d0;
+    font-family: "Roboto",sans-serif;
+    padding-top: 20px !important;
 }
 .sub-bar-groups-link {
-  height: 60px;
-  font-family: "Roboto",sans-serif;
-  color: #fff;
-  padding-top: 20px !important;
+    height: 60px;
+    font-family: "Roboto",sans-serif;
+    color: #fff;
+    padding-top: 20px !important;
 }
 .sub-bar-groups-link {
-  height: 60px;
-  font-family: "Roboto",sans-serif;
-  color: #fff;
-  padding-top: 20px !important;
+    height: 60px;
+    font-family: "Roboto",sans-serif;
+    color: #fff;
+    padding-top: 20px !important;
 }
 .top-bar-groups-profile-link {
 
-  padding-top: 9px !important;
+    padding-top: 9px !important;
 }
 .new-group-button-li{
-  height: 60px;
-  width:230px;
+    height: 60px;
+    width:230px;
 
 }
 .groups-container {
-  width: 98% !important;
+    width: 98% !important;
 }
 .well{
-  float:left!important;
-  background: none repeat scroll 0 0 #fff!important;
+    float:left!important;
+    background: none repeat scroll 0 0 #fff!important;
 }
 .well-box-text-right{
-  height: 114px!important;
+    height: 114px!important;
 }
-.invite-box-itself{
-  background: #fff;
 
-
-}
 .box {
-  float: left;
-  height: 245px;
-  margin: 10px;
-  width: 395px!important;
+    float: left;
+    height: 245px;
+    margin: 10px;
+    width: 395px!important;
 
-}
-.invite-box {
-  background: none repeat scroll 0 0 #fff;
-  float: left;
-  height: 100px;
-  margin: 15px;
-  width: 375px !important;
-}
-.invite-member-name {
-  font-family: "roboto";
-  font-size: 20px;
-  font-weight: 300;
-}
-
-.member-position {
-  font-family: "roboto";
-  font-size: 12px;
-  font-weight: 300;
-}
-
-.select-invite {
-  background: none repeat scroll 0 0 #8dcae6;
-  color: #fff;
-  height: 100px;
-}
-.blue-text{
-  color: #2099d0;
 }
 .new-group-button{
-  height:40px;
-  background: none repeat scroll 0 0 #8fcce7!important;
-  color:#fff!important;
-  text-transform: uppercase;
-  font-weight: bold!important;
-  border-color: #fff!important;
+    height:40px;
+    background: none repeat scroll 0 0 #8fcce7!important;
+    color:#fff!important;
+    text-transform: uppercase;
+    font-weight: bold!important; 
+    border-color: #fff!important;
 }
 .new-group-button:hover{
-  background: none repeat scroll 0 0 #107daf!important;
+    background: none repeat scroll 0 0 #107daf!important;
 }
 .join-group-button {
-  height: 37px;
+    height: 37px;
 }
 .join-group-button:hover {
-  background:#107daf;
-}
-.invite-member-button {
-  border: medium none;
-  height: 100px;
-  width: 100% !important;
-}
-.invite-member-button:hover {
-  background:#107daf;
+    background:#107daf;
 }
 .grey-bg.col-md-6.border-1-white {
-  height: 37px;
+    height: 37px;
 }
 
 .grey-bg.col-md-12.border-1-white {
-  height: 45px;
+    height: 45px;
 }
 
 .inline{
-  display:inline!important;
+    display:inline!important;
 }
 
 .grey-bg.col-md-6.border-1-white.inline.pad-0 > img {
-  margin-left: -20px;
-}
-.main-invite-boxes-area {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
+    margin-left: -20px;
 }
 .main-groups-area {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
 }
 .grid-wrapper {
-  margin: 0 auto;
-  width: 425px;   /* 1 column */
+    margin: 0 auto;
+    width: 425px;   /* 1 column */
 }
 .group-dash-image.pad-0 {
-  height: 100% !important;
-  overflow: hidden !important;
+    height: 100% !important;
+    overflow: hidden !important;
 }
 .groups-big-search {
-  border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
-  border-left: 1px solid #c6c6c6 !important;
-  border-style: solid none solid solid !important;
-  border-width: 1px medium 1px 1px !important;
-  color: #666;
-  font-family: "Roboto";
-  font-size: 100%;
-  height: 70px !important;
-  padding: 20px !important;
-  width: 100% !important;
+    border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
+    border-left: 1px solid #c6c6c6 !important;
+    border-style: solid none solid solid !important;
+    border-width: 1px medium 1px 1px !important;
+    color: #666;
+    font-family: "Roboto";
+    font-size: 100%;
+    height: 70px !important;
+    padding: 20px !important;
+    width: 100% !important;
 }
 .groups-search-button {
-  border-left: medium none !important;
-  border-radius: 0 !important;
-  border-right: 1px solid #c6c6c6 !important;
-  height: 70px;
+    border-left: medium none !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #c6c6c6 !important;
+    height: 70px;
 }
 .groups-right-sort-menu {
-  font-family: "roboto",sans-serif;
-  font-size: 90%;
-  margin-left: 0 !important;
-  padding-left: 0;
-  width: 250px !important;
-  height: 27px!important;
-  text-align: right!important;
+    font-family: "roboto",sans-serif;
+    font-size: 90%;
+    margin-left: 0 !important;
+    padding-left: 0;
+    width: 250px !important;
+    height: 27px!important;
+    text-align: right!important;
 }
 .groups-right-sort-menu li:hover {
-  border-bottom: 3px solid #000;
-  padding-bottom: 5px;
+    border-bottom: 3px solid #000;
+    padding-bottom: 5px;
 }
 .groups-right-sort-menu li a:hover {
-  color: #333;
+    color: #333;
 }
 .groups-name {
-  font-family: "Roboto",sans-serif;
-  font-size: 19px;
-  font-weight: 400;
-  margin-top: 0px;
-  text-transform: none;
-  float:left;
-  max-width: 140px;
-  overflow: hidden;
+    font-family: "Roboto",sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    margin-top: 0px;
+    text-transform: none;
+    float:left;
+    max-width: 140px;
+    overflow: hidden;
 }
 .groups_small_desc {
-  font-size: 13px;
-  font-family: "Roboto",sans-serif;
-  float:left;
+    font-size: 13px;
+    font-family: "Roboto",sans-serif;
+    float:left;
 }
 .group-box-date
 {
-  color:#bbb;
-  text-align: left;
-  font-family: "Roboto",sans-serif;
-  font-size: 13px;
+    color:#bbb;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
 }
 .group-box-last-post
 {
-  color:#bbb;
-  font-size: 13px;
-  text-align: left;
-  font-family: "Roboto",sans-serif;
+    color:#bbb;
+    font-size: 13px;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
 }
 .group-box-members
 {
-  color:#bbb;
-  font-size: 13px;
-  text-align: left;
-  font-family: "Roboto",sans-serif;
+    color:#bbb;
+    font-size: 13px;
+    text-align: left;
+    font-family: "Roboto",sans-serif;
 }
 .like-face-small {
-  padding-left: 5px;
-  padding-top: 5px;
-  float:left;
+    padding-left: 5px;
+    padding-top: 5px;
+    float:left;
 }
 
 .group-box-members-friends {
-  color: #bbb;
-  float: left;
-  font-family: "Roboto",sans-serif;
-  font-size: 13px;
-  padding-top: 5px;
-  text-align: left;
+    color: #bbb;
+    float: left;
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    padding-top: 5px;
+    text-align: left;
 }
 .group-box-join {
-  color: #fff;
-  font-size: 85%;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Roboto",sans-serif;
-}
-.invite-member {
-  color: #fff;
-  font-size: 85%;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Roboto",sans-serif;
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto",sans-serif;
 }
 .adv-search-link {
-  text-decoration:none;
-  color:#2099d0;
-  font-family: "Roboto",sans-serif;
-  font-weight: 300;
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
 }
 .adv-search-link a:hover
 {
-  text-decoration:none;
-  color:#2099d0;
-  font-family: "Roboto",sans-serif;
-  font-weight: 300;
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
 }
 .search-icon-blue
 {
-  color:#000!important;
+    color:#000!important;
 }
 
 .group-status-icon-public {
-  background: url("../images/groups/public-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
-  height: 25px;
-  width: 25px;
-  float:right;
+    background: url("../images/groups/public-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
+    height: 25px;
+    width: 25px;
+    float:right;
 }
 .group-status-icon-closed {
-  background: url("../images/groups/closed-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
-  height: 25px;
-  width: 25px;
+    background: url("../images/groups/closed-group-ball.png") no-repeat scroll right center rgba(0, 0, 0, 0) !important;
+    height: 25px;
+    width: 25px;
 }
 .groups-right-sort-menu .link {
-  color: #677f8a;
-  font-size: 100%;
+    color: #677f8a;
+    font-size: 100%;
 }
 .sub-groups-container {
 
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: #485257;
-  opacity: 0.9;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #485257;
+opacity: 0.9;
 }
 .sub-groups-container ul {
-  color: #fff;
-  font-family: "roboto";
-  list-style: none outside none;
-  padding-left: 0px;
+    color: #fff;
+    font-family: "roboto";
+    list-style: none outside none;
+        padding-left: 0px;
 
 
 }
 .sub-groups-title {
-  border-bottom: 1px solid #aaa;
-  margin-bottom: 0;
-  padding-bottom: 10px;
-  padding-left: 10px;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
 
 }
 .sub-groups-container ul li {
-  border-bottom: 1px solid #aaa;
-  height: 30px;
-  padding-top: 5px;
+    border-bottom: 1px solid #aaa;
+    height: 30px;
+      padding-top: 5px;
 }
 .sub-groups-container ul li a {
-  color: #c6c6c6;
-  padding-left: 10px;
-  font-size: 13px;
+    color: #c6c6c6;
+        padding-left: 10px;
+           font-size: 13px;
 }
 .sub-groups-container ul li a:hover {
-  color: #fff!important;
-}
-.create-group {
-  float: none;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-.add-cover-photo
-{
-  width:100%;
-  height:280px;
-  background: #2099d0;
-  margin-top: 25px;
+    color: #fff!important;
 }
 
-.text-small{
-  font-size:11px;
-}
-
-.insert-group-name {
-  height: 85px;
-}
-
-.insert-group-decription {
-
-}
-.create-group input
-{
-  height: 50px;
-}
-
-.create-group select
-{
-  height: 50px;
-}
-.add-group-buttons
-{
-
-}
-.timeline-menu{
-  display: inline;
-}
-.timeline-menu li{
-  display: inline;
-}
-.timeline-menu li a{
-
-}
-
-
-
-.timeline-top-bar
-{
-  height:60px;
-  background:#fff;
-}
-.add-members-top {
-
-}
 
 
 @media (min-width: 810px) {
-  .grid-wrapper {width: 830px;}   /* 2 columns */
+    .grid-wrapper {width: 830px;}   /* 2 columns */
 }
 @media (min-width: 1280px) {
-  .grid-wrapper {width: 1215px;} /* 3 columns */
-  .box {margin: 5px!important;}
+    .grid-wrapper {width: 1215px;} /* 3 columns */
+    .box {margin: 5px!important;}  
 }
 @media (min-width: 1650px) {
-  .grid-wrapper {width: 1620px;} /* 4 columns */
-  .box {margin: 2px!important;}
+    .grid-wrapper {width: 1620px;} /* 4 columns */
+    .box {margin: 2px!important;}  
 }
 

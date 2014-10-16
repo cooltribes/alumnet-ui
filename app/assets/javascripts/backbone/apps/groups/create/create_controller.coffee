@@ -6,18 +6,11 @@
         model: group
       AlumNet.mainRegion.show(createForm)
 
-      createForm.on "form:submit", (view)->
-        model = view.model
-        formData = new FormData()
-        data = Backbone.Syphon.serialize(view)
-        _.forEach data, (value, key, list)->
-          formData.append(key, value)
-        file = view.$('#group-avatar')
-        formData.append('avatar', file[0].files[0])
-        model.set(data)
+      createForm.on "form:submit", (model, data)->
         if model.isValid(true)
           options_for_save =
             contentType: false
             processData: false
-            data: formData
+            data: data
           group.save(data, options_for_save)
+          AlumNet.trigger("groups:home")

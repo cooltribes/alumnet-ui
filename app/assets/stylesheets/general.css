@@ -1,7 +1,7 @@
 body {
     background:  #f4f4f6!important;
     color: #818181;
-    font-family: 'Roboto'
+    font-family: "Source Sans Pro",sans-serif;
 }
 hr {
     border-color: rgba(220, 220, 220, 0.2);
@@ -14,14 +14,11 @@ position:relative!important;
 display:none;
 }
 
-.center-text{
-text-align: center;
-}
 
-â€‹div.group-dash-image:hover div.overlay
+​div.group-dash-image:hover div.overlay
 {
- display:block!important;
-}â€‹
+ display:block!important;   
+}​
 
 
 
@@ -50,7 +47,7 @@ h4 {
     text-transform: uppercase;
 }
 .label, .badge {
-    font-family: 'Roboto';
+    font-family: arial,sans-serif;
 }
 .text-primary {
     color: #3b87ec;
@@ -137,12 +134,6 @@ input.form-control:focus {
 }
 .pad-top-10 {
     padding-top: 10px;
-}
-.pad-top-15 {
-    padding-top: 15px;
-}
-.pad-bottom-15 {
-    padding-bottom: 15px;
 }
 .pad-right-5 {
     padding-right: 5px;
