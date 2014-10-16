@@ -20,6 +20,32 @@
 
     padding-top: 9px !important;
 }
+.timeline-group-name {
+    color: #fff !important;
+    font-family: "Roboto" !important;
+    font-size: 26px !important;
+    margin-bottom: 10px;
+    margin-left: 10px !important;
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: left;
+}
+.timeline-cover-ribbon {
+    float: left;
+    left: 10px;
+    position: absolute;
+    top: -20px;
+}
+
+.cover-group-name {
+    background: none repeat scroll 0 0 #2b2b2b;
+    height: 60px;
+    opacity: 0.7;
+    padding: 5px;
+    position: absolute;
+    top: 50px;
+    width: 370px;
+}
 .new-group-button-li{
     height: 60px;
     width:230px;
@@ -72,7 +98,7 @@
     height: 100px;
 }
 .blue-text{
- color: #2099d0;
+   color: #2099d0;
 }
 .new-group-button{
     height:40px;
@@ -316,7 +342,14 @@
     margin-left: auto !important;
     margin-right: auto !important;
 }
-.timeline-main {
+.timeline-main-posts{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+.timeline-main-about{
     display: inline-block;
     float: none !important;
     margin-left: auto !important;
@@ -343,12 +376,29 @@
     padding: 20px;
     width: 522px;
 }
+.timeline-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    float: left;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}
+.timeline-half-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+   width: 537px;
+     float:left;
+
+}
 .post{
- background: none repeat scroll 0 0 #f4f4f4;
- padding: 20px;
- margin: 20px;
- width: 522px;
- height: auto;
+   background: none repeat scroll 0 0 #f4f4f4;
+   padding: 20px;
+   margin: 20px;
+   width: 522px;
+   height: auto;
 }
 
 .text-small{
@@ -382,6 +432,7 @@
 .timeline-menu li{
     display: inline;
     height: 60px;
+
 }
 .timeline-menu li a {
     color: #677f8a;
@@ -389,16 +440,18 @@
     font-size: 16px;
     font-weight: 300;
     height: 60px;
-    padding-bottom: 15px;
-    padding-top: 17px;
+ padding-top: 15px !important;
 }
 .timeline-menu li a:hover{
     background: #2099d0;
 }
-
+.timeline-main-about h3 {
+    font-size: 23px;
+    font-weight: 400;
+}
 .timeline-link
 {
- height: 60px;
+   height: 60px;
 }
 .timeline-link:hover
 {
