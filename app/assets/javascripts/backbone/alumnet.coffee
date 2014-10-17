@@ -1,6 +1,7 @@
 @AlumNet = do (Backbone, Marionette) ->
 
   App = new Marionette.Application
+  App.promises = 0
 
   App.addRegions
     mainRegion: "#main-region"
@@ -23,4 +24,18 @@
 
     # if this.getCurrentRoute() == ""
     #   App.trigger("groups:home")
+
+  App.reqres.setHandler 'progress', (promise) ->
+    App.promises++
+    NProgress.start()
+    return promise
+      .progress ->
+        NProgress.inc()
+      .always ->
+        App.promises--
+        NProgress.done() unless App.promises
+
+  Backbone.ajax = ->
+    App.request 'progress', Backbone.$.ajax.apply(Backbone.$, arguments)
+
   App
