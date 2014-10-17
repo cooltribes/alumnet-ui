@@ -374,6 +374,46 @@ background: #ffffff;
     margin-left: auto !important;
     margin-right: auto !important;
 }
+.timeline-main-settings {
+    float: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 1000px;
+}
+.timeline-main-container{
+text-align: left;
+}
+
+.radios-ul {
+    display: inline;
+    list-style: none outside none;
+}
+.radios-ul li {
+
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+}
+.radios-ul li a {
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+    padding: 27px;
+}
+.radios-ul li a:hover {
+    display: inline;
+    list-style: none outside none;
+    height: 70px;
+  
+         border-bottom: 3px solid #2099d0;
+}
+
+.timeline-settings-official-group{
+
+}
+
+
+
 .timeline-main-posts{
     display: inline-block;
     float: none !important;
