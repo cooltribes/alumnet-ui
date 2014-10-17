@@ -1,6 +1,14 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
     url: 'http://localhost:4000/groups'
+    validation:
+      name:
+        required: true
+      description:
+        required: true
+      avatar:
+        required: true
+
 
   class Entities.GroupCollection extends Backbone.Collection
     url: 'http://localhost:4000/groups'

@@ -1,11 +1,30 @@
 @AlumNet.module 'GroupsApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Create.Group extends Marionette.ItemView
+  class Create.GroupForm extends Marionette.ItemView
     template: 'groups/create/templates/form'
+
+    initialize: ->
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
     events:
       "click button.js-submit":"submitClicked"
     submitClicked: (e)->
       e.preventDefault()
+      formData = new FormData()
       data = Backbone.Syphon.serialize(this)
-      file = this.$('form :file')
-      this.trigger("form:submit", data, file)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = this.$('#group-avatar')
+      formData.append('avatar', file[0].files[0])
+      this.model.set(data)
+      this.trigger("form:submit", this.model, formData)

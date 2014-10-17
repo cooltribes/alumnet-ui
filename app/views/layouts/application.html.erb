@@ -17,6 +17,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <script>
+    $(document).ready(function() {
+      $('div.group-image-container').hover(function() {
+        $(this).children('.overlay-subgroups').fadeIn();
+      }, function() {
+        $(this).children('.overlay-subgroups').fadeOut();
+      });
+    });
+    </script>
   <div id="header-region"></div>
   <div id="main-region">
     <%= yield %>
