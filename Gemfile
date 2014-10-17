@@ -11,6 +11,9 @@ gem 'gon'
 gem 'backbone-on-rails'
 gem 'marionette-rails'
 gem 'httparty'
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 
 group :development do
   gem 'spring'
