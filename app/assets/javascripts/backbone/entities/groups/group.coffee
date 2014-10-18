@@ -29,9 +29,9 @@
         id: id
       group.fetch
         error: (model, response, options) ->
-          model.trigger('fetch:error', response, options)
+          model.trigger('find:error', response, options)
         success: (model, response, options) ->
-          model.trigger('fetch:success', response, options)
+          model.trigger('find:success', response, options)
       group
 
 

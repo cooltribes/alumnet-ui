@@ -2,6 +2,17 @@
 
   class Invite.User extends Marionette.ItemView
     template: 'groups/invite/templates/user'
+
+    initialize: (options)->
+      this.parentModel = options.parentModel
+
+    templateHelpers: ->
+      view = this
+      wasInvited: ->
+        group_id = view.parentModel.get('id')
+        user_group_ids = this.groups
+        _.contains(user_group_ids, group_id)
+
     tagName: 'li'
     ui:
       invitation: ".invitation"
@@ -20,3 +31,5 @@
     template: 'groups/invite/templates/users_container'
     childView: Invite.User
     childViewContainer: ".users-list"
+    childViewOptions: ()->
+      parentModel: this.model

@@ -1,5 +1,9 @@
 <img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
 <%= @name %>
 <span class="invitation">
-  <a href="#" class="js-invite">Invite</a>
+  <% if @wasInvited(): %>
+      <span>Invited</span>
+  <% else: %>
+      <a href="#" class="js-invite">Invite</a>
+  <% end %>
 </span>

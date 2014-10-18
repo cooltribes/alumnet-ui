@@ -24,6 +24,10 @@
     AlumNet.navigate("groups/new")
     API.createGroup()
 
+  AlumNet.on "groups:invite", (id)->
+    AlumNet.navigate("groups/#{id}/invite")
+    API.inviteUsers(id)
+
   AlumNet.addInitializer ->
     new GroupsApp.Router
       controller: API
