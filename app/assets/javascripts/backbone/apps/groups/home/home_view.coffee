@@ -41,7 +41,7 @@
       e.preventDefault()
       $searchForm = this.$el.find('form#search-form')
       data = Backbone.Syphon.serialize(this)
-      this.trigger('group:search', this.buildQuerySearch(data.search_term))
+      this.trigger('groups:search', this.buildQuerySearch(data.search_term))
 
     buildQuerySearch: (searchTerm) ->
       q:
