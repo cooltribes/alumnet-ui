@@ -16,7 +16,7 @@
   App.on "start", ->
     $.ajaxSetup
       headers:
-        'Authorization': 'Token token="YxLhAmqp4yg6WKrYK5kBbJKozw1khf7sxDtPREx-"'
+        'Authorization': 'Token token="fuf6TPrzHjdykwQ_mjrzxTkfcxpkiwa9TswX3KoW"'
         'Accept': 'application/vnd.alumnet+json;version=1'
     if Backbone.history
       Backbone.history.start()

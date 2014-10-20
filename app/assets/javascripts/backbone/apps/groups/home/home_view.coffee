@@ -2,11 +2,13 @@
 
   class Home.Group extends Marionette.ItemView
     template: 'groups/home/templates/group'
-    className: 'col-md-4 group'
+    className: 'box'
     events:
       'click td': 'showDescription'
       'click .js-delete': 'deleteClicked'
       'click .js-show': 'showClicked'
+      'mouseenter .group-image-container': 'showSubGroups'
+      'mouseleave .group-image-container': 'hideSubGroups'
     remove: ->
       self = this
       this.$el.fadeOut ->
@@ -20,12 +22,18 @@
       e.preventDefault()
       e.stopPropagation()
       this.trigger('group:show', this.model)
+    showSubGroups: (e)->
+      this.$el.find('.group-image-container').children('.overlay-subgroups').fadeIn()
+    hideSubGroups: (e)->
+      this.$el.find('.group-image-container').children('.overlay-subgroups').fadeOut()
+
 
 
   class Home.Groups extends Marionette.CompositeView
-    className: 'container-fluid'
+    className: 'ng-scope'
+    idName: 'wrapper'
     template: 'groups/home/templates/groups_container'
     childView: Home.Group
-    childViewContainer: ".group-container"
+    childViewContainer: ".main-groups-area"
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"

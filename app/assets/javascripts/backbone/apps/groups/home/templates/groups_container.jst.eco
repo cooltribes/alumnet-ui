@@ -1,8 +1,7 @@
-<div class="main-groups-area">
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row group-container">
+<div id="main-wrapper" class="col-md-12">
+  <div id="main">
+    <div class="container-fluid groups-container">   <!-- Begin group container -->
+      <div class="main-groups-area grid-wrapper">
       </div>
     </div>
   </div>
