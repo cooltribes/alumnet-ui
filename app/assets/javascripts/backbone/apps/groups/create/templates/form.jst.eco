@@ -18,7 +18,9 @@
           <form>
             <div class="col-md-12 border-bottom-1-grey">
               <div class="col-md-6">
-                <div class="add-cover-photo"></div>
+                <div class="add-cover-photo">
+                  <img id="preview-avatar" src="" alt="" height="300" width="500">
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">

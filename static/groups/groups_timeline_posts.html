@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>groups_timeline</title>
+	<meta name="description" content="" />
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap-responsive.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+	<!-- App css -->
+	<link rel="stylesheet" href="./css/general.css">
+	<link rel="stylesheet" href="./css/groups.css">
+	<!-- Tooltips -->
+	<link rel="stylesheet" type="text/css" href="css/tooltips/tooltipster.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-light.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-noir.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-punk.css" />
+	<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-shadow.css" />
+
+	<!-- Js -->
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>
+
+</head>
+<body>
+	<script>
+	var $container = $('.timeline-main-container');
+// initialize
+$container.masonry({
+	columnWidth: 522,
+	itemSelector: '.item'
+});</script>
+
+<div class="ng-scope" header=""><header id="header" class="navbar navbar-fixed-top">
+	<div class="container-fluid top-nav">  <!-- Top Bar -->
+		<div class="navbar-header col-md-2">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand pad-0" href="/">
+				<img src="./images/general/alumnet_logo.png">
+			</a>
+		</div>
+		<nav class="top-bar collapse navbar-collapse">
+			<ul class="nav navbar-nav">  <!-- Left Menu top -->
+				<li class="active pad-0">
+					<a class="top-bar-groups-link groups-link">
+						<span class="text-groups-link">
+							Groups
+						</span>
+					</a>
+				</li>
+				<li class="pad-0">
+					<a class="top-bar-groups-link events-link">
+						<span class="text-events-link">
+							Events
+						</span>
+					</a>
+				</li>
+				<li class="pad-0">
+					<a class="top-bar-groups-link programs-link">
+						<span class="text-programs-link">
+							Programs
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav push-right"> <!-- Right menu top -->
+					<li class="pad-0">
+						<a class="top-bar-groups-link cup-link">
+						</a>
+					</li>
+					<li class="pad-0">
+						<a class="top-bar-groups-link rectangle-link">
+						</a>
+					</li>
+					<li class="pad-0">
+						<a class="top-bar-groups-link chat-link">
+						</a>
+					</li>
+					<li class="pad-0">
+						<a class="top-bar-groups-link user-link">
+							<span class="text-user-link">
+								Stephen Fry
+							</span>
+						</a>
+					</li>
+					<li class="pad-0">
+						<a class="top-bar-groups-profile-link pad-5">								<img src="./images/general/user_icon_bar.png">
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
+			<nav class="sub-bar collapse navbar-collapse">
+				<ul class="nav navbar-nav"><!-- Left Menu Top -->
+					<li class="pad-0">
+						<a class="sub-bar-groups-link">
+							<img class="icon-manage-groups" src="./images/general/icon_manage_groups.png">
+							<span class="text">
+								Manage Groups
+							</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav push-right">  <!-- Right Menu Sub -->
+					<li class="pad-0">
+						<a class="sub-bar-groups-link">
+							<img src="./images/groups/icon_discover.png">
+							<span class="text">
+								Discover
+							</span>
+						</a>
+					</li>
+					<li class="pad-0">
+						<a class="sub-bar-groups-link">
+							<img src="./images/groups/icon_invites.png">
+							<span class="text">
+								Invites
+							</span>
+						</a>
+					</li>
+					<li class="new-group-button-li pad-top-10">
+						<button type="button" class="btn btn-default btn-block new-group-button">
+							+ create a new group
+						</button>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+</div>
+<div class="ng-scope" id="wrapper">  <!-- Main -->
+	<div id="main-wrapper" class="col-md-12">
+		<div id="main-groups" class="timeline">
+			<div class="container-fluid col-md-12 group-timeline pad-0 ">	
+				<div class="col-md-12 pad-0">   
+					<div class="cover-photo">
+						<div class="cover-group-name">
+							<div class="col-md-12 pad-0">   
+								<div class="col-md-2 pad-0"> 
+									<div class="timeline-cover-ribbon">
+										<img src="./images/groups/group-timeline-ribbon.png">
+									</div></div>
+									<div class="col-md-10 pad-0"> 
+										<h1 class="timeline-group-name no-margin pad-10">Very Nice Group Name</h1>
+									</div>							
+								</div>
+
+							</div>
+							<div class="cover-photo">
+							<a class="cover-photo-link" href="/">
+								<img src="./images/groups/cover-photo.jpg">
+							</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 pad-0 timeline-top-bar">   
+						<ul class="nav timeline-menu col-md-7">
+							<li class="col-md-2 pad-0"><a class="timeline-link pad-0" href="">Posts</a></li>
+							<li class="col-md-2 pad-0"><a class="timeline-link pad-0" href="">About </a></li>
+							<li class="col-md-2 pad-0"><a class="timeline-link pad-0" href="">Members</a></li>
+							<li class="col-md-2 pad-0"><a class="timeline-link pad-0" href="">Pictures</a></li>
+							<li class="col-md-2 pad-0"><a class="timeline-link pad-0" href="">Subgroups</a></li>
+							<li class="col-md-2 pad-0">
+								<a class="timeline-link pad-0" href="">Events</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="container-fluid col-md-10 timeline-main-posts">
+					<div class="col-md-12 timeline-main-container js-masonry grid-wrapper">
+						<div class="item new-post pad-15 col-md-6">
+							<a class="comment-user-icon" href="/">
+								<img src="./images/groups/post_user_icon_1.png">
+							</a>
+							<a class="comment-user-icon" href="/">
+								<img src="./images/groups/new_post_input_box.png">
+							</a>
+						</div>
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed velit pulvinar pharetra. Maecenas magna eros, condimentum ut tempus vel, fermentum ut eros. Aenean ex justo, blandit id feugiat at, eleifend quis mi. Sed dapibus rutrum ipsum, non interdum elit tempor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sagittis, ex nec pulvinar feugiat, risus dui molestie eros, vel auctor ipsum dui ut libero. In hac habitasse platea dictumst. Curabitur dignissim rhoncus volutpat. </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Daniela Andrade</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed  </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+
+
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Malcolm Reynolds</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed velit pulvinar pharetra. Maecenas magna eros, condimentum ut tempus vel, fermentum ut eros. Aenean ex justo, blandit id feugiat at, eleifend quis mi. Sed dapibus rutrum ipsum, non interdum elit tempor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sagittis, ex nec pulvinar feugiat, risus dui molestie eros, vel auctor ipsum dui ut libero. In hac habitasse platea dictumst. Curabitur dignissim rhoncus volutpat. </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+
+
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed  </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed velit pulvinar pharetra. Maecenas magna eros, condimentum ut tempus vel, fermentum ut eros. Aenean ex justo, blandit id feugiat at, eleifend quis mi. Sed dapibus rutrum ipsum, non interdum elit tempor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sagittis, ex nec pulvinar feugiat, risus dui molestie eros, vel auctor ipsum dui ut libero. In hac habitasse platea dictumst. Curabitur dignissim rhoncus volutpat. </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="item post container-fluid col-md-6">
+							<div class="col-md-2 pad-0">
+
+
+								<a class="post-user-icon" href="/">
+									<img src="./images/groups/post_user_icon_2.png">
+								</a>	
+							</div>
+							<div class="col-md-10 pad-left-0">
+								<h5 class="invite-member-name blue-text">Morgan Freeman</h5>
+								<p class="post-date text-small">yesterday, 3:55 p.m.</p>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_content"><p class="post-text"></p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie non est sit amet egestas. Ut dignissim accumsan nisl quis viverra. Nunc vitae lacus egestas, luctus purus et, tincidunt turpis. Integer malesuada sed velit pulvinar pharetra. Maecenas magna eros, condimentum ut tempus vel, fermentum ut eros. Aenean ex justo, blandit id feugiat at, eleifend quis mi. Sed dapibus rutrum ipsum, non interdum elit tempor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sagittis, ex nec pulvinar feugiat, risus dui molestie eros, vel auctor ipsum dui ut libero. In hac habitasse platea dictumst. Curabitur dignissim rhoncus volutpat. </p>
+								</div>
+							</div>
+							<div class="col-md-12 pad-0">
+								<div class="post_actions pad-top-10">
+									<div class="col-md-6 pad-0">
+										<button class="btn btn-default comment_button" type="submit">COMMENT</button>
+										<button class="btn btn-default like-button" type="submit">Like</button>
+									</div>
+									<div class="user_who_liked_this_box col-md-6">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+										<img src="./images/groups/small_like_face3.png">
+										<img src="./images/groups/small_like_face1.png">
+										<img src="./images/groups/small_like_face2.png">
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div footer=""><footer>  <!-- Footer -->
+		<div class="container-fluid">
+			<div class="row">    
+				<div class="col-md-6">          
+				</div>
+				<div class="col-md-6">          
+				</div>
+			</div>
+		</div>
+	</footer></div> <!-- End Footer -->
+</div>
+</div>  <!-- End All -->
+</body>
+</html>

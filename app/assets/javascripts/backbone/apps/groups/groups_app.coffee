@@ -3,6 +3,7 @@
     appRoutes:
       "groups": "listGroups"
       "groups/new": "createGroup"
+      "groups/:id/invite": "inviteUsers"
 
   API =
     listGroups: ->
@@ -11,6 +12,9 @@
     createGroup: ->
       controller = new GroupsApp.Create.Controller
       controller.createGroup()
+    inviteUsers: (id)->
+      controller = new GroupsApp.Invite.Controller
+      controller.listUsers(id)
 
   AlumNet.on "groups:home",  ->
     AlumNet.navigate("groups")
@@ -19,6 +23,10 @@
   AlumNet.on "groups:new",  ->
     AlumNet.navigate("groups/new")
     API.createGroup()
+
+  AlumNet.on "groups:invite", (id)->
+    AlumNet.navigate("groups/#{id}/invite")
+    API.inviteUsers(id)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

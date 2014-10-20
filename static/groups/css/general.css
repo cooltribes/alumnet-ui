@@ -42,7 +42,7 @@ h3 {
     font-size: 12pt;
     font-weight: 800;
     letter-spacing: 1.4px;
-    text-transform: uppercase;
+
 }
 h4 {
     font-size: 16px;
@@ -83,7 +83,7 @@ h4 {
 }
 #main-wrapper {
     height: 100%;
-    margin: 180px auto -51px;
+  margin: 121px auto 0;
 
     padding: 0;
     background: none repeat scroll 0 0 #e6e6e8;
@@ -170,6 +170,9 @@ input.form-control:focus {
 }
 .margin-top-50 {
     margin-top: 50px;
+}
+.margin-top-100 {
+    margin-top: 100px;
 }
 .margin-left-15 {
     margin-left: 15px;
@@ -375,6 +378,7 @@ input.form-control:focus {
     margin-top: 60px;
     text-decoration: none;
     text-transform: none;
+    text-align: left;
 }
 .black
 {

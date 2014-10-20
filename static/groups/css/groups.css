@@ -20,6 +20,44 @@
 
     padding-top: 9px !important;
 }
+.manage-group-box   {
+background: #ffffff;
+    margin: 15px;
+     width: 47% !important;
+       text-align: left;
+}
+.manage-group-image-container
+{
+    width: 110px;
+}
+.manage-groups-small-search-box {
+}
+.timeline-group-name {
+    color: #fff !important;
+    font-family: "Roboto" !important;
+    font-size: 26px !important;
+    margin-bottom: 10px;
+    margin-left: 10px !important;
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: left;
+}
+.timeline-cover-ribbon {
+    float: left;
+    left: 10px;
+    position: absolute;
+    top: -20px;
+}
+
+.cover-group-name {
+    background: none repeat scroll 0 0 #2b2b2b;
+    height: 60px;
+    opacity: 0.7;
+    padding: 5px;
+    position: absolute;
+    top: 50px;
+    width: 370px;
+}
 .new-group-button-li{
     height: 60px;
     width:230px;
@@ -36,7 +74,7 @@
     height: 114px!important;
 }
 .invite-box-itself{
-background: #fff;
+    background: #fff;
 
 
 }
@@ -45,12 +83,13 @@ background: #fff;
     height: 245px;
     margin: 10px;
     width: 395px!important;
+     text-align: left;
 
 }
 .invite-box {
     background: none repeat scroll 0 0 #fff;
     float: left;
-  height: 100px;
+    height: 100px;
     margin: 15px;
     width: 375px !important;
 }
@@ -72,7 +111,7 @@ background: #fff;
     height: 100px;
 }
 .blue-text{
- color: #2099d0;
+   color: #2099d0;
 }
 .new-group-button{
     height:40px;
@@ -88,7 +127,13 @@ background: #fff;
 .join-group-button {
     height: 37px;
 }
+.leave-group-button {
+    height: 104px;
+}
 .join-group-button:hover {
+    background:#107daf;
+}
+.leave-group-button:hover {
     background:#107daf;
 }
 .invite-member-button {
@@ -106,13 +151,46 @@ background: #fff;
 .grey-bg.col-md-12.border-1-white {
     height: 45px;
 }
+.manage-group-name {
+    font-family: "roboto";
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.manage-groups-small-info-boxes {
+    height: 52px;
+     background: none repeat scroll 0 0 #e1ecf1;
+      border: 1px solid #fff;
+   padding-left: 6px;
+    padding-top: 11px;
+}
+.home-groups-small-info-boxes {
+    height: 37px;
+     background: none repeat scroll 0 0 #e1ecf1;
+      border: 1px solid #fff;
+  padding-left: 5px;
+    padding-top: 5px;
+}
 
 .inline{
     display:inline!important;
 }
-
-.grey-bg.col-md-6.border-1-white.inline.pad-0 > img {
+.add-group {
+    margin-top: 40px;
+}
+.groups-home {
+    margin-top: 100px;
+}
+.add-members {
+    margin-top: 40px;
+}
+.like-face-small {
     margin-left: -20px;
+    padding-left: 5px;
+    float:left;
+
+
 }
 .main-invite-boxes-area {
     margin-left: auto;
@@ -123,6 +201,7 @@ background: #fff;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
+    text-align: center;
 }
 .grid-wrapper {
     margin: 0 auto;
@@ -144,12 +223,31 @@ background: #fff;
     padding: 20px !important;
     width: 100% !important;
 }
+.groups-small-search {
+    border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
+    border-left: 1px solid #c6c6c6 !important;
+    border-style: solid none solid solid !important;
+    border-width: 1px medium 1px 1px !important;
+    color: #666;
+    font-family: "Roboto";
+    font-size: 100%;
+    height: 50px !important;
+    padding: 5px !important;
+    width: 100% !important;
+}
 .groups-search-button {
     border-left: medium none !important;
     border-radius: 0 !important;
     border-right: 1px solid #c6c6c6 !important;
     height: 70px;
 }
+.groups-search-small-button {
+    border-left: medium none !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #c6c6c6 !important;
+ height: 50px;
+}
+
 .groups-right-sort-menu {
     font-family: "roboto",sans-serif;
     font-size: 90%;
@@ -202,18 +300,12 @@ background: #fff;
     text-align: left;
     font-family: "Roboto",sans-serif;
 }
-.like-face-small {
-    padding-left: 5px;
-    padding-top: 5px;
-    float:left;
-}
 
 .group-box-members-friends {
     color: #bbb;
     float: left;
     font-family: "Roboto",sans-serif;
     font-size: 13px;
-    padding-top: 5px;
     text-align: left;
 }
 .group-box-join {
@@ -272,13 +364,13 @@ background: #fff;
     top: 0;
     width: 100%;
     background: #485257;
-opacity: 0.9;
+    opacity: 0.9;
 }
 .sub-groups-container ul {
     color: #fff;
     font-family: "roboto";
     list-style: none outside none;
-        padding-left: 0px;
+    padding-left: 0px;
 
 
 }
@@ -292,12 +384,12 @@ opacity: 0.9;
 .sub-groups-container ul li {
     border-bottom: 1px solid #aaa;
     height: 30px;
-      padding-top: 5px;
+    padding-top: 5px;
 }
 .sub-groups-container ul li a {
     color: #c6c6c6;
-        padding-left: 10px;
-           font-size: 13px;
+    padding-left: 10px;
+    font-size: 13px;
 }
 .sub-groups-container ul li a:hover {
     color: #fff!important;
@@ -307,35 +399,107 @@ opacity: 0.9;
     margin-left: auto !important;
     margin-right: auto !important;
 }
-.timeline-main {
+.timeline-main-settings {
     float: none;
     margin-left: auto !important;
     margin-right: auto !important;
+    min-height: 1000px;
+}
+.timeline-main-container{
+text-align: left;
+}
+
+.radios-ul {
+    display: inline;
+    list-style: none outside none;
+}
+.radios-ul li {
+
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+}
+.radios-ul li a {
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+    padding: 27px;
+}
+.radios-ul li a:hover {
+    display: inline;
+    list-style: none outside none;
+    height: 70px;
+  
+         border-bottom: 3px solid #2099d0;
+}
+
+.timeline-settings-official-group{
+
+}
+
+
+
+.timeline-main-posts{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+.timeline-main-about{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
 }
 .add-cover-photo
 {
-width:100%;
-height:280px;
-background: #2099d0;
-margin-top: 25px;
+    width:100%;
+    height:280px;
+    background: #2099d0;
+    margin-top: 25px;
 }
 .cover-photo-link > img {
     width: 100% !important;
 }
-
+.timeline {
+    text-align: center;
+}
 .new-post {
     background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 20px;
     padding: 20px;
-       margin-top:20px;
+    width: 522px;
+}
+.timeline-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    float: left;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}
+.timeline-half-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+   width: 537px;
+     float:left;
+
 }
 .post{
- background: none repeat scroll 0 0 #f4f4f4;
-     padding: 20px;
-     margin-top:20px;
+   background: none repeat scroll 0 0 #f4f4f4;
+   padding: 20px;
+   margin: 20px;
+   width: 522px;
+   height: auto;
 }
 
 .text-small{
-font-size:11px;
+    font-size:11px;
 }
 .insert-group-name {
     height: 85px;
@@ -357,36 +521,44 @@ font-size:11px;
 }
 .timeline-menu {
     float: none;
-     height: 60px;
+    height: 60px;
     margin-left: auto;
     margin-right: auto;
 
 }
 .timeline-menu li{
-display: inline;
- height: 60px;
-}
-.timeline-menu li a{
-     height: 60px;
+    display: inline;
+    height: 60px;
 
+}
+.timeline-menu li a {
+    color: #677f8a;
+    font-family: "roboto";
+    font-size: 16px;
+    font-weight: 300;
+    height: 60px;
+ padding-top: 15px !important;
 }
 .timeline-menu li a:hover{
-background: #2099d0;
+    background: #2099d0;
 }
-
+.timeline-main-about h3 {
+    font-size: 23px;
+    font-weight: 400;
+}
 .timeline-link
 {
-     height: 60px;
-   }
+   height: 60px;
+}
 .timeline-link:hover
 {
-     height: 60px;}
-
+    height: 60px;
+}
 .timeline-top-bar
 {
-height:60px;
- 
-background:#fff;
+    height:60px;
+
+    background:#fff;
 }
 .add-members-top
 

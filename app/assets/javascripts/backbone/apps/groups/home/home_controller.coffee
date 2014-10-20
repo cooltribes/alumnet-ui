@@ -8,5 +8,7 @@
         groups.remove(model)
       groupsTable.on 'childview:group:show', (childView, model)->
         alert model.escape('description')
+      groupsTable.on 'groups:search', (querySearch)->
+        searchedGroups = AlumNet.request("group:entities", querySearch)
 
       AlumNet.mainRegion.show(groupsTable)
