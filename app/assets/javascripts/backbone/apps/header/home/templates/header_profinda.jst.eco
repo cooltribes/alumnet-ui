@@ -3,15 +3,15 @@
     <ul class="main-nav-left">
       <li class="logo">
         <a>
-          <img src="/assets/profinda-logo-5dc3f19d98d2e5c22c46fd605d86e1d0.png">
+          <img src="http://cooltribes.profinda.com/assets/profinda-logo-5dc3f19d98d2e5c22c46fd605d86e1d0.png">
         </a>
       </li>
       <li class="link">
         <a class="get-help-link">
           <i class="ico-get-help"></i>
           <span class="text">
-            Get Help
-            <i class="ico-triangle-down"></i>
+          Get Help
+          <i class="ico-triangle-down"></i>
           </span>
         </a>
       </li>
@@ -19,8 +19,8 @@
         <a class="give-help-link">
           <i class="ico-give-help"></i>
           <span class="text">
-            Give Help
-            <i class="ico-triangle-down"></i>
+          Give Help
+          <i class="ico-triangle-down"></i>
           </span>
         </a>
       </li>
@@ -53,11 +53,11 @@
     <div class="give-help-data sub-nav-data">
       <ul>
         <li id="automatches-counter" class="pull-left" style="opacity: 1;"><div><a href="#automatches">
-  <span>Automatches</span>
-  <span class="nav-count">
-    <span class="unread">0</span>
-  </span>
-</a></div></li>
+          <span>Automatches</span>
+          <span class="nav-count">
+          <span class="unread">0</span>
+          </span>
+        </a></div></li>
         <li id="live_help-counter" class="pull-left">
           <a href="#live_help">
             <span>Live Help</span>
@@ -99,7 +99,7 @@
             </div>
             <div class="text">Messages</div>
             <span class="nav-count">
-              <span>0</span>
+            <span>0</span>
             </span>
           </a>
         </li>
@@ -112,7 +112,7 @@
           </a>
         </li>
         <li class="profile-nav-link-wrap">
-          <a class="picture profile-nav-link"><img src="https://profinda-saas-avatars.s3.amazonaws.com/uploads/staging/profile/picture/151/small_juan-pernia-twitter.jpeg?AWSAccessKeyId=AKIAJIPJRSNEMBXYOD5Q&amp;Signature=dAj8oM7JDFBfjM/89g0DnM5usiM%3D&amp;Expires=1413484365"></a>
+          <a class="picture profile-nav-link"><img src="http://placehold.it/40"></a>
         </li>
       </ul>
       <ul class="profile-nav-data sub-nav-data">
@@ -137,16 +137,16 @@
       <small class="tips-link">Your profile is 59% complete</small>
     </div>
     <div class="header-search-region search-header-data" style="opacity: 1;"><div><div class="search-data sub-nav-data">
-  <div class="search-bar">
-    <div class="site-nav-search">
-      <input placeholder="Search...">
+      <div class="search-bar">
+        <div class="site-nav-search">
+          <input placeholder="Search...">
+        </div>
+        <a class="submit">
+          <i class="ico-search"></i>
+        </a>
+      </div>
     </div>
-    <a class="submit">
-      <i class="ico-search"></i>
-    </a>
-  </div>
-</div>
-<div class="scrollbars search-bar-dropdown" style="opacity: 1;"><ul></ul></div></div></div>
+    <div class="scrollbars search-bar-dropdown" style="opacity: 1;"><ul></ul></div></div></div>
     <div id="notification_menu_region" class="notifications-data sub-nav-data sub-nav-dropdown"></div>
     <div id="tips_region" class="sub-nav-data sub-nav-dropdown tips-data"></div>
   </div>
