@@ -1,6 +1,6 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
-    url: 'http://localhost:4000/groups'
+    urlRoot: 'http://localhost:4000/groups'
     validation:
       name:
         required: true
@@ -18,15 +18,29 @@
     Entities.groups = new Entities.GroupCollection
 
   API =
-    getGroupEntities: ->
+    getGroupEntities: (querySearch)->
       initializeGroups() if Entities.groups == undefined
-      Entities.groups.fetch()
+      Entities.groups.fetch
+        data: querySearch
       Entities.groups
     getNewGroup: ->
-      Entities.group = new Entities.Group
+      new Entities.Group
+    findGroup: (id)->
+      group = new Entities.Group
+        id: id
+      group.fetch
+        error: (model, response, options) ->
+          model.trigger('find:error', response, options)
+        success: (model, response, options) ->
+          model.trigger('find:success', response, options)
+      group
+
 
   AlumNet.reqres.setHandler 'group:new', ->
     API.getNewGroup()
 
-  AlumNet.reqres.setHandler 'group:entities', ->
-    API.getGroupEntities()
+  AlumNet.reqres.setHandler 'group:entities', (querySearch) ->
+    API.getGroupEntities(querySearch)
+
+  AlumNet.reqres.setHandler 'group:find', (id)->
+    API.findGroup(id)
