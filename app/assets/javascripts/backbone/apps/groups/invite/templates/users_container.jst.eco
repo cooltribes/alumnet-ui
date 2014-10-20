@@ -1,4 +1,10 @@
 <h4>Invite members to a group <%= @name %></h4>
+<form id="search-form">
+  <div class="input-group">
+    <input type="text" name="search_term" id="search_term" class="form-control">
+  </div>
+  <button class="btn btn-primary js-search">SEARCH</button>
+</form>
 <ul class="users-list">
 
 </ul>

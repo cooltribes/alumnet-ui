@@ -17,9 +17,10 @@
     Entities.users = new Entities.UserCollection
 
   API =
-    getUserEntities: ->
+    getUserEntities: (querySearch)->
       initializeUsers() if Entities.users == undefined
-      Entities.users.fetch()
+      Entities.users.fetch
+        data: querySearch
       Entities.users
     getNewUser: ->
       Entities.user = new Entities.User
@@ -38,5 +39,5 @@
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
-  AlumNet.reqres.setHandler 'user:entities', ->
-    API.getUserEntities()
+  AlumNet.reqres.setHandler 'user:entities', (querySearch)->
+    API.getUserEntities(querySearch)

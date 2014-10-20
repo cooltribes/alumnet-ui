@@ -33,3 +33,17 @@
     childViewContainer: ".users-list"
     childViewOptions: ()->
       parentModel: this.model
+    events:
+      'click .js-search': 'performSearch'
+
+    performSearch: (e) ->
+      e.preventDefault()
+      $searchForm = this.$el.find('form#search-form')
+      data = Backbone.Syphon.serialize(this)
+      this.trigger('users:search', this.buildQuerySearch(data.search_term))
+
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        name_cont: searchTerm
+        email_cont: searchTerm
