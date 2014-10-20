@@ -28,12 +28,27 @@
       this.$el.find('.group-image-container').children('.overlay-subgroups').fadeOut()
 
 
-
   class Home.Groups extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'groups/home/templates/groups_container'
     childView: Home.Group
     childViewContainer: ".main-groups-area"
+    events:
+      'click .js-search': 'performSearch'
+
+    performSearch: (e) ->
+      e.preventDefault()
+      $searchForm = this.$el.find('form#search-form')
+      data = Backbone.Syphon.serialize(this)
+      this.trigger('group:search', this.buildQuerySearch(data.search_term))
+
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        name_cont: searchTerm
+        description_cont: searchTerm
+
+
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"

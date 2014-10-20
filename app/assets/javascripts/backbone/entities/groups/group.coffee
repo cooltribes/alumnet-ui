@@ -18,9 +18,10 @@
     Entities.groups = new Entities.GroupCollection
 
   API =
-    getGroupEntities: ->
+    getGroupEntities: (querySearch)->
       initializeGroups() if Entities.groups == undefined
-      Entities.groups.fetch()
+      Entities.groups.fetch
+        data: querySearch
       Entities.groups
     getNewGroup: ->
       new Entities.Group
@@ -38,8 +39,8 @@
   AlumNet.reqres.setHandler 'group:new', ->
     API.getNewGroup()
 
-  AlumNet.reqres.setHandler 'group:entities', ->
-    API.getGroupEntities()
+  AlumNet.reqres.setHandler 'group:entities', (querySearch) ->
+    API.getGroupEntities(querySearch)
 
   AlumNet.reqres.setHandler 'group:find', (id)->
     API.findGroup(id)
