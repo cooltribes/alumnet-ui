@@ -4,6 +4,7 @@
       "groups": "listGroups"
       "groups/new": "createGroup"
       "groups/:id/invite": "inviteUsers"
+      "groups/:id": "showTimeline"
 
   API =
     listGroups: ->
@@ -15,6 +16,9 @@
     inviteUsers: (id)->
       controller = new GroupsApp.Invite.Controller
       controller.listUsers(id)
+    showTimeline: (id)->
+      controller = new GroupsApp.Timeline.Controller
+      controller.Timeline(id)
 
   AlumNet.on "groups:home",  ->
     AlumNet.navigate("groups")

@@ -1,0 +1,6 @@
+<img class="group-dash-image pad-0" src="<%= @avatar.original %>">
+
+<h2><%= @name %></h2>
+
+<h2>Description</h2>
+<%= @description %>
