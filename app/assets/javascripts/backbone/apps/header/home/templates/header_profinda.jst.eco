@@ -7,10 +7,10 @@
         </a>
       </li>
       <li class="link">
-        <a class="get-help-link">
+        <a class="get-help-link" href="#groups">
           <i class="ico-get-help"></i>
           <span class="text">
-          Get Help
+          Groups
           <i class="ico-triangle-down"></i>
           </span>
         </a>

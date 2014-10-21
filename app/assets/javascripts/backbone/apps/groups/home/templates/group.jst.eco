@@ -1,23 +1,62 @@
-<div class="col-md-12">
-  <div class="well well-sm pad-0">
-    <div class="col-md-6 pad-0">
-      <img class="group-dash-image pad-0" src="assets/groups/group_1.jpg">
-    </div>
-    <div class="col-md-6 pad-5">
-      <div class="col-md-12 pad-5">
-        <h3 class="groups-name"><%= @name %></h3>
-        <p class="groups_small_desc no-margin"><%= @description %></p>
+  <div class="row">
+    <div class="col-md-6 pad-0 overhidden group-image-container">
+      <img src="http://cooltribes.com/alumnet/groups/images/groups/group_1.jpg" class="group-dash-image pad-0">
+      <div class="overlay-subgroups sub-groups-menu" style="display: none;">
+        <div class="sub-groups-container">
+          <ul class="subgroups-ul">
+            <li class="">
+              <a href="">Subgroups 1</a>
+            </li>
+            <li class="">
+              <a href="">Subgroups 2</a>
+            </li>
+            <li class="">
+              <a href="">Subgroups 3</a>
+            </li>
+            <li class="">
+              <a href="">Subgroups 4</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-12 pad-5">
-        <div class="grey-bg col-md-6 border-1-white"><p class="group-box-date margin-3">5/2014</p>
+    </div>
+    <div class="col-md-6 pad-0 well-right">
+      <div class="col-md-12 pad-10 well-box-text-right">
+        <h3 class="groups-name margin-bottom-5"><%= @name %>
+        </h3>
+        <span class="group-status-icon-public pull-right">
+        </span>
+        <p class="groups_small_desc no-margin"><%= @description %>
+        </p>
+      </div>
+      <div class="col-md-12 pad-0 well-right-small-boxes">
+        <div class="col-md-6 pad-0">
+          <div class="home-groups-small-info-boxes">
+            <img src="http://cooltribes.com/alumnet/groups/images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
+            <p class="group-box-date margin-3">5/2014
+            </p>
+          </div>
+          <div class="home-groups-small-info-boxes">
+            <img src="http://cooltribes.com/alumnet/groups/images/groups/icon_document.png" class="no-margin pad-5 pull-left"><p class="group-box-last-post margin-3">10:32
+            <small>am
+            </small>
+            </p>
+          </div>
         </div>
-        <div class="grey-bg col-md-6 border-1-white"><p class="group-box-last-post margin-3">10:32<small>am</small></p>
-        </div>
-        <div class="grey-bg col-md-12 border-1-white"><p class="group-box-members margin-3">13000</p>
-        </div>
-        <div class="light-blue-bg col-md-12 border-1-white"><p class="group-box-join margin-3">+ join group</p>
+        <div class="col-md-6 pad-0">
+          <div class="home-groups-small-info-boxes">
+            <img src="http://cooltribes.com/alumnet/groups/images/groups/icon_members.png" class="no-margin pad-5 pull-left">
+            <p class="group-box-members margin-3">13000
+            </p>
+          </div>
+          <div class="home-groups-small-info-boxes">
+            <img src="http://cooltribes.com/alumnet/groups/images/groups/people-like-face.png" class="no-margin like-face-small">
+            <img src="http://cooltribes.com/alumnet/groups/images/groups/people-like-face.png" class="like-face-small">
+            <p class="group-box-members-friends margin-3">13000
+            </p>
+          </div>  </div>
+          <button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+          </button>
         </div>
       </div>
     </div>
-  </div>
-</div>
