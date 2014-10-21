@@ -4,6 +4,7 @@
   App.promises = 0
 
   App.addRegions
+    headerRegion: "#header-region"  
     mainRegion: "#main-region"
     tableRegion: "#groups-table"
 
@@ -17,7 +18,8 @@
   App.on "start", ->
     $.ajaxSetup
       headers:
-        'Authorization': 'Token token="o7J9yQrgMVcCykfmqceA7jE-kGvYQz6-ecYtzND3"'
+        #'Authorization': 'Token token="o7J9yQrgMVcCykfmqceA7jE-kGvYQz6-ecYtzND3"'
+        'Authorization': 'Token token="N9DLEjZbGevq6MS2qo4mTw2XH5nCnQULxcxgFec3"'
         'Accept': 'application/vnd.alumnet+json;version=1'
     if Backbone.history
       Backbone.history.start()
