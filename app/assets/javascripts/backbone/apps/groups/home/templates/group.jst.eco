@@ -1,6 +1,6 @@
-  <div class="row">
-    <div class="col-md-6 pad-0 overhidden group-image-container">
-      <img src="http://cooltribes.com/alumnet/groups/images/groups/group_1.jpg" class="group-dash-image pad-0">
+<div class="box_white">  <div class="row">
+    <div class="col-md-6  overhidden group-image-container">
+      <img src="http://cooltribes.com/alumnet/groups/images/groups/group_1.jpg" class="group-dash-image ">
       <div class="overlay-subgroups sub-groups-menu" style="display: none;">
         <div class="sub-groups-container">
           <ul class="subgroups-ul">
@@ -20,17 +20,17 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 pad-0 well-right">
-      <div class="col-md-12 pad-10 well-box-text-right">
+    <div class="col-md-6  well-right">
+     
         <h3 class="groups-name margin-bottom-5"><%= @name %>
         </h3>
         <span class="group-status-icon-public pull-right">
         </span>
         <p class="groups_small_desc no-margin"><%= @description %>
         </p>
-      </div>
-      <div class="col-md-12 pad-0 well-right-small-boxes">
-        <div class="col-md-6 pad-0">
+     
+      <div class="row">
+        <div class="col-md-6 ">
           <div class="home-groups-small-info-boxes">
             <img src="http://cooltribes.com/alumnet/groups/images/groups/icon_clock.png" class="no-margin pad-5 pull-left">
             <p class="group-box-date margin-3">5/2014
@@ -43,7 +43,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-6 pad-0">
+        <div class="col-md-6 ">
           <div class="home-groups-small-info-boxes">
             <img src="http://cooltribes.com/alumnet/groups/images/groups/icon_members.png" class="no-margin pad-5 pull-left">
             <p class="group-box-members margin-3">13000
@@ -60,3 +60,4 @@
         </div>
       </div>
     </div>
+</div>
