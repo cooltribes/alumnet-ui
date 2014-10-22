@@ -4,6 +4,7 @@
   App.promises = 0
 
   App.addRegions
+    headerRegion: "#header-region"
     mainRegion: "#main-region"
     tableRegion: "#groups-table"
 

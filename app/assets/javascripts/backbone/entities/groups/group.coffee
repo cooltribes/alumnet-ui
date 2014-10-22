@@ -26,6 +26,7 @@
     getNewGroup: ->
       new Entities.Group
     findGroup: (id)->
+      #Optimize: Verify if Entities.groups is set and find the group there.
       group = new Entities.Group
         id: id
       group.fetch

@@ -1,14 +1,18 @@
 @AlumNet.module 'GroupsApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
   class Home.Controller
-    listGroups: ->
-      groups = AlumNet.request("group:entities", {})
-      groupsTable = new Home.Groups
-        collection: groups
-      groupsTable.on 'childview:group:delete', (childView, model)->
-        groups.remove(model)
-      groupsTable.on 'childview:group:show', (childView, model)->
-        alert model.escape('description')
-      groupsTable.on 'groups:search', (querySearch)->
-        searchedGroups = AlumNet.request("group:entities", querySearch)
+    showGroup: (id)->
+      group = AlumNet.request("group:find", id)
+      group.on 'find:success', (response, options)->
+        #todo: implement a function to return the view. like a discovery module
+        homeLayout = new Home.Layout
+          model: group
+        AlumNet.mainRegion.show(homeLayout)
 
-      AlumNet.mainRegion.show(groupsTable)
+        homeLayout.on 'show:about', (layout)->
+          alert "About"
+          #AlumNet.trigger("show:about", layout)
+
+      group.on 'find:error', (response, options)->
+        ##Logic here the group not exists or is not authorizate
+        console.log "Error on group fetch"
+        AlumNet.trigger("groups:home")
