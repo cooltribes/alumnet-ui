@@ -1,6 +1,6 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
-    urlRoot: 'http://shenlong:4000/groups'
+    urlRoot: 'http://localhost:4000/groups'
     validation:
       name:
         required: true
@@ -11,7 +11,7 @@
 
 
   class Entities.GroupCollection extends Backbone.Collection
-    url: 'http://shenlong:4000/groups'
+    url: 'http://localhost:4000/groups'
     model: Entities.Group
 
   initializeGroups = ->
@@ -26,6 +26,7 @@
     getNewGroup: ->
       new Entities.Group
     findGroup: (id)->
+      #Optimize: Verify if Entities.groups is set and find the group there.
       group = new Entities.Group
         id: id
       group.fetch
