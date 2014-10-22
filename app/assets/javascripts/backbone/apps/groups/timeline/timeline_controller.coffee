@@ -3,9 +3,12 @@
     Timeline: (id)->
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
-        aboutView = new Timeline.About
+        timelineLayout = new Timeline.Layout
           model: group
-        AlumNet.mainRegion.show(aboutView)
+        AlumNet.mainRegion.show(timelineLayout)
+
+        timelineLayout.on 'timeline:about', (layout)->
+          AlumNet.trigger("groups:about", layout)
 
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate

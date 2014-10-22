@@ -19,6 +19,9 @@
     showTimeline: (id)->
       controller = new GroupsApp.Timeline.Controller
       controller.Timeline(id)
+    aboutGroup: (layout)->
+      controller = new GroupsApp.About.Controller
+      controller.showInfo(layout)
 
   AlumNet.on "groups:home",  ->
     AlumNet.navigate("groups")
@@ -31,6 +34,9 @@
   AlumNet.on "groups:invite", (id)->
     AlumNet.navigate("groups/#{id}/invite")
     API.inviteUsers(id)
+
+  AlumNet.on "groups:about", (layout)->
+    API.aboutGroup(layout)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router
