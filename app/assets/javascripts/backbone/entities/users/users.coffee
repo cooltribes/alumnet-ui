@@ -1,16 +1,16 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.User extends Backbone.Model
-    url: 'http://localhost:4000/users'
+    url: 'http://shenlong:4000/users'
 
   # This can change, because now an invitation is an a membership in invitation mode
   class Entities.Invitation extends Backbone.Model
-    url: 'http://localhost:4000/users'
+    url: 'http://shenlong:4000/users'
 
     initialize: ->
       @url = "#{@url}/#{@get('user_id')}/invite"
 
   class Entities.UserCollection extends Backbone.Collection
-    url: 'http://localhost:4000/users'
+    url: 'http://shenlong:4000/users'
     model: Entities.User
 
   initializeUsers = ->

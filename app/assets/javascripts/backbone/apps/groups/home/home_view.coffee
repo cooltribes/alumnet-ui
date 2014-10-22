@@ -1,5 +1,17 @@
 @AlumNet.module 'GroupsApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
 
+  class Home.Layout extends Marionette.LayoutView
+    template: 'groups/home/templates/layout'
+
+    regions:
+      header_region: '#groups-search-region'
+      list_region:   '#groups-list-region'
+
+
+  class Home.Header extends Marionette.LayoutView
+    template: 'groups/home/templates/groups_search'
+  
+
   class Home.Group extends Marionette.ItemView
     template: 'groups/home/templates/group'
     className: 'box'

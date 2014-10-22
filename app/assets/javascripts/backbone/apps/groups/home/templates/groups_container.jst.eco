@@ -1,15 +1,15 @@
-<form id="search-form">
+<!-- <form id="search-form">
   <div class="input-group">
     <input type="text" name="search_term" id="search_term" class="form-control">
   </div>
   <button class="btn btn-primary js-search">SEARCH</button>
-</form>
+</form> -->
 
-<div id="main-wrapper" class="col-md-12">
+<!-- <div id="main-wrapper" class="col-md-12"> -->
   <div id="main">
     <div class="container-fluid groups-container">   <!-- Begin group container -->
       <div class="main-groups-area grid-wrapper">
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
