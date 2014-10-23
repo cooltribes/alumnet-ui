@@ -4,6 +4,7 @@
     template: 'registration/account/templates/layout'
     id: 'main-wrapper'
     className: 'col-md-12'
+      
 
     regions:
       side_region: '#sidebar-region' #any name you want to give to the region, any css selector you have used inside the layout template
