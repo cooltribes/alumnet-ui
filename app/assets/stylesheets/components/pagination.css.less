@@ -1,0 +1,61 @@
+// works with kaminari - .pagination has been removed from bootstrap.css.less to avoid collision
+@import 'conf/conf.css.less';
+
+.pagination {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+  a,
+  span {
+    .inline-block();
+    margin: 3px;
+  }
+  .gap,
+  .current,
+  a {
+    padding: 14px;
+    min-width: 18px;
+    background: @white;
+    margin-bottom: 10px;
+  }
+  strong {
+    font-size: 1.5em;
+    color: mix(@black, @mid-gray);
+    font-weight: 400;
+  }
+  .gap {
+    color: @mid-gray;
+    background: transparent;
+    min-width: 12px;
+    padding: 14px 8px;
+  }
+  a {
+    color: @mid-gray;
+    &:hover {
+      color: @black;
+    }
+  }
+  .current {
+    font-weight: 500;
+    background: @main-blue;
+    color: @white;
+    cursor: default;
+    &:hover {
+      color: @white;
+    }
+  }
+  &.inline {
+    .inline-block();
+    .gap,
+    .current,
+    a {
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: @media-small-max){
+    .next,
+    .prev {
+      display: none;
+    }
+  }
+}

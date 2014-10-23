@@ -1,0 +1,119 @@
+@import "conf/conf.css.less";
+
+.premium-container {
+  margin-right: @gutter;
+  margin-left: @gutter;
+  &.mobile-full-width {
+    margin-right: 0;
+    margin-left: 0;
+    @media (min-width: 640px){
+      margin-right: @site-margin;
+      margin-left: @site-margin;
+    }
+  }
+  @media (min-width: 640px){
+    margin-right: @site-margin;
+    margin-left: @site-margin;
+  }
+}
+
+.premium-row-container {
+  margin-right: 0;
+  margin-left: 0;
+  list-style: none;
+  @media (min-width: 640px){
+    margin-right: @site-margin - @gutter;
+    margin-left: @site-margin - @gutter;
+  }
+}
+
+.premium-row {
+  margin-left: -@gutter;
+  margin-right: -@gutter;
+  .border-box();
+  .premium-clearfix();
+}
+
+
+.col-mini-1-74, .col-mini-2, .col-mini-2-4 .col-mini-3, .col-mini-4, .col-mini-5, .col-mini-6, .col-mini-7, .col-mini-8, .col-mini-9, .col-mini-12,
+.col-1-74, .col-2, .col-2-4, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-12,
+.col-m-1-74, .col-m-2, .col-m-2-4, .col-m-3, .col-m-4, .col-m-5, .col-m-6, .col-m-7, .col-m-8, .col-m-9, .col-m-12,
+.col-b-1-74, .col-b-2, .col-b-2-4, .col-b-3, .col-b-4, .col-b-5, .col-b-6, .col-b-7, .col-b-8, .col-b-9, .col-b-12,
+.col-h-1-74, .col-h-2, .col-h-2-4, .col-h-3, .col-h-4, .col-h-5, .col-h-6, .col-h-7, .col-h-8, .col-h-9, .col-h-12 {
+  .border-box();
+  position: relative;
+  min-height: 1px;
+  padding-right: @gutter;
+  padding-left: @gutter;
+  margin-bottom: @gutter*2;
+}
+
+.margin-top-gap {
+  margin-top: @gutter*2;
+}
+
+.col-no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.col-no-margin {
+  margin-bottom: 0;
+}
+
+.col-2, .col-2-4, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-12 {
+  width: 100%; // this is needed for masonry to work with col-*
+}
+
+
+.colGenerator(@infix){
+  .col@{infix}-1,
+  .col@{infix}-1-74, // 12 / 7 = 1.7142857142857142
+  .col@{infix}-2,
+  .col@{infix}-2-4, // 12 / 5 = 2.4
+  .col@{infix}-3,
+  .col@{infix}-4,
+  .col@{infix}-5,
+  .col@{infix}-6,
+  .col@{infix}-7,
+  .col@{infix}-8,
+  .col@{infix}-9,
+  .col@{infix}-12 {
+    float: left;
+  }
+  .col@{infix}-right {
+    float: right
+  }
+  .col@{infix}-1    { width: 8.333333333333333%; }
+  .col@{infix}-1-74 { width: 14.285714285714286%; }
+  .col@{infix}-2    { width: 16.666666666666664%; }
+  .col@{infix}-2-4  { width: 20%; }
+  .col@{infix}-3    { width: 25%; }
+  .col@{infix}-4    { width: 33.33333333333333%; }
+  .col@{infix}-5    { width: 41.66666666666667%; }
+  .col@{infix}-6    { width: 50%; }
+  .col@{infix}-7    { width: 58.333333333333336%; }
+  .col@{infix}-8    { width: 66.66666666666666%; }
+  .col@{infix}-9    { width: 75%; }
+  .col@{infix}-12   { width: 100%; }
+}
+
+@media (min-width: 480px){
+  .colGenerator(~'-mini');
+}
+
+@media (min-width: 640px){
+  .colGenerator(~'');
+}
+
+@media (min-width: 992px){
+  .colGenerator(~'-m');
+}
+
+@media (min-width: 1200px){
+  .colGenerator(~'-b');
+}
+
+@media (min-width: 1500px){
+  .colGenerator(~'-h');
+}

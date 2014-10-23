@@ -1,0 +1,41 @@
+@import 'conf/conf.css.less';
+
+.hint-trigger {
+  cursor: pointer;
+  padding: 14px 7px 4px 16px;
+  outline: none;
+  position: absolute;
+  top: -14px;
+  right: 0;
+  color: @secondary-btn;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hint-data {
+  display: none;
+  color: @dim-gray;
+  padding-bottom: @padding;
+}
+
+.blue-section {
+  .hint-trigger,
+  .hint-data {
+    color: mix(@white, @main-blue, 70%);
+  }
+}
+
+.form-horizontal {
+  .help-block-wrap {
+    .help-block {
+      position: relative;
+      margin-top: 0;
+      top: -3px;
+      left: 16px;
+      .inline-block();
+    }
+  }
+}

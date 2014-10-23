@@ -1,8 +1,15 @@
-<div id="sidebar-region">
-
+<div class="row">
+	<div class="col-md-4" id="sidebar-region">
+		<ul> 
+			<li><span>1</span> Profile</li>
+			<li><span>2</span> Contact</li>
+			<li><span>3</span> Experience</li>
+			<li><span>4</span> Skills & Languages</li>
+			<li><span>5</span> Approval process</li>
+	</ul>
 </div>
-
-<div id="form-region">   <!-- Begin group container -->
-  
+<div class="col-md-8" id="form-region">
+	<!-- Begin group container -->
+	
+</div></div>
 </div>
-  
