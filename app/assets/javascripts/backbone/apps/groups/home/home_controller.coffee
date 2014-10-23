@@ -9,8 +9,7 @@
         AlumNet.mainRegion.show(homeLayout)
 
         homeLayout.on 'show:about', (layout)->
-          alert "About"
-          #AlumNet.trigger("show:about", layout)
+          AlumNet.trigger("groups:about", layout)
 
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate

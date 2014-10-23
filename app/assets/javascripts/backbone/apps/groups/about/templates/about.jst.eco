@@ -4,3 +4,6 @@
 
 <h2>Description</h2>
 <%= @description %>
+
+<h3><%= @official %></h3>
+<h3>Created: <%= @created_at %> by <%= @creator.name %></h3>

@@ -19,9 +19,9 @@
     showGroup: (id)->
       controller = new GroupsApp.Home.Controller
       controller.showGroup(id)
-    groupAbout: (layout)->
+    aboutGroup: (layout)->
       controller = new GroupsApp.About.Controller
-      controller.showInfo(layout)
+      controller.renderInLayout(layout)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

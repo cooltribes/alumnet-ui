@@ -15,4 +15,4 @@
 
     showAbout: (e)->
       e.preventDefault()
-      this.trigger 'show:about'
+      this.trigger 'show:about', this
