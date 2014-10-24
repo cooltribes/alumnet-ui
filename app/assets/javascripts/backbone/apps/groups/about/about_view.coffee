@@ -2,6 +2,9 @@
 
   class About.View extends Marionette.ItemView
     template: 'groups/about/templates/about'
+    templateHelpers: ->
+      canEditInformation: this.model.canEditInformation()
+
     events:
       'click h2': 'test'
     test: (e)->

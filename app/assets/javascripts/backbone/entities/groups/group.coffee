@@ -1,6 +1,11 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Group extends Backbone.Model
     urlRoot: 'http://localhost:4000/groups'
+
+    canEditInformation: ->
+      membership = this.get('membership')
+      membership.edit_information == 1 ? true : false
+
     validation:
       name:
         required: true

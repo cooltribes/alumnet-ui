@@ -2,8 +2,8 @@
   GroupsApp.Router = Marionette.AppRouter.extend
     appRoutes:
       "groups/new": "createGroup"
-      "groups/:id": "showGroup"
       "groups/:id/invite": "inviteGroup"
+      "groups/:id/about": "aboutGroup"
       "groups": "discoverGroups"
 
   API =
@@ -16,20 +16,13 @@
     inviteGroup: (id)->
       controller = new GroupsApp.Invite.Controller
       controller.listUsers(id)
-    showGroup: (id)->
-      controller = new GroupsApp.Home.Controller
-      controller.showGroup(id)
-    aboutGroup: (layout)->
+    aboutGroup: (id)->
       controller = new GroupsApp.About.Controller
-      controller.renderInLayout(layout)
+      controller.showAbout(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
     API.createGroup()
-
-  AlumNet.on "groups:show", (id) ->
-    AlumNet.navigate("groups/#{id}")
-    API.showGroup(id)
 
   AlumNet.on "groups:invite", (id)->
     AlumNet.navigate("groups/#{id}/invite")
