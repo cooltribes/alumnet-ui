@@ -8,5 +8,9 @@
 //= require_tree .
 
 $(function() {
-  return AlumNet.start();
+  options = {
+    api_endpoint: gon.api_endpoint,
+    temp_token: gon.temp_token
+  };
+  return AlumNet.start(options);
 });

@@ -1,6 +1,7 @@
 defaults: &defaults
   api_endpoint: http://localhost:4000
   api_endpoint_domain: localhost:4000
+  temp_token: "TEMPTOKEN"
 
 development:
   <<: *defaults
