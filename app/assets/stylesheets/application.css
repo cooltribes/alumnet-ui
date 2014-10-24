@@ -1,5 +1,4 @@
 /*
- *= require libs/jquery_ui
  *= require libs/bootstrap
  *= require libs/bootstrap-responsive
  *= require libs/datetimepicker
@@ -12,4 +11,5 @@
  *= require_tree ./apps
  *= require_tree ./components
  *= require_self
+
  */

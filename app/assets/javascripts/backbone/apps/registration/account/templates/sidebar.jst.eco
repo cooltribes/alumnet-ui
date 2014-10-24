@@ -1,7 +1,7 @@
-<ul> 
-			<li><span>1</span> Profile</li>
-			<li><span>2</span> Contact</li>
-			<li><span>3</span> Experience</li>
-			<li><span>4</span> Skills & Languages</li>
-			<li><span>5</span> Approval process</li>
-	</ul>
+<ul class="rounded-numbers-list">
+	<li class="--active"><span>1</span> Profile</li>
+	<li><span>2</span> Contact</li>
+	<li><span>3</span> Experience</li>
+	<li><span>4</span> Skills & Languages</li>
+	<li><span>5</span> Approval process</li>
+</ul>
