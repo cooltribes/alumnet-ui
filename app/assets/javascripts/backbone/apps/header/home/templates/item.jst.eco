@@ -1,4 +1,5 @@
-<a class="top-bar-groups-link <%= @iconClass %>" href="#groups">
+<a class="top-bar-groups-link" href="#groups">
+	<i class="<%= @iconClass %>"></i>
     <span class="text-groups-link text-<%= @iconClass %>">
         <%= @caption %>
     </span>

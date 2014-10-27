@@ -10,7 +10,6 @@ MISCELLANEOUS  - Margins, Paddings and common use classes
 
 
 // GENERAL STYLE ON
-
 body {
     background: none repeat scroll 0 0 #e6e6e8!important;
     color: #818181;
@@ -19,6 +18,23 @@ body {
 hr {
     border-color: rgba(220, 220, 220, 0.2);
 }
+.tooltip{
+position:relative!important;
+}
+
+.overlay-subgroups{
+display:none;
+}
+
+.center-text{
+text-align: center;
+}
+
+​div.group-dash-image:hover div.overlay
+{
+ display:block!important;   
+}​
+
 
 
 a, a.list-group-item {
@@ -45,28 +61,6 @@ h4 {
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
-
-// GENERAL STYLE OFF
-
-.tooltip{
-position:relative!important;
-}
-
-.overlay-subgroups{
-display:none;
-}
-
-.center-text{
-text-align: center;
-}
-
-​div.group-dash-image:hover div.overlay
-{
- display:block!important;   
-}​
-
-
-
 .label, .badge {
     font-family: 'Roboto';
 }
@@ -101,7 +95,7 @@ text-align: center;
 }
 #main-wrapper {
     height: 100%;
-    margin: 121px auto 0;
+  margin: 121px auto 0;
 
     padding: 0;
     background: none repeat scroll 0 0 #e6e6e8;
@@ -123,16 +117,13 @@ input.form-control:focus {
     box-shadow: none;
     transition: none 0s ease 0s ;
 }
-
-// MISCELLANEOUS ON
-
 .pad-15 {
     padding: 15px;
 }
 .pad-30 {
     padding: 30px;
 }
-.pad-5 { 
+.pad-5 {
     padding: 5px !important;
 }
 .pad-5 {
@@ -218,10 +209,6 @@ input.form-control:focus {
 .no-margin {
     margin: 0 !important;
 }
-
-// MISCELLANEOUS OFF
-
-
 .border-1-white
 {
     border:1px solid #fff;
@@ -274,116 +261,14 @@ input.form-control:focus {
     text-align: center;
     width: 20px;
 }
-.navbar {
-    min-height: 60px!important;
-    background: #2b2b2b;
-}
-.top-sub-nav {
-    min-height: 60px!important;
-    background: #2099d0;
-}
-.top-nav {
-    min-height: 60px!important;
-    background: #2b2b2b;
-}
 .push-right {
     float:right!important;
 }
 .push-left {
     float:left!important;
 }
-.nav > li > a:hover, .nav > li > a:focus{
-    background-color: #2099d0!important;
-    color: #fff;
-}
-.groups-link
-{
-    background: url("/assets/general/icon_groups.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
-}
-.groups-link:hover
-{
-    background: url("/assets/general/icon_groups_on.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
-}
-.text-groups-link {
-    margin-left: 25px;
-}
-.events-link
-{
-    background: url("/assets/general/icon_events.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
-}
-.events-link:hover
-{
-    background: url("/assets/general/icon_events_on.png") no-repeat scroll 15% center rgba(0, 0, 0, 0)!important;
-}
-.text-events-link {
-    margin-left: 25px;
-}
-.programs-link
-{
-    background-image: url(assets/images/general/icon_programs.png), url(assets/images/general/arrow.png);
-    background-position: 15% center , 85% center;
-    background-repeat: no-repeat;
-}
-.programs-link:hover
-{
-    background-image: url(assets/images/general/icon_programs_on.png), url(assets/images/general/arrow_on.png);
-    background-position: 15% center , 85% center;
-    background-repeat: no-repeat;
-}
-.text-programs-link {
 
-    margin-left: 25px;
-    margin-right: 25px;
-}
-.chat-link
-{
-   width: 50px;
-   background: url("assets/images/general/icon_chat.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.chat-link:hover
-{
-    background: url("assets/images/general/icon_chat_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.cup-link
-{
-   width: 50px;
-   background: url("assets/images/general/icon_cup.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.cup-link:hover
-{
-    background: url("assets/images/general/icon_cup_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.rectangle-link
-{
-   width: 50px;
-   background: url("assets/images/general/icon_rectangle.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.rectangle-link:hover
-{
-    background: url("assets/images/general/icon_rectangle_on.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
-}
-.user-link
-{
-    background: url("assets/images/general/arrow.png") no-repeat scroll 85% center rgba(0, 0, 0, 0)!important;
-}
-.user-link:hover
-{
-    background: url("assets/images/general/arrow_on.png") no-repeat scroll 85% center rgba(0, 0, 0, 0)!important;
-}
-.text-user-link {
-    margin-right: 25px;
-}
-.sub-bar li a {
-    border-bottom: none!important;
-    color:#fff;
-    text-align: left;
-}
-.sub-bar li a:hover, .sub-bar > li > a:focus {
-    border-bottom: 5px solid #fff!important
-}
-.profile-link {
-    height: 60px;
-}
+
 .grey-bg{
     background: #e1ecf1;
 }
@@ -409,8 +294,6 @@ input.form-control:focus {
 {
     color:#000!important;
 }
-
-
 
 // REWRITING JOAO - By Juan
  
