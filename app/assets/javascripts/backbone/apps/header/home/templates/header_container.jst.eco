@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand pad-0" href="/">
-                <img src="assets/general/alumnet_logo.png">
+                <img src="assets/general/alumnet_logo.png" alt="AlumNet">
             </a>
         </div>
         <nav class="top-bar collapse navbar-collapse">

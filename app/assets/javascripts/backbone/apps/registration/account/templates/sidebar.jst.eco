@@ -1,7 +1,7 @@
-<ul class="rounded-numbers-list">
-	<li class="--active"><span>1</span> Profile</li>
-	<li><span>2</span> Contact</li>
-	<li><span>3</span> Experience</li>
-	<li><span>4</span> Skills & Languages</li>
-	<li><span>5</span> Approval process</li>
+<ul class="roundedNumbersList">
+	<li class="roundedNumbersList__item--active"><span class="roundedNumbersList__number">1</span> Profile</li>
+	<li class="roundedNumbersList__item"><span class="roundedNumbersList__number">2</span> Contact</li>
+	<li class="roundedNumbersList__item"><span class="roundedNumbersList__number">3</span> Experience</li>
+	<li class="roundedNumbersList__item"><span class="roundedNumbersList__number">4</span> Skills & Languages</li>
+	<li class="roundedNumbersList__item"><span class="roundedNumbersList__number">5</span> Approval process</li>
 </ul>
