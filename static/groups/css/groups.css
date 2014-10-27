@@ -1,25 +1,4 @@
-.top-bar-groups-link {
-    height: 60px;
-    color: #2099d0;
-    font-family: "Roboto",sans-serif;
-    padding-top: 20px !important;
-}
-.sub-bar-groups-link {
-    height: 60px;
-    font-family: "Roboto",sans-serif;
-    color: #fff;
-    padding-top: 20px !important;
-}
-.sub-bar-groups-link {
-    height: 60px;
-    font-family: "Roboto",sans-serif;
-    color: #fff;
-    padding-top: 20px !important;
-}
-.top-bar-groups-profile-link {
 
-    padding-top: 9px !important;
-}
 .manage-group-box   {
     background: #ffffff;
     margin: 15px;
@@ -58,11 +37,7 @@
     top: 50px;
     width: 370px;
 }
-.new-group-button-li{
-    height: 60px;
-    width:230px;
 
-}
 .groups-container {
     width: 98% !important;
 }
@@ -113,17 +88,7 @@
 .blue-text{
  color: #2099d0;
 }
-.new-group-button{
-    height:40px;
-    background: none repeat scroll 0 0 #8fcce7!important;
-    color:#fff!important;
-    text-transform: uppercase;
-    font-weight: bold!important; 
-    border-color: #fff!important;
-}
-.new-group-button:hover{
-    background: none repeat scroll 0 0 #107daf!important;
-}
+
 .join-group-button {
     height: 37px;
 }
