@@ -3,6 +3,7 @@
     appRoutes:
       "register": "showRegister"
       "registration/profile": "createProfile"
+      "registration/contact": "createContact"
 
   API =
     showRegister: ->
@@ -12,6 +13,10 @@
     createProfile: ->            
       controller = new RegistrationApp.Profile.Controller      
       controller.createProfile()
+
+    createContact: ->            
+      controller = new RegistrationApp.Contact.Controller      
+      controller.createContact()
    
 
   AlumNet.on "registration:register",  ->
@@ -20,6 +25,10 @@
 
   AlumNet.on "registration:profile",  ->
     AlumNet.navigate("registration/profile")
+    API.createProfile()
+
+  AlumNet.on "registration:contact",  ->
+    AlumNet.navigate("registration/contact")
     API.createProfile()
 
 
