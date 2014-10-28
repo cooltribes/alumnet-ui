@@ -1,0 +1,7 @@
+<div style="margin-top: 130px">
+  <h2>
+    <a href="#" id="name"><%= @name %></a>
+  </h2>
+</div>
+<img class="group-dash-image pad-0" src="<%= @avatar.original %>">
+<%= @canEditInformation %>

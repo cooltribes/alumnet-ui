@@ -4,7 +4,8 @@ this.AlumNet.module('RegistrationApp', function(RegistrationApp, AlumNet, Backbo
   this.AlumNet = AlumNet;
   RegistrationApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "register": "showRegister"
+      "register": "showRegister",
+      "registration/profile": "createProfile"
     }
   });
   API = {
@@ -12,11 +13,20 @@ this.AlumNet.module('RegistrationApp', function(RegistrationApp, AlumNet, Backbo
       var controller;
       controller = new RegistrationApp.Account.Controller;
       return controller.showRegister();
+    },
+    createProfile: function() {
+      var controller;
+      controller = new RegistrationApp.Profile.Controller;
+      return controller.createProfile();
     }
   };
   AlumNet.on("registration:register", function() {
     AlumNet.navigate("register");
     return API.showRegister();
+  });
+  AlumNet.on("registration:profile", function() {
+    AlumNet.navigate("registration/profile");
+    return API.createProfile();
   });
   return AlumNet.addInitializer(function() {
     return new RegistrationApp.Router({

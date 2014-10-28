@@ -1,0 +1,10 @@
+<!-- <img class="group-dash-image pad-0" src="<%= @avatar.original %>"> -->
+
+<!-- <h2><%= @name %></h2> -->
+
+<h2>Description</h2>
+<%= @description %>
+
+<h3><%= @official %></h3>
+<h3>Created: <%= @created_at %> by <%= @creator.name %></h3>
+<%= @canEditInformation %>

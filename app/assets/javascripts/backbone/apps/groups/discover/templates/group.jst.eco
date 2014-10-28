@@ -27,7 +27,7 @@
       </div>
       <div class="col-md-6 pad-0 well-right">
         <div class="col-md-12 pad-10 well-box-text-right">
-          <h3 class="groups-name margin-bottom-5"><%= @name %></h3>
+          <h3 class="groups-name margin-bottom-5"><a href="#" class="js-group"> <%= @name %> </a></h3>
           <span class="group-status-icon-public pull-right">
           </span>
           <p class="groups_small_desc no-margin"><%= @description %></p>

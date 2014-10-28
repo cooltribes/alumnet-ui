@@ -5,7 +5,6 @@
     id: 'main-wrapper'
     className: 'container-fluid'
 
-
     regions:
       side_region: '#sidebar-region' #any name you want to give to the region, any css selector you have used inside the layout template
       form_region:   '#form-region' #any name you want to give to the region, any css selector you have used inside the layout template

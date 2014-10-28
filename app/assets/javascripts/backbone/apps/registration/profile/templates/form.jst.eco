@@ -4,25 +4,105 @@
 
         <div class="col-md-6">
             <div class="form-group">
+                <img src="http://placehold.it/100x100" alt="..." class="img-circle">
                 <label for="profilePicture">File input</label>
                 <input type="file" id="profilePicture">
                 <p class="help-block">Here goes the picture</p>
             </div>
         </div>
+        
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" placeholder="Enter name">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="inputLastName">Last name</label>
+                <input type="email" class="form-control" id="inputLastName" placeholder="Enter last name">
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label for="inputLastName">Born</label>
+                <input id="inputName" type="text" class="form-control" placeholder="DD">
+              </div>
+              <div class="col-xs-2">
+                <input type="text" class="form-control" placeholder="MM">
+              </div>
+              <div class="col-xs-2">
+                <input type="text" class="form-control" placeholder="YYYY">
+              </div>
             </div>
         </div>
-
-
-
     </div>
+
+    <!-- Birth ON-->                
+    <div class="col-md-12 border-bottom-1-grey">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="inputName">Birth Country</label>
+                <select class="form-control">
+                  <option>Venezuela</option>
+                  <option>España</option>
+                  <option>Francia</option>                      
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            
+            <div class="form-group">
+                <label for="inputName">Birth City</label>
+                <select class="form-control">
+                  <option>San Cristobal</option>
+                  <option>Caracas</option>
+                  <option>Valencia</option>                      
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- Birth OFF-->        
+
+
+    <!-- Residence ON-->        
+    <div class="col-md-12 border-bottom-1-grey">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="inputName">Country of residence</label>
+                <select class="form-control">
+                  <option>Venezuela</option>
+                  <option>España</option>
+                  <option>Francia</option>                      
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">                
+            <div class="form-group">
+                <label for="inputName">City of residence</label>
+                <select class="form-control">
+                  <option>San Cristobal</option>
+                  <option>Caracas</option>
+                  <option>Valencia</option>                      
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- Residence OFF-->        
+
+
+    <!-- -->
+    <!-- Buttons -->
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-1">
+              <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+            <div class="col-sm-1">
+              <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    
+
 </form>
 
 

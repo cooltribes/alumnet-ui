@@ -14,12 +14,17 @@ gem 'gon'
 gem 'backbone-on-rails'
 gem 'marionette-rails'
 gem 'httparty'
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+gem 'settingslogic'
 
 group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'foreman'
 end
 
 group :test, :development do
