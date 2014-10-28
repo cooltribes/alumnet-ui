@@ -13,6 +13,12 @@
         layout.header.show(header)
         layout.body.show(body)
 
+        body.on 'group:edit:description', (model, newValue) ->
+          model.save({description: newValue})
+
+        body.on 'group:edit:group_type', (model, newValue) ->
+          model.save({group_type: parseInt(newValue)})
+
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate
         console.log "Error on group fetch"

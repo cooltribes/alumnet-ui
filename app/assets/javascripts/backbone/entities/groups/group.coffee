@@ -5,7 +5,10 @@
 
     canEditInformation: ->
       membership = this.get('membership')
-      membership.edit_information == 1 ? true : false
+      if membership
+        membership.edit_information == 1 ? true : false
+      else
+        false
 
     validation:
       name:

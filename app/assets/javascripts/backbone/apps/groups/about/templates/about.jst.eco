@@ -1,10 +1,25 @@
-<!-- <img class="group-dash-image pad-0" src="<%= @avatar.original %>"> -->
+<h4>Description</h4>
+  <p>
+    <% if @canEditInformation: %>
+      <a href="#" id="description"><%= @description %></a>
+    <% else: %>
+      <%= @description %>
+    <% end %>
+  </p>
 
-<!-- <h2><%= @name %></h2> -->
+Group Type
+<p>
+  <% if @canEditInformation: %>
+    <a href="#" id="group_type"><%= @group_type %></a>
+  <% else: %>
+    <%= @group_type %>
+  <% end %>
+</p>
 
-<h2>Description</h2>
-<%= @description %>
+<p>
+  Official => <%= @official %>
+</p>
 
-<h3><%= @official %></h3>
-<h3>Created: <%= @created_at %> by <%= @creator.name %></h3>
-<%= @canEditInformation %>
+<p>
+  Created: <%= moment(@created_at).format('D MMM YYYY') %> by <%= @creator.name %>
+</p>

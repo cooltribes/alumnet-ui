@@ -10,12 +10,12 @@
       @ui.groupName.editable
         type: "text"
         pk: model.id
-        title: "Ente Name"
+        title: "Enter the name of Group"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
         success: (response, newValue)->
-          alert newValue
-
-
-
+          model.save({'name': newValue})
 
 
   class Shared.Layout extends Marionette.LayoutView
