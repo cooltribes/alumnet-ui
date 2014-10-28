@@ -8,6 +8,8 @@
 //= require_tree .
 
 $(function() {
+  //temp
+  $.fn.editable.defaults.mode = 'inline';
   options = {
     api_endpoint: gon.api_endpoint,
     temp_token: gon.temp_token

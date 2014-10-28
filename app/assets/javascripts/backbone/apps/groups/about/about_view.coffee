@@ -4,9 +4,31 @@
     template: 'groups/about/templates/about'
     templateHelpers: ->
       canEditInformation: this.model.canEditInformation()
+    ui:
+      'groupDescription':'#description'
+      'groupType': '#group_type'
+    onRender: ->
+      view = this
+      @ui.groupDescription.editable
+        type: "textarea"
+        pk: view.model.id
+        title: "Enter the description of Group"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          view.trigger "group:edit:description", view.model, newValue
 
-    events:
-      'click h2': 'test'
-    test: (e)->
-      text = $(e.currentTarget).text()
-      this.trigger('about:edit', text)
+      @ui.groupType.editable
+        type: "select"
+        pk: view.model.id
+        title: "Enter the type of Group"
+        source: [
+          {value: 0, text: "Open"}
+          {value: 1, text: "Closed"}
+        ]
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          view.trigger "group:edit:group_type", view.model, newValue
