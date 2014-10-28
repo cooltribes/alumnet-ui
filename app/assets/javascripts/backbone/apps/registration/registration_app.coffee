@@ -27,4 +27,4 @@
     new RegistrationApp.Router
       controller: API
 
-  
+  # last stable
