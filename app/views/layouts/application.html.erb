@@ -9,23 +9,11 @@
   <title>AlumnetUi</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <script>
-    $(document).ready(function() {
-      $('div.group-image-container').hover(function() {
-        $(this).children('.overlay-subgroups').fadeIn();
-      }, function() {
-        $(this).children('.overlay-subgroups').fadeOut();
-      });
-    });
-    </script>
   <div id="header-region"></div>
   <div id="main-region">
     <%= yield %>
