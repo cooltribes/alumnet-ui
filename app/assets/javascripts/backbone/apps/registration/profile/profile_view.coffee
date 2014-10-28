@@ -1,15 +1,5 @@
 @AlumNet.module 'RegistrationApp.Profile', (Profile, @AlumNet, Backbone, Marionette, $, _) ->
-
-  class Profile.Layout extends Marionette.LayoutView
-    template: 'registration/profile/templates/layout'
-    id: 'main-wrapper'
-    className: 'col-md-12'
-
-    regions:
-      side_region: '#sidebar-region' #any name you want to give to the region, any css selector you have used inside the layout template
-      form_region:   '#profile-form-region' #any name you want to give to the region, any css selector you have used inside the layout template
-        
-
+ 
   class Profile.Form extends Marionette.ItemView
     template: 'registration/profile/templates/form'
     className: 'col-md-12'
