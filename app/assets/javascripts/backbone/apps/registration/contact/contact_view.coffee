@@ -2,7 +2,7 @@
  
   class Contact.Form extends Marionette.ItemView
     template: 'registration/contact/templates/form'
-    className: 'col-md-12'
+    className: 'row'
 
     initialize: ->
       ###Backbone.Validation.bind this,
