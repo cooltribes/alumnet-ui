@@ -21,6 +21,7 @@
 
       @ui.groupType.editable
         type: "select"
+        value: view.model.get('group_type').value
         pk: view.model.id
         title: "Enter the type of Group"
         source: [

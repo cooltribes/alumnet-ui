@@ -10,9 +10,9 @@
 Group Type
 <p>
   <% if @canEditInformation: %>
-    <a href="#" id="group_type"><%= @group_type %></a>
+    <a href="#" id="group_type"><%= @group_type.text %></a>
   <% else: %>
-    <%= @group_type %>
+    <%= @group_type.text %>
   <% end %>
 </p>
 
