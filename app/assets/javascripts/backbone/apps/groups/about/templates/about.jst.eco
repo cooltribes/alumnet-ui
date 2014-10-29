@@ -1,25 +1,25 @@
-<h4>Description</h4>
-  <p>
-    <% if @canEditInformation: %>
-      <a href="#" id="description"><%= @description %></a>
-    <% else: %>
-      <%= @description %>
-    <% end %>
-  </p>
-
-Group Type
-<p>
-  <% if @canEditInformation: %>
-    <a href="#" id="group_type"><%= @group_type.text %></a>
-  <% else: %>
-    <%= @group_type.text %>
-  <% end %>
-</p>
-
-<p>
+<div>
   Official => <%= @official %>
-</p>
+</div>
 
-<p>
-  Created: <%= moment(@created_at).format('D MMM YYYY') %> by <%= @creator.name %>
-</p>
+<div class="about-container">
+  <h3>Description</h3>
+  <a href="#" id="description"><%= @description %></a>
+  <% if @canEditInformation: %>
+    <a href="#" id="js-edit-description">edit</a>
+  <% end %>
+</div>
+
+<div class="about-container">
+  <h3>Type</h3>
+  <a href="#" id="group_type"><%= @group_type.text %></a>
+  <% if @canEditInformation: %>
+    <a href="#" id="js-edit-group-type">edit</a>
+  <% end %>
+</div>
+
+<div class="about-container">
+  <h3>
+    Created: <%= moment(@created_at).format('D MMM YYYY') %> by <%= @creator.name %>
+  </h3>
+</div>
