@@ -3,8 +3,7 @@
   class Account.Layout extends Marionette.LayoutView
     template: 'registration/account/templates/layout'
     id: 'main-wrapper'
-    className: 'col-md-12'
-      
+    className: 'container-fluid'
 
     regions:
       side_region: '#sidebar-region' #any name you want to give to the region, any css selector you have used inside the layout template

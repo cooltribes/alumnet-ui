@@ -7,9 +7,9 @@
 
   initializeMenu = ->
     Entities.items = new Entities.MenuItemCollection [
-      {caption: "Groups", "iconClass": "groups-link"},
-      {caption: "Events", "iconClass": "events-link"},
-      {caption: "Programs", "iconClass": "programs-link"},
+      {caption: "Groups", "iconClass": "icon-entypo-share"},
+      {caption: "Events", "iconClass": "ico-calendar"},
+      {caption: "Programs", "iconClass": "ico-give-help"},
     ]
 
   API =

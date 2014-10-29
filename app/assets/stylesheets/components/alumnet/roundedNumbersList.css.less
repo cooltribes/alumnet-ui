@@ -1,0 +1,36 @@
+/***
+
+COMPONENT NAME: Rounded Numbers List
+DESCRIPTION: Creates a vertical list of numbers where the numbers are within circles 
+
+***/
+
+@import 'conf/conf.css.less';
+
+.roundedNumbersList{
+	color: @dim-gray;
+	&__item{
+		&--active{
+			color:@blue;
+			.roundedNumbersList__number{
+				border-color: transparent;
+				color:@white;
+				background-color: @blue;
+			}
+		}
+	}
+	
+	&__number{
+		font-size: 2em;
+		border: 2px solid @dim-gray;
+		height: 2em;
+		width: 2em;
+		line-height: 1.7em;
+		border-radius:2em;
+		text-align: center; 
+		display: inline-block;
+		margin-bottom: .2em;
+		color: @dim-gray;
+		margin-right: .2em;
+	}
+} 

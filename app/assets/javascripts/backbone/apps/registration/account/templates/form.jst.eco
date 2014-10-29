@@ -1,1 +1,43 @@
-Some html code here
+<form class="form" role="form">
+<h1>Account</h1>
+
+	<div class="form-group">
+		<label for="inputEmail" class="control-label">Email</label>
+			<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+		
+	</div>
+	<div class="form-group">
+		<label for="inputPassword" class="control-label">Password</label>
+		
+		<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+		
+	</div>
+	
+	<div class="form-group">
+		<label for="inputConfirmPassword" class="control-label">Password</label>
+		
+		<input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+		
+	</div>
+	
+	<div class="form-group">
+		<hr>
+		<div class="text-right"><a href="#" class="btn btn-default" title="Cancel">Cancel</a>
+				<button type="submit" class="btn btn-primary">Next <span class="glyphicon glyphicon-chevron-right"></span></button></div>
+		
+	</div>
+</form>
+
+
+<div class='well'>
+
+	<i class="ico-get-help"></i>
+	<i class="icon-entypo-search"></i>
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
