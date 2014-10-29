@@ -4,6 +4,7 @@
       "register": "showRegister"
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
+      "registration/experience": "createExperience"
 
   API =
     showRegister: ->
@@ -15,6 +16,9 @@
       controller.createProfile()
 
     createContact: ->            
+      controller = new RegistrationApp.Contact.Controller      
+      controller.createContact()
+    createExperience: ->            
       controller = new RegistrationApp.Contact.Controller      
       controller.createContact()
    
