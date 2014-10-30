@@ -7,24 +7,18 @@ hr {
     border-color: rgba(220, 220, 220, 0.2);
 }
 .tooltip{
-position:relative!important;
+    position:relative!important;
 }
-
 .overlay-subgroups{
-display:none;
+    display:none;
 }
-
 .center-text{
-text-align: center;
+    text-align: center;
 }
-
 ​div.group-dash-image:hover div.overlay
 {
- display:block!important;   
+    display:block!important;   
 }​
-
-
-
 a, a.list-group-item {
     color: #2a76db;
 }
@@ -42,7 +36,6 @@ h3 {
     font-size: 12pt;
     font-weight: 800;
     letter-spacing: 1.4px;
-
 }
 h4 {
     font-size: 16px;
@@ -70,7 +63,6 @@ h4 {
 .text-muted {
     color: rgba(110, 110, 110, 0.6);
 }
-
 #wrapper {
     display: inline-block;
     height: 100%;
@@ -83,8 +75,7 @@ h4 {
 }
 #main-wrapper {
     height: 100%;
-  margin: 121px auto 0;
-
+    margin: 121px auto 0;
     padding: 0;
     background: none repeat scroll 0 0 #e6e6e8;
 }
@@ -312,8 +303,8 @@ input.form-control:focus {
 }
 .chat-link
 {
-   width: 50px;
-   background: url("../images/general/icon_chat.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+    width: 50px;
+    background: url("../images/general/icon_chat.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
 }
 .chat-link:hover
 {
@@ -321,8 +312,8 @@ input.form-control:focus {
 }
 .cup-link
 {
-   width: 50px;
-   background: url("../images/general/icon_cup.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+    width: 50px;
+    background: url("../images/general/icon_cup.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
 }
 .cup-link:hover
 {
@@ -330,8 +321,8 @@ input.form-control:focus {
 }
 .rectangle-link
 {
-   width: 50px;
-   background: url("../images/general/icon_rectangle.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
+    width: 50px;
+    background: url("../images/general/icon_rectangle.png") no-repeat scroll center center rgba(0, 0, 0, 0)!important;
 }
 .rectangle-link:hover
 {

@@ -1,3 +1,8 @@
+
+.top-bar-groups-profile-link {
+
+    padding-top: 9px !important;
+}
 .top-bar-groups-link {
     height: 60px;
     color: #2099d0;
@@ -16,15 +21,25 @@
     color: #fff;
     padding-top: 20px !important;
 }
-.top-bar-groups-profile-link {
+.manage-group-name {
+    font-family: "Roboto",sans-serif!important;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+}
 
-    padding-top: 9px !important;
+.manage-groups-small-info-boxes {
+    height: 52px;
+    background: none repeat scroll 0 0 #e1ecf1;
+    border: 1px solid #fff;
+    padding-left: 6px;
+    padding-top: 11px;
 }
 .manage-group-box   {
-background: #ffffff;
+    background: #ffffff;
     margin: 15px;
-     width: 47% !important;
-       text-align: left;
+    width: 47% !important;
+    text-align: left;
 }
 .manage-group-image-container
 {
@@ -34,7 +49,7 @@ background: #ffffff;
 }
 .timeline-group-name {
     color: #fff !important;
-    font-family: "Roboto" !important;
+    font-family: "Roboto",sans-serif!important;
     font-size: 26px !important;
     margin-bottom: 10px;
     margin-left: 10px !important;
@@ -48,7 +63,93 @@ background: #ffffff;
     position: absolute;
     top: -20px;
 }
+.timeline-main-settings {
+    float: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 1000px;
+}
+.timeline-main-container{
+    text-align: left;
+}
+.timeline-settings-official-group{
 
+}
+
+.timeline-main-posts{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+.timeline-main-about{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+.timeline {
+    text-align: center;
+}
+.timeline-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    float: left;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}
+.timeline-half-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    width: 537px;
+    float:left;
+
+}
+.timeline-menu {
+    float: none;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.timeline-menu li{
+    display: inline;
+    height: 60px;
+
+}
+.timeline-menu li a {
+    color: #677f8a;
+    font-family: "Roboto",sans-serif!important;
+    font-size: 16px;
+    font-weight: 300;
+    height: 60px;
+    padding-top: 15px !important;
+}
+.timeline-menu li a:hover{
+    background: #2099d0;
+}
+.timeline-main-about h3 {
+    font-size: 23px;
+    font-weight: 400;
+}
+.timeline-link
+{
+    height: 60px;
+}
+.timeline-link:hover
+{
+    height: 60px;
+}
+.timeline-top-bar
+{
+    height:60px;
+    background:#fff;
+}
 .cover-group-name {
     background: none repeat scroll 0 0 #2b2b2b;
     height: 60px;
@@ -66,6 +167,9 @@ background: #ffffff;
 .groups-container {
     width: 98% !important;
 }
+.groups-home {
+    margin-top: 100px;
+}
 .well{
     float:left!important;
     background: none repeat scroll 0 0 #fff!important;
@@ -75,16 +179,13 @@ background: #ffffff;
 }
 .invite-box-itself{
     background: #fff;
-
-
 }
 .box {
     float: left;
     height: 245px;
     margin: 10px;
     width: 395px!important;
-     text-align: left;
-
+    text-align: left;
 }
 .invite-box {
     background: none repeat scroll 0 0 #fff;
@@ -94,13 +195,13 @@ background: #ffffff;
     width: 375px !important;
 }
 .invite-member-name {
-    font-family: "roboto";
+    font-family: "Roboto",sans-serif!important;
     font-size: 20px;
     font-weight: 300;
 }
 
 .member-position {
-    font-family: "roboto";
+    font-family: "Roboto",sans-serif!important;
     font-size: 12px;
     font-weight: 300;
 }
@@ -111,7 +212,7 @@ background: #ffffff;
     height: 100px;
 }
 .blue-text{
-   color: #2099d0;
+    color: #2099d0;
 }
 .new-group-button{
     height:40px;
@@ -151,36 +252,18 @@ background: #ffffff;
 .grey-bg.col-md-12.border-1-white {
     height: 45px;
 }
-.manage-group-name {
-    font-family: "roboto";
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 10px;
-}
-
-.manage-groups-small-info-boxes {
-    height: 52px;
-     background: none repeat scroll 0 0 #e1ecf1;
-      border: 1px solid #fff;
-   padding-left: 6px;
-    padding-top: 11px;
-}
 .home-groups-small-info-boxes {
     height: 37px;
-     background: none repeat scroll 0 0 #e1ecf1;
-      border: 1px solid #fff;
-  padding-left: 5px;
+    background: none repeat scroll 0 0 #e1ecf1;
+    border: 1px solid #fff;
+    padding-left: 5px;
     padding-top: 5px;
 }
-
 .inline{
     display:inline!important;
 }
 .add-group {
     margin-top: 40px;
-}
-.groups-home {
-    margin-top: 100px;
 }
 .add-members {
     margin-top: 40px;
@@ -189,8 +272,6 @@ background: #ffffff;
     margin-left: -20px;
     padding-left: 5px;
     float:left;
-
-
 }
 .main-invite-boxes-area {
     margin-left: auto;
@@ -217,7 +298,7 @@ background: #ffffff;
     border-style: solid none solid solid !important;
     border-width: 1px medium 1px 1px !important;
     color: #666;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif!important;
     font-size: 100%;
     height: 70px !important;
     padding: 20px !important;
@@ -229,7 +310,7 @@ background: #ffffff;
     border-style: solid none solid solid !important;
     border-width: 1px medium 1px 1px !important;
     color: #666;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif!important;
     font-size: 100%;
     height: 50px !important;
     padding: 5px !important;
@@ -245,11 +326,11 @@ background: #ffffff;
     border-left: medium none !important;
     border-radius: 0 !important;
     border-right: 1px solid #c6c6c6 !important;
- height: 50px;
+    height: 50px;
 }
 
 .groups-right-sort-menu {
-    font-family: "roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-size: 90%;
     margin-left: 0 !important;
     padding-left: 0;
@@ -265,7 +346,7 @@ background: #ffffff;
     color: #333;
 }
 .groups-name {
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-size: 19px;
     font-weight: 400;
     margin-top: 0px;
@@ -276,14 +357,14 @@ background: #ffffff;
 }
 .groups_small_desc {
     font-size: 13px;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     float:left;
 }
 .group-box-date
 {
     color:#bbb;
     text-align: left;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-size: 13px;
 }
 .group-box-last-post
@@ -291,20 +372,20 @@ background: #ffffff;
     color:#bbb;
     font-size: 13px;
     text-align: left;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
 }
 .group-box-members
 {
     color:#bbb;
     font-size: 13px;
     text-align: left;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
 }
 
 .group-box-members-friends {
     color: #bbb;
     float: left;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-size: 13px;
     text-align: left;
 }
@@ -314,7 +395,7 @@ background: #ffffff;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
 }
 .invite-member {
     color: #fff;
@@ -322,19 +403,19 @@ background: #ffffff;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
 }
 .adv-search-link {
     text-decoration:none;
     color:#2099d0;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-weight: 300;
 }
 .adv-search-link a:hover
 {
     text-decoration:none;
     color:#2099d0;
-    font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif!important;
     font-weight: 300;
 }
 .search-icon-blue
@@ -368,7 +449,7 @@ background: #ffffff;
 }
 .sub-groups-container ul {
     color: #fff;
-    font-family: "roboto";
+    font-family: "Roboto",sans-serif!important;
     list-style: none outside none;
     padding-left: 0px;
 
@@ -399,15 +480,6 @@ background: #ffffff;
     margin-left: auto !important;
     margin-right: auto !important;
 }
-.timeline-main-settings {
-    float: none;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    min-height: 1000px;
-}
-.timeline-main-container{
-text-align: left;
-}
 
 .radios-ul {
     display: inline;
@@ -429,29 +501,7 @@ text-align: left;
     display: inline;
     list-style: none outside none;
     height: 70px;
-  
-         border-bottom: 3px solid #2099d0;
-}
-
-.timeline-settings-official-group{
-
-}
-
-
-
-.timeline-main-posts{
-    display: inline-block;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: left;
-}
-.timeline-main-about{
-    display: inline-block;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: left;
+    border-bottom: 3px solid #2099d0;
 }
 .add-cover-photo
 {
@@ -463,9 +513,7 @@ text-align: left;
 .cover-photo-link > img {
     width: 100% !important;
 }
-.timeline {
-    text-align: center;
-}
+
 .new-post {
     background: none repeat scroll 0 0 #f4f4f4;
     height: auto;
@@ -473,23 +521,7 @@ text-align: left;
     padding: 20px;
     width: 522px;
 }
-.timeline-box {
-    background: none repeat scroll 0 0 #f4f4f4;
-    float: left;
-    height: auto;
-    margin: 20px;
-    padding: 20px;
-    width: 100%;
-}
-.timeline-half-box {
-    background: none repeat scroll 0 0 #f4f4f4;
-    height: auto;
-    margin: 20px;
-    padding: 20px;
-   width: 537px;
-     float:left;
 
-}
 .post{
    background: none repeat scroll 0 0 #f4f4f4;
    padding: 20px;
@@ -497,7 +529,6 @@ text-align: left;
    width: 522px;
    height: auto;
 }
-
 .text-small{
     font-size:11px;
 }
@@ -519,52 +550,9 @@ text-align: left;
 {
 
 }
-.timeline-menu {
-    float: none;
-    height: 60px;
-    margin-left: auto;
-    margin-right: auto;
 
-}
-.timeline-menu li{
-    display: inline;
-    height: 60px;
 
-}
-.timeline-menu li a {
-    color: #677f8a;
-    font-family: "roboto";
-    font-size: 16px;
-    font-weight: 300;
-    height: 60px;
- padding-top: 15px !important;
-}
-.timeline-menu li a:hover{
-    background: #2099d0;
-}
-.timeline-main-about h3 {
-    font-size: 23px;
-    font-weight: 400;
-}
-.timeline-link
-{
-   height: 60px;
-}
-.timeline-link:hover
-{
-    height: 60px;
-}
-.timeline-top-bar
-{
-    height:60px;
 
-    background:#fff;
-}
-.add-members-top
-
-{
-
-}
 
 
 @media (min-width: 810px) {
@@ -578,4 +566,3 @@ text-align: left;
     .grid-wrapper {width: 1620px;} /* 4 columns */
     .box {margin: 2px!important;}  
 }
-
