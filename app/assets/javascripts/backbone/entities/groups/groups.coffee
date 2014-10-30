@@ -3,6 +3,9 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/groups'
 
+    initialize: ()->
+      @posts = new Entities.GroupPostCollection({ group_id: @id })
+
     canEditInformation: ->
       membership = this.get('membership')
       if membership
@@ -20,10 +23,10 @@
 
 
   class Entities.GroupCollection extends Backbone.Collection
+    model: Entities.Group
+
     url: ->
       AlumNet.api_endpoint + '/groups'
-
-    model: Entities.Group
 
   initializeGroups = ->
     Entities.groups = new Entities.GroupCollection
