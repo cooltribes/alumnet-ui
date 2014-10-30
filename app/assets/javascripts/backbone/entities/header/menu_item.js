@@ -32,6 +32,9 @@ this.AlumNet.module('Entities', function(Entities, AlumNet, Backbone, Marionette
   initializeMenu = function() {
     return Entities.items = new Entities.MenuItemCollection([
       {
+        caption: "Alumni",
+        "iconClass": "icon-entypo-user"
+      }, {
         caption: "Groups",
         "iconClass": "icon-entypo-share"
       }, {

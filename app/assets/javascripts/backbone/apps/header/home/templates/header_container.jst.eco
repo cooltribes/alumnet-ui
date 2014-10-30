@@ -1,55 +1,69 @@
-<header id="header" class="navbar navbar-fixed-top">
-    <div class="container-fluid top-nav">  <!-- Top Bar -->
+<header id="header" class="navTopBar navbar  navbar-fixed-top">
+    <div class="container-fluid">  <!-- Top Bar -->
     <div class="navbar-header col-md-2">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand pad-0" href="/">
+        <a class="navTopBar__left__brand navbar-brand " href="/">
             <img src="assets/general/alumnet_logo.png" alt="AlumNet">
         </a>
     </div>
-    <nav class="top-bar collapse navbar-collapse ">
-        <ul class="nav navbar-nav js-left-menu">  <!-- Left Menu top -->
-        
-        
-    </ul>
-    <ul class="nav navbar-nav push-right js-right-menu"> <!-- Right menu top -->
-    <li class="pad-0">
-        <a class="top-bar-groups-link cup-link">
-        </a>
-    </li>
-    <li class="pad-0">
-        <a class="top-bar-groups-link rectangle-link">
-        </a>
-    </li>
-    <li class="pad-0">
-        <a class="top-bar-groups-link chat-link">
-        </a>
-    </li>
-    <li class="pad-0">
-        <a class="top-bar-groups-link user-link dropdown-toggle" href="#registration/profile" data-toggle="dropdown">
-            <span class="text-user-link">
-            Stephen Fry
-            </span>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+    <nav class="navTopBar__left collapse navbar-collapse ">
+        <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
+            <!-- Left Menu top -->
+            
+            
         </ul>
-    </li>
-    <li class="pad-0">
-        <a class="top-bar-groups-profile-link pad-5">
-            <img src="http://placesheen.com/40/40" alt="User's name" width="40" height="40" class="img-circle">
-        </a>
-    </li>
-</ul>
-</nav>
+        <ul class="navTopBar__right__list nav navbar-nav  push-right js-right-menu">
+            <!-- Right menu top -->
+            
+            <li>
+                <a href="#" class="navTopBar__right__list__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+                    <span class="navTopBar__right__list__item__icon icon-entypo-layout"></span>
+                </a>
+                <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 1</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 2</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 3</a></li>
+                      <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">See all</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="navTopBar__right__list__item dropdown-toggle" title="Messages" data-toggle="dropdown">
+                    <span class="navTopBar__right__list__item__icon ico-chat "></span>
+                </a>
+                <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 1</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 2</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 3</a></li>
+                    <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">See all messages</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="navTopBar__right__list__item navTopBar__right__list__item--becomeAMember">
+                    Become a member <img src="http://placesheen.com/40/40" alt="User's name" width="40" height="40" class="img-circle">
+                </a>
+            </li>
+            <li>
+                <a class="navTopBar__right__list__item--arrow dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class=" icon-entypo-down-open"></span>
+                </a>
+                <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </nav>
 </div>
-<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
+<div class="container-fluid top-sub-nav ">  <!-- Sub Bar -->
 </div>
 </header>
