@@ -11,6 +11,12 @@
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
         layout.body.show(body)
+        body.on "form:submit", (data)->
+          post = AlumNet.request("post:group:new", group.id)
+          post.set(data)
+          post.save()
+          group.posts.fetch({reset: true})
+
 
 
       group.on 'find:error', (response, options)->
