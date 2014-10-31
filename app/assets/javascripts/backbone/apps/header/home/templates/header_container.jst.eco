@@ -21,7 +21,7 @@
             
             <li>
                 <a href="#" class="navTopBar__right__list__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
-                    <span class="navTopBar__right__list__item__icon icon-entypo-layout"></span>
+                    <span class="navTopBar__right__list__item__icon navTopBar__right__list__item__icon--notifications icon-entypo-bell"></span>
                 </a>
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 1</a></li>
