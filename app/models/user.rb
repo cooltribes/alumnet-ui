@@ -1,4 +1,4 @@
 class User
   include ActiveModel::Model
-  attr_accessor :id, :email, :api_token
+  attr_accessor :id, :email, :api_token, :name
 end

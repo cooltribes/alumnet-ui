@@ -18,13 +18,21 @@
     Entities.users = new Entities.UserCollection
 
   API =
+    getCurrentUserToken:  ->
+      if gon.current_user
+        gon.current_user.api_token
+      else
+        null
+
     getUserEntities: (querySearch)->
       initializeUsers() if Entities.users == undefined
       Entities.users.fetch
         data: querySearch
       Entities.users
+
     getNewUser: ->
       Entities.user = new Entities.User
+
     createInvitation: (attrs)->
       invitation = new Entities.Invitation(attrs)
       invitation.save attrs,
@@ -33,6 +41,9 @@
         success: (model, response, options) ->
           model.trigger('save:success', response, options)
       invitation
+
+  AlumNet.reqres.setHandler 'user:token', ->
+    API.getCurrentUserToken()
 
   AlumNet.reqres.setHandler 'user:invitation:send', (attrs) ->
     API.createInvitation(attrs)
