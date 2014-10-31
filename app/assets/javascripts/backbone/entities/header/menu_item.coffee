@@ -7,6 +7,7 @@
 
   initializeMenu = ->
     Entities.items = new Entities.MenuItemCollection [
+      {caption: "Alumni", "iconClass": "icon-entypo-user"},
       {caption: "Groups", "iconClass": "icon-entypo-share"},
       {caption: "Events", "iconClass": "ico-calendar"},
       {caption: "Programs", "iconClass": "ico-give-help"},
