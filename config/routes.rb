@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  get '/sign_in', to: 'auth#login', as: :login
+    
   post '/sign_in', to: 'auth#sign_in', as: :sign_in
   post '/sign_out', to: 'auth#sign_out', as: :sign_out
 
