@@ -1,8 +1,7 @@
 /*
  *= require bootstrapImporter
+ *= require_tree ./components 
  *= require_tree ./libs
- *= require all
  *= require_tree ./apps
- *= require_tree ./components
  *= require_self
  */
