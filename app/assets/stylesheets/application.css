@@ -1,14 +1,8 @@
 /*
- *= require libs/bootstrap3/bootstrap
- *= require libs/datetimepicker
- *= require libs/growl
- *= require libs/jquery-jvectormap
- *= require libs/select2
- *= require libs/masonry
- *= require libs/nprogress
+ *= require bootstrapImporter
+ *= require_tree ./libs
  *= require all
  *= require_tree ./apps
  *= require_tree ./components
  *= require_self
-
  */

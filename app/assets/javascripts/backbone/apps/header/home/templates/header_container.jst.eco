@@ -12,9 +12,9 @@
     </div>
     <nav class="top-bar collapse navbar-collapse ">
         <ul class="nav navbar-nav js-left-menu">  <!-- Left Menu top -->
-        
-        
-    </ul>
+            
+            
+        </ul>
     <ul class="nav navbar-nav push-right js-right-menu"> <!-- Right menu top -->
     <li class="pad-0">
         <a class="top-bar-groups-link cup-link">

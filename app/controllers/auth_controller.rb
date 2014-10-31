@@ -14,6 +14,11 @@ class AuthController < ApplicationController
     redirect root_path
   end
 
+
+  def login
+    
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :password)
