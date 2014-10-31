@@ -1,25 +1,7 @@
 
-.manage-group-box   {
-    background: #ffffff;
-    margin: 15px;
-    width: 47% !important;
-    text-align: left;
-}
-.manage-group-image-container
-{
-    width: 110px;
-}
-.manage-groups-small-search-box {
-}
-
-
-
 .invite-box-itself{
     background: #fff;
-
-
 }
-
 .invite-box {
     background: none repeat scroll 0 0 #fff;
     float: left;
@@ -44,14 +26,6 @@
     color: #fff;
     height: 100px;
 }
-.blue-text{
- color: #2099d0;
-}
-
-
-.leave-group-button {
-    height: 104px;
-}
 .join-group-button:hover {
     background:#107daf;
 }
@@ -73,22 +47,6 @@
 .grey-bg.col-md-12.border-1-white {
     height: 45px;
 }
-.manage-group-name {
-    font-family: "roboto";
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 10px;
-}
-
-.manage-groups-small-info-boxes {
-    height: 52px;
-    background: none repeat scroll 0 0 #e1ecf1;
-    border: 1px solid #fff;
-    padding-left: 6px;
-    padding-top: 11px;
-}
-
-
 .inline{
     display:inline!important;
 }
@@ -101,19 +59,11 @@
 .add-members {
     margin-top: 40px;
 }
-.like-face-small {
-    margin-left: -20px;
-    padding-left: 5px;
-    float:left;
-
-
-}
 .main-invite-boxes-area {
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
 }
-
 .grid-wrapper {
     margin: 0 auto;
     width: 425px;   /* 1 column */
@@ -158,10 +108,6 @@
     border-right: 1px solid #c6c6c6 !important;
     height: 50px;
 }
-
-
-
-
 .invite-member {
     color: #fff;
     font-size: 85%;
@@ -169,19 +115,6 @@
     text-align: center;
     text-transform: uppercase;
     font-family: "Roboto",sans-serif;
-}
-.adv-search-link {
-    text-decoration:none;
-    color:#2099d0;
-    font-family: "Roboto",sans-serif;
-    font-weight: 300;
-}
-.adv-search-link a:hover
-{
-    text-decoration:none;
-    color:#2099d0;
-    font-family: "Roboto",sans-serif;
-    font-weight: 300;
 }
 .search-icon-blue
 {
@@ -266,43 +199,8 @@
     text-align: left;
 
 }
-.timeline-photos-menu-container {
 
 
-
-}
-.timeline-photos-menu {
-    display: inline;
-    float: left;
-    height: 40px;
-    margin-top: 10px;
-}
-
-.timeline-photos-menu li {
-
-    display: inline;
-}
-
-.timeline-photos-menu li a {
-    color: #555;
-    display: inline;
-    font-family: "roboto";
-    font-size: 23px;
-    font-weight: 300;
-    padding: 15px;
-}
-.timeline-photos-menu li a:hover {
-    border-bottom: 3px solid #000;
-}
-.photo-box {
-    float: left;
-    margin: 10px;
-    width: 300px;
-      margin: 10px ;
-}
-.photo-box > a {
-    color: #555;
-}
 .radios-ul {
     display: inline;
     list-style: none outside none;
@@ -330,16 +228,6 @@
 .timeline-settings-official-group{
 
 }
-
-
-
-.timeline-main-posts{
-    display: inline-block;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: left;
-}
 .timeline-main-about{
     display: inline-block;
     float: none !important;
@@ -357,16 +245,8 @@
 .cover-photo-link > img {
     width: 100% !important;
 }
-.timeline {
-    text-align: center;
-}
-.new-post {
-    background: none repeat scroll 0 0 #f4f4f4;
-    height: auto;
-    margin: 20px;
-    padding: 20px;
-    width: 522px;
-}
+
+
 .timeline-box {
     background: none repeat scroll 0 0 #f4f4f4;
     float: left;
@@ -382,11 +262,6 @@
     padding: 15px;
    width: 512px;
     float:left;
-
-}
-.timeline-half-box h3 {
-margin-top:0;
-margin-bottom:5px;
 }
 .post{
  background: none repeat scroll 0 0 #f4f4f4;
@@ -394,10 +269,6 @@ margin-bottom:5px;
  margin: 20px;
  width: 522px;
  height: auto;
-}
-
-.text-small{
-    font-size:11px;
 }
 .insert-group-name {
     height: 85px;
@@ -455,17 +326,6 @@ margin-bottom:5px;
     border-radius: 0;
     color: #fff;
 }
-
-.timeline-main-about h3 {
-    font-size: 23px;
-    font-weight: 400;
-}
-
-
 .add-members-top
-
 {
-
 }
-
-

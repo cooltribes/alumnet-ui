@@ -35,20 +35,7 @@ a:hover, a:focus {
     text-decoration: none!important;
     cursor:pointer;
 }
-h2 {
-    text-transform: uppercase;
-}
-h3 {
-    font-size: 12pt;
-    font-weight: 800;
-    letter-spacing: 1.4px;
 
-}
-h4 {
-    font-size: 16px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
 .label, .badge {
     font-family: 'Roboto';
 }
@@ -92,12 +79,7 @@ footer {
     height: 50px;
     margin-top: 30px;
 }
-a {
-    outline: 0 none;
-}
-a:hover, a:focus {
-    text-decoration: none;
-}
+
 textarea {
     resize: none;
 }
