@@ -1,25 +1,22 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
-  class Entities.GroupPost extends Backbone.Model
-    urlRoot: ->
-      AlumNet.api_endpoint + '/groups/' + @group_id + '/posts'
-    initialize: (options) ->
-      @group_id = options.group_id
+  class Entities.Post extends Backbone.Model
+
+    initialize: ->
+      @comments = new Entities.PostCollection
+      @comments.url = AlumNet.api_endpoint + '/posts/' + @id + '/comments'
+
     validation:
       body:
         required: true
 
-  class Entities.GroupPostCollection extends Backbone.Collection
-    model: Entities.GroupPost
-
-    url: ->
-      AlumNet.api_endpoint + '/groups/' + @group_id + '/posts'
-    initialize: (options) ->
-      @group_id = options.group_id
+  class Entities.PostCollection extends Backbone.Collection
+    model: Entities.Post
 
   API =
-    getNewGroupPost: (group_id)->
-      new Entities.GroupPost({group_id: group_id})
-
+    getNewPostForGroup: (group_id)->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + '/groups/' + group_id + '/posts'
+      post
 
   AlumNet.reqres.setHandler 'post:group:new',(group_id)->
-    API.getNewGroupPost(group_id)
+    API.getNewPostForGroup(group_id)
