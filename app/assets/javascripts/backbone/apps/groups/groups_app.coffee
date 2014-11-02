@@ -28,7 +28,7 @@
     AlumNet.navigate("groups/new")
     API.createGroup()
 
-  AlumNet.on "groups:post", (id)->
+  AlumNet.on "groups:posts", (id)->
     AlumNet.navigate("groups/#{id}/posts")
     API.postsGroup(id)
 
