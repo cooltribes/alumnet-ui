@@ -1,0 +1,125 @@
+/***
+
+COMPONENT NAME: navTopBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.navTopBar{
+    margin-bottom: 10px;
+    &__container--top{
+        background-color: @site_nav_bg;
+    }
+
+
+    &__left{
+    
+        &__brand{
+            display: block;
+            height: auto;
+            padding: 15px 0;
+
+        }
+        .nav .open > &__item:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }  
+        
+        & &__item{
+                color: @main-blue;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 18px;
+                padding: 20px 15px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white;
+                background-color: @black;
+            }
+        }
+    }
+    &__right{
+        &__list{
+            margin-right: -15px;
+        }
+        .nav .open > &__item:focus, .nav .open > &__item--arrow:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }   
+        &__list &__item{
+            color: @main-blue;
+            font-size: 18px;
+            font-weight: 300;
+            height: 59px;
+            line-height: 18px;
+            min-width: 59px;
+            padding: 14px 0;
+            text-align: center;
+            transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white ;
+                background-color: @black ;
+            }
+
+            &--becomeAMember{
+                background-color: #f38e00;
+                border-radius: 50px;
+                color: #ffffff;
+                font-size: 13px;
+                height: 45px;
+                line-height: 1em;
+                margin-top: 7px;
+                margin-left: 10px;
+                padding: 3px 2px 2px 12px;
+                &:hover{
+                    background-color: darken(@orange, 10%)
+                }
+            }
+            &__icon{
+                font-size: 32px;
+                width: 32px;
+
+                &--notificationsIcon{
+                    font-size: 24px;
+                    margin-top: 3px;
+                }
+
+            }
+            &--arrow{
+                display: block;
+                font-size: 22px;
+                height: 59px;
+                margin-left: 5px;
+                padding: 20px 10px 15px;
+                &:hover, &:focus{
+                    color: @white;
+                    background-color: @black;
+                 }  
+
+            }
+            
+            
+        }
+        
+    }
+    &__dropdownMenu{
+        background-color: @black;
+        border: none;
+        & > li > a{
+            color: @white;
+        }
+        &__divider{
+            background-color: #444;
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+        }
+    }
+    
+}
+
+
