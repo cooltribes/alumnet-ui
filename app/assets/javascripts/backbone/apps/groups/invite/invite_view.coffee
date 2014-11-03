@@ -2,6 +2,7 @@
 
   class Invite.User extends Marionette.ItemView
     template: 'groups/invite/templates/user'
+    tagName: 'li'
 
     initialize: (options)->
       this.parentModel = options.parentModel
@@ -13,12 +14,13 @@
         user_group_ids = this.groups
         _.contains(user_group_ids, group_id)
 
-    tagName: 'li'
     ui:
       invitation: ".invitation"
       inviteLink: "a.js-invite"
+
     events:
       'click a.js-invite':'clickInvite'
+
     clickInvite: (e)->
       e.preventDefault()
       @trigger 'invite'

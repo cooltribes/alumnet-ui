@@ -1,5 +1,5 @@
-<img src="<%= @authorAvatar() %>" alt="<%= @authorName() %>" width="25" height="25">
-<%= @authorName() %>
+<img src="<%= @user.avatar.thumb %>" alt="" width="25" height="25">
+<%= @user.name %>
 <h6>
   <%= moment(@created_at).fromNow() %>
 </h6>
@@ -7,3 +7,10 @@
   <%= @body %>
 </p>
 
+<div class="comments-container"></div>
+<form class="form">
+  <div class="form-group">
+    <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+  </div>
+</form>
+</div>

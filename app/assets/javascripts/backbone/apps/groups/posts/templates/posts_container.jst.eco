@@ -3,7 +3,7 @@
   <div class="form-group">
     <textarea class="form-control" name="body" id="body"></textarea>
   </div>
-  <a href="#" class="btn btn-default" id="js-submit">Post</a>
+  <a href="#" class="btn btn-default" id="js-post-submit">Post</a>
 </form>
 </div>
 
