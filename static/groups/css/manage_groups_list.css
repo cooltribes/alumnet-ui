@@ -1,0 +1,41 @@
+/***
+
+COMPONENT NAME: Manage Groups list
+DESCRIPTION: Displays a list of groups in the manage group page
+
+***/
+
+.manage-group-box   {
+    background: #ffffff;
+    margin: 15px;
+    width: 47% !important;
+    text-align: left;
+}
+.manage-group-image-container
+{
+    width: 110px;
+}
+.manage-groups-small-search-box {
+}
+.manage-group-name {
+    font-family: "roboto";
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.manage-groups-small-info-boxes {
+    height: 52px;
+    background: none repeat scroll 0 0 #e1ecf1;
+    border: 1px solid #fff;
+    padding-left: 6px;
+    padding-top: 11px;
+}
+.like-face-small {
+    margin-left: -20px;
+    padding-left: 5px;
+    float:left;
+}
+.leave-group-button {
+    height: 104px;
+}

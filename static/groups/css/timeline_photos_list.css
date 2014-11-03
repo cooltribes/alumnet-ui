@@ -1,0 +1,49 @@
+
+/***
+
+COMPONENT NAME: timeline photos list
+DESCRIPTION: Displays a list of photos in the timeline page
+
+***/
+
+.photo-box {
+    float: left;
+    margin: 10px;
+    width: 300px;
+      margin: 10px ;
+}
+.photo-box > a {
+    color: #555;
+}
+
+.photo-box-title{
+
+}
+.timeline-photos-menu-container {
+
+
+
+}
+.timeline-photos-menu {
+    display: inline;
+    float: left;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.timeline-photos-menu li {
+
+    display: inline;
+}
+
+.timeline-photos-menu li a {
+    color: #555;
+    display: inline;
+    font-family: "roboto";
+    font-size: 23px;
+    font-weight: 300;
+    padding: 15px;
+}
+.timeline-photos-menu li a:hover {
+    border-bottom: 3px solid #000;
+}
