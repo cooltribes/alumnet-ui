@@ -1,0 +1,33 @@
+/***
+
+COMPONENT NAME: formANet
+DESCRIPTION: Specific style for the forms of AlumNet
+
+***/
+
+@import 'conf/conf.css.less';
+
+.formANet{
+	color: @black;
+	&__h1Title{
+		font-weight: 300;
+		margin-bottom: 1em;
+	}
+	&__input__icon{
+		color: lighten(@black, 80%);
+		&:before{
+		border: 2px solid lighten(@black, 80%);
+		border-radius:30px;
+		padding: 4px 6px;
+	}
+	}
+	label{
+		font-weight: normal;
+	}
+	.form-control{
+		border-radius:@radius-small;
+	}
+
+	
+	
+}

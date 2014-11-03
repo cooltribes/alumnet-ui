@@ -1,4 +1,4 @@
-<a class="navTopBar__left__list__item" href="#">
+<a class="navTopBar__left__item" href="#<%= @href %>">
 	<i class="<%= @iconClass %>"></i>
         <%= @caption %>
 </a>

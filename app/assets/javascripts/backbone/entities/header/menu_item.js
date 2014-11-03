@@ -33,16 +33,20 @@ this.AlumNet.module('Entities', function(Entities, AlumNet, Backbone, Marionette
     return Entities.items = new Entities.MenuItemCollection([
       {
         caption: "Alumni",
-        "iconClass": "icon-entypo-user"
+        "iconClass": "icon-entypo-user",
+        "href": "alumni"
       }, {
         caption: "Groups",
-        "iconClass": "icon-entypo-share"
+        "iconClass": "icon-entypo-share",
+        "href": "groups"
       }, {
         caption: "Events",
-        "iconClass": "ico-calendar"
+        "iconClass": "ico-calendar",
+        "href": "events"
       }, {
         caption: "Programs",
-        "iconClass": "ico-give-help"
+        "iconClass": "ico-give-help",
+        "href": "programs"
       }
     ]);
   };

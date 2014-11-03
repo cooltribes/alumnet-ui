@@ -1,5 +1,5 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
-    <div class="container-fluid">  <!-- Top Bar -->
+    <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
     <div class="navbar-header col-md-2">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
@@ -20,8 +20,8 @@
             <!-- Right menu top -->
             
             <li>
-                <a href="#" class="navTopBar__right__list__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
-                    <span class="navTopBar__right__list__item__icon icon-entypo-layout"></span>
+                <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+                    <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
                 </a>
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 1</a></li>
@@ -32,8 +32,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#" class="navTopBar__right__list__item dropdown-toggle" title="Messages" data-toggle="dropdown">
-                    <span class="navTopBar__right__list__item__icon ico-chat "></span>
+                <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages">
+                    <span class="navTopBar__right__item__icon ico-chat "></span>
                 </a>
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 1</a></li>
@@ -44,13 +44,13 @@
                 </ul>
             </li>
             <li>
-                <a class="navTopBar__right__list__item navTopBar__right__list__item--becomeAMember">
+                <a href="#register" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
                     Become a member <img src="http://placesheen.com/40/40" alt="User's name" width="40" height="40" class="img-circle">
                 </a>
             </li>
             <li>
-                <a class="navTopBar__right__list__item--arrow dropdown-toggle" href="#" data-toggle="dropdown">
-                    <span class=" icon-entypo-down-open"></span>
+                <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
+                    <span class="icon-entypo-down-open"></span>
                 </a>
                 <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
