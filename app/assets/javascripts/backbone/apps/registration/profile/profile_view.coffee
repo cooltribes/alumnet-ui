@@ -2,7 +2,7 @@
  
   class Profile.Form extends Marionette.ItemView
     template: 'registration/profile/templates/form'
-    className: 'col-md-12'
+    className: 'container-fluid'
 
     initialize: ->
       ###Backbone.Validation.bind this,

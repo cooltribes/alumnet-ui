@@ -1,6 +1,6 @@
-<h1 class="blue-huge-title margin-top-15">Profile</h1>
-<form>
-    <div class="col-md-12 border-bottom-1-grey">
+<form class="formANet form " role="form">
+  <h1 class="formANet__h1Title">Profile</h1>
+    <div class="row">
 
         <div class="col-md-6">
             <div class="form-group">
@@ -14,33 +14,33 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+                <input type="text" class="form-control input-lg" id="inputName" placeholder="Enter name">
             </div>
             <div class="form-group">
                 <label for="inputLastName">Last name</label>
-                <input type="email" class="form-control" id="inputLastName" placeholder="Enter last name">
+                <input type="email" class="form-control input-lg" id="inputLastName" placeholder="Enter last name">
             </div>
             <div class="row">
               <div class="col-xs-2">
                 <label for="inputLastName">Born</label>
-                <input id="inputName" type="text" class="form-control" placeholder="DD">
+                <input id="inputName" type="text" class="form-control input-lg" placeholder="DD">
               </div>
               <div class="col-xs-2">
-                <input type="text" class="form-control" placeholder="MM">
+                <input type="text" class="form-control input-lg" placeholder="MM">
               </div>
               <div class="col-xs-2">
-                <input type="text" class="form-control" placeholder="YYYY">
+                <input type="text" class="form-control input-lg" placeholder="YYYY">
               </div>
             </div>
         </div>
     </div>
 
     <!-- Birth ON-->                
-    <div class="col-md-12 border-bottom-1-grey">
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputName">Birth Country</label>
-                <select class="form-control">
+                <select class="form-control input-lg">
                   <option>Venezuela</option>
                   <option>España</option>
                   <option>Francia</option>                      
@@ -51,7 +51,7 @@
             
             <div class="form-group">
                 <label for="inputName">Birth City</label>
-                <select class="form-control">
+                <select class="form-control input-lg">
                   <option>San Cristobal</option>
                   <option>Caracas</option>
                   <option>Valencia</option>                      
@@ -63,11 +63,11 @@
 
 
     <!-- Residence ON-->        
-    <div class="col-md-12 border-bottom-1-grey">
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputName">Country of residence</label>
-                <select class="form-control">
+                <select class="form-control input-lg">
                   <option>Venezuela</option>
                   <option>España</option>
                   <option>Francia</option>                      
@@ -77,7 +77,7 @@
         <div class="col-md-6">                
             <div class="form-group">
                 <label for="inputName">City of residence</label>
-                <select class="form-control">
+                <select class="form-control input-lg">
                   <option>San Cristobal</option>
                   <option>Caracas</option>
                   <option>Valencia</option>                      
@@ -90,7 +90,7 @@
 
     <!-- -->
     <!-- Buttons -->
-    <div class="col-md-12">
+    <div class="row">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-3">
               <button type="submit" class="btn btn-default">Cancel</button>
