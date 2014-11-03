@@ -25,38 +25,6 @@ text-align: center;
 
 
 
-a, a.list-group-item {
-    color: #2a76db;
-}
-a:visited {
-}
-a:hover, a:focus {
-    color: #2a6496;
-    text-decoration: none!important;
-    cursor:pointer;
-}
-
-.label, .badge {
-    font-family: 'Roboto';
-}
-.text-primary {
-    color: #3b87ec;
-}
-.text-info {
-    color: #67c7f8;
-}
-.text-warning {
-    color: #f8d145;
-}
-.text-danger {
-    color: #ff4f3d;
-}
-.text-success {
-    color: #6dc96d;
-}
-.text-muted {
-    color: rgba(110, 110, 110, 0.6);
-}
 
 #wrapper {
     display: inline-block;
@@ -87,98 +55,7 @@ input.form-control:focus {
     box-shadow: none;
     transition: none 0s ease 0s ;
 }
-.pad-15 {
-    padding: 15px;
-}
-.pad-30 {
-    padding: 30px;
-}
-.pad-5 {
-    padding: 5px !important;
-}
-.pad-5 {
-    padding: 5px !important;
-}
-.pad-2 {
-    padding: 2px !important;
-}
-.pad-10 {
-    padding: 10px !important;
-}
-.pad-0 {
-    padding: 0 !important;
-}
-.pad-left-0 {
-    padding-left: 0;
-}
-.pad-right-0 {
-    padding-right: 0;
-}
-.pad-left-5 {
-    padding-left: 5px;
-}
-.pad-top-10 {
-    padding-top: 10px;
-}
-.pad-top-15 {
-    padding-top: 15px;
-}
-.pad-bottom-15 {
-    padding-bottom: 15px;
-}
-.pad-right-5 {
-    padding-right: 5px;
-}
-.pad-left-15 {
-    padding-left: 15px;
-}
-.pad-right-15 {
-    padding-left: 15px;
-}
-.margin-top-0 {
-    margin-top: 0;
-}
-.margin-top-5 {
-    margin-top: 5px;
-}
-.margin-top-10 {
-    margin-top: 10px;
-}
-.margin-top-15 {
-    margin-top: 15px;
-}
-.margin-top-30 {
-    margin-top: 30px;
-}
-.margin-top-50 {
-    margin-top: 50px;
-}
-.margin-top-100 {
-    margin-top: 100px;
-}
-.margin-left-15 {
-    margin-left: 15px;
-}
-.margin-bottom-5 {
-    margin-bottom: 5px;
-}
-.margin-bottom-15 {
-    margin-bottom: 15px;
-}
-.margin-1 {
-    margin: 1px !important;
-}
-.margin-3
-{
-    margin: 3px !important;
-}
-.margin-5
-{
-    margin: 5px !important;
-}
-.no-margin {
-    margin: 0 !important;
-}
+
 .border-1-white
 {
     border:1px solid #fff;
@@ -244,23 +121,4 @@ input.form-control:focus {
 }
 .light-blue-bg{
     background: #8fcce7;
-}
-.blue-huge-title {
-    color: #2099d0;
-    font-family: "Roboto",sans-serif;
-    font-weight: 300;
-    font-size:350%;
-}
-.black-big-title {
-    font-family: "Roboto";
-    font-size: 210%;
-    font-weight: 300;
-    margin-top: 60px;
-    text-decoration: none;
-    text-transform: none;
-    text-align: left;
-}
-.black
-{
-    color:#000!important;
 }

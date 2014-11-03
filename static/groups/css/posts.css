@@ -29,3 +29,10 @@ DESCRIPTION: Displays a list of posts in the timaline page
     font-size: 20px;
     font-weight: 300;
 }
+.post{
+ background: none repeat scroll 0 0 #f4f4f4;
+ padding: 20px;
+ margin: 20px;
+ width: 522px;
+ height: auto;
+}

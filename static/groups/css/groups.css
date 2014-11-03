@@ -26,20 +26,7 @@
     color: #fff;
     height: 100px;
 }
-.join-group-button:hover {
-    background:#107daf;
-}
-.leave-group-button:hover {
-    background:#107daf;
-}
-.invite-member-button {
-    border: medium none;
-    height: 100px;
-    width: 100% !important;
-}
-.invite-member-button:hover {
-    background:#107daf;
-}
+
 .grey-bg.col-md-6.border-1-white {
     height: 37px;
 }
@@ -72,54 +59,7 @@
     height: 100% !important;
     overflow: hidden !important;
 }
-.groups-big-search {
-    border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
-    border-left: 1px solid #c6c6c6 !important;
-    border-style: solid none solid solid !important;
-    border-width: 1px medium 1px 1px !important;
-    color: #666;
-    font-family: "Roboto";
-    font-size: 100%;
-    height: 70px !important;
-    padding: 20px !important;
-    width: 100% !important;
-}
-.groups-small-search {
-    border-color: #c6c6c6 -moz-use-text-color #c6c6c6 #c6c6c6 !important;
-    border-left: 1px solid #c6c6c6 !important;
-    border-style: solid none solid solid !important;
-    border-width: 1px medium 1px 1px !important;
-    color: #666;
-    font-family: "Roboto";
-    font-size: 100%;
-    height: 50px !important;
-    padding: 5px !important;
-    width: 100% !important;
-}
-.groups-search-button {
-    border-left: medium none !important;
-    border-radius: 0 !important;
-    border-right: 1px solid #c6c6c6 !important;
-    height: 70px;
-}
-.groups-search-small-button {
-    border-left: medium none !important;
-    border-radius: 0 !important;
-    border-right: 1px solid #c6c6c6 !important;
-    height: 50px;
-}
-.invite-member {
-    color: #fff;
-    font-size: 85%;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: "Roboto",sans-serif;
-}
-.search-icon-blue
-{
-    color:#000!important;
-}
+
 
 
 .groups-right-sort-menu .link {
@@ -143,13 +83,7 @@
 
 
 }
-.sub-groups-title {
-    border-bottom: 1px solid #aaa;
-    margin-bottom: 0;
-    padding-bottom: 10px;
-    padding-left: 10px;
 
-}
 .sub-groups-container ul li {
     border-bottom: 1px solid #aaa;
     height: 30px;
@@ -199,8 +133,6 @@
     text-align: left;
 
 }
-
-
 .radios-ul {
     display: inline;
     list-style: none outside none;
@@ -263,13 +195,7 @@
    width: 512px;
     float:left;
 }
-.post{
- background: none repeat scroll 0 0 #f4f4f4;
- padding: 20px;
- margin: 20px;
- width: 522px;
- height: auto;
-}
+
 .insert-group-name {
     height: 85px;
 }
@@ -284,48 +210,8 @@
 {
     height: 50px;
 }
-.add-group-buttons
-{
 
-}
-.comment-button
-{
 
-}
-.upload-photo-button
-{
-    background: none repeat scroll 0 0 transparent;
-    border: 2px solid #2d9ed2;
-    border-radius: 0;
-    color: #2d9ed2;
-    height: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-transform: uppercase;
-}
-.upload-photo-button:hover {
-    background:#2d9ed2;
-    border: 2px solid #2d9ed2;
-    border-radius: 0;
-    color: #fff;
-}
-.create-album-button {
-    background: none repeat scroll 0 0 transparent;
-    border: 2px solid #2d9ed2;
-    border-radius: 0;
-    height: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #2d9ed2;
-    text-transform: uppercase;
-}
-
-.create-album-button:hover {
-    background:#2d9ed2;
-    border: 2px solid #2d9ed2;
-    border-radius: 0;
-    color: #fff;
-}
 .add-members-top
 {
 }
