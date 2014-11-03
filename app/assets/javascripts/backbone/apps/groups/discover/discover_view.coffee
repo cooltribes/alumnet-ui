@@ -29,15 +29,22 @@
     className: 'box'
     events:
       'click .js-group':'showGroup'
+      'click .js-join':'sendJoin'
       'mouseenter .group-image-container': 'showSubGroups'
       'mouseleave .group-image-container': 'hideSubGroups'
 
+    sendJoin: (e)->
+      e.preventDefault()
+      @trigger 'join'
+
     showGroup: (e)->
       e.preventDefault()
-      this.trigger('group:show')
+      @trigger 'group:show'
+
     showSubGroups: (e)->
       #todo: user currentTarget
       this.$el.find('.group-image-container').children('.overlay-subgroups').fadeIn()
+
     hideSubGroups: (e)->
       this.$el.find('.group-image-container').children('.overlay-subgroups').fadeOut()
 

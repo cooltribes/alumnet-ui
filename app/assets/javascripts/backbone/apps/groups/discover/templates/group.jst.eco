@@ -27,7 +27,9 @@
       </div>
       <div class="col-md-6 pad-0 well-right">
         <div class="col-md-12 pad-10 well-box-text-right">
-          <h3 class="groups-name margin-bottom-5"><a href="#" class="js-group"> <%= @name %> </a></h3>
+          <h3 class="groups-name margin-bottom-5">
+            <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+          </h3>
           <span class="group-status-icon-public pull-right">
           </span>
           <p class="groups_small_desc no-margin"><%= @description %></p>
@@ -51,7 +53,7 @@
             <img class="like-face-small" src="assets/groups/people-like-face.png">
             <p class="group-box-members-friends margin-3">13000</p>
           </div>
-          <button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join">+ join group
+          <button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join js-join">+ join group
           </button>
         </div>
       </div>

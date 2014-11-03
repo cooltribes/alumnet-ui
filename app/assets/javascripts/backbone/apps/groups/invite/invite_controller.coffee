@@ -16,7 +16,7 @@
           invitation.on 'save:success', (response, options)->
             childView.removeLink()
           invitation.on 'save:error', (response, options)->
-            console.log "error"
+            console.log response.responseJSON
 
         #When search button is clicked
         usersView.on 'users:search', (querySearch)->

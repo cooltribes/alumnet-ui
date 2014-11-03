@@ -3,7 +3,7 @@
     showAbout: (id)->
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
-        layout = AlumNet.request("group:layout")
+        layout = AlumNet.request("group:layout", group)
         header = AlumNet.request("group:header", group)
           #todo: implement a function to return the view. like a discovery module
         body = new About.View

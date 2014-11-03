@@ -5,11 +5,15 @@
 
   App.on "start", (options) ->
     App.api_endpoint = options.api_endpoint
-    App.temp_token = options.temp_token
-    $.ajaxSetup
-      headers:
-        'Authorization': 'Token token="' + App.temp_token + '"'
-        'Accept': 'application/vnd.alumnet+json;version=1'
+    current_user_token = App.request 'user:token'
+    if current_user_token
+      $.ajaxSetup
+        headers:
+          'Authorization': 'Token token="' + current_user_token + '"'
+          'Accept': 'application/vnd.alumnet+json;version=1'
+      # here get all info of use from api and set in a backbone model
+    #else
+      #redirect to login
 
   if Backbone.history
     Backbone.history.start()
