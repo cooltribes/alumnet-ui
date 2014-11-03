@@ -1,23 +1,23 @@
-@AlumNet.module 'GroupsApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
-  class About.Controller
-    showAbout: (id)->
+@AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
+  class Posts.Controller
+    showPosts: (id)->
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
         layout = AlumNet.request("group:layout", group)
         header = AlumNet.request("group:header", group)
-          #todo: implement a function to return the view. like a discovery module
-        body = new About.View
-          model: group
-
+        body = new Posts.PostsView
+          collection: group.posts
+        group.posts.fetch()
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
         layout.body.show(body)
+        body.on "form:submit", (data)->
+          post = AlumNet.request("post:group:new", group.id)
+          post.set(data)
+          post.save()
+          group.posts.fetch({reset: true})
 
-        body.on 'group:edit:description', (model, newValue) ->
-          model.save({description: newValue})
 
-        body.on 'group:edit:group_type', (model, newValue) ->
-          model.save({group_type: parseInt(newValue)})
 
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate

@@ -1,0 +1,9 @@
+<img src="<%= @authorAvatar() %>" alt="<%= @authorName() %>" width="25" height="25">
+<%= @authorName() %>
+<h6>
+  <%= moment(@created_at).fromNow() %>
+</h6>
+<p>
+  <%= @body %>
+</p>
+

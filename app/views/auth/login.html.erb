@@ -1,0 +1,14 @@
+<h1>Login</h1>
+<% if @errors && @errors.any? %>
+  <% @errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<%= form_tag sign_in_path do %>
+  <%= label_tag :email %>
+  <%= text_field_tag 'user[email]', @email %>
+  <%= label_tag :password %>
+  <%= password_field_tag 'user[password]' %>
+  <%= submit_tag "Login" %>
+<% end %>
