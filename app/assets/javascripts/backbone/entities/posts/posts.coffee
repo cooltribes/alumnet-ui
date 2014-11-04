@@ -2,7 +2,7 @@
   class Entities.Post extends Backbone.Model
 
     initialize: ->
-      @comments = new Entities.PostCollection
+      @comments = new Entities.CommentsCollection
       @comments.url = AlumNet.api_endpoint + '/posts/' + @id + '/comments'
 
     validation:

@@ -24,26 +24,42 @@
           group.posts.fetch({reset: true})
 
         #Listen each post
-        posts.on "childview:comment:submit", (childView, data) ->
-          post = childView.model
+        posts.on "childview:comment:submit", (postView, data) ->
+          post = postView.model
           comment = AlumNet.request("comment:post:new", post.id)
           comment.set(data)
           comment.save() # Here handle errors
           post.comments.fetch({reset: true})
-        posts.on "childview:click:like", (childView) ->
-          post =  childView.model
+        #Like in post
+        posts.on "childview:post:like", (postView) ->
+          post =  postView.model
           like = AlumNet.request("like:post:new", post.id)
-          #here the like is created
           like.save {},
             success: ->
-              childView.sumLike()
-        posts.on "childview:click:unlike", (childView) ->
-          post =  childView.model
+              postView.sumLike()
+        posts.on "childview:post:unlike", (postView) ->
+          post =  postView.model
           unlike = AlumNet.request("unlike:post:new", post.id)
           #here the like is created
           unlike.save {},
             success: ->
-              childView.remLike()
+              postView.remLike()
+        #Like in comment
+        posts.on "childview:comment:like", (postView, commentView) ->
+          post = postView.model
+          comment = commentView.model
+          like = AlumNet.request("like:comment:new", post.id, comment.id)
+          like.save {},
+            success: ->
+              commentView.sumLike()
+        posts.on "childview:comment:unlike", (postView, commentView) ->
+          post = postView.model
+          comment = commentView.model
+          unlike = AlumNet.request("unlike:comment:new", post.id, comment.id)
+          unlike.save {},
+            success: ->
+              commentView.remLike()
+
 
 
       group.on 'find:error', (response, options)->
