@@ -30,6 +30,20 @@
           comment.set(data)
           comment.save() # Here handle errors
           post.comments.fetch({reset: true})
+        posts.on "childview:click:like", (childView) ->
+          post =  childView.model
+          like = AlumNet.request("like:post:new", post.id)
+          #here the like is created
+          like.save {},
+            success: ->
+              childView.sumLike()
+        posts.on "childview:click:unlike", (childView) ->
+          post =  childView.model
+          unlike = AlumNet.request("unlike:post:new", post.id)
+          #here the like is created
+          unlike.save {},
+            success: ->
+              childView.remLike()
 
 
       group.on 'find:error', (response, options)->

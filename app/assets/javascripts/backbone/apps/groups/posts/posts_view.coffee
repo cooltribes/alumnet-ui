@@ -10,8 +10,13 @@
     className: 'post'
     ui:
       'commentInput': '.comment'
+      'likeLink': '.js-vote'
+      'likeCounter': '.js-likes-counter'
     events:
       'keypress .comment': 'commentSend'
+      'click .js-like': 'clickedLike'
+      'click .js-unlike': 'clickedUnLike'
+
 
     commentSend: (e)->
       e.stopPropagation()
@@ -21,6 +26,22 @@
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
+    clickedLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @trigger 'click:like'
+    clickedUnLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @trigger 'click:unlike'
+    sumLike:()->
+      val = parseInt(@ui.likeCounter.html()) + 1
+      @ui.likeCounter.html(val)
+      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+    remLike:()->
+      val = parseInt(@ui.likeCounter.html()) - 1
+      @ui.likeCounter.html(val)
+      @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
 
     onBeforeRender: ->
       @model.comments.fetch()
