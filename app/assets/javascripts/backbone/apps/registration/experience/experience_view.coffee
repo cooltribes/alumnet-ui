@@ -1,7 +1,7 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
  
   class Experience.Form extends Marionette.ItemView
-    template: 'registration/contact/templates/form'
+    template: 'registration/experience/templates/form'
     className: 'row'
 
     initialize: ->

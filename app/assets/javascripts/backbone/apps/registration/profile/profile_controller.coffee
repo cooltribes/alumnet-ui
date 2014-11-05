@@ -10,8 +10,12 @@
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
-      
-      layoutView.form_region.show(@getFormView())
+      user = AlumNet.request 'get:current_user', refresh: true
+      profile = user.get("profile")
+      console.log profile
+
+      layoutView.form_region.show(@getFormView(profile))
+
     
 
     getLayoutView: ->
@@ -20,5 +24,6 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: (groups) ->
-      new Profile.Form      
+    getFormView: (profile) ->
+      new Profile.Form
+        model: profile
