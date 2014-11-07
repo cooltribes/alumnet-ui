@@ -19,7 +19,7 @@
         required: true
       description:
         required: true
-      avatar:
+      cover:
         required: true
 
   class Entities.GroupCollection extends Backbone.Collection
