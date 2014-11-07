@@ -4,9 +4,9 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <img src="http://placehold.it/100x100" alt="..." class="img-circle">
+                <img src="http://placehold.it/100x100" alt="..." id="preview-avatar" class="img-circle">
                 <label for="profilePicture">File input</label>
-                <input type="file" id="profilePicture">
+                <input type="file" id="profile-avatar" name="profile-avatar">
                 <p class="help-block">Here goes the picture</p>
             </div>
         </div>
@@ -14,16 +14,16 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter name">
             </div>
             <div class="form-group">
                 <label for="inputLastName">Last name</label>
-                <input type="email" class="form-control" id="inputLastName" placeholder="Enter last name">
+                <input type="email" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
             </div>
             <div class="row">
               <div class="col-xs-2">
                 <label for="inputLastName">Born</label>
-                <input id="inputName" type="text" class="form-control" placeholder="DD">
+                <input id="born" name="born" type="text" class="form-control" placeholder="DD">
               </div>
               <div class="col-xs-2">
                 <input type="text" class="form-control" placeholder="MM">
