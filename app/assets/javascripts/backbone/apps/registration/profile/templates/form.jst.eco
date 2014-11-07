@@ -6,7 +6,7 @@
       <div class="form-group">
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <label for="profilePicture">File input</label>
-        <input type="file" id="profilePicture">
+        <input type="file" id="profile-avatar">
         <p class="help-block">Here goes the picture</p>
       </div>
     </div>
@@ -97,7 +97,7 @@
         <button type="submit" class="btn btn-default">Cancel</button>
       </div>
       <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary js-submit">Sign Up</button>
       </div>
     </div>
   </div>

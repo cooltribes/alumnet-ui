@@ -6,29 +6,29 @@
 
     initialize: ->
       Backbone.Validation.bind this,
-        valid: (view, attr, selector) ->
-          $el = view.$("[name=#{attr}]")
-          $group = $el.closest('.form-group')
-          $group.removeClass('has-error')
-          $group.find('.help-block').html('').addClass('hidden')
-        invalid: (view, attr, error, selector) ->
-          $el = view.$("[name=#{attr}]")
-          $group = $el.closest('.form-group')
-          $group.addClass('has-error')
-          $group.find('.help-block').html(error).removeClass('hidden')
+        # valid: (view, attr, selector) ->
+        #   $el = view.$("[name=#{attr}]")
+        #   $group = $el.closest('.form-group')
+        #   $group.removeClass('has-error')
+        #   $group.find('.help-block').html('').addClass('hidden')
+        # invalid: (view, attr, error, selector) ->
+        #   $el = view.$("[name=#{attr}]")
+        #   $group = $el.closest('.form-group')
+        #   $group.addClass('has-error')
+        #   $group.find('.help-block').html(error).removeClass('hidden')
     events:
-      # "click button.js-submit":"submitClicked"
-      "change #group-avatar":"previewImage"
+      "click button.js-submit":"submitClicked"
+      "change #profile-avatar":"previewImage"
     submitClicked: (e)->
       e.preventDefault()
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = this.$('#group-avatar')
-      formData.append('avatar', file[0].files[0])
-      this.model.set(data)
-      this.trigger("form:submit", this.model, formData)
+      # formData = new FormData()
+      # data = Backbone.Syphon.serialize(this)
+      # _.forEach data, (value, key, list)->
+      #   formData.append(key, value)
+      # file = this.$('#profile-avatar')
+      # formData.append('avatar', file[0].files[0])
+      # this.model.set(data)
+      # this.trigger("form:submit", this.model, formData)
 
     previewImage: (e)->
       input = @.$('#profile-avatar')
