@@ -3,6 +3,13 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/users'
 
+    initialize: ->
+      @profile = new Entities.Profile
+      @profile.url = AlumNet.api_endpoint + '/users/' + @id + "/profile"
+      this.on "change", ->
+        console.log @id
+        this.profile.fetch()
+
   # This can change, because now an invitation is an a membership in invitation mode
   class Entities.Invitation extends Backbone.Model
     url: ->
@@ -29,10 +36,12 @@
 
     getCurrentUserFromApi: ->
       user = new Entities.User
-      user.fetch
-        url: AlumNet.api_endpoint + '/users/me'
-        async: false
-      user    
+      user.url = AlumNet.api_endpoint + '/users/me'
+      user
+      # user = new Entities.User
+      # user.fetch
+      #   url: AlumNet.api_endpoint + '/users/me'
+      # user
 
     getUserEntities: (querySearch)->
       initializeUsers() if Entities.users == undefined
@@ -56,9 +65,9 @@
     API.getCurrentUserToken()
 
   AlumNet.reqres.setHandler 'get:current_user', (options = {}) ->
-      if options.refresh
-        AlumNet.request 'current_user:refresh', options
-      API.getCurrentUser()   
+      # if options.refresh
+      #   AlumNet.request 'current_user:refresh', options
+    API.getCurrentUser()
 
   AlumNet.reqres.setHandler 'current_user:refresh', (options = {}) ->
     user = AlumNet.request('get:current_user')

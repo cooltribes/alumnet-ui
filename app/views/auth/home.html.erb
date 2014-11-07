@@ -20,9 +20,9 @@
 <legend>Register</legend>
   <%= form_tag sign_up_path do %>
     <%= label_tag :first_name %>
-    <%= text_field_tag 'user[first_name]', @first_name %>
+    <%= text_field_tag 'profile[first_name]', @first_name %>
     <%= label_tag :last_name %>
-    <%= text_field_tag 'user[last_name]', @last_name %>
+    <%= text_field_tag 'profile[last_name]', @last_name %>
     <%= label_tag :email %>
     <%= text_field_tag 'user[email]', @email %>
     <%= label_tag :password %>
