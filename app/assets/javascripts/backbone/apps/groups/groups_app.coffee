@@ -5,6 +5,7 @@
       "groups/:id/posts": "postsGroup"
       "groups/:id/invite": "inviteGroup"
       "groups/:id/about": "aboutGroup"
+      "groups/:id/members": "membersGroup"
       "groups": "discoverGroups"
 
   API =
@@ -20,6 +21,9 @@
     inviteGroup: (id)->
       controller = new GroupsApp.Invite.Controller
       controller.listUsers(id)
+    membersGroup: (id)->
+      controller = new GroupsApp.Members.Controller
+      controller.listMembers(id)
     aboutGroup: (id)->
       controller = new GroupsApp.About.Controller
       controller.showAbout(id)
@@ -35,6 +39,10 @@
   AlumNet.on "groups:invite", (id)->
     AlumNet.navigate("groups/#{id}/invite")
     API.inviteGroup(id)
+
+  AlumNet.on "groups:members", (id)->
+    AlumNet.navigate("groups/#{id}/members")
+    API.membersGroup(id)
 
   AlumNet.on "groups:discover",  ->
     AlumNet.navigate("groups")

@@ -4,9 +4,6 @@
     template: 'groups/invite/templates/user'
     tagName: 'li'
 
-    initialize: (options)->
-      this.parentModel = options.parentModel
-
     templateHelpers: ->
       view = this
       wasInvited: ->
@@ -33,8 +30,6 @@
     template: 'groups/invite/templates/users_container'
     childView: Invite.User
     childViewContainer: ".users-list"
-    childViewOptions: ()->
-      parentModel: this.model
     events:
       'click .js-search': 'performSearch'
 
