@@ -9,8 +9,9 @@ class UserRegistration
 
   attr_accessor :last_response
 
-  def register(params)
-    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: params }
+  def register(user_params, profile_params)
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" },
+      body: { user: user_params, profile: profile_params } }
     @last_response = self.class.post("/register", options)
   end
 

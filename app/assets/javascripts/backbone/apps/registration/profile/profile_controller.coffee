@@ -2,23 +2,40 @@
   class Profile.Controller
 
     createProfile: ->
-      
+
       # creating layout
-      layoutView = @getLayoutView()     
+      layoutView = @getLayoutView()
       AlumNet.mainRegion.show(layoutView)
 
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
-      
-      layoutView.form_region.show(@getFormView())
-    
+      user = AlumNet.request 'get:current_user'
+
+      user.fetch()
+
+      profile = user.profile
+
+
+      # console.log profile.attributes
+
+      # console.log "id de User"
+      # console.log user.get("id")
+      # console.log user.profile
+
+      # console.log profile
+
+      # createForm = new Profile.Form
+      #   model: profile
+
+      layoutView.form_region.show(@getFormView(profile))
 
     getLayoutView: ->
-      AlumNet.request("registration:shared:layout")   
-    
-    getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")      
+      AlumNet.request("registration:shared:layout")
 
-    getFormView: (groups) ->
-      new Profile.Form      
+    getSidebarView: ->
+      AlumNet.request("registration:shared:sidebar")
+
+    getFormView: (profile) ->
+      new Profile.Form
+        model: profile

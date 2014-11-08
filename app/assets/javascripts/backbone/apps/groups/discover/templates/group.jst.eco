@@ -2,7 +2,7 @@
   <div class="col-md-12 pad-10">
     <div class="well well-md pad-0">
       <div class="col-md-6 pad-0 overhidden group-image-container">
-        <img class="group-dash-image pad-0" src="<%= @avatar.thumb %>">
+        <img class="group-dash-image pad-0" src="<%= @cover.thumb %>">
         <!-- SUBGROUPS -->
         <div class="overlay-subgroups sub-groups-menu">
           <div class="sub-groups-container">

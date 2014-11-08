@@ -1,13 +1,12 @@
 <form class="formANet form " role="form">
   <h1 class="formANet__h1Title">Profile</h1>
-
   <!-- First row ON -->
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" width="240px" height="240px" class="img-circle">
+        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <label for="profilePicture">File input</label>
-        <input type="file" id="profilePicture">
+        <input type="file" id="profile-avatar">
         <p class="help-block">Here goes the picture</p>
       </div>
     </div>
@@ -15,11 +14,13 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="inputName">Name</label>
-        <input type="text" class="form-control " id="inputName" placeholder="Enter name">
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter name">
+
       </div>
       <div class="form-group">
         <label for="inputLastName">Last name</label>
-        <input type="email" class="form-control " id="inputLastName" placeholder="Enter last name">
+        <input type="email" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
+
       </div>
        <label for="inputLastName">Born</label>
       <div class="row">
@@ -96,7 +97,7 @@
         <button type="submit" class="btn btn-default">Cancel</button>
       </div>
       <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary js-submit">Sign Up</button>
       </div>
     </div>
   </div>

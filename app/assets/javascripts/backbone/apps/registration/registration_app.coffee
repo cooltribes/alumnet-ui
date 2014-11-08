@@ -19,8 +19,8 @@
       controller = new RegistrationApp.Contact.Controller      
       controller.createContact()
     createExperience: ->            
-      controller = new RegistrationApp.Contact.Controller      
-      controller.createContact()
+      controller = new RegistrationApp.Experience.Controller      
+      controller.createExperience()
    
 
   AlumNet.on "registration:register",  ->
@@ -39,5 +39,3 @@
   AlumNet.addInitializer ->
     new RegistrationApp.Router
       controller: API
-
-  # last stable

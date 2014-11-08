@@ -5,7 +5,7 @@
         required: true
 
   class Entities.CommentsCollection extends Backbone.Collection
-    model: Entities.Post
+    model: Entities.Comment
 
   API =
     getNewCommentForPost: (post_id)->

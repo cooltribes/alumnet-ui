@@ -1,2 +1,8 @@
 <h5> <img src="<%= @user.avatar.thumb %>" alt="" width="25" height="25">  <%= @user.name %></h5>
+<% if @you_like: %>
+  <a href="#" class="js-unlike js-vote">unlike</a>
+<% else: %>
+  <a href="#" class="js-like js-vote">like</a>
+<% end %>
+(<span class="js-likes-counter"><%= @likes_count %></span> likes)
 <h6><%= @comment %></h6>
