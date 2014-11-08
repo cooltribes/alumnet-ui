@@ -17,9 +17,9 @@
         </div>
         <div class=" col-md-5">
           <div class="collapse navbar-collapse" id="alumNet-collapse-topBar">
-            <form class="homeAlumNet__heroArea__loginForm navbar-form navbar-right" role="form">
+          
               
-              <%= form_tag sign_in_path do %>
+              <%= form_tag sign_in_path, class: "homeAlumNet__heroArea__loginForm navbar-form navbar-right" do %>
               <div class="form-group">
                 <label class="sr-only" ><%= label_tag :email %></label>
                 <%= text_field_tag 'user[email]', @email, class: "form-control", placeholder: "Enter email" %>
@@ -27,7 +27,7 @@
               <div class="form-group">
                 <label class="sr-only" ><%= label_tag :password %></label>
                 
-                <%= password_field_tag 'user[password]', @email, class: "form-control", placeholder: "Enter password" %>
+                <%= password_field_tag 'user[password]', '', class: "form-control", placeholder: "Enter password" %>
               </div>
               
               <%= submit_tag "Login", class: "btn btn-primary" %>
@@ -42,7 +42,7 @@
                 <a href="#" title="forgotten your password?" class="pull-right">forgotten your password? »</a>
               </div>
               <% end %>
-            </form>
+           
           </div>
         </div>
       </div>
@@ -69,13 +69,22 @@
                 
                 
                 <%= label_tag 'Name', nil, class: 'sr-only' %>
+                
                 <%= text_field_tag 'user[name]', @email,  class: "form-control input-lg", placeholder: "Enter Name " %>
+                
                 <%= label_tag 'Email', nil, class: 'sr-only' %>
+                
                 <%= text_field_tag 'user[email]', @email,  class: "form-control input-lg", placeholder: "Enter email" %>
+                
+
                 <%= label_tag 'password', nil, class: 'sr-only' %>
+                
                 <%= password_field_tag 'user[password]',  @email, class: "form-control input-lg", placeholder: "Enter password" %>
+                
                 <%= label_tag 'Confirm password', nil, class: 'sr-only' %>
+                
                 <%= password_field_tag 'user[password_confirmation]', @email,  class: "form-control input-lg", placeholder: "Confirm password" %>
+                
                 
                 <%= submit_tag "Sign up for free", class: "btn btn-lg btn-block btn-primary text-uppercase", id: "hello" %>
                 
