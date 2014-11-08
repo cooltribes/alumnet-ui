@@ -10,10 +10,16 @@ DESCRIPTION: Styles for the home page of alumnet
 
 .homeAlumNet{
 	font-family: 'roboto', san-serif;
+	&__navigation{
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+
 	&__heroArea{
 		background: url('/assets/home/homeBackground.jpg') no-repeat center top;
 	    background-size: cover; 
-	    min-height: 600px;
+	    padding-bottom: 1.5*@space_large;
 	    padding-top: 30px; 
 	    color:@white;
 
@@ -33,10 +39,15 @@ DESCRIPTION: Styles for the home page of alumnet
 	    	margin-top: @space_medium;
 	    	display: inline-block;
 	    	background-color: rgba(0,0,0,.1);
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
 	    }
 	    &__loginForm{
+	    	padding: 0;
+	    	margin: 10px 0 0;
 			input[type="email"], input[type="password"]{
-				background-color: rgba(255, 255, 255, 0.5);
+				background-color: rgba(255, 255, 255, 0.7);
 				border-radius:@radius-small;
 				width: 170px;
 			}
@@ -69,15 +80,16 @@ DESCRIPTION: Styles for the home page of alumnet
 			font-size: 5em;
 			color: lighten(@blue-gray, 10%);
 			font-style: italic;
-			font-weight: 300;
+			font-weight: 100;
 		}
 		h3{
 			color: lighten(@blue-gray, 10%);
-			font-weight: 300;
+			font-weight: 100;
 		}
 		h2{
 			font-size: 4em;
 			font-weight: 300;
+			color: @black;
 		}
 		.row{
 			padding: @space_small 0;
@@ -89,8 +101,29 @@ DESCRIPTION: Styles for the home page of alumnet
 		background-size: cover;
 		color: @white;
 		padding: @space_large 0 1.5*@space_large; 
+		&__article{
+			margin-bottom: @space_medium;
+		}
 		h2{
 			font-size: 4em;
+			font-weight: 300;
+			margin-bottom: @space_small; 
+			small{
+				color: @white;
+			}
+		}
+		h3{
+			font-weight: 300;
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
+		.btn{
+			background-color: transparent;
+			border-color:@white;
+			color: @white; 
+			margin-bottom: 1.5*@space_medium;
+		}
+		time{
 			font-weight: 300;
 		}
 	}
@@ -106,18 +139,57 @@ DESCRIPTION: Styles for the home page of alumnet
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
+	.homeAlumNet{
+		&__blog{
+			&__article{
+					margin-bottom: @space_medium;
+				}
+		}
+		&__navigation{
 
-
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+	}
  }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
+	.homeAlumNet{
+			&__blog{
+				&__article{
+						margin-bottom: 0;
 
+					}
+			}
+			&__navigation{
 
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
  }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
+	.homeAlumNet{
+			&__blog{
+				&__article{
+						margin-bottom: 0;
+						
+					}
+			}
+			&__navigation{
 
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
 
  }
