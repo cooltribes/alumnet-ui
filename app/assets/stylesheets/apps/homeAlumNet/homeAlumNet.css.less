@@ -15,6 +15,21 @@ DESCRIPTION: Styles for the home page of alumnet
 		border: none;
 		box-shadow: none;
 	}
+	&__registerForm{
+	    	border: 2px solid @white;
+	    	padding: @space_small;
+	    	margin-top: @space_medium;
+	    	display: inline-block;
+	    	background-color: rgba(76,102,114,.7);
+	    	width: 360px;
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
+	    	.form-control{
+	    		margin-bottom: 2px;
+	    		border-radius: 0;
+	    	}
+	    }
 
 	&__heroArea{
 		background: url('/assets/home/homeBackground.jpg') no-repeat center top;
@@ -33,16 +48,7 @@ DESCRIPTION: Styles for the home page of alumnet
 
 
 	    }
-	    &__call2action{
-	    	border: 1px solid @white;
-	    	padding: @space_small;
-	    	margin-top: @space_medium;
-	    	display: inline-block;
-	    	background-color: rgba(0,0,0,.1);
-	    	.btn-lg{
-	    		padding:15px 21px
-	    	}
-	    }
+
 	    &__loginForm{
 	    	padding: 0;
 	    	margin: 10px 0 0;
