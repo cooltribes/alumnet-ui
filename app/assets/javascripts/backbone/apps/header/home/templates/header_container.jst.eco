@@ -16,7 +16,7 @@
             
             
         </ul>
-        <ul class="navTopBar__right__list nav navbar-nav  push-right js-right-menu">
+        <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
             <!-- Right menu top -->
             
             <li>
@@ -57,7 +57,7 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                     <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="sign_out">Logout</a></li>
                 </ul>
             </li>
             
