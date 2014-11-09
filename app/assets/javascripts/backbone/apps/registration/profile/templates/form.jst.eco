@@ -3,7 +3,7 @@
   <!-- First row ON -->
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group text-center">
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <label for="profilePicture">File input</label>
         <input type="file" id="profile-avatar">
@@ -12,27 +12,26 @@
     </div>
     
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group has-feedback">
         <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter name">
-
+        <input type="text" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
+        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
       </div>
-      <div class="form-group">
+      <div class="form-group has-feedback">
         <label for="inputLastName">Last name</label>
-        <input type="email" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
-
+        <input type="email" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
       </div>
-       <label for="inputLastName">Born</label>
-      <div class="row">
+      <div class="form-group row">
+        <div class="col-md-12"><label for="inputLastName">Born</label></div>
         <div class="col-md-4">
-         
-          <input id="inputName" type="text" class="form-control " placeholder="DD">
+          <input id="inputName" type="text" class="form-control input-lg " placeholder="DD">
         </div>
         <div class="col-md-4">
-          <input type="text" class="form-control " placeholder="MM">
+          <input type="text" class="form-control input-lg " placeholder="MM">
         </div>
         <div class="col-md-4">
-          <input type="text" class="form-control " placeholder="YYYY">
+          <input type="text" class="form-control input-lg " placeholder="YYYY">
         </div>
       </div>
     </div>
@@ -44,7 +43,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="inputName">Birth Country</label>
-        <select class="form-control ">
+        <select class="form-control input-lg ">
           <option>Venezuela</option>
           <option>España</option>
           <option>Francia</option>
@@ -55,7 +54,7 @@
       
       <div class="form-group">
         <label for="inputName">Birth City</label>
-        <select class="form-control ">
+        <select class="form-control input-lg ">
           <option>San Cristobal</option>
           <option>Caracas</option>
           <option>Valencia</option>
@@ -70,7 +69,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="inputName">Country of residence</label>
-        <select class="form-control ">
+        <select class="form-control input-lg ">
           <option>Venezuela</option>
           <option>España</option>
           <option>Francia</option>
@@ -80,7 +79,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="inputName">City of residence</label>
-        <select class="form-control ">
+        <select class="form-control input-lg ">
           <option>San Cristobal</option>
           <option>Caracas</option>
           <option>Valencia</option>
@@ -91,15 +90,10 @@
   <!-- Residence OFF-->
   <hr>
   <!-- Buttons -->
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-3">
-        <button type="submit" class="btn btn-default">Cancel</button>
-      </div>
-      <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary js-submit">Sign Up</button>
-      </div>
-    </div>
+  
+  <div class="form-group text-right">
+    <button type="submit" class="btn btn-lg btn-default">Cancel</button>
+    <button type="submit" class="btn btn-lg btn-primary js-submit">Sign Up</button>
   </div>
   
 </form>
