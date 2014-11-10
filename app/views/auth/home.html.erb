@@ -1,34 +1,335 @@
-<h1>Login</h1>
-<% if @errors && @errors.any? %>
-  <% @errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
+<!-- HERO AREA ON -->
+<div class="homeAlumNet__heroArea">
+  <nav class="homeAlumNet__navigation navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3  col-md-offset-2">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alumNet-collapse-topBar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="/assets/home/alumNetLogoHome.png" width="250px"></a>
+          </div>
 
-<fieldset>
-<legend>Login</legend>
-  <%= form_tag sign_in_path do %>
-    <%= label_tag :email %>
-    <%= text_field_tag 'user[email]', @email %>
-    <%= label_tag :password %>
-    <%= password_field_tag 'user[password]' %>
-    <%= submit_tag "Login" %>
-  <% end %>
-</fieldset>
-<hr>
-<fieldset>
-<legend>Register</legend>
-  <%= form_tag sign_up_path do %>
-    <%= label_tag :first_name %>
-    <%= text_field_tag 'profile[first_name]', @first_name %>
-    <%= label_tag :last_name %>
-    <%= text_field_tag 'profile[last_name]', @last_name %>
-    <%= label_tag :email %>
-    <%= text_field_tag 'user[email]', @signup_email %>
-    <%= label_tag :password %>
-    <%= password_field_tag 'user[password]' %>
-    <%= label_tag :password_confirmation %>
-    <%= password_field_tag 'user[password_confirmation]' %>
-    <%= submit_tag "Register" %>
-  <% end %>
-</fieldset>
+        </div>
+        <div class=" col-md-5">
+          <div class="collapse navbar-collapse" id="alumNet-collapse-topBar">
+
+
+            <%= form_tag sign_in_path, class: "homeAlumNet__heroArea__loginForm navbar-form navbar-right" do %>
+            <div class="form-group">
+              <%= label_tag 'email', nil, class:'sr-only' %>
+              <%= text_field_tag 'user[email]', @email, class: "form-control", placeholder: "Enter email" %>
+            </div>
+            <div class="form-group">
+              <%= label_tag 'password', nil, class:'sr-only' %>
+              <%= password_field_tag 'user[password]', '', class: "form-control", placeholder: "Enter password" %>
+            </div>
+
+            <%= submit_tag "Login", class: "btn btn-primary" %>
+            <div class="clearfix">
+              <div class="pull-left">
+                <div class="checkbox ">
+                  <label>
+                    <input type="checkbox"> Remember me
+                  </label>
+                </div>
+              </div>
+              <a href="#" title="forgotten your password?" class="pull-right">forgotten your password? »</a>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2">
+        <h2>Join us now!</h2>
+        <p class="lead">and help transofrm our global network of AIESEC alumni into a powerful force for positive change</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div id="registerHomeForm" class="collapse in ">
+        <div class=" homeAlumNet__registerForm">
+          <%= form_tag sign_up_path do %>
+
+          <% if @errors && @errors.any? %>
+          <div class="alert alert-danger">
+            <% @errors.full_messages.each do |msg| %>
+            <%= msg %>
+            <% end %>
+          </div>
+          <% end %>
+          <%= label_tag 'Name', nil, class: 'sr-only' %>
+
+          <%= text_field_tag 'user[name]', @email,  class: "form-control input-lg", placeholder: "Enter Name " %>
+
+          <%= label_tag 'Email', nil, class: 'sr-only' %>
+
+          <%= text_field_tag 'user[email]', @email,  class: "form-control input-lg", placeholder: "Enter email" %>
+
+          <%= label_tag 'password', nil, class: 'sr-only' %>
+
+          <%= password_field_tag 'user[password]',  @email, class: "form-control input-lg", placeholder: "Enter password" %>
+
+          <%= label_tag 'Confirm password', nil, class: 'sr-only' %>
+
+          <%= password_field_tag 'user[password_confirmation]', @email,  class: "form-control input-lg", placeholder: "Confirm password" %>
+
+
+          <%= submit_tag "Sign up for free", class: "btn btn-lg btn-block btn-primary text-uppercase", id: "hello" %>
+
+          <% end %>
+
+
+          <!-- <butto
+          n type="button" id="openAndSubmit" class="btn btn-lg btn-primary text-uppercase"  data-toggle="collapse" data-target="#registerHomeForm" aria-expanded="true" aria-controls="demo">Sign up for free</button> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- HERO AREA OFF -->
+<!-- FEATURES ON -->
+<div class="homeAlumNet__features">
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="row">
+        <div class="col-md-4  text-center ">
+
+          <img src="/assets/home/iconConnect.png"></img>
+          <h3>    Connect</h3>
+          <p> Find alumni, form groups and<br/>
+          alumni chapters
+          </p>
+        </div>
+        <div class="col-md-4  text-center">
+          <img src="/assets/home/iconCollaborate.png"></img>
+          <h3>    Collaborate</h3>
+          <p>Online and offline though our programs,
+          events and discussions
+          </p>
+        </div>
+        <div class="col-md-4  text-center">
+          <img src="/assets/home/iconContribute.png"></img>
+          <h3>    Contribute</h3>
+          <p>Help us transform our alumni<br/>
+          into a powerful global network
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- FEATURES OFF -->
+<!-- VALUES ON -->
+<div class="homeAlumNet__values">
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- ROW 1 ON --><div class="col-md-8 col-md-offset-2">
+    <h2>Our Values</h2>
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">1</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Activating Leadership</h3>
+            We lead by example and inspire leadership through our activities. We take full responsibility for developing the youth leadership potential of our members.
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">2</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Demonstrating Integrity</h3>
+            We are consistent and transparent in our decisions and actions. We fulfil our commitments and conduct ourselves in a way that is true to our ideals.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW 1 OFF -->
+    <!-- ROW 2 ON -->
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">3</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Living Diversity</h3>
+            We seek to learn from the different ways of life and opinions represented in our multicultural environment. We respect and actively encourage the contribution of every individual.
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">4</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Enjoying Participation</h3>
+            We create a dynamic environment created by active and enthusiastic participation of individuals. We enjoy being involved in AIESEC.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW 2 OFF -->
+    <!-- ROW 3 ON -->
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">5</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Striving for Excellence</h3>
+            We aim to deliver the highest quality performance in everything we do. Through creativity and innovation we seek to continuously improve.
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 ">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <span class="homeAlumNet__values__number">6</span>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h3>Acting Sustainably</h3>
+            We act in a way that is sustainable for our organisation and society. Our decisions take into account the needs of future generations.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW 3 OFF -->
+  </div>
+</div>
+</div>
+</div>
+<!-- VALUES OFF -->
+<!-- BLOG ON -->
+<div class="homeAlumNet__blog">
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h2>Blog
+    <small>
+    <span class="icon-entypo-right-open"></span>
+    </small>
+    </h2>
+  </div>
+  <article class="homeAlumNet__blog__article col-md-4 col-md-offset-2 col-sm-6 ">
+    <header>
+      <time itemprop="startDate" datetime="2009-10-15T19:00-08:00"> November 1, 2014</time>
+      <h3>Lorem ipsum dolor sit amet,consectetur adipisicing elit  tempor incidi</h3>
+    </header>
+    <p>Sed do eiusmod dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <footer>
+      <a href="#" class="btn btn-default">read more <span class="icon-entypo-right-open"></span></a>
+    </footer>
+
+  </article>
+  <article class="homeAlumNet__blog__article col-md-4 col-sm-6">
+    <time itemprop="startDate" datetime="2009-10-15T19:00-08:00"> November 1, 2014</time>
+    <h3>Lorem ipsum dolor sit amet, </h3>
+    <p>consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <a href="#" class="btn btn-default">read more <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+  </article>
+</div>
+</div>
+</div>
+<!-- BLOG ON -->
+<!-- FOOTER ON -->
+<footer class="alumNetFooter">
+<div class="container-fluid">
+<div class="row">
+  <div class=" col-md-4 col-lg-4">
+    <img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+    <br>
+    <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
+    International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
+    Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small></p>
+
+  </div>
+  <div class="col-md-8 col-lg-8 text-right">
+    <div class="clearfix">
+      <ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
+        <li>
+          <a href="#" title="About Us"> About Us</a>
+        </li>
+        <li>
+          <a href="#" title="Blog">Blog</a>
+        </li>
+        <li>
+          <a href="#" title="Terms of Use">Terms of Use</a>
+        </li>
+        <li>
+          <a href="#" title="Privacy Policy">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="#" title="Internships">Internships</a>
+        </li>
+        <li>
+          <a href="#" title="Join AAI">Join AAI</a>
+        </li>
+        <li>
+          <a href="#" title="Donate">Donate</a>
+        </li>
+        <li>
+          <a href="#" title="Supporters">Supporters</a>
+        </li>
+        <li>
+          <a href="#" title="Contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <p class="hidden-xs"><small> Copyright © 2014 AIESEC Alumni International. All rights reserved. </small></p>
+  </div>
+</div>
+</div>
+</footer>
+<!-- FOOTER OFF -->
+<script type="text/javascript">
+// $('#registerHomeForm').on('shown.bs.collapse', function () {
+// $('#openAndSubmit').removeAttr('data-toggle');
+// $("#openAndSubmit").click(function(e){
+// $('#registerHomeForm form').submit()
+// })
+})
+// $("#hello").click(function(e){
+//     if (!$("#registerHomeForm").hasClass('in')) {
+//     e.preventDefault();
+//   }
+//   if ($("#registerHomeForm").hasClass('in')) {
+//     $("#hello").remo
+//   }
+// });
+</script>

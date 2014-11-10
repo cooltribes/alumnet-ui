@@ -1,0 +1,78 @@
+/***
+
+COMPONENT NAME: alumNetFooter
+DESCRIPTION: Styles for the footer
+
+***/
+
+@import 'conf/conf.css.less';
+
+.alumNetFooter{
+	background-color: @blue-gray;
+	text-align: center;
+
+	color: @white;
+	padding: 1.5em 0 1em;
+	&__logo{
+		display: block;
+		margin-bottom: .2*@space_small;
+		margin: 0 auto;
+	}
+	&__navigation{
+		> li > a{
+			color: @white;
+			padding: 10px 15px 10px 0;
+			&:hover{
+				background: transparent;
+				text-decoration: underline;
+			}
+		}
+		a:after{
+			content: "|";
+			display: inline-block;
+			padding: 0 0 0 10px;
+			color: lighten(@blue-gray, 10%)
+		}
+
+		margin-bottom: @space_medium;
+	}
+	p{
+		font-size: 13px;
+		line-height: 1.3em;
+		opacity: .5
+	}
+
+}
+
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.alumNetFooter{ 
+		text-align: inherit;
+		&__logo{ margin: inherit;}
+	}
+
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+	.alumNetFooter{ 
+		text-align: inherit;
+		&__logo{ margin: inherit;}
+	}	
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+	.alumNetFooter{ 
+		text-align: inherit;
+		&__logo{ margin: inherit;}
+		
+	}
+
+	
+ }

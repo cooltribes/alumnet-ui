@@ -11,5 +11,9 @@
  * file per style scope.
  *
  *= require bootstrapImporter
+ *= require_tree ./components 
+ *= require_tree ./libs
+ *= require temporal-cooltribes
+ *= require apps/homeAlumNet/homeAlumNet
  *= require_self
  */
