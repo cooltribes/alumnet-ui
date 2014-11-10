@@ -22,6 +22,7 @@
 
       profileForm.on "form:submit", (model, data)->        
         if model.isValid(true)
+          
           options_for_save =
             wait: true
             contentType: false
@@ -31,6 +32,7 @@
             success: (model, response, options)->
               #Pass to step 2 of registration process
               AlumNet.trigger "registration:contact"
+
           model.save(data, options_for_save)
       
 

@@ -6,7 +6,9 @@
     
     # setUrl: ->
     #   @url = AlumNet.api_endpoint + '/users/' + @get("user_id") + "/profile"   
-    
+    birth_country: ""
+    residence_country: ""
+
     validation:
       first_name:
         required: true
@@ -16,7 +18,11 @@
         required: true
       born:
         required: true
+      birth_country:
+        required: true
       birth_city:
+        required: true
+      residence_country:
         required: true
       residence_city:
         required: true

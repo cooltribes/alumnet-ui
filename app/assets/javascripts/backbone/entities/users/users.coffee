@@ -7,7 +7,6 @@
       @profile = new Entities.Profile
 
       @on "change", ->   
-        console.log "nelson"     
         @profile.url = AlumNet.api_endpoint + '/me' + "/profile"
         @profile.fetch()
         

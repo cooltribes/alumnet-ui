@@ -1,4 +1,4 @@
-@AlumNet.module 'Routers', (Routers, AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'Routers', (Routers, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Routers.Base extends Marionette.AppRouter
     before: ->

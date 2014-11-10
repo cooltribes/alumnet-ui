@@ -33,7 +33,7 @@
 
   AlumNet.on "registration:contact",  ->
     AlumNet.navigate("registration/contact")
-    API.createProfile()
+    API.createContact()
 
 
   AlumNet.addInitializer ->

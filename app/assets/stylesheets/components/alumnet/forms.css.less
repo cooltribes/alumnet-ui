@@ -16,18 +16,24 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	&__input__icon{
 		color: lighten(@black, 80%);
 		&:before{
-		border: 2px solid lighten(@black, 80%);
-		border-radius:30px;
-		padding: 4px 6px;
-	}
+			border: 2px solid lighten(@black, 80%);
+			border-radius:30px;
+			padding: 4px 6px;
+		}
 	}
 	label{
 		font-weight: normal;
 	}
-	.form-control{
-		border-radius:@radius-small;
+	hr{
+		border-color: #ccc;
 	}
+	&__removableRow{
+		position: relative;
+		&__removeButton{
+			position: absolute;
+			top: 10px;
+		}
 
-	
+	}
 	
 }
