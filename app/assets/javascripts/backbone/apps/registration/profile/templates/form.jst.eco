@@ -5,27 +5,27 @@
     <div class="col-md-6">
       <div class="form-group">
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-        <label for="profilePicture">File input</label>
-        <input type="file" id="profile-avatar">
-        <p class="help-block">Here goes the picture</p>
+        <label class="control-label" for="profilePicture">Choose your avatar</label>
+        <input type="file" id="profile-avatar" name="avatar" accept="image/*">
+        <span class="help-block"></span>
       </div>
     </div>
     
     <div class="col-md-6">
       <div class="form-group">
-        <label for="inputName">Name</label>
+        <label class="control-label" for="inputName">Name</label>
         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter name">
+        <span class="help-block"></span>
 
       </div>
       <div class="form-group">
-        <label for="inputLastName">Last name</label>
+        <label class="control-label" for="inputLastName">Last name</label>
         <input type="email" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
-
+        <span class="help-block"></span>
       </div>
-       <label for="inputLastName">Born</label>
+       <label class="control-label" for="inputLastName">Born</label>
       <div class="row">
-        <div class="col-md-4">
-         
+        <div class="col-md-4">         
           <input id="inputName" type="text" class="form-control " placeholder="DD">
         </div>
         <div class="col-md-4">
@@ -34,6 +34,9 @@
         <div class="col-md-4">
           <input type="text" class="form-control " placeholder="YYYY">
         </div>
+      </div>
+      <div class="row">
+        <span class="help-block"></span>        
       </div>
     </div>
   </div>
@@ -49,6 +52,7 @@
           <option>España</option>
           <option>Francia</option>
         </select>
+        <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
@@ -60,6 +64,7 @@
           <option>Caracas</option>
           <option>Valencia</option>
         </select>
+        <span class="help-block"></span>
       </div>
     </div>
   </div>
@@ -75,6 +80,7 @@
           <option>España</option>
           <option>Francia</option>
         </select>
+        <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
@@ -85,6 +91,7 @@
           <option>Caracas</option>
           <option>Valencia</option>
         </select>
+        <span class="help-block"></span>
       </div>
     </div>
   </div>
