@@ -1,0 +1,12 @@
+<div style="margin-top: 130px">
+  <h4>Users</h4>
+</div>
+<form id="search-form">
+  <div class="input-group">
+    <input type="text" name="search_term" id="search_term" class="form-control">
+  </div>
+  <button class="btn btn-primary js-search">SEARCH</button>
+</form>
+<ul class="users-list">
+
+</ul>

@@ -20,8 +20,7 @@
 
         #When search button is clicked
         usersView.on 'users:search', (querySearch)->
-          console.log querySearch
-          searchedGroups = AlumNet.request("user:entities", querySearch)
+          AlumNet.request("user:entities", querySearch)
 
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate

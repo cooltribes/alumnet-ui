@@ -1,0 +1,5 @@
+<img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
+<%= @name %>
+<div class="request-button">
+<a href="#" class="js-request-friendship">Add to Friends</a>
+</div>
