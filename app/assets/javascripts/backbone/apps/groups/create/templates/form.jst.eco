@@ -1,94 +1,104 @@
-<div class="ng-scope" id="wrapper">  <!-- Main -->
-<div id="main-wrapper" class="col-md-12">
-  <div id="main-groups">
-    <div class="container-fluid col-md-9 create-group">
-      <div class="col-md-12">
-        <h1 class="margin-top-15">Create a new Group</h1>
-        <form>
-          <div class="col-md-12 border-bottom-1-grey">
-            <div class="col-md-6">
-              <div class="add-cover-photo">
-                <img id="preview-cover" src="" alt="" height="300" width="500">
-              </div>
+<div id="main-wrapper">
+  <div class="container-fluid">
+    <form class="row formANet form ">
+      <div class="col-md-10 col-md-offset-1">
+        <h1 class="textColor--blue ">Create a new Group</h1>
+        <!-- ROW 1 ON -->
+        <div class="row">
+          <div class="col-md-6 ">
+            <img src="http://placehold.it/400x200">
+          </div>
+          <div class="col-md-6">
+            <div class="form-group has-feedback">
+              <label class="control-label">Name of the group</label>
+              <input type="text" name="name" class="form-control input-lg">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              
+              <span class="help-block"></span>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Name of the group</label>
-                <div class="input-group">
-                  <input type="text" name="name" id="group-name" class="form-control">
-                  <span class="input-group-addon">00</span>
-                </div>
-                <span class="help-block"></span>
-              </div>
-              <div class="form-group">
-                <label>Group's Description</label>
-                <div class="input-group">
-                  <textarea id="group-description" name="description"
-                  class="form-control custom-control" rows="4" style="resize:none"></textarea>
-                  <span class="input-group-addon">00</span>
-                </div>
-                <span class="help-block"></span>
-              </div>
-              <div class="form-group">
-                <label>Group's Avatar</label>
-                <input type="file" name="cover" id="group-cover" class="form-control">
-                <span class="help-block"></span>
-              </div>
+            <div class="form-group has-feedback">
+              <label class="control-label">Group's Description</label>
+              
+              <textarea name="description"
+              class="form-control input-lg" rows="4" style="resize:none"></textarea>
+              <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
+              
+            </div>
+            <div class="form-group">
+              <label class="control-label">Group's Avatar</label>
+              <input type="file" name="cover">
+              <span class="help-block"></span>
             </div>
           </div>
-          <div class="col-md-12 border-bottom-1-grey">
-            <div class="col-md-4">
-              <h2 class="black-big-title">Attributes</h2>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Type of Group</label>
-                <select class="form-control" id="group-type" name="type_group">
-                  <option value="0">Open</option>
-                  <option value="1">Closed</option>
-                  <option value="2">Secret</option>
-                </select>
-                <p class="text-small">Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</p>
-                <span class="help-block"></span>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Official Group</label>
-                <select class="form-control" name="official">
-                  <option value="0">it's not an official group</option>
-                </select>
-              </div>
+        </div>
+        <!-- ROW 1 OFF -->
+        <hr>
+        <!-- ROW 2 ON -->
+        
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black">Attributes</h2>
+          </div>
+          <div class="col-md-4 ">
+            <div class="form-group">
+              <label class="control-label">Type of Group</label>
+              <select class="form-control input-lg" id="group-type" name="type_group">
+                <option value="0">Open</option>
+                <option value="1">Closed</option>
+                <option value="2">Secret</option>
+              </select>
+              <p class="text-small">Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</p>
+              <span class="help-block"></span>
             </div>
           </div>
-          <!--           <div class="col-md-12 border-bottom-1-grey">
-            <div class="col-md-4">
-              <h2 class="black-big-title">Location (optional)</h2>
-            </div>
-            <div class="col-md-4">
-              <label>Country</label>
-              <select class="form-control">
-                <option>Select a Country</option>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Official Group</label>
+              <select class="form-control input-lg" name="official">
+                <option value="0">it's not an official group</option>
               </select>
             </div>
-            <div class="col-md-4">
-              <label>City</label>
-              <select class="form-control">
-                <option>Select a City</option>
+          </div>
+        </div>
+        <!-- ROW 2 OFF -->
+        <hr>
+        <!-- ROW 3 ON -->
+        
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
+            <h2 class="textColor--black">Location (Optional)</h2>
+          </div>
+          <div class="col-md-4 ">
+            <div class="form-group">
+              <label class="control-label">Country</label>
+              <select class="form-control input-lg" id="group-type" name="type_group">
+                <option value="0">UK</option>
+                <option value="1">Ireland</option>
+                <option value="2">Venezuela</option>
               </select>
-            </div>
-          </div> -->
-          <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-              <button class="btn btn-default">CANCEL</button>
-              <button class="btn btn-primary js-submit">SAVE & ADD MEMBERS</button>
+              <span class="help-block"></span>
             </div>
           </div>
-        </form>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <select class="form-control input-lg" name="official">
+                <option value="0">San Cristobal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 3 OFF -->
+        <hr>
+        <!-- ACTIONS ON -->
+        <div class="text-right">
+          <button class="btn btn-default btn-lg">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">SAVE & ADD MEMBERS</button>
+        </div>
+        <!-- ACTIONS OFF -->
       </div>
-    </div>
+    </form>
   </div>
-</div>
 </div>
