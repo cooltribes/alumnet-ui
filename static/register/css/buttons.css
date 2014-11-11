@@ -1,0 +1,83 @@
+/***
+
+COMPONENT NAME: App Buttons
+DESCRIPTION: Display Buttons
+
+***/
+
+.upload-photo-button
+{
+    background: none repeat scroll 0 0 transparent;
+    border: 2px solid #2d9ed2;
+    border-radius: 0;
+    color: #2d9ed2;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+}
+.upload-photo-button:hover {
+    background:#2d9ed2;
+    border: 2px solid #2d9ed2;
+    border-radius: 0;
+    color: #fff;
+}
+.create-album-button {
+    background: none repeat scroll 0 0 transparent;
+    border: 2px solid #2d9ed2;
+    border-radius: 0;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #2d9ed2;
+    text-transform: uppercase;
+}
+
+.create-album-button:hover {
+    background:#2d9ed2;
+    border: 2px solid #2d9ed2;
+    border-radius: 0;
+    color: #fff;
+}
+.join-group-button:hover {
+    background:#107daf;
+}
+.leave-group-button:hover {
+    background:#107daf;
+}
+.invite-member-button {
+    border: medium none;
+    height: 100px;
+    width: 100% !important;
+}
+.invite-member-button:hover {
+    background:#107daf;
+}
+.groups-search-button {
+    border-left: medium none !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #c6c6c6 !important;
+    height: 70px;
+}
+.groups-search-small-button {
+    border-left: medium none !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #c6c6c6 !important;
+    height: 50px;
+}
+.invite-member {
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto",sans-serif;
+}
+.add-group-buttons
+{
+
+}
+.comment-button
+{
+
+}

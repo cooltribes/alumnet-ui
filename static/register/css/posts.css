@@ -1,0 +1,38 @@
+
+/***
+
+COMPONENT NAME: Posts
+DESCRIPTION: Displays a list of posts in the timaline page
+
+***/
+
+
+.timeline-main-posts{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+
+.new-post {
+    background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    width: 522px;
+}
+
+
+.member-name {
+    font-family: "roboto";
+    font-size: 20px;
+    font-weight: 300;
+}
+.post{
+ background: none repeat scroll 0 0 #f4f4f4;
+ padding: 20px;
+ margin: 20px;
+ width: 522px;
+ height: auto;
+}
