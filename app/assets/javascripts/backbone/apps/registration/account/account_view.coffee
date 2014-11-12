@@ -2,7 +2,7 @@
 
   class Account.Layout extends Marionette.LayoutView
     template: 'registration/account/templates/layout'
-    id: 'main-wrapper'
+    id: ''
     className: 'container-fluid'
 
     regions:

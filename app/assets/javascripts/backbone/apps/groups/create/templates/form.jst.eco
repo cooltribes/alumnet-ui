@@ -1,17 +1,24 @@
-<div id="main-wrapper">
+<div id="" class="ng-scope">
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
         <h1 class="textColor--blue ">Create a new Group</h1>
         <!-- ROW 1 ON -->
         <div class="row">
-          <div class="col-md-6 ">
-            <img src="http://placehold.it/400x200">
+          <div class="col-md-6 text-center">
+            <div class="add-cover-photo">
+              <img id="preview-cover" src="" alt="" height="300" width="500">
+            </div>
+            <div class="textColor--white bg--blue padding_large margin_right margin_top_small ">
+              <span class="icon-entypo-upload fontSize--lg"></span>
+              <p class="fontSize--md"><a href="#" class="textColor--white" title="Upload Cover photo">Upload Cover photo</a> </p>
+              <p> Restrictions, e.g. jpg, gif, max 2000px wide.</p>
+            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group has-feedback">
               <label class="control-label">Name of the group</label>
-              <input type="text" name="name" class="form-control input-lg">
+              <input type="text" name="name"  id="group-name"  class="form-control input-lg">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
               
               <span class="help-block"></span>
@@ -19,14 +26,14 @@
             <div class="form-group has-feedback">
               <label class="control-label">Group's Description</label>
               
-              <textarea name="description"
+              <textarea name="description" id="group-description"
               class="form-control input-lg" rows="4" style="resize:none"></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
               
             </div>
             <div class="form-group">
-              <label class="control-label">Group's Avatar</label>
-              <input type="file" name="cover">
+              <label class="control-label">Group's cover</label>
+              <input type="file" name="cover"  id="group-cover" >
               <span class="help-block"></span>
             </div>
           </div>
@@ -38,9 +45,9 @@
         <div class="row">
           <div class="col-md-4">
             <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
-            <h2 class="textColor--black">Attributes</h2>
+            <h2 class="textColor--black margin_top_xsmall ">Attributes</h2>
           </div>
-          <div class="col-md-4 ">
+          <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
               <label class="control-label">Type of Group</label>
               <select class="form-control input-lg" id="group-type" name="type_group">
@@ -52,7 +59,7 @@
               <span class="help-block"></span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 margin_top_medium">
             <div class="form-group">
               <label class="control-label">Official Group</label>
               <select class="form-control input-lg" name="official">
@@ -68,9 +75,9 @@
         <div class="row">
           <div class="col-md-4">
             <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
-            <h2 class="textColor--black">Location (Optional)</h2>
+            <h2 class="textColor--black margin_top_xsmall ">Location (Optional)</h2>
           </div>
-          <div class="col-md-4 ">
+          <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
               <label class="control-label">Country</label>
               <select class="form-control input-lg" id="group-type" name="type_group">
@@ -81,7 +88,7 @@
               <span class="help-block"></span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 margin_top_medium">
             <div class="form-group">
               <label class="control-label">City</label>
               <select class="form-control input-lg" name="official">

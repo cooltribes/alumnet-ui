@@ -19,7 +19,7 @@
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'registration/shared/templates/layout'
-    id: 'main-wrapper'
+    id: ''
     className: 'container-fluid'
     regions:
       side_region: '#sidebar-region' 

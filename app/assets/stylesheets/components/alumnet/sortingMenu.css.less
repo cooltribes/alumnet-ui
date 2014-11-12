@@ -1,0 +1,35 @@
+/***
+
+COMPONENT NAME: sortingMenu
+DESCRIPTION: Used for sorting search results. Includes a title at left hand side and a Menu at the right
+
+***/
+
+@import 'conf/conf.css.less';
+
+.sortingMenu{
+    margin-bottom: 2px;
+    position: relative;
+
+    &__item{
+        & > &__link{
+            color: @blue-gray;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 5px;
+            font-size: 14px;
+           &:hover, &--active{
+                -webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+                background-color: transparent;
+            } 
+        }
+    }
+    &__title{
+        margin: 0;
+        padding: 0;
+    }
+    
+
+}

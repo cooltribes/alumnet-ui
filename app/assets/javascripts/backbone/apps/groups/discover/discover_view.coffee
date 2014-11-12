@@ -2,6 +2,7 @@
 
   class Discover.Layout extends Marionette.LayoutView
     template: 'groups/discover/templates/layout'
+    className: 'container-fluid'
 
     regions:
       header_region: '#groups-search-region'
@@ -26,7 +27,7 @@
 
   class Discover.GroupView extends Marionette.ItemView
     template: 'groups/discover/templates/group'
-    className: 'box'
+    className: 'col-md-4 col-sm-6 col-xs-12'
     events:
       'click .js-group':'showGroup'
       'click .js-join':'sendJoin'
