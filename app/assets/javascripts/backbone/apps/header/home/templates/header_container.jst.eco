@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#registration/profile" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
+                <a href="#registration/contact" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
                     Become a member <img src="http://placesheen.com/40/40" alt="User's name" width="40" height="40" class="img-circle">
                 </a>
             </li>

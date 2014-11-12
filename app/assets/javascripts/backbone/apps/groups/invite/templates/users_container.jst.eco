@@ -18,8 +18,7 @@
 </div>
 <div class="container-fluid">
 	<h2>Invite members to your group: <%= @name %></h2>
-	<div class="row">
-		<ul class="users-list">
-		</ul>
+	<div class="row users-list">
+		
 	</div>
 </div>

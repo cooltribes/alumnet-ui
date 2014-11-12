@@ -2,7 +2,8 @@
 
   class Invite.User extends Marionette.ItemView
     template: 'groups/invite/templates/user'
-    tagName: 'li'
+    tagName: 'div'
+    className: 'col-md-4'
 
     initialize: (options)->
       this.parentModel = options.parentModel
