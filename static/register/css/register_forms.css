@@ -7,3 +7,17 @@ DESCRIPTION: Displays forms in register process
 .form-container {
     max-width: 500px;
 }
+
+.email-input{
+    height: 50px;
+}
+
+.password-input{
+  height: 50px;
+}
+.profileimageUpload {
+    float: left;
+    height: 207px !important;
+    position: relative;
+}
+

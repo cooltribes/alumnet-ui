@@ -95,6 +95,10 @@ DESCRIPTION: Displays paddings and margins
 {
     margin: 5px !important;
 }
+.margin-15
+{
+    margin: 15px !important;
+}
 .no-margin {
     margin: 0 !important;
 }
