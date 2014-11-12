@@ -1,11 +1,11 @@
 <h1 class="text-center">Add members to your group</h1>
 <div class="container">
-	<div class="row">
+	<div class="row ">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="searchBar">
 				<form id="search-form">
 					<div class="input-group">
-						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placehold="Write a name, email or city">
+						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
 						<span class="input-group-btn">
 						<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
 						</span>
@@ -16,8 +16,9 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid">
-	<h2>Invite members to your group: <%= @name %></h2>
+<div class="container-fluid margin_top_large">
+	<h2><small><span class="glyphicon glyphicon-ok"></span> </small>Invite members to your group<!-- : <%= @name %> --></h2>
+	<hr>
 	<div class="row users-list">
 		
 	</div>

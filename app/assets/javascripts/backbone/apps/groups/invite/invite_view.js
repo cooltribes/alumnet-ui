@@ -17,7 +17,7 @@ this.AlumNet.module('GroupsApp.Invite', function(Invite, AlumNet, Backbone, Mari
 
     User.prototype.tagName = 'div';
 
-    User.prototype.className = 'col-md-4';
+    User.prototype.className = 'col-md-4 col-sm-6';
 
     User.prototype.initialize = function(options) {
       return this.parentModel = options.parentModel;
