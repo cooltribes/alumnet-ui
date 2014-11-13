@@ -14,9 +14,6 @@ gem 'gon'
 gem 'backbone-on-rails'
 gem 'marionette-rails'
 gem 'httparty'
-gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
 gem 'settingslogic'
 
 group :development do
