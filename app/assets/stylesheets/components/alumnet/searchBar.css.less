@@ -1,0 +1,36 @@
+/***
+
+COMPONENT NAME: searchBar
+DESCRIPTION: Used for  execute search queries. It includes a title at left hand side and a grid/list button on the right so the user can render the results as he likes. 
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.searchBar{
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    &__searchInput{
+        height: 70px;
+        padding: 0 20px;
+    }
+    &__searchBtn{
+        padding: 24px 43px;
+        color: @blue;
+    }
+    &__title{
+        margin-top: 0;
+    }
+    &__renderOptions{
+         margin-top: 10px;
+        &__icon{
+            display: inline-block;
+            font-size: 40px;
+            margin-left: 10px;
+
+        }
+        
+    }
+}

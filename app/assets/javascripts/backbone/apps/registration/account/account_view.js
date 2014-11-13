@@ -15,7 +15,7 @@ this.AlumNet.module('RegistrationApp.Account', function(Account, AlumNet, Backbo
 
     Layout.prototype.template = 'registration/account/templates/layout';
 
-    Layout.prototype.id = 'main-wrapper';
+    Layout.prototype.id = '';
 
     Layout.prototype.className = 'container-fluid';
 
