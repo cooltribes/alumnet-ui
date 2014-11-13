@@ -1,10 +1,17 @@
-<div>
-<form class="form">
-  <div class="form-group">
-    <textarea class="form-control" name="body" id="body"></textarea>
-  </div>
-  <a href="#" class="btn btn-default" id="js-post-submit">Post</a>
-</form>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-6">
+				<div class="timelineForm">
+					<form class="form">
+						<div class="form-group">
+							<textarea class="form-control" name="body" id="body"></textarea>
+						</div>
+						<a href="#" class="btn btn-default" id="js-post-submit">Post</a>
+					</form>
+				</div>
+			</div>
+			<div class="posts-container row"></div>
+		</div>
+	</div>
 </div>
-
-<div class="posts-container"></div>

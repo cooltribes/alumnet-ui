@@ -1,10 +1,11 @@
-<div style="margin-top: 130px">
-  <h2>
-    <% if @canEditInformation: %>
-      <a href="#" id="name"><%= @name %></a>
-    <% else: %>
-      <%= @name %>
-    <% end %>
-  </h2>
+<div class="groupCoverArea" style="background-image: url('<%= @cover.original %>');">
+	<h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
+
+	<% if @canEditInformation: %>
+	<a href="#" id="name"><%= @name %></a>
+	<% else: %>
+	<%= @name %>
+	<% end %>
+	</h1>
+	<a href="#groups/<%= @id %>/invite" title="Invite people to group" class="groupCoverArea__btnInvite btn btn-lg">+ Invite people to group</a>
 </div>
-<img class="group-dash-image pad-0" src="<%= @cover.original %>">

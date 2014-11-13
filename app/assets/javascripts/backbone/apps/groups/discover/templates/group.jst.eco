@@ -13,7 +13,6 @@
           </li>
           <li class="groupBox__menu__item">
             <a href="#" title="Subgroup name" >Subgroups 2</a>
-
           </li>
           <li class="groupBox__menu__item">
             <a href="#" title="Subgroup name" >More text than in the other Subgroups 3</a>
@@ -28,8 +27,7 @@
         
       </div>
       <!-- SUBGROUPS OFF-->
-      <span class="groupBox__ribbon"></span>
-
+      <% if @official: %><span class="groupBox__ribbon"></span><% end %>
     </div>
     <!-- COVER OFF -->
     <!-- CONTENT ON -->
@@ -38,8 +36,14 @@
         <h3 class="groupBox__title">
         <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
         </h3>
-        <span class="groupBox__status groupBox__status--closed pull-right">
-        <!-- For Public groups use: groupBox__status--public -->
+        <span class="groupBox__status pull-right
+          <% if @group_type.value== 1: %>
+            groupBox__status--closed 
+          <% end %>
+          <% if @group_type.value== 0: %>
+            groupBox__status--public 
+          <% end %>
+        ">
         </span>
         <p class="groupBox__description"><%= @description %></p>
       </div>
@@ -48,7 +52,7 @@
           <div class="groupBox__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Created on" class="groupBox__atribute__container--odd">
               <span class="groupBox__icon ico-calendar"></span>
-              5/2014
+              <%= moment(@created_at).format('MM/YYYY') %>
             </div>
           </div>
           <div class="groupBox__atribute">
@@ -81,9 +85,8 @@
     <!-- CONTENT ON -->
   </div>
 </div>
-
 <!-- Please place the next script to the apropiate folder -->
 <script type="text/javascript">
-  $('.groupBox__atribute__container').tooltip()
-  $('.groupBox__atribute__container--odd').tooltip()
+$('.groupBox__atribute__container').tooltip()
+$('.groupBox__atribute__container--odd').tooltip()
 </script>
