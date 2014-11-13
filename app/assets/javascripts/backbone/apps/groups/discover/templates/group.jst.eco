@@ -1,62 +1,89 @@
-<!-- <div class="box"> -->
-  <div class="col-md-12 pad-10">
-    <div class="well well-md pad-0">
-      <div class="col-md-6 pad-0 overhidden group-image-container">
-        <img class="group-dash-image pad-0" src="<%= @cover.thumb %>">
-        <!-- SUBGROUPS -->
-        <div class="overlay-subgroups sub-groups-menu">
-          <div class="sub-groups-container">
-            <ul class="subgroups-ul">
-              <h5 class="sub-groups-title">Sub-Groups (13)</h5>
-              <li class="">
-                <a href="">Subgroups 1</a>
-              </li>
-              <li class="">
-                <a href="">Subgroups 2</a>
-              </li>
-              <li class="">
-                <a href="">Subgroups 3</a>
-              </li>
-              <li class="">
-                <a href="">Subgroups 4</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- END -->
+<div class="groupBox">
+  <div class="clearfix">
+    <!-- COVER ON -->
+    <div class="groupBox__cover overhidden" style="background: url('<%= @cover.thumb %>') no-repeat top center; background-size:cover; " >
+      <!-- SUBGROUPS ON-->
+      <div class="groupBox__menu">
+        <h5 class="groupBox__menu__title">Sub-Groups (13)</h5>
+        <ul class="groupBox__menu__list">
+          <li class="groupBox__menu__item">
+            <a href="#" title="Subgroup name" >Subgroups 1 (04)
+            </a>
+            <span class="icon-entypo-list pull-right"></span>
+          </li>
+          <li class="groupBox__menu__item">
+            <a href="#" title="Subgroup name" >Subgroups 2</a>
+
+          </li>
+          <li class="groupBox__menu__item">
+            <a href="#" title="Subgroup name" >More text than in the other Subgroups 3</a>
+          </li>
+          <li class="groupBox__menu__item">
+            <a href="#" title="Subgroup name" >Subgroups 4</a>
+          </li>
+          <li class="groupBox__menu__item text-center">
+            <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
+          </li>
+        </ul>
+        
       </div>
-      <div class="col-md-6 pad-0 well-right">
-        <div class="col-md-12 pad-10 well-box-text-right">
-          <h3 class="groups-name margin-bottom-5">
-            <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
-          </h3>
-          <span class="group-status-icon-public pull-right">
-          </span>
-          <p class="groups_small_desc no-margin"><%= @description %></p>
+      <!-- SUBGROUPS OFF-->
+      <span class="groupBox__ribbon"></span>
+
+    </div>
+    <!-- COVER OFF -->
+    <!-- CONTENT ON -->
+    <div class=" groupBox__content">
+      <div class="groupBox__text">
+        <h3 class="groupBox__title">
+        <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        </h3>
+        <span class="groupBox__status groupBox__status--closed pull-right">
+        <!-- For Public groups use: groupBox__status--public -->
+        </span>
+        <p class="groupBox__description"><%= @description %></p>
+      </div>
+      <div class="groupBox__atributes">
+        <div class="clearfix ">
+          <div class="groupBox__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Created on" class="groupBox__atribute__container--odd">
+              <span class="groupBox__icon ico-calendar"></span>
+              5/2014
+            </div>
+          </div>
+          <div class="groupBox__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupBox__atribute__container">
+              <span class="groupBox__icon ico-timebank"></span>
+              10:32<small>am</small>
+            </div>
+          </div>
         </div>
-        <div class="col-md-12 pad-0 well-right-small-boxes">
-          <div class="grey-bg col-md-6 border-1-white pad-5">
-            <img class="no-margin pad-5 pull-left" src="assets/groups/icon_clock.png">
-            <p class="group-box-date margin-3">5/2014
-            </p>
+        <div class="clearfix">
+          <div class="groupBox__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Members" class="groupBox__atribute__container--odd">
+              <span class="groupBox__icon ico-company"></span> 13000
+            </div>
           </div>
-          <div class="grey-bg col-md-6 border-1-white pad-5">
-            <img class="no-margin pad-5 pull-left" src="assets/groups/icon_document.png">
-            <p class="group-box-last-post margin-3">10:32<small>am</small></p>
+          
+          <div class="groupBox__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupBox__atribute__container">
+              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
+              +10
+            </div>
+            
           </div>
-          <div class="grey-bg col-md-6 border-1-white pad-5">
-            <img class="no-margin pad-5 pull-left" src="assets/groups/icon_members.png">
-            <p class="group-box-members margin-3">13000</p>
-          </div>
-          <div class="grey-bg col-md-6 border-1-white inline pad-0">
-            <img class="no-margin like-face-small" src="assets/groups/people-like-face.png">
-            <img class="like-face-small" src="assets/groups/people-like-face.png">
-            <p class="group-box-members-friends margin-3">13000</p>
-          </div>
-          <button class="light-blue-bg col-md-12 border-1-white join-group-button group-box-join js-join">+ join group
-          </button>
+          
         </div>
+        <button class="groupBox__btn btn btn-sm btn-primary btn-block js-join">+ join group
+        </button>
       </div>
     </div>
+    <!-- CONTENT ON -->
   </div>
-<!-- </div> -->
+</div>
+
+<!-- Please place the next script to the apropiate folder -->
+<script type="text/javascript">
+  $('.groupBox__atribute__container').tooltip()
+  $('.groupBox__atribute__container--odd').tooltip()
+</script>

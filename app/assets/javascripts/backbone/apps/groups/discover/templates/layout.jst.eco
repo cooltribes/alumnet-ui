@@ -1,5 +1,3 @@
-<div id="main-wrapper" class="col-md-12">
   <div id="groups-search-region"></div>
   <!-- Begin group container -->
   <div id="groups-list-region"></div>
-</div>
