@@ -16,19 +16,52 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+      "change #group-avatar":"previewImage"###
+
     events:
       "click button.js-submit":"submitClicked"
-      "change #group-avatar":"previewImage"###
+
     submitClicked: (e)->
       e.preventDefault()
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
+      numberObj = {
+        "contact_type": 1,
+        "info": "",
+        "privacy": 1,
+
+      }
+
+      contactAttrs = new Array()
       _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = this.$('#group-avatar')
-      formData.append('avatar', file[0].files[0])
-      this.model.set(data)
-      this.trigger("form:submit", this.model, formData)
+        
+        if (key == "code" or key == "number")
+          numberObj.info += value
+        else if (key == "numberPrivacy" or key == "number")
+          numberObj.privacy = value          
+        else  
+
+          _.forEach value.contact_type, (value, key, list)->
+            if value != ""
+              contactAttrs[key] = {
+                "contact_type": value,
+                "info": "",
+                "privacy": 0,
+              }
+
+            console.log key 
+
+          console.log contactAttrs 
+          # formData.append(key, value)
+
+
+
+      console.log numberObj
+      console.log data       
+      
+      
+      # this.model.set(data)
+      # this.trigger("form:submit", this.model, formData)
 
     previewImage: (e)->
       input = @.$('#group-avatar')
