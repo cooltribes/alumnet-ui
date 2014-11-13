@@ -13,7 +13,6 @@
 
     performSearch: (e) ->
       e.preventDefault()
-      $searchForm = this.$el.find('form#search-form')
       data = Backbone.Syphon.serialize(this)
       this.trigger('members:search', this.buildQuerySearch(data.search_term))
 

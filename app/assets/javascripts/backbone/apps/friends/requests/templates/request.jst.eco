@@ -1,0 +1,19 @@
+<% if @friendship_type == "received": %>
+  <!-- requests that i received from a user-->
+  <div class="requester-info">
+    <img src="<%= @requester.thumb %>" alt="">
+    <%= @requester.name %>
+    <div id="accept-button">
+      <a href="#" id="js-accept-friendship">Accept</a>
+    </div>
+  </div>
+<% else: %>
+  <!-- resquets that i sent to a user-->
+  <div class="friend-info">
+    <img src="<%= @friend.thumb %>" alt="">
+    <%= @friend.name %>
+    <!-- Here links to acctions -->
+  </div>
+<% end %>
+
+

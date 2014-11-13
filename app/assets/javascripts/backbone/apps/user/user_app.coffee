@@ -2,15 +2,15 @@
   UserApp.Router = Marionette.AppRouter.extend
     appRoutes:
       "user/posts": "userPosts"
-      "friends": "userFriends"
+
 
   API =
     userPosts: ->
       controller = new UserApp.Posts.Controller
       controller.showPosts()
-    userFriends: ->
+    userRequests: ->
       controller = new UserApp.Friends.Controller
-      controller.showFriends()
+      controller.showRequests()
 
 
   AlumNet.on "user:posts",  ->
@@ -19,7 +19,7 @@
 
   AlumNet.on "user:friends", ->
     AlumNet.navigate("user/friends")
-    API.showFriends(id)
+    API.showRequests(id)
 
 
 

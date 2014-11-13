@@ -1,13 +1,16 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Friendship extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/friendships/'
 
   class Entities.FriendshipCollection extends Backbone.Collection
+    url: ->
+      AlumNet.api_endpoint + '/friendships/'
     model: Entities.Friendship
 
   API =
-    getSendFriendship: (attrs)->
+    sendFriendship: (attrs)->
       friendship = new Entities.Friendship(attrs)
-      friendship.urlRoot = AlumNet.api_endpoint + '/friendships/'
       friendship.save attrs,
         error: (model, response, options) ->
           model.trigger('save:error', response, options)
@@ -15,6 +18,16 @@
           model.trigger('save:success', response, options)
       friendship
 
+    getFriendships: (filter)->
+      friendships = new Entities.FriendshipCollection
+      friendships.fetch(data: { filter: filter })
+      friendships
 
-  AlumNet.reqres.setHandler 'friendship:send', (attrs) ->
-    API.getSendFriendship(attrs)
+  AlumNet.reqres.setHandler 'friendship:request', (attrs) ->
+    API.sendFriendship(attrs)
+
+  AlumNet.reqres.setHandler 'friendships:sent', ->
+    API.getFriendships('sent')
+
+  AlumNet.reqres.setHandler 'friendships:received', ->
+    API.getFriendships('received')

@@ -68,25 +68,24 @@
           <% end %>
           <%= label_tag 'Name', nil, class: 'sr-only' %>
 
-          <%= text_field_tag 'user[name]', @email,  class: "form-control input-lg", placeholder: "Enter Name " %>
+          <%= text_field_tag 'profile[first_name]', @first_name,  class: "form-control input-lg", placeholder: "Enter First Name " %>
 
           <%= label_tag 'Email', nil, class: 'sr-only' %>
 
-          <%= text_field_tag 'user[email]', @email,  class: "form-control input-lg", placeholder: "Enter email" %>
+          <%= text_field_tag 'user[email]', @signup_email,  class: "form-control input-lg", placeholder: "Enter email" %>
 
           <%= label_tag 'password', nil, class: 'sr-only' %>
 
-          <%= password_field_tag 'user[password]',  @email, class: "form-control input-lg", placeholder: "Enter password" %>
+          <%= password_field_tag 'user[password]', nil, class: "form-control input-lg", placeholder: "Enter password" %>
 
           <%= label_tag 'Confirm password', nil, class: 'sr-only' %>
 
-          <%= password_field_tag 'user[password_confirmation]', @email,  class: "form-control input-lg", placeholder: "Confirm password" %>
+          <%= password_field_tag 'user[password_confirmation]', nil,  class: "form-control input-lg", placeholder: "Confirm password" %>
 
 
           <%= submit_tag "Sign up for free", class: "btn btn-lg btn-block btn-primary text-uppercase", id: "hello" %>
 
           <% end %>
-
 
           <!-- <butto
           n type="button" id="openAndSubmit" class="btn btn-lg btn-primary text-uppercase"  data-toggle="collapse" data-target="#registerHomeForm" aria-expanded="true" aria-controls="demo">Sign up for free</button> -->
