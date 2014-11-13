@@ -2,23 +2,35 @@
   class Find.UserView extends Marionette.ItemView
     template: 'friends/find/templates/user'
     ui:
-      request: "#request-button"
-      requestLink: "#js-request-friendship"
+      request: '#request-button'
+      requestLink: '#js-request-friendship'
+      acceptLink: '#js-accept-friendship'
     events:
       'click #js-request-friendship':'clickedRequest'
+      'click #js-accept-friendship':'clickedAccept'
+
+    clickedAccept: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @trigger 'accept'
+
     clickedRequest: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
 
-    removeLink: ->
+    removeRequestLink: ->
       @ui.requestLink.remove()
       @ui.request.append('<span>Request send</span>')
+
+    removeAcceptLink: ->
+      @ui.acceptLink.remove()
+      @ui.request.append('<span>Request Accept</span>')
 
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
-    childViewContainer: ".users-list"
+    childViewContainer: '.users-list'
     events:
       'click .js-search': 'performSearch'
 

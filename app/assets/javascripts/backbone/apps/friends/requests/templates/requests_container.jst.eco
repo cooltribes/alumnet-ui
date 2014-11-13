@@ -1,12 +1,15 @@
 <div style="margin-top: 130px">
   <h4>Friendship Requests</h4>
 </div>
+
 <form id="search-form">
   <div class="input-group">
     <input type="text" name="search_term" id="search_term" class="form-control">
   </div>
   <button class="btn btn-primary js-search">SEARCH</button>
 </form>
-<ul class="requests-list">
 
-</ul>
+<div id="filter-link-container">
+  <a href="#" id="js-requests-sent">view the resquests sent</a>
+</div>
+<ul class="requests-list"></ul>

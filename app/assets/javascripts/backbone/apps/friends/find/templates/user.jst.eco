@@ -2,15 +2,15 @@
   <img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
   <%= @name %>
   <div class="request-button">
-    <% if @friendship == "sent": %>
+    <% if @friendship_status == "sent": %>
       <span>Wait a user Accept your Friendship Request</span>
-    <% else if @friendship == "received": %>
+    <% else if @friendship_status == "received": %>
       <!-- pending  -->
-      <a href="">Accept Friendship</a>
-    <% else if @friendship == "accepted": %>
+      <a href="#" id="js-accept-friendship">Accept Friendship</a>
+    <% else if @friendship_status == "accepted": %>
       <span>Is your friend</span>
     <% else: %>
-      <a href="#" id="js-request-friendship">Link</a>
+      <a href="#" id="js-request-friendship">Send Request</a>
     <% end %>
   </div>
 

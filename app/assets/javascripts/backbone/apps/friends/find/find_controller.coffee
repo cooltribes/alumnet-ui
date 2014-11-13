@@ -11,7 +11,15 @@
         attrs = { friend_id: childView.model.id }
         friendship = AlumNet.request("friendship:request", attrs)
         friendship.on "save:success", (response, options) ->
-          childView.removeLink()
+          childView.removeRequestLink()
+        friendship.on "save:error", (response, options)->
+          console.log response.responseJSON
+
+      usersView.on 'childview:accept', (childView)->
+        attrs = childView.model.get('friendship')
+        AlumNet.request("friendship:request", attrs)
+        friendship.on "save:success", (response, options) ->
+          childView.removeAcceptLink()
         friendship.on "save:error", (response, options)->
           console.log response.responseJSON
 

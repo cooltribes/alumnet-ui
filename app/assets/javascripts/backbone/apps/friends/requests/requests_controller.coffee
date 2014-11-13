@@ -8,9 +8,13 @@
         # model: group
         collection: friendships
 
+      AlumNet.mainRegion.show(requestsView)
+
       requestsView.on 'childview:accept', (childView)->
         friendship = childView.model
         friendship.save()
         friendships.remove(friendship)
+      requestsView.on 'get:requests', (filter)->
+        @collection.fetch(data: { filter: filter })
+        @toggleLink(filter)
 
-      AlumNet.mainRegion.show(requestsView)
