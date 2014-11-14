@@ -2,7 +2,7 @@
   class Find.UserView extends Marionette.ItemView
     template: 'friends/find/templates/user'
     ui:
-      request: '#request-button'
+      linkContainer: '#link-container'
       requestLink: '#js-request-friendship'
       acceptLink: '#js-accept-friendship'
     events:
@@ -21,11 +21,11 @@
 
     removeRequestLink: ->
       @ui.requestLink.remove()
-      @ui.request.append('<span>Request send</span>')
+      @ui.linkContainer.append('<span>Request send</span>')
 
     removeAcceptLink: ->
       @ui.acceptLink.remove()
-      @ui.request.append('<span>Request Accept</span>')
+      @ui.linkContainer.append('<span>Request Accept</span>')
 
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'
@@ -37,7 +37,7 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      @trigger('users:search', this.buildQuerySearch(data.search_term))
+      @trigger('users:search', @buildQuerySearch(data.search_term))
 
     buildQuerySearch: (searchTerm) ->
       q:

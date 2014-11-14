@@ -1,0 +1,84 @@
+/***
+
+COMPONENT NAME: userBox
+DESCRIPTION: the box where the user atributes are loaded within a list of users.
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.userBox{
+   background: #fbfbfb;
+   margin-bottom: 2em;
+   padding: 10px;
+   text-align: center;
+   
+   &__avatar{
+    text-align: center;
+   }
+   &__name{
+    color:@blue;
+    font-size: 22px;
+    margin-bottom: 5px;
+
+   }
+   &__actions{
+    background-color: @light-blue;
+    text-align: center;
+    padding: 10px;
+    color: @white;
+   }
+
+}
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .userBox{
+        height: auto;
+    }
+
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .userBox{
+        
+        height: 100px;
+        overflow: hidden;
+        text-align: left;
+        padding: 10px 0px 10px 10px;
+        &__avatar{
+            text-align: right;
+       }
+        &__actions{
+            height: 100px;
+            margin-top: -10px;
+            padding: 40px 0 0;
+       }
+    }
+
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .userBox{
+        height: 100px;
+        overflow: hidden;
+        text-align: left;
+        padding: 10px 0px 10px 10px;
+    
+        &__avatar{
+            text-align: right;
+       }
+       &__actions{
+            height: 100px;
+            margin-top: -10px;
+            padding: 40px 0 0;
+       }
+   }
+ }

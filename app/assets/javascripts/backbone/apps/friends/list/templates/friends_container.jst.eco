@@ -1,5 +1,5 @@
 <div style="margin-top: 130px">
-  <h4>Find New Friends</h4>
+  <h4>Find Friends</h4>
 </div>
 <form id="search-form">
   <div class="input-group">
@@ -7,6 +7,4 @@
   </div>
   <button class="btn btn-primary js-search">SEARCH</button>
 </form>
-<ul class="users-list">
-
-</ul>
+<ul class="friends-list"></ul>

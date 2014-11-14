@@ -66,25 +66,17 @@
             <% end %>
           </div>
           <% end %>
-          <%= label_tag 'Name', nil, class: 'sr-only' %>
-
-          <%= text_field_tag 'profile[first_name]', @first_name,  class: "form-control input-lg", placeholder: "Enter First Name " %>
-
-          <%= label_tag 'Email', nil, class: 'sr-only' %>
-
-          <%= text_field_tag 'user[email]', @signup_email,  class: "form-control input-lg", placeholder: "Enter email" %>
-
-          <%= label_tag 'password', nil, class: 'sr-only' %>
-
-          <%= password_field_tag 'user[password]', nil, class: "form-control input-lg", placeholder: "Enter password" %>
-
-          <%= label_tag 'Confirm password', nil, class: 'sr-only' %>
-
-          <%= password_field_tag 'user[password_confirmation]', nil,  class: "form-control input-lg", placeholder: "Confirm password" %>
-
-
-          <%= submit_tag "Sign up for free", class: "btn btn-lg btn-block btn-primary text-uppercase", id: "hello" %>
-
+          <%= label_tag :first_name, nil ,class: 'sr-only' %>
+          <%= text_field_tag 'profile[first_name]', @first_name, class: "form-control input-lg", placeholder: "Enter Name " %>
+          <%= label_tag :last_name,nil ,class: 'sr-only' %>
+          <%= text_field_tag 'profile[last_name]', @last_name, class: "form-control input-lg", placeholder: "Enter last name " %>
+          <%= label_tag :email, nil ,class: 'sr-only' %>
+          <%= text_field_tag 'user[email]', @signup_email, class: "form-control input-lg", placeholder: "Enter email" %>
+          <%= label_tag :password, nil ,class: 'sr-only' %>
+          <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+          <%= label_tag :password_confirmation, nil ,class: 'sr-only' %>
+          <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
+          <%= submit_tag "Sign up for free", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
           <% end %>
 
           <!-- <butto

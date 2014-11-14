@@ -1,0 +1,4 @@
+<div class="user-info">
+  <img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
+  <%= @name %>
+</div>
