@@ -2,7 +2,6 @@
   class List.FriendView extends Marionette.ItemView
     template: 'friends/list/templates/friend'
 
-
   class List.FriendsView extends Marionette.CompositeView
     template: 'friends/list/templates/friends_container'
     childView: List.FriendView
@@ -13,7 +12,7 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      @trigger 'users:search', @buildQuerySearch(data.search_term)
+      @trigger 'friends:search', @buildQuerySearch(data.search_term)
 
     buildQuerySearch: (searchTerm) ->
       q:

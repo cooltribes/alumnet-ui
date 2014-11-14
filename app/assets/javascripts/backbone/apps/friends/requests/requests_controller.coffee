@@ -5,7 +5,6 @@
       friendships = AlumNet.request("friendships:received")
 
       requestsView = new Requests.RequestsView
-        # model: group
         collection: friendships
 
       AlumNet.mainRegion.show(requestsView)
@@ -14,6 +13,7 @@
         friendship = childView.model
         friendship.save()
         friendships.remove(friendship)
+
       requestsView.on 'get:requests', (filter)->
         @collection.fetch(data: { filter: filter })
         @toggleLink(filter)
