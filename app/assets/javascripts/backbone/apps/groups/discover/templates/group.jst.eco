@@ -1,76 +1,76 @@
-<div class="groupBox">
+<div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->
-    <div class="groupBox__cover overhidden" style="background: url('<%= @cover.thumb %>') no-repeat top center; background-size:cover; " >
+    <div class="groupCard__cover overhidden" style="background: url('<%= @cover.thumb %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
-      <div class="groupBox__menu">
-        <h5 class="groupBox__menu__title">Sub-Groups (13)</h5>
-        <ul class="groupBox__menu__list">
-          <li class="groupBox__menu__item">
+      <div class="groupCard__menu">
+        <h5 class="groupCard__menu__title">Sub-Groups (13)</h5>
+        <ul class="groupCard__menu__list">
+          <li class="groupCard__menu__item">
             <a href="#" title="Subgroup name" >Subgroups 1 (04)
             </a>
             <span class="icon-entypo-list pull-right"></span>
           </li>
-          <li class="groupBox__menu__item">
+          <li class="groupCard__menu__item">
             <a href="#" title="Subgroup name" >Subgroups 2</a>
           </li>
-          <li class="groupBox__menu__item">
+          <li class="groupCard__menu__item">
             <a href="#" title="Subgroup name" >More text than in the other Subgroups 3</a>
           </li>
-          <li class="groupBox__menu__item">
+          <li class="groupCard__menu__item">
             <a href="#" title="Subgroup name" >Subgroups 4</a>
           </li>
-          <li class="groupBox__menu__item text-center">
+          <li class="groupCard__menu__item text-center">
             <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
           </li>
         </ul>
         
       </div>
       <!-- SUBGROUPS OFF-->
-      <% if @official: %><span class="groupBox__ribbon"></span><% end %>
+      <% if @official: %><span class="groupCard__ribbon"></span><% end %>
     </div>
     <!-- COVER OFF -->
     <!-- CONTENT ON -->
-    <div class=" groupBox__content">
-      <div class="groupBox__text">
-        <h3 class="groupBox__title">
+    <div class=" groupCard__content">
+      <div class="groupCard__text">
+        <h3 class="groupCard__title">
         <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
         </h3>
-        <span class="groupBox__status pull-right
+        <span class="groupCard__status pull-right
           <% if @group_type.value== 1: %>
-            groupBox__status--closed 
+            groupCard__status--closed 
           <% end %>
           <% if @group_type.value== 0: %>
-            groupBox__status--public 
+            groupCard__status--public 
           <% end %>
         ">
         </span>
-        <p class="groupBox__description"><%= @description %></p>
+        <p class="groupCard__description"><%= @description %></p>
       </div>
-      <div class="groupBox__atributes">
+      <div class="groupCard__atributes">
         <div class="clearfix ">
-          <div class="groupBox__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Created on" class="groupBox__atribute__container--odd">
-              <span class="groupBox__icon ico-calendar"></span>
+          <div class="groupCard__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCard__atribute__container--odd">
+              <span class="groupCard__icon ico-calendar"></span>
               <%= moment(@created_at).format('MM/YYYY') %>
             </div>
           </div>
-          <div class="groupBox__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupBox__atribute__container">
-              <span class="groupBox__icon ico-timebank"></span>
+          <div class="groupCard__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCard__atribute__container">
+              <span class="groupCard__icon ico-timebank"></span>
               10:32<small>am</small>
             </div>
           </div>
         </div>
         <div class="clearfix">
-          <div class="groupBox__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Members" class="groupBox__atribute__container--odd">
-              <span class="groupBox__icon ico-company"></span> 13000
+          <div class="groupCard__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Members" class="groupCard__atribute__container--odd">
+              <span class="groupCard__icon ico-company"></span> 13000
             </div>
           </div>
           
-          <div class="groupBox__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupBox__atribute__container">
+          <div class="groupCard__atribute">
+            <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
               <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
               +10
             </div>
@@ -78,7 +78,7 @@
           </div>
           
         </div>
-        <button class="groupBox__btn btn btn-sm btn-primary btn-block js-join">+ join group
+        <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
         </button>
       </div>
     </div>
@@ -87,6 +87,6 @@
 </div>
 <!-- Please place the next script to the apropiate folder -->
 <script type="text/javascript">
-$('.groupBox__atribute__container').tooltip()
-$('.groupBox__atribute__container--odd').tooltip()
+$('.groupCard__atribute__container').tooltip()
+$('.groupCard__atribute__container--odd').tooltip()
 </script>
