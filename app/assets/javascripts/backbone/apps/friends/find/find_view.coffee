@@ -5,9 +5,11 @@
       linkContainer: '#link-container'
       requestLink: '#js-request-friendship'
       acceptLink: '#js-accept-friendship'
+      deleteLink: '#js-delete-friendship'
     events:
       'click #js-request-friendship':'clickedRequest'
       'click #js-accept-friendship':'clickedAccept'
+      'click #js-delete-friendship':'clickedDelete'
 
     clickedAccept: (e)->
       e.preventDefault()
@@ -18,6 +20,11 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
+
+    clickedDelete: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @trigger 'delete'
 
     removeRequestLink: ->
       @ui.requestLink.remove()

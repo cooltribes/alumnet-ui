@@ -3,6 +3,12 @@
     template: 'friends/requests/templates/request'
     events:
       'click #js-accept-friendship':'clickedAccept'
+      'click #js-delete-friendship':'clickedDelete'
+
+    clickedDelete: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @trigger 'delete'
 
     clickedAccept: (e)->
       e.preventDefault()

@@ -14,6 +14,11 @@
         friendship.save()
         friendships.remove(friendship)
 
+      requestsView.on 'childview:delete', (childView)->
+        friendship = childView.model
+        friendship.destroy()
+        friendships.remove(friendship)
+
       requestsView.on 'get:requests', (filter)->
         @collection.fetch(data: { filter: filter })
         @toggleLink(filter)

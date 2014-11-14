@@ -5,6 +5,7 @@
     <%= @requester.name %>
     <div id="link-container">
       <a href="#" id="js-accept-friendship">Accept</a>
+      <a href="#" id="js-delete-friendship">Delete Request</a>
     </div>
   </div>
 <% else: %>
@@ -13,6 +14,7 @@
     <img src="<%= @friend.thumb %>" alt="" width="25" height="25">
     <%= @friend.name %>
     <!-- Here links to acctions -->
+    <a href="#" id="js-delete-friendship">Delete Request</a>
   </div>
 <% end %>
 
