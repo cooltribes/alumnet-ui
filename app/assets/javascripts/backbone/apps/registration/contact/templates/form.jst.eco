@@ -6,7 +6,7 @@
       <div class="form-group has-feedback">
         <label for="inputEmail">E-mail address</label>
         <input type="hidden" name="contact_infos_attributes[contact_type][]" value="0">
-        <input type="email" class="form-control input-lg" id="inputEmail" name="contact_infos_attributes[info][]" placeholder="Enter phone">
+        <input type="email" class="form-control input-lg" id="inputEmail" name="contact_infos_attributes[info][]" placeholder="Enter email">
         <span class="formANet__input__icon glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
     </div>
@@ -25,6 +25,7 @@
   <!-- ROW 1 OFF -->
   <hr>
   <!-- ROW 2 ON -->
+
   <div class="row">    
     <div class="col-md-2">
       <div class="form-group">
@@ -54,6 +55,7 @@
   <!-- ROW 2 OFF -->
   <hr>
   <!-- ROW 3 ON -->
+
   <!-- Labels ON -->
   <div class="row">
     <div class="col-md-8">
@@ -70,9 +72,8 @@
       <div class="form-group">
         <select name="contact_infos_attributes[][contact_type]" class="form-control input-lg">
            <option value="">-Select-</option>
-           <option value="2">Facebook</option>
-          <option value="3">Twitter</option>
-          <option value="4">IRC</option>
+           <option value="1">Skype</option>
+          <option value="2">Yahoo</option>          
         </select>
       </div>
     </div>
@@ -95,15 +96,37 @@
 
     <button type="button" class="close formANet__removableRow__removeButton"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
+  </div>  
+  
+
+  
+  <!-- Fields OFF -->
+  
+  <div class="form-group">
+    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD IM</button>
   </div>
+  <!-- ROW 3 OFF -->
+  <hr>
+  
+  <!-- ROW 4 ON -->
+  <div class="row">
+    <div class="col-md-8">
+      <label for="inputName">Web & Web Profile</label>
+    </div>
+    <div class="col-md-4">
+      <label for="inputName">Privacy Settings</label>
+    </div>
+  </div>
+  <!-- Labels OFF -->
+  <!-- Fields ON: Duplicate these to create more rows -->
   <div class="row formANet__removableRow">
     <div class="col-md-3">
       <div class="form-group">
         <select name="contact_infos_attributes[][contact_type]" class="form-control input-lg">
            <option value="">-Select-</option>
-           <option value="2">Facebook</option>
-          <option value="3">Twitter</option>
-          <option value="4">IRC</option>
+           <option value="3">Facebook</option>
+          <option value="4">Twitter</option>
+          <option value="5">IRC</option>
         </select>
       </div>
     </div>
@@ -127,16 +150,20 @@
     <button type="button" class="close formANet__removableRow__removeButton"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
   </div>
-  
-
-  </div>
+    
   <!-- Fields OFF -->
   
   <div class="form-group">
-    <button type="button" class="btn btn-default btn-primary-noBackground">+ ADD IM</button>
+    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD WEB</button>
   </div>
-  <!-- ROW 3 OFF -->
+
+
   <hr>
+
+
+
+
+
   <!-- Buttons -->
   <div class="form-group text-right">
     
