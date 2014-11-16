@@ -10,7 +10,7 @@
     canEditInformation: ->
       permissions = this.get('permissions')
       if permissions
-        permissions.can_edit_information == 1 ? true : false
+        permissions.can_edit_information
       else
         false
 
