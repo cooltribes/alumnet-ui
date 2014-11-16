@@ -4,13 +4,14 @@
     template: 'groups/invite/templates/user'
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
+    initialize: (options) ->
+      @parentModel = options.parentModel
 
     templateHelpers: ->
-      view = this
+      membership_users = @parentModel.get('membership_users')
       wasInvited: ->
-        group_id = view.parentModel.get('id')
-        user_group_ids = this.groups
-        _.contains(user_group_ids, group_id)
+        user_id = this.id
+        _.contains(membership_users, user_id)
 
     ui:
       invitation: ".invitation"
@@ -31,6 +32,9 @@
     template: 'groups/invite/templates/users_container'
     childView: Invite.User
     childViewContainer: ".users-list"
+    childViewOptions: ->
+      parentModel: this.model
+
     events:
       'click .js-search': 'performSearch'
 
@@ -42,5 +46,6 @@
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
-        name_cont: searchTerm
+        profile_first_name_cont: searchTerm
+        profile_last_name_cont: searchTerm
         email_cont: searchTerm

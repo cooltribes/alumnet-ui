@@ -8,9 +8,9 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
     canEditInformation: ->
-      membership = this.get('membership')
-      if membership
-        membership.edit_information == 1 ? true : false
+      permissions = this.get('permissions')
+      if permissions
+        permissions.can_edit_information == 1 ? true : false
       else
         false
 

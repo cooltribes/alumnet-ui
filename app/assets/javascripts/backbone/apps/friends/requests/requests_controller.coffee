@@ -2,7 +2,7 @@
   class Requests.Controller
     showRequests: ->
       current_user = AlumNet.current_user
-      friendships = AlumNet.request("friendships:received")
+      friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new Requests.RequestsView
         collection: friendships

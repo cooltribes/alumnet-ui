@@ -1,4 +1,4 @@
 <div class="friend-info">
-  <img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
+  <img src="<%= @thumb %>" alt="" width="25" height="25">
   <%= @name %>
 </div>

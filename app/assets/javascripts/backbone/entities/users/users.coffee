@@ -10,12 +10,6 @@
         @profile.url = AlumNet.api_endpoint + '/me/profile'
         @profile.fetch()
 
-
-  # This can change, because now an invitation is a membership in invitation mode
-  class Entities.Invitation extends Backbone.Model
-    url: ->
-      AlumNet.api_endpoint + "/users/#{@get('user_id')}/invite"
-
   class Entities.UserCollection extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/users'
