@@ -1,105 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8"/>
-		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-		Remove this if you use the .htaccess -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>aproval</title>
-		<meta name="description" content="" />
-		<meta name="author" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<!-- Bootstrap -->
-		<link rel="stylesheet" href="./css/bootstrap.css">
-		<link rel="stylesheet" href="./css/bootstrap-responsive.css">
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
-		<!-- App css -->
-		<link rel="stylesheet" href="./css/general.css">
-		<link rel="stylesheet" href="./css/groups.css">
-		<link rel="stylesheet" href="./css/top_bar.css">
-		<link rel="stylesheet" href="./css/home_groups_list.css">
-		<link rel="stylesheet" href="./css/manage_groups_list.css">
-		<link rel="stylesheet" href="./css/posts.css">
-		<link rel="stylesheet" href="./css/timeline_top.css">
-		<link rel="stylesheet" href="./css/timeline_photos_list.css">
-		<link rel="stylesheet" href="./css/typography.css">
-		<link rel="stylesheet" href="./css/buttons.css">
-		<link rel="stylesheet" href="./css/padd_marg.css">
-		<link rel="stylesheet" href="./css/search.css">
-		<link rel="stylesheet" href="./css/top_bar_no_login.css">
-		<link rel="stylesheet" href="./css/register_forms.css">
-		<!-- Tooltips -->
-		<link rel="stylesheet" type="text/css" href="css/tooltips/tooltipster.css" />
-		<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-light.css" />
-		<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-noir.css" />
-		<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-punk.css" />
-		<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-shadow.css" />
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+			<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+			Remove this if you use the .htaccess -->
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+			<title>Aproval</title>
+			<meta name="description" content="" />
+			<meta name="author" content="">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+			<link rel="shortcut icon" href="/favicon.ico">
+			<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+			<!-- Bootstrap -->
+			<link rel="stylesheet" href="./css/bootstrap.css">
+			<link rel="stylesheet" href="./css/bootstrap-responsive.css">
+			<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+			<!-- App css -->
+			<link rel="stylesheet" href="./css/general.css">
+			<link rel="stylesheet" href="./css/groups.css">
+			<link rel="stylesheet" href="./css/aproval.css">
+			<link rel="stylesheet" href="./css/top_bar.css">
+			<link rel="stylesheet" href="./css/home_groups_list.css">
+			<link rel="stylesheet" href="./css/manage_groups_list.css">
+			<link rel="stylesheet" href="./css/posts.css">
+			<link rel="stylesheet" href="./css/timeline_top.css">
+			<link rel="stylesheet" href="./css/timeline_photos_list.css">
+			<link rel="stylesheet" href="./css/typography.css">
+			<link rel="stylesheet" href="./css/buttons.css">
+			<link rel="stylesheet" href="./css/padd_marg.css">
+			<link rel="stylesheet" href="./css/search.css">
+			<link rel="stylesheet" href="./css/top_bar_no_login.css">
+			<link rel="stylesheet" href="./css/register_forms.css">
+			<!-- Tooltips -->
+			<link rel="stylesheet" type="text/css" href="css/tooltips/tooltipster.css" />
+			<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-light.css" />
+			<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-noir.css" />
+			<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-punk.css" />
+			<link rel="stylesheet" type="text/css" href="css/tooltips/themes/tooltipster-shadow.css" />
 
-		<!-- Js -->
-		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="" header=""><header id="header" class="navbar navbar-fixed-top">
-			<div class="container-fluid top-nav">  <!-- Top Bar -->
-				<div class="navbar-header col-md-2">
-					<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand pad-0" href="/">
-						<img src="./images/general/alumnet_logo.png">
-					</a>
-				</div>
-			</div>
-			<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
-				<h2 class="register-title">Register to <b>Alumnet</b></h2>	
-			</div>
-		</header>
-	</div>
-	<div class="ng-scope" id="wrapper">  <!-- Main -->
-		<div id="main-wrapper" class="col-md-12">
-			<div id="main-groups" class="groups-home">
-
-				<div class="container-fluid groups-container">   <!-- Begin group container -->
-					<div class=" grid-wrapper">
-						<div  class="col-md-6">
-						</div>
-						<div  class="col-md-6 form-container">
-							<form role="form">
-								<div class="form-group">
-									<label for="exampleInputEmail1">Email address</label>
-									<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">Confirm Password</label>
-									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-							</form>
-						</div>
+			<!-- Js -->
+			<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		</head>
+		<body>
+			<div class="" header=""><header id="header" class="navbar navbar-fixed-top">
+				<div class="container-fluid top-nav">  <!-- Top Bar -->
+					<div class="navbar-header col-md-2">
+						<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand pad-0" href="/">
+							<img src="./images/general/alumnet_logo.png">
+						</a>
 					</div>
-				</div><!-- End group container -->
-			</div>
+				</div>
+				<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
+					<h2 class="register-title">Register to <b>Alumnet</b></h2>	
+				</div>
+			</header>
 		</div>
-		<div footer=""><footer>  <!-- Footer -->
-			<div class="container-fluid">
-				<div class="row">    
-					<div class="col-md-6">          
+		<div class="ng-scope" id="wrapper">  <!-- Main -->
+			<div id="main-wrapper" class="col-md-12">
+				<div id="" class="register-profile">
+					<div class="container-fluid groups-container">   <!-- Begin group container -->
+						<div class=" grid-wrapper">
+							<div  class="col-md-4">
+							</div>
+							<div class="col-md-8 border-bottom-1-grey">
+								<div class="contact-container">
+									<h3 class="black-big-title margin-15">Aproval process</h3>	
+									<h6 class="margin-15 border-bottom-1-grey pad-bottom-15">Lorem Ipsum Dolor set explaining why there is an aproval process</h6>
+									<div class="col-md-3"> 
+										<img src="">
+									</div>
+									<div class="col-md-9"> 
+										<h3 class="black-big-title margin-15">Find 3 People</h3>
+										<h4 class="find-people-sub margin-15">Who can confirm that you are an AISEC Alumni</h4>	
+										<div class="form-group margin-15">
+											<label for="exampleInputEmail1">Search by name</label>
+											<div class="input-group">
+												<input id="exampleInputEmail1" class="form-control " type="email" placeholder="Enter email">
+												<span class="input-group-addon">00</span>
+											</div>
+										</div>
+										<div class="col-md-6"> 
+											<div class="form-group">
+												<label for="registerName">Start Date</label>
+												<select class="form-control">
+													<option>Only me</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">   
+											<div class="form-group">
+												<label for="registerName">Start Date</label>
+												<select class="form-control">
+													<option>Only me</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>       
+										</div>
+									</div>
+								</div>
+								<div class="add-group-buttons push-right pad-top-15">
+									<button class="btn btn-primary" type="submit">Search ></button>
+								</div>
+							</div>
+							<div  class="col-md-4">
+							</div>
+							<div  class="col-md-8 border-bottom-1-grey">
+								<div class="col-md-12"> 
+
+									<h4 class="margin-15">Results</h4>
+								</div>
+								<div class="aproval-results">
+									<div class="col-md-2 aproval-results-bg"> 
+										<img src="">
+									</div>
+									<div class="col-md-6 aproval-results-bg" >   
+
+										<h4 class="aproval-name ">Morgan Freeman</h4>
+										<h5 class="aproval-position ">Local Comitee President</h5>       
+										<p class="aproval-local "> Local, Poland</p>
+
+									</div>
+									<div class="col-md-4 aproval-results-bg">    
+										<button class="btn btn-primary margin-top-15" type="submit">ASK FOR ACCEPTANCE</button>      
+									</div></div>
+									<div class="aproval-results">
+										<div class="col-md-2 aproval-results-bg"> 
+											<img src="">
+										</div>
+										<div class="col-md-6 aproval-results-bg" >   
+
+											<h4 class="aproval-name ">Morgan Freeman</h4>
+											<h5 class="aproval-position ">Local Comitee President</h5>       
+											<p class="aproval-local "> Local, Poland</p>
+
+										</div>
+										<div class="col-md-4 aproval-results-bg">    
+											<button class="btn btn-primary margin-top-15" type="submit">ASK FOR ACCEPTANCE</button>      
+										</div></div>
+
+
+										<div class="aproval-results">
+											<div class="col-md-2 aproval-results-bg"> 
+												<img src="">
+											</div>
+											<div class="col-md-6 aproval-results-bg" >   
+
+												<h4 class="aproval-name ">Morgan Freeman</h4>
+												<h5 class="aproval-position ">Local Comitee President</h5>       
+												<p class="aproval-local "> Local, Poland</p>
+
+											</div>
+											<div class="col-md-4 aproval-results-bg">    
+												<button class="btn btn-primary margin-top-15" type="submit">ASK FOR ACCEPTANCE</button>      
+											</div></div>
+
+<div class="col-md-12 border-bottom-1-grey pad-10">
+<button class="btn btn-default push-left" type="submit">SHOW MORE (3)</button>
+</div>
+
+
+										</div>
+										<div class="col-md-4"> 
+										<img src="">
+									</div>
+										<div class="col-md-8"> 
+										<h3 class="black-big-title margin-15">Didnt find anyone</h3>
+										<h4 class="find-people-sub margin-15">Ask Admin to accept you manually</h4>	
+									<div class="add-group-buttons push-left pad-top-15">
+									<button class="btn btn-primary" type="submit">SEND YOUR REQUEST TO ADMIN ></button>
+								</div>
+						
+					
+									</div>
+
+
+
+
+									</div>
+								</div><!-- End group container -->
+							</div>
+						</div>
+						<div footer=""><footer>  <!-- Footer -->
+							<div class="container-fluid">
+								<div class="row">    
+									<div class="col-md-6"> 
+									</div>
+									<div class="col-md-6">          
+									</div>
+								</div>
+							</div>
+						</footer></div> <!-- End Footer -->
 					</div>
-					<div class="col-md-6">          
-					</div>
-				</div>
-			</div>
-		</footer></div> <!-- End Footer -->
-	</div>
-</div>  <!-- End All -->
-</body>
-</html>
+				</div>  <!-- End All -->
+			</body>
+			</html>
