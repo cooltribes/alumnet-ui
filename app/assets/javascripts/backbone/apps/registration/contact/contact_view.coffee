@@ -17,8 +17,16 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
       ###
+
+    templateHelpers: ->      
+      user = AlumNet.request 'get:current_user'      
+      userEmail: user.get("email")
+
+
+
     events:
       "click button.js-addRow":"addInputRow"
+      "click button.js-rmvRow":"removeInputRow"
       "click button.js-submit":"submitClicked"
 
     submitClicked: (e)->
@@ -34,14 +42,7 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
         "privacy": data.numberPrivacy,
       }
 
-      contactAttrs = new Array()
-      # _.forEach data, (value, key, list)->
-        
-      #   if (key == "code" or key == "number")
-      #     numberObj.info += value
-      #   else if (key == "numberPrivacy" or key == "number")
-      #     numberObj.privacy = value          
-        
+      contactAttrs = new Array()        
 
       _.forEach contactArray.contact_type, (valueIn, key, list)->
         if valueIn != "" and contactArray.info[key] != ""
@@ -49,25 +50,27 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
             "contact_type": valueIn,
             "info": contactArray.info[key],
             "privacy": contactArray.privacy[key],
-          }
-          
-
-      # console.log "antes" 
-      # console.log contactAttrs 
-
-
-      # #append number field to entire object if any
-      # contactAttrs.push numberObj if numberObj.info
-      # console.log "despues" 
-      # console.log contactAttrs 
-      # formData.append(key, value)    
+          }          
+      
+      #append number field to entire object if any
+      contactAttrs.push numberObj if numberObj.info      
 
       #Assign values to model
       @model.set("contact_infos_attributes", contactAttrs)
 
       # console.log @model
-      # @trigger("form:submit", this.model)
+      @trigger("form:submit", this.model)
 
     addInputRow: (e)->
-      console.log this
+      row = $(e.currentTarget).closest(".form-group").prev()
+      row2 = row.clone()
+
+      #Show the remove button
+      row2.find(".close").removeClass("hidden")
+      row2.insertAfter(row)
+
+    removeInputRow: (e)->
+      $(e.currentTarget).parent().remove()
+      
+      
       

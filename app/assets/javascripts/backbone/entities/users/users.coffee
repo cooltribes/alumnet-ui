@@ -36,12 +36,18 @@
       else
         null
 
-    getCurrentUser: (options = {}) ->
+    getCurrentUser: (options = {}) ->      
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->
+      # console.log "fromapi"      
+      # console.log @current_user
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
+      # console.log user.url
+      user.fetch()
+      # console.log "after fetch"      
+      # console.log user
       user
       # user = new Entities.User
       # user.fetch

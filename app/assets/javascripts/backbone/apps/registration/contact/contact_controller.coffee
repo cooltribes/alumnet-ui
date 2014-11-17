@@ -22,16 +22,16 @@
         # if model.isValid(true)
           
           options_for_save =
-            # wait: true
+            wait: true
             # contentType: false
             # processData: false
             # data: data
             #model return id == undefined, this is a temporally solution.
             success: (model, response, options)->
-              #Pass to step 2 of registration process
+              #Pass to step 3 of registration process
               AlumNet.trigger "registration:experience"
 
-          model.save(data, options_for_save)
+          model.save(model.attributes, options_for_save)
     
 
     getLayoutView: ->
