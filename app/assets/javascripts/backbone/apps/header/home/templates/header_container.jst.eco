@@ -112,7 +112,7 @@
                         
                     </li>
                     <!-- // Message example OFF -->
-                      <li role="presentation"><a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a></li>
+                    <li role="presentation"><a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a></li>
                 </ul>
                 <!-- MESSAGES OFF -->
             </li>
@@ -133,7 +133,6 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="sign_out">Logout</a></li>
                 </ul>
             </li>
-            
         </ul>
     </nav>
 </div>
