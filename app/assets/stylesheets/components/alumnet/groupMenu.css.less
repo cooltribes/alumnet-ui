@@ -1,0 +1,30 @@
+/***
+
+COMPONENT NAME: groupMenu
+DESCRIPTION: Hero area of the backgori
+
+***/
+
+@import 'conf/conf.css.less';
+
+.groupMenu{
+	background-color: @white;
+	margin: 0;
+	padding: 0;
+	border: none;
+	box-shadow: none;
+
+	.nav-pills > li > &__link{
+		.transition (@transition:.5s);
+		padding:  15px;
+		font-size: 20px;
+		color: #677f8a;
+		font-weight: 300;
+		&:hover{
+			background-color: @blue;
+			color: @white;
+		}
+
+	}
+
+}

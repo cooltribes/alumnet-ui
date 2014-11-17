@@ -2,7 +2,7 @@
   # COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
     template: 'groups/posts/templates/comment'
-    className: 'comment'
+    className: 'groupPost__comment'
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'

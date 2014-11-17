@@ -1,8 +1,15 @@
-<h5> <img src="<%= @user.avatar.thumb %>" alt="" width="25" height="25">  <%= @user.name %></h5>
+<div class="groupPost__comment__metaData clearfix">
+	<div class="groupPost__comment__avatar">
+		<img src="http://placesheen.com/45/45" class="img-circle">
+		<img src="<%= @user.avatar.thumb %>" alt="" width="45" height="45" alt="<%= @user.name %>">
+	</div>
+	<h5 class="groupPost__comment__userName"> <%= @user.name %></h5>
+</div>
+
+<p><%= @comment %></p>
 <% if @you_like: %>
-  <a href="#" class="js-unlike js-vote">unlike</a>
+<a href="#" class="js-unlike js-vote">Unlike</a>
 <% else: %>
-  <a href="#" class="js-like js-vote">like</a>
+<a href="#" class="js-like js-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
 <% end %>
 (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-<h6><%= @comment %></h6>

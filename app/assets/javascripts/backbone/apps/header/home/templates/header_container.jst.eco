@@ -1,10 +1,9 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
     <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
     <div class="navbar-header col-md-2">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="ico-menu"></span>
+        
         </button>
         <a class="navTopBar__left__brand navbar-brand " href="/">
             <img src="assets/general/alumnet_logo.png" alt="AlumNet">
@@ -13,8 +12,6 @@
     <nav class="navTopBar__left collapse navbar-collapse ">
         <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
             <!-- Left Menu top -->
-            
-            
         </ul>
         <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
             <!-- Right menu top -->
@@ -24,10 +21,21 @@
                     <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
                 </a>
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 1</a></li>
+                    <li role="presentation">
+                        <div class="groupPost__metaData clearfix">
+                            <!-- Avatar ON -->
+                            <div class="groupPost__avatar">
+                                <img src="http://placesheen.com/70/70" class="img-circle">
+                            </div>
+                            <!-- Avatar OFF -->
+                            <h4 class="groupPost__userName">Juan</h4>
+                            
+                        </div>
+                        
+                    </li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 2</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 3</a></li>
-                      <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+                    <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">See all</a></li>
                 </ul>
             </li>
