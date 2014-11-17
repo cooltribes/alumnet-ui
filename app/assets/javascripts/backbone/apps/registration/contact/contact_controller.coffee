@@ -9,9 +9,29 @@
 
       # sub-views
       layoutView.side_region.show(@getSidebarView())
-
       
-      layoutView.form_region.show(@getFormView())
+
+      user = AlumNet.request 'get:current_user' #, refresh: true     
+
+      profile = user.profile
+
+      contactForm = @getFormView(profile)
+      layoutView.form_region.show(contactForm)
+
+      contactForm.on "form:submit", (model)->        
+        # if model.isValid(true)
+          
+          options_for_save =
+            # wait: true
+            # contentType: false
+            # processData: false
+            # data: data
+            #model return id == undefined, this is a temporally solution.
+            success: (model, response, options)->
+              #Pass to step 2 of registration process
+              AlumNet.trigger "registration:experience"
+
+          model.save(data, options_for_save)
     
 
     getLayoutView: ->
@@ -20,5 +40,6 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: (groups) ->
-      new Contact.Form      
+    getFormView: (profile) ->
+      new Contact.Form
+        model: profile      

@@ -1,4 +1,4 @@
-@AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionette, $, _) ->
+AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionette, $, _) ->
  
   class Contact.Form extends Marionette.ItemView
     template: 'registration/contact/templates/form'
@@ -16,25 +16,58 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+      ###
     events:
+      "click button.js-addRow":"addInputRow"
       "click button.js-submit":"submitClicked"
-      "change #group-avatar":"previewImage"###
+
     submitClicked: (e)->
       e.preventDefault()
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = this.$('#group-avatar')
-      formData.append('avatar', file[0].files[0])
-      this.model.set(data)
-      this.trigger("form:submit", this.model, formData)
+      
+      contactArray = data.contact_infos_attributes
 
-    previewImage: (e)->
-      input = @.$('#group-avatar')
-      preview = @.$('#preview-avatar')
-      if input[0] && input[0].files[0]
-        reader = new FileReader()
-        reader.onload = (e)->
-          preview.attr("src", e.target.result)
-        reader.readAsDataURL(input[0].files[0])
+      numberObj = {
+        "contact_type": 1,
+        "info": data.code + data.number,
+        "privacy": data.numberPrivacy,
+      }
+
+      contactAttrs = new Array()
+      # _.forEach data, (value, key, list)->
+        
+      #   if (key == "code" or key == "number")
+      #     numberObj.info += value
+      #   else if (key == "numberPrivacy" or key == "number")
+      #     numberObj.privacy = value          
+        
+
+      _.forEach contactArray.contact_type, (valueIn, key, list)->
+        if valueIn != "" and contactArray.info[key] != ""
+          contactAttrs[key] = {
+            "contact_type": valueIn,
+            "info": contactArray.info[key],
+            "privacy": contactArray.privacy[key],
+          }
+          
+
+      # console.log "antes" 
+      # console.log contactAttrs 
+
+
+      # #append number field to entire object if any
+      # contactAttrs.push numberObj if numberObj.info
+      # console.log "despues" 
+      # console.log contactAttrs 
+      # formData.append(key, value)    
+
+      #Assign values to model
+      @model.set("contact_infos_attributes", contactAttrs)
+
+      # console.log @model
+      # @trigger("form:submit", this.model)
+
+    addInputRow: (e)->
+      console.log this
+      
