@@ -1,1 +1,78 @@
-Form
+<form class="formANet form " role="form">
+	<h1>Academic Experience</h1>
+
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Name of the position</label>
+				<div class="input-group">
+					<input type="email" class="form-control input-lg " id="exampleInputEmail1" placeholder="Enter email">
+					<span class="input-group-addon">00</span>
+				</div>
+			</div>
+		</div>
+		<div  class="col-md-3">
+			
+			<div class="form-group">
+				<label>Start Date</label>
+				<select class="form-control input-lg">
+					<option>Only me</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+		</div>
+		<div  class="col-md-3">
+			<div class="form-group">
+				<label>End date</label>
+				<select class="form-control input-lg">
+					<option>Only me</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<label for="registerDescription">Name of the institution providing the education</label>
+		<input type="text" class="form-control input-lg " id="" placeholder="">
+		
+		
+		<label for="registerDescription">Description/acheivments</label>
+		<textarea class="form-control input-lg" rows="3"></textarea>
+		<div  class="col-md-8 border-bottom-1-grey">
+		</div>
+	</div>
+	<div class="col-md-6 border-bottom-1-grey">
+		<div class="form-group">
+			<label>Country</label>
+			<select class="form-control input-lg">
+				<option>Select Country</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-md-6 border-bottom-1-grey">
+		<div class="form-group">
+			<label>City</label>
+			<select class="form-control input-lg">
+				<option>Select City</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+	<div  class="col-md-12 border-bottom-1-grey">
+		<button class="btn btn-default push-left" type="submit">ADD ANOTHER ACADEMIC EXPERIENCE</button>
+	</div>
+	<button class="btn btn-primary" type="submit">ACADEMIC EXPERIENCE  > </button>
+</form>

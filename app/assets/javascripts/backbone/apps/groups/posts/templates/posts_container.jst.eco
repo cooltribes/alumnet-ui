@@ -1,6 +1,4 @@
 <style type="text/css">
-	
-	
 </style>
 <script type="text/javascript">
 $('#timeline').masonry({
@@ -10,7 +8,7 @@ $('#timeline').masonry({
 </script>
 <div  class="container-fluid margin_top_small">
 	<div class="row">
-		<div  class="col-md-8 col-md-offset-2">
+		<div  class="col-md-8 col-md-offset-2" id="timeline">
 			<div class="col-md-6 item">
 				<div class="groupCreatePostForm clearfix">
 					<div class="groupCreatePostForm__avatar">
@@ -25,6 +23,6 @@ $('#timeline').masonry({
 				</div>
 			</div>
 		</div>
-		<div class="posts-container row" id="timeline"></div>
+		<div class="posts-container row" ></div>
 	</div>
 </div>

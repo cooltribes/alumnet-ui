@@ -20,36 +20,101 @@
                 <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
                     <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
                 </a>
+                <!-- NOTIFICATIONS ON -->
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
-                    <li role="presentation">
-                        <div class="groupPost__metaData clearfix">
-                            <!-- Avatar ON -->
-                            <div class="groupPost__avatar">
-                                <img src="http://placesheen.com/70/70" class="img-circle">
+                    <!-- Notification example ON -->
+                    <li class="navTopBar__notification" role="presentation">
+                        <div class="clearfix">
+                            <!-- Avatar -->
+                            <div class="navTopBar__notification__avatar">
+                                <img src="http://placesheen.com/40/40" class="img-circle">
                             </div>
-                            <!-- Avatar OFF -->
-                            <h4 class="groupPost__userName">Juan</h4>
+                            <!-- Content -->
+                            <div class="navTopBar__notification__content">
+                                <a href="#"
+                                    ><span class="navTopBar__notification__title">Juan</span>
+                                    <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet, consectetur adipisicing eli</span>
+                                <span class="navTopBar__notification__date">1 hr</span></a>
+                            </div>
+                            <!-- Actions -->
+                            <div class="navTopBar__notification__actions">
+                                <a href="#" title="Add user"><span class="icon-entypo-user-add"></span></a>
+                            </div>
                             
                         </div>
                         
                     </li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 2</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Notification 3</a></li>
-                    <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">See all</a></li>
+                    <!-- // Notification Example OFF -->
+                    <li class="navTopBar__notification" role="presentation">
+                        <div class="clearfix">
+                            <div class="navTopBar__notification__avatar">
+                                <img src="http://placesheen.com/40/40" class="img-circle">
+                            </div>
+                            <div class="navTopBar__notification__content">
+                                <a href="#"
+                                    ><span class="navTopBar__notification__title">Nelson Ramirez</span>
+                                    <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet</span>
+                                <span class="navTopBar__notification__date">1 day ago</span></a>
+                            </div>
+                            <div class="navTopBar__notification__actions">
+                                <a href="#" title="Add user"><span class="icon-entypo-user-add"></span></a>
+                            </div>
+                            
+                        </div>
+                        
+                    </li>
+                    
+                    <li class="navTopBar__notification" role="presentation">
+                        <div class="clearfix">
+                            <div class="navTopBar__notification__avatar">
+                                <img src="http://placesheen.com/40/40" class="img-circle">
+                            </div>
+                            <div class="navTopBar__notification__content">
+                                <a href="#"
+                                    ><span class="navTopBar__notification__title">Armando Manzanero</span>
+                                    <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet, consectetur adipisicing eli</span>
+                                <span class="navTopBar__notification__date">3 days ago</span></a>
+                            </div>
+                            <div class="navTopBar__notification__actions">
+                                <a href="#" title="Add user"><span class="glyphicon glyphicon-ok"></span></a>
+                            </div>
+                            
+                        </div>
+                        
+                    </li>
+                    <li role="presentation"><a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a></li>
                 </ul>
+                <!-- NOTIFICATIONS OFF -->
             </li>
             <li>
                 <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages">
                     <span class="navTopBar__right__item__icon ico-chat "></span>
                 </a>
+                <!-- MESSAGES ON -->
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 1</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 2</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message 3</a></li>
-                    <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">See all messages</a></li>
+                    <!-- Message example ON -->
+                    <li class="navTopBar__notification" role="presentation">
+                        <div class="clearfix">
+                            <!-- Avatar -->
+                            <div class="navTopBar__notification__avatar">
+                                <img src="http://placesheen.com/40/40" class="img-circle">
+                            </div>
+                            <!-- Content -->
+                            <div class="navTopBar__notification__content">
+                                <a href="#"
+                                    ><span class="navTopBar__notification__title">Morgan Freeman  <span class="glyphicon glyphicon-share-alt"></span> </span>
+                                    <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet</span>
+                                <span class="navTopBar__notification__date">1 day ago</span></a>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                    </li>
+                    <!-- // Message example OFF -->
+                      <li role="presentation"><a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a></li>
                 </ul>
+                <!-- MESSAGES OFF -->
             </li>
             <li>
                 <a href="#registration/contact" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
