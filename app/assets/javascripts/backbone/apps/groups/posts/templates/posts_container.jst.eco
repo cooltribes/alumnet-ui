@@ -1,11 +1,3 @@
-<style type="text/css">
-</style>
-<script type="text/javascript">
-$('#timeline').masonry({
-  columnWidth: 200,
-  itemSelector: '.item'
-});
-</script>
 <div  class="container-fluid margin_top_small">
 	<div class="row">
 		<div  class="col-md-8 col-md-offset-2" id="timeline">
