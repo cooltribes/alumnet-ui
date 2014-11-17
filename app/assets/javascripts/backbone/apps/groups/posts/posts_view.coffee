@@ -34,6 +34,7 @@
     childViewContainer: '.comments-container'
     className: 'post'
     ui:
+      'item': '.item'
       'commentInput': '.comment'
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -68,6 +69,7 @@
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
 
     #Init the render of a comment
+    # TODO: try to put this code on onAddChild of CompositeView
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
@@ -77,13 +79,13 @@
       @on 'childview:comment:unlike', (commentView) ->
         @trigger 'comment:unlike', commentView
 
-
   class Posts.PostsView extends Marionette.CompositeView
     template: 'groups/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     ui:
       'bodyInput': '#body'
+      'timeline': '#timeline'
     events:
       'click a#js-post-submit': 'submitClicked'
 
@@ -95,5 +97,12 @@
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
 
+    onAddChild: (childView)->
+      item = $(childView.ui.item).last()
+      masonry = $('#timeline').data('masonry')
+      masonry.appended item
 
-
+    onShow: ->
+      @ui.timeline.masonry
+        columnWidth: 200,
+        itemSelector: '.item'
