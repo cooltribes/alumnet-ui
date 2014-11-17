@@ -1,10 +1,30 @@
-<div>
-<form class="form">
-  <div class="form-group">
-    <textarea class="form-control" name="body" id="body"></textarea>
-  </div>
-  <a href="#" class="btn btn-default" id="js-post-submit">Post</a>
-</form>
+<style type="text/css">
+	
+	
+</style>
+<script type="text/javascript">
+$('#timeline').masonry({
+  columnWidth: 200,
+  itemSelector: '.item'
+});
+</script>
+<div  class="container-fluid margin_top_small">
+	<div class="row">
+		<div  class="col-md-8 col-md-offset-2">
+			<div class="col-md-6 item">
+				<div class="groupCreatePostForm clearfix">
+					<div class="groupCreatePostForm__avatar">
+						<img src="http://placesheen.com/70/70" class="img-circle">
+					</div>
+					<div class="groupCreatePostForm__form"><form class="form">
+						<div class="form-group groupCreatePostForm__textarea ">
+							<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
+						</div>
+						<a href="#" class="btn btn-default" id="js-post-submit">Post</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="posts-container row" id="timeline"></div>
+	</div>
 </div>
-
-<div class="posts-container"></div>

@@ -7,6 +7,10 @@ DESCRIPTION: Styles for the home page of alumnet
 
 @import 'conf/conf.css.less';
 
+#main-region{
+	margin-top: 0;
+	margin-bottom: 0;
+}
 
 .homeAlumNet{
 	font-family: 'roboto', san-serif;
@@ -38,10 +42,11 @@ DESCRIPTION: Styles for the home page of alumnet
 	    padding-top: 30px; 
 	    color:@white;
 
-	    h2{
+	    &__title{
 	    	font-size: 5em;
 	    	font-weight: 300;
 	    	margin-top: 2*@space_small;
+	    	color: @white;
 	    }
 	    .lead{
 	    	font-weight: 300;
@@ -110,8 +115,9 @@ DESCRIPTION: Styles for the home page of alumnet
 		&__article{
 			margin-bottom: @space_medium;
 		}
-		h2{
+		&__title{
 			font-size: 4em;
+			color: @white;
 			font-weight: 300;
 			margin-bottom: @space_small; 
 			small{
