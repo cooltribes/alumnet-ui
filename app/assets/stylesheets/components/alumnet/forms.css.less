@@ -9,8 +9,7 @@ DESCRIPTION: Specific style for the forms of AlumNet
 
 .formANet{
 	
-	&__h1Title, h1{
-		font-weight: 300;
+	h1{
 		margin-bottom: 1em;
 	}
 	&__input__icon{
@@ -25,6 +24,9 @@ DESCRIPTION: Specific style for the forms of AlumNet
 
 		}
 	}
+	.form-group{
+		padding-bottom: 10px;
+	}
 	label{
 		font-weight: normal;
 		color: @black;
@@ -36,5 +38,10 @@ DESCRIPTION: Specific style for the forms of AlumNet
 			position: absolute;
 			top: 10px;
 		}
-	}	
+	}
+	&__colOneHalf{
+		width: 50%;
+		float: left;
+	}
+
 }

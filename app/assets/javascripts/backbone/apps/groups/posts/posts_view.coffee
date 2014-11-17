@@ -104,5 +104,4 @@
 
     onShow: ->
       @ui.timeline.masonry
-        columnWidth: 200,
         itemSelector: '.item'
