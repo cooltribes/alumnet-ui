@@ -1,7 +1,7 @@
 <div  class="container-fluid margin_top_small">
 	<div class="row">
-		<div  class="col-md-8 col-md-offset-2">
-			<div class="col-md-6 item">
+		<div  class="col-md-8 col-md-offset-2" >
+			<div class="col-md-6 ">
 				<div class="groupCreatePostForm clearfix">
 					<div class="groupCreatePostForm__avatar">
 						<img src="http://placesheen.com/70/70" class="img-circle">
@@ -15,6 +15,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="posts-container row" id="timeline"></div>
+		<div id="timeline" class="posts-container row" ></div>
 	</div>
 </div>

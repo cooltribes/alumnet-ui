@@ -12,8 +12,6 @@ DESCRIPTION: Top navigation bar with menus
     &__container--top{
         background-color: @site_nav_bg;
     }
-
-
     &__left{
     
         &__brand{
@@ -109,6 +107,7 @@ DESCRIPTION: Top navigation bar with menus
     &__dropdownMenu{
         background-color: @black;
         border: none;
+        color: @white;
         & > li > a{
             color: @white;
         }
@@ -117,6 +116,53 @@ DESCRIPTION: Top navigation bar with menus
             height: 1px;
             margin: 9px 0;
             overflow: hidden;
+        }
+    }
+    &__notification{
+        
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.1)
+        }
+        &__avatar{
+            width: 18%;
+            float: left;
+            img{
+                max-width: 100%;
+                margin-right: 5px;
+            }
+        }
+        &__content{
+            width: 72%;
+            float: left;
+        }
+        &__title{
+            color: @white;
+            font-size: 14px;
+            display: block;
+        }
+        &__summary{
+            font-size: 12px;
+            color: @white;
+            display: block;
+        }
+        &__date{
+            font-size: 10px;
+            color: darken(@white, 20%);
+            display: block;
+        }
+        &__actions{
+            width: 10%;
+            float: left;
+            margin-top: 20px;
+        }
+        &__showAll{
+            border:1px solid @white;
+            margin: 10px auto;
+            width: 120px;
+            text-align: center;
+            text-transform: uppercase;
         }
     }
     &__mobileToggleBtn{
@@ -129,3 +175,34 @@ DESCRIPTION: Top navigation bar with menus
 }
 
 
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px
+        }
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px;
+        }
+    }
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+.navTopBar{
+        &__notification{
+            width: 350px;
+        }
+    }  
+    
+ }
