@@ -19,6 +19,6 @@
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
-        profile_first_name_cont: searchTerm
-        profile_last_name_cont: searchTerm
-        email_cont: searchTerm
+        user_profile_first_name_cont: searchTerm
+        user_profile_last_name_cont: searchTerm
+        user_email_cont: searchTerm

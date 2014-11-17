@@ -1,2 +1,2 @@
-<img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
-<%= @name %>
+<img src="<%= @user.avatar.thumb %>" alt="" width="25" height="25">
+<%= @user.name %>

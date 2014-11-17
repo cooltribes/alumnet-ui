@@ -4,7 +4,6 @@
       ##this is temporal, current user must be repair.
       current_user = AlumNet.request('temp:current_user')
       friends = AlumNet.request('current_user:friendships:friends')
-      console.log friends
       friends.fetch()
       friendsView = new List.FriendsView
         collection: friends

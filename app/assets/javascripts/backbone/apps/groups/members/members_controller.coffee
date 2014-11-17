@@ -3,8 +3,7 @@
     listMembers: (id)->
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
-        members = AlumNet.request("members:entities", group.id, {})
-        console.log members
+        members = AlumNet.request("membership:members", group.id, {})
         membersView = new Members.MembersView
           model: group
           collection: members
@@ -14,7 +13,6 @@
           console.log querySeach,group
           members.fetch
             data: querySeach
-          # search = AlumNet.request("members:entities", group.id, querySearch)
 
       group.on 'find:error', (response, options)->
         ##Logic here the group not exists or is not authorizate
