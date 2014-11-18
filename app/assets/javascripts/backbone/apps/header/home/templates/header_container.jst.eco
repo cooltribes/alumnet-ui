@@ -19,6 +19,7 @@
             <li>
                 <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
                     <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
+                    <span class="navTopBar__badge badge">3</span>
                 </a>
                 <!-- NOTIFICATIONS ON -->
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
@@ -89,6 +90,7 @@
             <li>
                 <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages">
                     <span class="navTopBar__right__item__icon ico-chat "></span>
+                    <span class="navTopBar__badge badge">1</span>
                 </a>
                 <!-- MESSAGES ON -->
                 <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">

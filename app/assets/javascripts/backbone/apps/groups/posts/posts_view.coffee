@@ -32,7 +32,7 @@
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post'
+    className: 'post item col-md-6'
     ui:
       'item': '.item'
       'commentInput': '.comment'
@@ -104,4 +104,5 @@
 
     onShow: ->
       @ui.timeline.masonry
-        itemSelector: '.item'
+        itemSelector: '.item',
+        containerStyle: null
