@@ -1,7 +1,7 @@
 <form class="formANet form" role="form">
 	
 	
-	<h1>Experience in AISEC</h1>
+	<h1>Experience in AIESEC</h1>
 	<!-- EXPERIENCE BOX ON -->
 	<fieldset>
 		<div class="row">
@@ -43,7 +43,7 @@
 							<option value="2">2002</option>
 							<option value="3">2003</option>
 						</select>
-						<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="submit">+ Month</button>
+						<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="button">+ Month</button>
 						
 					</div>
 				</div>
@@ -96,8 +96,9 @@
 		<hr>
 	</fieldset>
 	<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
-	<!-- EXPERIENCE BOX ON -->
 	
+
+	<!-- EXPERIENCE BOX ON -->	
 	<fieldset>
 		<div class="row">
 			<div  class="col-md-4">

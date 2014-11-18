@@ -14,8 +14,6 @@
       # here get all info of use from api and set in a backbone model
       @current_user = App.request 'get:current_user'#, refresh: true
 
-
-
     #else
       #redirect to login
 

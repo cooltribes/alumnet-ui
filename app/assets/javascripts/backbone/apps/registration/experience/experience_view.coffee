@@ -1,8 +1,9 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
  
-  class Experience.Form extends Marionette.ItemView
-    template: 'registration/experience/templates/form'
-    className: 'row'
+  class Experience.FormAiesec extends Marionette.ItemView
+    template: 'registration/experience/templates/aiesecExperience'
+    # className: 'row'
+    tagName: 'fieldset'
 
     initialize: ->
       ###Backbone.Validation.bind this,
@@ -18,7 +19,8 @@
           $group.find('.help-block').html(error).removeClass('hidden')
     events:
       "click button.js-submit":"submitClicked"
-      "change #group-avatar":"previewImage"###
+      
+      ###
     submitClicked: (e)->
       e.preventDefault()
       formData = new FormData()
@@ -30,11 +32,20 @@
       this.model.set(data)
       this.trigger("form:submit", this.model, formData)
 
-    previewImage: (e)->
-      input = @.$('#group-avatar')
-      preview = @.$('#preview-avatar')
-      if input[0] && input[0].files[0]
-        reader = new FileReader()
-        reader.onload = (e)->
-          preview.attr("src", e.target.result)
-        reader.readAsDataURL(input[0].files[0])
+  class Experience.ExperienceList extends Marionette.CompositeView
+    template: 'registration/experience/templates/experienceList'    
+    childView: Experience.FormAiesec
+    # childViewContainer: '#exp-list'
+    childViewContainer: '.exp-list'
+    className: 'row'
+    # ui:
+    #   'item': '.item'
+    #   'commentInput': '.comment'
+    #   'likeLink': '.js-vote'
+    #   'likeCounter': '.js-likes-counter'
+    # events:
+    #   'keypress .comment': 'commentSend'
+    #   'click .js-like': 'clickedLike'
+    #   'click .js-unlike': 'clickedUnLike'
+
+    

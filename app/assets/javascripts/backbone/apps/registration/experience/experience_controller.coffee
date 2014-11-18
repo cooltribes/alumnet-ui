@@ -10,8 +10,16 @@
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
-      
-      layoutView.form_region.show(@getFormView())
+      experiences = new AlumNet.Entities.ExperienceCollection [
+          {
+            r: "nels"            
+          },
+
+      ]
+        
+        
+
+      layoutView.form_region.show(@getFormView(experiences))
     
 
     getLayoutView: ->
@@ -20,5 +28,6 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: (groups) ->
-      new Experience.Form      
+    getFormView: (experiences) ->
+      new Experience.ExperienceList
+        collection: experiences
