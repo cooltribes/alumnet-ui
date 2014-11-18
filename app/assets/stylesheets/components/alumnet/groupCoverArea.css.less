@@ -1,0 +1,130 @@
+/***
+
+COMPONENT NAME: groupCoverArea
+DESCRIPTION: Hero area of the backgori
+
+***/
+
+@import 'conf/conf.css.less';
+
+.groupCoverArea{
+	background-size: cover;
+	background-position: top center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	margin-top: -53px;
+	padding: 10px 0;
+	position: relative;
+
+	&__title{
+		font-size: 60px;
+		padding: 10px 20px;
+		color: @white;
+		
+		
+		background: rgba(0, 0, 0, 0.5);
+		a{
+			color: @white;
+			&:hover{
+				text-decoration: none;
+
+			}
+		}
+	}
+	& &__title--ribbon{
+
+		padding: 10px 20px 10px 90px;
+
+		&:before{
+			content: "";
+			background: url('/assets/groups/ribbon-orange-noShadow.png') no-repeat;
+	        display: block;
+	        height: 158px;
+	        left: 20px;
+	        position: absolute;
+	        top: 26px;
+	        width: 55px;
+	        z-index: 10;
+	        
+	    }
+	}
+	&__btnInvite{
+		.transition (@transition:1s);
+		position: relative;
+		display: block;
+		width: 250px;
+		margin: 20px auto;
+		background-color: rgba(0, 0, 0, 0.3);
+		padding: 15px 20px;
+		color: @white;
+		border-radius: 0;
+		-webkit-border-radius: 0;
+		-ms-border-radius: 0;
+		-moz-border-radius: 0;
+		border: 2px solid @white;
+		&:hover{
+			color: @white;
+			background-color: rgba(0, 0, 0, 0.8);
+		}
+		
+	}
+}
+
+
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+ 	.groupCoverArea{
+ 		height: 328px;
+ 		margin-top: -51px;
+		
+		&__btnInvite{
+			position: relative;
+			display: block;margin: 20px auto;
+			
+	 	}
+	 }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+ 	.groupCoverArea{
+ 		height: 428px;
+ 		margin-top: 0;
+
+ 		&__btnInvite{
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			display: inline-block;
+			width: auto;
+		}
+		&__title{
+			float: left;
+		}
+ 	}
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .groupCoverArea{
+    	height: 428px;
+    	margin-top: -51px;
+
+  		&__btnInvite{
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			display: inline-block;
+			width: auto;
+		}
+		&__title{
+			float: left;
+		}
+ 	}
+ }

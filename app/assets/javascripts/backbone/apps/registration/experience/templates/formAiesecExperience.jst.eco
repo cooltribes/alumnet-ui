@@ -1,0 +1,201 @@
+<form class="formANet form" role="form">
+	
+	
+	<h1>Experience in AISEC</h1>
+	<!-- EXPERIENCE BOX ON -->
+	<fieldset>
+		<div class="row">
+			<div  class="col-md-4">
+				<div class="form-group has-feedback">
+					<label class="control-label">Name of the position</label>
+					
+					<input type="text" class="form-control input-lg "  placeholder="Enter position">
+					<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Start Date</label>
+					<div class="clearfix">
+						<select name="day" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Year</option>
+							<option value="1">2001</option>
+							<option value="2">2002</option>
+							<option value="3">2003</option>
+						</select>
+						<select name="month" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Month</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="year">End date</label>
+					<div class="clearfix">
+						<select name="year" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Year</option>
+							<option value="1">2001</option>
+							<option value="2">2002</option>
+							<option value="3">2003</option>
+						</select>
+						<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="submit">+ Month</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="registerDescription">Description/achievements</label>
+			<textarea class="form-control input-lg " rows="3"></textarea>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6 ">
+				<div class="form-group">
+					<label for="registerCountry">Country / Region</label>
+					<select class="form-control input-lg ">
+						<option>Poland</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3 ">
+				<div class="form-group">
+					<label for="registerCity">City</label>
+					<select class="form-control input-lg ">
+						<option>Select City</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3 ">
+				<div class="form-group">
+					<label for="registerLocalcomitee">Local Comitee</label>
+					<select class="form-control input-lg ">
+						<option>Select Comitee</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</fieldset>
+	<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
+	<!-- EXPERIENCE BOX ON -->
+	
+	<fieldset>
+		<div class="row">
+			<div  class="col-md-4">
+				<div class="form-group has-feedback">
+					<label class="control-label">Name of the position</label>
+					
+					<input type="text" class="form-control input-lg "  placeholder="Enter position">
+					<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Start Date</label>
+					<div class="clearfix">
+						<select name="day" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Year</option>
+							<option value="1">2001</option>
+							<option value="2">2002</option>
+							<option value="3">2003</option>
+						</select>
+						<select name="month" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Month</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="year">End date</label>
+					<div class="clearfix">
+						<select name="year" class="formANet__colOneHalf form-control input-lg ">
+							<option value="">Year</option>
+							<option value="1">2001</option>
+							<option value="2">2002</option>
+							<option value="3">2003</option>
+						</select>
+						<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="submit">+ Month</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="registerDescription">Description/achievements</label>
+			<textarea class="form-control input-lg " rows="3"></textarea>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6 ">
+				<div class="form-group">
+					<label for="registerCountry">Country / Region</label>
+					<select class="form-control input-lg ">
+						<option>Poland</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3 ">
+				<div class="form-group">
+					<label for="registerCity">City</label>
+					<select class="form-control input-lg ">
+						<option>Select City</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3 ">
+				<div class="form-group">
+					<label for="registerLocalcomitee">Local Comitee</label>
+					<select class="form-control input-lg ">
+						<option>Select Comitee</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground " type="submit"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>
+		<hr>
+	</fieldset>
+	<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
+	
+	<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit">+ Add another AIESEC experience</button>
+	<hr>
+	<div class="text-right ">
+		<button class="btn btn-primary btn-lg  text-uppercase" type="submit">Academic Experience <span class="glyphicon glyphicon-chevron-right"></span> </button>
+	</div>
+</form>

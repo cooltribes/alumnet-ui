@@ -7,12 +7,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="add-cover-photo">
-              <img id="preview-cover" src="" alt="" height="300" width="500">
-            </div>
-            <div class="textColor--white bg--blue padding_large margin_right margin_top_small ">
-              <span class="icon-entypo-upload fontSize--lg"></span>
-              <p class="fontSize--md"><a href="#" class="textColor--white" title="Upload Cover photo">Upload Cover photo</a> </p>
-              <p> Restrictions, e.g. jpg, gif, max 2000px wide.</p>
+              <img id="preview-cover" src="assets/groups/uploadCover.png" alt="Upload cover"   width="100%">
             </div>
           </div>
           <div class="col-md-6">

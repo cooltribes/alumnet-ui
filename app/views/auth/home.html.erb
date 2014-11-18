@@ -13,12 +13,10 @@
             </button>
             <a class="navbar-brand" href="#"><img src="/assets/home/alumNetLogoHome.png" width="250px"></a>
           </div>
-          
+
         </div>
         <div class=" col-md-5">
           <div class="collapse navbar-collapse" id="alumNet-collapse-topBar">
-            
-            
             <%= form_tag sign_in_path, class: "homeAlumNet__heroArea__loginForm navbar-form navbar-right" do %>
             <div class="form-group">
               <%= label_tag 'email', nil, class:'sr-only' %>
@@ -28,7 +26,7 @@
               <%= label_tag 'password', nil, class:'sr-only' %>
               <%= password_field_tag 'user[password]', '', class: "form-control", placeholder: "Enter password" %>
             </div>
-            
+
             <%= submit_tag "Login", class: "btn btn-primary" %>
             <div class="clearfix">
               <div class="pull-left">
@@ -41,7 +39,7 @@
               <a href="#" title="forgotten your password?" class="pull-right">forgotten your password? »</a>
             </div>
             <% end %>
-            
+
           </div>
         </div>
       </div>
@@ -50,7 +48,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-5 col-md-offset-2">
-        <h2>Join us now!</h2>
+        <h2 class="homeAlumNet__heroArea__title">Join us now!</h2>
         <p class="lead">and help transofrm our global network of AIESEC alumni into a powerful force for positive change</p>
       </div>
     </div>
@@ -58,7 +56,7 @@
       <div id="registerHomeForm" class="collapse in ">
         <div class=" homeAlumNet__registerForm">
           <%= form_tag sign_up_path do %>
-          
+
           <% if @errors && @errors.any? %>
           <div class="alert alert-danger">
             <% @errors.full_messages.each do |msg| %>
@@ -78,13 +76,12 @@
           <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
           <%= submit_tag "Sign up for free", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
           <% end %>
-          
-          
+
           <!-- <butto
           n type="button" id="openAndSubmit" class="btn btn-lg btn-primary text-uppercase"  data-toggle="collapse" data-target="#registerHomeForm" aria-expanded="true" aria-controls="demo">Sign up for free</button> -->
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -93,12 +90,12 @@
 <!-- FEATURES ON -->
 <div class="homeAlumNet__features">
 <div class="container">
-  
+
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="row">
         <div class="col-md-4  text-center ">
-          
+
           <img src="/assets/home/iconConnect.png"></img>
           <h3>    Connect</h3>
           <p> Find alumni, form groups and<br/>
@@ -129,7 +126,7 @@
 <div class="homeAlumNet__values">
 <div class="container-fluid">
   <div class="row">
-    
+
     <!-- ROW 1 ON --><div class="col-md-8 col-md-offset-2">
     <h2>Our Values</h2>
     <div class="row">
@@ -143,7 +140,7 @@
             We lead by example and inspire leadership through our activities. We take full responsibility for developing the youth leadership potential of our members.
           </div>
         </div>
-        
+
       </div>
       <div class="col-md-6 ">
         <div class="row">
@@ -170,7 +167,7 @@
             We seek to learn from the different ways of life and opinions represented in our multicultural environment. We respect and actively encourage the contribution of every individual.
           </div>
         </div>
-        
+
       </div>
       <div class="col-md-6 ">
         <div class="row">
@@ -197,7 +194,7 @@
             We aim to deliver the highest quality performance in everything we do. Through creativity and innovation we seek to continuously improve.
           </div>
         </div>
-        
+
       </div>
       <div class="col-md-6 ">
         <div class="row">
@@ -222,7 +219,7 @@
 <div class="container-fluid">
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
-    <h2>Blog
+    <h2 class="homeAlumNet__blog__title">Blog
     <small>
     <span class="icon-entypo-right-open"></span>
     </small>
@@ -241,7 +238,7 @@
     <footer>
       <a href="#" class="btn btn-default">read more <span class="icon-entypo-right-open"></span></a>
     </footer>
-    
+
   </article>
   <article class="homeAlumNet__blog__article col-md-4 col-sm-6">
     <time itemprop="startDate" datetime="2009-10-15T19:00-08:00"> November 1, 2014</time>
@@ -253,7 +250,7 @@
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <a href="#" class="btn btn-default">read more <span class="glyphicon glyphicon-chevron-right"></span></a>
-    
+
   </article>
 </div>
 </div>
@@ -269,7 +266,7 @@
     <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
     International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
     Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small></p>
-    
+
   </div>
   <div class="col-md-8 col-lg-8 text-right">
     <div class="clearfix">

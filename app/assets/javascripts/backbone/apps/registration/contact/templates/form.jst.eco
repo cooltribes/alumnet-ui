@@ -6,7 +6,7 @@
       <div class="form-group has-feedback">
         <label for="inputEmail">E-mail address</label>
         <input type="hidden" name="contact_infos_attributes[contact_type][]" value="0">
-        <input type="email" class="form-control input-lg" id="inputEmail" name="contact_infos_attributes[info][]" placeholder="Enter email">
+        <input type="email" class="form-control input-lg" id="inputEmail" name="contact_infos_attributes[info][]" placeholder="Enter email" value="<%= @userEmail %>">
         <span class="formANet__input__icon glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
     </div>
@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <button type="button" class="close formANet__removableRow__removeButton"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close formANet__removableRow__removeButton js-rmvRow hidden"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
   </div>  
   
@@ -147,7 +147,7 @@
       </div>
     </div>
 
-    <button type="button" class="close formANet__removableRow__removeButton"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close formANet__removableRow__removeButton js-rmvRow hidden"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
   </div>
     

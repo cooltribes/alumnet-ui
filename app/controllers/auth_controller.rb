@@ -27,7 +27,7 @@ class AuthController < ApplicationController
       session[:current_user] = Marshal.dump(registration.user)
       redirect_to root_path
     else
-      @first_name, @last_name, @email = profile_params[:first_name], profile_params[:last_name], user_params[:email]
+      @first_name, @last_name, @signup_email = profile_params[:first_name], profile_params[:last_name], user_params[:email]
       @errors = registration.errors
       render :home
     end

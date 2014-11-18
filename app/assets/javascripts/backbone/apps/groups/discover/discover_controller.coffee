@@ -17,7 +17,7 @@
       #When join link is clicked
       groupsView.on 'childview:join', (childView) ->
         group_id = { group_id: childView.model.get('id') }
-        join = AlumNet.request('group:join:send', group_id)
+        join = AlumNet.request('membership:request', group_id)
         join.on 'save:success', (response, options)->
           console.log response.responseJSON
 
