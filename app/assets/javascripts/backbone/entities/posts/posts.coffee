@@ -18,5 +18,13 @@
       post.urlRoot = AlumNet.api_endpoint + '/groups/' + group_id + '/posts'
       post
 
+    getNewPostForUser: (user_id)->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + '/users/' + user_id + '/posts'
+      post
+
   AlumNet.reqres.setHandler 'post:group:new',(group_id)->
     API.getNewPostForGroup(group_id)
+
+  AlumNet.reqres.setHandler 'post:user:new',(user_id)->
+    API.getNewPostForUser(user_id)

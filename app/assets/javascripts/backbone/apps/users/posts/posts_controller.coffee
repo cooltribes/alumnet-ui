@@ -1,27 +1,19 @@
-@AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'UsersApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   class Posts.Controller
-    showPosts: (group_id)->
-      group = AlumNet.request("group:find", group_id)
-      group.on 'find:success', (response, options)->
-        layout = AlumNet.request("group:layout", group)
-        header = AlumNet.request("group:header", group)
-
-        #configure the composite view of posts
-        group.posts.fetch()
+    showPosts: (user_id)->
+      user = AlumNet.request("user:find", user_id)
+      user.on 'find:success', (response, options)->
+        user.posts.fetch()
         posts = new Posts.PostsView
-          collection: group.posts
+          model: user
+          collection: user.posts
+        AlumNet.mainRegion.show(posts)
 
-        #render each view on your own region
-        AlumNet.mainRegion.show(layout)
-        layout.header.show(header)
-        layout.body.show(posts)
-
-        #listen all posts
         posts.on "post:submit", (data)->
-          post = AlumNet.request("post:group:new", group.id)
+          post = AlumNet.request("post:user:new", user.id)
           post.set(data)
           post.save() # Here handle errors
-          group.posts.fetch({reset: true})
+          user.posts.fetch({reset: true})
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->
@@ -61,7 +53,6 @@
             success: ->
               commentView.remLike()
 
-      group.on 'find:error', (response, options)->
-        ##Logic here the group not exists or is not authorizate
-        console.log "Error on group fetch"
-        AlumNet.trigger("groups:home")
+      user.on 'find:error', (response, options)->
+        ##Logic here the user not exists or is not authorizate
+        console.log "Error on user fetch"

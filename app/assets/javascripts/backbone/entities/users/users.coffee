@@ -1,14 +1,21 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.User extends Backbone.Model
     urlRoot: ->
-      AlumNet.api_endpoint + '/users'
+      AlumNet.api_endpoint + '/users/'
 
     initialize: ->
       @profile = new Entities.Profile
 
+      @posts = new Entities.PostCollection
+      @posts.url = @urlRoot() + @id + '/posts'
+
       @on "change", ->
         @profile.url = AlumNet.api_endpoint + '/me/profile'
         @profile.fetch()
+
+    currentUserCanPost: ->
+      friendship_status = @get('friendship_status')
+      if friendship_status == 'accepted' then true else false
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -30,17 +37,17 @@
       else
         null
 
-    getCurrentUser: (options = {}) ->      
+    getCurrentUser: (options = {}) ->
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->
-      # console.log "fromapi"      
+      # console.log "fromapi"
       # console.log @current_user
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
       # console.log user.url
       user.fetch()
-      # console.log "after fetch"      
+      # console.log "after fetch"
       # console.log user
       user
 
@@ -53,14 +60,16 @@
     getNewUser: ->
       Entities.user = new Entities.User
 
-    createInvitation: (attrs)->
-      invitation = new Entities.Invitation(attrs)
-      invitation.save attrs,
+    findUser: (id)->
+      #Optimize: Verify if Entities.users is set and find the user there.
+      user = new Entities.User
+        id: id
+      user.fetch
         error: (model, response, options) ->
-          model.trigger('save:error', response, options)
+          model.trigger('find:error', response, options)
         success: (model, response, options) ->
-          model.trigger('save:success', response, options)
-      invitation
+          model.trigger('find:success', response, options)
+      user
 
   AlumNet.reqres.setHandler 'user:token', ->
     API.getCurrentUserToken()
@@ -79,11 +88,11 @@
   AlumNet.reqres.setHandler 'temp:current_user', (options = {}) ->
     API.getCurrentUser(options)
 
-  AlumNet.reqres.setHandler 'user:invitation:send', (attrs) ->
-    API.createInvitation(attrs)
-
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
   AlumNet.reqres.setHandler 'user:entities', (querySearch)->
     API.getUserEntities(querySearch)
+
+  AlumNet.reqres.setHandler 'user:find', (id)->
+    API.findUser(id)
