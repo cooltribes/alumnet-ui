@@ -15,6 +15,6 @@
 				</div>
 			</div>
 		</div>
-		<div id="timeline" class="posts-container row" ></div>
+		<div id="timeline" class="row" ></div>
 	</div>
 </div>
