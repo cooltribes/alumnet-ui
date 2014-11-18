@@ -1,0 +1,118 @@
+/***
+
+COMPONENT NAME: typography
+DESCRIPTION: Displays a typography on the app
+
+***/
+
+h2 {
+    text-transform: uppercase;
+}
+h3 {
+    font-size: 12pt;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+
+}
+h4 {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+a {
+    outline: 0 none;
+}
+a:hover, a:focus {
+    text-decoration: none;
+}
+.text-small{
+    font-size:11px;
+}
+.blue-text{
+ color: #2099d0;
+}
+.adv-search-link {
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
+}
+.adv-search-link a:hover
+{
+    text-decoration:none;
+    color:#2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
+}
+.timeline {
+    text-align: center;
+}
+.timeline-half-box h3 {
+margin-top:0;
+margin-bottom:5px;
+}
+
+.timeline-main-about h3 {
+    font-size: 23px;
+    font-weight: 400;
+}
+.sub-groups-title {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+}
+.blue-huge-title {
+    color: #2099d0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 300;
+    font-size:350%;
+}
+.black-big-title {
+    font-family: "Roboto";
+    font-size: 210%;
+    font-weight: 300;
+    margin-top: 60px;
+    text-decoration: none;
+    text-transform: none;
+    text-align: left;
+}
+.black
+{
+    color:#000!important;
+}
+
+a, a.list-group-item {
+    color: #2a76db;
+}
+a:visited {
+}
+a:hover, a:focus {
+    color: #2a6496;
+    text-decoration: none!important;
+    cursor:pointer;
+}
+
+.label, .badge {
+    font-family: 'Roboto';
+}
+.text-primary {
+    color: #3b87ec;
+}
+.text-info {
+    color: #67c7f8;
+}
+.text-warning {
+    color: #f8d145;
+}
+.text-danger {
+    color: #ff4f3d;
+}
+.text-success {
+    color: #6dc96d;
+}
+.text-muted {
+    color: rgba(110, 110, 110, 0.6);
+}

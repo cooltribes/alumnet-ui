@@ -1,0 +1,16 @@
+/***
+
+COMPONENT NAME: Top Bar no Login
+DESCRIPTION: Displays top bar when no login is present
+
+***/
+
+.register-title {
+    color: #fff;
+    font-family: "roboto";
+    font-size: 37px;
+    font-weight: 300;
+    margin: 10px 0 0;
+    text-decoration: none;
+    text-transform: none;
+}

@@ -1,0 +1,217 @@
+
+.invite-box-itself{
+    background: #fff;
+}
+.invite-box {
+    background: none repeat scroll 0 0 #fff;
+    float: left;
+    height: 100px;
+    margin: 15px;
+    width: 375px !important;
+}
+.invite-member-name {
+    font-family: "roboto";
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.member-position {
+    font-family: "roboto";
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.select-invite {
+    background: none repeat scroll 0 0 #8dcae6;
+    color: #fff;
+    height: 100px;
+}
+
+.grey-bg.col-md-6.border-1-white {
+    height: 37px;
+}
+
+.grey-bg.col-md-12.border-1-white {
+    height: 45px;
+}
+.inline{
+    display:inline!important;
+}
+.add-group {
+    margin-top: 40px;
+}
+.groups-home {
+    margin-top: 100px;
+}
+.add-members {
+    margin-top: 40px;
+}
+.main-invite-boxes-area {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+.grid-wrapper {
+    margin: 0 auto;
+    width: 425px;   /* 1 column */
+}
+.group-dash-image.pad-0 {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+
+
+.groups-right-sort-menu .link {
+    color: #677f8a;
+    font-size: 100%;
+}
+.sub-groups-container {
+
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #485257;
+    opacity: 0.9;
+}
+.sub-groups-container ul {
+    color: #fff;
+    font-family: "roboto";
+    list-style: none outside none;
+    padding-left: 0px;
+
+
+}
+
+.sub-groups-container ul li {
+    border-bottom: 1px solid #aaa;
+    height: 30px;
+    padding-top: 5px;
+}
+.sub-groups-container ul li a {
+    color: #c6c6c6;
+    padding-left: 10px;
+    font-size: 13px;
+}
+.sub-groups-container ul li a:hover {
+    color: #fff!important;
+}
+.create-group {
+    float: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.timeline-main-settings {
+    float: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 1000px;
+}
+
+.timeline-main-container{
+    text-align: left;
+}
+.right-buttons-container{
+    float: right;
+
+    text-align: right;
+}
+.timeline-photos-main {
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+.timeline-photos-main {
+    margin-top: 20px;
+}
+
+.timeline-main-photos {
+   
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 1000px;
+    text-align: left;
+
+}
+.radios-ul {
+    display: inline;
+    list-style: none outside none;
+}
+.radios-ul li {
+
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+}
+.radios-ul li a {
+    display: inline;
+    height: 70px;
+    list-style: none outside none;
+    padding: 27px;
+}
+.radios-ul li a:hover {
+    display: inline;
+    list-style: none outside none;
+    height: 70px;
+
+    border-bottom: 3px solid #2099d0;
+}
+
+.timeline-settings-official-group{
+
+}
+.timeline-main-about{
+    display: inline-block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+}
+.add-cover-photo
+{
+    width:100%;
+    height:280px;
+    background: #2099d0;
+    margin-top: 25px;
+}
+.cover-photo-link > img {
+    width: 100% !important;
+}
+
+
+.timeline-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    float: left;
+    height: auto;
+    margin: 10px;
+    padding: 15px;
+     width: 98%;
+}
+.timeline-half-box {
+    background: none repeat scroll 0 0 #f4f4f4;
+    height: auto;
+    margin: 10px;
+    padding: 15px;
+   width: 512px;
+    float:left;
+}
+
+.insert-group-name {
+    height: 85px;
+}
+.insert-group-decription {
+}
+.create-group input
+{
+    height: 50px;
+}
+
+.create-group select
+{
+    height: 50px;
+}
+
+
+.add-members-top
+{
+}

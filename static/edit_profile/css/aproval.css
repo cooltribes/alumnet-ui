@@ -1,0 +1,36 @@
+/***
+
+COMPONENT NAME: Aproval
+DESCRIPTION: Displays css for aproval page
+
+***/
+
+
+
+
+.find-people-sub
+ {
+text-transform: none;
+}
+
+.aproval-results-bg {
+    background: none repeat scroll 0 0 #fafafa;
+    margin-bottom: 10px;
+       height: 80px;
+}
+.aproval-results {
+    clear: both;
+    height: 65px;
+    position: relative;
+}
+.aproval-name {
+    margin-bottom: 0;
+}
+.aproval-position {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+.aproval-local {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
