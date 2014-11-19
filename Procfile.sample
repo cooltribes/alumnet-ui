@@ -1,0 +1,2 @@
+web: rails s
+api: ../alumnet-api -- bundle exec foreman start -p 4000
