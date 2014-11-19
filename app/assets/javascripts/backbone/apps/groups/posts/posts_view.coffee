@@ -35,13 +35,19 @@
     className: 'post item col-md-6'
     ui:
       'item': '.item'
+      'gotoComment': '.js-goto-comment'
       'commentInput': '.comment'
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
+      'textareaComment': 'textarea.comment'
     events:
       'keypress .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
+      'click .js-goto-comment': 'clickedGotoComment'
+
+    onAddChild: (childView)->
+      #$('#timeline').masonry('destroy').masonry()
 
     commentSend: (e)->
       e.stopPropagation()
@@ -59,6 +65,10 @@
       e.stopPropagation()
       e.preventDefault()
       @trigger 'post:unlike'
+    clickedGotoComment: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.textareaComment.focus()
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
@@ -67,6 +77,7 @@
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
+
 
     #Init the render of a comment
     # TODO: try to put this code on onAddChild of CompositeView
@@ -89,6 +100,9 @@
     events:
       'click a#js-post-submit': 'submitClicked'
 
+    refreshMasonry: ->
+      #@ui.timeline.masonry('destroy').masonry()
+
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -97,12 +111,8 @@
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
 
-    # onAddChild: (childView)->
-    #   item = $(childView.ui.item).last()
-    #   masonry = $('#timeline').data('masonry')
-    #   masonry.appended item
+    onAddChild: (childView)->
+      #@refreshMasonry()
 
-    # onShow: ->
-    #   @ui.timeline.masonry
-    #     itemSelector: '.item'
-    #     containerWidth: 250
+    onShow: ->
+      # @ui.timeline.masonry()
