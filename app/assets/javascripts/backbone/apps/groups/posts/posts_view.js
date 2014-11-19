@@ -172,20 +172,6 @@ this.AlumNet.module('GroupsApp.Posts', function(Posts, AlumNet, Backbone, Marion
       }
     };
 
-    PostsView.prototype.onAddChild = function(childView) {
-      var item, masonry;
-      item = $(childView.ui.item).last();
-      masonry = $('#timeline').data('masonry');
-      return masonry.appended(item);
-    };
-
-    PostsView.prototype.onShow = function() {
-      return this.ui.timeline.masonry({
-        itemSelector: '.item',
-        containerStyle: null
-      });
-    };
-
     return PostsView;
 
   })(Marionette.CompositeView);

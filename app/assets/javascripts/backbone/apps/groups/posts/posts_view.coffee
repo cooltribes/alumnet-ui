@@ -97,12 +97,12 @@
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
 
-    onAddChild: (childView)->
-      item = $(childView.ui.item).last()
-      masonry = $('#timeline').data('masonry')
-      masonry.appended item
+    # onAddChild: (childView)->
+    #   item = $(childView.ui.item).last()
+    #   masonry = $('#timeline').data('masonry')
+    #   masonry.appended item
 
-    onShow: ->
-      @ui.timeline.masonry
-        itemSelector: '.item',
-        containerStyle: null
+    # onShow: ->
+    #   @ui.timeline.masonry
+    #     itemSelector: '.item'
+    #     containerWidth: 250

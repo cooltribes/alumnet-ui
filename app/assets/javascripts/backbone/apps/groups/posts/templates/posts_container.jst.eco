@@ -15,7 +15,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="timeline" class="posts-container row " >
+		<div id="timeline" style="width:960px" class="posts-container row " >
 			
 		</div>
 	</div>
