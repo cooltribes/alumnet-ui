@@ -27,8 +27,8 @@ class AuthController < ApplicationController
     registration.register(user_params, profile_params)
     if registration.valid?
       # session[:current_user] = Marshal.dump(registration.user)
-      session[:user_id] = user_session.user.id
-      session[:api_token] = user_session.user.api_token
+      session[:user_id] = registration.user.id
+      session[:api_token] = registration.user.api_token
       redirect_to root_path
     else
       @first_name, @last_name, @signup_email = profile_params[:first_name], profile_params[:last_name], user_params[:email]
