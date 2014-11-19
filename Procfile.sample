@@ -1,2 +1,2 @@
 web: rails s
-api: ../alumnet-api -- bundle exec foreman start -p 4000
+api: subcontract --rvm ruby-2.1.2@alument --chdir ../alumnet-api -- bundle exec rails s -p 4000

@@ -22,6 +22,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'foreman'
+  gem 'subcontractor'
 end
 
 group :test, :development do
