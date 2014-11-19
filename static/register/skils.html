@@ -53,7 +53,7 @@
 
 
 			<script>
-				
+
   // When the browser is ready...
   $(function() {
   	
@@ -78,102 +78,70 @@
     
 });
   
-</script>
+  </script>
 
 
 </head>
 <body>
-	<div class="" header=""><header id="header" class="navbar navbar-fixed-top">
-		<div class="container-fluid top-nav">  <!-- Top Bar -->
-			<div class="navbar-header col-md-2">
-				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand pad-0" href="/">
-					<img src="./images/general/alumnet_logo.png">
-				</a>
-			</div>
-		</div>
-		<div class="container-fluid top-sub-nav">  <!-- Sub Bar -->
-			<h2 class="register-title">Register to <b>Alumnet</b></h2>	
-		</div>
-	</header>
-</div>
-<div class="ng-scope" id="wrapper">  <!-- Main -->
-	<div id="main-wrapper" class="col-md-12">
-		<div id="" class="register-profile">
-			<div class="container-fluid groups-container">   <!-- Begin group container -->
-				<div class=" grid-wrapper">
-					<div  class="col-md-4">
-					</div>
-					<div class="col-md-8 ">
-						<div class="skils-container border-bottom-1-grey">
-							<h3 class="black-big-title margin-15">Skills</h3>	
-							<h6 class="margin-15 pad-bottom-15">Write your Skills separating with a comma</h6>
-							<div class="margin-15 ">
-								
-								<div class="input-group">
-									<input id="" class="form-control " type="text" placeholder="Enter skils">
-									<span class="input-group-addon">00</span>
-								</div>
-							</div>
-						</div>
-						<div class="language-container border-bottom-1-grey">
-							<h3 class="black-big-title margin-15">Languages</h3>
 
-							<div class="col-md-8">
-								<div class="form-group">
-									<label for="registerCoutry">Country / Region</label>
-									<select class="form-control">
-										<option>Poland</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
-								</div>
-							</div>
+	<div class="ng-scope" id="wrapper">  <!-- Main -->
+		<form class="formANet form" role="form">
+			<h3 class="black-big-title margin-15">Skills</h3>	
+			<h6 class="margin-15 pad-bottom-15">Write your Skills separating with a comma</h6>
+			<fieldset>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="form-group has-feedback">
+							<input type="text" class="form-control input-lg "  placeholder="Enter skils">
+							<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+							<hr>
+				<h3 class="black-big-title margin-15">Languages</h3>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="col-md-7">
+							<label for="">Language</label>
+							<select name="language" class="formANet__colOneHalf form-control input-lg">
+								<option value="">Mandarin</option>
+								<option value="1">English</option>
+								<option value="2">Portuguese</option>
+								<option value="3">Spanish</option>
+							</select>
+						</div>
+						<div class="col-md-5">
 							<div class="col-md-4 handles-container">
 								<!--  The div that is used as the slider container  -->
 								<p>level</p>
 								<div id="slider" style="margin-top:0;"></div>
-								
 								<!--  The div that is used to display the slider value  -->
 								<div id="amount" style="color:#777;font-size:15px;text-align:center;"></div>
-
 							</div>
-
-
 						</div>
-
-						
 					</div>
-					
 				</div>
-				
-
-				
-
-
-
-
-			</div>
-		</div><!-- End group container -->
-	</div>
-</div>
-<div footer=""><footer>  <!-- Footer -->
-	<div class="container-fluid">
-		<div class="row">    
-			<div class="col-md-6"> 
-			</div>
-			<div class="col-md-6">          
+			</fieldset>
+			<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit">+ Add Language</button>
+			<hr>
+			<div class="text-right ">
+				<button class="btn btn-primary btn-lg text-uppercase" type="submit">
+					Next
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</button>
 			</div>
 		</div>
+		<div footer=""><footer>  <!-- Footer -->
+			<div class="container-fluid">
+				<div class="row">    
+					<div class="col-md-6"> 
+					</div>
+					<div class="col-md-6">          
+					</div>
+				</div>
+			</div>
+		</footer></div> <!-- End Footer -->
 	</div>
-</footer></div> <!-- End Footer -->
-</div>
 </div>  <!-- End All -->
 </body>
 </html>
