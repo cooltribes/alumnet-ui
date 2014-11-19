@@ -13,13 +13,14 @@ class ApplicationController < ActionController::Base
     #DILEMA
     #this is bad idea. The objects dont should store in a session. Profinda way.
     #todo: store only the token the user info is get from api.
-    Marshal.load(session[:current_user]) if session[:current_user].present?
+    # Marshal.load(session[:current_user]) if session[:current_user].present?
+    session[:api_token] if session[:api_token].present?
   end
   helper_method :current_user
 
   def setup_gon
     gon.api_endpoint = Settings.api_endpoint
-    gon.current_user = current_user if signed_in?
+    gon.api_token = current_user if signed_in?
   end
 
   def signed_in?
@@ -27,6 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
-    redirect_to home_path, notice: "You must login in" if current_user.nil?
+    redirect_to home_path, notice: "You must login in" unless signed_in?
   end
 end
