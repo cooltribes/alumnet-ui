@@ -3,6 +3,11 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'users/posts/templates/comment'
     className: 'groupPost__comment'
+    initialize: (options)->
+      @userModel = options.userModel
+    templateHelpers: ->
+      currentUserCanPost: @userModel.currentUserCanPost()
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -33,6 +38,8 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post'
+    childViewOptions: ->
+      userModel: @userModel
     initialize: (options)->
       @userModel = options.userModel
     templateHelpers: ->
