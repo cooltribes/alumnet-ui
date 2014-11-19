@@ -4,6 +4,9 @@
     #   AlumNet.api_endpoint + '/experience'
 
     # initialize: ->      
+    defaults: {
+      first: false
+    }
 
   class Entities.ExperienceCollection extends Backbone.Collection
     # url: ->

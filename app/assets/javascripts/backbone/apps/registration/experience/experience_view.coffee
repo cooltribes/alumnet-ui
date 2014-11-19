@@ -21,31 +21,63 @@
       "click button.js-submit":"submitClicked"
       
       ###
-    submitClicked: (e)->
-      e.preventDefault()
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = this.$('#group-avatar')
-      formData.append('avatar', file[0].files[0])
-      this.model.set(data)
-      this.trigger("form:submit", this.model, formData)
+    ui:
+      'btnRmv': '.js-rmvRow'
+      # 'commentInput': '.comment'
+      # 'likeLink': '.js-vote'
+      # 'likeCounter': '.js-likes-counter'
+    events:
+      "click @ui.btnRmv": "removeExperience"
+
+      
+    removeExperience: (e)->
+      @model.destroy()
+
+
+    
+
+
 
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'    
     childView: Experience.FormAiesec
     # childViewContainer: '#exp-list'
-    childViewContainer: '.exp-list'
+    childViewContainer: '#exp-list'
     className: 'row'
-    # ui:
-    #   'item': '.item'
-    #   'commentInput': '.comment'
-    #   'likeLink': '.js-vote'
-    #   'likeCounter': '.js-likes-counter'
-    # events:
-    #   'keypress .comment': 'commentSend'
-    #   'click .js-like': 'clickedLike'
-    #   'click .js-unlike': 'clickedUnLike'
+    ui:
+      'btnAdd': '.js-addExp'
+      'btnSubmit': '.js-submit'
+      # 'commentInput': '.comment'
+      # 'likeLink': '.js-vote'
+      # 'likeCounter': '.js-likes-counter'
+    events:
+      "click @ui.btnAdd": "addExperience"
+      "click @ui.btnSubmit": "submitClicked"
+      # "click button.js-rmvRow":"removeInputRow"
+      # "click button.js-submit":"submitClicked"
+
+    addExperience: (e)->
+      newExperience = new AlumNet.Entities.Experience
+      this.collection.add(newExperience)
+
+
+    submitClicked: (e)->
+      e.preventDefault()
+      
+      # formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      experiences = new Array()
+      _.forEach data, (valueIn, key, list)->
+        # if valueIn != "" and contactArray.info[key] != ""
+        #   experiences[key] = {
+        #     "name": valueIn,
+        #     "info": contactArray.info[key],
+        #     "privacy": contactArray.privacy[key],
+        #   }
+        console.log valueIn
+      # file = this.$('#group-avatar')
+      # formData.append('avatar', file[0].files[0])
+      # this.model.set(data)
+      # this.trigger("form:submit", this.model, formData)
 
     

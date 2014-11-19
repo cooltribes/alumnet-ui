@@ -12,12 +12,9 @@
 
       experiences = new AlumNet.Entities.ExperienceCollection [
           {
-            r: "nels"            
+            first: true
           },
-
       ]
-        
-        
 
       layoutView.form_region.show(@getFormView(experiences))
     
