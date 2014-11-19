@@ -99,6 +99,8 @@
                         <div class="clearfix">
                             <!-- Avatar -->
                             <div class="navTopBar__notification__avatar">
+                               
+
                                 <img src="http://placesheen.com/40/40" class="img-circle">
                             </div>
                             <!-- Content -->

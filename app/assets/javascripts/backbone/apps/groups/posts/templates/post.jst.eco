@@ -3,8 +3,7 @@
     <div class="groupPost__metaData clearfix">
       <!-- Avatar ON -->
       <div class="groupPost__avatar">
-        <img src="<%= @user.avatar.thumb %>" alt="" width="25" height="25">
-        <img src="http://placesheen.com/70/70" class="img-circle">
+        <img src="<%= @user.avatar.thumb %>" alt="<%= @user.name %>" width="70" height="70" class="img-circle">
       </div>
       <!-- Avatar OFF -->
       
@@ -28,7 +27,8 @@
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
   <form class="groupPost__commentForm clearfix form">
-    <div class="groupPost__commentForm__avatar"><img src="http://placesheen.com/45/45" class="img-circle"></div>
+    <div class="groupPost__commentForm__avatar">
+      <img src="<%= @user.avatar.thumb %>" alt="" width="45" height="45" alt="<%= @user.name %>" class="img-circle"></div>
     <div class="groupPost__commentForm__form">
       <div class="form-group">
         <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
