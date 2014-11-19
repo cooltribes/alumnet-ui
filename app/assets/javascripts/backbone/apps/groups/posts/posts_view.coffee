@@ -32,7 +32,7 @@
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post'
+    className: 'post item col-md-6'
     ui:
       'item': '.item'
       'commentInput': '.comment'
@@ -97,11 +97,12 @@
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
 
-    onAddChild: (childView)->
-      item = $(childView.ui.item).last()
-      masonry = $('#timeline').data('masonry')
-      masonry.appended item
+    # onAddChild: (childView)->
+    #   item = $(childView.ui.item).last()
+    #   masonry = $('#timeline').data('masonry')
+    #   masonry.appended item
 
-    onShow: ->
-      @ui.timeline.masonry
-        itemSelector: '.item'
+    # onShow: ->
+    #   @ui.timeline.masonry
+    #     itemSelector: '.item'
+    #     containerWidth: 250

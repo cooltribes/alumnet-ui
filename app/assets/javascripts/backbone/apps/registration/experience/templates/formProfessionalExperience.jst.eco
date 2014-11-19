@@ -1,0 +1,92 @@
+<form class="formANet form" role="form">
+	<fieldset>
+		<h1>Professional Experience</h1>
+		<!-- EXPERIENCE BOX ON -->
+		<div class="row">
+			<div  class="col-md-6">
+				<div class="form-group has-feedback">
+					<label class="control-label">Position</label>
+					
+					<input type="text" class="form-control input-lg "  placeholder="Enter position">
+					<span class="formANet__input__icon icon-entypo-briefcase form-control-feedback" aria-hidden="true"></span>
+					
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="">Start Date</label>
+					
+					<select name="day" class="form-control input-lg ">
+						<option value="">Day</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+					
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="">End date</label>
+					
+					<select name="year" class="form-control input-lg ">
+						<option value="">Year</option>
+						<option value="1">2001</option>
+						<option value="2">2002</option>
+						<option value="3">2003</option>
+					</select>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group has-feedback">
+		<label class="control-label" for="registerDescription">Company / Organization</label> 
+		<input type="text" class="form-control input-lg " id="" placeholder="">
+		<span class="formANet__input__icon icon-entypo-suitcase form-control-feedback" aria-hidden="true"></span> 
+	</div>
+	<div class="form-group">
+		<label for="registerDescription">Description</label>
+		<textarea class="form-control input-lg" rows="3"></textarea>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="registerCountry">Country / Region</label>
+				<select class="form-control input-lg">
+					<option>Select Country</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="registerCity">City</label>
+				<select class="form-control input-lg">
+					<option>Select City</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox"> This was an AIESEC internship
+		</label>
+	</div>
+	<hr>
+	<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
+	
+	<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit">+ Add another professional experience</button>
+	<hr>
+	<div class="text-right">
+		<button class="btn btn-primary btn-lg  text-uppercase" type="submit">Next <span class="glyphicon glyphicon-chevron-right"></span> </button>
+	</div>
+</fieldset>
+</form>
