@@ -33,6 +33,10 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post'
+    initialize: (options)->
+      @userModel = options.userModel
+    templateHelpers: ->
+      currentUserCanPost: @userModel.currentUserCanPost()
 
     ui:
       'item': '.item'
@@ -84,6 +88,8 @@
     template: 'users/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    childViewOptions: ->
+      userModel: @model
     templateHelpers: ->
       currentUserCanPost: @model.currentUserCanPost()
     ui:

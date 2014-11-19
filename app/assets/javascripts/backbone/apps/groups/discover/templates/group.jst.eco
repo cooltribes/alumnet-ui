@@ -1,7 +1,7 @@
 <div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->
-    <div class="groupCard__cover overhidden" style="background: url('<%= @cover.thumb %>') no-repeat top center; background-size:cover; " >
+    <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
       <div class="groupCard__menu">
         <h5 class="groupCard__menu__title">Sub-Groups (13)</h5>
@@ -24,7 +24,7 @@
             <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
           </li>
         </ul>
-        
+
       </div>
       <!-- SUBGROUPS OFF-->
       <% if @official: %><span class="groupCard__ribbon"></span><% end %>
@@ -38,10 +38,10 @@
         </h3>
         <span class="groupCard__status pull-right
           <% if @group_type.value== 1: %>
-            groupCard__status--closed 
+            groupCard__status--closed
           <% end %>
           <% if @group_type.value== 0: %>
-            groupCard__status--public 
+            groupCard__status--public
           <% end %>
         ">
         </span>
@@ -68,15 +68,15 @@
               <span class="groupCard__icon ico-company"></span> 13000
             </div>
           </div>
-          
+
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
               <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
               +10
             </div>
-            
+
           </div>
-          
+
         </div>
         <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
         </button>

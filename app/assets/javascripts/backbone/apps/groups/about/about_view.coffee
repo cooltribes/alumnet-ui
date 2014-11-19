@@ -3,7 +3,7 @@
   class About.View extends Marionette.ItemView
     template: 'groups/about/templates/about'
     templateHelpers: ->
-      canEditInformation: this.model.canEditInformation()
+      canEditInformation: @model.canEditInformation()
     ui:
       'groupDescription':'#description'
       'groupType': '#group_type'
