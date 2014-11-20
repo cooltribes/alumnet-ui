@@ -22,7 +22,7 @@
           post.save data,
            success: (model, response, options)->
             #group.posts.fetch()
-            posts.collection.add(model)
+            posts.collection.add(model, {at: 0})
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->
@@ -31,7 +31,7 @@
           comment.save data,
             success: (model, response, options)->
               #post.comments.fetch()
-              postView.collection.add(model)
+              postView.collection.add(model, {at: 0})
 
         #Like in post
         posts.on "childview:post:like", (postView) ->

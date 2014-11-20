@@ -15,7 +15,7 @@
             wait: true
             success: (model, response, options) ->
               #user.posts.fetch()
-              posts.collection.add(model)
+              posts.collection.add(model, {at: 0})
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->
@@ -25,7 +25,7 @@
             wait: true
             success: (model, response, options) ->
               # post.comments.fetch()
-              postView.collection.add(model)
+              postView.collection.add(model, {at: 0})
 
         #Like in post
         posts.on "childview:post:like", (postView) ->
