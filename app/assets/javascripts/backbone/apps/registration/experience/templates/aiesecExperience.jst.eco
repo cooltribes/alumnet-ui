@@ -4,7 +4,7 @@
 		<div class="form-group has-feedback">
 			<label class="control-label">Name of the position</label>
 			
-			<input type="text" name="name[]" class="form-control input-lg "  placeholder="Enter position">
+			<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
 			<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
 			
 		</div>
@@ -19,12 +19,13 @@
 					<option value="2">2002</option>
 					<option value="3">2003</option>
 				</select>
-				<select name="start_month[]" class="formANet__colOneHalf form-control input-lg ">
+				<select name="start_month[]" class="formANet__colOneHalf form-control input-lg">
 					<option value="">Month</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 				</select>
+				<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground js-addMonth hidden" type="button">+ Month</button>
 			</div>
 		</div>
 	</div>
@@ -60,7 +61,7 @@
 	<div class="col-md-6 ">
 		<div class="form-group">
 			<label for="registerCountry">Country / Region</label>
-			<select class="form-control input-lg">
+			<select class="form-control input-lg" name="country[]">
 				<option value="">Poland</option>
 				<option value="">2</option>
 				<option value="">3</option>

@@ -1,2 +1,2 @@
 web: rails s
-api: subcontract --rvm ruby-2.1.2@alument --chdir ../alumnet-api -- bundle exec rails s -p 4000
+api: subcontract --rvm ruby-2.1.2@alumnet --chdir ../alumnet-api -- bundle exec rails s -p 4000

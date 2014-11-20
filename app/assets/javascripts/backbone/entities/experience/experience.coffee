@@ -5,8 +5,37 @@
 
     # initialize: ->      
     defaults: {
-      first: false
+      first: false,
+      name: "",
+      start_year: "",
+      start_month: "",
+      end_year: "",
+      end_month: "",
+      description: "",
+      country: "",
+      city: "",
+      local_comitee: "",
     }
+
+    validation:
+      name:
+        required: true
+      # last_name:
+      #   required: true
+      # avatar:
+      #   required: true
+      # born:
+      #   required: true
+      # birth_country:
+      #   required: true
+      # birth_city:
+      #   required: true
+      # residence_country:
+      #   required: true
+      # residence_city:
+      #   required: true
+
+
 
   class Entities.ExperienceCollection extends Backbone.Collection
     # url: ->
