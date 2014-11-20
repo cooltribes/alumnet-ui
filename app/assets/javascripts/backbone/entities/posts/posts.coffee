@@ -3,7 +3,10 @@
 
     initialize: ->
       @comments = new Entities.CommentsCollection
-      @comments.url = AlumNet.api_endpoint + '/posts/' + @id + '/comments'
+      @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
+
+      @on 'change', ->
+        @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
 
     validation:
       body:
@@ -21,6 +24,11 @@
     getNewPostForUser: (user_id)->
       post = new Entities.Post
       post.urlRoot = AlumNet.api_endpoint + '/users/' + user_id + '/posts'
+      post
+
+    getNewPostForCurrentUser: ->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + '/me/posts'
       post
 
   AlumNet.reqres.setHandler 'post:group:new',(group_id)->

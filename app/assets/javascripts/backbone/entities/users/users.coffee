@@ -5,17 +5,20 @@
 
     initialize: ->
       @profile = new Entities.Profile
+      @profile.url = @urlRoot() + @id + '/profile'
 
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-        @profile.url = AlumNet.api_endpoint + '/me/profile'
         @profile.fetch()
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
-      if friendship_status == 'accepted' then true else false
+      if friendship_status == 'accepted' || friendship_status == 'current user'
+        true
+      else
+        false
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -41,14 +44,10 @@
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->
-      # console.log "fromapi"
-      # console.log @current_user
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
-      # console.log user.url
+      user.profile.url = AlumNet.api_endpoint + '/me/profile'
       user.fetch()
-      # console.log "after fetch"
-      # console.log user
       user
 
     getUserEntities: (querySearch)->
@@ -84,9 +83,6 @@
     user = AlumNet.request('get:current_user')
     options = _.extend options, url: AlumNet.api_endpoint + '/me'
     user.fetch options
-
-  AlumNet.reqres.setHandler 'temp:current_user', (options = {}) ->
-    API.getCurrentUser(options)
 
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()

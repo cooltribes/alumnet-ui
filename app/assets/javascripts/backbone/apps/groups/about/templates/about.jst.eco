@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="groupAbout__box margin_bottom margin_top">
-       <% if @canEditInformation: %>
-      <h2 class="groupAbout__title"><a href="#" id="name"><%= @name %></a></h2>
-      <% else: %>
-      <h2><%= @name %></h2>
-      <% end %>
-    </div>
+        <% if @canEditInformation: %>
+        <h2 class="groupAbout__title"><a href="#" id="name"><%= @name %></a></h2>
+        <% else: %>
+        <h2><%= @name %></h2>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -17,8 +17,10 @@
         <a href="#" id="description"><%= @description %></a>
         <% if @canEditInformation: %>
         <a href="#" id="js-edit-description">[edit]</a>
+         <% end %>
       </div>
-    <% end %></div>
+     
+    </div>
     <div class="col-md-4">
       <div class="groupAbout__box margin_bottom">
         <h3>Type</h3>
