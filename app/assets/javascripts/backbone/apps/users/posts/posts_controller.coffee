@@ -11,17 +11,21 @@
 
         posts.on "post:submit", (data)->
           post = AlumNet.request("post:user:new", user.id)
-          post.set(data)
-          post.save() # Here handle errors
-          user.posts.fetch({reset: true})
+          post.save data,
+            wait: true
+            success: (model, response, options) ->
+              #user.posts.fetch()
+              posts.collection.add(model)
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->
           post = postView.model
           comment = AlumNet.request("comment:post:new", post.id)
-          comment.set(data)
-          comment.save() # Here handle errors
-          post.comments.fetch({reset: true})
+          comment.save data,
+            wait: true
+            success: (model, response, options) ->
+              # post.comments.fetch()
+              postView.collection.add(model)
 
         #Like in post
         posts.on "childview:post:like", (postView) ->

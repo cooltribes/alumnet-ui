@@ -3,7 +3,10 @@
 
     initialize: ->
       @comments = new Entities.CommentsCollection
-      @comments.url = AlumNet.api_endpoint + '/posts/' + @id + '/comments'
+      @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
+
+      @on 'change', ->
+        @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
 
     validation:
       body:

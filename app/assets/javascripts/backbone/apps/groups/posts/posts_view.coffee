@@ -46,9 +46,6 @@
       'click .js-unlike': 'clickedUnLike'
       'click .js-goto-comment': 'clickedGotoComment'
 
-    onAddChild: (childView)->
-      #$('#timeline').masonry('destroy').masonry()
-
     commentSend: (e)->
       e.stopPropagation()
       if e.keyCode == 13
@@ -57,6 +54,7 @@
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
+
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -100,9 +98,6 @@
     events:
       'click a#js-post-submit': 'submitClicked'
 
-    refreshMasonry: ->
-      #@ui.timeline.masonry('destroy').masonry()
-
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -110,9 +105,3 @@
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
-
-    onAddChild: (childView)->
-      #@refreshMasonry()
-
-    onShow: ->
-      # @ui.timeline.masonry()

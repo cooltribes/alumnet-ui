@@ -3,7 +3,7 @@
 		<div  class="col-md-8 col-md-offset-2">
 			<div id="timeline" class="posts-container row" >
 							<!-- FORM -->
-				<div class="col-md-6 ">
+				<div class="item col-md-6 ">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
 							<img src="http://placesheen.com/70/70" class="img-circle">

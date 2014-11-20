@@ -15,7 +15,10 @@
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
-      if friendship_status == 'accepted' then true else false
+      if friendship_status == 'accepted' || friendship_status == 'current user'
+        true
+      else
+        false
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

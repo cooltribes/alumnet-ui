@@ -9,9 +9,9 @@
 
   API =
     getNewCommentForPost: (post_id)->
-      post = new Entities.Post
-      post.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + '/comments'
-      post
+      comment = new Entities.Comment
+      comment.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + '/comments'
+      comment
 
   AlumNet.reqres.setHandler 'comment:post:new', (post_id)->
     API.getNewCommentForPost(post_id)
