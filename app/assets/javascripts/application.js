@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require backbone/libs/jquery-ui.min
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone/libs/underscore.string.min

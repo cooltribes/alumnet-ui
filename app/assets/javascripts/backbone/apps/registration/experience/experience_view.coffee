@@ -31,6 +31,9 @@
       formData.append('avatar', file[0].files[0])
       this.model.set(data)
       this.trigger("form:submit", this.model, formData)
+    onRender : ()->
+      alert($("#slider").html())
+      $( "#slider" ).slider()
 
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'    

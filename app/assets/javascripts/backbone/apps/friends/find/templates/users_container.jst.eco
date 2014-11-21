@@ -1,10 +1,25 @@
-<div style="margin-top: 130px">
-  <h4>Find New Friends</h4>
+<h1 class="text-center">Find New Friends</h1>
+<div class="container">
+	<div class="row ">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="searchBar">
+				<form id="search-form">
+					<div class="input-group">
+						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+						<span class="input-group-btn">
+						<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
-<form id="search-form">
-  <div class="input-group">
-    <input type="text" name="search_term" id="search_term" class="form-control">
-  </div>
-  <button class="btn btn-primary js-search">SEARCH</button>
-</form>
-<ul class="users-list"></ul>
+<div class="container-fluid margin_top_large">
+	<h2>People you may know <!-- : <%= @name %> --></h2>
+	<hr>
+	<div class="row users-list">
+		
+	</div>
+</div>

@@ -1,6 +1,8 @@
 @AlumNet.module 'FriendsApp.Find', (Find, @AlumNet, Backbone, Marionette, $, _) ->
   class Find.UserView extends Marionette.ItemView
     template: 'friends/find/templates/user'
+    tagName: 'div'
+    className: 'col-md-4 col-sm-6'
     ui:
       linkContainer: '#link-container'
       requestLink: '#js-request-friendship'
