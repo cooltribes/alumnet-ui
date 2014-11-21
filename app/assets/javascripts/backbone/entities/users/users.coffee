@@ -20,6 +20,16 @@
       else
         false
 
+    isActive: ->
+      step = @profile.get "register_step"
+      step == "approval" # || true
+    # checkRegistrationStatus: ->
+
+          
+
+
+
+
   class Entities.UserCollection extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/users'
@@ -28,8 +38,6 @@
 
 
   ### Other functions and utils###
-
-
   initializeUsers = ->
     Entities.users = new Entities.UserCollection
 

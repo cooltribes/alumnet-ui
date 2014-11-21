@@ -3,6 +3,8 @@
   App = new Marionette.Application
   App.promises = 0
 
+  App.rootRoute = '#' #main page to take the user
+
   App.on "start", (options) ->
     App.api_endpoint = options.api_endpoint
     current_user_token = App.request 'user:token'
@@ -17,8 +19,14 @@
     #else
       #redirect to login
 
+
+  # if Backbone.history
+  #   Backbone.history.start()
+
+  # App.on 'initialize:after', () ->
   if Backbone.history
-    Backbone.history.start()
+    Backbone.history.start()    
+    # App.vent.trigger('signin:default_route')
 
   App.addRegions
     headerRegion: "#header-region"

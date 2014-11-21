@@ -8,8 +8,7 @@
       AlumNet.mainRegion.show(layoutView)
 
       # sub-views
-      layoutView.side_region.show(@getSidebarView())
-      
+      layoutView.side_region.show(@getSidebarView())      
 
       user = AlumNet.request 'get:current_user' #, refresh: true     
 

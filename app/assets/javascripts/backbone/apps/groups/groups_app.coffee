@@ -1,5 +1,6 @@
 @AlumNet.module 'GroupsApp', (GroupsApp, @AlumNet, Backbone, Marionette, $, _) ->
-  GroupsApp.Router = Marionette.AppRouter.extend
+  # GroupsApp.Router = Marionette.AppRouter.extend
+  GroupsApp.Router = AlumNet.Routers.Base.extend
     appRoutes:
       "groups/new": "createGroup"
       "groups/:id/posts": "postsGroup"
