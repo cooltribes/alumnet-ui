@@ -1,0 +1,4 @@
+<div class="js-conversation">
+  <%= @subject %>
+  <%= @created_at %>
+</div>
