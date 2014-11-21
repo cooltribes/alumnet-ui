@@ -16,8 +16,6 @@
           },
 
       ]
-        
-        
 
       layoutView.form_region.show(@getFormView(experiences))
     

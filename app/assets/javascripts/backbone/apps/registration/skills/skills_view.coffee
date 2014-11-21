@@ -1,7 +1,18 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
  
+# 
+
+# ESTE View lo copié de Experiences para sacar el script que hace funcionar el slider de los Skills
+# Ante la duda preguntar a nelson o a Rafa ( y borrar este comentario ;)
+
+# 
+
+
+
+
+
   class Experience.FormAiesec extends Marionette.ItemView
-    template: 'registration/experience/templates/aiesecExperience'
+    template: 'registration/skills/templates/form'
     # className: 'row'
     tagName: 'fieldset'
 
@@ -31,5 +42,24 @@
       formData.append('avatar', file[0].files[0])
       this.model.set(data)
       this.trigger("form:submit", this.model, formData)
+
+
+  class Experience.ExperienceList extends Marionette.CompositeView
+    template: 'registration/experience/templates/experienceList'    
+    childView: Experience.FormAiesec
+    # childViewContainer: '#exp-list'
+    childViewContainer: '.exp-list'
+    className: 'row'
+    # ui:
+    #   'item': '.item'
+    #   'commentInput': '.comment'
+    #   'likeLink': '.js-vote'
+    #   'likeCounter': '.js-likes-counter'
+    # events:
+    #   'keypress .comment': 'commentSend'
+    #   'click .js-like': 'clickedLike'
+    #   'click .js-unlike': 'clickedUnLike'
+    onShow : ()->
+      $( "#slider" ).slider()
 
     
