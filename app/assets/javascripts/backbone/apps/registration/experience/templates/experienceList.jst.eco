@@ -46,11 +46,3 @@
 		<button class="btn btn-primary btn-lg  text-uppercase" type="submit">Next <span class="glyphicon glyphicon-chevron-right"></span> </button>
 	</div>
 </form>
-
-<script>
-	
-	$(function() {
-		alert($("#slider").html());
-	$( "#slider" ).slider();
-	});
-	</script>
