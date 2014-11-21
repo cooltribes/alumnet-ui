@@ -1,7 +1,7 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   # COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
-    template: 'users/posts/templates/comment'
+    template: 'home/posts/templates/comment'
     className: 'groupPost__comment'
     initialize: (options)->
       @userModel = options.userModel
@@ -34,7 +34,7 @@
 
   # POST VIEW
   class Posts.PostView extends Marionette.CompositeView
-    template: 'users/posts/templates/post'
+    template: 'home/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post'
@@ -92,7 +92,7 @@
         @trigger 'comment:unlike', commentView
 
   class Posts.PostsView extends Marionette.CompositeView
-    template: 'users/posts/templates/posts_container'
+    template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     childViewOptions: ->
