@@ -1,4 +1,4 @@
-<form class="formANet form" role="form">	
+<div class="formANet form" role="form">	
 	<h1>Experience in AIESEC</h1>
 	<!-- <div id="exp-list"> -->
 	<div id="exp-list">
@@ -10,4 +10,4 @@
 	<div class="text-right ">
 		<button class="btn btn-primary btn-lg  text-uppercase js-submit" type="button">Academic Experience <span class="glyphicon glyphicon-chevron-right"></span> </button>
 	</div>
-</form>
+</div>

@@ -10,30 +10,39 @@
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
+      user = AlumNet.request 'get:current_user' #, refresh: true     
+
+      profile = user.profile
+
       experiences = new AlumNet.Entities.ExperienceCollection [
           {
             first: true
           },
       ]
 
-      formView = @getFormView(experiences)
+      formView = @getFormView(experiences, profile)
 
       layoutView.form_region.show(formView)
 
-      formView.on "form:submit", (collection)->        
-        errors = _.some @collection, ->
-          console.log "nelson"
-        # if collection.isValid(true)
-        console.log this
-          # options_for_save =
-          #   wait: true
-          #   # contentType: false
-          #   # processData: false
-          #   # data: data
-          #   #model return id == undefined, this is a temporally solution.
-          #   success: (model, response, options)->
-          #     #Pass to step 3 of registration process
-          #     AlumNet.trigger "registration:experience"
+      formView.on "form:submit", (profileModel)->        
+        #every model in the collection is valid
+        validColection = true
+
+        _.forEach @collection.models, (model, index, list)->
+          if !(validity = model.isValid(true))
+            validColection = validity
+          
+        if validColection
+        
+          options_for_save =
+            wait: true
+            # contentType: false
+            # processData: false
+            # data: data
+            #model return id == undefined, this is a temporally solution.
+            success: (model, response, options)->
+              #Pass to step 3 of registration process
+              AlumNet.trigger "registration:experience:alumni"
 
           # model.save(model.attributes, options_for_save)
     
@@ -45,6 +54,7 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: (experiences) ->
+    getFormView: (experiences, profileModel) ->
       new Experience.ExperienceList
         collection: experiences
+        model: profileModel

@@ -20,16 +20,18 @@
     validation:
       name:
         required: true
-      # last_name:
-      #   required: true
-      # avatar:
-      #   required: true
-      # born:
-      #   required: true
-      # birth_country:
-      #   required: true
-      # birth_city:
-      #   required: true
+      start_year:
+        required: true
+      end_year:
+        required: true
+      description:
+        required: true
+      country:
+        required: true
+      city:
+        required: true
+      local_comitee:
+        required: true
       # residence_country:
       #   required: true
       # residence_city:
