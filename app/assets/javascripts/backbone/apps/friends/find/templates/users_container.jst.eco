@@ -1,7 +1,9 @@
-<h1 class="text-center">Find New Friends</h1>
-<div class="container">
-	<div class="row ">
-		<div class="col-md-8 col-md-offset-2">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 margin_top">
+			<h2>Find New Friends</h2>
+		</div>
+		<div class="col-md-6">
 			<div class="searchBar">
 				<form id="search-form">
 					<div class="input-group">
@@ -14,11 +16,19 @@
 				</form>
 			</div>
 		</div>
+		<div class="col-md-3 text-right  margin_top padding_top_xsmall">
+			<a href="#" title="+ import contacts" class="btn-primary-noBackground btn btn-lg btn-primary">+ import contacts</a>
+		</div>
 	</div>
+	
 </div>
 <div class="container-fluid margin_top_large">
-	<h2>People you may know <!-- : <%= @name %> --></h2>
-	<hr>
+	<ul class="navigationTabs nav nav-tabs">
+		<li role="presentation" class="navigationTabs__tab active"><a href="#">People you may know</a></li>
+		<li role="presentation" class="navigationTabs__tab"><a href="#">Profile</a></li>
+		<li role="presentation" class="navigationTabs__tab"><a href="#">Messages</a></li>
+	</ul>
+	
 	<div class="row users-list">
 		
 	</div>

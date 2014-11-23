@@ -12,14 +12,14 @@
         <span class="invitation">
         
         <% if @friendship_status == "sent": %>
-        <span>Wait a user Accept your Friendship Request</span>
+        <span>Waiting for user to Accept your Friendship Request</span>
         <% else if @friendship_status == "received": %>
         <a href="#" id="js-accept-friendship">Accept Friendship</a>
         <a href="#" id="js-delete-friendship">Delete Request</a>
         <% else if @friendship_status == "accepted": %>
         <span>Is your friend</span>
         <% else: %>
-        <a href="#" id="js-request-friendship">Send Request</a>
+        <a href="#" id="js-request-friendship" title="Send friend request"><span class="icon-entypo-user-add"></span> </a>
         <% end %>
         </span>
       </div>
