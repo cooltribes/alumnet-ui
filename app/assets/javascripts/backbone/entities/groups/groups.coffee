@@ -8,7 +8,7 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
     canEditInformation: ->
-      permissions = this.get('permissions')
+      permissions = @get('permissions')
       if permissions
         permissions.can_edit_information
       else

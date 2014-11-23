@@ -12,12 +12,10 @@
 
       user = AlumNet.request 'get:current_user' #, refresh: true     
 
-      profile = user.profile
-      # console.log profile
+      profile = user.profile      
 
       profileForm = @getFormView(profile)
-
-      # console.log profile
+      
       layoutView.form_region.show(profileForm)
 
       profileForm.on "form:submit", (model, data)->        

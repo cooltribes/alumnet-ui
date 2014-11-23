@@ -4,6 +4,40 @@
     #   AlumNet.api_endpoint + '/experience'
 
     # initialize: ->      
+    defaults: {
+      first: false,
+      name: "",
+      start_year: "",
+      start_month: "",
+      end_year: "",
+      end_month: "",
+      description: "",
+      country: "",
+      city: "",
+      local_comitee: "",
+    }
+
+    validation:
+      name:
+        required: true
+      start_year:
+        required: true
+      end_year:
+        required: true
+      description:
+        required: true
+      country:
+        required: true
+      city:
+        required: true
+      local_comitee:
+        required: true
+      # residence_country:
+      #   required: true
+      # residence_city:
+      #   required: true
+
+
 
   class Entities.ExperienceCollection extends Backbone.Collection
     # url: ->

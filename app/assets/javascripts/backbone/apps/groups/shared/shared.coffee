@@ -2,7 +2,7 @@
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
     templateHelpers: ->
-      canEditInformation: this.model.canEditInformation()
+      canEditInformation: @model.canEditInformation()
     ui:
       'groupName':'#name'
     onRender: ->

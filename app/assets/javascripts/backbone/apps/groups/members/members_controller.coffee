@@ -10,7 +10,6 @@
         AlumNet.mainRegion.show(membersView)
 
         membersView.on 'members:search', (querySeach)->
-          console.log querySeach,group
           members.fetch
             data: querySeach
 

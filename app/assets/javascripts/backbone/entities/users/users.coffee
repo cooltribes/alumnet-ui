@@ -1,14 +1,34 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.User extends Backbone.Model
     urlRoot: ->
-      AlumNet.api_endpoint + '/users'
+      AlumNet.api_endpoint + '/users/'
 
     initialize: ->
       @profile = new Entities.Profile
+      @profile.url = @urlRoot() + @id + '/profile'
+
+      @posts = new Entities.PostCollection
+      @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-        @profile.url = AlumNet.api_endpoint + '/me/profile'
         @profile.fetch()
+
+    currentUserCanPost: ->
+      friendship_status = @get('friendship_status')
+      if friendship_status == 'accepted' || friendship_status == 'current user'
+        true
+      else
+        false
+
+    isActive: ->
+      step = @profile.get "register_step"
+      step == "approval" # || true
+    # checkRegistrationStatus: ->
+
+          
+
+
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -18,30 +38,24 @@
 
 
   ### Other functions and utils###
-
-
   initializeUsers = ->
     Entities.users = new Entities.UserCollection
 
   API =
     getCurrentUserToken:  ->
-      if gon.current_user
-        gon.current_user.api_token
+      if gon.api_token
+        gon.api_token
       else
         null
 
-    getCurrentUser: (options = {}) ->      
+    getCurrentUser: (options = {}) ->
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->
-      # console.log "fromapi"      
-      # console.log @current_user
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
-      # console.log user.url
+      user.profile.url = AlumNet.api_endpoint + '/me/profile'
       user.fetch()
-      # console.log "after fetch"      
-      # console.log user
       user
 
     getUserEntities: (querySearch)->
@@ -53,14 +67,16 @@
     getNewUser: ->
       Entities.user = new Entities.User
 
-    createInvitation: (attrs)->
-      invitation = new Entities.Invitation(attrs)
-      invitation.save attrs,
+    findUser: (id)->
+      #Optimize: Verify if Entities.users is set and find the user there.
+      user = new Entities.User
+        id: id
+      user.fetch
         error: (model, response, options) ->
-          model.trigger('save:error', response, options)
+          model.trigger('find:error', response, options)
         success: (model, response, options) ->
-          model.trigger('save:success', response, options)
-      invitation
+          model.trigger('find:success', response, options)
+      user
 
   AlumNet.reqres.setHandler 'user:token', ->
     API.getCurrentUserToken()
@@ -76,14 +92,11 @@
     options = _.extend options, url: AlumNet.api_endpoint + '/me'
     user.fetch options
 
-  AlumNet.reqres.setHandler 'temp:current_user', (options = {}) ->
-    API.getCurrentUser(options)
-
-  AlumNet.reqres.setHandler 'user:invitation:send', (attrs) ->
-    API.createInvitation(attrs)
-
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
   AlumNet.reqres.setHandler 'user:entities', (querySearch)->
     API.getUserEntities(querySearch)
+
+  AlumNet.reqres.setHandler 'user:find', (id)->
+    API.findUser(id)

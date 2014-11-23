@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 gem 'sass-rails', '~> 4.0.3'
 gem 'therubyracer'
 gem 'less-rails'
@@ -22,6 +22,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'foreman'
+  gem 'subcontractor'
 end
 
 group :test, :development do

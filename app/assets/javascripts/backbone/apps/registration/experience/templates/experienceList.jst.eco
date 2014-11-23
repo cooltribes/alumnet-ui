@@ -1,7 +1,13 @@
-<form class="formANet form" role="form">
+<div class="formANet form" role="form">
 	<h1>Experience in AIESEC</h1>
 	<!-- <div id="exp-list"> -->
-	<div class="exp-list">
+	<div id="exp-list">
 		
 	</div>
-</form>
+	
+	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addExp" type="button">+ Add another AIESEC experience</button>
+	<hr>
+	<div class="text-right ">
+		<button class="btn btn-primary btn-lg  text-uppercase js-submit" type="button">Academic Experience <span class="glyphicon glyphicon-chevron-right"></span> </button>
+	</div>
+</div>

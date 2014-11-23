@@ -1,9 +1,16 @@
 @AlumNet.module 'Routers', (Routers, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Routers.Base extends Marionette.AppRouter
-    before: ->
-      user = AlumNet.request 'get:current_user', refresh: true, async: false
-      AlumNet.checkRegistrationStatus(user) if user
+    onRoute: ->
+      # user = AlumNet.request 'get:current_user', refresh: true, async: false
+      user = AlumNet.request 'get:current_user', async: false
+      # AlumNet.checkRegistrationStatus(user) if user
+
+      unless user.isActive()
+        AlumNet.trigger "registration:show"      
+        false
+
+      # alert("ye")  
 
   # class Routers.Admin extends Marionette.AppRouter
   #   before: ->

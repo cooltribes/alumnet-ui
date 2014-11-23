@@ -1,8 +1,13 @@
-@AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   # COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
-    template: 'groups/posts/templates/comment'
+    template: 'users/posts/templates/comment'
     className: 'groupPost__comment'
+    initialize: (options)->
+      @userModel = options.userModel
+    templateHelpers: ->
+      currentUserCanPost: @userModel.currentUserCanPost()
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -29,22 +34,26 @@
 
   # POST VIEW
   class Posts.PostView extends Marionette.CompositeView
-    template: 'groups/posts/templates/post'
+    template: 'users/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post item col-md-6'
+    className: 'post'
+    childViewOptions: ->
+      userModel: @userModel
+    initialize: (options)->
+      @userModel = options.userModel
+    templateHelpers: ->
+      currentUserCanPost: @userModel.currentUserCanPost()
+
     ui:
       'item': '.item'
-      'gotoComment': '.js-goto-comment'
       'commentInput': '.comment'
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
-      'textareaComment': 'textarea.comment'
     events:
       'keypress .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
-      'click .js-goto-comment': 'clickedGotoComment'
 
     commentSend: (e)->
       e.stopPropagation()
@@ -54,7 +63,6 @@
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
-
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -63,10 +71,6 @@
       e.stopPropagation()
       e.preventDefault()
       @trigger 'post:unlike'
-    clickedGotoComment: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      @ui.textareaComment.focus()
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
@@ -75,7 +79,6 @@
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
-
 
     #Init the render of a comment
     # TODO: try to put this code on onAddChild of CompositeView
@@ -89,9 +92,13 @@
         @trigger 'comment:unlike', commentView
 
   class Posts.PostsView extends Marionette.CompositeView
-    template: 'groups/posts/templates/posts_container'
+    template: 'users/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    childViewOptions: ->
+      userModel: @model
+    templateHelpers: ->
+      currentUserCanPost: @model.currentUserCanPost()
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
