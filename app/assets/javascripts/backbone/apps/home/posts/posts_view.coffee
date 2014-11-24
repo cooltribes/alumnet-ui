@@ -63,6 +63,7 @@
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
+
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()

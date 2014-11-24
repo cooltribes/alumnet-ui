@@ -1,2 +1,9 @@
-<div id="conversations-region"></div>
-<div id="messages-region"></div>
+<div class="row">
+  <div class="col-md-6">
+    <div id="conversations-region"></div>
+  </div>
+  <div class="col-md-6">
+    <a href="#" id="js-new-conversation">New Conversation</a>
+    <div id="messages-region"></div>
+  </div>
+</div>
