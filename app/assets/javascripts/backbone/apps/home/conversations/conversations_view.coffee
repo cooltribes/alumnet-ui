@@ -29,11 +29,35 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       if data.body != '' && data.recipients != ''
+        data.recipients = data.recipients.split(',')
         @trigger 'conversation:submit', data
         @ui.inputSubject.val('')
         @ui.inputBody.val('')
         @ui.selectRecipients.val('')
 
+    onRender: ->
+      @ui.selectRecipients.select2
+        tags: []
+        placeholder: "Select a Friend"
+        multiple: true
+        tokenSeparators: [',', ', '],
+        dropdownAutoWidth: true,
+        minimumInputLength: 3,
+        ajax:
+          url: AlumNet.api_endpoint + '/me/friendships/friends'
+          dataType: 'json'
+          data: (term)->
+            q:
+              m: 'or'
+              profile_first_name_cont: term
+              profile_last_name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
 
   class Conversations.ReplyView extends Marionette.CompositeView
     template: 'home/conversations/templates/reply'
