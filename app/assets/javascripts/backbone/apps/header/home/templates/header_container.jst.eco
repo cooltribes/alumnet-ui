@@ -12,6 +12,41 @@
     <nav class="navTopBar__left collapse navbar-collapse ">
         <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
             <!-- Left Menu top -->
+            <li>
+                
+                <a class="navTopBar__left__item" href="#friends">
+                    <i class="icon-entypo-user"></i>
+                        Alumni
+                </a>            
+            </li>
+
+            <li>
+                
+                <a class="navTopBar__left__item" href="#groups">
+                    <i class="icon-entypo-share"></i>
+                        Groups
+                </a>
+            </li>
+
+            <li>
+                
+                <a class="navTopBar__left__item" href="#events">
+                    <i class="ico-calendar"></i>
+                        Events
+                </a>
+            </li>
+
+
+            <li>
+                
+                <a class="navTopBar__left__item" href="#programs">
+                    <i class="ico-give-help"></i>
+                        Programs
+                </a>
+
+            </li>
+
+
         </ul>
         <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
             <!-- Right menu top -->

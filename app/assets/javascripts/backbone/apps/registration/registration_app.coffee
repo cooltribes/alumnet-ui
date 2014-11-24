@@ -1,11 +1,15 @@
 @AlumNet.module 'RegistrationApp', (RegistrationApp, @AlumNet, Backbone, Marionette, $, _) ->
-  # RegistrationApp.Router = Marionette.AppRouter.extend
-  RegistrationApp.Router = AlumNet.Routers.Base.extend
+  RegistrationApp.Router = Marionette.AppRouter.extend
+  # RegistrationApp.Router = AlumNet.Routers.Base.extend
     appRoutes:
       "register": "showRegister"
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
       "registration/experience": "createExperience"
+
+    onRoute: (name, path, args)  ->
+      AlumNet.trigger "registration:show"
+        
 
   API =
     showRegister: ->
@@ -22,7 +26,7 @@
       
     createExperience: ->            
       controller = new RegistrationApp.Experience.Controller      
-      controller.createExperience()
+      controller.showExperience()
    
 
   AlumNet.on "registration:show",  ->
@@ -37,7 +41,7 @@
     AlumNet.navigate("registration/contact")
     API.createContact()
     
-  AlumNet.on "registration:experience:aiesec",  ->
+  AlumNet.on "registration:experience",  ->
     AlumNet.navigate("registration/experience")
     API.createExperience()
   # AlumNet.on "registration:start",  ->

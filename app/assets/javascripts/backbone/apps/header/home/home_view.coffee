@@ -23,7 +23,7 @@
   class Home.MenuBar extends Marionette.CompositeView
     className: 'ng-scope'
     template: 'header/home/templates/header_container'
-    childView: Home.MenuItem
-    childViewContainer: ".js-left-menu"
+    # childView: Home.MenuItem
+    # childViewContainer: ".js-left-menu"
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"
