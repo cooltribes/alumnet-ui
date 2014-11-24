@@ -3,7 +3,7 @@
   App = new Marionette.Application
   App.promises = 0
 
-  App.rootRoute = '#' #main page to take the user
+  App.rootRoute = '#groups/new' #main page to take the user
 
   App.on "start", (options) ->
     App.api_endpoint = options.api_endpoint
@@ -20,13 +20,10 @@
       #redirect to login
 
 
-  # if Backbone.history
-  #   Backbone.history.start()
-
-  # App.on 'initialize:after', () ->
   if Backbone.history
-    Backbone.history.start()    
-    # App.vent.trigger('signin:default_route')
+    Backbone.history.start()
+
+  
 
   App.addRegions
     headerRegion: "#header-region"
@@ -39,6 +36,11 @@
 
   App.getCurrentRoute = ->
     Backbone.history.fragment
+
+  # App.on 'initialize:after', () ->
+  #   if Backbone.history
+  #     Backbone.history.start()    
+  #     AlumNet.navigate(AlumNet.rootRoute, trigger: true)
 
   # if this.getCurrentRoute() == ""
   #   App.trigger("groups:home")

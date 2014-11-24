@@ -1,13 +1,14 @@
 @AlumNet.module 'Routers', (Routers, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Routers.Base extends Marionette.AppRouter
-    onRoute: ->
+    onRoute: (name, path, args) ->
       # user = AlumNet.request 'get:current_user', refresh: true, async: false
       user = AlumNet.request 'get:current_user', async: false
       # AlumNet.checkRegistrationStatus(user) if user
-
-      unless user.isActive()
-        AlumNet.trigger "registration:show"      
+      
+      unless user.isApproved()
+        AlumNet.trigger "registration:show"  
+        console.log user    
         false
 
       # alert("ye")  
