@@ -24,9 +24,9 @@
 </div>
 <div class="container-fluid margin_top_large">
 	<ul class="navigationTabs nav nav-tabs">
-		<li role="presentation" class="navigationTabs__tab active"><a href="#">People you may know</a></li>
-		<li role="presentation" class="navigationTabs__tab"><a href="#">Profile</a></li>
-		<li role="presentation" class="navigationTabs__tab"><a href="#">Messages</a></li>
+		<li role="presentation" class="navigationTabs__tab active"><a href="#">Sent Request</a></li>
+		<li role="presentation" class="navigationTabs__tab"><a href="#">Friend Request</a></li>
+		
 	</ul>
 	
 	<div class="row users-list">
