@@ -1,8 +1,21 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
   class Experience.Controller
 
-    createExperience: ->
+    showExperience: ->
+      user = AlumNet.request 'get:current_user'
+      step = user.profile.get("register_step")
       
+      switch step
+        when "contact"          
+          @experienceAiesec()
+        when "experience_a"
+          alert "experience alumni"
+        else
+          false
+          # alert "not experience"          
+      
+    
+    experienceAiesec: ->
       # creating layout
       layoutView = @getLayoutView()     
       AlumNet.mainRegion.show(layoutView)
@@ -46,7 +59,6 @@
               AlumNet.trigger "registration:experience:alumni"
 
           # model.save(model.attributes, options_for_save)
-    
     
 
     getLayoutView: ->

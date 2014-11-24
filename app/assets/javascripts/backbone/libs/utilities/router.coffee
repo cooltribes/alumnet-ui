@@ -5,10 +5,11 @@
       # user = AlumNet.request 'get:current_user', refresh: true, async: false
       user = AlumNet.request 'get:current_user', async: false
       # AlumNet.checkRegistrationStatus(user) if user
-      
+
+      # console.log user.profile.get("register_step")
+      # console.log user.isApproved()
       unless user.isApproved()
         AlumNet.trigger "registration:show"  
-        console.log user    
         false
 
       # alert("ye")  

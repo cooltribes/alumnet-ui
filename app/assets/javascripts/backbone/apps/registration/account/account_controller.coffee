@@ -14,19 +14,16 @@
       user = AlumNet.request 'get:current_user'
       step = user.profile.get("register_step")
       
-      console.log step
+      console.log "step " + step
 
       switch step
-        when "initial"
+        when "initial"          
           @createProfile()
         when "profile"
           @createContact()
-        else
+        when "contacs"
           @createExperience()
-
-      false
-       
-
+        else
 
     createProfile: ->            
       controller = new AlumNet.RegistrationApp.Profile.Controller      
