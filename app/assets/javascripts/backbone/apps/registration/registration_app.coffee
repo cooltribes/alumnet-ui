@@ -26,8 +26,8 @@
    
 
   AlumNet.on "registration:show",  ->
-    AlumNet.navigate("register")
-    API.showRegister()
+    AlumNet.navigate("register", trigger: true)
+    # API.showRegister()
 
   AlumNet.on "registration:profile",  ->
     AlumNet.navigate("registration/profile")
@@ -36,6 +36,7 @@
   AlumNet.on "registration:contact",  ->
     AlumNet.navigate("registration/contact")
     API.createContact()
+    
   AlumNet.on "registration:experience:aiesec",  ->
     AlumNet.navigate("registration/experience")
     API.createExperience()
