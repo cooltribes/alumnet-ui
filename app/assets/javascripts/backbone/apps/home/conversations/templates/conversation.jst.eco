@@ -1,0 +1,8 @@
+<div class="js-conversation">
+<h4><%= @subject %></h4>
+<%  _.each @participants, (participant)->: %>
+  <span><a href="#"><%= participant.name %></a></span>
+<% end %>
+<%= moment(@created_at).fromNow() %>
+</div>
+<b><%= @is_read %></b>
