@@ -16,6 +16,10 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
+    onShow: ->
+      console.log @el  
+
     events:
       "click button.js-submit":"submitClicked"
       "change #profile-avatar":"previewImage"

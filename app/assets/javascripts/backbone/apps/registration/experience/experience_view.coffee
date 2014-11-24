@@ -21,6 +21,10 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
     
+    # onShow: ->
+      
+    
+
     ui:
       'btnRmv': '.js-rmvRow'
       # 'commentInput': '.comment'

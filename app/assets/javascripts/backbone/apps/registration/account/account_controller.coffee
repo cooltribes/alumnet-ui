@@ -2,13 +2,6 @@
   class Account.Controller
 
     showRegister: ->
-     
-      # creating layout
-      # layoutView = @getLayoutView()     
-      # AlumNet.mainRegion.show(layoutView)
-
-      # # sub-views
-      # layoutView.side_region.show(@getSidebarView())
 
       #Check the status of the register for taking the user to the correspondant view
       user = AlumNet.request 'get:current_user'
@@ -21,9 +14,10 @@
           @createProfile()
         when "profile"
           @createContact()
-        when "contacs"
-          @createExperience()
+        when "contacs", "experience_a", "experience_b", "experience_c"
+          @createExperience(step)
         else
+          false
 
 
 
@@ -40,9 +34,6 @@
       controller.createExperience()
 
       
-      # layoutView.form_region.show(@getFormView())
-
-      # acctually show layout in default (main) region
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")   

@@ -1,15 +1,17 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
   class Experience.Controller
 
-    showExperience: ->
-      user = AlumNet.request 'get:current_user'
-      step = user.profile.get("register_step")
+    showExperience: (step) ->      
       
       switch step
         when "contact"          
           @experienceAiesec()
         when "experience_a"
           alert "experience alumni"
+        when "experience_b"
+          alert "experience academic"
+        when "experience_b"
+          alert "experience professional"
         else
           false
           # alert "not experience"          
