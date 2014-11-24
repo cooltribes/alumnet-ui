@@ -18,7 +18,30 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     onShow: ->
-      console.log @el  
+      # dropdowns = $("[name=birth_country], [name=residence_country]", $(@el))  
+      
+      # countries = new AlumNet.Entities.Countries
+      # countries.on('change', @fillCountries(countries, dropdowns)); 
+      # console.log "not fetch"
+      # countries.fetch(async: true)
+
+
+      # content = AlumNet.request("countries:html", countries)     
+      # console.log content
+      # dropdowns.html(content)
+
+    
+    # initializeCountries = ->
+    #   Entities.countries = new AlumNet.Entities.Countries
+      
+
+    fillCountries: (countries, dropdowns)->
+      console.log "entro"
+      console.log countries
+      content = AlumNet.request("countries:html", countries)
+      dropdowns.html(content)
+
+
 
     events:
       "click button.js-submit":"submitClicked"
