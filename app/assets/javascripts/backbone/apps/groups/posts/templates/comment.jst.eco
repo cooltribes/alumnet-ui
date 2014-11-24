@@ -1,6 +1,6 @@
 <div class="groupPost__comment__metaData clearfix">
 	<div class="groupPost__comment__avatar">
-		<img src="<%= @user.avatar.thumb %>" alt="" width="45" height="45" alt="<%= @user.name %>" class="img-circle">
+		<img src="<%= @user.avatar.thumb %>" alt="" width="40" height="40" alt="<%= @user.name %>" class="img-circle">
 	</div>
 	<h5 class="groupPost__comment__userName"> <%= @user.name %></h5>
 </div>

@@ -19,8 +19,6 @@
         else
           false
 
-
-
     createProfile: ->            
       controller = new AlumNet.RegistrationApp.Profile.Controller      
       controller.createProfile()

@@ -38,7 +38,6 @@
       @model.destroy()
 
 
-
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'    
     childView: Experience.FormAiesec    

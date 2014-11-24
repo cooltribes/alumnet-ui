@@ -41,6 +41,7 @@
     AlumNet.navigate("registration/contact")
     API.createContact()
     
+
   AlumNet.on "registration:experience",  ->
     AlumNet.navigate("registration/experience")
     API.createExperience()
