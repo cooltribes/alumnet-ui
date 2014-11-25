@@ -25,7 +25,7 @@
       true #step == "approval" # || true
     # checkRegistrationStatus: ->
 
-          
+
 
 
 

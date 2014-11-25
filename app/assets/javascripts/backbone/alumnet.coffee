@@ -19,11 +19,11 @@
       Backbone.history.start()
 
       if Backbone.history.fragment == ""
-        Backbone.history.navigate("posts")
         App.trigger 'home'
 
   App.addRegions
     headerRegion: "#header-region"
+    submenuRegion: "#submenu-region"
     mainRegion: "#main-region"
     tableRegion: "#groups-table"
 
@@ -33,6 +33,7 @@
 
   App.getCurrentRoute = ->
     Backbone.history.fragment
+
 
   App.reqres.setHandler 'progress', (promise) ->
     App.promises++

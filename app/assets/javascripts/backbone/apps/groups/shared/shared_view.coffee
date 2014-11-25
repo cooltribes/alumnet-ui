@@ -26,7 +26,6 @@
 
   API =
     getGroupLayout: (model)->
-      # Contarle a nelson que las vistas se destruyen. Por lo tanto no se puede usar la misma instancia
       new Shared.Layout
         model: model
 
