@@ -28,10 +28,10 @@
         required: true
       country:
         required: true
-      city:
-        required: true
-      local_comitee:
-        required: true
+      # city:
+      #   required: true
+      # local_comitee:
+      #   required: true
       # residence_country:
       #   required: true
       # residence_city:

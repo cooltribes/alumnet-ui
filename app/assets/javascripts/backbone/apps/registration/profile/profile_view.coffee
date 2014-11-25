@@ -46,6 +46,8 @@
     events:
       "click button.js-submit":"submitClicked"
       "change #profile-avatar":"previewImage"
+
+      
     submitClicked: (e)->
       e.preventDefault()
       formData = new FormData()

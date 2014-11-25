@@ -28,7 +28,7 @@
             #model return id == undefined, this is a temporally solution.
             success: (model, response, options)->
               #Pass to step 3 of registration process
-              AlumNet.trigger "registration:experience:aiesec"
+              AlumNet.trigger "registration:experience"
 
           model.save(model.attributes, options_for_save)
     

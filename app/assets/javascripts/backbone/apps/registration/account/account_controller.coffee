@@ -14,7 +14,7 @@
           @createProfile()
         when "profile"
           @createContact()
-        when "contacs", "experience_a", "experience_b", "experience_c"
+        when "contact", "experience_a", "experience_b", "experience_c"
           @createExperience(step)
         else
           false
@@ -27,9 +27,9 @@
       controller = new AlumNet.RegistrationApp.Contact.Controller      
       controller.createContact()
       
-    createExperience: ->            
+    createExperience: (step)->            
       controller = new AlumNet.RegistrationApp.Experience.Controller      
-      controller.createExperience()
+      controller.showExperience(step)
 
       
 

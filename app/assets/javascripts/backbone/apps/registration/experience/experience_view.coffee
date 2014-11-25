@@ -50,26 +50,11 @@
       "click @ui.btnAdd": "addExperience"
       "click @ui.btnSubmit": "submitClicked"
 
-    initialize: ->
-      # Backbone.Validation.bind this,
-        # collection: @collection
-        # valid: (view, attr, selector) ->
-        #   console.log "valid"
-        #   $el = view.$("[name=#{attr}]")
-        #   $group = $el.closest('.form-group')
-        #   $group.removeClass('has-error')
-        #   $group.find('.help-block').html('').addClass('hidden')
-        # invalid: (view, attr, error, selector) ->
-        #   console.log "invalid"
-        #   console.log view
-          # $el = view.$("[name=#{attr}]")
-          # $el = view.$("[id=#{attr}]")
-          # $group = $el.closest('.form-group')
-          # $group.addClass('has-error')
-          # $group.find
+          
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
+        type: "aiesec"
       @collection.add(newExperience)
 
 
@@ -79,31 +64,13 @@
       # formData = new FormData()
       experiences = new Array()
 
-      console.log @children.length
+      # console.log @children.length
       
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
-        # console.log "vista " + itemView.cid
-        # console.log itemView.model
-        # _.forEach data, (valueIn, key, list)->
-
-        # if valueIn != "" and contactArray.info[key] != ""
-        #   experiences[key] = {
-        #     "name": valueIn,
-        #     "info": contactArray.info[key],
-        #     "privacy": contactArray.privacy[key],
-        #   }
-        # console.log valueIn
-      # file = this.$('#group-avatar')
-      # console.log @collection.at(0)
-      # @collection.at(0).set "name", ""
-      # @collection.model.set(data)
-      # console.log @collection.at(0).validate()
-      # console.log @collection.at(0).validate()
-      # @collection.at(0).isValid(true)
-      # formData.append('avatar', file[0].files[0])
+        
       this.trigger("form:submit", @model)
 
     
