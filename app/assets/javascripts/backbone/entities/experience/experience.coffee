@@ -4,7 +4,7 @@
     #   AlumNet.api_endpoint + '/experience'
 
     # initialize: ->      
-    defaults: {
+    defaults: 
       first: false,
       name: "",
       start_year: "",
@@ -12,10 +12,10 @@
       end_year: "",
       end_month: "",
       description: "",
-      country: "",
-      city: "",
+      country_id: "",
+      city_id: "",
       local_comitee: "",
-    }
+    
 
     validation:
       name:
@@ -26,7 +26,7 @@
         required: true
       description:
         required: true
-      country:
+      country_id:
         required: true
       # city:
       #   required: true

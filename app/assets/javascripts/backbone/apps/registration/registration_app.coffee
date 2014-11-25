@@ -2,7 +2,7 @@
   RegistrationApp.Router = Marionette.AppRouter.extend
   # RegistrationApp.Router = AlumNet.Routers.Base.extend
     appRoutes:
-      "register": "showRegister"
+      "registration": "showRegister"
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
       "registration/experience": "createExperience"
@@ -30,7 +30,7 @@
    
 
   AlumNet.on "registration:show",  ->
-    AlumNet.navigate("register", trigger: true)
+    AlumNet.navigate("registration", trigger: true)
     # API.showRegister()
 
   AlumNet.on "registration:profile",  ->
@@ -45,9 +45,6 @@
   AlumNet.on "registration:experience",  ->
     AlumNet.navigate("registration/experience")
     API.createExperience()
-  # AlumNet.on "registration:start",  ->
-  #   AlumNet.navigate("registration/experience")
-  #   API.createExperience()
 
 
   AlumNet.addInitializer ->

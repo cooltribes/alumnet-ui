@@ -6,8 +6,8 @@
       #Check the status of the register for taking the user to the correspondant view
       user = AlumNet.request 'get:current_user'
       step = user.profile.get("register_step")
-      
-      console.log "step " + step
+           
+      console.log step     
 
       switch step
         when "initial"          

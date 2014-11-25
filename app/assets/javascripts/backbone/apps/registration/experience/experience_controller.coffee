@@ -7,7 +7,7 @@
         when "contact"          
           @experienceAiesec()
         when "experience_a"
-          alert "experience alumni"
+          @experienceAlumni()
         when "experience_b"
           alert "experience academic"
         when "experience_b"
@@ -32,12 +32,12 @@
       experiences = new AlumNet.Entities.ExperienceCollection [
           {
             first: true
-            type: "aiesec"
+            exp_type: 0
           },
       ]
 
-
-      formView = @getFormView(experiences, profile)
+      #get the view according to exp_type 1:alumni
+      formView = @getFormView(experiences, profile, 0)
       
       layoutView.form_region.show(formView)
 
@@ -84,11 +84,83 @@
 
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set "experiences_attributes", exps
+          # profileModel.set "register", exps
 
           console.log profileModel
           profileModel.save(profileModel.attributes, options_for_save)
     
 
+    experienceAlumni: ->
+      # creating layout
+      layoutView = @getLayoutView()     
+      AlumNet.mainRegion.show(layoutView)
+
+      # sub-views
+      layoutView.side_region.show(@getSidebarView())
+
+      user = AlumNet.request 'get:current_user' #, refresh: true     
+
+      profile = user.profile
+
+      experiences = new AlumNet.Entities.ExperienceCollection [
+          {
+            first: true
+            exp_type: 1
+          },
+      ]
+
+      #get the view according to exp_type 1:alumni
+      formView = @getFormView(experiences, profile, 1)
+      
+      layoutView.form_region.show(formView)
+
+      formView.on "form:submit", (profileModel)->        
+        #every model in the collection is valid
+        validColection = true
+
+        _.forEach @collection.models, (model, index, list)->
+          if !(validity = model.isValid(true))
+            validColection = validity
+          else
+            day = 31
+            month = model.get("start_month")
+            year = model.get("start_year")
+            if month == "1"
+              day = 1              
+            else if month == ""
+              month = 1
+            
+            model.set "start_date", "#{year}-#{month}-#{day}"
+
+            day2 = 31
+            month2 = model.get("end_month")
+            year2 = model.get("end_year")
+            if month2 == "1"
+              day2 = 1              
+            else if month2 == ""
+              month2 = 1
+            
+            model.set "end_date", "#{year2}-#{month2}-#{day2}"
+
+          
+        if validColection
+          
+          options_for_save =
+            wait: true
+            # contentType: false
+            # processData: false
+            # data: data
+            #model return id == undefined, this is a temporally solution.
+            success: (model, response, options)->
+              #Pass to step 3 of registration process
+              AlumNet.trigger "registration:show"
+
+          exps = _.pluck(@collection.models, 'attributes');
+          profileModel.set "experiences_attributes", exps
+          # profileModel.set "register", exps
+
+          console.log profileModel
+          profileModel.save(profileModel.attributes, options_for_save)
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")   
@@ -96,7 +168,18 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: (experiences, profileModel) ->
+    getFormView: (experiences, profileModel, exp_type) ->
+      title = "Experience in AIESEC"
+
+      switch exp_type
+        when 1
+          title = "Experience in Alumni AIESEC"        
+        
+        else
+          false    
       new Experience.ExperienceList
         collection: experiences
         model: profileModel
+        title: title
+       
+        
