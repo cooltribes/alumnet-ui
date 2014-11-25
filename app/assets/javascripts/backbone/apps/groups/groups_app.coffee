@@ -1,15 +1,19 @@
 @AlumNet.module 'GroupsApp', (GroupsApp, @AlumNet, Backbone, Marionette, $, _) ->
   # GroupsApp.Router = Marionette.AppRouter.extend
-  GroupsApp.Router = AlumNet.Routers.Base.extend
+  class GroupsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "groups/new": "createGroup"
       "groups/:id/posts": "postsGroup"
       "groups/:id/invite": "inviteGroup"
       "groups/:id/about": "aboutGroup"
       "groups/:id/members": "membersGroup"
+      "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
   API =
+    manageGroups: ->
+      controller = new GroupsApp.Manage.Controller
+      controller.manageGroups()
     discoverGroups: ->
       controller = new GroupsApp.Discover.Controller
       controller.discoverGroups()

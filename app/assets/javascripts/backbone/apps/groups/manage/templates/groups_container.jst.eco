@@ -1,0 +1,26 @@
+<div class="row sortingMenu">
+	<div class="col-md-9">
+		
+		<h2 class="sortingMenu__title">Suggested groups</h2>
+	</div>
+	<div class="col-md-3">
+		<ul class=" navbar-right nav nav-pills">
+			<li class="sortingMenu__item"> <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+				<a href="#" title="All" class="sortingMenu__item__link">All
+				</a>
+			</li>
+			<li class="sortingMenu__item">
+				<a href="#" title="Only Official" class="sortingMenu__item__link">Only Official
+				</a>
+			</li>
+			<li class="sortingMenu__item">
+				<a href="#" title="Only Public" class="sortingMenu__item__link">Only Public
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<hr class="no_margin_top">
+<div class="row main-groups-area"><!-- Begin group container -->
+
+</div>
