@@ -3,7 +3,7 @@
     <div class="groupPost__metaData clearfix">
       <!-- Avatar ON -->
       <div class="groupPost__avatar">
-        <img src="<%= @user.avatar.thumb %>" alt="<%= @user.name %>" width="80" height="80" class="img-circle">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
       <!-- Avatar OFF -->
       <h4 class="groupPost__userName"><%= @user.name %></h4>
