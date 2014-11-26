@@ -154,7 +154,7 @@
             </li>
             <li>
                 <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
-                    Become a Member <img src="http://placesheen.com/40/40" alt="User's name" width="40" height="40" class="img-circle">
+                    Become a Member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
                 </a>
             </li>
             <li>
@@ -166,7 +166,9 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                     <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="sign_out">Logout</a></li>
+                    <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)</a>
+                    </li>
                 </ul>
             </li>
         </ul>

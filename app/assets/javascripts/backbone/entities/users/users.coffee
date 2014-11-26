@@ -11,7 +11,7 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-        @profile.fetch()
+        @profile.fetch({async:false})
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
@@ -55,7 +55,7 @@
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
       user.profile.url = AlumNet.api_endpoint + '/me/profile'
-      user.fetch()
+      user.fetch({async:false})
       user
 
     getUserEntities: (querySearch)->
