@@ -5,6 +5,7 @@
       createForm = new Create.GroupForm
         model: group
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute('render:groups:submenu')
 
       createForm.on "form:submit", (model, data)->
         if model.isValid(true)

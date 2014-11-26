@@ -22,8 +22,15 @@
         data: querySearch
       members
 
+    getUserGroups: (user_id, querySearch)->
+      members = new Entities.MembershipsCollection
+      members.url = AlumNet.api_endpoint + '/users/' + user_id + '/memberships/groups'
+      members.fetch
+        data: querySearch
+      members
+
     sendMembershipRequest: (attrs)->
-      current_user = AlumNet.request('temp:current_user')
+      current_user = AlumNet.request('get:current_user')
       membership = new Entities.Membership(attrs)
       membership.urlRoot = AlumNet.api_endpoint + '/users/' + current_user.id + '/memberships'
       membership.save attrs,
@@ -33,6 +40,16 @@
           model.trigger('save:success', response, options)
       membership
 
+    destroyMembership: (membership)->
+      #Bad implementation.. membership is too complex object
+      user = membership.get('user')
+      membership.urlRoot = AlumNet.api_endpoint + '/users/' + user.id + '/memberships'
+      membership.destroy
+        error: (model, response, options) ->
+          model.trigger('destroy:error', response, options)
+        success: (model, response, options) ->
+          model.trigger('destroy:success', response, options)
+      membership
 
   AlumNet.reqres.setHandler 'membership:invitation', (attrs) ->
     API.sendMembershipInvitation(attrs)
@@ -40,3 +57,7 @@
     API.sendMembershipRequest(attrs)
   AlumNet.reqres.setHandler 'membership:members', (group_id, querySearch) ->
     API.getGroupMembers(group_id, querySearch)
+  AlumNet.reqres.setHandler 'membership:groups', (user_id, querySearch) ->
+    API.getUserGroups(user_id, querySearch)
+  AlumNet.reqres.setHandler 'membership:destroy', (membership) ->
+    API.destroyMembership(membership)

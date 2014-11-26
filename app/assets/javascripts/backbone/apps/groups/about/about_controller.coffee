@@ -12,6 +12,7 @@
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
         layout.body.show(body)
+        AlumNet.execute('render:groups:submenu')
 
         body.on 'group:edit:description', (model, newValue) ->
           model.save({description: newValue})
