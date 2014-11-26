@@ -6,6 +6,7 @@
     events:
       'click a': 'itemClicked'      
     itemClicked: ->
+
       #alert @model.escape('icon-class')
     ###remove: ->
       self = this
@@ -27,3 +28,10 @@
     # childViewContainer: ".js-left-menu"
     # onChildviewGroupDelete: ->
     #   console.log "ahoy"
+    events:
+      'click a.navTopBar__left__item': 'itemClicked'      
+    itemClicked: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      alert("hola")
+      

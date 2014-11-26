@@ -6,6 +6,7 @@
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
       "registration/experience": "createExperience"
+      "registration/aproval": "createAproval"
 
     onRoute: (name, path, args)  ->
       AlumNet.trigger "registration:show"
@@ -27,7 +28,10 @@
     createExperience: ->            
       controller = new RegistrationApp.Experience.Controller      
       controller.showExperience()
-   
+    
+    createAproval: ->            
+      controller = new RegistrationApp.Aproval.Controller      
+      controller.createAproval()   
 
   AlumNet.on "registration:show",  ->
     AlumNet.navigate("register", trigger: true)
@@ -45,6 +49,10 @@
   AlumNet.on "registration:experience",  ->
     AlumNet.navigate("registration/experience")
     API.createExperience()
+
+  AlumNet.on "registration:aproval",  ->
+    AlumNet.navigate("registration/aproval")
+    API.createAproval()    
   # AlumNet.on "registration:start",  ->
   #   AlumNet.navigate("registration/experience")
   #   API.createExperience()
