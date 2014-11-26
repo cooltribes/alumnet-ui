@@ -7,6 +7,7 @@
         collection: friends
 
       AlumNet.mainRegion.show(friendsView)
+      AlumNet.execute('render:friends:submenu')
 
       friendsView.on 'friends:search', (querySearch)->
         @collection.fetch(data: querySearch)

@@ -1,6 +1,6 @@
-@AlumNet.module 'GroupsApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'FriendsApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
-    template: 'groups/submenu/templates/submenu'
+    template: 'friends/submenu/templates/submenu'
     className: 'container-fluid top-sub-nav'
 
   API =
@@ -14,5 +14,5 @@
           submenu = view
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:groups:submenu',(view) ->
+  AlumNet.commands.setHandler 'render:friends:submenu',(view) ->
     API.renderSubmenu(view)

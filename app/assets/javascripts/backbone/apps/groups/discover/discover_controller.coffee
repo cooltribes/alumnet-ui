@@ -14,7 +14,7 @@
 
       layoutView.list_region.show(groupsView)
 
-      AlumNet.execute('render:group:submenu')
+      AlumNet.execute('render:groups:submenu')
 
       # attach events
       searchView.on 'groups:search', (querySearch)->

@@ -172,7 +172,7 @@
         </ul>
     </nav>
 </div>
-<div class="container-fluid top-sub-nav" id="submenu-region">
+<div id="submenu-region">
 
 </div>
 </header>

@@ -15,6 +15,7 @@
       layout.conversations.show(conversationsView)
       # Load a new conversation by defaul
       layout.messages.show(newConversationView)
+      AlumNet.execute('render:home:submenu')
 
       reRenderReplyView = (model, collection)->
         replyView.model = model

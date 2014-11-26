@@ -8,6 +8,7 @@
           model: group
           collection: members
         AlumNet.mainRegion.show(membersView)
+        AlumNet.execute('render:groups:submenu')
 
         membersView.on 'members:search', (querySeach)->
           members.fetch
