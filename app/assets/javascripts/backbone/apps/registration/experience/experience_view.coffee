@@ -27,46 +27,17 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
-
-
-  # class Experience.FormAlumni extends Marionette.ItemView
-  #   template: 'registration/experience/templates/alumniExperience'
-  #   # className: 'row'
-  #   # tagName: 'fieldset'
-  #   tagName: 'form'
-
-  #   initialize: ->
-  #     Backbone.Validation.bind this,
-  #       valid: (view, attr, selector) ->
-  #         $el = view.$("[name^=#{attr}]")
-  #         $group = $el.closest('.form-group')
-  #         $group.removeClass('has-error')
-  #         $group.find('.help-block').html('').addClass('hidden')
-  #       invalid: (view, attr, error, selector) ->
-  #         # console.log "bad"
-  #         # console.log view
-  #         $el = view.$("[name^=#{attr}]")
-  #         $group = $el.closest('.form-group')
-  #         $group.addClass('has-error')
-  #         $group.find('.help-block').html(error).removeClass('hidden')
-    
-  #   # onShow: ->
-      
-    
-
-  #   ui:
-  #     'btnRmv': '.js-rmvRow'
-  #     # 'commentInput': '.comment'
-  #     # 'likeLink': '.js-vote'
-  #     # 'likeCounter': '.js-likes-counter'
-  #   events:
-  #     "click @ui.btnRmv": "removeExperience"
+    ui:
+      'btnRmv': '.js-rmvRow'
+     
+    events:
+      "click @ui.btnRmv": "removeExperience"
 
       
-  #   removeExperience: (e)->
-  #     @model.destroy()
+    removeExperience: (e)->
+      @model.destroy()
 
-
+  
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'    
     childView: Experience.FormAiesec    

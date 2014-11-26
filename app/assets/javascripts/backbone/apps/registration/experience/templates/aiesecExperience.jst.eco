@@ -4,7 +4,7 @@
 		<div class="form-group has-feedback">
 			<label class="control-label" >Name of the position</label>
 			
-			<input type="text" id="name-<%= @model %>" name="name" class="form-control input-lg "  placeholder="Enter position">
+			<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
 			<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
 			
 		</div>

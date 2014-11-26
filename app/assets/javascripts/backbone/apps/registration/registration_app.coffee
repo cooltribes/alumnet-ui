@@ -30,8 +30,8 @@
    
 
   AlumNet.on "registration:show",  ->
-    AlumNet.navigate("registration", trigger: true)
-    # API.showRegister()
+    # AlumNet.navigate("registration", trigger: true)
+    API.showRegister()
 
   AlumNet.on "registration:profile",  ->
     AlumNet.navigate("registration/profile")
