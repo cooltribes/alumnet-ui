@@ -13,10 +13,7 @@
     getCountriesHtml: (collection)  ->
       html = '<option value="">Select a country</option>'            
 
-      # console.log "inside"
-      # console.log collection.length
-      _.forEach collection.models, (item, index, list)->
-        console.log "cada uno"
+      _.forEach collection.models, (item, index, list)->        
         html += '<option value="' + (item.get("id")) + '">' + item.get("name") + '</option>' 
 
       html

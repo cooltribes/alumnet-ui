@@ -18,6 +18,9 @@
       
       layoutView.form_region.show(profileForm)
 
+      AlumNet.execute('render:groups:submenu')
+      
+
       profileForm.on "form:submit", (model, data)->        
         if model.isValid(true)
           

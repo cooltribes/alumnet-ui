@@ -8,6 +8,10 @@
         "registration/experience/templates/aiesecExperience"
       else if @model.get('exp_type') == 1 
         "registration/experience/templates/alumniExperience"
+      else if @model.get('exp_type') == 2 
+        "registration/experience/templates/academicExperience"
+      else if @model.get('exp_type') == 3 
+        "registration/experience/templates/professionalExperience"
 
     # className: 'row'
     # tagName: 'fieldset'

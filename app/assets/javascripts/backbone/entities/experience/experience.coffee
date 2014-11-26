@@ -7,6 +7,7 @@
     defaults: 
       first: false,
       name: "",
+      organization_name: "",
       start_year: "",
       start_month: "",
       end_year: "",
@@ -15,6 +16,7 @@
       country_id: "",
       city_id: "",
       local_comitee: "",
+      internship: 0,
     
 
     validation:
@@ -28,6 +30,13 @@
         required: true
       country_id:
         required: true
+      organization_name:
+        required: (value, attr, computedState) ->          
+          @get("exp_type") == 2 || @get("exp_type") == 3          
+      # internship:
+      #   required: (value, attr, computedState) ->          
+      #     @get("exp_type") == 3          
+          
       # city:
       #   required: true
       # local_comitee:
