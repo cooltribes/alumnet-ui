@@ -3,7 +3,11 @@
     manageGroups: ->
       current_user = AlumNet.current_user
       groups = AlumNet.request("membership:groups", current_user.id, {})
-      console.log groups
+      groupsView = new Manage.GroupsView
+        collection: groups
+      AlumNet.mainRegion.show(groupsView)
 
-
-
+      groupsView.on 'childview:click:leave', (childView)->
+        membership = AlumNet.request("membership:destroy", childView.model)
+        membership.on 'destroy:success', ->
+          console.log "Destroy Ok"
