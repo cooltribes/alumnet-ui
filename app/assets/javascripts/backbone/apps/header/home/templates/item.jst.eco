@@ -1,7 +1,6 @@
-<a class="top-bar-groups-link <%= @iconClass %>" href="#groups">
-    <span class="text-groups-link text-<%= @iconClass %>">
+<a class="navTopBar__left__item" href="#<%= @href %>">
+	<i class="<%= @iconClass %>"></i>
         <%= @caption %>
-    </span>
 </a>
 
 

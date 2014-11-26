@@ -1,0 +1,207 @@
+/***
+
+APP NAME: homeAlumNet
+DESCRIPTION: Styles for the home page of alumnet
+
+***/
+
+@import 'conf/conf.css.less';
+
+#main-region{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.homeAlumNet{
+	font-family: 'roboto', san-serif;
+	&__navigation{
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+	&__registerForm{
+	    	border: 2px solid @white;
+	    	padding: @space_small;
+	    	margin-top: @space_medium;
+	    	display: inline-block;
+	    	background-color: rgba(76,102,114,.7);
+	    	width: 360px;
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
+	    	.form-control{
+	    		margin-bottom: 2px;
+	    		border-radius: 0;
+	    	}
+	    }
+
+	&__heroArea{
+		background: url('/assets/home/homeBackground.jpg') no-repeat center top;
+	    background-size: cover; 
+	    padding-bottom: 1.5*@space_large;
+	    padding-top: 30px; 
+	    color:@white;
+
+	    &__title{
+	    	font-size: 5em;
+	    	font-weight: 300;
+	    	margin-top: 2*@space_small;
+	    	color: @white;
+	    }
+	    .lead{
+	    	font-weight: 300;
+
+
+	    }
+
+	    &__loginForm{
+	    	padding: 0;
+	    	margin: 10px 0 0;
+			input[type="email"], input[type="password"]{
+				background-color: rgba(255, 255, 255, 0.7);
+				border-radius:@radius-small;
+				width: 170px;
+			}
+			a{
+				color: @white;
+			}
+			.checkbox{
+				margin-left: @space_xsmall;
+			}
+			&:hover{
+				input[type="email"], input[type="password"]{
+					background-color: rgba(255, 255, 255, 1);
+				}
+			}
+		}
+
+	}
+	&__features{
+		background-color: lighten(@gray, 20%);
+		padding: @space_large 0 1.5*@space_large;
+		h3{
+			font-weight: 300;
+		}
+
+	}
+	&__values{
+		background-color: lighten(@black, 85%);
+		padding: @space_large 0 1.5*@space_large;
+		&__number{
+			font-size: 5em;
+			color: lighten(@blue-gray, 10%);
+			font-style: italic;
+			font-weight: 100;
+		}
+		h3{
+			color: lighten(@blue-gray, 10%);
+			font-weight: 100;
+		}
+		h2{
+			font-size: 4em;
+			font-weight: 300;
+			color: @black;
+		}
+		.row{
+			padding: @space_small 0;
+		}
+	}
+	
+	&__blog{
+		background: url('/assets/home/backgroundBlogHome.jpg') no-repeat center top;
+		background-size: cover;
+		color: @white;
+		padding: @space_large 0 1.5*@space_large; 
+		&__article{
+			margin-bottom: @space_medium;
+		}
+		&__title{
+			font-size: 4em;
+			color: @white;
+			font-weight: 300;
+			margin-bottom: @space_small; 
+			small{
+				color: @white;
+			}
+		}
+		h3{
+			font-weight: 300;
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
+		.btn{
+			background-color: transparent;
+			border-color:@white;
+			color: @white; 
+			margin-bottom: 1.5*@space_medium;
+		}
+		time{
+			font-weight: 300;
+		}
+	}
+	
+
+
+}
+
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.homeAlumNet{
+		&__blog{
+			&__article{
+					margin-bottom: @space_medium;
+				}
+		}
+		&__navigation{
+
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+	}
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+	.homeAlumNet{
+			&__blog{
+				&__article{
+						margin-bottom: 0;
+
+					}
+			}
+			&__navigation{
+
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+	.homeAlumNet{
+			&__blog{
+				&__article{
+						margin-bottom: 0;
+						
+					}
+			}
+			&__navigation{
+
+				.navbar-collapse{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+
+ }

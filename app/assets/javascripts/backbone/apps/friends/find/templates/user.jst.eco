@@ -1,0 +1,28 @@
+<div class="userCard user-info">
+  <div class=" row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%= @avatar.thumb %>" alt="<%= @name %>" width="80" height="80" class="img-circle">
+    </div>
+    <div class=" col-md-6 ">
+      <h4 class="userCard__name"><%= @name %></h4>
+      <p class="member-position text-small">Local Comitee President</p>
+    </div>
+    <div class=" col-md-3 ">
+      <div id="link-container" class="userCard__actions">
+        <span class="invitation">
+        
+        <% if @friendship_status == "sent": %>
+        <span>Waiting for user to Accept your Friendship Request</span>
+        <% else if @friendship_status == "received": %>
+        <a href="#" id="js-accept-friendship">Accept Friendship</a>
+        <a href="#" id="js-delete-friendship">Delete Request</a>
+        <% else if @friendship_status == "accepted": %>
+        <span>Is your friend</span>
+        <% else: %>
+        <a href="#" id="js-request-friendship" title="Send friend request"><span class="icon-entypo-user-add"></span> </a>
+        <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

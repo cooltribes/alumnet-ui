@@ -1,0 +1,215 @@
+/***
+
+COMPONENT NAME: navTopBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.navTopBar{
+    margin-bottom: 10px;
+    &__container--top{
+        background-color: @site_nav_bg;
+    }
+    &__left{
+    
+        &__brand{
+            display: block;
+            height: auto;
+            padding: 15px 0;
+
+        }
+        .nav .open > &__item:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }  
+        
+        & &__item{
+                color: @main-blue;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 18px;
+                padding: 20px 15px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white;
+                background-color: @black;
+            }
+        }
+    }
+    &__right{
+        &__list{
+            margin-right: -15px;
+        }
+        .nav .open > &__item:focus, .nav .open > &__item--arrow:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }   
+        &__list &__item{
+            color: @main-blue;
+            font-size: 18px;
+            font-weight: 300;
+            height: 59px;
+            line-height: 18px;
+            min-width: 59px;
+            padding: 14px 0;
+            text-align: center;
+            transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white ;
+                background-color: @black ;
+            }
+
+            &--becomeAMember{
+                background-color: #f38e00;
+                border-radius: 50px;
+                color: #ffffff;
+                font-size: 13px;
+                height: 45px;
+                line-height: 1em;
+                margin-top: 7px;
+                margin-left: 10px;
+                padding: 3px 2px 2px 12px;
+                &:hover{
+                    background-color: darken(@orange, 10%)
+                }
+            }
+            &__icon{
+                font-size: 32px;
+                width: 32px;
+
+                &--notificationsIcon{
+                    font-size: 24px;
+                    margin-top: 3px;
+                }
+
+            }
+            &--arrow{
+                display: block;
+                font-size: 22px;
+                height: 59px;
+                margin-left: 5px;
+                padding: 20px 10px 15px;
+                &:hover, &:focus{
+                    color: @white;
+                    background-color: @black;
+                 }  
+
+            }
+            
+            
+        }
+        
+    }
+    &__dropdownMenu{
+        background-color: @black;
+        border: none;
+        color: @white;
+        & > li > a{
+            color: @white;
+        }
+        &__divider{
+            background-color: #444;
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+        }
+    }
+    &__notification{
+        
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.1)
+        }
+        &__avatar{
+            width: 18%;
+            float: left;
+            img{
+                max-width: 100%;
+                margin-right: 5px;
+            }
+        }
+        &__content{
+            width: 72%;
+            float: left;
+        }
+        &__title{
+            color: @white;
+            font-size: 14px;
+            display: block;
+        }
+        &__summary{
+            font-size: 12px;
+            color: @white;
+            display: block;
+        }
+        &__date{
+            font-size: 10px;
+            color: darken(@white, 20%);
+            display: block;
+        }
+        &__actions{
+            width: 10%;
+            float: left;
+            margin-top: 20px;
+        }
+        &__showAll{
+            border:1px solid @white;
+            margin: 10px auto;
+            width: 120px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+    &__badge{
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 9px;
+        background-color: @orange;
+    }
+    &__mobileToggleBtn{
+        background-color: rgba(255,255,255,.1);
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 5px 16px;
+    }
+    
+}
+
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px
+        }
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px;
+        }
+    }
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+.navTopBar{
+        &__notification{
+            width: 350px;
+        }
+    }  
+    
+ }

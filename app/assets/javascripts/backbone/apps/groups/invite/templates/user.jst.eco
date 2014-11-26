@@ -1,9 +1,32 @@
-<img src="<%= @avatar.thumb %>" alt="" width="25" height="25">
-<%= @name %>
-<span class="invitation">
-  <% if @wasInvited(): %>
-      <span>Invited</span>
-  <% else: %>
-      <a href="#" class="js-invite">Invite</a>
-  <% end %>
-</span>
+<div class="userCard">
+	<div class=" row">
+		<div class="userCard__avatar col-md-3 ">
+		<img src="<%= @avatar.thumb %>" alt="<%= @name %>" width="80" height="80" class="img-circle"> 
+			
+		</div>
+		<div class="<% if @wasInvited(): %>
+			col-md-6
+			<% else: %>
+			col-md-7
+			<% end %>">
+			<h4 class="userCard__name"><%= @name %></h4>
+			<p class="member-position text-small">Local Comitee President</p>
+		</div>
+		<div class="
+			<% if @wasInvited(): %>
+			col-md-3
+			<% else: %>
+			col-md-2
+			<% end %>">
+			<div class="userCard__actions">
+				<span class="invitation">
+				<% if @wasInvited(): %>
+				<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>
+				<% else: %>
+				<a href="#" class="js-invite" title="Invite"><span class="glyphicon glyphicon-ok"></span></a>
+				<% end %>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

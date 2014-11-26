@@ -3,6 +3,28 @@
   App = new Marionette.Application
   App.promises = 0
 
+  App.rootRoute = '#groups/new' #main page to take the user
+
+  App.on "start", (options) ->
+    App.api_endpoint = options.api_endpoint
+    current_user_token = App.request 'user:token'
+    if current_user_token
+      $.ajaxSetup
+        headers:
+          'Authorization': 'Token token="' + current_user_token + '"'
+          'Accept': 'application/vnd.alumnet+json;version=1'
+      # here get all info of use from api and set in a backbone model
+      @current_user = App.request 'get:current_user'#, refresh: true
+
+    #else
+      #redirect to login
+
+
+  if Backbone.history
+    Backbone.history.start()
+
+  
+
   App.addRegions
     headerRegion: "#header-region"
     mainRegion: "#main-region"
@@ -15,16 +37,13 @@
   App.getCurrentRoute = ->
     Backbone.history.fragment
 
-  App.on "start", ->
-    $.ajaxSetup
-      headers:
-        'Authorization': 'Token token="g4ELv_cMHLbxXR_pk4Hjz-ZWm4MasLTB_ysUHJEz"'
-        'Accept': 'application/vnd.alumnet+json;version=1'
-    if Backbone.history
-      Backbone.history.start()
+  # App.on 'initialize:after', () ->
+  #   if Backbone.history
+  #     Backbone.history.start()    
+  #     AlumNet.navigate(AlumNet.rootRoute, trigger: true)
 
-    # if this.getCurrentRoute() == ""
-    #   App.trigger("groups:home")
+  # if this.getCurrentRoute() == ""
+  #   App.trigger("groups:home")
 
   App.reqres.setHandler 'progress', (promise) ->
     App.promises++

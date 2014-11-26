@@ -3,7 +3,7 @@
     show: ->
       items = AlumNet.request("menu:items", {})
       menuView = new Home.MenuBar
-        collection: items
+        # collection: items
         
       ###groupsTable = new Home.Groups
         collection: groups
