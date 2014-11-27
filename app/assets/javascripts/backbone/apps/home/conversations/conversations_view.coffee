@@ -7,6 +7,29 @@
 
   class Conversations.MessageView extends Marionette.ItemView
     template: 'home/conversations/templates/message'
+    ui:
+      'markReadLink': '.js-mark-as-read'
+      'markUnReadLink': '.js-mark-as-unread'
+    events:
+      'click .js-mark-as-unread': 'clickedUnReadLink'
+      'click .js-mark-as-read': 'clickedReadLink'
+
+    clickedReadLink: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @trigger 'click:read'
+
+    clickedUnReadLink: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @trigger 'click:unread'
+
+    toggleLink: ->
+      if @ui.markReadLink.hasClass('js-mark-as-read')
+        @ui.markReadLink.removeClass('js-mark-as-read').addClass('js-mark-as-unread').html("Mark as Unread")
+      else
+        @ui.markReadLink.removeClass('js-mark-as-unread').addClass('js-mark-as-read').html("Mark as Read")
+
 
   class Conversations.ConversationsView extends Marionette.CollectionView
     template: 'home/conversations/templates/conversations_container'

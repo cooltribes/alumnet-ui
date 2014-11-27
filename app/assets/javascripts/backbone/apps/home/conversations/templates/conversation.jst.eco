@@ -6,3 +6,4 @@
 <%= moment(@created_at).fromNow() %>
 </div>
 <b><%= @is_read %></b>
+<b><%= @unread_messages_count %></b>

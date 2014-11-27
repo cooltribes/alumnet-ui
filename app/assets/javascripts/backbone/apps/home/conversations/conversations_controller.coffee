@@ -41,6 +41,12 @@
             ##TEMPORAL SOLUTION: This is too dirty. The best way is the above
             reRenderReplyView(conversation, conversation.messages)
 
+      replyView.on 'childview:click:read', (childView)->
+        console.log  replyView.model.get('unread_messages_count')
+        childView.toggleLink()
+      replyView.on 'childview:click:unread', (childView)->
+        childView.toggleLink()
+
       # if a conversation is clicked then set a reply view with the model and collection
       conversationsView.on 'childview:conversation:clicked', (childView)->
         conversation = childView.model
