@@ -14,6 +14,8 @@
 
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
+      #   comparator: (m) ->
+      # - Date.parse m.get('last_activity_at')
 
   API =
     getNewPostForGroup: (group_id)->

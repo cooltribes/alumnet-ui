@@ -4,6 +4,8 @@
       AlumNet.api_endpoint + '/users/'
 
     initialize: ->
+      @messages = new AlumNet.Entities.MessagesCollection
+
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
 
@@ -55,6 +57,7 @@
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
       user.profile.url = AlumNet.api_endpoint + '/me/profile'
+      user.messages.url = AlumNet.api_endpoint + '/me/messages'
       user.fetch({async:false})
       user
 
