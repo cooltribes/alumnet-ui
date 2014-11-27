@@ -1,7 +1,7 @@
 @AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionette, $, _) ->
   class Contact.Controller
 
-    createContact: ->
+    showContact: ->
       
       # creating layout
       layoutView = @getLayoutView()     
@@ -17,6 +17,9 @@
       contactForm = @getFormView(profile)
       layoutView.form_region.show(contactForm)
 
+      AlumNet.execute('render:groups:submenu')
+      
+
       contactForm.on "form:submit", (model)->        
         # if model.isValid(true)
           
@@ -28,7 +31,7 @@
             #model return id == undefined, this is a temporally solution.
             success: (model, response, options)->
               #Pass to step 3 of registration process
-              AlumNet.trigger "registration:experience:aiesec"
+              AlumNet.trigger "registration:experience"
 
           model.save(model.attributes, options_for_save)
     

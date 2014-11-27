@@ -2,11 +2,11 @@
   RegistrationApp.Router = Marionette.AppRouter.extend
   # RegistrationApp.Router = AlumNet.Routers.Base.extend
     appRoutes:
-      "register": "showRegister"
+      "registration": "showRegister"
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
       "registration/experience": "createExperience"
-      "registration/aproval": "createAproval"
+      "registration/skills": "createSkills"
 
     onRoute: (name, path, args)  ->
       AlumNet.trigger "registration:show"
@@ -19,23 +19,24 @@
 
     createProfile: ->            
       controller = new RegistrationApp.Profile.Controller      
-      controller.createProfile()
+      controller.showProfile()
 
     createContact: ->            
       controller = new RegistrationApp.Contact.Controller      
-      controller.createContact()
+      controller.showContact()
       
     createExperience: ->            
       controller = new RegistrationApp.Experience.Controller      
       controller.showExperience()
-    
-    createAproval: ->            
-      controller = new RegistrationApp.Aproval.Controller      
-      controller.createAproval()   
+
+    createSkills: ->            
+      controller = new RegistrationApp.Skills.Controller      
+      controller.showSkills()
+   
 
   AlumNet.on "registration:show",  ->
-    AlumNet.navigate("register", trigger: true)
-    # API.showRegister()
+    # AlumNet.navigate("registration", trigger: true)
+    API.showRegister()
 
   AlumNet.on "registration:profile",  ->
     AlumNet.navigate("registration/profile")
@@ -50,12 +51,9 @@
     AlumNet.navigate("registration/experience")
     API.createExperience()
 
-  AlumNet.on "registration:aproval",  ->
-    AlumNet.navigate("registration/aproval")
-    API.createAproval()    
-  # AlumNet.on "registration:start",  ->
-  #   AlumNet.navigate("registration/experience")
-  #   API.createExperience()
+  AlumNet.on "registration:skills",  ->
+    AlumNet.navigate("registration/skills")
+    API.createSkills()
 
 
   AlumNet.addInitializer ->

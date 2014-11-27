@@ -1,0 +1,13 @@
+<div class="group">
+  <img src="<%= @group.cover.card %>" alt="<%= @group.name %>">
+  <%= @group.name %>
+  <%= @group.description %>
+</div>
+<div class="links">
+  <% if @is_admin: %>
+    <a href="#groups/<%= @group.id %>/about">About</a>
+    <a href="#groups/<%= @group.id %>/members">Members</a>
+  <% else: %>
+    <a href="#" id="js-leave-group">Leave Group</a>
+  <% end %>
+</div>

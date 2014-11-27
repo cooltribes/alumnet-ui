@@ -3,9 +3,7 @@
   App = new Marionette.Application
   App.promises = 0
 
-  App.rootRoute = '#groups/new' #main page to take the user
-
-  App.on "start", (options) ->
+  App.on 'before:start', (options) ->
     App.api_endpoint = options.api_endpoint
     current_user_token = App.request 'user:token'
     if current_user_token
@@ -16,17 +14,16 @@
       # here get all info of use from api and set in a backbone model
       @current_user = App.request 'get:current_user'#, refresh: true
 
-    #else
-      #redirect to login
+  App.on 'start', ->
+    if Backbone.history
+      Backbone.history.start()
 
-
-  if Backbone.history
-    Backbone.history.start()
-
-  
+      if Backbone.history.fragment == ""
+        App.trigger 'home'
 
   App.addRegions
     headerRegion: "#header-region"
+    submenuRegion: "#submenu-region"
     mainRegion: "#main-region"
     tableRegion: "#groups-table"
 
@@ -37,13 +34,6 @@
   App.getCurrentRoute = ->
     Backbone.history.fragment
 
-  # App.on 'initialize:after', () ->
-  #   if Backbone.history
-  #     Backbone.history.start()    
-  #     AlumNet.navigate(AlumNet.rootRoute, trigger: true)
-
-  # if this.getCurrentRoute() == ""
-  #   App.trigger("groups:home")
 
   App.reqres.setHandler 'progress', (promise) ->
     App.promises++

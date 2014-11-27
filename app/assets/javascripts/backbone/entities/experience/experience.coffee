@@ -4,18 +4,20 @@
     #   AlumNet.api_endpoint + '/experience'
 
     # initialize: ->      
-    defaults: {
+    defaults: 
       first: false,
       name: "",
+      organization_name: "",
       start_year: "",
       start_month: "",
       end_year: "",
       end_month: "",
       description: "",
-      country: "",
-      city: "",
+      country_id: "",
+      city_id: "",
       local_comitee: "",
-    }
+      internship: 0,
+    
 
     validation:
       name:
@@ -26,12 +28,19 @@
         required: true
       description:
         required: true
-      country:
+      country_id:
         required: true
-      city:
-        required: true
-      local_comitee:
-        required: true
+      organization_name:
+        required: (value, attr, computedState) ->          
+          @get("exp_type") == 2 || @get("exp_type") == 3          
+      # internship:
+      #   required: (value, attr, computedState) ->          
+      #     @get("exp_type") == 3          
+          
+      # city:
+      #   required: true
+      # local_comitee:
+      #   required: true
       # residence_country:
       #   required: true
       # residence_city:

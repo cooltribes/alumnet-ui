@@ -1,0 +1,6 @@
+<div class="sender">
+  <img src="<%= @sender.avatar %>" alt="<%= @sender.name %>">
+  <%= @sender.name %>
+</div>
+<%= moment(@created_at).fromNow() %>
+<h3><%= @body %></h3>

@@ -22,10 +22,10 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      true #step == "approval" # || true
-    # checkRegistrationStatus: ->
+      step == "approval" # || true
+    
 
-          
+
 
 
 

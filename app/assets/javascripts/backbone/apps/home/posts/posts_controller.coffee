@@ -8,6 +8,7 @@
         model: current_user
         collection: current_user.posts
       AlumNet.mainRegion.show(posts)
+      AlumNet.execute('render:home:submenu')
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)

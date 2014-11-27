@@ -16,9 +16,34 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
+    onShow: ->
+      dropdowns = $("[name=birth_country], [name=residence_country]", $(@el))  
+      
+      countries = new AlumNet.Entities.Countries
+      
+      countries.fetch 
+        success: (collection, response, options)->
+          fillCountries(collection, dropdowns)
+
+      # content = AlumNet.request("countries:html", countries)     
+      # console.log content
+      # dropdowns.html(content)
+
+    
+    fillCountries = (countries, dropdowns)->  
+      # console.log dropdowns    
+      # console.log countries    
+      content = AlumNet.request("countries:html", countries)
+      dropdowns.html(content)
+
+
+
     events:
       "click button.js-submit":"submitClicked"
       "change #profile-avatar":"previewImage"
+
+      
     submitClicked: (e)->
       e.preventDefault()
       formData = new FormData()
