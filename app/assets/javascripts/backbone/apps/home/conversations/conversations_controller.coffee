@@ -41,6 +41,27 @@
             ##TEMPORAL SOLUTION: This is too dirty. The best way is the above
             reRenderReplyView(conversation, conversation.messages)
 
+      # REFACTORIZAR!!!!
+      replyView.on 'childview:click:read', (childView)->
+        conversation = replyView.model
+        message = childView.model
+        message.url = AlumNet.api_endpoint + '/me/conversations/' + conversation.id + '/receipts/' + message.id + '/read'
+        message.save {},
+          success: ->
+            replyView.remNewMessage()
+            childView.toggleLink()
+            conversationsView.render()
+
+      replyView.on 'childview:click:unread', (childView)->
+        conversation = replyView.model
+        message = childView.model
+        message.url = AlumNet.api_endpoint + '/me/conversations/' + conversation.id + '/receipts/' + message.id + '/unread'
+        message.save {},
+          success: ->
+            replyView.sumNewMessage()
+            childView.toggleLink()
+            conversationsView.render()
+
       # if a conversation is clicked then set a reply view with the model and collection
       conversationsView.on 'childview:conversation:clicked', (childView)->
         conversation = childView.model

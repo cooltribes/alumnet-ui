@@ -5,10 +5,10 @@
 
     initialize: ->
       @messages = new Entities.MessagesCollection
-      @messages.url = AlumNet.api_endpoint + '/me/conversations/' + @get('id') + '/messages'
+      @messages.url = AlumNet.api_endpoint + '/me/conversations/' + @get('id') + '/receipts'
 
       @on 'change', ->
-        @messages.url = AlumNet.api_endpoint + '/me/conversations/' + @get('id') + '/messages'
+        @messages.url = AlumNet.api_endpoint + '/me/conversations/' + @get('id') + '/receipts'
 
   class Entities.ConversationsCollection extends Backbone.Collection
     url: ->
@@ -23,16 +23,11 @@
   API =
     getNewMessage: (conversation_id)->
       message = new Entities.Message
-      message.url = AlumNet.api_endpoint + '/me/conversations/' + conversation_id + '/reply'
+      message.url = AlumNet.api_endpoint + '/me/conversations/' + conversation_id + '/receipts'
       message
 
     getNewConversation: ->
       new Entities.Conversation
-
-    getNewMessagesCollection: (conversation_id, messages)->
-      messages = new Entities.MessagesCollection(messages)
-      messages.url = AlumNet.api_endpoint + '/me/conversations/' + conversation_id + '/messages'
-      messages
 
     getConversations: (querySearch)->
       conversations = new Entities.ConversationsCollection
@@ -43,9 +38,6 @@
 
   AlumNet.reqres.setHandler 'messages:new', (conversation_id)->
     API.getNewMessage(conversation_id)
-
-  AlumNet.reqres.setHandler 'messages:collection:new', (conversation_id, messages)->
-    API.getNewMessagesCollection(conversation_id, messages)
 
   AlumNet.reqres.setHandler 'conversations:new', ->
     API.getNewConversation()

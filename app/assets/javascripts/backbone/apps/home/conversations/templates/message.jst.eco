@@ -3,4 +3,11 @@
   <%= @sender.name %>
 </div>
 <%= moment(@created_at).fromNow() %>
+
+<% if @is_read: %>
+  <a href="#" class="js-mark unread">Mark as Unread</a>
+<% else: %>
+  <a href="#" class="js-mark read">Mark as Read</a>
+<% end %>
+
 <h3><%= @body %></h3>
