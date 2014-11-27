@@ -1,0 +1,77 @@
+/***
+
+APP NAME: registration
+DESCRIPTION: shared styles among registration module
+
+***/
+
+@import 'conf/conf.css.less';
+
+.userCardAproval{
+
+	background: #fff;
+   margin-bottom: 1em;
+   padding: 10px;
+   text-align: center;
+   
+   &__avatar{
+    text-align: center;
+   }
+   &__name{
+    color:@blue;
+    font-size: 22px;
+    margin-bottom: 5px;
+
+   }
+   &__actions{
+    text-align: center;
+    margin-top: 2em;
+   }
+
+}
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .userCardAproval{
+        height: auto;
+    }
+
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .userCardAproval{
+        
+        
+        text-align: left;
+        padding: 10px 0px 10px 10px;
+        &__avatar{
+            text-align: right;
+       }
+        &__actions{
+           
+       }
+    }
+
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .userCardAproval{
+        
+        
+        text-align: left;
+        padding: 10px 0px 10px 10px;
+    
+        &__avatar{
+            text-align: right;
+       }
+       &__actions{
+           
+       }
+   }
+ }
