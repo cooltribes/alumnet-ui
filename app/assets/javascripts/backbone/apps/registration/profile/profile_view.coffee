@@ -26,14 +26,8 @@
         success: (collection, response, options)->
           fillCountries(collection, dropdowns)
 
-      # content = AlumNet.request("countries:html", countries)     
-      # console.log content
-      # dropdowns.html(content)
-
     
     fillCountries = (countries, dropdowns)->  
-      # console.log dropdowns    
-      # console.log countries    
       content = AlumNet.request("countries:html", countries)
       dropdowns.html(content)
 

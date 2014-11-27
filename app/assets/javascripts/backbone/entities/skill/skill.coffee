@@ -1,10 +1,9 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Entities.ProfileLanguage extends Backbone.Model        
-    defaults: 
-      first: false,
+  class Entities.ProfileSkill extends Backbone.Model        
+    defaults:       
       language_id: "",
-      level: 3,
+      
       
     
 
@@ -17,20 +16,20 @@
 
 
 
-  class Entities.ProfileLanguageCollection extends Backbone.Collection    
-    model: Entities.ProfileLanguage
+  class Entities.ProfileSkillCollection extends Backbone.Collection    
+    model: Entities.ProfileSkill
 
 
 
   ### ----------Languages for dropdowns----------- ###
   
-  class Entities.Language extends Backbone.Model    
+  class Entities.Skill extends Backbone.Model    
     urlRoot: ->
-      AlumNet.api_endpoint + '/languages/'
+      AlumNet.api_endpoint + '/skills/'
 
-  class Entities.Languages extends Backbone.Collection    
+  class Entities.Skills extends Backbone.Collection    
     url: ->
-      AlumNet.api_endpoint + '/languages'
+      AlumNet.api_endpoint + '/skills'
     model: Entities.Language
 
   API =
@@ -43,7 +42,8 @@
       html
 
 
-  AlumNet.reqres.setHandler 'languages:html', (collection) ->
+  AlumNet.reqres.setHandler 'skills:html', (collection) ->
     API.getLanguagesHtml(collection)  
+  
 
   

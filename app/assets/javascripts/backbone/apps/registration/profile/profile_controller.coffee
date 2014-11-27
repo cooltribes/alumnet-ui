@@ -1,7 +1,7 @@
 @AlumNet.module 'RegistrationApp.Profile', (Profile, @AlumNet, Backbone, Marionette, $, _) ->
   class Profile.Controller
 
-    createProfile: ->
+    showProfile: ->
 
       # creating layout
       layoutView = @getLayoutView()

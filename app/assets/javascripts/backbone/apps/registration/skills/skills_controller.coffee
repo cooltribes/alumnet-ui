@@ -14,31 +14,31 @@
 
       profile = user.profile
 
-      languajes = new AlumNet.Entities.ProfileLanguageCollection [
+      languages = new AlumNet.Entities.ProfileLanguageCollection [
           {
             first: true            
+            level: 3            
           },
       ]
-
+      
       #get the view according to exp_type 1:alumni
-      formView = @getFormView()
+      formView = @getFormView(languages, profile)
       
       layoutView.form_region.show(formView)
       
-      AlumNet.execute('render:groups:submenu')      
+      #AlumNet.execute('render:groups:submenu')      
       
 
       formView.on "form:submit", (profileModel)->        
         #every model in the collection is valid
+
         validColection = true
 
         _.forEach @collection.models, (model, index, list)->
           if !(validity = model.isValid(true))
-            validColection = validity
-          else
-            captureDates(model)
-
-          
+            validColection = validity          
+            
+        
         if validColection
           
           options_for_save =
@@ -46,41 +46,14 @@
            
             success: (model, response, options)->
               #Pass to step 3 of registration process
-              AlumNet.trigger "registration:skills"
+              AlumNet.trigger "registration:approval"
 
           exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set "experiences_attributes", exps
+          profileModel.set "languages_attributes", exps
           
 
-          console.log profileModel
-          # profileModel.save(profileModel.attributes, options_for_save)
-
-
-
-    captureDates = (model) ->
-      day = 31
-      month = model.get("start_month")
-      year = model.get("start_year")
-
-      if month == "1"
-        day = 1              
-      else if month == ""
-        month = 1
-      
-      model.set "start_date", "#{year}-#{month}-#{day}"
-
-      day2 = 31
-      month2 = model.get("end_month")
-      year2 = model.get("end_year")
-      if month2 == "1"
-        day2 = 1              
-      else if month2 == ""
-        month2 = 1
-      
-      model.set "end_date", "#{year2}-#{month2}-#{day2}"
-
-
-    
+          # console.log profileModel
+          profileModel.save(profileModel.attributes, options_for_save)
 
       
 
@@ -90,11 +63,11 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar")      
 
-    getFormView: ->      
+    getFormView: (collection, profileModel) ->      
 
       new Skills.LanguageList
-        collection: experiences
+        collection: collection
         model: profileModel
-        title: title
+        
        
         

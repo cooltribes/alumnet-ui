@@ -143,7 +143,7 @@
           
 
           console.log profileModel
-          # profileModel.save(profileModel.attributes, options_for_save)
+          profileModel.save(profileModel.attributes, options_for_save)
 
 
 

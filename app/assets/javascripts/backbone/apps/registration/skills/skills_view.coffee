@@ -3,15 +3,7 @@
   class Skills.FormLanguage extends Marionette.ItemView
     # template: 'registration/experience/templates/aiesecExperience'
 
-    getTemplate: -> 
-      if @model.get('exp_type') == 0
-        "registration/experience/templates/aiesecExperience"
-      else if @model.get('exp_type') == 1 
-        "registration/experience/templates/alumniExperience"
-      else if @model.get('exp_type') == 2 
-        "registration/experience/templates/academicExperience"
-      else if @model.get('exp_type') == 3 
-        "registration/experience/templates/professionalExperience"
+    template: "registration/skills/templates/form"
 
     # className: 'row'
     # tagName: 'fieldset'
@@ -35,59 +27,65 @@
       'btnRmv': '.js-rmvRow'
      
     events:
-      "click @ui.btnRmv": "removeExperience"
+      "click @ui.btnRmv": "removeItem"
 
       
-    removeExperience: (e)->
+    removeItem: (e)->
       @model.destroy()
+
+    onShow: ->      
+      #Render the slider
+      $("#slider", @el).slider
+        min: 1
+        max: 6
+        value: parseInt( @model.get("level"), 10 )
+
+      #Render the list of languages
+      dropdown = $("[name=language_id]", $(@el))  
+      
+      #list of languages from api
+      languages = new AlumNet.Entities.Languages
+      
+      languages.fetch 
+        success: (collection, response, options)->          
+          fillLaguages(collection, dropdown)
+
+    
+    fillLaguages = (collection, dropdown)->        
+      content = AlumNet.request("languages:html", collection)
+      dropdown.html(content)  
+        
+
+
 
   
   class Skills.LanguageList extends Marionette.CompositeView
-    template: 'registration/experience/templates/experienceList'    
+    template: 'registration/skills/templates/skills'    
     childView: Skills.FormLanguage    
     # getChildView: (item) -> 
     #   if item.get('exp_type') == 0
     #     Experience.FormAiesec           
     #   else if item.get('exp_type') == 1 
     #     Experience.FormAlumni
-    childViewContainer: '#exp-list'
+    childViewContainer: '#lan-list'
     className: 'row'
           
     ui:
-      'btnAdd': '.js-addExp'
+      'btnAdd': '.js-addRow'
       'btnSubmit': '.js-submit'
     events:
-      "click @ui.btnAdd": "addExperience"
+      "click @ui.btnAdd": "addRow"
       "click @ui.btnSubmit": "submitClicked"
 
-    initialize: (options) ->
-      @title = options.title           
 
 
-    templateHelpers: ->
-    # serializeData: ->
-      titleNew = @title
-      title:  =>
-        @title
-      
-        # console.log this.view.title
-        # console.log @foo
-
-
-
-    addExperience: (e)->
-      newExperience = new AlumNet.Entities.Experience
-        exp_type: 0
-      @collection.add(newExperience)
+    addRow: (e)->      
+      newRow = new AlumNet.Entities.ProfileLanguage        
+      @collection.add(newRow)
 
 
     submitClicked: (e)->
-      e.preventDefault()
-      
-      # formData = new FormData()
-      experiences = new Array()
-
-      # console.log @children.length
+      e.preventDefault()      
       
       #retrieve each itemView data
       @children.each (itemView)->

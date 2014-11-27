@@ -16,29 +16,32 @@
           @createContact()
         when "contact", "experience_a", "experience_b", "experience_c"
           @createExperience(step)
+        when "experience_d"
+          @createSkills()
+        when "skills"
+          @createApproval()
         else
           false
 
     createProfile: ->            
       controller = new AlumNet.RegistrationApp.Profile.Controller      
-      controller.createProfile()
+      controller.showProfile()
 
     createContact: ->            
       controller = new AlumNet.RegistrationApp.Contact.Controller      
-      controller.createContact()
+      controller.showContact()
       
     createExperience: (step)->            
       controller = new AlumNet.RegistrationApp.Experience.Controller      
       controller.showExperience(step)
 
+    createSkills: ->            
+      controller = new AlumNet.RegistrationApp.Skills.Controller      
+      controller.showSkills()
+
+    createApproval: ->     
+      alert "Aproval"       
+      # controller = new AlumNet.RegistrationApp.Skills.Controller      
+      # controller.showSkills()
       
-
-    getLayoutView: ->
-      AlumNet.request("registration:shared:layout")   
-    
-    getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")      
-
-    getFormView: (groups) ->
-      new Account.Form
          
