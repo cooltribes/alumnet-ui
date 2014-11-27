@@ -8,11 +8,10 @@
   class Conversations.MessageView extends Marionette.ItemView
     template: 'home/conversations/templates/message'
     ui:
-      'markReadLink': '.js-mark-as-read'
-      'markUnReadLink': '.js-mark-as-unread'
+      'markLink': '.js-mark'
     events:
-      'click .js-mark-as-unread': 'clickedUnReadLink'
-      'click .js-mark-as-read': 'clickedReadLink'
+      'click .unread': 'clickedUnReadLink'
+      'click .read': 'clickedReadLink'
 
     clickedReadLink: (e)->
       e.stopPropagation()
@@ -25,10 +24,11 @@
       @trigger 'click:unread'
 
     toggleLink: ->
-      if @ui.markReadLink.hasClass('js-mark-as-read')
-        @ui.markReadLink.removeClass('js-mark-as-read').addClass('js-mark-as-unread').html("Mark as Unread")
-      else
-        @ui.markReadLink.removeClass('js-mark-as-unread').addClass('js-mark-as-read').html("Mark as Read")
+      if @ui.markLink.hasClass('read')
+        @ui.markLink.removeClass('read').addClass('unread').html("Mark as Unread")
+
+      else if @ui.markLink.hasClass('unread')
+        @ui.markLink.removeClass('unread').addClass('read').html("Mark as Read")
 
 
   class Conversations.ConversationsView extends Marionette.CollectionView
@@ -100,6 +100,15 @@
         @trigger 'reply:submit', data
         @ui.inputBody.val('')
 
+    sumNewMessage: ->
+      currentValue = @model.get('unread_messages_count')
+      currentValue++
+      @model.set('unread_messages_count', currentValue)
+
+    remNewMessage: ->
+      currentValue = @model.get('unread_messages_count')
+      currentValue--
+      @model.set('unread_messages_count', currentValue)
 
   class Conversations.Layout extends Marionette.LayoutView
     template: 'home/conversations/templates/layout'
