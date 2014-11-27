@@ -6,6 +6,16 @@
       groupsView = @getContainerView(groups)
       searchView = @getHeaderView()
 
+      layoutView = @getLayoutView()
+
+      AlumNet.mainRegion.show(layoutView)
+
+      layoutView.header_region.show(searchView)
+
+      layoutView.list_region.show(groupsView)
+
+      AlumNet.execute('render:groups:submenu')
+
       # attach events
       searchView.on 'groups:search', (querySearch)->
         searchedGroups = AlumNet.request("group:entities", querySearch)
@@ -23,15 +33,6 @@
 
         join.on 'save:error', (response, options)->
           console.log response.responseJSON
-
-      # creating layout
-      layoutView = @getLayoutView()
-      AlumNet.mainRegion.show(layoutView)
-
-      # sub-views
-      layoutView.header_region.show(searchView)
-      layoutView.list_region.show(groupsView)
-      # acctually show layout in default (main) region
 
     getLayoutView: ->
       # List.Layout is in the same module but defined in list_view.coffee file

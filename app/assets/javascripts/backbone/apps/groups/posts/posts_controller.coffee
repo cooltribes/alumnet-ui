@@ -15,6 +15,7 @@
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
         layout.body.show(posts)
+        AlumNet.execute('render:groups:submenu')
 
         #listen all posts
         posts.on "post:submit", (data)->

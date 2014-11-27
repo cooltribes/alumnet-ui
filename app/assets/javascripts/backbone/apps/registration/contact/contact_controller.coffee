@@ -1,7 +1,7 @@
 @AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionette, $, _) ->
   class Contact.Controller
 
-    createContact: ->
+    showContact: ->
       
       # creating layout
       layoutView = @getLayoutView()     
@@ -16,6 +16,9 @@
 
       contactForm = @getFormView(profile)
       layoutView.form_region.show(contactForm)
+
+      AlumNet.execute('render:groups:submenu')
+      
 
       contactForm.on "form:submit", (model)->        
         # if model.isValid(true)

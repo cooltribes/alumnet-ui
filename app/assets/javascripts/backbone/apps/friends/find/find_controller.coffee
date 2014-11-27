@@ -6,6 +6,7 @@
         collection: users
 
       AlumNet.mainRegion.show(usersView)
+      AlumNet.execute('render:friends:submenu')
 
       usersView.on 'childview:request', (childView)->
         attrs = { friend_id: childView.model.id }

@@ -129,8 +129,8 @@
   <!-- Buttons -->
   
   <div class="form-group text-right">
-    <button type="submit" class="btn btn-lg btn-default">Cancel</button>
-    <button type="submit" class="btn btn-lg btn-primary js-submit">Sign Up</button>
+    <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
+    <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>
   
 </form>

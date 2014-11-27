@@ -1,5 +1,5 @@
 <div class="sender">
-  <img src="<%= @sender.thumb %>" alt="" width="25" height="25">
+  <img src="<%= @sender.avatar %>" alt="<%= @sender.name %>">
   <%= @sender.name %>
 </div>
 <%= moment(@created_at).fromNow() %>

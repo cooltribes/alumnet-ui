@@ -8,6 +8,7 @@
           model: group
           collection: users
         AlumNet.mainRegion.show(usersView)
+        AlumNet.execute('render:groups:submenu')
 
         #When invite link is clicked
         usersView.on 'childview:invite', (childView) ->

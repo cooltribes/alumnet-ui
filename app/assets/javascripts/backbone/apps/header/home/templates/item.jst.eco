@@ -1,7 +1,0 @@
-<a class="navTopBar__left__item" href="#<%= @href %>">
-	<i class="<%= @iconClass %>"></i>
-        <%= @caption %>
-</a>
-
-
-
