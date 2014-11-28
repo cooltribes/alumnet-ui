@@ -1,1 +1,25 @@
-<a href="#" style="color:white">Sub Menu Amigos</a>
+<nav class="navbar navbar-default navTopSubBar__wrapper" role="navigation">
+	<div class="container-fluid">
+		<!-- Desktop and mobile header ON -->
+		<div class="navbar-header">
+			<button type="button" class="navTopSubBar__burguerMenu navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="ico-menu"></span>
+			</button>
+		</div>
+		<!-- Desktop and mobile header OFF -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Activity</a></li>
+				<li><a href="#" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-user"></span> Friends</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" class="navTopSubBar__link"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
+				<li><a href="#" class="navTopSubBar__link"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Friend requests</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
