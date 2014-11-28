@@ -28,10 +28,12 @@
       first_name: @model.profile.get("first_name")
     updateCountBadge: ->
       value = @model.get('unread_messages_count')
+      @ui.messagesBadge.html(value)
       if value > 0
-        @ui.messagesBadge.html(value)
+        @ui.messagesBadge.show()
       else
-        @ui.messagesBadge.html("")
+        @ui.messagesBadge.hide()
+
     menuMessageClicked: (e)->
       self = this
       @model.set("unread_messages_count", 0)
@@ -42,5 +44,9 @@
       #       messagesList = new Menu.MessagesView
       #         collection: self.model.messages
       #       self.messagesBox.show(messagesList)
-
+    onRender: ->
+      if @model.get("unread_messages_count") > 0
+        @ui.messagesBadge.show()
+      else
+        @ui.messagesBadge.hide()
 

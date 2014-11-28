@@ -93,11 +93,9 @@
           <!-- CHAT ICON -->
           <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages" id="js-menu-messages">
             <span class="navTopBar__right__item__icon ico-chat "></span>
-            <% if @unread_messages_count > 0: %>
-              <span class="navTopBar__badge badge" id="js-messages-badge">
-                <%= @unread_messages_count %>
-              </span>
-            <% end %>
+            <span class="navTopBar__badge badge" id="js-messages-badge">
+              <%= @unread_messages_count %>
+            </span>
           </a>
           <!--  -->
           <!-- MESSAGES ON -->
