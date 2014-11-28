@@ -13,8 +13,6 @@
       else if @model.get('exp_type') == 3 
         "registration/experience/templates/professionalExperience"
 
-    # className: 'row'
-    # tagName: 'fieldset'
     tagName: 'form'
 
     initialize: ->
@@ -25,8 +23,6 @@
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
         invalid: (view, attr, error, selector) ->
-          # console.log "bad"
-          # console.log view
           $el = view.$("[name^=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
@@ -37,6 +33,20 @@
     events:
       "click @ui.btnRmv": "removeExperience"
 
+    onShow: ->
+      dropdowns = $("[name=country_id]", $(@el))  
+      
+      countries = new AlumNet.Entities.Countries
+      
+      countries.fetch 
+        success: (collection, response, options)->
+          fillCountries(collection, dropdowns)
+
+    
+    fillCountries = (countries, dropdowns)->  
+      content = AlumNet.request("countries:html", countries)
+      dropdowns.html(content)  
+
       
     removeExperience: (e)->
       @model.destroy()
@@ -45,11 +55,6 @@
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'    
     childView: Experience.FormAiesec    
-    # getChildView: (item) -> 
-    #   if item.get('exp_type') == 0
-    #     Experience.FormAiesec           
-    #   else if item.get('exp_type') == 1 
-    #     Experience.FormAlumni
     childViewContainer: '#exp-list'
     className: 'row'
           
@@ -65,16 +70,10 @@
 
 
     templateHelpers: ->
-    # serializeData: ->
       titleNew = @title
       title:  =>
         @title
       
-        # console.log this.view.title
-        # console.log @foo
-
-
-
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
         exp_type: 0
@@ -84,10 +83,7 @@
     submitClicked: (e)->
       e.preventDefault()
       
-      # formData = new FormData()
       experiences = new Array()
-
-      # console.log @children.length
       
       #retrieve each itemView data
       @children.each (itemView)->

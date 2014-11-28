@@ -1,12 +1,12 @@
 <div class="formANet form" role="form">
 	<h1>Skills</h1>
-	<div>		
+	<form>		
 		<div class="form-group has-feedback">
 			<label class="control-label">Write your Skills separating with a comma</label>
-			<input id="" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management...">
+			<input style="padding:0" id="skills-input" name="skills" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management...">
 			<span class="formANet__input__icon form-control-feedback glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 		</div>
-	</div>
+	</form>
 	<hr>
 	<h2>Languages</h2>
 
