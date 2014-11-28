@@ -41,7 +41,7 @@
       AlumNet.request("registration:shared:layout")
 
     getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")
+      AlumNet.request("registration:shared:sidebar", 1)
 
     getFormView: (profile) ->
       new Profile.Form

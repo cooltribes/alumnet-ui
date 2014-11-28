@@ -8,7 +8,7 @@
       AlumNet.mainRegion.show(layoutView)
 
       # sub-views
-      layoutView.side_region.show(@getSidebarView())
+      layoutView.side_region.show(@getSidebarView(4))
 
       user = AlumNet.request 'get:current_user' #, refresh: true     
 
@@ -66,8 +66,8 @@
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")   
     
-    getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")      
+    getSidebarView: (step) ->
+      AlumNet.request("registration:shared:sidebar", step)      
 
     getFormView: (collection, profileModel) ->      
 
