@@ -3,7 +3,7 @@
     # urlRoot: ->
     #   AlumNet.api_endpoint + '/experience'
 
-    # initialize: ->      
+    # initialize: ->
     defaults: {
       first: false,
       name: "",
@@ -51,21 +51,21 @@
   # API =
   #   getCurrentUserToken:  ->
   #     if gon.current_user
-  #       gon.current_user.api_token
+  #       gon.current_user.auth_token
   #     else
   #       null
 
-  #   getCurrentUser: (options = {}) ->      
+  #   getCurrentUser: (options = {}) ->
   #     @current_user ||= @getCurrentUserFromApi()
 
   #   getCurrentUserFromApi: ->
-  #     # console.log "fromapi"      
+  #     # console.log "fromapi"
   #     # console.log @current_user
   #     user = new Entities.User
   #     user.url = AlumNet.api_endpoint + '/me'
   #     # console.log user.url
   #     user.fetch()
-  #     # console.log "after fetch"      
+  #     # console.log "after fetch"
   #     # console.log user
   #     user
 

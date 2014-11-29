@@ -45,8 +45,8 @@
 
   API =
     getCurrentUserToken:  ->
-      if gon.api_token
-        gon.api_token
+      if gon.auth_token
+        gon.auth_token
       else
         null
 
