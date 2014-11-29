@@ -7,6 +7,7 @@
       "groups/:id/invite": "inviteGroup"
       "groups/:id/about": "aboutGroup"
       "groups/:id/members": "membersGroup"
+      "groups/:id/subgroups/new": "createSubGroup"
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
@@ -32,6 +33,9 @@
     aboutGroup: (id)->
       controller = new GroupsApp.About.Controller
       controller.showAbout(id)
+    createSubGroup: (id)->
+      controller = new GroupsApp.SubGroups.Controller
+      controller.createSubGroup(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

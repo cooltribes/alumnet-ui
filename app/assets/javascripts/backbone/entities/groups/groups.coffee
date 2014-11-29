@@ -54,6 +54,11 @@
     getNewGroup: ->
       new Entities.Group
 
+    getNewSubGroup: (group_id)->
+      subgroup = new Entities.Group
+      subgroup.urlRoot = AlumNet.api_endpoint + '/groups/' + group_id + '/add_group'
+      subgroup
+
     findGroup: (id)->
       #Optimize: Verify if Entities.groups is set and find the group there.
       group = new Entities.Group
@@ -70,6 +75,9 @@
 
   AlumNet.reqres.setHandler 'group:new', ->
     API.getNewGroup()
+
+  AlumNet.reqres.setHandler 'subgroup:new',(group_id) ->
+    API.getNewSubGroup(group_id)
 
   AlumNet.reqres.setHandler 'group:entities', (querySearch) ->
     API.getGroupEntities(querySearch)

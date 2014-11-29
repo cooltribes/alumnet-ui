@@ -10,12 +10,9 @@ class AuthController < ApplicationController
     user_session = UserSession.new
     user_session.auth(signin_params)
     if user_session.valid?
-      # session[:current_user] = Marshal.dump(user_session.user)
-      session[:user_id] = user_session.user.id
-      session[:api_token] = user_session.user.api_token
+      session[:auth_token] = user_session.user.auth_token
       redirect_to root_path
     else
-      # render json: user_session.errors, status: :conflict
       @email = signin_params[:email]
       @errors = user_session.errors
       render :home
@@ -26,9 +23,7 @@ class AuthController < ApplicationController
     registration = UserRegistration.new
     registration.register(user_params, profile_params)
     if registration.valid?
-      # session[:current_user] = Marshal.dump(registration.user)
-      session[:user_id] = registration.user.id
-      session[:api_token] = registration.user.api_token
+      session[:auth_token] = registration.user.auth_token
       redirect_to root_path
     else
       @first_name, @last_name, @signup_email = profile_params[:first_name], profile_params[:last_name], user_params[:email]
@@ -38,8 +33,7 @@ class AuthController < ApplicationController
   end
 
   def sign_out
-    session[:user_id] = nil
-    session[:api_token] = nil
+    session[:auth_token] = nil
     redirect_to root_path
   end
 

@@ -4,22 +4,14 @@
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
       <div class="groupCard__menu">
-        <h5 class="groupCard__menu__title">Sub-Groups (13)</h5>
+        <h5 class="groupCard__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
         <ul class="groupCard__menu__list">
+        <% _.each @children, (child)->: %>
           <li class="groupCard__menu__item">
-            <a href="#" title="Subgroup name" >Subgroups 1 (04)
-            </a>
+            <a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
             <span class="icon-entypo-list pull-right"></span>
           </li>
-          <li class="groupCard__menu__item">
-            <a href="#" title="Subgroup name" >Subgroups 2</a>
-          </li>
-          <li class="groupCard__menu__item">
-            <a href="#" title="Subgroup name" >More text than in the other Subgroups 3</a>
-          </li>
-          <li class="groupCard__menu__item">
-            <a href="#" title="Subgroup name" >Subgroups 4</a>
-          </li>
+        <% end %>
           <li class="groupCard__menu__item text-center">
             <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
           </li>
