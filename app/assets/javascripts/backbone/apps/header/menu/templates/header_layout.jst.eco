@@ -111,7 +111,7 @@
         </li>
         <li>
           <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
-            Become a Member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
+            <%= @name %> <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
           </a>
         </li>
         <li>

@@ -2,11 +2,13 @@
 
   class Members.Member extends Marionette.ItemView
     template: 'groups/members/templates/member'
-    tagName: 'li'
+    tagName: 'div'
+    className: 'col-md-4 col-sm-6'
 
   class Members.MembersView extends Marionette.CompositeView
     template: 'groups/members/templates/members_container'
     childView: Members.Member
+    className: 'container-fluid'
     childViewContainer: '.members-list'
     events:
       'click .js-search': 'performSearch'

@@ -21,7 +21,7 @@
 			
 		</ul>
 		<!-- CREATE A NEW GROUP BTN -->
-		<button type="button" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn">+ Create a new group</button>
+		<a href="#groups/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a new group</a>
 		<!-- ./ -->
 		<ul class="nav navbar-nav navbar-right">
 			<li class="active"><a href="#groups" class="navTopSubBar__link" title="Discover groups"><span class="navTopSubBar__icon glyphicon glyphicon-search" ></span> Discover</a></li>
