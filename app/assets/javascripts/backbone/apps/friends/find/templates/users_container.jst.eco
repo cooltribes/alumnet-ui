@@ -25,7 +25,7 @@
 <div class="container-fluid margin_top_large">
 	<ul class="navigationTabs nav nav-tabs">
 		<li role="presentation" class="navigationTabs__tab active"><a href="#">Sent Request</a></li>
-		<li role="presentation" class="navigationTabs__tab"><a href="#">Friend Request</a></li>
+		<li role="presentation" class="navigationTabs__tab"><a href="#friends/requests" title="Friends Requests">Friends Requests</a></li>
 		
 	</ul>
 	
