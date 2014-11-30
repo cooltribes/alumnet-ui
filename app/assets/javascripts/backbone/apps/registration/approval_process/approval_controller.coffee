@@ -1,7 +1,7 @@
-@AlumNet.module 'RegistrationApp.Aproval', (Aproval, @AlumNet, Backbone, Marionette, $, _) ->
-  class Aproval.Controller
+@AlumNet.module 'RegistrationApp.Approval', (Approval, @AlumNet, Backbone, Marionette, $, _) ->
+  class Approval.Controller
 
-    createAproval: ->
+    showApproval: ->
      
       # creating layout
       layoutView = @getLayoutView()     
@@ -16,9 +16,6 @@
       
       contactForm = @getFormView(profile)
       layoutView.form_region.show(contactForm)      
-      #layoutView.form_region.show(@getFormView())
-
-      # acctually show layout in default (main) region
 
     getLayoutView: ->
       # List.Layout is in the same module but defined in list_view.coffee file
@@ -26,8 +23,8 @@
 
     # instantiate views defined in list_view.coffee
     getSideView: ->
-      AlumNet.request("registration:shared:sidebar")
+      AlumNet.request("registration:shared:sidebar", 5)
 
     getFormView: (profile) ->
-      new Aproval.Form
+      new Approval.Form
         model: profile   

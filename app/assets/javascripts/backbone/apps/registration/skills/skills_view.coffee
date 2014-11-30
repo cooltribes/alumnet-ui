@@ -17,8 +17,6 @@
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
         invalid: (view, attr, error, selector) ->
-          # console.log "bad"
-          # console.log view
           $el = view.$("[name^=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
@@ -94,27 +92,39 @@
       "click @ui.btnSubmit": "submitClicked"
 
     onShow: ->
+      skillsList = new AlumNet.Entities.Skills
+      skillsList.fetch
+        success: =>
+          @fillSkills(skillsList)
+
+      
+    fillSkills: (collection)->
+  
+      skills = _.pluck(collection.models, 'attributes');
+      listOfNames = _.pluck(skills, 'name');
+      # console.log this
       @ui.skills.select2
-        tags: []        
+        # tags: []        
+        tags: listOfNames        
         multiple: true
         tokenSeparators: [',', ', '],
         dropdownAutoWidth: true,
         # minimumInputLength: 3,
-        ajax:
-          url: AlumNet.api_endpoint + '/skills'
-          dataType: 'json'
-          data: (term)->
-            q:
-              m: 'or'
-              name_cont: term
-              # profile_last_name_cont: term
-          results: (data, page) ->
-            results:
-              data
-        formatResult: (data)->
-          data.name
-        formatSelection: (data)->
-          data.name   
+        # ajax:
+        #   url: AlumNet.api_endpoint + '/skills'
+        #   dataType: 'json'
+        #   data: (term)->
+        #     q:
+        #       m: 'or'
+        #       name_cont: term
+        #       # profile_last_name_cont: term
+        #   results: (data, page) ->
+        #     results:
+        #       data
+        # formatResult: (data)->
+        #   data.name
+        # formatSelection: (data)->
+        #   data.name 
 
 
     addRow: (e)->      
