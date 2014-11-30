@@ -5,7 +5,7 @@
   </div>
   <!-- Content -->
   <div class="navTopBar__notification__content">
-    <a href="#conversations"> <!-- add route to conversation -->
+    <a href="#conversations/<%= @conversation_id %>"> <!-- add route to conversation -->
     <span class="navTopBar__notification__title">
       <%= @sender.name %><span class="glyphicon glyphicon-share-alt"></span>
     </span>
