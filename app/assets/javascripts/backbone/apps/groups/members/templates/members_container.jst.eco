@@ -87,10 +87,7 @@
 		<ul class="nav nav-pills">
 			<li class="sortingMenu__item sortingMenu__item--lg">
 				<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-				<a href="#" title="All" class="sortingMenu__item__link">All
-				</a>
-			</li>
-			<li class="sortingMenu__item sortingMenu__item--lg">
+				
 				<a href="#" title="Only Official" class="sortingMenu__item__link">All members(200)
 				</a>
 			</li>
