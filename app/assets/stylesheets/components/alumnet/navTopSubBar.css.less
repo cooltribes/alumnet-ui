@@ -40,6 +40,20 @@ DESCRIPTION: Top navigation bar with menus
     &__icon{
         font-size: 15px;
     }
+    &__dropdownMenu{
+        min-width: 250px;
+        background-color: @blue;
+        li > a{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: @white;
+            &:hover{
+                background-color: darken(@blue,10%);
+                color: @white;
+            }
+        }
+    }
+
 
     & &__burguerMenu{
         background-color: darken(@blue, 10%);

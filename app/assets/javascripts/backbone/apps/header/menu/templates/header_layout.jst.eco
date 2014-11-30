@@ -40,9 +40,9 @@
             Programs  <span class="icon-entypo-down-open"></span>
           </a>
           <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Business exchange </a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Job Exchange</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Home exchange</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="icon-entypo-bookmark"></span>  Business exchange </a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="icon-entypo-briefcase"></span> Job Exchange</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="icon-entypo-home"></span> Home exchange</a></li>
           </ul>
         </li>
       </ul>
@@ -120,8 +120,6 @@
           </a>
           <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
             <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
             <li role="presentation">
               <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)</a>
