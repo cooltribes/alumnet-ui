@@ -35,9 +35,8 @@
   # POST VIEW
   class Posts.PostView extends Marionette.CompositeView
     template: 'home/posts/templates/post'
-    childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post'
+    className: 'post item'
     childViewOptions: ->
       userModel: @userModel
     initialize: (options)->
