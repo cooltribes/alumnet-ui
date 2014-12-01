@@ -1,4 +1,11 @@
-<div class="friend-info">
-  <img src="<%= @avatar %>" alt="">
-  <%= @name %>
+<div class="userCard friend-info">
+	<div class=" row">
+		<div class="userCard__avatar col-md-3 ">
+			<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle" width="80" height="80">
+		</div>
+		<div class=" col-md-6 ">
+			<h4 class="userCard__name"><%= @name %></h4>
+			<p class="member-position text-small">Local Comitee President</p>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,47 @@
+/***
+
+APP NAME: message
+DESCRIPTION: message per se
+***/
+
+@import 'conf/conf.css.less';
+
+
+.message{
+	background-color: @white;
+	padding:  20px;
+	
+
+	&__metaContainer{
+		overflow: auto;
+	}
+	&__avatar{
+		width: 16%;
+		float: left;
+		img{
+			max-width: 100%;
+		}
+	}
+	&__meta{
+		width: 84%;
+		float: left;
+		margin-top: 10px;
+	}
+	
+	&__name{
+		font-size: 26px;
+		font-weight: 300;
+	}
+	&__date{
+		color: @gray;
+	}
+
+	&__content{
+		width: 84%;
+		margin-left: 16%;
+	}
+
+
+
+}
+

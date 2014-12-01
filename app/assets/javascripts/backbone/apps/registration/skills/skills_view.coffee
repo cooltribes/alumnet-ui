@@ -17,8 +17,6 @@
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
         invalid: (view, attr, error, selector) ->
-          # console.log "bad"
-          # console.log view
           $el = view.$("[name^=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
@@ -35,11 +33,25 @@
 
     onShow: ->      
       #Render the slider
-      $("#slider", @el).slider
-        min: 1
-        max: 6
-        value: parseInt( @model.get("level"), 10 )
+      slideItem = $("#slider", @el)
+      levelTextItem = slideItem.next("#level")
 
+      textLevel = 
+            1: "Basic"
+            2: "Basic Intermediate"    
+            3: "Intermediate"    
+            4: "Intermediate Advanced"    
+            5: "Advanced"    
+
+      levelTextItem.text(textLevel[@model.get("level")])
+
+      slideItem.slider
+        min: 1
+        max: 5
+        value: parseInt( @model.get("level"), 10 )
+        slide: (event, ui) ->          
+          levelTextItem.text(textLevel[ui.value])
+          
       #Render the list of languages
       dropdown = $("[name=language_id]", $(@el))  
       
@@ -49,6 +61,7 @@
       languages.fetch 
         success: (collection, response, options)->          
           fillLaguages(collection, dropdown)
+
 
     
     fillLaguages = (collection, dropdown)->        
@@ -73,10 +86,45 @@
     ui:
       'btnAdd': '.js-addRow'
       'btnSubmit': '.js-submit'
+      'skills': '#skills-input'
     events:
       "click @ui.btnAdd": "addRow"
       "click @ui.btnSubmit": "submitClicked"
 
+    onShow: ->
+      skillsList = new AlumNet.Entities.Skills
+      skillsList.fetch
+        success: =>
+          @fillSkills(skillsList)
+
+      
+    fillSkills: (collection)->
+  
+      skills = _.pluck(collection.models, 'attributes');
+      listOfNames = _.pluck(skills, 'name');
+      # console.log this
+      @ui.skills.select2
+        # tags: []        
+        tags: listOfNames        
+        multiple: true
+        tokenSeparators: [',', ', '],
+        dropdownAutoWidth: true,
+        # minimumInputLength: 3,
+        # ajax:
+        #   url: AlumNet.api_endpoint + '/skills'
+        #   dataType: 'json'
+        #   data: (term)->
+        #     q:
+        #       m: 'or'
+        #       name_cont: term
+        #       # profile_last_name_cont: term
+        #   results: (data, page) ->
+        #     results:
+        #       data
+        # formatResult: (data)->
+        #   data.name
+        # formatSelection: (data)->
+        #   data.name 
 
 
     addRow: (e)->      
@@ -91,7 +139,11 @@
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
+      
+      skillsData = Backbone.Syphon.serialize this #, 
+        # include: "skills"
+      skillsData = skillsData.skills.split(',')
         
-      this.trigger("form:submit", @model)
+      this.trigger("form:submit", @model, skillsData)
 
     

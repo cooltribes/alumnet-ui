@@ -1,2 +1,13 @@
-<img src="<%= @user.avatar %>" alt="<%= @user.name %>">
-<%= @user.name %>
+<div class="userCard">
+	<div class=" row">
+		<div class="userCard__avatar col-md-3 ">
+		<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="80" height="80" >
+
+		</div>
+		<div class="col-md-7">
+			<h4 class="userCard__name"><%= @user.name %></h4>
+			<p class="member-position text-small">Local Comitee President</p>
+		</div>
+		
+	</div>
+</div>

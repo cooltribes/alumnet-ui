@@ -1,16 +1,16 @@
 /***
 
-COMPONENT NAME: userCard
-DESCRIPTION: the card where the user atributes are loaded within a list of users.
+APP NAME: registration
+DESCRIPTION: shared styles among registration module
 
 ***/
 
 @import 'conf/conf.css.less';
 
+.userCardAproval{
 
-.userCard{
-   background: #fbfbfb;
-   margin-bottom: 2em;
+	background: #fff;
+   margin-bottom: 1em;
    padding: 10px;
    text-align: center;
    
@@ -24,16 +24,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
    }
    &__actions{
-    background-color: @light-blue;
     text-align: center;
-    padding: 10px;
-    color: @white;
-    &--isFriend{
-      background-color: #b2bdc3;
-
-    }
+    margin-top: 2em;
    }
-
 
 }
 
@@ -43,7 +36,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
-    .userCard{
+    .userCardAproval{
         height: auto;
     }
 
@@ -51,19 +44,16 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
-    .userCard{
+    .userCardAproval{
         
-        height: 100px;
-        overflow: hidden;
+        
         text-align: left;
         padding: 10px 0px 10px 10px;
         &__avatar{
             text-align: right;
        }
         &__actions{
-            height: 100px;
-            margin-top: -10px;
-            padding: 40px 0 0;
+           
        }
     }
 
@@ -71,9 +61,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
-    .userCard{
-        height: 100px;
-        overflow: hidden;
+    .userCardAproval{
+        
+        
         text-align: left;
         padding: 10px 0px 10px 10px;
     
@@ -81,9 +71,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
             text-align: right;
        }
        &__actions{
-            height: 100px;
-            margin-top: -10px;
-            padding: 40px 0 0;
+           
        }
    }
  }

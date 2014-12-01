@@ -1,5 +1,6 @@
 @AlumNet.module 'HomeApp', (HomeApp, @AlumNet, Backbone, Marionette, $, _) ->
-  HomeApp.Router = Marionette.AppRouter.extend
+  # HomeApp.Router = Marionette.AppRouter.extend
+  class HomeApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "posts": "currentUserPosts"
       "conversations": "currentUserConversations"

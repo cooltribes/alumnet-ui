@@ -1,5 +1,6 @@
 @AlumNet.module 'FriendsApp', (FriendsApp, @AlumNet, Backbone, Marionette, $, _) ->
-  FriendsApp.Router = Marionette.AppRouter.extend
+  # FriendsApp.Router = Marionette.AppRouter.extend
+  class FriendsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "friends": "listFriends"
       "friends/find": "findFriends"

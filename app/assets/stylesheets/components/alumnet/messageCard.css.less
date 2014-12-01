@@ -1,0 +1,63 @@
+/***
+
+APP NAME: messageCard
+DESCRIPTION: message dashboard that includes 1 column for a list of messages and other column for the message itself and a form
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.messageCard{
+		background-color: @white;
+		padding: 10px 20px;
+		border-right: 1px solid @gray;
+		border-left: 1px solid @gray;
+		border-bottom: none;
+		border-top: 1px solid @gray;
+		overflow: auto;
+		&--active{
+			background-color: @blue;
+			color:@white;	
+		}
+		&--active &__title, &--active a { color:@white;}
+		&--active &__date{color:lighten(@white, 10%)}
+		&__avatar{
+			width: 15%;
+			float: left;
+			img{
+				max-width: 100%;
+			}
+		}
+		&__content{
+			width: 75%;
+			float: left;
+		}
+		&__meta{
+			width: 10%;
+			float: left;
+			text-align: right;
+		}
+		&__badge{
+			background-color: @orange;
+		}
+		&__title{
+			font-weight: bold;
+			font-size: 14px;
+			color: @black;
+			margin-top: 5px;
+			margin-bottom: 4px;
+			&--read{
+				color: lighten(@black, 30%);
+				font-weight: normal;
+			}
+		}
+		&__date{
+			color: @gray;
+
+		}
+		&__participant{
+
+		}
+
+}

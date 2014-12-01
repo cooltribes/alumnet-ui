@@ -32,6 +32,10 @@
     createSkills: ->            
       controller = new RegistrationApp.Skills.Controller      
       controller.showSkills()
+
+    createApproval: ->            
+      controller = new RegistrationApp.Approval.Controller      
+      controller.showApproval()
    
 
   AlumNet.on "registration:show",  ->
@@ -54,6 +58,10 @@
   AlumNet.on "registration:skills",  ->
     AlumNet.navigate("registration/skills")
     API.createSkills()
+
+  AlumNet.on "registration:approval",  ->
+    AlumNet.navigate("registration/approval")
+    API.createApproval()
 
 
   AlumNet.addInitializer ->

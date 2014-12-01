@@ -1,9 +1,9 @@
 <ul class="roundedNumbersList">
-    <li class="roundedNumbersList__item"><span class="roundedNumbersList__number">1</span> Profile</li>
+    <li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span> Profile</li>
     <!-- <li class="roundedNumbersList__item--active"><span class="roundedNumbersList__number">1</span> Profile</li> -->
     <!-- <li class="roundedNumbersList__item--inactive"><span class="roundedNumbersList__number">2</span> Contact</li> -->
-    <li class="roundedNumbersList__item"><span class="roundedNumbersList__number">2</span> Contact</li>
-    <li class="roundedNumbersList__item"><span class="roundedNumbersList__number">3</span> Experience</li>
-    <li class="roundedNumbersList__item"><span class="roundedNumbersList__number">4</span> Skills & Languages</li>
-    <li class="roundedNumbersList__item"><span class="roundedNumbersList__number">5</span> Approval process</li>
+    <li class="roundedNumbersList__item<%= @classOf(1)%>"><span class="roundedNumbersList__number">2</span> Contact</li>
+    <li class="roundedNumbersList__item<%= @classOf(2)%>"><span class="roundedNumbersList__number">3</span> Experience</li>
+    <li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Skills & Languages</li>
+    <li class="roundedNumbersList__item<%= @classOf(4)%>"><span class="roundedNumbersList__number">5</span> Approval process</li>
 </ul>
