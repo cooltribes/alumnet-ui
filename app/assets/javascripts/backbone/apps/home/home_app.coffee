@@ -3,6 +3,8 @@
     appRoutes:
       "posts": "currentUserPosts"
       "conversations": "currentUserConversations"
+      "conversations/:id": "currentUserConversation"
+
 
   API =
     currentUserPosts: ->
@@ -11,6 +13,9 @@
     currentUserConversations: ->
       controller = new HomeApp.Conversations.Controller
       controller.showCurrentUserConversations()
+    currentUserConversation: (id) ->
+      controller = new HomeApp.Conversations.Controller
+      controller.showCurrentUserConversations(id)
 
   AlumNet.on "home", ->
     AlumNet.navigate("posts")
@@ -19,6 +24,10 @@
   AlumNet.on "conversations", ->
     AlumNet.navigate("conversations")
     API.currentUserConversations()
+
+  AlumNet.on "conversation", (conversation_id)->
+    AlumNet.navigate("conversations/#{conversation_id}")
+    API.currentUserConversation(conversation_id)
 
   AlumNet.addInitializer ->
     new HomeApp.Router

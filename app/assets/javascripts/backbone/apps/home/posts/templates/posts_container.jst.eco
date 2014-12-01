@@ -1,10 +1,8 @@
 <h1><%= @name %></h1>
-<% if @currentUserCanPost: %>
   <form class="form">
     <div class="form-group groupCreatePostForm__textarea ">
       <textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
     </div>
     <a href="#" class="btn btn-default" id="js-post-submit">Post</a>
   </form>
-<% end %>
 <div id="timeline" class="posts-container" ></div>
