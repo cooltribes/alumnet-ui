@@ -5,4 +5,4 @@
       user = AlumNet.request 'get:current_user', async: false
       unless user.isApproved()
         AlumNet.trigger "registration:show"
-        false
+        true
