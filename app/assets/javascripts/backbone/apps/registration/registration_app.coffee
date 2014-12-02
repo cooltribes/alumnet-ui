@@ -25,7 +25,7 @@
       controller = new RegistrationApp.Contact.Controller      
       controller.showContact()
       
-    createExperience: ->            
+    createExperience: ->              
       controller = new RegistrationApp.Experience.Controller      
       controller.showExperience()
 
@@ -38,8 +38,7 @@
       controller.showApproval()
    
 
-  AlumNet.on "registration:show",  ->
-    # AlumNet.navigate("registration", trigger: true)
+  AlumNet.on "registration:show",  ->    
     API.showRegister()
 
   AlumNet.on "registration:profile",  ->
@@ -52,8 +51,8 @@
     
 
   AlumNet.on "registration:experience",  ->
-    AlumNet.navigate("registration/experience")
-    API.createExperience()
+    AlumNet.navigate("registration/experience")    
+    API.showRegister()
 
   AlumNet.on "registration:skills",  ->
     AlumNet.navigate("registration/skills")

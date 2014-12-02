@@ -3,6 +3,18 @@
   class Profile.Form extends Marionette.ItemView
     template: 'registration/profile/templates/form'
     className: 'container-fluid'
+    ui: 
+     "birthCountry": "[name=birth_country]"   
+     "resCountry": "[name=residence_country]"   
+     "birthCity": "[name=birth_city]"   
+     "resCity": "[name=residence_city]"   
+
+    events:      
+      "click button.js-submit":"submitClicked"
+      "change #profile-avatar":"previewImage"
+      "change @ui.birthCountry": "changeCity" 
+      "change @ui.resCountry": "changeCity" 
+
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -17,14 +29,30 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-    onShow: ->
-      dropdowns = $("[name=birth_country], [name=residence_country]", $(@el))  
-      
+
+    onShow: ->      
+      dropdowns = @ui.birthCountry.add(@ui.resCountry)  
+
       countries = new AlumNet.Entities.Countries
       
       countries.fetch 
         success: (collection, response, options)->
           fillCountries(collection, dropdowns)
+
+
+    changeCity: (e) ->
+      if $(e.target)[0] == @ui.birthCountry[0]
+        countryId = @ui.birthCountry.val()         
+        dropdown = @ui.birthCity
+      else if $(e.target)[0] == @ui.resCountry[0]
+        countryId = @ui.resCountry.val()         
+        dropdown = @ui.resCity      
+      
+      cities = AlumNet.request("cities:get_cities", countryId)
+      cities.fetch 
+        success: (collection, response, options)->
+          fillCities(collection, dropdown)
+
 
     
     fillCountries = (countries, dropdowns)->  
@@ -32,10 +60,13 @@
       dropdowns.html(content)
 
 
+    fillCities = (cities, dropdown)->  
+      content = AlumNet.request("cities:html", cities)
+      dropdown.html(content)
 
-    events:
-      "click button.js-submit":"submitClicked"
-      "change #profile-avatar":"previewImage"
+
+
+    
 
       
     submitClicked: (e)->

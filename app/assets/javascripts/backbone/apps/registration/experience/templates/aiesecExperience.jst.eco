@@ -127,11 +127,7 @@
 			<label class="control-label" for="registerCountry">Country / Region</label>
 			<select class="form-control input-lg" name="country_id">
 				<option value="">Select a country</option>
-				<option value="1">Poland</option>
-				<option value="2">Venezuela</option>
-				<option value="3">Spain</option>
-				<option value="4">Italy</option>
-				<option value="5">France</option>
+				
 			</select>
 		</div>
 	</div>
@@ -140,11 +136,7 @@
 			<label class="control-label" for="registerCity">City</label>
 			<select class="form-control input-lg" name="city_id">
 				<option value="">Select City</option>
-				<option value="1">San Cristobal</option>
-				<option value="2">Paris</option>
-				<option value="3">Madrid</option>
-				<option value="4">New York</option>
-				<option value="5">Rome</option>
+			
 			</select>
 		</div>
 	</div>
@@ -153,11 +145,7 @@
 			<label class="control-label" for="registerLocalcomitee">Local Comitee</label>
 			<select class="form-control input-lg" name="local_comitee">
 				<option value="">Select Committee</option>
-				<option value="1">Local Committee 1</option>
-				<option value="2">Local Committee 2</option>
-				<option value="3">Local Committee 3</option>
-				<option value="4">Local Committee 4</option>
-				<option value="5">Local Committee 5</option>
+				
 			</select>
 		</div>
 	</div>
