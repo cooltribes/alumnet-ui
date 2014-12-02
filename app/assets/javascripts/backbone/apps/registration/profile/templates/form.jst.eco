@@ -12,14 +12,14 @@
         <span class="help-block"></span>
       </div>
     </div>
-    
+
     <div class="col-md-6">
 
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
         <input type="text" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-        <span class="help-block"></span>        
+        <span class="help-block"></span>
       </div>
 
       <div class="form-group has-feedback">
@@ -33,7 +33,7 @@
         <div class="col-md-12"><label class="control-label" for="inputLastName">Born</label></div>
         <!-- <div class="col-md-4">
           <input id="inputName" type="number" class="form-control input-lg " placeholder="DD">
-          <select name="day" class="form-control input-lg ">            
+          <select name="day" class="form-control input-lg ">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-4">
           <input type="number" class="form-control input-lg " placeholder="MM">
-          <select name="month" class="form-control input-lg ">            
+          <select name="month" class="form-control input-lg ">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-4">
           <input type="number" class="form-control input-lg " placeholder="YYYY">
-          <select name="year" class="form-control input-lg ">            
+          <select name="year" class="form-control input-lg ">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -57,11 +57,11 @@
         </div>
           <input type="hidden" name="born">
         -->
-        <div class="col-md-12">          
-          <input type="date" name="born">          
+        <div class="col-md-12">
+          <input type="date" name="born">
         </div>
         <div class="col-md-12">
-          <span class="help-block"></span>        
+          <span class="help-block"></span>
         </div>
       </div>
 
@@ -70,29 +70,19 @@
   <!-- First row OFF -->
   <hr>
   <!-- Birth ON-->
-  <div class="row">
+  <div class="row js-bird-location">
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Birth Country</label>
-        <select name="birth_country" class="form-control input-lg ">
-          <option value="">Select a country</option>
-          <option value="1">Venezuela</option>
-          <option value="2">España</option>
-          <option value="3">Francia</option>
-        </select>
+        <input class="js-countries" type="hidden" name="bird_country" id="bird_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
-      
+
       <div class="form-group">
         <label class="control-label" for="inputName">Birth City</label>
-        <select class="form-control input-lg" name="birth_city">
-          <option value="">Select a city</option>        
-          <option value="1">San Cristobal</option>
-          <option value="2">Caracas</option>
-          <option value="3">Valencia</option>
-        </select>
+        <input class="js-cities" type="hidden" name="bird_city" id="bird_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -100,28 +90,18 @@
   <!-- Birth OFF-->
   <hr>
   <!-- Residence ON-->
-  <div class="row">
+  <div class="row js-residence-location">
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Country of residence</label>
-        <select name="residence_country" class="form-control input-lg ">
-          <option value="">Select a country</option>
-          <option value="1">Venezuela</option>
-          <option value="2">España</option>
-          <option value="3">Francia</option>
-        </select>
+        <input class="js-countries" type="hidden" name="residence_country" id="residence_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">City of residence</label>
-        <select class="form-control input-lg" name="residence_city">
-          <option value="">Select a city</option>        
-          <option value="1">San Cristobal</option>
-          <option value="2">Caracas</option>
-          <option value="3">Valencia</option>
-        </select>
+        <input class="js-cities" type="hidden" name="residence_city" id="residence_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -129,10 +109,10 @@
   <!-- Residence OFF-->
   <hr>
   <!-- Buttons -->
-  
+
   <div class="form-group text-right">
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
     <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>
-  
+
 </form>
