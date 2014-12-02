@@ -23,7 +23,7 @@
      
     events:
       "click @ui.btnRmv": "removeExperience"
-      "change @ui.country": "changeCity"       
+      "change @ui.country": "changeDepencencies"       
 
 
     initialize: ->
@@ -50,23 +50,34 @@
           fillCountries(collection, dropdowns)
 
 
-    changeCity: (e) ->
+    changeDepencencies: (e) ->
       countryId = @ui.country.val()         
-      dropdown = @ui.city #Add localcomitee
-      
+      dropdownCities = @ui.city #Add localcomitee
+      dropdownCom = @ui.lcomitee
+
+
       cities = AlumNet.request("cities:get_cities", countryId)
       cities.fetch 
         success: (collection, response, options)->
-          fillCities(collection, dropdown)
-      
+          fillCities(collection, dropdownCities)
 
-    
+
+      committees = AlumNet.request("cities:get_committees", countryId)
+      committees.fetch 
+        success: (collection, response, options)->
+          fillCommittees(collection, dropdownCom)
+
+     
     fillCountries = (countries, dropdowns)->  
       content = AlumNet.request("countries:html", countries)
       dropdowns.html(content)  
 
     fillCities = (cities, dropdown)->  
       content = AlumNet.request("cities:html", cities)
+      dropdown.html(content)
+
+    fillCommittees = (collection, dropdown)->  
+      content = AlumNet.request("committees:html", collection)
       dropdown.html(content)
         
       

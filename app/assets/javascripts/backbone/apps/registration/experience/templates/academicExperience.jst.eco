@@ -100,11 +100,7 @@
 			<label class="control-label" for="registerCountry">Country / Region</label>
 			<select class="form-control input-lg" name="country_id">
 				<option value="">Select a country</option>
-				<option value="1">Poland</option>
-				<option value="2">Venezuela</option>
-				<option value="3">Spain</option>
-				<option value="4">Italy</option>
-				<option value="5">France</option>
+				
 			</select>
 		</div>
 	</div>
@@ -112,12 +108,8 @@
 		<div class="form-group">
 			<label class="control-label" for="registerCity">City</label>
 			<select class="form-control input-lg" name="city_id">
-				<option value="">Select City</option>
-				<option value="1">San Cristobal</option>
-				<option value="2">Paris</option>
-				<option value="3">Madrid</option>
-				<option value="4">New York</option>
-				<option value="5">Rome</option>
+				<option value="">Select a City</option>
+				
 			</select>
 		</div>
 	</div>	

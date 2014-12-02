@@ -42,8 +42,7 @@
 
           exps = _.pluck(@collection.models, 'attributes');
           
-          profileModel.set "experiences_attributes", exps                    
-
+          profileModel.set "experiences_attributes", exps       
           
           profileModel.save(profileModel.attributes, options_for_save)
     
@@ -193,7 +192,7 @@
       
       layoutView.form_region.show(formView)
       
-      AlumNet.execute('render:groups:submenu')      
+      # AlumNet.execute('render:groups:submenu')      
 
       formView
 
