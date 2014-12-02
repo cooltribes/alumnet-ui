@@ -34,8 +34,7 @@
       file = @$('#profile-avatar')
       formData.append('avatar', file[0].files[0])
       @model.set(data)
-      console.log data
-      # @trigger 'form:submit', @model, formData
+      @trigger 'form:submit', @model, formData
 
     previewImage: (e)->
       input = @.$('#profile-avatar')

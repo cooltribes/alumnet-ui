@@ -3,11 +3,9 @@
     # urlRoot: ->
     #   # AlumNet.api_endpoint + '/users/' + @user_id + "/profile"
     #   AlumNet.api_endpoint + '/users/'
-    
+
     # setUrl: ->
-    #   @url = AlumNet.api_endpoint + '/users/' + @get("user_id") + "/profile"   
-    birth_country: ""
-    residence_country: ""
+    #   @url = AlumNet.api_endpoint + '/users/' + @get("user_id") + "/profile"
 
     validation:
       first_name:
@@ -26,7 +24,7 @@
         required: true
       residence_city:
         required: true
-      
+
 
   # AlumNet.reqres.setHandler 'user:token', ->
   #   API.getCurrentUserToken()
@@ -34,7 +32,7 @@
   # AlumNet.reqres.setHandler 'get:current_user', (options = {}) ->
   #     if options.refresh
   #       AlumNet.request 'current_user:refresh', options
-  #     API.getCurrentUser()   
+  #     API.getCurrentUser()
 
   # AlumNet.reqres.setHandler 'current_user:refresh', (options = {}) ->
   #   user = AlumNet.request('get:current_user')

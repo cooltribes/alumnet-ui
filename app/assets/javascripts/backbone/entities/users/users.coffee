@@ -56,7 +56,7 @@
     getCurrentUserFromApi: ->
       user = new Entities.User
       user.url = AlumNet.api_endpoint + '/me'
-      user.profile.url = AlumNet.api_endpoint + '/me/profile'
+      user.profile.urlRoot = AlumNet.api_endpoint + '/me/profile'
       user.messages.url = AlumNet.api_endpoint + '/me/messages'
       user.fetch({async:false})
       user

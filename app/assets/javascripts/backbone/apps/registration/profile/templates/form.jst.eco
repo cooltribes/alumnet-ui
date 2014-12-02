@@ -31,32 +31,6 @@
 
       <div class="form-group row">
         <div class="col-md-12"><label class="control-label" for="inputLastName">Born</label></div>
-        <!-- <div class="col-md-4">
-          <input id="inputName" type="number" class="form-control input-lg " placeholder="DD">
-          <select name="day" class="form-control input-lg ">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="number" class="form-control input-lg " placeholder="MM">
-          <select name="month" class="form-control input-lg ">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="number" class="form-control input-lg " placeholder="YYYY">
-          <select name="year" class="form-control input-lg ">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-          <input type="hidden" name="born">
-        -->
         <div class="col-md-12">
           <input type="date" name="born">
         </div>
