@@ -1,0 +1,134 @@
+/***
+
+COMPONENT NAME: navTopSubBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.navTopSubBar{
+    
+    font-weight: 300;
+    font-size: 19px;
+
+    &__wrapper{
+        background: @blue;
+        border: none;
+        box-shadow: none;
+
+    }
+    &__wrapper .nav > li > &__link {
+        color: @white;
+       
+    }
+    &__wrapper .nav > li > &__link:hover {
+       background-color: darken(@blue, 10%);
+       color: @white;
+       border-color:@white; 
+    }
+    &__wrapper .nav > li.active > &__link  {
+        background-color: @blue;
+        color: @white;
+        border-color:@white; 
+    }
+    .navbar-default .navbar-nav > .open > a{
+        background-color: darken(@blue, 20%);
+        color: @white;
+        border-color:@white; 
+    }
+    &__icon{
+        font-size: 15px;
+    }
+    &__dropdownMenu{
+        min-width: 250px;
+        background-color: @blue;
+        li > a{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: @white;
+            &:hover{
+                background-color: darken(@blue,10%);
+                color: @white;
+            }
+        }
+    }
+
+
+    & &__burguerMenu{
+        background-color: darken(@blue, 10%);
+        border-color: transparent;
+        margin-right: 30px;
+        color: @white;
+        padding: 5px 16px; 
+        &:hover{
+            background-color: darken(@blue, 20%);
+        }
+    }
+    .navbar-default .navbar-toggle .icon-bar{
+        background-color: rgba(255, 255, 255, 0.5)
+    }
+    &__btnPrimary{
+        border-color: @white;
+        background-color: darken(@blue, 10%);
+        color: @white;
+        &:hover{
+            background-color: darken(@blue, 20%);
+            color: @white;
+            border-color: @white;
+
+        }
+    }
+   
+}
+
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopSubBar{
+       
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .navTopSubBar{
+       &__wrapper .nav > li > &__link {
+            border-bottom: 3px solid  @blue;
+        }
+        &__wrapper .nav > li > &__link:hover {
+           border-color:@white; 
+           background-color: transparent;
+        }
+        .nav > li.active > a {
+            border-color:@white; 
+        }
+        .navbar-default .navbar-nav > .open > a{
+            border-color:@white; 
+        }
+    }
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+.navTopSubBar{
+        &__wrapper .nav > li > &__link {
+            border-bottom: 3px solid  @blue;
+        }
+        &__wrapper .nav > li > &__link:hover {
+           border-color:@white; 
+           background-color: transparent;
+        }
+        .nav > li.active > a {
+            border-color:@white; 
+        }
+        .navbar-default .navbar-nav > .open > a{
+            border-color:@white; 
+        }
+    }  
+    
+ }

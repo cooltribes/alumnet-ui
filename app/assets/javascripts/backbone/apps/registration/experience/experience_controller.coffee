@@ -202,7 +202,7 @@
       AlumNet.request("registration:shared:layout")   
     
     getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")      
+      AlumNet.request("registration:shared:sidebar", 3)      
 
     getFormView: (experiences, profileModel, exp_type) ->
       title = "Experience in AIESEC"

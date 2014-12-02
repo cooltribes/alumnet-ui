@@ -1,7 +1,8 @@
+<hr>
 <div class="row">
 	<div class="col-md-7">
 		<div class="form-group">
-			<label for="registerCoutry">Language</label>
+			<label class="control-label" for="registerCoutry">Language</label>
 			<select name="language_id" class="form-control input-lg">
 				
 			</select>
@@ -9,19 +10,18 @@
 	</div>
 	<div class="col-md-4 handles-container">
 		<!--  The div that is used as the slider container  -->
-		<p>Level</p>
+		<label class="control-label margin_bottom_small" for="slider">Level</label>
+
 		<div id="slider" style="margin-top:0;"></div>
 		
 		<!--  The div that is used to display the slider value  -->
-		<div id="amount" style="color:#777;font-size:15px;text-align:center;"></div>
+		<div id="level" style="color:#777;font-size:15px;text-align:center;"></div>
 	</div>
 	<div class="col-md-1">
-	
-	<% if !@first: %>
-	
-		<button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-	<% end %>
-
+		
+		<% if !@first: %>
+		
+		<button type="button" class="close formANet__removableRow__removeButton margin_top_small js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<% end %>
 	</div>
 </div>

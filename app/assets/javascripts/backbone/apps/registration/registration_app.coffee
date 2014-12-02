@@ -9,7 +9,7 @@
       "registration/skills": "createSkills"
 
     onRoute: (name, path, args)  ->
-      AlumNet.trigger "registration:show"
+      # AlumNet.trigger "registration:show"
         
 
   API =

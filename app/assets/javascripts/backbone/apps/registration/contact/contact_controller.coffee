@@ -31,7 +31,8 @@
             #model return id == undefined, this is a temporally solution.
             success: (model, response, options)->
               #Pass to step 3 of registration process
-              AlumNet.trigger "registration:experience"
+              AlumNet.trigger "registration:show"
+              # AlumNet.trigger "registration:experience"
 
           model.save(model.attributes, options_for_save)
     
@@ -40,7 +41,7 @@
       AlumNet.request("registration:shared:layout")   
     
     getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar")      
+      AlumNet.request("registration:shared:sidebar", 2)      
 
     getFormView: (profile) ->
       new Contact.Form

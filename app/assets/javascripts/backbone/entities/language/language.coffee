@@ -5,6 +5,7 @@
       first: false,
       language_id: "",
       level: 3,
+
       
     
 
@@ -15,7 +16,7 @@
         required: true
         range: [1, 5]     
 
-
+    
 
   class Entities.ProfileLanguageCollection extends Backbone.Collection    
     model: Entities.ProfileLanguage

@@ -1,13 +1,23 @@
-<div class="sender">
-  <img src="<%= @sender.avatar %>" alt="<%= @sender.name %>">
-  <%= @sender.name %>
+<div class="message">
+	<div class="message__metaContainer">
+		<div class="message__avatar sender">
+			<img src="<%= @sender.avatar %>" alt="<%= @sender.name %>" widht="80" height="80" class="img-circle">
+			
+		</div>
+		<div class="message__meta">
+			<span class="message__name"><%= @sender.name %></span>
+			<br>
+			<span class="message__date"><%= moment(@created_at).fromNow() %></span>
+			<% if @is_read: %>
+			<a href="#" class="js-mark unread">Mark as Unread</a>
+			<% else: %>
+			<a href="#" class="js-mark read">Mark as Read</a>
+			<% end %>
+		</div>
+		
+	</div>
+	
+	<div class="message__content">
+		<p><%= @body %></p>
+	</div>
 </div>
-<%= moment(@created_at).fromNow() %>
-
-<% if @is_read: %>
-  <a href="#" class="js-mark unread">Mark as Unread</a>
-<% else: %>
-  <a href="#" class="js-mark read">Mark as Read</a>
-<% end %>
-
-<h3><%= @body %></h3>

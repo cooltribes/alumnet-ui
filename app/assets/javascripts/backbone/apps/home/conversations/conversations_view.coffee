@@ -35,7 +35,7 @@
     template: 'home/conversations/templates/conversations_container'
     childView: Conversations.ConversationView
     tagName: 'ul'
-    className: 'conversations-container'
+    className: 'conversations-container list-unstyled'
 
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'

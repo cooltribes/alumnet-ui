@@ -1,7 +1,7 @@
 @AlumNet.module 'UsersApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
     template: 'users/submenu/templates/submenu'
-    className: 'container-fluid top-sub-nav'
+    className: 'navTopSubBar'
 
   API =
     renderSubmenu: (view)->
