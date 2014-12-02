@@ -29,16 +29,10 @@
 <!-- <h1><%= @name %></h1> -->
 <div  class="container-fluid margin_top_small">
 	<div class="row">
-		<div  class="col-md-4">
-			<h2>Activity</h2>
-			<div id="timeline" class="posts-container">
+		<div class="col-md-8 col-md-offset-2">		
+			<div id="timeline" class="row posts-container">
 			</div>
 		</div>
-		<div  class="col-md-4">
-			<h2>Registrans</h2>
-		</div>
-				<div  class="col-md-4">
-			<h2>Friends</h2>
-		</div>
 	</div>
+	
 </div>
