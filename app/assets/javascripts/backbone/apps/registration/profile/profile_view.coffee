@@ -16,6 +16,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
     ui:
       'selectCountries': '.js-countries'
       'selectCities': '.js-cities'

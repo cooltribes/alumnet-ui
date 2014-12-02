@@ -23,6 +23,10 @@ group :development do
   gem 'quiet_assets'
   gem 'foreman'
   gem 'subcontractor'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
 end
 
 group :test, :development do

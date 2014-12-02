@@ -30,7 +30,7 @@
   class Entities.Skills extends Backbone.Collection    
     url: ->
       AlumNet.api_endpoint + '/skills'
-    model: Entities.Language
+    model: Entities.Skill
 
   API =
     getLanguagesHtml: (collection)  ->      

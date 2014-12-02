@@ -40,8 +40,7 @@
       controller.showSkills()
 
     createApproval: ->     
-      alert "Aproval"       
-      # controller = new AlumNet.RegistrationApp.Skills.Controller      
-      # controller.showSkills()
+      controller = new AlumNet.RegistrationApp.Approval.Controller      
+      controller.showApproval()
       
          

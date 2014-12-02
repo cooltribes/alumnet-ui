@@ -20,7 +20,6 @@
 
       AlumNet.execute('render:groups:submenu')
 
-
       profileForm.on 'form:submit', (model, data)->
         if model.isValid(true)
           options_for_save =

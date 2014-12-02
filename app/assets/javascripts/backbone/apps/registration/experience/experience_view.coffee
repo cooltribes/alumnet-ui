@@ -15,6 +15,17 @@
 
     tagName: 'form'
 
+    ui:
+      'btnRmv': '.js-rmvRow'
+      "country": "[name=country_id]"   
+      "city": "[name=city_id]"   
+      "lcomitee": "[name=local_comitee]"   
+     
+    events:
+      "click @ui.btnRmv": "removeExperience"
+      "change @ui.country": "changeDepencencies"       
+
+
     initialize: ->
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -27,11 +38,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
-    ui:
-      'btnRmv': '.js-rmvRow'
-     
-    events:
-      "click @ui.btnRmv": "removeExperience"
+
 
     onShow: ->
       dropdowns = $("[name=country_id]", $(@el))  
@@ -42,11 +49,37 @@
         success: (collection, response, options)->
           fillCountries(collection, dropdowns)
 
-    
+
+    changeDepencencies: (e) ->
+      countryId = @ui.country.val()         
+      dropdownCities = @ui.city #Add localcomitee
+      dropdownCom = @ui.lcomitee
+
+
+      cities = AlumNet.request("cities:get_cities", countryId)
+      cities.fetch 
+        success: (collection, response, options)->
+          fillCities(collection, dropdownCities)
+
+
+      committees = AlumNet.request("cities:get_committees", countryId)
+      committees.fetch 
+        success: (collection, response, options)->
+          fillCommittees(collection, dropdownCom)
+
+     
     fillCountries = (countries, dropdowns)->  
       content = AlumNet.request("countries:html", countries)
       dropdowns.html(content)  
 
+    fillCities = (cities, dropdown)->  
+      content = AlumNet.request("cities:html", cities)
+      dropdown.html(content)
+
+    fillCommittees = (collection, dropdown)->  
+      content = AlumNet.request("committees:html", collection)
+      dropdown.html(content)
+        
       
     removeExperience: (e)->
       @model.destroy()
