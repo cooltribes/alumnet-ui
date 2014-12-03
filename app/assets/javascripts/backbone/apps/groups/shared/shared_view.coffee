@@ -3,6 +3,7 @@
     template: 'groups/shared/templates/header'
     templateHelpers: ->
       canEditInformation: @model.canEditInformation()
+      canInvite: @model.userCanInvite()
     ui:
       'groupName':'#name'
     onRender: ->
@@ -20,6 +21,10 @@
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'groups/shared/templates/layout'
+    templateHelpers: ->
+      canEditInformation: @model.canEditInformation()
+      canInvite: @model.userCanInvite()
+
     regions:
       header: '#group-header'
       body: '#group-body'

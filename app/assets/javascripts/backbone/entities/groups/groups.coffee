@@ -6,13 +6,31 @@
     initialize: ->
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
+      @permissions = @get('permissions')
 
     canEditInformation: ->
-      permissions = @get('permissions')
-      if permissions
+      if @permissions
         permissions.can_edit_information
       else
         false
+
+    userCanInvite: ->
+      if @permissions
+        permissions.can_invite_users
+      else
+        false
+
+    userCanCreateSubGroup: ->
+      if @permissions
+        permissions.can_create_subgroups
+      else
+        false
+
+    userCanPost: ->
+      if @permissions then true else false
+
+    userCanComment: ->
+      if @permissions then true else false
 
     validation:
       name:

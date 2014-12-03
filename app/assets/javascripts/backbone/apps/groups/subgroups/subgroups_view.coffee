@@ -3,7 +3,9 @@
   class SubGroups.GroupForm extends Marionette.ItemView
     template: 'groups/subgroups/templates/form'
 
-    initialize: ->
+    initialize:(options)->
+      @group = options.group
+      console.log @group.get("name")
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -15,6 +17,10 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
+    templateHelpers: ->
+      group_name: @group.get('name')
+
     events:
       'click button.js-submit': 'submitClicked'
       'change #group-cover': 'previewImage'

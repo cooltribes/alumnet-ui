@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create a new Group</h1>
+        <h1 class="textColor--blue ">Create a Sub Group of <%= @group_name %></h1>
         <!-- ROW 1 ON -->
         <div class="row">
           <div class="col-md-6 text-center">
