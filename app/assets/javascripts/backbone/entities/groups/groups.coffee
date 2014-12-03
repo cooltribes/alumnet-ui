@@ -66,14 +66,26 @@
       subgroup
 
     findGroup: (id)->
-      #Optimize: Verify if Entities.groups is set and find the group there.
+      if Entities.groups == undefined
+        @findGroupOnApi(id)
+      else
+        @findGroupOnCollection(id)
+
+    findGroupOnCollection: (id)->
+      group = Entities.groups.get(id)
+      if group == undefined
+        group = @findGroupOnApi(id)
+      group
+
+    findGroupOnApi: (id)->
       group = new Entities.Group
         id: id
       group.fetch
+        async: false
         error: (model, response, options) ->
           model.trigger('find:error', response, options)
         success: (model, response, options) ->
-          model.trigger('find:success', response, options)
+          model.trigger('find:success')
       group
 
   AlumNet.reqres.setHandler 'group:join:send', (group_id) ->

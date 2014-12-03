@@ -1,7 +1,7 @@
 @AlumNet.module 'HeaderApp.Menu', (Menu, @AlumNet, Backbone, Marionette, $, _) ->
   class Menu.Controller
     show: ->
-      current_user = AlumNet.request 'get:current_user'
+      current_user = AlumNet.current_user
       menuLayout = new Menu.MenuBar
         model: current_user
 
