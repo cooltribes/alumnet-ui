@@ -2,6 +2,7 @@
   class Posts.Controller
     showPosts: (group_id)->
       group = AlumNet.request('group:find', group_id)
+      current_user = AlumNet.current_user
       # group.on 'find:success', ->
       layout = AlumNet.request('group:layout', group)
       header = AlumNet.request('group:header', group)
@@ -9,6 +10,8 @@
       #configure the composite view of posts
       group.posts.fetch()
       posts = new Posts.PostsView
+        group: group
+        model: current_user
         collection: group.posts
 
       #render each view on your own region

@@ -4,6 +4,7 @@
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch()
+      console.log current_user.posts
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts

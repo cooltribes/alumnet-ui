@@ -5,6 +5,7 @@
       # group.on 'find:success', (response, options)->
       subgroup = AlumNet.request('subgroup:new', group.id)
       createForm = new SubGroups.GroupForm
+        group: group
         model: subgroup
       AlumNet.mainRegion.show(createForm)
       AlumNet.execute('render:groups:submenu')
