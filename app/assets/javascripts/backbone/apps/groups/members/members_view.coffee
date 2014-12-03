@@ -10,8 +10,31 @@
     childView: Members.Member
     className: 'container-fluid'
     childViewContainer: '.members-list'
+
+    initialize: ->
+      self = @
+      @collection.on 'fetch:success', (collection)->
+        self.updateMembersCounts(collection)
+
+    ui:
+      'membersCount': '#js-members-count'
+      'friendsCount': '#js-friends-count'
+
     events:
       'click .js-search': 'performSearch'
+      'click #js-members-count': 'allMembers'
+      'click #js-friends-count': 'filterFriends'
+
+    filterFriends: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @collection.reset(@friends)
+
+    allMembers: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @collection.reset(@members)
+      # @collection.fetch()
 
     performSearch: (e) ->
       e.preventDefault()
@@ -24,3 +47,9 @@
         user_profile_first_name_cont: searchTerm
         user_profile_last_name_cont: searchTerm
         user_email_cont: searchTerm
+
+    updateMembersCounts: (collection)->
+      @friends = collection.where({is_friend: true})
+      @members = collection.slice()
+      @ui.membersCount.html("All members(#{collection.length})")
+      @ui.friendsCount.html("Friends(#{@friends.length})")
