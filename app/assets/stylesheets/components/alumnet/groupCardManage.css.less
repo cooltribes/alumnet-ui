@@ -1,0 +1,237 @@
+/***
+
+COMPONENT NAME: groupCardManage
+DESCRIPTION: A card with the group information on the managing groups page #groups/manage
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.groupCardManage{
+    background-color: @white;
+    margin-bottom: 2em;
+    &__cover{    
+        width: auto;
+        // height: 200px;
+        
+        img{
+            max-width: 100%;
+            display: block;
+            width: 100%;
+        }
+        
+    }
+    
+
+    &__content{
+        width: auto;
+       height: 80px;
+       float: left;
+       
+       
+    }
+    &__text{
+        height: 80px;
+        overflow: hidden;
+        
+
+    }
+    
+    &__title{
+
+        font-size: 19px;
+        font-weight: 400;
+        margin: 0px;
+        padding: 15px 30px 5px 15px;
+        text-transform: none;
+        overflow: hidden;
+        max-height: 60px;
+        a{
+            color: @black;
+        }
+    }
+    &__description{
+         font-size: 13px;
+         padding: 0.5*@space_small;
+         padding: 0 15px 10px;
+    }
+    &__atributes{
+        background: none repeat scroll 0 0 #e1ecf1;
+      
+    }
+    &__atribute{
+        color: @blue-gray;
+        background: none repeat scroll 0 0 #e1ecf1;
+        border-bottom: 1px solid @white;
+        width: 50%;
+        float: left;
+        font-size: 1.2em;
+        &__container{
+            padding: 10px 13px;
+        }
+        &__container--odd{
+            padding: 10px 13px;
+            border-right: 1px solid @white;
+        }
+
+
+    }
+    &__icon{
+        
+        font-size: 16px;
+        width: 20px;
+        display: inline-block;
+    }
+    &__btn{
+        color: @white;
+        background-color: lighten(@blue,20%);
+        font-size: 85%;
+        border-color: lighten(@blue,20%);
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    &__menu{
+        color: @white;
+        opacity: 0;
+        background-color: rgba(0,0,0,.5);
+        position: relative;
+        z-index: 100;
+        &:before{
+            content: "";
+            display: block;
+            position: absolute;
+            right: -15px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 15px 0 0;
+            border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
+        }
+        &__title{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0;
+
+        }
+        &__list{
+            padding-left: 0;
+            list-style: none;
+        }
+        &__item{
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.2)
+            }
+        }
+        
+        a{
+            color: @white;
+        }
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .groupCardManage{
+        &__cover{
+            width: 50%;
+            float: left;
+            height: 80px;
+            img{
+                width: 100%;
+            }
+        }
+        &__content{
+            width: 50%;
+        }
+        &__atribute{
+            height: auto;
+        }
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .groupCardManage{
+        &__cover{
+            width: 50%;
+            float: left;
+            // height: 266px;
+            img{
+                width: 100%;
+            }
+        }
+        &__content{
+            width: 50%;
+        }
+        &__atribute{
+            height: auto;
+        }
+        &__icon{
+            
+        }
+    }
+     
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .groupCardManage{
+        &__cover{
+            width: 12%;
+            float: left;
+            img{
+                width: 100%;
+            }
+        }
+        &__content{
+            width: 33%;
+            float: left;
+        }
+        &__actions{
+            width: 15%;
+            float: left;
+            &__wrapper{
+                background-color: #e1ecf1;
+                border: 1px solid #fff;
+                padding: 10px;
+                height: 90px;
+                &--admin{
+                    background-color: darken(@gray, 20%);
+                    display: flex; 
+                    height: 90px;
+                     align-items: center;
+                     justify-content: center;
+                    a {
+                        color: @white;
+                        padding: 10px;
+                    
+                        display: inline-block;
+                       
+                        &:hover{
+                            background-color: darken(@gray, 30%);
+                        }
+                    }
+                }
+            }
+
+        }
+        &__atributes{
+           
+            width: 40%;
+            float: left;
+        }
+    }    
+    
+ }
