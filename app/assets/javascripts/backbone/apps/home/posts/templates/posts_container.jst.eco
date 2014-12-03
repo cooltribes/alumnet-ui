@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-<h1><%= @name %></h1>
-  <form class="form">
-    <div class="form-group groupCreatePostForm__textarea ">
-      <textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
-    </div>
-    <a href="#" class="btn btn-default" id="js-post-submit">Post</a>
-  </form>
-<div id="timeline" class="posts-container" ></div>
-=======
-
 <div id="carousel-example-generic" class="homeSlideshow carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -41,18 +29,10 @@
 <!-- <h1><%= @name %></h1> -->
 <div  class="container-fluid margin_top_small">
 	<div class="row">
-		<div  class="col-md-4">
-			<h2>Activity</h2>
-			<div id="timeline" class="posts-container">
+		<div class="col-md-8 col-md-offset-2">		
+			<div id="timeline" class="row posts-container">
 			</div>
 		</div>
-		<div  class="col-md-4">
-			<h2>Registrans</h2>
-		</div>
-				<div  class="col-md-4">
-			<h2>Friends</h2>
-		</div>
 	</div>
+	
 </div>
-
->>>>>>> juan
