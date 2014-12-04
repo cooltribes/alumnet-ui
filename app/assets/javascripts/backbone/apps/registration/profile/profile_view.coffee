@@ -53,7 +53,6 @@
         success: (collection, response, options)->
           fillCities(collection, dropdown)
 
-
     
     fillCountries = (countries, dropdowns)->  
       content = AlumNet.request("countries:html", countries)
@@ -63,10 +62,6 @@
     fillCities = (cities, dropdown)->  
       content = AlumNet.request("cities:html", cities)
       dropdown.html(content)
-
-
-
-    
 
       
     submitClicked: (e)->

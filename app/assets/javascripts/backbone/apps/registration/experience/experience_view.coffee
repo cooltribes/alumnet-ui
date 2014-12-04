@@ -20,10 +20,12 @@
       "country": "[name=country_id]"   
       "city": "[name=city_id]"   
       "lcomitee": "[name=local_comitee]"   
+      "addMonth": ".js-addMonth"   
      
     events:
       "click @ui.btnRmv": "removeExperience"
       "change @ui.country": "changeDepencencies"       
+      "click @ui.addMonth": "addMonth"       
 
 
     initialize: ->
@@ -40,15 +42,21 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
 
-    onShow: ->
-      dropdowns = $("[name=country_id]", $(@el))  
-      
+    onShow: ->           
+      dropdown = @ui.country
       countries = new AlumNet.Entities.Countries
       
       countries.fetch 
         success: (collection, response, options)->
-          fillCountries(collection, dropdowns)
+          fillCountries(collection, dropdown)
 
+      #Add select2 to cities and committees
+      @ui.city.add(@ui.lcomitee).select2()
+
+
+    addMonth: (e) ->
+      $(e.target).addClass("hidden")
+      $(e.target).prev().removeClass("hidden")
 
     changeDepencencies: (e) ->
       countryId = @ui.country.val()         
@@ -71,6 +79,7 @@
     fillCountries = (countries, dropdowns)->  
       content = AlumNet.request("countries:html", countries)
       dropdowns.html(content)  
+
 
     fillCities = (cities, dropdown)->  
       content = AlumNet.request("cities:html", cities)

@@ -29,8 +29,7 @@
           if !(validity = model.isValid(true))
             validColection = validity
           else
-            captureDates(model)            
-
+            captureDates(model)                        
           
         if validColection
           
@@ -92,7 +91,7 @@
             validColection = validity
           else
             captureDates(model)
-
+           console.log model.validate()
           
         if validColection
           

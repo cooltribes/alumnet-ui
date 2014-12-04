@@ -4,6 +4,15 @@
     #   AlumNet.api_endpoint + '/experience'
 
     # initialize: ->
+
+
+    ###
+    0: aiesec
+    1: alumni
+    2: academic
+    3: prodessional
+
+    ###  
     defaults:
       first: false,
       name: "",
@@ -26,6 +35,19 @@
         required: true
       end_year:
         required: true
+        fn: (value, attr, computedState) ->
+  
+          if (value == 0)
+            if (@get("exp_type") == 0 || @get("exp_type") == 1)
+              return "#{attr} is required"
+            # else
+          else 
+            if ( value < @get("start_year"))
+              return "End year has to be greater or equal than start year"
+
+          console.log value    
+
+
       description:
         required: true
       country_id:
