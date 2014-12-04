@@ -3,10 +3,10 @@
 	<div  class="col-md-4">
 		<div class="form-group has-feedback">
 			<label class="control-label" >Name of the position</label>
-			
+
 			<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
 			<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
-			
+
 		</div>
 	</div>
 	<div class="col-md-4">
@@ -15,7 +15,7 @@
 			<div class="clearfix">
 				<select name="start_year" class="formANet__colOneHalf form-control input-lg ">
 					<option value="">Select Year</option>
-					
+
 					<option value="1990">1990</option>
 					<option value="1991">1991</option>
 					<option value="1992">1992</option>
@@ -43,7 +43,7 @@
 				</select>
 				<select name="start_month" class="formANet__colOneHalf form-control input-lg">
 					<option value="">Select Month</option>
-					
+
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -57,7 +57,7 @@
 					<option value="11">11</option>
 					<option value="12">12</option>
 
-						
+
 				</select>
 				<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground js-addMonth hidden" type="button">+ Month</button>
 			</div>
@@ -110,7 +110,7 @@
 					<option value="12">12</option>
 				</select>
 				<!-- <button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="button">+ Month</button> -->
-				
+
 			</div>
 		</div>
 	</div>
@@ -118,47 +118,25 @@
 <div class="form-group">
 	<label class="control-label" for="registerDescription">Description/achievements</label>
 	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
-	
 </div>
 
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group">
 			<label class="control-label" for="registerCountry">Country / Region</label>
-			<select class="form-control input-lg" name="country_id">
-				<option value="">Select a country</option>
-				<option value="1">Poland</option>
-				<option value="2">Venezuela</option>
-				<option value="3">Spain</option>
-				<option value="4">Italy</option>
-				<option value="5">France</option>
-			</select>
+      <input type="hidden" name="country_id" id="country_id" style="width: 100%">
 		</div>
 	</div>
 	<div class="col-md-3 ">
 		<div class="form-group">
 			<label class="control-label" for="registerCity">City</label>
-			<select class="form-control input-lg" name="city_id">
-				<option value="">Select City</option>
-				<option value="1">San Cristobal</option>
-				<option value="2">Paris</option>
-				<option value="3">Madrid</option>
-				<option value="4">New York</option>
-				<option value="5">Rome</option>
-			</select>
+      <input type="hidden" name="city_id" id="city_id" style="width: 100%">
 		</div>
 	</div>
 	<div class="col-md-3 ">
 		<div class="form-group">
 			<label class="control-label" for="registerLocalcomitee">Local Comitee</label>
-			<select class="form-control input-lg" name="local_comitee">
-				<option value="">Select Committee</option>
-				<option value="1">Local Committee 1</option>
-				<option value="2">Local Committee 2</option>
-				<option value="3">Local Committee 3</option>
-				<option value="4">Local Committee 4</option>
-				<option value="5">Local Committee 5</option>
-			</select>
+      <input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
 		</div>
 	</div>
 </div>

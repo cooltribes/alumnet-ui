@@ -4,6 +4,7 @@
     before: (route)->
       current_user = AlumNet.current_user
       unless current_user.isApproved()
+        ## TODO: for security fetch profile, to be sure that the data is trusted
         step = current_user.profile.get('register_step')
         @goToRegistration(step)
         false

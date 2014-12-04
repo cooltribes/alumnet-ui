@@ -48,7 +48,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Country of Origin</label>
-        <input id="js-birth-countries" type="hidden" name="birth_country" id="birth_country" style="width: 100%">
+        <input id="js-birth-countries" type="hidden" name="birth_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -56,7 +56,7 @@
 
       <div class="form-group">
         <label class="control-label" for="inputName">City of Origin</label>
-        <input id="js-birth-cities" type="hidden" name="birth_city" id="birth_city" style="width: 100%">
+        <input id="js-birth-cities" type="hidden" name="birth_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -68,14 +68,14 @@
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Country of Residence</label>
-        <input id="js-residence-countries" type="hidden" name="residence_country" id="residence_country" style="width: 100%">
+        <input id="js-residence-countries" type="hidden" name="residence_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">City of Residence</label>
-        <input id="js-residence-cities" type="hidden" name="residence_city" id="residence_city" style="width: 100%">
+        <input id="js-residence-cities" type="hidden" name="residence_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
