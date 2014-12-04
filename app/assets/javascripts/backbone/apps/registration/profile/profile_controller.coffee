@@ -29,8 +29,7 @@
             processData: false
             data: data
             success: (model, response, options)->
-              #Pass to step 2 of registration process
-              #AlumNet.trigger 'registration:contact'
+              AlumNet.trigger 'registration:contact'
           model.save(data, options_for_save)
 
 
