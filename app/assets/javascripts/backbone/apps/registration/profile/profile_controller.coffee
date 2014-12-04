@@ -10,7 +10,7 @@
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
-      user = AlumNet.request 'get:current_user' #, refresh: true
+      user = AlumNet.current_user
 
       profile = user.profile
 
@@ -21,6 +21,7 @@
       AlumNet.execute('render:groups:submenu')
 
       profileForm.on 'form:submit', (model, data)->
+        console.log model.attributes
         if model.isValid(true)
           options_for_save =
             wait: true
@@ -29,7 +30,7 @@
             data: data
             success: (model, response, options)->
               #Pass to step 2 of registration process
-              AlumNet.trigger 'registration:contact'
+              #AlumNet.trigger 'registration:contact'
           model.save(data, options_for_save)
 
 

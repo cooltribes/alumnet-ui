@@ -2,7 +2,10 @@
 
   class Routers.Base extends Marionette.AppRouter
     before: (route)->
-      user = AlumNet.request 'get:current_user', async: false
-      unless user.isApproved()
+      currrent_user = AlumNet.current_user
+      unless currrent_user.isApproved()
+        #using current_user the logic of the redirects should be here.
         AlumNet.trigger "registration:show"
+        false
+      else
         true

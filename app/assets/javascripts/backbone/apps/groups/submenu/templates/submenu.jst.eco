@@ -9,21 +9,8 @@
 		</div>
 		<!-- Desktop and mobile header OFF -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li >
-					<a href="#yourGroups" class="navTopSubBar__link dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false" title="Your groups"> 
-						<span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> 
-						Your groups <span class="caret"></span>
-					</a>
-
-				<ul class="navTopSubBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="yourGroups">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-				
-				</ul>
-			</li>
-			
-			
+		<ul class="nav navbar-nav">
+			<li ><a href="#groups/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Groups</a></li>
 		</ul>
 		<!-- CREATE A NEW GROUP BTN -->
 		<a href="#groups/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a new group</a>
@@ -31,7 +18,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li class="active"><a href="#groups" class="navTopSubBar__link" title="Discover groups"><span class="navTopSubBar__icon glyphicon glyphicon-search" ></span> Discover</a></li>
 			<li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li>
-			
+
 		</ul>
 
 	</div>

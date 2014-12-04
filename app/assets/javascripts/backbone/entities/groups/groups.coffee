@@ -10,19 +10,19 @@
 
     canEditInformation: ->
       if @permissions
-        permissions.can_edit_information
+        @permissions.can_edit_information
       else
         false
 
     userCanInvite: ->
       if @permissions
-        permissions.can_invite_users
+        @permissions.can_invite_users
       else
         false
 
     userCanCreateSubGroup: ->
       if @permissions
-        permissions.can_create_subgroups
+        @permissions.can_create_subgroups
       else
         false
 
