@@ -18,13 +18,18 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     ui:
-      'selectCountries': '.js-countries'
-      'selectCities': '.js-cities'
+      'selectBirthCountries': '#js-birth-countries'
+      'selectBirthCities': '#js-birth-cities'
+      'selectResidenceCountries': '#js-residence-countries'
+      'selectResidenceCities': '#js-residence-cities'
+      'datePickerBorn': '.js-date-born'
 
     events:
       'click button.js-submit': 'submitClicked'
       'change #profile-avatar': 'previewImage'
-      'change .js-countries': 'setCities'
+      'change #js-birth-countries': 'setBirthCities'
+      'change #js-residence-countries': 'setResidenceCities'
+
 
     submitClicked: (e)->
       e.preventDefault()
@@ -46,33 +51,57 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
-    setCities: (e)->
-      parent = $(e.currentTarget).parents('div.row')
-      selectCities = parent.find(@ui.selectCities)
+    setBirthCities: (e)->
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      selectCities.select2
-        placeholder: "Select a City"
-        minimumInputLength: 2
-        ajax:
-          url: url
-          dataType: 'json'
-          data: (term)->
-            q:
-              name_cont: term
-          results: (data, page) ->
-            results:
-              data
-        formatResult: (data)->
-          data.name
-        formatSelection: (data)->
-          data.name
+      @ui.selectBirthCities.select2(@optionsForSelectCities(url))
+
+    setResidenceCities: (e)->
+      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      @ui.selectResidenceCities.select2(@optionsForSelectCities(url))
+
+
+    optionsForSelectCities: (url)->
+      placeholder: "Select a City"
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q:
+            name_cont: term
+        results: (data, page) ->
+          results:
+            data
+      formatResult: (data)->
+        data.name
+      formatSelection: (data)->
+        data.name
 
     onRender: ->
-      @ui.selectCities.select2
+      @ui.datePickerBorn.Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+
+      @ui.selectBirthCities.select2
+        placeholder: "Select a City"
+        data: []
+
+      @ui.selectResidenceCities.select2
         placeholder: "Select a City"
         data: []
 
       data = CountryList.toSelect2()
-      @ui.selectCountries.select2
+
+      @ui.selectBirthCountries.select2
         placeholder: "Select a Country"
         data: data
+
+      @ui.selectResidenceCountries.select2
+        placeholder: "Select a Country"
+        data: data
+
+      @ui.selectBirthCountries.select2('val', @model.get('birth_country'))
+      @ui.selectResidenceCountries.select2('val', @model.get('residence_country'))
+

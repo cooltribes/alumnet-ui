@@ -8,37 +8,37 @@
       "registration/experience": "createExperience"
       "registration/skills": "createSkills"
 
-    onRoute: (name, path, args)  ->
-      AlumNet.trigger "registration:show"
-        
+    # onRoute: (name, path, args)  ->
+    #   AlumNet.trigger "registration:show"
+
 
   API =
     showRegister: ->
       controller = new RegistrationApp.Account.Controller
       controller.showRegister()
 
-    createProfile: ->            
-      controller = new RegistrationApp.Profile.Controller      
+    createProfile: ->
+      controller = new RegistrationApp.Profile.Controller
       controller.showProfile()
 
-    createContact: ->            
-      controller = new RegistrationApp.Contact.Controller      
+    createContact: ->
+      controller = new RegistrationApp.Contact.Controller
       controller.showContact()
-      
-    createExperience: ->              
-      controller = new RegistrationApp.Experience.Controller      
+
+    createExperience: ->
+      controller = new RegistrationApp.Experience.Controller
       controller.showExperience()
 
-    createSkills: ->            
-      controller = new RegistrationApp.Skills.Controller      
+    createSkills: ->
+      controller = new RegistrationApp.Skills.Controller
       controller.showSkills()
 
-    createApproval: ->            
-      controller = new RegistrationApp.Approval.Controller      
+    createApproval: ->
+      controller = new RegistrationApp.Approval.Controller
       controller.showApproval()
-   
 
-  AlumNet.on "registration:show",  ->    
+
+  AlumNet.on "registration:show",  ->
     API.showRegister()
 
   AlumNet.on "registration:profile",  ->
@@ -48,10 +48,10 @@
   AlumNet.on "registration:contact",  ->
     AlumNet.navigate("registration/contact")
     API.createContact()
-    
+
 
   AlumNet.on "registration:experience",  ->
-    AlumNet.navigate("registration/experience")    
+    AlumNet.navigate("registration/experience")
     API.showRegister()
 
   AlumNet.on "registration:skills",  ->

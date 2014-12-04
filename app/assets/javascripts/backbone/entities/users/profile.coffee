@@ -12,8 +12,6 @@
         required: true
       last_name:
         required: true
-      avatar:
-        required: true
       born:
         required: true
       birth_country:
