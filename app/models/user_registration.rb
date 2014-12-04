@@ -20,6 +20,12 @@ class UserRegistration
   end
 
   def success_of_last_response
-    errors.add(:base, last_response["errors"]) unless last_response.success?
+    unless last_response.success?
+      last_response["errors"].each do |key, value|
+        value.each do |msg|
+          errors.add(key.to_sym, msg)
+        end
+      end
+    end
   end
 end

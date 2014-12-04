@@ -20,8 +20,7 @@
     if Backbone.history
       Backbone.history.start()
 
-      if Backbone.history.fragment == ""
-        App.navigate('posts', {trigger: true})
+      App.navigate('posts', {trigger: true})
 
   App.addRegions
     headerRegion: "#header-region"

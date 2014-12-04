@@ -22,7 +22,7 @@
       contactForm.on "form:submit", (model)->
         model.save {},
           success: ->
-            AlumNet.trigger "registration:experience"
+            AlumNet.trigger "registration:experience", "contact"
 
 
     getLayoutView: ->

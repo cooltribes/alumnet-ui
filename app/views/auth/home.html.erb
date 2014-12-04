@@ -30,11 +30,11 @@
             <%= submit_tag "Login", class: "btn btn-primary" %>
             <div class="clearfix">
               <div class="pull-left">
-                <div class="checkbox ">
+<!--                 <div class="checkbox ">
                   <label>
                     <input type="checkbox" name="remember"> Remember me
                   </label>
-                </div>
+                </div> -->
               </div>
               <a href="#" title="forgotten your password?" class="pull-right">forgotten your password? »</a>
             </div>
@@ -60,7 +60,7 @@
           <% if @errors && @errors.any? %>
           <div class="alert alert-danger">
             <% @errors.full_messages.each do |msg| %>
-            <%= msg %>
+              <%= msg %><br>
             <% end %>
           </div>
           <% end %>

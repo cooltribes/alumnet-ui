@@ -2,7 +2,7 @@
   class Experience.Controller
 
     showExperience: (step) ->
-
+      console.log step
       switch step
         when "contact"
           @experienceAiesec()
@@ -35,8 +35,9 @@
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set "experiences_attributes", exps
           profileModel.save {},
-            success: ->
-              AlumNet.trigger "registration:show"
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger "registration:experience", step
 
 
     experienceAlumni: ->
@@ -58,8 +59,9 @@
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set "experiences_attributes", exps
           profileModel.save {},
-            success: ->
-              AlumNet.trigger "registration:show"
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger "registration:experience", step
 
     experienceAcademic: ->
       # creating layout
@@ -79,8 +81,9 @@
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set "experiences_attributes", exps
           profileModel.save {},
-            success: ->
-              AlumNet.trigger "registration:show"
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger "registration:experience", step
 
 
     experiencePro: ->
@@ -101,7 +104,7 @@
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set "experiences_attributes", exps
           profileModel.save {},
-            success: ->
+            success: (model)->
               AlumNet.trigger "registration:skills"
 
 
