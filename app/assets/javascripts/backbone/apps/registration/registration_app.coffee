@@ -6,7 +6,7 @@
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
       "registration/experience/:step": "createExperience"
-      "registration/skills": "createSkills"
+      # "registration/skills": "createSkills"
 
   API =
     showRegister: ->

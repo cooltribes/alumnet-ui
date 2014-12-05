@@ -2,7 +2,6 @@
   class Skills.Controller
 
     showSkills: ->
-
       # creating layout for experience type 3
       layoutView = @getLayoutView()
       AlumNet.mainRegion.show(layoutView)
@@ -15,10 +14,8 @@
       profile = user.profile
 
       languages = new AlumNet.Entities.ProfileLanguageCollection [
-          {
-            first: true
-            level: 3
-          },
+        first: true
+        level: 3
       ]
 
       #get the view according to exp_type 1:alumni
@@ -38,16 +35,7 @@
           if !(validity = model.isValid(true))
             validColection = validity
 
-
-
         if validColection
-
-          options_for_save =
-            wait: true
-
-            success: (model, response, options)->
-              #Pass to step 3 of registration process
-              AlumNet.trigger "registration:approval"
 
           languages = _.pluck(@collection.models, 'attributes');
 
@@ -55,10 +43,9 @@
 
           profileModel.set "skills_attributes", skillsData
 
-          # console.log profileModel
-          profileModel.save(profileModel.attributes, options_for_save)
-
-
+          profileModel.save {},
+            success: (model)->
+              AlumNet.trigger "registration:approval"
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")
@@ -67,7 +54,6 @@
       AlumNet.request("registration:shared:sidebar", step)
 
     getFormView: (collection, profileModel) ->
-
       new Skills.LanguageList
         collection: collection
         model: profileModel
