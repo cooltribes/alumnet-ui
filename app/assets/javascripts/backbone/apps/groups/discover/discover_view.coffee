@@ -29,26 +29,18 @@
     template: 'groups/discover/templates/group'
     className: 'col-md-4 col-sm-6 col-xs-12'
     events:
-      'click .js-group':'showGroup'
       'click .js-join':'sendJoin'
-      'mouseenter .group-image-container': 'showSubGroups'
-      'mouseleave .group-image-container': 'hideSubGroups'
+    ui:
+      'groupCard': '.groupCard__atribute__container'
+      'groupCardOdd': '.groupCard__atribute__container--odd'
 
     sendJoin: (e)->
       e.preventDefault()
       @trigger 'join'
 
-    showGroup: (e)->
-      e.preventDefault()
-      @trigger 'group:show'
-
-    showSubGroups: (e)->
-      #todo: user currentTarget
-      this.$el.find('.group-image-container').children('.overlay-subgroups').fadeIn()
-
-    hideSubGroups: (e)->
-      this.$el.find('.group-image-container').children('.overlay-subgroups').fadeOut()
-
+    onRender: ->
+      @ui.groupCard.tooltip()
+      @ui.groupCardOdd.tooltip()
 
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
