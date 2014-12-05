@@ -20,7 +20,8 @@ $(function() {
   //temp
   $.fn.editable.defaults.mode = 'inline';
   options = {
-    api_endpoint: gon.api_endpoint
+    api_endpoint: gon.api_endpoint,
+    pusher_key: gon.pusher_key
   };
   return AlumNet.start(options);
 });

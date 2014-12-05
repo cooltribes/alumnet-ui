@@ -17,14 +17,14 @@
 
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
-        <input type="text" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
+        <input type="text" value="<%= @first_name%>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>        
       </div>
 
       <div class="form-group has-feedback">
         <label class="control-label" for="inputLastName">Last name</label>
-        <input type="email" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <input type="email" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
@@ -76,9 +76,9 @@
         <label class="control-label" for="inputName">Birth Country</label>
         <select name="birth_country" class="form-control input-lg ">
           <option value="">Select a country</option>
-          <option value="1">Venezuela</option>
+         <!--  <option value="1">Venezuela</option>
           <option value="2">España</option>
-          <option value="3">Francia</option>
+          <option value="3">Francia</option> -->
         </select>
         <span class="help-block"></span>
       </div>
@@ -89,9 +89,9 @@
         <label class="control-label" for="inputName">Birth City</label>
         <select class="form-control input-lg" name="birth_city">
           <option value="">Select a city</option>        
-          <option value="1">San Cristobal</option>
+          <!-- <option value="1">San Cristobal</option>
           <option value="2">Caracas</option>
-          <option value="3">Valencia</option>
+          <option value="3">Valencia</option> -->
         </select>
         <span class="help-block"></span>
       </div>
@@ -106,9 +106,9 @@
         <label class="control-label" for="inputName">Country of residence</label>
         <select name="residence_country" class="form-control input-lg ">
           <option value="">Select a country</option>
-          <option value="1">Venezuela</option>
+          <!-- <option value="1">Venezuela</option>
           <option value="2">España</option>
-          <option value="3">Francia</option>
+          <option value="3">Francia</option> -->
         </select>
         <span class="help-block"></span>
       </div>
@@ -118,9 +118,9 @@
         <label class="control-label" for="inputName">City of residence</label>
         <select class="form-control input-lg" name="residence_city">
           <option value="">Select a city</option>        
-          <option value="1">San Cristobal</option>
+          <!-- <option value="1">San Cristobal</option>
           <option value="2">Caracas</option>
-          <option value="3">Valencia</option>
+          <option value="3">Valencia</option> -->
         </select>
         <span class="help-block"></span>
       </div>

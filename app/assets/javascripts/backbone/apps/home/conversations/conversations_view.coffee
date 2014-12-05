@@ -60,12 +60,9 @@
 
     onRender: ->
       @ui.selectRecipients.select2
-        tags: []
         placeholder: "Select a Friend"
         multiple: true
-        tokenSeparators: [',', ', '],
-        dropdownAutoWidth: true,
-        minimumInputLength: 3,
+        minimumInputLength: 2
         ajax:
           url: AlumNet.api_endpoint + '/me/friendships/friends'
           dataType: 'json'

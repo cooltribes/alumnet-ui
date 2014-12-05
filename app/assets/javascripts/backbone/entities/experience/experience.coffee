@@ -3,8 +3,8 @@
     # urlRoot: ->
     #   AlumNet.api_endpoint + '/experience'
 
-    # initialize: ->      
-    defaults: 
+    # initialize: ->
+    defaults:
       first: false,
       name: "",
       organization_name: "",
@@ -17,7 +17,7 @@
       city_id: "",
       local_comitee: "",
       internship: 0,
-    
+
 
     validation:
       name:
@@ -31,12 +31,12 @@
       country_id:
         required: true
       organization_name:
-        required: (value, attr, computedState) ->          
-          @get("exp_type") == 2 || @get("exp_type") == 3          
+        required: (value, attr, computedState) ->
+          @get("exp_type") == 2 || @get("exp_type") == 3
       # internship:
-      #   required: (value, attr, computedState) ->          
-      #     @get("exp_type") == 3          
-          
+      #   required: (value, attr, computedState) ->
+      #     @get("exp_type") == 3
+
       # city:
       #   required: true
       # local_comitee:
@@ -60,21 +60,21 @@
   # API =
   #   getCurrentUserToken:  ->
   #     if gon.current_user
-  #       gon.current_user.api_token
+  #       gon.current_user.auth_token
   #     else
   #       null
 
-  #   getCurrentUser: (options = {}) ->      
+  #   getCurrentUser: (options = {}) ->
   #     @current_user ||= @getCurrentUserFromApi()
 
   #   getCurrentUserFromApi: ->
-  #     # console.log "fromapi"      
+  #     # console.log "fromapi"
   #     # console.log @current_user
   #     user = new Entities.User
   #     user.url = AlumNet.api_endpoint + '/me'
   #     # console.log user.url
   #     user.fetch()
-  #     # console.log "after fetch"      
+  #     # console.log "after fetch"
   #     # console.log user
   #     user
 

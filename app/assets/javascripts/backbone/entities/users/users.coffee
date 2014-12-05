@@ -25,12 +25,7 @@
     isApproved: ->
       step = @profile.get "register_step"
       step == "approval" # || true
-      true
-
-
-
-
-
+      
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -45,8 +40,8 @@
 
   API =
     getCurrentUserToken:  ->
-      if gon.api_token
-        gon.api_token
+      if gon.auth_token
+        gon.auth_token
       else
         null
 

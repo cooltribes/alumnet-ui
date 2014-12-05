@@ -50,15 +50,12 @@
               AlumNet.trigger "registration:approval"
 
           languages = _.pluck(@collection.models, 'attributes');
-          lanIds = _.pluck(languages, 'language_id');
           
+          profileModel.set "languages_attributes", languages
           
-          # profileModel.set "languages_attributes", languages
-          profileModel.set "languages_attributes", lanIds
-          profileModel.set "skills_attributes", skillsData
-          
+          profileModel.set "skills_attributes", skillsData          
 
-          console.log profileModel
+          # console.log profileModel
           profileModel.save(profileModel.attributes, options_for_save)
 
       

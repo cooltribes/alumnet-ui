@@ -42,8 +42,7 @@
 
           exps = _.pluck(@collection.models, 'attributes');
           
-          profileModel.set "experiences_attributes", exps                    
-
+          profileModel.set "experiences_attributes", exps       
           
           profileModel.save(profileModel.attributes, options_for_save)
     
@@ -69,8 +68,7 @@
             wait: true
            
             success: (model, response, options)->
-              #Pass to step 3 of registration process
-              console.log "finished alumni experience"
+              #Pass to step 3 of registration process              
               AlumNet.trigger "registration:show"
 
           exps = _.pluck(@collection.models, 'attributes');
@@ -110,7 +108,7 @@
           
 
           console.log profileModel
-          profileModel.save(profileModel.attributes, options_for_save)
+          # profileModel.save(profileModel.attributes, options_for_save)
 
 
     experiencePro: ->
@@ -194,7 +192,7 @@
       
       layoutView.form_region.show(formView)
       
-      AlumNet.execute('render:groups:submenu')      
+      # AlumNet.execute('render:groups:submenu')      
 
       formView
 

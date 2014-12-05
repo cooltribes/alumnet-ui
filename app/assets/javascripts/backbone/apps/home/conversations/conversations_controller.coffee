@@ -1,8 +1,8 @@
 @AlumNet.module 'HomeApp.Conversations', (Conversations, @AlumNet, Backbone, Marionette, $, _) ->
   class Conversations.Controller
-    showCurrentUserConversations: ->
+    showCurrentUserConversations: (conversation_id)->
       conversations = AlumNet.request('conversations:get', {})
-
+      window.conv = conversations
       layout = new Conversations.Layout
 
       conversationsView = new Conversations.ConversationsView
@@ -13,8 +13,16 @@
 
       AlumNet.mainRegion.show(layout)
       layout.conversations.show(conversationsView)
-      # Load a new conversation by defaul
-      layout.messages.show(newConversationView)
+
+      if conversation_id == undefined
+        # Load a new conversation by defaul
+        layout.messages.show(newConversationView)
+      else
+        conversations.on 'fetch:success', ->
+          conversation = conversations.get(conversation_id)
+          messages = conversation.messages
+          reRenderReplyView(conversation, messages)
+
       AlumNet.execute('render:home:submenu')
 
       reRenderReplyView = (model, collection)->
@@ -66,6 +74,7 @@
       conversationsView.on 'childview:conversation:clicked', (childView)->
         conversation = childView.model
         messages = conversation.messages
+        AlumNet.navigate("conversations/#{conversation.id}")
         reRenderReplyView(conversation, messages)
 
       # if new conversation is send

@@ -9,7 +9,7 @@
       "registration/skills": "createSkills"
 
     onRoute: (name, path, args)  ->
-      # AlumNet.trigger "registration:show"
+      AlumNet.trigger "registration:show"
         
 
   API =
@@ -25,17 +25,20 @@
       controller = new RegistrationApp.Contact.Controller      
       controller.showContact()
       
-    createExperience: ->            
+    createExperience: ->              
       controller = new RegistrationApp.Experience.Controller      
       controller.showExperience()
 
     createSkills: ->            
       controller = new RegistrationApp.Skills.Controller      
       controller.showSkills()
+
+    createApproval: ->            
+      controller = new RegistrationApp.Approval.Controller      
+      controller.showApproval()
    
 
-  AlumNet.on "registration:show",  ->
-    # AlumNet.navigate("registration", trigger: true)
+  AlumNet.on "registration:show",  ->    
     API.showRegister()
 
   AlumNet.on "registration:profile",  ->
@@ -48,12 +51,16 @@
     
 
   AlumNet.on "registration:experience",  ->
-    AlumNet.navigate("registration/experience")
-    API.createExperience()
+    AlumNet.navigate("registration/experience")    
+    API.showRegister()
 
   AlumNet.on "registration:skills",  ->
     AlumNet.navigate("registration/skills")
     API.createSkills()
+
+  AlumNet.on "registration:approval",  ->
+    AlumNet.navigate("registration/approval")
+    API.createApproval()
 
 
   AlumNet.addInitializer ->

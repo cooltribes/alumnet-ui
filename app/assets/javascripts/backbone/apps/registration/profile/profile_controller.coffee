@@ -18,7 +18,7 @@
       
       layoutView.form_region.show(profileForm)
 
-      AlumNet.execute('render:groups:submenu')
+      # AlumNet.execute('render:groups:submenu')
       
 
       profileForm.on "form:submit", (model, data)->        
@@ -33,7 +33,7 @@
             success: (model, response, options)->
               #Pass to step 2 of registration process
               AlumNet.trigger "registration:contact"
-
+          # console.log model
           model.save(data, options_for_save)
       
 
