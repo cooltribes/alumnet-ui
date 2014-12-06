@@ -18,23 +18,27 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Search by Country</label>
-						<select name="searchCountry" class="form-control input-lg">
-							<option value=""></option>
-							<option value="1"></option>
-							<option value="2"></option>
-							<option value="3"></option>
-						</select>
+						<div class="formANet__select">
+							<select name="searchCountry" class="form-control input-lg">
+								<option value=""></option>
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Search by City</label>
-						<select name="searchCity" class="form-control input-lg">
-							<option value=""></option>
-							<option value="1"></option>
-							<option value="2"></option>
-							<option value="3"></option>
-						</select>
+						<div class="formANet__select">
+							<select name="searchCity" class="form-control input-lg">
+								<option value=""></option>
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
 					</div>
 				</div>
 			</div>

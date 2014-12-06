@@ -106,8 +106,10 @@ DESCRIPTION: Top navigation bar with menus
     }
     &__dropdownMenu{
         min-width: 250px;
+        padding: 0;
         background-color: @black;
         border: none;
+        list-style: none;
         color: @white;
         & > li > a{
             color: @white;
@@ -122,11 +124,15 @@ DESCRIPTION: Top navigation bar with menus
         }
     }
     &__notification{
-        
+
         padding: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         &:hover{
-            background-color: rgba(255, 255, 255, 0.1)
+            background-color: rgba(255, 255, 255, 0.1);
+            
+        }
+        a:hover{
+            text-decoration: none;
         }
         &__avatar{
             width: 18%;
@@ -139,6 +145,8 @@ DESCRIPTION: Top navigation bar with menus
         &__content{
             width: 72%;
             float: left;
+            max-height:100px;
+            overflow: hidden;
         }
         &__title{
             color: @white;
@@ -166,6 +174,14 @@ DESCRIPTION: Top navigation bar with menus
             width: 120px;
             text-align: center;
             text-transform: uppercase;
+            display: block;
+            padding: 8px;
+            color: @white;
+            &:hover{
+                color: @white;
+                background-color: lighten(@black, 10%)
+
+            }
         }
     }
     &__badge{

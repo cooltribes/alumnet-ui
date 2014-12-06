@@ -13,7 +13,7 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
     margin-bottom: 2em;
     &__cover{    
         width: auto;
-        // height: 200px;
+        height: 200px;
         
         img{
             max-width: 100%;
@@ -26,8 +26,10 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 
     &__content{
         width: auto;
-       height: 80px;
+       height: 100px;
        float: left;
+       border-bottom: 1px solid @white;
+       padding-bottom: 10px;
        
        
     }
@@ -137,6 +139,49 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             opacity: 1;
         }
     }
+    &__actions{
+            width: 100%;
+            float: left;
+            &__wrapper{
+                background-color: #e1ecf1;
+                border: 1px solid #fff;
+                padding: 10px;
+                height: 90px;
+                a{
+                    color: @blue-gray;
+
+                }
+
+                &--admin{
+                    background-color: lighten(@blue-gray, 20%);
+                    height: 90px;
+                    justify-content: center;
+                    
+                    a {
+                        color: @white;
+                        padding: 10px;
+                        text-align: center;
+                        display: flex;
+                        height: 100%;
+                        width: 50%;
+                        float: left;
+                        align-items: center;
+                       
+                        &:hover{
+                            background-color: @blue-gray;
+                        }
+                        span{
+                             display: block;
+                             margin: 0 auto; 
+                        }
+                        &:last-child{
+                            border-left: 1px solid rgba(255,255,255,.3);
+                        }
+                    }
+                }
+            }
+
+        }
 }
 
 
@@ -154,9 +199,18 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         }
         &__content{
             width: 50%;
+            border-bottom:none;
+              padding-bottom: 0;
+            height: 80px;
         }
         &__atribute{
             height: auto;
+        }
+        &__actions{
+            width: 100%;
+            
+            
+
         }
     }
  }
@@ -165,21 +219,30 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 @media (min-width: @media-medium-min) {
     .groupCardManage{
         &__cover{
-            width: 50%;
+            width:  100%;
             float: left;
-            // height: 266px;
+            height: 200px;
+            
             img{
                 width: 100%;
             }
         }
         &__content{
-            width: 50%;
+            width: auto;
+            border-bottom:none;
+            padding-bottom: 20px;
+            height: 80px;
         }
         &__atribute{
             height: auto;
         }
         &__icon{
             
+        }
+        &__actions{
+            width: 100%;
+            
+
         }
     }
      
@@ -191,6 +254,7 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__cover{
             width: 12%;
             float: left;
+            height: 90px;
             img{
                 width: 100%;
             }
@@ -198,33 +262,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__content{
             width: 33%;
             float: left;
+            border-bottom:none;
+            padding-bottom: 0;
+            height: 80px;
         }
         &__actions{
             width: 15%;
             float: left;
-            &__wrapper{
-                background-color: #e1ecf1;
-                border: 1px solid #fff;
-                padding: 10px;
-                height: 90px;
-                &--admin{
-                    background-color: darken(@gray, 20%);
-                    display: flex; 
-                    height: 90px;
-                     align-items: center;
-                     justify-content: center;
-                    a {
-                        color: @white;
-                        padding: 10px;
-                    
-                        display: inline-block;
-                       
-                        &:hover{
-                            background-color: darken(@gray, 30%);
-                        }
-                    }
-                }
-            }
+            
 
         }
         &__atributes{

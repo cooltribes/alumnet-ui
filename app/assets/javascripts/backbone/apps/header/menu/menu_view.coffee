@@ -8,6 +8,7 @@
 
   class Menu.MessagesView extends Marionette.CollectionView
     tagName: 'ul'
+    className: 'navTopBar__dropdownMenu'
     childView: Menu.MessageView
 
 

@@ -14,6 +14,7 @@
 		<div class="form-group">
 			<label for="">Start Date</label>
 			
+			<div class="formANet__select">
 				<select name="start_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
 					
@@ -42,6 +43,7 @@
 					<option value="2012">2012</option>
 					<option value="2013">2013</option>
 				</select>
+			</div>
 			
 		</div>
 	</div>
@@ -49,6 +51,7 @@
 		<div class="form-group">
 			<label for="">End date</label>
 			
+			<div class="formANet__select">
 				<select name="end_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
 					<option value="0">Current</option>
@@ -78,6 +81,7 @@
 					<option value="2012">2012</option>
 					<option value="2013">2013</option>
 				</select>
+			</div>
 			
 		</div>
 	</div>
@@ -99,6 +103,7 @@
 	<div class="col-md-6 ">
 		<div class="form-group">
 			<label class="control-label" for="registerCountry">Country / Region</label>
+		<div class="formANet__select">
 			<select class="form-control input-lg" name="country_id">
 				<option value="">Select a country</option>
 				<option value="1">Poland</option>
@@ -108,10 +113,12 @@
 				<option value="5">France</option>
 			</select>
 		</div>
+		</div>
 	</div>
 	<div class="col-md-6 ">
 		<div class="form-group">
 			<label class="control-label" for="registerCity">City</label>
+		<div class="formANet__select">
 			<select class="form-control input-lg" name="city_id">
 				<option value="">Select City</option>
 				<option value="1">San Cristobal</option>
@@ -120,6 +127,7 @@
 				<option value="4">New York</option>
 				<option value="5">Rome</option>
 			</select>
+		</div>
 		</div>
 	</div>	
 </div>

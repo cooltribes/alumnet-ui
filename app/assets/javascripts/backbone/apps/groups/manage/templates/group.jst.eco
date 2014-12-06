@@ -63,7 +63,7 @@
 			<div class="groupCardManage__actions__wrapper">
 				
 				<a href="#" id="js-leave-group" class="text-uppercase" title="Leave Group">
-<span class="icon-entypo-logout"></span> <br> Leave group
+<span class="icon-entypo-logout"></span> <br><strong> Leave group</strong>
 				</a>
 			</div>
 			<% end %>
