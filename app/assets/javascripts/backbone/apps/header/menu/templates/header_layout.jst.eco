@@ -48,6 +48,14 @@
       </ul>
       <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
         <!-- Right menu top -->
+
+<li>
+
+          <!-- CART ICON -->
+          <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+            <span class=" navTopBar__right__item__icon--cartIcon glyphicon glyphicon-shopping-cart"></span> 3
+          </a>
+        </li>
         <li>
 
           <!-- BELL ICON -->

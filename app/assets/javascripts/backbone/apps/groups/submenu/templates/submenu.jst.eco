@@ -17,9 +17,7 @@
 					</a>
 
 				<ul class="navTopSubBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="yourGroups">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-				
+					<li><a href="#groups/manage">Manage groups</a></li>
 				</ul>
 			</li>
 			
