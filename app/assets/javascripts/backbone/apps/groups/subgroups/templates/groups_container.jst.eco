@@ -2,7 +2,9 @@
   <div class="col-md-9">
   </div>
   <div class="col-md-3 text-right">
-    <a href="#groups/<%= @id %>/subgroups/new" class="btn-primary-noBackground btn btn-lg" title="Add people to group">+ Create a new Subgroup</a>
+    <% if @userCanCreateSubGroup: %>
+      <a href="#groups/<%= @id %>/subgroups/new" class="btn-primary-noBackground btn btn-lg" title="Add people to group">+ Create a new Subgroup</a>
+    <% end %>
   </div>
 </div>
 <hr class="no_margin_top">

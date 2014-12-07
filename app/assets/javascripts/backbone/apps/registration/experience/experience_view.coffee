@@ -89,24 +89,35 @@
     ui:
       'btnAdd': '.js-addExp'
       'btnSubmit': '.js-submit'
+      'btnSkip': '.js-skip'
+
     events:
       "click @ui.btnAdd": "addExperience"
       "click @ui.btnSubmit": "submitClicked"
+      "click @ui.btnSkip": "skipClicked"
 
     initialize: (options) ->
       @title = options.title
-
+      @exp_type = options.exp_type
 
     templateHelpers: ->
-      titleNew = @title
       title:  =>
         @title
+      skipButton: =>
+        switch @exp_type
+          when 1, 2, 3
+            true
+          else
+            false
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
         exp_type: 0
       @collection.add(newExperience)
 
+    skipClicked: (e)->
+      e.preventDefault()
+      @trigger("form:skip", @model)
 
     submitClicked: (e)->
       e.preventDefault()
@@ -118,6 +129,6 @@
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
 
-      this.trigger("form:submit", @model)
+      @trigger("form:submit", @model)
 
 

@@ -11,19 +11,29 @@
       layoutView.side_region.show(@getSidebarView())
 
       user = AlumNet.current_user
-
       profile = user.profile
+      contacts = new AlumNet.Entities.ProfileContactsCollection
 
-      contactForm = @getFormView(user, profile)
+      contactForm = @getFormView(profile, contacts)
       layoutView.form_region.show(contactForm)
 
       # AlumNet.execute('render:groups:submenu')
 
-      contactForm.on "form:submit", (model)->
-        model.save {},
-          success: ->
-            AlumNet.trigger "registration:experience", "contact"
+      contactForm.on "form:submit", ->
+        validCollection = true
+        contactsAtributtes = []
+        @collection.each (model)->
+          if model.isValid(true)
+            contactsAtributtes.push(model.attributes)
+          else
+            validCollection = false
 
+        if validCollection
+          @model.set('contact_infos_attributes', contactsAtributtes)
+          @model.save {},
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger "registration:experience", step
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")
@@ -31,7 +41,7 @@
     getSidebarView: ->
       AlumNet.request("registration:shared:sidebar", 2)
 
-    getFormView: (user, profile) ->
+    getFormView: (profile, collection) ->
       new Contact.Form
         model: profile
-        user: user
+        collection: collection

@@ -6,16 +6,15 @@
 
 			<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
 			<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
-
+			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="form-group">
+		<div class="form-group has-feedback">
 			<label class="control-label" for="start_year">Start Date</label>
 			<div class="clearfix">
 				<select name="start_year" class="formANet__colOneHalf form-control input-lg ">
 					<option value="">Select Year</option>
-
 					<option value="1990">1990</option>
 					<option value="1991">1991</option>
 					<option value="1992">1992</option>
@@ -43,7 +42,6 @@
 				</select>
 				<select name="start_month" class="formANet__colOneHalf form-control input-lg">
 					<option value="">Select Month</option>
-
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -56,15 +54,14 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-
-
 				</select>
 				<button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground js-addMonth hidden" type="button">+ Month</button>
 			</div>
+			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="form-group">
+		<div class="form-group has-feedback">
 			<label class="control-label" for="end_year">End date</label>
 			<div class="clearfix">
 				<select name="end_year" class="formANet__colOneHalf form-control input-lg ">
@@ -110,33 +107,38 @@
 					<option value="12">12</option>
 				</select>
 				<!-- <button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground " type="button">+ Month</button> -->
-
 			</div>
+			<span class="help-block"></span>
 		</div>
 	</div>
 </div>
-<div class="form-group">
+<div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Description/achievements</label>
 	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
+	<span class="help-block"></span>
+
 </div>
 
 <div class="row">
 	<div class="col-md-6 ">
-		<div class="form-group">
+		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCountry">Country / Region</label>
       <input type="hidden" name="country_id" id="country_id" style="width: 100%">
+	  	<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="col-md-3 ">
-		<div class="form-group">
+		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
       <input type="hidden" name="city_id" id="city_id" style="width: 100%">
+	  	<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="col-md-3 ">
-		<div class="form-group">
+		<div class="form-group has-feedback">
 			<label class="control-label" for="registerLocalcomitee">Local Comitee</label>
       <input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
+	  	<span class="help-block"></span>
 		</div>
 	</div>
 </div>

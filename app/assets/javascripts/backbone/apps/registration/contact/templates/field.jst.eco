@@ -1,0 +1,37 @@
+<div class="row formANet__removableRow">
+  <div class="col-md-3">
+    <div class="form-group">
+      <select name="contact_type" class="form-control input-lg">
+        <option value="">-Select-</option>
+        <option value="0">Email</option>
+        <option value="1">Phone</option>
+        <option value="2">Skype</option>
+        <option value="3">Yahoo</option>
+        <option value="4">Facebook</option>
+        <option value="5">Twitter</option>
+        <option value="6">IRC</option>
+      </select>
+      <span class="help-block"></span>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="form-group">
+      <input type="text" class="form-control input-lg" name="info" id="iputEmail" placeholder="">
+      <span class="help-block"></span>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <select name="privacy" class="form-control input-lg">
+        <option value="1">Only me</option>
+        <option value="2">Everyone</option>
+        <option value="3">Friends</option>
+      </select>
+      <span class="help-block"></span>
+    </div>
+  </div>
+
+  <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+</div>

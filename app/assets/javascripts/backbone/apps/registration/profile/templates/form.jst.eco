@@ -33,9 +33,19 @@
         <span class="help-block"></span>
       </div>
 
-      <div class="form-group has-feedback">
+      <div class="form-group has-feedback col-md-6">
         <label class="control-label" for="inputBorn">Date of Birth</label>
         <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group has-feedback col-md-6">
+        <label class="control-label" for="inputBorn">Genre</label>
+        <select name="genre" class="form-control input-lg ">
+          <option value="">Genre</option>
+          <option value="F">F</option>
+          <option value="M">M</option>
+        </select>
         <span class="help-block"></span>
       </div>
 
