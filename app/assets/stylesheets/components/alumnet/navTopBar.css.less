@@ -40,6 +40,7 @@ DESCRIPTION: Top navigation bar with menus
             }
         }
     }
+
     &__right{
         &__list{
             margin-right: -15px;
@@ -62,21 +63,58 @@ DESCRIPTION: Top navigation bar with menus
                 color: @white ;
                 background-color: @black ;
             }
-
+            &--becomeAMemberWrapper{
+                margin: 0;
+                padding: 6px 0 0;
+            }
             &--becomeAMember{
                 background-color: #f38e00;
                 border-radius: 50px;
                 color: #ffffff;
+                
                 font-size: 13px;
                 height: 45px;
                 line-height: 1em;
-                margin-top: 7px;
+                margin-top: 0;
+                display: block;
                 margin-left: 10px;
                 padding: 3px 2px 2px 12px;
                 &:hover{
                     background-color: darken(@orange, 10%)
                 }
             }
+            &--membershipExpires{
+                width: 80%;
+                margin: 0 auto;
+                background-color: #E36300;
+                border-radius: 30px;
+                color: white;
+                display: block;
+                height: 44px;
+                
+                overflow: hidden;
+                padding: 0;
+                &__days{
+                    font-size: 24px;
+                    float: left;
+                    font-weight: 300;
+                    display: block;
+                    padding: 11px 5px 0px 13px; 
+                }
+                &__text{
+                    font-size: 10px;
+                    float: left;
+                    display: block;
+                    margin-top: 4px;
+                }
+                .navTopBar__right__item--becomeAMember {
+                     float: right;
+                     display: block;
+                     margin-top: 0;
+                }
+
+            }
+
             &__icon{
                 font-size: 32px;
                 width: 32px;
@@ -210,6 +248,15 @@ DESCRIPTION: Top navigation bar with menus
         &__notification{
             width: 350px
         }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                    width: 80%;
+                    margin: 0 auto;
+                    height: auto;
+                }
+            }
+        }
     }
  }
 
@@ -219,6 +266,15 @@ DESCRIPTION: Top navigation bar with menus
         &__notification{
             width: 350px;
         }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                   
+                    width: auto;
+                }
+            }
+        }
+
     }
     
  }
@@ -228,6 +284,14 @@ DESCRIPTION: Top navigation bar with menus
 .navTopBar{
         &__notification{
             width: 350px;
+        }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                    width: auto;
+                   
+                }
+            }
         }
     }  
     

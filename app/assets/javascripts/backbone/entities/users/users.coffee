@@ -24,7 +24,8 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval" # || true
+      step == "approval" # || 
+      true
       
 
   class Entities.UserCollection extends Backbone.Collection

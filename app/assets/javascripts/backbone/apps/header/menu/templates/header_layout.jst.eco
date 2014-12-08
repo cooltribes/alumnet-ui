@@ -108,9 +108,20 @@
         <!-- MESSAGES OFF -->
       </li>
       <li>
-        <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
-          Become a member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
+        
+        
+      
+        <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
+          <!-- When membership is about to expire activate from here ... -->
+          <div class="navTopBar__right__item--membershipExpires">
+            <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
+          <!-- ... to here and the closing </div> before the </a>-->
+            <span class=" navTopBar__right__item--becomeAMember">
+            Renew membership <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle"></span>
+            
+          </div>
         </a>
+        
       </li>
       <li>
         <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
