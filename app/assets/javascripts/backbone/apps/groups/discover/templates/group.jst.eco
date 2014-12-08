@@ -50,14 +50,19 @@
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCard__atribute__container">
               <span class="groupCard__icon ico-timebank"></span>
-              10:32<small>am</small>
+              <% if @last_post_at: %>
+                <%= moment(@last_post_at).format('h:mm a') %>
+              <% else: %>
+                <%= moment(@created_at).format('h:mm a') %>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="clearfix">
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Members" class="groupCard__atribute__container--odd">
-              <span class="groupCard__icon ico-company"></span> 13000
+              <span class="groupCard__icon ico-company"></span>
+              <%= @membership_users.length %>
             </div>
           </div>
 
@@ -70,8 +75,14 @@
           </div>
 
         </div>
-        <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
-        </button>
+        <% if @membership_status == "approved": %>
+          <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
+        <% else if @membership_status == "pending": %>
+          Waiting for approve
+        <% else: %>
+          <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
+          </button>
+        <% end %>
       </div>
     </div>
     <!-- CONTENT ON -->

@@ -36,17 +36,14 @@
       end_year:
         required: true
         fn: (value, attr, computedState) ->
-  
-          if (value == 0)
+          if (value == "0")
+            console.log "es cero"
             if (@get("exp_type") == 0 || @get("exp_type") == 1)
               return "#{attr} is required"
             # else
           else 
             if ( value < @get("start_year"))
               return "End year has to be greater or equal than start year"
-
-          console.log value    
-
 
       description:
         required: true

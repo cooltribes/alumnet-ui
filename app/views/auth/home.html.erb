@@ -64,10 +64,6 @@
             <% end %>
           </div>
           <% end %>
-          <%= label_tag :first_name, nil ,class: 'sr-only' %>
-          <%= text_field_tag 'profile[first_name]', @first_name, class: "form-control input-lg", placeholder: "Enter Name " %>
-          <%= label_tag :last_name,nil ,class: 'sr-only' %>
-          <%= text_field_tag 'profile[last_name]', @last_name, class: "form-control input-lg", placeholder: "Enter last name " %>
           <%= label_tag :email, nil ,class: 'sr-only' %>
           <%= text_field_tag 'user[email]', @signup_email, class: "form-control input-lg", placeholder: "Enter email" %>
           <%= label_tag :password, nil ,class: 'sr-only' %>
@@ -76,9 +72,6 @@
           <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
           <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
           <% end %>
-
-          <!-- <butto
-          n type="button" id="openAndSubmit" class="btn btn-lg btn-primary text-uppercase"  data-toggle="collapse" data-target="#registerHomeForm" aria-expanded="true" aria-controls="demo">Sign up </button> -->
         </div>
       </div>
 

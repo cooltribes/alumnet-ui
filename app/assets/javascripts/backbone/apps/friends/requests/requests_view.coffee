@@ -1,6 +1,8 @@
 @AlumNet.module 'FriendsApp.Requests', (Requests, @AlumNet, Backbone, Marionette, $, _) ->
   class Requests.RequestView extends Marionette.ItemView
     template: 'friends/requests/templates/request'
+    tagName: 'div'
+    className: 'col-md-4 col-sm-6'
     events:
       'click #js-accept-friendship':'clickedAccept'
       'click #js-delete-friendship':'clickedDelete'

@@ -1,15 +1,35 @@
-<div style="margin-top: 130px">
-  <h4>Friendship Requests</h4>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 margin_top">
+			<h3>Friendship Requests</h3>
+		</div>
+		<div class="col-md-6">
+			<div class="searchBar">
+				<form id="search-form">
+					<div class="input-group">
+						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+						<span class="input-group-btn">
+						<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
 </div>
-
-<form id="search-form">
-  <div class="input-group">
-    <input type="text" name="search_term" id="search_term" class="form-control">
-  </div>
-  <button class="btn btn-primary js-search">SEARCH</button>
-</form>
-
-<div id="filter-link-container">
-  <a href="#" id="js-requests-sent">view the resquests sent</a>
+<div class="container-fluid margin_top_large">
+	<div id="filter-link-container">
+		
+		<ul class="navigationTabs nav nav-tabs">
+			<li role="presentation" class="navigationTabs__tab active"><a href="#" id="js-requests-sent">Sent Request</a></li>
+			<li role="presentation" class="navigationTabs__tab active"><a href="#friends/requests" title="Friends Requests">Friends Requests</a></li>
+			
+		</ul>
+	</div>
+	
+	<div class="row requests-list">
+		
+	</div>
 </div>
-<ul class="requests-list"></ul>

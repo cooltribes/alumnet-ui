@@ -37,7 +37,7 @@
     template: 'home/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post'
+    className: 'post item col-md-6'
     childViewOptions: ->
       userModel: @userModel
     initialize: (options)->

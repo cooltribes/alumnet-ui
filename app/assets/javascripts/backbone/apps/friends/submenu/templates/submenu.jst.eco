@@ -17,7 +17,7 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#" class="navTopSubBar__link"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
-				<li><a href="#" class="navTopSubBar__link"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Friend requests</a></li>
+				<li><a href="#friends/requests" class="navTopSubBar__link"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Friend requests</a></li>
 				
 			</ul>
 		</div>

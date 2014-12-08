@@ -1,66 +1,42 @@
+
+
 <form class="formANet form" role="form">
   <h1>Profile</h1>
   <!-- First row ON -->
   <div class="row">
     <div class="col-md-6">
       <div class="form-group text-center">
+        <% if @avatar.extralarge: %>
+        <img src="<%= @avatar.extralarge %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <% else: %>
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <% end %>
         <label class="control-label" for="profilePicture">Choose your avatar</label>
         <input type="file" id="profile-avatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
       </div>
     </div>
-    
+
     <div class="col-md-6">
 
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
-        <input type="text" value="<%= @first_name%>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
-        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-        <span class="help-block"></span>        
-      </div>
-
-      <div class="form-group has-feedback">
-        <label class="control-label" for="inputLastName">Last name</label>
-        <input type="email" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <input type="text" value="<%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
 
-      <div class="form-group row">
-        <div class="col-md-12"><label class="control-label" for="inputLastName">Born</label></div>
-        <!-- <div class="col-md-4">
-          <input id="inputName" type="number" class="form-control input-lg " placeholder="DD">
-          <select name="day" class="form-control input-lg ">            
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="number" class="form-control input-lg " placeholder="MM">
-          <select name="month" class="form-control input-lg ">            
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="number" class="form-control input-lg " placeholder="YYYY">
-          <select name="year" class="form-control input-lg ">            
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-          <input type="hidden" name="born">
-        -->
-        <div class="col-md-12">          
-          <input type="date" name="born">          
-        </div>
-        <div class="col-md-12">
-          <span class="help-block"></span>        
-        </div>
+      <div class="form-group has-feedback">
+        <label class="control-label" for="inputLastName">Last name</label>
+        <input type="text" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <label class="control-label" for="inputBorn">Date of Birth</label>
+        <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+        <span class="help-block"></span>
       </div>
 
     </div>
@@ -68,29 +44,19 @@
   <!-- First row OFF -->
   <hr>
   <!-- Birth ON-->
-  <div class="row">
+  <div class="row js-birth-location">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">Birth Country</label>
-        <select name="birth_country" class="form-control input-lg ">
-          <option value="">Select a country</option>
-         <!--  <option value="1">Venezuela</option>
-          <option value="2">España</option>
-          <option value="3">Francia</option> -->
-        </select>
+        <label class="control-label" for="inputName">Country of Origin</label>
+        <input id="js-birth-countries" type="hidden" name="birth_country" id="birth_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
-      
+
       <div class="form-group">
-        <label class="control-label" for="inputName">Birth City</label>
-        <select class="form-control input-lg" name="birth_city">
-          <option value="">Select a city</option>        
-          <!-- <option value="1">San Cristobal</option>
-          <option value="2">Caracas</option>
-          <option value="3">Valencia</option> -->
-        </select>
+        <label class="control-label" for="inputName">City of Origin</label>
+        <input id="js-birth-cities" type="hidden" name="birth_city" id="birth_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -98,28 +64,18 @@
   <!-- Birth OFF-->
   <hr>
   <!-- Residence ON-->
-  <div class="row">
+  <div class="row js-residence-location">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">Country of residence</label>
-        <select name="residence_country" class="form-control input-lg ">
-          <option value="">Select a country</option>
-          <!-- <option value="1">Venezuela</option>
-          <option value="2">España</option>
-          <option value="3">Francia</option> -->
-        </select>
+        <label class="control-label" for="inputName">Country of Residence</label>
+        <input id="js-residence-countries" type="hidden" name="residence_country" id="residence_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">City of residence</label>
-        <select class="form-control input-lg" name="residence_city">
-          <option value="">Select a city</option>        
-          <!-- <option value="1">San Cristobal</option>
-          <option value="2">Caracas</option>
-          <option value="3">Valencia</option> -->
-        </select>
+        <label class="control-label" for="inputName">City of Residence</label>
+        <input id="js-residence-cities" type="hidden" name="residence_city" id="residence_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -127,10 +83,10 @@
   <!-- Residence OFF-->
   <hr>
   <!-- Buttons -->
-  
+
   <div class="form-group text-right">
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
     <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>
-  
+
 </form>

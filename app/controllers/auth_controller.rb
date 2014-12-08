@@ -21,12 +21,12 @@ class AuthController < ApplicationController
 
   def sign_up
     registration = UserRegistration.new
-    registration.register(user_params, profile_params)
+    registration.register(user_params)
     if registration.valid?
       session[:auth_token] = registration.user.auth_token
       redirect_to root_path
     else
-      @first_name, @last_name, @signup_email = profile_params[:first_name], profile_params[:last_name], user_params[:email]
+      @signup_email = user_params[:email]
       @errors = registration.errors
       render :home
     end
@@ -45,9 +45,4 @@ class AuthController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
-
-    def profile_params
-      params.require(:profile).permit(:first_name, :last_name)
-    end
-
 end

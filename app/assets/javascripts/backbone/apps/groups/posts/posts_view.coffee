@@ -33,6 +33,12 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
+    initialize: (options)->
+      @group = options.group
+      @current_user = options.current_user
+    templateHelpers: ->
+      userCanComment: @group.userCanComment()
+      current_user_avatar: @current_user.get('avatar').medium
     ui:
       'item': '.item'
       'gotoComment': '.js-goto-comment'
@@ -92,6 +98,15 @@
     template: 'groups/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    childViewOptions: ->
+      group: @group
+      current_user: @model
+
+    initialize:(options)->
+      @group = options.group
+    templateHelpers: ->
+      userCanPost: @group.userCanPost()
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
