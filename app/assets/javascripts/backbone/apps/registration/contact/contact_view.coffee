@@ -11,6 +11,11 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     events:
       "click @ui.rmvRow": "rmvRowClicked"
 
+    templateHelpers: ->
+      selected: (value)->
+        if value == @contact_type
+          'selected'
+
     initialize: ->
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->

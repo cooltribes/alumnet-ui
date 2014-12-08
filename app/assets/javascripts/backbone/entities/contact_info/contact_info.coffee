@@ -1,5 +1,9 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.ProfileContact extends Backbone.Model
+
+    defaults:
+      showDelete: true
+
     validation:
       contact_type:
         required: true

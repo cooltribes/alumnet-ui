@@ -3,13 +3,13 @@
     <div class="form-group">
       <select name="contact_type" class="form-control input-lg">
         <option value="">-Select-</option>
-        <option value="0">Email</option>
-        <option value="1">Phone</option>
-        <option value="2">Skype</option>
-        <option value="3">Yahoo</option>
-        <option value="4">Facebook</option>
-        <option value="5">Twitter</option>
-        <option value="6">IRC</option>
+        <option value="0" <%= @selected(0) %>>Email</option>
+        <option value="1" <%= @selected(1) %>>Phone</option>
+        <option value="2" <%= @selected(2) %>>Skype</option>
+        <option value="3" <%= @selected(3) %>>Yahoo</option>
+        <option value="4" <%= @selected(4) %>>Facebook</option>
+        <option value="5" <%= @selected(5) %>>Twitter</option>
+        <option value="6" <%= @selected(6) %>>IRC</option>
       </select>
       <span class="help-block"></span>
     </div>
@@ -17,7 +17,7 @@
 
   <div class="col-md-5">
     <div class="form-group">
-      <input type="text" class="form-control input-lg" name="info" id="iputEmail" placeholder="">
+      <input type="text" class="form-control input-lg" name="info" id="iputEmail" placeholder="" value="<%= @info %>">
       <span class="help-block"></span>
     </div>
   </div>
@@ -32,6 +32,7 @@
       <span class="help-block"></span>
     </div>
   </div>
-
-  <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <% if @showDelete: %>
+    <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <% end %>
 </div>

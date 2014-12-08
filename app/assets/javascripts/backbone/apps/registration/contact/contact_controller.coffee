@@ -12,7 +12,14 @@
 
       user = AlumNet.current_user
       profile = user.profile
-      contacts = new AlumNet.Entities.ProfileContactsCollection
+
+      # initial contacts
+      contacts = new AlumNet.Entities.ProfileContactsCollection [
+        new AlumNet.Entities.ProfileContact {contact_type: 0, info: user.get('email'), showDelete: false}
+        new AlumNet.Entities.ProfileContact {contact_type: 1 }
+        new AlumNet.Entities.ProfileContact {contact_type: 2 }
+        new AlumNet.Entities.ProfileContact {contact_type: 3 }
+      ]
 
       contactForm = @getFormView(profile, contacts)
       layoutView.form_region.show(contactForm)
