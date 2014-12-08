@@ -77,3 +77,29 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+
+  class SubGroups.GroupView extends Marionette.ItemView
+    template: 'groups/subgroups/templates/group'
+    className: 'col-md-4 col-sm-6 col-xs-12'
+    events:
+      'click .js-join':'sendJoin'
+    ui:
+      'groupCard': '.groupCard__atribute__container'
+      'groupCardOdd': '.groupCard__atribute__container--odd'
+
+    sendJoin: (e)->
+      e.preventDefault()
+      @trigger 'join'
+
+    onRender: ->
+      @ui.groupCard.tooltip()
+      @ui.groupCardOdd.tooltip()
+
+  class SubGroups.GroupsView extends Marionette.CompositeView
+    className: 'ng-scope'
+    idName: 'wrapper'
+    template: 'groups/subgroups/templates/groups_container'
+    childView: SubGroups.GroupView
+    childViewContainer: ".main-groups-area"
+    templateHelpers: ->
+      userCanCreateSubGroup: @model.userCanCreateSubGroup()

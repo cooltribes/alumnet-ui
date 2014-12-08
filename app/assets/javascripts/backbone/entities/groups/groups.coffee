@@ -6,6 +6,8 @@
     initialize: ->
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
+      @subgroups = new Entities.GroupCollection
+      @subgroups.url = @urlRoot() + @id + '/subgroups'
       @permissions = @get('permissions')
 
     canEditInformation: ->

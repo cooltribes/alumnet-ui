@@ -14,6 +14,9 @@
         required: true
       born:
         required: true
+      genre:
+        required: true
+        oneOf: ["F", "M"]
       birth_country:
         required: true
       birth_city:

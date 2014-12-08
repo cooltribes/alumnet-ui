@@ -1,176 +1,22 @@
-
 <form class="formANet form " role="form">
   <h1 class="blue-huge-title margin-top-15">Contact & Privacy</h1>
-  <!-- ROW 1 ON -->
-  <div class="row">
-    <div class="col-md-8">
-      <div class="form-group has-feedback">
-        <label for="inputEmail">E-mail address</label>
-        <input type="hidden" name="contact_infos_attributes[contact_type][]" value="0">
-        <input type="email" class="form-control input-lg" id="inputEmail" name="contact_infos_attributes[info][]" placeholder="Enter email" value="<%= @userEmail %>">
-        <span class="formANet__input__icon glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-    </div>
-    
-    
-    <div class="form-group col-md-4">
-      <label for="inputName">Privacy Settings</label>
-      <select name="contact_infos_attributes[privacy][]" class="form-control input-lg">
-        <option value="1">Only me</option>
-        <option value="2">Everyone</option>
-        <option value="3">Friends</option>
-      </select>
-    </div>
-    
-  </div>
-  <!-- ROW 1 OFF -->
-  <hr>
-  <!-- ROW 2 ON -->
-
-  <div class="row">    
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="code">Code</label>
-        <input type="text" name="code" class="form-control input-lg" id="code" placeholder="+58">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group has-feedback">
-        <label for="code">Phone number</label>
-        <input type="text" class="form-control input-lg" id="number" name="number" placeholder="Enter phone number">
-        <span class="formANet__input__icon glyphicon glyphicon-phone form-control-feedback"></span>
-      </div>
-    </div>
-    
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="inputName">Privacy Settings</label>
-        <select name="numberPrivacy" class="form-control input-lg">
-          <option value="1">Only me</option>
-          <option value="2">Everyone</option>
-          <option value="3">Friends</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <!-- ROW 2 OFF -->
-  <hr>
-  <!-- ROW 3 ON -->
-
-  <!-- Labels ON -->
-  <div class="row">
-    <div class="col-md-8">
-      <label for="inputName">IM</label>
-    </div>
-    <div class="col-md-4">
-      <label for="inputName">Privacy Settings</label>
-    </div>
-  </div>
-  <!-- Labels OFF -->
-  <!-- Fields ON: Duplicate these to create more rows -->
-  <div class="row formANet__removableRow">
-    <div class="col-md-3">
-      <div class="form-group">
-        <select name="contact_infos_attributes[][contact_type]" class="form-control input-lg">
-           <option value="">-Select-</option>
-           <option value="1">Skype</option>
-          <option value="2">Yahoo</option>          
-        </select>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="form-group">
-        <input type="text" class="form-control input-lg" name="contact_infos_attributes[][info]" id="inputEmail" placeholder="">
-      </div>
-    </div>
-    
-    <div class="col-md-4">
-      <div class="form-group">
-        
-        <select name="contact_infos_attributes[][privacy]" class="form-control input-lg">
-          <option value="1">Only me</option>
-          <option value="2">Everyone</option>
-          <option value="3">Friends</option>
-        </select>
-      </div>
-    </div>
-
-    <button type="button" class="close formANet__removableRow__removeButton js-rmvRow hidden"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-  </div>  
-  
-
-  
-  <!-- Fields OFF -->
-  
   <div class="form-group">
-    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD IM</button>
+    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD CONTACT</button>
   </div>
-  <!-- ROW 3 OFF -->
-  <hr>
-  
-  <!-- ROW 4 ON -->
   <div class="row">
     <div class="col-md-8">
-      <label for="inputName">Web & Web Profile</label>
+      <label for="inputName">Contact</label>
     </div>
     <div class="col-md-4">
       <label for="inputName">Privacy Settings</label>
     </div>
   </div>
-  <!-- Labels OFF -->
-  <!-- Fields ON: Duplicate these to create more rows -->
-  <div class="row formANet__removableRow">
-    <div class="col-md-3">
-      <div class="form-group">
-        <select name="contact_infos_attributes[][contact_type]" class="form-control input-lg">
-           <option value="">-Select-</option>
-           <option value="3">Facebook</option>
-          <option value="4">Twitter</option>
-          <option value="5">IRC</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="form-group">
-        <input type="text" class="form-control input-lg" name="contact_infos_attributes[][info]" id="inputEmail" placeholder="">
-      </div>
-    </div>
-    
-    <div class="col-md-4">
-      <div class="form-group">
-        
-        <select name="contact_infos_attributes[][privacy]" class="form-control input-lg">
-          <option value="1">Only me</option>
-          <option value="2">Everyone</option>
-          <option value="3">Friends</option>
-        </select>
-      </div>
-    </div>
-
-    <button type="button" class="close formANet__removableRow__removeButton js-rmvRow hidden"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-  </div>
-    
-  <!-- Fields OFF -->
-  
-  <div class="form-group">
-    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD WEB</button>
-  </div>
-
-
   <hr>
-
-
-
-
-
+  <div class="js-fields-container"></div>
+  <hr>
   <!-- Buttons -->
   <div class="form-group text-right">
-    
     <button type="reset" class="btn btn-default  btn-lg">Clear</button>
-    
     <button type="submit" class="btn btn-primary btn-lg js-submit">Next</button>
-    
   </div>
 </form>
