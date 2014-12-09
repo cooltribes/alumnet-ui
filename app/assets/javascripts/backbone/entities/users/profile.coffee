@@ -14,7 +14,7 @@
         required: true
       born:
         required: true
-      genre:
+      gender:
         required: true
         oneOf: ["F", "M"]
       birth_country:
