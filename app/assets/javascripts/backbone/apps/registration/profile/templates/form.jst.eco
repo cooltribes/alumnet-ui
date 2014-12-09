@@ -40,9 +40,9 @@
       </div>
 
       <div class="form-group has-feedback col-md-6">
-        <label class="control-label" for="inputBorn">Genrer</label>
-        <select name="genrer" class="form-control input-lg ">
-          <option value="">Genrer</option>
+        <label class="control-label" for="inputBorn">Gender</label>
+        <select name="gender" class="form-control input-lg ">
+          <option value="">Gender</option>
           <option value="F">F</option>
           <option value="M">M</option>
         </select>
