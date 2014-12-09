@@ -4,67 +4,60 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group text-center">
+        <% if @avatar.extralarge: %>
+        <img src="<%= @avatar.extralarge %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <% else: %>
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <% end %>
         <label class="control-label" for="profilePicture">Choose your avatar</label>
         <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
       </div>
     </div>
-    
     <div class="col-md-6">
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
-        <input type="text" value="<%= @first_name%>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
+        <input type="text" value="<%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
       <div class="form-group has-feedback">
         <label class="control-label" for="inputLastName">Last name</label>
-        <input type="email" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <input type="text" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
-      <div class="form-group row">
-        <div class="col-md-12">
-          <label class="control-label" for="inputLastName">Born</label>
-        </div>
-        
-        
-        <div class="col-md-12">
-          <input type="date" name="born">
-        </div>
-        <div class="col-md-12">
-          <span class="help-block"></span>
-        </div>
+      <div class="form-group has-feedback col-md-6">
+        <label class="control-label" for="inputBorn">Date of Birth</label>
+        <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+        <span class="help-block"></span>
+      </div>
+      <div class="form-group has-feedback col-md-6">
+        <label class="control-label" for="inputBorn">Genrer</label>
+        <select name="genrer" class="form-control input-lg ">
+          <option value="">Genre</option>
+          <option value="F">F</option>
+          <option value="M">M</option>
+        </select>
+        <span class="help-block"></span>
       </div>
     </div>
   </div>
   <!-- First row OFF -->
   <hr>
   <!-- Birth ON-->
-  <div class="row">
+  <div class="row js-birth-location">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">Birth Country</label>
-        <div class="formANet__select">
-          <select name="birth_country" class="form-control input-lg ">
-            <option value="">Select a country</option>
-            
-          </select>
-        </div>
-        
+        <label class="control-label" for="inputName">Country of Origin</label>
+        <input id="js-birth-countries" type="hidden" name="birth_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">Birth City</label>
-        <div class="formANet__select">
-          <select class="form-control input-lg" name="birth_city">
-            <option value="">Select a city</option>
-            
-          </select>
-        </div>
+        <label class="control-label" for="inputName">City of Origin</label>
+        <input id="js-birth-cities" type="hidden" name="birth_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -72,26 +65,18 @@
   <!-- Birth OFF-->
   <hr>
   <!-- Residence ON-->
-  <div class="row">
+  <div class="row js-residence-location">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">Country of residence</label>
-        <div class="formANet__select">
-          <select name="residence_country" class="form-control input-lg ">
-            <option value="">Select a country</option>
-          </select>
-        </div>
+        <label class="control-label" for="inputName">Country of Residence</label>
+        <input id="js-residence-countries" type="hidden" name="residence_country" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label" for="inputName">City of residence</label>
-        <div class="formANet__select">
-          <select class="form-control input-lg" name="residence_city">
-            <option value="">Select a city</option>
-          </select>
-        </div>
+        <label class="control-label" for="inputName">City of Residence</label>
+        <input id="js-residence-cities" type="hidden" name="residence_city" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create a new Group</h1>
+        <h1 class="textColor--blue ">Create a Sub Group of <%= @group_name %></h1>
         <!-- ROW 1 ON -->
         <div class="row">
           <div class="col-md-6 text-center">
@@ -15,16 +15,16 @@
               <label class="control-label">Name of the group</label>
               <input type="text" name="name"  id="group-name"  class="form-control input-lg">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-              
+
               <span class="help-block"></span>
             </div>
             <div class="form-group has-feedback">
               <label class="control-label">Group's Description</label>
-              
+
               <textarea name="description" id="group-description"
               class="form-control input-lg" rows="4" style="resize:none"></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
-              
+
             </div>
             <div class="form-group">
               <label class="control-label">Group's cover</label>
@@ -36,7 +36,7 @@
         <!-- ROW 1 OFF -->
         <hr>
         <!-- ROW 2 ON -->
-        
+
         <div class="row">
           <div class="col-md-4">
             <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
@@ -66,7 +66,7 @@
         <!-- ROW 2 OFF -->
         <hr>
         <!-- ROW 3 ON -->
-        
+
         <div class="row">
           <div class="col-md-4">
             <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
@@ -75,20 +75,15 @@
           <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
               <label class="control-label">Country</label>
-              <select class="form-control input-lg" id="group-type" name="type_group">
-                <option value="0">UK</option>
-                <option value="1">Ireland</option>
-                <option value="2">Venezuela</option>
-              </select>
+              <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-4 margin_top_medium">
             <div class="form-group">
               <label class="control-label">City</label>
-              <select class="form-control input-lg" name="official">
-                <option value="0">San Cristobal</option>
-              </select>
+              <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
+              <span class="help-block"></span>
             </div>
           </div>
         </div>

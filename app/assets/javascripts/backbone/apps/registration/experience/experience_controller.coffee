@@ -1,27 +1,27 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
   class Experience.Controller
 
-    showExperience: (step) ->      
-      
+    showExperience: (step) ->
+      console.log step
       switch step
-        when "contact"          
+        when 'contact'
           @experienceAiesec()
-        when "experience_a"
+        when 'experience_a'
           @experienceAlumni()
-        when "experience_b"
+        when 'experience_b'
           @experienceAcademic()
-        when "experience_c"
-          @experiencePro()          
+        when 'experience_c'
+          @experiencePro()
         else
           false
-          # alert "not experience"          
-      
-    
+          # alert 'not experience'
+
+
     experienceAiesec: ->
       # creating layout
       formView = @showViews(0)
 
-      formView.on "form:submit", (profileModel)->        
+      formView.on 'form:submit', (profileModel)->
         #every model in the collection is valid
         validColection = true
 
@@ -29,29 +29,22 @@
           if !(validity = model.isValid(true))
             validColection = validity
           else
-            captureDates(model)            
+            captureDates(model)
 
-          
         if validColection
-          
-          options_for_save =
-            wait: true           
-            success: (model, response, options)->
-              #Pass to step 3 of registration process
-              AlumNet.trigger "registration:show"
-
           exps = _.pluck(@collection.models, 'attributes');
-          
-          profileModel.set "experiences_attributes", exps       
-          
-          profileModel.save(profileModel.attributes, options_for_save)
-    
+          profileModel.set 'experiences_attributes', exps
+          profileModel.save {},
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger 'registration:experience', step
+
 
     experienceAlumni: ->
       # creating layout
       formView = @showViews(1)
 
-      formView.on "form:submit", (profileModel)->        
+      formView.on 'form:submit', (profileModel)->
         #every model in the collection is valid
         validColection = true
 
@@ -61,29 +54,26 @@
           else
             captureDates(model)
 
-          
+
         if validColection
-          
-          options_for_save =
-            wait: true
-           
-            success: (model, response, options)->
-              #Pass to step 3 of registration process              
-              AlumNet.trigger "registration:show"
-
           exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set "experiences_attributes", exps
-          # profileModel.set "register", exps
+          profileModel.set 'experiences_attributes', exps
+          profileModel.save {},
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger 'registration:experience', step
 
-          
-          profileModel.save(profileModel.attributes, options_for_save)
+      formView.on 'form:skip', (profileModel)->
+        profileModel.save {},
+          success: (model)->
+            step = model.get('register_step')
+            AlumNet.trigger 'registration:experience', step
 
     experienceAcademic: ->
-      
-      # creating layout for experience type 2
+      # creating layout
       formView = @showViews(2)
 
-      formView.on "form:submit", (profileModel)->        
+      formView.on 'form:submit', (profileModel)->
         #every model in the collection is valid
         validColection = true
 
@@ -93,30 +83,25 @@
           else
             captureDates(model)
 
-          
         if validColection
-          
-          options_for_save =
-            wait: true
-           
-            success: (model, response, options)->
-              #Pass to step 3 of registration process
-              AlumNet.trigger "registration:show"
-
           exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set "experiences_attributes", exps
-          
+          profileModel.set 'experiences_attributes', exps
+          profileModel.save {},
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger 'registration:experience', step
 
-          console.log profileModel
-          # profileModel.save(profileModel.attributes, options_for_save)
-
+      formView.on 'form:skip', (profileModel)->
+        profileModel.save {},
+          success: (model)->
+            step = model.get('register_step')
+            AlumNet.trigger 'registration:experience', step
 
     experiencePro: ->
-      
-      # creating layout for experience type 3
+      # creating layout
       formView = @showViews(3)
 
-      formView.on "form:submit", (profileModel)->        
+      formView.on 'form:submit', (profileModel)->
         #every model in the collection is valid
         validColection = true
 
@@ -126,57 +111,50 @@
           else
             captureDates(model)
 
-          
         if validColection
-          
-          options_for_save =
-            wait: true
-           
-            success: (model, response, options)->
-              #Pass to step 3 of registration process
-              AlumNet.trigger "registration:skills"
-
           exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set "experiences_attributes", exps
-          
+          profileModel.set 'experiences_attributes', exps
+          profileModel.save {},
+            success: (model)->
+              AlumNet.trigger 'registration:skills'
 
-          console.log profileModel
-          profileModel.save(profileModel.attributes, options_for_save)
-
-
+      formView.on 'form:skip', (profileModel)->
+        profileModel.save {},
+          success: (model)->
+            AlumNet.trigger 'registration:skills'
 
     captureDates = (model) ->
       day = 31
-      month = model.get("start_month")
-      year = model.get("start_year")
+      month = model.get('start_month')
+      year = model.get('start_year')
 
-      if month == "1"
-        day = 1              
-      else if month == ""
+      if month == '1'
+        day = 1
+      else if month == ''
         month = 1
-      
-      model.set "start_date", "#{year}-#{month}-#{day}"
+
+      model.set 'start_date', '#{year}-#{month}-#{day}'
 
       day2 = 31
-      month2 = model.get("end_month")
-      year2 = model.get("end_year")
-      if month2 == "1"
-        day2 = 1              
-      else if month2 == ""
+      month2 = model.get('end_month')
+      year2 = model.get('end_year')
+      if month2 == '1'
+        day2 = 1
+      else if month2 == ''
         month2 = 1
-      
-      model.set "end_date", "#{year2}-#{month2}-#{day2}"
+
+      model.set 'end_date', '#{year2}-#{month2}-#{day2}'
 
 
     showViews: (exp_type) ->
 
-      layoutView = @getLayoutView()     
+      layoutView = @getLayoutView()
       AlumNet.mainRegion.show(layoutView)
 
       # sub-views
       layoutView.side_region.show(@getSidebarView())
 
-      user = AlumNet.request 'get:current_user' #, refresh: true     
+      user = AlumNet.current_user
 
       profile = user.profile
 
@@ -189,36 +167,36 @@
 
       #get the view according to exp_type 1:alumni
       formView = @getFormView(experiences, profile, exp_type)
-      
+
       layoutView.form_region.show(formView)
-      
-      # AlumNet.execute('render:groups:submenu')      
+
+      # AlumNet.execute('render:groups:submenu')
 
       formView
 
     getLayoutView: ->
-      AlumNet.request("registration:shared:layout")   
-    
+      AlumNet.request('registration:shared:layout')
+
     getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar", 3)      
+      AlumNet.request('registration:shared:sidebar', 3)
 
     getFormView: (experiences, profileModel, exp_type) ->
-      title = "Experience in AIESEC"
+      title = 'Experience in AIESEC'
 
       switch exp_type
         when 1
-          title = "Experience in Alumni AIESEC"       
+          title = 'Experience in Alumni AIESEC'
         when 2
-          title = "Academic Experience"       
+          title = 'Academic Experience'
         when 3
-          title = "Professional Experience"       
-        
+          title = 'Professional Experience'
         else
-          false    
+          false
 
       new Experience.ExperienceList
         collection: experiences
         model: profileModel
         title: title
-       
-        
+        exp_type: exp_type
+
+

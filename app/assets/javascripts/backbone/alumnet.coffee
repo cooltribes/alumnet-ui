@@ -14,13 +14,13 @@
       # here get all info of use from api and set in a backbone model
       @current_user = App.request 'get:current_user'#, refresh: true
       @startPusher(options.pusher_key, @current_user)
+      App.request 'get:countries'
 
   App.on 'start', ->
     if Backbone.history
       Backbone.history.start()
 
-      if Backbone.history.fragment == ""
-        App.trigger 'home'
+      App.navigate('posts', {trigger: true})
 
   App.addRegions
     headerRegion: "#header-region"

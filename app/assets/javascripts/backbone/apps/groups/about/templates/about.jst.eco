@@ -19,15 +19,19 @@
         <a href="#" id="js-edit-description">[edit]</a>
          <% end %>
       </div>
-     
     </div>
     <div class="col-md-4">
       <div class="groupAbout__box margin_bottom">
         <h3>Type</h3>
         <a href="#" id="group_type"><%= @group_type.text %></a>
         <% if @canEditInformation: %>
-        <a href="#" id="js-edit-group-type">[edit]</a>
+          <a href="#" id="js-edit-group-type">[edit]</a>
         <% end %>
+      </div>
+      <div class="groupAbout__box margin_bottom">
+        <h3>
+          <%= @city.text %>, <%= @country.text %>
+        </h3>
       </div>
       <div class="groupAbout__box margin_bottom">
         <h3>

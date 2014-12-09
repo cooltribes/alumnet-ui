@@ -4,7 +4,7 @@
       AlumNet.api_endpoint + '/users/'
 
     initialize: ->
-      @messages = new AlumNet.Entities.MessagesCollection
+      @messages = new Entities.MessagesCollection
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
@@ -17,16 +17,16 @@
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
-      if friendship_status == 'accepted' || friendship_status == 'current user'
+      if friendship_status == 'accepted'
         true
       else
         false
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval" # || 
-      true
-      
+      step == "approval"
+
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

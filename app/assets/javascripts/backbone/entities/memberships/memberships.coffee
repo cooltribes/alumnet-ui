@@ -19,6 +19,10 @@
       members = new Entities.MembershipsCollection
       members.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships/members'
       members.fetch
+        error: (collection, response, options)->
+          collection.trigger('fetch:error')
+        success: (collection, response, options) ->
+          collection.trigger('fetch:success', collection)
         data: querySearch
       members
 

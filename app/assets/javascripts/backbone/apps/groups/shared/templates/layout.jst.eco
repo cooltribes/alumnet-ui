@@ -16,7 +16,7 @@
 					<li>  <a href="#" id="js-pictures" class="groupMenu__link">
 						<span class="icon-entypo-picture"></span>
 					Pictures</a></li>
-					<li>  <a href="#" id="js-subgroups" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link">
 						<span class="glyphicon glyphicon-align-left"></span>
 					SubGroup</a></li>
 					<li>  <a href="#" id="js-events" class="groupMenu__link">

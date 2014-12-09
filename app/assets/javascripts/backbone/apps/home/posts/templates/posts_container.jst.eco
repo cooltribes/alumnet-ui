@@ -1,4 +1,3 @@
-
 <div id="carousel-example-generic" class="homeSlideshow carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -28,12 +27,11 @@
 	</a>
 </div>
 <!-- <h1><%= @name %></h1>
- -->  
+-->
 <div  class="container-fluid margin_top_small">
 	<div class="row">
 		<div  class="col-md-8 col-md-offset-2">
 			<% if @currentUserCanPost: %>
-
 			<div class="row" >
 				<!-- FORM ON -->
 				<div class="item col-md-6 ">

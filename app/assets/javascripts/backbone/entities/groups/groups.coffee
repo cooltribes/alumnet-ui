@@ -6,13 +6,33 @@
     initialize: ->
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
+      @subgroups = new Entities.GroupCollection
+      @subgroups.url = @urlRoot() + @id + '/subgroups'
+      @permissions = @get('permissions')
 
     canEditInformation: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_edit_information
+      if @permissions
+        @permissions.can_edit_information
       else
         false
+
+    userCanInvite: ->
+      if @permissions
+        @permissions.can_invite_users
+      else
+        false
+
+    userCanCreateSubGroup: ->
+      if @permissions
+        @permissions.can_create_subgroups
+      else
+        false
+
+    userCanPost: ->
+      if @permissions then true else false
+
+    userCanComment: ->
+      if @permissions then true else false
 
     validation:
       name:
@@ -20,6 +40,12 @@
       description:
         required: true
       cover:
+        required: true
+      country_id:
+        msg: 'Country is required'
+        required: true
+      city_id:
+        msg: 'City is required'
         required: true
 
   class Entities.GroupCollection extends Backbone.Collection
@@ -60,14 +86,26 @@
       subgroup
 
     findGroup: (id)->
-      #Optimize: Verify if Entities.groups is set and find the group there.
+      if Entities.groups == undefined
+        @findGroupOnApi(id)
+      else
+        @findGroupOnCollection(id)
+
+    findGroupOnCollection: (id)->
+      group = Entities.groups.get(id)
+      if group == undefined
+        group = @findGroupOnApi(id)
+      group
+
+    findGroupOnApi: (id)->
       group = new Entities.Group
         id: id
       group.fetch
+        async: false
         error: (model, response, options) ->
           model.trigger('find:error', response, options)
         success: (model, response, options) ->
-          model.trigger('find:success', response, options)
+          model.trigger('find:success')
       group
 
   AlumNet.reqres.setHandler 'group:join:send', (group_id) ->

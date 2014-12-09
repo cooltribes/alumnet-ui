@@ -2,47 +2,53 @@
   class Contact.Controller
 
     showContact: ->
-      
+
       # creating layout
-      layoutView = @getLayoutView()     
+      layoutView = @getLayoutView()
       AlumNet.mainRegion.show(layoutView)
 
       # sub-views
-      layoutView.side_region.show(@getSidebarView())      
+      layoutView.side_region.show(@getSidebarView())
 
-      user = AlumNet.request 'get:current_user' #, refresh: true     
-
+      user = AlumNet.current_user
       profile = user.profile
 
-      contactForm = @getFormView(profile)
+      # initial contacts
+      contacts = new AlumNet.Entities.ProfileContactsCollection [
+        new AlumNet.Entities.ProfileContact {contact_type: 0, info: user.get('email'), showDelete: false}
+        new AlumNet.Entities.ProfileContact {contact_type: 1 }
+        new AlumNet.Entities.ProfileContact {contact_type: 2 }
+        new AlumNet.Entities.ProfileContact {contact_type: 3 }
+      ]
+
+      contactForm = @getFormView(profile, contacts)
       layoutView.form_region.show(contactForm)
 
       # AlumNet.execute('render:groups:submenu')
-      
 
-      contactForm.on "form:submit", (model)->        
-        # if model.isValid(true)
-          
-          options_for_save =
-            wait: true
-            # contentType: false
-            # processData: false
-            # data: data
-            #model return id == undefined, this is a temporally solution.
-            success: (model, response, options)->
-              #Pass to step 3 of registration process
-              # AlumNet.trigger "registration:show"
-              AlumNet.trigger "registration:experience"
+      contactForm.on "form:submit", ->
+        validCollection = true
+        contactsAtributtes = []
+        @collection.each (model)->
+          if model.isValid(true)
+            contactsAtributtes.push(model.attributes)
+          else
+            validCollection = false
 
-          model.save(model.attributes, options_for_save)
-    
+        if validCollection
+          @model.set('contact_infos_attributes', contactsAtributtes)
+          @model.save {},
+            success: (model)->
+              step = model.get('register_step')
+              AlumNet.trigger "registration:experience", step
 
     getLayoutView: ->
-      AlumNet.request("registration:shared:layout")   
-    
-    getSidebarView: ->
-      AlumNet.request("registration:shared:sidebar", 2)      
+      AlumNet.request("registration:shared:layout")
 
-    getFormView: (profile) ->
+    getSidebarView: ->
+      AlumNet.request("registration:shared:sidebar", 2)
+
+    getFormView: (profile, collection) ->
       new Contact.Form
-        model: profile      
+        model: profile
+        collection: collection

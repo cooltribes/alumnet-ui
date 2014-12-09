@@ -27,6 +27,7 @@
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
+
     updateCountBadge: ->
       value = @model.get('unread_messages_count')
       @ui.messagesBadge.html(value)

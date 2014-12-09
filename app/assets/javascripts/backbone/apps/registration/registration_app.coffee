@@ -1,44 +1,40 @@
 @AlumNet.module 'RegistrationApp', (RegistrationApp, @AlumNet, Backbone, Marionette, $, _) ->
   RegistrationApp.Router = Marionette.AppRouter.extend
   # RegistrationApp.Router = AlumNet.Routers.Base.extend
+    #Temporal
     appRoutes:
-      "registration": "showRegister"
       "registration/profile": "createProfile"
       "registration/contact": "createContact"
-      "registration/experience": "createExperience"
-      "registration/skills": "createSkills"
-
-    onRoute: (name, path, args)  ->
-      AlumNet.trigger "registration:show"
-        
+      "registration/experience/:step": "createExperience"
+      # "registration/skills": "createSkills"
 
   API =
     showRegister: ->
       controller = new RegistrationApp.Account.Controller
       controller.showRegister()
 
-    createProfile: ->            
-      controller = new RegistrationApp.Profile.Controller      
+    createProfile: ->
+      controller = new RegistrationApp.Profile.Controller
       controller.showProfile()
 
-    createContact: ->            
-      controller = new RegistrationApp.Contact.Controller      
+    createContact: ->
+      controller = new RegistrationApp.Contact.Controller
       controller.showContact()
-      
-    createExperience: ->              
-      controller = new RegistrationApp.Experience.Controller      
-      controller.showExperience()
 
-    createSkills: ->            
-      controller = new RegistrationApp.Skills.Controller      
+    createExperience: (step) ->
+      controller = new RegistrationApp.Experience.Controller
+      controller.showExperience(step)
+
+    createSkills: ->
+      controller = new RegistrationApp.Skills.Controller
       controller.showSkills()
 
-    createApproval: ->            
-      controller = new RegistrationApp.Approval.Controller      
+    createApproval: ->
+      controller = new RegistrationApp.Approval.Controller
       controller.showApproval()
-   
 
-  AlumNet.on "registration:show",  ->    
+
+  AlumNet.on "registration:show",  ->
     API.showRegister()
 
   AlumNet.on "registration:profile",  ->
@@ -48,11 +44,10 @@
   AlumNet.on "registration:contact",  ->
     AlumNet.navigate("registration/contact")
     API.createContact()
-    
 
-  AlumNet.on "registration:experience",  ->
-    AlumNet.navigate("registration/experience")    
-    API.showRegister()
+  AlumNet.on "registration:experience", (step) ->
+    AlumNet.navigate("registration/experience")
+    API.createExperience(step)
 
   AlumNet.on "registration:skills",  ->
     AlumNet.navigate("registration/skills")
