@@ -1,0 +1,9 @@
+  <td><img src="<%= @avatar.medium %>">	</td>
+  <td><%= @name %></td>
+  <td>Location</td>
+  <td>Local Committee</td>
+  <td>01-02-2014</td>
+  <td>Male</td>
+  <td><% @getAge() %></td>
+  <td>Approved</td>
+  <td></td>

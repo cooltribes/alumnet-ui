@@ -13,7 +13,11 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
+      # @on "sync", ->
         @profile.fetch({async:false})
+
+      # console.log "Seinicializo"  
+      
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
@@ -27,6 +31,12 @@
       step == "approval"
       # true
 
+
+    isAlumnetAdmin: ->
+      @get "is_alumnet_admin"  
+
+    age: ->
+      @get("born")  
 
 
   class Entities.UserCollection extends Backbone.Collection
@@ -60,8 +70,9 @@
 
     getUserEntities: (querySearch)->
       initializeUsers() if Entities.users == undefined
+      # Entities.users.fetch()
       Entities.users.fetch
-        data: querySearch
+        data: querySearch        
       Entities.users
 
     getNewUser: ->

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default navTopSubBar__wrapper" role="navigation">
+	<div class="container-fluid">
+		<!-- Desktop and mobile header ON -->
+		<div class="navbar-header">
+			<button type="button" class="navTopSubBar__burguerMenu navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="ico-menu"></span>
+			</button>
+		</div>
+		<!-- Desktop and mobile header OFF -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li ><a href="#groups/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Groups</a></li>
+		</ul>
+		<!-- CREATE A NEW GROUP BTN -->
+		<a href="#groups/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a new group</a>
+		<!-- ./ -->
+		<ul class="nav navbar-nav navbar-right">
+			<li class="active"><a href="#groups" class="navTopSubBar__link" title="Discover groups"><span class="navTopSubBar__icon glyphicon glyphicon-search" ></span> Discover</a></li>
+			<li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li>
+
+		</ul>
+
+	</div>
+</div>
+</nav>

@@ -83,6 +83,9 @@
           else
             captureDates(model)
 
+          # console.log model.get("exp_type")  
+          console.log model.validate()  
+
         if validColection
           exps = _.pluck(@collection.models, 'attributes');
           profileModel.set 'experiences_attributes', exps
