@@ -15,6 +15,9 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       selected: (value)->
         if value == @contact_type
           'selected'
+      isReadOnly: ->
+        if @readOnly
+          'disabled'
 
     initialize: ->
       Backbone.Validation.bind this,

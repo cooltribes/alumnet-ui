@@ -15,7 +15,8 @@
 
       # initial contacts
       contacts = new AlumNet.Entities.ProfileContactsCollection [
-        new AlumNet.Entities.ProfileContact {contact_type: 0, info: user.get('email'), showDelete: false}
+        new AlumNet.Entities.ProfileContact
+          contact_type: 0, info: user.get('email'), showDelete: false, readOnly: true
         new AlumNet.Entities.ProfileContact {contact_type: 1 }
         new AlumNet.Entities.ProfileContact {contact_type: 2 }
         new AlumNet.Entities.ProfileContact {contact_type: 3 }

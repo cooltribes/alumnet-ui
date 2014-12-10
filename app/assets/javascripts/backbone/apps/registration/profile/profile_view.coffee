@@ -78,11 +78,13 @@
         data.name
 
     onRender: ->
+      limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
       @ui.datePickerBorn.Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
         default_position: 'below'
+        direction: ['1910-01-01', limit_date]
 
       @ui.selectBirthCities.select2
         placeholder: "Select a City"
