@@ -47,7 +47,6 @@
 			<label for="">End date</label>
 				<select name="end_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
-					<option value="0">Current</option>
 					<option value="1990">1990</option>
 					<option value="1991">1991</option>
 					<option value="1992">1992</option>
