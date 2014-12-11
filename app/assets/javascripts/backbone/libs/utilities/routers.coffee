@@ -26,3 +26,5 @@
           AlumNet.trigger 'registration:approval'
         else
           false
+
+  class Routers.Admin extends Marionette.AppRouter

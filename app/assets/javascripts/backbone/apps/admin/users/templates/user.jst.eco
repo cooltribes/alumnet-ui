@@ -2,8 +2,8 @@
   <td><%= @name %></td>
   <td>Location</td>
   <td>Local Committee</td>
-  <td>01-02-2014</td>
+  <td><%= @getJoinTime() %></td>
   <td>Male</td>
-  <td><% @getAge() %></td>
+  <td><%= @getAge() %></td>
   <td>Approved</td>
-  <td></td>
+  <td><button class="btn js-edit"> Edit </button></td>

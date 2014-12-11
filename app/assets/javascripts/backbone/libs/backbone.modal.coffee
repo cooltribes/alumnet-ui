@@ -48,7 +48,7 @@
 
       # blur links to prevent double keystroke events
       $(':focus').blur()
-      console.log options
+      
       @openAt(options) if @views?.length > 0 and @showViewOnRender
       @onRender?()
 
@@ -155,10 +155,15 @@
 
     buildView: (viewType, options) ->
       # returns a Backbone.View instance, a function or an object
+      path = @getTemplate(viewType)
+      throw "Template #{template} not found!" unless path
+      viewType = path
+
       return unless viewType
       options = options() if options and _.isFunction(options)
 
       if _.isFunction(viewType)
+        
         view = new viewType(options or @args[0])
 
         if view instanceof Backbone.View
@@ -166,6 +171,7 @@
         else
           return {el: viewType(options or @args[0])}
 
+      console.log viewType    
       return {view: viewType, el: viewType.$el}
 
     triggerView: (e) =>

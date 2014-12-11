@@ -8,51 +8,94 @@
         selector: '#modals-region' 
         regionClass: Backbone.Marionette.Modals
       filters: '#filters-region'  
-      main: '#main-region'  
+      main: '#table-region'  
 
 
   class Users.Modals extends Backbone.Modal
     template: 'admin/users/templates/modals'    
-    className: 'container-fluid'
-    viewContainer: '.my-container'
-
-    regions:
-      modals: 
-        selector: '#modals-region' 
-        regionClass: Backbone.Marionette.Modals
-      filters: '#filters-region'  
-      main: '#main-region'  
     
+    viewContainer: '.my-container'
+    cancelEl: '#close-btn'
+
+    # ui:
+    #   'btnEdit': '.js-edit'
+    # events:
+    #   'click @ui.btnEdit': 'showActions'
+    initialize: (options) ->
+      console.log "nelson"
+      console.log options
+      # status = 
+      #   id: 0
+      #   text: "Inactive"
+    
+    templateHelpers: () ->
+      model = @model
+      profile: ()->
+        console.log model
+        model.profile
+   
     views:
-      'click #step1':
-          view: 'admin/users/templates/modal_actions'
+      'click #actions':
+        view: 'admin/users/templates/modal_actions'
+        name: 'actions'
+        # model: @model
+        # onActive: 'setActive'
+      'click #editStatus':
+        view: 'admin/users/templates/modal_status'
+        name: 'user_status'
+        # model: @model
+        # profile: @model.profile
+        # onActive: 'setActive'
 
 
   class Users.UserView extends Marionette.ItemView
     template: 'admin/users/templates/user'
     tagName: "tr"
-    # ui:
-    #   'leaveGroupLink': '#js-leave-group'
-    # events:
-    #   'click #js-leave-group': 'clickedLeaveLink'
+    ui:
+      'btnEdit': '.js-edit'
+    events:
+      'click @ui.btnEdit': 'showActions'
 
-    initialize: ->
-      # @model.profile.fetch()
-        # console.log "vista init"
-        # console.log this
+    initialize: (options) ->
+      @modals = options.modals
 
-    templateHelpers: ->
-      getAge: ->      
-        "24"
-        # moment().diff(@profile.get("born"), 'years')
+    templateHelpers: () ->
+      model = @model      
+      getAge: ()->            
+        moment().diff(model.profile.get("born"), 'years')        
+      getJoinTime: ()->            
+        moment(model.profile.get("created_at")).fromNow()
+        
+
+    # serializeData: ()->    
+    #   data = {}
+
+    #   data = _.extend(data, @model.toJSON()) if @model
+    #   data = _.extend(data, {items: @collection.toJSON()}) if @collection
+    #   return data
 
 
-    # clickedLeaveLink: (e)->
-    #   e.stopPropagation()
-    #   e.preventDefault()
-    #   @trigger 'click:leave'
+    showActions: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      
+      modalsView = new Users.Modals
+        name: "actions"
+        model: @model
+
+      @modals.show(modalsView)
+
+      # @trigger 'click:leave'
+      #Modals view
+      
+      # layoutView.modals.show(modalsView)
 
   class Users.UsersTable extends Marionette.CompositeView
     template: 'admin/users/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    initialize: (options) ->
+      @modals = options.modals      
+
+    childViewOptions: (model, index) ->      
+      modals: @modals      
