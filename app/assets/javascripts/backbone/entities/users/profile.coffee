@@ -1,27 +1,25 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Profile extends Backbone.Model
-    # urlRoot: ->
-    #   # AlumNet.api_endpoint + '/users/' + @user_id + "/profile"
-    #   AlumNet.api_endpoint + '/users/'
-
-    # setUrl: ->
-    #   @url = AlumNet.api_endpoint + '/users/' + @get("user_id") + "/profile"
-
     validation:
       first_name:
         required: true
       last_name:
         required: true
-      born:
-        required: true
-      genre:
+      gender:
         required: true
         oneOf: ["F", "M"]
-      birth_country:
+      birth_country_id:
         required: true
-      birth_city:
+      birth_city_id:
         required: true
-      residence_country:
+      residence_country_id:
         required: true
-      residence_city:
+      residence_city_id:
         required: true
+      born: 'customValidation'
+
+    customValidation: (value, attr, computedState)->
+      if value == ''
+        Backbone.Validation.validators.required(value, attr, true, @)
+      else if moment().diff(moment(value), 'years') < 20
+        'you must have more than 20 years'

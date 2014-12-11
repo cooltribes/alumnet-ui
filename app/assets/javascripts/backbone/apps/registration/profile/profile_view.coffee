@@ -78,11 +78,13 @@
         data.name
 
     onRender: ->
+      limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
       @ui.datePickerBorn.Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
         default_position: 'below'
+        direction: ['1910-01-01', limit_date]
 
       @ui.selectBirthCities.select2
         placeholder: "Select a City"
@@ -102,6 +104,6 @@
         placeholder: "Select a Country"
         data: data
 
-      @ui.selectBirthCountries.select2('val', @model.get('birth_country'))
-      @ui.selectResidenceCountries.select2('val', @model.get('residence_country'))
+      @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))
+      @ui.selectResidenceCountries.select2('val', @model.get('residence_country_id'))
 
