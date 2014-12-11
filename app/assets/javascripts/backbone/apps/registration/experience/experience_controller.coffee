@@ -2,152 +2,54 @@
   class Experience.Controller
 
     showExperience: (step) ->
-      console.log step
       switch step
         when 'contact'
-          @experienceAiesec()
+          @processExperience(0)
         when 'experience_a'
-          @experienceAlumni()
+          @processExperience(1)
         when 'experience_b'
-          @experienceAcademic()
+          @processExperience(2)
         when 'experience_c'
-          @experiencePro()
+          @processExperience(3)
         else
           false
-          # alert 'not experience'
 
-
-    experienceAiesec: ->
+    processExperience: (exp_type)->
       # creating layout
-      formView = @showViews(0)
+      formView = @showViews(exp_type)
 
       formView.on 'form:submit', (profileModel)->
         #every model in the collection is valid
-        validColection = true
+        profileModel.set 'experiences_attributes', []
+        validCollection = true
+        experiencesAtributtes = []
 
-        _.forEach @collection.models, (model, index, list)->
-          if !(validity = model.isValid(true))
-            validColection = validity
+        @collection.each (model)->
+          if model.isValid(true)
+            model.formatDates()
+            experiencesAtributtes.push(model.attributes)
           else
-            captureDates(model)
+            validCollection = false
 
-        if validColection
-          exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set 'experiences_attributes', exps
+        if validCollection
+          profileModel.set 'experiences_attributes', experiencesAtributtes
           profileModel.save {},
             success: (model)->
               step = model.get('register_step')
-              AlumNet.trigger 'registration:experience', step
-
-
-    experienceAlumni: ->
-      # creating layout
-      formView = @showViews(1)
-
-      formView.on 'form:submit', (profileModel)->
-        #every model in the collection is valid
-        validColection = true
-
-        _.forEach @collection.models, (model, index, list)->
-          if !(validity = model.isValid(true))
-            validColection = validity
-          else
-            captureDates(model)
-
-
-        if validColection
-          exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set 'experiences_attributes', exps
-          profileModel.save {},
-            success: (model)->
-              step = model.get('register_step')
-              AlumNet.trigger 'registration:experience', step
+              if step == 'experience_d'
+                AlumNet.trigger 'registration:skills'
+              else
+                AlumNet.trigger 'registration:experience', step
 
       formView.on 'form:skip', (profileModel)->
+        profileModel.set 'experiences_attributes', []
         profileModel.save {},
           success: (model)->
             step = model.get('register_step')
-            AlumNet.trigger 'registration:experience', step
-
-    experienceAcademic: ->
-      # creating layout
-      formView = @showViews(2)
-
-      formView.on 'form:submit', (profileModel)->
-        #every model in the collection is valid
-        validColection = true
-
-        _.forEach @collection.models, (model, index, list)->
-          if !(validity = model.isValid(true))
-            validColection = validity
-          else
-            captureDates(model)
-
-          # console.log model.get("exp_type")  
-          console.log model.validate()  
-
-        if validColection
-          exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set 'experiences_attributes', exps
-          profileModel.save {},
-            success: (model)->
-              step = model.get('register_step')
-              AlumNet.trigger 'registration:experience', step
-
-      formView.on 'form:skip', (profileModel)->
-        profileModel.save {},
-          success: (model)->
-            step = model.get('register_step')
-            AlumNet.trigger 'registration:experience', step
-
-    experiencePro: ->
-      # creating layout
-      formView = @showViews(3)
-
-      formView.on 'form:submit', (profileModel)->
-        #every model in the collection is valid
-        validColection = true
-
-        _.forEach @collection.models, (model, index, list)->
-          if !(validity = model.isValid(true))
-            validColection = validity
-          else
-            captureDates(model)
-
-        if validColection
-          exps = _.pluck(@collection.models, 'attributes');
-          profileModel.set 'experiences_attributes', exps
-          profileModel.save {},
-            success: (model)->
+            if step == 'experience_d'
               AlumNet.trigger 'registration:skills'
-
-      formView.on 'form:skip', (profileModel)->
-        profileModel.save {},
-          success: (model)->
-            AlumNet.trigger 'registration:skills'
-
-    captureDates = (model) ->
-      day = 31
-      month = model.get('start_month')
-      year = model.get('start_year')
-
-      if month == '1'
-        day = 1
-      else if month == ''
-        month = 1
-
-      model.set 'start_date', '#{year}-#{month}-#{day}'
-
-      day2 = 31
-      month2 = model.get('end_month')
-      year2 = model.get('end_year')
-      if month2 == '1'
-        day2 = 1
-      else if month2 == ''
-        month2 = 1
-
-      model.set 'end_date', '#{year2}-#{month2}-#{day2}'
-
+            else
+              AlumNet.trigger 'registration:experience', step
 
     showViews: (exp_type) ->
 
@@ -156,25 +58,16 @@
 
       # sub-views
       layoutView.side_region.show(@getSidebarView())
-
       user = AlumNet.current_user
-
       profile = user.profile
-
       experiences = new AlumNet.Entities.ExperienceCollection [
-          {
-            first: true
-            exp_type: exp_type
-          },
+        first: true
+        exp_type: exp_type
       ]
 
       #get the view according to exp_type 1:alumni
       formView = @getFormView(experiences, profile, exp_type)
-
       layoutView.form_region.show(formView)
-
-      # AlumNet.execute('render:groups:submenu')
-
       formView
 
     getLayoutView: ->
