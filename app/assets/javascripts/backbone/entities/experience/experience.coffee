@@ -21,7 +21,8 @@
       # end_year:
       #   required: true
       description:
-        required: true
+        required: (value, attr, computedState) ->
+          @get("exp_type") == 0 || @get("exp_type") == 1
       country_id:
         required: true
       city_id:

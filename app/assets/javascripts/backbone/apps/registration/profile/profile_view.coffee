@@ -104,6 +104,6 @@
         placeholder: "Select a Country"
         data: data
 
-      @ui.selectBirthCountries.select2('val', @model.get('birth_country'))
-      @ui.selectResidenceCountries.select2('val', @model.get('residence_country'))
+      @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))
+      @ui.selectResidenceCountries.select2('val', @model.get('residence_country_id'))
 

@@ -8,13 +8,13 @@
       gender:
         required: true
         oneOf: ["F", "M"]
-      birth_country:
+      birth_country_id:
         required: true
-      birth_city:
+      birth_city_id:
         required: true
-      residence_country:
+      residence_country_id:
         required: true
-      residence_city:
+      residence_city_id:
         required: true
       born: 'customValidation'
 
