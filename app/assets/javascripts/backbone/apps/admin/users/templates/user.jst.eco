@@ -6,4 +6,4 @@
   <td>Male</td>
   <td><%= @getAge() %></td>
   <td>Approved</td>
-  <td class="tableAdmin__actions"><button class="js-edit tableAdmin__actions"> <span class="icon-entypo-cog"></span> </button></td>
+  <td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>
