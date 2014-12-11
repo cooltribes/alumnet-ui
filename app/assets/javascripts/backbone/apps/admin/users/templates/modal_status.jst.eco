@@ -1,0 +1,14 @@
+<div class="bbm-modal__section">
+  <h2>Update user status</h2>
+  <p>
+  	<select name="start_year" class="form-control input-lg ">
+      <!-- <option value="<% #@status.id %>"><% #@status.text %></option> -->
+      <option value="0">Inactive</option>
+      <option value="1">Active</option>      
+  	</select>
+  </p>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="bbm-button" id="actions">Go back</a>
+  <a href="#" class="bbm-button">Save</a>
+</div>

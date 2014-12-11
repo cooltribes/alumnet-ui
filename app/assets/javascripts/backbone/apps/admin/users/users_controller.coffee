@@ -2,6 +2,8 @@
   class Users.Controller
     manageUsers: ->
 
+      AlumNet.execute('render:admin:submenu')
+
       layoutView = new Users.Layout
 
       AlumNet.mainRegion.show(layoutView)
@@ -10,22 +12,17 @@
       users = AlumNet.request("user:entities", {})      
 
       #Bring all the profile fields for each user at the moment of the fetch
+
+
       users.on "add", (model) ->        
-        model.profile.fetch()
+        # model.profile.fetch()
+        model.profile.fetch
+          async: false    
 
-
-      usersView = new Users.UsersTable
-        collection: users
-
-      layoutView.main.show(usersView)
-
-      #Modals view
-      modalsView = new Users.Modals
+      users.on "sync", () ->                
+        usersView = new Users.UsersTable
+          collection: users
+          modals: layoutView.modals
+                  
+        layoutView.main.show(usersView)
       
-      layoutView.modals.show(modalsView)
-
-
-      # usersView.on 'childview:click:leave', (childView)->
-      #   membership = AlumNet.request("membership:destroy", childView.model)
-      #   membership.on 'destroy:success', ->
-      #     console.log "Destroy Ok"

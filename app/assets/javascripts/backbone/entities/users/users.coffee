@@ -13,10 +13,7 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-      # @on "sync", ->
         @profile.fetch({async:false})
-
-      # console.log "Seinicializo"  
       
 
     currentUserCanPost: ->
@@ -28,12 +25,12 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval"
-      # true
-
+      step == "approval" || true
 
     isAlumnetAdmin: ->
-      @get "is_alumnet_admin"  
+      @get "is_alumnet_admin"
+      # console.log this
+      # true 
 
     age: ->
       @get("born")  
