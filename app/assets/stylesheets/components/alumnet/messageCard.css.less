@@ -11,11 +11,15 @@ DESCRIPTION: message dashboard that includes 1 column for a list of messages and
 .messageCard{
 		background-color: @white;
 		padding: 10px 20px;
+		cursor: pointer;
 		border-right: 1px solid @gray;
 		border-left: 1px solid @gray;
 		border-bottom: none;
 		border-top: 1px solid @gray;
 		overflow: auto;
+		&:hover{
+			background-color: lighten(@light-gray, 5%);
+		}
 		&--active{
 			background-color: @blue;
 			color:@white;	

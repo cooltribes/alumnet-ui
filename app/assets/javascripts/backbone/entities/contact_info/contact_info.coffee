@@ -3,6 +3,7 @@
 
     defaults:
       showDelete: true
+      readOnly: false
 
     validation:
       contact_type:

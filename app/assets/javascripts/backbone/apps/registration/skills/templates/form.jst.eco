@@ -3,15 +3,16 @@
 	<div class="col-md-7">
 		<div class="form-group">
 			<label class="control-label" for="registerCoutry">Language</label>
-			<select name="language_id" class="form-control input-lg">
-				
-			</select>
+			<div class="formANet__select">
+				<select name="language_id" class="form-control input-lg">
+					
+				</select>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-4 handles-container">
 		<!--  The div that is used as the slider container  -->
 		<label class="control-label margin_bottom_small" for="slider">Level</label>
-
 		<div id="slider" style="margin-top:0;"></div>
 		
 		<!--  The div that is used to display the slider value  -->

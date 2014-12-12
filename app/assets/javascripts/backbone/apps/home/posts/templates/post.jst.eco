@@ -23,8 +23,7 @@
     <!--  OFF -->
   </div>
   <div class="homeCard__commentsContainer comments-container"></div>
-    <% if @currentUserCanPost: %>
-
+  <% if @currentUserCanPost: %>
   <form class="homeCard__commentForm clearfix form">
     <div class="homeCard__commentForm__avatar">
       <img src="<%= @user.avatar.thumb %>" alt="" width="40" height="40" alt="<%= @user.name %>" class="img-circle">
@@ -35,5 +34,5 @@
       </div>
     </div>
   </form>
-    <% end %>
+  <% end %>
 </div>

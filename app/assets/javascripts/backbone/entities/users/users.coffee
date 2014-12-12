@@ -27,6 +27,7 @@
       step = @profile.get "register_step"
       step == "approval" || true
 
+
     isAlumnetAdmin: ->
       @get "is_alumnet_admin"
       # console.log this

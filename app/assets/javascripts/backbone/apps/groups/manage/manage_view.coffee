@@ -1,6 +1,7 @@
 @AlumNet.module 'GroupsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
   class Manage.GroupView extends Marionette.ItemView
     template: 'groups/manage/templates/group'
+    className: 'col-md-6'
     ui:
       'leaveGroupLink': '#js-leave-group'
     events:

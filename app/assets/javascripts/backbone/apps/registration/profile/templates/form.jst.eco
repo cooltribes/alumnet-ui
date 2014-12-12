@@ -1,5 +1,3 @@
-
-
 <form class="formANet form" role="form">
   <h1>Profile</h1>
   <!-- First row ON -->
@@ -12,43 +10,37 @@
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <% end %>
         <label class="control-label" for="profilePicture">Choose your avatar</label>
-        <input type="file" id="profile-avatar" name="avatar" accept="image/*">
+        <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
       </div>
     </div>
-
     <div class="col-md-6">
-
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
         <input type="text" value="<%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
-
       <div class="form-group has-feedback">
         <label class="control-label" for="inputLastName">Last name</label>
         <input type="text" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
-
       <div class="form-group has-feedback col-md-6">
         <label class="control-label" for="inputBorn">Date of Birth</label>
         <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
         <span class="help-block"></span>
       </div>
-
       <div class="form-group has-feedback col-md-6">
-        <label class="control-label" for="inputBorn">Genrer</label>
-        <select name="genrer" class="form-control input-lg ">
-          <option value="">Genre</option>
+        <label class="control-label" for="inputBorn">Gender</label>
+        <select name="gender" class="form-control input-lg ">
+          <option value="">Gender</option>
           <option value="F">F</option>
           <option value="M">M</option>
         </select>
         <span class="help-block"></span>
       </div>
-
     </div>
   </div>
   <!-- First row OFF -->
@@ -58,15 +50,14 @@
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Country of Origin</label>
-        <input id="js-birth-countries" type="hidden" name="birth_country" style="width: 100%">
+        <input id="js-birth-countries" type="hidden" name="birth_country_id" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
-
       <div class="form-group">
         <label class="control-label" for="inputName">City of Origin</label>
-        <input id="js-birth-cities" type="hidden" name="birth_city" style="width: 100%">
+        <input id="js-birth-cities" type="hidden" name="birth_city_id" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -78,14 +69,14 @@
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">Country of Residence</label>
-        <input id="js-residence-countries" type="hidden" name="residence_country" style="width: 100%">
+        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="control-label" for="inputName">City of Residence</label>
-        <input id="js-residence-cities" type="hidden" name="residence_city" style="width: 100%">
+        <input id="js-residence-cities" type="hidden" name="residence_city_id" style="width: 100%">
         <span class="help-block"></span>
       </div>
     </div>
@@ -93,10 +84,9 @@
   <!-- Residence OFF-->
   <hr>
   <!-- Buttons -->
-
   <div class="form-group text-right">
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
-    <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
-  </div>
+        <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
 
+  </div>
 </form>
