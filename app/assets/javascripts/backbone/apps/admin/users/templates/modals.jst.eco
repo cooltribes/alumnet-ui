@@ -1,5 +1,5 @@
 <div class="bbm-modal__topbar">  
-  <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %> <a href="#" class="bbm-button" id="close-btn">close</a></h3>
+  <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %> <a href="#" class="bbm-button pull-right" id="close-btn">close</a></h3>
 </div>
 <div class="my-container">
 	

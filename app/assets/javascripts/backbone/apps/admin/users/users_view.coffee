@@ -11,41 +11,65 @@
       main: '#table-region'  
 
 
-  class Users.Modals extends Backbone.Modal
-    template: 'admin/users/templates/modals'    
-    
-    viewContainer: '.my-container'
-    cancelEl: '#close-btn'
+  #----Modal principal con las acciones
+  class Users.ModalActions extends Backbone.Modal
+    template: 'admin/users/templates/modal_actions'    
 
-    # ui:
-    #   'btnEdit': '.js-edit'
-    # events:
-    #   'click @ui.btnEdit': 'showActions'
+    cancelEl: '#close-btn'
+    submitEl: "#save-status"
+
+    events:
+      'click #editStatus': 'openStatus'
+      
     initialize: (options) ->
-      console.log "nelson"
-      console.log options
-      # status = 
-      #   id: 0
-      #   text: "Inactive"
+      @modals = options.modals
+      
+    openStatus: (e) ->
+      e.preventDefault();
+      statusView = new Users.ModalStatus
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView);
+        
+
     
     templateHelpers: () ->
       model = @model
       profile: ()->
         console.log model
         model.profile
-   
-    views:
-      'click #actions':
-        view: 'admin/users/templates/modal_actions'
-        name: 'actions'
-        # model: @model
-        # onActive: 'setActive'
-      'click #editStatus':
-        view: 'admin/users/templates/modal_status'
-        name: 'user_status'
-        # model: @model
-        # profile: @model.profile
-        # onActive: 'setActive'
+
+
+  class Users.ModalStatus extends Backbone.Modal
+    template: 'admin/users/templates/modal_status'    
+    
+    viewContainer: '.my-container'
+    cancelEl: '#close-btn'
+    submitEl: "#save-status"
+    
+
+
+
+    templateHelpers: () ->
+      model = @model
+      profile: ()->
+        console.log model
+        model.profile
+
+
+  class Users.ModalPlan extends Backbone.Modal
+    template: 'admin/users/templates/modal_plan'    
+    
+    viewContainer: '.my-container'
+    cancelEl: '#close-btn'
+    submitEl: "#save-status"
+    
+    templateHelpers: () ->
+      model = @model
+      profile: ()->
+        console.log model
+        model.profile
 
 
   class Users.UserView extends Marionette.ItemView
@@ -64,8 +88,7 @@
       getAge: ()->            
         moment().diff(model.profile.get("born"), 'years')        
       getJoinTime: ()->            
-        moment(model.profile.get("created_at")).fromNow()
-        
+        moment(model.profile.get("created_at")).fromNow()        
 
     # serializeData: ()->    
     #   data = {}
@@ -79,9 +102,9 @@
       e.stopPropagation()
       e.preventDefault()
       
-      modalsView = new Users.Modals
-        name: "actions"
+      modalsView = new Users.ModalActions        
         model: @model
+        modals: @modals
 
       @modals.show(modalsView)
 
