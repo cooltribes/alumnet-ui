@@ -1,8 +1,15 @@
 <div class="bbm-modal__section">
   <p>
-    <a href="#" id="editPremium">Edit premium access</a>
+    <a href="#" id="editPremium" title="Edit premium access" class="fontSize--md">Edit premium access</a>
+    <br/>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore 
   </p>
+  <br/>
   <p>
-    <a href="#" id="editStatus">Edit user status</a>
+    <a href="#" id="editStatus" title="Edit user status" class="fontSize--md">Edit user status</a>
+     <br/>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore 
   </p>
 </div>
