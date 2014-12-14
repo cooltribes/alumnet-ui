@@ -1,13 +1,11 @@
+<div class="form-group has-feedback">
+	<label class="control-label">Position</label>
+	<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
+	<span class="formANet__input__icon icon-entypo-briefcase form-control-feedback" aria-hidden="true"></span>
+	<span class="help-block"></span>
+</div>
 <div class="row">
-	<div  class="col-md-6">
-		<div class="form-group has-feedback">
-			<label class="control-label">Position</label>
-			<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
-			<span class="formANet__input__icon icon-entypo-briefcase form-control-feedback" aria-hidden="true"></span>
-			<span class="help-block"></span>
-		</div>
-	</div>
-	<div class="col-md-3">
+	<div class="col-md-6">
 		<div class="form-group has-feedback">
 			<label for="">Start Date</label>
 			
@@ -44,7 +42,7 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-6">
 		<div class="form-group has-feedback">
 			<label for="">End date</label>
 			
@@ -108,11 +106,12 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="checkbox">
-		<label>
-			<input name="internship" type="checkbox"> This was an AIESEC internship
-		</label>
-	</div>
+	
+</div>
+<div class="checkbox">
+	<label>
+		<input name="internship" type="checkbox"> This was an AIESEC internship
+	</label>
 </div>
 <% if !@first: %>
 <button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>
