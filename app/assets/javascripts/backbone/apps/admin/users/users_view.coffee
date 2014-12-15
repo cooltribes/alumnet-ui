@@ -2,7 +2,7 @@
   
   class Users.Layout extends Marionette.LayoutView
     template: 'admin/users/templates/layout'    
-    className: 'container-fluid'
+    className: 'container'
     regions:
       modals: 
         selector: '#modals-region' 
