@@ -2,12 +2,20 @@
   class Menu.Controller
     show: ->
       current_user = AlumNet.current_user
+
       menuLayout = new Menu.MenuBar
         model: current_user
 
-      current_user.messages.fetch()
-      messagesList = new Menu.MessagesView
-        collection: current_user.messages
+      if current_user.isActive()
+        current_user.messages.fetch()
+        messagesList = new Menu.MessagesView
+          collection: current_user.messages
 
-      AlumNet.headerRegion.show(menuLayout)
-      menuLayout.messagesBox.show(messagesList)
+        AlumNet.headerRegion.show(menuLayout)
+        menuLayout.messagesBox.show(messagesList)
+
+      else
+        menuLayout = new Menu.MenuBar
+          model: current_user
+        AlumNet.headerRegion.show(menuLayout)
+

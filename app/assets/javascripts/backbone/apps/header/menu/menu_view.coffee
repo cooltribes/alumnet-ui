@@ -16,8 +16,17 @@
     initialize: ->
       @model.on('change:unread_messages_count', @updateCountBadge, @)
 
+    getTemplate: ->
+      if @model.isActive()
+        if @model.isAlumnetAdmin()
+          'header/menu/templates/admin_layout'
+        else
+          'header/menu/templates/regular_layout'
+      else
+        'header/menu/templates/registration_layout'
+
     className: 'ng-scope'
-    template: 'header/menu/templates/header_layout'
+    # template: 'header/menu/templates/header_layout'
     regions:
       messagesBox: '#js-menu-messages-box'
     events:
@@ -37,15 +46,8 @@
         @ui.messagesBadge.hide()
 
     menuMessageClicked: (e)->
-      self = this
       @model.set("unread_messages_count", 0)
-      # unless @flag
-      #   @model.messages.fetch
-      #     success: ->
-      #       self.flag = true
-      #       messagesList = new Menu.MessagesView
-      #         collection: self.model.messages
-      #       self.messagesBox.show(messagesList)
+
     onRender: ->
       if @model.get("unread_messages_count") > 0
         @ui.messagesBadge.show()

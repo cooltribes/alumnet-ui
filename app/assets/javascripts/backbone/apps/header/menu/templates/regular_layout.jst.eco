@@ -120,11 +120,6 @@
           </a>
           <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-            <% #if @isAlumnetAdmin: %>
-            <% if true: %>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users">Admin users</a></li>
-            <% end %>
-
             <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
             <li role="presentation">
               <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)</a>
