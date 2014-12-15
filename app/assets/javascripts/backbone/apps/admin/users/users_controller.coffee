@@ -9,20 +9,29 @@
       AlumNet.mainRegion.show(layoutView)
 
       # current_user = AlumNet.current_user
-      users = AlumNet.request("user:entities", {})      
+      users = AlumNet.request("admin:user:entities", {})      
+
+      usersView = new Users.UsersTable
+        collection: users
+        modals: layoutView.modals
+                
+      layoutView.main.show(usersView)
+
+      filtersView = new Users.Filters        
+                
+      layoutView.filters.show(filtersView)
+
 
       #Bring all the profile fields for each user at the moment of the fetch
+      # users.on "add", (model) ->        
+      #   # model.profile.fetch()
+      #   model.profile.fetch
+      #     async: false    
 
-
-      users.on "add", (model) ->        
-        # model.profile.fetch()
-        model.profile.fetch
-          async: false    
-
-      users.on "sync", () ->                
-        usersView = new Users.UsersTable
-          collection: users
-          modals: layoutView.modals
+      # users.on "sync", () ->                
+      #   usersView = new Users.UsersTable
+      #     collection: users
+      #     modals: layoutView.modals
                   
-        layoutView.main.show(usersView)
+      #   layoutView.main.show(usersView)
       

@@ -27,6 +27,7 @@
       step = @profile.get "register_step"
       step == "approval" #|| true
 
+
     isAlumnetAdmin: ->
       @get "is_alumnet_admin"
       # console.log this
@@ -46,6 +47,9 @@
   ### Other functions and utils###
   initializeUsers = ->
     Entities.users = new Entities.UserCollection
+
+  initializeUsersList = ->    
+    Entities.allUsers = new Entities.UserCollection      
 
   API =
     getCurrentUserToken:  ->
@@ -71,6 +75,14 @@
       Entities.users.fetch
         data: querySearch        
       Entities.users
+
+    #List of all users for administration
+    getUsersList: (querySearch)->
+      initializeUsersList() if Entities.allUsers == undefined      
+      Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
+      Entities.allUsers.fetch
+        data: querySearch        
+      Entities.allUsers
 
     getNewUser: ->
       Entities.user = new Entities.User
@@ -105,6 +117,9 @@
 
   AlumNet.reqres.setHandler 'user:entities', (querySearch)->
     API.getUserEntities(querySearch)
+  
+  AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
+    API.getUsersList(querySearch)
 
   AlumNet.reqres.setHandler 'user:find', (id)->
     API.findUser(id)
