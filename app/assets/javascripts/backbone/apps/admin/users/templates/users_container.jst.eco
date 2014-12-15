@@ -1,4 +1,4 @@
-<table class="table" id="users-table">
+<table class="table tableAdmin" id="users-table">
 	<thead>
 		<tr>
 		  <th colspan="2">Name</th>

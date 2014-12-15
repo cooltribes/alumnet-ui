@@ -39,7 +39,7 @@
   color: #312D3A; }
 
 .bbm-modal__section {
-  padding: 0 30px;
+  padding: 0 30px 20px;
   margin-top: 0px;
   font-size: 16px;
   line-height: 26px;
@@ -52,7 +52,8 @@
       padding: 0;
       margin-bottom: 0; }
   .bbm-modal__section a {
-    color: #FF643C; }
+    color: #2099d0;
+    font-weight: 300; }
   .bbm-modal__section h3 {
     margin: 0;
     font-size: 20px;
