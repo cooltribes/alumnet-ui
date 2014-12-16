@@ -4,16 +4,24 @@
 
 <div class="bbm-modal__section">
   <h2>Update user status</h2>
+  <% if @isApproved: %>
   <p>
-  	<select name="start_year" class="form-control input-lg ">
-      <!-- <option value="<% #@status.id %>"><% #@status.text %></option> -->
-      <option value="0">Inactive</option>
-      <option value="1">Active</option>      
-  	</select>
+    "NOOOO se puede"
+  </p>
+  <% end %>
+
+  <p>
+    <form>
+      <select name="status" class="form-control input-lg ">
+        <!-- <option value="<% #@status.id %>"><% #@status.text %></option> -->
+        <option value="0">Inactive</option>
+        <option value="1">Active</option>      
+      </select>      
+    </form>
   </p>
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="bbm-button" id="actions">Go back</a>
+  <a href="#" class="bbm-button" id="goBack">Go back</a>
   <a href="#" class="bbm-button" id="save-status">Save</a>
 </div>

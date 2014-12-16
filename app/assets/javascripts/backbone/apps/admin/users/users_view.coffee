@@ -26,6 +26,7 @@
       
     openStatus: (e) ->
       e.preventDefault();
+
       statusView = new Users.ModalStatus
         model: @model
         modals: @modals
@@ -33,29 +34,56 @@
       @modals.show(statusView);
         
 
-    
-    templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
-
-
   class Users.ModalStatus extends Backbone.Modal
-    template: 'admin/users/templates/modal_status'    
-    
-    viewContainer: '.my-container'
-    cancelEl: '#close-btn'
+    template: 'admin/users/templates/modal_status'        
+
+    cancelEl: '#close-btn, #goBack'
     submitEl: "#save-status"
-    
+
+    events:
+      'click #save-status': 'saveStatus'
+
+    # binding:
+    #   "[name=status]":
+    #     observe: 'status.value'
+    #     getVal: ($el, val, op)->
+    #       console.log $el
+    #       console.log val
+    #       console.log op
 
 
+    #Validations
+    # beforeSubmit: (ee) ->
+     
+    # beforeSubmit: () ->
+    #   data = Backbone.Syphon.serialize(this)
+    #   valid = data.status
+
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      
+      if data.status == "1"        
+        id = @model.id
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
+
+        Backbone.ajax
+          url: url
+          type: "PUT"
+          success: (data) =>
+            #Update the model and re-render the itemView
+            @model.fetch()
+            # window.nelson = @model
+            # console.log window.model
+
+          complete: (p, s) ->
+            # console.log p
+            # console.log s   
 
     templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
+      isApproved: () ->
+        console.log this        
+        true
+      
 
 
   class Users.ModalPlan extends Backbone.Modal
@@ -65,11 +93,6 @@
     cancelEl: '#close-btn'
     submitEl: "#save-status"
     
-    templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
 
 
   class Users.UserView extends Marionette.ItemView
@@ -83,19 +106,17 @@
     initialize: (options) ->
       @modals = options.modals
 
+
     templateHelpers: () ->
-      model = @model      
-      getAge: ()->            
-        moment().diff(model.profile.get("born"), 'years')        
+             
+      getAge: ()->                  
+        moment().diff(@profileData.born, 'years')        
+                
       getJoinTime: ()->            
-        moment(model.profile.get("created_at")).fromNow()        
-
-    # serializeData: ()->    
-    #   data = {}
-
-    #   data = _.extend(data, @model.toJSON()) if @model
-    #   data = _.extend(data, {items: @collection.toJSON()}) if @collection
-    #   return data
+        moment(@created_at).fromNow()   
+        
+      getOriginLocation: ()->            
+        "#{@profileData.birth_city.text} - #{@profileData.birth_country.text}"
 
 
     showActions: (e)->
@@ -108,10 +129,6 @@
 
       @modals.show(modalsView)
 
-      # @trigger 'click:leave'
-      #Modals view
-      
-      # layoutView.modals.show(modalsView)
 
   class Users.UsersTable extends Marionette.CompositeView
     template: 'admin/users/templates/users_container'

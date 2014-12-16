@@ -1,9 +1,9 @@
   <td><img src="<%= @avatar.medium %>">	</td>
-  <td><%= @name %></td>
-  <td>Location</td>
-  <td>Local Committee</td>
+  <td><%= @name %></td>  
+  <td><%= @getOriginLocation() %></td>
+  <td><%= @profileData.local_committee.name %></td>
   <td><%= @getJoinTime() %></td>
-  <td>Male</td>
+  <td><%= @profileData.gender %></td>
   <td><%= @getAge() %></td>
-  <td>Approved</td>
+  <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
   <td><button class="btn js-edit"> Edit </button></td>
