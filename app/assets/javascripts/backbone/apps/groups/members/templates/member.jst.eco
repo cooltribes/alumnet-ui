@@ -1,15 +1,34 @@
 <div class="userCard">
 	<div class=" row">
 		<div class="userCard__avatar col-md-3 ">
-		<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="80" height="80" >
-
+			<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="80" height="80" >
 		</div>
 		<div class="col-md-7">
 			<h4 class="userCard__name">
-				<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
+			<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
 			</h4>
 			<p class="member-position text-small">Local Comitee President</p>
 		</div>
+		<!-- Actions -->
+		<div class="col-md-2 userCard__GroupAdminActions">
+			<ul class="list-unstyled">
+				<li>
+					<a href="#" title="">
+						<span class="userCard__GroupAdminActions__text">Change role</span> <span class="icon-entypo-key"></span> 
+					</a>					</li>
+					<li>
+						<a href="#" title="">
+							<span class="userCard__GroupAdminActions__text">Make admin</span><span class="icon-entypo-star"></span> 
+						</a>
+					</li>
+					<li>
+						<a href="#" title="">
 
+						<span class="userCard__GroupAdminActions__text">	Remove</span>
+							<span class="icon-entypo-cancel"></span> 
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-</div>
