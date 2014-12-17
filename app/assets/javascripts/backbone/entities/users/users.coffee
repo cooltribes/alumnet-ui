@@ -14,7 +14,7 @@
 
       @on "change", ->
         @profile.fetch({async:false})
-      
+
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
@@ -29,12 +29,14 @@
 
 
     isAlumnetAdmin: ->
-      @get "is_alumnet_admin"
-      # console.log this
-      # true 
+      @get "is_alumnet_admin" || @get "is_system_admin"
+
+    isActive: ->
+      status = @get "status"
+      if status.value == 1 then true else false
 
     age: ->
-      @get("born")  
+      @get("born")
 
 
   class Entities.UserCollection extends Backbone.Collection
@@ -48,8 +50,8 @@
   initializeUsers = ->
     Entities.users = new Entities.UserCollection
 
-  initializeUsersList = ->    
-    Entities.allUsers = new Entities.UserCollection      
+  initializeUsersList = ->
+    Entities.allUsers = new Entities.UserCollection
 
   API =
     getCurrentUserToken:  ->
@@ -73,15 +75,15 @@
       initializeUsers() if Entities.users == undefined
       # Entities.users.fetch()
       Entities.users.fetch
-        data: querySearch        
+        data: querySearch
       Entities.users
 
     #List of all users for administration
     getUsersList: (querySearch)->
-      initializeUsersList() if Entities.allUsers == undefined      
+      initializeUsersList() if Entities.allUsers == undefined
       Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
       Entities.allUsers.fetch
-        data: querySearch        
+        data: querySearch
       Entities.allUsers
 
     getNewUser: ->
@@ -117,7 +119,7 @@
 
   AlumNet.reqres.setHandler 'user:entities', (querySearch)->
     API.getUserEntities(querySearch)
-  
+
   AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
     API.getUsersList(querySearch)
 

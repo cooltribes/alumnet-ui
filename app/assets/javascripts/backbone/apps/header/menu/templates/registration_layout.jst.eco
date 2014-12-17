@@ -1,0 +1,15 @@
+<header id="header" class="navTopBar navbar  navbar-fixed-top">
+  <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
+    <div class="navbar-header col-md-2">
+      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="ico-menu"></span>
+      </button>
+      <a class="navTopBar__left__brand navbar-brand " href="/">
+        <img src="assets/general/alumnet_logo.png" alt="AlumNet">
+      </a>
+    </div>
+    <nav class="navTopBar__left collapse navbar-collapse ">
+    </nav>
+  </div>
+</header>
+<div id="submenu-region"></div>
