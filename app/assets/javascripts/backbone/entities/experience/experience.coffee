@@ -16,20 +16,16 @@
     validation:
       name:
         required: true
-      # start_year:
-      #   required: true
-      # end_year:
-      #   required: true
       description:
         required: (value, attr, computedState) ->
           @get("exp_type") == 0 || @get("exp_type") == 1
       country_id:
         required: true
-      city_id:
-        required: true
-      committee_id:
-        required: (value, attr, computedState) ->
-          @get("exp_type") == 0 || @get("exp_type") == 1
+      # city_id:
+      #   required: true
+      # committee_id:
+      #   required: (value, attr, computedState) ->
+      #     @get("exp_type") == 0 || @get("exp_type") == 1
       organization_name:
         required: (value, attr, computedState) ->
           @get("exp_type") == 2 || @get("exp_type") == 3
