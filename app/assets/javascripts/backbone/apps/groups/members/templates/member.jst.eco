@@ -1,8 +1,7 @@
 <div class="userCard">
-	<div class=" row">
+	<div class="row">
 		<div class="userCard__avatar col-md-3 ">
 		<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="80" height="80" >
-
 		</div>
 		<div class="col-md-7">
 			<h4 class="userCard__name">
@@ -10,6 +9,11 @@
 			</h4>
 			<p class="member-position text-small">Local Comitee President</p>
 		</div>
-
+		<% if @userCanChangeMemberType and @userIsNotCurrentUser: %>
+			<div class="js-admin-icons">
+				<a href="#" class="js-remove-member">Remove</a>
+				<a href="#" class="js-change-type">Role</a>
+			</div>
+		<% end %>
 	</div>
 </div>

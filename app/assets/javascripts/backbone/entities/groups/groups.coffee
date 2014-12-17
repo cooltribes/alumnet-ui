@@ -38,6 +38,13 @@
       permissions = @get('permissions')
       if permissions then true else false
 
+    userCanChangeMemberType: ->
+      permissions = @get('permissions')
+      if permissions
+        permissions.can_change_member_type
+      else
+        false
+
     validation:
       name:
         required: true

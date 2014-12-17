@@ -5,11 +5,46 @@
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
 
+    initialize: (options)->
+      @group = options.group
+
+    templateHelpers: ->
+      userCanChangeMemberType: @group.userCanChangeMemberType()
+      userIsNotCurrentUser: not @memberIsCurrentUser()
+
+    memberIsCurrentUser: ->
+      user = @model.get 'user'
+      current_user = AlumNet.current_user
+      user.id == current_user.id
+
+    ui:
+      'removeMemberLink': '.js-remove-member'
+      'changeTypeLink': '.js-change-type'
+
+    events:
+      'click @ui.removeMemberLink': 'removeClicked'
+      'click @ui.changeTypeLink': 'changeClicked'
+
+    removeClicked: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        membership = AlumNet.request("membership:destroy", @model)
+
+    changeClicked: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      alert "change"
+
   class Members.MembersView extends Marionette.CompositeView
     template: 'groups/members/templates/members_container'
     childView: Members.Member
     className: 'container-fluid'
     childViewContainer: '.members-list'
+
+    childViewOptions: ->
+      group: @model
 
     initialize: ->
       self = @
