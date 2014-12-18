@@ -9,6 +9,11 @@
       </a>
     </div>
     <nav class="navTopBar__left collapse navbar-collapse ">
+      <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+        <li>
+          <a role="menuitem" tabindex="-1" href="sign_out"> Exit </a>
+        </li>
+        </ul>
     </nav>
   </div>
 </header>

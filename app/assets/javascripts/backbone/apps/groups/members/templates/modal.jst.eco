@@ -1,0 +1,71 @@
+<!-- TODO: find the way todo this in modal -->
+<% checked = (value)-> if value then "checked" else "" %>
+<!--  -->
+<div class="userCard">
+  <div class="row">
+    <div class="userCard__avatar col-md-3 ">
+    <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+    </div>
+    <div class="col-md-7">
+      <h4 class="userCard__name">
+        <a href="#"><%= @user.name %></a>
+      </h4>
+      <p class="member-position text-small">Local Comitee President</p>
+    </div>
+  </div>
+</div>
+<div class="bbm-modal__section">
+  <form class="row formANet form">
+    <div class="checkbox">
+      <div class="row">
+        <div class="col-md-12">
+          <label>
+            <input type="checkbox" name="invite_users" value="" <%=checked(@invite_users)%>>
+            Invite Users
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>
+            <input type="checkbox" name="moderate_members"
+              value="" <%=checked(@moderate_members)%>>
+            Moderate Members
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>
+            <input type="checkbox" name="edit_information"
+              value="" <%=checked(@edit_information)%>>
+            Edit Information
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>
+            <input type="checkbox" name="create_subgroups"
+              value="" <%=checked(@create_subgroups)%>>
+            Create SubGroups
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>
+            <input type="checkbox" name="change_member_type"
+              value="" <%=checked(@change_member_type)%>>
+            Change Member Rights
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
+  <a href="#" class="btn btn-primary js-modal-save" >Save User Rights</a>
+</div>

@@ -1,4 +1,18 @@
 @AlumNet.module 'GroupsApp.Members', (Members, @AlumNet, Backbone, Marionette, $, _) ->
+  class Members.Modal extends Backbone.Modal
+    template: 'groups/members/templates/modal'
+    cancelEl: '.js-modal-close'
+    events:
+      'click .js-modal-save': 'saveClicked'
+
+    saveClicked: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      modal = @
+      @model.set(data)
+      @model.save {},
+        success: ->
+          modal.destroy()
 
   class Members.Member extends Marionette.ItemView
     template: 'groups/members/templates/member'
@@ -35,7 +49,9 @@
     changeClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
-      alert "change"
+      modal = new Members.Modal
+        model: @model
+      $('.js-modal-container').html(modal.render().el)
 
   class Members.MembersView extends Marionette.CompositeView
     template: 'groups/members/templates/members_container'

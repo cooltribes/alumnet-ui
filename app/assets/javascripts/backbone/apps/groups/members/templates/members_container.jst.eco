@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		<div class="js-modal-container"></div>
 		<div class="searchBar">
 			<h2>Search for members </h2>
 			<form id="search-form">

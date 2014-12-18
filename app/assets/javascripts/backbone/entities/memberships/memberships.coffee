@@ -1,5 +1,7 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Membership extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/groups/' + @get('group_id') + '/memberships'
 
   class Entities.MembershipsCollection extends Backbone.Collection
     model: Entities.Membership
