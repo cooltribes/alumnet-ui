@@ -43,22 +43,6 @@
     events:
       'click #save-status': 'saveStatus'
 
-    # binding:
-    #   "[name=status]":
-    #     observe: 'status.value'
-    #     getVal: ($el, val, op)->
-    #       console.log $el
-    #       console.log val
-    #       console.log op
-
-
-    #Validations
-    # beforeSubmit: (ee) ->
-     
-    # beforeSubmit: () ->
-    #   data = Backbone.Syphon.serialize(this)
-    #   valid = data.status
-
     submit: () ->
       data = Backbone.Syphon.serialize(this)
       
@@ -81,7 +65,7 @@
 
     templateHelpers: () ->
       isApproved: () ->
-        console.log this        
+        console.log "si va"      
         true
       
 

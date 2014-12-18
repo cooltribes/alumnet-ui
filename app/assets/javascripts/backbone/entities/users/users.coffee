@@ -34,10 +34,7 @@
     isActive: ->
       status = @get "status"
       if status.value == 1 then true else false
-
-    age: ->
-      @get("born")
-
+    
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
