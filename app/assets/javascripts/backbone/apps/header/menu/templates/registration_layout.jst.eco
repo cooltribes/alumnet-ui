@@ -9,6 +9,15 @@
       </a>
     </div>
     <nav class="navTopBar__left collapse navbar-collapse ">
+    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+        <!-- Right menu top -->
+        <li>          
+          <a href="sign_out" class="navTopBar__right__item dropdown-toggle " title="Notifications">
+            Sign Out            
+          </a>
+         
+        </li>
+      </ul>
     </nav>
   </div>
 </header>

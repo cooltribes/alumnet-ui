@@ -10,7 +10,6 @@
       controller = new AdminApp.Users.Controller
       controller.manageUsers()
     
-   
 
   AlumNet.on "admin:users", ->
     AlumNet.navigate("admin/users")
