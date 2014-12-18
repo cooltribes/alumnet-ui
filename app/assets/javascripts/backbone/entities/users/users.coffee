@@ -25,7 +25,7 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval" #|| true
+      step == "approval" || true
 
 
     isAlumnetAdmin: ->

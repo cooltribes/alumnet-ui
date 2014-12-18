@@ -15,8 +15,6 @@
           </div>
         </div>
         <div class=" col-md-5">
-
-
           <% if @errors && @errors.any? %>
           <div class="homeAlumNet__alert text-danger text-right alert alert-danger">
             <% @errors.full_messages.each do |msg| %>
@@ -37,18 +35,15 @@
             <%= submit_tag "Login", class: "btn btn-primary" %>
             <div class="clearfix">
               <div class="pull-left">
-<!--                 <div class="checkbox ">
+                <!--                 <div class="checkbox ">
                   <label>
                     <input type="checkbox" name="remember"> Remember me
                   </label>
-
-
                 </div>
--->
-
+                -->
               </div>
               <%= link_to "forgotten your password? »", new_password_reset_path,
-                class: "pull-right" %>
+              class: "pull-right" %>
             </div>
             <% end %>
           </div>
@@ -70,7 +65,7 @@
           <% if @errors && @errors.any? %>
           <div class="alert alert-danger ">
             <% @errors.full_messages.each do |msg| %>
-              <%= msg %><br>
+            <%= msg %><br>
             <% end %>
           </div>
           <% end %>
@@ -82,7 +77,6 @@
           <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
           <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
           <% end %>
-
         </div>
       </div>
     </div>
