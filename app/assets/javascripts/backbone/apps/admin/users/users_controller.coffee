@@ -17,9 +17,17 @@
                 
       layoutView.main.show(usersView)
 
+
+      searchCollection = new AlumNet.Entities.Search [
+        first: true
+
+      ]
       filtersView = new Users.Filters        
+        collection: searchCollection
                 
       layoutView.filters.show(filtersView)
+
+
 
 
       #Bring all the profile fields for each user at the moment of the fetch

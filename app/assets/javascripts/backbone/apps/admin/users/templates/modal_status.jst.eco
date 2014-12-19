@@ -4,13 +4,7 @@
 
 <div class="bbm-modal__section">
   <h2>Update user status</h2>
-  <% if @isApproved: %>
-  <p>
-    "NOOOO se puede"
-  </p>
-  <% end %>
-
-  <p>
+    <p>
     <form>
       <select name="status" class="form-control input-lg ">
         <!-- <option value="<% #@status.id %>"><% #@status.text %></option> -->

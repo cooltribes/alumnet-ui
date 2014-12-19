@@ -10,11 +10,10 @@
       controller = new AdminApp.Users.Controller
       controller.manageUsers()
     
-
-  AlumNet.on "admin:users", ->
-    AlumNet.navigate("admin/users")
-    API.manageUsers()
-
   AlumNet.addInitializer ->
     new AdminApp.Router
       controller: API
+      
+  AlumNet.on "admin:users", ->
+    AlumNet.navigate("admin/users")
+    API.manageUsers()

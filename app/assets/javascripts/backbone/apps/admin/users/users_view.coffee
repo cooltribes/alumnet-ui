@@ -63,11 +63,15 @@
             # console.log p
             # console.log s   
 
-    templateHelpers: () ->
-      isApproved: () ->
-        console.log "si va"      
-        true
-      
+    # templateHelpers: () ->
+      # isApproved: () ->
+      # isApproved: () ->
+      #   console.log "si va"      
+      #   "yeh"
+    
+    # serializeData: (model)->
+    #   console.log "hagdg"
+    #   console.log model  
 
 
   class Users.ModalPlan extends Backbone.Modal
@@ -125,13 +129,29 @@
       modals: @modals 
 
 
+
+  ###Filters views###
+  class Users.Filter extends Marionette.CompositeView
+    template: 'admin/users/templates/filter'
+    tagName: "form"
+
   class Users.Filters extends Marionette.CompositeView
     template: 'admin/users/templates/filters_container'
     
-    # childView: Users.UserView
-    # childViewContainer: "#users-table tbody"
+    childView: Users.Filter
+    childViewContainer: "#js-filters"
+
+    ui:
+      'btnAdd': '.js-addRow'      
+
+    events:
+      "click @ui.btnAdd": "addRow"
+
+
+    addRow: (e)->
+      newFilter = new AlumNet.Entities.Filter        
+      @collection.add(newFilter)  
+
     # initialize: (options) ->
     #   @modals = options.modals      
-
-    # childViewOptions: (model, index) ->      
-    #   modals: @modals      
+    
