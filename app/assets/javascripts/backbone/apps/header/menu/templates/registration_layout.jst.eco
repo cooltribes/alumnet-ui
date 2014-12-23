@@ -12,7 +12,7 @@
     <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
         <!-- Right menu top -->
         <li>          
-          <a href="sign_out" class="navTopBar__right__item dropdown-toggle " title="Notifications">
+          <a href="sign_out" class="navTopBar__registerLogoutLink btn btn-logout navbar-btn" title="Notifications">
             Sign Out            
           </a>
          
