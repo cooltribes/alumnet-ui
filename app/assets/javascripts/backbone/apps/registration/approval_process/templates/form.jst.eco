@@ -1,5 +1,5 @@
 <form class="formANet form" role="form">
-	<h2>Aproval process</h2>
+	<h2 class="h2">Aproval process</h2>
 	<p class="lead">Lorem Ipsum Dolor set explaining why there is an aproval process</p>
 	<hr>
 	<div class="row">
