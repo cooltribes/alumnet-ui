@@ -122,6 +122,7 @@
     template: 'admin/users/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    
     initialize: (options) ->
       @modals = options.modals      
 
@@ -134,6 +135,19 @@
   class Users.Filter extends Marionette.CompositeView
     template: 'admin/users/templates/filter'
     tagName: "form"
+
+    ui:
+      'btnRmv': '.js-rmvRow'
+      'field': 'input[name=field]'
+
+    events:
+      "click @ui.btnRmv": "removeRow"
+      "change @ui.field": "changeField"
+
+
+
+    removeRow: (e)->
+      @model.destroy()
 
   class Users.Filters extends Marionette.CompositeView
     template: 'admin/users/templates/filters_container'

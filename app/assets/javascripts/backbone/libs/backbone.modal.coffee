@@ -30,7 +30,7 @@
       Marionette.View::constructor.apply(this, @args)
       # Backbone.View::constructor.apply(this, @args)
 
-      console.log this
+      # console.log this
       # get all options
       @setUIElements()
 
