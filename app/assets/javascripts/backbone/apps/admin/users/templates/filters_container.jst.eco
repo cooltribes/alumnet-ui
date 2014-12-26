@@ -4,13 +4,11 @@
   
 </div>
 
-<div class="row search-control">
   <button class="btn js-addRow" type="button">Add new filter +</button>
-</div>
 
-<div class="row search-control">
-  
-  <button class="btn btn-primary js-search" type="button">Search</button>
+<div class="margin_bottom search-control">
+  <hr>
+  <button class="btn btn-primary btn-lg js-search" type="button">Search</button>
 
 </div>
 

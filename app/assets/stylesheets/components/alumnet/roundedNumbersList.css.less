@@ -7,39 +7,162 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 
 @import 'conf/conf.css.less';
 
-.roundedNumbersList{
-	color: @dim-gray;
-	list-style: none;
-	&__item{
-		&--active{
-			color:@blue;
-			.roundedNumbersList__number{
-				border-color: transparent;
-				color:@white;
-				background-color: @blue;
-			}
-		}
-		&--inactive{
-			color:@gray;
-			.roundedNumbersList__number{
-				border-color: @gray;
-				color:@gray;
-				
-			}
-		}
-	}
-	
-	&__number{
-		font-size: 2em;
-		border: 2px solid @dim-gray;
-		height: 2em;
-		width: 2em;
-		line-height: 1.7em;
-		border-radius:2em;
-		text-align: center; 
-		display: inline-block;
-		margin-bottom: .2em;
-		color: @dim-gray;
-		margin-right: .2em;
-	}
-} 
+.roundedNumbersList
+{
+    margin-top: 20px;
+    padding: 0;
+
+    list-style: none;
+
+    color: @dim-gray;
+    &__item
+    {
+        float: left;
+        overflow: hidden;
+
+        width: 30px;
+        height: 30px;
+        margin: 0 10px 10px 0;
+        &--active
+        {
+            float: left;
+
+            margin: 0 10px 10px 0;
+
+            color: @blue;
+            .roundedNumbersList__number
+            {
+                color: @white;
+                border-color: transparent;
+                background-color: @blue;
+            }
+        }
+        &--inactive
+        {
+            float: left;
+            overflow: hidden;
+
+            width: 30px;
+            height: 30px;
+            margin: 0 10px 10px 0;
+
+            color: @gray;
+            .roundedNumbersList__number
+            {
+                color: @gray;
+                border-color: @gray;
+            }
+        }
+    }
+    &__number
+    {
+        font-size: 1em;
+        line-height: 1.7em;
+
+        display: inline-block;
+
+        width: 2em;
+        height: 2em;
+        margin-right: .2em;
+        margin-bottom: .2em;
+
+        text-align: center;
+
+        color: @dim-gray;
+        border: 2px solid @dim-gray;
+        border-radius: 2em;
+    }
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min)
+{
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min)
+{
+	.roundedNumbersList
+    {
+        &__item
+        {
+            float: none;
+            overflow: auto;
+
+            width: auto;
+            height: auto;
+            &--active
+            {
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+            &--inactive
+            {
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+        }
+        &__number
+        {
+            font-size: 2em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+     
+        }
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min)
+{
+    .roundedNumbersList
+    {
+        &__item
+        {
+            float: none;
+            overflow: auto;
+
+            width: auto;
+            height: auto;
+            &--active
+            {
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+            &--inactive
+            {
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+        }
+        &__number
+        {
+            font-size: 2em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+     
+        }
+    }
+}

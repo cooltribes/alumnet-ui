@@ -35,7 +35,7 @@
       </div>
       <div class="groupAbout__box margin_bottom">
         <h3>
-        Created: <%= moment(@created_at).format('D MMM YYYY') %> by <%= @creator.name %>
+        Created: <%= moment(@created_at).format('D MMM YYYY') %> <br/>by <%= @creator.name %>
         </h3>
       </div>
     </div>

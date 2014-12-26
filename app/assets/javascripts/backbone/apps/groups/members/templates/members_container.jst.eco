@@ -27,6 +27,11 @@
 					Friends(0)
 				</a>
 			</li>
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<a href="#" title="Friends" class="sortingMenu__item__link" id="">
+					Member request(0)
+				</a>
+			</li>
 		</ul>
 
 	</div>
@@ -49,6 +54,6 @@
 			<li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
 		</ul>
 	</nav> -->
-	<a href="#groups/<%= @id %>/posts" class="btn btn-primary" title="See the group">See the group <span class="icon-entypo-right-open"></span>
+	<a href="#groups/<%= @id %>/posts" class="btn btn-primary" title="See the group">	See the group <span class="icon-entypo-right-open"></span>
 	</a>
 </div>

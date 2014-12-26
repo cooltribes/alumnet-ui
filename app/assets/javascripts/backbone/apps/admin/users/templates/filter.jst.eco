@@ -1,20 +1,20 @@
-<div class="row">
+<div class="row margin_bottom">
   <div class="col-md-3 ">
     <div class="form-group">
-      <label class="control-label" for="registerCity">Filter by</label>    
-      <select name="field" class="form-control">
+      <label class="control-label" for="registerCity">Filter by</label>
+      <select name="field" class="form-control  input-lg">
         <option value="">Select field</option>
         <option value="name">Name</option>
         <option value="joined">Join date</option>
-        <option value="gender">Gender</option>        
+        <option value="gender">Gender</option>
       </select>
-      <span class="help-block"></span>      
+      <span class="help-block"></span>
     </div>
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
       <label class="control-label" for="registerCity">Comparator</label>
-      <select name="field" class="form-control">
+      <select name="field" class="form-control  input-lg">
         <option value="">Select comparator</option>
         <option value="=">=</option>
         <option value=">">></option>
@@ -26,17 +26,17 @@
       <span class="help-block"></span>
     </div>
   </div>
-  <div class="col-md-2 ">
+  <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="registerLocalcomitee">Value</label>
-      <input type="text" name="value" id="value" style="width: 100%">
+      <input type="text" name="value" id="value" class="form-control input-lg">
       <span class="help-block"></span>
     </div>
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
       <label class="control-label" for="registerCity">Operator</label>
-      <select name="field" class="form-control">
+      <select name="field" class="form-control input-lg">
         <option value="">Select operator</option>
         <option value="and">and</option>
         <option value="or">or</option>
@@ -45,7 +45,7 @@
     </div>
   </div>
   <% if !@first: %>
-  <div class="col-md-2 col-md-offset-1">
+  <div class="col-md-2 margin_top_medium">
     <div class="form-group">
       <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       
