@@ -13,12 +13,12 @@
 		<div class="col-md-2 userCard__GroupAdminActions">
 			<ul class="list-unstyled">
 				<li>
-					<a href="#" title="">
+					<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole">
 						<span class="userCard__GroupAdminActions__text">Change role</span> <span class="icon-entypo-key"></span> 
 					</a>					</li>
 					<li>
-						<a href="#" title="">
-							<span class="userCard__GroupAdminActions__text">Make admin</span><span class="icon-entypo-star"></span> 
+						<a href="#" title="Make admin" data-toggle="modal" data-target="#upgradeMembership" >
+							<span class="userCard__GroupAdminActions__text">Upgrade plan</span><span class="icon-entypo-star"></span> 
 						</a>
 					</li>
 					<li>
