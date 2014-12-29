@@ -13,7 +13,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    margin-bottom: 2em;
    padding: 10px;
    text-align: center;
-   
+
    &__avatar{
     text-align: center;
    }
@@ -36,13 +36,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    &__GroupAdminActions{
     position: relative;
 
-    &__text{
-      display: none;
-    }
-    a:hover &__text{
-      display: inline;
     
-    }
     li:nth-child(1) a{
         top: 5px;
       }
@@ -55,18 +49,18 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         &:hover{ background-color: @danger-color;}
       }
     a{
-      width: 20px;
-      height: 26px;
-      padding: 3px;
-      position: absolute;
+      width: auto;
+      
+      padding: 10px;
+      position: inherit;
       right: 30px;
       color: @gray;
-      text-align: right;
-      overflow: hidden;
+      text-align: center;
+      overflow: auto;
       display: block;
       transition: all 300ms ease 0s;
       &:hover{
-        width: 120px;
+        width: auto;
         background-color: @blue;
         color: @white;
         text-decoration: none;
@@ -74,6 +68,29 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       
     }
    }
+   &__approveBox{
+    background-color: lighten(@blue, 42%);
+    padding-bottom: 10px;
+    h5{
+      font-size: 22px;
+      font-weight: 300;
+      margin-bottom:10px; 
+    }
+    &__ok{
+      margin-top:8px;
+      &--success{
+        color: @green;
+      } 
+    }
+    &__actions{
+      margin-top:3px;
+      padding-left: 0;
+    }
+    .row{
+      margin-top: 10px;
+    }
+   }
+
 }
 
 
@@ -96,13 +113,42 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         overflow: hidden;
         text-align: left;
         padding: 10px 0px 10px 10px;
+
+        &--diffHeight{
+            height: auto;
+        }
+
         &__avatar{
             text-align: right;
-       }
+         }
         &__actions{
             height: 100px;
             margin-top: -10px;
             padding: 40px 0 0;
+         }
+        &__GroupAdminActions{
+        position: relative;
+          a{
+            width: 20px;
+            height: 26px;
+            padding: 3px;
+            position: absolute;
+            overflow: hidden;
+            text-align: center;
+            right: 30px;
+            &:hover{
+              width: 120px;
+              background-color: @blue;
+              color: @white;
+            }
+          }
+          &__text{
+            display: none;
+          }
+          a:hover &__text{
+            display: inline;
+          
+          }
        }
     }
 
@@ -111,18 +157,48 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
     .userCard{
+
         height: 100px;
         overflow: hidden;
         text-align: left;
-        padding: 10px 0px 10px 10px;
+        padding: 10px 0px 0 10px;
     
+        &--diffHeight{
+            height: auto;
+        }
+
         &__avatar{
             text-align: right;
-       }
-       &__actions{
-            height: 100px;
-            margin-top: -10px;
-            padding: 40px 0 0;
+        }
+        &__actions{
+              height: 100px;
+              margin-top: -10px;
+              padding: 40px 0 0;
+        }
+
+       &__GroupAdminActions{
+        position: relative;
+          a{
+            width: 20px;
+            height: 26px;
+            padding: 3px;
+            position: absolute;
+            overflow: hidden;
+            text-align: center;
+            right: 30px;
+            &:hover{
+              width: 120px;
+              background-color: @blue;
+              color: @white;
+            }
+          }
+          &__text{
+            display: none;
+          }
+          a:hover &__text{
+            display: inline;
+          
+          }
        }
    }
  }
