@@ -1,9 +1,9 @@
 <div class="row margin_bottom">
   <div class="col-md-3 ">
     <div class="form-group">
-      <label class="control-label" for="registerCity">Filter by</label>
+      <label class="control-label">Filter by</label>
       <select name="field" class="form-control  input-lg">
-        <option value="">Select field</option>
+        <option value="name">Select field</option>
         <option value="name">Name</option>
         <option value="joined">Join date</option>
         <option value="gender">Gender</option>
@@ -13,9 +13,9 @@
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
-      <label class="control-label" for="registerCity">Comparator</label>
-      <select name="field" class="form-control  input-lg">
-        <option value="">Select comparator</option>
+      <label class="control-label">Comparator</label>
+      <select name="comparator" class="form-control  input-lg">
+        <option value=">">Select comparator</option>
         <option value="=">=</option>
         <option value=">">></option>
         <option value="<"><</option>
@@ -35,9 +35,9 @@
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
-      <label class="control-label" for="registerCity">Operator</label>
-      <select name="field" class="form-control input-lg">
-        <option value="">Select operator</option>
+      <label class="control-label">Operator</label>
+      <select name="operator" class="form-control input-lg">
+        <option value="and">Select operator</option>
         <option value="and">and</option>
         <option value="or">or</option>
       </select>
