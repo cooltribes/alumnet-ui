@@ -8,7 +8,7 @@
       gender:[
         {
           required: true
-          msg: "Country of origin is required"          
+          msg: "Gender is required"          
         },
         {
           oneOf: ["F", "M"]

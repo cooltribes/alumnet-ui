@@ -42,8 +42,9 @@
               <option value="M">M</option>
             </select>
           </div>
+          <span class="help-block"></span>
         </div>
-        <span class="help-block"></span>
+        
       </div>
     </div>
   </div>
