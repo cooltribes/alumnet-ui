@@ -5,9 +5,16 @@
         required: true
       last_name:
         required: true
-      gender:
-        required: true
-        oneOf: ["F", "M"]
+      gender:[
+        {
+          required: true
+          msg: "Country of origin is required"          
+        },
+        {
+          oneOf: ["F", "M"]
+        }
+      ]
+        
       birth_country_id:[
         {
           required: true
