@@ -5,9 +5,33 @@
       field: ""
       comparator: ""
       value: ""
-      operator: 1
-   
+      operator: ""
     
+    validation:
+      field:[
+        {
+          required: true
+          # msg: "Field is required"          
+        }
+      ]
+      comparator:[
+        {
+          required: true
+          # msg: "Field is required"          
+        }
+      ]
+      value:[
+        {
+          required: true
+          # msg: "Field is required"          
+        }
+      ]
+      operator:[
+        {
+          required: true
+          # msg: "Field is required"          
+        }
+      ]
 
   class Entities.Search extends Backbone.Collection
     model: Entities.Filter

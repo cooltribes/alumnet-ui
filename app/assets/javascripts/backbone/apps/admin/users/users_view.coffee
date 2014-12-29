@@ -122,6 +122,7 @@
     template: 'admin/users/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    
     initialize: (options) ->
       @modals = options.modals      
 
@@ -131,9 +132,34 @@
 
 
   ###Filters views###
-  class Users.Filter extends Marionette.CompositeView
+  class Users.Filter extends Marionette.ItemView
     template: 'admin/users/templates/filter'
     tagName: "form"
+
+    ui:
+      'btnRmv': '.js-rmvRow'
+      'field': 'input[name=field]'
+
+    events:
+      "click @ui.btnRmv": "removeRow"
+      "change @ui.field": "changeField"
+
+    initialize: ->
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->          
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')  
+
+    removeRow: (e)->
+      @model.destroy()
+
 
   class Users.Filters extends Marionette.CompositeView
     template: 'admin/users/templates/filters_container'
@@ -143,14 +169,26 @@
 
     ui:
       'btnAdd': '.js-addRow'      
+      'btnSearch': '.js-search'      
 
     events:
       "click @ui.btnAdd": "addRow"
+      "click @ui.btnSearch": "search"
 
 
     addRow: (e)->
       newFilter = new AlumNet.Entities.Filter        
       @collection.add(newFilter)  
+
+    search: (e)->
+      e.preventDefault()      
+      @children.each (itemView)->
+        data = Backbone.Syphon.serialize itemView
+        itemView.model.set data        
+      @trigger('filters:search')
+
+
+
 
     # initialize: (options) ->
     #   @modals = options.modals      
