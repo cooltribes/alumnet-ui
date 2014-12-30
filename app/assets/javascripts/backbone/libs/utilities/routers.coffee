@@ -28,3 +28,9 @@
           false
 
   class Routers.Admin extends Marionette.AppRouter
+    before: (route)->
+      current_user = AlumNet.current_user
+      unless current_user.isAlumnetAdmin()
+        return false
+        
+      true

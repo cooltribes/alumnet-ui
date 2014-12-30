@@ -110,19 +110,35 @@
           <!-- MESSAGES OFF -->
         </li>
         <li>
-          <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMember" title="Become a member">
-            Become a member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
-          </a>
+
+
+  <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
+          <!-- When membership is about to expire activate from here ...
+          <div class="navTopBar__right__item--membershipExpires">
+            <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
+        ... to here and the closing </div> before the </a>-->
+            <span class=" navTopBar__right__item--becomeAMember">
+            Become a member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle"></span>
+            
+          <!-- </div> -->
+        </a>
+
         </li>
         <li>
           <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
             <span class="icon-entypo-down-open"></span>
           </a>
           <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
+                        
+            <% if @isAlumnetAdmin: %>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users" id="js-changeHeader">Admin Section</a></li>
+            <% end %>
+
             <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
             <li role="presentation">
-              <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)</a>
+              <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)
+              </a>
             </li>
           </ul>
         </li>

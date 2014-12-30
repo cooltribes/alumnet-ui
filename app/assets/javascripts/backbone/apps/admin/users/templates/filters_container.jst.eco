@@ -1,5 +1,16 @@
-Aqui van los filtros, y tal vez el titulo.
+<h1>Users Management</h1>
 
+<div id="js-filters">
+  
+</div>
+
+  <button class="btn js-addRow" type="button">Add new filter +</button>
+
+<div class="margin_bottom search-control">
+  <hr>
+  <button class="btn btn-primary btn-lg js-search" type="button">Search</button>
+
+</div>
 
 
 

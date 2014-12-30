@@ -8,7 +8,17 @@
         <img src="assets/general/alumnet_logo.png" alt="AlumNet">
       </a>
     </div>
+    <p class="navTopBar__text">Register in AlumNet</p>
     <nav class="navTopBar__left collapse navbar-collapse ">
+    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+        <!-- Right menu top -->
+        <li>          
+          <a href="sign_out" class="navTopBar__registerLogoutLink btn btn-logout navbar-btn" title="Notifications">
+            Sign Out            
+          </a>
+         
+        </li>
+      </ul>
     </nav>
   </div>
 </header>

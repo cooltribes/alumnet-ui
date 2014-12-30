@@ -25,28 +25,32 @@
 </div>
 <!-- Friends List -->
 <div class="container-fluid ">
-	<div class="row sortingMenu">
+	<div class="row ">
 		
 		<div class="col-md-9">
-			<ul class="nav nav-pills">
+			<ul class="sortingMenu">
 				<li class="sortingMenu__item sortingMenu__item--lg">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="sortingMenu__item__link">Friends(30)
+					<a href="#" title="All" class="sortingMenu__item__link">Friends(#)
 					</a>
 				</li>
 				<li class="sortingMenu__item sortingMenu__item--lg">
-					<a href="#" title="Only Official" class="sortingMenu__item__link">Sent requests(25)
+					<a href="#" title="Sent requests" class="sortingMenu__item__link">Sent requests(#)
 					</a>
 				</li>
 				<li class="sortingMenu__item sortingMenu__item--lg">
-					<a href="#" title="Only Public" class="sortingMenu__item__link">Recieved requests(23)
+					<a href="#" title="Recieved requests" class="sortingMenu__item__link">Recieved requests(#)
+					</a>
+				</li>
+				<li class="sortingMenu__item sortingMenu__item--lg">
+					<a href="#friends/requests" title="Only Public" class="sortingMenu__item__link">Friends requests(#)
 					</a>
 				</li>
 			</ul>
 			
 		</div>
 		<div class="col-md-3 text-right">
-			<a href="#" title="+ import contacts" class="btn-primary-noBackground btn btn-lg btn-primary">+ import contacts</a>
+			<a href="#" title="+ import contacts" class="btn-primary-noBackground btn  btn-primary">+ import contacts</a>
 		</div>
 		
 	</div>

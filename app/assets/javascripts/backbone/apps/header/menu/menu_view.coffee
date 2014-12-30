@@ -18,10 +18,7 @@
 
     getTemplate: ->
       if @model.isActive()
-        if @model.isAlumnetAdmin()
-          'header/menu/templates/admin_layout'
-        else
-          'header/menu/templates/regular_layout'
+        'header/menu/templates/regular_layout'
       else
         'header/menu/templates/registration_layout'
 
@@ -29,13 +26,18 @@
     # template: 'header/menu/templates/header_layout'
     regions:
       messagesBox: '#js-menu-messages-box'
+    
     events:
       'click #js-menu-messages': 'menuMessageClicked'
+      'click @ui.changeHeader': 'changeHeader'      
+
     ui:
       'messagesBadge': '#js-messages-badge'
+      'changeHeader': '#js-changeHeader'
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
+      isAlumnetAdmin: @model.isAlumnetAdmin()
 
     updateCountBadge: ->
       value = @model.get('unread_messages_count')
@@ -54,3 +56,29 @@
       else
         @ui.messagesBadge.hide()
 
+    changeHeader: (e)->
+      # e.preventDefault()
+      # alert "Changing header to regular user"
+      AlumNet.execute('header:show:admin')
+
+
+
+  class Menu.AdminBar extends Marionette.LayoutView
+    template: 'header/menu/templates/admin_layout'   
+
+    className: 'ng-scope'
+    
+    ui:
+      'changeHeader': '#js-changeHeader'
+
+    events:
+      'click @ui.changeHeader': 'changeHeader'
+
+    templateHelpers: ->
+      first_name: @model.profile.get("first_name")
+      isAlumnetAdmin: @model.isAlumnetAdmin()
+    
+    changeHeader: (e)->
+      # e.preventDefault()
+      
+      AlumNet.execute('header:show:regular')

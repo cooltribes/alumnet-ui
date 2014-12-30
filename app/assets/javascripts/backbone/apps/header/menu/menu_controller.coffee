@@ -19,3 +19,15 @@
           model: current_user
         AlumNet.headerRegion.show(menuLayout)
 
+
+    showAdmin: ->
+      current_user = AlumNet.current_user
+      
+      if current_user.isAlumnetAdmin()      
+        menuLayout = new Menu.AdminBar
+          model: current_user
+        AlumNet.headerRegion.show(menuLayout)
+      
+
+      
+

@@ -81,7 +81,7 @@
 
       switch exp_type
         when 1
-          title = 'Experience in Alumni AIESEC'
+          title = 'Experience in AIESEC Alumni'
         when 2
           title = 'Academic Experience'
         when 3
