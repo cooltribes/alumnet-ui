@@ -58,6 +58,8 @@
       city_id:
         msg: 'City is required'
         required: true
+      join_process:
+        required: true
 
   class Entities.GroupCollection extends Backbone.Collection
     model: Entities.Group

@@ -1,17 +1,9 @@
-<style type="text/css"> 
-/* Temporary hack */
-
-.navTopBar__left, .navTopBar__right, .navTopSubBar{
-  display: none !important;
-  opacity: 0;
-}
-</style>
 <div class="row-fluid margin_top_large_minus">
     <div class="col-md-4" id="sidebar-region">
-        
+
     </div>
     <div class="col-md-6" id="form-region">
         <!-- Begin group container -->
-        
+
     </div>
 </div>

@@ -20,5 +20,8 @@
         body.on 'group:edit:group_type', (model, newValue) ->
           model.save({group_type: parseInt(newValue)})
 
+        body.on 'group:edit:join_process', (model, newValue) ->
+          model.save({join_process: parseInt(newValue)})
+
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

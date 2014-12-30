@@ -2,14 +2,34 @@
 
   class About.View extends Marionette.ItemView
     template: 'groups/about/templates/about'
+
     templateHelpers: ->
       canEditInformation: @model.canEditInformation()
+      joinProcessText: @joinProcessText()
     ui:
       'groupDescription':'#description'
       'groupType': '#group_type'
+      'joinProcess': '#join_process'
+
     events:
       'click a#js-edit-description': 'toggleEditGroupDescription'
       'click a#js-edit-group-type': 'toggleEditGroupType'
+      'click a#js-edit-join-process': 'toggleEditJoinProcess'
+      'click .js-attribute': 'attributeClicked'
+
+
+    joinProcessText: ->
+      switch @model.get 'join_process'
+        when 0
+          "All Members can invite"
+        when 1
+          "All Members can invite, but the admins approved"
+        when 2
+          "Only the admins can invite"
+        else
+          ""
+    attributeClicked: (e)->
+      e.preventDefault()
 
     toggleEditGroupDescription: (e)->
       e.stopPropagation()
@@ -20,6 +40,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.groupType.editable('toggle')
+
+    toggleEditJoinProcess: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.joinProcess.editable('toggle')
 
 
     onRender: ->
@@ -50,3 +75,20 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'group:edit:group_type', view.model, newValue
+
+      @ui.joinProcess.editable
+        type: 'select'
+        value: view.model.get('join_process')
+        pk: view.model.id
+        title: 'Enter the join process'
+        toggle: 'manual'
+        source: [
+          {value: 0, text: 'All Members can invite'}
+          {value: 1, text: 'All Members can invite, but the admins approved'}
+          {value: 2, text: 'Only the admins can invite'}
+        ]
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        success: (response, newValue)->
+          view.trigger 'group:edit:join_process', view.model, newValue
