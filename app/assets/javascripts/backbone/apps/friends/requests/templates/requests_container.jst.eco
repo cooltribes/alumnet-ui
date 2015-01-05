@@ -22,16 +22,24 @@
 <div class="container-fluid">
 	<div >
 		<ul class="sortingMenu" id="filter-link-container">
-			<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-				<a href="#" class="sortingMenu__item__link" id="js-requests-sent">Sent Request
-				</a>
-			</li>
-			<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-				<a href="#friends/requests"  class="sortingMenu__item__link sortingMenu__item__link--active	"title="Friends Requests">Friends Requests
-				</a>
-			</li>
-			
-		</ul>
+				
+				<li class="sortingMenu__item sortingMenu__item--lg">
+					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#friends" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Friends
+					</a>
+				</li>
+				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+					<a href="#" class="sortingMenu__item__link" id="js-requests-sent">
+						Sent Requests
+					</a>
+				</li>
+				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+					<a href="#"  class="sortingMenu__item__link" title="Friends Requests" id="js-requests-received">
+						Friends Requests
+					</a>
+				</li>
+				
+			</ul>
 	</div>
 	<hr class="no_margin_top">
 	<div class="row requests-list">

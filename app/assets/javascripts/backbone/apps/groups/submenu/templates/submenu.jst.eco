@@ -17,7 +17,7 @@
 			<!-- ./ -->
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#groups" class="navTopSubBar__link" title="Discover groups"><span class="navTopSubBar__icon glyphicon glyphicon-search" ></span> Discover</a></li>
-				<li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li>
+				<!-- <li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li> -->
 			</ul>
 		</div>
 	</div>
