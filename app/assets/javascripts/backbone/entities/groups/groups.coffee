@@ -8,31 +8,35 @@
       @posts.url = @urlRoot() + @id + '/posts'
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
-      @permissions = @get('permissions')
 
     canEditInformation: ->
-      if @permissions
-        @permissions.can_edit_information
+      permissions = @get('permissions')
+      if permissions
+        permissions.can_edit_information
       else
         false
 
     userCanInvite: ->
-      if @permissions
-        @permissions.can_invite_users
+      permissions = @get('permissions')
+      if permissions
+        permissions.can_invite_users
       else
         false
 
     userCanCreateSubGroup: ->
-      if @permissions
-        @permissions.can_create_subgroups
+      permissions = @get('permissions')
+      if permissions
+        permissions.can_create_subgroups
       else
         false
 
     userCanPost: ->
-      if @permissions then true else false
+      permissions = @get('permissions')
+      if permissions then true else false
 
     userCanComment: ->
-      if @permissions then true else false
+      permissions = @get('permissions')
+      if permissions then true else false
 
     validation:
       name:
@@ -86,10 +90,16 @@
       subgroup
 
     findGroup: (id)->
-      if Entities.groups == undefined
-        @findGroupOnApi(id)
-      else
-        @findGroupOnCollection(id)
+      group = @findGroupOnApi(id)
+      # initializeGroups() if Entities.groups == undefined
+      # group = Entities.groups.get(id)
+      # if group == undefined
+      # group
+
+      # if Entities.groups == undefined
+      #   @findGroupOnApi(id)
+      # else
+      #   @findGroupOnCollection(id)
 
     findGroupOnCollection: (id)->
       group = Entities.groups.get(id)
@@ -101,7 +111,7 @@
       group = new Entities.Group
         id: id
       group.fetch
-        async: false
+        # async: false
         error: (model, response, options) ->
           model.trigger('find:error', response, options)
         success: (model, response, options) ->
