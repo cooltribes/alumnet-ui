@@ -28,7 +28,7 @@
         <span class="help-block"></span>
       </div>
       <div class="row">
-        <div class="form-group has-feedback col-md-6">
+        <div class="form-group  col-md-6">
           <label class="control-label" for="inputBorn">Date of Birth</label>
           <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
           <span class="help-block"></span>

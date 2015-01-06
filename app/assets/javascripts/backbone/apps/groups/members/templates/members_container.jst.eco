@@ -1,284 +1,89 @@
-
-<!-- 
-
-------
-
-El siguiente bloque de cards está estático y será usado para la siguiente pantalla: https://drive.google.com/file/d/0B3ykC7Qev1XrSEJ4VWY2NE9xRkE/view?usp=sharing 
-
+<!-- ------
+El siguiente bloque de cards está estático y será usado para la siguiente pantalla: https://drive.google.com/file/d/0B3ykC7Qev1XrSEJ4VWY2NE9xRkE/view?usp=sharing
 Desde aqui
 -->
-<h2 class="margin_top">Members waiting for being accepted  </h2>
+<h2 class="margin_top">Temporary cards listing members waiting to be approved (we need a folder to put the HTML)  </h2>
 <hr class="no_margin_top">
 <div class="row">
 	
+	
 	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight">
+		<div class="userCard userCard--diffHeight user-info">
 			<div class=" row">
-				<div class="userCard__avatar col-md-3 ">
-					<img src="http://placehold.it/80" alt="username" class="img-circle" width="80" height="80" >
+				<div class="userCard__avatar  col-md-3 ">
+					<img src="http://placehold.it/80" alt="alt" class="img-circle">
 				</div>
-				<div class="col-md-8">
-					<h4 class="userCard__name">
-					<a href="#users/ID/posts">Morgan Freeman </a>
-					</h4>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> <strong>Current: USA, Los Angeles</strong><br/>
-					<span class="glyphicon glyphicon-briefcase small"></span> <strong>Current: Actor</strong> <br>
-					</p>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> LC: Venezuela, Caracas<br/>
-					<span class="glyphicon glyphicon-ok-sign small"></span> Joined AIESEC: 2011
-					</p>
+				<div class="col-md-9 ">
+					<h4 class="userCard__name">Name</h4>
+					<p class="member-position text-small">Local Comitee President</p>
 					
+					
+					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 				
 			</div>
-			<div class="row userCard__approveBox">
-				<div class="col-md-9 col-md-offset-3">
-					<h5>approves 1/3</h5>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok userCard__approveBox__ok--success ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7">
-						
-						<small>Approve by</small>
-						<br/>
-						<a href="#" title="Username">Bruce Willies</a>
-					</div>
-				</div>
-			</div>
 		</div>
+		
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight">
+		<div class="userCard userCard--diffHeight user-info">
 			<div class=" row">
-				<div class="userCard__avatar col-md-3 ">
-					<img src="http://placehold.it/80" alt="username" class="img-circle" width="80" height="80" >
+				<div class="userCard__avatar  col-md-3 ">
+					<img src="http://placehold.it/80" alt="alt" class="img-circle">
 				</div>
-				<div class="col-md-8">
-					<h4 class="userCard__name">
-					<a href="#users/ID/posts">Morgan Freeman </a>
-					</h4>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> <strong>Current: USA, Los Angeles</strong><br/>
-					<span class="glyphicon glyphicon-briefcase small"></span> <strong>Current: Actor</strong> <br>
-					</p>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> LC: Venezuela, Caracas<br/>
-					<span class="glyphicon glyphicon-ok-sign small"></span> Joined AIESEC: 2011
-					</p>
+				<div class="col-md-9 ">
+					<h4 class="userCard__name">Name</h4>
+					<p class="member-position text-small">Local Comitee President</p>
 					
+					
+					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 				
 			</div>
-			<div class="row userCard__approveBox">
-				<div class="col-md-9 col-md-offset-3">
-					<h5>approves 1/3</h5>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok userCard__approveBox__ok--success ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7">
-						
-						<small>Approve by</small>
-						<br/>
-						<a href="#" title="Username">Bruce Willies</a>
-					</div>
-				</div>
-			</div>
 		</div>
+		
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight">
+		<div class="userCard userCard--diffHeight user-info">
 			<div class=" row">
-				<div class="userCard__avatar col-md-3 ">
-					<img src="http://placehold.it/80" alt="username" class="img-circle" width="80" height="80" >
+				<div class="userCard__avatar  col-md-3 ">
+					<img src="http://placehold.it/80" alt="alt" class="img-circle">
 				</div>
-				<div class="col-md-8">
-					<h4 class="userCard__name">
-					<a href="#users/ID/posts">Morgan Freeman </a>
-					</h4>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> <strong>Current: USA, Los Angeles</strong><br/>
-					<span class="glyphicon glyphicon-briefcase small"></span> <strong>Current: Actor</strong> <br>
-					</p>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> LC: Venezuela, Caracas<br/>
-					<span class="glyphicon glyphicon-ok-sign small"></span> Joined AIESEC: 2011
-					</p>
+				<div class="col-md-9 ">
+					<h4 class="userCard__name">Name</h4>
+					<p class="member-position text-small">Local Comitee President</p>
 					
+					
+					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 				
 			</div>
-			<div class="row userCard__approveBox">
-				<div class="col-md-9 col-md-offset-3">
-					<h5>approves 1/3</h5>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok userCard__approveBox__ok--success ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7">
-						
-						<small>Approve by</small>
-						<br/>
-						<a href="#" title="Username">Bruce Willies</a>
-					</div>
-				</div>
-			</div>
 		</div>
+		
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight">
+		<div class="userCard userCard--diffHeight user-info">
 			<div class=" row">
-				<div class="userCard__avatar col-md-3 ">
-					<img src="http://placehold.it/80" alt="username" class="img-circle" width="80" height="80" >
+				<div class="userCard__avatar  col-md-3 ">
+					<img src="http://placehold.it/80" alt="alt" class="img-circle">
 				</div>
-				<div class="col-md-8">
-					<h4 class="userCard__name">
-					<a href="#users/ID/posts">Morgan Freeman </a>
-					</h4>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> <strong>Current: USA, Los Angeles</strong><br/>
-					<span class="glyphicon glyphicon-briefcase small"></span> <strong>Current: Actor</strong> <br>
-					</p>
-					<p>
-					<span class="glyphicon glyphicon-map-marker small"></span> LC: Venezuela, Caracas<br/>
-					<span class="glyphicon glyphicon-ok-sign small"></span> Joined AIESEC: 2011
-					</p>
+				<div class="col-md-9 ">
+					<h4 class="userCard__name">Name</h4>
+					<p class="member-position text-small">Local Comitee President</p>
 					
+					
+					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 				
 			</div>
-			<div class="row userCard__approveBox">
-				<div class="col-md-9 col-md-offset-3">
-					<h5>approves 1/3</h5>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7 userCard__approveBox__actions">
-						<button type="button" class="btn btn-default btn-default-noBackground">DECLINE</button>
-						<button type="button" class="btn btn-primary">APPROVE</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3 hidden-sm hidden-xs text-right userCard__approveBox__ok userCard__approveBox__ok--success ">
-						<span class=" glyphicon glyphicon-ok"></span>
-					</div>
-					<div class="col-md-2">
-						<img src="http://placehold.it/40" alt="avatar" class="img-circle" />
-					</div>
-					<div class="col-md-7">
-						
-						<small>Approve by</small>
-						<br/>
-						<a href="#" title="Username">Bruce Willies</a>
-					</div>
-				</div>
-			</div>
 		</div>
+		
 	</div>
+	
 	
 	
 </div>
@@ -329,10 +134,10 @@ Desde aqui
 </div>
 <div class="text-center margin_top">
 	<!-- <nav>
-												
-												<ul class="pagination">
-																						li>
-												</ul>
+													
+													<ul class="pagination">
+																								li>
+													</ul>
 	</nav> -->
 	<a href="#groups/<%= @id %>/posts" class="btn btn-primary" title="See the group">	See the group <span class="icon-entypo-right-open"></span>
 	</a>
