@@ -16,13 +16,6 @@
       else
         false
 
-    canEditInformation: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_edit_information
-      else
-        false
-
     userCanInvite: ->
       status = @get('membership_status')
       if status == "approved"
@@ -38,20 +31,9 @@
       else
         false
 
-    userCanCreateSubGroup: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_create_subgroups
-      else
-        false
-
-    userCanPost: ->
-      permissions = @get('permissions')
-      if permissions then true else false
-
-    userCanComment: ->
-      permissions = @get('permissions')
-      if permissions then true else false
+    userIsMember: ->
+      status = @get('membership_status')
+      status == "approved"
 
     userCanChangeMemberType: ->
       permissions = @get('permissions')
