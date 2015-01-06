@@ -4,8 +4,10 @@
     template: 'groups/about/templates/about'
 
     templateHelpers: ->
-      canEditInformation: @model.canEditInformation()
+      canEditInformation: @model.canDo('edit_group')
+      canChangeJoinProcess: @model.canDo('change_join_process')
       joinProcessText: @joinProcessText()
+
     ui:
       'groupDescription':'#description'
       'groupType': '#group_type'

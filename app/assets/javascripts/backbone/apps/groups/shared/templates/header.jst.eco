@@ -6,7 +6,7 @@
       <%= @name %>
   	<% end %>
 	</h1>
-  <% if @canInvite: %>
+  <% if @userCanInvite: %>
     <a href="#groups/<%= @id %>/invite" title="Invite people to group" class="groupCoverArea__btnInvite btn btn-lg">+ Invite people to group</a>
   <% end %>
 </div>

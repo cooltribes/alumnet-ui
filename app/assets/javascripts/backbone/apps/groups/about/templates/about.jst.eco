@@ -22,7 +22,7 @@
       <div class="groupAbout__box margin_bottom">
         <h3>Join Process</h3>
         <a href="#" id="join_process" class="js-attribute"><%= @joinProcessText %></a>
-        <% if @canEditInformation: %>
+        <% if @canChangeJoinProcess: %>
           <a href="#" id="js-edit-join-process">[edit]</a>
         <% end %>
       </div>

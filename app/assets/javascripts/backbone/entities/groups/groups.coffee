@@ -9,6 +9,13 @@
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
 
+    canDo: (permission) ->
+      permissions = @get('permissions')
+      if permissions and permissions[permission] > 0
+        true
+      else
+        false
+
     canEditInformation: ->
       permissions = @get('permissions')
       if permissions
@@ -17,9 +24,17 @@
         false
 
     userCanInvite: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_invite_users
+      status = @get('membership_status')
+      if status == "approved"
+        join_process = @get('join_process')
+        admin = @get('admin')
+        switch join_process
+          when 0, 1
+            true
+          when 2
+            if admin then true else false
+          else
+            false
       else
         false
 
