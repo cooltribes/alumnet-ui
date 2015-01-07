@@ -81,7 +81,7 @@
         <% if @membership_status == "approved": %>
           <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
         <% else if @membership_status == "pending": %>
-         <p class="text-center"> Waiting for approval</p>
+         <span class="groupCard__waitingApproval"> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
         <% else: %>
           <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
           </button>
