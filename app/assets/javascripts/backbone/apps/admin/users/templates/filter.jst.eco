@@ -1,7 +1,7 @@
-<div class="row margin_bottom">
+<div class="row <% if @first: %>margin_top_small <% end %>">
   <div class="col-md-3 ">
     <div class="form-group">
-      <label class="control-label">Filter by</label>
+     <% if @first: %> <label class="control-label">Filter by</label><% end %>
       <select name="field" class="form-control  input-lg">
         <option value="">Select field</option>
         <option value="name">Name</option>
@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
-      <label class="control-label">Comparator</label>
+      <% if @first: %> <label class="control-label">Comparator</label><% end %>
       <select name="comparator" class="form-control  input-lg">
         <option value="">Select comparator</option>
         <option value="cont">contains</option>
@@ -28,14 +28,14 @@
   </div>
   <div class="col-md-3 ">
     <div class="form-group">
-      <label class="control-label" for="registerLocalcomitee">Value</label>
+      <% if @first: %> <label class="control-label" for="registerLocalcomitee">Value</label><% end %>
       <input type="text" name="value" id="value" class="form-control input-lg">
       <span class="help-block"></span>
     </div>
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
-      <label class="control-label">Operator</label>
+      <% if @first: %> <label class="control-label">Operator</label><% end %>
       <select name="operator" class="form-control input-lg">
         <option value="">Select operator</option>
         <option value="and">and</option>
@@ -45,7 +45,7 @@
     </div>
   </div>
   <% if !@first: %>
-  <div class="col-md-2 margin_top_medium">
+  <div class="col-md-2">
     <div class="form-group">
       <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       
