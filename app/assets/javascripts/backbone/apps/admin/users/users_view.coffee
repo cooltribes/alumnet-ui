@@ -11,7 +11,7 @@
       main: '#table-region'  
 
 
-  #----Modal principal con las acciones
+  #----Modal principal con las acciones----
   class Users.ModalActions extends Backbone.Modal
     template: 'admin/users/templates/modal_actions'    
 
@@ -33,7 +33,7 @@
 
       @modals.show(statusView);
         
-
+  #----Modal para cambiar le status
   class Users.ModalStatus extends Backbone.Modal
     template: 'admin/users/templates/modal_status'        
 
@@ -55,25 +55,9 @@
           type: "PUT"
           success: (data) =>
             #Update the model and re-render the itemView
-            @model.fetch()
-            # window.nelson = @model
-            # console.log window.model
+            @model.fetch()        
 
-          complete: (p, s) ->
-            # console.log p
-            # console.log s   
-
-    # templateHelpers: () ->
-      # isApproved: () ->
-      # isApproved: () ->
-      #   console.log "si va"      
-      #   "yeh"
-    
-    # serializeData: (model)->
-    #   console.log "hagdg"
-    #   console.log model  
-
-
+  #----Modal para cambiarle el plan de membresia a un user----
   class Users.ModalPlan extends Backbone.Modal
     template: 'admin/users/templates/modal_plan'    
     
@@ -84,7 +68,7 @@
 
 
   class Users.UserView extends Marionette.ItemView
-    template: 'admin/users/templates/user'
+    template: 'admin/users/templates/_user'
     tagName: "tr"
     ui:
       'btnEdit': '.js-edit'
@@ -97,14 +81,34 @@
 
     templateHelpers: () ->
              
-      getAge: ()->                  
-        moment().diff(@profileData.born, 'years')        
+      getAge: ()->    
+        if @profileData.born              
+          return moment().diff(@profileData.born, 'years')        
+        "No age"  
                 
       getJoinTime: ()->            
         moment(@created_at).fromNow()   
         
-      getOriginLocation: ()->            
-        "#{@profileData.birth_city.text} - #{@profileData.birth_country.text}"
+      getOriginLocation: ()-> 
+        if @profileData.birth_city
+          return "#{@profileData.birth_city.text} - #{@profileData.birth_country.text}"
+        "No origin location"  
+      
+      getLC: ()-> 
+        if @profileData.local_committee
+          return @profileData.local_committee.name
+        "No local committee"  
+
+      getName: ()-> 
+        if @name.trim()
+          return @name
+        "No name registered"  
+
+      getGender: ()-> 
+        if @profileData.gender
+          return @profileData.gender
+        "No gender"  
+
 
 
     showActions: (e)->

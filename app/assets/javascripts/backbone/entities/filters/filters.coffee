@@ -6,6 +6,7 @@
       comparator: ""
       value: ""
       operator: ""
+      type: ""
     
     validation:
       field:[

@@ -51,10 +51,27 @@
           
           if field == "name"     
             querySearch =
-              q :
+              q: 
                 m: operator
                 profile_first_name_cont: value
-                profile_last_name_cont: value              
+                profile_last_name_cont: value
+              # q : [
+              #   {
+              #     m: "or"
+              #     a: "profile_first_name"
+              #     p: "cont"
+              #     v: "h"
+              #   },
+              #   {
+              #     m: "or"
+              #     a: "profile_last_name"
+              #     p: "cont"
+              #     v: "h"
+              #   },
+              # ]  
+                # m: operator
+                # profile_first_name_cont: value
+                # profile_last_name_cont: value              
           
           AlumNet.request("admin:user:entities", querySearch)
 
