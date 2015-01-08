@@ -5,7 +5,7 @@
       field: ""
       comparator: ""
       value: ""
-      operator: ""
+      operator: "and"
       type: ""
     
     validation:

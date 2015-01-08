@@ -34,46 +34,79 @@
       filtersView.on 'filters:search', ->     
 
         validCollection = true
+        q = {}
+
 
         @collection.each (model)->
-          if !model.isValid(true)                       
+          if model.isValid(true)    
+            field = model.get("field")
+            operator = model.get("operator")
+            comparator = model.get("comparator")
+            value = model.get("value")
+            attr = "#{field}_#{comparator}"
+            q[attr] = value                   
+            
+          else
             validCollection = false
+            
 
         #Only if all filters are valid
-        if validCollection
-          model = @collection.at 0
-          
-          #The main search query   
-          querySearch = {}  
-          field = model.get("field")
-          operator = model.get("operator")
-          value = model.get("value")
-          
-          if field == "name"     
-            querySearch =
-              q: 
-                m: operator
-                profile_first_name_cont: value
-                profile_last_name_cont: value
-              # q : [
-              #   {
-              #     m: "or"
-              #     a: "profile_first_name"
-              #     p: "cont"
-              #     v: "h"
-              #   },
-              #   {
-              #     m: "or"
-              #     a: "profile_last_name"
-              #     p: "cont"
-              #     v: "h"
-              #   },
-              # ]  
-                # m: operator
-                # profile_first_name_cont: value
-                # profile_last_name_cont: value              
-          
+        if validCollection          
+          #Matching ?
+          q.m = @ui.logicOp.val()
+
+          querySearch = 
+            q: q
+            
           AlumNet.request("admin:user:entities", querySearch)
+
+        #   @collection.each model, ->
+
+
+
+        #   model = @collection.at 0
+          
+        #   #The main search query   
+        #   querySearch = {}  
+          
+          
+        #   if field == "name"     
+        #     querySearch =
+        #       # q: [ 
+        #       #   s: [
+        #       #     {
+        #       #       name: ""
+        #       #       dir: "asc"
+        #       #     }
+        #       #   ]               
+        #       #   g: [
+        #       #     {
+        #       #       c: [
+        #       #         { 
+        #       #           a: [
+        #       #             {
+        #       #               name: "profile_first_name"
+        #       #             }
+        #       #           ]
+        #       #           p: "cont"
+        #       #           v: [
+        #       #             {
+        #       #               value: "go"
+        #       #             }
+        #       #           ]
+                        
+        #       #         }
+        #       #       ]
+        #       #       m: "and"  
+        #       #     }                    
+        #       #   ]
+        #       # ]
+                  
+        #       q :
+        #         m: operator
+        #         profile_first_name_cont: value
+        #         profile_last_name_cont: value              
+          
 
 
     

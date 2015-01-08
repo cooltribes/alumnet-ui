@@ -1,5 +1,11 @@
   <td><img src="<%= @avatar.medium %>">	</td>
-  <td><%= @getName() %></td>  
+  <td>
+    <%= @getName() %>
+    <br>
+    <small>
+      <%= @getEmail() %>
+    </small>
+  </td>  
   <td><%= @getOriginLocation() %></td>
   <td><%= @getLC() %></td>
   <td><%= @getJoinTime() %></td>
