@@ -4,9 +4,10 @@
      <% if @first: %> <label class="control-label">Filter by</label><% end %>
       <select name="field" class="form-control  input-lg">
         <option value="">Select field</option>
-        <option value="name">Name</option>
-        <option value="joined">Join date</option>
-        <option value="gender">Gender</option>
+        <option value="profile_first_name_or_profile_last_name">Name</option>
+        <option value="email">Email</option>
+        <!-- <option value="joined">Join date</option>
+        <option value="gender">Gender</option> -->
       </select>
       <span class="help-block"></span>
     </div>
@@ -17,10 +18,10 @@
       <select name="comparator" class="form-control  input-lg">
         <option value="">Select comparator</option>
         <option value="cont">contains</option>
+        <option value="eq">=</option>
         <!-- <option value=">">></option>
         <option value="<"><</option>
         <option value="<>"><></option>
-        <option value=">=">>=</option>
         <option value="<="><=</option> -->
       </select>
       <span class="help-block"></span>
@@ -34,7 +35,11 @@
     </div>
   </div>
   <div class="col-md-2 ">
+
     <div class="form-group">
+
+    <!-- <div class="form-group">
+
       <% if @first: %> <label class="control-label">Operator</label><% end %>
       <select name="operator" class="form-control input-lg">
         <option value="">Select operator</option>
@@ -42,7 +47,7 @@
         <option value="or">or</option>
       </select>
       <span class="help-block"></span>
-    </div>
+    </div> -->
   </div>
   <% if !@first: %>
   <div class="col-md-2">

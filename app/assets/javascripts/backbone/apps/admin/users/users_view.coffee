@@ -99,6 +99,9 @@
           return @profileData.local_committee.name
         "No local committee"  
 
+      getEmail: ()-> 
+        @email
+
       getName: ()-> 
         if @name.trim()
           return @name
@@ -143,10 +146,13 @@
     ui:
       'btnRmv': '.js-rmvRow'
       'field': 'input[name=field]'
+      'me': 'form'
+
 
     events:
       "click @ui.btnRmv": "removeRow"
       "change @ui.field": "changeField"
+      "sumbit $el": "sumbitForm"
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -161,6 +167,11 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')  
 
+    sumbitForm: (e)->
+      e.preventDefault()
+      console.log "eeeeee"
+
+
     removeRow: (e)->
       @model.destroy()
 
@@ -174,6 +185,7 @@
     ui:
       'btnAdd': '.js-addRow'      
       'btnSearch': '.js-search'      
+      'logicOp': '[name=logicOp]'      
 
     events:
       "click @ui.btnAdd": "addRow"
