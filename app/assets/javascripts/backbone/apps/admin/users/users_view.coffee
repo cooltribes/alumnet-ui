@@ -200,8 +200,7 @@
 
 
     reset: (e)->
-      @collection.reset()
-      console.log "reset"
+      @collection.reset()      
       @trigger('filters:search')
 
     search: (e)->
