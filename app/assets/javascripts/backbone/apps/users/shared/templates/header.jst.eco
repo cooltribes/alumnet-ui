@@ -1,0 +1,6 @@
+<!-- <div class="groupCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
+<div class="groupCoverArea" style="background-image: url('');">
+	<h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
+    <%= @name %>
+	</h1>
+</div>
