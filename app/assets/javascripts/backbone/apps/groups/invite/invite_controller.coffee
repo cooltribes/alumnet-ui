@@ -3,25 +3,28 @@
     listUsers: (id)->
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
-        users = AlumNet.request("user:entities", {})
-        usersView = new Invite.Users
-          model: group
-          collection: users
-        AlumNet.mainRegion.show(usersView)
-        AlumNet.execute('render:groups:submenu')
+        if group.userCanInvite()
+          users = AlumNet.request("user:entities", {})
+          usersView = new Invite.Users
+            model: group
+            collection: users
+          AlumNet.mainRegion.show(usersView)
+          AlumNet.execute('render:groups:submenu')
 
-        #When invite link is clicked
-        usersView.on 'childview:invite', (childView) ->
-          attrs = { user_id: childView.model.get('id'), group_id: group.get('id')}
-          invitation = AlumNet.request('membership:invitation', attrs)
-          invitation.on 'save:success', (response, options)->
-            childView.removeLink()
-          invitation.on 'save:error', (response, options)->
-            console.log response.responseJSON
+          #When invite link is clicked
+          usersView.on 'childview:invite', (childView) ->
+            attrs = { user_id: childView.model.get('id'), group_id: group.get('id')}
+            invitation = AlumNet.request('membership:invitation', attrs)
+            invitation.on 'save:success', (response, options)->
+              childView.removeLink()
+            invitation.on 'save:error', (response, options)->
+              console.log response.responseJSON
 
-        #When search button is clicked
-        usersView.on 'users:search', (querySearch)->
-          AlumNet.request("user:entities", querySearch)
+          #When search button is clicked
+          usersView.on 'users:search', (querySearch)->
+            AlumNet.request("user:entities", querySearch)
+        else
+          AlumNet.trigger('show:error', 403)
 
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
