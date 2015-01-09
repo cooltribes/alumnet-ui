@@ -9,6 +9,9 @@
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
 
+    userIsAdmin: ->
+      @get('admin')
+
     canDo: (permission) ->
       permissions = @get('permissions')
       if permissions and permissions[permission] > 0

@@ -14,6 +14,50 @@
         success: ->
           modal.destroy()
 
+  class Members.MembersLayout extends Marionette.LayoutView
+    template: 'groups/members/templates/layout'
+    regions:
+      requests: '#js-requests-container'
+      alumni: '#js-alumni-container'
+
+  class Members.Request extends Marionette.ItemView
+    template: 'groups/members/templates/request'
+    ui:
+      'acceptMembershipLink': '#js-accept-membership'
+      'deleteMembershipLink': '#js-delete-membership'
+    events:
+      'click @ui.acceptMembershipLink': 'acceptClicked'
+      'click @ui.deleteMembershipLink': 'deleteClicked'
+
+    acceptClicked: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @trigger 'membership:accepted'
+
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @model.destroy()
+
+  class Members.RequestsView extends Marionette.CompositeView
+    template: 'groups/members/templates/requests_container'
+    childView: Members.Request
+    childViewContainer: '.requests-list'
+    ui:
+      'resquestsCount': '#js-requests-count'
+
+    initialize: ->
+      self = @
+      @collection.on 'fetch:success', (collection)->
+        self.updateRequestsCount(collection)
+      @collection.on 'destroy remove', ->
+        self.updateRequestsCount(self.collection)
+
+    updateRequestsCount: (collection)->
+      count = collection.length
+      @ui.resquestsCount.html(count)
+
   class Members.Member extends Marionette.ItemView
     template: 'groups/members/templates/member'
     tagName: 'div'
@@ -66,6 +110,8 @@
       self = @
       @collection.on 'fetch:success', (collection)->
         self.updateMembersCounts(collection)
+      @collection.on 'destroy remove add', ->
+        self.updateMembersCounts(self.collection)
 
     ui:
       'membersCount': '#js-members-count'

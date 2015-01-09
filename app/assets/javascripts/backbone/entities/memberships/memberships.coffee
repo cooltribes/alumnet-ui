@@ -7,6 +7,16 @@
     model: Entities.Membership
 
   API =
+    pendingMemberships: (group_id)->
+      requests = new Entities.MembershipsCollection
+      requests.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships'
+      requests.fetch
+        error: (collection, response, options)->
+          collection.trigger('fetch:error')
+        success: (collection, response, options) ->
+          collection.trigger('fetch:success', collection)
+      requests
+
     createMembership: (attrs)->
       membership = new Entities.Membership(attrs)
       # membership.urlRoot = AlumNet.api_endpoint + '/groups/' + attrs.group_id + '/memberships'
@@ -68,3 +78,6 @@
 
   AlumNet.reqres.setHandler 'membership:create', (attrs) ->
     API.createMembership(attrs)
+
+  AlumNet.reqres.setHandler 'membership:requests', (group_id) ->
+    API.pendingMemberships(group_id)
