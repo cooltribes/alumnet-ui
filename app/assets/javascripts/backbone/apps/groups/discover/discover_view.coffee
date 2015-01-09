@@ -8,7 +8,6 @@
       header_region: '#groups-search-region'
       list_region:   '#groups-list-region'
 
-
   class Discover.HeaderView extends Marionette.LayoutView
     template: 'groups/discover/templates/groups_search'
     events:

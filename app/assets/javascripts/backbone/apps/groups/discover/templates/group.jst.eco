@@ -68,8 +68,11 @@
 
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
+              <!-- 
+              Avatars of people who has joined the group
+              
               <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10
+              +10 -->
             </div>
 
           </div>
@@ -78,7 +81,7 @@
         <% if @membership_status == "approved": %>
           <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
         <% else if @membership_status == "pending": %>
-          Waiting for approve
+         <span class="groupCard__waitingApproval"> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
         <% else: %>
           <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
           </button>

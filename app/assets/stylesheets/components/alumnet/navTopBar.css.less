@@ -12,6 +12,11 @@ DESCRIPTION: Top navigation bar with menus
     &__container--top{
         background-color: @site_nav_bg;
     }
+    &__container--topAdmin{
+        background-color: @blue-gray;
+    }
+    
+
     &__left{
     
         &__brand{
@@ -142,6 +147,21 @@ DESCRIPTION: Top navigation bar with menus
         }
         
     }
+    & &__registerLogoutLink{
+        color: @white;
+        .transition(.5s);
+        &:hover{
+            background-color: @blue;
+        }
+
+    }
+    & &__avatar{
+        margin-top: 10px;
+        padding: 0;
+        &:hover{
+            background-color: transparent;
+        }
+    }
     &__dropdownMenu{
         min-width: 250px;
         padding: 0;
@@ -234,6 +254,19 @@ DESCRIPTION: Top navigation bar with menus
         font-size: 20px;
         color: rgba(255, 255, 255, 0.3);
         padding: 5px 16px;
+    }
+    &__text{
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 20px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        margin-left: 0 !important;
+        margin-top: 17px;
+        padding-left: 21px;
+        float: left;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     
 }

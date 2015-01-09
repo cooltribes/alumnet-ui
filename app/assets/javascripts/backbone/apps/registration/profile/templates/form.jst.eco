@@ -1,5 +1,5 @@
 <form class="formANet form" role="form">
-  <h1>Profile</h1>
+  <h1 class="h2">Profile</h1>
   <!-- First row ON -->
   <div class="row">
     <div class="col-md-6">
@@ -27,21 +27,24 @@
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
-      <div class="form-group has-feedback col-md-6">
-        <label class="control-label" for="inputBorn">Date of Birth</label>
-        <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
-        <span class="help-block"></span>
-      </div>
-      <div class="form-group has-feedback col-md-6">
-        <label class="control-label" for="inputBorn">Gender</label>
-        <div class="formANet__select">
-        <select name="gender" class="form-control input-lg ">
-          <option value="">Gender</option>
-          <option value="F">F</option>
-          <option value="M">M</option>
-        </select>
-      </div>
-        <span class="help-block"></span>
+      <div class="row">
+        <div class="form-group  col-md-6">
+          <label class="control-label" for="inputBorn">Date of Birth</label>
+          <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group has-feedback col-md-6">
+          <label class="control-label" for="inputBorn">Gender</label>
+          <div class="formANet__select">
+            <select name="gender" class="form-control input-lg ">
+              <option value="">Gender</option>
+              <option value="F">F</option>
+              <option value="M">M</option>
+            </select>
+          </div>
+          <span class="help-block"></span>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -88,7 +91,6 @@
   <!-- Buttons -->
   <div class="form-group text-right">
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
-        <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
-
+    <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>
 </form>

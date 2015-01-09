@@ -14,5 +14,5 @@
           submenu = view
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:groups:submenu',(view) ->
+  AlumNet.commands.setHandler 'header:show:admin',(view) ->
     API.renderSubmenu(view)

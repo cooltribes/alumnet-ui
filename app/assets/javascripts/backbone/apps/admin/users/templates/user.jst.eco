@@ -1,9 +1,0 @@
-  <td><img src="<%= @avatar.medium %>">	</td>
-  <td><%= @name %></td>
-  <td>Location</td>
-  <td>Local Committee</td>
-  <td><%= @getJoinTime() %></td>
-  <td>Male</td>
-  <td><%= @getAge() %></td>
-  <td>Approved</td>
-  <td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>

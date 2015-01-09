@@ -11,7 +11,7 @@
       main: '#table-region'  
 
 
-  #----Modal principal con las acciones
+  #----Modal principal con las acciones----
   class Users.ModalActions extends Backbone.Modal
     template: 'admin/users/templates/modal_actions'    
 
@@ -26,38 +26,38 @@
       
     openStatus: (e) ->
       e.preventDefault();
+
       statusView = new Users.ModalStatus
         model: @model
         modals: @modals
 
       @modals.show(statusView);
         
-
-    
-    templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
-
-
+  #----Modal para cambiar le status
   class Users.ModalStatus extends Backbone.Modal
-    template: 'admin/users/templates/modal_status'    
-    
-    viewContainer: '.my-container'
-    cancelEl: '#close-btn'
+    template: 'admin/users/templates/modal_status'        
+
+    cancelEl: '#close-btn, #goBack'
     submitEl: "#save-status"
-    
 
+    events:
+      'click #save-status': 'saveStatus'
 
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      
+      if data.status == "1"        
+        id = @model.id
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
 
-    templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
+        Backbone.ajax
+          url: url
+          type: "PUT"
+          success: (data) =>
+            #Update the model and re-render the itemView
+            @model.fetch()        
 
-
+  #----Modal para cambiarle el plan de membresia a un user----
   class Users.ModalPlan extends Backbone.Modal
     template: 'admin/users/templates/modal_plan'    
     
@@ -65,15 +65,10 @@
     cancelEl: '#close-btn'
     submitEl: "#save-status"
     
-    templateHelpers: () ->
-      model = @model
-      profile: ()->
-        console.log model
-        model.profile
 
 
   class Users.UserView extends Marionette.ItemView
-    template: 'admin/users/templates/user'
+    template: 'admin/users/templates/_user'
     tagName: "tr"
     ui:
       'btnEdit': '.js-edit'
@@ -83,19 +78,40 @@
     initialize: (options) ->
       @modals = options.modals
 
+
     templateHelpers: () ->
-      model = @model      
-      getAge: ()->            
-        moment().diff(model.profile.get("born"), 'years')        
+             
+      getAge: ()->    
+        if @profileData.born              
+          return moment().diff(@profileData.born, 'years')        
+        "No age"  
+                
       getJoinTime: ()->            
-        moment(model.profile.get("created_at")).fromNow()        
+        moment(@created_at).fromNow()   
+        
+      getOriginLocation: ()-> 
+        if @profileData.birth_city
+          return "#{@profileData.birth_city.text} - #{@profileData.birth_country.text}"
+        "No origin location"  
+      
+      getLC: ()-> 
+        if @profileData.local_committee
+          return @profileData.local_committee.name
+        "No local committee"  
 
-    # serializeData: ()->    
-    #   data = {}
+      getEmail: ()-> 
+        @email
 
-    #   data = _.extend(data, @model.toJSON()) if @model
-    #   data = _.extend(data, {items: @collection.toJSON()}) if @collection
-    #   return data
+      getName: ()-> 
+        if @name.trim()
+          return @name
+        "No name registered"  
+
+      getGender: ()-> 
+        if @profileData.gender
+          return @profileData.gender
+        "No gender"  
+
 
 
     showActions: (e)->
@@ -108,15 +124,12 @@
 
       @modals.show(modalsView)
 
-      # @trigger 'click:leave'
-      #Modals view
-      
-      # layoutView.modals.show(modalsView)
 
   class Users.UsersTable extends Marionette.CompositeView
     template: 'admin/users/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    
     initialize: (options) ->
       @modals = options.modals      
 
@@ -124,13 +137,82 @@
       modals: @modals 
 
 
+
+  ###Filters views###
+  class Users.Filter extends Marionette.ItemView
+    template: 'admin/users/templates/filter'
+    tagName: "form"
+
+    ui:
+      'btnRmv': '.js-rmvRow'
+      'field': 'input[name=field]'
+      'me': 'el'
+
+
+    events:
+      "click @ui.btnRmv": "removeRow"
+      "change @ui.field": "changeField"
+      "sumbit me": "sumbitForm"
+
+    initialize: ->
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->          
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')  
+
+    sumbitForm: (e)->
+      e.preventDefault()
+      console.log "eeeeee"
+
+
+    removeRow: (e)->
+      @model.destroy()
+
+
   class Users.Filters extends Marionette.CompositeView
     template: 'admin/users/templates/filters_container'
     
-    # childView: Users.UserView
-    # childViewContainer: "#users-table tbody"
+    childView: Users.Filter
+    childViewContainer: "#js-filters"
+
+    ui:
+      'btnAdd': '.js-addRow'      
+      'btnSearch': '.js-search'      
+      'btnReset': '.js-reset'      
+      'logicOp': '[name=logicOp]'      
+
+    events:
+      "click @ui.btnAdd": "addRow"
+      "click @ui.btnSearch": "search"
+      "click @ui.btnReset": "reset"
+
+
+    addRow: (e)->
+      newFilter = new AlumNet.Entities.Filter        
+      @collection.add(newFilter)      
+
+
+    reset: (e)->
+      @collection.reset()      
+      @trigger('filters:search')
+
+    search: (e)->
+      e.preventDefault()      
+      @children.each (itemView)->
+        data = Backbone.Syphon.serialize itemView
+        itemView.model.set data        
+      @trigger('filters:search')
+
+
+
+
     # initialize: (options) ->
     #   @modals = options.modals      
-
-    # childViewOptions: (model, index) ->      
-    #   modals: @modals      
+    

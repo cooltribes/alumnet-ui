@@ -16,3 +16,6 @@
 /tmp
 /config/application.yml
 Procfile
+app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee
+
+app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee

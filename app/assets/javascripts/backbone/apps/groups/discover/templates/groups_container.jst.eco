@@ -1,10 +1,10 @@
-<div class="row sortingMenu">
+<div class="row ">
 	<div class="col-md-9">
 		
 		<h2 class="sortingMenu__title">Suggested groups</h2>
 	</div>
 	<div class="col-md-3">
-		<ul class=" navbar-right nav nav-pills">
+		<ul class=" navbar-right sortingMenu">
 			<li class="sortingMenu__item"> <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
 				<a href="#" title="All" class="sortingMenu__item__link">All
 				</a>

@@ -25,7 +25,8 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval" #|| true
+      
+      step == "approval"
 
 
     isAlumnetAdmin: ->
@@ -34,10 +35,7 @@
     isActive: ->
       status = @get "status"
       if status.value == 1 then true else false
-
-    age: ->
-      @get("born")
-
+    
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

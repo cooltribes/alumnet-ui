@@ -1,13 +1,23 @@
 ((factory) ->
-  if typeof define is "function" and define.amd
-    define(["underscore", "backbone", "exports"], factory)
-  else if typeof exports is "object"
-    factory(require("underscore"), require("backbone"), exports)
-  else
-    factory(_, Backbone, {})
-) (_, Backbone, Modal) ->
+#   if typeof define is "function" and define.amd
+#     define(["underscore", "backbone", "exports"], factory)
+#   else if typeof exports is "object"
+#     factory(require("underscore"), require("backbone"), exports)
+#   else
+#     factory(_, Backbone, {})
+# ) (_, Backbone, Modal) ->
 
-  class Modal extends Backbone.View
+
+  if typeof define is "function" and define.amd
+    define(["underscore", "backbone", "backbone.marionette", "exports"], factory)
+  else if typeof exports is "object"
+    factory(require("underscore"), require("backbone"), require("backbone.marionette"), exports)
+  else
+    factory(_, Backbone, Backbone.Marionette, {})
+) (_, Backbone, Marionette, Modals) ->
+
+  # class Modal extends Backbone.View
+  class Modal extends Marionette.View
     prefix: 'bbm'
     animate: true
     keyControl: true
@@ -17,8 +27,10 @@
 
     constructor: ->
       @args = Array::slice.apply(arguments)
-      Backbone.View::constructor.apply(this, @args)
+      Marionette.View::constructor.apply(this, @args)
+      # Backbone.View::constructor.apply(this, @args)
 
+      # console.log this
       # get all options
       @setUIElements()
 
@@ -166,7 +178,8 @@
         
         view = new viewType(options or @args[0])
 
-        if view instanceof Backbone.View
+        # if view instanceof Backbone.View
+        if view instanceof Marionette.View
           return {el: view.render().$el, view: view}
         else
           return {el: viewType(options or @args[0])}
