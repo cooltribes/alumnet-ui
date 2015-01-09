@@ -23,6 +23,7 @@
 <div class="margin_bottom search-control">
   <hr>
   <button class="btn btn-primary btn-lg js-search" type="button">Search</button>
+  <button class="btn btn-default btn-lg js-reset" type="button">Reset</button>
 
 </div>
 

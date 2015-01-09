@@ -36,16 +36,22 @@
         validCollection = true
         q = {}
 
-
         @collection.each (model)->
           if model.isValid(true)    
+
             field = model.get("field")
             operator = model.get("operator")
             comparator = model.get("comparator")
             value = model.get("value")
             attr = "#{field}_#{comparator}"
-            q[attr] = value                   
+
+            if comparator in ["cont_any", "in"]
+              if q[attr]?
+                q[attr].push value
+              else
+                q[attr] = [value]
             
+
           else
             validCollection = false
             
@@ -54,6 +60,7 @@
         if validCollection          
           #Matching ?
           q.m = @ui.logicOp.val()
+          q["profile_first_name_or_cont"]
 
           querySearch = 
             q: q

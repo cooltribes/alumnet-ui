@@ -17,8 +17,8 @@
       <% if @first: %> <label class="control-label">Comparator</label><% end %>
       <select name="comparator" class="form-control  input-lg">
         <option value="">Select comparator</option>
-        <option value="cont">contains</option>
-        <option value="eq">=</option>
+        <option value="cont_any">contains</option>
+        <option value="in">=</option>
         <!-- <option value=">">></option>
         <option value="<"><</option>
         <option value="<>"><></option>

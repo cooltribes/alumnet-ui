@@ -146,13 +146,13 @@
     ui:
       'btnRmv': '.js-rmvRow'
       'field': 'input[name=field]'
-      'me': 'form'
+      'me': 'el'
 
 
     events:
       "click @ui.btnRmv": "removeRow"
       "change @ui.field": "changeField"
-      "sumbit $el": "sumbitForm"
+      "sumbit me": "sumbitForm"
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -185,16 +185,24 @@
     ui:
       'btnAdd': '.js-addRow'      
       'btnSearch': '.js-search'      
+      'btnReset': '.js-reset'      
       'logicOp': '[name=logicOp]'      
 
     events:
       "click @ui.btnAdd": "addRow"
       "click @ui.btnSearch": "search"
+      "click @ui.btnReset": "reset"
 
 
     addRow: (e)->
       newFilter = new AlumNet.Entities.Filter        
-      @collection.add(newFilter)  
+      @collection.add(newFilter)      
+
+
+    reset: (e)->
+      @collection.reset()
+      console.log "reset"
+      @trigger('filters:search')
 
     search: (e)->
       e.preventDefault()      
