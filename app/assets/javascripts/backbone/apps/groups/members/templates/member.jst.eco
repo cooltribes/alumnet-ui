@@ -9,7 +9,7 @@
 			</h4>
 			<p class="member-position text-small">Local Comitee President</p>
 		</div>
-		<% if @userCanChangeMemberType and @userIsNotCurrentUser: %>
+		<% if @userCanMakeAdmin and @userIsNotCurrentUser: %>
 			<div class="js-admin-icons">
 				<a href="#" class="js-remove-member">Remove</a>
 				<a href="#" class="js-change-type">Role</a>

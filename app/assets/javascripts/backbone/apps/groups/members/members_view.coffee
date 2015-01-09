@@ -23,7 +23,7 @@
       @group = options.group
 
     templateHelpers: ->
-      userCanChangeMemberType: @group.userCanChangeMemberType()
+      userCanMakeAdmin: @group.canDo('make_admin')
       userIsNotCurrentUser: not @memberIsCurrentUser()
 
     memberIsCurrentUser: ->

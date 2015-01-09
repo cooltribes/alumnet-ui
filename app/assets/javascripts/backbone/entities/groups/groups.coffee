@@ -35,13 +35,6 @@
       status = @get('membership_status')
       status == "approved"
 
-    userCanChangeMemberType: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_change_member_type
-      else
-        false
-
     validation:
       name:
         required: true
