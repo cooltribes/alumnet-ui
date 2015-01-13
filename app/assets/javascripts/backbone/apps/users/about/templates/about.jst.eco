@@ -1,1 +1,5 @@
-About user
+<h3><%= @name %></h3>
+<p> <strong> Born:</strong> <%= @getBorn() %> </p>
+<p> <strong> Location:</strong> <%= @getLocation() %> </p>
+<p> <strong> Email:</strong> <%= @getEmail() %> </p>
+<p> <strong> Phone:</strong> <%= @getPhone() %> </p>

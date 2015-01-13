@@ -1,29 +1,11 @@
 @AlumNet.module 'UsersApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Header extends Marionette.ItemView
-    template: 'users/shared/templates/header'
-    # templateHelpers: ->
-    #   canEditInformation: @model.canEditInformation()
-    #   canInvite: @model.userCanInvite()
-    # ui:
-    #   'groupName':'#name'
-    # onRender: ->
-    #   model = this.model
-    #   @ui.groupName.editable
-    #     type: "text"
-    #     pk: model.id
-    #     title: "Enter the name of Group"
-    #     validate: (value)->
-    #       if $.trim(value) == ""
-    #         "this field is required"
-    #     success: (response, newValue)->
-    #       model.save({'name': newValue})
+    template: 'users/shared/templates/header'    
 
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'users/shared/templates/layout'
-    # templateHelpers: ->
-      # canEditInformation: @model.canEditInformation()
-      # canInvite: @model.userCanInvite()
+    
 
     regions:
       header: '#user-header'

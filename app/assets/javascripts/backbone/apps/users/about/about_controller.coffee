@@ -3,8 +3,7 @@
     showAbout: (id)->
       user = AlumNet.request("user:find", id)
       user.on 'find:success', (response, options)->
-        # console.log user
-      
+        
         layout = AlumNet.request("user:layout", user)
         header = AlumNet.request("user:header", user)
           #todo: implement a function to return the view. like a discovery module

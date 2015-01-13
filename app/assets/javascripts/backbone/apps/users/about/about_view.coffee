@@ -2,8 +2,22 @@
 
   class About.View extends Marionette.ItemView
     template: 'users/about/templates/about'
-    # templateHelpers: ->
-    #   canEditInformation: @model.canEditInformation()
+    templateHelpers: ->
+      model = @model
+      console.log model
+      
+      getBorn: ->
+        model.getBornAll()        
+      
+      getLocation: ->
+        model.getOriginLocation()        
+      
+      getEmail: ->
+        model.getEmail()        
+      
+      getPhone: ->
+        model.getPhone()        
+      
     # ui:
     #   'groupDescription':'#description'
     #   'groupType': '#group_type'

@@ -10,7 +10,7 @@
 					<li>  <a href="#users/<%= @id %>/about" id="js-about" class="groupMenu__link">
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
-					<li>  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link">
+					<li>  <a href="#" id="js-members" class="groupMenu__link">
 						<span class="ico-company"></span>
 					Friends</a></li>					
 				</ul>
