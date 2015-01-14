@@ -1,5 +1,5 @@
 <!-- <div class="groupCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
-<div class="groupCoverArea" style="background-image: url('<%= @avatar.extralarge %>');">
+<div class="groupCoverArea" style="background-image: url('<%= @avatar.large %>');">
 	<h1 class="groupCoverArea__title ">    
     <%= @name %>
 	</h1>
