@@ -3,11 +3,20 @@
     showPosts: (user_id)->
       user = AlumNet.request("user:find", user_id)
       user.on 'find:success', (response, options)->
+
+        layout = AlumNet.request("user:layout", user, 0)
+        header = AlumNet.request("user:header", user, 0)
+
         user.posts.fetch()
         posts = new Posts.PostsView
           model: user
           collection: user.posts
-        AlumNet.mainRegion.show(posts)
+
+        AlumNet.mainRegion.show(layout)
+        layout.header.show(header)
+        layout.body.show(posts)
+          
+        # AlumNet.mainRegion.show(posts)
         AlumNet.execute('render:users:submenu')
 
         posts.on "post:submit", (data)->

@@ -1,6 +1,14 @@
 <!-- <div class="groupCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
 <div class="groupCoverArea" style="background-image: url('<%= @avatar.large %>');">
-	<h1 class="groupCoverArea__title ">    
+	
+  
+  <h1 class="groupCoverArea__title ">    
+    <% if @avatar.extralarge: %>
+      <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <% else: %>
+      <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <% end %>
+
     <%= @name %>
-	</h1>
+  </h1>
 </div>

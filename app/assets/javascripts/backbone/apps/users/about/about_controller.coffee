@@ -4,8 +4,8 @@
       user = AlumNet.request("user:find", id)
       user.on 'find:success', (response, options)->
         
-        layout = AlumNet.request("user:layout", user)
-        header = AlumNet.request("user:header", user)
+        layout = AlumNet.request("user:layout", user, 1)
+        header = AlumNet.request("user:header", user, 1)
         
         #todo: implement a function to return the view. like a discovery module
         
@@ -54,10 +54,6 @@
         contactsView = new About.ContactsView
           collection: contacts
 
-
-
-        # window.col = languages
-        
 
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
