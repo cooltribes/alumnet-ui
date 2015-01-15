@@ -2,8 +2,9 @@
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
     templateHelpers: ->
-      canEditInformation: @model.canEditInformation()
-      canInvite: @model.userCanInvite()
+      canEditInformation: @model.canDo('edit_group')
+      userCanInvite: @model.userCanInvite()
+
     ui:
       'groupName':'#name'
     onRender: ->
@@ -22,8 +23,8 @@
   class Shared.Layout extends Marionette.LayoutView
     template: 'groups/shared/templates/layout'
     templateHelpers: ->
-      canEditInformation: @model.canEditInformation()
-      canInvite: @model.userCanInvite()
+      canEditInformation: @model.canDo('edit_group')
+      userCanInvite: @model.userCanInvite()
 
     regions:
       header: '#group-header'

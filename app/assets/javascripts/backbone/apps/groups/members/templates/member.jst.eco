@@ -1,7 +1,7 @@
 <div class="userCard">
-	<div class=" row">
+	<div class="row">
 		<div class="userCard__avatar col-md-3 ">
-			<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="80" height="80" >
+			<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
 		</div>
 		<div class="col-md-7">
 			<h4 class="userCard__name">
@@ -9,11 +9,13 @@
 			</h4>
 			<p class="member-position text-small">Local Comitee President</p>
 		</div>
+
 		<!-- Actions -->
-		<div class="col-md-2 userCard__GroupAdminActions">
+		<% if @userCanMakeAdmin and @userIsNotCurrentUser: %>
+		<div class="col-md-2 userCard__GroupAdminActions js-admin-icons">
 			<ul class="list-unstyled">
 				<li>
-					<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole">
+					<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole" class="js-change-type">
 						<span class="userCard__GroupAdminActions__text">Change role</span> <span class="icon-entypo-key"></span>
 					</a>
 				</li>
@@ -23,16 +25,17 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" title="">
+					<a href="#" title="" class="js-remove-member">
 						<span class="userCard__GroupAdminActions__text">
 						Remove
 						</span>
 						<span class="icon-entypo-cancel">
-						
+
 						</span>
 					</a>
 				</li>
 			</ul>
 		</div>
+		<% end %>
 	</div>
 </div>

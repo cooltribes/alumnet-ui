@@ -1,13 +1,25 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Membership extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/groups/' + @get('group_id') + '/memberships'
 
   class Entities.MembershipsCollection extends Backbone.Collection
     model: Entities.Membership
 
   API =
-    sendMembershipInvitation: (attrs)->
+    pendingMemberships: (group_id)->
+      requests = new Entities.MembershipsCollection
+      requests.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships'
+      requests.fetch
+        error: (collection, response, options)->
+          collection.trigger('fetch:error')
+        success: (collection, response, options) ->
+          collection.trigger('fetch:success', collection)
+      requests
+
+    createMembership: (attrs)->
       membership = new Entities.Membership(attrs)
-      membership.urlRoot = AlumNet.api_endpoint + '/groups/' + attrs.group_id + '/memberships'
+      # membership.urlRoot = AlumNet.api_endpoint + '/groups/' + attrs.group_id + '/memberships'
       membership.save attrs,
         error: (model, response, options) ->
           model.trigger('save:error', response, options)
@@ -55,8 +67,6 @@
           model.trigger('destroy:success', response, options)
       membership
 
-  AlumNet.reqres.setHandler 'membership:invitation', (attrs) ->
-    API.sendMembershipInvitation(attrs)
   AlumNet.reqres.setHandler 'membership:request', (attrs) ->
     API.sendMembershipRequest(attrs)
   AlumNet.reqres.setHandler 'membership:members', (group_id, querySearch) ->
@@ -65,3 +75,9 @@
     API.getUserGroups(user_id, querySearch)
   AlumNet.reqres.setHandler 'membership:destroy', (membership) ->
     API.destroyMembership(membership)
+
+  AlumNet.reqres.setHandler 'membership:create', (attrs) ->
+    API.createMembership(attrs)
+
+  AlumNet.reqres.setHandler 'membership:requests', (group_id) ->
+    API.pendingMemberships(group_id)

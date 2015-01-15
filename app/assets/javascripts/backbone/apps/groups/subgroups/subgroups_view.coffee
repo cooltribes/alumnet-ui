@@ -102,4 +102,4 @@
     childView: SubGroups.GroupView
     childViewContainer: ".main-groups-area"
     templateHelpers: ->
-      userCanCreateSubGroup: @model.userCanCreateSubGroup()
+      userCanCreateSubGroup: @model.canDo('create_subgroup')
