@@ -1,0 +1,15 @@
+<h3>Skills</h3>
+<ul id="list">
+  <% #console.log  @items %>
+  <% #_.each @items, (item)->: %>
+    <!-- <li> <%= #item.name %> </li> -->
+  <% #end %>
+</ul>
+
+<!-- <h3>Skills</h3>
+    <ul>
+      <% #console.log skills = @getSkills() %>
+      <% #_.each skills, (item)->: %>
+        <li> <%= #console.log item; item %> </li>
+      <% #end %>
+    </ul> -->

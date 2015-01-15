@@ -18,10 +18,8 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()
-
-      App.navigate('users/10/about', {trigger: true})
-      # App.navigate('posts', {trigger: true})
+      Backbone.history.start()      
+      App.navigate('posts', {trigger: true})
       # App.navigate('admin/users', {trigger: true})
 
   App.addRegions

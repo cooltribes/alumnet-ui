@@ -1,7 +1,13 @@
 @AlumNet.module 'UsersApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class About.View extends Marionette.ItemView
+  class About.View extends Marionette.LayoutView
     template: 'users/about/templates/about'
+
+    regions:
+      skills: "#skills-list"
+      languages: "#languages-list"
+      contacts: "#contacts-list"
+
     templateHelpers: ->
       model = @model
       console.log model
@@ -10,57 +16,41 @@
         model.getBornAll()        
       
       getLocation: ->
-        model.getOriginLocation()        
+        model.getCurrentLocation()        
       
       getEmail: ->
         model.getEmail()        
       
       getPhone: ->
-        model.getPhone()        
-      
-    # ui:
-    #   'groupDescription':'#description'
-    #   'groupType': '#group_type'
-    # events:
-    #   'click a#js-edit-description': 'toggleEditGroupDescription'
-    #   'click a#js-edit-group-type': 'toggleEditGroupType'
+        model.getPhone()
 
-    # toggleEditGroupDescription: (e)->
-    #   e.stopPropagation()
-    #   e.preventDefault()
-    #   @ui.groupDescription.editable('toggle')
+  
+  #For skills
+  class About.Skill extends Marionette.ItemView
+    template: 'users/about/templates/_skill'
+    tagName: "li"
 
-    # toggleEditGroupType: (e)->
-    #   e.stopPropagation()
-    #   e.preventDefault()
-    #   @ui.groupType.editable('toggle')
+  class About.SkillsView extends Marionette.CollectionView
+    # template: 'users/about/templates/skills'
+    childView: About.Skill
+    # childViewContainer: "#list"
 
+  #For languages
+  class About.Language extends Marionette.ItemView
+    template: 'users/about/templates/_language'
+    tagName: "li"
 
-    # onRender: ->
-    #   view = this
-    #   @ui.groupDescription.editable
-    #     type: 'textarea'
-    #     pk: view.model.id
-    #     title: 'Enter the description of Group'
-    #     toggle: 'manual'
-    #     validate: (value)->
-    #       if $.trim(value) == ''
-    #         'this field is required'
-    #     success: (response, newValue)->
-    #       view.trigger 'group:edit:description', view.model, newValue
+  class About.LanguagesView extends Marionette.CollectionView
+    # template: 'users/about/templates/skills'
+    childView: About.Language
+    # childViewContainer: "#list"
 
-    #   @ui.groupType.editable
-    #     type: 'select'
-    #     value: view.model.get('group_type').value
-    #     pk: view.model.id
-    #     title: 'Enter the type of Group'
-    #     toggle: 'manual'
-    #     source: [
-    #       {value: 0, text: 'Open'}
-    #       {value: 1, text: 'Closed'}
-    #     ]
-    #     validate: (value)->
-    #       if $.trim(value) == ''
-    #         'this field is required'
-    #     success: (response, newValue)->
-    #       view.trigger 'group:edit:group_type', view.model, newValue
+  #For contact info
+  class About.Contact extends Marionette.ItemView
+    template: 'users/about/templates/_contact'
+    tagName: "li"
+
+  class About.ContactsView extends Marionette.CollectionView
+    childView: About.Contact
+
+  
