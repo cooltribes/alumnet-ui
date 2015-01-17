@@ -5,8 +5,6 @@
     
     initialize: (options) ->
       @step = options.step || ""
-      # console.log "options sidebar"
-      # console.log options
       @class = [
         "", "", ""
         "", ""
@@ -27,28 +25,6 @@
       side_region: '#sidebar-region' 
       form_region: '#form-region'
 
-  # initializeLayout = ->
-  #   Shared.layout = new Shared.Layout
-
-  # initializeHeader = (model) ->
-  #   Shared.header = new Shared.Header
-  #     model: model
-
-  # class Shared.Count extends Marionette.ItemView
-  #   template: 'registration/shared/templates/sidebar'
-    
-    # templateHelpers: ->
-    #   canEditInformation: this.model.canEditInformation()
-    # ui:
-    #   'groupName':'#name'
-    # onRender: ->
-    #   model = this.model
-    #   @ui.groupName.editable
-    #     type: "text"
-    #     pk: model.id
-    #     title: "Ente Name"
-    #     success: (response, newValue)->
-    #       alert newValue
 
   API =
     getSidebarView: (step)->

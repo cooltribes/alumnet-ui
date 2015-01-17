@@ -24,7 +24,7 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#events">
+        <a class="navTopBar__left__item" href="#users/10/about">
           <i class="ico-calendar"></i>
           Events
         </a>
@@ -108,7 +108,7 @@
         <!-- MESSAGES OFF -->
       </li>
       <li>
-        <a href="#registration/experience" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
+        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
           <!-- When membership is about to expire activate from here ...
           <div class="navTopBar__right__item--membershipExpires">
             <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>

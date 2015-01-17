@@ -37,7 +37,7 @@
       @group = options.group
       @current_user = options.current_user
     templateHelpers: ->
-      userCanComment: @group.userCanComment()
+      userCanComment: @group.userIsMember()
       current_user_avatar: @current_user.get('avatar').medium
     ui:
       'item': '.item'
@@ -105,7 +105,7 @@
     initialize:(options)->
       @group = options.group
     templateHelpers: ->
-      userCanPost: @group.userCanPost()
+      userCanPost: @group.userIsMember()
 
     ui:
       'bodyInput': '#body'

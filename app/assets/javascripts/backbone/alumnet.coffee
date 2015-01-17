@@ -18,8 +18,7 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()
-
+      Backbone.history.start()      
       App.navigate('posts', {trigger: true})
       # App.navigate('admin/users', {trigger: true})
 

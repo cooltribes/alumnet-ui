@@ -1,0 +1,25 @@
+<div id="user-header">
+	
+</div>
+
+<nav class="groupMenu navbar group-menu navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<ul class="nav nav-pills">
+					<li>  <a href="#users/<%= @id %>/posts" id="js-posts" class="groupMenu__link<%= @classOf(0)%>">
+						<span class="glyphicon glyphicon-list-alt"></span>
+					Activity</a></li>
+					<li>  <a href="#users/<%= @id %>/about" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
+						<span class="icon-entypo-dot-3"></span>
+					About</a></li>
+					<li>  <a href="#" id="js-members" class="groupMenu__link<%= @classOf(2)%>">
+						<span class="ico-company"></span>
+					Friends</a></li>					
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div id="user-body"></div>

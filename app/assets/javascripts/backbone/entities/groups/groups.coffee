@@ -9,34 +9,34 @@
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
 
-    canEditInformation: ->
+    userIsAdmin: ->
+      @get('admin')
+
+    canDo: (permission) ->
       permissions = @get('permissions')
-      if permissions
-        permissions.can_edit_information
+      if permissions and permissions[permission] > 0
+        true
       else
         false
 
     userCanInvite: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_invite_users
+      status = @get('membership_status')
+      if status == "approved"
+        join_process = @get('join_process')
+        admin = @get('admin')
+        switch join_process
+          when 0, 1
+            true
+          when 2
+            if admin then true else false
+          else
+            false
       else
         false
 
-    userCanCreateSubGroup: ->
-      permissions = @get('permissions')
-      if permissions
-        permissions.can_create_subgroups
-      else
-        false
-
-    userCanPost: ->
-      permissions = @get('permissions')
-      if permissions then true else false
-
-    userCanComment: ->
-      permissions = @get('permissions')
-      if permissions then true else false
+    userIsMember: ->
+      status = @get('membership_status')
+      status == "approved"
 
     validation:
       name:
@@ -50,6 +50,8 @@
         required: true
       city_id:
         msg: 'City is required'
+        required: true
+      join_process:
         required: true
 
   class Entities.GroupCollection extends Backbone.Collection

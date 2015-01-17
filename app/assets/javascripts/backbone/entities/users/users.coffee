@@ -24,10 +24,8 @@
         false
 
     isApproved: ->
-      step = @profile.get "register_step"
-      
+      step = @profile.get "register_step"      
       step == "approval"
-
 
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
@@ -35,6 +33,49 @@
     isActive: ->
       status = @get "status"
       if status.value == 1 then true else false
+
+    getName: ()-> 
+      if @get("name").trim()
+        return @get("name")
+      "No name registered"  
+      
+    getEmail: ()-> 
+      @get "email"
+
+    getPhone: ()-> 
+      "--phone--"
+
+    getGender: ()-> 
+      if @profile.get("gender")
+        return @profile.get("gender")
+      "No gender"    
+    
+    getBornAll: ()->      
+      date = if @profile.get("born") then @profile.get("born") else "No birth date"
+      @getOriginLocation() + " in " + date      
+
+    getAge: ()->    
+        if @profile.get("born")              
+          return moment().diff(@profile.get("born"), 'years')        
+        "No age"  
+                
+    getJoinTime: ()->            
+      moment(@created_at).fromNow()   
+      
+    getOriginLocation: ()-> 
+      if @profile.get("birth_city")
+        return "#{@profile.get("birth_city").text} - #{@profile.get("birth_country").text}"
+      "No origin location"  
+
+    getCurrentLocation: ()-> 
+      if @profile.get("residence_city")
+        return "#{@profile.get("residence_city").text} - #{@profile.get("residence_country").text}"
+      "No residence location"  
+    
+    getLC: ()-> 
+      if @profile.get("local_committee")
+        return @profile.get("local_committee").name
+      "No local committee"  
     
 
   class Entities.UserCollection extends Backbone.Collection

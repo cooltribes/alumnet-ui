@@ -1,96 +1,6 @@
-<!-- ------
-El siguiente bloque de cards está estático y será usado para la siguiente pantalla: https://drive.google.com/file/d/0B3ykC7Qev1XrSEJ4VWY2NE9xRkE/view?usp=sharing
-Desde aqui
--->
-<h2 class="margin_top">Temporary cards listing members waiting to be approved (we need a folder to put the HTML)  </h2>
-<hr class="no_margin_top">
-<div class="row">
-	
-	
-	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight user-info">
-			<div class=" row">
-				<div class="userCard__avatar  col-md-3 ">
-					<img src="http://placehold.it/80" alt="alt" class="img-circle">
-				</div>
-				<div class="col-md-9 ">
-					<h4 class="userCard__name">Name</h4>
-					<p class="member-position text-small">Local Comitee President</p>
-					
-					
-					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
-				</div>
-				
-			</div>
-		</div>
-		
-	</div>
-	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight user-info">
-			<div class=" row">
-				<div class="userCard__avatar  col-md-3 ">
-					<img src="http://placehold.it/80" alt="alt" class="img-circle">
-				</div>
-				<div class="col-md-9 ">
-					<h4 class="userCard__name">Name</h4>
-					<p class="member-position text-small">Local Comitee President</p>
-					
-					
-					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
-				</div>
-				
-			</div>
-		</div>
-		
-	</div>
-	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight user-info">
-			<div class=" row">
-				<div class="userCard__avatar  col-md-3 ">
-					<img src="http://placehold.it/80" alt="alt" class="img-circle">
-				</div>
-				<div class="col-md-9 ">
-					<h4 class="userCard__name">Name</h4>
-					<p class="member-position text-small">Local Comitee President</p>
-					
-					
-					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
-				</div>
-				
-			</div>
-		</div>
-		
-	</div>
-	<div class="col-md-4 col-sm-6">
-		<div class="userCard userCard--diffHeight user-info">
-			<div class=" row">
-				<div class="userCard__avatar  col-md-3 ">
-					<img src="http://placehold.it/80" alt="alt" class="img-circle">
-				</div>
-				<div class="col-md-9 ">
-					<h4 class="userCard__name">Name</h4>
-					<p class="member-position text-small">Local Comitee President</p>
-					
-					
-					<a href="#" id="js-accept-friendship" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-					<a href="#" id="js-delete-friendship"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
-				</div>
-				
-			</div>
-		</div>
-		
-	</div>
-	
-	
-	
-</div>
-<hr>
-<!-- --------- Hasta aqui -->
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		<div class="js-modal-container"></div>
 		<div class="searchBar">
 			<h2>Search for members </h2>
 			<form id="search-form">
@@ -118,11 +28,6 @@ Desde aqui
 					Friends(0)
 				</a>
 			</li>
-			<li class="sortingMenu__item sortingMenu__item--lg">
-				<a href="#" title="Friends" class="sortingMenu__item__link" id="">
-					Member request(0)
-				</a>
-			</li>
 		</ul>
 	</div>
 	<div class="col-md-3 text-right">
@@ -134,7 +39,7 @@ Desde aqui
 </div>
 <div class="text-center margin_top">
 	<!-- <nav>
-													
+
 													<ul class="pagination">
 																								li>
 													</ul>
@@ -178,7 +83,7 @@ Desde aqui
 				<h3>Assign chosen GroupAdmin privileges
 				</h3>
 				<table class="table table-striped ">
-					
+
 					<tr>
 						<td width="80%">
 							<p>
@@ -258,7 +163,7 @@ Desde aqui
 							<br/><small> Member can grant another member chosen privileges
 							</small></p>
 						</td>
-						
+
 						<td>
 							<div class="checkbox text-right">
 								<label>
@@ -272,7 +177,7 @@ Desde aqui
 							<p>
 							Create sub groups</p>
 						</td>
-						
+
 						<td>
 							<div class="checkbox text-right">
 								<label>
@@ -286,7 +191,7 @@ Desde aqui
 							<p>
 							Mark events within the group as "Official"</p>
 						</td>
-						
+
 						<td>
 							<div class="checkbox text-right">
 								<label>
@@ -300,7 +205,7 @@ Desde aqui
 							<p>
 							Assign privileges to another GroupAdmin</p>
 						</td>
-						
+
 						<td>
 							<div class="checkbox text-right">
 								<label>
@@ -350,10 +255,10 @@ Desde aqui
 								<select class=" input-lg ">
 									<option value="">Month</option>
 									<option value="january">January</option>
-									
+
 								</select>
 							</div>
-							
+
 						</div>
 						<div class="col-md-3">
 							<div class="formANet__select">
@@ -363,13 +268,13 @@ Desde aqui
 									<option value="2016">2016</option>
 								</select>
 							</div>
-							
+
 						</div>
 					</div>
-					
+
 				</form>
-				
-				
+
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default btn-default-noBackground" data-dismiss="modal">Close</button>
