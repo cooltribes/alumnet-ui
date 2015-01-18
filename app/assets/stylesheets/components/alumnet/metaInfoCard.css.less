@@ -1,0 +1,69 @@
+/***
+
+COMPONENT NAME: metaInfoCard
+DESCRIPTION: this cards group information about the user and will mainly appear in the user profile containing data such as: languages, skills, etc..
+
+***/
+
+@import 'conf/conf.css.less';
+
+.metaInfoCard{
+   background: @white;
+   margin-bottom: 2em;
+   padding: 10px 15px;
+   margin-top: 30px;
+   border: 1px solid #c3c3c3;
+
+   &--menu{
+    padding: 0;
+    border: 1px solid #c3c3c3;
+
+    li{
+          border-bottom: 1px solid #c3c3c3;
+
+          &:last-child{
+            border-bottom: none;
+          }
+      a{
+          color: lighten(@blue-gray, 10%);
+
+      }
+    }
+   }
+   
+   &__title{
+     font-size: 28px;
+     margin: 10px;
+     color: @black;
+   }
+   &__list{
+    list-style: none;
+    padding: 0;
+
+    &--skills{
+      li:before{
+        content: "\e605";
+        font-family: 'profindaicons';
+        display: inline-block;
+        font-size: 16px;
+        color: lighten(@blue-gray, 10%);
+        
+
+      }
+      
+    }
+
+    li{
+      border-bottom: 1px solid lighten(@blue-gray, 50%);
+      padding: 10px ;
+
+      &:last-child{
+          border-bottom: none;
+       }
+    }
+   }
+   &__concept{
+        color: lighten(@blue-gray, 10%);
+   }
+   
+}

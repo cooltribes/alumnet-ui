@@ -1,13 +1,13 @@
 /***
 
-COMPONENT NAME: groupCoverArea
-DESCRIPTION: Hero area of the group page. it includes the name of the group and the cover as a background. 
+COMPONENT NAME: userCoverArea
+DESCRIPTION: Hero area of the user profile page. it includes the name of the user and the cover as a background. 
 
 ***/
 
 @import 'conf/conf.css.less';
 
-.groupCoverArea{
+.userCoverArea{
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -18,9 +18,13 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 
 	&__title{
 		font-size: 60px;
-		padding: 10px 20px;
+	    padding: 10px 20px 10px 40px;
 		color: @white;
-		
+		position: absolute;
+		left: 220px;
+	    top: 90px;
+	    z-index: 0;
+	    text-transform: capitalize;
 		
 		background: rgba(0, 0, 0, 0.5);
 		a{
@@ -31,23 +35,15 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			}
 		}
 	}
-	& &__title--ribbon{
-
-		padding: 10px 20px 10px 90px;
-
-		&:before{
-			content: "";
-			background: url('/assets/groups/ribbon-orange-noShadow.png') no-repeat;
-	        display: block;
-	        height: 158px;
-	        left: 20px;
-	        position: absolute;
-	        top: 26px;
-	        width: 55px;
-	        z-index: 10;
-	        
-	    }
+	
+	&__avatar{
+		position: absolute;
+		top: 50px;
+		left: 0;
+		display: block;
+		z-index: 100;
 	}
+
 	&__btnInvite{
 		.transition (@transition:1s);
 		position: relative;
@@ -78,7 +74,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
- 	.groupCoverArea{
+ 	.userCoverArea{
  		height: 328px;
  		margin-top: -51px;
 		
@@ -92,7 +88,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
- 	.groupCoverArea{
+ 	.userCoverArea{
  		height: 428px;
  		margin-top: 0;
 
@@ -104,7 +100,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			width: auto;
 		}
 		&__title{
-			float: left;
+			
 		}
  	}
     
@@ -112,7 +108,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
-    .groupCoverArea{
+    .userCoverArea{
     	height: 428px;
     	margin-top: -51px;
 
@@ -124,7 +120,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			width: auto;
 		}
 		&__title{
-			float: left;
+			
 		}
  	}
  }

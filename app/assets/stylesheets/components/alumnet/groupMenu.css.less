@@ -14,7 +14,7 @@ DESCRIPTION: Menu below the hero area of a group
 	border: none;
 	box-shadow: none;
 
-	.nav-pills > li > &__link{
+	.nav-pills > li > &__link, .nav-pills > li > &__link--active{
 		.transition (@transition:.5s);
 		padding:  15px;
 		font-size: 20px;
@@ -24,7 +24,10 @@ DESCRIPTION: Menu below the hero area of a group
 			background-color: @blue;
 			color: @white;
 		}
-
 	}
+	.nav-pills > li > &__link--active{
+			background-color: @blue;
+			color: @white;	
+		}
 
 }
