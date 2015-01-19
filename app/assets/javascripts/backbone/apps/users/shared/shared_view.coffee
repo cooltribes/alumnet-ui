@@ -10,14 +10,13 @@
       header: '#user-header'
       body: '#user-body'
 
-    initialize: (options) ->
-      @tab = options.tab || ""
+    initialize: (options) ->      
+      @tab = options.tab      
       @class = [
         "", "", ""
         "", ""
       ]  
-
-      @class[@tab] = "--active"      
+      @class[parseInt(@tab)] = "--active"            
 
     templateHelpers: ->
       classOf: (step) =>

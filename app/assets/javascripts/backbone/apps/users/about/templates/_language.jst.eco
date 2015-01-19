@@ -1,1 +1,1 @@
-<%= @name %>
+<%= @language_name %>

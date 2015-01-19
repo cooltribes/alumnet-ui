@@ -55,6 +55,14 @@
 
       @set "#{attr}_date", "#{year}-#{month}-#{day}"
 
+    getExperienceType: ->
+      @experienceType[@get "exp_type"]
+
+    experienceType:
+      0: 'AIESEC Experience'
+      1: 'Alumni Experience'
+      2: 'Academic Experience'
+      3: 'Professional Experience'      
 
   class Entities.ExperienceCollection extends Backbone.Collection
     model: Entities.Experience
