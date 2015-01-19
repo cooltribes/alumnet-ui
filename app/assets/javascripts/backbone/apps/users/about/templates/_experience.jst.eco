@@ -1,0 +1,13 @@
+<% if @diffType(): %>
+  <h3>
+    <%= @experienceType() %>
+  </h3>
+
+<% end %>
+
+<%= @name %>
+<br>
+From <%= @start_date + " to " + @end_date %>
+<br>
+Description: <%= @description %>
+<br>

@@ -1,1 +1,1 @@
-<%= @name %>
+<%= @contact_type + ": " + @info %>

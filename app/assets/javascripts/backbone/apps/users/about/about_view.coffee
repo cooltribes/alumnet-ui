@@ -4,13 +4,19 @@
     template: 'users/about/templates/about'
 
     regions:
+      profile: "#profile-info"
       skills: "#skills-list"
       languages: "#languages-list"
       contacts: "#contacts-list"
+      experiences: "#experiences-list"
+
+
+
+  class About.Profile extends Marionette.ItemView
+    template: 'users/about/templates/_profile'
 
     templateHelpers: ->
       model = @model
-      console.log model
       
       getBorn: ->
         model.getBornAll()        
@@ -22,7 +28,14 @@
         model.getEmail()        
       
       getPhone: ->
-        model.getPhone()
+        if model.phone then model.phone.get "info" else "No Phone"
+        
+    modelEvents:
+      "add:phone": "modelChange"
+    
+    modelChange: ->
+      # console.log this
+      @render() 
 
   
   #For skills
@@ -31,9 +44,8 @@
     tagName: "li"
 
   class About.SkillsView extends Marionette.CollectionView
-    # template: 'users/about/templates/skills'
-    childView: About.Skill
-    # childViewContainer: "#list"
+    childView: About.Skill    
+    
 
   #For languages
   class About.Language extends Marionette.ItemView
@@ -41,9 +53,8 @@
     tagName: "li"
 
   class About.LanguagesView extends Marionette.CollectionView
-    # template: 'users/about/templates/skills'
-    childView: About.Language
-    # childViewContainer: "#list"
+    childView: About.Language   
+    
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -52,5 +63,27 @@
 
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact
+
+  #For Experiences
+  class About.Experience extends Marionette.ItemView
+    template: 'users/about/templates/_experience'
+    tagName: "li"
+
+    templateHelpers: ->
+      model = @model
+
+      diffType: ->
+        prev = model.collection.at(model.collection.indexOf(model) - 1)
+        if prev?          
+          prev.get("exp_type") != model.get("exp_type")
+        else    
+          true
+      experienceType: ->
+        model.getExperienceType()
+        
+
+
+  class About.Experiences extends Marionette.CollectionView
+    childView: About.Experience    
 
   

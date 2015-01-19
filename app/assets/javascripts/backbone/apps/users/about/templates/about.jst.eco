@@ -6,12 +6,8 @@
       <p>Academic Experiences</p>
       <p>Professional Experiences</p>
     </div>
-    <div class="col-md-3">
-      <h3><%= @name %></h3>
-      <p> <strong> Born:</strong> <%= @getBorn() %> </p>
-      <p> <strong> Location:</strong> <%= @getLocation() %> </p>
-      <p> <strong> Email:</strong><a href="mailto:"> <%= @getEmail() %></a> </p>
-      <p> <strong> Phone:</strong> <%= @getPhone() %> </p>    
+    <div class="col-md-3" id="profile-info">
+         
     </div>
     <div class="col-md-3">
       <h3>IM & Web</h3>
@@ -31,6 +27,13 @@
       <h3>Skills</h3>
       <ul id="skills-list">
       </ul>
+        
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-3" id="experiences-list">
+    
+     
         
     </div>
   </div>
