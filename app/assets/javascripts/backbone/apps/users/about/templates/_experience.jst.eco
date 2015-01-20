@@ -1,13 +1,29 @@
 <% if @diffType(): %>
-  <h3>
+  <h2>
     <%= @experienceType() %>
-  </h3>
+  </h2>
 
 <% end %>
 
-<%= @name %>
+<h3>
+  <%= @name %> 
+</h3>
 <br>
+
+<% if @getOrganization(): %>
+<h4>
+  <%= @getOrganization() %> 
+</h4>
+<br>
+<% end %>
+
+<span class="glyphicon glyphicon-calendar"></span>
 From <%= @start_date + " to " + @end_date %>
 <br>
+
+<span class="glyphicon glyphicon-map-marker"></span>
+Location: <%= @getLocation() %>
+<br>
+
 Description: <%= @description %>
 <br>

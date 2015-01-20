@@ -19,7 +19,7 @@
       model = @model
       
       getBorn: ->
-        model.getBornAll()        
+        model.getBornComplete()        
       
       getLocation: ->
         model.getCurrentLocation()        
@@ -81,6 +81,11 @@
       experienceType: ->
         model.getExperienceType()
         
+      getLocation: ->
+        model.getLocation()
+
+      getOrganization: ->
+        model.getOrganization()
 
 
   class About.Experiences extends Marionette.CollectionView

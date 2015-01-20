@@ -50,7 +50,7 @@
         return @profile.get("gender")
       "No gender"    
     
-    getBornAll: ()->      
+    getBornComplete: ()->      
       date = if @profile.get("born") then @profile.get("born") else "No birth date"
       @getOriginLocation() + " in " + date      
 

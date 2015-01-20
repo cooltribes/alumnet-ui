@@ -55,6 +55,17 @@
 
       @set "#{attr}_date", "#{year}-#{month}-#{day}"
 
+    getLocation: ()-> 
+      if @get("city") && @get("country")
+        return "#{@get("city").text} - #{@get("city").text}"
+      "No Location"   
+    
+    getOrganization: ()-> 
+      if @get("organization_name")
+        @get("organization_name")
+      else
+        false
+
     getExperienceType: ->
       @experienceType[@get "exp_type"]
 
