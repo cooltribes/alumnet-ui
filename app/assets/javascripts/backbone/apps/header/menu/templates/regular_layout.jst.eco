@@ -24,7 +24,7 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#users/1/about">
+        <a class="navTopBar__left__item" href="#">
           <i class="ico-calendar"></i>
           Events
         </a>
