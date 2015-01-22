@@ -1,5 +1,11 @@
 <h3><%= @name %></h3>
 <p> <strong> Born:</strong> <%= @getBorn() %> </p>
 <p> <strong> Location:</strong> <%= @getLocation() %> </p>
+
+<% if @canShowEmail(): %>
 <p> <strong> Email:</strong> <a href="mailto:"><%= @getEmail() %></a> </p>
+<% end %>
+
+<% if @canShowPhone(): %>
 <p> <strong> Phone:</strong> <%= @getPhone() %> </p> 
+<% end %>

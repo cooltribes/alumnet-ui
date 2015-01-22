@@ -17,6 +17,13 @@
 <br>
 <% end %>
 
+<% if @internship == 1: %>
+  <h4>
+    AIESEC Internship
+  </h4>
+  <br>
+<% end %>
+
 <span class="glyphicon glyphicon-calendar"></span>
 From <%= @start_date + " to " + @end_date %>
 <br>
