@@ -11,23 +11,29 @@
       'click .js-modal-revoke': 'revokeClicked'
       'change .js-check-permit': 'checkPermit'
       'change .js-check-assign': 'checkAssign'
+      'change #js-make-admin': 'makeAdminClicked'
+
+    makeAdminClicked: (e)->
+      currentCheckBox = $(e.currentTarget)
+      if currentCheckBox.is(':checked')
+        $('.js-check-assign').removeClass('hidden')
+      else
+        $('.js-check-assign').addClass('hidden').attr('checked', false)
 
     checkPermit: (e)->
-      e.preventDefault()
       currentCheckBox = $(e.currentTarget)
       parentRow = currentCheckBox.closest('.row')
       assignCheckBox = parentRow.find('.js-check-assign').first()
       unless currentCheckBox.is(':checked')
-        assignCheckBox.attr("checked", false)
+        assignCheckBox.attr('checked', false)
 
     #TODO: Fix bug. if permit checkb is change manually then this dont work.
     checkAssign: (e)->
-      e.preventDefault()
       currentCheckBox = $(e.currentTarget)
       parentRow = currentCheckBox.closest('.row')
       permitCheckBox = parentRow.find('.js-check-permit').first()
       if currentCheckBox.is(':checked')
-        permitCheckBox.attr("checked", true)
+        permitCheckBox.attr('checked', true)
 
     saveClicked: (e)->
       e.preventDefault()
