@@ -8,6 +8,7 @@
 
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-revoke': 'revokeClicked'
       'change .js-check-permit': 'checkPermit'
       'change .js-check-assign': 'checkAssign'
 
@@ -37,6 +38,22 @@
       @model.save data,
         success: ->
           modal.destroy()
+
+    revokeClicked: (e)->
+      e.preventDefault()
+      rawData = Backbone.Syphon.serialize(this)
+      modal = @
+      data = resetData(rawData)
+      @model.set(data)
+      @model.save data,
+        success: ->
+          modal.destroy()
+
+    resetData = (data)->
+      newData = {}
+      _.each data, (value, key, list) ->
+        newData[key] = 0 unless /_plus/.test(key)
+      newData
 
     processData = (data)->
       newData = {}
