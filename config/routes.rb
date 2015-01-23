@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :password_resets, except: [:index, :show, :destroy]
 
   root 'welcome#index'
+  get '*unmatched_route', to: 'application#raise_not_found!'
 end
