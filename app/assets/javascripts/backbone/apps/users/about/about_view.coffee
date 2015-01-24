@@ -93,7 +93,7 @@
   #For Experiences
   class About.Experience extends Marionette.ItemView
     template: 'users/about/templates/_experience'
-    tagName: "li"
+    tagName: "div"
 
     templateHelpers: ->
       model = @model
