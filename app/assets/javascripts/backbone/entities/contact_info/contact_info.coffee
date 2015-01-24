@@ -14,10 +14,11 @@
 
     customValidation: (value, attr, computedState)->
       contact_type = @get('contact_type')
+      pattern = /([+]\d+)/
       if contact_type == '0'
         Backbone.Validation.validators.pattern(value, attr, 'email', @)
       else if contact_type == '1'
-        Backbone.Validation.validators.pattern(value, attr, 'number', @)
+        Backbone.Validation.validators.pattern(value, attr, pattern, @)
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
