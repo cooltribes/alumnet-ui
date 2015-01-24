@@ -3,9 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authenticate!
+  before_action :authenticate!, except: :raise_not_found!
   before_action :setup_gon
 
+  rescue_from ActionController::RoutingError, :with => :render_not_found
+
+  def raise_not_found!
+    raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
+  end
 
   protected
 
@@ -26,5 +31,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate!
     redirect_to home_path unless signed_in?
+  end
+
+  def render_not_found
+    render template: "errors/404"
   end
 end

@@ -2,17 +2,76 @@
   class Members.Modal extends Backbone.Modal
     template: 'groups/members/templates/modal'
     cancelEl: '.js-modal-close'
+    initialize: (options)->
+      @current_user_permission = options.current_user_permission
+      @model.set('current_user_permission', @current_user_permission)
+
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-revoke': 'revokeClicked'
+      'change .js-check-permit': 'checkPermit'
+      'change .js-check-assign': 'checkAssign'
+      'change #js-make-admin': 'makeAdminClicked'
+
+    makeAdminClicked: (e)->
+      currentCheckBox = $(e.currentTarget)
+      if currentCheckBox.is(':checked')
+        $('.js-check-assign').removeClass('hidden')
+      else
+        $('.js-check-assign').addClass('hidden').attr('checked', false)
+
+    checkPermit: (e)->
+      currentCheckBox = $(e.currentTarget)
+      parentRow = currentCheckBox.closest('.row')
+      assignCheckBox = parentRow.find('.js-check-assign').first()
+      unless currentCheckBox.is(':checked')
+        assignCheckBox.attr('checked', false)
+
+    #TODO: Fix bug. if permit checkb is change manually then this dont work.
+    checkAssign: (e)->
+      currentCheckBox = $(e.currentTarget)
+      parentRow = currentCheckBox.closest('.row')
+      permitCheckBox = parentRow.find('.js-check-permit').first()
+      if currentCheckBox.is(':checked')
+        permitCheckBox.attr('checked', true)
 
     saveClicked: (e)->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
+      rawData = Backbone.Syphon.serialize(this)
       modal = @
+      data = processData(rawData)
       @model.set(data)
-      @model.save {},
+      @model.save data,
         success: ->
           modal.destroy()
+
+    revokeClicked: (e)->
+      e.preventDefault()
+      rawData = Backbone.Syphon.serialize(this)
+      modal = @
+      data = resetData(rawData)
+      @model.set(data)
+      @model.save data,
+        success: ->
+          modal.destroy()
+
+    resetData = (data)->
+      newData = {}
+      _.each data, (value, key, list) ->
+        newData[key] = 0 unless /_plus/.test(key)
+      newData
+
+    processData = (data)->
+      newData = {}
+      _.each data, (value, key, list) ->
+        unless /_plus/.test(key)
+          if list[key] && list["#{key}_plus"]
+            newData[key] = 2
+          else if list[key]
+            newData[key] = 1
+          else
+            newData[key] = 0
+      newData
 
   class Members.MembersLayout extends Marionette.LayoutView
     template: 'groups/members/templates/layout'
@@ -95,6 +154,7 @@
       e.preventDefault()
       modal = new Members.Modal
         model: @model
+        current_user_permission: @group.get('permissions')
       $('.js-modal-container').html(modal.render().el)
 
   class Members.MembersView extends Marionette.CompositeView
