@@ -4,7 +4,7 @@
       users = AlumNet.request('user:entities', {})
       usersView = new Find.UsersView
         collection: users
-
+     
       AlumNet.mainRegion.show(usersView)
       AlumNet.execute('render:friends:submenu')
 

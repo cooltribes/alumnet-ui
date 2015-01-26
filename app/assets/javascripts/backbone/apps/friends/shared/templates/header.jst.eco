@@ -1,0 +1,17 @@
+<!-- <div class="userCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
+<div class="userCoverArea" style="background-image: url('<%= @avatar.large %>');">
+	
+  <% if @avatar.extralarge: %>
+    <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle userCoverArea__avatar">
+  <% else: %>
+    <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle userCoverArea__avatar">
+  <% end %>
+
+  <h1 class="userCoverArea__title ">    
+    <%= @name %>
+    <br>
+    <small>
+      <%= @position() %>      
+    </small>
+  </h1>
+</div>
