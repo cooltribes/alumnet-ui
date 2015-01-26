@@ -14,7 +14,8 @@
         "registration/experience/templates/professionalExperience"
 
     tagName: 'form'
-
+    templateHelpers: ->
+      currentYear: new Date().getFullYear()
     ui:
       'btnRmv': '.js-rmvRow'
       "selectCountries": "[name=country_id]"

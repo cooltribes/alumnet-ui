@@ -1,6 +1,8 @@
 <!-- TODO: find the way todo this in modal -->
-<% checked = (value)-> if value then "checked" else "" %>
+<% checked = (value)-> if value > 0 then "checked" else "" %>
+<% checkAsign = (value)-> if value == 2 then "checked" else "" %>
 <!--  -->
+
 <div class="userCard">
   <div class="row">
     <div class="userCard__avatar col-md-3 ">
@@ -16,56 +18,107 @@
 </div>
 <div class="bbm-modal__section">
   <form class="row formANet form">
-    <div class="checkbox">
+      <% if @current_user_permission.make_admin == 2: %>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <label>
-            <input type="checkbox" name="invite_users" value="" <%=checked(@invite_users)%>>
-            Invite Users
+            Make new Admins
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>
-            <input type="checkbox" name="moderate_members"
-              value="" <%=checked(@moderate_members)%>>
-            Moderate Members
-          </label>
+        <div class="col-md-3">
+          <input type="checkbox" id="js-make-admin" class="js-check-permit" name="make_admin" value="" <%=checked(@permissions.make_admin)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="make_admin_plus" value="" <%=checkAsign(@permissions.make_admin)%>>
         </div>
       </div>
+    <% end %>
+
+    <% if @current_user_permission.edit_group == 2: %>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <label>
-            <input type="checkbox" name="edit_information"
-              value="" <%=checked(@edit_information)%>>
-            Edit Information
+            Edit Group
           </label>
         </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-permit" name="edit_group" value="" <%=checked(@permissions.edit_group)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="edit_group_plus" value="" <%=checkAsign(@permissions.edit_group)%>>
+        </div>
       </div>
+    <% end %>
+
+    <% if @current_user_permission.create_subgroup == 2: %>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <label>
-            <input type="checkbox" name="create_subgroups"
-              value="" <%=checked(@create_subgroups)%>>
             Create SubGroups
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>
-            <input type="checkbox" name="change_member_type"
-              value="" <%=checked(@change_member_type)%>>
-            Change Member Rights
-          </label>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-permit" name="create_subgroup" value="" <%=checked(@permissions.create_subgroup)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="create_subgroup_plus" value="" <%= checkAsign(@permissions.create_subgroup)%>>
         </div>
       </div>
+    <% end %>
 
-    </div>
+    <% if @current_user_permission.moderate_posts == 2: %>
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Moderate Posts
+          </label>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-permit" name="moderate_posts" value="" <%=checked(@permissions.moderate_posts)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="moderate_posts_plus" value="" <%= checkAsign(@permissions.moderate_posts)%>>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @current_user_permission.delete_member == 2: %>
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Delete Members
+          </label>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-permit" name="delete_member" value="" <%=checked(@permissions.delete_member)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="delete_member_plus" value="" <%=checkAsign(@permissions.delete_member)%>>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @current_user_permission.change_join_process == 2: %>
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Change Join Process
+          </label>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-permit" name="change_join_process" value="" <%=checked(@permissions.change_join_process)%>>
+        </div>
+        <div class="col-md-3">
+          <input type="checkbox" class="js-check-assign hidden" name="change_join_process_plus" value="" <%= checkAsign(@permissions.change_join_process)%>>
+        </div>
+      </div>
+    <% end %>
   </form>
 </div>
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
+  <% if @permissions.admin : %>
+    <a href="#" class="btn btn-danger js-modal-revoke" >Revoke Admin Rights</a>
+  <% end %>
   <a href="#" class="btn btn-primary js-modal-save" >Save User Rights</a>
+  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
 </div>
