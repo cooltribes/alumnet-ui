@@ -1,7 +1,11 @@
-server 'cooltribes.com',
-  user: 'alumnet',
-  password: 'alumnet0987654321',
-  roles: %w{web app}
+server 'alumnet-test.aiesec-alumni.org',
+  roles: %w{web app},
+  ssh_options: {
+    user: 'ec2-user',
+    keys: %w(/home/armando/alumnet.pem),
+    forward_agent: true,
+    auth_methods: %w(publickey)
+  }
 
 # Custom SSH Options
 # ==================
