@@ -7,7 +7,7 @@
   class List.FriendsView extends Marionette.CompositeView
     template: 'friends/list/templates/friends_container'
     childView: List.FriendView
-    childViewContainer: '.friends-list'
+    # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
 

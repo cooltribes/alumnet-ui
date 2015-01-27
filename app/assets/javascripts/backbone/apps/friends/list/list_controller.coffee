@@ -5,8 +5,15 @@
       friends.fetch()
       friendsView = new List.FriendsView
         collection: friends
+        
+      current_user = AlumNet.current_user  
+      current_user.fc = 5
 
-      AlumNet.mainRegion.show(friendsView)
+      layout = AlumNet.request("my:friends:layout", current_user, 0)
+
+      AlumNet.mainRegion.show(layout)
+      layout.body.show(friendsView)
+
       AlumNet.execute('render:friends:submenu')
 
       friendsView.on 'friends:search', (querySearch)->
