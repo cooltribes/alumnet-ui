@@ -1,19 +1,19 @@
 /***
 
-COMPONENT NAME: Error 404 
-DESCRIPTION: estilos del error 404 
+COMPONENT NAME: Page error 
+DESCRIPTION: Page error styles 
 
 ***/
 
-@import 'conf.css.less';
+@import '/conf/conf.css.less';
 
 body{
 	padding: 0px;
 	margin: 0px;
 }
 
-.boxHeaderError{
-	background-color:@main-dark;
+.pageErrorHeader{
+	background-color: @main-dark;
 	padding: @space_medium;
 
 	&__Logo{
@@ -23,24 +23,21 @@ body{
 	}
 }
 
-.boxBodyError{
-	background-color:@main-dark-bg;
+.PageError{
+	background-color: @main-dark-bg;
 	padding: 100px 0px;
 	color: @error-gray-blue;
 	font-family:Roboto;
 
-	&__TextRight500{
-		margin-top:@space_large;
+	&__Title{
+		margin-top:@space_xsmall;
+		color: @error-gray-blue;
 	}
 
-	&__TextRight{
-		margin-top:@space_medium;
-	}
-
-	&__Text404{
+	&__ErrorNumber{
 		float:right;
-		font-size: 180px;
-		margin-top: -10px;
+		font-size: 220px;
+		margin-top: -40px;
 	}
 
 	&__Parrafo{
