@@ -5,14 +5,14 @@ DESCRIPTION: Page error styles
 
 ***/
 
-@import '/conf/conf.css.less';
+@import 'conf/conf.css.less';
 
 body{
 	padding: 0px;
 	margin: 0px;
 }
 
-.pageErrorHeader{
+.ErrorHeader{
 	background-color: @main-dark;
 	padding: @space_medium;
 
@@ -35,9 +35,10 @@ body{
 	}
 
 	&__ErrorNumber{
-		float:right;
-		font-size: 220px;
+		text-align: center;
 		margin-top: -40px;
+		font-weight: 300;
+		font-size: 180px;
 	}
 
 	&__Parrafo{
@@ -45,20 +46,55 @@ body{
 	}
 
 	&__Input{
-		padding: 10px;
-		width: 60%;
-		border-radius: 0px;
-		border: 1px solid @error-gray-input;
 		font-style: italic;
 		font-size: small;
 		color: @error-gray-input;
-		position: relative;
-		z-index: 0;
+		width: 100%;
 	}
 
-	&__lupa{
-		z-index: 1;
-		position: relative;
-		margin-left: -40px;
+	&__Lupa{
+		color:@blue;
 	}
 }
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .PageError{
+        &__ErrorNumber{
+        	text-align: right;
+			font-size: 210px;
+		}
+
+		&__Title {
+    		font-size: 51px;
+		}
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .PageError{
+        &__ErrorNumber{
+        	text-align: right;
+			font-size: 270px;
+		}
+		&__Title {
+    		margin-top: 1.5em;
+		}
+    } 
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+	.PageError{
+        &__ErrorNumber{
+        	text-align: right;
+			font-size: 210px;
+		}
+
+		&__Title {
+    		margin-top: @space_small;
+		}
+    }  
+    
+ }
