@@ -1,14 +1,19 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2 ">
-
-      <div  class="metaInfoCard metaInfoCard--menu">
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href="#">Details</a> </li>
-          <li><a href="#">Aiesec <br/><span class="text-uppercase">Experiences</span></a></li>
-          <li><a href="#">Academic <br/><span class="text-uppercase">Experiences</span></a></li>
-          <li><a href="#">Professional <br/><span class="text-uppercase">Experiences</span></a></li>
-        </ul>
+  <div class="row" style="position:relative">
+    <div class="col-md-2 metaInfoCard__affix">
+      <div data-spy="affix" data-offset-top="480">
+        <div  class="metaInfoCard metaInfoCard--menu">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="#"><span class="text-uppercase">Details & Contact</span> <span class="pull-right glyphicon glyphicon-envelope"></span> </a>  </li>
+            <li><a href="#"><img src="assets/profile/aiesec_logo_strip.png" alt="AIESEC"> <br/><span class="text-uppercase">Experiences</span> <span class="pull-right glyphicon glyphicon-book"></span>  </a></li>
+            <li><a href="#">Academic <br/><span class="text-uppercase">Experiences</span>
+              <span class="pull-right glyphicon glyphicon-asterisk"></span>
+            </a></li>
+            <li><a href="#">Professional <br/><span class="text-uppercase">Experiences</span>
+              <span class="pull-right glyphicon glyphicon-briefcase"></span>
+            </a></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="col-md-4" >
