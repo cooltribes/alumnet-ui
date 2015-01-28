@@ -23,7 +23,9 @@
 <hr class="no_margin_top">
 <div class="row main-groups-area"><!-- Begin group container -->
 </div>
-<table id="users-table" class="table groupGridView">
+
+<!-- Table view of the groups
+<table id="users-table" class="table groupTableView">
 <thead>
 <tr>
 	
@@ -85,4 +87,4 @@
 	
 </tr>
 </tbody>
-</table>
+</table> -->
