@@ -53,7 +53,7 @@
         <!-- BELL ICON -->
         <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
           <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
-          <span class="navTopBar__badge badge">3</span>
+          <!--<span class="navTopBar__badge badge">3</span>-->
         </a>
         <!--  -->
         <!-- NOTIFICATIONS ON -->
@@ -62,20 +62,20 @@
           <li class="navTopBar__notification" role="presentation">
             <div class="clearfix">
               <!-- Avatar -->
-              <div class="navTopBar__notification__avatar">
+              <!--<div class="navTopBar__notification__avatar">
                 <img src="http://placesheen.com/40/40" class="img-circle">
-              </div>
+              </div>-->
               <!-- Content -->
-              <div class="navTopBar__notification__content">
+              <!--<div class="navTopBar__notification__content">
                 <a href="#"
                   ><span class="navTopBar__notification__title">Juan</span>
                   <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet, consectetur adipisicing eli</span>
                 <span class="navTopBar__notification__date">1 hr</span></a>
-              </div>
+              </div>-->
               <!-- Actions -->
-              <div class="navTopBar__notification__actions">
+              <!--<div class="navTopBar__notification__actions">
                 <a href="#" title="Add user"><span class="icon-entypo-user-add"></span></a>
-              </div>
+              </div>-->
             </div>
           </li>
           <!-- // Notification Example OFF -->
