@@ -4,12 +4,16 @@
     appRoutes:
       "friends": "listFriends"
       "friends/find": "findFriends"
-      "friends/requests": "requestsFriends"
+      "friends/received": "receivedRequests"
+      "friends/sent": "sentRequests"
 
   API =
-    requestsFriends: ->
+    receivedRequests: ->
       controller = new FriendsApp.Requests.Controller
-      controller.showRequests()
+      controller.showReceived()
+    sentRequests: ->
+      controller = new FriendsApp.Requests.Controller
+      controller.showSent()
     findFriends: ->
       controller = new FriendsApp.Find.Controller
       controller.findUsers()

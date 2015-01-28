@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3 margin_top">
-			<h2>Find New Friends</h2>
+			<h2>Find new friends</h2>
 		</div>
 		<div class="col-md-6">
 			<div class="searchBar">
@@ -23,25 +23,7 @@
 	
 </div>
 <div class="container-fluid margin_top_large">
-	<ul class="sortingMenu" id="filter-link-container">
-				
-				<li class="sortingMenu__item sortingMenu__item--lg">
-					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#friends" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Friends
-					</a>
-				</li>
-				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-					<a href="#" class="sortingMenu__item__link" id="js-requests-sent">
-						Sent Requests
-					</a>
-				</li>
-				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-					<a href="#"  class="sortingMenu__item__link" title="Friends Requests" id="js-requests-received">
-						Friends Requests
-					</a>
-				</li>
-				
-			</ul>
+	
 	<hr class="no_margin_top">
 	<div class="row users-list">
 		
