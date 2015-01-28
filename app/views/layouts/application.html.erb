@@ -32,10 +32,64 @@
   <%= include_gon %>
 </head>
 <body>
-  <div id="header-region"></div>
+  <div id="header-region">
+
+    <header class="ErrorHeader">
+      <img src="assets/general/alumnet_logo.png" class="ErrorHeader__Logo" alt="Alumnet">
+    </header>
+    
+  </div>
   <div id="main-region">
     <%= yield %>
   </div>
-  <div id="footer-region"></div>
+  <div id="footer-region">
+    <footer class="alumNetFooter">
+<div class="container-fluid">
+<div class="row">
+  <div class=" col-md-4 col-lg-4">
+    <img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+    <br>
+    <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
+    International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
+    Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small></p>
+  </div>
+  <div class="col-md-8 col-lg-8 text-right">
+    <div class="clearfix">
+      <ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
+        <li>
+          <a href="#" title="About Us"> About Us</a>
+        </li>
+        <li>
+          <a href="#" title="Blog">Blog</a>
+        </li>
+        <li>
+          <a href="#" title="Terms of Use">Terms of Use</a>
+        </li>
+        <li>
+          <a href="#" title="Privacy Policy">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="#" title="Internships">Internships</a>
+        </li>
+        <li>
+          <a href="#" title="Join AAI">Join AAI</a>
+        </li>
+        <li>
+          <a href="#" title="Donate">Donate</a>
+        </li>
+        <li>
+          <a href="#" title="Supporters">Supporters</a>
+        </li>
+        <li>
+          <a href="#" title="Contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <p class="hidden-xs"><small> Copyright © 2014 AIESEC Alumni International. All rights reserved. </small></p>
+  </div>
+</div>
+</div>
+</footer>
+  </div>
 </body>
 </html>

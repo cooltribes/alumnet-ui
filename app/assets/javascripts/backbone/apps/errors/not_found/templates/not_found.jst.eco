@@ -1,1 +1,22 @@
-<h1>Ooops Page not found!</h1>
+<section class="PageError">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<span class="PageError__ErrorNumber">404</span>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+				<h1 class="PageError__Title">
+				Page not found
+				</h1>
+				<p class="PageError__Parrafo">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas inventore officia deleniti voluptatibus alias sapiente ab corporis eius vel.
+				</p>
+				<div class="form-group has-feedback">
+				<input class="input-lg form-control PageError__Input" type="text" value="Lorem ipsum" id="inputSearch" aria-describedby="inputSearch">
+				<span class="glyphicon glyphicon-search form-control-feedback PageError__Lupa" aria-hidden="true"></span>
+				<span id="inputSearch" class="sr-only">Buscar</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
