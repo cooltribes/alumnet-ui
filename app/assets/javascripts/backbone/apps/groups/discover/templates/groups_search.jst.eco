@@ -10,7 +10,7 @@
 				<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
 				</span>
 			</div>
-			<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>
+			<!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
 		</form>
 		<!-- /input-group -->
 	</div>
