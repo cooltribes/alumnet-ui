@@ -118,6 +118,7 @@
       userCanPost: @group.userIsMember()
       groupJoinProccess: @group.get('join_proccess')
       userHasMembership: @group.userHasMembership(@model.id)
+      groupIsClose: @group.isClose()
 
     ui:
       'bodyInput': '#body'
