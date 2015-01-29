@@ -19,6 +19,8 @@
         Backbone.Validation.validators.pattern(value, attr, 'email', @)
       else if contact_type == '1'
         Backbone.Validation.validators.pattern(value, attr, pattern, @)
+      else if contact_type == '7'
+        Backbone.Validation.validators.pattern(value, attr, 'url', @)
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
@@ -30,6 +32,7 @@
       4: 'Facebook'
       5: 'Twitter'
       6: 'IRC'
+      7: 'Web Site'
 
   class Entities.ProfileContactsCollection extends Backbone.Collection
     model: Entities.ProfileContact
