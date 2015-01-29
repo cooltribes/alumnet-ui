@@ -9,15 +9,21 @@
 		<div class="item active">
 			<img src="assets/slideshow/1.jpg" alt="AIESEC Alumni" width="100%">
 			<div class="carousel-caption">
-				Search alumni and build your AIESEC-inspired global network.
-Reconnect with old alumni friends, or find new ones, in nearly every country.
+				<p>
+					Search alumni and build your AIESEC-inspired global network.
+					<br>
+					Reconnect with old alumni friends, or find new ones, in nearly every country.
+				</p>
 			</div>
 		</div>
 		<div class="item">
 			<img src="assets/slideshow/2.jpg" alt="AIESEC Alumni" width="100%">
 			<div class="carousel-caption">
-				Search alumni and build your AIESEC-inspired global network.
-Reconnect with old alumni friends, or find new ones, in nearly every country.
+				<p>
+					Search alumni and build your AIESEC-inspired global network.
+					<br>
+					Reconnect with old alumni friends, or find new ones, in nearly every country.
+				</p>
 			</div>
 		</div>
 	</div>
