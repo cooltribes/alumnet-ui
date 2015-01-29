@@ -163,6 +163,9 @@
     className: 'container-fluid'
     childViewContainer: '.members-list'
 
+    templateHelpers: ->
+      userCanInvite: @model.userCanInvite()
+
     childViewOptions: ->
       group: @model
 
