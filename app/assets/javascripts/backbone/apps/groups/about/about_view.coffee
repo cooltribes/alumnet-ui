@@ -27,6 +27,16 @@
       e.preventDefault()
       @trigger 'join'
 
+    joinProcessOptions: =>
+      value = @model.get('group_type').value
+      if value == 1
+        [ {value: 1, text: 'All Members can invite, but the admins approved'}
+          {value: 2, text: 'Only the admins can invite'}]
+      else
+        [ {value: 0, text: 'All Members can invite'}
+          {value: 1, text: 'All Members can invite, but the admins approved'}
+          {value: 2, text: 'Only the admins can invite'}]
+
     joinProcessText: ->
       switch @model.get 'join_process'
         when 0
@@ -91,11 +101,8 @@
         pk: view.model.id
         title: 'Enter the join process'
         toggle: 'manual'
-        source: [
-          {value: 0, text: 'All Members can invite'}
-          {value: 1, text: 'All Members can invite, but the admins approved'}
-          {value: 2, text: 'Only the admins can invite'}
-        ]
+        source: ->
+          view.joinProcessOptions()
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
