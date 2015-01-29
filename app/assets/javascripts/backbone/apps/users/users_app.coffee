@@ -4,7 +4,7 @@
     appRoutes:
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
-      "users/myFriends": "myFriends"
+      "users/my-friends": "myFriends"
 
   API =
     userPosts: (id)->

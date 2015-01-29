@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3 margin_top">
-			<h2>Search</h2>
+			<h2>Search in friends</h2>
 		</div>
 		<div class="col-md-6">
 			<div class="searchBar">
@@ -33,16 +33,16 @@
 				
 				<li class="sortingMenu__item sortingMenu__item--lg">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#friends" title="All" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(0)%>" id="js-friends">Friends
+					<a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(0)%>" id="js-friends">Friends
 					</a>
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-					<a href="#friends/sent" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(1)%>" id="js-sent">
+					<a href="" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(1)%>" id="js-sent">
 						Sent
 					</a>
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-					<a href="#friends/received"  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(2)%>" title="Friends Requests" id="js-received">
+					<a href=""  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(2)%>" title="Friends Requests" id="js-received">
 						Received
 					</a>
 				</li>

@@ -3,7 +3,7 @@
     showFriends: ()->
       current_user = AlumNet.current_user  
 
-      #Layouts for the profile page - last parameter (2) is for marking "Friends" as active
+      #Layouts for the profile page - last parameter (2) is for marking "Friends" as active tab
       layout = AlumNet.request("user:layout", current_user, 2)
       header = AlumNet.request("user:header", current_user)
 
