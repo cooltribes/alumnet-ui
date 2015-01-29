@@ -57,7 +57,7 @@
 
     getLocation: ()-> 
       if @get("city") && @get("country")
-        return "#{@get("city").text} - #{@get("city").text}"
+        return "#{@get("city").text} - #{@get("country").text}"
       "No Location"   
     
     getOrganization: ()-> 
