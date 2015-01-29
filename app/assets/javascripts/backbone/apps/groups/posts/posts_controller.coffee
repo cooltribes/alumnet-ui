@@ -28,6 +28,16 @@
             #group.posts.fetch()
             posts.collection.add(model, {at: 0})
 
+        posts.on 'join', () ->
+          attrs = { group_id: group.get('id'), user_id: current_user.id }
+          request = AlumNet.request('membership:create', attrs)
+          request.on 'save:success', (response, options)->
+            console.log response.responseJSON
+            AlumNet.trigger "groups:posts", group.get('id')
+
+          request.on 'save:error', (response, options)->
+            console.log response.responseJSON
+
         #Listen each post
         posts.on 'childview:comment:submit', (postView, data) ->
           post = postView.model

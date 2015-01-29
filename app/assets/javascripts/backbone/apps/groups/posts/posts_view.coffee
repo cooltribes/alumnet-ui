@@ -3,6 +3,13 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
+    initialize: (options)->
+      @group = options.group
+      @current_user = options.current_user
+    templateHelpers: ->
+      userCanComment: @group.userIsMember()
+      current_user_avatar: @current_user.get('avatar').medium
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -39,6 +46,9 @@
     templateHelpers: ->
       userCanComment: @group.userIsMember()
       current_user_avatar: @current_user.get('avatar').medium
+    childViewOptions: ->
+      group: @group
+      current_user: @current_user
     ui:
       'item': '.item'
       'gotoComment': '.js-goto-comment'
@@ -106,12 +116,19 @@
       @group = options.group
     templateHelpers: ->
       userCanPost: @group.userIsMember()
+      groupJoinProccess: @group.get('join_proccess')
+      userHasMembership: @group.userHasMembership(@model.id)
 
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
     events:
       'click a#js-post-submit': 'submitClicked'
+      'click .js-join':'sendJoin'
+
+    sendJoin:(e)->
+      e.preventDefault()
+      @trigger 'join'
 
     submitClicked: (e)->
       e.stopPropagation()

@@ -2,8 +2,8 @@
 	<div class="row">
 		<div  class="col-md-8 col-md-offset-2">
 			<div class="row" >
-				<!-- FORM -->
 				<% if @userCanPost: %>
+					<!-- FORM -->
 					<div class="item col-md-6 ">
 						<div class="groupCreatePostForm clearfix">
 							<div class="groupCreatePostForm__avatar">
@@ -19,14 +19,16 @@
 							</div>
 						</div>
 					</div>
+					<!--  -->
 				<% end %>
-				<!--  -->
+				<% if not @userCanPost && not @userHasMembership : %>
+					<div>
+						Join this group to post and comment
+					  <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group</button>
+					</div>
+				<% end %>
 			</div>
-
-			<div id="timeline" class="row posts-container">
-
-
-			</div>
+				<div id="timeline" class="row posts-container"></div>
 		</div>
 	</div>
 </div>

@@ -34,6 +34,10 @@
       else
         false
 
+    userHasMembership: (user_id)->
+      groupMemberships = @get('membership_users')
+      _.contains(groupMemberships, user_id)
+
     userIsMember: ->
       status = @get('membership_status')
       status == "approved"
