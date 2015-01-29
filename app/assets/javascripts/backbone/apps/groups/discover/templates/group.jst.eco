@@ -26,7 +26,13 @@
     <div class=" groupCard__content">
       <div class="groupCard__text">
         <h3 class="groupCard__title">
-        <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% if @group_type.value == 1 && not @userIsMember : %>
+          <a href="#groups/<%= @id %>/about" class="js-group"> <%= @name %> </a>
+        <% else if @group_type.value == 1 && @userIsMember : %>
+          <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% else: %>
+          <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% end %>
         </h3>
         <span class="groupCard__status pull-right
           <% if @group_type.value== 1: %>
@@ -68,9 +74,9 @@
 
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
-              <!-- 
+              <!--
               Avatars of people who has joined the group
-              
+
               <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
               +10 -->
             </div>

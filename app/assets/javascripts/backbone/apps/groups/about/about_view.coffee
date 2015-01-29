@@ -6,19 +6,26 @@
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       canChangeJoinProcess: @model.canDo('change_join_process')
+      userHasMembership: @model.userHasMembership()
+      userIsApproved:  @model.userIsMember()
       joinProcessText: @joinProcessText()
 
     ui:
       'groupDescription':'#description'
       'groupType': '#group_type'
       'joinProcess': '#join_process'
+      'joinDiv': '#js-join-div'
 
     events:
       'click a#js-edit-description': 'toggleEditGroupDescription'
       'click a#js-edit-group-type': 'toggleEditGroupType'
       'click a#js-edit-join-process': 'toggleEditJoinProcess'
       'click .js-attribute': 'attributeClicked'
+      'click .js-join':'sendJoin'
 
+    sendJoin:(e)->
+      e.preventDefault()
+      @trigger 'join'
 
     joinProcessText: ->
       switch @model.get 'join_process'

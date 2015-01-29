@@ -32,6 +32,8 @@
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
+    templateHelpers: ->
+      userIsMember: @model.userIsMember()
 
     sendJoin: (e)->
       e.preventDefault()
