@@ -66,6 +66,9 @@
       else
         false
 
+    getExperienceId: ->
+      @experienceId[@get "exp_type"]
+
     getExperienceType: ->
       @experienceType[@get "exp_type"]
 
@@ -73,7 +76,13 @@
       0: 'AIESEC Experience'
       1: 'Alumni Experience'
       2: 'Academic Experience'
-      3: 'Professional Experience'      
+      3: 'Professional Experience'
+
+    experienceId:
+      0: 'aiesecExperience'
+      1: 'alumniExperience'
+      2: 'academicExperience'
+      3: 'professionalExperience'      
 
   class Entities.ExperienceCollection extends Backbone.Collection
     model: Entities.Experience

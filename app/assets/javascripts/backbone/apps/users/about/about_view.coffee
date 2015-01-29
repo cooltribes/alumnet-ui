@@ -107,6 +107,9 @@
 
       experienceType: ->
         model.getExperienceType()
+      
+      experienceId: ->
+        model.getExperienceId()
         
       getLocation: ->
         model.getLocation()
