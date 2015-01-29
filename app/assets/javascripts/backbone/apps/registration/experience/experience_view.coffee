@@ -1,8 +1,6 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Experience.FormAiesec extends Marionette.ItemView
-    # template: 'registration/experience/templates/aiesecExperience'
-
+  class Experience.FormExperience extends Marionette.ItemView
     getTemplate: ->
       if @model.get('exp_type') == 0
         "registration/experience/templates/aiesecExperience"
@@ -14,8 +12,14 @@
         "registration/experience/templates/professionalExperience"
 
     tagName: 'form'
-    templateHelpers: ->
+    templateHelpers: ->      
       currentYear: new Date().getFullYear()
+
+      firstYear: ()->
+        born = AlumNet.current_user.profile.get("born")
+        born = new Date(born).getFullYear()        
+        born + 15
+
     ui:
       'btnRmv': '.js-rmvRow'
       "selectCountries": "[name=country_id]"
@@ -83,7 +87,7 @@
 
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'
-    childView: Experience.FormAiesec
+    childView: Experience.FormExperience
     childViewContainer: '#exp-list'
     className: 'row'
 

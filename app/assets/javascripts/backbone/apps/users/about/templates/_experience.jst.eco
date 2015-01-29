@@ -1,8 +1,11 @@
-<% if @diffType(): %>
-<h2>
-<%= @experienceType() %>
-</h2>
+<% if @diffType(): %>	
+
+	<h2 id="<%= @experienceId()  %>">
+		<%= @experienceType()  %>
+	</h2>
+
 <% end %>
+	
 <div class="experienceCard">
 	<h3 class="experienceCard__title">
 	<%= @name %>

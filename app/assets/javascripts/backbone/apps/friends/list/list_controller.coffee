@@ -7,14 +7,35 @@
         collection: friends
         
       current_user = AlumNet.current_user  
-      current_user.fc = 5
 
-      layout = AlumNet.request("my:friends:layout", current_user, 0)
+      friendsLayout = AlumNet.request("my:friends:layout", current_user, 0)
 
-      AlumNet.mainRegion.show(layout)
-      layout.body.show(friendsView)
+      friendsLayout.on "friends:show:friends", (layout)->   
+        AlumNet.trigger "my:friends:get", layout        
+      
+      friendsLayout.on "friends:show:received", (layout)=>        
+        AlumNet.trigger "my:friends:received", layout
+      
+      friendsLayout.on "friends:show:sent", (layout)=>        
+        AlumNet.trigger "my:friends:sent", layout        
+
+      friendsLayout.on 'friends:search', (querySearch)->
+        friendsCollection.fetch(data: querySearch)
+
+      friendsLayout.on 'friends:search', (querySearch)->
+        friends.fetch(data: querySearch)
 
       AlumNet.execute('render:friends:submenu')
 
-      friendsView.on 'friends:search', (querySearch)->
-        @collection.fetch(data: querySearch)
+      AlumNet.mainRegion.show(friendsLayout)
+      
+      AlumNet.trigger "my:friends:get", friendsLayout
+
+    showMyFriends: (layout)->
+      friendsCollection = AlumNet.request('current_user:friendships:friends')
+      friendsCollection.fetch()
+      friendsView = new List.FriendsView
+        collection: friendsCollection
+
+      layout.body.show(friendsView)                
+

@@ -4,6 +4,7 @@
     appRoutes:
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
+      "users/my-friends": "myFriends"
 
   API =
     userPosts: (id)->
@@ -13,6 +14,10 @@
     userAbout: (id)->
       controller = new UsersApp.About.Controller
       controller.showAbout(id)
+
+    myFriends: ()->
+      controller = new UsersApp.Friends.Controller
+      controller.showFriends()
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")
