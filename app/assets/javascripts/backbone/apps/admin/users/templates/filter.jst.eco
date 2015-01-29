@@ -4,7 +4,7 @@
      <% if @first: %> <label class="control-label">Filter by</label><% end %>
       <select name="field" class="form-control  input-lg">
         <option value="">Select field</option>
-        <option value="profile_first_name_or_profile_last_name">Name</option>
+        <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
         <!-- <option value="joined">Join date</option>
         <option value="gender">Gender</option> -->
