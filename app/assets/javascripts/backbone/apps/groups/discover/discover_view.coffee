@@ -47,3 +47,29 @@
     template: 'groups/discover/templates/groups_container'
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
+    initialize: ->
+      @filterCollection(@collection)
+
+    events:
+      'click #js-filter-all': 'filterAll'
+      'click #js-filter-official': 'filterOfficial'
+      'click #js-filter-non-official': 'filterNonOfficial'
+
+    filterAll: (e)->
+      e.preventDefault()
+      @collection.reset(@all)
+
+    filterOfficial: (e)->
+      e.preventDefault()
+      @collection.reset(@official)
+
+    filterNonOfficial: (e)->
+      e.preventDefault()
+      @collection.reset(@nonOfficial)
+
+    filterCollection: (collection)->
+      @official = collection.where({official: true})
+      @nonOfficial = collection.where({official: false})
+      @all = collection.slice()
+
+
