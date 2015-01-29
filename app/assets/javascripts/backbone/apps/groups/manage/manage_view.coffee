@@ -1,6 +1,6 @@
 @AlumNet.module 'GroupsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Manage.GroupView extends Marionette.ItemView
+  class Manage.EmptyView extends Marionette.ItemView
     template: 'groups/manage/templates/empty'
 
 
@@ -21,4 +21,4 @@
     template: 'groups/manage/templates/groups_container'
     childView: Manage.GroupView
     childViewContainer: ".groups-container"
-    childView: Manage.Empty
+    emptyView: Manage.EmptyView
