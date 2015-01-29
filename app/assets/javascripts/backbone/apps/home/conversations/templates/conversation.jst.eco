@@ -1,7 +1,7 @@
 <div class="messageCard js-conversation">
 	<!-- When the message is being viewed use also messageCard--active class  -->
 	<div class="messageCard__avatar">
-		<img src="http://placehold.it/40" alt="" widht="40" height="40" class="img-circle">
+		<img src="<%= @originator.avatar %>" alt="<%= @originator.name %>" widht="40" height="40" class="img-circle">
 	</div>
 	<div class="messageCard__content">
 		<h5 class="messageCard__title <% if @unread_messages_count == 0: %> messageCard__title--read <% end %>"><%= @subject %> </h5> 
