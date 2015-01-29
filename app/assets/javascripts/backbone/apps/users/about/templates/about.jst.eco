@@ -1,41 +1,95 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <p>Details</p>
-      <p>Aiesec Experiences</p>
-      <p>Academic Experiences</p>
-      <p>Professional Experiences</p>
+  <div class="row" style="position:relative">
+    <div class="col-md-2 metaInfoCard__affix">
+      <div data-spy="affix" data-offset-top="480">
+        <div  class="metaInfoCard metaInfoCard--menu">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">
+              <span class="text-uppercase">
+              Details & Contact
+              </span>
+              <span class="pull-right glyphicon glyphicon-envelope">
+              
+              </span>
+            </a>  </li>
+            <li><a href="#aiesecExperience"><img src="assets/profile/aiesec_logo_strip.png" alt="AIESEC"> <br/>
+              <span class="text-uppercase">
+              Experiences
+              
+              </span>
+              <span class="pull-right glyphicon glyphicon-book">
+              
+              </span>
+            </a></li>
+            <li><a href="#alumniExperience">Alumni <br/>
+              <span class="text-uppercase">
+              Experiences
+              
+              </span>
+              
+              <span class="pull-right glyphicon glyphicon-asterisk">
+              
+              </span>
+              
+            </a></li>
+            <li><a href="#academicExperience">Academic <br/>
+              <span class="text-uppercase">
+              Experiences
+              
+              </span>
+              
+              <span class="pull-right glyphicon glyphicon-asterisk">
+              
+              </span>
+              
+            </a></li>
+            <li><a href="#professionalExperience">Professional <br/>
+              <span class="text-uppercase">
+              Experiences
+              
+              </span>
+              
+              <span class="pull-right glyphicon glyphicon-briefcase">
+              
+              </span>
+              
+            </a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3" id="profile-info">
-         
+    <div class="col-md-4" >
+      <div id="profile-info" class="metaInfoCard">
+      </div>
     </div>
     <div class="col-md-3">
-      <h3>IM & Web</h3>
-      <ul id="contacts-list">
+      <div class="metaInfoCard">
+        <h3 class="metaInfoCard__title">IM & Web</h3>
+        <ul id="contacts-list" class="metaInfoCard__list">
+          
+        </ul>
+      </div>
+      <div class="metaInfoCard">
         
-      </ul>
-      
-      <h3>Languages</h3>    
-      <ul id="languages-list">
-
-      </ul>
-
+        <h3 class="metaInfoCard__title">Languages</h3>
+        <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills">
+          
+        </ul>
+      </div>
     </div>
-
     <div class="col-md-3">
-    
-      <h3>Skills</h3>
-      <ul id="skills-list">
-      </ul>
-        
+      <div class="metaInfoCard">
+        <h3 class="metaInfoCard__title">Skills</h3>
+        <ul id="skills-list" class="metaInfoCard__list metaInfoCard__list--skills">
+        </ul>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3 col-md-offset-3" id="experiences-list">
-    
-     
+    <div class="col-sm-8 col-md-offset-2">
+      <div id="experiences-list">
         
+      </div>
     </div>
   </div>
 </div>
-

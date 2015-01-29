@@ -1,13 +1,13 @@
 @AlumNet.module 'FriendsApp.List', (List, @AlumNet, Backbone, Marionette, $, _) ->
   class List.FriendView extends Marionette.ItemView
-    template: 'friends/list/templates/friend'
+    template: 'friends/find/templates/user'
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
 
   class List.FriendsView extends Marionette.CompositeView
     template: 'friends/list/templates/friends_container'
     childView: List.FriendView
-    childViewContainer: '.friends-list'
+    # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
 

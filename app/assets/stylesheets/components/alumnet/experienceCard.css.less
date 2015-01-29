@@ -11,14 +11,27 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
    
    background: @white;
    margin-bottom: 2em;
-   padding: 10px 15px;
+   padding: 15px 20px;
    margin-top: 30px;
    border: 1px solid #c3c3c3;
 	
 	&__title{
 	     font-size: 36px;
-	     coor: @black;
+	     color: @black;
 	}
+  &__metaInfo{
+    color: lighten(@blue-gray, 10%);
+    font-size: 20px;
+    font-weight: 300;
+    list-style: none;
+    padding-left:0;
+    li{
+      margin: 10px 0 0;
+    }
+  }
+  &__description{
+    font-size: 16px;
+  }
 	
 }
 

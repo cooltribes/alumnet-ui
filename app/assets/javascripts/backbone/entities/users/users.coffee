@@ -42,9 +42,6 @@
     getEmail: ()-> 
       @get "email"
 
-    getPhone: ()-> 
-      "--phone--"
-
     getGender: ()-> 
       if @profile.get("gender")
         return @profile.get("gender")
@@ -77,6 +74,9 @@
         return @profile.get("local_committee").name
       "No local committee"  
     
+    areFriends: ()->
+      @get('friendship_status') == 'accepted'      
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

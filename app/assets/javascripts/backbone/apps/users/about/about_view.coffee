@@ -29,15 +29,37 @@
       
       getPhone: ->
         if model.phone then model.phone.get "info" else "No Phone"
+
+      canShowPhone: ->      
+        if model.phone?    
+          friend = model.get "friendship_status"
+          model.phone.canShow(friend)  
+        else
+          false  
+      
+      canShowEmail: ->    
+        if model.email_contact?    
+          friend = model.get "friendship_status"
+          model.email_contact.canShow(friend) 
+        else
+          false  
         
     modelEvents:
-      "add:phone": "modelChange"
+      "add:phone:email": "modelChange"
     
     modelChange: ->
-      # console.log this
       @render() 
 
-  
+  #For all collection views
+  class About.Empty extends Marionette.ItemView
+    template: 'users/about/templates/_empty'
+    
+    initialize: (options)->
+      @message = options.message
+
+    templateHelpers: ->
+      message: @message 
+
   #For skills
   class About.Skill extends Marionette.ItemView
     template: 'users/about/templates/_skill'
@@ -60,14 +82,18 @@
   class About.Contact extends Marionette.ItemView
     template: 'users/about/templates/_contact'
     tagName: "li"
-
+  
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact
+
+    emptyView: About.Empty
+    emptyViewOptions: 
+      message: "No contact info"
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
     template: 'users/about/templates/_experience'
-    tagName: "li"
+    tagName: "div"
 
     templateHelpers: ->
       model = @model
@@ -78,8 +104,12 @@
           prev.get("exp_type") != model.get("exp_type")
         else    
           true
+
       experienceType: ->
         model.getExperienceType()
+      
+      experienceId: ->
+        model.getExperienceId()
         
       getLocation: ->
         model.getLocation()
@@ -90,5 +120,6 @@
 
   class About.Experiences extends Marionette.CollectionView
     childView: About.Experience    
-
   
+
+   

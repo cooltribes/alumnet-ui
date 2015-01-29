@@ -1,6 +1,11 @@
 @AlumNet.module 'UsersApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Header extends Marionette.ItemView
-    template: 'users/shared/templates/header'    
+    template: 'users/shared/templates/header'  
+
+    templateHelpers: ->                  
+      model = @model
+      position: ->
+        model.profile.get("last_experience") ? "No Position"
 
 
   class Shared.Layout extends Marionette.LayoutView
@@ -28,14 +33,13 @@
         model: model
         tab: tab
 
-    getUserHeader: (model, tab)->
+    getUserHeader: (model)->
       new Shared.Header
         model: model
-        tab: tab
         
 
   AlumNet.reqres.setHandler 'user:layout', (model, tab) ->
     API.getUserLayout(model, tab)
 
-  AlumNet.reqres.setHandler 'user:header', (model, tab)->
-    API.getUserHeader(model, tab)
+  AlumNet.reqres.setHandler 'user:header', (model)->
+    API.getUserHeader(model)

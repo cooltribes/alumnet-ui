@@ -1,5 +1,19 @@
-<h3><%= @name %></h3>
-<p> <strong> Born:</strong> <%= @getBorn() %> </p>
-<p> <strong> Location:</strong> <%= @getLocation() %> </p>
-<p> <strong> Email:</strong> <a href="mailto:"><%= @getEmail() %></a> </p>
-<p> <strong> Phone:</strong> <%= @getPhone() %> </p> 
+<h3 class="metaInfoCard__title"><%= @name %></h3>
+<ul class="metaInfoCard__list">
+	<li>
+		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> Born:</span> <%= @getBorn() %>
+	</li>
+	<li>
+	<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %> </li>
+	<% if @canShowEmail(): %>
+	<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
+	<% end %>
+	<% if @canShowPhone(): %>
+	<li>
+		<span class="metaInfoCard__concept">
+		<span class="glyphicon glyphicon-phone">
+		
+		</span> Phone:</span> <%= @getPhone() %>
+	</li>
+</ul>
+<% end %>

@@ -31,5 +31,14 @@
       5: 'Twitter'
       6: 'IRC'
 
+    canShow: (friend, contact)->
+      priv = if contact? then contact.get "privacy" else @get "privacy"      
+      !((priv == 1 && friend != "current user") || (priv == 3 && friend != "accepted" && friend != "current user"))
+      
+    # privacy:
+    #   1: 'Only me'
+    #   2: 'Everyone'
+    #   3: 'Friends'
+
   class Entities.ProfileContactsCollection extends Backbone.Collection
     model: Entities.ProfileContact

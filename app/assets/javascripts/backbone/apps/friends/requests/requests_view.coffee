@@ -21,7 +21,7 @@
   class Requests.RequestsView extends Marionette.CompositeView
     template: 'friends/requests/templates/requests_container'
     childView: Requests.RequestView
-    childViewContainer: ".requests-list"
+    # childViewContainer: ".friends-list"
     ui:
       'filterLinkContainer': '#filter-link-container'
       'requestsSentLink':'#js-requests-sent'
