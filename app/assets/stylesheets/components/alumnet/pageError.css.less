@@ -1,0 +1,63 @@
+/***
+
+COMPONENT NAME: Page error 
+DESCRIPTION: estilos del error 404 
+
+***/
+
+@import '/conf/conf.css.less';
+
+body{
+	padding: 0px;
+	margin: 0px;
+}
+
+.boxHeaderError{
+	background-color:@main-dark;
+	padding: @space_medium;
+
+	&__Logo{
+		position:relative;
+		left:50%;
+		margin-left:-80px;
+	}
+}
+
+.PageError{
+	background-color:@main-dark-bg;
+	padding: 100px 0px;
+	color: @error-gray-blue;
+	font-family:Roboto;
+
+	&__Title{
+		margin-top:@space_medium;
+	}
+
+	&__ErrorNumber{
+		float:right;
+		font-size: 180px;
+		margin-top: -10px;
+	}
+
+	&__Parrafo{
+		font-size:small;
+	}
+
+	&__Input{
+		padding: 10px;
+		width: 60%;
+		border-radius: 0px;
+		border: 1px solid @error-gray-input;
+		font-style: italic;
+		font-size: small;
+		color: @error-gray-input;
+		position: relative;
+		z-index: 0;
+	}
+
+	&__lupa{
+		z-index: 1;
+		position: relative;
+		margin-left: -40px;
+	}
+}

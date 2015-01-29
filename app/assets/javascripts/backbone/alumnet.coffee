@@ -19,8 +19,8 @@
   App.on 'start', ->
     if Backbone.history
       Backbone.history.start()      
-      # App.navigate('friends', {trigger: true})
-      App.navigate('posts', {trigger: true})
+      App.navigate('users/myFriends', {trigger: true})
+      # App.navigate('posts', {trigger: true})
       # App.navigate('admin/users', {trigger: true})
 
   App.addRegions
