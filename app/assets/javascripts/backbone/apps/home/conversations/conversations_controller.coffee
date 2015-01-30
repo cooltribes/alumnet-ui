@@ -2,7 +2,6 @@
   class Conversations.Controller
     showCurrentUserConversations: (conversation_id)->
       conversations = AlumNet.request('conversations:get', {})
-      window.conv = conversations
       layout = new Conversations.Layout
 
       conversationsView = new Conversations.ConversationsView

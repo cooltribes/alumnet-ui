@@ -4,6 +4,13 @@
       users = AlumNet.request('user:entities', {})
       usersView = new Find.UsersView
         collection: users
+
+      #On fetch, delete current user from the list
+      users.on "sync", ()->
+        models = this.filter (model)->              
+          model.get("id") != AlumNet.current_user.id          
+        
+        this.reset(models)
      
       AlumNet.mainRegion.show(usersView)
       AlumNet.execute('render:friends:submenu')

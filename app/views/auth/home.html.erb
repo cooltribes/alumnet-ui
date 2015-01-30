@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="homeAlumNet__logo navbar-brand" href="#"><img src="/assets/home/alumNetLogoHome.png" width="230px"></a>
+            <a class="navbar-brand" href="#"><%= image_tag('home/alumNetLogoHome.png', width: "230") %></a>
           </div>
         </div>
         <div class=" col-md-5">
@@ -91,21 +91,21 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="row">
         <div class="col-md-4  text-center ">
-          <img src="/assets/home/iconConnect.png"></img>
+          <%= image_tag('home/iconConnect.png') %>
           <h3>    Connect</h3>
           <p> Find alumni, form groups and<br/>
           alumni chapters
           </p>
         </div>
         <div class="col-md-4  text-center">
-          <img src="/assets/home/iconCollaborate.png"></img>
+          <%= image_tag('home/iconCollaborate.png') %>
           <h3>    Collaborate</h3>
           <p>Online and offline though our programs,
           events and discussions
           </p>
         </div>
         <div class="col-md-4  text-center">
-          <img src="/assets/home/iconContribute.png"></img>
+          <%= image_tag('home/iconContribute.png') %>
           <h3>    Contribute</h3>
           <p>Help us transform our alumni<br/>
           into a powerful global network
@@ -250,7 +250,8 @@
 <div class="container-fluid">
 <div class="row">
   <div class=" col-md-4 col-lg-4">
-    <img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+    <%= image_tag('home/alumNetLogoHome.png', width: "190", class: "alumNetFooter__logo", title: "Company Logo AlumNet " ) %>
+
     <br>
     <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
     International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.

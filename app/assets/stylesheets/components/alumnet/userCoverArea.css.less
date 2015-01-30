@@ -17,16 +17,17 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 	position: relative;
 
 	&__title{
-		font-size: 60px;
-	    padding: 10px 20px 10px 70px;
+		font-size: 30px;
+	    padding: 20px;
 		color: @white;
-		position: absolute;
-		left: 190px;
-	    top: 80px;
+		position: relative;
+		left: auto;
+	    top: auto;
 	    z-index: 0;
 	    text-transform: capitalize;
+	    text-align: center;
 		
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.3);
 		a{
 			color: @white;
 			&:hover{
@@ -35,13 +36,29 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			}
 		}
 	}
+	&__subTitle{
+		padding: 10px;
+		color: @white;
+		position: relative;
+		left: auto;
+	    top: auto;
+	    z-index: 0;
+	    font-size: 18px;
+	    font-weight: 300;
+	    text-transform: capitalize;
+	    text-align: center;
+		
+		background: rgba(0, 0, 0, 0.3);
+	}
 	
 	&__avatar{
-		position: absolute;
-		top: 50px;
-		left: 0;
+		position: relative;
+		top: auto;
+		left: auto;
 		display: block;
 		z-index: 100;
+		margin: 0 auto;
+
 	}
 
 	&__btnInvite{
@@ -100,7 +117,44 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			width: auto;
 		}
 		&__title{
+			font-size: 60px;
+		    padding: 10px 20px 10px 70px;
+			color: @white;
+			position: absolute;
+			left: 190px;
+		    top: 80px;
+		    z-index: 0;
+		    text-transform: capitalize;
 			
+			background: rgba(0, 0, 0, 0.3);
+			a{
+				color: @white;
+				&:hover{
+					text-decoration: none;
+
+				}
+			}
+		}
+		&__subTitle{
+			padding: 10px 20px 10px 70px;
+			color: @white;
+			position: absolute;
+			left: 190px;
+		    top: 190px;
+		    z-index: 0;
+		    font-size: 30px;
+		    font-weight: 300;
+		    text-transform: capitalize;
+			
+			background: rgba(0, 0, 0, 0.3);
+		}
+			
+		&__avatar{
+			position: absolute;
+			top: 50px;
+			left: 0;
+			display: block;
+			z-index: 100;
 		}
  	}
     
@@ -112,6 +166,47 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
     	height: 428px;
     	margin-top: -51px;
 
+    	&__title{
+			font-size: 60px;
+		    padding: 10px 20px 10px 70px;
+			color: @white;
+			position: absolute;
+			left: 190px;
+		    top: 80px;
+		    z-index: 0;
+		    text-transform: capitalize;
+			
+			background: rgba(0, 0, 0, 0.3);
+			a{
+				color: @white;
+				&:hover{
+					text-decoration: none;
+
+				}
+			}
+		}
+		&__subTitle{
+			padding: 10px 20px 10px 70px;
+			color: @white;
+			position: absolute;
+			left: 190px;
+		    top: 190px;
+		    z-index: 0;
+		    font-size: 30px;
+		    font-weight: 300;
+		    text-transform: capitalize;
+			
+			background: rgba(0, 0, 0, 0.3);
+		}
+			
+		&__avatar{
+			position: absolute;
+			top: 50px;
+			left: 0;
+			display: block;
+			z-index: 100;
+		}
+
   		&__btnInvite{
 			position: absolute;
 			bottom: 20px;
@@ -119,8 +214,6 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			display: inline-block;
 			width: auto;
 		}
-		&__title{
-			
-		}
+		
  	}
  }

@@ -16,8 +16,7 @@
         "", "", ""
         "", ""
       ]  
-      @class[parseInt(@tab)] = "--active"            
-    
+      @class[parseInt(@tab)] = "--active"   
 
     templateHelpers: ->
       model = @model
@@ -26,6 +25,46 @@
       
       friends: () ->
         model.fc
+
+    events:
+      'click .js-search': 'performSearch'
+      'click #js-friends, #js-sent, #js-received': 'getList'
+
+    performSearch: (e) ->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)      
+      @trigger 'friends:search', @buildQuerySearch(data.search_term)      
+    
+    listFriends: (e) ->
+      e.preventDefault()
+      @trigger 'friends:show:friends', this
+    
+    listSent: (e) ->
+      e.preventDefault()
+      @trigger 'friends:show:sent', this
+      
+    listReceived: (e) ->
+      e.preventDefault()
+      @trigger 'friends:show:received', this
+
+    getList: (e)->
+      e.stopPropagation()
+      e.preventDefault()      
+      id = $(e.currentTarget).attr('id').substring(3)
+      @trigger "friends:show:#{id}", this
+      @toggleLink(id)
+    
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        profile_first_name_cont: searchTerm
+        profile_last_name_cont: searchTerm
+        email_cont: searchTerm    
+
+    toggleLink: (id)->
+      link = $("#js-#{id}")      
+      this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
+      link.addClass("sortingMenu__item__link--active")
 
   API =
     getFriendsLayout: (model, tab)->
