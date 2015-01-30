@@ -6,7 +6,7 @@
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
       <!-- Avatar OFF -->
-      <h4 class="homeCard__userName"><%= @user.name %></h4>
+      <h4 class="homeCard__userName"><a href="#users/<%= @id %>/posts"><%= @user.name %></a></h4>
       <small class="homeCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p> <%= @body %></p>
