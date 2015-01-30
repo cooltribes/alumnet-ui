@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-7">
       <h4 class="userCard__name">
-        <a href="#"><%= @user.name %></a>
+        <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
       </h4>
       <p class="member-position text-small">Local Comitee President</p>
     </div>
