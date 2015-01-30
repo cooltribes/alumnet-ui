@@ -1,0 +1,76 @@
+	<td>
+		<% if @official: %><span class="groupTableView__ribbon"></span><% end %>
+		<h4>
+        <% if @group_type.value == 1 && not @userIsMember : %>
+          <a href="#groups/<%= @id %>/about" class="js-group"> <%= @name %> </a>
+        <% else if @group_type.value == 1 && @userIsMember : %>
+          <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% else: %>
+          <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% end %>
+        <span class="label pull-right
+          <% if @group_type.value== 1: %>
+            label-warning
+          <% end %>
+          <% if @group_type.value== 0: %>
+            label-success
+          <% end %>
+        ">
+        	<% if @group_type.value== 1: %>
+            closed
+          	<% end %>
+          	<% if @group_type.value== 0: %>
+            public
+          	<% end %>
+        </span>
+
+        </h4>
+        <p>
+        	<%= @description %> 
+        </p>
+		<a data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" aria-controls="<%= @id %>">
+			Show Sub-Groups (<%= _.size(@children) %>) <span class="caret"></span>
+		</a>
+		<div class="collapse" id="<%= @id %>">	
+			<ul class="groupCard__menu__list">
+        		<% _.each @children, (child)->: %>
+          		<li class="groupCard__menu__item">
+            		<a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
+            		<span class="icon-entypo-list pull-right"></span>
+          		</li>
+        		<% end %>
+          <li class="groupCard__menu__item text-center">
+            <a href="#" title="Subgroup name" > </span> </a>
+          </li>
+        </ul>
+		</div>
+			
+		
+
+	</td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> <%= moment(@created_at).format('MM/YYYY') %> </td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last post" >
+		<% if @last_post_at: %>
+            <%= moment(@last_post_at).format('h:mm a') %>
+        <% else: %>
+            <%= moment(@created_at).format('h:mm a') %>
+        <% end %>		
+	</td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> <%= @membership_users.length %> </td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
+		<!--
+              Avatars of people who has joined the group
+
+              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
+              +10 -->
+	</td>
+	<td class="groupTableView__col">
+		<% if @membership_status == "approved": %>
+          <a href="#groups/<%= @id %>/posts"> ENTER </a>
+        <% else if @membership_status == "pending": %>
+         <span> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
+        <% else: %>
+          <button >+ Join group
+          </button>
+        <% end %>
+	</td>

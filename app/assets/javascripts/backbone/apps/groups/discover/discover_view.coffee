@@ -25,8 +25,9 @@
         description_cont: searchTerm
 
   class Discover.GroupView extends Marionette.ItemView
-    template: 'groups/discover/templates/group'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    template: 'groups/discover/templates/groupList'
+    tagName: 'tr'
+    
     events:
       'click .js-join':'sendJoin'
     ui:
@@ -46,9 +47,9 @@
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'groups/discover/templates/groups_container'
+    template: 'groups/discover/templates/groups_containerList'
     childView: Discover.GroupView
-    childViewContainer: ".main-groups-area"
+    childViewContainer: ".groupTableView__List"
     initialize: ->
       @filterCollection(@collection)
 
