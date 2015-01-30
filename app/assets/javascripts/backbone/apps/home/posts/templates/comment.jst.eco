@@ -1,5 +1,5 @@
 <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
-<%= @user.name %>
+<a href="#users/<%= @id %>/posts"><%= @user.name %></a>
 
 <p><%= @comment %></p>
 <% if @currentUserCanPost: %>

@@ -2,7 +2,7 @@
 	<div class="groupPost__comment__avatar">
 		<img src="<%= @user.avatar %>" alt="" alt="<%= @user.name %>" class="img-circle">
 	</div>
-	<h5 class="groupPost__comment__userName"> <%= @user.name %></h5>
+	<h5 class="groupPost__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
 </div>
 <p><%= @comment %></p>
 <% if @userCanComment : %>
