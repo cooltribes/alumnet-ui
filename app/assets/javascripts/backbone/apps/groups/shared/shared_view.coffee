@@ -22,9 +22,15 @@
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'groups/shared/templates/layout'
+    initialize: ->
+      @current_user = AlumNet.current_user
+
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
+      userIsMember: @model.userIsMember()
+      groupIsClose: @model.isClose()
+
 
     regions:
       header: '#group-header'

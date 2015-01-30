@@ -4,6 +4,11 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<ul class="nav nav-pills">
+				<% if @groupIsClose && not @userIsMember: %>
+					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
+						<span class="icon-entypo-dot-3"></span>
+					About</a></li>
+				<% else : %>
 					<li>  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
 						<span class="glyphicon glyphicon-list-alt"></span>
 					Posts</a></li>
@@ -22,6 +27,7 @@
 					<li>  <a href="#" id="js-events" class="groupMenu__link">
 						<span class="ico-calendar"></span>
 					Events</a></li>
+				<% end  %>
 				</ul>
 			</div>
 		</div>

@@ -31,7 +31,9 @@
 		</ul>
 	</div>
 	<div class="col-md-3 text-right">
-		<a href="#groups/<%= @id %>/invite" class="btn-primary-noBackground btn" title="Add people to group">+ Add people to group</a>
+		<% if @userCanInvite : %>
+			<a href="#groups/<%= @id %>/invite" class="btn-primary-noBackground btn" title="Add people to group">+ Add people to group</a>
+		<% end %>
 	</div>
 </div>
 <hr class="no_margin_top">
