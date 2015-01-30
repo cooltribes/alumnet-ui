@@ -9,6 +9,18 @@
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
 
+    isOpen: ->
+      group_type = @get('group_type')
+      group_type.value == 0
+
+    isClose: ->
+      group_type = @get('group_type')
+      group_type.value == 1
+
+    isSecret: ->
+      group_type = @get('group_type')
+      group_type.value == 2
+
     userIsAdmin: ->
       @get('admin')
 
@@ -33,6 +45,10 @@
             false
       else
         false
+
+    userHasMembership: (user_id)->
+      groupMemberships = @get('membership_users')
+      _.contains(groupMemberships, user_id)
 
     userIsMember: ->
       status = @get('membership_status')

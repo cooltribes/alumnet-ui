@@ -1,5 +1,12 @@
 <div class="groupAbout container-fluid">
   <div class="row">
+    <% if not @userHasMembership && not @userIsApproved : %>
+        <div id="js-join-div">
+          Join this group to post and comment
+          <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group</button>
+        </div>
+    <% end %>
+
     <div class="col-md-8 col-md-offset-2">
       <div class="groupAbout__box margin_bottom margin_top">
         <% if @canEditInformation: %>
