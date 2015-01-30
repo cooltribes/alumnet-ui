@@ -55,12 +55,15 @@
             </div>
           </div>
           <div class="col-md-4 margin_top_medium">
-            <div class="form-group">
-              <label class="control-label">Official Group</label>
-              <select class="form-control input-lg" name="official">
-                <option value="0">it's not an official group</option>
-              </select>
-            </div>
+            <% if @userIsAdmin : %>
+              <div class="form-group">
+                <label class="control-label">Official Group</label>
+                <select class="form-control input-lg" name="official">
+                  <option value="0">it's not an official group</option>
+                  <option value="1">it's an official group</option>
+                </select>
+              </div>
+            <% end %>
           </div>
         </div>
         <!-- ROW 2 OFF -->

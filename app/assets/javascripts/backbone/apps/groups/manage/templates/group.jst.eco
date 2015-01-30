@@ -2,19 +2,19 @@
 	<div class="clearfix">
 		<!-- COVER ON -->
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
-			
+
 		</div>
 		<!-- COVER OFF -->
 		<!-- CONTENT ON -->
 		<div class=" groupCardManage__content">
 			<div class="groupCardManage__text">
 				<h3 class="groupCardManage__title">
-				<a href="#groups/<%= @id %>/posts" class="js-group"> <%= @group.name %> </a>
+				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
 				</h3>
-				
+
 				<p class="groupCardManage__description"><%= @group.description %></p>
 			</div>
-			
+
 		</div>
 		<!-- CONTENT OFF -->
 		<!-- ATRIBUTES ON -->
@@ -36,7 +36,7 @@
 			<div class="clearfix">
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Members" class="groupCardManage__atribute__container--odd">
-						<span class="groupCardManage__icon ico-company"></span> 13000
+						<span class="groupCardManage__icon ico-company"></span> <%= @group.members_count %>
 					</div>
 				</div>
 				<div class="groupCardManage__atribute">
@@ -46,12 +46,12 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		<!-- ATRIBUTES OFF -->
 		<!-- ACTIONS ON -->
 		<div class="groupCardManage__actions">
-			
+
 			<% if @is_admin: %>
 			<div class="groupCardManage__actions__wrapper--admin">
 				<a href="#groups/<%= @group.id %>/members" title="Members">
@@ -61,7 +61,7 @@
 			</div>
 			<% else: %>
 			<div class="groupCardManage__actions__wrapper">
-				
+
 				<a href="#" id="js-leave-group" class="text-uppercase" title="Leave Group">
 <span class="icon-entypo-logout"></span> <br><strong> Leave group</strong>
 				</a>

@@ -32,6 +32,8 @@
       if value == 1
         [ {value: 1, text: 'All Members can invite, but the admins approved'}
           {value: 2, text: 'Only the admins can invite'}]
+      else if value == 2
+        [ {value: 2, text: 'Only the admins can invite'}]
       else
         [ {value: 0, text: 'All Members can invite'}
           {value: 1, text: 'All Members can invite, but the admins approved'}
@@ -88,6 +90,7 @@
         source: [
           {value: 0, text: 'Open'}
           {value: 1, text: 'Closed'}
+          {value: 2, text: 'Secret'}
         ]
         validate: (value)->
           if $.trim(value) == ''

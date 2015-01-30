@@ -5,7 +5,9 @@
       current_user = AlumNet.current_user
       group.on 'find:success', ->
         if group.isClose() && not group.userIsMember()
-          $.growl.error({ message: "You cannot see the posts of this Group. This is a Closed Group" })
+          $.growl.error({ message: "You cannot see information on this Group. This is a Closed Group" })
+        else if group.isSecret() && not group.userIsMember()
+          AlumNet.trigger('show:error', 404)
         else
           layout = AlumNet.request('group:layout', group)
           header = AlumNet.request('group:header', group)
