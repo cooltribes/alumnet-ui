@@ -4,10 +4,16 @@
 
 
   class Shared.Layout extends Marionette.LayoutView
-    template: 'friends/shared/templates/layout'
+    # template: 'friends/shared/templates/layout'
+
+    getTemplate: ()->      
+      #whether to show layout for my friends or someones friends
+      if @model.get("id") == AlumNet.current_user.get("id")
+        'friends/shared/templates/myfriends_layout'
+      else
+        'friends/shared/templates/friends_layout'
 
     regions:
-      # header: '#user-header'
       body: '.friends-list'
 
     initialize: (options) ->      
@@ -28,26 +34,14 @@
 
     events:
       'click .js-search': 'performSearch'
-      'click #js-friends, #js-sent, #js-received': 'getList'
+      'click #js-friends, #js-mutual, #js-myfriends, #js-sent, #js-received': 'showList'
 
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)      
       @trigger 'friends:search', @buildQuerySearch(data.search_term)      
-    
-    listFriends: (e) ->
-      e.preventDefault()
-      @trigger 'friends:show:friends', this
-    
-    listSent: (e) ->
-      e.preventDefault()
-      @trigger 'friends:show:sent', this
-      
-    listReceived: (e) ->
-      e.preventDefault()
-      @trigger 'friends:show:received', this
-
-    getList: (e)->
+   
+    showList: (e)->
       e.stopPropagation()
       e.preventDefault()      
       id = $(e.currentTarget).attr('id').substring(3)
@@ -75,10 +69,10 @@
     # getUserHeader: (model)->
     #   new Shared.Header
     #     model: model
-        
-
-  AlumNet.reqres.setHandler 'my:friends:layout', (model, tab) ->
-    API.getFriendsLayout(model, tab)
 
   # AlumNet.reqres.setHandler 'user:header', (model)->
   #   API.getUserHeader(model)
+        
+
+  AlumNet.reqres.setHandler 'users:friends:layout', (model, tab) ->
+    API.getFriendsLayout(model, tab)

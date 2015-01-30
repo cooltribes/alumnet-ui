@@ -33,7 +33,7 @@
 				
 				<li class="sortingMenu__item sortingMenu__item--lg">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(0)%>" id="js-friends">Friends
+					<a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(0)%>" id="js-myfriends">Friends
 					</a>
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">

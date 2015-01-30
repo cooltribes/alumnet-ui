@@ -30,6 +30,13 @@
         </span>
       </div>
     </div>
+    <% else if @friendship_status == "current user": %>
+      <div class=" col-md-3 ">
+        <div id="link-container" class="userCard__actions userCard__actions--isFriend">
+          <span class="invitation">
+          </span>
+        </div>
+      </div>
     <% else: %>
     <div class=" col-md-3 ">
       <div id="link-container" class="userCard__actions">

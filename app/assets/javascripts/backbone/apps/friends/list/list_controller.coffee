@@ -8,7 +8,7 @@
         
       current_user = AlumNet.current_user  
 
-      friendsLayout = AlumNet.request("my:friends:layout", current_user, 0)
+      friendsLayout = AlumNet.request("users:friends:layout", current_user, 0)
 
       friendsLayout.on "friends:show:friends", (layout)->   
         AlumNet.trigger "my:friends:get", layout        
@@ -39,3 +39,17 @@
 
       layout.body.show(friendsView)                
 
+    showSomeonesFriends: (layout, id)->
+      friendsCollection = AlumNet.request('user:friendships:friends', id)
+      friendsCollection.fetch()
+      friendsView = new List.FriendsView
+        collection: friendsCollection
+      layout.body.show(friendsView)
+
+    showMyMutual: (layout, id)->
+      friendsCollection = AlumNet.request('user:friendships:mutual', id)
+      friendsCollection.fetch()
+      friendsView = new List.FriendsView
+        collection: friendsCollection
+      
+      layout.body.show(friendsView)  
