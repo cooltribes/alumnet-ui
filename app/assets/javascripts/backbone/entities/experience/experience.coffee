@@ -19,13 +19,8 @@
       description:
         required: (value, attr, computedState) ->
           @get("exp_type") == 0 || @get("exp_type") == 1
-      country_id:
-        required: true
-      # city_id:
+      # country_id:
       #   required: true
-      # committee_id:
-      #   required: (value, attr, computedState) ->
-      #     @get("exp_type") == 0 || @get("exp_type") == 1
       organization_name:
         required: (value, attr, computedState) ->
           @get("exp_type") == 2 || @get("exp_type") == 3
@@ -55,12 +50,12 @@
 
       @set "#{attr}_date", "#{year}-#{month}-#{day}"
 
-    getLocation: ()-> 
+    getLocation: ()->
       if @get("city") && @get("country")
         return "#{@get("city").text} - #{@get("country").text}"
-      "No Location"   
-    
-    getOrganization: ()-> 
+      "No Location"
+
+    getOrganization: ()->
       if @get("organization_name")
         @get("organization_name")
       else
@@ -82,7 +77,7 @@
       0: 'aiesecExperience'
       1: 'alumniExperience'
       2: 'academicExperience'
-      3: 'professionalExperience'      
+      3: 'professionalExperience'
 
   class Entities.ExperienceCollection extends Backbone.Collection
     model: Entities.Experience

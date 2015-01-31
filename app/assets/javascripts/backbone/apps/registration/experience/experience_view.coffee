@@ -12,19 +12,21 @@
         "registration/experience/templates/professionalExperience"
 
     tagName: 'form'
-    templateHelpers: ->      
+    templateHelpers: ->
       currentYear: new Date().getFullYear()
 
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
-        born = new Date(born).getFullYear()        
+        born = new Date(born).getFullYear()
         born + 15
 
     ui:
       'btnRmv': '.js-rmvRow'
+      "selectRegions": "[name=region_id]"
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
+
 
     events:
       "click @ui.btnRmv": "removeExperience"
@@ -47,16 +49,37 @@
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []
+        allowClear: true
 
       @ui.selectComitees.select2
         placeholder: "Select a Committee"
         data: []
+        allowClear: true
 
-      data = CountryList.toSelect2()
+      dataCountries = CountryList.toSelect2()
+      dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
         placeholder: "Select a Country"
-        data: data
+        data: dataCountries
+        allowClear: true
+
+      @ui.selectRegions.select2
+        placeholder: "Select a Region"
+        data: dataRegions
+        allowClear: true
+
+      @ui.selectCountries.on 'select2-selecting', (e)->
+        console.log "country selected"
+
+      @ui.selectCountries.on 'select2-removed', (e)->
+        console.log "country unselected"
+
+      @ui.selectRegions.on 'select2-selecting', (e)->
+        console.log "region selected"
+
+      @ui.selectRegions.on 'select2-removed', (e)->
+        console.log "region unselected"
 
     setCitiesAndCommittees: (e)->
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
