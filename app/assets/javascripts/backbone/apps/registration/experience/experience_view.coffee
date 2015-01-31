@@ -69,14 +69,17 @@
         data: dataRegions
         allowClear: true
 
+      ui = @ui
       @ui.selectCountries.on 'select2-selecting', (e)->
-        console.log "country selected"
+        ui.selectRegions.select2('val', '')
 
       @ui.selectCountries.on 'select2-removed', (e)->
         console.log "country unselected"
 
       @ui.selectRegions.on 'select2-selecting', (e)->
-        console.log "region selected"
+        ui.selectCountries.select2('val', '')
+        ui.selectCities.select2('val', '')
+        ui.selectComitees.select2('val', '')
 
       @ui.selectRegions.on 'select2-removed', (e)->
         console.log "region unselected"
