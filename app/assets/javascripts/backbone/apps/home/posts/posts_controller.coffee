@@ -12,9 +12,9 @@
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
+        console.log post.url()
         post.save data,
           success: (model, response, options) ->
-            #user.posts.fetch()
             posts.collection.add(model, {at: 0})
 
       #Listen each post
@@ -23,7 +23,6 @@
         comment = AlumNet.request("comment:post:new", post.id)
         comment.save data,
           success: (model, response, options) ->
-            # post.comments.fetch()
             postView.collection.add(model, {at: 0})
 
       #Like in post

@@ -4,9 +4,9 @@
     template: 'home/posts/templates/comment'
     className: 'groupPost__comment'
     initialize: (options)->
-      @userModel = options.userModel
+      @current_user = options.current_user
     templateHelpers: ->
-      currentUserCanPost: @userModel.currentUserCanPost()
+      current_user_avatar: @current_user.get('avatar').medium
 
     ui:
       'likeLink': '.js-vote'
@@ -30,7 +30,8 @@
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
+      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')
 
   # POST VIEW
   class Posts.PostView extends Marionette.CompositeView
@@ -39,21 +40,25 @@
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
     childViewOptions: ->
-      userModel: @userModel
+      current_user: @current_user
     initialize: (options)->
-      @userModel = options.userModel
+      @current_user = options.current_user
     templateHelpers: ->
-      currentUserCanPost: @userModel.currentUserCanPost()
+      current_user_avatar: @current_user.get('avatar').medium
 
     ui:
       'item': '.item'
       'commentInput': '.comment'
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
+      'gotoComment': '.js-goto-comment'
+      'textareaComment': 'textarea.comment'
+
     events:
       'keypress .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
+      'click .js-goto-comment': 'clickedGotoComment'
 
     commentSend: (e)->
       e.stopPropagation()
@@ -79,7 +84,12 @@
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
+      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')
+    clickedGotoComment: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.textareaComment.focus()
 
     #Init the render of a comment
     # TODO: try to put this code on onAddChild of CompositeView
@@ -93,13 +103,14 @@
         @trigger 'comment:unlike', commentView
 
   class Posts.PostsView extends Marionette.CompositeView
+    ##model is current user
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     childViewOptions: ->
-      userModel: @model
+      current_user: @model
     templateHelpers: ->
-      currentUserCanPost: @model.currentUserCanPost()
+      current_user_avatar: @model.get('avatar').large
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
