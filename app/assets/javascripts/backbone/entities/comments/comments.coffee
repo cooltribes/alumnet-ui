@@ -4,6 +4,17 @@
       comment:
         required: true
 
+    sumLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count + 1)
+      @set('you_like', true)
+
+    remLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count - 1)
+      @set('you_like', false)
+
+
   class Entities.CommentsCollection extends Backbone.Collection
     model: Entities.Comment
 

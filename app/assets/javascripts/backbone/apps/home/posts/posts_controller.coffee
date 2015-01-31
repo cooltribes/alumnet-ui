@@ -31,12 +31,14 @@
         like = AlumNet.request("like:post:new", post.id)
         like.save {},
           success: ->
+            post.sumLike()
             postView.sumLike()
       posts.on "childview:post:unlike", (postView) ->
         post =  postView.model
         unlike = AlumNet.request("unlike:post:new", post.id)
         unlike.save {},
           success: ->
+            post.remLike()
             postView.remLike()
 
       #Like in comment
@@ -45,12 +47,15 @@
         comment = commentView.model
         like = AlumNet.request("like:comment:new", post.id, comment.id)
         like.save {},
-          success: ->
+          success: (model)->
+            comment.sumLike()
             commentView.sumLike()
+
       posts.on "childview:comment:unlike", (postView, commentView) ->
         post = postView.model
         comment = commentView.model
         unlike = AlumNet.request("unlike:comment:new", post.id, comment.id)
         unlike.save {},
-          success: ->
+          success: (model)->
+            comment.remLike()
             commentView.remLike()
