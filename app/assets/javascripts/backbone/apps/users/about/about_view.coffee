@@ -47,6 +47,14 @@
     modelEvents:
       "add:phone:email": "modelChange"
     
+      onRender: ->
+            $('#aboutUseraffix').affix({
+              offset: {
+                top: 100,
+                bottom:150,
+              }
+            })
+
     modelChange: ->
       @render() 
 

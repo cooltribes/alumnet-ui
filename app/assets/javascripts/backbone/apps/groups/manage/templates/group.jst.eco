@@ -2,7 +2,6 @@
 	<div class="clearfix">
 		<!-- COVER ON -->
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
-
 		</div>
 		<!-- COVER OFF -->
 		<!-- CONTENT ON -->
@@ -11,10 +10,8 @@
 				<h3 class="groupCardManage__title">
 				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
 				</h3>
-
 				<p class="groupCardManage__description"><%= @group.description %></p>
 			</div>
-
 		</div>
 		<!-- CONTENT OFF -->
 		<!-- ATRIBUTES ON -->
@@ -29,7 +26,11 @@
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
 						<span class="groupCardManage__icon ico-timebank"></span>
-						10:32<small>am</small>
+						<% if @last_post_at: %>
+						<%= moment(@last_post_at).format('h:mm a') %>
+						<% else: %>
+						<%= moment(@created_at).format('h:mm a') %>
+						<% end %>
 					</div>
 				</div>
 			</div>
@@ -41,17 +42,18 @@
 				</div>
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
-						<img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-						+10
+						 <!--
+              Avatars of people who has joined the group
+
+              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
+              +10 -->
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<!-- ATRIBUTES OFF -->
 		<!-- ACTIONS ON -->
 		<div class="groupCardManage__actions">
-
 			<% if @is_admin: %>
 			<div class="groupCardManage__actions__wrapper--admin">
 				<a href="#groups/<%= @group.id %>/members" title="Members">
@@ -61,9 +63,8 @@
 			</div>
 			<% else: %>
 			<div class="groupCardManage__actions__wrapper">
-
 				<a href="#" id="js-leave-group" class="text-uppercase" title="Leave Group">
-<span class="icon-entypo-logout"></span> <br><strong> Leave group</strong>
+					<span class="icon-entypo-logout"></span> <br><strong> Leave group</strong>
 				</a>
 			</div>
 			<% end %>
