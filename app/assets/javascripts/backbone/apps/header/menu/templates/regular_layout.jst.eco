@@ -126,7 +126,7 @@
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
 
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%= @id %>/about">My Profile</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%= @id %>/posts">My Profile</a></li>
 
           <% if @isAlumnetAdmin: %>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users" id="js-changeHeader">Admin Section</a></li>
