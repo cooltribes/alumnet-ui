@@ -53,6 +53,10 @@
       year = @get("#{attr}_year")
 
       if month == '' then month = "01"
+      if year == 'current'
+        year = 0 #"0000"
+        month = 0 # "00"
+        day = 0 # "00"
 
       @set "#{attr}_date", "#{year}-#{month}-#{day}"
 
@@ -66,6 +70,10 @@
         @get("organization_name")
       else
         false
+
+    getEndDate: ()->
+      @get("end_date") ? "Current" 
+        
 
     getExperienceId: ->
       @experienceId[@get "exp_type"]

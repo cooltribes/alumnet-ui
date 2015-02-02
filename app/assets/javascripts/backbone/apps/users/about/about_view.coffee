@@ -124,6 +124,9 @@
 
       getOrganization: ->
         model.getOrganization()
+      
+      getEndDate: ->
+        model.getEndDate()
 
 
   class About.Experiences extends Marionette.CollectionView
