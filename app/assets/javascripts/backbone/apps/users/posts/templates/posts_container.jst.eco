@@ -2,12 +2,11 @@
 	<div class="row">
 		<div  class="col-md-8 col-md-offset-2">
 			<div class="row" >
-			<% if @currentUserCanPost: %>
 				<!-- FORM -->
 				<div class="item col-md-6 ">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
-							<img src="<%= @avatar.large %>" class="img-circle" width="60px" height="60px" >
+							<img src=<%= @current_user_avatar %> class="img-circle">
 						</div>
 						<div class="groupCreatePostForm__form">
 							<form class="form">
@@ -20,8 +19,6 @@
 					</div>
 				</div>
 				<!--  -->
-				<% end %>
-				
 			</div>
 			<div id="timeline" class="row posts-container"></div>
 		</div>
