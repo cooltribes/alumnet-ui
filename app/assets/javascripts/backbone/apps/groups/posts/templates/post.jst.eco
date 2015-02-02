@@ -21,9 +21,9 @@
       </div>
     <% end %>
     (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-    <!-- 2 Last avatars that have liked this post - ON -->
+    <!-- 2 Last avatars that have liked this post - ON
     <img width="20px" height="20px" src="assets/groups/people-like-face.png" class=""><img width="20px" height="20px" src="assets/groups/people-like-face.png" class="margin_left_small_minus">
-    <!--  OFF -->
+     OFF -->
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
 
