@@ -99,6 +99,11 @@
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
 
+      requestsView.on 'childview:delete', (childView)->
+        friendship = childView.model
+        friendship.destroy()
+        friendships.remove(friendship)   
+
       layout.body.show(requestsView)
 
     

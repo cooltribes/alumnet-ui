@@ -41,7 +41,7 @@
       data = Backbone.Syphon.serialize(this)      
       @trigger 'friends:search', @buildQuerySearch(data.search_term)      
    
-    showList: (e)->
+    showList: (e)->      
       e.stopPropagation()
       e.preventDefault()      
       id = $(e.currentTarget).attr('id').substring(3)

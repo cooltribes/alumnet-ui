@@ -10,7 +10,7 @@
 
       # current_user = AlumNet.current_user
       users = AlumNet.request("admin:user:entities", {})      
-
+      window.users = users
 
       # Region with users list
       usersView = new Users.UsersTable
@@ -18,7 +18,6 @@
         modals: layoutView.modals
                 
       layoutView.main.show(usersView)
-
 
       searchCollection = new AlumNet.Entities.Search [
         first: true

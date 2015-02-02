@@ -127,9 +127,20 @@
       "click @ui.btnSubmit": "submitClicked"
       "click @ui.btnSkip": "skipClicked"
 
-    initialize: (options) ->
-      @title = options.title
+    initialize: (options) ->     
       @exp_type = options.exp_type
+
+      @title = 'Experience in AIESEC'
+
+      switch @exp_type
+        when 1
+          @title = 'Experience in AIESEC Alumni'
+        when 2
+          @title = 'Academic Experience'
+        when 3
+          @title = 'Professional Experience'
+        else
+          false
 
     templateHelpers: ->
       title:  =>
@@ -143,7 +154,7 @@
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
-        exp_type: 0
+        exp_type: @exp_type
       @collection.add(newExperience)
 
     skipClicked: (e)->

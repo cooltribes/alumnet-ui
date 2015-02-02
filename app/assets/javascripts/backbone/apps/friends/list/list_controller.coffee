@@ -10,7 +10,7 @@
 
       friendsLayout = AlumNet.request("users:friends:layout", current_user, 0)
 
-      friendsLayout.on "friends:show:friends", (layout)->   
+      friendsLayout.on "friends:show:myfriends", (layout)->  
         AlumNet.trigger "my:friends:get", layout        
       
       friendsLayout.on "friends:show:received", (layout)=>        

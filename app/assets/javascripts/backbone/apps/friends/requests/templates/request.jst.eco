@@ -29,7 +29,7 @@
     </div>
 <div id="link-container" class="pull-left" >
       
-      <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Decline friend request">Delete <span class="glyphicon glyphicon-remove"></span></a>
+      <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Cancel request">Cancel request <span class="glyphicon glyphicon-remove"></span></a>
     </div>
   </div>
 </div>
