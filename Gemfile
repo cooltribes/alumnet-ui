@@ -15,6 +15,7 @@ gem 'backbone-on-rails'
 gem 'marionette-rails'
 gem 'httparty'
 gem 'settingslogic'
+gem 'dotenv-deployment'
 
 group :development do
   gem 'spring'
