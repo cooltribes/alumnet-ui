@@ -4,7 +4,7 @@
     <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="ico-menu"></span>
     </button>
-    <a class="navTopBar__left__brand navbar-brand " href="/">
+    <a class="navTopBar__left__brand navbar-brand " href="/#posts">
       <img src="assets/general/alumnet_logo.png" alt="AlumNet">
     </a>
   </div>
@@ -115,7 +115,7 @@
           ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--becomeAMember">
           Become a member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle"></span>
-          
+
           <!-- </div> -->
         </a>
       </li>
@@ -125,7 +125,7 @@
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
-          
+
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%= @id %>/about">My Profile</a></li>
 
           <% if @isAlumnetAdmin: %>
