@@ -4,11 +4,13 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group text-center">
-        <% if @avatar.extralarge: %>
-        <img src="<%= @avatar.extralarge %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-        <% else: %>
-        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-        <% end %>
+        <%% if @avatar.extralarge: %>
+        <img src="<%%= @avatar.extralarge %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <%% else: %>
+
+                <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar",  width:"240px", height:"240px")  %>
+
+        <%% end %>
         <label class="control-label" for="profilePicture">Choose your avatar</label>
         <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
@@ -17,20 +19,20 @@
     <div class="col-md-6">
       <div class="form-group has-feedback">
         <label class="control-label" for="inputName">Name</label>
-        <input type="text" value="<%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
+        <input type="text" value="<%%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
       <div class="form-group has-feedback">
         <label class="control-label" for="inputLastName">Last name</label>
-        <input type="text" value="<%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
+        <input type="text" value="<%%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter last name">
         <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
         <span class="help-block"></span>
       </div>
       <div class="row">
         <div class="form-group  col-md-6">
           <label class="control-label" for="inputBorn">Date of Birth</label>
-          <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+          <input type="text" value="<%%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
           <span class="help-block"></span>
         </div>
         <div class="form-group has-feedback col-md-6">
