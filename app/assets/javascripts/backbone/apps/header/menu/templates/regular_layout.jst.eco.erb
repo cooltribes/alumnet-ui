@@ -5,7 +5,8 @@
     <span class="ico-menu"></span>
     </button>
     <a class="navTopBar__left__brand navbar-brand " href="/#posts">
-      <img src="assets/general/alumnet_logo.png" alt="AlumNet">
+     <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
+
     </a>
   </div>
   <nav class="navTopBar__left collapse navbar-collapse ">
@@ -92,7 +93,7 @@
         <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages" id="js-menu-messages">
           <span class="navTopBar__right__item__icon ico-chat "></span>
           <span class="navTopBar__badge badge" id="js-messages-badge">
-          <%= @unread_messages_count %>
+          <%%= @unread_messages_count %>
           </span>
         </a>
         <!--  -->
@@ -114,7 +115,7 @@
             <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
           ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--becomeAMember">
-          Become a member <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle"></span>
+          Become a member <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle"></span>
 
           <!-- </div> -->
         </a>
@@ -126,14 +127,14 @@
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
 
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%= @id %>/posts">My Profile</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/posts">My Profile</a></li>
 
-          <% if @isAlumnetAdmin: %>
+          <%% if @isAlumnetAdmin: %>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users" id="js-changeHeader">Admin Section</a></li>
-          <% end %>
+          <%% end %>
           <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
           <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)
+            <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%%= @first_name %>)
             </a>
           </li>
         </ul>

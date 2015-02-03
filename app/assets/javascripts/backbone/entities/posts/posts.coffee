@@ -12,6 +12,15 @@
       body:
         required: true
 
+    infoLink: ->
+      info = @get('postable_info')
+      if info.type == "Group"
+        url = "#groups/#{info.id}/posts"
+        "in Group <a href='#{url}'>#{info.name}</a>"
+      else if info.type == "User"
+        url = "#users/#{info.id}/posts"
+        "in profile of <a href='#{url}'>#{info.name}</a>"
+
     sumLike: ->
       count = @get('likes_count')
       @set('likes_count', count + 1)
