@@ -13,7 +13,7 @@
         	<% else: %>
         	  <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
         	<% end %>
-        	<span class="label pull-right
+        	<span class="groupTableView__label label
          	 <% if @group_type.value== 1: %>
         	    label-warning
         	  <% end %>
@@ -54,9 +54,9 @@
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> <%= moment(@created_at).format('MM/YYYY') %> </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last post" >
 		<% if @last_post_at: %>
-            <%= moment(@last_post_at).format('h:mm a') %>
+            <span><%= moment(@last_post_at).format('h:mm a') %> </span>
         <% else: %>
-            <%= moment(@created_at).format('h:mm a') %>
+            <span><%= moment(@created_at).format('h:mm a') %> </span>
         <% end %>		
 	</td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> <%= @membership_users.length %> </td>

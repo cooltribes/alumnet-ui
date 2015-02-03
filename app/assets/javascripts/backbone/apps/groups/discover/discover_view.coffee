@@ -27,7 +27,7 @@
   class Discover.GroupView extends Marionette.ItemView
     template: 'groups/discover/templates/groupList'
     tagName: 'tr'
-    
+    className: 'groupTableView__tr'
     events:
       'click .js-join':'sendJoin'
     ui:
