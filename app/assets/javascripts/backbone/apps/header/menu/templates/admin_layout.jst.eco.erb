@@ -5,7 +5,7 @@
     <span class="ico-menu"></span>
     </button>
     <a class="navTopBar__left__brand navbar-brand " href="/">
-      <img src="assets/general/alumnet_logo.png" alt="AlumNet">
+      <%%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
     </a>
   </div>
   <nav class="navTopBar__left collapse navbar-collapse ">
@@ -23,14 +23,14 @@
           Groups
         </a>
       </li>
-      
-      
+
+
     </ul>
     <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
       <!-- Right menu top -->
       <li>
-        <a href="#registration/experience" class="navTopBar__avatar " title="<%= @name %>">
-          <img src="<%= @avatar.medium %>" alt="<%= @name %>" class="img-circle">
+        <a href="#registration/experience" class="navTopBar__avatar " title="<%%= @name %>">
+          <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle">
         </a>
       </li>
       <li>
@@ -38,11 +38,11 @@
           <span class="icon-entypo-down-open"></span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
-          
+
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#posts" id="js-changeHeader">User Section</a></li>
           <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
           <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%= @first_name %>)</a>
+            <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%%= @first_name %>)</a>
           </li>
         </ul>
       </li>
