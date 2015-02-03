@@ -76,23 +76,10 @@
     getSidebarView: ->
       AlumNet.request('registration:shared:sidebar', 3)
 
-    getFormView: (experiences, profileModel, exp_type) ->
-      title = 'Experience in AIESEC'
-
-      switch exp_type
-        when 1
-          title = 'Experience in AIESEC Alumni'
-        when 2
-          title = 'Academic Experience'
-        when 3
-          title = 'Professional Experience'
-        else
-          false
-
+    getFormView: (experiences, profileModel, exp_type) ->      
       new Experience.ExperienceList
         collection: experiences
-        model: profileModel
-        title: title
+        model: profileModel        
         exp_type: exp_type
 
 

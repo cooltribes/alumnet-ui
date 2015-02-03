@@ -1,6 +1,8 @@
   <td><img src="<%= @avatar.medium %>">	</td>
   <td>
-    <%= @getName() %>
+    <a href="#users/<%= @id %>/about">
+      <%= @getName() %>      
+    </a>
     <br>
     <small>
       <%= @getEmail() %>
@@ -11,5 +13,5 @@
   <td><%= @getJoinTime() %></td>
   <td><%= @getGender() %></td>
   <td><%= @getAge() %></td>
-  <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
+  <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>  
   <td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>

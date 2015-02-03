@@ -19,8 +19,8 @@
       friendsLayout.on "friends:show:sent", (layout)=>        
         @showMySent (layout)
 
-      friendsLayout.on 'friends:search', (querySearch)->
-        friendsCollection.fetch(data: querySearch)
+      friendsLayout.on 'friends:search', (querySearch, collection)->
+        collection.fetch(data: querySearch)
 
       AlumNet.mainRegion.show(layout)
       #Show the main profile layout with the body of friends
@@ -98,6 +98,11 @@
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
+
+      requestsView.on 'childview:delete', (childView)->
+        friendship = childView.model
+        friendship.destroy()
+        friendships.remove(friendship)   
 
       layout.body.show(requestsView)
 

@@ -13,20 +13,29 @@
         <span class="invitation">
         <span class="glyphicon glyphicon-time"></span>
         <span>Waiting</span>
+        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Cancel request">Cancel request <span class="glyphicon glyphicon-remove"></span></a>
         </span>
       </div>
     </div>
     <% else if @friendship_status == "received": %>
     <!-- Nothing to show here -->
-    <div class="pull-left ">
-      <a href="#" id="js-accept-friendship" class="btn btn-sm btn-block btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-      <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
+    <div class=" col-md-3 ">
+      <div id="link-container" class="pull-left">
+        <span class="invitation">
+        <a href="#" id="js-accept-friendship" class="btn btn-sm btn-block btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
+        </span>
+      </div>
     </div>
+    <!-- <div class="pull-left "> -->
+      
+    <!-- </div> -->
     <% else if @friendship_status == "accepted": %>
     <div class=" col-md-3 ">
       <div id="link-container" class="userCard__actions userCard__actions--isFriend">
         <span class="invitation">
         <span><span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-ok"></span> </span>
+        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Unfriend">Unfriend <span class="glyphicon glyphicon-remove"></span></a>        
         </span>
       </div>
     </div>
