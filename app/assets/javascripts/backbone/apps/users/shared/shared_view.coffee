@@ -21,7 +21,7 @@
         "", "", ""
         "", ""
       ]  
-      @class[parseInt(@tab)] = "--active"            
+      @class[parseInt(@tab)] = "--active"
 
     templateHelpers: ->
       classOf: (step) =>

@@ -30,6 +30,7 @@
 
   initializeLanguages = ->
     Entities.languages = new Entities.Languages
+    Entities.languages.comparator = "name"
     Entities.languages.fetch({async: false})
 
   API =

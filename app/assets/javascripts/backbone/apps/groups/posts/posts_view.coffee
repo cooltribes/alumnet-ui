@@ -32,7 +32,8 @@
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
+      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')
 
   # POST VIEW
   class Posts.PostView extends Marionette.CompositeView
@@ -90,7 +91,8 @@
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').html('like')
+      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')
 
 
     #Init the render of a comment

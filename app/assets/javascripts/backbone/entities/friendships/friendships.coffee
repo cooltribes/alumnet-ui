@@ -35,6 +35,16 @@
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + '/me/friendships/friends'
       friendships
+    
+    getUserFriends: (id)->      
+      friendships = new Entities.FriendshipCollection
+      friendships.url = AlumNet.api_endpoint + "/users/#{id}/friendships/friends"
+      friendships
+
+    getUserMutual: (id)->      
+      friendships = new Entities.FriendshipCollection
+      friendships.url = AlumNet.api_endpoint + "/users/#{id}/friendships/commons"
+      friendships
 
 
   AlumNet.reqres.setHandler 'current_user:friendship:destroy', (attrs) ->
@@ -48,3 +58,9 @@
 
   AlumNet.reqres.setHandler 'current_user:friendships:friends', ->
     API.friendsCurrentUserFriendship()
+
+  AlumNet.reqres.setHandler 'user:friendships:friends', (id)->
+    API.getUserFriends(id)
+
+  AlumNet.reqres.setHandler 'user:friendships:mutual', (id)->
+    API.getUserMutual(id)

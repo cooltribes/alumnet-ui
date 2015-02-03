@@ -25,7 +25,7 @@
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
 								<option value="<%= x %>"><%= x %></option>
-							<% end %>							
+							<% end %>
 						</select>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 				<div class="col-md-6">
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
-							<option value="">Select Month</option>							
+							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
 								<option value="<%= x %>"><%= x %></option>
 							<% end %>
@@ -71,7 +71,16 @@
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">Country / Region</label>
+			<label class="control-label" for="registerCountry">Region</label>
+			<input type="hidden" name="region_id" id="region_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 ">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCountry">Country</label>
 			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
