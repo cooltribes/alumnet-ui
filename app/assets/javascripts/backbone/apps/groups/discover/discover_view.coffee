@@ -12,6 +12,8 @@
     template: 'groups/discover/templates/groups_search'
     events:
       'click .js-search': 'performSearch'
+      'click .searchBar__ViewCard': 'ViewCard'
+      'click .searchBar__ViewList': 'ViewList'
 
     performSearch: (e) ->
       e.preventDefault()
@@ -24,15 +26,43 @@
         name_cont: searchTerm
         description_cont: searchTerm
 
+    ViewCard: ()->
+      alert("View card ");
+      Discover.GroupView = Marionette.ItemView.extend({
+        tagName: "div",
+        template: "groups/discover/templates/group",
+        className: 'col-md-4 col-sm-6 col-xs-12'
+      });
+      Discover.GroupsView = Marionette.ItemView.CompositeView({
+        template: "groups/discover/templates/groups_container",
+        childViewContainer: ".main-groups-area"
+      });
+      
+      
+    ViewList: ()->
+      alert("View List");
+      GroupView = Marionette.ItemView.extend({
+        tagName: "tr",
+        template: "groups/discover/templates/groupList",
+        className: 'groupTableView__tr'
+      });
+      GroupsView = Marionette.ItemView.CompositeView({
+        template: "groups/discover/templates/groups_containerList",
+        childViewContainer: ".groupTableView__List"
+      });
+      
+
+
   class Discover.GroupView extends Marionette.ItemView
-    template: 'groups/discover/templates/groupList'
-    tagName: 'tr'
-    className: 'groupTableView__tr'
+    template: 'groups/discover/templates/group'
+    tagName: 'div'
+    className: 'col-md-4 col-sm-6 col-xs-12'
     events:
       'click .js-join':'sendJoin'
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
+    
     templateHelpers: ->
       userIsMember: @model.userIsMember()
 
@@ -47,9 +77,9 @@
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'groups/discover/templates/groups_containerList'
+    template: 'groups/discover/templates/groups_container'
     childView: Discover.GroupView
-    childViewContainer: ".groupTableView__List"
+    childViewContainer: ".main-groups-area"
     initialize: ->
       @filterCollection(@collection)
 
