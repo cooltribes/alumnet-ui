@@ -12,19 +12,21 @@
         "registration/experience/templates/professionalExperience"
 
     tagName: 'form'
-    templateHelpers: ->      
+    templateHelpers: ->
       currentYear: new Date().getFullYear()
 
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
-        born = new Date(born).getFullYear()        
+        born = new Date(born).getFullYear()
         born + 15
 
     ui:
       'btnRmv': '.js-rmvRow'
+      "selectRegions": "[name=region_id]"
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
+
 
     events:
       "click @ui.btnRmv": "removeExperience"
@@ -47,16 +49,40 @@
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []
+        allowClear: true
 
       @ui.selectComitees.select2
         placeholder: "Select a Committee"
         data: []
+        allowClear: true
 
-      data = CountryList.toSelect2()
+      dataCountries = CountryList.toSelect2()
+      dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
         placeholder: "Select a Country"
-        data: data
+        data: dataCountries
+        allowClear: true
+
+      @ui.selectRegions.select2
+        placeholder: "Select a Region"
+        data: dataRegions
+        allowClear: true
+
+      ui = @ui
+      @ui.selectCountries.on 'select2-selecting', (e)->
+        ui.selectRegions.select2('val', '')
+
+      @ui.selectCountries.on 'select2-removed', (e)->
+        console.log "country unselected"
+
+      @ui.selectRegions.on 'select2-selecting', (e)->
+        ui.selectCountries.select2('val', '')
+        ui.selectCities.select2('val', '')
+        ui.selectComitees.select2('val', '')
+
+      @ui.selectRegions.on 'select2-removed', (e)->
+        console.log "region unselected"
 
     setCitiesAndCommittees: (e)->
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
@@ -101,9 +127,20 @@
       "click @ui.btnSubmit": "submitClicked"
       "click @ui.btnSkip": "skipClicked"
 
-    initialize: (options) ->
-      @title = options.title
+    initialize: (options) ->     
       @exp_type = options.exp_type
+
+      @title = 'Experience in AIESEC'
+
+      switch @exp_type
+        when 1
+          @title = 'Experience in AIESEC Alumni'
+        when 2
+          @title = 'Academic Experience'
+        when 3
+          @title = 'Professional Experience'
+        else
+          false
 
     templateHelpers: ->
       title:  =>
@@ -117,7 +154,7 @@
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
-        exp_type: 0
+        exp_type: @exp_type
       @collection.add(newExperience)
 
     skipClicked: (e)->

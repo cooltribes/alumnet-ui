@@ -1,5 +1,5 @@
 @AlumNet.module 'GroupsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
-  
+
   class Manage.EmptyView extends Marionette.ItemView
     template: 'groups/manage/templates/empty'
 

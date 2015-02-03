@@ -47,6 +47,14 @@
     modelEvents:
       "add:phone:email": "modelChange"
     
+      onRender: ->
+            $('#aboutUseraffix').affix({
+              offset: {
+                top: 100,
+                bottom:150,
+              }
+            })
+
     modelChange: ->
       @render() 
 
@@ -116,6 +124,9 @@
 
       getOrganization: ->
         model.getOrganization()
+      
+      getEndDate: ->
+        model.getEndDate()
 
 
   class About.Experiences extends Marionette.CollectionView

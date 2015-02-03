@@ -23,18 +23,23 @@
       e.stopPropagation()
       @trigger 'request'
 
-    clickedDelete: (e)->
+    clickedDelete: (e)->      
       e.preventDefault()
       e.stopPropagation()
       @trigger 'delete'
 
     removeRequestLink: ->
-      @ui.requestLink.remove()
-      @ui.linkContainer.append('<span>Request send</span>')
+      @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
+      @model.fetch()
 
-    removeAcceptLink: ->
-      @ui.acceptLink.remove()
-      @ui.linkContainer.append('<span>Request Accept</span>')
+    removeAcceptLink: ->            
+      @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
+      @model.fetch()
+    
+    removeCancelLink: ->
+      @ui.linkContainer.empty()
+      @model.set("friendship_status","none")      
+      @render()
 
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'

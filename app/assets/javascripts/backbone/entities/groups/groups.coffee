@@ -61,12 +61,6 @@
         required: true
       cover:
         required: true
-      country_id:
-        msg: 'Country is required'
-        required: true
-      city_id:
-        msg: 'City is required'
-        required: true
       join_process:
         required: true
 
