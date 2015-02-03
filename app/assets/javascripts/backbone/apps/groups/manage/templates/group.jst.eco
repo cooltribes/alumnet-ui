@@ -1,6 +1,7 @@
 <div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->
+		
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
 		</div>
 		<!-- COVER OFF -->

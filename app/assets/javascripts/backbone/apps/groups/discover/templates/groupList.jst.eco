@@ -73,7 +73,8 @@
         <% else if @membership_status == "pending": %>
          <span> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
         <% else: %>
-          <button >+ Join group
+          <button class="groupTableView__join">
+              + Join group
           </button>
         <% end %>
 	</td>

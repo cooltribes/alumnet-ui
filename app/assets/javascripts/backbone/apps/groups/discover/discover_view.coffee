@@ -15,6 +15,10 @@
       'click .searchBar__ViewCard': 'ViewCard'
       'click .searchBar__ViewList': 'ViewList'
 
+    ui:
+      'viewCard':'.main-groups-area'
+      'viewList':'.groupTableView'
+
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
@@ -28,35 +32,15 @@
 
     ViewCard: ()->
       alert("View card ");
-      Discover.GroupView = Marionette.ItemView.extend({
-        tagName: "div",
-        template: "groups/discover/templates/group",
-        className: 'col-md-4 col-sm-6 col-xs-12'
-      });
-      Discover.GroupsView = Marionette.ItemView.CompositeView({
-        template: "groups/discover/templates/groups_container",
-        childViewContainer: ".main-groups-area"
-      });
-      
+
       
     ViewList: ()->
       alert("View List");
-      GroupView = Marionette.ItemView.extend({
-        tagName: "tr",
-        template: "groups/discover/templates/groupList",
-        className: 'groupTableView__tr'
-      });
-      GroupsView = Marionette.ItemView.CompositeView({
-        template: "groups/discover/templates/groups_containerList",
-        childViewContainer: ".groupTableView__List"
-      });
-      
-
 
   class Discover.GroupView extends Marionette.ItemView
-    template: 'groups/discover/templates/group'
-    tagName: 'div'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    template: 'groups/discover/templates/groupList'
+    tagName: 'tr'
+    className: 'groupTableView__tr'
     events:
       'click .js-join':'sendJoin'
     ui:
@@ -77,9 +61,10 @@
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'groups/discover/templates/groups_container'
+    template: 'groups/discover/templates/groups_containerList'
     childView: Discover.GroupView
-    childViewContainer: ".main-groups-area"
+    childViewContainer: ".groupTableView"
+
     initialize: ->
       @filterCollection(@collection)
 
