@@ -45,6 +45,7 @@
       @current_user = options.current_user
     templateHelpers: ->
       current_user_avatar: @current_user.get('avatar').medium
+      infoLink: @model.infoLink()
 
     ui:
       'item': '.item'
