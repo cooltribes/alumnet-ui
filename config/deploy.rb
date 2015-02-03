@@ -39,12 +39,12 @@ set :linked_files, %w{config/application.yml config/.env}
 
 namespace :deploy do
 
-  desc "Reload Nginx"
-  task :reload_nginx do
-    sudo "/etc/init.d/nginx reload"
-  end
+#  desc "Reload Nginx"
+#  task :reload_nginx do
+#    sudo "/etc/init.d/nginx reload"
+#  end
 
-  after "deploy", "reload_nginx"
+#  after "deploy", "reload_nginx"
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
