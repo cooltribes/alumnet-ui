@@ -10,7 +10,7 @@
 			col-md-7
 			<% end %>">
 			<h4 class="userCard__name"><%= @name %></h4>
-			<p class="member-position text-small">Local Comitee President</p>
+			<p class="member-position text-small"><%= @last_experience %></p>
 		</div>
 		<div class="
 			<% if @wasInvited(): %>

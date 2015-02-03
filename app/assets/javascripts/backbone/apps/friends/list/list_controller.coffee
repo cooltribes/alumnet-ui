@@ -1,10 +1,6 @@
 @AlumNet.module 'FriendsApp.List', (List, @AlumNet, Backbone, Marionette, $, _) ->
   class List.Controller
     showFriends: ->
-      friends = AlumNet.request('current_user:friendships:friends')
-      friends.fetch()
-      friendsView = new List.FriendsView
-        collection: friends
         
       current_user = AlumNet.current_user  
 
@@ -19,11 +15,8 @@
       friendsLayout.on "friends:show:sent", (layout)=>        
         AlumNet.trigger "my:friends:sent", layout        
 
-      friendsLayout.on 'friends:search', (querySearch)->
-        friendsCollection.fetch(data: querySearch)
-
-      friendsLayout.on 'friends:search', (querySearch)->
-        friends.fetch(data: querySearch)
+      friendsLayout.on 'friends:search', (querySearch, collection)->        
+        collection.fetch(data: querySearch)
 
       AlumNet.execute('render:friends:submenu')
 

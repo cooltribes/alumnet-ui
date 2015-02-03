@@ -27,10 +27,7 @@
     templateHelpers: ->
       model = @model
       classOf: (step) =>
-        @class[step]  
-      
-      friends: () ->
-        model.fc
+        @class[step]        
 
     events:
       'click .js-search': 'performSearch'
@@ -38,8 +35,8 @@
 
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)      
-      @trigger 'friends:search', @buildQuerySearch(data.search_term)      
+      data = Backbone.Syphon.serialize(this)                  
+      @trigger 'friends:search', @buildQuerySearch(data.search_term), @body.currentView.collection
    
     showList: (e)->      
       e.stopPropagation()
