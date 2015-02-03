@@ -4,10 +4,10 @@ lock '3.3.3'
 set :application, 'alumnet-ui'
 set :repo_url, 'https://ArmandoMendoza:14941830famg@github.com/cooltribes/alumnet-ui.git '#'git@github.com:cooltribes/alumnet-ui.git'
 set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
-set :branch, 'dev'
+set :branch, 'deploy'
 set :scm, :git
 
-set :linked_files, %w{config/application.yml}
+set :linked_files, %w{config/application.yml config/.env}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -39,6 +39,12 @@ set :linked_files, %w{config/application.yml}
 
 namespace :deploy do
 
+#  desc "Reload Nginx"
+#  task :reload_nginx do
+#    sudo "/etc/init.d/nginx reload"
+#  end
+
+#  after "deploy", "reload_nginx"
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
