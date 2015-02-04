@@ -1,0 +1,119 @@
+<form class="formANet form" role="form">
+	<h2 class="h2">Aproval process</h2>
+	<p class="lead">Lorem Ipsum Dolor set explaining why there is an aproval process</p>
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<img src="assets/registration/searchIcon.png" alt="Search mark"  width="90px" height="90px" class="img-circle">
+		</div>
+		<div class="col-md-10">
+			<h3>Find 3 People</h3>
+			<p>Who can confirm that you are an AISEC Alumni</p >
+			<div class="form-group has-feedback">
+				<label class="control-label">Search by name</label>
+				<input type="text" class="form-control input-lg "  placeholder="">
+				<span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback">
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Search by Country</label>
+						<div class="formANet__select">
+							<select name="searchCountry" class="form-control input-lg">
+								<option value=""></option>
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Search by City</label>
+						<div class="formANet__select">
+							<select name="searchCity" class="form-control input-lg">
+								<option value=""></option>
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-right"><button class="btn btn-primary btn-lg  text-uppercase" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
+			</div>
+			<hr>
+			<h3>Results</h3>
+			<div class="userCardAproval">
+				<div class="row">
+					<div class="col-md-2 userCardAproval__avatar">
+						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
+					</div>
+					<div class="col-md-6">
+						<h4 class="userCardAproval__name">Morgan Freeman</h4>
+						<p><strong>Local Comitee President</strong> <br>
+						Local, Poland
+						</p>
+					</div>
+					<div class="col-md-4 userCardAproval__actions text-right">
+						Your request has been sent <span class="icon-entypo-paper-plane"></span>
+						
+					</div>
+					
+				</div>
+			</div>
+			<div class="userCardAproval">
+				<div class="row">
+					<div class="col-md-2 userCardAproval__avatar">
+						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
+					</div>
+					<div class="col-md-6">
+						<h4 class="userCardAproval__name">Morgan Freeman</h4>
+						<p><strong>Local Comitee President</strong> <br>
+						Local, Poland
+						</p>
+					</div>
+					<div class="col-md-4 userCardAproval__actions text-right">
+						<button class="btn  btn-primary btn-sm btn-block text-uppercase" type="submit">ASK FOR ACCEPTANCE</button>
+						
+					</div>
+					
+				</div>
+			</div>
+			<div class="userCardAproval">
+				<div class="row">
+					<div class="col-md-2 userCardAproval__avatar">
+						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
+					</div>
+					<div class="col-md-6">
+						<h4 class="userCardAproval__name">Morgan Freeman</h4>
+						<p><strong>Local Comitee President</strong> <br>
+						Local, Poland
+						</p>
+					</div>
+					<div class="col-md-4 userCardAproval__actions text-right">
+						<button class="btn  btn-primary btn-sm btn-block text-uppercase" type="submit">ASK FOR ACCEPTANCE</button>
+						
+					</div>
+					
+				</div>
+			</div>
+			
+			
+			<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<img src="assets/registration/questionIcon.png" alt="question mark"  width="90px" height="90px" class="img-circle">
+		</div>
+		<div class="col-md-10">
+			<h3 >Didnt find anyone?</h3>
+			<p class="lead" >Ask Admin to accept you manually</p>
+			<button class="btn btn-primary btn-lg  text-uppercase" type="submit">SEND YOUR REQUEST TO ADMIN</button>
+		</div>
+	</div>
+</form>

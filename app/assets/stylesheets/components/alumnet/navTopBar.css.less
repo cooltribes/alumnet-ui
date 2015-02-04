@@ -1,0 +1,331 @@
+/***
+
+COMPONENT NAME: navTopBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.navTopBar{
+    margin-bottom: 10px;
+    &__container--top{
+        background-color: @site_nav_bg;
+    }
+    &__container--topAdmin{
+        background-color: @blue-gray;
+    }
+    
+
+    &__left{
+    
+        &__brand{
+            display: block;
+            height: auto;
+            padding: 15px 0;
+
+        }
+        .nav .open > &__item:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }  
+        
+        & &__item{
+                color: @main-blue;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 18px;
+                padding: 20px 15px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white;
+                background-color: @black;
+            }
+        }
+    }
+
+    &__right{
+        &__list{
+            margin-right: -15px;
+        }
+        .nav .open > &__item:focus, .nav .open > &__item--arrow:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }   
+        &__list &__item{
+            color: @main-blue;
+            font-size: 18px;
+            font-weight: 300;
+            height: 59px;
+            line-height: 18px;
+            min-width: 59px;
+            padding: 14px 0;
+            text-align: center;
+            transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white ;
+                background-color: @black ;
+            }
+            &--becomeAMemberWrapper{
+                margin: 0;
+                padding: 6px 0 0;
+            }
+            &--becomeAMember{
+                background-color: #f38e00;
+                border-radius: 50px;
+                color: #ffffff;
+                
+                font-size: 13px;
+                height: 45px;
+                line-height: 1em;
+                margin-top: 0;
+                display: block;
+                margin-left: 10px;
+                padding: 3px 2px 2px 12px;
+                &:hover{
+                    background-color: darken(@orange, 10%)
+                }
+            }
+            &--membershipExpires{
+                width: 80%;
+                margin: 0 auto;
+                background-color: #E36300;
+                border-radius: 30px;
+                color: white;
+                display: block;
+                height: 44px;
+                
+                overflow: hidden;
+                padding: 0;
+                &__days{
+                    font-size: 24px;
+                    float: left;
+                    font-weight: 300;
+                    display: block;
+                    padding: 11px 5px 0px 13px; 
+                }
+                &__text{
+                    font-size: 10px;
+                    float: left;
+                    display: block;
+                    margin-top: 4px;
+                }
+                .navTopBar__right__item--becomeAMember {
+                     float: right;
+                     display: block;
+                     margin-top: 0;
+                }
+
+            }
+
+            &__icon{
+                font-size: 32px;
+                width: 32px;
+
+                &--notificationsIcon, &--cartIcon{
+                    font-size: 24px;
+                    margin-top: 3px;
+                }
+
+            }
+            &--arrow{
+                display: block;
+                font-size: 22px;
+                height: 59px;
+                margin-left: 5px;
+                padding: 20px 10px 15px;
+                &:hover, &:focus{
+                    color: @white;
+                    background-color: @black;
+                 }  
+
+            }
+            
+            
+        }
+        
+    }
+    & &__registerLogoutLink{
+        color: @white;
+        .transition(.5s);
+        &:hover{
+            background-color: @blue;
+        }
+
+    }
+    & &__avatar{
+        margin-top: 10px;
+        padding: 0;
+        &:hover{
+            background-color: transparent;
+        }
+    }
+    &__dropdownMenu{
+        min-width: 250px;
+        padding: 0;
+        background-color: @black;
+        border: none;
+        list-style: none;
+        color: @white;
+        & > li > a{
+            color: @white;
+            padding-top:10px;
+            padding-bottom: 10px; 
+        }
+        &__divider{
+            background-color: #444;
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+        }
+    }
+    &__notification{
+
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.1);
+            
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        &__avatar{
+            width: 18%;
+            float: left;
+            img{
+                max-width: 100%;
+                margin-right: 5px;
+            }
+        }
+        &__content{
+            width: 72%;
+            float: left;
+            max-height:100px;
+            overflow: hidden;
+        }
+        &__title{
+            color: @white;
+            font-size: 14px;
+            display: block;
+        }
+        &__summary{
+            font-size: 12px;
+            color: @white;
+            display: block;
+        }
+        &__date{
+            font-size: 10px;
+            color: darken(@white, 20%);
+            display: block;
+        }
+        &__actions{
+            width: 10%;
+            float: left;
+            margin-top: 20px;
+        }
+        &__showAll{
+            border:1px solid @white;
+            margin: 10px auto;
+            width: 120px;
+            text-align: center;
+            text-transform: uppercase;
+            display: block;
+            padding: 8px;
+            color: @white;
+            &:hover{
+                color: @white;
+                background-color: lighten(@black, 10%)
+
+            }
+        }
+    }
+    &__badge{
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 9px;
+        background-color: @orange;
+    }
+    &__mobileToggleBtn{
+        background-color: rgba(255,255,255,.1);
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 5px 16px;
+    }
+    &__text{
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 20px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        margin-left: 0 !important;
+        margin-top: 17px;
+        padding-left: 21px;
+        float: left;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+}
+
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px
+        }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                    width: 80%;
+                    margin: 0 auto;
+                    height: auto;
+                }
+            }
+        }
+    }
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+    .navTopBar{
+        &__notification{
+            width: 350px;
+        }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                   
+                    width: auto;
+                }
+            }
+        }
+
+    }
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+.navTopBar{
+        &__notification{
+            width: 350px;
+        }
+        &__right{
+           &__list &__item{
+                &--membershipExpires{
+                    width: auto;
+                   
+                }
+            }
+        }
+    }  
+    
+ }

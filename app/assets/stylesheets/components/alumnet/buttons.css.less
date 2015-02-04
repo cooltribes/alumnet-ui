@@ -1,0 +1,60 @@
+/***
+
+COMPONENT NAME: buttons
+DESCRIPTION: Specific style for the forms of AlumNet
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.btn-primary-noBackground{
+	background: transparent;
+	border-color: @blue;
+	color: @blue;
+	&:hover{
+		border-color: darken(@blue, 10%);
+		color: darken(@blue, 10%);
+		background-color: @white;
+	}
+}
+.btn-danger-noBackground{
+	background: transparent;
+	border-color: #d9534f;
+	color: #d9534f;
+	&:hover{
+		border-color: darken(#d9534f, 10%);
+		color: darken(#d9534f, 10%);
+		background-color: @white;
+	}
+}
+
+.btn-success-noBackground{
+	background: transparent;
+	border-color: @green;
+	color: @green;
+	&:hover{
+		border-color: darken(@green, 10%);
+		color: darken(@green, 10%);
+		background-color: @white;
+	}
+}
+.btn-default-noBackground{
+	background: transparent;
+	border-color: @gray;
+	color: @black;
+	&:hover{
+		border-color: darken(@gray, 10%);
+		color: darken(@black, 10%);
+		background-color: @gray;
+	}
+}
+.btn-default-gray{
+	background: @gray;
+	border-color: darken(@gray, 5%);
+	color: @white;
+	&:hover{
+		background-color: darken(@gray, 10%);
+		color: @white;
+	}
+}

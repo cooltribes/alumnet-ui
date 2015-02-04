@@ -1,0 +1,11 @@
+<!-- Cada tipo de contacto debe estar acompañado por un icono, ej.:
+<a href="#" title="morgan">
+	<span class="icon-entypo-skype"></span>
+	morgan.is.the.best
+</a>
+<a href="#" title="morgan">
+	<span class="icon-entypo-facebook"></span> morgan.is.the.best
+</a>
+Atte. Juan.
+-->
+<span class="icon-entypo-skype"></span> <%= @contact_type + ": " + @info %>

@@ -1,0 +1,285 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="js-modal-container"></div>
+		<div class="searchBar">
+			<h2>Search for members </h2>
+			<form id="search-form">
+				<div class="input-group">
+					<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+					<span class="input-group-btn">
+					<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row  margin_top">
+	<div class="col-md-9">
+		<ul class="sortingMenu">
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<!-- Tip: add the class 'sortingMenu__item-active' for highlighting the link when active -->
+				<a href="#" title="All Members" class="sortingMenu__item__link" id="js-members-count">
+					All members(0)
+				</a>
+			</li>
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<a href="#" title="Friends" class="sortingMenu__item__link" id="js-friends-count">
+					Friends(0)
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-3 text-right">
+		<a href="#groups/<%= @id %>/invite" class="btn-primary-noBackground btn" title="Add people to group">+ Add people to group</a>
+	</div>
+</div>
+<hr class="no_margin_top">
+<div class="row members-list">
+</div>
+<div class="text-center margin_top">
+	<!-- <nav>
+
+													<ul class="pagination">
+																								li>
+													</ul>
+	</nav> -->
+	<a href="#groups/<%= @id %>/posts" class="btn btn-primary" title="See the group">	See the group <span class="icon-entypo-right-open"></span>
+	</a>
+</div>
+<!-- MODAL WINDOWS TEMPORALES que corresponden a esta serie de pantallas 03C, 03D, 03E https://drive.google.com/a/upsidecorp.ch/?tab=mo#folders/0B3ykC7Qev1XrXzM1a29JNkpvU1U
+-->
+<!-- // Change User role -->
+<div class="modal fade" id="changeRole" tabindex="-1" role="dialog" aria-labelledby="changeRole" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="btn-sm btn btn-default-gray pull-right" data-dismiss="modal" aria-label="Close">Close <span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Change user role to Admin</h4>
+			</div>
+			<div class="modal-body">
+				<div class="userCard">
+					<div class=" row">
+						<div class="userCard__avatar col-md-2 ">
+							<img src="http://placehold.it/80" alt="name of the user" class="img-circle">
+						</div>
+						<div class=" col-md-10 ">
+							<h4 class="userCard__name">Morgan Freeman</h4>
+							<p class="member-position text-small">Local Comitee President</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="formANet__select">
+							<select class="form-control input-lg x">
+								<option value="">Change user role</option>
+								<option value="admin">Admin</option>
+								<option value="editor">Editor</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<h3>Assign chosen GroupAdmin privileges
+				</h3>
+				<table class="table table-striped ">
+
+					<tr>
+						<td width="80%">
+							<p>
+							Create sub groups
+							<br/><small>Member can create a sub group inside the current group</small>
+							</p>
+						</td>
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="80%">
+							<p>
+							Change membership type
+							<br/><small>Member can change the membership of users of his group from free to Premium and viceverse </small>
+							</p>
+						</td>
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="80%">
+							<p>
+							Approve membership
+							<br/><small>Member can change the state of user approval </small></p>
+						</td>
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="80%">
+							<p>
+							Mark a group as official
+							<br/><small>Member can mark/unmark a group or subgroup as official </small></p>
+						</td>
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="80%">
+							<p>
+							Mark events within the group as "Official"
+							<br/><small>Member can mark events created inside the group as official </small></p>
+						</td>
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr class="info">
+						<td width="80%">
+							<p>
+							Assign privileges to another GroupAdmin
+							<br/><small> Member can grant another member chosen privileges
+							</small></p>
+						</td>
+
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox" checked>
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr class="info">
+						<td width="80%">
+							<p>
+							Create sub groups</p>
+						</td>
+
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr class="info">
+						<td width="80%">
+							<p>
+							Mark events within the group as "Official"</p>
+						</td>
+
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr class="info">
+						<td width="80%">
+							<p>
+							Assign privileges to another GroupAdmin</p>
+						</td>
+
+						<td>
+							<div class="checkbox text-right">
+								<label>
+									<input type="checkbox">
+								</label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-default-noBackground" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- // Upgrade member -->
+<div class="modal fade" id="upgradeMembership" tabindex="-1" role="dialog" aria-labelledby="upgradeMembership" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="btn-sm btn btn-default-gray pull-right" data-dismiss="modal" aria-label="Close">Close <span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Upgrade Membership</h4>
+			</div>
+			<div class="modal-body">
+				<div class="userCard">
+					<div class=" row">
+						<div class="userCard__avatar col-md-2 ">
+							<img src="http://placehold.it/80" alt="name of the user" class="img-circle">
+						</div>
+						<div class=" col-md-10 ">
+							<h4 class="userCard__name">Morgan Freeman</h4>
+							<p class="member-position text-small">Local Comitee President</p>
+						</div>
+					</div>
+				</div>
+				<h3 class="text-center">Upgrade member's plan to Premium
+				</h3>
+				<form class="form-inline">
+					<div class="row">
+						<div class="col-md-4 text-right margin_top_small">
+							<label>Active until:</label>
+						</div>
+						<div class="col-md-3">
+							<div class="formANet__select">
+								<select class=" input-lg ">
+									<option value="">Month</option>
+									<option value="january">January</option>
+
+								</select>
+							</div>
+
+						</div>
+						<div class="col-md-3">
+							<div class="formANet__select">
+								<select class=" input-lg ">
+									<option value="">Year</option>
+									<option value="2015">2015</option>
+									<option value="2016">2016</option>
+								</select>
+							</div>
+
+						</div>
+					</div>
+
+				</form>
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-default-noBackground" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

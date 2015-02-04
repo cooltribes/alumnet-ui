@@ -1,0 +1,43 @@
+<div class="messageViewer">
+	<h3 class="messageViewer__title">
+	<%= @subject %> <!--<span class="messageViewer__editIcon glyphicon glyphicon-edit"></span>-->
+	</h3>
+	<!--
+	<div class="messageViewer__actions"><a href="#" title="+ Add person" class="btn btn-primary-noBackground">
+	+ Add person</a>
+	<a href="#" title="Leave conversation" class="btn btn-default-noBackground">Leave conversation</a></div>
+	-->
+	<div class="messageViewer__messages messages-container"></div>
+	<div class="messageViewer__reply">
+		<form class="form">
+			<!--   <div class="form-group">
+																		<input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
+			</div> -->
+			<div class="clearfix">
+				<!--<div class="pull-right "> <span><i>i</i> = * word *</span>
+				</div>
+				<div class="pull-right margin_right">
+					<span><strong>B</strong> = ** word ** </span>
+				</div>-->
+			</div>
+			<div class="row">
+				<!--<div class="col-md-2">
+					<img src="http://placehold.it/80" alt="" widht="80" height="80" class="img-circle">
+				</div>-->
+				<div class="col-md-12">
+					<div class="form-group ">
+						<textarea name="body" id="body" class="messageViewer__textArea form-control" placeholder="Write a reply.."></textarea>
+					</div>
+					<div class="clearfix">
+						<!--<div class="pull-left">
+							<a href="#" title="Add attachment">Add attachment</a>
+						</div>-->
+						<div class="pull-right">
+							<button class="btn btn-primary js-submit">SEND</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

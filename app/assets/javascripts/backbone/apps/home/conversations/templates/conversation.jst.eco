@@ -1,0 +1,27 @@
+<div class="messageCard js-conversation">
+	<!-- When the message is being viewed use also messageCard--active class  -->
+	<div class="messageCard__avatar">
+		<img src="<%= @originator.avatar %>" alt="<%= @originator.name %>" widht="40" height="40" class="img-circle">
+	</div>
+	<div class="messageCard__content">
+		<h5 class="messageCard__title <% if @unread_messages_count == 0: %> messageCard__title--read <% end %>"><%= @subject %> </h5> 
+		<p> with
+		<%  _.each @participants, (participant)->: %>
+		<span class="messageCard__participant">
+		<a href="#"><%= participant.name %></a>,
+		</span>
+		<% end %>
+		<br>
+		<span class="messageCard__date">
+			<%= moment(@created_at).fromNow() %>
+		</span>
+		</p>
+		
+		
+	</div>
+	<div class="messageCard__meta">
+			<% if @unread_messages_count > 0: %>
+			<span class="messageCard__badge badge"><%= @unread_messages_count %></span>
+			<% end %>
+		</div>
+</div>

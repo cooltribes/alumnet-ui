@@ -1,0 +1,148 @@
+/***
+
+COMPONENT NAME: metaInfoCard
+DESCRIPTION: this cards group information about the user and will mainly appear in the user profile containing data such as: languages, skills, etc..
+
+***/
+
+@import 'conf/conf.css.less';
+
+.metaInfoCard{
+   background: @white;
+   margin-bottom: 2em;
+   padding:15px;
+   margin-top: 30px;
+   border: 1px solid #c3c3c3;
+
+   &--menu {
+    padding: 0;
+    border: 1px solid #c3c3c3;
+    
+    // width: 14.5%;
+
+
+
+    ul li{
+          border-bottom: 1px solid #c3c3c3;
+          position: relative;
+          margin: 0;
+
+          &:last-child{
+            border-bottom: none;
+          }
+          a{
+              color: lighten(@blue-gray, 10%);
+
+          }
+          .glyphicon{
+            position: absolute;
+            right: 10px;
+            top: 35%;
+
+            
+          }
+    }
+   }
+
+   &__affix{ // note the affix sits outsite metaInfoCard in the HTML as a hack for styling bootstrap affix
+
+    .affix{
+      position: relative ;
+      width: 100%;
+      }
+
+    .affix-top{
+      top:0px;
+    }
+   }
+   
+   &__title{
+     font-size: 28px;
+     margin: 10px 0;
+     color: @black;
+   }
+   &__list{
+    list-style: none;
+    padding: 0;
+
+    &--skills{
+      li:before{
+        content: "\e605";
+        font-family: 'profindaicons';
+        display: inline-block;
+        font-size: 16px;
+        color: lighten(@blue-gray, 10%);
+        
+
+      }
+      
+    }
+
+    li{
+      border-bottom: 1px solid lighten(@blue-gray, 50%);
+      padding: 10px ;
+
+      &:last-child{
+          border-bottom: none;
+       }
+    }
+   }
+   &__concept{
+        color: lighten(@blue-gray, 10%);
+   }
+   
+}
+
+
+
+// RESPONSIVE STYLES
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) { 
+
+
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) { 
+  
+.metaInfoCard {
+        &__affix{
+            .affix {
+                top:100px;
+                position: fixed;
+                padding-left: 0;
+                width: 14.5%;
+                
+            }
+            .affix-top{
+              top:0px;
+            }
+          }
+      }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+  
+.metaInfoCard {
+        &__affix{
+            .affix {
+                top:100px;
+                position: fixed;
+                padding-left: 0;
+                width: 14.5%;
+                
+            }
+            .affix-top{
+              top:0px;
+              width: 100%;
+            }
+          }
+      }
+}
+

@@ -1,0 +1,44 @@
+/***
+
+APP NAME: message
+DESCRIPTION: message per se
+***/
+
+@import 'conf/conf.css.less';
+
+
+.messageViewer{
+	background-color: @white;
+	border: 1px solid @gray;
+	&__messages{
+		height: 500px;
+		overflow: scroll;
+	}
+	
+	&__title{
+			font-size: 30px;
+			font-weight: 300;
+			padding: 0 20px;
+			color: @black;
+	}
+	&__reply{
+		background-color:#f7f7f7;
+		padding:  20px;
+		border-top: 1px solid @gray;
+	}
+	&__formGroup{
+		margin-bottom: 5px;
+	}
+	&__textArea{
+		min-height: 100px;
+	}
+	&__editIcon{
+		color: @blue;
+		font-size: 18px;
+	}
+	&__actions{
+		padding: 20px;
+		// text-align: right;
+	}
+}
+

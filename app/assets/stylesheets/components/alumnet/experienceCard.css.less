@@ -1,0 +1,63 @@
+/***
+
+COMPONENT NAME: experienceCard
+DESCRIPTION: Hero area of the user profile page. it includes the name of the user and the cover as a background. 
+
+***/
+
+@import 'conf/conf.css.less';
+
+.experienceCard{
+   
+   background: @white;
+   margin-bottom: 2em;
+   padding: 15px 20px;
+   margin-top: 30px;
+   border: 1px solid #c3c3c3;
+	
+	&__title{
+	     font-size: 36px;
+	     color: @black;
+	}
+  &__metaInfo{
+    color: lighten(@blue-gray, 10%);
+    font-size: 20px;
+    font-weight: 300;
+    list-style: none;
+    padding-left:0;
+    li{
+      margin: 10px 0 0;
+    }
+  }
+  &__description{
+    font-size: 16px;
+  }
+	
+}
+
+
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+ 	.experienceCard{
+ 	}
+ 		
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+ 	.experienceCard{
+ 		}
+    
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .experienceCard{
+    	
+ 	}
+ }

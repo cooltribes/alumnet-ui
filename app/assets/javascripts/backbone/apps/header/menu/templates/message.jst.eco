@@ -1,0 +1,15 @@
+<div class="clearfix">
+  <!-- Avatar -->
+  <div class="navTopBar__notification__avatar">
+    <img src="<%= @sender.avatar %>" class="img-circle">
+  </div>
+  <!-- Content -->
+  <div class="navTopBar__notification__content">
+    <a href="#conversations/<%= @conversation_id %>"> <!-- add route to conversation -->
+    <span class="navTopBar__notification__title">
+      <%= @sender.name %><span class="glyphicon glyphicon-share-alt"></span>
+    </span>
+    <span class="navTopBar__notification__summary"><%= @body %></span>
+    <span class="navTopBar__notification__date"><%= moment(@created_at).fromNow() %></span></a>
+  </div>
+</div>

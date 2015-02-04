@@ -1,0 +1,54 @@
+<header id="header" class="navTopBar navbar  navbar-fixed-top">
+  <div class="navTopBar__container--topAdmin container-fluid">  <!-- Top Bar -->
+  <div class="navbar-header col-md-2">
+    <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="ico-menu"></span>
+    </button>
+    <a class="navTopBar__left__brand navbar-brand " href="/">
+      <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
+    </a>
+  </div>
+  <nav class="navTopBar__left collapse navbar-collapse ">
+    <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
+      <!-- Left Menu top -->
+      <li>
+        <a class="navTopBar__left__item" href="#admin/users">
+          <i class="icon-entypo-user"></i>
+          Users
+        </a>
+      </li>
+      <li>
+        <a class="navTopBar__left__item" href="#admin/groups">
+          <i class="icon-entypo-share"></i>
+          Groups
+        </a>
+      </li>
+
+
+    </ul>
+    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+      <!-- Right menu top -->
+      <li>
+        <a href="#registration/experience" class="navTopBar__avatar " title="<%%= @name %>">
+          <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle">
+        </a>
+      </li>
+      <li>
+        <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
+          <span class="icon-entypo-down-open"></span>
+        </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
+
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#posts" id="js-changeHeader">User Section</a></li>
+          <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%%= @first_name %>)</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div id="submenu-region">
+</div>
+</header>

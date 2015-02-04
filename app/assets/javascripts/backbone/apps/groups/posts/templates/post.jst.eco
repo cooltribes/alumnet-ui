@@ -1,0 +1,42 @@
+<div class="groupPost">
+  <div class="groupPost__postBody">
+    <div class="groupPost__metaData clearfix">
+      <!-- Avatar ON -->
+      <div class="groupPost__avatar">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+      </div>
+      <!-- Avatar OFF -->
+      <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+      <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
+    </div>
+    <p> <%= @body %></p>
+    <% if @userCanComment: %>
+      <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
+      <div class="groupPost__btn--like">
+      <% if @you_like: %>
+        <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+      <% else: %>
+        <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+      <% end %>
+      </div>
+    <% end %>
+    (<span class="js-likes-counter"><%= @likes_count %></span> likes)
+    <!-- 2 Last avatars that have liked this post - ON
+    <img width="20px" height="20px" src="assets/groups/people-like-face.png" class=""><img width="20px" height="20px" src="assets/groups/people-like-face.png" class="margin_left_small_minus">
+     OFF -->
+  </div>
+  <div class="groupPost__commentsContainer comments-container"></div>
+
+  <% if @userCanComment: %>
+    <form class="groupPost__commentForm clearfix form">
+      <div class="groupPost__commentForm__avatar">
+        <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">
+      </div>
+      <div class="groupPost__commentForm__form">
+        <div class="form-group">
+          <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+        </div>
+      </div>
+    </form>
+  <% end %>
+</div>

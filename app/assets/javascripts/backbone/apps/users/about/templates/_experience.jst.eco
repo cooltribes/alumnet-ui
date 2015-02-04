@@ -1,0 +1,36 @@
+<% if @diffType(): %>	
+
+	<h2 id="<%= @experienceId()  %>">
+		<%= @experienceType()  %>
+	</h2>
+
+<% end %>
+	
+<div class="experienceCard">
+	<h3 class="experienceCard__title">
+	<%= @name %>
+	</h3>
+	
+	<% if @getOrganization(): %>
+	<h4>
+	<%= @getOrganization() %>
+	</h4>
+	
+	<% end %>
+	<% if @internship == 1: %>
+	<h4>
+	AIESEC Internship
+	</h4>
+	
+	<% end %>
+	<ul class="experienceCard__metaInfo">
+		<li><span class="glyphicon glyphicon-calendar"></span>
+			From <%= @start_date + " to " + @getEndDate() %>
+		</li>
+		<li><span class="glyphicon glyphicon-map-marker"></span>
+		Location: <%= @getLocation() %></li>
+	</ul>
+	<div class="experienceCard__desctiption">
+		Description: <%= @description %>
+	</div>
+</div>

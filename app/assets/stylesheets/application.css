@@ -1,0 +1,8 @@
+/*
+ *= require bootstrapImporter
+ *= require_tree ./components 
+ *= require_tree ./libs
+ *= require_tree ./apps
+ *= require temporal-cooltribes
+ *= require_self
+ */

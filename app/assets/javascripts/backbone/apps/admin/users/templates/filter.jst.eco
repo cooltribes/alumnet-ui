@@ -1,0 +1,60 @@
+<div class="row <% if @first: %>margin_top_small <% end %>">
+  <div class="col-md-3 ">
+    <div class="form-group">
+     <% if @first: %> <label class="control-label">Filter by</label><% end %>
+      <select name="field" class="form-control  input-lg">
+        <option value="">Select field</option>
+        <option value="profile_first_name_or_profile_last_name">Fullname</option>
+        <option value="email">Email</option>
+        <!-- <option value="joined">Join date</option>
+        <option value="gender">Gender</option> -->
+      </select>
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <div class="col-md-2 ">
+    <div class="form-group">
+      <% if @first: %> <label class="control-label">Comparator</label><% end %>
+      <select name="comparator" class="form-control  input-lg">
+        <option value="">Select comparator</option>
+        <option value="cont_any">contains</option>
+        <option value="in">=</option>
+        <!-- <option value=">">></option>
+        <option value="<"><</option>
+        <option value="<>"><></option>
+        <option value="<="><=</option> -->
+      </select>
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <div class="col-md-3 ">
+    <div class="form-group">
+      <% if @first: %> <label class="control-label" for="registerLocalcomitee">Value</label><% end %>
+      <input type="text" name="value" id="value" class="form-control input-lg">
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <div class="col-md-2 ">
+
+    <div class="form-group">
+
+    <!-- <div class="form-group">
+
+      <% if @first: %> <label class="control-label">Operator</label><% end %>
+      <select name="operator" class="form-control input-lg">
+        <option value="">Select operator</option>
+        <option value="and">and</option>
+        <option value="or">or</option>
+      </select>
+      <span class="help-block"></span>
+    </div> -->
+  </div>
+  <% if !@first: %>
+  <div class="col-md-2">
+    <div class="form-group">
+      <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      
+    </div>
+  </div>
+  <% end %>
+</div>

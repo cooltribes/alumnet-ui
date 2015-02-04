@@ -1,0 +1,32 @@
+<div class="userCard">
+	<div class=" row">
+		<div class="userCard__avatar col-md-3 ">
+		<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+
+		</div>
+		<div class="<% if @wasInvited(): %>
+			col-md-6
+			<% else: %>
+			col-md-7
+			<% end %>">
+			<h4 class="userCard__name"><%= @name %></h4>
+			<p class="member-position text-small"><%= @last_experience %></p>
+		</div>
+		<div class="
+			<% if @wasInvited(): %>
+			col-md-3
+			<% else: %>
+			col-md-2
+			<% end %>">
+			<div class="userCard__actions">
+				<span class="invitation">
+				<% if @wasInvited(): %>
+				<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>
+				<% else: %>
+				<a href="#" class="js-invite" title="Invite"><span class="glyphicon glyphicon-ok"></span></a>
+				<% end %>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

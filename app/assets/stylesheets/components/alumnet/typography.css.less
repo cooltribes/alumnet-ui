@@ -1,0 +1,58 @@
+/***
+
+COMPONENT NAME: Typography
+DESCRIPTION: Titles
+
+***/
+
+@import 'conf/conf.css.less';
+
+h1,h2,h3,h4,h5{ 
+	font-weight: 300;
+}
+
+h1{
+	color: @black;
+	font-size: 60px;
+}
+h2, .h2{
+	color: @black;
+	font-size: 36px;
+	font-weight: 300;
+}
+
+.fontSize{	
+	&--xl{
+		font-size: 4em;
+	}
+	&--lg{
+		font-size: 3em;
+
+	}
+	&--md{
+		font-size: 2em;
+
+	}
+	&--sm{
+		font-size: 1em;
+		
+	}
+	&--xs{
+		font-size: .5em;
+	}
+}
+
+.textColor{
+	&--black{
+		color: @black;
+	}
+	&--blue{
+		color: @blue;
+	}
+	&--gray{
+		color: @gray;
+	}
+	&--white{
+		color: @white;
+	}
+}

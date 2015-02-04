@@ -1,0 +1,10 @@
+<div class="bbm-modal__section">
+  <h2>Update user membership plan</h2>
+  <p>
+  	<!--  -->
+  </p>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="bbm-button" id="actions">Go back</a>
+  <a href="#" class="bbm-button">Save</a>
+</div>

@@ -1,0 +1,38 @@
+<% if @friendship_type == "received": %>
+<!-- requests that i received from a user-->
+<div class="userCard requester-info">
+  <div class=" row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle" width="80" height="80">
+    </div>
+    <div class=" col-md-6 ">
+      <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @requester.name %></a></h4>
+      <p class="member-position text-small"><%= @last_experience %></p>
+    </div>
+    <div id="link-container" class="pull-left" >
+      <a href="#" id="js-accept-friendship" class="btn btn-sm btn-block btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
+      <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+  </div>
+</div>
+<% else: %>
+<!-- resquests that i sent to a user-->
+
+<div class="userCard friend-info">
+  <div class=" row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%= @friend.avatar %>" alt="<%= @friend.name %>" class="img-circle" width="80" height="80">
+    </div>
+    <div class=" col-md-6 ">
+      <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @friend.name %></a></h4>
+      <p class="member-position text-small"><%= @last_experience %></p>
+    </div>
+<div id="link-container" class="pull-left" >
+      
+      <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Cancel request">Cancel request <span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+  </div>
+</div>
+<% end %>
+
+

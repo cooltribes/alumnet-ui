@@ -14,3 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/config/application.yml
+Procfile
+app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee
+
+app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee

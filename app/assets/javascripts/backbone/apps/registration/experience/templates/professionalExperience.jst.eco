@@ -1,0 +1,81 @@
+<div class="form-group has-feedback">
+	<label class="control-label">Position</label>
+	<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
+	<span class="formANet__input__icon icon-entypo-briefcase form-control-feedback" aria-hidden="true"></span>
+	<span class="help-block"></span>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label for="">Start Date</label>
+
+			<div class="formANet__select">
+				<select name="start_year" class="form-control input-lg ">
+					<option value="">Select Year</option>
+					<% for x in [@firstYear()..@currentYear] by 1 : %>
+						<option value="<%= x %>"><%= x %></option>
+					<% end %>
+				</select>
+			</div>
+
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label for="">End date</label>
+
+			<div class="formANet__select">
+				<select name="end_year" class="form-control input-lg ">
+					<option value="">Select Year</option>
+					<option value="current">Current</option>					
+					<% for x in [@firstYear()..@currentYear] by 1 : %>
+						<option value="<%= x %>"><%= x %></option>
+					<% end %>
+				</select>
+			</div>
+
+			<span class="help-block"></span>
+		</div>
+	</div>
+</div>
+<div class="form-group has-feedback">
+	<label class="control-label" for="registerDescription">Company / Organization</label>
+	<input name="organization_name" type="text" class="form-control input-lg " id="" placeholder="">
+	<span class="formANet__input__icon icon-entypo-suitcase form-control-feedback" aria-hidden="true"></span>
+	<span class="help-block"></span>
+</div>
+<div class="form-group has-feedback">
+	<label class="control-label" for="registerDescription">Description</label>
+	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
+	<span class="help-block"></span>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCountry">Country / Region</label>
+			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCity">City</label>
+			<input type="hidden" name="city_id" id="city_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+	</div>
+</div>
+
+<div class="checkbox">
+	<label>
+		<input name="internship" type="checkbox"> This was an AIESEC internship
+	</label>
+</div>
+
+<% if !@first: %>
+<button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>
+<% end %>
+<hr>
+<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->

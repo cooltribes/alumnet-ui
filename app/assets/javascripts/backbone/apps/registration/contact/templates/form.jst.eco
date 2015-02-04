@@ -1,0 +1,22 @@
+<form class="formANet form " role="form">
+  <h1 class="h2">Contact & Privacy</h1>
+  <div class="form-group">
+    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD CONTACT</button>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <label for="inputName">Contact</label>
+    </div>
+    <div class="col-md-4">
+      <label for="inputName">Privacy Settings</label>
+    </div>
+  </div>
+  <hr>
+  <div class="js-fields-container"></div>
+  <hr>
+  <!-- Buttons -->
+  <div class="form-group text-right">
+    <button type="reset" class="btn btn-default  btn-lg">Clear</button>
+    <button type="submit" class="btn btn-primary btn-lg js-submit">Next</button>
+  </div>
+</form>
