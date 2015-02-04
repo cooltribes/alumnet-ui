@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="add-cover-photo">
-              <img id="preview-cover" src="assets/groups/uploadCover.png" alt="Upload cover"   width="100%">
+              <%= image_tag("groups/uploadCover.png", alt: "Upload cover", width: "100%", id: "preview-cover") %>
             </div>
           </div>
           <div class="col-md-6">
