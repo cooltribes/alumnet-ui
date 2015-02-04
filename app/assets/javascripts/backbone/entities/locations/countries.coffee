@@ -26,11 +26,18 @@
       initializeCountries() if Entities.countries == undefined
       Entities.countries
 
+    getAiesecCountries: ()->
+      @getCountries()
+      Entities.countries.where(aiesec: true)
+
   AlumNet.reqres.setHandler 'countries:html', (collection) ->
     API.getCountriesHtml(collection)
 
   AlumNet.reqres.setHandler 'get:countries', ->
     API.getCountries()
+
+  AlumNet.reqres.setHandler 'get:aiesec_countries', ->
+    API.getAiesecCountries()
 
   class CountryList
     window.CountryList =
@@ -39,3 +46,12 @@
         countries.map (model)->
           id: model.id
           text: model.get('name')
+
+  class CountryList
+    window.CountryAiesecList =
+      toSelect2: ->
+        countries = AlumNet.request 'get:aiesec_countries'
+        countries.map (model)->
+          id: model.id
+          text: model.get('name')
+

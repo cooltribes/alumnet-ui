@@ -56,7 +56,11 @@
         data: []
         allowClear: true
 
-      dataCountries = CountryList.toSelect2()
+      dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
+        CountryAiesecList.toSelect2()
+      else
+        CountryList.toSelect2()
+
       dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
@@ -73,16 +77,12 @@
       @ui.selectCountries.on 'select2-selecting', (e)->
         ui.selectRegions.select2('val', '')
 
-      @ui.selectCountries.on 'select2-removed', (e)->
-        console.log "country unselected"
-
       @ui.selectRegions.on 'select2-selecting', (e)->
         ui.selectCountries.select2('val', '')
         ui.selectCities.select2('val', '')
         ui.selectComitees.select2('val', '')
 
-      @ui.selectRegions.on 'select2-removed', (e)->
-        console.log "region unselected"
+      # @ui.selectRegions.on 'select2-removed', (e)->
 
     setCitiesAndCommittees: (e)->
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
@@ -127,7 +127,7 @@
       "click @ui.btnSubmit": "submitClicked"
       "click @ui.btnSkip": "skipClicked"
 
-    initialize: (options) ->     
+    initialize: (options) ->
       @exp_type = options.exp_type
 
       @title = 'Experience in AIESEC'

@@ -16,7 +16,7 @@
       @startPusher(options.pusher_key, @current_user)
       App.request 'get:regions'
       App.request 'get:countries'
-
+      App.request 'get:aiesec_countries'
 
   App.on 'start', ->
     if Backbone.history
