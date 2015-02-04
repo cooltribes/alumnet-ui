@@ -7,7 +7,7 @@
 			<h4 class="userCard__name">
 			<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
 			</h4>
-			<p class="member-position text-small"><%= @experience %></p>
+			<p class="member-position text-small"><%= @user.last_experience %></p>
 		</div>
 
 		<!-- Actions -->

@@ -49,6 +49,7 @@
     template: 'groups/discover/templates/groups_container'
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
+    emptyView: AlumNet.GroupsApp.Manage.EmptyView  
     initialize: ->
       @filterCollection(@collection)
 
