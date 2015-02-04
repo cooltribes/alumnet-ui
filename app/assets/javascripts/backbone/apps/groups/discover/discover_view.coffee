@@ -43,13 +43,16 @@
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'groups/discover/templates/empty'   
+
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'groups/discover/templates/groups_container'
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
-    emptyView: AlumNet.GroupsApp.Manage.EmptyView  
+    emptyView: Discover.EmptyView
     initialize: ->
       @filterCollection(@collection)
 

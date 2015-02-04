@@ -1,4 +1,7 @@
 @AlumNet.module 'FriendsApp.Find', (Find, @AlumNet, Backbone, Marionette, $, _) ->
+  class Find.EmptyView extends Marionette.ItemView
+    template: 'friends/find/templates/empty'
+
   class Find.UserView extends Marionette.ItemView
     template: 'friends/find/templates/user'
     tagName: 'div'
@@ -44,6 +47,7 @@
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
+    emptyView: Find.EmptyView  
     childViewContainer: '.users-list'
     events:
       'click .js-search': 'performSearch'
