@@ -7,7 +7,7 @@ set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
 set :branch, 'deploy'
 set :scm, :git
 
-set :linked_files, %w{config/application.yml config/.env}
+set :linked_files, %w{config/application.yml config/.env config/.env.production}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -33,7 +33,7 @@ set :linked_files, %w{config/application.yml config/.env}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
+set :default_env, { secret_key_ui_base: "db5438609fdb4d11ab6de955771f6d58d66fa51410b026977228b7d3403e8780acfe75b0d5bd2cf1355bb7038746ffaed8c618efa89a04f4bcaabbe942871cfc" }
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
