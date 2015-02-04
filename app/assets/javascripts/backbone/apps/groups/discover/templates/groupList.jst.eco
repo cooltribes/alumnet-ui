@@ -33,33 +33,40 @@
         	<p>
         		<%= @description %> 
         	</p>
-			<a data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" aria-controls="<%= @id %>">
-				Show Sub-Groups (<%= _.size(@children) %>) <span class="caret"></span>
+			<a <% if _.size(@children)>0: %>class="groupTableView__SubGroup" <% end %> data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" aria-controls="<%= @id %>">
+				Show Sub-Groups (<%= _.size(@children) %>) 
+        <% if _.size(@children)>0: %><span class="caret"></span> <% end %> 
 			</a>
+      <% if _.size(@children)>0: %>
 			<div class="collapse" id="<%= @id %>">
-				<ul class="groupCard__menu__list">
+				<ul class="groupTableView__SubGroupList">
         			<% _.each @children, (child)->: %>
-          			<li class="groupCard__menu__item">
+          			<li >
             			<a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
             			<span class="icon-entypo-list pull-right"></span>
           			</li>
         			<% end %>
-          			<li class="groupCard__menu__item text-center">
+          			<li class="text-center">
           			  <a href="#" title="Subgroup name" > </span> </a>
           			</li>
-        		</ul>
+        	</ul>
 			</div>
+      <% end %>
 		</div>
 	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> <%= moment(@created_at).format('MM/YYYY') %> </td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> 
+    <div class="groupTableView__colText"><%= moment(@created_at).format('MM/YYYY') %>  </div>  
+  </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last post" >
 		<% if @last_post_at: %>
-            <span><%= moment(@last_post_at).format('h:mm a') %> </span>
+            <div class="groupTableView__colText"><%= moment(@last_post_at).format('h:mm a') %> </div>
         <% else: %>
-            <span><%= moment(@created_at).format('h:mm a') %> </span>
+            <div class="groupTableView__colText"><%= moment(@created_at).format('h:mm a') %> </div>
         <% end %>		
 	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> <%= @membership_users.length %> </td>
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> 
+    <div class="groupTableView__colText"><%= @membership_users.length %> </div>
+  </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
 		<!--
               Avatars of people who has joined the group
@@ -69,11 +76,11 @@
 	</td>
 	<td class="groupTableView__col">
 		<% if @membership_status == "approved": %>
-          <a href="#groups/<%= @id %>/posts"> ENTER </a>
+          <div class="groupTableView__colText" ><a  href="#groups/<%= @id %>/posts"> ENTER </a></div>
         <% else if @membership_status == "pending": %>
-         <span> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
+         <div class="groupTableView__colText"> <span class="icon-entypo-hourglass"></span> Waiting for approval</div>
         <% else: %>
-          <button class="groupTableView__join">
+          <button class="groupTableView__join js-join">
               + Join group
           </button>
         <% end %>

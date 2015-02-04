@@ -1,22 +1,24 @@
-<div class="groupCard">
+<div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
       <div class="groupCard__menu">
         <h5 class="groupCard__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
-        <ul class="groupCard__menu__list">
-        <% _.each @children, (child)->: %>
-          <li class="groupCard__menu__item">
-            <a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
-            <span class="icon-entypo-list pull-right"></span>
-          </li>
+        <% if _.size(@children)>0: %>
+          <ul class="groupCard__menu__list">
+          <% _.each @children, (child)->: %>
+            <li class="groupCard__menu__item">
+              <a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
+              <span class="icon-entypo-list pull-right"></span>
+            </li>
+          <% end %>
+            <li class="groupCard__menu__item text-center">
+              <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
+            </li>
+          </ul>
         <% end %>
-          <li class="groupCard__menu__item text-center">
-            <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
-          </li>
-        </ul>
-
       </div>
       <!-- SUBGROUPS OFF-->
       <% if @official: %><span class="groupCard__ribbon"></span><% end %>
@@ -96,4 +98,5 @@
     </div>
     <!-- CONTENT ON -->
   </div>
+</div>
 </div>

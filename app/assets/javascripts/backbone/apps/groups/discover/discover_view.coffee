@@ -35,18 +35,6 @@
         description_cont: searchTerm
 
     ViewCard: ()->
-<<<<<<< HEAD
-      alert("View card ");
-
-      
-    ViewList: ()->
-      alert("View List");
-
-  class Discover.GroupView extends Marionette.ItemView
-    template: 'groups/discover/templates/groupList'
-    tagName: 'tr'
-    className: 'groupTableView__tr'
-=======
       @groupsView.type = "cards"
       @groupsView.render()
 
@@ -56,8 +44,7 @@
 
   class Discover.GroupView extends Marionette.ItemView    
     tagName: 'div'
-    className: 'col-md-4 col-sm-6 col-xs-12'
->>>>>>> b6f7307ade5e6540a524d9ac16baa101c95b55bb
+
     events:
       'click .js-join':'sendJoin'
     ui:
@@ -86,12 +73,7 @@
 
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
-<<<<<<< HEAD
-    idName: 'wrapper'
-    template: 'groups/discover/templates/groups_containerList'
-    childView: Discover.GroupView
-    childViewContainer: ".groupTableView"
-=======
+
     idName: 'wrapper'        
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
@@ -103,15 +85,14 @@
         'groups/discover/templates/groups_containerList'
     
     childViewOptions: (model, index)-> #Set the options for changineg the template of each itemView      
-      tagName = 'div'        
+      tagName = 'div'     
       
       if @type == "list"
         tagName = 'tr'
+        childViewContainer: ".main-groups-area"
       
       type: @type
       tagName: tagName
-
->>>>>>> b6f7307ade5e6540a524d9ac16baa101c95b55bb
 
     initialize: ->
       @filterCollection(@collection)
