@@ -14,7 +14,6 @@
       # here get all info of use from api and set in a backbone model
       @current_user = App.request 'get:current_user'#, refresh: true
       @startPusher(options.pusher_key, @current_user)
-      App.request 'get:regions'
       App.request 'get:countries'
       App.request 'get:aiesec_countries'
 
