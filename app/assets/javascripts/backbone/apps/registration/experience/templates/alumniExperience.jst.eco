@@ -44,7 +44,7 @@
 						<select name="end_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
 							<option value="current">Current</option>
-							
+
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option value="<%= x %>"><%= x %></option>
 							<% end %>
@@ -74,13 +74,18 @@
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">Region</label>
-			<input type="hidden" name="region_id" id="region_id" style="width: 100%">
+			<label class="control-label" for="registerCountry">AIESEC Experience</label>
+			<div class="formANet__select">
+			  <select name="aiesec_experience" id="aiesec_experience" class=" form-control input-lg">
+					<option value="">Select Type</option>
+	        <option value="Local">Local</option>
+	        <option value="National">National</option>
+	        <option value="International">International</option>
+	      </select>
+			</div>
 			<span class="help-block"></span>
 		</div>
 	</div>
-</div>
-<div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCountry">Country</label>
@@ -88,16 +93,18 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-3 ">
+</div>
+<div class="row">
+	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
 			<input type="hidden" name="city_id" id="city_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-3 ">
+	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerLocalcomitee">Local Comitee</label>
+			<label class="control-label" for="registerLocalcomitee">AIESEC Chapter</label>
 			<input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
