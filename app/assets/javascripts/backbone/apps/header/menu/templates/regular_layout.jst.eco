@@ -18,19 +18,19 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#groups">
+        <a class="navTopBar__left__item" href="#groups" >
           <i class="icon-entypo-share"></i>
           Groups
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#">
+        <a class="navTopBar__left__item" href="#" data-toggle="modal" data-target="#myModal">
           <i class="ico-calendar"></i>
           Events
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item dropdown-toggle" href="#programs" data-toggle="dropdown" role="menu" aria-labelledby="programs">
+        <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" data-toggle="modal" data-target="#myModal">
           <i class="ico-give-help"></i>
           Programs  <span class="icon-entypo-down-open"></span>
         </a>
@@ -108,7 +108,7 @@
         <!-- MESSAGES OFF -->
       </li>
       <li>
-        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
+        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member" data-toggle="modal" data-target="#myModal">
           <!-- When membership is about to expire activate from here ...
           <div class="navTopBar__right__item--membershipExpires">
             <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
@@ -144,6 +144,7 @@
 <div id="submenu-region">
 </div>
 </header>
+
 <!-- modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <!-- modal-dialog -->
