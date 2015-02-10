@@ -3,8 +3,9 @@
 		<!-- COVER ON -->
 		
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
+			<% if @group.official: %><span class="groupCardManage__ribbon"></span><% end %>
 		</div>
-
+		
 		<!-- COVER OFF -->
 		<!-- CONTENT ON -->
 		<div class=" groupCardManage__content">
@@ -14,7 +15,7 @@
 				</h3>
 				<p class="groupCardManage__description"><%= @group.description %></p>
 			</div>
-			<% if @official: %>ofibjhsdf<span class="groupCard__ribbon">oficial</span><% end %>
+			
 		</div>
 		<!-- CONTENT OFF -->
 		<!-- ATRIBUTES ON -->
