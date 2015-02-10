@@ -7,7 +7,7 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
-			
+
 			<%= image_tag("slideshow/1.jpg", alt: "AIESEC Alumni", width: "100%") %>
 			<div class="carousel-caption">
 				<p>
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div class="item">
-			
+
 			<%= image_tag("slideshow/2.jpg", alt: "AIESEC Alumni", width: "100%") %>
 			<div class="carousel-caption">
 				<p>
@@ -49,7 +49,7 @@
 				<div class="item col-md-6 ">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
-							<%= image_tag(@current_user_avatar, class="img-circle") %> 
+							<img src="<%%= @current_user_avatar %>" class="img-circle">
 						</div>
 						<div class="groupCreatePostForm__form">
 							<form class="form">
