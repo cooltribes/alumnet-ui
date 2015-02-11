@@ -32,7 +32,7 @@
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
-    templateHelpers: ->
+    templateHelpers: ->      
       userIsMember: @model.userIsMember()
 
     sendJoin: (e)->
@@ -43,12 +43,16 @@
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'groups/discover/templates/empty'   
+
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'groups/discover/templates/groups_container'
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
+    emptyView: Discover.EmptyView
     initialize: ->
       @filterCollection(@collection)
 
