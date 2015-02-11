@@ -116,8 +116,10 @@
           ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--becomeAMember">
           Become a member 
-          <%= image_tag(@avatar.medium, alt: @name, class="img-circle") %>  
+          <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle">
+
           </span>
+
 
           <!-- </div> -->
         </a>
