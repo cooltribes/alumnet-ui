@@ -6,9 +6,8 @@
       </div>
       <div class="col-md-9 ">
         <h4 class="userCard__name"><%= @user.name %></h4>
-        <p class="member-position text-small">Local Comitee President</p>
-
-
+        <p class="member-position text-small"><% @user.last_experience %></p>
+        <br/>
         <a href="#" id="js-accept-membership" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
         <a href="#" id="js-delete-membership"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
       </div>

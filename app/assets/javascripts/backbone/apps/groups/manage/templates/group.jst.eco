@@ -1,3 +1,4 @@
+<% console.log this %>
 <div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->

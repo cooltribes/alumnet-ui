@@ -2,13 +2,11 @@
   class About.Controller
     showAbout: (id)->
       user = AlumNet.request("user:find", id)
-      user.on 'find:success', (response, options)->
+      user.on 'find:success', (response, options)=>
         
         layout = AlumNet.request("user:layout", user, 1)
         header = AlumNet.request("user:header", user)
-        
-        #todo: implement a function to return the view. like a discovery module
-        
+                        
         profileId = user.profile.id
 
         #get the skills of the user
@@ -62,17 +60,24 @@
           error: (collection, response, options) ->
           success: (collection, response, options) ->
 
-        profileView = new About.Profile
-          model: user
+        #Edit Options - permissions    
+        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
 
         body = new About.View
           model: user
+          userCanEdit: userCanEdit
+
+        profileView = new About.Profile
+          model: user
+          userCanEdit: userCanEdit
 
         skillsView = new About.SkillsView
           collection: skills
+          userCanEdit: userCanEdit
 
         languagesView = new About.LanguagesView
           collection: languages
+          userCanEdit: userCanEdit
 
         contactsView = new About.ContactsView
           collection: contacts
@@ -80,6 +85,9 @@
         aiesecView = new About.Experiences
           collection: expCollection
           
+        @setEditActions(skillsView, 0)  
+        @setEditActions(languagesView, 1)  
+
 
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
@@ -97,4 +105,26 @@
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
+  
+    #set the action when modal is submitted for each info
+    #0-skills, 1-languages,
+    setEditActions: (view, type)->
+
+      switch type
+        when 0  #skills    
+          view.on "submit", (data)->
+            #Add each skill to the collection
+            collection = view.collection  
+
+            _.each data, (el)->
+              collection.create({name: el})
+
+        when 1      #languaes
+          view.on "submit", (data)->
+            #Add the language and level to the collection
+            view.collection.create(data, {wait: true})
+            
+          
+          
+              
         
