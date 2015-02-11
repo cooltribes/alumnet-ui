@@ -24,14 +24,14 @@
           @get("exp_type") == 2 || @get("exp_type") == 3
       start_year: "checkDate"
       end_year: "checkDate"
-      country_id:
-        required: (value, attr, computedState) ->
-          if @get("exp_type") == 0 || @get("exp_type") == 1
-            @get("region_id") == ''
-      region_id:
-        required: (value, attr, computedState) ->
-          if @get("exp_type") == 0 || @get("exp_type") == 1
-            @get("country_id") == ''
+      # country_id:
+      #   required: (value, attr, computedState) ->
+      #     if @get("exp_type") == 0 || @get("exp_type") == 1
+      #       @get("region_id") == ''
+      # region_id:
+      #   required: (value, attr, computedState) ->
+      #     if @get("exp_type") == 0 || @get("exp_type") == 1
+      #       @get("country_id") == ''
 
     checkDate: (value, attr, computedState)->
       if value == ''
@@ -72,8 +72,8 @@
         false
 
     getEndDate: ()->
-      @get("end_date") ? "Current" 
-        
+      @get("end_date") ? "Current"
+
 
     getExperienceId: ->
       @experienceId[@get "exp_type"]
