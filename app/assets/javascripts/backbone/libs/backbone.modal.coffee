@@ -14,7 +14,7 @@
     factory(require("underscore"), require("backbone"), require("backbone.marionette"), exports)
   else
     factory(_, Backbone, Backbone.Marionette, {})
-) (_, Backbone, Marionette, Modals) ->
+) (_, Backbone, Marionette, Modal) ->
 
   # class Modal extends Backbone.View
   class Modal extends Marionette.View
@@ -30,7 +30,7 @@
       Marionette.View::constructor.apply(this, @args)
       # Backbone.View::constructor.apply(this, @args)
 
-      # console.log this
+      
       # get all options
       @setUIElements()
 
@@ -38,7 +38,7 @@
       # use openAt or overwrite this with your own functionality
       
       return if @template is false
-      path = @getTemplate(@template)
+      path = @getTemplateFile(@template)
       throw "Template #{template} not found!" unless path
 
       data    = @serializeData()
@@ -87,9 +87,15 @@
       @onShow?()
       @currentView?.onShow?()
 
+    getTemplate: =>
+      @getOption('template')
+     
+      
     setUIElements: ->
       # get modal options
-      @template       = @getOption('template')
+      functionTemplate    = @getOption('getTemplate')
+      
+      @template       = functionTemplate()
       @views          = @getOption('views')
       @views?.length  = _.size(@views)
       @viewContainer  = @getOption('viewContainer')
@@ -100,7 +106,7 @@
       throw new Error('No viewContainer defined for Backbone.Modal') if @template and @views and _.isUndefined(@viewContainer)
 
     getOption: (option) ->
-      # get class instance property
+      # get class instance property      
       return unless option
       if @options and option in @options and @options[option]?
         return @options[option]
@@ -167,7 +173,7 @@
 
     buildView: (viewType, options) ->
       # returns a Backbone.View instance, a function or an object
-      path = @getTemplate(viewType)
+      path = @getTemplateFile(viewType)
       throw "Template #{template} not found!" unless path
       viewType = path
 
@@ -183,8 +189,7 @@
           return {el: view.render().$el, view: view}
         else
           return {el: viewType(options or @args[0])}
-
-      console.log viewType    
+         
       return {view: viewType, el: viewType.$el}
 
     triggerView: (e) =>
@@ -328,7 +333,7 @@
     previous: (options = {}) ->
       @openAt(_.extend(options, {_index: @currentIndex-1})) if @currentIndex-1 < @views.length-1
 
-    getTemplate: (template) ->
+    getTemplateFile: (template) ->
       for lookup in @lookups
         ## inserts the template at the '-1' position of the template array
         ## this allows to omit the word 'templates' from the view but still
