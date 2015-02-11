@@ -23,8 +23,6 @@
 
       layoutView.form_region.show(formView)
 
-      #AlumNet.execute('render:groups:submenu')
-
 
       formView.on "form:submit", (profileModel, skillsData)->
         #every model in the collection is valid

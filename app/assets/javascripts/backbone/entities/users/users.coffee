@@ -77,6 +77,9 @@
     areFriends: ()->
       @get('friendship_status') == 'accepted'      
 
+    isCurrentUser: ()->
+      @id == AlumNet.current_user.id  
+      
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
