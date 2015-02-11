@@ -52,40 +52,21 @@
       </li>
       <li>
         <!-- BELL ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown" id="js-menu-notifications">
           <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
-          <!--<span class="navTopBar__badge badge">3</span>-->
+          <span class="navTopBar__badge badge" id="js-notifications-badge">
+          <%%= @unread_notifications_count  %>
+          </span>
         </a>
-        <!--  -->
         <!-- NOTIFICATIONS ON -->
-        <ul id="js-menu-notifications" class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
-          <!-- Notification example ON -->
-          <li class="navTopBar__notification" role="presentation">
-            <div class="clearfix">
-              <!-- Avatar -->
-              <!--<div class="navTopBar__notification__avatar">
-                <img src="http://placesheen.com/40/40" class="img-circle">
-              </div>-->
-              <!-- Content -->
-              <!--<div class="navTopBar__notification__content">
-                <a href="#"
-                  ><span class="navTopBar__notification__title">Juan</span>
-                  <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet, consectetur adipisicing eli</span>
-                <span class="navTopBar__notification__date">1 hr</span></a>
-              </div>-->
-              <!-- Actions -->
-              <!--<div class="navTopBar__notification__actions">
-                <a href="#" title="Add user"><span class="icon-entypo-user-add"></span></a>
-              </div>-->
-            </div>
-          </li>
-          <!-- // Notification Example OFF -->
-          <!-- SHOW ALL NOTIFICATION LINK -->
-          <li role="presentation">
-            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a>
-          </li>
-          <!--  -->
-        </ul>
+        <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
+          <!-- NOTIFICATIONS LIST -->
+          <div id="js-menu-notifications-box"></div>
+          <!-- SHOW ALL NOTIFICATIONS LINK -->
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
+          </div>
+        </div>
         <!-- NOTIFICATIONS OFF -->
       </li>
       <li>
@@ -96,7 +77,6 @@
           <%%= @unread_messages_count %>
           </span>
         </a>
-        <!--  -->
         <!-- MESSAGES ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
           <!-- MESSAGES LIST -->
