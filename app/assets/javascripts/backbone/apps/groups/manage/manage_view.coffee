@@ -3,7 +3,6 @@
   class Manage.EmptyView extends Marionette.ItemView
     template: 'groups/manage/templates/empty'
 
-
   class Manage.GroupView extends Marionette.ItemView
     template: 'groups/manage/templates/group'
     className: 'col-md-6'
