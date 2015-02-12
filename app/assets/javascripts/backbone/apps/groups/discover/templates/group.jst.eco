@@ -1,4 +1,5 @@
-<div class="groupCard">
+<div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
@@ -16,6 +17,7 @@
             <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
           </li>
         </ul>
+
       </div>
       <!-- SUBGROUPS OFF-->
       <% if @official: %><span class="groupCard__ribbon"></span><% end %>
@@ -97,4 +99,5 @@
     </div>
     <!-- CONTENT ON -->
   </div>
+</div>
 </div>
