@@ -8,6 +8,7 @@
 </a>
 Atte. Juan.
 -->
+
 <% if @contact_type== 0: %>
     <span class="icon-entypo-mail"></span> <%= @info %>
 <% end %>
@@ -31,4 +32,7 @@ Atte. Juan.
 <% end %>
 <% if @contact_type== 7: %>
     <span class="icon-entypo-link"></span> <%= @info %>
+
+<% if @userCanEdit: %>
+  <button type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 <% end %>

@@ -1,0 +1,56 @@
+<div class="bbm-modal__topbar">  
+  <h3 class="bbm-modal__title">Add new contact info <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>    
+    <div class="row">
+      <div class="col-md-8">
+        <label for="inputName">Contact</label>
+      </div>
+      <div class="col-md-4">
+        <label for="inputName">Privacy Settings</label>
+      </div>
+    </div>
+    <div class="row formANet__removableRow">
+      <div class="col-md-3">
+        <div class="form-group">
+          <select name="contact_type" class="form-control input-lg">
+            <option value="">-Select-</option>            
+            <option value="2">Skype</option>
+            <option value="3">Yahoo</option>
+            <option value="4">Facebook</option>
+            <option value="5">Twitter</option>
+            <option value="6">IRC</option>
+            <option value="7">Web Site</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <input type="text" class="form-control input-lg" name="info" placeholder="">
+          <span class="help-block"></span>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <select name="privacy" class="form-control input-lg">
+            <option value="1">Only me</option>
+            <option value="2">Everyone</option>
+            <option value="3">Friends</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>      
+    </div>
+
+
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">  
+  <a href="#" class="bbm-button" id="js-save">Save</a>
+</div>
