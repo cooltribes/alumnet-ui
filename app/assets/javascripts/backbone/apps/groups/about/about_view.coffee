@@ -129,10 +129,15 @@
         pk: view.model.id
         title: 'Select option'
         toggle: 'manual'
-        source: [
-          {value: 0, text: "it's not an official group"}
-          {value: 1, text: "it's an official group"}
-        ]
+        source: ->
+          options = []
+          group = view.model
+          if group.canBeUnOfficial()
+            options.push {value: 0, text: "it's not an official group"}
+          if group.canBeOfficial()
+            options.push {value: 1, text: "it's an official group"}
+          options
+
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
