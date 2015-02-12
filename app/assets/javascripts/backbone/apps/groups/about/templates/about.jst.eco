@@ -6,15 +6,12 @@
               <div class="panel-heading">
                 Join this group to post and comment</div>
             <div class="panel-body">
-              
+
               <button class="btn btn-lg btn-primary js-join">+ join group</button>
             </div>
           </div>
-          
+
         </div>
-
-
-
     <% end %>
 
     <div class="col-md-8 col-md-offset-2">
@@ -41,6 +38,15 @@
         <a href="#" id="join_process" class="js-attribute"><%= @joinProcessText %></a>
         <% if @canChangeJoinProcess: %>
           <a href="#" id="js-edit-join-process">[edit]</a>
+        <% end %>
+      </div>
+      <div class="groupAbout__box margin_bottom">
+        <h3>Official Group</h3>
+          <a href="#" id="official" class="js-attribute">
+          <% if @official: %>it's an official group<% else: %>it's not an official group<% end %>
+          </a>
+        <% if @currentUserIsAdmin: %>
+          <a href="#" id="js-edit-official">[edit]</a>
         <% end %>
       </div>
     </div>

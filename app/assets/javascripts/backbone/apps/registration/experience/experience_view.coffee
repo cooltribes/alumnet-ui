@@ -22,7 +22,7 @@
 
     ui:
       'btnRmv': '.js-rmvRow'
-      "selectRegions": "[name=region_id]"
+      "selectType": "[name=aiesec_experience]"
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
@@ -31,6 +31,8 @@
     events:
       "click @ui.btnRmv": "removeExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
+      "change @ui.selectType": "setCountries"
+
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -46,49 +48,58 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     onRender: ->
-      @ui.selectCities.select2
-        placeholder: "Select a City"
-        data: []
-        allowClear: true
+      @cleanAllSelects()
 
-      @ui.selectComitees.select2
-        placeholder: "Select a Committee"
-        data: []
-        allowClear: true
+      dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
+        CountryAiesecList.toSelect2()
+      else
+        CountryList.toSelect2()
 
-      dataCountries = CountryList.toSelect2()
       dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
-        allowClear: true
 
-      @ui.selectRegions.select2
-        placeholder: "Select a Region"
-        data: dataRegions
-        allowClear: true
+    setCountries: (e)->
+      @cleanAllSelects()
+      type = $(e.currentTarget).val()
+      if type == "Local" || type == "National"
+        dataCountries = AlumNet.request('get:filtered:countries', type)
+      else if type == "International"
+        dataCountries = CountryList.toSelect2()
+        internationalCommittees = AlumNet.request('get:committees:international')
+        @ui.selectComitees.select2
+          placeholder: "Select a Committee"
+          data: internationalCommittees
 
-      ui = @ui
-      @ui.selectCountries.on 'select2-selecting', (e)->
-        ui.selectRegions.select2('val', '')
+      @ui.selectCountries.select2
+        placeholder: "Select a Country"
+        data: dataCountries
 
-      @ui.selectCountries.on 'select2-removed', (e)->
-        console.log "country unselected"
+      @ui.selectCountries.select2('val','')
+      @ui.selectComitees.select2('val','')
+      @ui.selectCities.select2('val','')
 
-      @ui.selectRegions.on 'select2-selecting', (e)->
-        ui.selectCountries.select2('val', '')
-        ui.selectCities.select2('val', '')
-        ui.selectComitees.select2('val', '')
+    cleanAllSelects:(e)->
+      @ui.selectCities.select2
+        placeholder: "Select a City"
+        data: []
 
-      @ui.selectRegions.on 'select2-removed', (e)->
-        console.log "region unselected"
+      @ui.selectComitees.select2
+        placeholder: "Select a Committee"
+        data: []
+
+      @ui.selectCountries.select2
+        placeholder: "Select a Country"
+        data: []
 
     setCitiesAndCommittees: (e)->
+      aiesecExp = @ui.selectType.val()
+      unless aiesecExp == "International"
+        @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      committees_url = AlumNet.api_endpoint + '/countries/' + e.val + '/committees'
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
-      @ui.selectComitees.select2(@optionsForSelect2(committees_url, 'Committee'))
 
     optionsForSelect2: (url, placeholder)->
       placeholder: "Select a #{placeholder}"
@@ -106,6 +117,12 @@
         data.name
       formatSelection: (data)->
         data.name
+
+    optionsForCommittee: (country_id, aiesecExp)->
+      query = { q: { committee_type_eq: aiesecExp } }
+      committees = AlumNet.request('get:committees', country_id, query)
+      placeholder: "Select a Committee"
+      data: committees
 
     removeExperience: (e)->
       @model.destroy()
@@ -127,7 +144,7 @@
       "click @ui.btnSubmit": "submitClicked"
       "click @ui.btnSkip": "skipClicked"
 
-    initialize: (options) ->     
+    initialize: (options) ->
       @exp_type = options.exp_type
 
       @title = 'Experience in AIESEC'

@@ -71,6 +71,9 @@
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'groups/discover/templates/empty'   
+
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
 

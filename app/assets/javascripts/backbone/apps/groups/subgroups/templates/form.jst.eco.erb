@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create a new Group</h1>
+        <h1 class="textColor--blue ">Create a Sub Group of <%%= @group_name %></h1>
         <!-- ROW 1 ON -->
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="add-cover-photo">
-              <img id="preview-cover" src="assets/groups/uploadCover.png" alt="Upload cover"   width="100%">
+              <%= image_tag("groups/uploadCover.png", alt: "Upload cover", width: "100%", id: "preview-cover") %>
             </div>
           </div>
           <div class="col-md-6">
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-4 margin_top_medium">
-            <% if @userIsAdmin : %>
+            <%% if @userIsAdmin : %>
               <div class="form-group">
                 <label class="control-label">Official Group</label>
                 <select class="form-control input-lg" name="official">
@@ -63,7 +63,7 @@
                   <option value="1">it's an official group</option>
                 </select>
               </div>
-            <% end %>
+            <%% end %>
           </div>
         </div>
         <!-- ROW 2 OFF -->

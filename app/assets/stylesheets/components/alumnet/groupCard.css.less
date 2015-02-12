@@ -11,6 +11,22 @@ DESCRIPTION: Displays a list of groups in the Groups
     background-color: @white;
     margin-bottom: 2em;
 
+    // &:after{
+    // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+    // content: "";
+    // display: block;
+    // height: 240px;
+    // position: absolute;
+    // top: -6px;
+    // transform: rotate(-1.3deg);
+    // width: 93%;
+    // z-index: 0;
+    // }
+
+    &:hover{
+        box-shadow:0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    }
+
     &__cover{    
         width: auto;
         height: 200px;
@@ -23,7 +39,7 @@ DESCRIPTION: Displays a list of groups in the Groups
         
     }
     &__ribbon{
-        background: url('/assets/groups/ribbon-orange.png') no-repeat;
+        background: image-url('groups/ribbon-orange.png') no-repeat;
         display: block;
         height: 168px;
         left: 20px;
@@ -53,6 +69,19 @@ DESCRIPTION: Displays a list of groups in the Groups
         position: absolute;
         right: 25px;
         top: 8px;
+        
+        transition: all ease .2s;
+        font-size: 0;
+        color:@white;
+
+
+        &:hover{
+            text-indent: inherit;
+            width: 50px;
+            padding: 1px 5px 0;
+            
+            font-size: 12px;
+        }
         
         &--public{
             background-color: @green;

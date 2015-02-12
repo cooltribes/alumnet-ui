@@ -54,10 +54,7 @@
           url: url
           type: "PUT"
           error: (data) =>
-            # console.log "listo el activate erro"
           success: (data) =>
-            # console.log "listo el active"
-            # console.log data
             #Update the model and re-render the itemView
             @model.fetch
               success: (model)->
