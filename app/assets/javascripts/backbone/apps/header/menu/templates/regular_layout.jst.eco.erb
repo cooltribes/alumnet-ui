@@ -19,19 +19,19 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#groups">
+        <a class="navTopBar__left__item" href="#groups" >
           <i class="icon-entypo-share"></i>
           Groups
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#">
+        <a class="navTopBar__left__item" href="#" data-toggle="modal" data-target="#devAlertModal">
           <i class="ico-calendar"></i>
           Events
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item dropdown-toggle" href="#programs" data-toggle="dropdown" role="menu" aria-labelledby="programs">
+        <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" data-toggle="modal" data-target="#devAlertModal">
           <i class="ico-give-help"></i>
           Programs  <span class="icon-entypo-down-open"></span>
         </a>
@@ -46,46 +46,27 @@
       <!-- Right menu top -->
       <li>
         <!-- CART ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="modal" data-target="#devAlertModal">
           <span class=" navTopBar__right__item__icon--cartIcon glyphicon glyphicon-shopping-cart"></span> 3
         </a>
       </li>
       <li>
         <!-- BELL ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown">
+        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown" id="js-menu-notifications">
           <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
-          <!--<span class="navTopBar__badge badge">3</span>-->
+          <span class="navTopBar__badge badge" id="js-notifications-badge">
+          <%%= @unread_notifications_count  %>
+          </span>
         </a>
-        <!--  -->
         <!-- NOTIFICATIONS ON -->
-        <ul id="js-menu-notifications" class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
-          <!-- Notification example ON -->
-          <li class="navTopBar__notification" role="presentation">
-            <div class="clearfix">
-              <!-- Avatar -->
-              <!--<div class="navTopBar__notification__avatar">
-                <img src="http://placesheen.com/40/40" class="img-circle">
-              </div>-->
-              <!-- Content -->
-              <!--<div class="navTopBar__notification__content">
-                <a href="#"
-                  ><span class="navTopBar__notification__title">Juan</span>
-                  <span class="navTopBar__notification__summary">Lorem ipsum dolor sit amet, consectetur adipisicing eli</span>
-                <span class="navTopBar__notification__date">1 hr</span></a>
-              </div>-->
-              <!-- Actions -->
-              <!--<div class="navTopBar__notification__actions">
-                <a href="#" title="Add user"><span class="icon-entypo-user-add"></span></a>
-              </div>-->
-            </div>
-          </li>
-          <!-- // Notification Example OFF -->
-          <!-- SHOW ALL NOTIFICATION LINK -->
-          <li role="presentation">
-            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#" >Show all</a>
-          </li>
-          <!--  -->
-        </ul>
+        <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
+          <!-- NOTIFICATIONS LIST -->
+          <div id="js-menu-notifications-box"></div>
+          <!-- SHOW ALL NOTIFICATIONS LINK -->
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
+          </div>
+        </div>
         <!-- NOTIFICATIONS OFF -->
       </li>
       <li>
@@ -96,7 +77,6 @@
           <%%= @unread_messages_count %>
           </span>
         </a>
-        <!--  -->
         <!-- MESSAGES ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
           <!-- MESSAGES LIST -->
@@ -109,13 +89,18 @@
         <!-- MESSAGES OFF -->
       </li>
       <li>
-        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member">
+        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member" data-toggle="modal" data-target="#devAlertModal">
           <!-- When membership is about to expire activate from here ...
           <div class="navTopBar__right__item--membershipExpires">
             <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
           ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--becomeAMember">
-          Become a member <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle"></span>
+
+            Become a member
+            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
+
+          </span>
+
 
           <!-- </div> -->
         </a>
@@ -145,3 +130,28 @@
 <div id="submenu-region">
 </div>
 </header>
+
+<!-- modal -->
+<div class="modal fade" id="devAlertModal" tabindex="-1" role="dialog" aria-labelledby="devAlertModallLabel" aria-hidden="true">
+  <!-- modal-dialog -->
+  <div class="modal-dialog">
+    <!-- /.modal-content -->
+    <div class="modal-content" id="devAlertModal" tabindex="-1" role="dialog" aria-labelledby="devAlertModallLabel" aria-hidden="true">
+      <div class="modal-body margin_medium">
+        
+        <button type="button" class="close margin_smal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4>Module under development.</h4>
+        <p>
+          "This module is still under development. If you want to learn more about this module, or if you have a question or comment about it, please join the AlumNet group
+        </p>
+
+        <button type="button" class="btn btn-primary">Join AlumNet Group</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

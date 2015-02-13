@@ -2,13 +2,11 @@
   class About.Controller
     showAbout: (id)->
       user = AlumNet.request("user:find", id)
-      user.on 'find:success', (response, options)->
+      user.on 'find:success', (response, options)=>
         
         layout = AlumNet.request("user:layout", user, 1)
         header = AlumNet.request("user:header", user)
-        
-        #todo: implement a function to return the view. like a discovery module
-        
+                        
         profileId = user.profile.id
 
         #get the skills of the user
@@ -58,28 +56,39 @@
         expCollection = new AlumNet.Entities.ExperienceCollection        
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
         expCollection.comparator = "exp_type"
-        expCollection.fetch
-          error: (collection, response, options) ->
-          success: (collection, response, options) ->
+        expCollection.fetch()
 
-        profileView = new About.Profile
-          model: user
+        #Edit Options - permissions    
+        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
 
         body = new About.View
           model: user
+          userCanEdit: userCanEdit
+          
+        profileView = new About.Profile
+          model: user
+          userCanEdit: userCanEdit          
 
         skillsView = new About.SkillsView
           collection: skills
+          userCanEdit: userCanEdit
 
         languagesView = new About.LanguagesView
           collection: languages
+          userCanEdit: userCanEdit
 
         contactsView = new About.ContactsView
           collection: contacts
+          userCanEdit: userCanEdit          
 
         aiesecView = new About.Experiences
           collection: expCollection
           
+        @setEditActions(skillsView, 0)  
+        @setEditActions(languagesView, 1)  
+        @setEditActions(contactsView, 2)         
+        @setEditActions(profileView, 3)         
+
 
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
@@ -97,4 +106,69 @@
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
+  
+    #set the action when modal is submitted for each info
+    #0-skills, 1-languages,
+    setEditActions: (view, type)->
+
+      switch type
+        when 0  #skills    
+          view.on "submit", (data)->
+            #Add each skill to the collection
+            collection = view.collection  
+
+            _.each data, (el)->
+              collection.create({name: el})
+
+        when 1, 2      #languages, contact infos
+          view.on "submit", (data)->
+            #Add the language and level to the collection
+            view.collection.create(data, {wait: true})
+        
+        when 3  #name
+          view.on "submit:name", ()->            
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "first_name": @model.profile.get "first_name"
+              "last_name": @model.profile.get "last_name",
+            ,
+              wait: true
+              success: ()=>
+                @model.fetch()            
+        
+          view.on "submit:born", ()->  
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "birth_country_id": @model.profile.get "birth_country_id"
+              "birth_city_id": @model.profile.get "birth_city_id",
+            ,
+              wait: true
+              success: ()=>
+                # @render()
+                AlumNet.trigger "user:about", @model.id
+                # model = @model
+                # @model.profile.fetch
+                #   success: ->
+                #     model.trigger("change")
+
+          view.on "submit:residence", ()->  
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "residence_country_id": @model.profile.get "residence_country_id"
+              "residence_city_id": @model.profile.get "residence_city_id",
+            ,
+              wait: true
+              success: ()=>
+                # @render()
+                AlumNet.trigger "user:about", @model.id
+                # model = @model
+                # @model.profile.fetch
+                #   success: ->
+                #     model.trigger("change")
+
+            
+            
+          
+          
+              
         

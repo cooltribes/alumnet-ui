@@ -12,6 +12,16 @@
     template: 'groups/discover/templates/groups_search'
     events:
       'click .js-search': 'performSearch'
+      'click .js-viewCard': 'ViewCard'
+      'click .js-viewList': 'ViewList'
+
+    initialize: (options)->
+      #View for showing the groups (class Discover.GroupsView)        
+      @groupsView = options.groupsView
+
+    ui:
+      'viewCard':'.main-groups-area'
+      'viewList':'.groupTableView'
 
     performSearch: (e) ->
       e.preventDefault()
@@ -24,14 +34,32 @@
         name_cont: searchTerm
         description_cont: searchTerm
 
-  class Discover.GroupView extends Marionette.ItemView
-    template: 'groups/discover/templates/group'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    ViewCard: ()->
+      @groupsView.type = "cards"
+      @groupsView.render()
+
+    ViewList: ()->      
+      @groupsView.type = "list"
+      @groupsView.render()
+
+  class Discover.GroupView extends Marionette.ItemView    
+    tagName: 'div'
+
     events:
       'click .js-join':'sendJoin'
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
+    
+    getTemplate: ()-> #Get the template of the groups based on the "type" property of the view
+      if @type == "cards"
+        'groups/discover/templates/group'
+      else if @type == "list"
+        'groups/discover/templates/groupList'
+    
+    initialize: (options)-> #get the options from the parent to select the template
+      @type = options.type
+
     templateHelpers: ->
       userIsMember: @model.userIsMember()
 
@@ -48,13 +76,32 @@
 
   class Discover.GroupsView extends Marionette.CompositeView
     className: 'ng-scope'
-    idName: 'wrapper'
-    template: 'groups/discover/templates/groups_container'
+
+    idName: 'wrapper'        
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
-    emptyView: Discover.EmptyView
+
+    getTemplate: ()-> #Get the template of the groups based on the "type" property of the view      
+      if @type == "cards"
+        'groups/discover/templates/groups_container'
+      else if @type == "list"
+        'groups/discover/templates/groups_containerList'
+    
+    childViewOptions: (model, index)-> #Set the options for changineg the template of each itemView      
+      tagName = 'div'     
+      
+      if @type == "list"
+        tagName = 'tr'
+        childViewContainer: ".main-groups-area"
+      
+      type: @type
+      tagName: tagName
+
     initialize: ->
       @filterCollection(@collection)
+      #Initialize the type of grid to use (cards or list)
+      @type = "cards"
+      @type = "list"
 
     events:
       'click #js-filter-all': 'filterAll'

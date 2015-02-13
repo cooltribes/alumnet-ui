@@ -14,16 +14,14 @@
       # here get all info of use from api and set in a backbone model
       @current_user = App.request 'get:current_user'#, refresh: true
       @startPusher(options.pusher_key, @current_user)
-      App.request 'get:regions'
       App.request 'get:countries'
-
+      App.request 'get:aiesec_countries'
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()
-      # App.navigate('users/3/about', {trigger: true})
+      Backbone.history.start()      
       App.navigate('posts', {trigger: true})
-      # App.navigate('admin/users', {trigger: true})
+      
 
   App.addRegions
     headerRegion: "#header-region"

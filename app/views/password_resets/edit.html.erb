@@ -1,14 +1,64 @@
-<% if @errors && @errors.any? %>
-<div class="homeAlumNet__alert text-danger text-right alert alert-danger">
-  <% @errors.full_messages.each do |msg| %>
-  <span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
-  <% end %>
+<header id="header" class="navTopBar navbar ">
+	<div class="navTopBar__container--top container-fluid">
+		<!-- Top Bar -->
+		<div class="navbar-header col-md-2">
+			<button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="ico-menu"></span>
+			</button>
+			<a class="navTopBar__left__brand navbar-brand " href="/">
+				
+				<%= image_tag("general/alumnet_logo.png", alt: "AlumNet" ) %>
+			</a>
+		</div>
+	</div>
+</header>
+<div class="container margin_bottom_large margin_top_large padding_bottom_large">
+	<div class="row">
+		<div class="col-sm-6 col-md-offset-3">
+			<h1 class="h2">Recover your password</h1>
+			<div class="panel panel-default">
+				<div class="panel-heading">Enter your email in the field below</div>
+				<div class="panel-body">
+					
+					<% if @errors && @errors.any? %>
+					<div class="homeAlumNet__alert text-danger text-right alert alert-danger">
+						<% @errors.full_messages.each do |msg| %>
+						<span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
+						<% end %>
+					</div>
+					<% end %>
+					<%= form_tag password_reset_path(@token), method: :put,  :class => 'formANet form' do %>
+					<div class="form-group">
+						<%= label_tag :password %>
+						<%= password_field_tag :password, "", class: 'form-control', placeholder: 'Type your new password' %>
+					</div>
+					<div class="form-group">
+						<%= label_tag :password_confirmation %>
+						<%= password_field_tag :password_confirmation, "", class: 'form-control', placeholder: 'Confirm your new password' %>
+					</div>
+					<%= submit_tag "Update password", class: 'btn btn-primary btn-lg' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<% end %>
-<%= form_tag password_reset_path(@token), method: :put do %>
-<%= label_tag :password %>
-<%= password_field_tag :password %>
-<%= label_tag :password_confirmation %>
-<%= password_field_tag :password_confirmation %>
-<%= submit_tag "Update" %>
-<% end %>
+<!-- FOOTER ON -->
+<footer class="alumNetFooter">
+	<div class="container-fluid">
+		<div class="row">
+			<div class=" col-md-4 col-lg-4">
+				<img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+				<br>
+				<p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
+				International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
+				Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small></p>
+			</div>
+			<div class="col-md-8 col-lg-8 text-right">
+				
+				<p class="hidden-xs"><small> Copyright ©  AIESEC Alumni International. All rights reserved. </small></p>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- FOOTER OFF -->

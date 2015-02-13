@@ -1,0 +1,56 @@
+<div class="row ">
+	<div class="col-md-9">
+
+		<h2 class="sortingMenu__title">Suggested groups</h2>
+	</div>
+	<div class="col-md-3">
+		<ul class=" navbar-right sortingMenu">
+			<li class="sortingMenu__item"> <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+			<a href="#" title="All" class="sortingMenu__item__link" id="js-filter-all">All
+			</a>
+		</li>
+		<li class="sortingMenu__item">
+			<a href="#" title="Only Official" class="sortingMenu__item__link" id="js-filter-official">Official
+			</a>
+		</li>
+		<li class="sortingMenu__item">
+			<a href="#" title="Only Public" class="sortingMenu__item__link" id="js-filter-non-official">Non-Offical
+			</a>
+		</li>
+	</ul>
+</div>
+</div>
+<hr class="no_margin_top">
+</div>
+
+<div class="container">
+	<!-- Table view of the groups -->
+	<table id="users-table" class="table groupTableView">
+	<thead>
+		<tr>
+
+		<th></th>
+		<th>
+			<span class="glyphicon glyphicon-time"></span>
+		</th>
+		<th>
+			<span class="glyphicon glyphicon-file"></span>
+		</th>
+
+		<th>
+			<span class="ico-company"></span>
+		</th>
+		<th>
+			<span class="glyphicon glyphicon-user"></span>
+		</th>
+		<th> </th>
+
+		</tr>
+	</thead>
+	<tbody class="main-groups-area ">
+
+	</tbody>
+	</table>
+
+</div>
+

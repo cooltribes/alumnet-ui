@@ -25,7 +25,11 @@
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")
-    API.showPosts(user_id)
+    API.userPosts(user_id)
+  
+  AlumNet.on "user:about", (user_id) ->
+    AlumNet.navigate("user/#{user_id}/about")
+    API.userAbout(user_id)
 
   AlumNet.addInitializer ->
     new UsersApp.Router

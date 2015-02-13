@@ -5,7 +5,7 @@
 
     initialize:(options)->
       @group = options.group
-      console.log @group.get("name")
+      @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -20,15 +20,34 @@
 
     templateHelpers: ->
       group_name: @group.get('name')
+      userIsAdmin: @user.isAlumnetAdmin()
+      groupCanHaveOfficialSubgroup: @group.canHaveOfficialSubgroup()
+
+    ui:
+      'selectCountries':'.js-countries'
+      'selectCities':'.js-cities'
+      'selectJoinProcess': '#join-process'
 
     events:
       'click button.js-submit': 'submitClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
+      'change #group-type': 'changedGroupType'
 
-    ui:
-      'selectCountries':'.js-countries'
-      'selectCities':'.js-cities'
+    changedGroupType: (e)->
+      select = $(e.currentTarget)
+      @ui.selectJoinProcess.html(@joinOptionsString(select.val()))
+
+    joinOptionsString: (option)->
+      if option == "1"
+        '<option value="1">All Members can invite, but the admins approved</option>
+        <option value="2">Only the admins can invite</option>'
+      else if option == "2"
+        '<option value="2">Only the admins can invite</option>'
+      else
+        '<option value="0">All Members can invite</option>
+        <option value="1">All Members can invite, but the admins approved</option>
+        <option value="2">Only the admins can invite</option>'
 
     setCities: (e)->
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
