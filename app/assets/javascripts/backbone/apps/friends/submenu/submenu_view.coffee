@@ -3,6 +3,9 @@
     template: 'friends/submenu/templates/submenu'
     className: 'navTopSubBar'
 
+    # el.parent().siblings().find("li").removeClass("active")
+    # el.addClass("active")  
+
   API =
     renderSubmenu: (view)->
       if view == null

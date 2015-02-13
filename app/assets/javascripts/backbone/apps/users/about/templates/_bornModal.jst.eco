@@ -1,0 +1,38 @@
+<div class="bbm-modal__topbar">  
+  <h3 class="bbm-modal__title">Editing my birth <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>    
+    
+    <!-- <div class="row">
+      <div class="form-group  col-md-6">
+        <label class="control-label" for="inputBorn">Date of Birth</label>
+        <input type="text" value="<%= @born %>" class="form-control input-lg js-date-born" name="born" id="born">
+        <span class="help-block"></span>
+      </div>     
+      
+    </div> -->
+    <div class="row js-birth-location">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="inputName">Country of Origin</label>
+          <input id="js-countries" type="hidden" name="birth_country_id" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="inputName">City of Origin</label>
+          <input id="js-cities" type="hidden" name="birth_city_id" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">  
+  <a href="#" class="bbm-button" id="js-save">Save</a>
+</div>

@@ -56,9 +56,7 @@
         expCollection = new AlumNet.Entities.ExperienceCollection        
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
         expCollection.comparator = "exp_type"
-        expCollection.fetch
-          error: (collection, response, options) ->
-          success: (collection, response, options) ->
+        expCollection.fetch()
 
         #Edit Options - permissions    
         userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
@@ -66,10 +64,10 @@
         body = new About.View
           model: user
           userCanEdit: userCanEdit
-
+          
         profileView = new About.Profile
           model: user
-          userCanEdit: userCanEdit
+          userCanEdit: userCanEdit          
 
         skillsView = new About.SkillsView
           collection: skills
@@ -81,12 +79,15 @@
 
         contactsView = new About.ContactsView
           collection: contacts
+          userCanEdit: userCanEdit          
 
         aiesecView = new About.Experiences
           collection: expCollection
           
         @setEditActions(skillsView, 0)  
         @setEditActions(languagesView, 1)  
+        @setEditActions(contactsView, 2)         
+        @setEditActions(profileView, 3)         
 
 
         AlumNet.mainRegion.show(layout)
@@ -119,10 +120,53 @@
             _.each data, (el)->
               collection.create({name: el})
 
-        when 1      #languaes
+        when 1, 2      #languages, contact infos
           view.on "submit", (data)->
             #Add the language and level to the collection
             view.collection.create(data, {wait: true})
+        
+        when 3  #name
+          view.on "submit:name", ()->            
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "first_name": @model.profile.get "first_name"
+              "last_name": @model.profile.get "last_name",
+            ,
+              wait: true
+              success: ()=>
+                @model.fetch()            
+        
+          view.on "submit:born", ()->  
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "birth_country_id": @model.profile.get "birth_country_id"
+              "birth_city_id": @model.profile.get "birth_city_id",
+            ,
+              wait: true
+              success: ()=>
+                # @render()
+                AlumNet.trigger "user:about", @model.id
+                # model = @model
+                # @model.profile.fetch
+                #   success: ->
+                #     model.trigger("change")
+
+          view.on "submit:residence", ()->  
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            @model.profile.save 
+              "residence_country_id": @model.profile.get "residence_country_id"
+              "residence_city_id": @model.profile.get "residence_city_id",
+            ,
+              wait: true
+              success: ()=>
+                # @render()
+                AlumNet.trigger "user:about", @model.id
+                # model = @model
+                # @model.profile.fetch
+                #   success: ->
+                #     model.trigger("change")
+
+            
             
           
           

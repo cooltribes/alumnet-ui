@@ -102,13 +102,13 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-6 ">
+	<!-- <div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerLocalcomitee">AIESEC Chapter</label>
 			<input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
-	</div>
+	</div> -->
 </div>
 <% if !@first: %>
 <button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>

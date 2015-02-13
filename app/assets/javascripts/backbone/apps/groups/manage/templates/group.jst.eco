@@ -2,8 +2,11 @@
 <div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->
+		
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
+			<% if @group.official: %><span class="groupCardManage__ribbon"></span><% end %>
 		</div>
+		
 		<!-- COVER OFF -->
 		<!-- CONTENT ON -->
 		<div class=" groupCardManage__content">
@@ -13,6 +16,7 @@
 				</h3>
 				<p class="groupCardManage__description"><%= @group.description %></p>
 			</div>
+			
 		</div>
 		<!-- CONTENT OFF -->
 		<!-- ATRIBUTES ON -->
@@ -25,14 +29,19 @@
 					</div>
 				</div>
 				<div class="groupCardManage__atribute">
-					<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
-						<span class="groupCardManage__icon ico-timebank"></span>
+					
 						<% if @last_post_at: %>
-						<%= moment(@last_post_at).format('h:mm a') %>
+						<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
+						<span class="groupCardManage__icon ico-timebank"></span>
+							<%= moment(@last_post_at).format('h:mm a') %>
+						</div>
 						<% else: %>
+							<div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCardManage__atribute__container">
+						<span class="groupCardManage__icon ico-timebank"></span>
 						<%= moment(@created_at).format('h:mm a') %>
 						<% end %>
 					</div>
+					
 				</div>
 			</div>
 			<div class="clearfix">

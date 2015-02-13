@@ -15,9 +15,9 @@
           </div>
         </div>
         <div class=" col-md-5">
-          <% if @errors && @errors.any? %>
+          <% if @errors_login && @errors_login.any? %>
           <div class="homeAlumNet__alert text-danger text-right alert alert-danger">
-            <% @errors.full_messages.each do |msg| %>
+            <% @errors_login.full_messages.each do |msg| %>
             <span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
             <% end %>
           </div>
@@ -62,9 +62,9 @@
       <div id="registerHomeForm" class="collapse in ">
         <div class=" homeAlumNet__registerForm">
           <%= form_tag sign_up_path do %>
-          <% if @errors && @errors.any? %>
+          <% if @errors_registration && @errors_registration.any? %>
           <div class="alert alert-danger ">
-            <% @errors.full_messages.each do |msg| %>
+            <% @errors_registration.full_messages.each do |msg| %>
             <%= msg %><br>
             <% end %>
           </div>

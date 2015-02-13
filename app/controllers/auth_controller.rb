@@ -14,7 +14,7 @@ class AuthController < ApplicationController
       redirect_to root_path
     else
       @email = signin_params[:email]
-      @errors = user_session.errors
+      @errors_login = user_session.errors
       render :home
     end
   end
@@ -27,7 +27,7 @@ class AuthController < ApplicationController
       redirect_to root_path
     else
       @signup_email = user_params[:email]
-      @errors = registration.errors
+      @errors_registration = registration.errors
       render :home
     end
   end

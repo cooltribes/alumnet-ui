@@ -1,19 +1,46 @@
-<h3 class="metaInfoCard__title"><%= @name %></h3>
+<h3 class="metaInfoCard__title">
+	<%= @name %>	
+
+	<% if @userCanEdit: %>
+	  <small>
+		  <a href="#" id="js-editName">[edit]</a>  	
+	  </small>
+	<% end %>
+
+</h3>
+
 <ul class="metaInfoCard__list">
 	<li>
 		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> Born:</span> <%= @getBorn() %>
+
+		<% if @userCanEdit: %>
+		  <a href="#" id="js-editBorn">[edit]</a>  	
+		<% end %>
+
+
 	</li>
+	
 	<li>
-	<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %> </li>
+		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %>
+		<% if @userCanEdit: %>
+		  <a href="#" id="js-editResidence">[edit]</a>  	
+		<% end %>
+	</li>
+	
 	<% if @canShowEmail(): %>
-	<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
+		<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
 	<% end %>
+
 	<% if @canShowPhone(): %>
-	<li>
-		<span class="metaInfoCard__concept">
-		<span class="glyphicon glyphicon-phone">
-		
-		</span> Phone:</span> <%= @getPhone() %>
-	</li>
+		<li>
+			<span class="metaInfoCard__concept">
+			<span class="glyphicon glyphicon-phone">
+			
+			</span> Phone:</span> <%= @getPhone() %>
+		</li>
+	<% end %>
+
 </ul>
-<% end %>
+<div id="js-profile-modal-container">
+        
+</div>

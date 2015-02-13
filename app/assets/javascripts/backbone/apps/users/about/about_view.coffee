@@ -13,10 +13,13 @@
     ui:
       "addSkill": ".js-addSkill"
       "addLanguage": ".js-addLanguage"
+      "addContact": ".js-addContact"
+      "modalCont": "#js-modal-container"
 
     events:
       "click @ui.addSkill": "addSkill"
       "click @ui.addLanguage": "addLanguage"
+      "click @ui.addContact": "addContact"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -25,39 +28,52 @@
       userCanEdit: @userCanEdit
 
     addSkill: (e)->
-      console.log "skill"
+      e.preventDefault()
       modal = new About.Modal
         view: @skills.currentView
         type: 0
-      $('#js-modal-container').html(modal.render().el)
+      @ui.modalCont.html(modal.render().el)
     
     addLanguage: (e)->
+      e.preventDefault()
       modal = new About.Modal
         view: @languages.currentView
         type: 1
-      $('#js-modal-container').html(modal.render().el)
+      @ui.modalCont.html(modal.render().el)
+    
+    addContact: (e)->
+      e.preventDefault()
+      modal = new About.Modal
+        view: @contacts.currentView
+        type: 2
+      @ui.modalCont.html(modal.render().el)
 
-
+    # onRender: ->
+    #   $('#aboutUseraffix').affix({
+    #     offset: {
+    #       top: 100,
+    #       bottom:150,
+    #     }
+    #   })
 
   class About.Modal extends Backbone.Modal
-    # template: 'users/about/templates/_skillsModal'          
     getTemplate: ->
       switch @type
         when 0
           'users/about/templates/_skillsModal'
         when 1
           'users/about/templates/_languagesModal'
+        when 2
+          'users/about/templates/_contactsModal'
+
 
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
     keyControl: false
 
-    ui:
-      'skillInput': "#skills-input"
-
     initialize: (options)->
       @view = options.view
-      #Types of modal (0-Skill, 1-Lang)      
+      #Types of modal (0-Skill, 1-Lang, 2-contc)      
       @type = options.type
 
     onRender: ->
@@ -96,6 +112,7 @@
           dropdown.html(content)
     
     beforeSubmit: ()->
+      #Validations
       switch @type
         when 0  
           data = Backbone.Syphon.serialize this
@@ -113,6 +130,20 @@
             group.addClass('has-error') 
             false    
 
+        when 2
+          data = Backbone.Syphon.serialize this 
+          if !data.contact_type
+            element = this.$("[name=contact_type]")
+            group = element.closest('.form-group')
+            group.addClass('has-error') 
+            return false    
+
+          if !data.info
+            element = this.$("[name=info]")
+            group = element.closest('.form-group')
+            group.addClass('has-error') 
+            return false    
+
     submit: ()->  
       switch @type
         when 0  
@@ -121,9 +152,10 @@
             data = data.skills.split(',')    
             @view.trigger "submit", data
     
-        when 1
-          data = Backbone.Syphon.serialize this          
+        when 1, 2
+          data = Backbone.Syphon.serialize this     
           @view.trigger "submit", data
+       
 
     fillSkills: (collection)->
       skills = _.pluck(collection.models, 'attributes');
@@ -135,12 +167,136 @@
         dropdownAutoWidth: true,     
 
 
+  class About.ProfileModal extends Backbone.Modal
+    getTemplate: ->
+      switch @type
+        when 0
+          'users/about/templates/_nameModal'
+        when 1
+          'users/about/templates/_bornModal'
+        when 2
+          'users/about/templates/_residenceModal'
+
+    cancelEl: '#js-close-btn'
+    submitEl: '#js-save'
+    keyControl: false
+    events:      
+      'change #js-countries': 'setBirthCities'
+
+    initialize: (options)->
+      @view = options.view
+      #Types of modal (0-name)
+      @type = options.type
+
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    onRender: ->
+      # switch @type
+      #   when 0 
+      # limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
+      # @$(".js-date-born").Zebra_DatePicker
+      #   show_icon: false
+      #   show_select_today: false
+      #   view: 'years'
+      #   default_position: 'below'
+      #   direction: ['1910-01-01', limit_date]
+       
+      @$("#js-cities").select2
+        placeholder: "Select a City"
+        data: []
+
+      data = CountryList.toSelect2()
+
+      @$("#js-countries").select2
+        placeholder: "Select a Country"
+        data: data    
+
+      # @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))        
+
+          
+    beforeSubmit: ()->
+      #Validations
+      data = Backbone.Syphon.serialize this
+      @model.set(data)
+      @model.validate()
+
+      switch @type
+        when 0            
+          @model.isValid(["first_name", "last_name"])
+        
+        when 1  
+          @model.isValid(["birth_country_id", "birth_city_id"])
+
+        when 2
+          @model.isValid(["residence_country_id", "residence_city_id"])
+
+
+    submit: ()->  
+      switch @type
+        when 0  
+          @view.trigger "submit:name"         
+        when 1
+          @view.trigger "submit:born"         
+        when 2
+          @view.trigger "submit:residence"         
+    
+    optionsForSelectCities: (url)->
+      placeholder: "Select a City"
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q:
+            name_cont: term
+        results: (data, page) ->
+          results:
+            data
+      formatResult: (data)->
+        data.name
+      formatSelection: (data)->
+        data.name      
+
+    setBirthCities: (e)->
+      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      @$("#js-cities").select2(@optionsForSelectCities(url))  
+
+
   class About.Profile extends Marionette.ItemView
     template: 'users/about/templates/_profile'
+    # bindings:
+    #   'h3': 
+    #     observe: ["first_name", "last_name"]
+    ui:
+      "modalCont": "#js-profile-modal-container"     
+      "editName": "#js-editName"    
+      "editBorn": "#js-editBorn"    
+      "editResidence": "#js-editResidence"    
+      
+
+    events:
+      "click @ui.editName": "editName"
+      "click @ui.editBorn": "editBorn"
+      "click @ui.editResidence": "editResidence"
+
+    initialize: (options)->      
+      @userCanEdit = options.userCanEdit
 
     templateHelpers: ->
       model = @model
       
+      userCanEdit: @userCanEdit  
+
       getBorn: ->
         model.getBornComplete()        
       
@@ -168,18 +324,42 @@
           false  
         
     modelEvents:
-      "add:phone:email": "modelChange"
-    
-    # onRender: ->
-    #   $('#aboutUseraffix').affix({
-    #     offset: {
-    #       top: 100,
-    #       bottom:150,
-    #     }
-    #   })
+      "add:phone:email change": "modelChange"
 
     modelChange: ->
       @render() 
+
+    editName: (e)-> 
+      e.preventDefault()
+      modal = new About.ProfileModal
+        view: this
+        type: 0
+        model: @model.profile
+
+      @ui.modalCont.html(modal.render().el)
+    
+    editBorn: (e)-> 
+      e.preventDefault()
+      modal = new About.ProfileModal
+        view: this
+        type: 1
+        model: @model.profile
+
+      @ui.modalCont.html(modal.render().el)
+    editResidence: (e)->
+      e.preventDefault()
+      modal = new About.ProfileModal
+        view: this
+        type: 2
+        model: @model.profile
+
+      @ui.modalCont.html(modal.render().el)
+      
+      
+
+
+    # onRender: ()->
+    #   @stickit(@model.profile)  
 
   #For all collection views
   class About.Empty extends Marionette.ItemView
@@ -249,13 +429,30 @@
   class About.Contact extends Marionette.ItemView
     template: 'users/about/templates/_contact'
     tagName: "li"
+
+    events:
+      "click .js-rmvRow": "removeItem"
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+    templateHelpers: ->
+      userCanEdit: @userCanEdit
+
+    removeItem: (e)->
+      if confirm("Are you sure you want to delete this item from your profile ?")
+        @model.destroy()
   
   class About.ContactsView extends Marionette.CollectionView
-    childView: About.Contact
-
+    childView: About.Contact    
     emptyView: About.Empty
     emptyViewOptions: 
       message: "No contact info"
+    childViewOptions: ->
+      userCanEdit: @userCanEdit      
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit  
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
