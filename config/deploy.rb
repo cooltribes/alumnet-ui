@@ -7,7 +7,7 @@ set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
 set :branch, 'deploy'
 set :scm, :git
 
-set :linked_files, %w{config/application.yml config/.env config/.env.production}
+set :linked_files, %w{config/application.yml}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
