@@ -176,12 +176,15 @@
           'users/about/templates/_bornModal'
         when 2
           'users/about/templates/_residenceModal'
+        when 3
+          'users/about/templates/_pictureModal'
 
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
     keyControl: false
     events:      
       'change #js-countries': 'setBirthCities'
+      'change #profile-avatar': 'previewImage'      
 
     initialize: (options)->
       @view = options.view
@@ -225,11 +228,12 @@
 
           
     beforeSubmit: ()->
-      #Validations
       data = Backbone.Syphon.serialize this
-      @model.set(data)
-      @model.validate()
+      if @type != 3
+        @model.set(data)
+        @model.validate()
 
+      #Validations
       switch @type
         when 0            
           @model.isValid(["first_name", "last_name"])
@@ -248,7 +252,16 @@
         when 1
           @view.trigger "submit:born"         
         when 2
-          @view.trigger "submit:residence"         
+          @view.trigger "submit:residence" 
+        when 3
+          data = Backbone.Syphon.serialize this
+          if data.avatar != ""          
+            formData = new FormData()
+            console.log formData
+            file = @$('#profile-avatar')
+            formData.append('avatar', file[0].files[0])            
+            console.log formData
+            @view.trigger "submit:avatar", formData
     
     optionsForSelectCities: (url)->
       placeholder: "Select a City"
@@ -271,12 +284,18 @@
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
       @$("#js-cities").select2(@optionsForSelectCities(url))  
 
+    previewImage: (e)->
+      input = @$('#profile-avatar')
+      preview = @$('#preview-avatar')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])  
 
   class About.Profile extends Marionette.ItemView
     template: 'users/about/templates/_profile'
-    # bindings:
-    #   'h3': 
-    #     observe: ["first_name", "last_name"]
+
     ui:
       "modalCont": "#js-profile-modal-container"     
       "editName": "#js-editName"    
@@ -346,6 +365,7 @@
         model: @model.profile
 
       @ui.modalCont.html(modal.render().el)
+
     editResidence: (e)->
       e.preventDefault()
       modal = new About.ProfileModal
@@ -354,12 +374,7 @@
         model: @model.profile
 
       @ui.modalCont.html(modal.render().el)
-      
-      
 
-
-    # onRender: ()->
-    #   @stickit(@model.profile)  
 
   #For all collection views
   class About.Empty extends Marionette.ItemView

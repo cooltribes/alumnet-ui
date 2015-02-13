@@ -2,7 +2,7 @@
   
   class Shared.Sidebar extends Marionette.ItemView
     template: 'registration/shared/templates/sidebar'
-    
+   
     initialize: (options) ->
       @step = options.step || ""
       @class = [
@@ -10,7 +10,8 @@
         "", ""
       ]  
 
-      @class[@step - 1] = "--active"      
+      @class[@step - 1] = "--active"  
+      
 
     templateHelpers: ->
       classOf: (step) =>

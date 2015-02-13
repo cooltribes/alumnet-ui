@@ -35,6 +35,12 @@
       'messagesBadge': '#js-messages-badge'
       'changeHeader': '#js-changeHeader'
 
+    modelEvents:
+      "change": "modelChange"
+
+    modelChange: ->
+      @render()  
+    
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
