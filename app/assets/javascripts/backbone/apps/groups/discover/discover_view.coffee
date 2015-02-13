@@ -34,11 +34,15 @@
         name_cont: searchTerm
         description_cont: searchTerm
 
-    ViewCard: ()->
+    ViewCard: (e)->
+      $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
+      $(e.currentTarget).siblings().removeClass("searchBar__renderOptions__iconActive")
       @groupsView.type = "cards"
       @groupsView.render()
 
-    ViewList: ()->      
+    ViewList: (e)-> 
+      $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
+      $(e.currentTarget).siblings().removeClass("searchBar__renderOptions__iconActive")     
       @groupsView.type = "list"
       @groupsView.render()
 
@@ -98,7 +102,6 @@
       @filterCollection(@collection)
       #Initialize the type of grid to use (cards or list)
       @type = "cards"
-      @type = "list"
 
     events:
       'click #js-filter-all': 'filterAll'
