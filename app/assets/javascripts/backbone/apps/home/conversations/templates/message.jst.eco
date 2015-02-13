@@ -5,7 +5,7 @@
 			
 		</div>
 		<div class="message__meta">
-			<span class="message__name"><%= @sender.name %></span>
+			<a href="#users/<%= @sender.id %>/posts"><span class="message__name"><%= @sender.name %></span></a>
 			<br>
 			<span class="message__date"><%= moment(@created_at).fromNow() %></span>
 			<% if @is_read: %>

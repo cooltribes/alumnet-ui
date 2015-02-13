@@ -230,6 +230,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   coffee-rails (~> 4.0.0)
+  dotenv-deployment
   foreman
   gon
   httparty
