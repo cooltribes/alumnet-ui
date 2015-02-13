@@ -3,25 +3,24 @@
     showAbout: (id)->
       user = AlumNet.request("user:find", id)
       user.on 'find:success', (response, options)=>
-        
-        layout = AlumNet.request("user:layout", user, 1)
-        header = AlumNet.request("user:header", user)
                         
         profileId = user.profile.id
+        #Edit Options - permissions    
+        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
+
+        layout = AlumNet.request("user:layout", user, 1)
+        header = AlumNet.request "user:header", user, 
+          userCanEdit: userCanEdit
 
         #get the skills of the user
         skills = new AlumNet.Entities.Skills
         skills.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/skills"
         skills.fetch
-          error: (collection, response, options) ->
-          success: (collection, response, options) ->
 
         #get the languages of the user
         languages = new AlumNet.Entities.Languages
         languages.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/language_levels"
         languages.fetch
-          error: (collection, response, options) ->
-          success: (collection, response, options) ->
 
         #get the contacts of the user
         phones = []
@@ -29,18 +28,14 @@
         contacts = new AlumNet.Entities.ProfileContactsCollection        
         contacts.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/contact_infos"
         contacts.fetch
-          error: (collection, response, options) ->
-                      
           success: (collection, response, options) ->
             #Adding the phone to the profile info
             phones = collection.where 
               contact_type: 1
 
             user.phone = phones[0]  
-
             emails = collection.where 
               contact_type: 0
-
             user.email_contact = emails[0]  
             user.trigger("add:phone:email")      
 
@@ -52,15 +47,11 @@
             
             collection.reset(newCollection)
 
-
         expCollection = new AlumNet.Entities.ExperienceCollection        
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
         expCollection.comparator = "exp_type"
         expCollection.fetch()
-
-        #Edit Options - permissions    
-        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
-
+        
         body = new About.View
           model: user
           userCanEdit: userCanEdit
@@ -87,8 +78,9 @@
         @setEditActions(skillsView, 0)  
         @setEditActions(languagesView, 1)  
         @setEditActions(contactsView, 2)         
-        @setEditActions(profileView, 3)         
-
+        @setEditActions(profileView, 3)  
+        @setEditActions(header, 4)  
+          
 
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
@@ -102,7 +94,6 @@
         body.experiences.show(aiesecView)     
 
         AlumNet.execute('render:users:submenu')
-
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
@@ -125,7 +116,7 @@
             #Add the language and level to the collection
             view.collection.create(data, {wait: true})
         
-        when 3  #name
+        when 3  #profile
           view.on "submit:name", ()->            
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
             @model.profile.save 
@@ -133,8 +124,16 @@
               "last_name": @model.profile.get "last_name",
             ,
               wait: true
-              success: ()=>
-                @model.fetch()            
+              success: ()=>      
+                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
+                @model.fetch()
+                #Update current user
+                if @model.isCurrentUser()                
+                  AlumNet.request 'get:current_user',
+                    refresh: true
+                    success: ->
+                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+
         
           view.on "submit:born", ()->  
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
@@ -144,12 +143,9 @@
             ,
               wait: true
               success: ()=>
-                # @render()
-                AlumNet.trigger "user:about", @model.id
-                # model = @model
-                # @model.profile.fetch
-                #   success: ->
-                #     model.trigger("change")
+                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
+                @model.trigger "change"
+               
 
           view.on "submit:residence", ()->  
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
@@ -159,16 +155,31 @@
             ,
               wait: true
               success: ()=>
-                # @render()
-                AlumNet.trigger "user:about", @model.id
-                # model = @model
-                # @model.profile.fetch
-                #   success: ->
-                #     model.trigger("change")
+                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
+                @model.trigger "change"
 
+        when 4  #avatar
+          view.on "submit:avatar", (data)->
             
-            
-          
-          
-              
-        
+            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+            console.log data
+            @model.profile.save data,
+              wait: true
+              data: data
+              contentType: false
+              processData: false
+              success: (model, response, options)=>                
+                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
+                @model.set("avatar", response.avatar)
+                
+                #set the avatar of the current user if current user is who is making
+                #the changes. Not when admin.
+                if @model.isCurrentUser()
+                  AlumNet.request 'get:current_user',
+                    refresh: true
+                    success: ->
+                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+
+                # @model.trigger "change"
+
+             

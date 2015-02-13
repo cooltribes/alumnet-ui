@@ -103,7 +103,7 @@
       else
         null
 
-    getCurrentUser: (options = {}) ->
+    getCurrentUser: () ->    
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->
@@ -152,12 +152,13 @@
   AlumNet.reqres.setHandler 'get:current_user', (options = {}) ->
       if options.refresh
         AlumNet.request 'current_user:refresh', options
+        # API.getCurrentUserFromApi()
       else
         API.getCurrentUser()
 
   AlumNet.reqres.setHandler 'current_user:refresh', (options = {}) ->
     user = AlumNet.request('get:current_user')
-    options = _.extend options, url: AlumNet.api_endpoint + '/me'
+    # options = _.extend options, url: AlumNet.api_endpoint + '/me'
     user.fetch options
 
   AlumNet.reqres.setHandler 'user:new', ->
