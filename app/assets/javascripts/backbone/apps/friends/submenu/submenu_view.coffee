@@ -3,6 +3,19 @@
     template: 'friends/submenu/templates/submenu'
     className: 'navTopSubBar'
 
+    ui:
+      'linkMenu':'.navbar-nav li a'
+
+    events:
+      'click @ui.linkMenu': 'clickLink'
+
+
+    clickLink: (e) ->
+      $(e.currentTarget).parent().addClass("active")
+      $(e.currentTarget).parent().parent().siblings().children().removeClass("active")
+      #e.preventDefault()
+      #e.stopPropagation()
+
   API =
     renderSubmenu: (view)->
       if view == null
