@@ -1,0 +1,18 @@
+<div class="bbm-modal__topbar">  
+  <h3 class="bbm-modal__title">Add new skills <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <h1>Skills</h1>
+  <form>    
+    <div class="form-group has-feedback">
+      <label class="control-label">Write your skills separating with a comma</label>
+      <input style="padding:0" id="skills-input" name="skills" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management...">
+      <span class="formANet__input__icon form-control-feedback glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">  
+  <a href="#" class="bbm-button" id="js-save">Save</a>
+</div>

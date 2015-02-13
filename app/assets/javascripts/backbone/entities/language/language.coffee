@@ -20,8 +20,8 @@
   ### ----------Languages for dropdowns----------- ###
 
   class Entities.Language extends Backbone.Model
-    urlRoot: ->
-      AlumNet.api_endpoint + '/languages/'
+    # urlRoot: ->
+    #   AlumNet.api_endpoint + '/languages/'
 
   class Entities.Languages extends Backbone.Collection
     url: ->

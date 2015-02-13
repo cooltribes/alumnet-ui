@@ -1,0 +1,7 @@
+<div class="clearfix">
+  <!-- Content -->
+  <div class="navTopBar__notification__content">
+    <span class="navTopBar__notification__summary"><%= @body %></span>
+    <span class="navTopBar__notification__date"><%= moment(@created_at).fromNow() %></span></a>
+  </div>
+</div>

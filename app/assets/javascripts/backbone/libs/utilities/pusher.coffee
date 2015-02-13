@@ -12,3 +12,8 @@
         count++
         user.set('unread_messages_count', count)
         user.messages.fetch()
+      channel.bind 'new_notification', (data) =>
+        count = user.get('unread_notifications_count')
+        count++
+        user.set('unread_notifications_count', count)
+        user.notifications.fetch()

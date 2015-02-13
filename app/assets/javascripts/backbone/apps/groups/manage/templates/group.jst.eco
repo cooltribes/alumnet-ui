@@ -1,3 +1,4 @@
+<% console.log this %>
 <div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->
@@ -28,14 +29,19 @@
 					</div>
 				</div>
 				<div class="groupCardManage__atribute">
-					<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
-						<span class="groupCardManage__icon ico-timebank"></span>
+					
 						<% if @last_post_at: %>
-						<%= moment(@last_post_at).format('h:mm a') %>
+						<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
+						<span class="groupCardManage__icon ico-timebank"></span>
+							<%= moment(@last_post_at).format('h:mm a') %>
+						</div>
 						<% else: %>
+							<div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCardManage__atribute__container">
+						<span class="groupCardManage__icon ico-timebank"></span>
 						<%= moment(@created_at).format('h:mm a') %>
 						<% end %>
 					</div>
+					
 				</div>
 			</div>
 			<div class="clearfix">

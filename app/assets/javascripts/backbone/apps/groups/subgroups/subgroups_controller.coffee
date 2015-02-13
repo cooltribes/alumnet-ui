@@ -2,12 +2,14 @@
   class SubGroups.Controller
     createSubGroup: (group_id)->
       group = AlumNet.request('group:find', group_id)
+      current_user = AlumNet.current_user
       group.on 'find:success', (response, options)->
         if group.canDo('create_subgroup')
           subgroup = AlumNet.request('subgroup:new', group.id)
           createForm = new SubGroups.GroupForm
             group: group
             model: subgroup
+            user: current_user
           AlumNet.mainRegion.show(createForm)
           AlumNet.execute('render:groups:submenu')
 

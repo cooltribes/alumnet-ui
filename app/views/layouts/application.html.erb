@@ -30,9 +30,9 @@
   <div id="header-region">
 
     <header class="ErrorHeader">
-      <img src="assets/general/alumnet_logo.png" class="ErrorHeader__Logo" alt="Alumnet">
+      <%= image_tag("general/alumnet_logo.png", class: "ErrorHeader__Logo", alt: "AlumNet") %>
     </header>
-    
+
   </div>
   <div id="main-region">
     <%= yield %>
@@ -42,7 +42,9 @@
 <div class="container-fluid">
 <div class="row">
   <div class=" col-md-4 col-lg-4">
-    <img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+
+ <%= image_tag("home/alumNetLogoHome.png", alt: "Company Logo AlumNet",width:"190px" ) %>
+
     <br>
     <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
     International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.

@@ -14,6 +14,7 @@
             #todo: implement a function to return the view. like a discovery module
           body = new About.View
             model: group
+            current_user: current_user
 
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
@@ -27,6 +28,8 @@
             model.save({group_type: parseInt(newValue)})
           body.on 'group:edit:join_process', (model, newValue) ->
             model.save({join_process: parseInt(newValue)})
+          body.on 'group:edit:official', (model, newValue) ->
+            model.save({official: parseInt(newValue)})
 
           body.on 'join', () ->
             attrs = { group_id: group.get('id'), user_id: current_user.id }
