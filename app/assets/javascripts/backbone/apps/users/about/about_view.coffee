@@ -462,7 +462,7 @@
     emptyView: About.Empty
     emptyViewOptions: 
       message: "No contact info"
-    childViewOptions: ->
+    childViewOptions: 
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
@@ -476,9 +476,22 @@
     # bindings:
     #   ".js-title": 
     #     observe: "name"
+    #     onSet: "updateModel"
+    ui:
+      "addExp": "#js-addExp"
+      'btnRmv': '.js-rmvRow'      
+    
+    events:
+      "click @ui.addExp": "addExp"
+      "click @ui.btnRmv": "removeItem"      
+    
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
 
     templateHelpers: ->
       model = @model
+
+      userCanEdit: @userCanEdit
 
       diffType: ->
         prev = model.collection.at(model.collection.indexOf(model) - 1)
@@ -501,10 +514,49 @@
       
       getEndDate: ->
         model.getEndDate()
+    
+    addExp: (e)->
+      e.preventDefault()
+      @trigger "add:exp"
 
+    updateModel: (val, evt, opts)->
+      console.log val
+      console.log model
+      console.log opts
+
+    removeItem: (e)->
+      if confirm("Are you sure you want to delete this item from your profile ?")
+        @model.destroy()
+
+    # onRender: ->
+    # console.log @model
+    # @stickit()    
 
   class About.Experiences extends Marionette.CollectionView
-    childView: About.Experience    
-  
+    # childView: About.Experience    
+    getChildView: (model)->      
+      if(model.isNew())
+        AlumNet.RegistrationApp.Experience.FormExperience
+      else  
+        About.Experience    
 
-   
+    childViewOptions: ->
+      # options =
+      userCanEdit: @userCanEdit      
+      inProfile: true
+
+      
+    childEvents:
+      "add:exp": "addExp"       
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+
+    addExp: (childView)->
+      newExperience = new AlumNet.Entities.Experience
+        exp_type: childView.model.get "exp_type"
+        first: true
+
+      index = @collection.indexOf(childView.model)
+      @collection.add(newExperience, index + 1)
