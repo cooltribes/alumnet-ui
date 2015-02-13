@@ -128,10 +128,11 @@
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.fetch()
                 #Update current user
-                AlumNet.request 'get:current_user',
-                  refresh: true
-                  success: ->
-                    AlumNet.execute('render:users:submenu', undefined, {reset: true})
+                if @model.isCurrentUser()                
+                  AlumNet.request 'get:current_user',
+                    refresh: true
+                    success: ->
+                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
         
           view.on "submit:born", ()->  
@@ -165,8 +166,20 @@
             @model.profile.save data,
               wait: true
               data: data
-              success: ()=>
+              contentType: false
+              processData: false
+              success: (model, response, options)=>                
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
-                @model.trigger "change"
+                @model.set("avatar", response.avatar)
+                
+                #set the avatar of the current user if current user is who is making
+                #the changes. Not when admin.
+                if @model.isCurrentUser()
+                  AlumNet.request 'get:current_user',
+                    refresh: true
+                    success: ->
+                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+
+                # @model.trigger "change"
 
              

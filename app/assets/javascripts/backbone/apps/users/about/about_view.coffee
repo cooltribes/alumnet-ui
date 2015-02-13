@@ -404,7 +404,6 @@
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
-
   class About.SkillsView extends Marionette.CollectionView
     childView: About.Skill   
     childViewOptions: ->
@@ -473,6 +472,10 @@
   class About.Experience extends Marionette.ItemView
     template: 'users/about/templates/_experience'
     tagName: "div"
+
+    # bindings:
+    #   ".js-title": 
+    #     observe: "name"
 
     templateHelpers: ->
       model = @model

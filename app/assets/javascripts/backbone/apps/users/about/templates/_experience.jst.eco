@@ -7,22 +7,23 @@
 <% end %>
 	
 <div class="experienceCard">
-	<h3 class="experienceCard__title">
-	<%= @name %>
+	<h3 class="experienceCard__title js-title">
+		<%= @name %>
 	</h3>
 	
 	<% if @getOrganization(): %>
 	<h4>
-	<%= @getOrganization() %>
+		<%= @getOrganization() %>
 	</h4>
 	
 	<% end %>
 	<% if @internship == 1: %>
-	<h4>
-	AIESEC Internship
-	</h4>
+		<h4>
+			AIESEC Internship
+		</h4>
 	
 	<% end %>
+
 	<ul class="experienceCard__metaInfo">
 		<li><span class="glyphicon glyphicon-calendar"></span>
 			From <%= @start_date + " to " + @getEndDate() %>
