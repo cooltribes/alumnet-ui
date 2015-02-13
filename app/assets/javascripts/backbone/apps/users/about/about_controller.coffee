@@ -72,14 +72,16 @@
           collection: contacts
           userCanEdit: userCanEdit          
 
-        aiesecView = new About.Experiences
+        experiencesView = new About.Experiences
           collection: expCollection
+          userCanEdit: userCanEdit
           
         @setEditActions(skillsView, 0)  
         @setEditActions(languagesView, 1)  
         @setEditActions(contactsView, 2)         
         @setEditActions(profileView, 3)  
         @setEditActions(header, 4)  
+        @setEditActions(experiencesView, 5)  
           
 
         AlumNet.mainRegion.show(layout)
@@ -91,7 +93,7 @@
         body.skills.show(skillsView)
         body.languages.show(languagesView)
         body.contacts.show(contactsView)
-        body.experiences.show(aiesecView)     
+        body.experiences.show(experiencesView)     
 
         AlumNet.execute('render:users:submenu')
 
@@ -180,6 +182,15 @@
                     success: ->
                       AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
-                # @model.trigger "change"
+        when 5  #Experiences
+          view.on "childview:save:experience", (childview)->
+            model = childview.model
+            if model.isValid(true)
+              model.formatDates()
+              model.save null, 
+                success: (model)->
+                  model.collection.trigger "reset"
+
+                
 
              

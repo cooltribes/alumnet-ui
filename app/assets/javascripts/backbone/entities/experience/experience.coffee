@@ -52,7 +52,12 @@
       month = @get("#{attr}_month")
       year = @get("#{attr}_year")
 
-      if month == '' then month = "01"
+      #Si el usuario no selecciona mes, se pone por defecto en 1 (enero) y el dia en 01
+      #Si el usuario selecciona 1 (enero), el dia se pone en 02.
+      if parseInt(month) == 1 then day = 2
+
+      if month == '' then month = "01"      
+
       if year == 'current'
         year = 0 #"0000"
         month = 0 # "00"
@@ -72,8 +77,7 @@
         false
 
     getEndDate: ()->
-      @get("end_date") ? "Current" 
-        
+      @get("end_date") ? "Current"         
 
     getExperienceId: ->
       @experienceId[@get "exp_type"]

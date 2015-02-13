@@ -11,17 +11,11 @@
       else if @model.get('exp_type') == 3
         "registration/experience/templates/professionalExperience"
 
-    tagName: 'form'
-    templateHelpers: ->
-      currentYear: new Date().getFullYear()
-
-      firstYear: ()->
-        born = AlumNet.current_user.profile.get("born")
-        born = new Date(born).getFullYear()
-        born + 15
+    tagName: 'form'    
 
     ui:
       'btnRmv': '.js-rmvRow'
+      'btnSave': '.js-saveItem'
       "selectRegions": "[name=region_id]"
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
@@ -30,9 +24,10 @@
 
     events:
       "click @ui.btnRmv": "removeExperience"
+      "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
 
-    initialize: ->
+    initialize: (options)->
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name^=#{attr}]")
@@ -45,6 +40,19 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+      @inProfile = options.inProfile ? false      
+    
+    templateHelpers: ->
+      
+      inProfile: @inProfile            
+
+      currentYear: new Date().getFullYear()
+
+      firstYear: ()->
+        born = AlumNet.current_user.profile.get("born")
+        born = new Date(born).getFullYear()
+        born + 15
+          
     onRender: ->
       @ui.selectCities.select2
         placeholder: "Select a City"
@@ -106,6 +114,11 @@
         data.name
       formatSelection: (data)->
         data.name
+
+    saveExperience: (e)->
+      data = Backbone.Syphon.serialize this
+      @model.set data
+      @trigger "save:experience"
 
     removeExperience: (e)->
       @model.destroy()

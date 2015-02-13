@@ -106,5 +106,10 @@
 <% if !@first: %>
 <button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>
 <% end %>
+
+<% if @inProfile: %>
+	<button class="btn btn-default text-uppercase btn-default-noBackground js-rmvRow" type="button"> Cancel</button>
+	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
+<% end %>
 <hr>
 <!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
