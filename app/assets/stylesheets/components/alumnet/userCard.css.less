@@ -13,6 +13,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    margin-bottom: 2em;
    padding: 10px;
    text-align: center;
+  
+  &:hover{
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+  }
 
    &__avatar{
     text-align: center;
@@ -28,6 +32,30 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     text-align: center;
     padding: 10px;
     color: @white;
+    width: 100%;
+
+    transition: all ease .5s;
+    
+    a{text-decoration: none;}   
+
+    &__text{
+      font-size: 0;
+      color: @white
+    }
+    &:hover &__text,  &:focus &__text{
+      display: inline-block;
+      font-size: 12px;
+      text-decoration: none;
+      
+    }
+    &:hover, &:focus{
+      position: absolute;
+      right: 0;
+      width: 200px;
+      text-decoration: none;
+      
+    }
+
     &--isFriend{
       background-color: #b2bdc3;
 

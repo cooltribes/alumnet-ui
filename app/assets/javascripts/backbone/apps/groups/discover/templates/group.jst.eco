@@ -1,4 +1,6 @@
 <div class="col-md-4 col-sm-6 col-xs-12">
+      <!-- if groupCard__hasSubgroups -->
+      <!-- <div class="groupCard__subGroupShadow"></div> -->
   <div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->

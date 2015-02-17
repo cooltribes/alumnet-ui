@@ -11,9 +11,9 @@
     <div class=" col-md-3 ">
       <div id="link-container" class="userCard__actions">
         <span class="invitation">
-        <span class="glyphicon glyphicon-time"></span>
-        <span>Waiting</span>
-        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Cancel request">Cancel request <span class="glyphicon glyphicon-remove"></span></a>
+        
+        <span class="userCard__actions__text">Waiting</span><span class="glyphicon glyphicon-time"></span><br/>
+        <a href="#" id="js-delete-friendship" title="Cancel request"><span class="userCard__actions__text">Cancel request</span> <span class="glyphicon glyphicon-remove"></span></a>
         </span>
       </div>
     </div>
@@ -34,8 +34,8 @@
     <div class=" col-md-3 ">
       <div id="link-container" class="userCard__actions userCard__actions--isFriend">
         <span class="invitation">
-        <span><span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-ok"></span> </span>
-        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Unfriend">Unfriend <span class="glyphicon glyphicon-remove"></span></a>        
+        
+        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block" title="Unfriend"><span class="userCard__actions__text">Unfriend</span> <span class="glyphicon glyphicon-remove"></span></a>        
         </span>
       </div>
     </div>
@@ -51,7 +51,9 @@
       <div id="link-container" class="userCard__actions">
         <span class="invitation">
         
-        <a href="#" id="js-request-friendship" title="Send friend request"><span class="icon-entypo-user-add"></span> </a>
+        <a href="#" id="js-request-friendship" title="Send friend request">
+          <span class="userCard__actions__text">Send friend request</span>
+          <span class="icon-entypo-user-add"></span>  </a>
         
         </span>
       </div>
