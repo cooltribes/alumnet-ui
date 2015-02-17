@@ -176,12 +176,15 @@
           'users/about/templates/_bornModal'
         when 2
           'users/about/templates/_residenceModal'
+        when 3
+          'users/about/templates/_pictureModal'
 
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
     keyControl: false
     events:      
       'change #js-countries': 'setBirthCities'
+      'change #profile-avatar': 'previewImage'      
 
     initialize: (options)->
       @view = options.view
@@ -225,11 +228,12 @@
 
           
     beforeSubmit: ()->
-      #Validations
       data = Backbone.Syphon.serialize this
-      @model.set(data)
-      @model.validate()
+      if @type != 3
+        @model.set(data)
+        @model.validate()
 
+      #Validations
       switch @type
         when 0            
           @model.isValid(["first_name", "last_name"])
@@ -248,7 +252,16 @@
         when 1
           @view.trigger "submit:born"         
         when 2
-          @view.trigger "submit:residence"         
+          @view.trigger "submit:residence" 
+        when 3
+          data = Backbone.Syphon.serialize this
+          if data.avatar != ""          
+            formData = new FormData()
+            console.log formData
+            file = @$('#profile-avatar')
+            formData.append('avatar', file[0].files[0])            
+            console.log formData
+            @view.trigger "submit:avatar", formData
     
     optionsForSelectCities: (url)->
       placeholder: "Select a City"
@@ -271,12 +284,18 @@
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
       @$("#js-cities").select2(@optionsForSelectCities(url))  
 
+    previewImage: (e)->
+      input = @$('#profile-avatar')
+      preview = @$('#preview-avatar')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])  
 
   class About.Profile extends Marionette.ItemView
     template: 'users/about/templates/_profile'
-    # bindings:
-    #   'h3': 
-    #     observe: ["first_name", "last_name"]
+
     ui:
       "modalCont": "#js-profile-modal-container"     
       "editName": "#js-editName"    
@@ -346,6 +365,7 @@
         model: @model.profile
 
       @ui.modalCont.html(modal.render().el)
+
     editResidence: (e)->
       e.preventDefault()
       modal = new About.ProfileModal
@@ -354,12 +374,7 @@
         model: @model.profile
 
       @ui.modalCont.html(modal.render().el)
-      
-      
 
-
-    # onRender: ()->
-    #   @stickit(@model.profile)  
 
   #For all collection views
   class About.Empty extends Marionette.ItemView
@@ -388,7 +403,6 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
-
 
   class About.SkillsView extends Marionette.CollectionView
     childView: About.Skill   
@@ -448,7 +462,7 @@
     emptyView: About.Empty
     emptyViewOptions: 
       message: "No contact info"
-    childViewOptions: ->
+    childViewOptions: 
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
@@ -459,8 +473,25 @@
     template: 'users/about/templates/_experience'
     tagName: "div"
 
+    # bindings:
+    #   ".js-title": 
+    #     observe: "name"
+    #     onSet: "updateModel"
+    ui:
+      "addExp": "#js-addExp"
+      'btnRmv': '.js-rmvRow'      
+    
+    events:
+      "click @ui.addExp": "addExp"
+      "click @ui.btnRmv": "removeItem"      
+    
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
     templateHelpers: ->
       model = @model
+
+      userCanEdit: @userCanEdit
 
       diffType: ->
         prev = model.collection.at(model.collection.indexOf(model) - 1)
@@ -483,10 +514,49 @@
       
       getEndDate: ->
         model.getEndDate()
+    
+    addExp: (e)->
+      e.preventDefault()
+      @trigger "add:exp"
 
+    updateModel: (val, evt, opts)->
+      console.log val
+      console.log model
+      console.log opts
+
+    removeItem: (e)->
+      if confirm("Are you sure you want to delete this item from your profile ?")
+        @model.destroy()
+
+    # onRender: ->
+    # console.log @model
+    # @stickit()    
 
   class About.Experiences extends Marionette.CollectionView
-    childView: About.Experience    
-  
+    # childView: About.Experience    
+    getChildView: (model)->      
+      if(model.isNew())
+        AlumNet.RegistrationApp.Experience.FormExperience
+      else  
+        About.Experience    
 
-   
+    childViewOptions: ->
+      # options =
+      userCanEdit: @userCanEdit      
+      inProfile: true
+
+      
+    childEvents:
+      "add:exp": "addExp"       
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+
+    addExp: (childView)->
+      newExperience = new AlumNet.Entities.Experience
+        exp_type: childView.model.get "exp_type"
+        first: true
+
+      index = @collection.indexOf(childView.model)
+      @collection.add(newExperience, index + 1)
