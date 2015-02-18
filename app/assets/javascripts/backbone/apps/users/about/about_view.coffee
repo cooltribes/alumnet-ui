@@ -257,7 +257,6 @@
           data = Backbone.Syphon.serialize this
           if data.avatar != ""          
             formData = new FormData()
-            console.log formData
             file = @$('#profile-avatar')
             formData.append('avatar', file[0].files[0])            
             console.log formData
@@ -462,7 +461,7 @@
     emptyView: About.Empty
     emptyViewOptions: 
       message: "No contact info"
-    childViewOptions: 
+    childViewOptions: ->
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
@@ -470,7 +469,15 @@
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
-    template: 'users/about/templates/_experience'
+    getTemplate: ->
+      switch @model.get("asTitle")
+        when false
+          'users/about/templates/_experience'
+        when true
+          'users/about/templates/_experienceMissing'
+       
+
+    # template: 'users/about/templates/_experience'
     tagName: "div"
 
     # bindings:
@@ -479,6 +486,7 @@
     #     onSet: "updateModel"
     ui:
       "addExp": "#js-addExp"
+      "editExp": "#js-editExp"
       'btnRmv': '.js-rmvRow'      
     
     events:
@@ -494,11 +502,17 @@
       userCanEdit: @userCanEdit
 
       diffType: ->
-        prev = model.collection.at(model.collection.indexOf(model) - 1)
+        prev = model.collection.at(model.collection.indexOf(model) - 1)        
+        hasTitle = true
         if prev?          
-          prev.get("exp_type") != model.get("exp_type")
-        else    
-          true
+          hasTitle = (prev.get("exp_type") != model.get("exp_type"))
+        # else    
+        #   true
+        model.hasTitle = hasTitle
+        console.log ( "exp " + model.get("name") + " title: " + model.hasTitle)
+        window.col = model.collection
+        console.log model.collection.length 
+        return hasTitle
 
       experienceType: ->
         model.getExperienceType()
@@ -525,23 +539,27 @@
       console.log opts
 
     removeItem: (e)->
+      #if the exp was the title, update view and..
+      if @model.hasTitle
+        collection = @model.collection
+
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
-    # onRender: ->
-    # console.log @model
-    # @stickit()    
+      #Re-render collection view
+      if collection?  
+        collection.addExperiencesTitles()
+        collection.trigger "reset"
+
 
   class About.Experiences extends Marionette.CollectionView
-    # childView: About.Experience    
     getChildView: (model)->      
-      if(model.isNew())
+      if(model.isNew() && !model.get("asTitle"))
         AlumNet.RegistrationApp.Experience.FormExperience
       else  
         About.Experience    
 
     childViewOptions: ->
-      # options =
       userCanEdit: @userCanEdit      
       inProfile: true
 
@@ -559,4 +577,5 @@
         first: true
 
       index = @collection.indexOf(childView.model)
-      @collection.add(newExperience, index + 1)
+      @collection.add newExperience,
+        at: index + 1

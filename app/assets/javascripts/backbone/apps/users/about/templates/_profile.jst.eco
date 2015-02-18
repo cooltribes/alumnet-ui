@@ -3,7 +3,7 @@
 
 	<% if @userCanEdit: %>
 	  <small>
-		  <a href="#" id="js-editName">[edit]</a>  	
+		  <a href="#" id="js-editName">[Edit]</a>  	
 	  </small>
 	<% end %>
 
@@ -14,7 +14,7 @@
 		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> Born:</span> <%= @getBorn() %>
 
 		<% if @userCanEdit: %>
-		  <a href="#" id="js-editBorn">[edit]</a>  	
+		  <a href="#" id="js-editBorn">[Edit]</a>  	
 		<% end %>
 
 
@@ -23,7 +23,7 @@
 	<li>
 		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %>
 		<% if @userCanEdit: %>
-		  <a href="#" id="js-editResidence">[edit]</a>  	
+		  <a href="#" id="js-editResidence">[Edit]</a>  	
 		<% end %>
 	</li>
 	
