@@ -7,6 +7,8 @@ server 'alumnet-test.aiesec-alumni.org',
     auth_methods: %w(publickey)
   }
 
+set :deploy_to, '/home/ec2-user/alumnet_production/alumnet-ui'
+set :branch, 'master'
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a

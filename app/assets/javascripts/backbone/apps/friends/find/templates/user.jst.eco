@@ -11,9 +11,9 @@
     <div class=" col-md-3 ">
       <div id="link-container" class="userCard__actions">
         <span class="invitation">
-        <span class="glyphicon glyphicon-time"></span>
-        <span>Waiting</span>
-        <a href="#" id="js-delete-friendship"  class="btn btn-sm btn-block btn-danger-noBackground" title="Cancel request">Cancel request <span class="glyphicon glyphicon-remove"></span></a>
+        
+        <span class="userCard__actions__text">Waiting</span><span class="glyphicon glyphicon-time"></span><br/>
+        <a href="#" id="js-delete-friendship" title="Cancel request"><span class="userCard__actions__text">Cancel request</span> <span class="glyphicon glyphicon-remove"></span></a>
         </span>
       </div>
     </div>

@@ -4,7 +4,8 @@
     className: 'navTopSubBar'
 
   API =
-    renderSubmenu: (view)->
+    renderSubmenu: (view, options)->      
+      AlumNet.submenuRegion.reset() if options.reset
       if view == null
         AlumNet.submenuRegion.empty()
       else
@@ -12,7 +13,7 @@
           submenu = new Submenu.Menu
         else
           submenu = view
-        AlumNet.submenuRegion.show(submenu)
+        AlumNet.submenuRegion.show(submenu)        
 
-  AlumNet.commands.setHandler 'render:users:submenu',(view) ->
-    API.renderSubmenu(view)
+  AlumNet.commands.setHandler 'render:users:submenu',(view, options = {}) ->
+    API.renderSubmenu(view, options)
