@@ -127,18 +127,17 @@
       formatSelection: (data)->
         data.name
 
-<<<<<<< HEAD
     optionsForCommittee: (country_id, aiesecExp)->
       query = { q: { committee_type_eq: aiesecExp } }
       committees = AlumNet.request('get:committees', country_id, query)
       placeholder: "Select a Committee"
       data: committees
-=======
+
     saveExperience: (e)->
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
->>>>>>> nelson
+
 
     removeExperience: (e)->
       @model.destroy()
