@@ -1,0 +1,13 @@
+<% if @diffType(): %>	
+
+	<h2 id="<%= @experienceId()  %>">
+		<%= @experienceType()  %>
+		<% if @userCanEdit: %>
+		  <small>
+			  <a href="#" id="js-addExp" data-exp-type="<%= @exp_type %>">Add new</a>  	
+		  </small>
+		<% end %>
+		
+	</h2>
+
+<% end %>

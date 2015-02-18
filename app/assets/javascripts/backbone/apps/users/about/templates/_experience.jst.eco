@@ -16,7 +16,13 @@
 	<h3 class="experienceCard__title js-title">
 		<%= @name %>
 		<% if @userCanEdit: %>
+
+			<small>
+			  <a href="#" id="js-editExp">[Edit]</a>  	
+		  </small>
+
 		  <button type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
 		<% end %>
 	</h3>
 	
