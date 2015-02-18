@@ -8,7 +8,7 @@
 		<p> with
 		<%  _.each @participants, (participant)->: %>
 		<span class="messageCard__participant">
-		<a href="#"><%= participant.name %></a>,
+		<a href="#users/<%= participant.id %>/posts"><%= participant.name %></a>,
 		</span>
 		<% end %>
 		<br>

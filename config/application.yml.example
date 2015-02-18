@@ -11,6 +11,8 @@ test:
 
 staging:
   <<: *defaults
+  pusher_key: <%= ENV["PUSHER_KEY"] %>
 
 production:
   <<: *defaults
+  pusher_key: <%= ENV["PUSHER_KEY"] %>

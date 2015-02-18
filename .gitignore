@@ -15,7 +15,7 @@
 /log/*.log
 /tmp
 /config/application.yml
+/config/secret.yml
+/config/.env
 Procfile
-app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee
-
-app/assets/javascripts/backbone/apps/groups/discover/discover_view.coffee
+.env

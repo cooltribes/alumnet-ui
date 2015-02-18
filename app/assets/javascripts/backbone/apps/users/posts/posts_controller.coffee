@@ -6,7 +6,7 @@
       user.on 'find:success', (response, options)->
 
         layout = AlumNet.request("user:layout", user, 0)
-        header = AlumNet.request("user:header", user, 0)
+        header = AlumNet.request("user:header", user)
 
         user.posts.fetch()
         posts = new Posts.PostsView

@@ -79,8 +79,8 @@
     template: 'groups/discover/templates/empty'   
 
   class Discover.GroupsView extends Marionette.CompositeView
+    emptyView: Discover.EmptyView  
     className: 'ng-scope'
-
     idName: 'wrapper'        
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"

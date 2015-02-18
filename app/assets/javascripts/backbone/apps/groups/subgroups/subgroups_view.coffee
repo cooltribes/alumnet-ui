@@ -21,6 +21,7 @@
     templateHelpers: ->
       group_name: @group.get('name')
       userIsAdmin: @user.isAlumnetAdmin()
+      groupCanHaveOfficialSubgroup: @group.canHaveOfficialSubgroup()
 
     ui:
       'selectCountries':'.js-countries'
