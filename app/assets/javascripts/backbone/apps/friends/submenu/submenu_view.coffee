@@ -3,7 +3,6 @@
     template: 'friends/submenu/templates/submenu'
     className: 'navTopSubBar'
 
-<<<<<<< HEAD
     ui:
       'linkMenu':'.navbar-nav li a'
 
