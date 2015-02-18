@@ -15,11 +15,12 @@
       @current_user = App.request 'get:current_user'#, refresh: true
       @startPusher(options.pusher_key, @current_user)
       App.request 'get:countries'
+      App.request 'get:aiesec_countries'
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()      
-      App.navigate('users/myFriends', {trigger: true})
+      Backbone.history.start()
+      App.navigate('users/1/about', {trigger: true})
       # App.navigate('posts', {trigger: true})
       # App.navigate('admin/users', {trigger: true})
 

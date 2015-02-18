@@ -2,7 +2,7 @@ class PasswordReset
   include HTTParty
   include ActiveModel::Model
 
-  base_uri 'http://localhost:4000'
+  base_uri Settings.api_endpoint
   format :json
 
   validate :success_of_last_response

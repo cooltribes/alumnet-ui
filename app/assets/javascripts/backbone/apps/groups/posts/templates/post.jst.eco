@@ -6,21 +6,24 @@
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
       <!-- Avatar OFF -->
-      <h4 class="groupPost__userName"><%= @user.name %></h4>
+      <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p> <%= @body %></p>
-    <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
-    <div class="groupPost__btn--like"><% if @you_like: %>
-      <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+    <% if @userCanComment: %>
+      <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
+      <div class="groupPost__btn--like">
+      <% if @you_like: %>
+        <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
       <% else: %>
-      <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+        <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
       <% end %>
-    </div>
+      </div>
+    <% end %>
     (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-    <!-- 2 Last avatars that have liked this post - ON -->
+    <!-- 2 Last avatars that have liked this post - ON
     <img width="20px" height="20px" src="assets/groups/people-like-face.png" class=""><img width="20px" height="20px" src="assets/groups/people-like-face.png" class="margin_left_small_minus">
-    <!--  OFF -->
+     OFF -->
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
 

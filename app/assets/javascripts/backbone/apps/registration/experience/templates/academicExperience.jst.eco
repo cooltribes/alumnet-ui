@@ -11,7 +11,7 @@
 			<div class="formANet__select">
 				<select name="start_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
-					<% for x in [1948..@currentYear] by 1 : %>
+					<% for x in [@firstYear()..@currentYear] by 1 : %>
 						<option value="<%= x %>"><%= x %></option>
 					<% end %>
 				</select>
@@ -27,7 +27,8 @@
 			<div class="formANet__select">
 				<select name="end_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
-					<% for x in [1948..@currentYear] by 1 : %>
+					<option value="current">Current</option>
+					<% for x in [@firstYear()..@currentYear] by 1 : %>
 						<option value="<%= x %>"><%= x %></option>
 					<% end %>
 				</select>
@@ -51,7 +52,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">Country / Region</label>
+			<label class="control-label" for="registerCountry">Country</label>
 			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>

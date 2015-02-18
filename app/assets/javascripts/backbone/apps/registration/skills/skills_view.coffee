@@ -37,11 +37,11 @@
       levelTextItem = slideItem.next("#level")
 
       textLevel =
-            1: "Basic"
-            2: "Basic Intermediate"
-            3: "Intermediate"
-            4: "Intermediate Advanced"
-            5: "Advanced"
+            1: "Elementary"
+            2: "Limited working"
+            3: "Professional working"
+            4: "Full professional"
+            5: "Native or Bilingual"
 
       levelTextItem.text(textLevel[@model.get("level")])
 

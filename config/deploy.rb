@@ -2,10 +2,10 @@
 lock '3.3.3'
 
 set :application, 'alumnet-ui'
-set :repo_url, 'https://ArmandoMendoza:14941830famg@github.com/cooltribes/alumnet-ui.git' #'git@github.com:cooltribes/alumnet-ui.git'
-set :deploy_to, '/var/www/html/alumnet-ui'
+set :repo_url, 'https://ArmandoMendoza:14941830famg@github.com/cooltribes/alumnet-ui.git '#'git@github.com:cooltribes/alumnet-ui.git'
+set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
 set :branch, 'dev'
-set :pty, true
+set :scm, :git
 
 set :linked_files, %w{config/application.yml}
 

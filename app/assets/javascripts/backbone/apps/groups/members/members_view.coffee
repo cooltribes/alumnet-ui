@@ -131,8 +131,10 @@
 
     memberIsCurrentUser: ->
       user = @model.get 'user'
+      console.log(user.last_experience)
       current_user = AlumNet.current_user
       user.id == current_user.id
+
 
     ui:
       'removeMemberLink': '.js-remove-member'
@@ -162,6 +164,9 @@
     childView: Members.Member
     className: 'container-fluid'
     childViewContainer: '.members-list'
+
+    templateHelpers: ->
+      userCanInvite: @model.userCanInvite()
 
     childViewOptions: ->
       group: @model
@@ -204,6 +209,7 @@
         user_profile_first_name_cont: searchTerm
         user_profile_last_name_cont: searchTerm
         user_email_cont: searchTerm
+        user_profile_last_experience: searchTerm
 
     updateMembersCounts: (collection)->
       @friends = collection.where({is_friend: true})

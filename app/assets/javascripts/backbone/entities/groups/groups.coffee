@@ -9,6 +9,18 @@
       @subgroups = new Entities.GroupCollection
       @subgroups.url = @urlRoot() + @id + '/subgroups'
 
+    isOpen: ->
+      group_type = @get('group_type')
+      group_type.value == 0
+
+    isClose: ->
+      group_type = @get('group_type')
+      group_type.value == 1
+
+    isSecret: ->
+      group_type = @get('group_type')
+      group_type.value == 2
+
     userIsAdmin: ->
       @get('admin')
 
@@ -34,6 +46,10 @@
       else
         false
 
+    userHasMembership: (user_id)->
+      groupMemberships = @get('membership_users')
+      _.contains(groupMemberships, user_id)
+
     userIsMember: ->
       status = @get('membership_status')
       status == "approved"
@@ -44,12 +60,6 @@
       description:
         required: true
       cover:
-        required: true
-      country_id:
-        msg: 'Country is required'
-        required: true
-      city_id:
-        msg: 'City is required'
         required: true
       join_process:
         required: true

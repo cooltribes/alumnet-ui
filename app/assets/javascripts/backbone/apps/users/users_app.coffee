@@ -4,7 +4,7 @@
     appRoutes:
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
-      "users/myFriends": "myFriends"
+      "users/:id/friends": "userFriends"      
 
   API =
     userPosts: (id)->
@@ -15,9 +15,13 @@
       controller = new UsersApp.About.Controller
       controller.showAbout(id)
 
-    myFriends: ()->
+    userFriends: (id)->
       controller = new UsersApp.Friends.Controller
-      controller.showFriends()
+      #If I am watching my own profile      
+      if AlumNet.current_user.get("id") == parseInt(id)
+        controller.showMyLayout()
+      else  
+        controller.showUserLayout(id)
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")

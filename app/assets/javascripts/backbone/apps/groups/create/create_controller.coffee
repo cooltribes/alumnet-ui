@@ -1,9 +1,12 @@
 @AlumNet.module 'GroupsApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
   class Create.Controller
     createGroup: ->
+      current_user = AlumNet.current_user
       group = AlumNet.request("group:new")
       createForm = new Create.GroupForm
         model: group
+        user: current_user
+
       AlumNet.mainRegion.show(createForm)
       AlumNet.execute('render:groups:submenu')
 

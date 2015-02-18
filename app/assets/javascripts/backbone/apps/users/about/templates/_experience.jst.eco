@@ -1,8 +1,11 @@
-<% if @diffType(): %>
-<h2>
-<%= @experienceType() %>
-</h2>
+<% if @diffType(): %>	
+
+	<h2 id="<%= @experienceId()  %>">
+		<%= @experienceType()  %>
+	</h2>
+
 <% end %>
+	
 <div class="experienceCard">
 	<h3 class="experienceCard__title">
 	<%= @name %>
@@ -22,7 +25,7 @@
 	<% end %>
 	<ul class="experienceCard__metaInfo">
 		<li><span class="glyphicon glyphicon-calendar"></span>
-			From <%= @start_date + " to " + @end_date %>
+			From <%= @start_date + " to " + @getEndDate() %>
 		</li>
 		<li><span class="glyphicon glyphicon-map-marker"></span>
 		Location: <%= @getLocation() %></li>

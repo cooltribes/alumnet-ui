@@ -5,6 +5,7 @@
 
     initialize: ->
       @messages = new Entities.MessagesCollection
+      @notifications = new Entities.NotificationsCollection
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
@@ -24,7 +25,7 @@
         false
 
     isApproved: ->
-      step = @profile.get "register_step"      
+      step = @profile.get "register_step"
       step == "approval"
 
     isAlumnetAdmin: ->
@@ -34,49 +35,52 @@
       status = @get "status"
       if status.value == 1 then true else false
 
-    getName: ()-> 
+    getName: ()->
       if @get("name").trim()
         return @get("name")
-      "No name registered"  
-      
-    getEmail: ()-> 
+      "No name registered"
+
+    getEmail: ()->
       @get "email"
 
-    getGender: ()-> 
+    getGender: ()->
       if @profile.get("gender")
         return @profile.get("gender")
-      "No gender"    
-    
-    getBornComplete: ()->      
-      date = if @profile.get("born") then @profile.get("born") else "No birth date"
-      @getOriginLocation() + " in " + date      
+      "No gender"
 
-    getAge: ()->    
-        if @profile.get("born")              
-          return moment().diff(@profile.get("born"), 'years')        
-        "No age"  
-                
-    getJoinTime: ()->            
-      moment(@created_at).fromNow()   
-      
-    getOriginLocation: ()-> 
+    getBornComplete: ()->
+      date = if @profile.get("born") then @profile.get("born") else "No birth date"
+      @getOriginLocation() + " in " + date
+
+    getAge: ()->
+        if @profile.get("born")
+          return moment().diff(@profile.get("born"), 'years')
+        "No age"
+
+    getJoinTime: ()->
+      moment(@created_at).fromNow()
+
+    getOriginLocation: ()->
       if @profile.get("birth_city")
         return "#{@profile.get("birth_city").text} - #{@profile.get("birth_country").text}"
-      "No origin location"  
+      "No origin location"
 
-    getCurrentLocation: ()-> 
+    getCurrentLocation: ()->
       if @profile.get("residence_city")
         return "#{@profile.get("residence_city").text} - #{@profile.get("residence_country").text}"
-      "No residence location"  
-    
-    getLC: ()-> 
+      "No residence location"
+
+    getLC: ()->
       if @profile.get("local_committee")
         return @profile.get("local_committee").name
-      "No local committee"  
-    
-    areFriends: ()->
-      @get('friendship_status') == 'accepted'      
+      "No local committee"
 
+    areFriends: ()->
+      @get('friendship_status') == 'accepted'
+
+    isCurrentUser: ()->
+      @id == AlumNet.current_user.id  
+      
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -107,6 +111,8 @@
       user.url = AlumNet.api_endpoint + '/me'
       user.profile.url = AlumNet.api_endpoint + '/me/profile'
       user.messages.url = AlumNet.api_endpoint + '/me/messages'
+      user.notifications.url = AlumNet.api_endpoint + '/me/notifications'
+
       user.fetch({async:false})
       user
 
@@ -121,6 +127,7 @@
     getUsersList: (querySearch)->
       initializeUsersList() if Entities.allUsers == undefined
       Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
+      Entities.allUsers.comparator = "id"
       Entities.allUsers.fetch
         data: querySearch
       Entities.allUsers

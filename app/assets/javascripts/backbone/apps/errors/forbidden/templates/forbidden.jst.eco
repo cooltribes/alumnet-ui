@@ -8,14 +8,11 @@
 				<h1 class="PageError__Title">
 				Forbidden access
 				</h1>
-				<p class="PageError__Parrafo">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas inventore officia deleniti voluptatibus alias sapiente ab corporis eius vel.
+				<p class="PageError__description">
+				You don't have access to the resource you are trying to access. If you think this is a mistake please contact the administrator
 				</p>
-				<div class="form-group has-feedback">
-				<input class="input-lg form-control PageError__Input" type="text" value="Lorem ipsum" id="inputSearch" aria-describedby="inputSearch">
-				<span class="glyphicon glyphicon-search form-control-feedback PageError__Lupa" aria-hidden="true"></span>
-				<span id="inputSearch" class="sr-only">Buscar</span>
-				</div>
+				<a href="/#post" class="btn btn-lg btn-primary">Go the main page</a>
+
 			</div>
 		</div>
 	</div>

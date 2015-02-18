@@ -10,6 +10,7 @@
         <option value="4" <%= @selected(4) %>>Facebook</option>
         <option value="5" <%= @selected(5) %>>Twitter</option>
         <option value="6" <%= @selected(6) %>>IRC</option>
+        <option value="7" <%= @selected(7) %>>Web Site</option>
       </select>
       <span class="help-block"></span>
     </div>
@@ -25,9 +26,9 @@
   <div class="col-md-4">
     <div class="form-group">
       <select name="privacy" class="form-control input-lg">
-        <option value="1">Only me</option>
         <option value="2">Everyone</option>
         <option value="3">Friends</option>
+        <option value="1">Only me</option>
       </select>
       <span class="help-block"></span>
     </div>

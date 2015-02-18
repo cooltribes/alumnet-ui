@@ -14,6 +14,21 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    padding: 10px;
    text-align: center;
 
+   &__animation{
+    transition: all 300ms ease 0s;
+    width: 70px;
+    display: inline-block;
+    float: right;
+    &:hover{
+        width: 130px;
+        text-decoration: none;
+      }
+   }
+    
+    &__animation:hover &__actions__text{
+      display: inline;
+    }
+
    &__avatar{
     text-align: center;
    }
@@ -28,6 +43,13 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     text-align: center;
     padding: 10px;
     color: @white;
+    
+
+
+    &__text{
+      display: none;
+    }
+
     &--isFriend{
       background-color: #b2bdc3;
 
@@ -37,20 +59,19 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     position: relative;
 
     
-    li:nth-child(1) a{
+    li a&--changeRole{
         top: 5px;
       }
-    li:nth-child(2) a{
+    li a&--upgradeMember{
         top: 30px;
         &:hover{ background-color: @orange;}
       }
-     li:nth-child(3) a{
+     li a&--removeMember{
         top: 55px;
         &:hover{ background-color: @danger-color;}
       }
     a{
       width: auto;
-      
       padding: 10px;
       position: inherit;
       right: 30px;

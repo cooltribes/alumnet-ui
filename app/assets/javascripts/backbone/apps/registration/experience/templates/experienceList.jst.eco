@@ -5,7 +5,7 @@
 
 	</div>
 
-	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addExp" type="button">+ Add another AIESEC experience</button>
+	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addExp" type="button">+ Add another <%= @title() %></button>
 	<hr>
 	<div class="text-right ">
 		<% if @skipButton(): %>

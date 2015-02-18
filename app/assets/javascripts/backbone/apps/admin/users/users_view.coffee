@@ -53,9 +53,13 @@
         Backbone.ajax
           url: url
           type: "PUT"
+          error: (data) =>
           success: (data) =>
             #Update the model and re-render the itemView
-            @model.fetch()        
+            @model.fetch
+              success: (model)->
+                model.trigger("change")                
+
 
   #----Modal para cambiarle el plan de membresia a un user----
   class Users.ModalPlan extends Backbone.Modal
@@ -74,6 +78,10 @@
       'btnEdit': '.js-edit'
     events:
       'click @ui.btnEdit': 'showActions'
+
+    modelEvents:
+      "change": "modelChange"
+
 
     initialize: (options) ->
       @modals = options.modals
@@ -112,6 +120,8 @@
           return @profileData.gender
         "No gender"  
 
+    modelChange: ->
+      @render() 
 
 
     showActions: (e)->
@@ -128,13 +138,14 @@
   class Users.UsersTable extends Marionette.CompositeView
     template: 'admin/users/templates/users_container'
     childView: Users.UserView
-    childViewContainer: "#users-table tbody"
-    
+    childViewContainer: "#users-table tbody"    
+
     initialize: (options) ->
       @modals = options.modals      
 
     childViewOptions: (model, index) ->      
       modals: @modals 
+    
 
 
 

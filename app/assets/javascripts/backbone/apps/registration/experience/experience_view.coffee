@@ -1,8 +1,6 @@
 @AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Experience.FormAiesec extends Marionette.ItemView
-    # template: 'registration/experience/templates/aiesecExperience'
-
+  class Experience.FormExperience extends Marionette.ItemView
     getTemplate: ->
       if @model.get('exp_type') == 0
         "registration/experience/templates/aiesecExperience"
@@ -16,15 +14,25 @@
     tagName: 'form'
     templateHelpers: ->
       currentYear: new Date().getFullYear()
+
+      firstYear: ()->
+        born = AlumNet.current_user.profile.get("born")
+        born = new Date(born).getFullYear()
+        born + 15
+
     ui:
       'btnRmv': '.js-rmvRow'
+      "selectType": "[name=aiesec_experience]"
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
 
+
     events:
       "click @ui.btnRmv": "removeExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
+      "change @ui.selectType": "setCountries"
+
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -40,6 +48,40 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     onRender: ->
+      @cleanAllSelects()
+
+      dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
+        CountryAiesecList.toSelect2()
+      else
+        CountryList.toSelect2()
+
+      dataRegions = RegionList.toSelect2()
+
+      @ui.selectCountries.select2
+        placeholder: "Select a Country"
+        data: dataCountries
+
+    setCountries: (e)->
+      @cleanAllSelects()
+      type = $(e.currentTarget).val()
+      if type == "Local" || type == "National"
+        dataCountries = AlumNet.request('get:filtered:countries', type)
+      else if type == "International"
+        dataCountries = CountryList.toSelect2()
+        internationalCommittees = AlumNet.request('get:committees:international')
+        @ui.selectComitees.select2
+          placeholder: "Select a Committee"
+          data: internationalCommittees
+
+      @ui.selectCountries.select2
+        placeholder: "Select a Country"
+        data: dataCountries
+
+      @ui.selectCountries.select2('val','')
+      @ui.selectComitees.select2('val','')
+      @ui.selectCities.select2('val','')
+
+    cleanAllSelects:(e)->
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []
@@ -48,17 +90,16 @@
         placeholder: "Select a Committee"
         data: []
 
-      data = CountryList.toSelect2()
-
       @ui.selectCountries.select2
         placeholder: "Select a Country"
-        data: data
+        data: []
 
     setCitiesAndCommittees: (e)->
+      aiesecExp = @ui.selectType.val()
+      unless aiesecExp == "International"
+        @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      committees_url = AlumNet.api_endpoint + '/countries/' + e.val + '/committees'
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
-      @ui.selectComitees.select2(@optionsForSelect2(committees_url, 'Committee'))
 
     optionsForSelect2: (url, placeholder)->
       placeholder: "Select a #{placeholder}"
@@ -77,13 +118,19 @@
       formatSelection: (data)->
         data.name
 
+    optionsForCommittee: (country_id, aiesecExp)->
+      query = { q: { committee_type_eq: aiesecExp } }
+      committees = AlumNet.request('get:committees', country_id, query)
+      placeholder: "Select a Committee"
+      data: committees
+
     removeExperience: (e)->
       @model.destroy()
 
 
   class Experience.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'
-    childView: Experience.FormAiesec
+    childView: Experience.FormExperience
     childViewContainer: '#exp-list'
     className: 'row'
 
@@ -98,8 +145,19 @@
       "click @ui.btnSkip": "skipClicked"
 
     initialize: (options) ->
-      @title = options.title
       @exp_type = options.exp_type
+
+      @title = 'Experience in AIESEC'
+
+      switch @exp_type
+        when 1
+          @title = 'Experience in AIESEC Alumni'
+        when 2
+          @title = 'Academic Experience'
+        when 3
+          @title = 'Professional Experience'
+        else
+          false
 
     templateHelpers: ->
       title:  =>
@@ -113,7 +171,7 @@
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience
-        exp_type: 0
+        exp_type: @exp_type
       @collection.add(newExperience)
 
     skipClicked: (e)->

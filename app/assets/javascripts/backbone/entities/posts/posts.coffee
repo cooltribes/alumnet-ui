@@ -12,6 +12,25 @@
       body:
         required: true
 
+    infoLink: ->
+      info = @get('postable_info')
+      if info.type == "Group"
+        url = "#groups/#{info.id}/posts"
+        "in Group <a href='#{url}'>#{info.name}</a>"
+      else if info.type == "User"
+        url = "#users/#{info.id}/posts"
+        "in profile of <a href='#{url}'>#{info.name}</a>"
+
+    sumLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count + 1)
+      @set('you_like', true)
+
+    remLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count - 1)
+      @set('you_like', false)
+
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
       #   comparator: (m) ->

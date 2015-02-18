@@ -1,20 +1,20 @@
 <div class="row ">
 	<div class="col-md-9">
-		
+
 		<h2 class="sortingMenu__title">Suggested groups</h2>
 	</div>
 	<div class="col-md-3">
 		<ul class=" navbar-right sortingMenu">
 			<li class="sortingMenu__item"> <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-			<a href="#" title="All" class="sortingMenu__item__link">All
+			<a href="#" title="All" class="sortingMenu__item__link" id="js-filter-all">All
 			</a>
 		</li>
 		<li class="sortingMenu__item">
-			<a href="#" title="Only Official" class="sortingMenu__item__link">Only Official
+			<a href="#" title="Only Official" class="sortingMenu__item__link" id="js-filter-official">Official
 			</a>
 		</li>
 		<li class="sortingMenu__item">
-			<a href="#" title="Only Public" class="sortingMenu__item__link">Only Public
+			<a href="#" title="Only Public" class="sortingMenu__item__link" id="js-filter-non-official">Non-Offical
 			</a>
 		</li>
 	</ul>
@@ -23,66 +23,3 @@
 <hr class="no_margin_top">
 <div class="row main-groups-area"><!-- Begin group container -->
 </div>
-<table id="users-table" class="table groupGridView">
-<thead>
-<tr>
-	
-	<th></th>
-	<th>
-		<span class="glyphicon glyphicon-time"></span>
-	</th>
-	<th>
-		<span class="glyphicon glyphicon-file"></span>
-	</th>
-	
-	<th>
-		<span class="ico-company"></span>
-	</th>
-	<th>
-		<span class="glyphicon glyphicon-user"></span>
-	</th>
-	<th>
-		
-	</th>
-	
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td >
-		<h4>Group's name <span class="label label-warning">closed</span></h4>
-		Lorem ipsum dolor sit amet, consectetur adipisicing lit a dolorem harum soluta.
-	</td>
-	<td>5/2014</td>
-	<td>10:32 a.m.</td>
-	<td>134</td>
-	<td>78</td>
-	<td>+ Join group</td>
-	
-</tr>
-<tr>
-	<td >
-		<h4>Group's name <span class="label label-success">closed</span></h4>
-		Lorem ipsum dolor sit amet, consectetur adipisicing lit a dolorem harum soluta.
-	</td>
-	<td>5/2014</td>
-	<td>10:32 a.m.</td>
-	<td>134</td>
-	<td>78</td>
-	<td>+ Join group</td>
-	
-</tr>
-<tr>
-	<td >
-		<h4>Group's name <span class="label label-warning">closed</span></h4>
-		Lorem ipsum dolor sit amet, consectetur adipisicing lit a dolorem harum soluta.
-	</td>
-	<td>5/2014</td>
-	<td>10:32 a.m.</td>
-	<td>134</td>
-	<td>78</td>
-	<td>+ Join group</td>
-	
-</tr>
-</tbody>
-</table>

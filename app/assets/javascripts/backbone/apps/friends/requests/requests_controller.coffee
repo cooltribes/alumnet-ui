@@ -11,7 +11,7 @@
         friendship.save()
         friendships.remove(friendship)
 
-      requestsView.on 'childview:delete', (childView)->
+      requestsView.on 'childview:delete', (childView)->        
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)        
@@ -23,6 +23,11 @@
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
+
+      requestsView.on 'childview:delete', (childView)->        
+        friendship = childView.model
+        friendship.destroy()
+        friendships.remove(friendship)   
 
       layout.body.show(requestsView)    
 

@@ -1,0 +1,13 @@
+<hr>
+<div class="col-md-6 ">
+	<div class="well">
+		<div class="row">
+			<div class="col-md-2 lead fontSize--xl text-center">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</div>
+			<div class="col-md-10">
+				<p class="lead">It seems that you don't have any group yet. Click on <a href="#groups" title="Discover groups">Discover</a> to find groups to join or you can also <a href="#groups/new" title="Create a new group">Create a new group</a></p>
+			</div>
+		</div>
+	</div>
+</div>

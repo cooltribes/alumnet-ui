@@ -4,7 +4,7 @@
     discoverGroups: ->
       groups = AlumNet.request("group:entities", {})
       groupsView = @getContainerView(groups)
-      searchView = @getHeaderView()
+      searchView = @getHeaderView(groupsView)
 
       layoutView = @getLayoutView()
 
@@ -41,8 +41,9 @@
       new Discover.Layout
 
     # instantiate views defined in list_view.coffee
-    getHeaderView: ->
+    getHeaderView: (groupsView)->
       new Discover.HeaderView
+        groupsView: groupsView
 
     getContainerView: (groups) ->
       new Discover.GroupsView

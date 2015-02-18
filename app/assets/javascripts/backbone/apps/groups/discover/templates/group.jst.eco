@@ -1,4 +1,5 @@
-<div class="groupCard">
+<div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="groupCard">
   <div class="clearfix">
     <!-- COVER ON -->
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
@@ -6,12 +7,12 @@
       <div class="groupCard__menu">
         <h5 class="groupCard__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
         <ul class="groupCard__menu__list">
-        <% _.each @children, (child)->: %>
+          <% _.each @children, (child)->: %>
           <li class="groupCard__menu__item">
             <a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
             <span class="icon-entypo-list pull-right"></span>
           </li>
-        <% end %>
+          <% end %>
           <li class="groupCard__menu__item text-center">
             <a href="#" title="Subgroup name" > <span class="icon-entypo-down-open-mini"></span> </a>
           </li>
@@ -26,16 +27,28 @@
     <div class=" groupCard__content">
       <div class="groupCard__text">
         <h3 class="groupCard__title">
+        <% if @group_type.value == 1 && not @userIsMember : %>
+        <a href="#groups/<%= @id %>/about" class="js-group"> <%= @name %> </a>
+        <% else if @group_type.value == 1 && @userIsMember : %>
         <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% else: %>
+        <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <% end %>
         </h3>
         <span class="groupCard__status pull-right
-          <% if @group_type.value== 1: %>
-            groupCard__status--closed
-          <% end %>
-          <% if @group_type.value== 0: %>
-            groupCard__status--public
-          <% end %>
+        <% if @group_type.value== 1: %>
+        groupCard__status--closed
+        <% end %>
+        <% if @group_type.value== 0: %>
+        groupCard__status--public
+        <% end %>
         ">
+        <% if @group_type.value== 1: %>
+          Closed
+        <% end %>
+        <% if @group_type.value== 0: %>
+          Open
+        <% end %>
         </span>
         <p class="groupCard__description"><%= @description %></p>
       </div>
@@ -51,9 +64,9 @@
             <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCard__atribute__container">
               <span class="groupCard__icon ico-timebank"></span>
               <% if @last_post_at: %>
-                <%= moment(@last_post_at).format('h:mm a') %>
+              <%= moment(@last_post_at).format('h:mm a') %>
               <% else: %>
-                <%= moment(@created_at).format('h:mm a') %>
+              <%= moment(@created_at).format('h:mm a') %>
               <% end %>
             </div>
           </div>
@@ -65,29 +78,26 @@
               <%= @membership_users.length %>
             </div>
           </div>
-
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
-              <!-- 
+              <!--
               Avatars of people who has joined the group
-              
               <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
               +10 -->
             </div>
-
           </div>
-
         </div>
         <% if @membership_status == "approved": %>
-          <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
+        <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
         <% else if @membership_status == "pending": %>
-         <span class="groupCard__waitingApproval"> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
+        <span class="groupCard__waitingApproval"> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
         <% else: %>
-          <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
-          </button>
+        <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
+        </button>
         <% end %>
       </div>
     </div>
     <!-- CONTENT ON -->
   </div>
+</div>
 </div>

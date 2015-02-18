@@ -7,13 +7,24 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
-			<img src="assets/slideshow/1.jpg" alt="AIESEC Alumni" width="100%">
+			<%= image_tag("slideshow/1.jpg", alt: "AIESEC Alumni", width: "100%") %>
 			<div class="carousel-caption">
-				AIESEC Alumni <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				<p>
+				Search alumni and build your AIESEC-inspired global network.
+				<br>
+				Reconnect with old alumni friends, or find new ones, in nearly every country.
+				</p>
 			</div>
 		</div>
 		<div class="item">
-			<img src="assets/slideshow/2.jpg" alt="AIESEC Alumni" width="100%">
+			<%= image_tag("slideshow/2.jpg", alt: "AIESEC Alumni", width: "100%") %>
+			<div class="carousel-caption">
+				<p>
+				Search alumni and build your AIESEC-inspired global network.
+				<br>
+				Reconnect with old alumni friends, or find new ones, in nearly every country.
+				</p>
+			</div>
 		</div>
 	</div>
 	<!-- Controls -->
@@ -26,18 +37,16 @@
 		<span class="sr-only">Next</span>
 	</a>
 </div>
-<!-- <h1><%= @name %></h1>
--->
+
 <div  class="container-fluid margin_top_small">
 	<div class="row">
 		<div  class="col-md-8 col-md-offset-2">
-			<% if @currentUserCanPost: %>
 			<div class="row" >
 				<!-- FORM ON -->
 				<div class="item col-md-6 ">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
-							<img src="http://placesheen.com/80/80" class="img-circle" width="80" height="80"		>
+							<img src="<%%= @current_user_avatar %>" class="img-circle">
 						</div>
 						<div class="groupCreatePostForm__form">
 							<form class="form">
@@ -51,11 +60,7 @@
 				</div>
 				<!-- FORM OFF -->
 			</div>
-			<% end %>
-			<div id="timeline" class="row posts-container">
-				
-				
-			</div>
+			<div id="timeline" class="row posts-container"></div>
 		</div>
 	</div>
 </div>

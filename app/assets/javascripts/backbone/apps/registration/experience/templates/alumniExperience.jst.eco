@@ -14,7 +14,7 @@
 					<div class="formANet__select">
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
-							<% for x in [1948..@currentYear] by 1 : %>
+							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option value="<%= x %>"><%= x %></option>
 							<% end %>
 						</select>
@@ -24,18 +24,9 @@
 					<div class="formANet__select">
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
-							<option value="01">1</option>
-							<option value="02">2</option>
-							<option value="03">3</option>
-							<option value="04">4</option>
-							<option value="05">5</option>
-							<option value="06">6</option>
-							<option value="07">7</option>
-							<option value="08">8</option>
-							<option value="09">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
+							<% for x in [1..12] by 1 : %>
+								<option value="<%= x %>"><%= x %></option>
+							<% end %>
 						</select>
 					</div>
 				</div>
@@ -52,7 +43,9 @@
 					<div class="formANet__select">
 						<select name="end_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
-							<% for x in [1948..@currentYear] by 1 : %>
+							<option value="current">Current</option>
+
+							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option value="<%= x %>"><%= x %></option>
 							<% end %>
 						</select>
@@ -62,18 +55,9 @@
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
-							<option value="01">1</option>
-							<option value="02">2</option>
-							<option value="03">3</option>
-							<option value="04">4</option>
-							<option value="05">5</option>
-							<option value="06">6</option>
-							<option value="07">7</option>
-							<option value="08">8</option>
-							<option value="09">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
+							<% for x in [1..12] by 1 : %>
+								<option value="<%= x %>"><%= x %></option>
+							<% end %>
 						</select>
 					</div>
 				</div>
@@ -90,21 +74,37 @@
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">Country / Region</label>
+			<label class="control-label" for="registerCountry">AIESEC Experience</label>
+			<div class="formANet__select">
+			  <select name="aiesec_experience" id="aiesec_experience" class=" form-control input-lg">
+					<option value="">Select Type</option>
+	        <option value="Local">Local</option>
+	        <option value="National">National</option>
+	        <option value="International">International</option>
+	      </select>
+			</div>
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="col-md-6 ">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCountry">Country</label>
 			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-3 ">
+</div>
+<div class="row">
+	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
 			<input type="hidden" name="city_id" id="city_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-3 ">
+	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerLocalcomitee">Local Comitee</label>
+			<label class="control-label" for="registerLocalcomitee">AIESEC Chapter</label>
 			<input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>

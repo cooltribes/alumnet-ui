@@ -4,15 +4,17 @@
       <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="ico-menu"></span>
       </button>
-      <a class="navTopBar__left__brand navbar-brand " href="/">
-        <img src="assets/general/alumnet_logo.png" alt="AlumNet">
+      <a class="navTopBar__left__brand navbar-brand " href="#">
+        <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
       </a>
     </div>
     <p class="navTopBar__text">Register in AlumNet</p>
     <nav class="navTopBar__left collapse navbar-collapse ">
       <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
         <li>
-          <a role="menuitem" tabindex="-1" href="sign_out"> Exit </a>
+          <a role="menuitem" tabindex="-1" href="sign_out"> 
+            <span>Logout</span>
+          </a>
         </li>
       </ul>
     </nav>
