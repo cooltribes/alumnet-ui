@@ -6,7 +6,7 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</div>
 			<div class="col-md-10">
-				<p class="lead">Your search didn't give any results, please try another</p>
+				<p class="lead">Your search didn't give any results, please try another search</p>
 			</div>
 		</div>
 	</div>
