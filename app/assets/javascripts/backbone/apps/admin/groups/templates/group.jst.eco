@@ -1,0 +1,19 @@
+  <td><img src="<%= @cover.card %>">	</td>
+  <td>
+    <a href="#users/<%= @id %>/about">
+      <%= @name %>
+      <%= @official %>
+    </a>
+    <br>
+    <small>
+      <%= @group_type.text %>
+    </small>
+  </td>
+  <td><%= @getLocation() %></td>
+  <td>SubGroups Count</td>
+  <td>Created by and at</td>
+  <td>Admins Count</td>
+  <td>Members Count</td>
+  <td class="tableAdmin__actions">
+    <button class="js-edit"><span class="icon-entypo-cog"></span></button>
+  </td>

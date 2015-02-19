@@ -1,0 +1,5 @@
+<h1>Temporal</h1>
+<div class="row">
+  <div id="search-region"></div>
+  <div id="table-region"></div>
+</div>
