@@ -97,8 +97,17 @@
       else
         false
 
+    getStartDate: ()->
+      date = moment(@get("start_date"))
+      date.format("MMM YYYY")
+      
+      
     getEndDate: ()->
-      @get("end_date") ? "Current"
+      if @get("end_date")
+        date = moment(@get("end_date"))      
+        return date.format("MMM YYYY")
+      else
+        "Current"
 
     getExperienceId: ->
       @experienceId[@get "exp_type"]

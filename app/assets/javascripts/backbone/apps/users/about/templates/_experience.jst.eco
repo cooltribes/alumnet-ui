@@ -27,12 +27,19 @@
 
 	<ul class="experienceCard__metaInfo">
 		<li><span class="glyphicon glyphicon-calendar"></span>
-			From <%= @start_date + " to " + @getEndDate() %>
+			From <%= @getStartDate() + " to " + @getEndDate() %>
 		</li>
 		<li><span class="glyphicon glyphicon-map-marker"></span>
 		Location: <%= @getLocation() %></li>
 	</ul>
-	<div class="experienceCard__desctiption">
+
+<% if @aiesec_experience: %>
+	<div class="experienceCard__description">
+		Experience: <%= @aiesec_experience %>
+	</div>
+<% end %>
+
+	<div class="experienceCard__description">
 		Description: <%= @description %>
 	</div>
 </div>

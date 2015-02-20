@@ -496,8 +496,6 @@
     templateHelpers: ->
       model = @model
 
-      userCanEdit: @userCanEdit
-
       # diffType: ->
       #   prev = model.collection.at(model.collection.indexOf(model) - 1)        
       #   hasTitle = true
@@ -506,6 +504,8 @@
       #   # model.hasTitle = hasTitle
         
       #   return hasTitle
+
+      userCanEdit: @userCanEdit
 
       experienceType: ->
         model.getExperienceType()
@@ -519,6 +519,9 @@
       getOrganization: ->
         model.getOrganization()
       
+      getStartDate: ->
+        model.getStartDate()
+
       getEndDate: ->
         model.getEndDate()
     
