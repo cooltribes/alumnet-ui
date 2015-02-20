@@ -2,7 +2,7 @@
   class Groups.Controller
     manageGroups: ->
       AlumNet.execute('render:admin:submenu')
-      groups = AlumNet.request("group:entities", {})
+      groups = AlumNet.request('group:entities:admin', {})
 
       layoutView = new Groups.Layout
       groupsTable = new Groups.GroupsTable

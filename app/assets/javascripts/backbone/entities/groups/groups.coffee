@@ -102,6 +102,13 @@
         data: querySearch
       Entities.groups
 
+    getGroupsForAdmin: (querySearch)->
+      groups = new Entities.GroupCollection
+      groups.url = AlumNet.api_endpoint + '/admin/groups'
+      groups.fetch
+        data: querySearch
+      groups
+
     getNewGroup: ->
       new Entities.Group
 
@@ -112,15 +119,6 @@
 
     findGroup: (id)->
       group = @findGroupOnApi(id)
-      # initializeGroups() if Entities.groups == undefined
-      # group = Entities.groups.get(id)
-      # if group == undefined
-      # group
-
-      # if Entities.groups == undefined
-      #   @findGroupOnApi(id)
-      # else
-      #   @findGroupOnCollection(id)
 
     findGroupOnCollection: (id)->
       group = Entities.groups.get(id)
@@ -153,3 +151,6 @@
 
   AlumNet.reqres.setHandler 'group:find', (id)->
     API.findGroup(id)
+
+  AlumNet.reqres.setHandler 'group:entities:admin', (querySearch)->
+    API.getGroupsForAdmin(querySearch)
