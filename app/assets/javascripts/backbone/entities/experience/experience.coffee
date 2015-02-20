@@ -13,6 +13,9 @@
       city_id: ""
       internship: 0
 
+      ########
+      asTitle: false
+
     validation:
       name:
         required: true
@@ -99,3 +102,28 @@
 
   class Entities.ExperienceCollection extends Backbone.Collection
     model: Entities.Experience
+
+    addExperiencesTitles: ->
+      missing = [0..3]
+      @each (model, index)->
+        # console.log model
+        #First delete previous titles
+        # if model.isNew() && model.get ("asTitle")
+        #   model.destroy()
+        # else  
+        type = model.get "exp_type"
+        indexOf = missing.indexOf(type)
+        if indexOf > -1
+          missing.splice(indexOf, 1)
+
+      #Put titles for every missing experience
+      _.forEach missing, (element)  ->
+        newExperience = new AlumNet.Entities.Experience
+          exp_type: element
+          first: true
+          asTitle: true
+
+        @push newExperience
+      ,
+        this  
+

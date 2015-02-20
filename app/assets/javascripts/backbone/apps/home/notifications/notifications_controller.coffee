@@ -2,7 +2,10 @@
   class Notifications.Controller
     showCurrentUserNotifications: ->
       notifications = AlumNet.request('notifications:get', {})
+      notifications.markAllAsRead() #costoso
       notificationsView = new Notifications.NotificationsView
         collection: notifications
       AlumNet.mainRegion.show(notificationsView)
+      AlumNet.execute('render:home:submenu')
+
 

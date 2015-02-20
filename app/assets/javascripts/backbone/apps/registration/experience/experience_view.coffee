@@ -11,7 +11,7 @@
       else if @model.get('exp_type') == 3
         "registration/experience/templates/professionalExperience"
 
-    tagName: 'form'    
+    tagName: 'form'
 
     ui:
       'btnRmv': '.js-rmvRow'
@@ -43,11 +43,11 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-      @inProfile = options.inProfile ? false      
-    
+      @inProfile = options.inProfile ? false
+
     templateHelpers: ->
-      
-      inProfile: @inProfile            
+
+      inProfile: @inProfile
 
       currentYear: new Date().getFullYear()
 
@@ -55,7 +55,7 @@
         born = AlumNet.current_user.profile.get("born")
         born = new Date(born).getFullYear()
         born + 15
-          
+
     onRender: ->
       @cleanAllSelects()
 
@@ -137,7 +137,6 @@
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
-
 
     removeExperience: (e)->
       @model.destroy()

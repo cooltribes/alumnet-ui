@@ -15,12 +15,12 @@
         #get the skills of the user
         skills = new AlumNet.Entities.Skills
         skills.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/skills"
-        skills.fetch
+        skills.fetch()
 
         #get the languages of the user
         languages = new AlumNet.Entities.Languages
         languages.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/language_levels"
-        languages.fetch
+        languages.fetch()
 
         #get the contacts of the user
         phones = []
@@ -50,7 +50,13 @@
         expCollection = new AlumNet.Entities.ExperienceCollection        
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
         expCollection.comparator = "exp_type"
-        expCollection.fetch()
+        # expCollection.on "add", @addMissingExperiences
+        # expCollection.fetch()
+        expCollection.fetch
+          success: (collection)=>
+              #only allowed if user can edit
+              if userCanEdit
+                collection.addExperiencesTitles()
         
         body = new About.View
           model: user
@@ -174,8 +180,9 @@
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.set("avatar", response.avatar)
                 
-                #set the avatar of the current user if current user is who is making
-                #the changes. Not when admin.
+                #change the avatar of the current user in the header
+                #if current user is who makes
+                #the changes. Not when admin changes another profile.
                 if @model.isCurrentUser()
                   AlumNet.request 'get:current_user',
                     refresh: true
@@ -190,7 +197,3 @@
               model.save null, 
                 success: (model)->
                   model.collection.trigger "reset"
-
-                
-
-             
