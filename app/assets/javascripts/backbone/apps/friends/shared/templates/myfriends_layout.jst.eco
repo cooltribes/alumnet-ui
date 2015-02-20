@@ -38,12 +38,12 @@
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
 					<a href="" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(1)%>" id="js-sent">
-						Received (<%= @pending_sent_friendships_count %>)
+						Sent (<%= @pending_sent_friendships_count %>)
 					</a>
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
 					<a href=""  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(2)%>" title="Friends Requests" id="js-received">
-						Sent (<%= @pending_received_friendships_count %>)
+						Received (<%= @pending_received_friendships_count %>)
 					</a>
 				</li>
 				
