@@ -1,4 +1,4 @@
-<% if @diffType(): %>	
+<% #if @diffType(): %>	
 
 	<h2 id="<%= @experienceId()  %>">
 		<%= @experienceType()  %>
@@ -10,4 +10,4 @@
 		
 	</h2>
 
-<% end %>
+<% #end %>

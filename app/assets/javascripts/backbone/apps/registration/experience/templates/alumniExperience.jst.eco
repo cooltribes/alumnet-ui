@@ -1,6 +1,6 @@
 <div class="form-group has-feedback">
 	<label class="control-label" >Name of the position</label>
-	<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
+	<input type="text" name="name" class="form-control input-lg " value="<%= @name %>" placeholder="Enter position">
 	<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
@@ -15,7 +15,9 @@
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								
+								<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+								
 							<% end %>
 						</select>
 					</div>
@@ -25,7 +27,7 @@
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>		
 							<% end %>
 						</select>
 					</div>
@@ -46,7 +48,8 @@
 							<option value="current">Current</option>
 
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+								
 							<% end %>
 						</select>
 					</div>
@@ -56,7 +59,7 @@
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>							
 							<% end %>
 						</select>
 					</div>
@@ -68,7 +71,7 @@
 </div>
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Description/achievements</label>
-	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
+	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>
 	<span class="help-block"></span>
 </div>
 <div class="row">
@@ -115,7 +118,8 @@
 <% end %>
 
 <% if @inProfile: %>
-	<button class="btn btn-default text-uppercase btn-default-noBackground js-rmvRow" type="button"> Cancel</button>
+	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if @isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
+
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
 <hr>

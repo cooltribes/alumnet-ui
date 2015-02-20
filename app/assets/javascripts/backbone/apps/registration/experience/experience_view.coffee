@@ -15,6 +15,7 @@
 
     ui:
       'btnRmv': '.js-rmvRow'
+      'cancelEdit': '.js-cancelEdit'
       'btnSave': '.js-saveItem'
       "selectType": "[name=aiesec_experience]"
       "selectRegions": "[name=region_id]"
@@ -25,6 +26,7 @@
 
     events:
       "click @ui.btnRmv": "removeExperience"
+      "click @ui.cancelEdit": "cancelEdit"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
       "change @ui.selectType": "setCountries"
@@ -137,6 +139,10 @@
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
+
+    cancelEdit: (e)->
+      @trigger "cancelEdit:experience"     
+
 
     removeExperience: (e)->
       @model.destroy()
