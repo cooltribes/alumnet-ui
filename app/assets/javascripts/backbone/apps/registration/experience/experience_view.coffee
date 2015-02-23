@@ -140,7 +140,7 @@
       @trigger "save:experience"
 
     removeExperience: (e)->
-      if confirm("Are you sure you want to delete this item from your profile ?")
+      if confirm("Are you sure you want to delete this experience?")
         @model.destroy()
 
 
