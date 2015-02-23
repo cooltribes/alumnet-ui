@@ -52,11 +52,11 @@
 
       inProfile: @inProfile
 
-      isEditing: @model.isEditing      
+      isEditing: @model.isEditing
 
       currentYear: new Date().getFullYear()
 
-      selected: (val)->        
+      selected: (val)->
         if model.get("aiesec_experience") == val then "selected='selected'" else ""
 
       firstYear: ()->
@@ -68,12 +68,12 @@
       @cleanAllSelects()
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
-        # CountryAiesecList.toSelect2()
-        CountryList.toSelect2()
+        CountryAiesecList.toSelect2()
+        #CountryList.toSelect2()
       else
         CountryList.toSelect2()
 
-      dataRegions = RegionList.toSelect2()
+      # dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
         placeholder: "Select a Country"
@@ -154,7 +154,7 @@
       @trigger "save:experience"
 
     cancelEdit: (e)->
-      @trigger "cancelEdit:experience"     
+      @trigger "cancelEdit:experience"
 
 
     removeExperience: (e)->

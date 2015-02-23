@@ -109,6 +109,11 @@
         data: querySearch
       groups
 
+    getSubGroupsForAdmin: (group_id)->
+      subgroups = new Entities.GroupCollection
+      subgroups.url = AlumNet.api_endpoint + '/admin/groups/' + group_id + '/subgroups'
+      subgroups
+
     getNewGroup: ->
       new Entities.Group
 
@@ -154,3 +159,6 @@
 
   AlumNet.reqres.setHandler 'group:entities:admin', (querySearch)->
     API.getGroupsForAdmin(querySearch)
+
+  AlumNet.reqres.setHandler 'subgroups:entities:admin', (group_id)->
+    API.getSubGroupsForAdmin(group_id)

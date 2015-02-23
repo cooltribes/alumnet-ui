@@ -10,9 +10,12 @@
     </small>
   </td>
   <td><%= @getLocation() %></td>
+  <td><%= @getParentName() %></td>
   <td>
     <%= @getSubgroupsCount() %><br>
-    <a href="#" id="js-show-subgroups">Show</a>
+    <% unless @getSubgroupsCount() == 0: %>
+      <a href="#" id="js-show-subgroups">Show</a>
+    <% end %>
   </td>
   <td>
       <a href="#users/<%= @creator.id %>/about"><%= @creator.name %></a><br>
