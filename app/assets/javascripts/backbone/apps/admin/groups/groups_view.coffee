@@ -69,8 +69,68 @@
     events:
       'click .js-modal-save': 'saveClicked'
       'change #group-cover': 'previewImage'
-      'change .js-countries': 'setCities'
+      'change .js-countries': 'selectCities'
       'change #group-type': 'changedGroupType'
+
+    selectCities: (e)->
+      @.$('.js-cities').val('')
+      @setSelect2Cities(e.val, false)
+
+    setSelect2Cities: (val, initialValue)->
+      url = AlumNet.api_endpoint + '/countries/' + val + '/cities'
+      options =
+        placeholder: "Select a City"
+        minimumInputLength: 2
+        ajax:
+          url: url
+          dataType: 'json'
+          data: (term)->
+            q:
+              name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
+      @.$('.js-cities').select2 options
+
+
+    setSelect2Groups: (initialValue)->
+      url = AlumNet.api_endpoint + '/admin/groups'
+      view = @
+      options =
+        placeholder: "Select a Group"
+        minimumInputLength: 2
+        allowClear: true
+        ajax:
+          url: url
+          dataType: 'json'
+          data: (term)->
+            q = {}
+            official = view.$('#official').val()
+            if official == "1"
+              return q:
+                name_cont: term
+                official_eq: official
+            else
+              return q:
+                name_cont: term
+
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
+      @.$('.js-groups').select2 options
+
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
@@ -94,9 +154,22 @@
       rawData = Backbone.Syphon.serialize(modal)
       @model.urlRoot = AlumNet.api_endpoint + '/admin/groups'
       data = rawData
-      @model.set(data)
       @model.save data,
         success: ->
           model.trigger 'render:view'
           modal.destroy()
 
+    onRender: ->
+      data = CountryList.toSelect2()
+      country = @model.get('country')
+      city = @model.get('city')
+      initialCity = { id: city.value, name: city.text }
+      parent = @model.get('parent')
+
+      @.$('.js-countries').select2
+        placeholder: "Select a Country"
+        data: data
+
+      @.$('.js-countries').select2('val', country.value)
+      @setSelect2Cities(country.value, initialCity)
+      @setSelect2Groups(parent)

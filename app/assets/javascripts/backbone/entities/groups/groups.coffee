@@ -55,10 +55,10 @@
       status == "approved"
 
     canBeOfficial: ->
-      @get("can_be_official?")
+      @get("can_be_official")
 
     canBeUnOfficial: ->
-      @get("can_be_unofficial?")
+      @get("can_be_unofficial")
 
     canHaveOfficialSubgroup: ->
       @get("official")
