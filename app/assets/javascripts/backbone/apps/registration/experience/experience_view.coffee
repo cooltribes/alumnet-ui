@@ -24,6 +24,7 @@
 
 
     events:
+      "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
@@ -139,7 +140,8 @@
       @trigger "save:experience"
 
     removeExperience: (e)->
-      @model.destroy()
+      if confirm("Are you sure you want to delete this item from your profile ?")
+        @model.destroy()
 
 
   class Experience.ExperienceList extends Marionette.CompositeView
