@@ -19,9 +19,9 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()      
-      App.navigate('posts', {trigger: true})
-      
+      Backbone.history.start()
+      App.navigate('admin/groups', {trigger: true})
+
 
   App.addRegions
     headerRegion: "#header-region"
