@@ -1,20 +1,63 @@
+@AlumNet.module 'PagesApp', (PagesApp, @AlumNet, Backbone, Marionette, $, _) ->
 
-@AlumNet.module 'HeaderApp', (HeaderApp, @AlumNet, Backbone, Marionette, $, _) ->
+  class PagesApp.Router extends AlumNet.Routers.Base
+      appRoutes:
+        "about": "pagesAbout"
+        "contact": "pagesContact"
+        "donate": "pagesDonate" 
+        "joinAAI": "pagesJoinAAI"
+        "privacyPolicy": "pagesPrivacyPolicy"
+        "termsOfUse": "pagesTermsOfUse"
 
-  API =
-    showHeader: ->
-      controller = new HeaderApp.Menu.Controller
-      controller.show()
+    API =
+      pagesAbout: ()->
+        controller = new PagesApp.About.Controller
+        controller.showAbout()
 
-    showAdmin: ->
-      controller = new HeaderApp.Menu.Controller
-      controller.showAdmin()
+      pagesContact: ()->
+        controller = new PagesApp.Contact.Controller
+        controller.showContact()
 
-  AlumNet.addInitializer ->
-    API.showHeader()
+      pagesDonate: ()->
+        controller = new PagesApp.Donate.Controller
+        controller.showDonate()
 
-  AlumNet.commands.setHandler "header:show:admin", ->
-    API.showAdmin()
+      pagesJoinAAI: ()->
+        controller = new PagesApp.JoinAAI.Controller
+        controller.showJoinAAI()
 
-  AlumNet.commands.setHandler "header:show:regular" , ->
-    API.showHeader()
+      pagesPrivacyPolicy: ()->
+        controller = new PagesApp.PrivacyPolicy.Controller
+        controller.showPrivacyPolicy()
+
+      pagesTermsOfUse: ()->
+        controller = new PagesApp.TermsOfUse.Controller
+        controller.showTermsOfUse()
+
+    AlumNet.on "about", () ->
+        AlumNet.navigate("about")
+        API.pagesAbout()
+
+    AlumNet.on "contact", () ->
+        AlumNet.navigate("contact")
+        API.pagesContact()
+
+    AlumNet.on "donate", () ->
+        AlumNet.navigate("donate")
+        API.pagesDonate()
+
+    AlumNet.on "joinAAI", () ->
+        AlumNet.navigate("joinAAI")
+        API.pagesJoinAAI()
+
+    AlumNet.on "privacyPolicy", () ->
+        AlumNet.navigate("privacyPolicy")
+        API.pagesPrivacyPolicy()
+
+    AlumNet.on "termsOfUse", () ->
+        AlumNet.navigate("termsOfUse")
+        API.pagesTermsOfUse()
+
+    AlumNet.addInitializer ->
+      new PagesApp.Router
+        controller: API
