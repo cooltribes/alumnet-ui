@@ -1,5 +1,5 @@
   <td>
-    <img src="<%= @cover.card %>">
+    <img src="<%= @cover.admin %>">
     <%= @official %>
   </td>
   <td>
