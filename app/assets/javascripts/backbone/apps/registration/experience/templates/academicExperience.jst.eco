@@ -72,7 +72,7 @@
 <% end %>
 
 <% if @inProfile: %>	
-	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if @isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
+	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
 

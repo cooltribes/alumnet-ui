@@ -211,6 +211,7 @@
               model.formatDates()
               model.save null, 
                 success: (model)->
+                  if model.isEditing then model.isEditing = false
                   model.collection.trigger "reset"
 
           view.on "childview:cancelEdit:experience", (childview)->

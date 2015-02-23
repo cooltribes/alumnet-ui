@@ -48,10 +48,16 @@
       @inProfile = options.inProfile ? false
 
     templateHelpers: ->
+      model = @model
 
       inProfile: @inProfile
 
+      isEditing: @model.isEditing      
+
       currentYear: new Date().getFullYear()
+
+      selected: (val)->        
+        if model.get("aiesec_experience") == val then "selected='selected'" else ""
 
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
@@ -62,7 +68,8 @@
       @cleanAllSelects()
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
-        CountryAiesecList.toSelect2()
+        # CountryAiesecList.toSelect2()
+        CountryList.toSelect2()
       else
         CountryList.toSelect2()
 
@@ -71,6 +78,12 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
+        initSelection: (element, callback)->
+          console.log element
+          callback(3)
+
+      @ui.selectCountries.select2('val', @model.get("country_id"), true)
+
 
     setCountries: (e)->
       @cleanAllSelects()
