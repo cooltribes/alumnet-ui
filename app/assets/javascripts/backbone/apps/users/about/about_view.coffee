@@ -259,7 +259,6 @@
             formData = new FormData()
             file = @$('#profile-avatar')
             formData.append('avatar', file[0].files[0])            
-            console.log formData
             @view.trigger "submit:avatar", formData
     
     optionsForSelectCities: (url)->
@@ -469,21 +468,15 @@
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
-    getTemplate: ->
-      switch @model.get("asTitle")
-        when false
-          'users/about/templates/_experience'
-        when true
-          'users/about/templates/_experienceMissing'
-       
-
-    # template: 'users/about/templates/_experience'
     tagName: "div"
 
-    # bindings:
-    #   ".js-title": 
-    #     observe: "name"
-    #     onSet: "updateModel"
+    getTemplate: ->
+      switch @model.get("asTitle")
+        when true
+          'users/about/templates/_experienceTitle'
+        when false
+          'users/about/templates/_experience'
+
     ui:
       "addExp": "#js-addExp"
       "editExp": "#js-editExp"
@@ -491,7 +484,11 @@
     
     events:
       "click @ui.addExp": "addExp"
-      "click @ui.btnRmv": "removeItem"      
+      "click @ui.editExp": "editExp"
+      "click @ui.btnRmv": "removeItem"  
+
+    modelEvents:
+      "change": "modelChange"
     
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -499,20 +496,16 @@
     templateHelpers: ->
       model = @model
 
-      userCanEdit: @userCanEdit
+      # diffType: ->
+      #   prev = model.collection.at(model.collection.indexOf(model) - 1)        
+      #   hasTitle = true
+      #   if prev?          
+      #     hasTitle = (prev.get("exp_type") != model.get("exp_type"))
+      #   # model.hasTitle = hasTitle
+        
+      #   return hasTitle
 
-      diffType: ->
-        prev = model.collection.at(model.collection.indexOf(model) - 1)        
-        hasTitle = true
-        if prev?          
-          hasTitle = (prev.get("exp_type") != model.get("exp_type"))
-        # else    
-        #   true
-        model.hasTitle = hasTitle
-        console.log ( "exp " + model.get("name") + " title: " + model.hasTitle)
-        window.col = model.collection
-        console.log model.collection.length 
-        return hasTitle
+      userCanEdit: @userCanEdit
 
       experienceType: ->
         model.getExperienceType()
@@ -526,6 +519,9 @@
       getOrganization: ->
         model.getOrganization()
       
+      getStartDate: ->
+        model.getStartDate()
+
       getEndDate: ->
         model.getEndDate()
     
@@ -533,28 +529,24 @@
       e.preventDefault()
       @trigger "add:exp"
 
-    updateModel: (val, evt, opts)->
-      console.log val
-      console.log model
-      console.log opts
+    editExp: (e)->
+      e.preventDefault()      
+      @model.isEditing = true
+      @model.set "first", true
+      @model.decodeDates()
+      @model.collection.trigger "reset" #For re-render the itemview
 
-    removeItem: (e)->
-      #if the exp was the title, update view and..
-      if @model.hasTitle
-        collection = @model.collection
-
+    removeItem: (e)->   
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
-      #Re-render collection view
-      if collection?  
-        collection.addExperiencesTitles()
-        collection.trigger "reset"
+    modelChange: ->
+      @render()      
 
 
   class About.Experiences extends Marionette.CollectionView
-    getChildView: (model)->      
-      if(model.isNew() && !model.get("asTitle"))
+    getChildView: (model)-> 
+      if((model.isNew() && !model.get("asTitle")) || model.isEditing)
         AlumNet.RegistrationApp.Experience.FormExperience
       else  
         About.Experience    
@@ -562,7 +554,6 @@
     childViewOptions: ->
       userCanEdit: @userCanEdit      
       inProfile: true
-
       
     childEvents:
       "add:exp": "addExp"       

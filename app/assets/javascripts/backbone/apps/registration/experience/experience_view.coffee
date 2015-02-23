@@ -15,6 +15,7 @@
 
     ui:
       'btnRmv': '.js-rmvRow'
+      'cancelEdit': '.js-cancelEdit'
       'btnSave': '.js-saveItem'
       "selectType": "[name=aiesec_experience]"
       "selectRegions": "[name=region_id]"
@@ -25,6 +26,7 @@
 
     events:
       "click @ui.btnRmv": "removeExperience"
+      "click @ui.cancelEdit": "cancelEdit"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
       "change @ui.selectType": "setCountries"
@@ -46,10 +48,16 @@
       @inProfile = options.inProfile ? false
 
     templateHelpers: ->
+      model = @model
 
       inProfile: @inProfile
 
+      isEditing: @model.isEditing      
+
       currentYear: new Date().getFullYear()
+
+      selected: (val)->        
+        if model.get("aiesec_experience") == val then "selected='selected'" else ""
 
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
@@ -60,7 +68,8 @@
       @cleanAllSelects()
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
-        CountryAiesecList.toSelect2()
+        # CountryAiesecList.toSelect2()
+        CountryList.toSelect2()
       else
         CountryList.toSelect2()
 
@@ -69,6 +78,12 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
+        initSelection: (element, callback)->
+          console.log element
+          callback(3)
+
+      @ui.selectCountries.select2('val', @model.get("country_id"), true)
+
 
     setCountries: (e)->
       @cleanAllSelects()
@@ -137,6 +152,10 @@
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
+
+    cancelEdit: (e)->
+      @trigger "cancelEdit:experience"     
+
 
     removeExperience: (e)->
       @model.destroy()

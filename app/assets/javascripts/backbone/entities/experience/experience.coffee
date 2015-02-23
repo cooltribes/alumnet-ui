@@ -55,8 +55,8 @@
       month = @get("#{attr}_month")
       year = @get("#{attr}_year")
 
-      #Si el usuario no selecciona mes, se pone por defecto en 1 (enero) y el dia en 01
-      #Si el usuario selecciona 1 (enero), el dia se pone en 02.
+      #Si el usuario no selecciona mes, se pone mes por defecto en 1 (enero) y el dia en 01
+      #Si el usuario selecciona mes 1 (enero), el dia se pone en 02.
       if parseInt(month) == 1 then day = 2
 
       if month == '' then month = "01"      
@@ -67,6 +67,24 @@
         day = 0 # "00"
 
       @set "#{attr}_date", "#{year}-#{month}-#{day}"
+    
+    decodeDates: ->
+      @decodeDate('start')
+      @decodeDate('end')
+
+    decodeDate: (attr)-> 
+      date = @get "#{attr}_date"
+      date = moment(date, "YYYY-MM-DD")
+      day = date.date()
+
+      month = date.month() + 1
+      
+      if month == 1 && day == 1
+        month = ""
+      
+      @set "#{attr}_year", date.year()
+      @set "#{attr}_month", month
+
 
     getLocation: ()->
       if @get("city") && @get("country")
@@ -79,8 +97,17 @@
       else
         false
 
+    getStartDate: ()->
+      date = moment(@get("start_date"))
+      date.format("MMM YYYY")
+      
+      
     getEndDate: ()->
-      @get("end_date") ? "Current"
+      if @get("end_date")
+        date = moment(@get("end_date"))      
+        return date.format("MMM YYYY")
+      else
+        "Current"
 
     getExperienceId: ->
       @experienceId[@get "exp_type"]
@@ -103,21 +130,10 @@
   class Entities.ExperienceCollection extends Backbone.Collection
     model: Entities.Experience
 
-    addExperiencesTitles: ->
-      missing = [0..3]
-      @each (model, index)->
-        # console.log model
-        #First delete previous titles
-        # if model.isNew() && model.get ("asTitle")
-        #   model.destroy()
-        # else  
-        type = model.get "exp_type"
-        indexOf = missing.indexOf(type)
-        if indexOf > -1
-          missing.splice(indexOf, 1)
+    addTitles: ->
+      types = [0..3]
 
-      #Put titles for every missing experience
-      _.forEach missing, (element)  ->
+      _.forEach types, (element)  ->
         newExperience = new AlumNet.Entities.Experience
           exp_type: element
           first: true
@@ -126,4 +142,30 @@
         @push newExperience
       ,
         this  
+      @sort()
+      # @trigger "reset"
+
+    # addExperiencesTitles: ->
+    #   missing = [0..3]
+    #   @each (model, index)->
+    #     # console.log model
+    #     #First delete previous titles
+    #     # if model.isNew() && model.get ("asTitle")
+    #     #   model.destroy()
+    #     # else  
+    #     type = model.get "exp_type"
+    #     indexOf = missing.indexOf(type)
+    #     if indexOf > -1
+    #       missing.splice(indexOf, 1)
+
+    #   #Put titles for every missing experience
+    #   _.forEach missing, (element)  ->
+    #     newExperience = new AlumNet.Entities.Experience
+    #       exp_type: element
+    #       first: true
+    #       asTitle: true
+
+    #     @push newExperience
+    #   ,
+    #     this  
 
