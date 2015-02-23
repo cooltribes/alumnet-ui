@@ -1,0 +1,40 @@
+/***
+
+APP NAME: staticContentBox
+DESCRIPTION: styles for footer static pages
+
+***/
+
+@import 'conf/conf.css.less';
+
+.staticContentBox{
+   margin-top: -90px;
+
+   &__content{
+       background-color: #fff;
+       border: 1px solid @gray;
+       padding: 50px;
+   }
+
+   &__Img{
+       float: right;
+       margin-right: 30px;
+   }
+
+   &__firstP{
+   		font-size: 1.4em;
+   }
+ 
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.staticContentBox{
+   		margin-top: -90px;
+
+   		&__Img{
+       		margin-right: none;
+   		}
+ 
+	}
+}
