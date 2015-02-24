@@ -6,7 +6,7 @@
         "contact": "pagesContact"
         "donate": "pagesDonate" 
         "joinAAI": "pagesJoinAAI"
-        "privacyPolicy": "pagesPrivacyPolicy"
+        "privacyPolicy": "pagesPrivacy"
         "termsOfUse": "pagesTermsOfUse"
 
     API =
@@ -23,15 +23,15 @@
         controller.showDonate()
 
       pagesJoinAAI: ()->
-        controller = new PagesApp.JoinAAI.Controller
-        controller.showJoinAAI()
+        controller = new PagesApp.Join.Controller
+        controller.showJoin()
 
-      pagesPrivacyPolicy: ()->
-        controller = new PagesApp.PrivacyPolicy.Controller
-        controller.showPrivacyPolicy()
+      pagesPrivacy: ()->
+        controller = new PagesApp.Privacy.Controller
+        controller.showPrivacy()
 
       pagesTermsOfUse: ()->
-        controller = new PagesApp.TermsOfUse.Controller
+        controller = new PagesApp.Terms.Controller
         controller.showTermsOfUse()
 
     AlumNet.on "about", () ->
@@ -51,7 +51,7 @@
         API.pagesJoinAAI()
 
     AlumNet.on "privacyPolicy", () ->
-        AlumNet.navigate("privacyPolicy")
+        AlumNet.navigate("privacy")
         API.pagesPrivacyPolicy()
 
     AlumNet.on "termsOfUse", () ->
