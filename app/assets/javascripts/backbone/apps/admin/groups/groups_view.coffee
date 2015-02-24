@@ -92,9 +92,17 @@
 
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-delete': 'deleteClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'selectCities'
       'change #group-type': 'changedGroupType'
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm("¿Are you sure?")
+      if resp
+        @model.destroy()
+        @destroy()
 
     selectCities: (e)->
       @.$('.js-cities').val('')
