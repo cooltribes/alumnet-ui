@@ -28,12 +28,14 @@
         model.get('members').length
       getAdminsCount: ->
         model.get('admins').length
+      getParentName: ->
+        parent = model.get('parent')
+        if parent then parent.name else "none"
 
     ui:
       'editLink': '.js-edit'
       'subGroupsLink': '#js-show-subgroups'
       'AdminsTd': '.js-show-admins'
-
 
     events:
       'click @ui.editLink': 'editClicked'
@@ -51,7 +53,8 @@
 
     subGroupsClicked: (e)->
       e.preventDefault()
-      console.log @model.get('children')
+      subgroups = AlumNet.request('subgroups:entities:admin', @model.id, {})
+      @trigger 'subgroups:show', subgroups
 
     showAdmins: (e)->
       e.preventDefault()
@@ -61,6 +64,27 @@
     template: 'admin/groups/templates/groups_table'
     childView: Groups.GroupView
     childViewContainer: "#groups-table tbody"
+    initialize: (options)->
+      @linksGroups = options.linksGroups
+
+    templateHelpers: ->
+      links: @linksGroups
+
+    events:
+      'click #js-groups-home': 'groupsHome'
+      'click .js-groups-bc': 'groupsBreadCrumb'
+
+    groupsBreadCrumb: (e)->
+      e.preventDefault()
+      link = $(e.currentTarget)
+      group_id = link.data('group-id')
+      index = link.data('index')
+      subgroups = AlumNet.request('subgroups:entities:admin', group_id, {})
+      @trigger 'groups:bc', index, subgroups
+
+    groupsHome: (e)->
+      e.preventDefault()
+      @trigger 'groups:home'
 
   class Groups.ModalEdit extends Backbone.Modal
     template: 'admin/groups/templates/modal_edit'
@@ -68,9 +92,17 @@
 
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-delete': 'deleteClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'selectCities'
       'change #group-type': 'changedGroupType'
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm("¿Are you sure?")
+      if resp
+        @model.destroy()
+        @destroy()
 
     selectCities: (e)->
       @.$('.js-cities').val('')
