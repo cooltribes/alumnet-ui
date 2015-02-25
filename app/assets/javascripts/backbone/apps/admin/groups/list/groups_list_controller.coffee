@@ -1,11 +1,11 @@
-@AlumNet.module 'AdminApp.Groups', (Groups, @AlumNet, Backbone, Marionette, $, _) ->
-  class Groups.Controller
-    manageGroups: ->
+@AlumNet.module 'AdminApp.GroupsList', (GroupsList, @AlumNet, Backbone, Marionette, $, _) ->
+  class GroupsList.Controller
+    groupsList: ->
       AlumNet.execute('render:admin:submenu')
       groups = AlumNet.request('group:entities:admin', {})
 
-      layoutView = new Groups.Layout
-      groupsTable = new Groups.GroupsTable
+      layoutView = new GroupsList.Layout
+      groupsTable = new GroupsList.GroupsTable
         collection: groups
         linksGroups: []
 
