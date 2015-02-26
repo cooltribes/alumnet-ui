@@ -68,7 +68,7 @@
 	</div>
 </div>
 <% if !@first: %>
-<button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span> Delete this experience</button>
+<button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span>Delete this experience</button>
 <% end %>
 
 <% if @inProfile: %>	
@@ -78,3 +78,4 @@
 
 <hr>
 <!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
+
