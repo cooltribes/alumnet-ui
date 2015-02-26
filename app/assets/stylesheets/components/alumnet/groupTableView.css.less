@@ -14,10 +14,12 @@ DESCRIPTION: CSS for styling a list of groups
 
 	}	
 
-	&__tr:hover{
+	tr{
 		
-		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
-		cursor: pointer;
+		&:hover{
+			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+			cursor: pointer;
+		}
 	}
 
 	th{
@@ -35,7 +37,7 @@ DESCRIPTION: CSS for styling a list of groups
        width: 62%;
    	}
 
-	table > tbody > tr > td&__col{
+	table > tbody > tr > td &__col{
        vertical-align: middle;
        text-align: center;
    	}
@@ -54,7 +56,6 @@ DESCRIPTION: CSS for styling a list of groups
         width: 51px;
         z-index: 10;
         float:left;
-        left: -17px;
     }
 
 	&__actions{
