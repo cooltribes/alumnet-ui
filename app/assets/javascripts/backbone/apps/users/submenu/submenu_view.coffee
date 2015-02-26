@@ -6,6 +6,7 @@
   API =
     renderSubmenu: (view, options)->      
       AlumNet.submenuRegion.reset() if options.reset
+
       if view == null
         AlumNet.submenuRegion.empty()
       else

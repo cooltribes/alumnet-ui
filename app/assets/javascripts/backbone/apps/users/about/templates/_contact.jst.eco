@@ -32,6 +32,7 @@ Atte. Juan.
 <% end %>
 <% if @contact_type== 7: %>
     <span class="icon-entypo-link"></span> <%= @info %>
+<% end %>
 
 <% if @userCanEdit: %>
   <button type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

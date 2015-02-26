@@ -47,16 +47,31 @@
             
             collection.reset(newCollection)
 
-        expCollection = new AlumNet.Entities.ExperienceCollection        
+        expCollection = new AlumNet.Entities.ExperienceCollection   
+        # expCollection.comparator = "exp_type"
+        # expCollection.comparator = (model)->
+        #   [-parseInt(model.get "exp_type"), -model.get "cid"]
+        expCollection.comparator = (a, b)->
+          resp = a.get("exp_type") - b.get("exp_type")
+
+          if resp == 0
+            if a.get("cid") >= b.get("cid")
+              return -1
+            else
+              return 1  
+
+          resp  
+
+
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
-        expCollection.comparator = "exp_type"
-        # expCollection.on "add", @addMissingExperiences
-        # expCollection.fetch()
         expCollection.fetch
           success: (collection)=>
               #only allowed if user can edit
-              if userCanEdit
-                collection.addExperiencesTitles()
+              # if userCanEdit
+              collection.addTitles()
+
+                # collection.addExperiencesTitles()
+        window.col = expCollection
         
         body = new About.View
           model: user
@@ -196,4 +211,13 @@
               model.formatDates()
               model.save null, 
                 success: (model)->
+                  if model.isEditing then model.isEditing = false
                   model.collection.trigger "reset"
+
+          view.on "childview:cancelEdit:experience", (childview)->
+            model = childview.model
+            model.isEditing = false
+            model.fetch  
+              success: (model)->                          
+                model.collection.trigger "reset"
+            # model.isEditing = false
