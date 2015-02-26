@@ -9,13 +9,15 @@
     </div>
     <% if @friendship_status == "sent": %>
     <div class=" col-md-3 ">
-      <div id="link-container" class="userCard__actions">
+      <a href="#" id="js-delete-friendship" title="Cancel request">
+      <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
         <span class="invitation">
-        
-        <span class="userCard__actions__text">Waiting</span><span class="glyphicon glyphicon-time"></span><br/>
-        <a href="#" id="js-delete-friendship" title="Cancel request"><span class="userCard__actions__text">Cancel request</span> <span class="glyphicon glyphicon-remove"></span></a>
+          <span class="userCard__actions__text">Cancel request</span> 
+          <span class="glyphicon glyphicon-time"></span>
+          <span class="glyphicon glyphicon-remove"></span>
         </span>
       </div>
+      </a>
     </div>
     <% else if @friendship_status == "received": %>
     <!-- Nothing to show here -->

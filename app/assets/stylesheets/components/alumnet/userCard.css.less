@@ -24,7 +24,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     display: inline-block;
     float: right;
     &:hover{
-        width: 130px;
+        width: 150px;
         text-decoration: none;
       }
    }
@@ -55,9 +55,12 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
     &--isFriend{
       background-color: #b2bdc3;
-
-
     }
+
+    &--Cancel{
+      background-color: @orange;
+    }
+
     &--Approve{
       position: relative;
       background-color:darken(@green, 10%);
