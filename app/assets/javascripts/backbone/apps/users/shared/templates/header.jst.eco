@@ -17,6 +17,13 @@
   <% if @userCanEdit: %>
     <a id="js-editPic" class="btn btn-lg btn-default" href="#" style="position: absolute; left: 30px; bottom: 30px;">Change avatar</a>
   <% end %>
+
+  <button>
+    <a href="#" itle="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+Friend</a>
+  </button>  
+
+
+     
 </div>
 <div id="js-picture-modal-container">
         
