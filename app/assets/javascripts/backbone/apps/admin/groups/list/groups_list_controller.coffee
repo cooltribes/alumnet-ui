@@ -1,7 +1,6 @@
 @AlumNet.module 'AdminApp.GroupsList', (GroupsList, @AlumNet, Backbone, Marionette, $, _) ->
   class GroupsList.Controller
     groupsList: ->
-      AlumNet.execute('render:admin:submenu')
       groups = AlumNet.request('group:entities:admin', {})
 
       layoutView = new GroupsList.Layout
@@ -11,6 +10,7 @@
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(groupsTable)
+      AlumNet.execute('render:admin:groups:submenu')
 
       reRenderTable = (collection)->
         groupsTable.collection = collection if collection

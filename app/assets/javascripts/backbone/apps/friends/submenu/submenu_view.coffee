@@ -9,12 +9,9 @@
     events:
       'click @ui.linkMenu': 'clickLink'
 
-
     clickLink: (e) ->
       $(e.currentTarget).parent().addClass("active")
       $(e.currentTarget).parent().parent().siblings().children().removeClass("active")
-      #e.preventDefault()
-      #e.stopPropagation()
 
   API =
     renderSubmenu: (view)->
@@ -25,6 +22,7 @@
           submenu = new Submenu.Menu
         else
           submenu = view
+        AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
   AlumNet.commands.setHandler 'render:friends:submenu',(view) ->
