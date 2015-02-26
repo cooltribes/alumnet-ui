@@ -8,7 +8,7 @@
   </h1>
   <h1>
   <% if @canEditInformation: %>
-    <a href="#" id="js-upload-cover">Upload new cover photo</a>
+    <a href="#" id="js-upload-cover" class="groupCoverArea__btnUploadCover btn btn-lg">Upload new cover photo</a>
   <% end %>
   </h1>
   <% if @userCanInvite: %>
