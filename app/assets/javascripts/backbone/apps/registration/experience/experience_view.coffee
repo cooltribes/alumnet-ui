@@ -69,7 +69,6 @@
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
         CountryAiesecList.toSelect2()
-        #CountryList.toSelect2()
       else
         CountryList.toSelect2()
 
@@ -78,9 +77,9 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
-        initSelection: (element, callback)->
-          console.log element
-          callback(3)
+        # initSelection: (element, callback)->
+        #   console.log element
+        #   callback(3)
 
       @ui.selectCountries.select2('val', @model.get("country_id"), true)
 
@@ -88,6 +87,9 @@
     setCountries: (e)->
       @cleanAllSelects()
       type = $(e.currentTarget).val()
+      @setAllCountries type
+
+    setAllCountries: (type)->      
       if type == "Local" || type == "National"
         dataCountries = AlumNet.request('get:filtered:countries', type)
       else if type == "International"
