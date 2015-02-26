@@ -6,16 +6,14 @@
     ui:
       'linkMenu':'#js-discover, #js-friend'
 
-    #events:
-    #  'click @ui.linkMenu': 'clickLink'
 
-    initialize: (options) ->      
-      @tab = options.tab      
+    initialize: (options) ->
+      @tab = options.tab
       @class = [
         "", "", ""
         "", ""
-      ]  
-      @class[parseInt(@tab)] = "active" 
+      ]
+      @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
       model = @model
@@ -28,11 +26,11 @@
       e.preventDefault()
       e.stopPropagation()
       id = $(e.currentTarget).attr('id').substring(3)
-      
+
       @toggleLink(id)
 
     toggleLink: (id)->
-      link = $("#js-#{id}")    
+      link = $("#js-#{id}")
       this.$("[id^=js-]").parent().removeClass("active")
       link.parent().addClass("active")
 
@@ -48,8 +46,9 @@
             tab: tab
         else
           submenu = view
+        AlumNet.submenuRegion.reset()
+        AlumNet.submenuRegion.show(submenu)
         AlumNet.submenuRegion.show(submenu,tab)
 
   AlumNet.commands.setHandler 'render:friends:submenu',(view,tab) ->
-    console.log "Hola"    
     API.renderSubmenu(view,tab)

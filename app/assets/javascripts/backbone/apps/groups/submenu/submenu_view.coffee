@@ -12,6 +12,7 @@
           submenu = new Submenu.Menu
         else
           submenu = view
+        AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
   AlumNet.commands.setHandler 'render:groups:submenu',(view) ->

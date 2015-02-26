@@ -24,13 +24,31 @@
         array.join(", ")
       getSubgroupsCount: ->
         model.get('children').length
-      getAlumniCount: ->
-        model.get('members').length
-      getAdminsCount: ->
-        model.get('admins').length
       getParentName: ->
         parent = model.get('parent')
         if parent then parent.name else "none"
+
+    ui:
+      'restoreLink': '#js-group-restore'
+      'destroyLink': '#js-group-destroy'
+
+    events:
+      'click @ui.restoreLink': 'restoreClicked'
+      'click @ui.destroyLink': 'destroyClicked'
+
+    restoreClicked: (e)->
+      e.preventDefault()
+      collection = @model.collection
+      @model.save {},
+        success: (model)->
+          collection.remove(model)
+
+
+    destroyClicked: (e)->
+      e.preventDefault()
+      resp = confirm('This action destroy the group permanently. ¿Are you sure?')
+      if resp
+        @model.destroy()
 
     renderView: ->
       @render()
