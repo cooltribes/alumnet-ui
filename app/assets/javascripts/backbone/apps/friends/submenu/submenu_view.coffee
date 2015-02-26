@@ -46,7 +46,7 @@
             tab: tab
         else
           submenu = view
-        AlumNet.submenuRegion.show(submenu,tab)
+        AlumNet.submenuRegion.show(submenu)
 
   AlumNet.commands.setHandler 'render:friends:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)

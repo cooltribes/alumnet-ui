@@ -3,18 +3,18 @@
     template: 'groups/submenu/templates/submenu'
     className: 'navTopSubBar'
 
-  initialize: (options) ->      
-    @tab = options.tab      
-    @class = [
+    initialize: (options) ->      
+      @tab = options.tab      
+      @class = [
         "", "", ""
         "", ""
-    ]  
-    @class[parseInt(@tab)] = "active" 
+      ]  
+      @class[parseInt(@tab)] = "active" 
 
-  templateHelpers: ->
-    model = @model
-    classOf: (step) =>
-      @class[step]
+    templateHelpers: ->
+      model = @model
+      classOf: (step) =>
+        @class[step]
 
   API =
     renderSubmenu: (view,tab)->
@@ -26,7 +26,7 @@
           tab: tab
         else
           submenu = view
-        AlumNet.submenuRegion.show(submenu,tab)
+        AlumNet.submenuRegion.show(submenu)
 
   AlumNet.commands.setHandler 'render:groups:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)
