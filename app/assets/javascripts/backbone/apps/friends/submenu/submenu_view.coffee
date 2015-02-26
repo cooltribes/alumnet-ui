@@ -38,8 +38,6 @@
 
   API =
     renderSubmenu: (view,tab)->
-      console.log tab
-      console.log "Hola"
       if view == null
         AlumNet.submenuRegion.empty()
       else
@@ -51,5 +49,4 @@
         AlumNet.submenuRegion.show(submenu,tab)
 
   AlumNet.commands.setHandler 'render:friends:submenu',(view,tab) ->
-    console.log "Hola"    
     API.renderSubmenu(view,tab)
