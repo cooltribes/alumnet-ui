@@ -4,5 +4,19 @@ class PagesController < ApplicationController
   def about
   end
 
+  #def contact
+  #end
+
+  #def donate
+  #end
+
+  #def join
+  #end
+
+  #def privacy
+  #end
+
+  #def terms
+  #end
 
 end
