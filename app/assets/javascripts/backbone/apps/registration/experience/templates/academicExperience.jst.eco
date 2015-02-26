@@ -23,7 +23,7 @@
 	</div>
 	<div class="col-md-6">
 		<div class="form-group has-feedback">
-			<label for="">End date</label>
+			<label for="">End Date</label>
 
 			<div class="formANet__select">
 				<select name="end_year" class="form-control input-lg ">
