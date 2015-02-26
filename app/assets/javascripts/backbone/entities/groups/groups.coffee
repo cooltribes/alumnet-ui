@@ -55,10 +55,10 @@
       status == "approved"
 
     canBeOfficial: ->
-      @get("can_be_official?")
+      @get("can_be_official")
 
     canBeUnOfficial: ->
-      @get("can_be_unofficial?")
+      @get("can_be_unofficial")
 
     canHaveOfficialSubgroup: ->
       @get("official")
@@ -102,6 +102,18 @@
         data: querySearch
       Entities.groups
 
+    getGroupsForAdmin: (querySearch)->
+      groups = new Entities.GroupCollection
+      groups.url = AlumNet.api_endpoint + '/admin/groups'
+      groups.fetch
+        data: querySearch
+      groups
+
+    getSubGroupsForAdmin: (group_id)->
+      subgroups = new Entities.GroupCollection
+      subgroups.url = AlumNet.api_endpoint + '/admin/groups/' + group_id + '/subgroups'
+      subgroups
+
     getNewGroup: ->
       new Entities.Group
 
@@ -112,15 +124,6 @@
 
     findGroup: (id)->
       group = @findGroupOnApi(id)
-      # initializeGroups() if Entities.groups == undefined
-      # group = Entities.groups.get(id)
-      # if group == undefined
-      # group
-
-      # if Entities.groups == undefined
-      #   @findGroupOnApi(id)
-      # else
-      #   @findGroupOnCollection(id)
 
     findGroupOnCollection: (id)->
       group = Entities.groups.get(id)
@@ -153,3 +156,9 @@
 
   AlumNet.reqres.setHandler 'group:find', (id)->
     API.findGroup(id)
+
+  AlumNet.reqres.setHandler 'group:entities:admin', (querySearch)->
+    API.getGroupsForAdmin(querySearch)
+
+  AlumNet.reqres.setHandler 'subgroups:entities:admin', (group_id)->
+    API.getSubGroupsForAdmin(group_id)

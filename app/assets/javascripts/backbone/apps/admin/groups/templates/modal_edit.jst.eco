@@ -1,0 +1,115 @@
+<% selected = (option, value)->  if option == value then "selected" else "" %>
+<% parent_id = if @parent then @parent.id else ""%>
+
+<form>
+  <h3 class="textColor--blue"><%= @name %></h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group has-feedback">
+          <label class="control-label">Name of the group</label>
+          <input type="text" name="name"  id="group-name"  class="form-control"
+            value="<%= @name %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group has-feedback">
+          <label class="control-label">Group's Description</label>
+          <textarea name="description" id="group-description"
+          class="form-control" rows="4" style="resize:none"
+          ><%= @description %></textarea>
+        </div>
+      </div>
+    </div>
+<!--     <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Group's cover</label>
+          <input type="file" name="cover"  id="group-cover" >
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div> -->
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Type of Group</label>
+          <select class="form-control" id="group-type" name="group_type">
+            <option value="open" <%= selected(0, @group_type.value) %>>Open</option>
+            <option value="closed" <%= selected(1, @group_type.value) %>>Closed</option>
+            <option value="secret" <%= selected(2, @group_type.value) %>>Secret</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Official Group</label>
+            <select class="form-control" name="official" id="official">
+              <option value="0" <%= selected(false, @official) %>>
+                it's not an official group
+              </option>
+              <% if @can_be_official : %>
+                <option value="1" <%= selected(true, @official) %>>
+                  it's an official group
+                </option>
+              <% end %>
+            </select>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Country</label>
+          <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">City</label>
+          <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.value %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Join Process</label>
+          <select class="form-control" id="join-process" name="join_process">
+            <option value="0" <%= selected(0, @join_process) %>>
+              All Members can invite
+            </option>
+            <option value="1" <%= selected(1, @join_process) %>>
+              All Members can invite, but the admins approved
+            </option>
+            <option value="2"<%= selected(2, @join_process) %>>
+              Only the admins can invite
+            </option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Parent Group</label>
+          <input class="js-groups" type="hidden" name="parent_id" id="parent-group" style="width: 100%"
+            value="<%= parent_id  %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+</div>
+</form>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-danger js-modal-delete pull-left" >Delete</a>
+
+  <a href="#" class="btn btn-primary js-modal-save" >Save</a>
+  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
+</div>
