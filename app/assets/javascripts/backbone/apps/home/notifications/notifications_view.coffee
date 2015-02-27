@@ -1,6 +1,7 @@
 @AlumNet.module 'HomeApp.Notifications', (Notifications, @AlumNet, Backbone, Marionette, $, _) ->
   class Notifications.NotificationView extends Marionette.ItemView
     template: 'home/notifications/templates/notification'
+    className: 'notification row js-notification'
 
     ui:
       'linkMarkRead': '#js-mark-as-read'
@@ -30,7 +31,7 @@
   class Notifications.NotificationsView extends Marionette.CompositeView
     template: 'home/notifications/templates/notifications_container'
     childView: Notifications.NotificationView
-    childViewContainer: ".notifications-container"
+    childViewContainer: ".container"
     events:
       'click #js-mark-all-read': "markAllAsRead"
 
