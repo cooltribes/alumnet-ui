@@ -26,8 +26,11 @@
           post.save data,
             wait: true
             success: (model, response, options) ->
-              #user.posts.fetch()
               posts.collection.add(model, {at: 0})
+
+        posts.on "childview:post:edit", (postView, value)->
+          post = postView.model
+          post.save { body: value }
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->

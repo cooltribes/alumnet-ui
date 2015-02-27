@@ -41,15 +41,35 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
+
     initialize: (options)->
       @group = options.group
       @current_user = options.current_user
+
     templateHelpers: ->
+      permissions = @model.get('permissions')
       userCanComment: @group.userIsMember()
       current_user_avatar: @current_user.get('avatar').medium
+      canEdit: permissions.canEdit
+      canDelete: permissions.canDelete
+
     childViewOptions: ->
       group: @group
       current_user: @current_user
+
+    onRender: ->
+      view = this
+      @ui.bodyPost.editable
+        type: 'textarea'
+        pk: view.model.id
+        title: 'Edit Posts'
+        toggle: 'manual'
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        success: (response, newValue)->
+          view.trigger 'post:edit', newValue
+
     ui:
       'item': '.item'
       'gotoComment': '.js-goto-comment'
@@ -57,11 +77,17 @@
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
       'textareaComment': 'textarea.comment'
+      'editLink': '#js-edit-post'
+      'deleteLink': '#js-delete-post'
+      'bodyPost': '#js-body-post'
+
     events:
       'keypress .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
       'click .js-goto-comment': 'clickedGotoComment'
+      'click @ui.editLink': 'clickedEdit'
+      'click @ui.deleteLink': 'clickedDelete'
 
     commentSend: (e)->
       e.stopPropagation()
@@ -71,6 +97,16 @@
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
+
+    clickedEdit: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.bodyPost.editable('toggle')
+
+    clickedDelete: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @model.destroy()
 
     clickedLike: (e)->
       e.stopPropagation()
