@@ -1,4 +1,4 @@
-  <div class="col-md-4">
+  <div class="col-md-4 notification__info">
     <h2 class="notification__userName">User name</h2>
     <small><%= moment(@created_at).fromNow() %></small>
   </div>
@@ -7,6 +7,7 @@
   </div>
   <div class="col-md-7">
     <div class="notification__contentBox">
+      <span> <%= @subject %></span><br>
       <p>
         <%= @body %>
       </p>
