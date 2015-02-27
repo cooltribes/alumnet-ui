@@ -10,8 +10,16 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ><a href="#admin/groups" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon"></span> Browse Groups</a></li>
-        <li ><a href="#admin/groups/deleted" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon"></span> Deleted Groups</a></li>
+        <li class="<%= @classOf(0)%>">
+          <a href="#admin/groups" class="navTopSubBar__link" title="Invites">
+            <span class="navTopSubBar__icon glyphicon"></span> Browse Groups
+          </a>
+        </li>
+        <li class="<%= @classOf(1)%>">
+          <a href="#admin/groups/deleted" class="navTopSubBar__link" title="Invites">
+            <span class="navTopSubBar__icon glyphicon"></span> Deleted Groups
+          </a>
+        </li>
       </ul>
     </div>
   </div>
