@@ -8,13 +8,18 @@ DESCRIPTION: CSS for styling a list of groups
 
 
 .groupTableView{
-	background-color: @white;	
+	background-color: @white;
 
-	&__tr:hover{
+	&__cover{
+
+	}	
+
+	tr{
 		
-		box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.2);
-		-webkit-box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.2);
-		cursor: pointer;
+		&:hover{
+			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+			cursor: pointer;
+		}
 	}
 
 	th{
@@ -27,8 +32,12 @@ DESCRIPTION: CSS for styling a list of groups
 	td{
 		border:1px solid #dddddd;
 	}
+	
+	table > tbody > tr > td&__colOne{
+       width: 62%;
+   	}
 
-	table > tbody > tr > td&__col{
+	table > tbody > tr > td &__col{
        vertical-align: middle;
        text-align: center;
    	}
@@ -38,7 +47,7 @@ DESCRIPTION: CSS for styling a list of groups
 	}
 
 	&__ribbon{
-        background: url('/assets/groups/ribbon-orange-noShadow.png') no-repeat;
+        background: image-url('groups/ribbon-orange-noShadow.png') no-repeat;
         background-size: contain;
         display: block;
         height: 100px;

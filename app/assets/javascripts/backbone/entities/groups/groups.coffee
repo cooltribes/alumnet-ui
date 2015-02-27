@@ -83,6 +83,17 @@
     url: ->
       AlumNet.api_endpoint + '/groups/' + @get('group_id') + '/join'
 
+  class Entities.DeletedGroup extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/admin/deleted/groups/'
+
+  class Entities.DeletedGroupCollection extends Backbone.Collection
+    model: Entities.DeletedGroup
+
+    url: ->
+      AlumNet.api_endpoint + '/admin/deleted/groups/'
+
+
   initializeGroups = ->
     Entities.groups = new Entities.GroupCollection
 
@@ -105,6 +116,12 @@
     getGroupsForAdmin: (querySearch)->
       groups = new Entities.GroupCollection
       groups.url = AlumNet.api_endpoint + '/admin/groups'
+      groups.fetch
+        data: querySearch
+      groups
+
+    getGroupsDeleted: (querySearch)->
+      groups = new Entities.DeletedGroupCollection
       groups.fetch
         data: querySearch
       groups
@@ -162,3 +179,6 @@
 
   AlumNet.reqres.setHandler 'subgroups:entities:admin', (group_id)->
     API.getSubGroupsForAdmin(group_id)
+
+  AlumNet.reqres.setHandler 'group:entities:deleted', (querySearch)->
+    API.getGroupsDeleted(querySearch)
