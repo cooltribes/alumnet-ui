@@ -1,0 +1,18 @@
+@AlumNet.module 'AdminApp.GroupsSubmenu', (GroupsSubmenu, @AlumNet, Backbone, Marionette, $, _) ->
+  class GroupsSubmenu.Menu extends Marionette.ItemView
+    template: 'admin/groups/submenu/templates/submenu'
+
+  API =
+    renderSubmenu: (view)->
+      if view == null
+        AlumNet.submenuRegion.empty()
+      else
+        if view == undefined
+          submenu = new GroupsSubmenu.Menu
+        else
+          submenu = view
+        AlumNet.submenuRegion.reset()
+        AlumNet.submenuRegion.show(submenu)
+
+  AlumNet.commands.setHandler 'render:admin:groups:submenu',(view) ->
+    API.renderSubmenu(view)

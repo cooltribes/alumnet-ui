@@ -1,10 +1,10 @@
-@AlumNet.module 'UsersApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'PrivacyApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
-    template: 'users/submenu/templates/submenu'
+    template: 'privacy/submenu/templates/submenu'
     className: 'navTopSubBar'
 
   API =
-    renderSubmenu: (view, options)->
+    renderSubmenu: (view, options)->      
       AlumNet.submenuRegion.reset() if options.reset
 
       if view == null
@@ -14,8 +14,7 @@
           submenu = new Submenu.Menu
         else
           submenu = view
-        AlumNet.submenuRegion.reset()
-        AlumNet.submenuRegion.show(submenu)
+        AlumNet.submenuRegion.show(submenu)        
 
-  AlumNet.commands.setHandler 'render:users:submenu',(view, options = {}) ->
+  AlumNet.commands.setHandler 'render:privacy:submenu',(view, options = {}) ->
     API.renderSubmenu(view, options)

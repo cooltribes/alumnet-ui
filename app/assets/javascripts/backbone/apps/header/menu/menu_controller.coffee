@@ -2,7 +2,7 @@
   class Menu.Controller
     show: ->
       current_user = AlumNet.current_user
-
+      AlumNet.headerRegion.reset()
       menuLayout = new Menu.MenuBar
         model: current_user
 
@@ -19,16 +19,14 @@
         menuLayout.messagesBox.show(messagesList)
         menuLayout.notificationsBox.show(notificationsList)
 
-
       else
         menuLayout = new Menu.MenuBar
           model: current_user
         AlumNet.headerRegion.show(menuLayout)
 
-
     showAdmin: ->
       current_user = AlumNet.current_user
-
+      AlumNet.headerRegion.reset()
       if current_user.isAlumnetAdmin()
         menuLayout = new Menu.AdminBar
           model: current_user

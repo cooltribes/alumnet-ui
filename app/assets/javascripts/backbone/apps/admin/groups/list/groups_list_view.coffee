@@ -1,13 +1,13 @@
-@AlumNet.module 'AdminApp.Groups', (Groups, @AlumNet, Backbone, Marionette, $, _) ->
-  class Groups.Layout extends Marionette.LayoutView
-    template: 'admin/groups/templates/layout'
+@AlumNet.module 'AdminApp.GroupsList', (GroupsList, @AlumNet, Backbone, Marionette, $, _) ->
+  class GroupsList.Layout extends Marionette.LayoutView
+    template: 'admin/groups/list/templates/layout'
     className: 'container'
     regions:
       search: '#search-region'
       table: '#table-region'
 
-  class Groups.GroupView extends Marionette.ItemView
-    template: 'admin/groups/templates/group'
+  class GroupsList.GroupView extends Marionette.ItemView
+    template: 'admin/groups/list/templates/group'
     tagName: "tr"
 
     initialize: ->
@@ -35,19 +35,17 @@
     ui:
       'editLink': '.js-edit'
       'subGroupsLink': '#js-show-subgroups'
-      'AdminsTd': '.js-show-admins'
 
     events:
       'click @ui.editLink': 'editClicked'
       'click @ui.subGroupsLink': 'subGroupsClicked'
-      'hover @adminsTd': 'showAdmins'
 
     renderView: ->
       @render()
 
     editClicked: (e)->
       e.preventDefault()
-      modal = new Groups.ModalEdit
+      modal = new GroupsList.ModalEdit
         model: @model #group
       $('#container-modal-edit').html(modal.render().el)
 
@@ -56,13 +54,9 @@
       subgroups = AlumNet.request('subgroups:entities:admin', @model.id, {})
       @trigger 'subgroups:show', subgroups
 
-    showAdmins: (e)->
-      e.preventDefault()
-      console.log @model.get('admins')
-
-  class Groups.GroupsTable extends Marionette.CompositeView
-    template: 'admin/groups/templates/groups_table'
-    childView: Groups.GroupView
+  class GroupsList.GroupsTable extends Marionette.CompositeView
+    template: 'admin/groups/list/templates/groups_table'
+    childView: GroupsList.GroupView
     childViewContainer: "#groups-table tbody"
     initialize: (options)->
       @linksGroups = options.linksGroups
@@ -86,8 +80,8 @@
       e.preventDefault()
       @trigger 'groups:home'
 
-  class Groups.ModalEdit extends Backbone.Modal
-    template: 'admin/groups/templates/modal_edit'
+  class GroupsList.ModalEdit extends Backbone.Modal
+    template: 'admin/groups/list/templates/modal_edit'
     cancelEl: '.js-modal-close'
 
     events:
