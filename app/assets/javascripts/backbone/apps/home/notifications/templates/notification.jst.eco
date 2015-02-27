@@ -1,15 +1,22 @@
-<div class="messageCard js-notification">
-	<div class="messageCard__content">
-		<h5 class="messageCard__title"> <%= @body %> </h5>
-		<span class="messageCard__date">
-			<%= moment(@created_at).fromNow() %>
-		</span>
-	</div>
-  <%= @is_read %>
-  <% if @is_read: %>
-    <a href="#" id="js-mark-as-unread">Mark as Unread</a>
-  <% else: %>
-    <a href="#" id="js-mark-as-read">Mark as Read</a>
-  <% end %>
-  <a href="#" id="js-delete">Delete</a>
-</div>
+  <div class="col-md-4">
+    <h2 class="notification__userName">User name</h2>
+    <small><%= moment(@created_at).fromNow() %></small>
+  </div>
+  <div class="col-md-1">
+    <img src="http://lorempixel.com/100/100/" class="img-circle img-responsive" alt="">
+  </div>
+  <div class="col-md-7">
+    <div class="notification__contentBox">
+      <p>
+        <%= @body %>
+      </p>
+      
+      <% if @is_read: %>
+      <% console.log this %>
+      <a href="#" id="js-mark-as-unread">Mark as Unread</a>
+      <% else: %>
+      <a href="#" id="js-mark-as-read">Mark as Read</a>
+      <% end %>
+      <a href="#" id="js-delete">Delete</a>
+    </div>
+  </div>

@@ -22,7 +22,7 @@
       else
         if view == undefined
           submenu = new GroupsSubmenu.Menu
-          tab: tab
+            tab: tab
         else
           submenu = view
         AlumNet.submenuRegion.reset()

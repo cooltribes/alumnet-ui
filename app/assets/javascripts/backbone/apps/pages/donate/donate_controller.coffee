@@ -3,7 +3,4 @@
     showDonate: ->
       page = new Donate.View
       AlumNet.mainRegion.show(page)
-
-
-
-
+      AlumNet.execute('render:pages:submenu')
