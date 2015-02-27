@@ -48,9 +48,22 @@
         return @profile.get("gender")
       "No gender"
 
+    getBornDate: ()->
+      born = @profile.get('born')
+      array = []
+      array.push(born.year) if born.year
+      array.push(born.month) if born.month
+      array.push(born.day) if born.day
+      array.join("/")
+
     getBornComplete: ()->
       date = if @profile.get("born") then @profile.get("born") else "No birth date"
-      @getOriginLocation() + " in " + date
+      array = []
+      array.push(@getOriginLocation())
+      array.push(@getBornDate()) if @getBornDate()
+      console.log array
+      array.join(" in ")
+
 
     getAge: ()->
         if @profile.get("born")
@@ -63,12 +76,12 @@
     getOriginLocation: ()->
       if @profile.get("birth_city")
         return "#{@profile.get("birth_city").text} - #{@profile.get("birth_country").text}"
-      "No origin location"
+      null
 
     getCurrentLocation: ()->
       if @profile.get("residence_city")
         return "#{@profile.get("residence_city").text} - #{@profile.get("residence_country").text}"
-      "No residence location"
+      null
 
     getLC: ()->
       if @profile.get("local_committee")
@@ -79,8 +92,8 @@
       @get('friendship_status') == 'accepted'
 
     isCurrentUser: ()->
-      @id == AlumNet.current_user.id  
-      
+      @id == AlumNet.current_user.id
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -103,7 +116,7 @@
       else
         null
 
-    getCurrentUser: () ->    
+    getCurrentUser: () ->
       @current_user ||= @getCurrentUserFromApi()
 
     getCurrentUserFromApi: ->

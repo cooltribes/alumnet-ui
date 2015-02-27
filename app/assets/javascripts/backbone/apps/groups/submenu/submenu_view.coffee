@@ -23,7 +23,7 @@
       else
         if view == undefined
           submenu = new Submenu.Menu
-          tab: tab
+            tab: tab
         else
           submenu = view
         AlumNet.submenuRegion.reset()

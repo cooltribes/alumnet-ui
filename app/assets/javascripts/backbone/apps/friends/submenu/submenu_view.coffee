@@ -20,20 +20,6 @@
       classOf: (step) =>
         @class[step]
 
-    clickLink: (e) ->
-      #$(e.currentTarget).parent().addClass("active")
-      #$(e.currentTarget).parent().parent().siblings().children().removeClass("active")
-      e.preventDefault()
-      e.stopPropagation()
-      id = $(e.currentTarget).attr('id').substring(3)
-
-      @toggleLink(id)
-
-    toggleLink: (id)->
-      link = $("#js-#{id}")
-      this.$("[id^=js-]").parent().removeClass("active")
-      link.parent().addClass("active")
-
   API =
     renderSubmenu: (view,tab)->
       if view == null

@@ -12,10 +12,13 @@
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
-        console.log post.url()
         post.save data,
           success: (model, response, options) ->
             posts.collection.add(model, {at: 0})
+
+      posts.on "childview:post:edit", (postView, value)->
+        post = postView.model
+        post.save { body: value }
 
       #Listen each post
       posts.on "childview:comment:submit", (postView, data) ->
@@ -59,3 +62,7 @@
           success: (model)->
             comment.remLike()
             commentView.remLike()
+
+      posts.on "childview:comment:edit", (postView, commentView, value)->
+        comment = commentView.model
+        comment.save { comment: value }
