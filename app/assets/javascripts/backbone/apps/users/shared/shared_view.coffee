@@ -5,11 +5,11 @@
     ui:
       "editPic": "#js-editPic"  
       "modalCont": "#js-picture-modal-container"  
-      requestLink: '#js-request-send'   
+      requestLink: '#js-request-send'   #Id agregado
 
     events:
       "click @ui.editPic": "editPic"
-      'click #js-request-send':'sendRequest'
+      'click #js-request-send':'sendRequest' #Evento agregado
 
     modelEvents:
       "change": "modelChange"
