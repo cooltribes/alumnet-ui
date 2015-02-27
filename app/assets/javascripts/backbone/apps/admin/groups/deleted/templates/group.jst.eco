@@ -13,16 +13,14 @@
   <td><%= @getParentName() %></td>
   <td>
     <%= @getSubgroupsCount() %><br>
-    <% unless @getSubgroupsCount() == 0: %>
-      <a href="#" id="js-show-subgroups">Show</a>
-    <% end %>
   </td>
   <td>
       <a href="#users/<%= @creator.id %>/about"><%= @creator.name %></a><br>
       <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
   </td>
-  <td class="js-show-admins"><%= @getAdminsCount() %></td>
-  <td><%= @getAlumniCount() %></td>
+  <td class="js-show-admins">--</td>
+  <td>--</td>
   <td class="tableAdmin__actions">
-    <button class="js-edit"><span class="icon-entypo-cog"></span></button>
+    <a href="#" id="js-group-destroy">Destroy</a>
+    <a href="#" id="js-group-restore">Restore</a>
   </td>

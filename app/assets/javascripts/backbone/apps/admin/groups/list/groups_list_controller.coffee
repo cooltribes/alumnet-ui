@@ -1,16 +1,16 @@
-@AlumNet.module 'AdminApp.Groups', (Groups, @AlumNet, Backbone, Marionette, $, _) ->
-  class Groups.Controller
-    manageGroups: ->
-      AlumNet.execute('render:admin:submenu')
+@AlumNet.module 'AdminApp.GroupsList', (GroupsList, @AlumNet, Backbone, Marionette, $, _) ->
+  class GroupsList.Controller
+    groupsList: ->
       groups = AlumNet.request('group:entities:admin', {})
 
-      layoutView = new Groups.Layout
-      groupsTable = new Groups.GroupsTable
+      layoutView = new GroupsList.Layout
+      groupsTable = new GroupsList.GroupsTable
         collection: groups
         linksGroups: []
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(groupsTable)
+      AlumNet.execute('render:admin:groups:submenu',undefined, 0)
 
       reRenderTable = (collection)->
         groupsTable.collection = collection if collection

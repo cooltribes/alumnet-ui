@@ -3,7 +3,4 @@
     showAbout: ->
       page = new About.View
       AlumNet.mainRegion.show(page)
-
-
-
-
+      AlumNet.execute('render:pages:submenu')

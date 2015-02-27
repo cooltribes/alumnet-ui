@@ -14,9 +14,9 @@
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								
+
 								<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-								
+
 							<% end %>
 						</select>
 					</div>
@@ -26,7 +26,7 @@
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>	
+								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
 							<% end %>
 						</select>
 					</div>
@@ -55,7 +55,7 @@
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>	
+								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
 							<% end %>
 						</select>
 					</div>

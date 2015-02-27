@@ -1,11 +1,6 @@
-@AlumNet.module 'FriendsApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
-  class Submenu.Menu extends Marionette.ItemView
-    template: 'friends/submenu/templates/submenu'
-    className: 'navTopSubBar'
-
-    ui:
-      'linkMenu':'#js-discover, #js-friend'
-
+@AlumNet.module 'AdminApp.GroupsSubmenu', (GroupsSubmenu, @AlumNet, Backbone, Marionette, $, _) ->
+  class GroupsSubmenu.Menu extends Marionette.ItemView
+    template: 'admin/groups/submenu/templates/submenu'
 
     initialize: (options) ->
       @tab = options.tab
@@ -26,12 +21,12 @@
         AlumNet.submenuRegion.empty()
       else
         if view == undefined
-          submenu = new Submenu.Menu
+          submenu = new GroupsSubmenu.Menu
             tab: tab
         else
           submenu = view
         AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:friends:submenu',(view,tab) ->
+  AlumNet.commands.setHandler 'render:admin:groups:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)

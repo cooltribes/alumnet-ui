@@ -1,10 +1,10 @@
-@AlumNet.module 'RegistrationApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'PagesApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
-    template: 'registration/submenu/templates/submenu'
+    template: 'admin/submenu/templates/submenu'
     className: 'navTopSubBar'
 
   API =
-    renderSubmenu: (view)->
+    renderSubmenu: (view)->            
       if view == null
         AlumNet.submenuRegion.empty()
       else
@@ -12,8 +12,8 @@
           submenu = new Submenu.Menu
         else
           submenu = view
-        AlumNet.submenuRegion.reset()
+        # console.log submenu  
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:registration:submenu',(view) ->
+  AlumNet.commands.setHandler 'render:admin:submenu',(view) ->    
     API.renderSubmenu(view)
