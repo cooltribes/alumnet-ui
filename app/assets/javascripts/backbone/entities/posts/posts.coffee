@@ -1,6 +1,5 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Post extends Backbone.Model
-
     initialize: ->
       @comments = new Entities.CommentsCollection
       @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
@@ -33,8 +32,6 @@
 
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
-      #   comparator: (m) ->
-      # - Date.parse m.get('last_activity_at')
 
   API =
     getNewPostForGroup: (group_id)->

@@ -9,7 +9,7 @@
       <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
-    <p> <%= @body %></p>
+    <p id="js-body-post"> <%= @body %></p>
     <% if @userCanComment: %>
       <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
       <div class="groupPost__btn--like">
@@ -21,13 +21,16 @@
       </div>
     <% end %>
     (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-    <!-- 2 Last avatars that have liked this post - ON
-    <img width="20px" height="20px" src="assets/groups/people-like-face.png" class=""><img width="20px" height="20px" src="assets/groups/people-like-face.png" class="margin_left_small_minus">
-     OFF -->
+    <% if @canEdit: %>
+      <a href="#" id='js-edit-post'>edit</a>
+    <% end %>
+    <% if @canDelete: %>
+      <a href="#" id='js-delete-post'>delete</a>
+    <% end %>
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
-
-  <% if @userCanComment: %>
+<h1>
+<% if @userCanComment: %>
     <form class="groupPost__commentForm clearfix form">
       <div class="groupPost__commentForm__avatar">
         <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">

@@ -9,7 +9,7 @@
       <h4 class="postCard__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
       <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
-    <p> <%= @body %></p>
+    <p id="js-body-post"> <%= @body %></p>
       <div class="postCard__btn--like">
       <% if @you_like: %>
         <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
@@ -18,7 +18,12 @@
       <% end %>
       </div>
     (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-
+    <% if @canEdit: %>
+      <a href="#" id='js-edit-post'>edit</a>
+    <% end %>
+    <% if @canDelete: %>
+      <a href="#" id='js-delete-post'>delete</a>
+    <% end %>
   </div>
   <div class="postCard__commentsContainer comments-container"></div>
 

@@ -62,8 +62,7 @@
 
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
-        born = new Date(born).getFullYear()
-        born + 15
+        parseInt(born.year) + 15
 
     onRender: ->
       @cleanAllSelects()
@@ -90,7 +89,7 @@
       type = $(e.currentTarget).val()
       @setAllCountries type
 
-    setAllCountries: (type)->      
+    setAllCountries: (type)->
       if type == "Local" || type == "National"
         dataCountries = AlumNet.request('get:filtered:countries', type)
       else if type == "International"
