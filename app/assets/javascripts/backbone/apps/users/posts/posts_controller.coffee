@@ -71,6 +71,9 @@
           unlike.save {},
             success: ->
               commentView.remLike()
+        posts.on "childview:comment:edit", (postView, commentView, value)->
+          comment = commentView.model
+          comment.save { comment: value }
 
       user.on 'find:error', (response, options)->
         ##Logic here the user not exists or is not authorizate

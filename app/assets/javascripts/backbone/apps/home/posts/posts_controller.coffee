@@ -62,3 +62,7 @@
           success: (model)->
             comment.remLike()
             commentView.remLike()
+
+      posts.on "childview:comment:edit", (postView, commentView, value)->
+        comment = commentView.model
+        comment.save { comment: value }

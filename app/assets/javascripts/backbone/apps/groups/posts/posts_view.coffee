@@ -6,16 +6,49 @@
     initialize: (options)->
       @group = options.group
       @current_user = options.current_user
+
     templateHelpers: ->
+      permissions = @model.get('permissions')
       userCanComment: @group.userIsMember()
-      current_user_avatar: @current_user.get('avatar').medium
+      canEdit: permissions.canEdit
+      canDelete: permissions.canDelete
+
+    onRender: ->
+      view = this
+      @ui.commentText.editable
+        type: 'textarea'
+        pk: view.model.id
+        title: 'Edit Posts'
+        toggle: 'manual'
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        success: (response, newValue)->
+          view.trigger 'comment:edit', newValue
 
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
+      'editLink': '#js-edit-comment'
+      'deleteLink': '#js-delete-comment'
+      'commentText': '#js-comment-text'
+
     events:
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
+      'click @ui.editLink': 'clickedEdit'
+      'click @ui.deleteLink': 'clickedDelete'
+
+
+    clickedEdit: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.commentText.editable('toggle')
+
+    clickedDelete: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @model.destroy()
 
     clickedLike: (e)->
       e.stopPropagation()
@@ -141,6 +174,8 @@
         @trigger 'comment:like', commentView
       @on 'childview:comment:unlike', (commentView) ->
         @trigger 'comment:unlike', commentView
+      @on 'childview:comment:edit', (commentView, newValue) ->
+        @trigger 'comment:edit', commentView, newValue
 
   class Posts.PostsView extends Marionette.CompositeView
     template: 'groups/posts/templates/posts_container'

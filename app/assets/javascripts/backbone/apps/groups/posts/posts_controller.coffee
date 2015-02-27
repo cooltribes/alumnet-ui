@@ -84,6 +84,8 @@
             unlike.save {},
               success: ->
                 commentView.remLike()
-
+          posts.on "childview:comment:edit", (postView, commentView, value)->
+            comment = commentView.model
+            comment.save { comment: value }
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
