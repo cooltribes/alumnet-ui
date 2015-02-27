@@ -61,6 +61,7 @@
       array = []
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
+      console.log array
       array.join(" in ")
 
 
@@ -75,12 +76,12 @@
     getOriginLocation: ()->
       if @profile.get("birth_city")
         return "#{@profile.get("birth_city").text} - #{@profile.get("birth_country").text}"
-      "No origin location"
+      null
 
     getCurrentLocation: ()->
       if @profile.get("residence_city")
         return "#{@profile.get("residence_city").text} - #{@profile.get("residence_country").text}"
-      "No residence location"
+      null
 
     getLC: ()->
       if @profile.get("local_committee")
