@@ -19,7 +19,7 @@
   <% end %>
 
   <button>
-    <a href="#" itle="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+Friend</a>
+    <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+FRIEND</a>
   </button>  
 
 
