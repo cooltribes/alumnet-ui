@@ -24,7 +24,7 @@
         return "Add an international valid phone. (e.g. +0580000000 )"  
       else if contact_type == '7'
         required: true
-        return "Add your website as https://www.example.com"
+        return "Add a valid website. (eg. https://www.example.com)"
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
