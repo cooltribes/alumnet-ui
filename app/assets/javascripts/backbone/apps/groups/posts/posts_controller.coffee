@@ -30,8 +30,11 @@
             post = AlumNet.request('post:group:new', group.id)
             post.save data,
              success: (model, response, options)->
-              #group.posts.fetch()
               posts.collection.add(model, {at: 0})
+
+          posts.on "childview:post:edit", (postView, value)->
+            post = postView.model
+            post.save { body: value }
 
           posts.on 'join', () ->
             attrs = { group_id: group.get('id'), user_id: current_user.id }
@@ -81,6 +84,8 @@
             unlike.save {},
               success: ->
                 commentView.remLike()
-
+          posts.on "childview:comment:edit", (postView, commentView, value)->
+            comment = commentView.model
+            comment.save { comment: value }
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

@@ -10,22 +10,30 @@
 </h3>
 
 <ul class="metaInfoCard__list">
-	<li>
-		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> Born:</span> <%= @getBorn() %>
 
-		<% if @userCanEdit: %>
-		  <a href="#" id="js-editBorn">[Edit]</a>  	
-		<% end %>
+	<% if @getBorn(): %>		
+		<li>
+			<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> <%= @getBorn() %>
 
 
-	</li>
+			<% if @userCanEdit: %>
+			  <a href="#" id="js-editBorn">[Edit]</a>  	
+			<% end %>
+
+
+		</li>
+	<% end %>
 	
-	<li>
-		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %>
-		<% if @userCanEdit: %>
-		  <a href="#" id="js-editResidence">[Edit]</a>  	
-		<% end %>
-	</li>
+
+	<% if @getLocation(): %>
+		<li>
+			<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> <%= @getLocation() %>
+			<% if @userCanEdit: %>
+			  <a href="#" id="js-editResidence">[Edit]</a>  	
+			<% end %>
+		</li>
+	<% end %>
+
 	
 	<% if @canShowEmail(): %>
 		<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
