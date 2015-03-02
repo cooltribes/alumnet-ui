@@ -16,11 +16,15 @@
       contact_type = @get('contact_type')
       pattern = /([+]\d+)/
       if contact_type == '0'
-        Backbone.Validation.validators.pattern(value, attr, 'email', @)
+        Backbone.Validation.validators.pattern(value, attr, 'email', @)     
       else if contact_type == '1'
         Backbone.Validation.validators.pattern(value, attr, pattern, @)
+      else if contact_type == '2'  
+        required: true
+        return "Add an international valid phone. (e.g. +0580000000 )"  
       else if contact_type == '7'
-        Backbone.Validation.validators.pattern(value, attr, 'url', @)
+        required: true
+        return "Add your website as https://www.example.com"
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
