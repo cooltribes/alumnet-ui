@@ -37,14 +37,12 @@
             emails = collection.where 
               contact_type: 0
             user.email_contact = emails[0]  
-            user.trigger("add:phone:email")      
+            user.trigger("add:phone:email")    
 
             #Get all except the phone and email
             newCollection = collection.filter (model)->              
-              a = model.get("contact_type") != 0 && model.get("contact_type") != 1
-              b = model.canShow(user.get "friendship_status")
-              a && b  
-            
+              model.get("contact_type") != 0 && model.get("contact_type") != 1              
+                          
             collection.reset(newCollection)
 
         expCollection = new AlumNet.Entities.ExperienceCollection   
@@ -71,7 +69,6 @@
               collection.addTitles()
 
                 # collection.addExperiencesTitles()
-        window.col = expCollection
         
         body = new About.View
           model: user
@@ -97,12 +94,12 @@
           collection: expCollection
           userCanEdit: userCanEdit
           
-        @setEditActions(skillsView, 0)  
-        @setEditActions(languagesView, 1)  
-        @setEditActions(contactsView, 2)         
-        @setEditActions(profileView, 3)  
-        @setEditActions(header, 4)  
-        @setEditActions(experiencesView, 5)  
+        @setEditActions skillsView, 0 
+        @setEditActions languagesView, 1 
+        @setEditActions contactsView, 2        
+        @setEditActions profileView, 3 
+        @setEditActions header, 4 
+        @setEditActions experiencesView, 5 
           
 
         AlumNet.mainRegion.show(layout)

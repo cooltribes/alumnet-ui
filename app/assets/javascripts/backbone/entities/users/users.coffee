@@ -61,7 +61,6 @@
       array = []
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
-      console.log array
       array.join(" in ")
 
 
