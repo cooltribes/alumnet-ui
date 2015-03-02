@@ -10,7 +10,7 @@
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(groupsTable)
-      AlumNet.execute('render:admin:groups:submenu',undefined, 0)
+      AlumNet.execute('render:admin:groups:submenu', undefined, 0)
 
       reRenderTable = (collection)->
         groupsTable.collection = collection if collection
