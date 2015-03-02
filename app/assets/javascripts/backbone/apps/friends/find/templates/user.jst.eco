@@ -12,9 +12,9 @@
       <a href="#" id="js-delete-friendship" title="Cancel request">
         <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
           <span class="invitation">
-            <span class="userCard__actions__text">Cancel request</span> 
-            <span class="glyphicon glyphicon-time"></span>
-            <span class="glyphicon glyphicon-remove"></span>
+            <span class="userCard__actions__text">CANCEL</span> 
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-time"></span> 
           </span>
         </div>
       </a>
@@ -25,13 +25,15 @@
       <span class="invitation">
         <a href="#" id="js-accept-friendship" title="Approve friend request">
           <div class="userCard__actions--Approve userCard__animation">
-            <span class="userCard__actions__text">Approve</span>
+            <span class="userCard__actions__text">ACCEPT</span>
+            <span class="glyphicon glyphicon-user"></span> 
             <span class="glyphicon glyphicon-ok"></span>
           </div>
         </a>
         <a href="#" id="js-delete-friendship" title="Decline friend request">
           <div class="userCard__actions--Decline userCard__animation">
-            <span class="userCard__actions__text">Decline</span> 
+            <span class="userCard__actions__text">REJECT</span> 
+            <span class="glyphicon glyphicon-user"></span> 
             <span class="glyphicon glyphicon-remove"></span>
           </div>
         </a>
@@ -43,10 +45,13 @@
     <% else if @friendship_status == "accepted": %>
     <div class=" col-md-3 ">
       <a href="#" id="js-delete-friendship"  class="" title="Unfriend">
-        <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
+        <div id="link-container" class="userCard__actions userCard__animation userCard__actions--unFriend">
           <span class="invitation">
             <span class="userCard__actions__text">UNFRIEND <!--<span class="glyphicon glyphicon-remove">--></span>
-            <span><span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-ok"></span>  </span>    
+            <span>
+              <span class="glyphicon glyphicon-user"></span> 
+              <span class="glyphicon glyphicon-ok"></span>
+            </span>    
           </span>
         </div>
       </a> 
@@ -61,7 +66,7 @@
     <% else: %>
     <div class=" col-md-3 ">
       <a href="#" id="js-request-friendship" title="Send friend request">
-        <div id="link-container" class="userCard__actions userCard__animation">
+        <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
           <span class="invitation">
             <span class="userCard__actions__text">ADD FRIEND</span>
             <span class="icon-entypo-user-add"></span> 
