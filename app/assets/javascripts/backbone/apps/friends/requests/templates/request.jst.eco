@@ -7,7 +7,7 @@
     </div>
     <div class=" col-md-6 ">
       <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @requester.name %></a></h4>
-      <p class="member-position text-small"><%= @last_experience %></p>
+      <p class="member-position text-small"><%= @requester.last_experience %></p>
     </div>
     <div class=" col-md-3">
       <a href="#" id="js-accept-friendship" title="Approve friend request">
@@ -18,7 +18,7 @@
       </a>
       <a href="#" id="js-delete-friendship" title="Decline friend request">
         <div class="userCard__actions--Decline userCard__animation">
-          <span class="userCard__actions__text">Decline</span> 
+          <span class="userCard__actions__text">Decline</span>
           <span class="glyphicon glyphicon-remove"></span>
         </div>
       </a>
@@ -35,13 +35,13 @@
     </div>
     <div class=" col-md-6 ">
       <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @friend.name %></a></h4>
-      <p class="member-position text-small"><%= @last_experience %></p>
+      <p class="member-position text-small"><%= @friend.last_experience %></p>
     </div>
     <div class=" col-md-3 ">
       <a href="#" id="js-delete-friendship" title="Cancel request">
         <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
           <span class="invitation">
-            <span class="userCard__actions__text">Cancel request</span> 
+            <span class="userCard__actions__text">Cancel request</span>
             <span class="glyphicon glyphicon-time"></span>
             <span class="glyphicon glyphicon-remove"></span>
           </span>
