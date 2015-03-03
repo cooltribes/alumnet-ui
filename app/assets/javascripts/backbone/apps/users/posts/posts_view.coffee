@@ -45,7 +45,9 @@
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @model.destroy()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
 
     clickedLike: (e)->
       e.stopPropagation()
@@ -131,7 +133,9 @@
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @model.destroy()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()
