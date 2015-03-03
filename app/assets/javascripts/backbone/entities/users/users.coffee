@@ -61,7 +61,6 @@
       array = []
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
-      console.log array
       array.join(" in ")
 
 
@@ -98,8 +97,16 @@
   class Entities.UserCollection extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/users'
-
     model: Entities.User
+
+  class Entities.DeletedUser extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/admin/deleted/users/'
+
+  class Entities.DeletedUserCollection extends Backbone.Collection
+    model: Entities.DeletedUser
+    url: ->
+      AlumNet.api_endpoint + '/admin/deleted/users/'
 
 
   ### Other functions and utils###
@@ -159,6 +166,12 @@
           model.trigger('find:success', response, options)
       user
 
+    getUsersDeleted: (querySearch)->
+      users = new Entities.DeletedUserCollection
+      users.fetch
+        data: querySearch
+      users
+
   AlumNet.reqres.setHandler 'user:token', ->
     API.getCurrentUserToken()
 
@@ -185,3 +198,6 @@
 
   AlumNet.reqres.setHandler 'user:find', (id)->
     API.findUser(id)
+
+  AlumNet.reqres.setHandler 'user:entities:deleted', (querySearch)->
+    API.getUsersDeleted(querySearch)

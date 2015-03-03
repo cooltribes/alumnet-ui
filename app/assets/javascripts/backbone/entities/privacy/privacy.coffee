@@ -1,6 +1,6 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Entities.Privacy extends Backbone.Model
+  class Entities.PrivacyAction extends Backbone.Model
     validation:
       value:
         range: [0,2]
@@ -8,7 +8,7 @@
     
 
   class Entities.PrivacyCollection extends Backbone.Collection
-    model: Entities.Privacy
+    model: Entities.PrivacyAction
     url: ->
       AlumNet.api_endpoint + '/me/privacies'
 
