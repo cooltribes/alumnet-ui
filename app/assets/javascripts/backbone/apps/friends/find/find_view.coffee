@@ -7,10 +7,10 @@
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
     ui:
-      linkContainer: '#link-container'
-      requestLink: '#js-request-friendship'
-      acceptLink: '#js-accept-friendship'
-      deleteLink: '#js-delete-friendship'
+      'linkContainer': '#link-container'
+      'requestLink': '#js-request-friendship'
+      'acceptLink': '#js-accept-friendship'
+      'deleteLink': '#js-delete-friendship'
     events:
       'click #js-request-friendship':'clickedRequest'
       'click #js-accept-friendship':'clickedAccept'
