@@ -93,6 +93,13 @@
     isCurrentUser: ()->
       @id == AlumNet.current_user.id
 
+    getRole: ()->
+      if @get('is_system_admin')
+        "system"
+      else if @get('is_alumnet_admin')
+        "alumnet"
+      else
+        "regular"
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

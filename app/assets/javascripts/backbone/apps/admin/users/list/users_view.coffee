@@ -21,6 +21,7 @@
     events:
       'click #editStatus': 'openStatus'
       'click #delete-user': 'deleteUser'
+      'click #editRole': 'openRole'
 
 
     initialize: (options) ->
@@ -40,7 +41,16 @@
         model: @model
         modals: @modals
 
-      @modals.show(statusView);
+      @modals.show(statusView)
+
+    openRole: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalRole
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
 
   #----Modal para cambiar le status
   class Users.ModalStatus extends Backbone.Modal
@@ -48,9 +58,6 @@
 
     cancelEl: '#close-btn, #goBack'
     submitEl: "#save-status"
-
-    events:
-      'click #save-status': 'saveStatus'
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
@@ -65,6 +72,32 @@
         type: "PUT"
         success: (data) =>
           @model.set(data)
+        error: (data) =>
+          text = data.responseJSON[0]
+          $.growl.error({ message: text })
+
+  #----Modal para cambiar el rol
+  class Users.ModalRole extends Backbone.Modal
+    template: 'admin/users/list/templates/modal_role'
+
+    cancelEl: '#close-btn, #goBack'
+    submitEl: "#save-role"
+
+    initialize: ->
+      @model.set('roleText', @model.getRole())
+
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      id = @model.id
+      url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
+
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        data: data
+        success: (data) =>
+          @model.set(data)
+          @model.trigger 'change:role'
         error: (data) =>
           text = data.responseJSON[0]
           $.growl.error({ message: text })
@@ -90,10 +123,12 @@
 
     initialize: (options) ->
       @modals = options.modals
-      @listenTo(@model, 'change:status', @modelChange)
+      @listenTo(@model, 'change:status, change:role', @modelChange)
 
 
     templateHelpers: () ->
+
+      getRoleText: @model.getRole()
 
       getAge: ()->
         if @profileData.born

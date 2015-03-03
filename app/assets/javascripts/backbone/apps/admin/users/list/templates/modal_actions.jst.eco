@@ -13,6 +13,12 @@
      <br/>
     Approve new registrants, revoque access or delete this user.
   </p>
+  <br/>
+  <p>
+    <a href="#" id="editRole" title="Edit user role" class="fontSize--md"> Edit User Role</a>
+     <br/>
+    Change the role of User.
+  </p>
 </div>
 <div class="bbm-modal__bottombar">
   <a href="#" class="btn btn-danger pull-left" id="delete-user" >Delete</a>
