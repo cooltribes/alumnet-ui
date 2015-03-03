@@ -201,5 +201,4 @@
     API.findUser(id)
 
   AlumNet.reqres.setHandler 'user:entities:deleted', (querySearch)->
-    API.getUsersList(querySearch)
-    # API.getUsersDeleted(querySearch)
+    API.getUsersDeleted(querySearch)

@@ -27,9 +27,11 @@
       @modals = options.modals
 
     deleteUser: (e)->
-      e.preventDefault();
-      console.log @model.url()
-      @destroy()
+      e.preventDefault()
+      resp = confirm("¿Are you sure?")
+      if resp
+        @model.destroy()
+        @destroy()
 
     openStatus: (e) ->
       e.preventDefault();
