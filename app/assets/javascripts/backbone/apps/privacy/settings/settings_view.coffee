@@ -40,6 +40,8 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    templateHelpers: ->
+      userId: AlumNet.current_user.id          
 
     modelChange: (e)->
       @model.save()
