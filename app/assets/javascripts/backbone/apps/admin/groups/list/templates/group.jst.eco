@@ -3,10 +3,12 @@
   </td>
   <td>
     <% if @official: %>
-      <span class="groupTableView__ribbon"></span>
+      <span class="tableAdmin__ribbon"></span>
     <% end %>
-    <a href="#groups/<%= @id %>/about"><h4><%= @name %></h4> </a>
-    <span class="label <% if @group_type.value== 1: %>label-warning<% end %><% if @group_type.value== 0: %>label-success<% end %>">
+    <a href="#groups/<%= @id %>/about">
+      <h4 class="tableAdmin__groupName"><%= @name %></h4> 
+    </a>
+    <span class="tableAdmin__label label <% if @group_type.value== 1: %>label-warning<% end %><% if @group_type.value== 0: %>label-success<% end %>">
       <% if @group_type.value== 1: %>
         Closed
       <% end %>
@@ -17,18 +19,26 @@
   </td>
   <td class="tableAdmin__colText"><%= @getLocation() %></td>
   <td class="tableAdmin__colText"><%= @getParentName() %></td>
-  <td class="tableAdmin__colText">
-    <%= @getSubgroupsCount() %><br>
+  <td class="tableAdmin__colText tableAdmin__subGroup">
+    <% if @getSubgroupsCount()== 0: %>
+        --
+    <% end %>
+    <% if @getSubgroupsCount()>0: %>
+        <%= @getSubgroupsCount() %>
+    <% end %>
+    <br>
     <% unless @getSubgroupsCount() == 0: %>
       <a href="#" id="js-show-subgroups">Show</a>
     <% end %>
   </td>
   <td class="tableAdmin__colText">
-      <a href="#users/<%= @creator.id %>/about"><%= @creator.name %></a><br>
+      <a class="tableAdmin__creator" href="#users/<%= @creator.id %>/about">
+        <%= @creator.name %>
+      </a><br>
       <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
   </td>
   <td class="js-show-admins tableAdmin__colText"><%= @getAdminsCount() %></td>
   <td class="tableAdmin__colText"><%= @getAlumniCount() %></td>
-  <td class="tableAdmin__actions tableAdmin__colText">
-    <button class="js-edit"><span class="icon-entypo-cog"></span></button>
+  <td class="tableAdmin__edit">
+    <button class="js-edit tableAdmin__btnEdit"><span class="icon-entypo-cog"></span></button>
   </td>

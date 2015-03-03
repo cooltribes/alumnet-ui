@@ -1,6 +1,8 @@
-<div class="breadcrumb-subgroups">
-	<% if _.size(@links) > 0 : %>
-		<a href="#" id="js-groups-home">Main Groups >> </a>
+<% if _.size(@links) > 0 : %>
+	<div class="breadcrumb-subgroups tableAdmin__subGroup___breadcrumb">
+		<a href="#" id="js-groups-home"> 
+			<span class="glyphicon glyphicon-home"></span> Main Groups 
+			<span class="glyphicon glyphicon-menu-right"></span> </a>
 		<% _.each @links, (link, index, links)->: %>
 			<% if index == (_.size(links) - 1): %>
 				<%= link.name %>
@@ -11,20 +13,21 @@
 				</a>
 			<% end %>
 		<% end %>
-	<% end %>
-</div>
+	</div>
+<% end %>
+
 
 <table class="table tableAdmin" id="groups-table">
 	<thead>
 		<tr>
-		  <th colspan="2">Name</th>
-		  <th>Location</th>
-		  <th>Parent Group</th>
-		  <th>SubGroups</th>
-		  <th>Created By</th>
-		  <th>Admins</th>
-		  <th>Alumni</th>
-		  <th>Edit</th>
+		  <th colspan="2" class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Name</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Location</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Parent Group</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">SubGroups</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Created By</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Admins</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Alumni</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Edit</th>
 		</tr>
 	</thead>
 	<tbody></tbody>
