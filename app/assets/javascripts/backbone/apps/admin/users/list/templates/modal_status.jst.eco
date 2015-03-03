@@ -1,3 +1,4 @@
+<% selected = (option, value)->  if option == value then "selected" else "" %>
 <div class="bbm-modal__topbar">
   <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %></h3>
 </div>
@@ -7,9 +8,8 @@
     <p>
     <form>
       <select name="status" class="form-control input-lg ">
-        <!-- <option value="<% #@status.id %>"><% #@status.text %></option> -->
-        <option value="0">Inactive</option>
-        <option value="1">Active</option>
+        <option value="0" <%= selected(0, @status.value) %>>Inactive</option>
+        <option value="1"<%= selected(1, @status.value) %>>Active</option>
       </select>
     </form>
   </p>

@@ -54,20 +54,20 @@
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
-
+      id = @model.id
       if data.status == "1"
-        id = @model.id
         url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
+      else
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/inactivate"
 
-        Backbone.ajax
-          url: url
-          type: "PUT"
-          error: (data) =>
-          success: (data) =>
-            #Update the model and re-render the itemView
-            @model.fetch
-              success: (model)->
-                model.trigger("change")
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        success: (data) =>
+          @model.set(data)
+        error: (data) =>
+          text = data.responseJSON[0]
+          $.growl.error({ message: text })
 
 
   #----Modal para cambiarle el plan de membresia a un user----
@@ -88,12 +88,9 @@
     events:
       'click @ui.btnEdit': 'showActions'
 
-    modelEvents:
-      "change": "modelChange"
-
-
     initialize: (options) ->
       @modals = options.modals
+      @listenTo(@model, 'change:status', @modelChange)
 
 
     templateHelpers: () ->
@@ -189,8 +186,6 @@
 
     sumbitForm: (e)->
       e.preventDefault()
-      console.log "eeeeee"
-
 
     removeRow: (e)->
       @model.destroy()
