@@ -1,7 +1,6 @@
 <span id="description"></span>
 
-<% console.log this %>
-<% if @value > -1: %>
+<% if @value > -1: %>  
   
   <select class="pull-right" name="value">    
   </select>

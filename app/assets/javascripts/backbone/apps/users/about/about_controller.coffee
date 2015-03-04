@@ -29,14 +29,21 @@
         contacts.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/contact_infos"
         contacts.fetch
           success: (collection, response, options) ->
-            #Adding the phone to the profile info
+            #Adding the phone and the email to the profile info
             phones = collection.where 
               contact_type: 1
 
-            user.phone = phones[0]  
+            if phones.length
+              user.phone = phones[0]  
+              user.phone.urlRoot = contacts.url
+
             emails = collection.where 
               contact_type: 0
-            user.email_contact = emails[0]  
+
+            if emails.length
+              user.email_contact = emails[0]  
+              user.email_contact.urlRoot = contacts.url
+            
             user.trigger("add:phone:email")    
 
             #Get all except the phone and email
