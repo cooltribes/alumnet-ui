@@ -1,5 +1,5 @@
 <div class="experienceCard">
-	<h3 class="experienceCard__title js-title">
+	<h3 class="experienceCard__title js-title" style="display: inline">
 		<%= @name %>
 		<% if @userCanEdit: %>
 
@@ -11,6 +11,10 @@
 
 		<% end %>
 	</h3>
+
+	<% if @userCanEdit: %>
+		<select class="pull-right margin_right_small" name="privacy"></select>
+	<% end %>
 	
 	<% if @getOrganization(): %>
 		<h4>

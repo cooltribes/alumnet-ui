@@ -502,6 +502,22 @@
       "click @ui.editExp": "editExp"
       "click @ui.btnRmv": "removeItem"  
 
+    bindings:
+      "[name=privacy]":
+        observe: "privacy"  
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]
+
     modelEvents:
       "change": "modelChange"
     
@@ -540,6 +556,9 @@
       getEndDate: ->
         model.getEndDate()
     
+    onRender: ->
+      @stickit()
+
     addExp: (e)->
       e.preventDefault()
       @trigger "add:exp"
@@ -556,6 +575,8 @@
         @model.destroy()
 
     modelChange: ->
+      if @model.hasChanged("privacy")
+        @model.save()
       @render()      
 
 
