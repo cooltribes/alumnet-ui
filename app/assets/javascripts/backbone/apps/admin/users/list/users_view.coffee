@@ -28,10 +28,10 @@
 
     deleteUser: (e)->
       e.preventDefault()
-      resp = confirm("¿Are you sure?")
+      resp = confirm("Are you sure?")
       if resp
         @model.destroy()
-        @destroy()
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.        
 
     openStatus: (e) ->
       e.preventDefault();

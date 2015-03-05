@@ -189,7 +189,6 @@
           view.on "submit:avatar", (data)->
             
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            console.log data
             @model.profile.save data,
               wait: true
               data: data

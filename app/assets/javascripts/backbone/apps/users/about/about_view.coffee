@@ -366,7 +366,6 @@
         @listenTo(@model.email_contact, 'change', @changeEmail)        
       
     changePhone: ->
-      console.log @model.phone
       @model.phone.save()
 
     changeEmail: ->
@@ -503,8 +502,6 @@
         @model.destroy()
 
     modelChange: (e)->
-      console.log @model
-      console.log @model.url
       @model.save()
 
     onRender: ->
