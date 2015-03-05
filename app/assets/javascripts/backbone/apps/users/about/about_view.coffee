@@ -324,21 +324,10 @@
         model.getEmail()        
       
       getPhone: ->
-        if model.phone then model.phone.get "info" else "No Phone"
-
-      canShowPhone: ->      
-        if model.phone?    
-          friend = model.get "friendship_status"
-          model.phone.canShow(friend)  
-        else
-          false  
+        if model.phone? then model.phone.get "info" else ""
       
-      canShowEmail: ->    
-        if model.email_contact?    
-          friend = model.get "friendship_status"
-          model.email_contact.canShow(friend) 
-        else
-          false  
+      hasEmail: ->    
+        model.email_contact?    
         
     modelEvents:
       "add:phone:email change": "modelChange"
@@ -434,8 +423,7 @@
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
-    
+      @userCanEdit = options.userCanEdit    
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -444,6 +432,25 @@
 
     events:
       "click .js-rmvRow": "removeItem"
+
+    modelEvents:
+      "change": "modelChange"
+
+    bindings:
+      "[name=privacy]": 
+        observe: "privacy"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]  
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -454,6 +461,14 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
+
+    modelChange: (e)->
+      console.log @model
+      console.log @model.url
+      @model.save()
+
+    onRender: ->
+      @stickit()
   
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact    
@@ -486,6 +501,22 @@
       "click @ui.addExp": "addExp"
       "click @ui.editExp": "editExp"
       "click @ui.btnRmv": "removeItem"  
+
+    bindings:
+      "[name=privacy]":
+        observe: "privacy"  
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]
 
     modelEvents:
       "change": "modelChange"
@@ -525,6 +556,9 @@
       getEndDate: ->
         model.getEndDate()
     
+    onRender: ->
+      @stickit()
+
     addExp: (e)->
       e.preventDefault()
       @trigger "add:exp"
@@ -541,6 +575,8 @@
         @model.destroy()
 
     modelChange: ->
+      if @model.hasChanged("privacy")
+        @model.save()
       @render()      
 
 

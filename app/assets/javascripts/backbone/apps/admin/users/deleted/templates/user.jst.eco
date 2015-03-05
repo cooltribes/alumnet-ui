@@ -1,0 +1,8 @@
+<td><img src="<%= @avatar.medium %>"> </td>
+<td><a href="#users/<%= @id %>/about"><%= @getName() %></a></td>
+<td><%= @getEmail() %></td>
+<td><%= @getJoinTime() %></td>
+<td class="tableAdmin__actions">
+  <a href="#" id="js-user-destroy">Destroy</a>
+  <a href="#" id="js-user-restore">Restore</a>
+</td>

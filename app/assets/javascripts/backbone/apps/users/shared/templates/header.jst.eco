@@ -22,7 +22,10 @@
     <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+FRIEND</a>
   </button>  
 
-
+  c
+  <script type="text/javascript">
+    Console.log <% @user %>
+    </script>
      
 </div>
 <div id="js-picture-modal-container">
