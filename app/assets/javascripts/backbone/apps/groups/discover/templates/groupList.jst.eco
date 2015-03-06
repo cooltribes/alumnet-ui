@@ -1,5 +1,4 @@
 	<td>
-		
 		<div class="col-lg-2 col-md-2 groupTableView__cover" style="background: url('<%= @cover.card %>') no-repeat top center;">
         <% if @official: %>
 				  <span class="groupTableView__ribbon"></span>
