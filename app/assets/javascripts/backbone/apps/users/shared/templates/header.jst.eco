@@ -18,14 +18,9 @@
     <a id="js-editPic" class="btn btn-lg btn-default" href="#" style="position: absolute; left: 30px; bottom: 30px;">Change avatar</a>
   <% end %>
 
-  <button>
-    <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+FRIEND</a>
-  </button>  
 
-  c
-  <script type="text/javascript">
-    Console.log <% @user %>
-    </script>
+    <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+ ADD FRIEND</a>
+ 
      
 </div>
 <div id="js-picture-modal-container">
