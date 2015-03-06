@@ -16,6 +16,9 @@
     regions:
       body: '.friends-list'
 
+    #modelEvents:
+      #"change": "modelChange"  
+
     initialize: (options) ->
       @tab = options.tab
       @class = [
@@ -56,6 +59,10 @@
       link = $("#js-#{id}")
       this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
       link.addClass("sortingMenu__item__link--active")
+
+    #modelChange: ->
+      #@render()  
+      #console.log "modelo_renderizado"
 
   API =
     getFriendsLayout: (model, tab)->

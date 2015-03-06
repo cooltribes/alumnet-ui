@@ -14,7 +14,8 @@
       requestsView.on 'childview:delete', (childView)->        
         friendship = childView.model
         friendship.destroy()
-        friendships.remove(friendship)        
+        friendships.remove(friendship)
+
 
       layout.body.show(requestsView)
       
@@ -27,8 +28,13 @@
       requestsView.on 'childview:delete', (childView)->        
         friendship = childView.model
         friendship.destroy()
-        friendships.remove(friendship)   
-
+        friendships.remove(friendship)        
+        layout.model.fetch
+          success: ->
+            layout.render()
+            
+            #layout.show.tab = 1 #Render the view with tab !
+          
       layout.body.show(requestsView)    
 
     showReceived: ->
