@@ -24,8 +24,6 @@ DESCRIPTION: CSS for styling a list of groups
 	}
 
 	& > tbody > tr{
-		height: 105px;
-
 		background-color: @white;
 		&:hover{
 			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
@@ -33,34 +31,34 @@ DESCRIPTION: CSS for styling a list of groups
 		}
 	}
 
-	th{
+	table& > thead > tr> th{
 		background-color: @main-bg;
 		border: none;
 		text-transform: uppercase;
 		color: @blue-gray;
-		width: 79px;
+		min-width: 79px;
 		text-align: center;
 
 		&:nth-child(1){
-			width:700px;
+			min-width:700px;
 		}
 		&:nth-child(6){
-			width:130px;
+			min-width:130px;
 		}
 	}
 	
 	table& > tbody > tr > td:nth-child(1){
-       width: 700px;
+       min-width: 700px;
    	}
 
    	table& > tbody > tr > td:nth-child(6){
-       width: 130px;
+       min-width: 130px;
    	}
 
 	table > tbody > tr > td&__col{
        vertical-align: middle;
        text-align: center;
-       width: 79px;
+       min-width: 79px;
 
        &Text{
        		padding: 0px 10px;

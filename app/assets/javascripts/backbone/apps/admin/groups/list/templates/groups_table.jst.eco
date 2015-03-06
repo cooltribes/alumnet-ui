@@ -17,7 +17,7 @@
 <% end %>
 
 
-<table class="table tableAdmin" id="groups-table">
+<table class="table tableAdminGroups" id="groups-table">
 	<thead>
 		<tr>
 		  <th colspan="2" class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Name</th>
