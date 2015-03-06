@@ -22,6 +22,9 @@
     <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+ ADD FRIEND</a>
   <% end %> 
 
+  <% if @friendship_status: %>
+    <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage btn btn-lg">SEND A MESSAGE</a>
+  <% end %> 
  
      
 </div>
