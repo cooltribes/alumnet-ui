@@ -1,6 +1,6 @@
 @AlumNet.module 'FriendsApp.Requests', (Requests, @AlumNet, Backbone, Marionette, $, _) ->
   class Requests.Controller
-    showMyReceived: (layout)->      
+    showMyReceived: (layout)->
       friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
@@ -11,25 +11,27 @@
         friendship.save()
         friendships.remove(friendship)
 
-      requestsView.on 'childview:delete', (childView)->        
+      requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
-        friendships.remove(friendship)        
+        friendships.remove(friendship)
 
       layout.body.show(requestsView)
-      
+
     showMySent: (layout)->
 
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
 
-      requestsView.on 'childview:delete', (childView)->        
+      requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
-        friendships.remove(friendship)   
+        friendships.remove(friendship)
+        layout.model.decrementCount('pending_sent_friendships')
 
-      layout.body.show(requestsView)    
+
+      layout.body.show(requestsView)
 
     showReceived: ->
       current_user = AlumNet.current_user
@@ -38,7 +40,7 @@
       requestsView = new Requests.RequestsView
         collection: friendships
 
-      current_user = AlumNet.current_user  
+      current_user = AlumNet.current_user
 
       layout = AlumNet.request("my:friends:layout", current_user, 2)
 
@@ -68,7 +70,7 @@
       requestsView = new Requests.RequestsView
         collection: friendships
 
-      current_user = AlumNet.current_user  
+      current_user = AlumNet.current_user
 
       layout = AlumNet.request("my:friends:layout", current_user, 1)
 
@@ -76,4 +78,4 @@
       layout.body.show(requestsView)
 
       AlumNet.execute('render:friends:submenu')
-      
+
