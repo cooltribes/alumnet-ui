@@ -50,7 +50,7 @@
 
     templateHelpers: ->
       model = @model
-
+      month= @MonthType
       inProfile: @inProfile
 
       isEditing: @model.isEditing
