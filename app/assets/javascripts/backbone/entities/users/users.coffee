@@ -115,6 +115,11 @@
       else
         "regular"
 
+    decrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value - val)
+      @get("#{counter}_count")
+
   class Entities.UserCollection extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/users'

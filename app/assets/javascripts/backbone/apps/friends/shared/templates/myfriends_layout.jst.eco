@@ -15,22 +15,22 @@
 					<!-- <div class="text-right">
 									<a href="#" title="Advance search" data-toggle="collapse" data-target="#advanceSearch" aria-expanded="true" aria-controls="advanceSearch">Advance search</a>
 					</div> -->
-					
+
 				</form>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 </div>
 
 <!-- Friends List -->
 <div class="container-fluid ">
 	<div class="row ">
-		
+
 		<div class="col-md-9">
 			<ul class="sortingMenu" id="filter-link-container">
-				
+
 				<li class="sortingMenu__item sortingMenu__item--lg">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
 					<a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(0)%>" id="js-myfriends">Friends (<%= @friends_count %>)
@@ -38,26 +38,29 @@
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
 					<a href="" class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(1)%>" id="js-sent">
-						Sent (<%= @pending_sent_friendships_count %>)
+						<span id="js-sendCount">Sent (<%= @pending_sent_friendships_count %>)</span>
 					</a>
 				</li>
 				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
 					<a href=""  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(2)%>" title="Friends Requests" id="js-received">
-						Received (<%= @pending_received_friendships_count %>)
+						<span id="js-receivedCount">
+							Received (<%= @pending_received_friendships_count %>)
+						</span
+
 					</a>
 				</li>
-				
+
 			</ul>
-			
+
 		</div>
-		
+
 		<!-- <div class="col-md-3 text-right">
 			<a href="#" title="+ import contacts" class="btn-primary-noBackground btn  btn-primary">+ import contacts</a>
 		</div> -->
-		
+
 	</div>
 	<hr class="no_margin_top">
 	<div class="friends-list row">
-		
+
 	</div>
 </div>
