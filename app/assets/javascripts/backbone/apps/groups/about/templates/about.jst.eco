@@ -59,9 +59,14 @@
         <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
-        <h3>
-          <%= @city.text %>, <%= @country.text %>
-        </h3>
+        <% if @city.text && @country.text: %> 
+          <h3>
+            <%= @city.text %><br/><%= @country.text %>
+          </h3>
+        <% else: %>    
+            <h3>No Location</h3>
+        <% end %>
+          
       </div>
       <div class="groupAbout__box margin_bottom">
         <h3>

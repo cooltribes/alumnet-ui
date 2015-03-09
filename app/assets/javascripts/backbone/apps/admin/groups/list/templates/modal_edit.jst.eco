@@ -2,7 +2,8 @@
 <% parent_id = if @parent then @parent.id else ""%>
 
 <form>
-  <h3 class="textColor--blue"><%= @name %></h1>
+  <div class="modalBox__content">
+    <h3 class="textColor--blue"><%= @name %></h3>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-feedback">
@@ -21,16 +22,9 @@
         </div>
       </div>
     </div>
-<!--     <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="control-label">Group's cover</label>
-          <input type="file" name="cover"  id="group-cover" >
-          <span class="help-block"></span>
-        </div>
-      </div>
-    </div> -->
+
     <hr>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -43,6 +37,7 @@
           <span class="help-block"></span>
         </div>
       </div>
+
       <div class="col-md-6">
           <div class="form-group">
             <label class="control-label">Official Group</label>
@@ -59,6 +54,7 @@
           </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -75,6 +71,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -94,6 +91,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -104,7 +102,8 @@
         </div>
       </div>
     </div>
-</div>
+
+  </div>
 </form>
 
 <div class="bbm-modal__bottombar">

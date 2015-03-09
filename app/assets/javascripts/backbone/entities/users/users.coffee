@@ -35,6 +35,10 @@
       status = @get "status"
       if status.value == 1 then true else false
 
+    isBanned: ->
+      status = @get "status"
+      if status.value == 2 then true else false
+
     getName: ()->
       if @get("name").trim()
         return @get("name")
@@ -51,9 +55,19 @@
     getBornDate: ()->
       born = @profile.get('born')
       array = []
+      # array.push(born.year ? "1900")
+      # array.push(born.month ? "01")
+      # array.push(born.day ? "01")
       array.push(born.year) if born.year
       array.push(born.month) if born.month
       array.push(born.day) if born.day
+
+      # date = ""
+      # if born.month
+      #   date = new Date(born.month, born.day)
+      #   console.log date
+      #   console.log moment(date).format("MMMM DD")
+
       array.join("/")
 
     getBornComplete: ()->
@@ -61,7 +75,6 @@
       array = []
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
-      console.log array
       array.join(" in ")
 
 
@@ -94,12 +107,32 @@
     isCurrentUser: ()->
       @id == AlumNet.current_user.id
 
+    getRole: ()->
+      if @get('is_system_admin')
+        "system"
+      else if @get('is_alumnet_admin')
+        "alumnet"
+      else
+        "regular"
+
+    decrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value - val)
+      @get("#{counter}_count")
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/users'
-
     model: Entities.User
+
+  class Entities.DeletedUser extends Backbone.Model
+    urlRoot: ->
+      AlumNet.api_endpoint + '/admin/deleted/users/'
+
+  class Entities.DeletedUserCollection extends Backbone.Collection
+    model: Entities.DeletedUser
+    url: ->
+      AlumNet.api_endpoint + '/admin/deleted/users/'
 
 
   ### Other functions and utils###
@@ -159,6 +192,12 @@
           model.trigger('find:success', response, options)
       user
 
+    getUsersDeleted: (querySearch)->
+      users = new Entities.DeletedUserCollection
+      users.fetch
+        data: querySearch
+      users
+
   AlumNet.reqres.setHandler 'user:token', ->
     API.getCurrentUserToken()
 
@@ -185,3 +224,6 @@
 
   AlumNet.reqres.setHandler 'user:find', (id)->
     API.findUser(id)
+
+  AlumNet.reqres.setHandler 'user:entities:deleted', (querySearch)->
+    API.getUsersDeleted(querySearch)

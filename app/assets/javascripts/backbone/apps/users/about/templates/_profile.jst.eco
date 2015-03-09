@@ -35,16 +35,40 @@
 	<% end %>
 
 	
-	<% if @canShowEmail(): %>
-		<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
+	<% if @getEmail(): %>
+		<li>
+		  
+		  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
+		  <!-- <a href="mailto:"> -->
+		   <%= @getEmail() %>
+		  <!-- </a> -->
+
+			<% if @userCanEdit: %>
+
+			  <select class="pull-right" name="privacyEmail">    
+			  </select>
+
+			<% end %>
+
+			
+		</li>
 	<% end %>
 
-	<% if @canShowPhone(): %>
+	<% if @getPhone(): %>
 		<li>
 			<span class="metaInfoCard__concept">
 			<span class="glyphicon glyphicon-phone">
 			
 			</span> Phone:</span> <%= @getPhone() %>
+
+			<% if @userCanEdit: %>
+
+				<select class="pull-right" name="privacyPhone">    
+			  </select>
+
+			<% end %>
+		  
+
 		</li>
 	<% end %>
 

@@ -2,14 +2,19 @@
 
   class AdminApp.Router extends AlumNet.Routers.Admin
     appRoutes:
-      "admin/users": "manageUsers"
+      "admin/users": "usersList"
       "admin/groups": "groupsList"
+      "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
 
+
   API =
-    manageUsers: ->
+    usersList: ->
       controller = new AdminApp.Users.Controller
-      controller.manageUsers()
+      controller.usersList()
+    usersDeleted: ->
+      controller = new AdminApp.UsersDeleted.Controller
+      controller.usersDeleted()
     groupsList: ->
       controller = new AdminApp.GroupsList.Controller
       controller.groupsList()
@@ -23,7 +28,7 @@
 
   AlumNet.on "admin:users", ->
     AlumNet.navigate("admin/users")
-    API.manageUsers()
+    API.usersList()
 
   AlumNet.on "admin:groups", ->
     AlumNet.navigate("admin/groups")

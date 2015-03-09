@@ -38,9 +38,9 @@
       <div class="col-md-4">
         <div class="form-group">
           <select name="privacy" class="form-control input-lg">
-            <option value="1">Only me</option>
+            <option value="0">Only me</option>
             <option value="2">Everyone</option>
-            <option value="3">Friends</option>
+            <option value="1">Friends</option>
           </select>
           <span class="help-block"></span>
         </div>
