@@ -31,7 +31,7 @@
 
 		<th></th>
 		<th>
-			<span class="glyphicon glyphicon-time"> Last Activity</span>
+			<span class="glyphicon glyphicon-time"> </span>
 		</th>
 		<th>
 			<span class="glyphicon glyphicon-file"></span>

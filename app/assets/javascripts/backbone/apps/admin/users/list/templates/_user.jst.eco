@@ -14,4 +14,5 @@
 <td><%= @getGender() %></td>
 <td><%= @getAge() %></td>
 <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
+<td><%= @getRoleText %></td>
 <td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>
