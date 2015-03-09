@@ -65,13 +65,14 @@
       if data.status == "1"
         url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
       else
-        url = AlumNet.api_endpoint + "/admin/users/#{id}/inactivate"
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/banned"
 
       Backbone.ajax
         url: url
         type: "PUT"
         success: (data) =>
           @model.set(data)
+          @model.trigger 'change:role'
         error: (data) =>
           text = data.responseJSON[0]
           $.growl.error({ message: text })
@@ -123,7 +124,7 @@
 
     initialize: (options) ->
       @modals = options.modals
-      @listenTo(@model, 'change:status, change:role', @modelChange)
+      @listenTo(@model, 'change:role', @modelChange)
 
 
     templateHelpers: () ->

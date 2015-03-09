@@ -35,6 +35,10 @@
       status = @get "status"
       if status.value == 1 then true else false
 
+    isBanned: ->
+      status = @get "status"
+      if status.value == 2 then true else false
+
     getName: ()->
       if @get("name").trim()
         return @get("name")
