@@ -15,4 +15,5 @@
     <a href="#groups/<%= @id %>/invite" title="Invite people to group" class="groupCoverArea__btnInvite btn btn-lg">+ Invite people to group</a>
   <% end %>
 </div>
-<div id="js-modal-cover-container"></div>
+<div id="js-modal-cover-container">  
+</div>

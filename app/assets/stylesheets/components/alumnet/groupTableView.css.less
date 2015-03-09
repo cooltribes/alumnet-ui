@@ -8,14 +8,25 @@ DESCRIPTION: CSS for styling a list of groups
 
 
 .groupTableView{
-	background-color: @white;
+	background-color: transparent;
 
 	&__cover{
-
-	}	
+		background-size:cover; 
+		height: 90px; 
+		width: 90px;
+	}
 
 	tr{
-		
+		border: none;
+		margin-top: 5px;
+		display: block;
+
+	}
+
+	& > tbody > tr{
+		height: 105px;
+
+		background-color: @white;
 		&:hover{
 			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
 			cursor: pointer;
@@ -27,23 +38,40 @@ DESCRIPTION: CSS for styling a list of groups
 		border: none;
 		text-transform: uppercase;
 		color: @blue-gray;
-	}
+		width: 79px;
+		text-align: center;
 
-	td{
-		border:1px solid #dddddd;
+		&:nth-child(1){
+			width:700px;
+		}
+		&:nth-child(6){
+			width:130px;
+		}
 	}
 	
-	table > tbody > tr > td&__colOne{
-       width: 62%;
+	table& > tbody > tr > td:nth-child(1){
+       width: 700px;
    	}
 
-	table > tbody > tr > td &__col{
+   	table& > tbody > tr > td:nth-child(6){
+       width: 130px;
+   	}
+
+	table > tbody > tr > td&__col{
        vertical-align: middle;
        text-align: center;
+       width: 79px;
+
+       &Text{
+       		padding: 0px 10px;
+       }
    	}
 
 	&__label{
-		margin-left: 10px;
+		border-radius: 1em;
+		padding: 2px 10px;
+		font-weight: 400;
+		font-size: 0.7em;
 	}
 
 	&__ribbon{
@@ -87,6 +115,13 @@ DESCRIPTION: CSS for styling a list of groups
 
     &__SubGroupList{
     	list-style: none;
+    }
+
+    &__description{
+    	overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 570px;
     }
 }
 
