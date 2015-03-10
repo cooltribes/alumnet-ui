@@ -24,7 +24,7 @@ DESCRIPTION: CSS for styling the admin tables
 		min-width: 270px;
 
 		&:nth-child(1){
-			min-width: 300px;
+			min-width: 290px;
 		}
 		&:nth-child(4){
 			min-width: 100px;
@@ -50,7 +50,7 @@ DESCRIPTION: CSS for styling the admin tables
 		min-width: 270px;
 
 		&:nth-child(1){
-			min-width: 300px;
+			min-width: 290px;
 		}
 		&:nth-child(4){
 			min-width: 100px;
@@ -188,15 +188,69 @@ DESCRIPTION: CSS for styling the admin tables
 			background-color: @main-dark;
   			z-index: 1000;
   			position: absolute;
-  			top: 100px;
-  			width: 200px;
+  			top: 80px;
+  			width: 350px;
   			right: 0;
-  			opacity: 0.8;
+  			opacity: 1;
   			display:none;
 
   			&List:hover{
-				display:inline;
+				display:block;
 			}
+
+			& ul{
+				list-style: none;
+				padding: 0px;
+				margin:0px;
+			}
+
+			& li{
+				display: table-row;
+
+				&:hover img{
+					border: 3px solid @blue;
+  				}
+
+  				&:hover h3 span{
+					color: @blue;
+  				}
+
+			}
+
+			&__avatar{
+				float: left;
+  				padding: 10px 10px;
+
+  				& img{
+  					width: 50px;
+  					height: 50px;
+  					border: 3px solid @blue-gray;
+
+  				}
+				
+			}
+
+			&__name{
+				float: left;
+  				padding: 10px 15px;
+
+  				& h3{
+  					margin-top: 10px;
+  				}
+
+  				& h3 span{
+  					font-size: 0.6em;
+  				}
+			}
+			
+			&__edit{
+				float: right;
+  				padding: 17px 15px;
+  				font-size: 1.2em;
+  				color: #a1a6aa;
+
+			}
+
 		}
 
 	}

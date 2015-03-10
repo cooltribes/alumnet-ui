@@ -43,14 +43,16 @@
     <ul>
       <% if @admins.length: %>
         <% for admins in @admins: %>
-          <li class"row"> 
-            <div class="col-md-2">
-              <img class="img-circle img-responsive" src="<%= admins.name %>" alt="">
+          <li> 
+            <div class="tableAdminGroups__adminsList__avatar">
+              <img src="<%= admins.avatar %>" class="img-circle img-responsive " alt="">
             </div>
-            <div class="col-md-8">
-              <%= admins.name %>
+            <div class="tableAdminGroups__adminsList__name">
+              <h3><%= admins.name %>
+                <span class="glyphicon glyphicon-asterisk"></span>
+              </h3>
             </div>
-            <div class="col-md-2">
+            <div class="tableAdminGroups__adminsList__edit">
               <span class="icon-entypo-cog"></span>
             </div>
           </li>
