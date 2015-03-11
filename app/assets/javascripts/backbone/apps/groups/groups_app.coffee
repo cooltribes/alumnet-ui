@@ -49,6 +49,9 @@
     listEvents: (id)->
       controller = new GroupsApp.Events.Controller
       controller.listEvents(id)
+    inviteEvent: (event, users)->
+      controller = new GroupsApp.Events.Controller
+      controller.invitations(event, users)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -69,6 +72,9 @@
   AlumNet.on "groups:discover",  ->
     AlumNet.navigate("groups")
     API.discoverGroups()
+
+  AlumNet.on "event:invite", (event, users)->
+    API.inviteEvent(event, users)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

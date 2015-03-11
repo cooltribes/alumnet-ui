@@ -20,6 +20,9 @@
               processData: false
               data: data
               success: (model, response, options)->
+                contacts = AlumNet.request('event:contacts', 'groups', group_id, model.id)
+                AlumNet.trigger('event:invite', model, contacts)
+
             model.save(data, options_for_save)
 
       group.on 'find:error', (response, options)->
@@ -46,3 +49,15 @@
           AlumNet.trigger('show:error', 403)
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
+
+    invitations: (event, users)->
+      event.fetch()
+      users.fetch()
+
+      usersView = new Events.UsersView
+        collection: users
+        model: event
+      AlumNet.mainRegion.show(usersView)
+      AlumNet.execute('render:groups:submenu', null)
+
+

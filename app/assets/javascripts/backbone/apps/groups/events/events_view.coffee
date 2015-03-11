@@ -154,3 +154,62 @@
     childViewContainer: ".main-events-area"
     templateHelpers: ->
       userCanCreateSubGroup: @model.canDo('create_subgroup')
+
+  # INVITE
+
+  class Events.UserView extends Marionette.ItemView
+    template: 'groups/events/templates/user'
+    tagName: 'div'
+    className: 'col-md-4 col-sm-6'
+    initialize: (options)->
+      @event = options.event
+    templateHelpers: ->
+      model = @model
+      wasInvited: ->
+        model.get('attendance_info')
+
+    ui:
+      invitation: '.invitation'
+      inviteLink: 'a.js-invite'
+      infoUser: '#js-info-user'
+      invitationBox: '#js-invitation-box'
+
+    events:
+      'click @ui.inviteLink': 'clickedInvite'
+
+    clickedInvite: (e)->
+      e.preventDefault()
+      attr = {user_id: @model.id, event_id: @event.id}
+      attendance = AlumNet.request('attendance:new')
+      view = @
+      attendance.save attr,
+        success: (model, response, options)->
+          view.removeLink()
+
+    removeLink: ->
+      @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
+      @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
+      @ui.inviteLink.remove()
+      @ui.invitation.append('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
+
+  class Events.UsersView extends Marionette.CompositeView
+    template: 'groups/events/templates/users_container'
+    childView: Events.UserView
+    childViewContainer: ".users-list"
+    childViewOptions: ->
+      event: @model
+
+    events:
+      'click .js-search': 'performSearch'
+
+    performSearch: (e) ->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      this.trigger('users:search', this.buildQuerySearch(data.search_term))
+
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        profile_first_name_cont: searchTerm
+        profile_last_name_cont: searchTerm
+        email_cont: searchTerm

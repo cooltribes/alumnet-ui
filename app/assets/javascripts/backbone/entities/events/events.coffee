@@ -40,6 +40,10 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/attendances'
 
+  class Entities.EventContact extends Backbone.Model
+
+  class Entities.EventContacts extends Backbone.Collection
+    model: Entities.EventContact
 
   API =
     createEvent: (parent, parent_id)->
@@ -52,8 +56,31 @@
       events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       events
 
+    getEventContacts: (parent, parent_id, event_id)->
+      contacts = new Entities.EventContacts
+      contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
+      contacts
+
+    findEvent: (parent, parent_id, id)->
+      evento = new Entities.Event
+        id: id
+      evento.urlRoot = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
+      evento
+
+    newAttendance: ->
+      new Entities.Attendance
+
   AlumNet.reqres.setHandler 'event:new', (parent, parent_id) ->
     API.createEvent(parent, parent_id)
 
   AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
     API.getEvents(parent, parent_id)
+
+  AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
+    API.getEventContacts(parent, parent_id, event_id)
+
+  AlumNet.reqres.setHandler 'event:find', (parent, parent_id, id) ->
+    API.findEvent(parent, parent_id, id)
+
+  AlumNet.reqres.setHandler 'attendance:new', ->
+    API.newAttendance()
