@@ -33,6 +33,7 @@
 
       layout.body.show(requestsView)
 
+
     showReceived: ->
       current_user = AlumNet.current_user
       friendships = AlumNet.request('current_user:friendships:get', 'received')
