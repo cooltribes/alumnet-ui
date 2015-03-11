@@ -24,12 +24,17 @@
       groupCanHaveOfficialSubgroup: @group.canHaveOfficialSubgroup()
 
     ui:
+      'startDate':'#event-start-date'
+      'endDate':'#event-end-date'
+      'startHour':'#event-start-hour'
+      'endHour':'#event-end-hour'
       'selectCountries':'.js-countries'
       'selectCities':'.js-cities'
       'selectInvitationProcess': '#invitation-process'
 
     events:
       'click button.js-submit': 'submitClicked'
+      'click button.js-cancel': 'cancelClicked'
       'change #event-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
@@ -79,6 +84,10 @@
       @model.set(data)
       @trigger 'form:submit', @model, formData
 
+    cancelClicked: (e)->
+      e.preventDefault()
+      AlumNet.trigger 'groups:posts', @group.id
+
     previewImage: (e)->
       input = @.$('#event-cover')
       preview = @.$('#preview-cover')
@@ -89,6 +98,24 @@
         reader.readAsDataURL(input[0].files[0])
 
     onRender: ->
+      #Datepickers
+      @ui.startDate.Zebra_DatePicker
+        direction: true
+        show_icon: false
+        show_select_today: false
+        pair: @ui.endDate
+
+      @ui.endDate.Zebra_DatePicker
+        direction: 1
+        show_icon: false
+        show_select_today: false
+
+      @ui.startHour.clockpicker
+        donetext: 'Select'
+      @ui.endHour.clockpicker
+        donetext: 'Select'
+
+      #Select Locations
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []

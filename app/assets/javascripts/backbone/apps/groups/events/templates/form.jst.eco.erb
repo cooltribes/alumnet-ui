@@ -44,18 +44,17 @@
           </div>
           <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
-              <label class="control-label">Type of Group</label>
+              <label class="control-label">Type of Event</label>
               <select class="form-control input-lg" id="event-type" name="event_type">
                 <option value="open">Open</option>
                 <option value="closed">Closed</option>
                 <option value="secret">Secret</option>
               </select>
-              <p class="text-small">Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</p>
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-4 margin_top_medium">
-            <%% if @userIsAdmin && @groupCanHaveOfficialSubgroup: %>
+            <%% if @userIsAdmin: %>
               <div class="form-group">
                 <label class="control-label">Official Event</label>
                 <select class="form-control input-lg" name="official">
@@ -72,8 +71,47 @@
 
         <div class="row">
           <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Dates</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Start Date</label>
+              <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Start Hour</label>
+              <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">End Date</label>
+              <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">End Hour</label>
+              <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 3 OFF -->
+        <hr>
+        <!-- ROW 4 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
             <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Location (Optional)</h2>
+            <h2 class="textColor--black margin_top_xsmall ">Location</h2>
           </div>
           <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
@@ -89,10 +127,35 @@
               <span class="help-block"></span>
             </div>
           </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-8 margin_top_medium">
+            <div class="form-group">
+              <label class="control-label">Address</label>
+              <input type="text" name="address"  id="event-address"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
         </div>
-        <!-- ROW 3 OFF -->
+        <!-- ROW 4 OFF -->
         <hr>
-        <!-- ROW 4 ON -->
+        <!-- ROW 5 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Capacity</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Maximum of attendants</label>
+              <input type="text" name="capacity"  id="event-capacity"  class="form-control input-lg" placeholder="e.g 200">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 5 OFF -->
+        <hr>
+        <!-- ROW 6 ON -->
 
         <div class="row">
           <div class="col-md-4">
@@ -111,11 +174,11 @@
             </div>
           </div>
         </div>
-        <!-- ROW 4 OFF -->
+        <!-- ROW 6 OFF -->
         <hr>
         <!-- ACTIONS ON -->
         <div class="text-right">
-          <button class="btn btn-default btn-lg">CANCEL</button>
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
           <button class="btn btn-primary btn-lg js-submit">SAVE </button>
         </div>
         <!-- ACTIONS OFF -->
