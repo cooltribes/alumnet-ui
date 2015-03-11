@@ -29,22 +29,27 @@
         contacts.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/contact_infos"
         contacts.fetch
           success: (collection, response, options) ->
-            #Adding the phone to the profile info
+            #Adding the phone and the email to the profile info
             phones = collection.where 
               contact_type: 1
 
-            user.phone = phones[0]  
+            if phones.length
+              user.phone = phones[0]  
+              user.phone.urlRoot = contacts.url
+
             emails = collection.where 
               contact_type: 0
-            user.email_contact = emails[0]  
-            user.trigger("add:phone:email")      
+
+            if emails.length
+              user.email_contact = emails[0]  
+              user.email_contact.urlRoot = contacts.url
+            
+            user.trigger("add:phone:email")    
 
             #Get all except the phone and email
             newCollection = collection.filter (model)->              
-              a = model.get("contact_type") != 0 && model.get("contact_type") != 1
-              b = model.canShow(user.get "friendship_status")
-              a && b  
-            
+              model.get("contact_type") != 0 && model.get("contact_type") != 1              
+                          
             collection.reset(newCollection)
 
         expCollection = new AlumNet.Entities.ExperienceCollection   
@@ -71,7 +76,6 @@
               collection.addTitles()
 
                 # collection.addExperiencesTitles()
-        window.col = expCollection
         
         body = new About.View
           model: user
@@ -97,12 +101,12 @@
           collection: expCollection
           userCanEdit: userCanEdit
           
-        @setEditActions(skillsView, 0)  
-        @setEditActions(languagesView, 1)  
-        @setEditActions(contactsView, 2)         
-        @setEditActions(profileView, 3)  
-        @setEditActions(header, 4)  
-        @setEditActions(experiencesView, 5)  
+        @setEditActions skillsView, 0 
+        @setEditActions languagesView, 1 
+        @setEditActions contactsView, 2        
+        @setEditActions profileView, 3 
+        @setEditActions header, 4 
+        @setEditActions experiencesView, 5 
           
 
         AlumNet.mainRegion.show(layout)
@@ -185,7 +189,6 @@
           view.on "submit:avatar", (data)->
             
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            console.log data
             @model.profile.save data,
               wait: true
               data: data

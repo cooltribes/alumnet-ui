@@ -6,7 +6,13 @@
       #Fetch the collection
       privCollection = new AlumNet.Entities.PrivacyCollection
       privCollection.comparator = "id"
-      privCollection.fetch()
+      privCollection.fetch
+        success: (collection)->
+          #Get the last one and insert one fake model for contact info
+          # collection.at(collection.length - 1)
+          collection.add
+            description: "Who can see my contact information"
+            value: -1
 
 
 

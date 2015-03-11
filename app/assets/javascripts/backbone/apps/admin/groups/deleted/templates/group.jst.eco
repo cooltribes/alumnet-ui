@@ -1,26 +1,26 @@
-  <td>
-    <img src="<%= @cover.admin %>">
-    <%= @official %>
-  </td>
-  <td>
-    <a href="#groups/<%= @id %>/about"><%= @name %></a>
-    <br>
-    <small>
-      <%= @group_type.text %>
-    </small>
-  </td>
-  <td><%= @getLocation() %></td>
-  <td><%= @getParentName() %></td>
-  <td>
-    <%= @getSubgroupsCount() %><br>
-  </td>
-  <td>
-      <a href="#users/<%= @creator.id %>/about"><%= @creator.name %></a><br>
-      <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
-  </td>
-  <td class="js-show-admins">--</td>
-  <td>--</td>
-  <td class="tableAdmin__actions">
-    <a href="#" id="js-group-destroy">Destroy</a>
-    <a href="#" id="js-group-restore">Restore</a>
-  </td>
+<td>
+  <img src="<%= @cover.admin %>">
+  <%= @official %>
+</td>
+<td>
+  <a href="#groups/<%= @id %>/about"><%= @name %></a>
+  <br>
+  <small>
+    <%= @group_type.text %>
+  </small>
+</td>
+<td><%= @getLocation() %></td>
+<td><%= @getParentName() %></td>
+<td>
+  <%= @getSubgroupsCount() %><br>
+</td>
+<td>
+    <a href="#users/<%= @creator.id %>/about"><%= @creator.name %></a><br>
+    <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
+</td>
+<td class="js-show-admins">--</td>
+<td>--</td>
+<td class="tableAdmin__actions">
+  <a href="#" id="js-group-destroy">Destroy</a>
+  <a href="#" id="js-group-restore">Restore</a>
+</td>

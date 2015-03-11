@@ -1,29 +1,39 @@
 @AlumNet.module 'AdminApp.Users', (Users, @AlumNet, Backbone, Marionette, $, _) ->
-  
+
   class Users.Layout extends Marionette.LayoutView
-    template: 'admin/users/templates/layout'    
+    template: 'admin/users/list/templates/layout'
     className: 'container'
     regions:
-      modals: 
-        selector: '#modals-region' 
+      modals:
+        selector: '#modals-region'
         regionClass: Backbone.Marionette.Modals
-      filters: '#filters-region'  
-      main: '#table-region'  
+      filters: '#filters-region'
+      main: '#table-region'
 
 
   #----Modal principal con las acciones----
   class Users.ModalActions extends Backbone.Modal
-    template: 'admin/users/templates/modal_actions'    
+    template: 'admin/users/list/templates/modal_actions'
 
     cancelEl: '#close-btn'
     submitEl: "#save-status"
 
     events:
       'click #editStatus': 'openStatus'
-      
+      'click #delete-user': 'deleteUser'
+      'click #editRole': 'openRole'
+
+
     initialize: (options) ->
       @modals = options.modals
-      
+
+    deleteUser: (e)->
+      e.preventDefault()
+      resp = confirm("Are you sure?")
+      if resp
+        @model.destroy()
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.        
+
     openStatus: (e) ->
       e.preventDefault();
 
@@ -31,104 +41,136 @@
         model: @model
         modals: @modals
 
-      @modals.show(statusView);
-        
+      @modals.show(statusView)
+
+    openRole: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalRole
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
+
   #----Modal para cambiar le status
   class Users.ModalStatus extends Backbone.Modal
-    template: 'admin/users/templates/modal_status'        
+    template: 'admin/users/list/templates/modal_status'
 
     cancelEl: '#close-btn, #goBack'
     submitEl: "#save-status"
 
-    events:
-      'click #save-status': 'saveStatus'
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      id = @model.id
+      if data.status == "1"
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
+      else
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/banned"
+
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        success: (data) =>
+          @model.set(data)
+          @model.trigger 'change:role'
+        error: (data) =>
+          text = data.responseJSON[0]
+          $.growl.error({ message: text })
+
+  #----Modal para cambiar el rol
+  class Users.ModalRole extends Backbone.Modal
+    template: 'admin/users/list/templates/modal_role'
+
+    cancelEl: '#close-btn, #goBack'
+    submitEl: "#save-role"
+
+    initialize: ->
+      @model.set('roleText', @model.getRole())
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
-      
-      if data.status == "1"        
-        id = @model.id
-        url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
+      id = @model.id
+      url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
 
-        Backbone.ajax
-          url: url
-          type: "PUT"
-          error: (data) =>
-          success: (data) =>
-            #Update the model and re-render the itemView
-            @model.fetch
-              success: (model)->
-                model.trigger("change")                
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        data: data
+        success: (data) =>
+          @model.set(data)
+          @model.trigger 'change:role'
+        error: (data) =>
+          text = data.responseJSON[0]
+          $.growl.error({ message: text })
 
 
   #----Modal para cambiarle el plan de membresia a un user----
   class Users.ModalPlan extends Backbone.Modal
-    template: 'admin/users/templates/modal_plan'    
-    
+    template: 'admin/users/list/templates/modal_plan'
+
     viewContainer: '.my-container'
     cancelEl: '#close-btn'
     submitEl: "#save-status"
-    
+
 
 
   class Users.UserView extends Marionette.ItemView
-    template: 'admin/users/templates/_user'
+    template: 'admin/users/list/templates/_user'
     tagName: "tr"
     ui:
       'btnEdit': '.js-edit'
     events:
       'click @ui.btnEdit': 'showActions'
 
-    modelEvents:
-      "change": "modelChange"
-
-
     initialize: (options) ->
       @modals = options.modals
+      @listenTo(@model, 'change:role', @modelChange)
 
 
     templateHelpers: () ->
-             
-      getAge: ()->    
-        if @profileData.born              
-          return moment().diff(@profileData.born, 'years')        
-        "No age"  
-                
-      getJoinTime: ()->            
-        moment(@created_at).fromNow()   
-        
-      getOriginLocation: ()-> 
+
+      getRoleText: @model.getRole()
+
+      getAge: ()->
+        if @profileData.born
+          return moment().diff(@profileData.born, 'years')
+        "No age"
+
+      getJoinTime: ()->
+        moment(@created_at).fromNow()
+
+      getOriginLocation: ()->
         if @profileData.birth_city
           return "#{@profileData.birth_city.text} - #{@profileData.birth_country.text}"
-        "No origin location"  
-      
-      getLC: ()-> 
+        "No origin location"
+
+      getLC: ()->
         if @profileData.local_committee
           return @profileData.local_committee.name
-        "No local committee"  
+        "No local committee"
 
-      getEmail: ()-> 
+      getEmail: ()->
         @email
 
-      getName: ()-> 
+      getName: ()->
         if @name.trim()
           return @name
-        "No name registered"  
+        "No name registered"
 
-      getGender: ()-> 
+      getGender: ()->
         if @profileData.gender
           return @profileData.gender
-        "No gender"  
+        "No gender"
 
     modelChange: ->
-      @render() 
+      @render()
 
 
     showActions: (e)->
       e.stopPropagation()
       e.preventDefault()
-      
-      modalsView = new Users.ModalActions        
+
+      modalsView = new Users.ModalActions
         model: @model
         modals: @modals
 
@@ -136,22 +178,22 @@
 
 
   class Users.UsersTable extends Marionette.CompositeView
-    template: 'admin/users/templates/users_container'
+    template: 'admin/users/list/templates/users_container'
     childView: Users.UserView
-    childViewContainer: "#users-table tbody"    
+    childViewContainer: "#users-table tbody"
 
     initialize: (options) ->
-      @modals = options.modals      
+      @modals = options.modals
 
-    childViewOptions: (model, index) ->      
-      modals: @modals 
-    
+    childViewOptions: (model, index) ->
+      modals: @modals
+
 
 
 
   ###Filters views###
   class Users.Filter extends Marionette.ItemView
-    template: 'admin/users/templates/filter'
+    template: 'admin/users/list/templates/filter'
     tagName: "form"
 
     ui:
@@ -167,7 +209,7 @@
 
     initialize: ->
       Backbone.Validation.bind this,
-        valid: (view, attr, selector) ->          
+        valid: (view, attr, selector) ->
           $el = view.$("[name^=#{attr}]")
           $group = $el.closest('.form-group')
           $group.removeClass('has-error')
@@ -176,28 +218,26 @@
           $el = view.$("[name^=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
-          $group.find('.help-block').html(error).removeClass('hidden')  
+          $group.find('.help-block').html(error).removeClass('hidden')
 
     sumbitForm: (e)->
       e.preventDefault()
-      console.log "eeeeee"
-
 
     removeRow: (e)->
       @model.destroy()
 
 
   class Users.Filters extends Marionette.CompositeView
-    template: 'admin/users/templates/filters_container'
-    
+    template: 'admin/users/list/templates/filters_container'
+
     childView: Users.Filter
     childViewContainer: "#js-filters"
 
     ui:
-      'btnAdd': '.js-addRow'      
-      'btnSearch': '.js-search'      
-      'btnReset': '.js-reset'      
-      'logicOp': '[name=logicOp]'      
+      'btnAdd': '.js-addRow'
+      'btnSearch': '.js-search'
+      'btnReset': '.js-reset'
+      'logicOp': '[name=logicOp]'
 
     events:
       "click @ui.btnAdd": "addRow"
@@ -206,24 +246,24 @@
 
 
     addRow: (e)->
-      newFilter = new AlumNet.Entities.Filter        
-      @collection.add(newFilter)      
+      newFilter = new AlumNet.Entities.Filter
+      @collection.add(newFilter)
 
 
     reset: (e)->
-      @collection.reset()      
+      @collection.reset()
       @trigger('filters:search')
 
     search: (e)->
-      e.preventDefault()      
+      e.preventDefault()
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
-        itemView.model.set data        
+        itemView.model.set data
       @trigger('filters:search')
 
 
 
 
     # initialize: (options) ->
-    #   @modals = options.modals      
-    
+    #   @modals = options.modals
+

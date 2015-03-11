@@ -1,10 +1,14 @@
 <span id="description"></span>
 
-<!-- <div class="form-group"> -->
-
-  <select class="pull-right" name="value">
-    
+<% if @value > -1: %>  
+  
+  <select class="pull-right" name="value">    
   </select>
-  <!-- <span class="help-block"></span> -->
-<!-- </div> -->
+
+<% else: %>
+  
+  <a href="#users/<%= @userId %>/about" class="pull-right" >Edit privacy</a>
+
+<% end %>
+
 

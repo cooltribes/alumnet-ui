@@ -54,29 +54,48 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     }
 
     &--isFriend{
-      background-color: #b2bdc3;
+      background-color: @light-blue;
+      &:hover{
+        background-color: @blue;
+      }
+    }
+    
+    &--unFriend{
+      background-color: @lighter-gray;
+      &:hover{
+        background-color: @light-gray;
+      }
     }
 
     &--Cancel{
-      background-color: @orange;
+      background-color: @light-orange;
+      &:hover{
+        background-color: @orange;
+      }
     }
 
     &--Approve{
       position: relative;
-      background-color:darken(@green, 10%);
+      background-color:@lighter-green;
       color: @white;
       height: 50px;
       margin-top: -10px;
       text-align: center;
       padding-top: 20%;
+      &:hover{
+        background-color: @light-green;
+      }
     }
     &--Decline{
       position: relative;
-      background-color:darken(#d9534f, 10%);
+      background-color:@light-red;
       color: @white;
       height: 50px;
       text-align: center;
       padding-top: 20%;
+      &:hover{
+        background-color: @red;
+      }
     }
    }
    &__GroupAdminActions{
@@ -113,6 +132,13 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       
     }
    }
+
+  &__position{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
    &__approveBox{
     background-color: lighten(@blue, 42%);
     padding-bottom: 10px;
