@@ -19,8 +19,13 @@
     <a id="js-editPic" class="btn btn-lg btn-default" href="#" style="position: absolute; left: 30px; bottom: 30px;">Change avatar</a>
   <% end %>
 
-
+  <% if @friendship_status == "none": %>
     <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+ ADD FRIEND</a>
+  <% end %> 
+
+  <% if @friendship_status: %>
+    <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage btn btn-lg">SEND A MESSAGE</a>
+  <% end %> 
  
      
 </div>

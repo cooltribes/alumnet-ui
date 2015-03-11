@@ -1,6 +1,6 @@
 <div class="form-group has-feedback">
-	<label class="control-label">Name of the profession or course</label>
-	<input type="text" name="name" class="form-control input-lg" value="<%= @name %>" placeholder="Enter profession">
+	<label class="control-label">Degree received/subject area</label>
+	<input type="text" name="name" class="form-control input-lg" value="<%= @name %>" placeholder="Enter degree received/subject area">
 	<span class="formANet__input__icon icon-entypo-graduation-cap form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>

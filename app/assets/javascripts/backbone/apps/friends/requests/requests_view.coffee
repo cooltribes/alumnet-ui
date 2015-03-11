@@ -38,6 +38,7 @@
         filter = 'received'
       @trigger 'get:requests', filter
 
+      
     toggleLink: (filter)->
       if filter == 'sent'
         @ui.filterLinkContainer.html("<li role='presentation' class='sortingMenu__item sortingMenu__item--lg'>

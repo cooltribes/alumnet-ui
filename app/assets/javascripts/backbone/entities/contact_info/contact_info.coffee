@@ -18,14 +18,12 @@
       if contact_type == '0'
         Backbone.Validation.validators.pattern(value, attr, 'email', @)     
       else if contact_type == '1'  
-        required: true
-        return "Add an international valid phone. (e.g. +0580000000 )"  
+        Backbone.Validation.validators.pattern(value, attr, pattern, @)     
       else if contact_type == '2' #skype
         if value.indexOf(" ") > -1 || value == ''
           return "Enter a valid Skype account"
       else if contact_type == '7'
-        required: true
-        return "Add a valid website. (eg. https://www.example.com)"
+        Backbone.Validation.validators.pattern(value, attr, 'url', @)     
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
