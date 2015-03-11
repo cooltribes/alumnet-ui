@@ -10,6 +10,8 @@
       "groups/:id/subgroups/new": "createSubGroup"
       "groups/:id/subgroups": "listSubGroups"
       "groups/:id/events/new": "createEvent"
+      "groups/:id/events": "listEvents"
+
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
@@ -44,6 +46,9 @@
     createEvent: (id)->
       controller = new GroupsApp.Events.Controller
       controller.createEvent(id)
+    listEvents: (id)->
+      controller = new GroupsApp.Events.Controller
+      controller.listEvents(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

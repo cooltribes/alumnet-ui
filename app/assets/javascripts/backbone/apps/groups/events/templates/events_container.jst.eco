@@ -3,12 +3,12 @@
   </div>
   <div class="col-md-3 text-right">
     <% if @userCanCreateSubGroup: %>
-      <a href="#groups/<%= @id %>/subgroups/new" class="btn-primary-noBackground btn btn-lg" title="Add people to group">+ Create a new Subgroup</a>
+      <a href="#groups/<%= @id %>/events/new" class="btn-primary-noBackground btn btn-lg" title="Add people to group">+ Create a new Event</a>
     <% end %>
   </div>
 </div>
 <br>
 <hr class="no_margin_top">
 
-<div class="row main-groups-area"><!-- Begin group container -->
+<div class="row main-events-area"><!-- Begin group container -->
 </div>

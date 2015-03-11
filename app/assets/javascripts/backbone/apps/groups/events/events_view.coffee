@@ -124,28 +124,33 @@
         placeholder: "Select a Country"
         data: data
 
-  # class SubGroups.GroupView extends Marionette.ItemView
-  #   template: 'groups/subgroups/templates/group'
-  #   className: 'col-md-4 col-sm-6 col-xs-12'
-  #   events:
-  #     'click .js-join':'sendJoin'
-  #   ui:
-  #     'groupCard': '.groupCard__atribute__container'
-  #     'groupCardOdd': '.groupCard__atribute__container--odd'
+  class Events.EventView extends Marionette.ItemView
+    template: 'groups/events/templates/event'
+    className: 'col-md-4 col-sm-6 col-xs-12'
 
-  #   sendJoin: (e)->
-  #     e.preventDefault()
-  #     @trigger 'join'
+    templateHelpers: ->
+      location: @model.getLocation()
+      select: (value, option)->
+        if value == option then "selected" else ""
+    ui:
+      attendanceStatus: '#attendance-status'
 
-  #   onRender: ->
-  #     @ui.groupCard.tooltip()
-  #     @ui.groupCardOdd.tooltip()
+    events:
+      'change @ui.attendanceStatus': 'changeAttendanceStatus'
 
-  # class SubGroups.GroupsView extends Marionette.CompositeView
-  #   className: 'ng-scope'
-  #   idName: 'wrapper'
-  #   template: 'groups/subgroups/templates/groups_container'
-  #   childView: SubGroups.GroupView
-  #   childViewContainer: ".main-groups-area"
-  #   templateHelpers: ->
-  #     userCanCreateSubGroup: @model.canDo('create_subgroup')
+    changeAttendanceStatus: (e)->
+      e.preventDefault()
+      status = $(e.currentTarget).val()
+      if status
+        attendance = @model.attendance
+        attendance.set('status', status)
+        attendance.save()
+
+  class Events.EventsView extends Marionette.CompositeView
+    className: 'ng-scope'
+    idName: 'wrapper'
+    template: 'groups/events/templates/events_container'
+    childView: Events.EventView
+    childViewContainer: ".main-events-area"
+    templateHelpers: ->
+      userCanCreateSubGroup: @model.canDo('create_subgroup')

@@ -24,7 +24,7 @@
 					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link">
 						<span class="glyphicon glyphicon-align-left"></span>
 					SubGroup</a></li>
-					<li>  <a href="#groups/<%= @id %>/events/new" id="js-events" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link">
 						<span class="ico-calendar"></span>
 					Events</a></li>
 				<% end  %>
