@@ -36,7 +36,7 @@
 							<%= moment(@last_post_at).format('h:mm a') %>
 						</div>
 						<% else: %>
-							<div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCardManage__atribute__container">
+							<div data-toggle="tooltip" data-placement="top" title="Last Activity" class="groupCardManage__atribute__container">
 						<span class="groupCardManage__icon ico-timebank"></span>
 						<%= moment(@created_at).format('h:mm a') %>
 						<% end %>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="clearfix">
 				<div class="groupCardManage__atribute">
-					<div data-toggle="tooltip" data-placement="top" title="Members" class="groupCardManage__atribute__container--odd">
+					<div data-toggle="tooltip" data-placement="top" title="Alumni in Group" class="groupCardManage__atribute__container--odd">
 						<span class="groupCardManage__icon ico-company"></span> <%= @group.members_count %>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 				<a href="#groups/<%= @group.id %>/members" title="Members">
 					<span class="icon-entypo-user"></span>
 				</a>
-				<a href="#groups/<%= @group.id %>/about" title="About">	<span class="icon-entypo-cog"></span> </a>
+				<a href="#groups/<%= @group.id %>/about" title="Edit Group"><span class="icon-entypo-cog"></span> </a>
 			</div>
 			<% else: %>
 			<div class="groupCardManage__actions__wrapper">

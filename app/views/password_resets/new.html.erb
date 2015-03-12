@@ -22,8 +22,8 @@
           
           <% if @errors && @errors.any? %>
           <div class="homeAlumNet__alert text-danger text-right alert alert-danger">
-            <% @errors.full_messages.each do |msg| %>
-            <span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
+            <% @errors.messages.each do |msg| %>
+            <span class="glyphicon glyphicon-warning-sign"></span> <%= msg[1][0] %>
             <% end %>
           </div>
           <% end %>
