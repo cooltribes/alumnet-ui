@@ -69,6 +69,10 @@
     AlumNet.navigate("groups/#{id}/members")
     API.membersGroup(id)
 
+  AlumNet.on "groups:subgroups", (id)->
+    AlumNet.navigate("groups/#{id}/subgroups")
+    API.listSubGroups(id)
+
   AlumNet.on "groups:discover",  ->
     AlumNet.navigate("groups")
     API.discoverGroups()
