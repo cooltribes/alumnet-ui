@@ -129,9 +129,16 @@
     className: 'col-md-4 col-sm-6 col-xs-12'
 
     templateHelpers: ->
+      model = @model
       location: @model.getLocation()
       select: (value, option)->
         if value == option then "selected" else ""
+      attendance_status: ->
+        attendance_info = model.get('attendance_info')
+        if attendance_info
+          attendance_info.status
+        else
+          null
     ui:
       attendanceStatus: '#attendance-status'
 
@@ -141,10 +148,14 @@
     changeAttendanceStatus: (e)->
       e.preventDefault()
       status = $(e.currentTarget).val()
+      attendance = @model.attendance
       if status
-        attendance = @model.attendance
-        attendance.set('status', status)
-        attendance.save()
+        if attendance.isNew()
+          attrs = { user_id: AlumNet.current_user.id, event_id: @model.id, status: status }
+          attendance.save(attrs)
+        else
+          attendance.set('status', status)
+          attendance.save()
 
   class Events.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
@@ -152,6 +163,7 @@
     template: 'groups/events/templates/events_container'
     childView: Events.EventView
     childViewContainer: ".main-events-area"
+
     templateHelpers: ->
       userCanCreateSubGroup: @model.canDo('create_subgroup')
 
@@ -163,6 +175,7 @@
     className: 'col-md-4 col-sm-6'
     initialize: (options)->
       @event = options.event
+
     templateHelpers: ->
       model = @model
       wasInvited: ->

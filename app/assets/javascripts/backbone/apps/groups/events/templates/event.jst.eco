@@ -44,19 +44,17 @@
       </div>
     </div>
     <!-- CONTENT ON -->
-    <% if @attendance_info: %>
       <select class="form-control input-lg" id="attendance-status" name="status">
         <option></option>
-        <option value="going" <%= @select(@attendance_info.status, "going") %>>
+        <option value="going" <%= @select(@attendance_status(), "going") %>>
           Going
         </option>
-        <option value="maybe" <%= @select(@attendance_info.status, "maybe") %>>
+        <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
           Maybe
         </option>
-        <option value="not_going" <%= @select(@attendance_info.status, "not_going") %>>
+        <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
           Not Going
         </option>
       </select>
-    <% end %>
   </div>
 </div>

@@ -10,7 +10,7 @@
       if attendance
         @attendance = new Entities.Attendance attendance
       else
-        @attendance = null
+        @attendance = new Entities.Attendance
 
     getLocation: ->
       city = @get('city')
