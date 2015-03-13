@@ -24,7 +24,7 @@
   <% end %> 
 
   <% if @friendship_status: %>
-    <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage btn btn-lg">SEND A MESSAGE</a>
+    <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage btn btn-lg">SEND A MESSAGE</a>
   <% end %> 
  
      
