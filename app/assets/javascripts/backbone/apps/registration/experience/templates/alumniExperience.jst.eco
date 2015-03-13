@@ -27,7 +27,19 @@
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>		
+								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><% if x==1 : %> January	<% end %>
+									<% if x==2 : %> February <% end %>
+									<% if x==3 : %> March <% end %>
+									<% if x==4 : %> April <% end %>
+									<% if x==5 : %> May <% end %>
+									<% if x==6 : %> June <% end %>
+									<% if x==7 : %> July <% end %>
+									<% if x==8 : %> August <% end %>
+									<% if x==9 : %> September <% end %>
+									<% if x==10 : %> October <% end %>
+									<% if x==11 : %> November <% end %>
+									<% if x==12 : %> December <% end %>
+								</option>		
 							<% end %>
 						</select>
 					</div>
@@ -59,7 +71,20 @@
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>							
+								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>">
+									<% if x==1 : %> January	<% end %>
+									<% if x==2 : %> February <% end %>
+									<% if x==3 : %> March <% end %>
+									<% if x==4 : %> April <% end %>
+									<% if x==5 : %> May <% end %>
+									<% if x==6 : %> June <% end %>
+									<% if x==7 : %> July <% end %>
+									<% if x==8 : %> August <% end %>
+									<% if x==9 : %> September <% end %>
+									<% if x==10 : %> October <% end %>
+									<% if x==11 : %> November <% end %>
+									<% if x==12 : %> December <% end %>
+								</option>							
 							<% end %>
 						</select>
 					</div>

@@ -18,8 +18,16 @@
 
   <div class="col-md-5">
     <div class="form-group">
-      <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="" value="<%= @info %>">
-      <span class="help-block"></span>
+      <% if @contact_type==1 : %>
+        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="+phonenumber" value="<%= @info %>">
+        <span class="help-block"></span>
+      <% else if @contact_type==7 : %>
+        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="https://www.example.com" value="<%= @info %>">
+        <span class="help-block"></span>  
+      <% else: %>
+        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="" value="<%= @info %>">
+        <span class="help-block"></span>
+      <% end %>
     </div>
   </div>
 

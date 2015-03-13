@@ -1,14 +1,12 @@
-  <td>
-    <img src="<%= @cover.admin %>">
-  </td>
-  <td>
+<td>
+    <img class="tableAdminGroups__img" src="<%= @cover.admin %>" alt="">
     <% if @official: %>
-      <span class="tableAdmin__ribbon"></span>
+      <span class="tableAdminGroups__ribbon"></span>
     <% end %>
     <a href="#groups/<%= @id %>/about">
-      <h4 class="tableAdmin__groupName"><%= @name %></h4> 
+      <h4 class="tableAdminGroups__groupName"><%= @name %></h4> 
     </a>
-    <span class="tableAdmin__label label <% if @group_type.value== 1: %>label-warning<% end %><% if @group_type.value== 0: %>label-success<% end %>">
+    <span class="tableAdminGroups__label label <% if @group_type.value== 1: %>label-warning<% end %><% if @group_type.value== 0: %>label-success<% end %>">
       <% if @group_type.value== 1: %>
         Closed
       <% end %>
@@ -16,10 +14,10 @@
         Open
       <% end %>
     </span>
-  </td>
-  <td class="tableAdmin__colText"><%= @getLocation() %></td>
-  <td class="tableAdmin__colText"><%= @getParentName() %></td>
-  <td class="tableAdmin__colText tableAdmin__subGroup">
+</td>
+<td class="tableAdminGroups__colText"><%= @getLocation() %></td>
+<td class="tableAdminGroups__colText"><%= @getParentName() %></td>
+<td class="tableAdminGroups__colText tableAdminGroups__subGroup">
     <% if @getSubgroupsCount()== 0: %>
         --
     <% end %>
@@ -30,15 +28,42 @@
     <% unless @getSubgroupsCount() == 0: %>
       <a href="#" id="js-show-subgroups">Show</a>
     <% end %>
-  </td>
-  <td class="tableAdmin__colText">
-      <a class="tableAdmin__creator" href="#users/<%= @creator.id %>/about">
+</td>
+<td class=" tableAdminGroups__colText">
+      <a class="tableAdminGroups__creator" href="#users/<%= @creator.id %>/about">
         <%= @creator.name %>
       </a><br>
       <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
-  </td>
-  <td class="js-show-admins tableAdmin__colText"><%= @getAdminsCount() %></td>
-  <td class="tableAdmin__colText"><%= @getAlumniCount() %></td>
-  <td class="tableAdmin__edit">
-    <button class="js-edit tableAdmin__btnEdit"><span class="icon-entypo-cog"></span></button>
-  </td>
+</td>
+<td class="js-show-admins tableAdminGroups__colText tableAdminGroups__admins">
+  <div>
+    <%= @getAdminsCount() %>
+  </div>
+  <div class="tableAdminGroups__adminsList">
+    <ul>
+      <% if @admins.length: %>
+        <% for admins in @admins: %>
+          <li> 
+            <div class="tableAdminGroups__adminsList__avatar">
+              <img src="<%= admins.avatar %>" class="img-circle img-responsive " alt="">
+            </div>
+            <div class="tableAdminGroups__adminsList__name">
+              <h3><%= admins.name %>
+                <span class="glyphicon glyphicon-asterisk"></span>
+              </h3>
+            </div>
+            <div class="tableAdminGroups__adminsList__edit">
+              <span class="icon-entypo-cog"></span>
+            </div>
+          </li>
+        <% end %>
+      <% else: %>
+          No admins
+      <% end %>
+    </ul>
+</div>
+</td>
+<td class="tableAdminGroups__colText"><%= @getAlumniCount() %></td>
+<td class="tableAdminGroups__edit">
+    <button class="js-edit tableAdminGroups__btnEdit"><span class="icon-entypo-cog"></span></button>
+</td>

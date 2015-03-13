@@ -1,5 +1,5 @@
 <% if _.size(@links) > 0 : %>
-	<div class="breadcrumb-subgroups tableAdmin__subGroup___breadcrumb">
+	<div class="breadcrumb-subgroups tableAdminGroups__subGroup___breadcrumb">
 		<a href="#" id="js-groups-home"> 
 			<span class="glyphicon glyphicon-home"></span> <span>Main Groups</span> 
 			<span class="glyphicon glyphicon-chevron-right"></span> </a>
@@ -17,17 +17,17 @@
 <% end %>
 
 
-<table class="table tableAdmin" id="groups-table">
+<table class="table tableAdminGroups" id="groups-table">
 	<thead>
 		<tr>
-		  <th colspan="2" class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Name</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Location</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Parent Group</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">SubGroups</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Created By</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Admins</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Alumni</th>
-		  <th class="<% if _.size(@links) > 0 : %> tableAdmin__SubGruopHeader <% end %> ">Edit</th>
+		  <th colspan="2" class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Name</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Location</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Parent Group</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">SubGroups</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Created By</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Admins</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Alumni</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Edit</th>
 		</tr>
 	</thead>
 	<tbody></tbody>

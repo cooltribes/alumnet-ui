@@ -1,0 +1,57 @@
+/***
+
+APP NAME: tableAdmin
+DESCRIPTION: CSS for styling the admin table users
+***/
+
+@import 'conf/conf.css.less';
+
+
+.tableAdmin{
+	background-color: @white;
+	color: @main-text;	
+		
+	th{
+		background-color: @main-bg;
+		border: none;
+		text-transform: uppercase;
+		color: @blue-gray;
+	}
+
+	table& > thead > tr > th&__SubGruopHeader{
+		background-color: @blue-gray;
+		color: @white;
+	}
+
+	td{
+		border:1px solid #dddddd;
+
+	}
+
+	&__actions{
+        background-color: @blue-gray;
+        
+        border:none;
+       
+        text-align: center;
+	        button{
+	        	border:none;
+	        	padding:10px 5px;
+	        	background-color: @blue-gray;
+	        	color: @white;
+	        	width: 100%;
+	        }
+
+        }
+
+    &__creator{
+    	color: @main-text;	
+    }
+
+	
+	table& > tbody > tr >  td&__edit{
+		padding: 0px;
+	}
+
+}
+

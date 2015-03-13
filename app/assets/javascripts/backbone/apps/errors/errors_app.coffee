@@ -7,6 +7,9 @@
     errorForbidden: ->
       controller = new ErrorsApp.Forbidden.Controller
       controller.show()
+    showBanned: ->
+      controller = new ErrorsApp.Banned.Controller
+      controller.show()
 
   AlumNet.on 'show:error', (status) ->
     switch status
@@ -14,3 +17,6 @@
         API.errorNotFound()
       when 403
         API.errorForbidden()
+
+  AlumNet.on 'show:banned', ->
+    API.showBanned()
