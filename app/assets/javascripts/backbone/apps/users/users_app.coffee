@@ -5,6 +5,7 @@
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
       "users/:id/friends": "userFriends"      
+      "users/:id/pictures": "userPictures"      
 
   API =
     userPosts: (id)->
@@ -22,6 +23,11 @@
         controller.showMyLayout()
       else  
         controller.showUserLayout(id)
+
+    userPictures: (id)->
+      controller = new UsersApp.Pictures.Controller
+      controller.showAlbums(id)
+
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")

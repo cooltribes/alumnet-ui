@@ -42,6 +42,7 @@
       throw "Template #{template} not found!" unless path
 
       data    = @serializeData()
+      data = @mixinTemplateHelpers(data)
       options = 0 if !options or _.isEmpty(options)
 
       @$el.addClass("#{@prefix}-wrapper")
@@ -90,7 +91,15 @@
     getTemplate: =>
       @getOption('template')
      
+    mixinTemplateHelpers: (target)->
+      target = target || {}
+      templateHelpers = @getOption('templateHelpers');
+      if _.isFunction(templateHelpers)
+        templateHelpers = templateHelpers.call this;
       
+      return _.extend target, templateHelpers
+    
+
     setUIElements: ->
       # get modal options
       functionTemplate    = @getOption('getTemplate')
