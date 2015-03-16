@@ -1,6 +1,6 @@
 <div class="form-group has-feedback">
 	<label class="control-label">Position</label>
-	<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
+	<input type="text" name="name" class="form-control input-lg " value="<%= @name %>" placeholder="Enter position">
 	<span class="formANet__input__icon icon-entypo-briefcase form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
@@ -13,7 +13,8 @@
 				<select name="start_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
 					<% for x in [@firstYear()..@currentYear] by 1 : %>
-						<option value="<%= x %>"><%= x %></option>
+						<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+
 					<% end %>
 				</select>
 			</div>
@@ -28,9 +29,10 @@
 			<div class="formANet__select">
 				<select name="end_year" class="form-control input-lg ">
 					<option value="">Select Year</option>
-					<option value="current">Current</option>					
+					<option value="current">Current</option>
 					<% for x in [@firstYear()..@currentYear] by 1 : %>
-						<option value="<%= x %>"><%= x %></option>
+						<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+
 					<% end %>
 				</select>
 			</div>
@@ -41,20 +43,20 @@
 </div>
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Company / Organization</label>
-	<input name="organization_name" type="text" class="form-control input-lg " id="" placeholder="">
+	<input name="organization_name" value="<%= @organization_name %>" type="text" class="form-control input-lg " id="" placeholder="">
 	<span class="formANet__input__icon icon-entypo-suitcase form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Description</label>
-	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
+	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>
 	<span class="help-block"></span>
 </div>
 
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">Country / Region</label>
+			<label class="control-label" for="registerCountry">Country</label>
 			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
 			<span class="help-block"></span>
 		</div>
@@ -79,7 +81,9 @@
 <% end %>
 
 <% if @inProfile: %>
-	<button class="btn btn-default text-uppercase btn-default-noBackground js-rmvRow" type="button"> Cancel</button>
+
+	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
+
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
 

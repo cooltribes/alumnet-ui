@@ -257,10 +257,8 @@
           data = Backbone.Syphon.serialize this
           if data.avatar != ""          
             formData = new FormData()
-            console.log formData
             file = @$('#profile-avatar')
             formData.append('avatar', file[0].files[0])            
-            console.log formData
             @view.trigger "submit:avatar", formData
     
     optionsForSelectCities: (url)->
@@ -300,16 +298,30 @@
       "modalCont": "#js-profile-modal-container"     
       "editName": "#js-editName"    
       "editBorn": "#js-editBorn"    
-      "editResidence": "#js-editResidence"    
-      
+      "editResidence": "#js-editResidence"   
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
 
+    # bindings:
+      
+      
+
     initialize: (options)->      
       @userCanEdit = options.userCanEdit
+      @privacyOptions = [
+        value: 0
+        label: "Only me"
+      ,
+        value: 1
+        label: "My friends"
+      ,
+        value: 2
+        label: "Everyone"
+      ,            
+      ]
 
     templateHelpers: ->
       model = @model
@@ -326,24 +338,38 @@
         model.getEmail()        
       
       getPhone: ->
-        if model.phone then model.phone.get "info" else "No Phone"
-
-      canShowPhone: ->      
-        if model.phone?    
-          friend = model.get "friendship_status"
-          model.phone.canShow(friend)  
-        else
-          false  
+        if model.phone? then model.phone.get "info" else ""
       
-      canShowEmail: ->    
-        if model.email_contact?    
-          friend = model.get "friendship_status"
-          model.email_contact.canShow(friend) 
-        else
-          false  
+      hasEmail: ->    
+        model.email_contact?    
         
     modelEvents:
       "add:phone:email change": "modelChange"
+
+    onRender: ->
+      if @model.phone?
+        @stickit @model.phone,
+          "[name=privacyPhone]": 
+            observe: "privacy"
+            selectOptions:
+              collection: @privacyOptions  
+        
+        @listenTo(@model.phone, 'change', @changePhone)        
+        
+      if @model.email_contact?
+        @stickit @model.email_contact,
+          "[name=privacyEmail]": 
+            observe: "privacy"
+            selectOptions:
+              collection: @privacyOptions 
+
+        @listenTo(@model.email_contact, 'change', @changeEmail)        
+      
+    changePhone: ->
+      @model.phone.save()
+
+    changeEmail: ->
+      @model.email_contact.save()
 
     modelChange: ->
       @render() 
@@ -436,8 +462,7 @@
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
-    
+      @userCanEdit = options.userCanEdit    
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -446,6 +471,25 @@
 
     events:
       "click .js-rmvRow": "removeItem"
+
+    modelEvents:
+      "change": "modelChange"
+
+    bindings:
+      "[name=privacy]": 
+        observe: "privacy"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]  
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -456,13 +500,19 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
+
+    modelChange: (e)->
+      @model.save()
+
+    onRender: ->
+      @stickit()
   
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact    
     emptyView: About.Empty
     emptyViewOptions: 
       message: "No contact info"
-    childViewOptions: 
+    childViewOptions: ->
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
@@ -470,20 +520,43 @@
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
-    template: 'users/about/templates/_experience'
     tagName: "div"
 
-    # bindings:
-    #   ".js-title": 
-    #     observe: "name"
-    #     onSet: "updateModel"
+    getTemplate: ->
+      switch @model.get("asTitle")
+        when true
+          'users/about/templates/_experienceTitle'
+        when false
+          'users/about/templates/_experience'
+
     ui:
       "addExp": "#js-addExp"
+      "editExp": "#js-editExp"
       'btnRmv': '.js-rmvRow'      
     
     events:
       "click @ui.addExp": "addExp"
-      "click @ui.btnRmv": "removeItem"      
+      "click @ui.editExp": "editExp"
+      "click @ui.btnRmv": "removeItem"  
+
+    bindings:
+      "[name=privacy]":
+        observe: "privacy"  
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]
+
+    modelEvents:
+      "change": "modelChange"
     
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -491,14 +564,16 @@
     templateHelpers: ->
       model = @model
 
-      userCanEdit: @userCanEdit
+      # diffType: ->
+      #   prev = model.collection.at(model.collection.indexOf(model) - 1)        
+      #   hasTitle = true
+      #   if prev?          
+      #     hasTitle = (prev.get("exp_type") != model.get("exp_type"))
+      #   # model.hasTitle = hasTitle
+        
+      #   return hasTitle
 
-      diffType: ->
-        prev = model.collection.at(model.collection.indexOf(model) - 1)
-        if prev?          
-          prev.get("exp_type") != model.get("exp_type")
-        else    
-          true
+      userCanEdit: @userCanEdit
 
       experienceType: ->
         model.getExperienceType()
@@ -512,39 +587,46 @@
       getOrganization: ->
         model.getOrganization()
       
+      getStartDate: ->
+        model.getStartDate()
+
       getEndDate: ->
         model.getEndDate()
     
+    onRender: ->
+      @stickit()
+
     addExp: (e)->
       e.preventDefault()
       @trigger "add:exp"
 
-    updateModel: (val, evt, opts)->
-      console.log val
-      console.log model
-      console.log opts
+    editExp: (e)->
+      e.preventDefault()      
+      @model.isEditing = true
+      @model.set "first", true
+      @model.decodeDates()
+      @model.collection.trigger "reset" #For re-render the itemview
 
-    removeItem: (e)->
+    removeItem: (e)->   
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
-    # onRender: ->
-    # console.log @model
-    # @stickit()    
+    modelChange: ->
+      if @model.hasChanged("privacy")
+        @model.save()
+      @render()      
+
 
   class About.Experiences extends Marionette.CollectionView
-    # childView: About.Experience    
-    getChildView: (model)->      
-      if(model.isNew())
+    getChildView: (model)-> 
+      if((model.isNew() && !model.get("asTitle")) || model.isEditing)
         AlumNet.RegistrationApp.Experience.FormExperience
       else  
         About.Experience    
 
     childViewOptions: ->
-      # options =
       userCanEdit: @userCanEdit      
       inProfile: true
-
       
     childEvents:
       "add:exp": "addExp"       
@@ -559,4 +641,5 @@
         first: true
 
       index = @collection.indexOf(childView.model)
-      @collection.add(newExperience, index + 1)
+      @collection.add newExperience,
+        at: index + 1

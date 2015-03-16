@@ -1,0 +1,21 @@
+<% selected = (option, value)->  if option == value then "selected" else "" %>
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <h2>Update user Role</h2>
+    <p>
+    <form>
+      <select name="role" class="form-control input-lg ">
+        <option value="regular" <%= selected("regular", @roleText) %>>Regular</option>
+        <option value="alumnet" <%= selected("alumnet", @roleText) %>>Alument Admin</option>
+        <option value="system" <%= selected("system", @roleText) %>>System Admin</option>
+      </select>
+    </form>
+  </p>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="save-role">Save</a>
+  <a href="#" class="btn btn-default" id="goBack">Go back</a>
+</div>

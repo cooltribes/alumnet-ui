@@ -3,40 +3,72 @@
 
 	<% if @userCanEdit: %>
 	  <small>
-		  <a href="#" id="js-editName">[edit]</a>  	
+		  <a href="#" id="js-editName">[Edit]</a>  	
 	  </small>
 	<% end %>
 
 </h3>
 
 <ul class="metaInfoCard__list">
-	<li>
-		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> Born:</span> <%= @getBorn() %>
 
-		<% if @userCanEdit: %>
-		  <a href="#" id="js-editBorn">[edit]</a>  	
-		<% end %>
+	<% if @getBorn(): %>		
+		<li>
+			<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> <%= @getBorn() %>
 
 
-	</li>
+			<% if @userCanEdit: %>
+			  <a href="#" id="js-editBorn">[Edit]</a>  	
+			<% end %>
+
+
+		</li>
+	<% end %>
 	
-	<li>
-		<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Location:</span> <%= @getLocation() %>
-		<% if @userCanEdit: %>
-		  <a href="#" id="js-editResidence">[edit]</a>  	
-		<% end %>
-	</li>
-	
-	<% if @canShowEmail(): %>
-		<li> <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span> <a href="mailto:"><%= @getEmail() %></a> </li>
+
+	<% if @getLocation(): %>
+		<li>
+			<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> <%= @getLocation() %>
+			<% if @userCanEdit: %>
+			  <a href="#" id="js-editResidence">[Edit]</a>  	
+			<% end %>
+		</li>
 	<% end %>
 
-	<% if @canShowPhone(): %>
+	
+	<% if @getEmail(): %>
+		<li>
+		  
+		  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
+		  <!-- <a href="mailto:"> -->
+		   <%= @getEmail() %>
+		  <!-- </a> -->
+
+			<% if @userCanEdit: %>
+
+			  <select class="pull-right" name="privacyEmail">    
+			  </select>
+
+			<% end %>
+
+			
+		</li>
+	<% end %>
+
+	<% if @getPhone(): %>
 		<li>
 			<span class="metaInfoCard__concept">
 			<span class="glyphicon glyphicon-phone">
 			
 			</span> Phone:</span> <%= @getPhone() %>
+
+			<% if @userCanEdit: %>
+
+				<select class="pull-right" name="privacyPhone">    
+			  </select>
+
+			<% end %>
+		  
+
 		</li>
 	<% end %>
 

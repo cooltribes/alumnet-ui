@@ -14,14 +14,6 @@
     Entities.countries.fetch({async: false})
 
   API =
-    getCountriesHtml: (collection)  ->
-      html = '<option value="">Select a country</option>'
-
-      _.forEach collection.models, (item, index, list)->
-        html += '<option value="' + (item.get("id")) + '">' + item.get("name") + '</option>'
-
-      html
-
     getCountries: ()->
       initializeCountries() if Entities.countries == undefined
       Entities.countries

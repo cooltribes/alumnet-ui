@@ -48,12 +48,14 @@
       'notificationsBadge': '#js-notifications-badge'
       'changeHeader': '#js-changeHeader'
 
-    modelEvents:
-      "change": "modelChange"
+    #OJO: Quite esto porque no se para que se tiene que hacer rerender del layout.
+    #Marionette no recomienda esto. Ademas rompe varios codigos.
+    # modelEvents:
+    #   "change": "modelChange"
 
-    modelChange: ->
-      @render()  
-    
+    # modelChange: ->
+    #   @render()
+
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()

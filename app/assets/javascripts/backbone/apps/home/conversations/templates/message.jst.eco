@@ -5,8 +5,7 @@
 			
 		</div>
 		<div class="message__meta">
-			<a href="#users/<%= @sender.id %>/posts"><span class="message__name"><%= @sender.name %></span></a>
-			<br>
+			<span class="message__name"><a href="#users/<%= @sender.id %>/posts"><%= @sender.name %></a></span>
 			<span class="message__date"><%= moment(@created_at).fromNow() %></span>
 			<% if @is_read: %>
 			<a href="#" class="js-mark unread">Mark as Unread</a>

@@ -1,0 +1,26 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %></h3>
+</div>
+<div class="bbm-modal__section">
+  <p>
+    <a href="#" id="editPremium" title="Edit premium access" class="fontSize--md">Change user membership</a>
+    <br/>
+    Upgrade, extend or cancel the membership of this user.
+  </p>
+  <br/>
+  <p>
+    <a href="#" id="editStatus" title="Edit user status" class="fontSize--md"> Edit User Access</a>
+     <br/>
+    Approve new registrants, revoque access or delete this user.
+  </p>
+  <br/>
+  <p>
+    <a href="#" id="editRole" title="Edit user role" class="fontSize--md"> Edit User Role</a>
+     <br/>
+    Change the role of User.
+  </p>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-danger pull-left" id="delete-user" >Delete</a>
+  <a href="#" class="btn btn-default" id="close-btn" >Cancel</a>
+</div>

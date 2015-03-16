@@ -18,6 +18,21 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
   }
 
+   &__animation{
+    transition: all 300ms ease 0s;
+    width: 70px;
+    display: inline-block;
+    float: right;
+    &:hover{
+        width: 150px;
+        text-decoration: none;
+      }
+   }
+    
+    &__animation:hover &__actions__text{
+      display: inline;
+    }
+
    &__avatar{
     text-align: center;
    }
@@ -32,33 +47,55 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     text-align: center;
     padding: 10px;
     color: @white;
-    width: 100%;
-
-    transition: all ease .5s;
-    
-    a{text-decoration: none;}   
 
     &__text{
-      font-size: 0;
-      color: @white
-    }
-    &:hover &__text,  &:focus &__text{
-      display: inline-block;
-      font-size: 12px;
-      text-decoration: none;
-      
-    }
-    &:hover, &:focus{
-      position: absolute;
-      right: 0;
-      width: 200px;
-      text-decoration: none;
-      
+      display: none;
+
     }
 
     &--isFriend{
-      background-color: #b2bdc3;
+      background-color: @light-blue;
+      &:hover{
+        background-color: @blue;
+      }
+    }
+    
+    &--unFriend{
+      background-color: @lighter-gray;
+      &:hover{
+        background-color: @light-gray;
+      }
+    }
 
+    &--Cancel{
+      background-color: @light-orange;
+      &:hover{
+        background-color: @orange;
+      }
+    }
+
+    &--Approve{
+      position: relative;
+      background-color:@lighter-green;
+      color: @white;
+      height: 50px;
+      margin-top: -10px;
+      text-align: center;
+      padding-top: 20%;
+      &:hover{
+        background-color: @light-green;
+      }
+    }
+    &--Decline{
+      position: relative;
+      background-color:@light-red;
+      color: @white;
+      height: 50px;
+      text-align: center;
+      padding-top: 20%;
+      &:hover{
+        background-color: @red;
+      }
     }
    }
    &__GroupAdminActions{
@@ -78,7 +115,6 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       }
     a{
       width: auto;
-      
       padding: 10px;
       position: inherit;
       right: 30px;
@@ -96,6 +132,13 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       
     }
    }
+
+  &__position{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
    &__approveBox{
     background-color: lighten(@blue, 42%);
     padding-bottom: 10px;

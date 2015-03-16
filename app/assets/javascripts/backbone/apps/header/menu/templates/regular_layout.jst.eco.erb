@@ -61,10 +61,13 @@
         <!-- NOTIFICATIONS ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
           <!-- NOTIFICATIONS LIST -->
-          <div id="js-menu-notifications-box"></div>
+          <div id="js-menu-notifications-box" class="notification__boxMenu"></div>
           <!-- SHOW ALL NOTIFICATIONS LINK -->
           <div role="presentation">
             <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
+          </div>
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Mark all as read</a>
           </div>
         </div>
         <!-- NOTIFICATIONS OFF -->
@@ -113,6 +116,7 @@
           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
 
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/posts">My Profile</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#privacy/settings">Privacy Settings</a></li>
 
           <%% if @isAlumnetAdmin: %>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users" id="js-changeHeader">Admin Section</a></li>
@@ -142,12 +146,13 @@
         <button type="button" class="close margin_smal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4>Module under development.</h4>
+        <h4>Module under development</h4>
         <p>
-          "This module is still under development. If you want to learn more about this module, or if you have a question or comment about it, please join the AlumNet group
+          This module is still under development. If you want to learn more about this module, or if you have a question or comment about it, please join the AlumNet group
         </p>
 
-        <button type="button" class="btn btn-primary">Join AlumNet Group</button>
+        <button type="button" class="btn btn-primary">
+        <a href="#groups/16/posts"></a>Join AlumNet Group</button>
       </div>
     </div>
     <!-- /.modal-content -->

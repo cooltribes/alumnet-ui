@@ -1,24 +1,20 @@
-<% if @diffType(): %>	
-
-	<h2 id="<%= @experienceId()  %>">
-		<%= @experienceType()  %>
-		<% if @userCanEdit: %>
-		  <small>
-			  <a href="#" id="js-addExp" data-exp-type="<%= @exp_type %>">Add new</a>  	
-		  </small>
-		<% end %>
-		
-	</h2>
-
-<% end %>
-	
 <div class="experienceCard">
-	<h3 class="experienceCard__title js-title">
+	<h3 class="experienceCard__title js-title" style="display: inline">
 		<%= @name %>
 		<% if @userCanEdit: %>
+
+			<small>
+			  <a href="#" id="js-editExp">[Edit]</a>  	
+		  </small>
+
 		  <button type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
 		<% end %>
 	</h3>
+
+	<% if @userCanEdit: %>
+		<select class="pull-right margin_right_small" name="privacy"></select>
+	<% end %>
 	
 	<% if @getOrganization(): %>
 		<h4>
@@ -35,12 +31,19 @@
 
 	<ul class="experienceCard__metaInfo">
 		<li><span class="glyphicon glyphicon-calendar"></span>
-			From <%= @start_date + " to " + @getEndDate() %>
+			From <%= @getStartDate() + " to " + @getEndDate() %>
 		</li>
 		<li><span class="glyphicon glyphicon-map-marker"></span>
 		Location: <%= @getLocation() %></li>
 	</ul>
-	<div class="experienceCard__desctiption">
+
+<% if @aiesec_experience: %>
+	<div class="experienceCard__description">
+		Experience: <%= @aiesec_experience %>
+	</div>
+<% end %>
+
+	<div class="experienceCard__description">
 		Description: <%= @description %>
 	</div>
 </div>

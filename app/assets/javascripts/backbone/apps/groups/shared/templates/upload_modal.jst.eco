@@ -1,0 +1,18 @@
+<form>
+  <div class="modalBox__content">
+      <div class="add-cover-photo">
+        <h2>Group's cover</h2>
+        <img src="<%=@cover.main %>" alt="Upload cover" width= "100%" id= "preview-cover">
+      </div>
+      <div class="form-group modalBox__content__UploadImg">
+        <!--<label class="control-label">Group's cover</label>-->
+        <input type="file" name="cover"  id="group-cover" >
+        <span class="help-block"></span>
+      </div>
+  </div>
+</form>
+
+<div class=" modalBox__footer bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary js-modal-save" >Upload Cover</a>
+  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
+</div>

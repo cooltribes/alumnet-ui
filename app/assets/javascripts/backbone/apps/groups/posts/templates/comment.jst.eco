@@ -1,15 +1,19 @@
 <div class="groupPost__comment__metaData clearfix">
-	<div class="groupPost__comment__avatar">
-		<img src="<%%= @avatar.medium %>"  alt="<%%= @name %>" class="img-circle">
-	</div>
-	<h5 class="groupPost__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
+  <div class="groupPost__comment__avatar">
+    <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+  </div>
+  <h5 class="groupPost__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
 </div>
-<p><%= @comment %></p>
-<% if @userCanComment : %>
-  <% if @you_like: %>
-    <a href="#" class="js-unlike js-vote">Unlike</a>
-  <% else: %>
-    <a href="#" class="js-like js-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
-  <% end %>
+<p id="js-comment-text"><%= @comment %></p>
+<% if @you_like: %>
+  <a href="#" class="js-unlike js-vote">Unlike</a>
+<% else: %>
+  <a href="#" class="js-like js-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
 <% end %>
 (<span class="js-likes-counter"><%= @likes_count %></span> likes)
+<% if @canEdit: %>
+  <a href="#" id='js-edit-comment'>edit</a>
+<% end %>
+<% if @canDelete: %>
+  <a href="#" id='js-delete-comment'>delete</a>
+<% end %>
