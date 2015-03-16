@@ -16,6 +16,9 @@
     regions:
       body: '.friends-list'
 
+    #modelEvents:
+      #"change": "modelChange"  
+
     initialize: (options) ->
       @listenTo(@model, 'change:pending_sent_friendships_count', @changedCount)
       @tab = options.tab
