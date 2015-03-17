@@ -35,6 +35,10 @@
       status = @get "status"
       if status.value == 1 then true else false
 
+    isBanned: ->
+      status = @get "status"
+      if status.value == 2 then true else false
+
     getName: ()->
       if @get("name").trim()
         return @get("name")
@@ -103,6 +107,18 @@
     isCurrentUser: ()->
       @id == AlumNet.current_user.id
 
+    getRole: ()->
+      if @get('is_system_admin')
+        "system"
+      else if @get('is_alumnet_admin')
+        "alumnet"
+      else
+        "regular"
+
+    decrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value - val)
+      @get("#{counter}_count")
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

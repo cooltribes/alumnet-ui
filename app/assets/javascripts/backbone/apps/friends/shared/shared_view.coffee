@@ -16,7 +16,11 @@
     regions:
       body: '.friends-list'
 
+    #modelEvents:
+      #"change": "modelChange"  
+
     initialize: (options) ->
+      @listenTo(@model, 'change:pending_sent_friendships_count', @changedCount)
       @tab = options.tab
       @class = [
         "", "", ""
@@ -28,6 +32,9 @@
       model = @model
       classOf: (step) =>
         @class[step]
+    ui:
+      'sendCount': '#js-sendCount'
+      'receivedCount': '#js-receivedCount'
 
     events:
       'click .js-search': 'performSearch'
@@ -56,6 +63,10 @@
       link = $("#js-#{id}")
       this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
       link.addClass("sortingMenu__item__link--active")
+
+    changedCount: ->
+      message = "Sent #{@model.get('pending_sent_friendships_count')}"
+      @ui.sendCount.html(message)
 
   API =
     getFriendsLayout: (model, tab)->

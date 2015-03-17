@@ -18,9 +18,9 @@
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
+
     templateHelpers: ->                  
       model = @model
-      
       userCanEdit: @userCanEdit
       
       position: ->
@@ -43,13 +43,13 @@
       @ui.coverArea.css('background-image',"url('#{cover.main}'")  
 
     sendRequest: (e)->
-      #Alumnet.users.on "sync", ()->
-       # models = .filter (model)->              
-       #   model.get("id") != AlumNet.current_user.id  
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
-      friendship.on 'save:success', (response, options) ->                    
-        alert("friendship sent")              
+      friendship.on 'save:success', (response, options) =>                   
+        @model.fetch()
+
+    sendMessage: (e)->    
+                
                    
         
     
