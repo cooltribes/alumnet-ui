@@ -17,7 +17,7 @@
 						<span class="ico-company"></span>
 					Friends</a></li>					
 
-					<li>  <a href="#users/<%= @id %>/pictures" class="groupMenu__link<%= @classOf(3)%>">
+					<li>  <a href="#users/<%= @id %>/photos" class="groupMenu__link<%= @classOf(3)%>">
 						<span class="ico-company"></span>
 					Pictures</a></li>					
 				</ul>

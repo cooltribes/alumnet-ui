@@ -5,7 +5,8 @@
       
       #Create the view and show it in the
       albumCollection = new AlumNet.Entities.AlbumCollection
-      albumCollection.url = AlumNet.api_endpoint + '/users/' + user.id + "/albums"
+      albumCollection.url = AlumNet.api_endpoint + '/users/' + layout.model.id + "/albums"
+      # albumCollection.url = AlumNet.api_endpoint + '/users/' + user.id + "/albums"
       albumCollection.fetch()
 
       albumsView = new AlbumList.AlbumsView
@@ -13,15 +14,15 @@
 
 
       albumsView.on "childview:show:detail", (childview)->  
-        AlumNet.trigger "show:album:detail", layout, childview.model        
+        AlumNet.trigger "albums:show:detail", layout, childview.model        
         
 
       albumsView.on "create:album", (model)->  
         console.log model
-        model.urlRoot = AlumNet.api_endpoint + '/users/' + user.id + "/albums"
+        model.urlRoot = AlumNet.api_endpoint + '/users/' + layout.model.id + "/albums"
         model.save
           success:->
-            AlumNet.trigger "show:album:detail", layout, model        
+            AlumNet.trigger "albums:show:detail", layout, model        
 
       
       layout.body.show(albumsView)

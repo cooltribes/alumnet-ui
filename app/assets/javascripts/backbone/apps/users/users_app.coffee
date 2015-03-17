@@ -1,11 +1,10 @@
 @AlumNet.module 'UsersApp', (UsersApp, @AlumNet, Backbone, Marionette, $, _) ->
-  # UsersApp.Router = Marionette.AppRouter.extend
   class UsersApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
       "users/:id/friends": "userFriends"      
-      "users/:id/pictures": "userPictures"      
+      "users/:id/photos": "userPictures"      
 
   API =
     userPosts: (id)->

@@ -11,10 +11,10 @@
       controller = new PicturesApp.AlbumList.Controller
       controller.showAlbums(layout, user)
 
-  AlumNet.on "show:album:detail", (layout, album)->    
+  AlumNet.on "albums:show:detail", (layout, album)->    
     API.showAlbum(layout, album)  
   
-  AlumNet.on "show:user:albums", (layout, user)->    
+  AlumNet.on "albums:user:list", (layout, user)->    
     API.showAlbums(layout, user)  
 
 

@@ -9,17 +9,20 @@
     childView: AlbumDetail.Photo
     emptyView: AlumNet.Utilities.EmptyView
     emptyViewOptions: 
-      message: "There is no albums here"
+      message: "There is no pictures here"
     childViewContainer: '.albums-list'
 
     ui:
       "modalCont": "#js-modal-container"  
-    
-    events:
-      'click .js-create': 'createAlbum'
+      "modalCont": "#js-modal-container"  
+
+    triggers:    
+      'click .js-returnAlbums': 'return:to:albums'
+      
 
     # createAlbum: (e)->
     #   e.preventDefault()
+
     #   album = new AlumNet.Entities.Album
 
     #   modal = new Album.CreateAlbumModal

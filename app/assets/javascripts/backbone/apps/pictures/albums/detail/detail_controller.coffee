@@ -5,6 +5,9 @@
       albumView = new AlbumDetail.DetailView
         model: album
 
+      albumView.on "return:to:albums", ()->
+        AlumNet.trigger "albums:user:list", layout, layout.model
+
 
       layout.body.show(albumView)
 

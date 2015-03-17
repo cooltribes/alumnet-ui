@@ -5,8 +5,8 @@
       <ul class="sortingMenu" id="filter-link-container">
         
         <li class="sortingMenu__item sortingMenu__item--lg">
-          <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Photos (0)
-          </a>
+          <div href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%= @name %> (0)
+          </div>
           
         </li>
         
@@ -15,13 +15,19 @@
     </div>
     <div class="col-md-3 text-right">
       <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
-    </div>
-    <div class="col-md-3 text-right">
       <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit">Edit album</a>
     </div>
     
   </div>
   <hr class="no_margin_top">
+  <div class="row ">
+    
+    <div class="col-md-12">
+      <a href="#" class="js-returnAlbums">Albums</a> - <%= @name %> 
+    </div>
+      
+  </div>
+    
   <div class="albums-list row">
     
   </div>
