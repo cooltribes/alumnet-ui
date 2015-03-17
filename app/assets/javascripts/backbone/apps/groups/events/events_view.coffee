@@ -112,8 +112,10 @@
 
       @ui.startHour.clockpicker
         donetext: 'Select'
+        autoclose: true
       @ui.endHour.clockpicker
         donetext: 'Select'
+        autoclose: true
 
       #Select Locations
       @ui.selectCities.select2

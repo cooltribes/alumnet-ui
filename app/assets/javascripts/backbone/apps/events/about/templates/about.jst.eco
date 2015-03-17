@@ -1,0 +1,65 @@
+<div class="groupAbout container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="groupAbout__box margin_bottom margin_top">
+        <% if @canEditInformation: %>
+        <h2 class="groupAbout__title"><a href="#" id="name"><%= @name %></a></h2>
+        <% else: %>
+        <h2><%= @name %></h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <div class="groupAbout__box margin_bottom">
+        <h3>Description</h3>
+        <a href="#" id="description" class="js-attribute"><%= @description %></a>
+        <% if @canEditInformation: %>
+        <a href="#" id="js-edit-description">[edit]</a>
+         <% end %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="groupAbout__box margin_bottom">
+            <h3>Starts: <b><%= moment(@start_date).format('dddd') %></b></h3>
+            <h3><%= moment(@start_date).format('MMM Do YYYY') %>, <%= @start_hour %></h3>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-start-date">[edit]</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="groupAbout__box margin_bottom">
+            <h3>Ends: <b><%= moment(@end_date).format('dddd') %></b></h3>
+            <h3><%= moment(@end_date).format('MMM Do YYYY') %>, <%= @end_hour %></h3>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-end-date">[edit]</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="groupAbout__box margin_bottom">
+            <h3><span id="address"><%= @address %></span></h3>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-address">[edit]</a>
+            <% end %>
+            <h3><%= @country.text %>, <%= @city.text %></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MAP -->
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="map" style="width: 100%; height: 500px"></div>
+    </div>
+  </div>
+</div>

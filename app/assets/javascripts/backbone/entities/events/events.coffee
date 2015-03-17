@@ -16,8 +16,10 @@
       city = @get('city')
       country = @get('country')
       address = @get('address')
-      [country.text, city.text, address].join(', ')
+      [address, country.text, city.text].join(', ')
 
+    userIsAdmin: ->
+      @get('admin')
 
     validation:
       name:
@@ -61,10 +63,16 @@
       contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
       contacts
 
-    findEvent: (parent, parent_id, id)->
+    findEvent: (id)->
       evento = new Entities.Event
         id: id
-      evento.urlRoot = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
+      evento.urlRoot = AlumNet.api_endpoint + "/events"
+      evento.fetch
+        error: (model, response, options) ->
+          model.trigger('find:error', response, options)
+        success: (model, response, options) ->
+          model.setAttendance()
+          model.trigger('find:success')
       evento
 
     newAttendance: ->
@@ -79,8 +87,8 @@
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)
 
-  AlumNet.reqres.setHandler 'event:find', (parent, parent_id, id) ->
-    API.findEvent(parent, parent_id, id)
+  AlumNet.reqres.setHandler 'event:find', (id) ->
+    API.findEvent(id)
 
   AlumNet.reqres.setHandler 'attendance:new', ->
     API.newAttendance()
