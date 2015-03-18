@@ -18,8 +18,24 @@
       address = @get('address')
       [address, country.text, city.text].join(', ')
 
+    isOpen: ->
+      event_type = @get('event_type')
+      event_type.value == 0
+
+    isClose: ->
+      event_type = @get('event_type')
+      event_type.value == 1
+
+    isSecret: ->
+      event_type = @get('event_type')
+      event_type.value == 2
+
     userIsAdmin: ->
       @get('admin')
+
+    userIsInvited: ->
+      attendance = @get('attendance_info')
+      attendance is not null
 
     validation:
       name:

@@ -4,11 +4,11 @@
       event = AlumNet.request("event:find", id)
       current_user = AlumNet.current_user
       event.on 'find:success', (response, options)->
-        # if group.isClose() && not group.userIsMember()
-        #   $.growl.error({ message: "You cannot see information on this Group. This is a Closed Group" })
-        # else if group.isSecret() && not group.userIsMember()
-        #   AlumNet.trigger('show:error', 404)
-        # else
+        if event.isClose() && not event.userIsInvited()
+          $.growl.error({ message: "You cannot see information on this Event. This is a Closed Event" })
+        else if event.isSecret() && not event.userIsInvited()
+          AlumNet.trigger('show:error', 404)
+        else
           layout = AlumNet.request("event:layout", event)
           header = AlumNet.request("event:header", event)
           layoutAbout = new About.Layout
