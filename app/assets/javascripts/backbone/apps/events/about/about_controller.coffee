@@ -11,13 +11,19 @@
         # else
           layout = AlumNet.request("event:layout", event)
           header = AlumNet.request("event:header", event)
-          body = new About.View
+          layoutAbout = new About.Layout
+          map = new About.Map
+            model: event
+          info = new About.View
             model: event
             current_user: current_user
 
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
-          layout.body.show(body)
+          layout.body.show(layoutAbout)
+          layoutAbout.info.show(info)
+          layoutAbout.map.show(map)
+
           AlumNet.execute('render:events:submenu')
 
       event.on 'find:error', (response, options)->
