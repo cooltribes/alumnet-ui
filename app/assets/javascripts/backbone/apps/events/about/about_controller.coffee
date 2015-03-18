@@ -1,7 +1,7 @@
 @AlumNet.module 'EventsApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
   class About.Controller
-    showAbout: (id)->
-      event = AlumNet.request("event:find", id)
+    showAbout: (event_id)->
+      event = AlumNet.request("event:find", event_id)
       current_user = AlumNet.current_user
       event.on 'find:success', (response, options)->
         if event.isClose() && not event.userIsInvited()

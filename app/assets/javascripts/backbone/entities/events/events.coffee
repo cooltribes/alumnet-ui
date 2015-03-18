@@ -2,6 +2,8 @@
   class Entities.Event extends Backbone.Model
 
     initialize: ->
+      @posts = new Entities.PostCollection
+      @posts.url = AlumNet.api_endpoint + '/events/' + @id + '/posts'
       unless @isNew()
         @setAttendance()
 
@@ -35,7 +37,7 @@
 
     userIsInvited: ->
       attendance = @get('attendance_info')
-      attendance is not null
+      if attendance == null then false else true
 
     validation:
       name:
