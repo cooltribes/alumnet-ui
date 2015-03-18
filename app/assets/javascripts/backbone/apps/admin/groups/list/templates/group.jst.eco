@@ -36,9 +36,7 @@
       <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
 </td>
 <td class="js-show-admins tableAdminGroups__colText tableAdminGroups__admins">
-  <div>
-    <%= @getAdminsCount() %>
-  </div>
+  <%= @getAdminsCount() %>
   <div class="tableAdminGroups__adminsList">
     <ul>
       <% if @admins.length: %>

@@ -33,7 +33,9 @@
 </head>
 <body>
   <div id="header-region">
-    
+    <header class="staticContentBox__header">
+      <%= image_tag("general/alumnet_logo.png", class: "staticContentBox__header__Logo", alt: "AlumNet") %>
+    </header>
   </div>
   <div id="main-region">
     <% if notice %>
@@ -46,9 +48,8 @@
       <div class="container-fluid">
         <div class="row">
           <div class=" col-md-4 col-lg-4">
-            <%= image_tag("home/alumNetLogoHome.png", alt: "Company Logo AlumNet",width:"190px" ) %>
-
-            <br><br>
+            <%= image_tag("home/alumNetLogo.png", alt: "Company Logo AlumNet",width:"190px" ) %>
+            <br>
             <p>
               <strong>AIESEC Alumni International</strong><br>
               <small>Ave de Tervuren 300, B-1150 Brussels, Belgium
@@ -66,10 +67,10 @@
                   <a href="http://aiesec-alumni.org/blog/" title="Blog" target="new">Blog</a>
                 </li>
                 <li>
-                  <a href="/termsOfUse" title="Terms of Use">Terms of Use</a>
+                  <a href="/terms" title="Terms of Use">Terms of Use</a>
                 </li>
                 <li>
-                  <a href="/privacyPolicy" title="Privacy Policy">Privacy Policy</a>
+                  <a href="/privacy" title="Privacy Policy">Privacy Policy</a>
                 </li>
                 <li>
                   <a href="/joinAAI" title="Join AAI">Join AAI</a>
