@@ -66,7 +66,7 @@
 		<div class="groupCardManage__actions">
 			<% if @is_admin: %>
 			<div class="groupCardManage__actions__wrapper--admin">
-				<a href="#groups/<%= @group.id %>/members" title="Members">
+				<a href="#groups/<%= @group.id %>/members" title="Alumni in Group">
 					<span class="icon-entypo-user"></span>
 				</a>
 				<a href="#groups/<%= @group.id %>/about" title="Edit Group"><span class="icon-entypo-cog"></span> </a>
