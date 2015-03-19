@@ -14,9 +14,6 @@
       albumView.on "return:to:albums", ()->
         AlumNet.trigger "albums:user:list", layout, layout.model
 
-      albumView.on "upload:picture", (data)->
-        console.log "Ye"
-
 
       layout.body.show(albumView)
 
