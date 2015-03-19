@@ -6,10 +6,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>ALUMNET</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-
+  <title>AlumnetUi</title>
+  <%= stylesheet_link_tag    'public', media: 'all' %>
+  <%= javascript_include_tag 'public' %>
+<!--   <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'> -->
+ 
+<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-touch-icon-152x152.png">
@@ -22,19 +28,16 @@
 <meta name="msapplication-TileColor" content="#444444">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 <link rel="shortcut icon" href="assets/favicon/favicon.ico">
-
   <%= csrf_meta_tags %>
   <%= include_gon %>
 </head>
 <body>
   <div id="header-region">
-
-    <header class="ErrorHeader">
-      <%= image_tag("general/alumnet_logo.png", class: "ErrorHeader__Logo", alt: "AlumNet") %>
-    </header>
-
   </div>
   <div id="main-region">
+    <% if notice %>
+      <div class="alert alert-success"><b><%= notice %></b></div>
+    <% end %>
     <%= yield %>
   </div>
   <div id="footer-region">
@@ -47,33 +50,33 @@
             <p>
               <strong>AIESEC Alumni International</strong><br>
               <small>Ave de Tervuren 300, B-1150 Brussels, Belgium
-              International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
-              Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small>
+                International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
+                Registered in Belgium under 0456.060.148, RPR/RPM Brussels</small>
             </p>
           </div>
           <div class="col-md-8 col-lg-8 text-right">
             <div class="clearfix">
               <ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
                 <li>
-                  <a href="#about" title="About Us"> About Us</a>
+                  <a href="/about" title="About Us"> About Us</a>
                 </li>
                 <li>
                   <a href="http://aiesec-alumni.org/blog/" title="Blog" target="new">Blog</a>
                 </li>
                 <li>
-                  <a href="#termsOfUse" title="Terms of Use">Terms of Use</a>
+                  <a href="/terms" title="Terms of Use">Terms of Use</a>
                 </li>
                 <li>
-                  <a href="#privacyPolicy" title="Privacy Policy">Privacy Policy</a>
+                  <a href="/privacy" title="Privacy Policy">Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#joinAAI" title="Join AAI">Join AAI</a>
+                  <a href="/joinAAI" title="Join AAI">Join AAI</a>
                 </li>
                 <li>
-                  <a href="#donate" title="Donate">Donate</a>
+                  <a href="/donate" title="Donate">Donate</a>
                 </li>
                 <li>
-                  <a href="#contact" title="Contact">Contact</a>
+                  <a href="/contact" title="Contact">Contact</a>
                 </li>
               </ul>
             </div>

@@ -8,7 +8,19 @@ DESCRIPTION: styles for footer static pages
 @import 'conf/conf.css.less';
 
 .staticContentBox{
-   margin-top: -40px;
+
+  &__header{
+
+    background-color: @main-dark;
+    padding: @space_medium;
+      min-height: 130px;
+
+    &__Logo{
+      position:relative;
+      left:50%;
+      margin-left:-80px;
+    }
+  }
 
    &__content{
        background-color: #fff;

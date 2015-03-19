@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  layout "public"
+  layout "home"
   skip_before_action :setup_gon
   skip_before_action :authenticate!
 
