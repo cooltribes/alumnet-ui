@@ -20,7 +20,7 @@
   App.on 'start', ->
     if Backbone.history
       Backbone.history.start()
-      App.navigate('#posts', {trigger: true})
+      App.navigate('#prueba', {trigger: true})
 
 
   App.addRegions
