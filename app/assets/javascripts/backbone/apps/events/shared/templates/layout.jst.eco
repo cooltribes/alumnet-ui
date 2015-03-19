@@ -1,0 +1,24 @@
+<div id="event-header"></div>
+<nav class="groupMenu navbar group-menu navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="nav nav-pills">
+          <li>  <a href="#events/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
+            <span class="glyphicon glyphicon-list-alt"></span>
+          Posts</a></li>
+          <li>  <a href="#events/<%= @id %>/about" id="js-about" class="groupMenu__link">
+            <span class="icon-entypo-dot-3"></span>
+          About</a></li>
+          <li>  <a href="#events/<%= @id %>/attendances" id="js-attendances" class="groupMenu__link">
+            <span class="ico-company"></span>
+          Attendances</a></li>
+          <li>  <a href="#" id="js-pictures" class="groupMenu__link">
+            <span class="icon-entypo-picture"></span>
+          Pictures</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="event-body"></div>

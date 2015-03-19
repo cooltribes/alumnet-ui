@@ -1,0 +1,19 @@
+<div class="groupCoverArea" style="background-image: url('<%= @cover.main %>');">
+  <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
+    <% if @canEditInformation: %>
+      <a href="#" id="name"><%= @name %></a>
+    <% else: %>
+      <%= @name %>
+    <% end %>
+  </h1>
+  <% if @canEditInformation: %>
+    <a href="#" id="js-upload-cover" class="groupCoverArea__btnUploadCover btn btn-lg">Upload new cover photo</a>
+  <% end %>
+  <% if @hasInvitation(): %>
+    <a href="#" title="Going" class="btn btn-lg btn-default" id="js-going" data-value="going">Going</a>
+    <a href="#" title="Maybe" class="btn btn-lg btn-default" id="js-maybe" data-value="maybe">Maybe</a><br>
+    <a href="#" title="not Going" class="btn btn-lg btn-default" id="js-not-going" data-value="not_going">Not Going</a><br>
+  <% end %>
+</div>
+<div id="js-modal-cover-container">
+</div>

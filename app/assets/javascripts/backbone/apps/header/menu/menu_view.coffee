@@ -38,15 +38,17 @@
       messagesBox: '#js-menu-messages-box'
       notificationsBox: '#js-menu-notifications-box'
 
-    events:
-      'click #js-menu-messages': 'menuMessageClicked'
-      'click #js-menu-notifications': 'menuNotificationClicked'
-      'click @ui.changeHeader': 'changeHeader'
-
     ui:
       'messagesBadge': '#js-messages-badge'
       'notificationsBadge': '#js-notifications-badge'
       'changeHeader': '#js-changeHeader'
+      'notificationsMarkAll': '#js-notifications-mark-all'
+
+    events:
+      'click #js-menu-messages': 'menuMessageClicked'
+      'click #js-menu-notifications': 'menuNotificationClicked'
+      'click @ui.changeHeader': 'changeHeader'
+      'click @ui.notificationsMarkAll': 'markAllNotifications'
 
     #OJO: Quite esto porque no se para que se tiene que hacer rerender del layout.
     #Marionette no recomienda esto. Ademas rompe varios codigos.
@@ -55,6 +57,10 @@
 
     # modelChange: ->
     #   @render()
+
+    markAllNotifications: (e)->
+      e.preventDefault()
+      AlumNet.current_user.notifications.markAllAsRead()
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
