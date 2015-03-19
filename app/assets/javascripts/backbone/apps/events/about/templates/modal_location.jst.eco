@@ -1,7 +1,9 @@
 <% selected = (option, value)->  if option == value then "selected" else "" %>
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title"><%= @name %></h3>
+</div>
 <form>
   <div class="modalBox__content">
-    <h3 class="textColor--blue"><%= @name %></h3>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group has-feedback">
