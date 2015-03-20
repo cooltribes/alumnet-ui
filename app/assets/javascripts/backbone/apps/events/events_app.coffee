@@ -3,6 +3,7 @@
     appRoutes:
       "events/:id/about": "aboutEvent"
       "events/:id/posts": "postsEvent"
+      "events": "listEvents"
 
 
   API =
@@ -13,6 +14,10 @@
     postsEvent: (id)->
       controller = new EventsApp.Posts.Controller
       controller.showPosts(id)
+
+    listEvents: (id)->
+      controller = new EventsApp.List.Controller
+      controller.list(AlumNet.current_user.id)
 
   AlumNet.addInitializer ->
     new EventsApp.Router

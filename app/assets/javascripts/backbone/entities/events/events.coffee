@@ -14,6 +14,11 @@
       else
         @attendance = new Entities.Attendance
 
+    isPast: ->
+      today = moment()
+      start_date = moment(@get('start_date'))
+      today > start_date
+
     getLocation: ->
       city = @get('city')
       country = @get('country')
@@ -55,6 +60,16 @@
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
+
+    getUpcoming: ->
+      today = moment().format('YYYY-MM-DD')
+      query = { q: { start_date_gteq: today } }
+      @fetch( data: query )
+
+    getPast: ->
+      today = moment().format('YYYY-MM-DD')
+      query = { q: { start_date_lt: today } }
+      @fetch( data: query )
 
   class Entities.Attendance extends Backbone.Model
     urlRoot: ->
