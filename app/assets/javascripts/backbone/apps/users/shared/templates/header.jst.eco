@@ -1,6 +1,6 @@
 <!-- <div class="userCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
 <!-- <div class="userCoverArea" style="background-image: url('<%= @avatar.large %>');"> -->
-<div class="userCoverArea" style="background-color: #2b2b2b;">
+<div class="userCoverArea" style="background-color: #2b2b2b;" role="group">
   
   <% if @avatar.extralarge: %>
     <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle userCoverArea__avatar">
@@ -19,14 +19,14 @@
     <a id="js-editPic" class="btn btn-lg btn-default" href="#" style="position: absolute; left: 30px; bottom: 30px;">Change avatar</a>
   <% end %>
 
-  <% if @friendship_status == "none": %>
-    <a href="#" id="js-request-send" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg">+ ADD FRIEND</a>
+  <% if @friendship_status: %>
+    <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
+    console.log()
   <% end %> 
 
-  <% if @friendship_status: %>
-    <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage btn btn-lg">SEND A MESSAGE</a>
+  <% if @friendship_status == "none": %>
+    <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>
   <% end %> 
- 
      
 </div>
 <div id="js-picture-modal-container">

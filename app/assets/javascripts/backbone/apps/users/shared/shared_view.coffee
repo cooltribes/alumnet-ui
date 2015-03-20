@@ -47,6 +47,8 @@
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       friendship.on 'save:success', (response, options) =>                   
         @model.fetch()
+
+    sendMessage: (e)->    
                 
                    
         
@@ -60,8 +62,7 @@
 
     initialize: (options) ->      
       @tab = options.tab      
-      @class = [
-        "", "", ""
+      @class = ["", "", ""
         "", ""
       ]  
       @class[parseInt(@tab)] = "--active"

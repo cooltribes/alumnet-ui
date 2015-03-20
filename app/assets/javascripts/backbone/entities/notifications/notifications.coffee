@@ -44,14 +44,12 @@
       @trigger 'reset'
 
     markAllReadInApi: (opts)->
-      url = @url() + '/mark_all_read'
+      url = AlumNet.api_endpoint + '/me/notifications/mark_all_read'
       options =
         url: url
         type: 'PUT'
       _.extend(options, opts)
       (@sync || Backbone.sync).call(@, null, @, options)
-
-
 
   API =
     getNotifications: (querySearch)->

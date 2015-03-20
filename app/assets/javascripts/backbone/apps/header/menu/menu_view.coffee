@@ -42,11 +42,14 @@
       'click #js-menu-messages': 'menuMessageClicked'
       'click #js-menu-notifications': 'menuNotificationClicked'
       'click @ui.changeHeader': 'changeHeader'
+      'click @ui.notificationsMarkAll': 'markAllNotifications'
+      'click .navTopBar__left__item' : 'menuOptionClicked'
 
     ui:
       'messagesBadge': '#js-messages-badge'
       'notificationsBadge': '#js-notifications-badge'
       'changeHeader': '#js-changeHeader'
+      'notificationsMarkAll': '#js-notifications-mark-all'
 
     #OJO: Quite esto porque no se para que se tiene que hacer rerender del layout.
     #Marionette no recomienda esto. Ademas rompe varios codigos.
@@ -55,6 +58,10 @@
 
     # modelChange: ->
     #   @render()
+
+    markAllNotifications: (e)->
+      e.preventDefault()
+      AlumNet.current_user.notifications.markAllAsRead()
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
@@ -97,6 +104,13 @@
       # e.preventDefault()
       # alert "Changing header to regular user"
       AlumNet.execute('header:show:admin')
+
+    menuOptionClicked: (e)->
+      $(".navTopBar__left__item")
+        .removeClass "navTopBar__left__item--active"
+      $(e.target).addClass "navTopBar__left__item--active"
+
+
 
 
 
