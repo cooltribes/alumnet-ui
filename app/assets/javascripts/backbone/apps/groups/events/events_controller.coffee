@@ -36,7 +36,7 @@
           layout = AlumNet.request("group:layout", group)
           header = AlumNet.request("group:header", group)
           events = AlumNet.request('event:entities', 'groups', group_id)
-          events.fetch()
+          events.getUpcoming()
           eventsView = new Events.EventsView
             model: group
             collection: events

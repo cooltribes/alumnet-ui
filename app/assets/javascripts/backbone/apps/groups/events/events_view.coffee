@@ -133,6 +133,7 @@
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
       attendance_status: ->
@@ -168,6 +169,23 @@
 
     templateHelpers: ->
       userCanCreateSubGroup: @model.canDo('create_subgroup')
+
+    ui:
+      'upcomingEvents':'#js-upcoming-events'
+      'pastEvents':'#js-past-events'
+
+    events:
+      'click @ui.upcomingEvents': 'listUpcomingEvents'
+      'click @ui.pastEvents': 'listPastEvents'
+
+    listUpcomingEvents: (e)->
+      e.preventDefault()
+      @collection.getUpcoming()
+
+    listPastEvents: (e)->
+      e.preventDefault()
+      @collection.getPast()
+
 
   # INVITE
 
