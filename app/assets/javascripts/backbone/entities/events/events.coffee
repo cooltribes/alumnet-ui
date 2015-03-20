@@ -61,15 +61,16 @@
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
 
-    getUpcoming: ->
+    getUpcoming:(query) ->
       today = moment().format('YYYY-MM-DD')
-      query = { q: { start_date_gteq: today } }
-      @fetch( data: query )
+      query = $.extend({}, query, { start_date_gteq: today })
+      @fetch( data: { q: query } )
 
-    getPast: ->
+    getPast:(query) ->
       today = moment().format('YYYY-MM-DD')
-      query = { q: { start_date_lt: today } }
-      @fetch( data: query )
+      query = $.extend({}, query, { start_date_lt: today })
+      @fetch( data: { q: query } )
+
 
   class Entities.Attendance extends Backbone.Model
     urlRoot: ->
