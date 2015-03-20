@@ -41,18 +41,44 @@
     childView: List.EventView
     childViewContainer: ".main-events-area"
 
+    initialize: ->
+      @searchUpcomingEvents({})
+
     ui:
       'upcomingEvents':'#js-upcoming-events'
       'pastEvents':'#js-past-events'
+      'searchInput': '#js-search-input'
 
     events:
-      'click @ui.upcomingEvents': 'listUpcomingEvents'
-      'click @ui.pastEvents': 'listPastEvents'
+      'click @ui.upcomingEvents': 'clickUpcoming'
+      'click @ui.pastEvents': 'clickPast'
+      'keypress @ui.searchInput': 'searchEvents'
 
-    listUpcomingEvents: (e)->
+    clickUpcoming: (e)->
       e.preventDefault()
-      @collection.getUpcoming()
+      @searchUpcomingEvents({})
 
-    listPastEvents: (e)->
+    clickPast: (e)->
       e.preventDefault()
-      @collection.getPast()
+      @searchPastEvents({})
+
+    searchUpcomingEvents: (query)->
+      @collection.getUpcoming(query)
+      @flag = "upcoming"
+
+    searchPastEvents: (query)->
+      @collection.getPast(query)
+      @flag = "past"
+
+
+    searchEvents: (e)->
+      if e.which == 13
+        unless @ui.searchInput.val() == ""
+          query = { name_cont: @ui.searchInput.val() }
+        else
+          query = {}
+        if @flag == "upcoming"
+          @searchUpcomingEvents(query)
+        else
+          @searchPastEvents(query)
+
