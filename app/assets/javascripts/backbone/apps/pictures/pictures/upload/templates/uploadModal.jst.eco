@@ -14,10 +14,11 @@
       <span class="help-block"></span>
     </div>  
     
+    <div class="form-group">
     <% if @picture: %>
-        <img src="<%= @picture %>" alt="upload avatar" id="preview-picture" width="240px" height="240px" class="img-circle">
+        <img src="<%= @picture %>" alt="upload avatar" id="preview-picture" width="240px" height="240px">
       <% else: %>
-        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-picture" width="240px" height="240px" class="img-circle">
+        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-picture" width="240px" height="240px">
     <% end %>
 
     <div class="form-group">

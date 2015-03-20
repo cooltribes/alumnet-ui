@@ -1,4 +1,4 @@
-<div class=" row">
+<div class="row">
   <div class="col-md-12">
     <h4>
       This album is empty
@@ -9,5 +9,10 @@
 <div class=" row">
   <div class="col-md-12">
     Start uploading photos right now
+  </div>
+</div>
+<div class=" row">
+  <div class="col-md-12">
+    <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
   </div>
 </div>

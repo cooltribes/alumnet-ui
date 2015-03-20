@@ -6,8 +6,10 @@
         
         <li class="sortingMenu__item sortingMenu__item--lg">
           <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-          <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Photos (0)
-          </a>
+          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Photos
+          </div>
+         <!--  <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Photos (0)
+          </a> -->
         </li>
         
       </ul>

@@ -1,3 +1,4 @@
+<% console.log this %>            
 <div class=" row">
   <div class="col-md-12">
     <h4>
@@ -7,11 +8,10 @@
   </div>
 </div>
 <a href="#" class="js-detail">  
-<div class="userCard user-info">
+<div class="userCard user-info" style="height: initial;">
   <div class=" row">
-    <div class="col-md-12">
-      <img src="<%= @picture %>" alt="<%= @title %>" class="img-circle">
-
+    <div class="col-md-12 text-center">
+      <img src="<%= @picture.card %>" alt="<%= @title %>" class="img-rounded">
     </div>
   </div>
 </div>
