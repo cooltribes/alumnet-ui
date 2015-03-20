@@ -8,8 +8,8 @@
     <p>
     <form>
       <select name="status" class="form-control input-lg ">
-        <option value="0" <%= selected(0, @status.value) %>>Inactive</option>
         <option value="1"<%= selected(1, @status.value) %>>Active</option>
+        <option value="2" <%= selected(2, @status.value) %>>Banned</option>
       </select>
     </form>
   </p>

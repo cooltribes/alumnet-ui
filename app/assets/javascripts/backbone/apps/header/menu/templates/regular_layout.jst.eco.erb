@@ -46,9 +46,9 @@
       <!-- Right menu top -->
       <li>
         <!-- CART ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="modal" data-target="#devAlertModal">
+        <!--<a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="modal" data-target="#devAlertModal">
           <span class=" navTopBar__right__item__icon--cartIcon glyphicon glyphicon-shopping-cart"></span> 3
-        </a>
+        </a>-->
       </li>
       <li>
         <!-- BELL ICON -->
@@ -61,7 +61,7 @@
         <!-- NOTIFICATIONS ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
           <!-- NOTIFICATIONS LIST -->
-          <div id="js-menu-notifications-box"></div>
+          <div id="js-menu-notifications-box" class="notification__boxMenu"></div>
           <!-- SHOW ALL NOTIFICATIONS LINK -->
           <div role="presentation">
             <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
@@ -151,7 +151,8 @@
           This module is still under development. If you want to learn more about this module, or if you have a question or comment about it, please join the AlumNet group
         </p>
 
-        <button type="button" class="btn btn-primary">Join AlumNet Group</button>
+        <button type="button" class="btn btn-primary">
+        <a href="#groups/1/posts"></a>Join AlumNet Group</button>
       </div>
     </div>
     <!-- /.modal-content -->

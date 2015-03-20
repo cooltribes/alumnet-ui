@@ -8,11 +8,12 @@
 		  <th>Gender</th>
 		  <th>Age</th>
 		  <th>Status</th>
+		  <th>Role</th>
 		  <th>Edit</th>
 		</tr>
 	</thead>
 	<tbody>
-		
+
 	</tbody>
 </table>
 
@@ -21,4 +22,3 @@
 
 
 
-            

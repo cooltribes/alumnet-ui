@@ -1,0 +1,5 @@
+<section class="PageError">
+	<div class="PageError__bannedPage">
+		<h1 class="PageError__Title">You are Banned!</h1>
+	</div>
+</section>

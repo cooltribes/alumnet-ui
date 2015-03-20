@@ -1,6 +1,5 @@
-	<td class="groupTableView__colOne">
-		
-		<div class="col-lg-2 col-md-2 groupTableView__cover" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; ">
+	<td>
+		<div class="col-lg-2 col-md-2 groupTableView__cover" style="background: url('<%= @cover.card %>') no-repeat top center;">
         <% if @official: %>
 				  <span class="groupTableView__ribbon"></span>
         <% end %>
@@ -24,20 +23,20 @@
         	  <% end %>
         	">
         		<% if @group_type.value== 1: %>
-            	Closed
+            	CLOSED
           		<% end %>
           		<% if @group_type.value== 0: %>
-            	Open
+            	OPEN
           		<% end %>
         	</span>
 
         	</h4>
-        	<p>
+        	<p class="groupTableView__description">
         		<%= @description %> 
         	</p>
 			<a <% if _.size(@children)>0: %>class="groupTableView__SubGroup" <% end %> data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" aria-controls="<%= @id %>">
-				Show Sub-Groups (<%= _.size(@children) %>) 
-        <% if _.size(@children)>0: %><span class="caret"></span> <% end %> 
+				
+        <% if _.size(@children)>0: %> Show Sub-Groups (<%= _.size(@children) %>) <span class="caret"></span> <% end %> 
 			</a>
       <% if _.size(@children)>0: %>
 			<div class="collapse" id="<%= @id %>">
@@ -59,17 +58,18 @@
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> 
     <div class="groupTableView__colText"><%= moment(@created_at).format('MM/YYYY') %>  </div>  
   </td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last post" >
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last Activity" >
 		<% if @last_post_at: %>
             <div class="groupTableView__colText"><%= moment(@last_post_at).format('h:mm a') %> </div>
         <% else: %>
             <div class="groupTableView__colText"><%= moment(@created_at).format('h:mm a') %> </div>
         <% end %>		
 	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> 
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Alumni in Group"> 
     <div class="groupTableView__colText"><%= @membership_users.length %> </div>
   </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
+    100
 		<!--
               Avatars of people who has joined the group
 
@@ -80,10 +80,10 @@
 		<% if @membership_status == "approved": %>
           <div class="groupTableView__colText" ><a  href="#groups/<%= @id %>/posts"> ENTER </a></div>
         <% else if @membership_status == "pending": %>
-         <div class="groupTableView__colText"> <span class="icon-entypo-hourglass"></span> Waiting for approval</div>
+         <div class="groupTableView__colText"> <span class="icon-entypo-hourglass"></span> WAITING FOR APPROVAL</div>
         <% else: %>
           <button class="groupTableView__join js-join">
-              + Join group
+              + JOIN GROUP
           </button>
         <% end %>
 	</td>
