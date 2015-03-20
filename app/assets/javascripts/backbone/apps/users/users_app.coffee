@@ -1,10 +1,10 @@
 @AlumNet.module 'UsersApp', (UsersApp, @AlumNet, Backbone, Marionette, $, _) ->
-  # UsersApp.Router = Marionette.AppRouter.extend
   class UsersApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
       "users/:id/friends": "userFriends"      
+      "users/:id/photos": "userPictures"      
 
   API =
     userPosts: (id)->
@@ -22,6 +22,11 @@
         controller.showMyLayout()
       else  
         controller.showUserLayout(id)
+
+    userPictures: (id)->
+      controller = new UsersApp.Pictures.Controller
+      controller.showAlbums(id)
+
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")

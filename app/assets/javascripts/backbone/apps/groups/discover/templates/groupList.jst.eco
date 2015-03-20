@@ -58,14 +58,14 @@
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> 
     <div class="groupTableView__colText"><%= moment(@created_at).format('MM/YYYY') %>  </div>  
   </td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last post" >
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last Activity" >
 		<% if @last_post_at: %>
             <div class="groupTableView__colText"><%= moment(@last_post_at).format('h:mm a') %> </div>
         <% else: %>
             <div class="groupTableView__colText"><%= moment(@created_at).format('h:mm a') %> </div>
         <% end %>		
 	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Members"> 
+	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Alumni in Group"> 
     <div class="groupTableView__colText"><%= @membership_users.length %> </div>
   </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
