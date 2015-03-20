@@ -1,5 +1,11 @@
 @AlumNet.module 'UsersApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
 
+  
+
+
+
+
+
   class About.View extends Marionette.LayoutView
     template: 'users/about/templates/about'
 
@@ -15,17 +21,49 @@
       "addLanguage": ".js-addLanguage"
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
+      "smoothClick":".smoothClick"
+      
+
 
     events:
       "click @ui.addSkill": "addSkill"
       "click @ui.addLanguage": "addLanguage"
       "click @ui.addContact": "addContact"
+      "click .smoothClick": "smoothClick"
+
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
+      @userCanEdit = options.userCanEdit      
+      $(window).on 'scroll' , =>
+        if $('body').scrollTop()>500
+          $('#aboutUseraffix').css
+            'position': 'fixed'
+            'width' : '181px'
+            'top' : '110px'            
+        else
+          $('#aboutUseraffix').css
+            'position': 'relative'
+            'top':'0px'
+            'width':'100%'
 
+      
     templateHelpers: ->
       userCanEdit: @userCanEdit
+
+    smoothClick: (e)->
+      if $(e.target).prop("tagName")!='a'
+        element = e.target.closest 'a'
+      else
+        element=e.target
+      String id = element.id
+      id='#'+id.replace('to','')
+      $('html,body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
+      
+      
+      
+
 
     addSkill: (e)->
       e.preventDefault()
@@ -37,7 +75,7 @@
     addLanguage: (e)->
       e.preventDefault()
       modal = new About.Modal
-        view: @languages.currentView
+        view: @languages.currentView 
         type: 1
       @ui.modalCont.html(modal.render().el)
     
@@ -298,12 +336,14 @@
       "modalCont": "#js-profile-modal-container"     
       "editName": "#js-editName"    
       "editBorn": "#js-editBorn"    
-      "editResidence": "#js-editResidence"   
+      "editResidence": "#js-editResidence"
+           
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
+      
 
     # bindings:
       
@@ -389,6 +429,8 @@
         view: this
         type: 1
         model: @model.profile
+
+    
 
       @ui.modalCont.html(modal.render().el)
 
