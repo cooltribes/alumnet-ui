@@ -27,6 +27,7 @@
 
     events:
       'click button.js-submit': 'submitClicked'
+      'click button.js-cancel': 'cancelClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
@@ -56,6 +57,10 @@
       formData.append('cover', file[0].files[0])
       @model.set(data)
       @trigger 'form:submit', @model, formData
+
+    cancelClicked: (e)->
+      e.preventDefault()
+      AlumNet.trigger 'groups:discover'
 
     previewImage: (e)->
       input = @.$('#group-cover')

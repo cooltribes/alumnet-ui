@@ -62,8 +62,7 @@
 
     initialize: (options) ->      
       @tab = options.tab      
-      @class = [
-        "", "", ""
+      @class = ["", "", ""
         "", ""
       ]  
       @class[parseInt(@tab)] = "--active"
