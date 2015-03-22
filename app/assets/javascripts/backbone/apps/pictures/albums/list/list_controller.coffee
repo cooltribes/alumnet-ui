@@ -9,8 +9,13 @@
       # albumCollection.url = AlumNet.api_endpoint + '/users/' + user.id + "/albums"
       albumCollection.fetch()
 
+      
+      userCanEdit = user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
+
+
       albumsView = new AlbumList.AlbumsView
         collection: albumCollection
+        userCanEdit: userCanEdit
 
 
       albumsView.on "childview:show:detail", (childview)->  
@@ -18,9 +23,9 @@
         
 
       albumsView.on "create:album", (model)->  
-        console.log model
-        model.urlRoot = AlumNet.api_endpoint + '/users/' + layout.model.id + "/albums"
-        model.save
+        # model.urlRoot = AlumNet.api_endpoint + '/users/' + layout.model.id + "/albums"
+        # model.save
+        albumCollection.create model,
           success:->
             AlumNet.trigger "albums:show:detail", layout, model        
 

@@ -6,8 +6,23 @@
     
     triggers:
       'click .js-detail': "show:detail"
+    
+    events:
+      'click .js-rmvItem': "removeItem"
       # event: 'view:detail'
       # preventDefault: true
+    initialize: (options)->
+      console.log options
+      @userCanEdit = options.userCanEdit
+
+    templateHelpers: ->
+      userCanEdit: @userCanEdit  
+
+    removeItem: (e)->
+      e.preventDefault()
+      if confirm("Are you sure you want to delete this album and all its photos?")
+        @model.destroy
+          wait: true
     
 
   class AlbumList.AlbumsView extends Marionette.CompositeView
@@ -17,12 +32,22 @@
     emptyViewOptions: 
       message: "There is no albums here"
     childViewContainer: '.albums-list'
+    childViewOptions: ->
+      userCanEdit: @userCanEdit
+      
 
     ui:
       "modalCont": "#js-modal-container"  
     
     events:
       'click .js-create': 'createAlbum'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+
+    templateHelpers: ->
+      userCanEdit: @userCanEdit
 
     createAlbum: (e)->
       e.preventDefault()
