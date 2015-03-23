@@ -11,7 +11,7 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       
     events:
       "click @ui.rmvRow": "rmvRowClicked"
-      "change @ui.contact_type": "changePlaceholder"
+      "change @ui.contact_type, click @ui.contact_type": "changePlaceholder"
 
     templateHelpers: ->
       selected: (value)->
