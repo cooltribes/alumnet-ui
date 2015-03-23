@@ -3,6 +3,7 @@
     appRoutes:
       "events/:id/about": "aboutEvent"
       "events/:id/posts": "postsEvent"
+      "events/:id/attendances": "attendancesEvent"
       "events": "listEvents"
 
 
@@ -14,6 +15,10 @@
     postsEvent: (id)->
       controller = new EventsApp.Posts.Controller
       controller.showPosts(id)
+
+    attendancesEvent: (id)->
+      controller = new EventsApp.Attendances.Controller
+      controller.showAttendances(id)
 
     listEvents: (id)->
       controller = new EventsApp.List.Controller

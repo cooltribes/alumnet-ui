@@ -76,6 +76,31 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/attendances'
 
+  class Entities.AttendancesCollection extends Backbone.Collection
+    url: ->
+      AlumNet.api_endpoint + '/attendances'
+    model: Entities.Attendance
+
+    getByStatus: (status, query)->
+      query = $.extend({}, query, { status_eq: status })
+      @fetch( data: { q: query, event_id: @event_id } )
+
+    getInvited:(query) ->
+      query = $.extend({}, query, { status_eq: 0 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
+    getGoing:(query) ->
+      query = $.extend({}, query, { status_eq: 1 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
+    getMaybe:(query) ->
+      query = $.extend({}, query, { status_eq: 2 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
+    getNotGoing:(query) ->
+      query = $.extend({}, query, { status_eq: 3 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
   class Entities.EventContact extends Backbone.Model
 
   class Entities.EventContacts extends Backbone.Collection
@@ -112,6 +137,11 @@
     newAttendance: ->
       new Entities.Attendance
 
+    getAttendances: (event_id)->
+      attendances = new Entities.AttendancesCollection
+      attendances.event_id = event_id
+      attendances
+
   AlumNet.reqres.setHandler 'event:new', (parent, parent_id) ->
     API.createEvent(parent, parent_id)
 
@@ -126,3 +156,6 @@
 
   AlumNet.reqres.setHandler 'attendance:new', ->
     API.newAttendance()
+
+  AlumNet.reqres.setHandler 'attendance:entities', (event_id)->
+    API.getAttendances(event_id)
