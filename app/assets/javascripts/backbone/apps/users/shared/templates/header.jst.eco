@@ -19,13 +19,12 @@
     <a id="js-editPic" class="btn btn-lg btn-default" href="#" style="position: absolute; left: 30px; bottom: 30px;">Change avatar</a>
   <% end %>
 
-  <% if @friendship_status: %>
+  <% if not @current_user: %>
     <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
-    console.log()
   <% end %> 
 
   <% if @friendship_status == "none": %>
-    <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>
+    <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>    
   <% end %> 
      
 </div>
