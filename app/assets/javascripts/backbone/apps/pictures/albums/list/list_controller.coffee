@@ -27,6 +27,7 @@
         # model.save
         albumCollection.create model,
           success:->
+            console.log model
             AlumNet.trigger "albums:show:detail", layout, model        
 
       
