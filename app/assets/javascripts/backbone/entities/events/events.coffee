@@ -49,13 +49,13 @@
         required: true
       description:
         required: true
+      start_date:
+        required: true
+      end_date:
+        required: true
       cover:
         required: true
-      city_id:
-        required: true
       country_id:
-        required: true
-      address:
         required: true
 
   class Entities.EventsCollection extends Backbone.Collection

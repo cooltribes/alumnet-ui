@@ -2,7 +2,7 @@
   <div class="col-md-6">
       <ul class="sortingMenu" id="filter-link-container">
         <li class="sortingMenu__item sortingMenu__item--lg">
-          <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link"
+          <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active"
             id="js-upcoming-events">Upcoming events
           </a>
         </li>

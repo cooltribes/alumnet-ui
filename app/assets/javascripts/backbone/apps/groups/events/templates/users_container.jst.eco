@@ -26,6 +26,6 @@
 </div>
 
 <div class="text-center margin_top">
-	<a href="#" class="btn btn-primary" title="See the group">See the event <span class="icon-entypo-right-open"></span>
+	<a href="#events/<%= @id %>" class="btn btn-primary" title="See the group">See the event <span class="icon-entypo-right-open"></span>
 	</a>
 </div>
