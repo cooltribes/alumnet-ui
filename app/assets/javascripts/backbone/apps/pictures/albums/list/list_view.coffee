@@ -2,7 +2,7 @@
   
   class AlbumList.AlbumView extends Marionette.ItemView
     template: 'pictures/albums/list/templates/_album'
-    className: 'col-md-4 col-sm-6'
+    className: 'col-md-3 col-sm-6'
     
     triggers:
       'click .js-detail': "show:detail"

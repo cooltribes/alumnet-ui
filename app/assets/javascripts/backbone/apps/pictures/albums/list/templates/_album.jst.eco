@@ -16,8 +16,13 @@
 <div class="userCard user-info">
   <div class=" row">
     <div class="col-md-12">
-      <img src="<%= @cover %>" alt="<%= @name %>" class="img-circle">
+    <% if @cover_picture: %>
+      <img src="<%= @cover_picture.card %>" alt="<%= @name %>" class="img-rounded">
+    <% else: %>
+      <img src="" alt="<%= @name %>" class="img-rounded">
+      
 
+    <% end %>
     </div>
   </div>
 </div>

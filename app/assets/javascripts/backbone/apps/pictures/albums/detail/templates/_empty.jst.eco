@@ -7,11 +7,11 @@
 
   </div>
 </div>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-12">
     <strong>Date when pictures were taken:</strong> <%= @date_taken %>
   </div>
-</div>
+</div> -->
 <div class="row">
   <div class="col-md-12">
     Start uploading photos right now
