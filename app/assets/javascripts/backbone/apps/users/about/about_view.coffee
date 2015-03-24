@@ -41,7 +41,7 @@
             'width' : '181px'
             'top' : '110px'            
         else
-          $('#aboutUseraffix').css
+          $('#aboutUseraffix').css 
             'position': 'relative'
             'top':'0px'
             'width':'100%'

@@ -3,6 +3,13 @@
   class AlbumDetail.EmptyView extends Marionette.ItemView
     template: 'pictures/albums/detail/templates/_empty'
     className: 'col-md-12 text-center'
+    ###initialize: (options)->
+      console.log options
+      @model = options.model
+
+    templateHelpers: ->
+      model: @model 
+###
 
   class AlbumDetail.Photo extends Marionette.ItemView
     template: 'pictures/albums/detail/templates/_photo'
@@ -12,8 +19,8 @@
     template: 'pictures/albums/detail/templates/albumDetail'
     childView: AlbumDetail.Photo
     emptyView: AlbumDetail.EmptyView
-    # emptyViewOptions: 
-    #   message: "There is no pictures here"
+    emptyViewOptions: ->
+      model: @model
     childViewContainer: '.albums-list'
 
     ui:

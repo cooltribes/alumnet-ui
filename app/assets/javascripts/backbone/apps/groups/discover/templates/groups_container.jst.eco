@@ -14,7 +14,7 @@
 			</a>
 		</li>
 		<li class="sortingMenu__item">
-			<a href="#" title="Only Public" class="sortingMenu__item__link" id="js-filter-non-official">Non-Offical
+			<a href="#" title="Only Public" class="sortingMenu__item__link" id="js-filter-non-official">Unofficial
 			</a>
 		</li>
 	</ul>

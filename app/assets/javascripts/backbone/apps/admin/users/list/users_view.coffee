@@ -19,6 +19,7 @@
     submitEl: "#save-status"
 
     events:
+      'click #editPremium': 'openPremium'
       'click #editStatus': 'openStatus'
       'click #delete-user': 'deleteUser'
       'click #editRole': 'openRole'
@@ -33,6 +34,15 @@
       if resp
         @model.destroy()
         @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.        
+
+    openPremium: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalPremium
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
 
     openStatus: (e) ->
       e.preventDefault();
@@ -51,6 +61,58 @@
         modals: @modals
 
       @modals.show(statusView)
+
+  #----Modal para cambiar suscripcion
+  class Users.ModalPremium extends Backbone.Modal
+    template: 'admin/users/list/templates/modal_premium'
+
+    cancelEl: '#close-btn, #goBack'
+    submitEl: "#save-status"
+
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      id = @model.id
+      url = AlumNet.api_endpoint + "/users/#{id}/subscriptions"
+      data.user_id = id
+
+      console.log(data)
+
+      Backbone.ajax
+        url: url
+        type: "POST" 
+        data: data
+        success: (data) =>
+          #@model.set(data)
+          #@model.trigger 'change:role'
+          console.log("success")
+          console.log(data)
+        error: (data) =>
+          console.log("error")
+          console.log(data)
+          #text = data.responseJSON[0]
+          #$.growl.error({ message: text })
+      
+
+    onRender: ->
+      min_date = moment().format("YYYY-MM-DD")
+      max_date = moment().add(20, 'years').format("YYYY-MM-DD")
+      @$(".js-date-begin").Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: [min_date, max_date]
+        onOpen: (e) ->
+          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
+
+      @$(".js-date-end").Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: [min_date, max_date]
+        onOpen: (e) ->
+          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
   #----Modal para cambiar le status
   class Users.ModalStatus extends Backbone.Modal
