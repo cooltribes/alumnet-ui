@@ -25,39 +25,18 @@
         <div class="form-group">
           <label class="control-label" for="year">Date (when pictures were taken)</label>
           <div class="row">
-
             <div class="col-md-6">
-              <div class="formANet__select">
-                <select name="year" class=" form-control input-lg ">
-                  <option value="">Select Year</option>
-                  <% for x in [@firstYear()..@currentYear] by 1 : %>
-                    
-                    <option <%= if @year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-                    
-                  <% end %>
-                </select>
-              </div>
+              <input type="text" value="<%= @date_taken %>" class="form-control input-lg js-date-taken" name="date_taken" placeholder="Selec date">
             </div>
-            <div class="col-md-6">
-              <div class="formANet__select">
-                <select name="month" class=" form-control input-lg">
-                  <option value="">Select Month</option>
-                  <% for x in [1..12] by 1 : %>
-                    <option <%= if @month == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>   
-                  <% end %>
-                </select>
-              </div>
-            </div>
-
           </div>
+
           <span class="help-block"></span>
         </div>
       
       
       </div>
     </div>
-
-
+    
     <div class="row ">
       <div class="col-md-6">
         <div class="form-group">
