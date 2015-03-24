@@ -3,7 +3,7 @@
 </div>
 <div class="bbm-modal__section">
   <p>
-    <a href="#" id="editPremium" title="Edit premium access" class="fontSize--md">Change user membership</a>
+    <a href="#" id="editPremium" title="Edit premium access" class="fontSize--md">Change user subscription</a>
     <br/>
     Upgrade, extend or cancel the membership of this user.
   </p>
