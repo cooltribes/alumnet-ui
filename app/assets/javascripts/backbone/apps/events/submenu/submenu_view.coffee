@@ -13,6 +13,7 @@
 
     templateHelpers: ->
       model = @model
+      user_id = AlumNet.current_user.id
       classOf: (step) =>
         @class[step]
 
