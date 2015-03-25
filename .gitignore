@@ -19,3 +19,5 @@
 /config/.env
 Procfile
 .env
+.ruby-version
+.ruby-gemset
