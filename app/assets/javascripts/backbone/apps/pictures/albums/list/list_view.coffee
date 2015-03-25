@@ -11,6 +11,7 @@
       'click .js-rmvItem': "removeItem"
       # event: 'view:detail'
       # preventDefault: true
+      
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 

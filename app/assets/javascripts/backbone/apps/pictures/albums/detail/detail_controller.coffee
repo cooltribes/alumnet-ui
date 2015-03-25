@@ -2,6 +2,9 @@
   class AlbumDetail.Controller
     showAlbum: (layout, album)->
       
+      user = layout.model
+      userCanEdit = user.isCurrentUser()
+
       photosCollection = new AlumNet.Entities.PictureCollection     
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
 
@@ -10,12 +13,10 @@
       albumView = new AlbumDetail.DetailView
         model: album
         collection: photosCollection
+        userCanEdit: userCanEdit
 
       albumView.on "return:to:albums", ()->
-        AlumNet.trigger "albums:user:list", layout, layout.model
-        # console.log "return albums"
-
-      # console.log  albumView
+        AlumNet.trigger "albums:user:list", layout, user
 
       albumView.on "upload:picture", (data)->
         photosCollection.create data,
