@@ -8,7 +8,7 @@
     <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
   <% end %>
    <% if @userCanEdit: %>
-    <a id="js-editPic" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change avatar</a>
+    <a id="js-editPic" class="btn btn-lg btn-alert btn-alert--edit btn-alert--edit__pic" href="#" style="position: absolute; bottom: -55px; left:45px"><span class="text">Change avatar</span></a>
   <% end %>   
   </div>
   <h1 class="userCoverArea__title ">
@@ -29,7 +29,7 @@
     <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>    
   <% end %> 
    <% if @userCanEdit: %>
-    <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+    <a id="js-editcover" class="btn btn-lg btn-alert btn-alert--edit btn-alert--edit__pic" href="#" style="position: absolute; top: 55px; right:5px"><span class="text">Change cover</span></a>
   <% end %>  
 </div>
 <div id="js-picture-modal-container">

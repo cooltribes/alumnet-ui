@@ -44,6 +44,6 @@
 <% end %>
 
 	<div class="experienceCard__description">
-		Description: <%= @description %>
+	<%= @description %>
 	</div>
 </div>
