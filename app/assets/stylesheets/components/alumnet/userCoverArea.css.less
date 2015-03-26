@@ -59,6 +59,13 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 		z-index: 100;
 		margin: 0 auto;
 
+		&__editAvatar{
+			display: block;  
+			margin-top: 5px;  
+			position: relative;  
+			width: initial;
+		}
+
 	}
 
 	&__btnInvite{
@@ -102,7 +109,13 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 		}
 
 	}
-
+	&__editCover{
+		display:block; 
+		position:relative;
+		display: block;
+		text-align: center; 
+		margin-right: 10px;
+	}
 
 	
 }
@@ -116,19 +129,21 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
  	.userCoverArea{
- 		height: 328px;
+ 		height: 550px;
  		margin-top: -51px;
 		
 		&__btnInvite{
 			position: relative;
 			display: block;margin: 20px auto;
 			
-	 	}
+	 	}	
+
 	 }
  }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: @media-medium-min) {
+@media (min-width: @media-medium-min) {	
+
  	.userCoverArea{
  		height: 428px;
  		margin-top: 0;
@@ -186,6 +201,9 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			left: 0;
 			display: block;
 			z-index: 100;
+		}
+		&__editCover{			
+			text-align: right; 			
 		}
  	}
     
