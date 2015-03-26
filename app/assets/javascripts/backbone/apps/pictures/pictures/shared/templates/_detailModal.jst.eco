@@ -1,0 +1,61 @@
+<% console.log this %>
+<div class="bbm-modal__section">
+  <button type="button" class="close js-rmvRow pull-right margin_left_small js-close">CLOSE<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+  <form>    
+    <div class="row">
+      
+      <div class="col-md-7">
+        <img width="800" src="<%= @picture.modal %>">
+      </div>
+
+      <div class="col-md-5">
+        
+        <div class="row">
+          <div class="col-md-12">
+            <h4>
+              AUTOR NAME                  
+            </h4>
+            <small>
+              <%= moment(@date_taken).fromNow() %>
+            </small>
+          </div>
+        </div>
+        <hr/>
+        <%  if @getLocation():  %>
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Location:</strong> <%= @getLocation() %>
+            </div>
+          </div>
+        <%  end  %>
+        <%  if @date_taken:  %>
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Date:</strong> <%= moment(@date_taken).format('MMMM Do, YYYY') %>
+            </div>
+          </div>
+        <%  end  %>
+
+        <div class="row">
+          <div class="col-md-12">
+          
+            <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
+            <div class="groupPost__btn--like">
+              <% # if @you_like: %>
+              <% if false: %>
+                <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+              <% else: %>
+                <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  
+
+  </form>
+</div>
