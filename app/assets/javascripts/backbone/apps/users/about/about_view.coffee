@@ -191,18 +191,73 @@
         tokenSeparators: [',', ', '],
         dropdownAutoWidth: true,
 
-  class About.Crop extends Marionette.ItemView
-    template: 'users/about/templates/_cropModal'
-        # modal = @
-        # model = @model
-        # avatar = AlumNet.current_user.get('avatar').original
-        # options =
-        #   loadPicture: avatar
-        #   cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
-        #   onAfterImgCrop: ->
-        #     model.trigger 'change'
-        #     modal.destroy()
-        # cropper = new Croppic('croppic', options)
+  class About.CropCoverModal extends Backbone.Modal
+    template: 'users/about/templates/_cropCoverModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      image = @model.get('cover').original
+      options =
+        loadPicture: image
+        cropData: { "image": 'cover' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CropAvatarModal extends Backbone.Modal
+    template: 'users/about/templates/_cropAvatarModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      image = @model.get('avatar').original
+      options =
+        loadPicture: image
+        cropData: { "image": 'avatar' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CoverModal extends Backbone.Modal
+    template: 'users/about/templates/_coverModal'
+    cancelEl: '#js-close-btn'
+    events:
+      'click #js-save': 'saveCover'
+      'change #profile-cover': 'previewImage'
+      'click #js-croppic': 'showCropModal'
+
+    saveCover: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      if data.cover != ""
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.id
+        @model.profile.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()=>
+            @destroy()
+            @model.fetch()
+
+    previewImage: (e)->
+      input = @$('#profile-cover')
+      preview = @$('#preview-cover')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])
+
+    showCropModal: (e)->
+      e.preventDefault()
+      modal = new About.CropCoverModal
+        model: @model
+      @destroy()
+      $('#js-picture-modal-container').html(modal.render().el)
+
 
   class About.ProfileModal extends Backbone.Modal
     getTemplate: ->
@@ -214,7 +269,7 @@
         when 2
           'users/about/templates/_residenceModal'
         when 3
-          'users/about/templates/_pictureModal'
+          'users/about/templates/_avatarModal'
 
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
@@ -243,15 +298,12 @@
 
     showCropModal: (e)->
       e.preventDefault()
-      view = new About.Crop
-      $('.modal-body').html(view.render().el)
-      avatar = AlumNet.current_user.get('avatar').original
-      options =
-        loadPicture: avatar
-        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
-      cropper = new Croppic('croppic', options)
+      modal = new About.CropAvatarModal
+        model: @model
+      @destroy()
+      $('#js-picture-modal-container').html(modal.render().el)
 
-    onRender: ->
+    # onRender: ->
       # switch @type
       #   when 0
       # limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
