@@ -1,11 +1,5 @@
 @AlumNet.module 'UsersApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
 
-  
-
-
-
-
-
   class About.View extends Marionette.LayoutView
     template: 'users/about/templates/about'
 
@@ -22,8 +16,6 @@
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
       "smoothClick":".smoothClick"
-      
-
 
     events:
       "click @ui.addSkill": "addSkill"
@@ -33,20 +25,19 @@
 
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit      
+      @userCanEdit = options.userCanEdit
       $(window).on 'scroll' , =>
         if $('body').scrollTop()>500
           $('#aboutUseraffix').css
             'position': 'fixed'
             'width' : '181px'
-            'top' : '110px'            
+            'top' : '110px'
         else
-          $('#aboutUseraffix').css 
+          $('#aboutUseraffix').css
             'position': 'relative'
             'top':'0px'
             'width':'100%'
 
-      
     templateHelpers: ->
       userCanEdit: @userCanEdit
 
@@ -60,10 +51,6 @@
       $('html,body').animate({
         scrollTop: $(id).offset().top-120
       }, 1000);
-      
-      
-      
-
 
     addSkill: (e)->
       e.preventDefault()
@@ -71,14 +58,14 @@
         view: @skills.currentView
         type: 0
       @ui.modalCont.html(modal.render().el)
-    
+
     addLanguage: (e)->
       e.preventDefault()
       modal = new About.Modal
-        view: @languages.currentView 
+        view: @languages.currentView
         type: 1
       @ui.modalCont.html(modal.render().el)
-    
+
     addContact: (e)->
       e.preventDefault()
       modal = new About.Modal
@@ -111,7 +98,7 @@
 
     initialize: (options)->
       @view = options.view
-      #Types of modal (0-Skill, 1-Lang, 2-contc)      
+      #Types of modal (0-Skill, 1-Lang, 2-contc)
       @type = options.type
 
     onRender: ->
@@ -124,7 +111,7 @@
 
         when 1
           slideItem = $("#slider", @el)
-          levelTextItem = slideItem.next("#level")          
+          levelTextItem = slideItem.next("#level")
           levelValue = levelTextItem.next()
           initialValue = 3
           textLevel =
@@ -148,52 +135,52 @@
           dropdown = $("[name=language_id]", $(@el))
           content = AlumNet.request("languages:html")
           dropdown.html(content)
-    
+
     beforeSubmit: ()->
       #Validations
       switch @type
-        when 0  
+        when 0
           data = Backbone.Syphon.serialize this
           if !data.skills
             element = this.$("[name=skills]")
             group = element.closest('.form-group')
             group.addClass('has-error')
             false
-    
+
         when 1
-          data = Backbone.Syphon.serialize this          
+          data = Backbone.Syphon.serialize this
           if !data.language_id
             element = this.$("[name=language_id]")
             group = element.closest('.form-group')
-            group.addClass('has-error') 
-            false    
+            group.addClass('has-error')
+            false
 
         when 2
-          data = Backbone.Syphon.serialize this 
+          data = Backbone.Syphon.serialize this
           if !data.contact_type
             element = this.$("[name=contact_type]")
             group = element.closest('.form-group')
-            group.addClass('has-error') 
-            return false    
+            group.addClass('has-error')
+            return false
 
           if !data.info
             element = this.$("[name=info]")
             group = element.closest('.form-group')
-            group.addClass('has-error') 
-            return false    
+            group.addClass('has-error')
+            return false
 
-    submit: ()->  
+    submit: ()->
       switch @type
-        when 0  
+        when 0
           data = Backbone.Syphon.serialize this
           if data.skills
-            data = data.skills.split(',')    
+            data = data.skills.split(',')
             @view.trigger "submit", data
-    
+
         when 1, 2
-          data = Backbone.Syphon.serialize this     
+          data = Backbone.Syphon.serialize this
           @view.trigger "submit", data
-       
+
 
     fillSkills: (collection)->
       skills = _.pluck(collection.models, 'attributes');
@@ -202,7 +189,11 @@
         tags: listOfNames
         multiple: true
         tokenSeparators: [',', ', '],
-        dropdownAutoWidth: true,     
+        dropdownAutoWidth: true,
+
+  class About.Crop extends Marionette.ItemView
+    template: 'users/about/templates/_cropModal'
+
 
 
   class About.ProfileModal extends Backbone.Modal
@@ -220,9 +211,10 @@
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
     keyControl: false
-    events:      
+    events:
       'change #js-countries': 'setBirthCities'
-      'change #profile-avatar': 'previewImage'      
+      'change #profile-avatar': 'previewImage'
+      'click #js-croppic': 'showCropModal'
 
     initialize: (options)->
       @view = options.view
@@ -241,9 +233,14 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    showCropModal: (e)->
+      e.preventDefault()
+      view = new About.Crop
+      $('.modal-body').html(view.render().el)
+
     onRender: ->
       # switch @type
-      #   when 0 
+      #   when 0
       # limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
       # @$(".js-date-born").Zebra_DatePicker
       #   show_icon: false
@@ -251,7 +248,7 @@
       #   view: 'years'
       #   default_position: 'below'
       #   direction: ['1910-01-01', limit_date]
-       
+
       @$("#js-cities").select2
         placeholder: "Select a City"
         data: []
@@ -260,11 +257,11 @@
 
       @$("#js-countries").select2
         placeholder: "Select a Country"
-        data: data    
+        data: data
 
-      # @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))        
+      # @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))
 
-          
+
     beforeSubmit: ()->
       data = Backbone.Syphon.serialize this
       if @type != 3
@@ -273,32 +270,32 @@
 
       #Validations
       switch @type
-        when 0            
+        when 0
           @model.isValid(["first_name", "last_name"])
-        
-        when 1  
+
+        when 1
           @model.isValid(["birth_country_id", "birth_city_id"])
 
         when 2
           @model.isValid(["residence_country_id", "residence_city_id"])
 
 
-    submit: ()->  
+    submit: ()->
       switch @type
-        when 0  
-          @view.trigger "submit:name"         
+        when 0
+          @view.trigger "submit:name"
         when 1
-          @view.trigger "submit:born"         
+          @view.trigger "submit:born"
         when 2
-          @view.trigger "submit:residence" 
+          @view.trigger "submit:residence"
         when 3
           data = Backbone.Syphon.serialize this
-          if data.avatar != ""          
+          if data.avatar != ""
             formData = new FormData()
             file = @$('#profile-avatar')
-            formData.append('avatar', file[0].files[0])            
+            formData.append('avatar', file[0].files[0])
             @view.trigger "submit:avatar", formData
-    
+
     optionsForSelectCities: (url)->
       placeholder: "Select a City"
       minimumInputLength: 2
@@ -314,11 +311,11 @@
       formatResult: (data)->
         data.name
       formatSelection: (data)->
-        data.name      
+        data.name
 
     setBirthCities: (e)->
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      @$("#js-cities").select2(@optionsForSelectCities(url))  
+      @$("#js-cities").select2(@optionsForSelectCities(url))
 
     previewImage: (e)->
       input = @$('#profile-avatar')
@@ -327,29 +324,29 @@
         reader = new FileReader()
         reader.onload = (e)->
           preview.attr("src", e.target.result)
-        reader.readAsDataURL(input[0].files[0])  
+        reader.readAsDataURL(input[0].files[0])
 
   class About.Profile extends Marionette.ItemView
     template: 'users/about/templates/_profile'
 
     ui:
-      "modalCont": "#js-profile-modal-container"     
-      "editName": "#js-editName"    
-      "editBorn": "#js-editBorn"    
+      "modalCont": "#js-profile-modal-container"
+      "editName": "#js-editName"
+      "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
-           
+
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
-      
+
 
     # bindings:
-      
-      
 
-    initialize: (options)->      
+
+
+    initialize: (options)->
       @userCanEdit = options.userCanEdit
       @privacyOptions = [
         value: 0
@@ -360,51 +357,51 @@
       ,
         value: 2
         label: "Everyone"
-      ,            
+      ,
       ]
 
     templateHelpers: ->
       model = @model
-      
-      userCanEdit: @userCanEdit  
+
+      userCanEdit: @userCanEdit
 
       getBorn: ->
-        model.getBornComplete()        
-      
+        model.getBornComplete()
+
       getLocation: ->
-        model.getCurrentLocation()        
-      
+        model.getCurrentLocation()
+
       getEmail: ->
-        model.getEmail()        
-      
+        model.getEmail()
+
       getPhone: ->
         if model.phone? then model.phone.get "info" else ""
-      
-      hasEmail: ->    
-        model.email_contact?    
-        
+
+      hasEmail: ->
+        model.email_contact?
+
     modelEvents:
       "add:phone:email change": "modelChange"
 
     onRender: ->
       if @model.phone?
         @stickit @model.phone,
-          "[name=privacyPhone]": 
+          "[name=privacyPhone]":
             observe: "privacy"
             selectOptions:
-              collection: @privacyOptions  
-        
-        @listenTo(@model.phone, 'change', @changePhone)        
-        
+              collection: @privacyOptions
+
+        @listenTo(@model.phone, 'change', @changePhone)
+
       if @model.email_contact?
         @stickit @model.email_contact,
-          "[name=privacyEmail]": 
+          "[name=privacyEmail]":
             observe: "privacy"
             selectOptions:
-              collection: @privacyOptions 
+              collection: @privacyOptions
 
-        @listenTo(@model.email_contact, 'change', @changeEmail)        
-      
+        @listenTo(@model.email_contact, 'change', @changeEmail)
+
     changePhone: ->
       @model.phone.save()
 
@@ -412,9 +409,9 @@
       @model.email_contact.save()
 
     modelChange: ->
-      @render() 
+      @render()
 
-    editName: (e)-> 
+    editName: (e)->
       e.preventDefault()
       modal = new About.ProfileModal
         view: this
@@ -422,15 +419,15 @@
         model: @model.profile
 
       @ui.modalCont.html(modal.render().el)
-    
-    editBorn: (e)-> 
+
+    editBorn: (e)->
       e.preventDefault()
       modal = new About.ProfileModal
         view: this
         type: 1
         model: @model.profile
 
-    
+
 
       @ui.modalCont.html(modal.render().el)
 
@@ -447,12 +444,12 @@
   #For all collection views
   class About.Empty extends Marionette.ItemView
     template: 'users/about/templates/_empty'
-    
+
     initialize: (options)->
       @message = options.message
 
     templateHelpers: ->
-      message: @message 
+      message: @message
 
   #For skills
   class About.Skill extends Marionette.ItemView
@@ -473,12 +470,12 @@
         @model.destroy()
 
   class About.SkillsView extends Marionette.CollectionView
-    childView: About.Skill   
+    childView: About.Skill
     childViewOptions: ->
-      userCanEdit: @userCanEdit      
+      userCanEdit: @userCanEdit
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit      
+      @userCanEdit = options.userCanEdit
 
   #For languages
   class About.Language extends Marionette.ItemView
@@ -499,12 +496,12 @@
         @model.destroy()
 
   class About.LanguagesView extends Marionette.CollectionView
-    childView: About.Language  
+    childView: About.Language
     childViewOptions: ->
-      userCanEdit: @userCanEdit      
+      userCanEdit: @userCanEdit
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit    
+      @userCanEdit = options.userCanEdit
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -518,7 +515,7 @@
       "change": "modelChange"
 
     bindings:
-      "[name=privacy]": 
+      "[name=privacy]":
         observe: "privacy"
         selectOptions:
           collection: [
@@ -530,8 +527,8 @@
           ,
             value: 2
             label: "Everyone"
-          ,            
-          ]  
+          ,
+          ]
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -548,17 +545,17 @@
 
     onRender: ->
       @stickit()
-  
+
   class About.ContactsView extends Marionette.CollectionView
-    childView: About.Contact    
+    childView: About.Contact
     emptyView: About.Empty
-    emptyViewOptions: 
+    emptyViewOptions:
       message: "No contact info"
     childViewOptions: ->
-      userCanEdit: @userCanEdit      
+      userCanEdit: @userCanEdit
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit  
+      @userCanEdit = options.userCanEdit
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
@@ -574,16 +571,16 @@
     ui:
       "addExp": "#js-addExp"
       "editExp": "#js-editExp"
-      'btnRmv': '.js-rmvRow'      
-    
+      'btnRmv': '.js-rmvRow'
+
     events:
       "click @ui.addExp": "addExp"
       "click @ui.editExp": "editExp"
-      "click @ui.btnRmv": "removeItem"  
+      "click @ui.btnRmv": "removeItem"
 
     bindings:
       "[name=privacy]":
-        observe: "privacy"  
+        observe: "privacy"
         selectOptions:
           collection: [
             value: 0
@@ -594,12 +591,12 @@
           ,
             value: 2
             label: "Everyone"
-          ,            
+          ,
           ]
 
     modelEvents:
       "change": "modelChange"
-    
+
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
@@ -607,34 +604,34 @@
       model = @model
 
       # diffType: ->
-      #   prev = model.collection.at(model.collection.indexOf(model) - 1)        
+      #   prev = model.collection.at(model.collection.indexOf(model) - 1)
       #   hasTitle = true
-      #   if prev?          
+      #   if prev?
       #     hasTitle = (prev.get("exp_type") != model.get("exp_type"))
       #   # model.hasTitle = hasTitle
-        
+
       #   return hasTitle
 
       userCanEdit: @userCanEdit
 
       experienceType: ->
         model.getExperienceType()
-      
+
       experienceId: ->
         model.getExperienceId()
-        
+
       getLocation: ->
         model.getLocation()
 
       getOrganization: ->
         model.getOrganization()
-      
+
       getStartDate: ->
         model.getStartDate()
 
       getEndDate: ->
         model.getEndDate()
-    
+
     onRender: ->
       @stickit()
 
@@ -643,35 +640,35 @@
       @trigger "add:exp"
 
     editExp: (e)->
-      e.preventDefault()      
+      e.preventDefault()
       @model.isEditing = true
       @model.set "first", true
       @model.decodeDates()
       @model.collection.trigger "reset" #For re-render the itemview
 
-    removeItem: (e)->   
+    removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
     modelChange: ->
       if @model.hasChanged("privacy")
         @model.save()
-      @render()      
+      @render()
 
 
   class About.Experiences extends Marionette.CollectionView
-    getChildView: (model)-> 
+    getChildView: (model)->
       if((model.isNew() && !model.get("asTitle")) || model.isEditing)
         AlumNet.RegistrationApp.Experience.FormExperience
-      else  
-        About.Experience    
+      else
+        About.Experience
 
     childViewOptions: ->
-      userCanEdit: @userCanEdit      
+      userCanEdit: @userCanEdit
       inProfile: true
-      
+
     childEvents:
-      "add:exp": "addExp"       
+      "add:exp": "addExp"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit

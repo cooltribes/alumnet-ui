@@ -1,0 +1,11 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Cropping my avatar <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a></h3>
+</div>
+
+<div class="bbm-modal__section">
+Aqui va el crop
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a>
+</div>
