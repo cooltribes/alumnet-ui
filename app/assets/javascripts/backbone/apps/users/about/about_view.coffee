@@ -193,8 +193,16 @@
 
   class About.Crop extends Marionette.ItemView
     template: 'users/about/templates/_cropModal'
-
-
+        # modal = @
+        # model = @model
+        # avatar = AlumNet.current_user.get('avatar').original
+        # options =
+        #   loadPicture: avatar
+        #   cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
+        #   onAfterImgCrop: ->
+        #     model.trigger 'change'
+        #     modal.destroy()
+        # cropper = new Croppic('croppic', options)
 
   class About.ProfileModal extends Backbone.Modal
     getTemplate: ->
@@ -237,6 +245,11 @@
       e.preventDefault()
       view = new About.Crop
       $('.modal-body').html(view.render().el)
+      avatar = AlumNet.current_user.get('avatar').original
+      options =
+        loadPicture: avatar
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
+      cropper = new Croppic('croppic', options)
 
     onRender: ->
       # switch @type
