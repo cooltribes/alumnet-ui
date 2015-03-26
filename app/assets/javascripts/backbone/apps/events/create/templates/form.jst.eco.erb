@@ -1,0 +1,167 @@
+<div id="" class="ng-scope">
+  <div class="container-fluid">
+    <form class="row formANet form ">
+      <div class="col-md-10 col-md-offset-1">
+        <h1 class="textColor--blue ">Create Event for <%%= @user_name %></h1>
+        <!-- ROW 1 ON -->
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <div class="add-cover-photo">
+              <%= image_tag("groups/uploadCover.png", alt: "Upload cover", width: "100%", id: "preview-cover") %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group has-feedback">
+              <label class="control-label">Name of the Event</label>
+              <input type="text" name="name"  id="event-name"  class="form-control input-lg">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <label class="control-label">Event's Description</label>
+
+              <textarea name="description" id="event-description"
+              class="form-control input-lg" rows="4" style="resize:none"></textarea>
+              <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label">Event's cover</label>
+              <input type="file" name="cover"  id="event-cover" >
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 1 OFF -->
+        <hr>
+        <!-- ROW 2 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Attributes</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Type of Event</label>
+              <select class="form-control input-lg" id="event-type" name="event_type">
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+                <option value="secret">Secret</option>
+              </select>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium">
+            <%% if @userIsAdmin: %>
+              <div class="form-group">
+                <label class="control-label">Official Event</label>
+                <select class="form-control input-lg" name="official">
+                  <option value="0">it's not an official event</option>
+                  <option value="1">it's an official event</option>
+                </select>
+              </div>
+            <%% end %>
+          </div>
+        </div>
+        <!-- ROW 2 OFF -->
+        <hr>
+        <!-- ROW 3 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Dates</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Start Date</label>
+              <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Start Hour</label>
+              <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">End Date</label>
+              <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">End Hour</label>
+              <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 3 OFF -->
+        <hr>
+        <!-- ROW 4 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Location</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Country</label>
+              <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4 margin_top_medium">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-8 margin_top_medium">
+            <div class="form-group">
+              <label class="control-label">Address</label>
+              <input type="text" name="address"  id="event-address"  class="form-control input-lg">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 4 OFF -->
+        <hr>
+        <!-- ROW 5 ON -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
+            <h2 class="textColor--black margin_top_xsmall ">Capacity</h2>
+          </div>
+          <div class="col-md-4 margin_top_medium ">
+            <div class="form-group">
+              <label class="control-label">Maximum of attendants</label>
+              <input type="text" name="capacity"  id="event-capacity"  class="form-control input-lg" placeholder="e.g 200">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 5 OFF -->
+        <hr>
+        <!-- ACTIONS ON -->
+        <div class="text-right">
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">SAVE </button>
+        </div>
+        <!-- ACTIONS OFF -->
+      </div>
+    </form>
+  </div>
+</div>
