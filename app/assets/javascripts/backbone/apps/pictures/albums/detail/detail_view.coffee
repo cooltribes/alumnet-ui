@@ -3,13 +3,6 @@
   class AlbumDetail.EmptyView extends Marionette.ItemView
     template: 'pictures/albums/detail/templates/_empty'
     className: 'col-md-12 text-center'
-    ###initialize: (options)->
-      console.log options
-      @model = options.model
-
-    templateHelpers: ->
-      model: @model 
-###
 
   class AlbumDetail.Photo extends Marionette.ItemView
     template: 'pictures/albums/detail/templates/_photo'
@@ -22,6 +15,17 @@
     emptyViewOptions: ->
       model: @model
     childViewContainer: '.albums-list'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+    templateHelpers: ->
+      model = @model
+  
+      userCanEdit: @userCanEdit
+  
+      getLocation: ->
+        model.getLocation()
 
     ui:
       "modalCont": "#js-modal-container"  
@@ -66,5 +70,3 @@
     #     view: this
 
     #   @ui.modalCont.html(modal.render().el)  
-
-  

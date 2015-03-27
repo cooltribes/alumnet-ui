@@ -1,4 +1,3 @@
-<% console.log this %>
 <div class="row">
   <div class="col-md-12">
     <h4>
@@ -7,18 +6,11 @@
 
   </div>
 </div>
-<!-- <div class="row">
-  <div class="col-md-12">
-    <strong>Date when pictures were taken:</strong> <%= @date_taken %>
+<% if @userCanEdit: %>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+    </div>
   </div>
-</div> -->
-<div class="row">
-  <div class="col-md-12">
-    Start uploading photos right now
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
-  </div>
-</div>
+<% end %>  
+<!-- jsav3486 -->
