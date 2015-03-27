@@ -13,15 +13,17 @@
       </ul>
       
     </div>
-    <div class="col-md-3 text-right">
-      <form>
-        <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">        
-      </form>
-      
-      <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+    <% if @userCanEdit: %>
+      <div class="col-md-3 text-right">
+        <form>
+          <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">        
+        </form>
+        
+        <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
 
-      <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit">Edit album</a>
-    </div>
+        <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit">Edit album</a>
+      </div>
+    <% end %>  
     
   </div>
   <hr class="no_margin_top">
@@ -32,7 +34,35 @@
     </div>
       
   </div>
-    
+    <% #console.log this %>
+    <% #console.log this.getLocation() %>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+          <div class="row">
+            <div class="col-md-12">
+              <% if @getLocation(): %>
+                  <strong>Location:</strong> <%= @getLocation() %>
+              <% end %>  
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <% if @date_taken: %>
+                <strong>Date:</strong> <%= @date_taken %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="col-md-4">
+          <% if @description: %>
+            <%= @description %>
+          <% end %> 
+        </div>
+    </div>
+
   <div class="albums-list row">
     
   </div>

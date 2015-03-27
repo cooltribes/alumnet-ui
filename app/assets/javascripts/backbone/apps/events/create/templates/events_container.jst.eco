@@ -1,0 +1,34 @@
+<div class="row sortingMenu margin_top">
+  <div class="col-md-5">
+      <ul class="sortingMenu" id="filter-link-container">
+        <li class="sortingMenu__item sortingMenu__item--lg">
+          <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active"
+            id="js-upcoming-events">Upcoming events
+          </a>
+        </li>
+        <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+          <a href="#" class="sortingMenu__item__link sortingMenu__item__link"
+            id="js-past-events">Past events
+          </a>
+        </li>
+      </ul>
+  </div>
+  <div class="col-md-3">
+    <div class="input-group input-group--right">                   
+            <input class="form-control" type="text" name="seach_term"
+            id="js-search-input"  placeholder="Search">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-search"></span>
+            </span>             
+    </div>       
+  </div>
+  <div class="col-md-4 text-center margin_top_xsmall_minus margin_bottom_xsmall">
+    <% if @userCanCreateSubGroup: %>
+      <a href="#groups/<%= @id %>/events/new" class="btn-primary-noBackground btn btn-lg" title="Create a new Event">+ Create a new Event</a>
+    <% end %>
+  </div>
+</div>
+<hr class="no_margin_top">
+
+<div class="row main-events-area"><!-- Begin group container -->
+</div>

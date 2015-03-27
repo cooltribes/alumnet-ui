@@ -17,7 +17,8 @@
     isPast: ->
       today = moment()
       start_date = moment(@get('start_date'))
-      today > start_date
+      console.log today, start_date
+      start_date < today
 
     getLocation: ->
       city = @get('city')

@@ -1,5 +1,5 @@
 <div id="user-header">
-	
+
 </div>
 
 <nav class="groupMenu navbar group-menu navbar-default" role="navigation">
@@ -15,11 +15,15 @@
 					About</a></li>
 					<li>  <a href="#users/<%= @id %>/friends" class="groupMenu__link<%= @classOf(2)%>">
 						<span class="ico-company"></span>
-					Friends</a></li>					
+					Friends</a></li>
 
 					<li>  <a href="#users/<%= @id %>/photos" class="groupMenu__link<%= @classOf(3)%>">
 						<span class="ico-company"></span>
-					Pictures</a></li>					
+					Pictures</a></li>
+
+					<li>  <a href="#users/<%= @id %>/events" class="groupMenu__link<%= @classOf(4)%>">
+						<span class="ico-calendar"></span>
+					Events</a></li>
 				</ul>
 			</div>
 		</div>
