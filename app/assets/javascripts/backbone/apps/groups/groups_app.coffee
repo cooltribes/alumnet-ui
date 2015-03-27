@@ -11,6 +11,7 @@
       "groups/:id/subgroups": "listSubGroups"
       "groups/:id/events/new": "createEvent"
       "groups/:id/events": "listEvents"
+      "groups/:id/photos": "listAlbums"
 
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
@@ -52,6 +53,9 @@
     inviteEvent: (event, users)->
       controller = new GroupsApp.Events.Controller
       controller.invitations(event, users)
+    listAlbums: (id)->
+      controller = new GroupsApp.Pictures.Controller
+      controller.showAlbums(id)  
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
