@@ -36,6 +36,35 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			}
 		}
 	}
+	&__membership{
+		font-size: 30px;
+		color: @white;
+		position: relative;
+		left: auto;
+	    top: auto;
+	    z-index: 0;
+	    text-transform: capitalize;
+	    text-align: center;
+		div{
+            background-color: @main-blue;
+            border-radius: 50px;
+            color: #ffffff;                
+            font-size: 13px;
+            height: 30px;
+            line-height: 20px;
+            vertical-align: middle;
+            margin-top: 0;
+            display: block;
+            margin-left: 10px;
+            padding: 5px 18px 5px 13px;
+            display:inline;
+            .glyphicon{
+            	margin-right:5px;
+            }	
+            
+    	}
+	}
+
 	&__subTitle{
 		padding: 10px;
 		color: @white;
@@ -58,6 +87,13 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 		display: block;
 		z-index: 100;
 		margin: 0 auto;
+
+		&__editAvatar{
+			display: block;  
+			margin-top: 5px;  
+			position: relative;  
+			width: initial;
+		}
 
 	}
 
@@ -102,7 +138,13 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 		}
 
 	}
-
+	&__editCover{
+		display:block; 
+		position:relative;
+		display: block;
+		text-align: center; 
+		margin-right: 10px;
+	}
 
 	
 }
@@ -116,19 +158,21 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
  	.userCoverArea{
- 		height: 328px;
+ 		height: 550px;
  		margin-top: -51px;
 		
 		&__btnInvite{
 			position: relative;
 			display: block;margin: 20px auto;
 			
-	 	}
+	 	}	
+
 	 }
  }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: @media-medium-min) {
+@media (min-width: @media-medium-min) {	
+
  	.userCoverArea{
  		height: 428px;
  		margin-top: 0;
@@ -187,6 +231,9 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			display: block;
 			z-index: 100;
 		}
+		&__editCover{			
+			text-align: right; 			
+		}
  	}
     
  }
@@ -216,6 +263,25 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 				}
 			}
 		}
+		&__membership{
+			font-size: 60px;
+		    padding: 3px 20px 10px 70px;
+			color: @white;
+			position: absolute;
+			left: 185px;
+		    top: 20px;
+		    z-index: 0;
+		    text-transform: capitalize;
+			a{
+				color: @white;
+				&:hover{
+					text-decoration: none;
+
+				}
+			}
+		}
+
+
 		&__subTitle{
 			padding: 10px 20px 10px 70px;
 			color: @white;
