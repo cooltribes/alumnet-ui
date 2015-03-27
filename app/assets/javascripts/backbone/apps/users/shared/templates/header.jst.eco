@@ -15,6 +15,14 @@
     
   <% end %>   
   </div>
+  <% if @member>0: %>
+  <div class="userCoverArea__membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate"></span> MEMBER
+    </div>
+  </div>
+  <% end %>           
+          
   <h1 class="userCoverArea__title ">
     <%= @name %>
     <br>

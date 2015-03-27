@@ -65,7 +65,6 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
       memberTitle: ->        
@@ -76,6 +75,7 @@
         if(model.get('member')=='3')
           return "Lifetime member"
         return "Not a member"
+      daysLeft: 30
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')

@@ -75,12 +75,12 @@ DESCRIPTION: Top navigation bar with menus
             &--memebershipWrapper{
                 margin: 0;
                 padding: 6px 0 0;
-            }
+            }            
+
             &--becomeAMember{
                 background-color: #f38e00;
                 border-radius: 50px;
-                color: #ffffff;
-                
+                color: #ffffff;                
                 font-size: 13px;
                 height: 45px;
                 line-height: 1em;
@@ -91,7 +91,52 @@ DESCRIPTION: Top navigation bar with menus
                 &:hover{
                     background-color: darken(@orange, 10%)
                 }
-            }    
+            }
+            &--renew{
+                background-color: #f38e00;
+                border-radius: 50px;
+                color: #ffffff;                
+                height: 45px;
+                line-height: 1em;
+                margin-top: 0;
+                display: block;
+                margin-left: 10px;
+                padding: 3px 2px 2px 12px;
+                position: relative; 
+                z-index: 3000; 
+                font-weight:bold; 
+                font-size:15px;
+                &:hover{
+                    background-color: darken(@orange, 10%)
+                }
+            } 
+
+            &--counter{
+                background-color: #e06102;
+                border-radius: 50px;
+                color: #ffffff;
+                height: 45px;
+                display: block;
+                position: absolute;
+                margin-top: -45px;
+                margin-left: -60px;
+                font-size: 20px;
+                line-height: 38px;
+                vertical-align: middle;
+                font-weight: 500;
+                padding: 3px 52px 2px 12px;
+               
+                .upline{
+                    font-weight: 500;
+                    font-size: 11px;
+                    margin-top: -6px;
+                    position: absolute;
+                }
+                .downline{
+                    font-size: 11px;
+                    font-weight: 500;
+                }
+            } 
 
             &--member{
                 background-color: @main-blue;
