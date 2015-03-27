@@ -5,21 +5,44 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     ui:
       'rmvRow': '.js-rmvRow'
       "contact_type": "[name=contact_type]"
+      "selectType": ".contact_method"      
       "info": "[name=info]"
       "privacy": "[name=privacy]"
 
       
     events:
       "click @ui.rmvRow": "rmvRowClicked"
-      "change @ui.contact_type, click @ui.contact_type": "changePlaceholder"
+      "change .contact_method, click .contact_method": "changePlaceholder"
 
     templateHelpers: ->
+      model = @model
+
       selected: (value)->
         if value == @contact_type
           'selected'
       isReadOnly: ->
         if @readOnly
           'disabled'
+      
+      placeholder: ->
+        contact_type = model.get("contact_type")
+        if contact_type == 0
+          return "email@example.com"   
+        if contact_type == 1          
+          return "+PhoneNumber"   
+        if contact_type == 2
+          return "Skype" 
+        if contact_type == 3
+          return "Yahoo account"      
+        if contact_type == 4
+          return "/Facebook"      
+        if contact_type == 5
+          return "@Twitter"
+        if contact_type == 5
+          return "Account"
+        if contact_type == 5
+          return "https://www.example.com"                      
+
 
     initialize: ->
       Backbone.Validation.bind this,
@@ -43,23 +66,23 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       e.preventDefault()
       @model.destroy()
 
-    changePlaceholder: ->
-      if @ui.contact_type.val() == "0" 
-        $('input').attr('placeholder',"email@example.com")        
-      else if @ui.contact_type.val() == "1"
-        $('input').attr('placeholder',"+PhoneNumber")        
-      else if @ui.contact_type.val() == "2"
-        $('input').attr('placeholder',"Skype account")       
-      else if @ui.contact_type.val() == "3"
-        $('input').attr('placeholder',"Yahoo account")        
-      else if @ui.contact_type.val() == "4"
-        $('input').attr('placeholder',"Name in Facebook")        
-      else if @ui.contact_type.val() == "5"
-        $('input').attr('placeholder',"@Twitter")                              
-      else if @ui.contact_type.val() == "7"
-        $('input').attr('placeholder',"https://www.example.com")        
+    changePlaceholder: (e)->
+      if @ui.selectType.val() == "0" 
+        @ui.info.attr("placeholder", "email@example.com")
+      else if @ui.selectType.val() == "1"
+        @ui.info.attr("placeholder", "+PhoneNumber")
+      else if @ui.selectType.val() == "2"
+        @ui.info.attr("placeholder", "Skype")
+      else if @ui.selectType.val() == "3"
+        @ui.info.attr("placeholder", "Yahoo account")
+      else if @ui.selectType.val() == "4"
+        @ui.info.attr("placeholder", "/Facebook")
+      else if @ui.selectType.val() == "5"
+        @ui.info.attr("placeholder", "@Twitter")
+      else if @ui.selectType.val() == "6"
+        @ui.info.attr("placeholder", "Account")
       else  
-        $('input').attr('placeholder',"Enter account")
+        @ui.info.attr("placeholder", "https://www.example.com")
         
         
 
