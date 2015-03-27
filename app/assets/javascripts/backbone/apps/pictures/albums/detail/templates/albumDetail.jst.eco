@@ -1,0 +1,72 @@
+<div class="container-fluid margin_top">
+  <div class="row ">
+    
+    <div class="col-md-9">
+      <ul class="sortingMenu" id="filter-link-container">
+        
+        <li class="sortingMenu__item sortingMenu__item--lg">
+          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%= @name %> (<%= @pictures_count %>) 
+          </div>
+          
+        </li>
+        
+      </ul>
+      
+    </div>
+    <% if @userCanEdit: %>
+      <div class="col-md-3 text-right">
+        <form>
+          <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">        
+        </form>
+        
+        <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+
+        <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit">Edit album</a>
+      </div>
+    <% end %>  
+    
+  </div>
+  <hr class="no_margin_top">
+  <div class="row ">
+    
+    <div class="col-md-12">
+      <a href="#" class="js-returnAlbums">Albums</a> - <%= @name %> 
+    </div>
+      
+  </div>
+    <% #console.log this %>
+    <% #console.log this.getLocation() %>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+          <div class="row">
+            <div class="col-md-12">
+              <% if @getLocation(): %>
+                  <strong>Location:</strong> <%= @getLocation() %>
+              <% end %>  
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <% if @date_taken: %>
+                <strong>Date:</strong> <%= @date_taken %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="col-md-4">
+          <% if @description: %>
+            <%= @description %>
+          <% end %> 
+        </div>
+    </div>
+
+  <div class="albums-list row">
+    
+  </div>
+</div>
+<div id="js-modal-container">
+        
+</div>

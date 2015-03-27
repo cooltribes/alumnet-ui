@@ -1,0 +1,31 @@
+<h1 class="text-center">Invite Users to your Event</h1>
+<div class="container">
+	<div class="row ">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="searchBar">
+				<form id="search-form">
+					<div class="input-group">
+						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+						<span class="input-group-btn">
+						<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid margin_top_large">
+	<h2><small><span class="glyphicon glyphicon-ok"></span> </small>
+    Invite users to your event
+  </h2>
+	<hr>
+	<div class="row users-list">
+
+	</div>
+</div>
+
+<div class="text-center margin_top">
+	<a href="#events/<%= @id %>/posts" class="btn btn-primary" title="See the group">See the event <span class="icon-entypo-right-open"></span>
+	</a>
+</div>

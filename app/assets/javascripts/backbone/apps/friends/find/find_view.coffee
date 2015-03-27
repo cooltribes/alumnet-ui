@@ -7,10 +7,10 @@
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
     ui:
-      linkContainer: '#link-container'
-      requestLink: '#js-request-friendship'
-      acceptLink: '#js-accept-friendship'
-      deleteLink: '#js-delete-friendship'
+      'linkContainer': '#link-container'
+      'requestLink': '#js-request-friendship'
+      'acceptLink': '#js-accept-friendship'
+      'deleteLink': '#js-delete-friendship'
     events:
       'click #js-request-friendship':'clickedRequest'
       'click #js-accept-friendship':'clickedAccept'
@@ -26,28 +26,33 @@
       e.stopPropagation()
       @trigger 'request'
 
-    clickedDelete: (e)->      
+    clickedDelete: (e)->
       e.preventDefault()
       e.stopPropagation()
-      @trigger 'delete'
+      self = @
+      attrs = @model.get('friendship')
+      friendship = AlumNet.request('current_user:friendship:destroy', attrs)
+      friendship.on 'delete:success', (response, options) ->
+        self.removeCancelLink()
 
     removeRequestLink: ->
       @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
       @model.fetch()
 
-    removeAcceptLink: ->            
+    removeAcceptLink: ->
       @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
       @model.fetch()
-    
+
     removeCancelLink: ->
       @ui.linkContainer.empty()
-      @model.set("friendship_status","none")      
-      @render()
+      @model.set("friendship_status","none")
+           
+      
 
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
-    emptyView: Find.EmptyView  
+    emptyView: Find.EmptyView
     childViewContainer: '.users-list'
     events:
       'click .js-search': 'performSearch'

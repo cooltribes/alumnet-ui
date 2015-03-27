@@ -4,28 +4,34 @@
     className: 'navTopSubBar'
 
     ui:
-      'linkMenu':'.navbar-nav li a'
-
-    events:
-      'click @ui.linkMenu': 'clickLink'
+      'linkMenu':'#js-discover, #js-friend'
 
 
-    clickLink: (e) ->
-      $(e.currentTarget).parent().addClass("active")
-      $(e.currentTarget).parent().parent().siblings().children().removeClass("active")
-      #e.preventDefault()
-      #e.stopPropagation()
+    initialize: (options) ->
+      @tab = options.tab
+      @class = [
+        "", "", ""
+        "", ""
+      ]
+      @class[parseInt(@tab)] = "active"
+
+    templateHelpers: ->
+      model = @model
+      classOf: (step) =>
+        @class[step]
 
   API =
-    renderSubmenu: (view)->
+    renderSubmenu: (view,tab)->
       if view == null
         AlumNet.submenuRegion.empty()
       else
         if view == undefined
           submenu = new Submenu.Menu
+            tab: tab
         else
           submenu = view
+        AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:friends:submenu',(view) ->
-    API.renderSubmenu(view)
+  AlumNet.commands.setHandler 'render:friends:submenu',(view,tab) ->
+    API.renderSubmenu(view,tab)

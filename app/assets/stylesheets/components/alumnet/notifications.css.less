@@ -1,0 +1,60 @@
+/***
+
+APP NAME: notificationsPage
+DESCRIPTION: styles for notifications page
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.notification{
+	padding: 10px 90px;
+
+	&__boxMenu{
+		height: 250px;
+		overflow-y: scroll;
+	}
+
+	&__info{
+		text-align: right;
+	}
+	
+	&__userName{
+		color: @blue;
+		margin-top: 0;
+	}
+
+	&__contentBox{
+		display: block;
+		padding: 10px;
+
+		&--unRead{
+			background-color: @main-light-blue;
+			border: 1px solid @blue;
+		}
+
+		&--Read{
+			background-color: @white;
+			border: 1px solid #B5B4B4;
+		}
+		
+		&__markRead{
+			text-decoration: underline;
+		}
+
+		&__delete{
+			float: right;
+			text-decoration: underline;
+		}
+
+	}
+
+	&__markRead{
+		margin-right: 150px;
+		text-decoration: underline;
+		text-align: right;
+		display: block;
+		margin-bottom: 10px;
+	}
+}

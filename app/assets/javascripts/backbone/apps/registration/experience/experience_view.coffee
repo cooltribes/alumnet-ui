@@ -15,6 +15,7 @@
 
     ui:
       'btnRmv': '.js-rmvRow'
+      'cancelEdit': '.js-cancelEdit'
       'btnSave': '.js-saveItem'
       "selectType": "[name=aiesec_experience]"
       "selectRegions": "[name=region_id]"
@@ -24,7 +25,9 @@
 
 
     events:
+      "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"
+      "click @ui.cancelEdit": "cancelEdit"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
       "change @ui.selectType": "setCountries"
@@ -46,15 +49,20 @@
       @inProfile = options.inProfile ? false
 
     templateHelpers: ->
-
+      model = @model
+      month= @MonthType
       inProfile: @inProfile
+
+      isEditing: @model.isEditing
 
       currentYear: new Date().getFullYear()
 
+      selected: (val)->
+        if model.get("aiesec_experience") == val then "selected='selected'" else ""
+
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
-        born = new Date(born).getFullYear()
-        born + 15
+        parseInt(born.year) + 15
 
     onRender: ->
       @cleanAllSelects()
@@ -64,15 +72,24 @@
       else
         CountryList.toSelect2()
 
-      dataRegions = RegionList.toSelect2()
+      # dataRegions = RegionList.toSelect2()
 
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
+        # initSelection: (element, callback)->
+        #   console.log element
+        #   callback(3)
+
+      @ui.selectCountries.select2('val', @model.get("country_id"), true)
+
 
     setCountries: (e)->
       @cleanAllSelects()
       type = $(e.currentTarget).val()
+      @setAllCountries type
+
+    setAllCountries: (type)->
       if type == "Local" || type == "National"
         dataCountries = AlumNet.request('get:filtered:countries', type)
       else if type == "International"
@@ -138,8 +155,13 @@
       @model.set data
       @trigger "save:experience"
 
+    cancelEdit: (e)->
+      @trigger "cancelEdit:experience"
+
+
     removeExperience: (e)->
-      @model.destroy()
+      if confirm("Are you sure you want to delete this experience?")
+        @model.destroy()
 
 
   class Experience.ExperienceList extends Marionette.CompositeView

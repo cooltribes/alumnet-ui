@@ -4,21 +4,25 @@
 
     ui:
       "editPic": "#js-editPic"  
-      "modalCont": "#js-picture-modal-container"     
+      "modalCont": "#js-picture-modal-container"  
+      'requestLink': '#js-request-send'   #Id agregado
 
     events:
       "click @ui.editPic": "editPic"
+      'click #js-request-send':'sendRequest' #Evento agregado
 
     modelEvents:
       "change": "modelChange"
 
+    
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
+
     templateHelpers: ->                  
       model = @model
-      
       userCanEdit: @userCanEdit
+      
       position: ->
         model.profile.get("last_experience") ? "No Position"
 
@@ -34,7 +38,21 @@
 
       @ui.modalCont.html(modal.render().el)
 
+    coverChanged: ->
+      cover = @model.get('cover')
+      @ui.coverArea.css('background-image',"url('#{cover.main}'")  
 
+    sendRequest: (e)->
+      attrs = { friend_id: @model.id }
+      friendship = AlumNet.request('current_user:friendship:request', attrs)
+      friendship.on 'save:success', (response, options) =>                   
+        @model.fetch()
+
+    sendMessage: (e)->    
+                
+                   
+        
+    
   class Shared.Layout extends Marionette.LayoutView
     template: 'users/shared/templates/layout'
 
@@ -44,8 +62,7 @@
 
     initialize: (options) ->      
       @tab = options.tab      
-      @class = [
-        "", "", ""
+      @class = ["", "", ""
         "", ""
       ]  
       @class[parseInt(@tab)] = "--active"

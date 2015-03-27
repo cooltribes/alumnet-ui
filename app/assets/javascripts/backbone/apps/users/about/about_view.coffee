@@ -1,5 +1,11 @@
 @AlumNet.module 'UsersApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
 
+  
+
+
+
+
+
   class About.View extends Marionette.LayoutView
     template: 'users/about/templates/about'
 
@@ -15,17 +21,49 @@
       "addLanguage": ".js-addLanguage"
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
+      "smoothClick":".smoothClick"
+      
+
 
     events:
       "click @ui.addSkill": "addSkill"
       "click @ui.addLanguage": "addLanguage"
       "click @ui.addContact": "addContact"
+      "click .smoothClick": "smoothClick"
+
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
+      @userCanEdit = options.userCanEdit      
+      $(window).on 'scroll' , =>
+        if $('body').scrollTop()>500
+          $('#aboutUseraffix').css
+            'position': 'fixed'
+            'width' : '181px'
+            'top' : '110px'            
+        else
+          $('#aboutUseraffix').css 
+            'position': 'relative'
+            'top':'0px'
+            'width':'100%'
 
+      
     templateHelpers: ->
       userCanEdit: @userCanEdit
+
+    smoothClick: (e)->
+      if $(e.target).prop("tagName")!='a'
+        element = e.target.closest 'a'
+      else
+        element=e.target
+      String id = element.id
+      id='#'+id.replace('to','')
+      $('html,body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
+      
+      
+      
+
 
     addSkill: (e)->
       e.preventDefault()
@@ -37,7 +75,7 @@
     addLanguage: (e)->
       e.preventDefault()
       modal = new About.Modal
-        view: @languages.currentView
+        view: @languages.currentView 
         type: 1
       @ui.modalCont.html(modal.render().el)
     
@@ -259,7 +297,6 @@
             formData = new FormData()
             file = @$('#profile-avatar')
             formData.append('avatar', file[0].files[0])            
-            console.log formData
             @view.trigger "submit:avatar", formData
     
     optionsForSelectCities: (url)->
@@ -299,16 +336,32 @@
       "modalCont": "#js-profile-modal-container"     
       "editName": "#js-editName"    
       "editBorn": "#js-editBorn"    
-      "editResidence": "#js-editResidence"    
-      
+      "editResidence": "#js-editResidence"
+           
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
+      
+
+    # bindings:
+      
+      
 
     initialize: (options)->      
       @userCanEdit = options.userCanEdit
+      @privacyOptions = [
+        value: 0
+        label: "Only me"
+      ,
+        value: 1
+        label: "My friends"
+      ,
+        value: 2
+        label: "Everyone"
+      ,            
+      ]
 
     templateHelpers: ->
       model = @model
@@ -325,24 +378,38 @@
         model.getEmail()        
       
       getPhone: ->
-        if model.phone then model.phone.get "info" else "No Phone"
-
-      canShowPhone: ->      
-        if model.phone?    
-          friend = model.get "friendship_status"
-          model.phone.canShow(friend)  
-        else
-          false  
+        if model.phone? then model.phone.get "info" else ""
       
-      canShowEmail: ->    
-        if model.email_contact?    
-          friend = model.get "friendship_status"
-          model.email_contact.canShow(friend) 
-        else
-          false  
+      hasEmail: ->    
+        model.email_contact?    
         
     modelEvents:
       "add:phone:email change": "modelChange"
+
+    onRender: ->
+      if @model.phone?
+        @stickit @model.phone,
+          "[name=privacyPhone]": 
+            observe: "privacy"
+            selectOptions:
+              collection: @privacyOptions  
+        
+        @listenTo(@model.phone, 'change', @changePhone)        
+        
+      if @model.email_contact?
+        @stickit @model.email_contact,
+          "[name=privacyEmail]": 
+            observe: "privacy"
+            selectOptions:
+              collection: @privacyOptions 
+
+        @listenTo(@model.email_contact, 'change', @changeEmail)        
+      
+    changePhone: ->
+      @model.phone.save()
+
+    changeEmail: ->
+      @model.email_contact.save()
 
     modelChange: ->
       @render() 
@@ -362,6 +429,8 @@
         view: this
         type: 1
         model: @model.profile
+
+    
 
       @ui.modalCont.html(modal.render().el)
 
@@ -435,8 +504,7 @@
       userCanEdit: @userCanEdit      
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
-    
+      @userCanEdit = options.userCanEdit    
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -445,6 +513,25 @@
 
     events:
       "click .js-rmvRow": "removeItem"
+
+    modelEvents:
+      "change": "modelChange"
+
+    bindings:
+      "[name=privacy]": 
+        observe: "privacy"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]  
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -455,6 +542,12 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
+
+    modelChange: (e)->
+      @model.save()
+
+    onRender: ->
+      @stickit()
   
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact    
@@ -469,21 +562,15 @@
 
   #For Experiences
   class About.Experience extends Marionette.ItemView
-    getTemplate: ->
-      switch @model.get("asTitle")
-        when false
-          'users/about/templates/_experience'
-        when true
-          'users/about/templates/_experienceMissing'
-       
-
-    # template: 'users/about/templates/_experience'
     tagName: "div"
 
-    # bindings:
-    #   ".js-title": 
-    #     observe: "name"
-    #     onSet: "updateModel"
+    getTemplate: ->
+      switch @model.get("asTitle")
+        when true
+          'users/about/templates/_experienceTitle'
+        when false
+          'users/about/templates/_experience'
+
     ui:
       "addExp": "#js-addExp"
       "editExp": "#js-editExp"
@@ -491,7 +578,27 @@
     
     events:
       "click @ui.addExp": "addExp"
-      "click @ui.btnRmv": "removeItem"      
+      "click @ui.editExp": "editExp"
+      "click @ui.btnRmv": "removeItem"  
+
+    bindings:
+      "[name=privacy]":
+        observe: "privacy"  
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Only me"
+          ,
+            value: 1
+            label: "My friends"
+          ,
+            value: 2
+            label: "Everyone"
+          ,            
+          ]
+
+    modelEvents:
+      "change": "modelChange"
     
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -499,20 +606,16 @@
     templateHelpers: ->
       model = @model
 
-      userCanEdit: @userCanEdit
+      # diffType: ->
+      #   prev = model.collection.at(model.collection.indexOf(model) - 1)        
+      #   hasTitle = true
+      #   if prev?          
+      #     hasTitle = (prev.get("exp_type") != model.get("exp_type"))
+      #   # model.hasTitle = hasTitle
+        
+      #   return hasTitle
 
-      diffType: ->
-        prev = model.collection.at(model.collection.indexOf(model) - 1)        
-        hasTitle = true
-        if prev?          
-          hasTitle = (prev.get("exp_type") != model.get("exp_type"))
-        # else    
-        #   true
-        model.hasTitle = hasTitle
-        console.log ( "exp " + model.get("name") + " title: " + model.hasTitle)
-        window.col = model.collection
-        console.log model.collection.length 
-        return hasTitle
+      userCanEdit: @userCanEdit
 
       experienceType: ->
         model.getExperienceType()
@@ -526,35 +629,39 @@
       getOrganization: ->
         model.getOrganization()
       
+      getStartDate: ->
+        model.getStartDate()
+
       getEndDate: ->
         model.getEndDate()
     
+    onRender: ->
+      @stickit()
+
     addExp: (e)->
       e.preventDefault()
       @trigger "add:exp"
 
-    updateModel: (val, evt, opts)->
-      console.log val
-      console.log model
-      console.log opts
+    editExp: (e)->
+      e.preventDefault()      
+      @model.isEditing = true
+      @model.set "first", true
+      @model.decodeDates()
+      @model.collection.trigger "reset" #For re-render the itemview
 
-    removeItem: (e)->
-      #if the exp was the title, update view and..
-      if @model.hasTitle
-        collection = @model.collection
-
+    removeItem: (e)->   
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
 
-      #Re-render collection view
-      if collection?  
-        collection.addExperiencesTitles()
-        collection.trigger "reset"
+    modelChange: ->
+      if @model.hasChanged("privacy")
+        @model.save()
+      @render()      
 
 
   class About.Experiences extends Marionette.CollectionView
-    getChildView: (model)->      
-      if(model.isNew() && !model.get("asTitle"))
+    getChildView: (model)-> 
+      if((model.isNew() && !model.get("asTitle")) || model.isEditing)
         AlumNet.RegistrationApp.Experience.FormExperience
       else  
         About.Experience    
@@ -562,7 +669,6 @@
     childViewOptions: ->
       userCanEdit: @userCanEdit      
       inProfile: true
-
       
     childEvents:
       "add:exp": "addExp"       

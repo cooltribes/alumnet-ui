@@ -26,8 +26,11 @@
           post.save data,
             wait: true
             success: (model, response, options) ->
-              #user.posts.fetch()
               posts.collection.add(model, {at: 0})
+
+        posts.on "childview:post:edit", (postView, value)->
+          post = postView.model
+          post.save { body: value }
 
         #Listen each post
         posts.on "childview:comment:submit", (postView, data) ->
@@ -68,7 +71,10 @@
           unlike.save {},
             success: ->
               commentView.remLike()
+        posts.on "childview:comment:edit", (postView, commentView, value)->
+          comment = commentView.model
+          comment.save { comment: value }
 
       user.on 'find:error', (response, options)->
-        ##Logic here the user not exists or is not authorizate
-        console.log "Error on user fetch"
+        AlumNet.trigger('show:error', response.status)
+

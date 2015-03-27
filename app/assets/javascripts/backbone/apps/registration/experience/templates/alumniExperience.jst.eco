@@ -1,6 +1,6 @@
 <div class="form-group has-feedback">
 	<label class="control-label" >Name of the position</label>
-	<input type="text" name="name" class="form-control input-lg "  placeholder="Enter position">
+	<input type="text" name="name" class="form-control input-lg " value="<%= @name %>" placeholder="Enter position">
 	<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
@@ -15,7 +15,9 @@
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								
+								<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+								
 							<% end %>
 						</select>
 					</div>
@@ -25,7 +27,19 @@
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><% if x==1 : %> January	<% end %>
+									<% if x==2 : %> February <% end %>
+									<% if x==3 : %> March <% end %>
+									<% if x==4 : %> April <% end %>
+									<% if x==5 : %> May <% end %>
+									<% if x==6 : %> June <% end %>
+									<% if x==7 : %> July <% end %>
+									<% if x==8 : %> August <% end %>
+									<% if x==9 : %> September <% end %>
+									<% if x==10 : %> October <% end %>
+									<% if x==11 : %> November <% end %>
+									<% if x==12 : %> December <% end %>
+								</option>		
 							<% end %>
 						</select>
 					</div>
@@ -37,7 +51,7 @@
 	</div>
 	<div class="col-md-6">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="end_year">End date</label>
+			<label class="control-label" for="end_year">End Date</label>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="formANet__select">
@@ -46,7 +60,8 @@
 							<option value="current">Current</option>
 
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+								
 							<% end %>
 						</select>
 					</div>
@@ -56,7 +71,20 @@
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
 							<% for x in [1..12] by 1 : %>
-								<option value="<%= x %>"><%= x %></option>
+								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>">
+									<% if x==1 : %> January	<% end %>
+									<% if x==2 : %> February <% end %>
+									<% if x==3 : %> March <% end %>
+									<% if x==4 : %> April <% end %>
+									<% if x==5 : %> May <% end %>
+									<% if x==6 : %> June <% end %>
+									<% if x==7 : %> July <% end %>
+									<% if x==8 : %> August <% end %>
+									<% if x==9 : %> September <% end %>
+									<% if x==10 : %> October <% end %>
+									<% if x==11 : %> November <% end %>
+									<% if x==12 : %> December <% end %>
+								</option>							
 							<% end %>
 						</select>
 					</div>
@@ -67,8 +95,8 @@
 	</div>
 </div>
 <div class="form-group has-feedback">
-	<label class="control-label" for="registerDescription">Description/achievements</label>
-	<textarea class="form-control input-lg " rows="3" name="description"></textarea>
+	<label class="control-label" for="registerDescription">Description/Achievements</label>
+	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>
 	<span class="help-block"></span>
 </div>
 <div class="row">
@@ -115,7 +143,8 @@
 <% end %>
 
 <% if @inProfile: %>
-	<button class="btn btn-default text-uppercase btn-default-noBackground js-rmvRow" type="button"> Cancel</button>
+	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
+
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
 <hr>

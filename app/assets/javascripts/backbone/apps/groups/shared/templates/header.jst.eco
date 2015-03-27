@@ -6,13 +6,12 @@
       <%= @name %>
     <% end %>
   </h1>
-  <h1>
   <% if @canEditInformation: %>
-    <a href="#" id="js-upload-cover">Upload new cover photo</a>
+    <a href="#" id="js-upload-cover" class="groupCoverArea__btnUploadCover btn btn-lg">Upload new cover photo</a>
   <% end %>
-  </h1>
   <% if @userCanInvite: %>
     <a href="#groups/<%= @id %>/invite" title="Invite people to group" class="groupCoverArea__btnInvite btn btn-lg">+ Invite people to group</a>
   <% end %>
 </div>
-<div id="js-modal-cover-container"></div>
+<div id="js-modal-cover-container">
+</div>

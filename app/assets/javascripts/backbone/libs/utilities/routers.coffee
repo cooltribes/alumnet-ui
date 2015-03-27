@@ -9,7 +9,11 @@
         @goToRegistration(step)
         false
       else
-        true
+        if current_user.isBanned()
+          AlumNet.trigger 'show:banned'
+          false
+        else
+          true
 
     goToRegistration: (step)->
 
@@ -32,5 +36,5 @@
       current_user = AlumNet.current_user
       unless current_user.isAlumnetAdmin()
         return false
-        
+
       true

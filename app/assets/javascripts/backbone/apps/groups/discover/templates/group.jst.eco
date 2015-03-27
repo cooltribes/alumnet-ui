@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCard__atribute__container">
+            <div data-toggle="tooltip" data-placement="top" title="Last Activity" class="groupCard__atribute__container">
               <span class="groupCard__icon ico-timebank"></span>
               <% if @last_post_at: %>
               <%= moment(@last_post_at).format('h:mm a') %>
@@ -75,7 +75,7 @@
         </div>
         <div class="clearfix">
           <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Members" class="groupCard__atribute__container--odd">
+            <div data-toggle="tooltip" data-placement="top" title="Alumni in Group" class="groupCard__atribute__container--odd">
               <span class="groupCard__icon ico-company"></span>
               <%= @membership_users.length %>
             </div>

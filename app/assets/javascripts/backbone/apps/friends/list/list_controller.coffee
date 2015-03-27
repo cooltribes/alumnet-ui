@@ -18,7 +18,7 @@
       friendsLayout.on 'friends:search', (querySearch, collection)->        
         collection.fetch(data: querySearch)
 
-      AlumNet.execute('render:friends:submenu')
+      AlumNet.execute('render:friends:submenu',undefined, 0)
 
       AlumNet.mainRegion.show(friendsLayout)
       

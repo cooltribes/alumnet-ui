@@ -22,8 +22,8 @@
           
           <% if @errors && @errors.any? %>
           <div class="homeAlumNet__alert text-danger text-right alert alert-danger">
-            <% @errors.full_messages.each do |msg| %>
-            <span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
+            <% @errors.messages.each do |msg| %>
+            <span class="glyphicon glyphicon-warning-sign"></span> <%= msg[1][0] %>
             <% end %>
           </div>
           <% end %>
@@ -42,11 +42,11 @@
   </div>
 </div>
 <!-- FOOTER ON -->
-<footer class="alumNetFooter">
+<!--<footer class="alumNetFooter">
   <div class="container-fluid">
     <div class="row">
       <div class=" col-md-4 col-lg-4">
-        <img src="/assets/home/alumNetLogoHome.png" width="190px" class="alumNetFooter__logo" title="Company Logo AlumNet ">
+        <%= image_tag('home/alumNetLogoHome.png', width: "190", class: "alumNetFooter__logo", alt: "Company Logo AlumNet" ) %>
         <br>
         <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
         International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
@@ -58,5 +58,5 @@
       </div>
     </div>
   </div>
-</footer>
+</footer>-->
 <!-- FOOTER OFF -->

@@ -25,7 +25,7 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#" data-toggle="modal" data-target="#devAlertModal">
+        <a class="navTopBar__left__item" href="#events">
           <i class="ico-calendar"></i>
           Events
         </a>
@@ -46,9 +46,9 @@
       <!-- Right menu top -->
       <li>
         <!-- CART ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="modal" data-target="#devAlertModal">
+        <!--<a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="modal" data-target="#devAlertModal">
           <span class=" navTopBar__right__item__icon--cartIcon glyphicon glyphicon-shopping-cart"></span> 3
-        </a>
+        </a>-->
       </li>
       <li>
         <!-- BELL ICON -->
@@ -61,10 +61,13 @@
         <!-- NOTIFICATIONS ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="notifications">
           <!-- NOTIFICATIONS LIST -->
-          <div id="js-menu-notifications-box"></div>
+          <div id="js-menu-notifications-box" class="notification__boxMenu"></div>
           <!-- SHOW ALL NOTIFICATIONS LINK -->
           <div role="presentation">
             <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
+          </div>
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" id="js-notifications-mark-all">Mark all as read</a>
           </div>
         </div>
         <!-- NOTIFICATIONS OFF -->
@@ -113,6 +116,7 @@
           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
 
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/posts">My Profile</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#privacy/settings">Privacy Settings</a></li>
 
           <%% if @isAlumnetAdmin: %>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#admin/users" id="js-changeHeader">Admin Section</a></li>
@@ -138,7 +142,7 @@
     <!-- /.modal-content -->
     <div class="modal-content" id="devAlertModal" tabindex="-1" role="dialog" aria-labelledby="devAlertModallLabel" aria-hidden="true">
       <div class="modal-body margin_medium">
-        
+
         <button type="button" class="close margin_smal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -147,7 +151,8 @@
           This module is still under development. If you want to learn more about this module, or if you have a question or comment about it, please join the AlumNet group
         </p>
 
-        <button type="button" class="btn btn-primary">Join AlumNet Group</button>
+        <button type="button" class="btn btn-primary">
+        <a href="#groups/1/posts"></a>Join AlumNet Group</button>
       </div>
     </div>
     <!-- /.modal-content -->

@@ -27,6 +27,7 @@
 
     events:
       'click button.js-submit': 'submitClicked'
+      'click button.js-cancel': 'cancelClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
@@ -36,10 +37,10 @@
       @ui.selectJoinProcess.html(@joinOptionsString(select.val()))
 
     joinOptionsString: (option)->
-      if option == "1"
+      if option == "closed"
         '<option value="1">All Members can invite, but the admins approved</option>
         <option value="2">Only the admins can invite</option>'
-      else if option == "2"
+      else if option == "secret"
         '<option value="2">Only the admins can invite</option>'
       else
         '<option value="0">All Members can invite</option>
@@ -56,6 +57,10 @@
       formData.append('cover', file[0].files[0])
       @model.set(data)
       @trigger 'form:submit', @model, formData
+
+    cancelClicked: (e)->
+      e.preventDefault()
+      AlumNet.trigger 'groups:discover'
 
     previewImage: (e)->
       input = @.$('#group-cover')
