@@ -27,7 +27,6 @@
     templateHelpers: ->
      
       model = @model
-      console.log model
     
       getLocation: ->
         model.getLocation()

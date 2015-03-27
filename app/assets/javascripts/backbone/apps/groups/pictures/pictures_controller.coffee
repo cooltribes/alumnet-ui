@@ -1,24 +1,26 @@
 @AlumNet.module 'GroupsApp.Pictures', (Pictures, @AlumNet, Backbone, Marionette, $, _) ->
   class Pictures.Controller
     showAlbums: (id)->
+      group = AlumNet.request("group:find", id)
+      group.on 'find:success', (response, options)->
+        if group.isClose() && not group.userIsMember()
+          $.growl.error({ message: "You cannot see information on this Group. This is a Closed Group" })
+        else if group.isSecret() && not group.userIsMember()
+          AlumNet.trigger('show:error', 404)
+        else
+          
+          layout = AlumNet.request("group:layout", group)
+          header = AlumNet.request("group:header", group)
+          
+          AlumNet.execute('render:groups:submenu')
 
-      user = AlumNet.request("user:find", id)
-      user.on 'find:success', (response, options)->
+          # render the layouts first
+          AlumNet.mainRegion.show(layout)
+          layout.header.show(header)
 
-        AlumNet.execute('render:users:submenu')  
+          #Show user's albums inside "pictures" region
+          AlumNet.trigger "albums:user:list", layout, user        
+          
 
-        #Layouts for the profile page - last parameter (3) is for marking "Pictures" as active tab
-        layout = AlumNet.request("user:layout", user, 3)
-        header = AlumNet.request("user:header", user)
-
-        AlumNet.mainRegion.show(layout)
-        
-        layout.header.show(header)
-
-        #Show user's albums inside "pictures" region
-        AlumNet.trigger "albums:user:list", layout, user        
-
-
-      user.on 'find:error', (response, options)->
-        AlumNet.trigger('show:error', response.status) 
-    
+      group.on 'find:error', (response, options)->
+        AlumNet.trigger('show:error', response.status)  
