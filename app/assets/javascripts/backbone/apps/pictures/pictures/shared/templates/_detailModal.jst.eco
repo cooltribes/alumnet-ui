@@ -12,8 +12,11 @@
         
         <div class="row">
           <div class="col-md-12">
+            <div class="groupPost__avatar">
+              <img src="<%= @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle">
+            </div>
             <h4>
-              AUTOR NAME                  
+              <%= @creator.name %>                 
             </h4>
             <small>
               <%= moment(@date_taken).fromNow() %>
@@ -51,6 +54,22 @@
 
           </div>
         </div>
+
+        <hr/>
+        <div class="groupPost__commentsContainer comments-container"></div>
+        <form class="groupPost__commentForm clearfix form">
+          <div class="groupPost__commentForm__avatar">
+            <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
+          </div>
+          <div class="groupPost__commentForm__form">
+            <div class="form-group">
+              <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+            </div>
+          </div>
+        </form>
+
+
+
       </div>
 
 

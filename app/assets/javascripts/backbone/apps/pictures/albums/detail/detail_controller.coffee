@@ -7,6 +7,8 @@
 
       photosCollection = new AlumNet.Entities.PictureCollection     
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
+      #Associate album to photos collection
+      photosCollection.album = album
 
       photosCollection.fetch()  
 

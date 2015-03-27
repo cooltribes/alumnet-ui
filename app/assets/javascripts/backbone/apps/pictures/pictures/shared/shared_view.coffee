@@ -31,6 +31,10 @@
     
       getLocation: ->
         model.getLocation()
+      
+      creator: model.collection.album.get("creator")
+
+      current_user_avatar: AlumNet.current_user.get('avatar').medium
 
 
   API =
