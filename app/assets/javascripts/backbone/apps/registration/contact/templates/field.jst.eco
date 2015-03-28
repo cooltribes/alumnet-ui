@@ -1,7 +1,7 @@
 <div class="row formANet__removableRow">
   <div class="col-md-3">
     <div class="form-group">
-      <select name="contact_type" class="form-control input-lg" <%= @isReadOnly() %>>
+      <select name="contact_type" class="form-control input-lg contact_method" id="selectContact" <%= @isReadOnly() %>>
         <option value="">-Select-</option>
         <option value="0" <%= @selected(0) %>>Email</option>
         <option value="1" <%= @selected(1) %>>Phone</option>
@@ -18,16 +18,10 @@
 
   <div class="col-md-5">
     <div class="form-group">
-      <% if @contact_type==1 : %>
-        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="+phonenumber" value="<%= @info %>">
+      
+        <input type="text" <%= @isReadOnly() %> class="form-control input-lg name_info contact_input" name="info" placeholder="<%= @placeholder() %>" value="<%= @info %>">
         <span class="help-block"></span>
-      <% else if @contact_type==7 : %>
-        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="https://www.example.com" value="<%= @info %>">
-        <span class="help-block"></span>  
-      <% else: %>
-        <input type="text" <%= @isReadOnly() %> class="form-control input-lg" name="info" id="iputEmail" placeholder="" value="<%= @info %>">
-        <span class="help-block"></span>
-      <% end %>
+     
     </div>
   </div>
 

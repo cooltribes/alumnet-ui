@@ -21,7 +21,6 @@
     templateHelpers: ->
       group_name: @group.get('name')
       userIsAdmin: @user.isAlumnetAdmin()
-      groupCanHaveOfficialSubgroup: @group.canHaveOfficialSubgroup()
 
     ui:
       'startDate':'#event-start-date'
@@ -186,10 +185,15 @@
     clickUpcoming: (e)->
       e.preventDefault()
       @searchUpcomingEvents({})
+      @clearClass()
+      @setActiveClass($(e.currentTarget))
+
 
     clickPast: (e)->
       e.preventDefault()
       @searchPastEvents({})
+      @clearClass()
+      @setActiveClass($(e.currentTarget))
 
     searchUpcomingEvents: (query)->
       @collection.getUpcoming(query)
@@ -210,6 +214,14 @@
           @searchUpcomingEvents(query)
         else
           @searchPastEvents(query)
+
+    setActiveClass: (target)->
+      target.addClass("sortingMenu__item__link sortingMenu__item__link--active")
+
+    clearClass: ()->
+      $('#js-upcoming-events, #js-past-events')
+      .removeClass("sortingMenu__item__link sortingMenu__item__link--active")
+      .addClass("sortingMenu__item__link sortingMenu__item__link")
 
   # INVITE
 

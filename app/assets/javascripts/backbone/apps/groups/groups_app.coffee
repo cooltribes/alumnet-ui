@@ -77,7 +77,7 @@
     AlumNet.navigate("groups")
     API.discoverGroups()
 
-  AlumNet.on "event:invite", (event, users)->
+  AlumNet.on "group:event:invite", (event, users)->
     API.inviteEvent(event, users)
 
   AlumNet.addInitializer ->

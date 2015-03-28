@@ -36,3 +36,42 @@ DESCRIPTION: Used for  execute search queries. It includes a title at left hand 
         
     }
 }
+
+.input-group{
+    .input-group-addon{
+        border: 1px solid rgb(204, 204, 204);
+        background: none repeat scroll 0% 0% rgb(255, 255, 255);   
+        color: @main-blue; 
+    }  
+
+    &--right{
+        .input-group-addon{
+            border-left: 0px;
+            border-right: 1px solid rgb(204, 204, 204);
+            padding: 0 5px 0 0;
+        }
+        input{
+            border-right: 0px;
+        }                
+    }
+    &--left{
+        .input-group-addon{
+            border-right: 0px;
+            border-left: 1px solid rgb(204, 204, 204);
+            padding-left: 0 0 0 5px;
+        }
+        input{
+            border-left: 0px;
+        }  
+    }   
+    input:focus{
+        border-color: #CCC;
+        box-shadow: none;                        
+    } 
+
+}
+.input-group:focus{
+    border-color: #66AFE9;
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(102, 175, 233, 0.6);
+}

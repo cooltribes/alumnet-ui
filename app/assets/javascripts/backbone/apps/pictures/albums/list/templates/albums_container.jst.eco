@@ -15,9 +15,12 @@
       </ul>
       
     </div>
-    <div class="col-md-3 text-right">
-      <a href="#" title="+ Create album" class="btn-primary-noBackground btn  btn-primary js-create">+ Create album</a>
-    </div>
+    <% if @userCanEdit: %>
+
+      <div class="col-md-3 text-right">
+        <a href="#" title="+ Create album" class="btn-primary-noBackground btn  btn-primary js-create">+ Create album</a>
+      </div>
+    <% end %>
     
   </div>
   <hr class="no_margin_top">

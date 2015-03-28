@@ -6,13 +6,11 @@
 
   </div>
 </div>
-<div class=" row">
-  <div class="col-md-12">
-    Start uploading photos right now
+<% if @userCanEdit: %>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+    </div>
   </div>
-</div>
-<div class=" row">
-  <div class="col-md-12">
-    <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
-  </div>
-</div>
+<% end %>  
+<!-- jsav3486 -->

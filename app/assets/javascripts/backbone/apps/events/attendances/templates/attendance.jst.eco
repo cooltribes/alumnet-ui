@@ -1,0 +1,13 @@
+<div class="userCard">
+  <div class="row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+    </div>
+    <div class="col-md-7">
+      <h4 class="userCard__name">
+      <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+      <p class="member-position text-small"><%= @user.email %></p>
+      <h4><%= @status %></h4>
+    </div>
+  </div>
+</div>

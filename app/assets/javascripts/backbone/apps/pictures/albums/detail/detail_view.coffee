@@ -12,9 +12,20 @@
     template: 'pictures/albums/detail/templates/albumDetail'
     childView: AlbumDetail.Photo
     emptyView: AlbumDetail.EmptyView
-    # emptyViewOptions: 
-    #   message: "There is no pictures here"
+    emptyViewOptions: ->
+      model: @model
     childViewContainer: '.albums-list'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+    templateHelpers: ->
+      model = @model
+  
+      userCanEdit: @userCanEdit
+  
+      getLocation: ->
+        model.getLocation()
 
     ui:
       "modalCont": "#js-modal-container"  
@@ -59,5 +70,3 @@
     #     view: this
 
     #   @ui.modalCont.html(modal.render().el)  
-
-  
