@@ -21,6 +21,7 @@
     prefix: 'bbm'
     animate: true
     keyControl: true
+    clickOut: true
     showViewOnRender: true
 
     lookups: ['backbone/apps/']
@@ -79,9 +80,11 @@
       return this
 
     rendererCompleted: =>
+      # global events for key and click outside the modal
       if @keyControl
-        # global events for key and click outside the modal
         Backbone.$('body').on('keyup', @checkKey)
+      
+      if @clickOut
         Backbone.$('body').on('click', @clickOutside)
 
       @modalEl.css(opacity: 1).addClass("#{@prefix}-modal--open")
