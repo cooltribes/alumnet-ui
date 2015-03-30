@@ -11,9 +11,8 @@
       <p>
         <%= @body %>
       </p>
-      
+
       <% if @is_read: %>
-      <% console.log this %>
       <a href="#" id="js-mark-as-unread" class="notification__contentBox__markRead">Mark as Unread</a>
       <% else: %>
       <a href="#" id="js-mark-as-read" class="notification__contentBox__markRead">Mark as Read</a>

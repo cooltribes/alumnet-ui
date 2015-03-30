@@ -1,0 +1,44 @@
+<% selected = (option, value)->  if option == value then "selected" else "" %>
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title"><%= @name %></h3>
+</div>
+<form>
+  <div class="modalBox__content">
+<<<<<<< HEAD
+
+=======
+>>>>>>> cb6d66e2db19aa36e6606f900ba19f7657a1a13b
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group has-feedback">
+          <label class="control-label">Address</label>
+          <input type="text" name="address"  id="address"  class="form-control"
+            value="<%= @address %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Country</label>
+          <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">City</label>
+          <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.value %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary js-modal-save" >Save</a>
+  <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
+</div>

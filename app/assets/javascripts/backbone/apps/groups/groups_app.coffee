@@ -9,6 +9,9 @@
       "groups/:id/members": "membersGroup"
       "groups/:id/subgroups/new": "createSubGroup"
       "groups/:id/subgroups": "listSubGroups"
+      "groups/:id/events/new": "createEvent"
+      "groups/:id/events": "listEvents"
+
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
@@ -40,6 +43,15 @@
     listSubGroups: (id)->
       controller = new GroupsApp.SubGroups.Controller
       controller.listSubGroups(id)
+    createEvent: (id)->
+      controller = new GroupsApp.Events.Controller
+      controller.createEvent(id)
+    listEvents: (id)->
+      controller = new GroupsApp.Events.Controller
+      controller.listEvents(id)
+    inviteEvent: (event, users)->
+      controller = new GroupsApp.Events.Controller
+      controller.invitations(event, users)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -57,9 +69,16 @@
     AlumNet.navigate("groups/#{id}/members")
     API.membersGroup(id)
 
+  AlumNet.on "groups:subgroups", (id)->
+    AlumNet.navigate("groups/#{id}/subgroups")
+    API.listSubGroups(id)
+
   AlumNet.on "groups:discover",  ->
     AlumNet.navigate("groups")
     API.discoverGroups()
+
+  AlumNet.on "group:event:invite", (event, users)->
+    API.inviteEvent(event, users)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

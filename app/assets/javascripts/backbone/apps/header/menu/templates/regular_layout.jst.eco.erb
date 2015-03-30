@@ -25,7 +25,7 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#" data-toggle="modal" data-target="#devAlertModal">
+        <a class="navTopBar__left__item" href="#events">
           <i class="ico-calendar"></i>
           Events
         </a>
@@ -67,7 +67,7 @@
             <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Show all</a>
           </div>
           <div role="presentation">
-            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" >Mark all as read</a>
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#notifications" id="js-notifications-mark-all">Mark all as read</a>
           </div>
         </div>
         <!-- NOTIFICATIONS OFF -->
@@ -92,28 +92,56 @@
         <!-- MESSAGES OFF -->
       </li>
       <li>
-        <a href="" class="navTopBar__right__item navTopBar__right__item--becomeAMemberWrapper " title="Become a member" data-toggle="modal" data-target="#devAlertModal">
+        <%% if @member==0: %> 
+        <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal">
           <!-- When membership is about to expire activate from here ...
           <div class="navTopBar__right__item--membershipExpires">
             <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
           ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--becomeAMember">
-
             Become a member
             <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
-
           </span>
-
-
           <!-- </div> -->
         </a>
+        <%% else: %>
+       <%% if @member==2: %> 
+        <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal" style="padding-left: 60px;">
+          <span class=" navTopBar__right__item--renew">
+             Renew membership
+            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
+          </span>
+          <span class=" navTopBar__right__item--counter">
+            <span><%%= @daysLeft%></span>
+            <span class="upline">days</span>
+            <span class="downline">left</span>            
+          </span>
+        </a>
+        <%% else: %>
+           <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal">
+          <!-- When membership is about to expire activate from here ...
+          <div class="navTopBar__right__item--membershipExpires">
+            <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
+          ... to here and the closing </div> before the </a>-->
+          <span class=" navTopBar__right__item--member">
+            <span class="glyphicon glyphicon-certificate"></span>
+            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
+          </span>
+          <!-- </div> -->
+        </a>
+        <%% end %>
+        <%% end %>
+
+       
+        
+
+
       </li>
       <li>
         <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
           <span class="icon-entypo-down-open"></span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
-          <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li> -->
 
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/posts">My Profile</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#privacy/settings">Privacy Settings</a></li>
@@ -142,7 +170,7 @@
     <!-- /.modal-content -->
     <div class="modal-content" id="devAlertModal" tabindex="-1" role="dialog" aria-labelledby="devAlertModallLabel" aria-hidden="true">
       <div class="modal-body margin_medium">
-        
+
         <button type="button" class="close margin_smal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

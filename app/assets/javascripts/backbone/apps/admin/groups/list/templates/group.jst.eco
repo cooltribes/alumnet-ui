@@ -4,7 +4,7 @@
       <span class="tableAdminGroups__ribbon"></span>
     <% end %>
     <a href="#groups/<%= @id %>/about">
-      <h4 class="tableAdminGroups__groupName"><%= @name %></h4> 
+      <h4 class="tableAdminGroups__groupName"><%= @name %></h4>
     </a>
     <span class="tableAdminGroups__label label <% if @group_type.value== 1: %>label-warning<% end %><% if @group_type.value== 0: %>label-success<% end %>">
       <% if @group_type.value== 1: %>
@@ -30,10 +30,12 @@
     <% end %>
 </td>
 <td class=" tableAdminGroups__colText">
+    <% if @creator: %>
       <a class="tableAdminGroups__creator" href="#users/<%= @creator.id %>/about">
         <%= @creator.name %>
       </a><br>
-      <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
+    <% end %>
+    <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
 </td>
 <td class="js-show-admins tableAdminGroups__colText tableAdminGroups__admins">
   <%= @getAdminsCount() %>
