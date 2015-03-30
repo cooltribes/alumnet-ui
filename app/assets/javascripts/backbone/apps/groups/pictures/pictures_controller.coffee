@@ -19,7 +19,7 @@
           layout.header.show(header)
 
           #Show user's albums inside "pictures" region
-          AlumNet.trigger "albums:user:list", layout, user        
+          AlumNet.trigger "albums:group:list", layout, group        
           
 
       group.on 'find:error', (response, options)->

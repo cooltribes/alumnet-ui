@@ -3,7 +3,8 @@
     showAlbum: (layout, album)->
       
       user = layout.model
-      userCanEdit = user.isCurrentUser()
+      console.log album
+      userCanEdit = true #user.isCurrentUser()
 
       photosCollection = new AlumNet.Entities.PictureCollection     
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
