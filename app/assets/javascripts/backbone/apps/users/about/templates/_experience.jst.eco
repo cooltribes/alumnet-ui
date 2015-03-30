@@ -39,11 +39,11 @@
 
 <% if @aiesec_experience: %>
 	<div class="experienceCard__description">
-		Experience: <%= @aiesec_experience %>
+		Level of Experience: <%= @aiesec_experience %> <br> 
 	</div>
 <% end %>
 
-	<div class="experienceCard__description">
+	<div class="experienceCard__description"><br>
 	<%= @description %>
 	</div>
 </div>
