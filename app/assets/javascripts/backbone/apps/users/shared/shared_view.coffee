@@ -22,7 +22,6 @@
     templateHelpers: ->                  
       model = @model
       userCanEdit: @userCanEdit
-      console.log model
       
       position: ->
         model.profile.get("last_experience") ? "No Position"
