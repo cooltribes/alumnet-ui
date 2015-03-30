@@ -43,7 +43,7 @@
 
  
 
-  <% if not @current_user: %>
+  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received": %>
     <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
   <% end %> 
 
