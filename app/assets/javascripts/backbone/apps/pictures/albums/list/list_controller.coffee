@@ -19,10 +19,9 @@
         AlumNet.trigger "albums:show:detail", layout, childview.model        
         
 
-      albumsView.on "create:album", (model)->
+      albumsView.on "submit:album", (model)->
         albumCollection.create model,
           success:->
-            console.log model
             AlumNet.trigger "albums:show:detail", layout, model        
 
       
@@ -49,7 +48,7 @@
         AlumNet.trigger "albums:show:detail", layout, childview.model        
         
 
-      albumsView.on "create:album", (model)->
+      albumsView.on "submit:album", (model)->
         albumCollection.create model,
           success:->
             console.log model

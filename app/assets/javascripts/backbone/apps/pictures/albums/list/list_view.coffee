@@ -53,13 +53,13 @@
       e.preventDefault()
       album = new AlumNet.Entities.Album
 
-      modal = new AlbumList.CreateAlbumModal
+      modal = new AlbumList.AlbumModalForm
         model: album       
         view: this
 
       @ui.modalCont.html(modal.render().el)  
 
-  class AlbumList.CreateAlbumModal extends Backbone.Modal
+  class AlbumList.AlbumModalForm extends Backbone.Modal
     template: 'pictures/albums/list/templates/_createModal'
 
     cancelEl: '#js-close'
@@ -87,8 +87,6 @@
      
       currentYear: new Date().getFullYear()
     
-      firstYear: ->
-        @currentYear - 100
 
     onRender: ->
       #For date taken
@@ -99,7 +97,8 @@
         d: born.day
       .format("YYYY-MM-DD")
 
-      max_date = moment().subtract(2, 'years').format("YYYY-MM-DD")
+      # max_date = moment().subtract(2, 'years').format("YYYY-MM-DD")
+      max_date = moment().format("YYYY-MM-DD")
 
       @$(".js-date-taken").Zebra_DatePicker
         show_icon: false
@@ -150,6 +149,6 @@
 
 
     submit: ()->  
-      @view.trigger "create:album", @model
+      @view.trigger "sumbit:album", @model
         
        
