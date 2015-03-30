@@ -24,6 +24,7 @@
 					<li>  <a href="#users/<%= @id %>/events" class="groupMenu__link<%= @classOf(4)%>">
 						<span class="ico-calendar"></span>
 					Events</a></li>
+
 				</ul>
 			</div>
 		</div>

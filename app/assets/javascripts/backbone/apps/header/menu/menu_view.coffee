@@ -68,11 +68,11 @@
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
       memberTitle: ->        
-        if(model.get('member')=='1')
+        if(model.get('member')==1)
           return "Active member"
-        if(model.get('member')=='2')
+        if(model.get('member')==2)
           return "Expiring membership"
-        if(model.get('member')=='3')
+        if(model.get('member')==3)
           return "Lifetime member"
         return "Not a member"
       daysLeft: 30

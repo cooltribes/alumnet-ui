@@ -15,10 +15,20 @@
     
   <% end %>   
   </div>
-  <% if @member>0: %>
+  <% if @member==1 || @member==2: %>
   <div class="userCoverArea__membership ">
     <div>
-      <span class="glyphicon glyphicon-certificate"></span> MEMBER
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span> MEMBER
+    </div>
+  </div>
+  <% end %> 
+  <% if @member==3: %>
+  <div class="userCoverArea__membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+      LIFETIME MEMBER
     </div>
   </div>
   <% end %>           
@@ -33,7 +43,7 @@
 
  
 
-  <% if not @current_user: %>
+  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received": %>
     <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
   <% end %> 
 

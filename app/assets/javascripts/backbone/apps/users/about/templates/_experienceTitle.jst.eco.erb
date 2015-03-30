@@ -1,0 +1,16 @@
+	<h2 id="<%%= @experienceId()  %>">
+		<%% if @experienceType()=='AIESEC Experience':  %>
+			<%= image_tag("profile/aiesec130x20.png", alt: "AIESEC") %>
+		<%% else if @experienceType()=='Alumni Experience':  %>
+			<%= image_tag("profile/logoaiesec130.png", alt: "ALUMNI") %>
+		<%% else: %>
+			<%%= @experienceType()  %>
+		<%% end %>
+		<%% if @userCanEdit: %>
+		  <small>
+			  <a href="#" id="js-addExp" data-exp-type="<%%= @exp_type %>">Add new</a>  	
+		  </small>
+		<%% end %>
+		
+	</h2>
+
