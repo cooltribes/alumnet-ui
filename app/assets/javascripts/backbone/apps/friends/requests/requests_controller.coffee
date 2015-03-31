@@ -15,6 +15,9 @@
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
+        layout.model.decrementCount('pending_received_friendships')
+        console.log('UnoAceptado')
+        alert(UnoAceptado)
 
       layout.body.show(requestsView)
 

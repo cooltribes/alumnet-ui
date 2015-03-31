@@ -44,6 +44,10 @@
             value = model.get("value")
             attr = "#{field}_#{comparator}"
 
+            console.log field
+            console.log operator
+            console.log comparator
+
             if comparator in ["cont_any", "in"]
               if q[attr]?
                 q[attr].push value

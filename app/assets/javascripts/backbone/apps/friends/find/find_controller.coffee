@@ -19,6 +19,7 @@
         attrs = { friend_id: childView.model.id }
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
+          AlumNet.current_user.incrementCount('pending_sent_friendships')  #listenTo
           childView.removeRequestLink()
 
         friendship.on 'save:error', (response, options)->
@@ -28,6 +29,7 @@
         attrs = childView.model.get('friendship')
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
+          AlumNet.current_user.decrementCount('pending_received_friendships') #ListonTo
           childView.removeAcceptLink()
         friendship.on 'save:error', (response, options)->
           console.log response.responseJSON

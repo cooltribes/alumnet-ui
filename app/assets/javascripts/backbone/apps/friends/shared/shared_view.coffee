@@ -20,7 +20,8 @@
       #"change": "modelChange"  
 
     initialize: (options) ->
-      @listenTo(@model, 'change:pending_sent_friendships_count', @changedCount)
+      @listenTo(@model, 'change:pending_sent_friendships_count', @changedCountSent)
+      @listenTo(@model, 'change:pending_received_friendships_count', @changedCountReceived)
       @tab = options.tab
       @class = [
         "", "", ""
@@ -64,9 +65,15 @@
       this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
       link.addClass("sortingMenu__item__link--active")
 
-    changedCount: ->
-      message = "Sent #{@model.get('pending_sent_friendships_count')}"
-      @ui.sendCount.html(message)
+    changedCountSent: ->
+      messageSent = "Sent (#{@model.get('pending_sent_friendships_count')})"
+      @ui.sendCount.html(messageSent)
+
+    changedCountReceived: ->
+      messageReceived = "Recieved (#{@model.get('pending_received_friendships_count')})"
+      @ui.receivedCount.html(messageReceived)      
+
+
 
   API =
     getFriendsLayout: (model, tab)->

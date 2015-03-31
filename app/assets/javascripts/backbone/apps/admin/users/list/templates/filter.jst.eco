@@ -6,6 +6,9 @@
         <option value="">Select field</option>
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
+        <option value="profile_residence_country">Country of residence</option>
+        <option value="profile_birth_country">Country of origin</option>
+        <option value="profile_local_committee">Prueba</option>
 
         <!-- <option value="joined">Join date</option>
         <option value="gender">Gender</option> -->
@@ -16,7 +19,7 @@
   <div class="col-md-2 ">
     <div class="form-group">
       <% if @first: %> <label class="control-label">Comparator</label><% end %>
-      <select name="comparator" class="form-control  input-lg">
+      <select name="comparator" class="form-control input-lg">
         <option value="">Select comparator</option>
         <option value="cont_any">Contains</option>
         <option value="in">=</option>
