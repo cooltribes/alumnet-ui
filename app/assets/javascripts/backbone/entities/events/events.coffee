@@ -17,7 +17,8 @@
     isPast: ->
       today = moment()
       start_date = moment(@get('start_date'))
-      today > start_date
+      console.log today, start_date
+      start_date < today
 
     getLocation: ->
       city = @get('city')
@@ -47,16 +48,21 @@
     validation:
       name:
         required: true
+        msg: 'Name of the Event is required'
       description:
+        required: true
+      start_date:
+        required: true
+      end_date:
         required: true
       cover:
         required: true
-      city_id:
-        required: true
       country_id:
         required: true
-      address:
+        msg: 'Country is required'
+      city_id:
         required: true
+        msg: 'City is required'
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event

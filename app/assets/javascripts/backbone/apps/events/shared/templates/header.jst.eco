@@ -7,12 +7,17 @@
     <% end %>
   </h1>
   <% if @canEditInformation: %>
-    <a href="#" id="js-upload-cover" class="groupCoverArea__btnUploadCover btn btn-lg">Upload new cover photo</a>
+  <div class="groupCoverArea__editCover">
+    <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
+    </div>
   <% end %>
   <% if @hasInvitation(): %>
-    <a href="#" title="Going" class="btn btn-lg btn-default" id="js-going" data-value="going">Going</a>
-    <a href="#" title="Maybe" class="btn btn-lg btn-default" id="js-maybe" data-value="maybe">Maybe</a><br>
-    <a href="#" title="not Going" class="btn btn-lg btn-default" id="js-not-going" data-value="not_going">Not Going</a><br>
+  <div class="groupCoverArea__attendanceOptions">
+       <a href="#" id="js-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option groupCoverArea__attendanceOptions--option__join" data-value="going"><span class="text">JOIN</span></a>
+       <a href="#" id="js-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option" data-value="maybe"><span class="text">MAYBE</span></a>
+       <a href="#" id="js-not-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option" data-value="not_going"><span class="text">DECLINE</span></a>
+
+  </div>
   <% end %>
 </div>
 <div id="js-modal-cover-container">

@@ -22,6 +22,8 @@
       else if info.type == "Event"
         url = "#events/#{info.id}/posts"
         "in Event <a href='#{url}'>#{info.name}</a>"
+      else
+        ""
 
     sumLike: ->
       count = @get('likes_count')

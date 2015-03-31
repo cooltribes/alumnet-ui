@@ -9,13 +9,19 @@
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
         else
+          layout = AlumNet.request('event:layout', event)
+          header = AlumNet.request('event:header', event)
+
           attendances = AlumNet.request('attendance:entities', event_id)
           attendancesView = new Attendances.AttendancesView
             collection: attendances
             model: event
 
-          AlumNet.mainRegion.show(attendancesView)
+          AlumNet.mainRegion.show(layout)
+          layout.header.show(header)
+          layout.body.show(attendancesView)
           AlumNet.execute('render:events:submenu')
+
 
       event.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
