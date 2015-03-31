@@ -12,7 +12,7 @@ class PaymentwallController < ApplicationController
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
     
-    if @pingback.validate()
+    #if @pingback.validate()
       if(@pingback.getParameter('type') == '0')
         if(@pingback.getParameter('goodsid') == 'Lifetime')
           @lifetime = true
@@ -22,11 +22,14 @@ class PaymentwallController < ApplicationController
       end
       subscription = Subscription.new
       @data_text = { :user_id => session[:user_id], :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => session[:user_id] }.to_json
-      @response = subscription.create(JSON.parse(@data_text), session)
+      @user_text = { :member => 1 }.to_json
+      subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text))
+      @response = subscription.response
+      @response_user = subscription.response_user
       puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
-    else
-      @response = @pingback.getErrorSummary()
-      puts @pingback.getErrorSummary()
-    end
+    #else
+      #@response = @pingback.getErrorSummary()
+      #puts @pingback.getErrorSummary()
+    #end
   end
 end
