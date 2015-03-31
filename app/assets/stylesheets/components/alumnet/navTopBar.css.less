@@ -91,7 +91,7 @@ DESCRIPTION: Top navigation bar with menus
                 height: 45px;
                 line-height: 1em;
                 margin-top: -6px;
-                display: block;
+                display: inline-block;
                 font-weight:bold; 
                 padding: 3px 2px 2px 12px;
                 &:hover{
@@ -155,7 +155,7 @@ DESCRIPTION: Top navigation bar with menus
                 margin-top: -6px;
                 height: 45px;
                 line-height: 1em;                
-                display: block;
+                display: inline-block;
                 padding: 3px 2px 2px 12px;
                 &:hover{
                     background-color: darken(@main-blue, 10%)
@@ -170,7 +170,7 @@ DESCRIPTION: Top navigation bar with menus
                 background-color: #E36300;
                 border-radius: 30px;
                 color: white;
-                display: block;
+                display: inline-block;
                 height: 44px;  
                 margin-top: -6px;               
                 overflow: hidden;
@@ -401,7 +401,7 @@ DESCRIPTION: Top navigation bar with menus
                 }
 
                 
-                 &--renew{
+                &--renew, &--membershipExpires, &--member, &--becomeAMember  {
                     display: block;
                     
                 } 
@@ -409,10 +409,6 @@ DESCRIPTION: Top navigation bar with menus
                 &--counter{
                     margin-left:-60px;
                 }
-
-
-
-
 
             }
         }
