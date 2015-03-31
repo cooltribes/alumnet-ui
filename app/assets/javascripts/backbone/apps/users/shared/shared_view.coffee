@@ -45,6 +45,7 @@
     sendRequest: (e)->
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
+      AlumNet.current_user.incrementCount('pending_sent_friendships')
       friendship.on 'save:success', (response, options) =>                   
         @model.fetch()
 

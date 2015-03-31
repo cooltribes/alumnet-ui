@@ -16,9 +16,7 @@
         friendship.destroy()
         friendships.remove(friendship)
         layout.model.decrementCount('pending_received_friendships')
-        console.log('UnoAceptado')
-        alert(UnoAceptado)
-
+        
       layout.body.show(requestsView)
 
     showMySent: (layout)->
@@ -32,7 +30,6 @@
         friendship.destroy()
         friendships.remove(friendship)
         layout.model.decrementCount('pending_sent_friendships')
-
 
       layout.body.show(requestsView)
 
