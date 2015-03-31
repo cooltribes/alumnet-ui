@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <h4>
-      This album is empty
+      This album is empty :(
     </h4>
 
   </div>
@@ -9,7 +9,7 @@
 <% if @userCanEdit: %>
   <div class="row">
     <div class="col-md-12">
-      <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+      <a href="#" title="Upload photo" class="btn-primary btn  btn-primary js-upload">+ UPLOAD</a>
     </div>
   </div>
 <% end %>  
