@@ -19,6 +19,11 @@
       else if info.type == "User"
         url = "#users/#{info.id}/posts"
         "in profile of <a href='#{url}'>#{info.name}</a>"
+      else if info.type == "Event"
+        url = "#events/#{info.id}/posts"
+        "in Event <a href='#{url}'>#{info.name}</a>"
+      else
+        ""
 
     sumLike: ->
       count = @get('likes_count')
@@ -34,6 +39,11 @@
     model: Entities.Post
 
   API =
+    getNewPostForEvent: (event_id)->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + '/events/' + event_id + '/posts'
+      post
+
     getNewPostForGroup: (group_id)->
       post = new Entities.Post
       post.urlRoot = AlumNet.api_endpoint + '/groups/' + group_id + '/posts'
@@ -44,13 +54,24 @@
       post.urlRoot = AlumNet.api_endpoint + '/users/' + user_id + '/posts'
       post
 
+    getNewPostFor: (postable, postable_id)->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts'
+      post
+
     getNewPostForCurrentUser: ->
       post = new Entities.Post
       post.urlRoot = AlumNet.api_endpoint + '/me/posts'
       post
+
+  AlumNet.reqres.setHandler 'post:event:new',(event_id)->
+    API.getNewPostForEvent(event_id)
 
   AlumNet.reqres.setHandler 'post:group:new',(group_id)->
     API.getNewPostForGroup(group_id)
 
   AlumNet.reqres.setHandler 'post:user:new',(user_id)->
     API.getNewPostForUser(user_id)
+
+  AlumNet.reqres.setHandler 'post:new',(postable, postable_id)->
+    API.getNewPostFor(postable, postable_id)

@@ -30,11 +30,11 @@
 					<%= form_tag password_reset_path(@token), method: :put,  :class => 'formANet form' do %>
 					<div class="form-group">
 						<%= label_tag :password %>
-						<%= password_field_tag :password, "", class: 'form-control', placeholder: 'Type your new password' %>
+						<%= password_field_tag :password, "", class: 'form-control', placeholder: 'Type your new password', required: true %>
 					</div>
 					<div class="form-group">
 						<%= label_tag :password_confirmation %>
-						<%= password_field_tag :password_confirmation, "", class: 'form-control', placeholder: 'Confirm your new password' %>
+						<%= password_field_tag :password_confirmation, "", class: 'form-control', placeholder: 'Confirm your new password', required: true %>
 					</div>
 					<%= submit_tag "Update password", class: 'btn btn-primary btn-lg' %>
 					<% end %>

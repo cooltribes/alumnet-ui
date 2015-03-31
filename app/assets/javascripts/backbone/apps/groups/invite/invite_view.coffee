@@ -14,8 +14,10 @@
         _.contains(membership_users, user_id)
 
     ui:
-      invitation: ".invitation"
-      inviteLink: "a.js-invite"
+      invitation: '.invitation'
+      inviteLink: 'a.js-invite'
+      infoUser: '#js-info-user'
+      invitationBox: '#js-invitation-box'
 
     events:
       'click a.js-invite':'clickInvite'
@@ -25,8 +27,10 @@
       @trigger 'invite'
 
     removeLink: ->
+      @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
+      @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
       @ui.inviteLink.remove()
-      @ui.invitation.append('<span>Invited</span>')
+      @ui.invitation.append('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
 
   class Invite.Users extends Marionette.CompositeView
     template: 'groups/invite/templates/users_container'

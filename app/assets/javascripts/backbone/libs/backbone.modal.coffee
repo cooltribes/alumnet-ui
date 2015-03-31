@@ -21,6 +21,7 @@
     prefix: 'bbm'
     animate: true
     keyControl: true
+    clickOut: true
     showViewOnRender: true
 
     lookups: ['backbone/apps/']
@@ -42,6 +43,7 @@
       throw "Template #{template} not found!" unless path
 
       data    = @serializeData()
+      data = @mixinTemplateHelpers(data)
       options = 0 if !options or _.isEmpty(options)
 
       @$el.addClass("#{@prefix}-wrapper")
@@ -78,9 +80,11 @@
       return this
 
     rendererCompleted: =>
+      # global events for key and click outside the modal
       if @keyControl
-        # global events for key and click outside the modal
         Backbone.$('body').on('keyup', @checkKey)
+      
+      if @clickOut
         Backbone.$('body').on('click', @clickOutside)
 
       @modalEl.css(opacity: 1).addClass("#{@prefix}-modal--open")
@@ -90,7 +94,15 @@
     getTemplate: =>
       @getOption('template')
      
+    mixinTemplateHelpers: (target)->
+      target = target || {}
+      templateHelpers = @getOption('templateHelpers');
+      if _.isFunction(templateHelpers)
+        templateHelpers = templateHelpers.call this;
       
+      return _.extend target, templateHelpers
+    
+
     setUIElements: ->
       # get modal options
       functionTemplate    = @getOption('getTemplate')

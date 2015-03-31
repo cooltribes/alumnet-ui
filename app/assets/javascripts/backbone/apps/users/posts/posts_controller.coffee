@@ -76,5 +76,5 @@
           comment.save { comment: value }
 
       user.on 'find:error', (response, options)->
-        ##Logic here the user not exists or is not authorizate
-        console.log "Error on user fetch"
+        AlumNet.trigger('show:error', response.status)
+

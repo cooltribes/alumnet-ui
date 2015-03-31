@@ -1,0 +1,28 @@
+<div  class="container-fluid margin_top_small">
+	<div class="row">
+		<div  class="col-md-8 col-md-offset-2">
+			<div class="row" >
+				<% if @userCanPost: %>
+				<!-- FORM -->
+				<div class="item col-md-6 ">
+					<div class="groupCreatePostForm clearfix">
+						<div class="groupCreatePostForm__avatar">
+							<img src="<%= @avatar.large %>" class="img-circle" >
+						</div>
+						<div class="groupCreatePostForm__form">
+							<form class="form">
+								<div class="form-group groupCreatePostForm__textarea ">
+									<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
+								</div>
+								<a href="#" class="btn btn-default" id="js-post-submit">Post</a>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--  -->
+				<% end %>
+			</div>
+			<div id="timeline" class="row posts-container"></div>
+		</div>
+	</div>
+</div>

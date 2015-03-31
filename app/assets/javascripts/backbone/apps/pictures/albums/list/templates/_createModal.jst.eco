@@ -1,0 +1,74 @@
+<% # console.log this %>
+<div class="bbm-modal__topbar">  
+  <h3 class="bbm-modal__title">
+  <% if @isNew: %>  
+    Create an album
+  <% else: %>  
+    Editing album
+  <% end %>  
+  <!-- <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a> -->
+  <button type="button" class="close js-rmvRow pull-right margin_left_small" id="js-close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+
+  </h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>    
+    <div class="form-group">
+      <label class="control-label" for="name">Album's Name</label>
+      <input type="text" value="<%= @name %>" class="form-control input-lg" name="name" placeholder="Enter name">
+      <span class="help-block"></span>
+    </div>  
+    <div class="form-group">
+      <label class="control-label" for="description">Description</label>
+      <textarea class="form-control input-lg" rows="3" name="description"><%= @description %></textarea>
+      <span class="help-block"></span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="form-group">
+          <label class="control-label" for="year">Date (when pictures were taken)</label>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" value="<%= @date_taken %>" class="form-control input-lg js-date-taken" name="date_taken" placeholder="Selec date">
+            </div>
+          </div>
+
+          <span class="help-block"></span>
+        </div>
+      
+      
+      </div>
+    </div>
+    
+    <div class="row ">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="inputName">Country</label>
+          <input id="js-countries" type="hidden" name="country_id" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="inputName">City</label>
+          <% if @city: %>
+            <input id="js-cities" value="<%= @city.id %>" type="hidden" name="city_id" style="width: 100%">
+          <% else: %>
+            <input id="js-cities" type="hidden" name="city_id" style="width: 100%">
+          <% end %>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">  
+  <a href="#" class="btn btn-default" id="js-close">Cancel</a>
+
+  <a href="#" class="btn btn-primary" id="js-save">Save</a>
+</div>
