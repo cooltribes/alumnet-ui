@@ -9,12 +9,15 @@
 
   </div>
 </div>
-<a href="#" class="js-detail">  
-<div class="userCard user-info" style="height: initial;">
-  <div class=" row">
-    <div class="col-md-12 text-center">
-      <img src="<%= @picture.card %>" alt="<%= @title %>" class="img-rounded">
+<a href="#" class="js-pic-detail">  
+  <div class="userCard user-info" style="height: initial;">
+    <div class=" row">
+      <div class="col-md-12 text-center">
+        <img src="<%= @picture.card %>" alt="<%= @title %>" class="img-rounded">
+      </div>
     </div>
   </div>
-</div>
 </a>
+<div id="js-modal-container">
+        
+</div>

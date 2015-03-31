@@ -102,11 +102,11 @@
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">AIESEC Experience</label>
+			<label class="control-label" for="registerCountry">Level of this experience</label>
 			<div class="formANet__select">
 			  <select name="aiesec_experience" id="aiesec_experience" class=" form-control input-lg">
 					<option value="">Select Type</option>
-	        <option value="Local">Local</option>
+	        <option value="Regional">Regional</option>
 	        <option value="National">National</option>
 	        <option value="International">International</option>
 	      </select>

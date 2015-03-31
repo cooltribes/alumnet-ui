@@ -48,6 +48,7 @@
     validation:
       name:
         required: true
+        msg: 'Name of the Event is required'
       description:
         required: true
       start_date:
@@ -58,6 +59,10 @@
         required: true
       country_id:
         required: true
+        msg: 'Country is required'
+      city_id:
+        required: true
+        msg: 'City is required'
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
