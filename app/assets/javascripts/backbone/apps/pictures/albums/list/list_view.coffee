@@ -169,4 +169,4 @@
 
 
     submit: ()->  
-      @view.trigger "sumbit:album", @model
+      @view.trigger "submit:album", @model
