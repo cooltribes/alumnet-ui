@@ -31,7 +31,19 @@
           contentType: false
           processData: false
           
-      albumView.on "submit:picture", (data)->
+      albumView.on "submit:album", (data)->        
+        # console.log data
+        data.save data.attributes,
+          # wait: true
+          success: (model, response) ->
+            # console.log model
+            # console.log response
+            # data.set(response)
+            
+            AlumNet.trigger "albums:show:detail", layout, data
+          error: (model, response, options) ->
+            console.log "error"
+
         console.log data
 
 

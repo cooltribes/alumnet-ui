@@ -1,5 +1,11 @@
+<% # console.log this %>
 <div class="bbm-modal__topbar">  
-  <h3 class="bbm-modal__title"> <% console.log this %>  Create an album
+  <h3 class="bbm-modal__title">
+  <% if @isNew: %>  
+    Create an album
+  <% else: %>  
+    Editing album
+  <% end %>  
   <!-- <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a> -->
   <button type="button" class="close js-rmvRow pull-right margin_left_small" id="js-close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 
@@ -10,7 +16,7 @@
   <form>    
     <div class="form-group">
       <label class="control-label" for="name">Album's Name</label>
-      <input type="text" value="<%= @first_name %>" class="form-control input-lg" name="name" placeholder="Enter name">
+      <input type="text" value="<%= @name %>" class="form-control input-lg" name="name" placeholder="Enter name">
       <span class="help-block"></span>
     </div>  
     <div class="form-group">
@@ -48,7 +54,11 @@
       <div class="col-md-6">
         <div class="form-group">
           <label class="control-label" for="inputName">City</label>
-          <input id="js-cities" type="hidden" name="city_id" style="width: 100%">
+          <% if @city: %>
+            <input id="js-cities" value="<%= @city.id %>" type="hidden" name="city_id" style="width: 100%">
+          <% else: %>
+            <input id="js-cities" type="hidden" name="city_id" style="width: 100%">
+          <% end %>
           <span class="help-block"></span>
         </div>
       </div>

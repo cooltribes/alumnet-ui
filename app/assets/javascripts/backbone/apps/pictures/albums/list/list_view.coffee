@@ -86,7 +86,8 @@
     templateHelpers: ->
      
       currentYear: new Date().getFullYear()
-    
+ 
+      isNew: @model.isNew()
 
     onRender: ->
       #For date taken
@@ -109,36 +110,55 @@
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
+      #For cities and countries
+      data = CountryList.toSelect2()      
+
       @$("#js-cities").select2
         placeholder: "Select a City"
         data: []
 
-      data = CountryList.toSelect2()
 
       @$("#js-countries").select2
         placeholder: "Select a Country"
         data: data 
 
-    optionsForSelectCities: (url)->
-      placeholder: "Select a City"
-      minimumInputLength: 2
-      ajax:
-        url: url
-        dataType: 'json'
-        data: (term)->
-          q:
-            name_cont: term
-        results: (data, page) ->
-          results:
-            data
-      formatResult: (data)->
-        data.name
-      formatSelection: (data)->
-        data.name      
+      if @model.getLocation()
+        country = @model.get('country')
+        city = @model.get('city')
+
+        initialCity = if city then { id: city.id, name: city.text } else false
+        @$('#js-countries').select2('val', country.id)
+
+        @setSelect2Cities(country.id, initialCity)        
+      
 
     setCities: (e)->
-      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      @$("#js-cities").select2(@optionsForSelectCities(url))      
+      @setSelect2Cities(e.val, false)
+
+    setSelect2Cities: (val, initialValue)->
+      url = AlumNet.api_endpoint + '/countries/' + val + '/cities'
+      options =
+        placeholder: "Select a City"
+        minimumInputLength: 2
+        ajax:
+          url: url
+          dataType: 'json'
+          data: (term)->
+            q:
+              name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
+      @$('#js-cities').select2 options
+      if !initialValue
+        @$('#js-cities').select2 "val", 0
+
       
     
     beforeSubmit: ()->
@@ -150,5 +170,3 @@
 
     submit: ()->  
       @view.trigger "sumbit:album", @model
-        
-       

@@ -21,6 +21,7 @@
 
       albumsView.on "submit:album", (model)->
         albumCollection.create model,
+          # wait: true
           success:->
             AlumNet.trigger "albums:show:detail", layout, model        
 
@@ -50,6 +51,7 @@
 
       albumsView.on "submit:album", (model)->
         albumCollection.create model,
+          # wait: true        
           success:->
             console.log model
             AlumNet.trigger "albums:show:detail", layout, model        
