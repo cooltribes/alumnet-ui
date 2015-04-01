@@ -21,12 +21,14 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
+      @model.fetch()
       
 
     clickedRequest: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
+      @model.fetch()
 
     clickedDelete: (e)->
       e.preventDefault()
@@ -36,13 +38,16 @@
       friendship = AlumNet.request('current_user:friendship:destroy', attrs)
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
+      @model.fetch()  
 
     removeRequestLink: ->
       @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
+      @trigger 'deleteRequest'
       @model.fetch()
 
     removeAcceptLink: ->
       @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
+      @trigger 'removeRequest'
       @model.fetch()
 
     removeCancelLink: ->
