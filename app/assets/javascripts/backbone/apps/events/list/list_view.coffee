@@ -2,7 +2,7 @@
 
   class List.EventView extends Marionette.ItemView
     template: 'events/list/templates/event'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    className: 'container'
 
     templateHelpers: ->
       model = @model
