@@ -13,6 +13,20 @@
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
+
+<!-- PICTURES -->
+    <% if @pictures: %>
+      <div class="pictures-container">
+        <% for picture in @pictures: %>
+          <div class="item">
+            <img src="<%= picture.url %>">
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
+<!-- PICTURES OFF     -->
+
     <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
     <div class="groupPost__btn--like">
     <% if @you_like: %>
