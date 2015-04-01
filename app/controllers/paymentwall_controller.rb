@@ -1,5 +1,5 @@
 class PaymentwallController < ApplicationController
-  layout "public"
+  #layout "public"
 
   def callback
     require 'paymentwall'
@@ -26,7 +26,10 @@ class PaymentwallController < ApplicationController
       subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text))
       @response = subscription.response
       @response_user = subscription.response_user
-      puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
+
+      render :text => "OK"
+      #puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
+      #render :nothing => true
     #else
       #@response = @pingback.getErrorSummary()
       #puts @pingback.getErrorSummary()
