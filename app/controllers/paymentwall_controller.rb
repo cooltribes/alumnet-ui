@@ -1,4 +1,5 @@
 class PaymentwallController < ApplicationController
+  skip_before_action :authenticate!
   #layout "public"
 
   def callback
@@ -21,7 +22,7 @@ class PaymentwallController < ApplicationController
         end
       end
       subscription = Subscription.new
-      @data_text = { :user_id => session[:user_id], :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => session[:user_id] }.to_json
+      @data_text = { :user_id => @pingback.getParameter('uid'), :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @pingback.getParameter('uid') }.to_json
       @user_text = { :member => 1 }.to_json
       subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text))
       @response = subscription.response
