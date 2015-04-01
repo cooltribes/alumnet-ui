@@ -12,7 +12,7 @@ class PaymentwallController < ApplicationController
     @end = nil
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
-    
+
     #if @pingback.validate()
       if(@pingback.getParameter('type') == '0')
         if(@pingback.getParameter('goodsid') == 'Lifetime')
@@ -37,3 +37,6 @@ class PaymentwallController < ApplicationController
     #end
   end
 end
+
+
+
