@@ -11,10 +11,11 @@
       AlumNet.execute('render:home:submenu')
 
       posts.on "post:submit", (data)->
-        post = AlumNet.request("post:user:new", current_user.id)
-        post.save data,
-          success: (model, response, options) ->
-            posts.collection.add(model, {at: 0})
+        console.log data
+        # post = AlumNet.request("post:user:new", current_user.id)
+        # post.save data,
+        #   success: (model, response, options) ->
+        #     posts.collection.add(model, {at: 0})
 
       posts.on "childview:post:edit", (postView, value)->
         post = postView.model

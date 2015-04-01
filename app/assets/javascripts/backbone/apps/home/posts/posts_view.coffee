@@ -179,20 +179,57 @@
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    initialize: ->
+      @picture_ids = []
+
     childViewOptions: ->
       current_user: @model
+
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
+      'fileList': '#js-filelist'
+      'uploadLink': '#upload-picture'
+
     events:
       'click a#js-post-submit': 'submitClicked'
+
+    onShow: ->
+      view = @
+      uploader = new plupload.Uploader
+        browse_button: 'add-picture'
+        url: AlumNet.api_endpoint + '/pictures/'
+        headers:
+          'Authorization': 'Token token="' + AlumNet.current_token + '"'
+          'Accept': 'application/vnd.alumnet+json;version=1'
+
+      uploader.init()
+
+      uploader.bind 'FilesAdded',(up, files)->
+        html = ''
+        plupload.each files, (file)->
+          html = html + "<li id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </li>"
+        view.ui.fileList.html(html)
+
+      uploader.bind 'fileUploaded', (up, file, response)->
+        if response.status == 201
+          picture = JSON.parse(response.response)
+          view.picture_ids.push picture.id
+
+      view.ui.uploadLink.on 'click', (e)->
+        uploader.start()
+
+      uploader.bind 'UploadProgress', (up, file) ->
+        view.$el.find("li##{file.id}").find('b').html('<span>' + file.percent + "%</span>")
 
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
