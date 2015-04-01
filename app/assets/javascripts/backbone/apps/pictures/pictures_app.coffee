@@ -11,18 +11,25 @@
       controller = new PicturesApp.AlbumList.Controller
       controller.showUserAlbums(layout, user)
 
-    showGroupAlbums: (layout, user)->
+    showGroupAlbums: (layout, group)->
       controller = new PicturesApp.AlbumList.Controller
-      controller.showGroupAlbums(layout, user)
+      controller.showGroupAlbums(layout, group)
+    
+    showEventAlbums: (layout, event)->
+      controller = new PicturesApp.AlbumList.Controller
+      controller.showEventAlbums(layout, event)
 
   AlumNet.on "albums:show:detail", (layout, album)->    
     API.showAlbum(layout, album)  
   
-  AlumNet.on "albums:user:list", (layout, user)->    
-    API.showUserAlbums(layout, user)  
+  AlumNet.on "albums:user:list", (layout, model)->    
+    API.showUserAlbums(layout, model)  
   
-  AlumNet.on "albums:group:list", (layout, user)->    
-    API.showGroupAlbums(layout, user)  
+  AlumNet.on "albums:group:list", (layout, model)->    
+    API.showGroupAlbums(layout, model)  
+
+  AlumNet.on "albums:event:list", (layout, model)->    
+    API.showEventAlbums(layout, model)  
 
 
   AlumNet.addInitializer ->

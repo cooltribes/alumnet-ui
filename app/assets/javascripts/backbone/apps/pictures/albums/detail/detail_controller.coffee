@@ -3,7 +3,7 @@
     showAlbum: (layout, album)->
       
       albumable = layout.model
-      userCanEdit = true #user.isCurrentUser()
+      userCanEdit = album.collection.userCanEdit
 
       photosCollection = new AlumNet.Entities.PictureCollection     
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
@@ -36,13 +36,10 @@
         data.save data.attributes,
           # wait: true
           success: (model, response) ->
-            # console.log model
-            # console.log response
-            # data.set(response)
             
             AlumNet.trigger "albums:show:detail", layout, data
           error: (model, response, options) ->
-            console.log "error"
+            console.error response
 
         console.log data
 
