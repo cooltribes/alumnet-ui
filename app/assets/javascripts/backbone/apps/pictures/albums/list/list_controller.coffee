@@ -19,10 +19,10 @@
         AlumNet.trigger "albums:show:detail", layout, childview.model        
         
 
-      albumsView.on "create:album", (model)->
+      albumsView.on "submit:album", (model)->
         albumCollection.create model,
+          # wait: true
           success:->
-            console.log model
             AlumNet.trigger "albums:show:detail", layout, model        
 
       
@@ -36,8 +36,9 @@
       albumCollection.url = AlumNet.api_endpoint + '/groups/' + group.id + "/albums"
       albumCollection.fetch()
 
-      
-      userCanEdit = true #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
+      console.log group
+
+      userCanEdit = group.get("admin") #true #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
 
 
       albumsView = new AlbumList.AlbumsView
@@ -49,8 +50,9 @@
         AlumNet.trigger "albums:show:detail", layout, childview.model        
         
 
-      albumsView.on "create:album", (model)->
+      albumsView.on "submit:album", (model)->
         albumCollection.create model,
+          # wait: true        
           success:->
             console.log model
             AlumNet.trigger "albums:show:detail", layout, model        

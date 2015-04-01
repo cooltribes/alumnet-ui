@@ -129,6 +129,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    paymentwall (1.0.2)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -238,6 +239,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   marionette-rails
+  paymentwall
   quiet_assets
   rails (= 4.1.8)
   rspec-rails
