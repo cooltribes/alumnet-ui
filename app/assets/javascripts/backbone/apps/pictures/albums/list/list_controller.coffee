@@ -36,8 +36,9 @@
       albumCollection.url = AlumNet.api_endpoint + '/groups/' + group.id + "/albums"
       albumCollection.fetch()
 
-      
-      userCanEdit = true #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
+      console.log group
+
+      userCanEdit = group.get("admin") #true #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
 
 
       albumsView = new AlbumList.AlbumsView

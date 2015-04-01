@@ -74,7 +74,7 @@
           return "Expiring membership"
         if(model.get('member')==3)
           return "Lifetime member"
-        return "Not a member"
+        return "Become a member"
       daysLeft: 30
 
     updateMessagesCountBadge: ->
