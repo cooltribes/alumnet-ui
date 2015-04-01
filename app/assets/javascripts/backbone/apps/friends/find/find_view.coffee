@@ -16,10 +16,12 @@
       'click #js-accept-friendship':'clickedAccept'
       'click #js-delete-friendship':'clickedDelete'
 
+
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
+      
 
     clickedRequest: (e)->
       e.preventDefault()
