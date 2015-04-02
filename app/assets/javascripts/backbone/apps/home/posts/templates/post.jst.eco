@@ -13,14 +13,11 @@
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
-
 <!-- PICTURES -->
     <% if @pictures: %>
-      <div class="pictures-container">
+      <div class="pictures-container am-container">
         <% for picture in @pictures: %>
-          <div class="item">
-            <img src="<%= picture.url %>">
-          </div>
+          <img src="<%= picture.url %>">
         <% end %>
       </div>
     <% end %>

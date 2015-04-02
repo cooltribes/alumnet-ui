@@ -86,6 +86,13 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
 
+    onShow: ->
+      container = @ui.picturesContainer
+      container.montage
+        liquid: false
+        fillLastRow : true
+        alternateHeight: true
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -109,6 +116,8 @@
       'editLink': '#js-edit-post'
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
+      'picturesContainer': '.pictures-container'
+
 
     events:
       'keypress .comment': 'commentSend'
