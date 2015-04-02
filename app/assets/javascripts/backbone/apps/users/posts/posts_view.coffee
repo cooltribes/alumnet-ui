@@ -208,8 +208,9 @@
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
-      data.picture_ids = @picture_ids
       data = Backbone.Syphon.serialize(this)
+      data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
+        @ui.fileList.html('')

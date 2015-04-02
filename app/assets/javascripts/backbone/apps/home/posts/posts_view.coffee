@@ -221,3 +221,4 @@
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
+        @ui.fileList.html('')
