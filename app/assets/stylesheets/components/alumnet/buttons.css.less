@@ -80,7 +80,34 @@ DESCRIPTION: Specific style for the forms of AlumNet
 		text-decoration: underline;
 	}
 
-	
+}
+.btn-commentImage{
 
+		color:@white;
+		background-color: #677f8b;
+		transition:1s;
+		border-radius: 0px;
+		margin-top:-3px;
+		border:solid 1px #677f8b;		
+	&--close{
+		opacity:0.5;
+		margin-top:0px;
+	}
+	&--close:hover{
+		opacity:1;
+		color:@white;
+		background-color: #677f8b;
+	}
+}
 
+.btn-commentImage:hover{	
+
+	color:#677f8b;
+	background-color: @white;
+	border:solid 1px #677f8b;
+}
+.btn-commentImage:focus, .btn-commentImage:active, .btn-commentImage:visited{
+	color:#FFF;
+	background-color: #677f8b;
+	border:solid 1px #677f8b;
 }
