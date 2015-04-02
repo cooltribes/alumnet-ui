@@ -39,6 +39,15 @@
       canEditInformation: @model.userIsAdmin()
       hasInvitation: ->
         if model.get('attendance_info') then true else false
+      attendance: ->
+        if model.get('attendance_info') then model.get('attendance_info') else false
+      buttonAttendance: (id,status) ->
+        if(id=="js-"+status.replace('_','-'))
+          return 'groupCoverArea__attendanceOptions--option--active'
+        else
+          console.log id.replace('-','_')+"   jo   js-"+status.replace("-", "")
+          return ''
+
 
     modelEvents:
       'change:cover': 'coverChanged'
@@ -66,6 +75,8 @@
       $('#js-modal-cover-container').html(modal.render().el)
 
     updateAttendance: (e)->
+      $('.groupCoverArea__attendanceOptions--option').removeClass 'groupCoverArea__attendanceOptions--option--active'
+      $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
       value = $(e.currentTarget).data('value')
       attendance = @model.attendance
       attendance.save {status: value}

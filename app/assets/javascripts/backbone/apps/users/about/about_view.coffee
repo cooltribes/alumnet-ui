@@ -258,7 +258,6 @@
       @destroy()
       $('#js-picture-modal-container').html(modal.render().el)
 
-
   class About.ProfileModal extends Backbone.Modal
     getTemplate: ->
       switch @type
@@ -303,16 +302,19 @@
       @destroy()
       $('#js-picture-modal-container').html(modal.render().el)
 
-    # onRender: ->
-      # switch @type
-      #   when 0
-      # limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
-      # @$(".js-date-born").Zebra_DatePicker
-      #   show_icon: false
-      #   show_select_today: false
-      #   view: 'years'
-      #   default_position: 'below'
-      #   direction: ['1910-01-01', limit_date]
+    onShow: ->
+      if @type == 3
+        modal = @
+        model = @model
+        avatar = AlumNet.current_user.get('avatar').original
+        options =
+          loadPicture: avatar
+          cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
+          onAfterImgCrop: ->
+            model.trigger 'change'
+            modal.destroy()
+        cropper = new Croppic('croppic', options)
+
 
       @$("#js-cities").select2
         placeholder: "Select a City"

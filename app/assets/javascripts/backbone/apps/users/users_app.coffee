@@ -1,4 +1,5 @@
 @AlumNet.module 'UsersApp', (UsersApp, @AlumNet, Backbone, Marionette, $, _) ->
+
   class UsersApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "users/:id/posts": "userPosts"

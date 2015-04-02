@@ -1,18 +1,22 @@
-<% console.log this %>            
 <div class=" row">
   <div class="col-md-12">
     <h4>
-      <%= @title %>            
+      <%= @title %> 
+      <% if @userCanEdit: %>
+        <button type="button" class="close js-rmvItem"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <% end %>           
     </h4>
 
   </div>
 </div>
-<a href="#" class="js-detail">  
-<div class="userCard user-info" style="height: initial;">
-  <div class=" row">
-    <div class="col-md-12 text-center">
-      <img src="<%= @picture.card %>" alt="<%= @title %>" class="img-rounded">
+<a href="#" class="js-pic-detail">  
+    <div class=" row">
+      <div class="col-md-12 text-center">
+        <img src="<%= @picture.card %>" alt="<%= @title %>" width="100%">
+      </div>
     </div>
-  </div>
-</div>
+  
 </a>
+<div id="js-modal-container">
+        
+</div>

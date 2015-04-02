@@ -22,6 +22,7 @@
     validation:
       name:
         required: true
+        msg: 'Name of the position is required'
       description:
         required: (value, attr, computedState) ->
           @get("exp_type") == 0 || @get("exp_type") == 1

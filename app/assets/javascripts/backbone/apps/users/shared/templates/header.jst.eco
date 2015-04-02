@@ -1,6 +1,5 @@
-<!-- <div class="userCoverArea" style="background-image: url('<%= #@cover.main %>');"> -->
-<!-- <div class="userCoverArea" style="background-image: url('<%= @avatar.large %>');"> -->
 <div class="userCoverArea" style="<%= @cover_style() %>" role="group">
+
   <div class="userCoverArea__avatar text-center">
   <% if @avatar.extralarge: %>
     <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
@@ -12,6 +11,24 @@
     <a id="js-cropPic" class="btn btn-alert btn-alert--edit" href="#"><span class="glyphicon glyphicon-edit"></span>  Crop avatar</a>
   <% end %>
   </div>
+  <% if @member==1 || @member==2: %>
+  <div class="userCoverArea__membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span> MEMBER
+    </div>
+  </div>
+  <% end %>
+  <% if @member==3: %>
+  <div class="userCoverArea__membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+      LIFETIME MEMBER
+    </div>
+  </div>
+  <% end %>
+
   <h1 class="userCoverArea__title ">
     <%= @name %>
     <br>
@@ -20,9 +37,7 @@
     <%= @position() %>
   </p>
 
-
-
-  <% if not @current_user: %>
+  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received": %>
     <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
   <% end %>
 

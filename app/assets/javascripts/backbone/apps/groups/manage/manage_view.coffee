@@ -16,10 +16,11 @@
       e.preventDefault()
       @trigger 'click:leave'
 
+
+
   class Manage.GroupsView extends Marionette.CompositeView
     template: 'groups/manage/templates/groups_container'
     childView: Manage.GroupView
     childViewContainer: ".groups-container"
     emptyView: Manage.EmptyView
-
 

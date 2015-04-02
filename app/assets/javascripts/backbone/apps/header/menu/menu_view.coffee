@@ -64,8 +64,18 @@
       AlumNet.current_user.notifications.markAllAsRead()
 
     templateHelpers: ->
+      model = @model
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
+      memberTitle: ->        
+        if(model.get('member')==1)
+          return "Active member"
+        if(model.get('member')==2)
+          return "Expiring membership"
+        if(model.get('member')==3)
+          return "Lifetime member"
+        return "Become a member"
+      daysLeft: 30
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')
@@ -107,6 +117,8 @@
 
     menuOptionClicked: (e)->
       $(".navTopBar__left__item")
+        .removeClass "navTopBar__left__item--active"
+      $(".navTopBar__left__item").children()
         .removeClass "navTopBar__left__item--active"
       $(e.target).addClass "navTopBar__left__item--active"
 

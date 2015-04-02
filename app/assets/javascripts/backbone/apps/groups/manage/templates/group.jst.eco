@@ -29,19 +29,14 @@
 					</div>
 				</div>
 				<div class="groupCardManage__atribute">
-					
-						<% if @last_post_at: %>
-						<div data-toggle="tooltip" data-placement="top" title="Last post" class="groupCardManage__atribute__container">
+					<div data-toggle="tooltip" data-placement="top" title="Last Activity" class="groupCardManage__atribute__container">
 						<span class="groupCardManage__icon ico-timebank"></span>
-							<%= moment(@last_post_at).format('h:mm a') %>
-						</div>
+						<% if @group.updated_at: %>
+							<%= moment(@group.updated_at).format('h:mm a') %>	
 						<% else: %>
-							<div data-toggle="tooltip" data-placement="top" title="Last Activity" class="groupCardManage__atribute__container">
-						<span class="groupCardManage__icon ico-timebank"></span>
-						<%= moment(@created_at).format('h:mm a') %>
+							<%= moment(@group.created_at).format('h:mm a') %>	
 						<% end %>
-					</div>
-					
+					</div>	
 				</div>
 			</div>
 			<div class="clearfix">

@@ -90,6 +90,49 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 		}
 		
 	}
+
+	&__editCover{
+		position:relative;
+		text-align: center; 
+		margin-right: 10px;
+	}
+
+	&__attendanceOptions{
+	  position: relative;
+	  text-align: center;
+	  bottom: 0px;
+	  right: 0px;
+	  background-color: rgba(0, 0, 0, 0.6);
+	  padding: 10px;
+	  margin-top:12px;
+	  	&--option{
+			color:@white;
+			transition:1s;
+			border-radius: 0px;
+			margin:1px;
+			border:2px solid @gray;
+			width:7em;
+		}
+		&--option:hover, &--option--active{
+			color:@white;
+			background-color: @main-blue;
+			opacity: 0.9;
+		}
+		&--option:visited{
+			text-decoration: none;
+			color:@white;
+		}
+		&--option:focus{
+			text-decoration: none;
+			color:@white;
+		}
+
+
+
+
+
+	}
+
 }
 
 
@@ -127,6 +170,13 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 		}
 		&__title{
 			float: left;
+		}
+		&__editCover{			
+			text-align: right; 			
+		}
+		&__attendanceOptions{
+			position:absolute;
+			margin-top:0px;
 		}
  	}
     

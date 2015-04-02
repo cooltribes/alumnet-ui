@@ -90,15 +90,42 @@ DESCRIPTION: CSS for styling a list of groups
         border:none;
        
         text-align: center;
-	        button{
-	        	border:none;
-	        	padding:10px 5px;
-	        	background-color: @blue-gray;
-	        	color: @white;
-	        	width: 100%;
-	        }
+	    button{
+	       	border:none;
+	       	padding:10px 5px;
+	       	background-color: @blue-gray;
+	       	color: @white;
+	       	width: 100%;
+	    }
 
+	    &--enter{
+            background-color: @light-blue;
+            color: darken(#e1ecf1, 50%);
+            background-color: darken(#e1ecf1, 10%);
+            text-align: center;
+            padding: 5px;
+            display: block;
         }
+
+        &--join{
+            background-color: @lighter-gray;
+            color: darken(#e1ecf1, 50%);
+            background-color: darken(#e1ecf1, 10%);
+            text-align: center;
+            padding: 5px;
+            display: block;
+        }
+
+        &--waitingApproval{
+            color: darken(#e1ecf1, 50%);
+            background-color: darken(#e1ecf1, 10%);
+            text-align: center;
+            padding: 5px;
+            display: block;
+        }
+    
+
+    }
 
     &__join{
     	background-color: #fff;
@@ -121,5 +148,8 @@ DESCRIPTION: CSS for styling a list of groups
 		white-space: nowrap;
 		width: 570px;
     }
+
+    
+ 
 }
 

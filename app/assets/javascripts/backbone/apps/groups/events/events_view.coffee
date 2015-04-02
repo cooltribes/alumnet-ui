@@ -168,6 +168,9 @@
 
     initialize: ->
       @searchUpcomingEvents({})
+      $(".navTopBar__left__item")
+        .removeClass "navTopBar__left__item--active"
+      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
       userCanCreateSubGroup: @model.canDo('create_subgroup')
