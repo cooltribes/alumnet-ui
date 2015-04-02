@@ -1,4 +1,3 @@
-<% console.log this %>
 <div class="bbm-modal__section">
   <button type="button" class="close js-rmvRow pull-right margin_left_small js-close">CLOSE<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
   <form>    
