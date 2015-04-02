@@ -94,35 +94,26 @@
       <li>
         <%% if @member==0: %> 
           <a href="#premium" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>">
-          <!-- When membership is about to expire activate from here ...
-          <div class="navTopBar__right__item--membershipExpires">
-            <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
-          ... to here and the closing </div> before the </a>-->
-          <span class=" navTopBar__right__item--becomeAMember">
-            Become a member
-            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
-          </span>
-          <!-- </div> -->
-        </a>
+            <span class=" navTopBar__right__item--becomeAMember">
+              Become a member
+              <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
+            </span>
+          </a>
         <%% else: %>
-       <%% if @member==2: %> 
-        <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal" style="padding-left: 60px;">
-          <span class=" navTopBar__right__item--renew">
-             Renew membership
-            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
-          </span>
-          <span class=" navTopBar__right__item--counter">
-            <span><%%= @daysLeft%></span>
-            <span class="upline">days</span>
-            <span class="downline">left</span>            
-          </span>
-        </a>
-        <%% else: %>
+          <%% if @member==2: %> 
+            <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal" style="padding-left: 60px;">
+              <span class=" navTopBar__right__item--renew">
+                 Renew membership
+                <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">
+              </span>
+              <span class=" navTopBar__right__item--counter">
+                <span><%%= @daysLeft%></span>
+                <span class="upline">days</span>
+                <span class="downline">left</span>            
+              </span>
+            </a>
+          <%% else: %>
            <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal">
-          <!-- When membership is about to expire activate from here ...
-          <div class="navTopBar__right__item--membershipExpires">
-            <span class="navTopBar__right__item--membershipExpires__days">30</span> <span class="navTopBar__right__item--membershipExpires__text">days <br>left</span>
-          ... to here and the closing </div> before the </a>-->
           <span class=" navTopBar__right__item--member">
             <span class="glyphicon glyphicon-certificate"></span>
             <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle">

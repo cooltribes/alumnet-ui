@@ -79,7 +79,7 @@
     editAlbum: (e)->
       e.preventDefault()
 
-      modal = new AlumNet.PicturesApp.AlbumList.CreateAlbumModal
+      modal = new AlumNet.PicturesApp.AlbumList.AlbumModalForm
         model: @model       
         view: this
 
