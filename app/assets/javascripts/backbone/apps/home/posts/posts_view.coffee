@@ -122,6 +122,7 @@
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
       'picturesContainer': '.pictures-container'
+      'modalContainer': '.modal-container'
 
 
     events:
@@ -131,6 +132,15 @@
       'click .js-goto-comment': 'clickedGotoComment'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
+      'click .picture': 'clickedPicture'
+
+    clickedPicture: (e)->
+      e.preventDefault()
+      element = $(e.currentTarget)
+      id = element.data('id')
+      picture = @model.picture_collection.get(id)
+      modal = AlumNet.request "picture:modal", picture
+      @ui.modalContainer.html(modal.render().el)
 
     commentSend: (e)->
       e.stopPropagation()

@@ -15,12 +15,15 @@
     <p id="js-body-post"> <%= @body %></p>
     <!-- PICTURES -->
     <% if @pictures: %>
+      <div class="modal-container"></div>
       <div class="pictures-container">
+        <% counter = 0 %>
         <% for picture in @pictures: %>
-          <% if picture.index == 1 && (@pictures_is_odd(@pictures)) : %>
-            <img src="<%= picture.url %>" class="first-item">
+          <% counter = counter + 1 %>
+          <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
+            <img src="<%= picture.picture.original %>" class="first-item picture" data-id="<%= picture.id %>">
           <% else: %>
-            <img src="<%= picture.url %>" class="item">
+            <img src="<%= picture.picture.original %>" class="item picture" data-id="<%= picture.id %>">
           <% end %>
         <% end %>
       </div>

@@ -6,10 +6,21 @@
 
       @on 'change', ->
         @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
+        @setPictures()
+
+      unless @isNew()
+        @setPictures()
 
     validation:
       body:
         required: true
+
+    setPictures: ->
+      pictures = @get('pictures')
+      if pictures
+        @picture_collection = new Entities.PictureCollection pictures
+      else
+        @picture_collection = new Entities.PictureCollection
 
     infoLink: ->
       info = @get('postable_info')
