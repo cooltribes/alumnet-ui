@@ -13,7 +13,8 @@ DESCRIPTION: album detail
 	}
 	&__value{
 		font-size:18px; 
-		font-size:18px; padding: .5em 0px 0px 0px
+		font-size:18px; 
+		padding: .5em 0px 0px 0px;
 	}
 	&__description{
 
@@ -22,21 +23,23 @@ DESCRIPTION: album detail
 }
 .albums-list{
 	&__upload{
-		height: 294px;
+		
+		height: 357px;
   		padding-top: 31px;
   		padding-bottom:27px;
-  		line-height: 210px;
+  		line-height: 320px;
   		vertical-align: middle;
 	
 		&__bordedBox{
 			border:dashed 3px @main-gray;
-			height:100%;
+			height:346px;
 			background-color: @white;
 
 		}
 		div .js-upload{
 
 		}
+
 	}
 
 }
@@ -70,6 +73,22 @@ DESCRIPTION: album detail
 
 			.toClose{
 				padding:0px;
+			}
+
+			.albumInfo{
+
+				&__value, &__icon{
+					padding-top: 0px;
+					color:#677f8b;
+					font-weight:300;
+				}
+			}
+			textarea {
+			    resize: none;
+			}
+			.groupPost__btn--like{
+				padding: 10px 16px;
+				border-radius: 0px;
 			}
 		}
 	}
