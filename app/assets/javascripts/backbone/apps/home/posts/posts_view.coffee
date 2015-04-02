@@ -75,6 +75,7 @@
     className: 'post item col-md-6'
     childViewOptions: ->
       current_user: @current_user
+
     initialize: (options)->
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
@@ -85,13 +86,17 @@
       infoLink: @model.infoLink()
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      pictures_is_odd: (pictures)->
+        pictures.length % 2 != 0
 
     onShow: ->
-      container = @ui.picturesContainer
-      container.montage
-        liquid: false
-        fillLastRow : true
-        alternateHeight: true
+      pictures = @model.get('pictures')
+      if pictures && pictures.length > 1
+        container = @ui.picturesContainer
+        container.imagesLoaded ->
+          container.masonry
+            columnWidth: '.item'
+            gutter: 1
 
     onRender: ->
       view = this
@@ -220,5 +225,6 @@
       data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
+        @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')

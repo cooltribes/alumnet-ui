@@ -13,17 +13,20 @@
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
-<!-- PICTURES -->
+    <!-- PICTURES -->
     <% if @pictures: %>
-      <div class="pictures-container am-container">
+      <div class="pictures-container">
         <% for picture in @pictures: %>
-          <img src="<%= picture.url %>">
+          <% if picture.index == 1 && (@pictures_is_odd(@pictures)) : %>
+            <img src="<%= picture.url %>" class="first-item">
+          <% else: %>
+            <img src="<%= picture.url %>" class="item">
+          <% end %>
         <% end %>
       </div>
     <% end %>
     <hr>
-<!-- PICTURES OFF     -->
-
+    <!-- PICTURES OFF     -->
     <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
     <div class="groupPost__btn--like">
     <% if @you_like: %>
