@@ -41,6 +41,14 @@ DESCRIPTION: CSS for styling a list of events
     appearance : none;
     border: none;
     box-shadow: none;
+    padding: 0px 0px 0px 20px;
+    color:@white;
+    appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none;
+    option{
+      color: #484848;
+    }
 
     & option{
       -moz-appearance: none;
@@ -54,20 +62,25 @@ DESCRIPTION: CSS for styling a list of events
     }
 
     &--going{
-      background: @green-electric;
+      background: #72da9e;
     }
 
     &--maybe{
-      background: @blue-gray-lighter;
+      background: #f5ac45;
     }
 
     &--else{
-      background-color: @light-blue;
+      background-color: #6dc2e9;
+    }
+
+    &--not_going{
+      background-color: #ea7952;
     }
 
     &:active,&:checked,&:focus {
       box-shadow: none;
     }
+
   }
 
 	&__ribbon{
