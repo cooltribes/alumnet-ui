@@ -194,7 +194,6 @@
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
-
       uploader.init()
 
     ui:
