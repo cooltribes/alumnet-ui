@@ -85,7 +85,7 @@
     </div>
 
   <div class="row albums-list">
-  <% if @pictures_count>0: %>
+  <% if @pictures_count>0 && @userCanEdit: %>
   <div class=" row">
   <div class="col-md-12">
     <h4>
@@ -102,6 +102,7 @@
   <div class="albums-list__upload__bordedBox">
     <div class=" row">
       <div class="col-md-12 text-center">
+        <img src="assets/general/326x346.png" width="100%">
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
       </div>
     </div>
