@@ -7,6 +7,7 @@
 //= require backbone
 //= require backbone.marionette
 //= require backbone/libs/masonry.pkgd.min
+//= require backbone/libs/gmaps
 //= require backbone/alumnet
 //= require_tree ./backbone/libs
 //= require_tree ./backbone/concerns
