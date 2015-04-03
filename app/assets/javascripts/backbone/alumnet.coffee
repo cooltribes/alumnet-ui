@@ -6,6 +6,7 @@
   App.on 'before:start', (options) ->
     App.api_endpoint = options.api_endpoint
     current_user_token = App.request 'user:token'
+    App.current_token = current_user_token
     if current_user_token
       $.ajaxSetup
         headers:
