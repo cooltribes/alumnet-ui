@@ -4,7 +4,7 @@
     <ul class="sortingMenu" id="filter-link-container">
       <li class="sortingMenu__item sortingMenu__item--lg">
         <a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link--active"
-          id="js-going">Going
+          id="js-going">Attending
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
@@ -20,7 +20,7 @@
       <% if @userIsAdmin: %>
         <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
           <a href="" class="sortingMenu__item__link sortingMenu__item__link"
-            id="js-not-going">Not going
+            id="js-not-going">Not attending
           </a>
         </li>
       <% end %>

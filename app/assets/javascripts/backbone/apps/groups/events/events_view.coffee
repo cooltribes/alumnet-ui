@@ -105,7 +105,7 @@
         pair: @ui.endDate
 
       @ui.endDate.Zebra_DatePicker
-        direction: 1
+        direction: true
         show_icon: false
         show_select_today: false
 

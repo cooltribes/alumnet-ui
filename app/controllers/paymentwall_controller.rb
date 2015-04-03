@@ -1,5 +1,6 @@
 class PaymentwallController < ApplicationController
-  layout "public"
+  skip_before_action :authenticate!
+  #layout "public"
 
   def callback
     require 'paymentwall'
@@ -11,8 +12,9 @@ class PaymentwallController < ApplicationController
     @end = nil
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
-    
-    if @pingback.validate()
+    @user_id = @pingback.getParameter('uid')
+
+    #if @pingback.validate()
       if(@pingback.getParameter('type') == '0')
         if(@pingback.getParameter('goodsid') == 'Lifetime')
           @lifetime = true
@@ -21,12 +23,21 @@ class PaymentwallController < ApplicationController
         end
       end
       subscription = Subscription.new
-      @data_text = { :user_id => session[:user_id], :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => session[:user_id] }.to_json
-      @response = subscription.create(JSON.parse(@data_text), session)
-      puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
-    else
-      @response = @pingback.getErrorSummary()
-      puts @pingback.getErrorSummary()
-    end
+      @data_text = { :user_id => @user_id, :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @user_id }.to_json
+      @user_text = { :member => 1 }.to_json
+      subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text), @user_id)
+      @response = subscription.response
+      @response_user = subscription.response_user
+
+      render :text => "OK"
+      #puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
+      #render :nothing => true
+    #else
+      #@response = @pingback.getErrorSummary()
+      #puts @pingback.getErrorSummary()
+    #end
   end
 end
+
+
+
