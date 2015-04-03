@@ -88,6 +88,13 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
 
+    onShow: ->
+      container = @ui.picturesContainer
+      container.montage
+        liquid: false
+        fillLastRow : true
+        alternateHeight: true
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -109,6 +116,8 @@
       'editLink': '#js-edit-post'
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
+      'picturesContainer': '.pictures-container'
+
 
     events:
       'keypress .comment': 'commentSend'
@@ -173,6 +182,7 @@
     childViewContainer: '.posts-container'
     initialize: (options)->
       @current_user = options.current_user
+      @picture_ids = []
 
     childViewOptions: ->
       userModel: @model
@@ -181,9 +191,17 @@
     templateHelpers: ->
       current_user_avatar: @current_user.get('avatar').large
 
+    onShow: ->
+      view = @
+      uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
+      uploader.init()
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
+      'fileList': '#js-filelist'
+      'uploadLink': '#upload-picture'
+
     events:
       'click a#js-post-submit': 'submitClicked'
 
@@ -191,6 +209,8 @@
       e.stopPropagation()
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
+        @ui.fileList.html('')

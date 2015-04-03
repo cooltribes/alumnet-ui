@@ -1,11 +1,5 @@
 @AlumNet.module 'UsersApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
 
-  
-
-
-
-
-
   class About.View extends Marionette.LayoutView
     template: 'users/about/templates/about'
 
@@ -22,8 +16,6 @@
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
       "smoothClick":".smoothClick"
-      
-
 
     events:
       "click @ui.addSkill": "addSkill"
@@ -33,20 +25,19 @@
 
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit      
+      @userCanEdit = options.userCanEdit
       $(window).on 'scroll' , =>
         if $('body').scrollTop()>500
           $('#aboutUseraffix').css
             'position': 'fixed'
             'width' : '181px'
-            'top' : '110px'            
+            'top' : '110px'
         else
-          $('#aboutUseraffix').css 
+          $('#aboutUseraffix').css
             'position': 'relative'
             'top':'0px'
             'width':'100%'
 
-      
     templateHelpers: ->
       userCanEdit: @userCanEdit
 
@@ -60,10 +51,6 @@
       $('html,body').animate({
         scrollTop: $(id).offset().top-120
       }, 1000);
-      
-      
-      
-
 
     addSkill: (e)->
       e.preventDefault()
@@ -75,7 +62,7 @@
     addLanguage: (e)->
       e.preventDefault()
       modal = new About.Modal
-        view: @languages.currentView 
+        view: @languages.currentView
         type: 1
       @ui.modalCont.html(modal.render().el)
 
@@ -204,6 +191,72 @@
         tokenSeparators: [',', ', '],
         dropdownAutoWidth: true,
 
+  class About.CropCoverModal extends Backbone.Modal
+    template: 'users/about/templates/_cropCoverModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      image = @model.get('cover').original
+      options =
+        loadPicture: image
+        cropData: { "image": 'cover' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CropAvatarModal extends Backbone.Modal
+    template: 'users/about/templates/_cropAvatarModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      image = @model.get('avatar').original
+      options =
+        loadPicture: image
+        cropData: { "image": 'avatar' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CoverModal extends Backbone.Modal
+    template: 'users/about/templates/_coverModal'
+    cancelEl: '#js-close-btn'
+    events:
+      'click #js-save': 'saveCover'
+      'change #profile-cover': 'previewImage'
+      'click #js-croppic': 'showCropModal'
+
+    saveCover: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      if data.cover != ""
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.id
+        @model.profile.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()=>
+            @destroy()
+            @model.fetch()
+
+    previewImage: (e)->
+      input = @$('#profile-cover')
+      preview = @$('#preview-cover')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])
+
+    showCropModal: (e)->
+      e.preventDefault()
+      modal = new About.CropCoverModal
+        model: @model
+      @destroy()
+      $('#js-picture-modal-container').html(modal.render().el)
 
   class About.ProfileModal extends Backbone.Modal
     getTemplate: ->
@@ -215,7 +268,7 @@
         when 2
           'users/about/templates/_residenceModal'
         when 3
-          'users/about/templates/_pictureModal'
+          'users/about/templates/_avatarModal'
 
     cancelEl: '#js-close-btn'
     submitEl: '#js-save'
@@ -223,6 +276,7 @@
     events:
       'change #js-countries': 'setBirthCities'
       'change #profile-avatar': 'previewImage'
+      'click #js-croppic': 'showCropModal'
 
     initialize: (options)->
       @view = options.view
@@ -241,6 +295,13 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    showCropModal: (e)->
+      e.preventDefault()
+      modal = new About.CropAvatarModal
+        model: @model
+      @destroy()
+      $('#js-picture-modal-container').html(modal.render().el)
+
     onShow: ->
       if @type == 3
         modal = @
@@ -254,19 +315,6 @@
             modal.destroy()
         cropper = new Croppic('croppic', options)
 
-
-    onRender: ->
-      # console.log "Here!"
-
-      # switch @type
-      #   when 0
-      # limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
-      # @$(".js-date-born").Zebra_DatePicker
-      #   show_icon: false
-      #   show_select_today: false
-      #   view: 'years'
-      #   default_position: 'below'
-      #   direction: ['1910-01-01', limit_date]
 
       @$("#js-cities").select2
         placeholder: "Select a City"
@@ -359,7 +407,7 @@
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
-      
+
 
     # bindings:
 
@@ -446,7 +494,7 @@
         type: 1
         model: @model.profile
 
-    
+
 
       @ui.modalCont.html(modal.render().el)
 
