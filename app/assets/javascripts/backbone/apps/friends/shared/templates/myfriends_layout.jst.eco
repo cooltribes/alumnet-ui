@@ -45,7 +45,7 @@
 					<a href=""  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(2)%>" title="Friends Requests" id="js-received">
 						<span id="js-receivedCount">
 							Received (<%= @pending_received_friendships_count %>)
-						</span
+						</span>
 
 					</a>
 				</li>

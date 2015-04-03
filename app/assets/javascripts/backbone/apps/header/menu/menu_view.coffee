@@ -118,6 +118,8 @@
     menuOptionClicked: (e)->
       $(".navTopBar__left__item")
         .removeClass "navTopBar__left__item--active"
+      $(".navTopBar__left__item").children()
+        .removeClass "navTopBar__left__item--active"
       $(e.target).addClass "navTopBar__left__item--active"
 
 
