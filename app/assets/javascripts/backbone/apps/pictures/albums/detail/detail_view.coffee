@@ -39,8 +39,6 @@
 
       @ui.modalCont.html(modal.render().el)
 
-
-
   class AlbumDetail.DetailView extends Marionette.CompositeView
     template: 'pictures/albums/detail/templates/albumDetail'
     childView: AlbumDetail.Photo
@@ -71,12 +69,22 @@
     
     events:    
       'click .js-upload': 'triggerFile'
+      'click .js-edit': 'editAlbum'
       'change @ui.fileInput': 'uploadPicture'
 
     triggerFile: (e)->
       e.preventDefault()
       @ui.fileInput.click()
 
+    editAlbum: (e)->
+      e.preventDefault()
+
+      modal = new AlumNet.PicturesApp.AlbumList.AlbumModalForm
+        model: @model       
+        view: this
+
+      @ui.modalCont.html(modal.render().el)    
+      
     uploadPicture: (e)->
       data = Backbone.Syphon.serialize this
       if data.picture != ""          

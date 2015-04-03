@@ -4,6 +4,7 @@
       "events/:id/about": "aboutEvent"
       "events/:id/posts": "postsEvent"
       "events/:id/attendances": "attendancesEvent"
+      "events/:id/photos": "listAlbums"      
       "events": "listEvents"
       "events/new": "createEvent"
 
@@ -32,6 +33,10 @@
     inviteEvent: (event, users)->
       controller = new EventsApp.Create.Controller
       controller.invitations(event, users)
+
+    listAlbums: (id)->
+      controller = new EventsApp.Pictures.Controller
+      controller.showAlbums(id)  
 
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)

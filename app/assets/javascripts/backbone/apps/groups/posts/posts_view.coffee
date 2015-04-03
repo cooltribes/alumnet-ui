@@ -92,6 +92,13 @@
       group: @group
       current_user: @current_user
 
+    onShow: ->
+      container = @ui.picturesContainer
+      container.montage
+        liquid: false
+        fillLastRow : true
+        alternateHeight: true
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -115,6 +122,7 @@
       'editLink': '#js-edit-post'
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
+      'picturesContainer': '.pictures-container'
 
     events:
       'keypress .comment': 'commentSend'
@@ -191,15 +199,25 @@
 
     initialize:(options)->
       @group = options.group
+      @picture_ids = []
+
     templateHelpers: ->
       userCanPost: @group.userIsMember()
       groupJoinProccess: @group.get('join_proccess')
       userHasMembership: @group.userHasMembership(@model.id)
       groupIsClose: @group.isClose()
 
+    onShow: ->
+      view = @
+      uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
+      uploader.init()
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
+      'fileList': '#js-filelist'
+      'uploadLink': '#upload-picture'
+
     events:
       'click a#js-post-submit': 'submitClicked'
       'click .js-join':'sendJoin'
@@ -212,6 +230,8 @@
       e.stopPropagation()
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
         @ui.bodyInput.val('')
+        @ui.fileList.html('')

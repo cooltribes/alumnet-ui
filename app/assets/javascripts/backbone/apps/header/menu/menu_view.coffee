@@ -74,7 +74,7 @@
           return "Expiring membership"
         if(model.get('member')==3)
           return "Lifetime member"
-        return "Not a member"
+        return "Become a member"
       daysLeft: 30
 
     updateMessagesCountBadge: ->
@@ -117,6 +117,8 @@
 
     menuOptionClicked: (e)->
       $(".navTopBar__left__item")
+        .removeClass "navTopBar__left__item--active"
+      $(".navTopBar__left__item").children()
         .removeClass "navTopBar__left__item--active"
       $(e.target).addClass "navTopBar__left__item--active"
 

@@ -1,0 +1,99 @@
+/***
+
+APP NAME: eventGridView
+DESCRIPTION: CSS for styling a list of events
+***/
+
+@import 'conf/conf.css.less';
+
+
+.eventsTableView{
+	background-color: @white;
+
+	&__cover{
+		background-size:cover; 
+		height: 105px; 
+		width: 90px;
+	}
+
+  &__name{
+    text-transform: capitalize;
+    padding-top: 0.1em;
+
+    & a{
+      color: #000;
+
+      &:hover{
+        text-decoration:none;
+      }
+    }
+  }
+
+  &__eventOwnerImg{
+    width: 40px;
+    float: left;
+  }
+
+  &__status{
+    border-radius: 0px;
+    -moz-appearance: none;
+    -webkit-appearance : none;
+    appearance : none;
+    border: none;
+    box-shadow: none;
+    padding: 0px 0px 0px 20px;
+    color:@white;
+    appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none;
+    option{
+      color: #484848;
+    }
+
+    & option{
+      -moz-appearance: none;
+      background: #fff;
+      border: none;
+      box-shadow: none;
+
+      &:hover{
+        background-color:@green;
+      }
+    }
+
+    &--going{
+      background: #72da9e;
+    }
+
+    &--maybe{
+      background: #f5ac45;
+    }
+
+    &--else{
+      background-color: #6dc2e9;
+    }
+
+    &--not_going{
+      background-color: #ea7952;
+    }
+
+    &:active,&:checked,&:focus {
+      box-shadow: none;
+    }
+
+  }
+
+	&__ribbon{
+        background: image-url('groups/ribbon-orange-noShadow.png') no-repeat;
+        background-size: contain;
+        display: block;
+        height: 100px;
+        position: relative;
+        top: -3px;
+        width: 51px;
+        z-index: 10;
+        float:left;
+  }
+
+}
+

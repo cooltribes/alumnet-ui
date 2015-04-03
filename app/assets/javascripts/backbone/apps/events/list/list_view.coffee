@@ -2,7 +2,7 @@
 
   class List.EventView extends Marionette.ItemView
     template: 'events/list/templates/event'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    className: 'container'
 
     templateHelpers: ->
       model = @model
@@ -33,6 +33,15 @@
         else
           attendance.set('status', status)
           attendance.save()
+      if status=='going'
+        $('#attendance-status').css('background-color','#72da9e')
+      if status=='invited'
+        $('#attendance-status').css('background-color','#6dc2e9')
+      if status=='not_going'
+        $('#attendance-status').css('background-color','#ea7952')
+      if status=='maybe'
+        $('#attendance-status').css('background-color','#f5ac45')
+
 
   class List.EventsView extends Marionette.CompositeView
     className: 'ng-scope'

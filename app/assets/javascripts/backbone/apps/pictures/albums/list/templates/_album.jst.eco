@@ -8,10 +8,11 @@
 
     </h4>
 
+
 <div class="js-detail">
  
     <% if @cover_picture: %>
-      <img src="<%= @cover_picture.card %>" alt="<%= @name %>" class="img-rounded">
+      <img src="<%= @cover_picture.card %>" alt="<%= @name %>" width="100%">
     <% else: %>
       <img src="" alt="<%= @name %>" class="img-rounded">
       
