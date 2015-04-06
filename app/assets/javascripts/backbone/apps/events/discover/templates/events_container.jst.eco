@@ -1,0 +1,15 @@
+<div class="sortingMenu margin_top">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-3">
+    <div class="input-group input-group--right">
+      <input class="form-control" type="text" name="seach_term" id="js-search-input"  placeholder="Search">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-search"></span>
+      </span>
+    </div>
+  </div>
+</div>
+<hr class="no_margin_top">
+<div class="row main-events-area no-margin"><!-- Begin group container -->
+</div>
