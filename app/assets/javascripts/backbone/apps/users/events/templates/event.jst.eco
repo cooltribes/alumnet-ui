@@ -61,7 +61,7 @@
       </div>
     </div>
     <!-- CONTENT ON -->
-    <% unless @isPast: %>
+    <% if not @isPast && @isOpen: %>
       <select class="form-control input-lg" id="attendance-status" name="status">
         <option value="invited"></option>
         <option value="going" <%= @select(@attendance_status(), "going") %>>
