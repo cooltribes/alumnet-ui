@@ -24,5 +24,13 @@
       comment.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + '/comments'
       comment
 
+    getNewCommentForPicture: (picture_id)->
+      comment = new Entities.Comment
+      comment.urlRoot = AlumNet.api_endpoint + '/pictures/' + picture_id + '/comments'
+      comment
+
   AlumNet.reqres.setHandler 'comment:post:new', (post_id)->
     API.getNewCommentForPost(post_id)
+
+  AlumNet.reqres.setHandler 'comment:picture:new', (picture_id)->
+    API.getNewCommentForPicture(picture_id)
