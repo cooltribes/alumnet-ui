@@ -10,7 +10,7 @@
       <ul class="sortingMenu" id="filter-link-container">
         
         <li class="sortingMenu__item sortingMenu__item--lg">
-          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%= @name %> (<%= @pictures_count %>) 
+          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%%= @name %> (<%%= @pictures_count %>) 
           </div>
           
         </li>
@@ -18,7 +18,7 @@
       </ul>
       
     </div>
-    <% if @userCanEdit: %>
+    <%% if @userCanEdit: %>
       <div class="col-md-4 text-right">
         <form>
           <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">        
@@ -28,64 +28,64 @@
 
         <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit"><span class="icon-entypo-pencil"></span> EDIT ALBUM</a>
       </div>
-    <% end %>  
+    <%% end %>  
     
   </div>
   <hr class="no_margin_top">
   <div class="row ">
     
     <div class="col-md-12">
-      <a href="#" class="js-returnAlbums">Albums</a> - <%= @name %> 
+      <a href="#" class="js-returnAlbums">Albums</a> - <%%= @name %> 
     </div>
       
   </div>
-    <% #console.log this %>
-    <% #console.log this.getLocation() %>
+    <%% #console.log this %>
+    <%% #console.log this.getLocation() %>
     <div class="row padding_top_small">
-      <% if @getLocation() || @date_taken: %>
+      <%% if @getLocation() || @date_taken: %>
 
         <div class="col-md-4 col-md-offset-2">
-          <% if @getLocation(): %>
+          <%% if @getLocation(): %>
           <div class="row-fluid clearfix albumInfo">
             <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
               <span class="icon-entypo-location"></span>
             </div>
             <div class="col-md-10 no_margin_left albumInfo__value"> 
-               <%= @getLocation() %>
+               <%%= @getLocation() %>
             </div>
           </div>
-          <% end %>
-          <% if @date_taken: %>
+          <%% end %>
+          <%% if @date_taken: %>
           <div class="row-fluid albumInfo">
             <div class="col-md-2 text-right no_margin_right albumInfo__icon">
               <span class="icon-entypo-clock"></span>
             </div>
             <div class="col-md-10 no_margin_left albumInfo__value"> 
-                <%= moment(@date_taken).format('MMMM Do, YYYY') %>
+                <%%= moment(@date_taken).format('MMMM Do, YYYY') %>
             </div>
           </div>
-          <% end %>
+          <%% end %>
         </div>
         <div class="col-md-4 albumInfo__description">
-          <% if @description: %>
-            <%= @description %>
-          <% end %> 
+          <%% if @description: %>
+            <%%= @description %>
+          <%% end %> 
         </div>
         
-        <% else: %>
+        <%% else: %>
         <div class="col-md-4 col-md-offset-4 albumInfo__description">
-          <% if @description: %>
-            <%= @description %>
-          <% end %> 
+          <%% if @description: %>
+            <%%= @description %>
+          <%% end %> 
         </div>
 
 
-        <% end %>
+        <%% end %>
 
     </div>
 
   <div class="row albums-list">
-  <% if @pictures_count>0 && @userCanEdit: %>
+  <%% if @pictures_count>0 && @userCanEdit: %>
   <div class=" row">
   <div class="col-md-12">
     <h4>
@@ -102,12 +102,12 @@
   <div class="albums-list__upload__bordedBox">
     <div class=" row">
       <div class="col-md-12 text-center">
-        <img src="assets/general/326x346.png" width="100%">
+        <%= image_tag("general/326x346.png", width: "100%") %> 
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
       </div>
     </div>
   </div>
-    <%= end %>
+    <%%= end %>
   </div>
 </div>
 <div id="js-modal-container">
