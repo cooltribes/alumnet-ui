@@ -17,7 +17,6 @@
     isPast: ->
       today = moment()
       start_date = moment(@get('start_date'))
-      console.log today, start_date
       start_date < today
 
     getLocation: ->
@@ -123,6 +122,11 @@
       events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       events
 
+    getOpenEvents: ()->
+      events = new Entities.EventsCollection
+      events.url = AlumNet.api_endpoint + "/events"
+      events
+
     getEventContacts: (parent, parent_id, event_id)->
       contacts = new Entities.EventContacts
       contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
@@ -153,6 +157,9 @@
 
   AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
     API.getEvents(parent, parent_id)
+
+  AlumNet.reqres.setHandler 'event:entities:open', ->
+    API.getOpenEvents()
 
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)

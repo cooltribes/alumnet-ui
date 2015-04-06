@@ -7,11 +7,11 @@
     keyControl: false
     # prefix: "picture"
 
-    # events:      
+    # events:
 
     initialize: (options)->
       @view = options.view
-      
+
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->
       #     $el = view.$("[name=#{attr}]")
@@ -25,21 +25,21 @@
       #     $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
-     
+
       model = @model
-    
+
       getLocation: ->
         model.getLocation()
-      
-      creator: model.collection.album.get("creator")
+
+      # creator: model.collection.album.get("creator")
 
       current_user_avatar: AlumNet.current_user.get('avatar').medium
 
 
   API =
-    getPictureModal: (picture)->      
+    getPictureModal: (picture)->
       new PictureShared.PictureModal
-        model: picture        
+        model: picture
 
 
   AlumNet.reqres.setHandler 'picture:modal', (picture) ->

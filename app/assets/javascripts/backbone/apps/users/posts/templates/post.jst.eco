@@ -10,16 +10,23 @@
       <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
-<!-- PICTURES -->
+    <!-- PICTURES -->
     <% if @pictures: %>
-      <div class="pictures-container am-container">
+      <div class="modal-container"></div>
+      <div class="pictures-container">
+        <% counter = 0 %>
         <% for picture in @pictures: %>
-          <img src="<%= picture.url %>">
+          <% counter = counter + 1 %>
+          <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
+            <img src="<%= picture.picture.original %>" class="first-item picture" data-id="<%= picture.id %>">
+          <% else: %>
+            <img src="<%= picture.picture.original %>" class="item picture" data-id="<%= picture.id %>">
+          <% end %>
         <% end %>
       </div>
     <% end %>
     <hr>
-<!-- PICTURES OFF     -->
+    <!-- PICTURES OFF     -->
     <div class="postCard__btn--like">
     <% if @you_like: %>
       <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>

@@ -1,7 +1,7 @@
-@AlumNet.module 'EventsApp.List', (List, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'EventsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class List.EventView extends Marionette.ItemView
-    template: 'events/list/templates/event'
+  class Manage.EventView extends Marionette.ItemView
+    template: 'events/manage/templates/event'
     className: 'container'
 
     templateHelpers: ->
@@ -43,11 +43,11 @@
         $('#attendance-status').css('background-color','#f5ac45')
 
 
-  class List.EventsView extends Marionette.CompositeView
+  class Manage.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'events/list/templates/events_container'
-    childView: List.EventView
+    template: 'events/manage/templates/events_container'
+    childView: Manage.EventView
     childViewContainer: ".main-events-area"
 
     initialize: ->
