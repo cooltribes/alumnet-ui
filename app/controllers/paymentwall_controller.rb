@@ -13,17 +13,18 @@ class PaymentwallController < ApplicationController
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
     @user_id = @pingback.getParameter('uid')
+    @reference = @pingback.getParameter('ref')
 
     #if @pingback.validate()
       if(@pingback.getParameter('type') == '0')
-        if(@pingback.getParameter('goodsid') == 'Lifetime')
+        if(@pingback.getParameter('goodsid') == '222')
           @lifetime = true
         else
           @end = DateTime.now + 1.year
         end
       end
       subscription = Subscription.new
-      @data_text = { :user_id => @user_id, :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @user_id }.to_json
+      @data_text = { :user_id => @user_id, :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @user_id, :reference => @reference }.to_json
       @user_text = { :member => 1 }.to_json
       subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text), @user_id)
       @response = subscription.response
