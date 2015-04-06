@@ -87,10 +87,21 @@
       current_user_avatar: @current_user.get('avatar').medium
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      pictures_is_odd: (pictures)->
+        pictures.length % 2 != 0
 
     childViewOptions: ->
       event: @event
       current_user: @current_user
+
+    onShow: ->
+      pictures = @model.get('pictures')
+      if pictures && pictures.length > 1
+        container = @ui.picturesContainer
+        container.imagesLoaded ->
+          container.masonry
+            columnWidth: '.item'
+            gutter: 1
 
     onRender: ->
       view = this
@@ -115,6 +126,8 @@
       'editLink': '#js-edit-post'
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
+      'picturesContainer': '.pictures-container'
+      'modalContainer': '.modal-container'
 
     events:
       'keypress .comment': 'commentSend'
@@ -123,6 +136,15 @@
       'click .js-goto-comment': 'clickedGotoComment'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
+      'click .picture': 'clickedPicture'
+
+    clickedPicture: (e)->
+      e.preventDefault()
+      element = $(e.currentTarget)
+      id = element.data('id')
+      picture = @model.picture_collection.get(id)
+      modal = AlumNet.request "picture:modal", picture
+      @ui.modalContainer.html(modal.render().el)
 
     commentSend: (e)->
       e.stopPropagation()
@@ -191,13 +213,23 @@
 
     initialize:(options)->
       @event = options.event
+      @picture_ids = []
+
     templateHelpers: ->
       userCanPost: @event.userIsInvited()
       eventIsClose: @event.isClose()
 
+    onShow: ->
+      view = @
+      uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
+      uploader.init()
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
+      'fileList': '#js-filelist'
+      'uploadLink': '#upload-picture'
+
     events:
       'click a#js-post-submit': 'submitClicked'
       'click .js-join':'sendJoin'
@@ -210,6 +242,9 @@
       e.stopPropagation()
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
+        @picture_ids = []
         @ui.bodyInput.val('')
+        @ui.fileList.html('')

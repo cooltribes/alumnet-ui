@@ -1,8 +1,8 @@
-@AlumNet.module 'EventsApp.List', (List, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'EventsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class List.EventView extends Marionette.ItemView
-    template: 'events/list/templates/event'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+  class Manage.EventView extends Marionette.ItemView
+    template: 'events/manage/templates/event'
+    className: 'container'
 
     templateHelpers: ->
       model = @model
@@ -33,12 +33,21 @@
         else
           attendance.set('status', status)
           attendance.save()
+      if status=='going'
+        $('#attendance-status').css('background-color','#72da9e')
+      if status=='invited'
+        $('#attendance-status').css('background-color','#6dc2e9')
+      if status=='not_going'
+        $('#attendance-status').css('background-color','#ea7952')
+      if status=='maybe'
+        $('#attendance-status').css('background-color','#f5ac45')
 
-  class List.EventsView extends Marionette.CompositeView
+
+  class Manage.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'events/list/templates/events_container'
-    childView: List.EventView
+    template: 'events/manage/templates/events_container'
+    childView: Manage.EventView
     childViewContainer: ".main-events-area"
 
     initialize: ->

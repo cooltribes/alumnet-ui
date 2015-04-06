@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/sign_up', to: 'auth#sign_up', as: :sign_up
   get '/sign_out', to: 'auth#sign_out', as: :sign_out
   resources :password_resets, except: [:index, :show, :destroy]
+  get '/paymentwall', to: 'paymentwall#callback', as: :paymentwall
 
   #static pages
   get '/about', to: 'pages#about', as: :about

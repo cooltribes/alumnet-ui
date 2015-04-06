@@ -1,59 +1,78 @@
 @AlumNet.module 'UsersApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Header extends Marionette.ItemView
-    template: 'users/shared/templates/header'  
+    template: 'users/shared/templates/header'
 
     ui:
-      "editPic": "#js-editPic"  
-      "modalCont": "#js-picture-modal-container"  
+      "editPic": "#js-editPic"
+      "cropPic": "#js-cropPic"
+      "editCover": "#js-editCover"
+      "cropCover": "#js-cropCover"
+      "modalCont": "#js-picture-modal-container"
       'requestLink': '#js-request-send'   #Id agregado
-
+      'coverArea': 'userCoverArea'
     events:
       "click @ui.editPic": "editPic"
+      "click @ui.cropPic": "cropPic"
+      "click @ui.editCover": "editCover"
+      "click @ui.cropCover": "cropCover"
       'click #js-request-send':'sendRequest' #Evento agregado
-
     modelEvents:
       "change": "modelChange"
 
-    
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
-
-    templateHelpers: ->                  
+    templateHelpers: ->
       model = @model
       userCanEdit: @userCanEdit
-      
+      cover_style: ->
+        cover = model.get('cover')
+        if cover
+          "background-image: url('#{cover.main}');"
+        else
+          "background-color: #2b2b2b;"
       position: ->
         model.profile.get("last_experience") ? "No Position"
 
     modelChange: ->
-      @render()     
+      @render()
 
-    editPic: (e)-> 
+    editPic: (e)->
       e.preventDefault()
       modal = new AlumNet.UsersApp.About.ProfileModal
         view: this
         type: 3
-        model: @model.profile
-
+        model: @model
       @ui.modalCont.html(modal.render().el)
 
-    coverChanged: ->
-      cover = @model.get('cover')
-      @ui.coverArea.css('background-image',"url('#{cover.main}'")  
+    cropPic: (e)->
+      e.preventDefault()
+      modal = new AlumNet.UsersApp.About.CropAvatarModal
+        model: @model
+      @ui.modalCont.html(modal.render().el)
+
+    editCover: (e)->
+      e.preventDefault()
+      modal = new AlumNet.UsersApp.About.CoverModal
+        model: @model
+      @ui.modalCont.html(modal.render().el)
+
+    cropCover: (e)->
+      e.preventDefault()
+      modal = new AlumNet.UsersApp.About.CropCoverModal
+        model: @model
+      @ui.modalCont.html(modal.render().el)
 
     sendRequest: (e)->
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       AlumNet.current_user.incrementCount('pending_sent_friendships')
       friendship.on 'save:success', (response, options) =>                   
+
         @model.fetch()
 
-    sendMessage: (e)->    
-                
-                   
-        
-    
+
+
   class Shared.Layout extends Marionette.LayoutView
     template: 'users/shared/templates/layout'
 
@@ -61,16 +80,16 @@
       header: '#user-header'
       body: '#user-body'
 
-    initialize: (options) ->      
-      @tab = options.tab      
+    initialize: (options) ->
+      @tab = options.tab
       @class = ["", "", ""
         "", ""
-      ]  
+      ]
       @class[parseInt(@tab)] = "--active"
 
     templateHelpers: ->
       classOf: (step) =>
-        @class[step]  
+        @class[step]
 
   API =
     getUserLayout: (model, tab)->
@@ -79,9 +98,9 @@
         tab: tab
 
     getUserHeader: (model, options)->
-      options = _.extend options, model: model      
-      new Shared.Header options    
-        
+      options = _.extend options, model: model
+      new Shared.Header options
+
 
   AlumNet.reqres.setHandler 'user:layout', (model, tab) ->
     API.getUserLayout(model, tab)
