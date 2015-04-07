@@ -5,20 +5,21 @@
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture" style="height:100%" >
         <img width="100%" src="<%= @picture.modal %>">
+        <% if @showMorePics: %>
+          <a href="#" title="Next picture" class="btn-default btn  btn-default js-next-picture" style="
+              right: 0;
+              position: absolute;
+              top: 50%;
+              margin-right: 25px;
+          "><span class="glyphicon glyphicon-chevron-right"></span></a>
 
-        <a href="#" title="Next picture" class="btn-default btn  btn-default js-next-picture" style="
-            right: 0;
-            position: absolute;
-            top: 50%;
-            margin-right: 25px;
-        "><span class="glyphicon glyphicon-chevron-right"></span></a>
-
-        <a href="#" title="Next picture" class="btn-default btn  btn-default js-prev-picture" style="
-            left: 0;
-            position: absolute;
-            top: 50%;
-            margin-left: 25px;
-        "><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a href="#" title="Next picture" class="btn-default btn  btn-default js-prev-picture" style="
+              left: 0;
+              position: absolute;
+              top: 50%;
+              margin-left: 25px;
+          "><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <% end %>
 
       </div>
       <aside class="col-md-4 ">

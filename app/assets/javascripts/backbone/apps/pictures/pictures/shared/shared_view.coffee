@@ -30,6 +30,8 @@
 
       model = @model
 
+      showMorePics: @model.collection.length > 1 
+
       getLocation: ->
         model.getLocation()
 
