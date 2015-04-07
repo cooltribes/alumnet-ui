@@ -16,9 +16,7 @@
     regions:
       body: '.friends-list'
 
-    #modelEvents:
-      #"change": "modelChange"  
-
+  
     initialize: (options) ->
       @listenTo(@model, 'change:pending_sent_friendships_count', @changedCountSent)
       @listenTo(@model, 'change:pending_received_friendships_count', @changedCountReceived)

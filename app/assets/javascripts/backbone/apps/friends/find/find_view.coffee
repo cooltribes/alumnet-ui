@@ -10,11 +10,15 @@
       'linkContainer': '#link-container'
       'requestLink': '#js-request-friendship'
       'acceptLink': '#js-accept-friendship'
+      'rejectLink': '#js-reject-friendship'
+      'cancelLink': '#js-cancel-friendship'
       'deleteLink': '#js-delete-friendship'
     events:
       'click #js-request-friendship':'clickedRequest'
       'click #js-accept-friendship':'clickedAccept'
+      'click #js-reject-friendship':'clickedReject'
       'click #js-delete-friendship':'clickedDelete'
+      'click #js-cancel-friendship':'clickedCancel'
 
 
     clickedAccept: (e)->
@@ -30,6 +34,17 @@
       @trigger 'request'
       @model.fetch()
 
+    clickedReject: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      self = @
+      attrs = @model.get('friendship')
+      friendship = AlumNet.request('current_user:friendship:destroy', attrs)
+      friendship.on 'delete:success', (response, options) ->
+        self.removeCancelLink()
+        AlumNet.current_user.decrementCount('pending_received_friendships')
+      @model.fetch()  
+
     clickedDelete: (e)->
       e.preventDefault()
       e.stopPropagation()
@@ -38,18 +53,20 @@
       friendship = AlumNet.request('current_user:friendship:destroy', attrs)
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
+        AlumNet.current_user.decrementCount('friends')
       @model.fetch()  
 
-    removeRequestLink: ->
-      @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
-      @trigger 'deleteRequest'
-      @model.fetch()
-
-    removeAcceptLink: ->
-      @ui.linkContainer.empty().append('<span class="glyphicon glyphicon-time"></span>')
-      @trigger 'removeRequest'
-      @model.fetch()
-
+    clickedCancel: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      self = @
+      attrs = @model.get('friendship')
+      friendship = AlumNet.request('current_user:friendship:destroy', attrs)
+      friendship.on 'delete:success', (response, options) ->
+        self.removeCancelLink()
+        AlumNet.current_user.decrementCount('pending_sent_friendships')
+      @model.fetch()  
+    
     removeCancelLink: ->
       @ui.linkContainer.empty()
       @model.set("friendship_status","none")

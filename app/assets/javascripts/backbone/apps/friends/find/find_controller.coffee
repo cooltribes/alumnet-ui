@@ -19,35 +19,20 @@
         attrs = { friend_id: childView.model.id }
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
-          AlumNet.current_user.incrementCount('pending_sent_friendships')  #Sent requests count increased
-          #childView.removeRequestLink() 
-            #AlumNet.current_user.decrementCount('pending_sent_friendships')           
+          AlumNet.current_user.incrementCount('pending_sent_friendships')  #Sent requests count increased                
         friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
-
-      usersView.on 'childview:deleteRequest', (childView)-> #Friendship recieved request
-        friendship.on 'save:success', (response, options) ->
-          AlumNet.current_user.decrementCount('pending_sent_friendships')           
-          console.log FriendshipDecremented
-          friendship.on 'save:error', (response, options)->
-            console.log response.responseJSON    
 
       usersView.on 'childview:accept', (childView)->
         attrs = childView.model.get('friendship')
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
-          AlumNet.current_user.decrementCount('pending_received_friendships') #Recieved requests count increased
-          AlumNet.current_user.incrementCount('friends')
+          AlumNet.current_user.decrementCount('pending_received_friendships') #Recieved requests count decreased
+          AlumNet.current_user.incrementCount('friends') #Friend counter increased
           friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-      usersView.on 'childview:removeRequest', (childView)->    #Friendship sent request
-        friendship.on 'save:success', (response, options) ->
-          AlumNet.current_user.decrementCount('pending_received_friendships') 
-          console.log decrementadoRemove
-          friendship.on 'save:error', (response, options)->
-          console.log response.responseJSON    
-
+     
 
       usersView.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
