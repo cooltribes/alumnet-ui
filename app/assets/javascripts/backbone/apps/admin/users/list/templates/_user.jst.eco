@@ -6,6 +6,24 @@
   <br>
   <small>
     <%= @getEmail() %>
+
+    <% if @member==1 || @member==2: %>
+  <div class="membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span> MEMBER
+    </div>
+  </div>
+  <% end %>
+  <% if @member==3: %>
+  <div class="membership ">
+    <div>
+      <span class="glyphicon glyphicon-certificate"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
+      <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+      LIFETIME MEMBER
+    </div>
+  </div>
+  <% end %>
   </small>
 </td>
 <td><%= @getOriginLocation() %></td>
