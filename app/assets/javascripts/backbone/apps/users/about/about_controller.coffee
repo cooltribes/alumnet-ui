@@ -53,18 +53,19 @@
             collection.reset(newCollection)
 
         expCollection = new AlumNet.Entities.ExperienceCollection
-        # expCollection.comparator = "exp_type"
-        # expCollection.comparator = (model)->
-        #   [-parseInt(model.get "exp_type"), -model.get "cid"]
+        
         expCollection.comparator = (a, b)->
           typeA = a.get("exp_type")
           typeB = b.get("exp_type")
           resp = typeA - typeB
 
-          # console.log "A: " + a.get("name") + " - Type: " + a.get("exp_type") + " - Title?: " + a.get("asTitle")
-          # console.log "B: " + b.get("name") + " - Type: " + b.get("exp_type") + " - Title?: " + b.get("asTitle")
+          positions = [2,1,3,0] #Arbitrary order
+
+          # console.log "A: " + a.id + " Name: " + a.get("name") + " - Type: " + a.get("exp_type") + " - Title?: " + a.get("asTitle")
+          # console.log "B: " + b.id + " Name: " + b.get("name") + " - Type: " + b.get("exp_type") + " - Title?: " + b.get("asTitle")
           # console.log "-------"
        
+          resp = positions[typeA] - positions[typeB]
           # if a.get("asTitle")
             # console.log a
 
