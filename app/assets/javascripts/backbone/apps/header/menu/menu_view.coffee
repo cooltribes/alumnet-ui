@@ -126,7 +126,10 @@
         .removeClass "navTopBar__left__item--active"
       $(".navTopBar__left__item").children()
         .removeClass "navTopBar__left__item--active"
-      $(e.target).addClass "navTopBar__left__item--active"
+      if($(e.target).parent().hasClass 'dropdown-toggle')
+        $(e.target).removeClass "navTopBar__left__item--active"
+      else
+        $(e.target).addClass "navTopBar__left__item--active"
 
 
 
