@@ -56,9 +56,9 @@
       'eventName':'#name'
       'uploadCover':'#js-upload-cover'
       'coverArea':'.groupCoverArea'
-      'going': '#js-going'
-      'maybe': '#js-maybe'
-      'notGoing': '#js-not-going'
+      'going': '#js-att-going'
+      'maybe': '#js-att-maybe'
+      'notGoing': '#js-att-not-going'
 
     events:
       'click @ui.uploadCover': 'uploadClicked'

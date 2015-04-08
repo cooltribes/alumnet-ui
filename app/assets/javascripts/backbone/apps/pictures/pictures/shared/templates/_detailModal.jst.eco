@@ -5,6 +5,21 @@
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture" style="height:100%" >
         <img width="100%" src="<%= @picture.modal %>">
+        <% if @showMorePics: %>
+          <a href="#" title="Next picture" class="btn-default btn  btn-default js-next-picture" style="
+              right: 0;
+              position: absolute;
+              top: 50%;
+              margin-right: 25px;
+          "><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+          <a href="#" title="Next picture" class="btn-default btn  btn-default js-prev-picture" style="
+              left: 0;
+              position: absolute;
+              top: 50%;
+              margin-left: 25px;
+          "><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <% end %>
 
       </div>
       <aside class="col-md-4 ">
@@ -14,28 +29,41 @@
           </div>
         <div class="padding_right_small padding_left_small">
 
+          <div class="row">
+            <div class="col-md-5 groupPost__avatar">
+                <img src="<%= @uploader.avatar.large %>" alt="Carlos Ruiz" class="img-circle">
+            </div>
+            <div class="col-md-7 margin_top_small">
+              <h3> 
+                <%= @uploader.name %>                 
+              </h3>
+              <small class="margin_top_xsmall_minus">
+                <%= moment(@created_at).fromNow() %>
+              </small>
+            </div>
+          </div>
 
           <div class="row margin_top_small">
-          <% if @getLocation(): %>
-          <div class="row-fluid clearfix albumInfo">
-            <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
-              <span class="icon-entypo-location"></span>
-            </div>
-            <div class="col-md-10 no_margin_left albumInfo__value">
-               <%= @getLocation() %>
-            </div>
-          </div>
-          <% end %>
-          <% if @date_taken: %>
-          <div class="row-fluid albumInfo">
-            <div class="col-md-2 text-right no_margin_right albumInfo__icon">
-              <span class="icon-entypo-clock"></span>
-            </div>
-            <div class="col-md-10 no_margin_left albumInfo__value">
-                <%= moment(@date_taken).format('MMMM Do, YYYY') %>
-            </div>
-          </div>
-          <% end %>
+            <% if @getLocation(): %>
+              <div class="row-fluid clearfix albumInfo">
+                <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
+                  <span class="icon-entypo-location"></span>
+                </div>
+                <div class="col-md-10 no_margin_left albumInfo__value">
+                   <%= @getLocation() %>
+                </div>
+              </div>
+            <% end %>
+            <% if @date_taken: %>
+              <div class="row-fluid albumInfo">
+                <div class="col-md-2 text-right no_margin_right albumInfo__icon">
+                  <span class="icon-entypo-clock"></span>
+                </div>
+                <div class="col-md-10 no_margin_left albumInfo__value">
+                    <%= moment(@date_taken).format('MMMM Do, YYYY') %>
+                </div>
+              </div>
+            <% end %>
           </div>
           <form>
           <div class="row margin_top">
