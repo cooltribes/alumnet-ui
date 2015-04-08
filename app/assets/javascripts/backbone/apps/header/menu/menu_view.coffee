@@ -24,8 +24,13 @@
 
   class Menu.MenuBar extends Marionette.LayoutView
     initialize: ->
-      @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
-      @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
+      @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
+      @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
+      @listenTo(@model, 'change:avatar', @changeAvatar)
+
+      # @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
+      # @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
+
 
     getTemplate: ->
       if @model.isActive()
@@ -50,14 +55,14 @@
       'notificationsBadge': '#js-notifications-badge'
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
+      'avatarImg': '#header-avatar'
 
-    #OJO: Quite esto porque no se para que se tiene que hacer rerender del layout.
-    #Marionette no recomienda esto. Ademas rompe varios codigos.
-    # modelEvents:
-    #   "change": "modelChange"
-
-    # modelChange: ->
-    #   @render()
+    changeAvatar: ->
+      view = @
+      @model.fetch
+        success: (model)->
+          avatar = "#{model.get('avatar').medium}?#{new Date().getTime()}"
+          view.ui.avatarImg.attr('src', avatar)
 
     markAllNotifications: (e)->
       e.preventDefault()
@@ -67,7 +72,7 @@
       model = @model
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
-      memberTitle: ->        
+      memberTitle: ->
         if(model.get('member')==1)
           return "Active member"
         if(model.get('member')==2)

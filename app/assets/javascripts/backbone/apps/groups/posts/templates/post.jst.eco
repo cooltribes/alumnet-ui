@@ -46,8 +46,7 @@
     <% end %>
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
-<h1>
-<% if @userCanComment: %>
+  <% if @userCanComment: %>
     <form class="groupPost__commentForm clearfix form">
       <div class="groupPost__commentForm__avatar">
         <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">
