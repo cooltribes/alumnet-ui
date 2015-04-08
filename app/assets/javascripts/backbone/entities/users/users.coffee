@@ -115,6 +115,11 @@
       else
         "regular"
 
+    incrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value + val)
+      @get("#{counter}_count")    
+
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")
       @set("#{counter}_count", value - val)

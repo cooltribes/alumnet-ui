@@ -67,6 +67,8 @@
       model = @model
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
+      daysLeft: model.get('days_membership')
+
       memberTitle: ->        
         if(model.get('member')==1)
           return "Active member"
@@ -74,8 +76,8 @@
           return "Expiring membership"
         if(model.get('member')==3)
           return "Lifetime member"
-        return "Become a member"
-      daysLeft: 30
+        return "Not a member"
+      
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')

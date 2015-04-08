@@ -191,6 +191,8 @@
 
     templateHelpers: () ->
 
+      member= @model.member
+
       getRoleText: @model.getRole()
 
       getAge: ()->

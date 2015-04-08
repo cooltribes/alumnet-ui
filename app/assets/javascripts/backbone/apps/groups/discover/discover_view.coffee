@@ -19,6 +19,7 @@
       #View for showing the groups (class Discover.GroupsView)        
       @groupsView = options.groupsView
 
+
     ui:
       'viewCard':'.main-groups-area'
       'viewList':'.groupTableView'
@@ -51,9 +52,15 @@
 
     events:
       'click .js-join':'sendJoin'
+      'change': 'renderView'
+      
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
+     
+
+    initialize: (options)->
+      #@listenTo(@model, 'change:sendJoin', @renderView)  
     
     getTemplate: ()-> #Get the template of the groups based on the "type" property of the view
       if @type == "cards"
@@ -70,6 +77,11 @@
     sendJoin: (e)->
       e.preventDefault()
       @trigger 'join'
+
+   renderView: (e)->
+      @model.fetch()
+      @render()
+      @model.render()
 
     onRender: ->
       @ui.groupCard.tooltip()
@@ -110,7 +122,8 @@
       'click #js-filter-all': 'filterAll'
       'click #js-filter-official': 'filterOfficial'
       'click #js-filter-non-official': 'filterNonOfficial'
-
+    #'change': 'renderView'
+      
     filterAll: (e)->
       e.preventDefault()
       @collection.reset(@all)
@@ -128,4 +141,5 @@
       @nonOfficial = collection.where({official: false})
       @all = collection.slice()
 
-
+    #renderView: ->
+    #  @render()

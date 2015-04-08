@@ -18,10 +18,16 @@
         userCanEdit: userCanEdit
 
       albumView.on "return:to:albums", ()->
+        console.log "before if"
+        console.log albumable
+        console.log (albumable instanceof AlumNet.Entities.User)
         if albumable instanceof AlumNet.Entities.User
+          console.log "returbn"
           AlumNet.trigger "albums:user:list", layout, albumable
         else if albumable instanceof AlumNet.Entities.Group
           AlumNet.trigger "albums:group:list", layout, albumable
+        else if albumable instanceof AlumNet.Entities.Event
+          AlumNet.trigger "albums:event:list", layout, albumable
 
 
       albumView.on "upload:picture", (data)->

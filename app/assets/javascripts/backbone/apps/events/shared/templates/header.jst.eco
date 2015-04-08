@@ -13,10 +13,10 @@
   <% end %>
   <% if @hasInvitation(): %>
   <div class="groupCoverArea__attendanceOptions">
-       <a href="#" id="js-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option 
-       <%= @buttonAttendance('js-going',@attendance().status) %>" data-value="going">JOIN</a>
-       <a href="#" id="js-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-maybe',@attendance().status) %>" data-value="maybe">MAYBE</a>
-       <a href="#" id="js-not-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-not-going',@attendance().status) %>" data-value="not_going">DECLINE</a>
+       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option 
+       <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">ATTENDING</a>
+       <a href="#" id="js-att-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">MAYBE</a>
+       <a href="#" id="js-att-not-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-not-going',@attendance().status) %>" data-value="not_going">NOT ATTENDING</a>
 
   </div>
   <% end %>

@@ -7,10 +7,15 @@
     keyControl: false
     # prefix: "picture"
 
-    # events:
+    events:
+      "click .js-next-picture": "nextPicture"
+      "click .js-prev-picture": "prevPicture"
 
     initialize: (options)->
       @view = options.view
+      console.log @model
+
+
 
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->
@@ -28,6 +33,8 @@
 
       model = @model
 
+      showMorePics: @model.collection.length > 1 
+
       getLocation: ->
         model.getLocation()
 
@@ -35,6 +42,17 @@
 
       current_user_avatar: AlumNet.current_user.get('avatar').medium
 
+    nextPicture: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @model = @model.next()
+      @render()
+
+    prevPicture: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @model = @model.prev()
+      @render()
 
   API =
     getPictureModal: (picture)->
