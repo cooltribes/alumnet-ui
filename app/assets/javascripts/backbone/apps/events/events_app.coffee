@@ -4,8 +4,10 @@
       "events/:id/about": "aboutEvent"
       "events/:id/posts": "postsEvent"
       "events/:id/attendances": "attendancesEvent"
-      "events": "listEvents"
+      "events/:id/photos": "listAlbums"
+      "events/manage": "manageEvents"
       "events/new": "createEvent"
+      "events": "discoverEvents"
 
 
   API =
@@ -21,17 +23,25 @@
       controller = new EventsApp.Attendances.Controller
       controller.showAttendances(id)
 
-    listEvents: (id)->
-      controller = new EventsApp.List.Controller
-      controller.list(AlumNet.current_user.id)
+    manageEvents: (id)->
+      controller = new EventsApp.Manage.Controller
+      controller.manage(AlumNet.current_user.id)
 
     createEvent: ->
       controller = new EventsApp.Create.Controller
       controller.createEvent(AlumNet.current_user.id)
 
+    discoverEvents: ->
+      controller = new EventsApp.Discover.Controller
+      controller.discover()
+
     inviteEvent: (event, users)->
       controller = new EventsApp.Create.Controller
       controller.invitations(event, users)
+
+    listAlbums: (id)->
+      controller = new EventsApp.Pictures.Controller
+      controller.showAlbums(id)
 
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)

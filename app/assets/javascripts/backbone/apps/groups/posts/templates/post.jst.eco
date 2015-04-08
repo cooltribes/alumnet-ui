@@ -10,6 +10,23 @@
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
+    <!-- PICTURES -->
+    <% if @pictures: %>
+      <div class="modal-container"></div>
+      <div class="pictures-container">
+        <% counter = 0 %>
+        <% for picture in @pictures: %>
+          <% counter = counter + 1 %>
+          <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
+            <img src="<%= picture.picture.original %>" class="first-item picture" data-id="<%= picture.id %>">
+          <% else: %>
+            <img src="<%= picture.picture.original %>" class="item picture" data-id="<%= picture.id %>">
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
+    <!-- PICTURES OFF     -->
     <% if @userCanComment: %>
       <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
       <div class="groupPost__btn--like">
@@ -29,8 +46,7 @@
     <% end %>
   </div>
   <div class="groupPost__commentsContainer comments-container"></div>
-<h1>
-<% if @userCanComment: %>
+  <% if @userCanComment: %>
     <form class="groupPost__commentForm clearfix form">
       <div class="groupPost__commentForm__avatar">
         <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">

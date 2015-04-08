@@ -1,0 +1,30 @@
+<div class="searchBar row ">
+  <div class="col-md-3">
+    <h1 class="searchBar__title margin_left_small">Discover</h1>
+  </div>
+  <div class="col-md-6">
+    <form id="search-form">
+      <div class="input-group">
+        <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search for events">
+        <span class="input-group-btn">
+
+        <button class="searchBar__searchBtn btn btn-default js-search" data-toggle="modal" data-target="#devAlertModal"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+      <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
+    </form>
+    <!-- /input-group -->
+  </div>
+  <div class="col-md-3 hidden-sm hidden-xs searchBar__renderOptions">
+    <!--<div class="pull-right">
+      <a class="searchBar__renderOptions__icon searchBar__renderOptions__iconActive searchBar__ViewCard js-viewCard" title="View results in cards">
+        <span class="glyphicon glyphicon-th-large"></span>
+      </a>
+      <a class="searchBar__renderOptions__icon searchBar__ViewList js-viewList" title="View results in list">
+      <span class="glyphicon glyphicon-align-justify"></span></a>
+    </div>-->
+  </div>
+</div>
+<hr/>
+<div class="row main-events-area no-margin"><!-- Begin group container -->
+</div>

@@ -1,3 +1,7 @@
 <div class="row main-events-area">
+<<<<<<< HEAD
 	<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://production.alumnet-test.aiesec-alumni.org&uid=<%= @current_user.get("id") %>" width="750" height="318" frameborder="0"></iframe>
+=======
+	<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid=<%= @current_user.get("id") %>" width="750" height="400" frameborder="0"></iframe>
+>>>>>>> 18d86509e641b70702d4ff62085bb18a7f4fb571
 </div>

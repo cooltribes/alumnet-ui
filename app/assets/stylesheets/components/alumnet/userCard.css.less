@@ -166,9 +166,34 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       margin-top: 10px;
     }
    }
+}
 
 
+.membership{
+  div{
+    background-color: @main-blue;
+    border-radius: 50px;
+    color: #ffffff;                
+    line-height: 20px;
+    vertical-align: middle;
+    padding: 3px;
+    display:inline;
+    .glyphicon{
+      font-size: 8px;
+      top:-1px;
+      &__right{
+        margin-right:2px;        
+      }
+      &__big{
+        font-size: 12px;
+        top:1px; 
+      }
+    } 
 
+  }
+  
+            
+      
 }
 
 
@@ -202,8 +227,8 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
          }
         &__actions{
             height: 100px;
-            margin-top: -10px;
             padding: 40px 0 0;
+            font-size:12px;
          }
         &__GroupAdminActions{
         position: relative;
@@ -280,5 +305,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
           
           }
        }
+   
+    &__avatar{
+      width:60%;
+    }
    }
  }

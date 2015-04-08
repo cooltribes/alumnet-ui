@@ -25,14 +25,14 @@
       <span class="help-block"></span>
     </div>
 
-    <div class="row">
+    <div class="row"> 
       <div class="col-md-12">
 
         <div class="form-group">
           <label class="control-label" for="year">Date (when pictures were taken)</label>
           <div class="row">
             <div class="col-md-6">
-              <input type="text" value="<%= @date_taken %>" class="form-control input-lg js-date-taken" name="date_taken" placeholder="Selec date">
+              <input type="text" value="<%= @date_taken %>" class="form-control input-lg js-date-taken" name="date_taken" placeholder="Select a date">
             </div>
           </div>
 

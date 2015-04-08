@@ -55,19 +55,9 @@
     getBornDate: ()->
       born = @profile.get('born')
       array = []
-      # array.push(born.year ? "1900")
-      # array.push(born.month ? "01")
-      # array.push(born.day ? "01")
       array.push(born.year) if born.year
       array.push(born.month) if born.month
       array.push(born.day) if born.day
-
-      # date = ""
-      # if born.month
-      #   date = new Date(born.month, born.day)
-      #   console.log date
-      #   console.log moment(date).format("MMMM DD")
-
       array.join("/")
 
     getBornComplete: ()->
@@ -76,7 +66,6 @@
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
       array.join(" in ")
-
 
     getAge: ()->
         if @profile.get("born")
@@ -114,6 +103,11 @@
         "alumnet"
       else
         "regular"
+
+    incrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value + val)
+      @get("#{counter}_count")    
 
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")

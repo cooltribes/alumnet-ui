@@ -17,8 +17,13 @@
       currentCheckBox = $(e.currentTarget)
       if currentCheckBox.is(':checked')
         $('.js-check-assign').removeClass('hidden')
+        $('#hidden_msg_user').removeClass('hidden')
+        $('#hidden_msg_user').show()
+        $('#space').hide()
       else
         $('.js-check-assign').addClass('hidden').attr('checked', false)
+        $('#hidden_msg_user').hide()
+        $('#space').show()
 
     checkPermit: (e)->
       currentCheckBox = $(e.currentTarget)

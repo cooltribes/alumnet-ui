@@ -11,7 +11,7 @@
 				<p class="PageError__description">
 				You don't have access to the resource you are trying to access. If you think this is a mistake please contact the administrator
 				</p>
-				<a href="/#post" class="btn btn-lg btn-primary">Go the main page</a>
+				<a href="/#posts" class="btn btn-lg btn-primary">Go the main page</a>
 
 			</div>
 		</div>

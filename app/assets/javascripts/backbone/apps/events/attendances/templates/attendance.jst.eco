@@ -1,9 +1,9 @@
 <div class="userCard">
   <div class="row">
-    <div class="col-md-2">
-      <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+    <div class="col-md-3">
+      <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle userCard__avatar" width="100%">
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
       <h2 class="userCard__name">
       <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h2>
       <p class="member-position text-small"><%= @user.email %></p>
@@ -11,7 +11,7 @@
     <div class="col-md-3">
       <span class="invitation">
           <div class="userCard__actions userCard__actions--isFriend">
-            <span ><%= @status %></span>
+            <span ><%= @statusText() %></span>
           </div>
       </span>
     </div>
