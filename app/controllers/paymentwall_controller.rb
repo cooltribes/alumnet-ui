@@ -15,7 +15,7 @@ class PaymentwallController < ApplicationController
     
     #if @pingback.validate()
       if(@pingback.getParameter('type') == '0')
-        if(@pingback.getParameter('goodsid') == 'Lifetime')
+        if(@pingback.getParameter('goodsid') == '222')
           @lifetime = true
         else
           @end = DateTime.now + 1.year
