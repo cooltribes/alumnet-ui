@@ -15,7 +15,8 @@
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
-
+        layout.model.decrementCount('pending_received_friendships')
+        
       layout.body.show(requestsView)
 
     showMySent: (layout)->
@@ -29,7 +30,6 @@
         friendship.destroy()
         friendships.remove(friendship)
         layout.model.decrementCount('pending_sent_friendships')
-
 
       layout.body.show(requestsView)
 
@@ -54,11 +54,15 @@
         friendship = childView.model
         friendship.save()
         friendships.remove(friendship)
+        layout.model.decrementCount('pending_received_friendships')
+        layout.model.incrementCount('friends')
 
       requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
+        layout.model.decrementCount('pending_received_friendships')
+
 
       requestsView.on 'get:requests', (filter)->
         @collection.fetch(data: { filter: filter })

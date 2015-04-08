@@ -1,11 +1,34 @@
 @AlumNet.module 'EventsApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
+  class Shared.CropCoverModal extends Backbone.Modal
+    template: 'events/shared/templates/crop_modal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      model = @model
+      image = @model.get('cover').original
+      options =
+        loadPicture: image
+        cropUrl: AlumNet.api_endpoint + "/events/#{@model.id}/cropping"
+        onAfterImgCrop: ->
+          model.trigger('change:cover')
+
+      cropper = new Croppic('croppic', options)
+
   class Shared.Modal extends Backbone.Modal
     template: 'events/shared/templates/upload_modal'
     cancelEl: '.js-modal-close'
 
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-crop': 'cropClicked'
       'change #group-cover': 'previewImage'
+
+    cropClicked: (e)->
+      e.preventDefault()
+      modal = new Shared.CropCoverModal
+        model: @model
+      @destroy()
+      $('#js-modal-cover-container').html(modal.render().el)
 
     previewImage: (e)->
       input = @.$('#group-cover')
@@ -37,6 +60,7 @@
     templateHelpers: ->
       model = @model
       canEditInformation: @model.userIsAdmin()
+      cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
       hasInvitation: ->
         if model.get('attendance_info') then true else false
       attendance: ->
@@ -56,9 +80,9 @@
       'eventName':'#name'
       'uploadCover':'#js-upload-cover'
       'coverArea':'.groupCoverArea'
-      'going': '#js-going'
-      'maybe': '#js-maybe'
-      'notGoing': '#js-not-going'
+      'going': '#js-att-going'
+      'maybe': '#js-att-maybe'
+      'notGoing': '#js-att-not-going'
 
     events:
       'click @ui.uploadCover': 'uploadClicked'
@@ -66,7 +90,7 @@
 
     coverChanged: ->
       cover = @model.get('cover')
-      @ui.coverArea.css('background-image',"url('#{cover.main}'")
+      @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
 
     uploadClicked: (e)->
       e.preventDefault()

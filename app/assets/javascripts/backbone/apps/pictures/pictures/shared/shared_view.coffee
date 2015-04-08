@@ -13,6 +13,9 @@
 
     initialize: (options)->
       @view = options.view
+      console.log @model
+
+
 
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->

@@ -3,13 +3,13 @@
     showAbout: (id)->
       user = AlumNet.request("user:find", id)
       user.on 'find:success', (response, options)=>
-                        
+
         profileId = user.profile.id
-        #Edit Options - permissions    
-        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()               
+        #Edit Options - permissions
+        userCanEdit = AlumNet.current_user.isAlumnetAdmin() || user.isCurrentUser()
 
         layout = AlumNet.request("user:layout", user, 1)
-        header = AlumNet.request "user:header", user, 
+        header = AlumNet.request "user:header", user,
           userCanEdit: userCanEdit
 
         #get the skills of the user
@@ -25,34 +25,34 @@
         #get the contacts of the user
         phones = []
         emails = []
-        contacts = new AlumNet.Entities.ProfileContactsCollection        
+        contacts = new AlumNet.Entities.ProfileContactsCollection
         contacts.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/contact_infos"
         contacts.fetch
           success: (collection, response, options) ->
             #Adding the phone and the email to the profile info
-            phones = collection.where 
+            phones = collection.where
               contact_type: 1
 
             if phones.length
-              user.phone = phones[0]  
+              user.phone = phones[0]
               user.phone.urlRoot = contacts.url
 
-            emails = collection.where 
+            emails = collection.where
               contact_type: 0
 
             if emails.length
-              user.email_contact = emails[0]  
+              user.email_contact = emails[0]
               user.email_contact.urlRoot = contacts.url
-            
-            user.trigger("add:phone:email")    
+
+            user.trigger("add:phone:email")
 
             #Get all except the phone and email
-            newCollection = collection.filter (model)->              
-              model.get("contact_type") != 0 && model.get("contact_type") != 1              
-                          
+            newCollection = collection.filter (model)->
+              model.get("contact_type") != 0 && model.get("contact_type") != 1
+
             collection.reset(newCollection)
 
-        expCollection = new AlumNet.Entities.ExperienceCollection   
+        expCollection = new AlumNet.Entities.ExperienceCollection
         # expCollection.comparator = "exp_type"
         # expCollection.comparator = (model)->
         #   [-parseInt(model.get "exp_type"), -model.get "cid"]
@@ -83,15 +83,13 @@
             else
               return 1
 
-          
-
           # if resp == 0
           #   if a.get("cid") >= b.get("cid")
           #     return -1
           #   else
           #     return 1  
 
-          resp  
+          resp
 
 
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
@@ -102,14 +100,14 @@
               collection.addTitles()
 
                 # collection.addExperiencesTitles()
-        
+
         body = new About.View
           model: user
           userCanEdit: userCanEdit
-          
+
         profileView = new About.Profile
           model: user
-          userCanEdit: userCanEdit          
+          userCanEdit: userCanEdit
 
         skillsView = new About.SkillsView
           collection: skills
@@ -121,19 +119,19 @@
 
         contactsView = new About.ContactsView
           collection: contacts
-          userCanEdit: userCanEdit          
+          userCanEdit: userCanEdit
 
         experiencesView = new About.Experiences
           collection: expCollection
           userCanEdit: userCanEdit
-          
-        @setEditActions skillsView, 0 
-        @setEditActions languagesView, 1 
-        @setEditActions contactsView, 2        
-        @setEditActions profileView, 3 
-        @setEditActions header, 4 
-        @setEditActions experiencesView, 5 
-          
+
+        @setEditActions skillsView, 0
+        @setEditActions languagesView, 1
+        @setEditActions contactsView, 2
+        @setEditActions profileView, 3
+        @setEditActions header, 4
+        @setEditActions experiencesView, 5
+
 
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
@@ -144,22 +142,22 @@
         body.skills.show(skillsView)
         body.languages.show(languagesView)
         body.contacts.show(contactsView)
-        body.experiences.show(experiencesView)     
+        body.experiences.show(experiencesView)
 
         AlumNet.execute('render:users:submenu')
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
-  
+
     #set the action when modal is submitted for each info
     #0-skills, 1-languages,
     setEditActions: (view, type)->
 
       switch type
-        when 0  #skills    
+        when 0  #skills
           view.on "submit", (data)->
             #Add each skill to the collection
-            collection = view.collection  
+            collection = view.collection
 
             _.each data, (el)->
               collection.create({name: el})
@@ -168,29 +166,29 @@
           view.on "submit", (data)->
             #Add the language and level to the collection
             view.collection.create(data, {wait: true})
-        
+
         when 3  #profile
-          view.on "submit:name", ()->            
+          view.on "submit:name", ()->
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            @model.profile.save 
+            @model.profile.save
               "first_name": @model.profile.get "first_name"
               "last_name": @model.profile.get "last_name",
             ,
               wait: true
-              success: ()=>      
+              success: ()=>
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.fetch()
                 #Update current user
-                if @model.isCurrentUser()                
+                if @model.isCurrentUser()
                   AlumNet.request 'get:current_user',
                     refresh: true
                     success: ->
                       AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
-        
-          view.on "submit:born", ()->  
+
+          view.on "submit:born", ()->
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            @model.profile.save 
+            @model.profile.save
               "birth_country_id": @model.profile.get "birth_country_id"
               "birth_city_id": @model.profile.get "birth_city_id",
             ,
@@ -198,11 +196,11 @@
               success: ()=>
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.trigger "change"
-               
 
-          view.on "submit:residence", ()->  
+
+          view.on "submit:residence", ()->
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            @model.profile.save 
+            @model.profile.save
               "residence_country_id": @model.profile.get "residence_country_id"
               "residence_city_id": @model.profile.get "residence_city_id",
             ,
@@ -213,32 +211,35 @@
 
         when 4  #avatar
           view.on "submit:avatar", (data)->
-            
+
             @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
             @model.profile.save data,
               wait: true
               data: data
               contentType: false
               processData: false
-              success: (model, response, options)=>                
+              success: (model, response, options)=>
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.set("avatar", response.avatar)
-                
+                @model.trigger('change:avatar')
+                if @model.isCurrentUser()
+                  AlumNet.current_user.trigger('change:avatar')
+
                 #change the avatar of the current user in the header
                 #if current user is who makes
                 #the changes. Not when admin changes another profile.
-                if @model.isCurrentUser()
-                  AlumNet.request 'get:current_user',
-                    refresh: true
-                    success: ->
-                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+                # if @model.isCurrentUser()
+                #   AlumNet.request 'get:current_user',
+                #     refresh: true
+                #     success: ->
+                #       AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
         when 5  #Experiences
           view.on "childview:save:experience", (childview)->
             model = childview.model
             if model.isValid(true)
               model.formatDates()
-              model.save null, 
+              model.save null,
                 success: (model)->
                   if model.isEditing then model.isEditing = false
                   model.collection.trigger "reset"
@@ -246,7 +247,7 @@
           view.on "childview:cancelEdit:experience", (childview)->
             model = childview.model
             model.isEditing = false
-            model.fetch  
-              success: (model)->                          
+            model.fetch
+              success: (model)->
                 model.collection.trigger "reset"
             # model.isEditing = false

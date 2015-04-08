@@ -32,6 +32,10 @@
         request.on 'save:success', (response, options)->
           console.log response.responseJSON
           AlumNet.trigger "groups:posts", group.get('id')
+          @render()
+          console.log group
+        
+
 
         request.on 'save:error', (response, options)->
           console.log response.responseJSON

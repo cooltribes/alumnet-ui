@@ -1,15 +1,13 @@
-<div class="userCoverArea" style="<%= @cover_style() %>" role="group">
-
+<div class="userCoverArea" style="<%=@cover_style()%>" role="group">
   <div class="userCoverArea__avatar text-center">
-  <% if @avatar.extralarge: %>
-    <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-  <% else: %>
-    <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-  <% end %>
-   <% if @userCanEdit: %>
-    <a id="js-editPic" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change avatar</a>
-    <a id="js-cropPic" class="btn btn-alert btn-alert--edit" href="#"><span class="glyphicon glyphicon-edit"></span>  Crop avatar</a>
-  <% end %>
+    <% if @avatar.extralarge: %>
+      <img src=<%= @add_timestamp(@avatar.extralarge) %> alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <% else: %>
+      <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <% end %>
+    <% if @userCanEdit: %>
+      <a id="js-editPic" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change avatar</a>
+    <% end %>
   </div>
   <% if @member==1 || @member==2: %>
   <div class="userCoverArea__membership ">
@@ -37,7 +35,8 @@
     <%= @position() %>
   </p>
 
-  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received": %>
+  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received" || @friendship_status == "none": %>
+
     <a href="/#conversations" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
   <% end %>
 
@@ -46,7 +45,6 @@
   <% end %>
    <% if @userCanEdit: %>
     <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
-    <a id="js-cropCover" class="btn btn-alert btn-alert--edit" href="#"><span class="glyphicon glyphicon-edit"></span>  Crop Cover</a>
   <% end %>
 </div>
 <div id="js-picture-modal-container"></div>

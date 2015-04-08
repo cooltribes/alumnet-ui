@@ -191,29 +191,38 @@
         tokenSeparators: [',', ', '],
         dropdownAutoWidth: true,
 
-  class About.CropCoverModal extends Backbone.Modal
-    template: 'users/about/templates/_cropCoverModal'
-    cancelEl: '#js-close-btn'
-
-    onShow: ->
-      image = @model.get('cover').original
-      options =
-        loadPicture: image
-        cropData: { "image": 'cover' }
-        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
-
-      cropper = new Croppic('croppic', options)
-
   class About.CropAvatarModal extends Backbone.Modal
     template: 'users/about/templates/_cropAvatarModal'
     cancelEl: '#js-close-btn'
 
     onShow: ->
+      model = @model
       image = @model.get('avatar').original
       options =
         loadPicture: image
         cropData: { "image": 'avatar' }
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        onAfterImgCrop: ()->
+          # imgUrl = @croppedImg.attr('src')
+          model.trigger('change:cover')
+          if model.isCurrentUser()
+            AlumNet.current_user.trigger('change:avatar')
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CropCoverModal extends Backbone.Modal
+    template: 'users/about/templates/_cropCoverModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      model = @model
+      image = @model.get('cover').original
+      options =
+        loadPicture: image
+        cropData: { "image": 'cover' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        onAfterImgCrop: ->
+          model.trigger('change:cover')
 
       cropper = new Croppic('croppic', options)
 
@@ -229,18 +238,21 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize this
       if data.cover != ""
+        model = @model
+        modal = @
         formData = new FormData()
         file = @$('#profile-cover')
         formData.append('cover', file[0].files[0])
-        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.id
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.profile.save formData,
           wait: true
           data: formData
           contentType: false
           processData: false
-          success: ()=>
-            @destroy()
-            @model.fetch()
+          success: ()->
+            model.trigger('change:cover')
+            modal.destroy()
+
 
     previewImage: (e)->
       input = @$('#profile-cover')
@@ -303,19 +315,6 @@
       $('#js-picture-modal-container').html(modal.render().el)
 
     onShow: ->
-      if @type == 3
-        modal = @
-        model = @model
-        avatar = AlumNet.current_user.get('avatar').original
-        options =
-          loadPicture: avatar
-          cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
-          onAfterImgCrop: ->
-            model.trigger 'change'
-            modal.destroy()
-        cropper = new Croppic('croppic', options)
-
-
       @$("#js-cities").select2
         placeholder: "Select a City"
         data: []

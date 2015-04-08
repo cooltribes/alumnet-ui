@@ -3,6 +3,16 @@
   class Attendances.AttendanceView extends Marionette.ItemView
     template: 'events/attendances/templates/attendance'
     className: 'col-md-4 col-sm-6'
+    templateHelpers: ->
+      model=@model
+      statusText: ()->
+        if(model.get('status')=='not_going')
+          return "NOT\nATTENDING"
+        if(model.get('status')=='going')
+          return "ATTENDING"
+        if(model.get('status')=='maybe')
+          return "INVITED"
+        return "INVITED"
 
   class Attendances.AttendancesView extends Marionette.CompositeView
     template: 'events/attendances/templates/attendances_container'
