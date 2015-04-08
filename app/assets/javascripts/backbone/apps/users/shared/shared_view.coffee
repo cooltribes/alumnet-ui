@@ -4,38 +4,43 @@
 
     ui:
       "editPic": "#js-editPic"
-      "cropPic": "#js-cropPic"
       "editCover": "#js-editCover"
-      "cropCover": "#js-cropCover"
       "modalCont": "#js-picture-modal-container"
       'requestLink': '#js-request-send'   #Id agregado
       'coverArea': 'userCoverArea'
+      'imgAvatar': '#preview-avatar'
+
     events:
       "click @ui.editPic": "editPic"
-      "click @ui.cropPic": "cropPic"
       "click @ui.editCover": "editCover"
-      "click @ui.cropCover": "cropCover"
       'click #js-request-send':'sendRequest' #Evento agregado
-    modelEvents:
-      "change": "modelChange"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+      @listenTo(@model, 'change:avatar', @renderView)
+      @listenTo(@model, 'change:cover', @renderView)
 
     templateHelpers: ->
       model = @model
+      date = new Date()
       userCanEdit: @userCanEdit
       cover_style: ->
         cover = model.get('cover')
-        if cover
-          "background-image: url('#{cover.main}');"
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');"
         else
           "background-color: #2b2b2b;"
+      add_timestamp: (file)->
+        "#{file}?#{date.getTime()}"
+
       position: ->
         model.profile.get("last_experience") ? "No Position"
 
-    modelChange: ->
-      @render()
+    renderView: ->
+      view = @
+      @model.fetch
+        success: ->
+          view.render()
 
     editPic: (e)->
       e.preventDefault()
@@ -45,21 +50,9 @@
         model: @model
       @ui.modalCont.html(modal.render().el)
 
-    cropPic: (e)->
-      e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CropAvatarModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
-
     editCover: (e)->
       e.preventDefault()
       modal = new AlumNet.UsersApp.About.CoverModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
-
-    cropCover: (e)->
-      e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CropCoverModal
         model: @model
       @ui.modalCont.html(modal.render().el)
 

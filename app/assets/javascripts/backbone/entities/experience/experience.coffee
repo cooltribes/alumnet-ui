@@ -24,6 +24,7 @@
         required: true
         msg: 'Name of the position is required'
       description:
+        maxLength: 2048
         required: (value, attr, computedState) ->
           @get("exp_type") == 0 || @get("exp_type") == 1
       organization_name:
