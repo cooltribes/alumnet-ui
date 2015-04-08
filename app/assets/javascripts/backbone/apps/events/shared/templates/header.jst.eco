@@ -1,4 +1,4 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover.main %>');">
+<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
   <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
     <% if @canEditInformation: %>
       <a href="#" id="name"><%= @name %></a>
@@ -13,7 +13,7 @@
   <% end %>
   <% if @hasInvitation(): %>
   <div class="groupCoverArea__attendanceOptions">
-       <a href="#" id="js-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option 
+       <a href="#" id="js-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option
        <%= @buttonAttendance('js-going',@attendance().status) %>" data-value="going">JOIN</a>
        <a href="#" id="js-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-maybe',@attendance().status) %>" data-value="maybe">MAYBE</a>
        <a href="#" id="js-not-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-not-going',@attendance().status) %>" data-value="not_going">DECLINE</a>
