@@ -6,9 +6,35 @@
 
     initialize: (options)->
       @current_user = options.current_user
+      @country = options.country
+
+    ui:
+      'selectPaymentCountries': '#js-payment-countries'
+      'divCountry': '#country'
+
+    events:
+      'change #js-payment-countries': 'reloadWidget'
 
     templateHelpers: ->
       current_user: @current_user
-      #userId = AlumNet.current_user.id
-      #user_id = @current_user.get('id')
-      #name = 'hola'
+
+    reloadWidget: (e)->
+      console.log('reloading')
+      console.log(e.val)
+      url = AlumNet.api_endpoint + '/countries/' + e.val
+      console.log('Url: '+url)
+      country = new Entities.Country
+      country.set({'id': 5})
+      console.log('New country: '+country)
+      @country = e.val
+      this.render()
+      
+    onRender: ->
+      data = CountryList.toSelect2()
+
+      @ui.selectPaymentCountries.select2
+        placeholder: "Select a Country"
+        data: data
+
+      @ui.selectPaymentCountries.select2('val', @country)
+      @ui.divCountry.html('Country set to: '+@country)
