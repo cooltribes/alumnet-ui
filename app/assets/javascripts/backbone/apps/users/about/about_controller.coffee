@@ -57,13 +57,39 @@
         # expCollection.comparator = (model)->
         #   [-parseInt(model.get "exp_type"), -model.get "cid"]
         expCollection.comparator = (a, b)->
-          resp = a.get("exp_type") - b.get("exp_type")
+          typeA = a.get("exp_type")
+          typeB = b.get("exp_type")
+          resp = typeA - typeB
+
+          # console.log "A: " + a.get("name") + " - Type: " + a.get("exp_type") + " - Title?: " + a.get("asTitle")
+          # console.log "B: " + b.get("name") + " - Type: " + b.get("exp_type") + " - Title?: " + b.get("asTitle")
+          # console.log "-------"
+       
+          # if a.get("asTitle")
+            # console.log a
+
+          # if typeA == 3
+          #   resp = -1
+          # else if typeA == 1
+          #   resp = -1
+          # else if typeA == 0
+          #   resp = -1
+          # else if typeA == 2
+          #   resp = -1  
 
           if resp == 0
-            if a.get("cid") >= b.get("cid")
+            if a.get("asTitle")
               return -1
             else
-              return 1  
+              return 1
+
+          
+
+          # if resp == 0
+          #   if a.get("cid") >= b.get("cid")
+          #     return -1
+          #   else
+          #     return 1  
 
           resp  
 
