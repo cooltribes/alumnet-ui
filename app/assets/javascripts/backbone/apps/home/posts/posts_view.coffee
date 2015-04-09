@@ -132,7 +132,7 @@
       'click .js-goto-comment': 'clickedGotoComment'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
-      'click .picture': 'clickedPicture'
+      'click .picture-post': 'clickedPicture'
 
     clickedPicture: (e)->
       e.preventDefault()
@@ -217,6 +217,7 @@
       'timeline': '#timeline'
       'fileList': '#js-filelist'
       'uploadLink': '#upload-picture'
+      'postContainer': '#timeline'
 
     events:
       'click a#js-post-submit': 'submitClicked'
@@ -224,9 +225,7 @@
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
-
       uploader.init()
-
 
     submitClicked: (e)->
       e.stopPropagation()

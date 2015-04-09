@@ -127,9 +127,9 @@
       events.url = AlumNet.api_endpoint + "/events"
       events
 
-    getEventContacts: (parent, parent_id, event_id)->
+    getEventContacts: (event_id)->
       contacts = new Entities.EventContacts
-      contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
+      contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
 
     findEvent: (id)->
