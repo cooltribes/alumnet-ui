@@ -3,7 +3,6 @@
     list: ->
       subscriptionsView = new List.SubscriptionsView
       	current_user: AlumNet.current_user
-      	country: null
       AlumNet.mainRegion.show(subscriptionsView)
       #AlumNet.execute('render:events:submenu')
 

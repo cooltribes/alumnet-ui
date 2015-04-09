@@ -6,11 +6,11 @@
 
     initialize: (options)->
       @current_user = options.current_user
-      @country = options.country
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
       'divCountry': '#country'
+      'paymentwallContent': '#paymentwall-content'
 
     events:
       'change #js-payment-countries': 'reloadWidget'
@@ -19,14 +19,14 @@
       current_user: @current_user
 
     reloadWidget: (e)->
-      console.log('reloading')
-      console.log(e.val)
-      url = AlumNet.api_endpoint + '/countries/' + e.val
-      console.log('Url: '+url)
-      country = new Entities.Country
-      country.set({'id': 5})
-      console.log('New country: '+country)
-      @country = e.val
+      country = new AlumNet.Entities.Country
+        id: e.val
+      view = this  
+      country.fetch
+        success: (model) ->
+          parameters_string = 'country_code='+model.get('cc_fips')+'key=1acce8f2587d6f7cca456c87cc672bd2success_url=http://alumnet-test.aiesec-alumni.orguid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
+          view.ui.divCountry.html('Country set to: '+model.get('cc_fips')+'</br>String: '+parameters_string)
+          view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid='+view.current_user.get("id")+'&country_code='+model.get('cc_fips')+'&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="318" frameborder="0"></iframe>')
       this.render()
       
     onRender: ->
@@ -36,5 +36,4 @@
         placeholder: "Select a Country"
         data: data
 
-      @ui.selectPaymentCountries.select2('val', @country)
-      @ui.divCountry.html('Country set to: '+@country)
+      console.log(CryptoJS.MD5('1234').toString())
