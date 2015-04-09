@@ -129,7 +129,7 @@
       'click .js-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
-      'click .picture': 'clickedPicture'
+      'click .picture-post': 'clickedPicture'
 
     clickedPicture: (e)->
       e.preventDefault()
