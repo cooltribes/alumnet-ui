@@ -20,7 +20,7 @@
               processData: false
               data: data
               success: (model, response, options)->
-                contacts = AlumNet.request('event:contacts', 'groups', group_id, model.id)
+                contacts = AlumNet.request('event:contacts', model.id)
                 AlumNet.trigger('group:event:invite', model, contacts)
 
             model.save(data, options_for_save)
