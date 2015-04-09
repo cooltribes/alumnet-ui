@@ -3,6 +3,8 @@
   class Attendances.AttendanceView extends Marionette.ItemView
     template: 'events/attendances/templates/attendance'
     className: 'col-md-4 col-sm-6'
+    initialize: ->
+      console.log @model
     templateHelpers: ->
       model=@model
       statusText: ()->
@@ -35,6 +37,13 @@
       'click @ui.maybeLink': 'maybeClicked'
       'click @ui.invitedLink': 'invitedClicked'
       'click @ui.notGoingLink': 'notGoingClicked'
+      'click #js-invite-event': 'showInvite'
+
+    showInvite: (e)->
+      e.preventDefault()
+      current_user = AlumNet.current_user
+      contacts = AlumNet.request('event:contacts', @model.id)
+      AlumNet.trigger('user:event:invite', @model, contacts)
 
     goingClicked: (e)->
       e.preventDefault()
@@ -55,7 +64,6 @@
       e.preventDefault()
       target = $(e.currentTarget)
       @searchAttendances(3, target)
-
 
     searchAttendances: (status, target)->
       @collection.getByStatus(status, {})

@@ -5,11 +5,11 @@
   <div class="col-md-6">
     <form id="search-form">
       <div class="input-group">
-        <input type="text" name="search_term" name="seach_term"
+      <!--  <input type="text" name="search_term" name="seach_term"
             id="js-search-input" class="searchBar__searchInput form-control " placeholder="Search">
         <span class="input-group-btn">
 
-        <button class="searchBar__searchBtn btn btn-default js-search" data-toggle="modal" data-target="#devAlertModal"><span class="glyphicon glyphicon-search"></span></button>
+        <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>-->
         </span>
       </div>
       <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->

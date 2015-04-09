@@ -21,9 +21,9 @@
         <% for picture in @pictures: %>
           <% counter = counter + 1 %>
           <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
-            <img src="<%= picture.picture.original %>" class="first-item picture" data-id="<%= picture.id %>">
+            <img src="<%= picture.picture.original %>" class="first-item picture-post" data-id="<%= picture.id %>">
           <% else: %>
-            <img src="<%= picture.picture.original %>" class="item picture" data-id="<%= picture.id %>">
+            <img src="<%= picture.picture.original %>" class="item picture-post" data-id="<%= picture.id %>">
           <% end %>
         <% end %>
       </div>
