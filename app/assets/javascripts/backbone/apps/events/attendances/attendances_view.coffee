@@ -3,6 +3,8 @@
   class Attendances.AttendanceView extends Marionette.ItemView
     template: 'events/attendances/templates/attendance'
     className: 'col-md-4 col-sm-6'
+    initialize: ->
+      console.log @model
     templateHelpers: ->
       model=@model
       statusText: ()->
