@@ -20,6 +20,7 @@
         </form>
         
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
+        <!-- <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary" id="js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a> -->
 
         <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit"><span class="icon-entypo-pencil"></span> EDIT ALBUM</a>
       </div>
@@ -94,11 +95,13 @@
   <div class="col-md-3 col-sm-6 albums-list__upload">
   
 
-  <div class="albums-list__upload__bordedBox">
+  <div class="">
+  <!-- <div class="albums-list__upload__bordedBox"> -->
     <div class=" row">
       <div class="col-md-12 text-center">
-        <%= image_tag("general/326x346.png", width: "100%") %> 
+        <%= image_tag("general/326x346.png", width: "100%", class: "albums-list__upload__bordedBox") %> 
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
+        <!-- <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload" id="js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a> -->
       </div>
     </div>
   </div>

@@ -77,9 +77,9 @@
               <div class="btn-lg groupPost__btn--like">
                 <% # if @you_like: %>
                 <% if false: %>
-                  <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+                  <a href="#" class="js-unlike js-vote" title="Unlike">Unlike</a>
                 <% else: %>
-                  <a href="#" class=" js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
+                  <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
                 <% end %>
               </div>
 
