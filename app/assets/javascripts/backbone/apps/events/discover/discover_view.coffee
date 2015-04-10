@@ -9,6 +9,7 @@
       location: @model.getLocation()
       isPast: @model.isPast()
       isOpen: @model.isOpen()
+      userCanAttend: @model.userCanAttend()
       select: (value, option)->
         if value == option then "selected" else ""
       attendance_status: ->

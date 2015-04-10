@@ -6,6 +6,9 @@
     <div class="col-md-6">
       <h2 class="userCard__name">
       <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h2>
+      <% if @userIsAdmin: %>
+        <a href="#" id="js-remove-attendance">Remove</a>
+      <% end %>
       <p class="member-position text-small"><%= @user.last_experience %></p>
     </div>
     <div class="col-md-3">

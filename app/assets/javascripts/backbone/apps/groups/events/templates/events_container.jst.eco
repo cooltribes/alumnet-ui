@@ -14,16 +14,16 @@
       </ul>
   </div>
   <div class="col-md-3">
-    <div class="input-group input-group--right">                   
+    <div class="input-group input-group--right">
             <input class="form-control" type="text" name="seach_term"
             id="js-search-input"  placeholder="Search">
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-search"></span>
-            </span>             
-    </div>       
+            </span>
+    </div>
   </div>
   <div class="col-md-4 text-center margin_top_xsmall_minus margin_bottom_xsmall">
-    <% if @userCanCreateSubGroup: %>
+    <% if @userIsMember: %>
       <a href="#groups/<%= @id %>/events/new" class="btn-primary-noBackground btn btn-lg" title="Create a new Event">+ Create a new Event</a>
     <% end %>
   </div>
