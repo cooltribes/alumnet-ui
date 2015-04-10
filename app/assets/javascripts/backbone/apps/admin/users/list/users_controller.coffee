@@ -43,17 +43,18 @@
             comparator = model.get("comparator")
             value = model.get("value")
             attr = "#{field}_#{comparator}"
+            
 
             if comparator in ["cont_any", "in"]
               if q[attr]?
                 q[attr].push value
               else
                 q[attr] = [value]
-
+            
 
           else
             validCollection = false
-
+            
 
         #Only if all filters are valid
         if validCollection
@@ -61,7 +62,7 @@
           q.m = @ui.logicOp.val()
           q["profile_first_name_or_cont"]
 
-          querySearch =
+          querySearch = 
             q: q
 
           AlumNet.request("admin:user:entities", querySearch)
