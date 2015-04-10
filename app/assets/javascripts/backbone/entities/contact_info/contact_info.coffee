@@ -23,7 +23,9 @@
         if value.indexOf(" ") > -1 || value == ''
           return "Enter a valid Skype account"
       else if contact_type == '7'
-        Backbone.Validation.validators.pattern(value, attr, 'url', @)     
+        Backbone.Validation.validators.pattern(value, attr, 'url', @) 
+       else if contact_type == '8'
+        Backbone.Validation.validators.pattern(value, attr, 'url', @)           
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
@@ -36,6 +38,7 @@
       5: 'Twitter'
       6: 'IRC'
       7: 'Web Site'
+      8: 'LinkedIn'
 
     # canShow: (friend, contact)->
     #   priv = if contact? then contact.get "privacy" else @get "privacy"      
