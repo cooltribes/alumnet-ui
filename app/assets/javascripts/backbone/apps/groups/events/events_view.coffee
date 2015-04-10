@@ -132,6 +132,7 @@
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
@@ -181,7 +182,7 @@
       $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
-      userCanCreateSubGroup: @model.canDo('create_subgroup')
+      userIsMember: @model.userIsMember()
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

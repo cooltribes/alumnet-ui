@@ -4,20 +4,24 @@
 
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture" style="height:100%" >
-        <img width="100%" src="<%= @picture.modal %>">
+        <% if @horizontal: %>
+          <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
+        <% else: %>
+          <img height="100%" src="<%= @picture.original %>">
+        <% end %>
         <% if @showMorePics: %>
-          <a href="#" title="Next picture" class="btn-default btn  btn-default js-next-picture" style="
+          <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+              margin-right:3px;
               right: 0;
               position: absolute;
               top: 50%;
-              margin-right: 25px;
           "><span class="glyphicon glyphicon-chevron-right"></span></a>
 
-          <a href="#" title="Next picture" class="btn-default btn  btn-default js-prev-picture" style="
+          <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+              margin-left:3px;
               left: 0;
               position: absolute;
               top: 50%;
-              margin-left: 25px;
           "><span class="glyphicon glyphicon-chevron-left"></span></a>
         <% end %>
 

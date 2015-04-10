@@ -40,6 +40,15 @@
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'
     childView: Conversations.MessageView
+    initialize: (options) ->
+      @recipient = options.recipient
+
+    templateHelpers: ->
+      if @recipient
+        recipient: @recipient.id
+      else
+        recipient: ''
+
     ui:
       'inputBody': '#body'
       'inputSubject': '#subject'
@@ -59,6 +68,8 @@
         @ui.selectRecipients.val('')
 
     onRender: ->
+      if @recipient
+        user_data = { id: @recipient.id, name: @recipient.get('name') }
       @ui.selectRecipients.select2
         placeholder: "Select a Friend"
         multiple: true
@@ -78,6 +89,8 @@
           data.name
         formatSelection: (data)->
           data.name
+        initSelection: (element, callback)->
+          callback(user_data) if user_data
 
   class Conversations.ReplyView extends Marionette.CompositeView
     template: 'home/conversations/templates/reply'

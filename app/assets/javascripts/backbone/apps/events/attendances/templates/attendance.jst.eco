@@ -1,12 +1,15 @@
 <div class="userCard">
   <div class="row">
     <div class="col-md-3">
-      <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle" width="100%">
+      <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
     </div>
     <div class="col-md-6">
       <h2 class="userCard__name">
       <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h2>
-      <p class="member-position text-small"><%= @user.email %></p>
+      <% if @userIsAdmin: %>
+        <a href="#" id="js-remove-attendance">Remove</a>
+      <% end %>
+      <p class="member-position text-small"><%= @user.last_experience %></p>
     </div>
     <div class="col-md-3">
       <span class="invitation">
