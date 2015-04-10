@@ -60,17 +60,16 @@
     templateHelpers: ->
       model = @model
       canEditInformation: @model.userIsAdmin()
+      userCanAttend: @model.userCanAttend()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
       hasInvitation: ->
         if model.get('attendance_info') then true else false
       attendance: ->
         if model.get('attendance_info') then model.get('attendance_info') else false
-      buttonAttendance: (id,status) ->
-        if(id=="js-"+status.replace('_','-'))
-          return 'groupCoverArea__attendanceOptions--option--active'
-        else
-          console.log id.replace('-','_')+"   jo   js-"+status.replace("-", "")
-          return ''
+      buttonAttendance: (id, status) ->
+        if status
+          if id == "js-" + status.replace('_','-')
+            return 'groupCoverArea__attendanceOptions--option--active'
 
 
     modelEvents:
@@ -103,7 +102,11 @@
       $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
       value = $(e.currentTarget).data('value')
       attendance = @model.attendance
-      attendance.save {status: value}
+      if attendance.isNew()
+        values = { event_id: @model.id, user_id: AlumNet.current_user.id, status: value }
+      else
+        values = { status: value }
+      attendance.save values
 
     onRender: ->
       model = this.model

@@ -1,79 +1,56 @@
-<div class="groupCard">
-  <div class="clearfix">
-    <!-- COVER ON -->
-    <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
-    <% if @official: %><span class="groupCard__ribbon"></span><% end %>
-    </div>
-    <!-- COVER OFF -->
-
-    <!-- CONTENT ON -->
-    <div class=" groupCard__content">
-      <div class="groupCard__text">
-        <h3 class="groupCard__title">
-        <a href="#events/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
-        </h3>
-        <span class="groupCard__status pull-right
-          <% if @event_type.value== 1: %>
-            groupCard__status--closed
-          <% end %>
-          <% if @event_type.value== 0: %>
-            groupCard__status--public
-          <% end %>
-        ">
-        </span>
-        <p class="groupCard__description">
-          <%= @description %><br>
-          <%= @location %>
-        </p>
-      </div>
-      <div class="row">
-        <div class="userCard__avatar col-md-3 ">
-          <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle">
-        </div>
-        <div class="col-md-7">
-          <h4 class="userCard__name">
-          <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a></h4>
+<div class="col-md-8 col-md-offset-2">
+    <div class="row eventsTableView margin_bottom_xsmall">
+      <div class="col-md-2 no-padding ">
+        <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: 100%;" >
+        <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
         </div>
       </div>
-
-      </div>
-      <div class="groupCard__atributes">
-        <div class="clearfix ">
-          <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Start on" class="groupCard__atribute__container--odd">
-              <span class="groupCard__icon ico-calendar"></span>
-              <%= moment(@start_date).format('MM/YYYY') %>
+      <div class="col-md-10">
+        <div>
+          <h3 class="margin_top_xsmall">
+            <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
+          </h2>
+        </div>
+        <div class="row margin_top_xsmall margin_bottom_xsmall">
+          <div class="col-md-4 row">
+            <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall">
+            <div>Invited by:</div>
+            <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <span class="glyphicon glyphicon-time"></span>
+              <%= moment(@start_date).format('MM/YYYY') %>, <%= @start_hour %>
+            </div>
+            <div>
+              <span class="glyphicon glyphicon-map-marker"></span>
+              <%= @location %>
             </div>
           </div>
-          <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Start Hour" class="groupCard__atribute__container--odd">
-              <span class="groupCard__icon ico-calendar"></span>
-              <%= @start_hour %>
-            </div>
+          <div class="col-md-2">
+            <span class="ico-company"></span>
+            Attending:<%= @attendances_count %>
           </div>
-          <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Attending" class="groupCard__atribute__container--odd">
-              <span class="groupCard__icon ico-calendar"></span>
-              <%= @attendances_count %>
-            </div>
+          <div class="col-md-3 no-padding">
+          <% if @userCanAttend && not @isPast: %>
+            <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
+              <option value="invited">INVITED</option>
+              <option value="going" <%= @select(@attendance_status(), "going") %>>
+                JOIN
+              </option>
+              <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
+                MAYBE
+              </option>
+              <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
+                DECLINE
+             </option>
+            </select>
+            <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
+            <span id="attendance-status" class="sr-only">(success)</span>
+          <% end %>
           </div>
         </div>
       </div>
     </div>
-    <!-- CONTENT ON -->
-    <% if not @isPast && @isOpen: %>
-      <select class="form-control input-lg" id="attendance-status" name="status">
-        <option value="invited"></option>
-        <option value="going" <%= @select(@attendance_status(), "going") %>>
-          Going
-        </option>
-        <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
-          Maybe
-        </option>
-        <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
-          Not Going
-        </option>
-      </select>
-    <% end %>
-  </div>
 </div>
+

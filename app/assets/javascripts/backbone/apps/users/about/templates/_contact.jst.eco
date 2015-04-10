@@ -22,6 +22,9 @@
 <% if @contact_type== 7: %>
     <span class="icon-entypo-link"></span> <%= @info %>
 <% end %>
+<% if @contact_type== 8: %>
+    <span class="icon-entypo-link"></span> <%= @info %>
+<% end %>
 
 
 

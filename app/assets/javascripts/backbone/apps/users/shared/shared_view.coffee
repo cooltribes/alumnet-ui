@@ -14,6 +14,7 @@
       "click @ui.editPic": "editPic"
       "click @ui.editCover": "editCover"
       'click #js-request-send':'sendRequest' #Evento agregado
+      'click #js-message-send':'sendMensagge'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -60,9 +61,12 @@
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       AlumNet.current_user.incrementCount('pending_sent_friendships')
-      friendship.on 'save:success', (response, options) =>                   
+      friendship.on 'save:success', (response, options) =>
       @model.fetch()
 
+    sendMensagge: (e)->
+      e.preventDefault()
+      AlumNet.trigger('conversation:recipient', @model)
 
 
   class Shared.Layout extends Marionette.LayoutView

@@ -38,9 +38,9 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
           return "/Facebook"      
         if contact_type == 5
           return "@Twitter"
-        if contact_type == 5
+        if contact_type == 6
           return "Account"
-        if contact_type == 5
+        if contact_type == 7
           return "https://www.example.com"                      
 
 
@@ -81,8 +81,10 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
         @ui.info.attr("placeholder", "@Twitter")
       else if @ui.selectType.val() == "6"
         @ui.info.attr("placeholder", "Account")
-      else  
+      else if @ui.selectType.val() == "7"
         @ui.info.attr("placeholder", "https://www.example.com")
+      else
+        @ui.info.attr("placeholder", "https://www.LinkedIn.com/example")
         
         
 
