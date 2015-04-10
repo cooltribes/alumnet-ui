@@ -3,10 +3,12 @@
   class Attendances.AttendanceView extends Marionette.ItemView
     template: 'events/attendances/templates/attendance'
     className: 'col-md-4 col-sm-6'
-    initialize: ->
-      console.log @model
+    initialize: (options)->
+      @event = options.event
+
     templateHelpers: ->
-      model=@model
+      model = @model
+      userIsAdmin: @event.userIsAdmin()
       statusText: ()->
         if(model.get('status')=='not_going')
           return "NOT\nATTENDING"
@@ -16,15 +18,31 @@
           return "INVITED"
         return "INVITED"
 
+    ui:
+      'removeLink': '#js-remove-attendance'
+
+    events:
+      'click @ui.removeLink': 'removeAttendance'
+
+    removeAttendance: (e)->
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy()
+
   class Attendances.AttendancesView extends Marionette.CompositeView
     template: 'events/attendances/templates/attendances_container'
     childView: Attendances.AttendanceView
     childViewContainer: '.main-attendances-area'
+    childViewOptions: ->
+      event: @model
+
     initialize: ->
       @collection.getByStatus(1, {})
 
     templateHelpers: ->
       userIsAdmin: @model.userIsAdmin()
+
 
     ui:
       'goingLink': '#js-going'

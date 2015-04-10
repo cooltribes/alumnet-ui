@@ -40,6 +40,9 @@
     userIsAdmin: ->
       @get('admin')
 
+    userCanAttend: ->
+      @get('can_attend')
+
     userIsInvited: ->
       attendance = @get('attendance_info')
       if attendance == null then false else true

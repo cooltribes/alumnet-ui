@@ -31,7 +31,24 @@
             <span class="ico-company"></span>
             Attending:<%= @attendances_count %>
           </div>
-          
+          <div class="col-md-3 no-padding">
+          <% if @userCanAttend && not @isPast: %>
+            <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
+              <option value="invited">INVITED</option>
+              <option value="going" <%= @select(@attendance_status(), "going") %>>
+                JOIN
+              </option>
+              <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
+                MAYBE
+              </option>
+              <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
+                DECLINE
+             </option>
+            </select>
+            <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
+            <span id="attendance-status" class="sr-only">(success)</span>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>
