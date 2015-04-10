@@ -6,10 +6,10 @@
         <option value="">Select field</option>
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
-        <option value="residence_country">Country of residence</option>
-        <option value="birth_country">Country of origin</option>
-        <option value="created_at">Joining date</option> 
-        <option value="id">ID</option> 
+        <option value="profile_residence_country_name">Country of residence</option>
+        <option value="profile_birth_country_name">Country of origin</option>
+        <!--<option value="created_at">Joining date</option> 
+            <option value="id">ID</option>  -->
 
         <!-- <option value="joined">Join date</option>
         <option value="gender">Gender</option> -->
