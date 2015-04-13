@@ -1,0 +1,3 @@
+<td><%= @name %></td>
+<td><%= @countries_length %></td>
+<td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>

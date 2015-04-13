@@ -43,7 +43,7 @@
     <ul>
       <% if @admins.length: %>
         <% for admins in @admins: %>
-          <li> 
+          <li>
             <div class="tableAdminGroups__adminsList__avatar">
               <img src="<%= admins.avatar %>" class="img-circle img-responsive " alt="">
             </div>
@@ -65,5 +65,5 @@
 </td>
 <td class="tableAdminGroups__colText"><%= @getAlumniCount() %></td>
 <td class="tableAdminGroups__edit">
-    <button class="js-edit tableAdminGroups__btnEdit"><span class="icon-entypo-cog"></span></button>
+  <button class="js-edit tableAdminGroups__btnEdit"><span class="icon-entypo-cog"></span></button>
 </td>

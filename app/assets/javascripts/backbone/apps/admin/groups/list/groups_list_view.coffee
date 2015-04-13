@@ -93,7 +93,7 @@
 
     deleteClicked: (e)->
       e.preventDefault()
-      resp = confirm("¿Are you sure?")
+      resp = confirm("Are you sure?")
       if resp
         @model.destroy()
         @destroy()
