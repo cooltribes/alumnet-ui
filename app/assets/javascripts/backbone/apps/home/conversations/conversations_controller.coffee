@@ -1,6 +1,6 @@
 @AlumNet.module 'HomeApp.Conversations', (Conversations, @AlumNet, Backbone, Marionette, $, _) ->
   class Conversations.Controller
-    showCurrentUserConversations: (conversation_id)->
+    showCurrentUserConversations: (conversation_id, user)->
       conversations = AlumNet.request('conversations:get', {})
       layout = new Conversations.Layout
 
@@ -9,6 +9,7 @@
 
       replyView = new Conversations.ReplyView
       newConversationView = new Conversations.NewConversationView
+        recipient: user
 
       AlumNet.mainRegion.show(layout)
       layout.conversations.show(conversationsView)
@@ -33,6 +34,7 @@
 
       # Reload the new conversation view when link new is clicked
       layout.on 'new:conversation', ->
+        newConversationView.recipient = undefined
         layout.messages.show(newConversationView, { preventDestroy: true })
 
 

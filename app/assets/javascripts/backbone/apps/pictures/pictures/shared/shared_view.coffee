@@ -13,9 +13,6 @@
 
     initialize: (options)->
       @view = options.view
-      console.log @model
-
-
 
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->
@@ -32,7 +29,12 @@
     templateHelpers: ->
 
       model = @model
-
+      img = $("<img>").attr("src", @model.attributes.picture.original).load()          
+      proportion = parseFloat(parseInt(img[0].width,10) / parseInt(img[0].height,10))*5
+      h= parseInt(img[0].width,10) > parseInt(img[0].height,10)  && proportion > 8
+      delete img[0]
+      horizontal: h
+      top : proportion
       showMorePics: @model.collection.length > 1 
 
       getLocation: ->

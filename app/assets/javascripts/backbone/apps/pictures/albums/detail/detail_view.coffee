@@ -19,6 +19,9 @@
     events:
       "click .js-pic-detail": "showDetail"  
       'click .js-rmvItem': "removeItem"
+    
+    modelEvents:
+      'change': "modelChange"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -35,9 +38,16 @@
     showDetail: (e)->
       e.preventDefault()      
 
-      modal = AlumNet.request "picture:modal", @model        
+      if @model.picture
+        modal = AlumNet.request "picture:modal", @model        
 
-      @ui.modalCont.html(modal.render().el)
+        @ui.modalCont.html(modal.render().el)
+
+    modelChange: ()  ->
+      @render()
+
+    # onRender: ()  ->
+    #   console.log @model
 
   class AlbumDetail.DetailView extends Marionette.CompositeView
     template: 'pictures/albums/detail/templates/albumDetail'
@@ -51,6 +61,7 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+      @pictures_ids = []
 
     templateHelpers: ->
       model = @model
@@ -63,18 +74,35 @@
     ui:
       "modalCont": "#js-modal-container"  
       "fileInput": "#picture-file"  
+      "mainUploadButton": "#js-upload"  
+      "uploadButtons": ".js-upload"  
 
     triggers:    
       'click .js-returnAlbums': 'return:to:albums'
     
     events:    
-      'click .js-upload': 'triggerFile'
+      # 'click @ui.uploadButtons': 'triggerFile'
       'click .js-edit': 'editAlbum'
       'change @ui.fileInput': 'uploadPicture'
 
-    triggerFile: (e)->
-      e.preventDefault()
-      @ui.fileInput.click()
+    # triggerFile: (e)->
+      # e.preventDefault()
+      # console.log "upload buttons"
+      # console.log @ui.mainUploadButton
+      # @ui.mainUploadButton.mousedown()
+      # @ui.mainUploadButton.mouse()
+
+
+    onShow: ->
+      # console.log "ui"
+      # console.log @ui.uploadButtons.get()
+      # console.log "selkecsyt"
+      # window.vista =
+      # console.log 
+      #Init the file uploader
+      # uploader = new AlumNet.Utilities.PluploaderAlbums('js-upload', @).uploader               
+      uploader = new AlumNet.Utilities.PluploaderAlbums($(".js-upload", @.$el).get(), @).uploader               
+      uploader.init()       
 
     editAlbum: (e)->
       e.preventDefault()
@@ -85,13 +113,15 @@
 
       @ui.modalCont.html(modal.render().el)    
       
+
     uploadPicture: (e)->
-      data = Backbone.Syphon.serialize this
-      if data.picture != ""          
-        formData = new FormData()
-        file = @$('#picture-file')
-        formData.append('picture', file[0].files[0])           
-        @trigger "upload:picture", formData 
+      
+      # data = Backbone.Syphon.serialize this
+      # if data.picture != ""          
+      #   formData = new FormData()
+      #   file = @$('#picture-file')
+      #   formData.append('picture', file[0].files[0])           
+      #   @trigger "upload:picture", formData 
 
 
     # openModal: (e)->
