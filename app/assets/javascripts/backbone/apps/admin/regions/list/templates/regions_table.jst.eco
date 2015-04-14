@@ -1,9 +1,8 @@
 <table class="table tableAdmin" id="regions-table">
 	<thead>
 		<tr>
-		  <th>Name</th>
-      <th>Countries Count</th>
-      <th style="width: 5%">Edit</th>
+		  <th>Name/Countries</th>
+      <th>Region Admins</th>
 		</tr>
 	</thead>
 	<tbody>

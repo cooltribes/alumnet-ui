@@ -40,6 +40,17 @@
     cancelEl: '#js-modal-close'
     initialize: (options)->
       @regionTable = options.regionTable
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
       regionIsNew: @model.isNew()

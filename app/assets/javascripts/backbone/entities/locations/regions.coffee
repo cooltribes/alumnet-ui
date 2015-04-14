@@ -7,6 +7,11 @@
     countries: ->
       @get('countries')
 
+    validation:
+      name:
+        required: true
+        msg: 'Name of the Region is required'
+
   class Entities.Regions extends Backbone.Collection
     url: ->
       AlumNet.api_endpoint + '/admin/regions/'
