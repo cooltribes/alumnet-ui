@@ -74,15 +74,15 @@
     templateHelpers: ->
       userIsMember: @model.userIsMember()
 
-    sendJoin: (e)->
-      e.preventDefault()
-      @trigger 'join'
-
-   renderView: (e)->
-      @model.fetch()
-      @render()
+    renderView: (e)->
+      @model.fetch()      
       @model.render()
 
+    sendJoin: (e)->
+      e.preventDefault()
+      @trigger 'join' 
+      @model.fetch()              
+  
     onRender: ->
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
