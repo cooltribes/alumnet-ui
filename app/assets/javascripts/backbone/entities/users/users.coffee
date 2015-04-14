@@ -101,13 +101,17 @@
         "system"
       else if @get('is_alumnet_admin')
         "alumnet"
+      else if @get('is_regional_admin')
+        "regional"
+      else if @get('is_nacional_admin')
+        "nacional"
       else
         "regular"
 
     incrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")
       @set("#{counter}_count", value + val)
-      @get("#{counter}_count")    
+      @get("#{counter}_count")
 
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")
