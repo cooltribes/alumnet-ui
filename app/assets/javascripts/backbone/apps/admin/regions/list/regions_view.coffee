@@ -83,7 +83,11 @@
             modal.destroy()
 
     onRender: ->
-      data = CountryList.toSelect2()
+      data = if @model.isNew()
+        AlumNet.request("get:availables:countries")
+      else
+        CountryList.toSelect2()
+
       @.$('.js-countries').select2
         multiple: true
         placeholder: "Select a Country"
