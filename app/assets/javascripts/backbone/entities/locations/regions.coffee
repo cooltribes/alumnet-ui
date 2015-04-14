@@ -21,6 +21,17 @@
     getRegions: ()->
       new Entities.Regions
 
+    regionsToSelect2: ()->
+      regions = new Entities.Regions
+      regions.fetch
+        async: false
+      regions.map (model)->
+        id: model.id
+        text: model.get('name')
+
 
   AlumNet.reqres.setHandler 'get:regions', ->
     API.getRegions()
+
+  AlumNet.reqres.setHandler 'get:regions:select2', ->
+    API.regionsToSelect2()

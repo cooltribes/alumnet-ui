@@ -33,7 +33,7 @@
       resp = confirm("Are you sure?")
       if resp
         @model.destroy()
-        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.        
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.
 
     openPremium: (e) ->
       e.preventDefault();
@@ -79,7 +79,7 @@
 
       Backbone.ajax
         url: url
-        type: "POST" 
+        type: "POST"
         data: data
         success: (data) =>
           #@model.set(data)
@@ -91,7 +91,7 @@
           console.log(data)
           #text = data.responseJSON[0]
           #$.growl.error({ message: text })
-      
+
 
     onRender: ->
       min_date = moment().format("YYYY-MM-DD")
@@ -149,11 +149,36 @@
     initialize: ->
       @model.set('roleText', @model.getRole())
 
+    onRender: ->
+      role = @model.getRole()
+      @setSelectLocation(role, @model.get('admin_location'))
+
+    events:
+      'change select#role': 'displayLocations'
+
+    displayLocations: (e)->
+      role = $(e.currentTarget).val()
+      @setSelectLocation(role)
+
+    setSelectLocation: (role, value)->
+      if role == "nacional"
+        data = CountryList.toSelect2()
+      else if role == "regional"
+        data = AlumNet.request('get:regions:select2')
+      else
+        @.$('#js-location').select2('destroy')
+
+      if data
+        @.$('#js-location').select2
+          placeholder: "Select Location"
+          data: data
+        if value
+          @.$('#js-location').select2('data', value)
+
     submit: () ->
       data = Backbone.Syphon.serialize(this)
       id = @model.id
       url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
-
       Backbone.ajax
         url: url
         type: "PUT"
