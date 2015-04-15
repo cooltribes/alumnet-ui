@@ -4,11 +4,13 @@
       groups = AlumNet.request('group:entities:admin', {})
 
       layoutView = new GroupsList.Layout
+      searchView = new GroupsList.SearchView
       groupsTable = new GroupsList.GroupsTable
         collection: groups
         linksGroups: []
 
       AlumNet.mainRegion.show(layoutView)
+      layoutView.search.show(searchView)
       layoutView.table.show(groupsTable)
       AlumNet.execute('render:admin:groups:submenu', undefined, 0)
 
@@ -17,6 +19,11 @@
         groupsTable.collection.fetch
           success: ->
             layoutView.table.show(groupsTable, { preventDestroy: true, forceShow: true })
+
+      searchView.on 'search', (term)->
+        querySearch = { q: name_cont: term }
+        groupsTable.collection.fetch
+          data: querySearch
 
       groupsTable.on 'childview:subgroups:show', (view, subgroups)->
         model = view.model
