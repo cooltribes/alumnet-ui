@@ -6,6 +6,18 @@
       search: '#search-region'
       table: '#table-region'
 
+  class GroupsList.SearchView extends Marionette.ItemView
+    template: 'admin/groups/list/templates/search'
+
+    events:
+      'click .js-search': 'searchCliked'
+
+    searchCliked: (e)->
+      e.preventDefault()
+      term = @.$('#search_term').val()
+      @trigger 'search', term
+
+
   class GroupsList.GroupView extends Marionette.ItemView
     template: 'admin/groups/list/templates/group'
     tagName: "tr"
