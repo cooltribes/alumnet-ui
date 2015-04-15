@@ -15,8 +15,8 @@
         if(model.get('status')=='going')
           return "ATTENDING"
         if(model.get('status')=='maybe')
-          return "INVITED"
-        return "INVITED"
+          return "MAYBE"
+        return "RSVP"
 
     ui:
       'removeLink': '#js-remove-attendance'
