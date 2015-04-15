@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills" id="groupMenuList">
 				<% if @groupIsClose && not @userIsMember: %>
 					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
 						<span class="icon-entypo-dot-3"></span>
