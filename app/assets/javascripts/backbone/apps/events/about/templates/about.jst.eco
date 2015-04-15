@@ -66,7 +66,18 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="groupAbout__box margin_bottom">
+            <h3>Capacity:  <b><span id="capacity"><%= @capacity_text %></span></b> attendances</h3>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-capacity">[edit]</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div id="container-modal-location"></div>
+
