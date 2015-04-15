@@ -111,6 +111,8 @@
       initializeGroups() if Entities.groups == undefined
       Entities.groups.fetch
         data: querySearch
+        success: (model, response, options) ->
+          Entities.groups.trigger('fetch:success')
       Entities.groups
 
     getGroupsForAdmin: (querySearch)->
