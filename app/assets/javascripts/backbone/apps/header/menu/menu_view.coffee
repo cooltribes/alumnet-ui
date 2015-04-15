@@ -49,6 +49,8 @@
       'click @ui.changeHeader': 'changeHeader'
       'click @ui.notificationsMarkAll': 'markAllNotifications'
       'click .navTopBar__left__item' : 'menuOptionClicked'
+      'click #programsList li' : 'dropdownClicked'
+      'click #accountList li' : 'accountDropdownClicked'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -121,15 +123,22 @@
       # alert "Changing header to regular user"
       AlumNet.execute('header:show:admin')
 
-    menuOptionClicked: (e)->
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $(".navTopBar__left__item").children()
-        .removeClass "navTopBar__left__item--active"
-      if($(e.target).parent().hasClass 'dropdown-toggle')
-        $(e.target).removeClass "navTopBar__left__item--active"
+    menuOptionClicked: (e)->      
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      if $(e.target).is('i')
+        if ! $(e.target).parent().hasClass 'dropdown-toggle'
+          $(e.target).parent().addClass "navTopBar__left__item--active"
       else
-        $(e.target).addClass "navTopBar__left__item--active"
+        if ! $(e.target).hasClass 'dropdown-toggle'
+          $(e.target).addClass "navTopBar__left__item--active"
+
+
+    dropdownClicked: (e)->      
+      $('#programsLayoutOption').addClass "navTopBar__left__item--active"
+
+    accountDropdownClicked: (e)->
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+
 
 
 

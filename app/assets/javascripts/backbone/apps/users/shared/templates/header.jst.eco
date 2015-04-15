@@ -28,7 +28,7 @@
   <% end %>
 
   <h1 class="userCoverArea__title ">
-    <%= @name %>
+    <%= @cortado() %>
     <br>
   </h1>
   <p class="userCoverArea__subTitle">
