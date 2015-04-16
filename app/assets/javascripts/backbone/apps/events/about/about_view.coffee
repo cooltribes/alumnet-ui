@@ -44,9 +44,10 @@
       @current_user = options.current_user
 
     templateHelpers: ->
-      model = @model
+      capacity = @model.get('capacity')
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.userIsAdmin()
+      capacity_text: if capacity then capacity else '--'
 
     ui:
       'eventDescription':'#description'
@@ -55,10 +56,12 @@
       'endDate':'#js-edit-end-date'
       'startHour':'#start_hour'
       'endHour':'#end_hour'
+      'capacity': '#capacity'
       'Gmap': '#map'
 
     events:
       'click a#js-edit-description': 'toggleEditDescription'
+      'click a#js-edit-capacity': 'toggleEditCapacity'
       'click a#js-edit-address': 'showModalLocation'
 
     onRender: ->
@@ -73,6 +76,18 @@
             'this field is required'
         success: (response, newValue)->
           view.model.save({description: newValue})
+
+      @ui.capacity.editable
+        type: 'text'
+        pk: view.model.id
+        title: 'Enter the capacity of Event'
+        toggle: 'manual'
+        validate: (value)->
+          unless /^\d+$/.test(value)
+            'this field should be numeric'
+        success: (response, newValue)->
+          newValue = parseInt(newValue)
+          view.model.save({capacity: newValue})
 
       @ui.startDate.Zebra_DatePicker
         show_icon: false
@@ -110,6 +125,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.eventDescription.editable('toggle')
+
+    toggleEditCapacity: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.capacity.editable('toggle')
 
     showModalLocation: (e)->
       e.preventDefault()

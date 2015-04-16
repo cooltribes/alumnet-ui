@@ -4,9 +4,9 @@
     appRoutes:
       "admin/users": "usersList"
       "admin/groups": "groupsList"
+      "admin/regions": "regionsList"
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
-
 
   API =
     usersList: ->
@@ -21,6 +21,9 @@
     groupsDeleted: ->
       controller = new AdminApp.GroupsDeleted.Controller
       controller.groupsDeleted()
+    regionsList: ->
+      controller = new AdminApp.Regions.Controller
+      controller.regionsList()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
