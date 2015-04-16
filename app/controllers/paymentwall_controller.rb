@@ -31,8 +31,6 @@ class PaymentwallController < ApplicationController
       @response_user = subscription.response_user
 
       render :text => "OK"
-      #puts 'OK' # Paymentwall expects response to be OK, otherwise the @pingback will be resent
-      #render :nothing => true
     #else
       #@response = @pingback.getErrorSummary()
       #puts @pingback.getErrorSummary()

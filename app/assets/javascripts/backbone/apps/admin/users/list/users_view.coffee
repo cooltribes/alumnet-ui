@@ -82,21 +82,17 @@
         type: "POST" 
         data: data
         success: (data) =>
-          #@model.set(data)
-          #@model.trigger 'change:role'
           console.log("success")
           console.log(data)
         error: (data) =>
           console.log("error")
           console.log(data)
-          #text = data.responseJSON[0]
-          #$.growl.error({ message: text })
       
 
     onRender: ->
       min_date = moment().format("YYYY-MM-DD")
       max_date = moment().add(20, 'years').format("YYYY-MM-DD")
-      @$(".js-date-begin").Zebra_DatePicker
+      @$(".js-date-start-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
@@ -105,7 +101,7 @@
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
-      @$(".js-date-end").Zebra_DatePicker
+      @$(".js-date-end-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
