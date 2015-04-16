@@ -11,6 +11,7 @@ DESCRIPTION: Displays a list of groups in the Groups
     background-color: @white;
     margin-bottom: 2em;
     position: relative;
+    
 
 
     &__subGroupShadow{
@@ -185,10 +186,7 @@ DESCRIPTION: Displays a list of groups in the Groups
     &__animation:hover &__actions__text{
       display: inline;
     }
-
-
-| 
-    
+  
     &__menu{
         color: @white;
         opacity: 0;
@@ -278,8 +276,7 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
         &__menu{
             &__list{
-                height: 188px;
-                overflow: scroll;
+                height: 188px;                
             }
         }
     }
@@ -306,7 +303,8 @@ DESCRIPTION: Displays a list of groups in the Groups
         &__menu{
             &__list{
                 height: 188px;
-                overflow: scroll;
+                overflow-x: hidden;
+                overflow-y: auto; 
             }
         }
     }    

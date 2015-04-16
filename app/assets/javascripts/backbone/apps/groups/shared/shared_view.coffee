@@ -101,12 +101,20 @@
     template: 'groups/shared/templates/layout'
     initialize: ->
       @current_user = AlumNet.current_user
+ 
 
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
       userIsMember: @model.userIsMember()
       groupIsClose: @model.isClose()
+
+    events:
+      "click #groupMenuList li":"menuClicked"
+
+    menuClicked: (e) ->
+      $('.groupMenu__link').removeClass "groupMenu__link--active"
+      $(e.target).closest('a').removeClass "groupMenu__link--active"
 
     regions:
       header: '#group-header'
