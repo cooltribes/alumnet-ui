@@ -23,12 +23,14 @@
           Groups
         </a>
       </li>
-      <li>
-        <a class="navTopBar__left__item" href="#admin/regions">
-          <i class="icon-entypo-share"></i>
-          Regions
-        </a>
-      </li>
+      <%%= if @isAlumnetAdmin: %>
+        <li>
+          <a class="navTopBar__left__item" href="#admin/regions">
+            <i class="icon-entypo-share"></i>
+            Regions
+          </a>
+        </li>
+      <%% end %>
     </ul>
     <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
       <!-- Right menu top -->

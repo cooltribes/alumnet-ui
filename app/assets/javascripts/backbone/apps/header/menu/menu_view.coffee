@@ -73,7 +73,7 @@
     templateHelpers: ->
       model = @model
       first_name: @model.profile.get("first_name")
-      isAlumnetAdmin: @model.isAlumnetAdmin()
+      isAdmin: @model.isAdmin()
       daysLeft: model.get('days_membership')
       memberTitle: ->
         if(model.get('member')==1)
@@ -123,7 +123,7 @@
       # alert "Changing header to regular user"
       AlumNet.execute('header:show:admin')
 
-    menuOptionClicked: (e)->      
+    menuOptionClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
       if $(e.target).is('i')
         if ! $(e.target).parent().hasClass 'dropdown-toggle'
@@ -133,7 +133,7 @@
           $(e.target).addClass "navTopBar__left__item--active"
 
 
-    dropdownClicked: (e)->      
+    dropdownClicked: (e)->
       $('#programsLayoutOption').addClass "navTopBar__left__item--active"
 
     accountDropdownClicked: (e)->
@@ -158,7 +158,6 @@
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
-
     changeHeader: (e)->
       # e.preventDefault()
 

@@ -28,6 +28,9 @@
       step = @profile.get "register_step"
       step == "approval"
 
+    isAdmin: ->
+      @get "is_admin"
+
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
 
