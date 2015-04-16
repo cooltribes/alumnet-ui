@@ -107,7 +107,7 @@
         </a>
       <%% else: %>
         <%% if @member==2: %>
-          <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal" style="padding-left: 60px;">
+          <a href="#premium" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" style="padding-left: 60px;">
             <span class=" navTopBar__right__item--renew">
                Renew membership
               <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
@@ -119,7 +119,7 @@
             </span>
           </a>
         <%% else: %>
-          <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>" data-toggle="modal" data-target="#devAlertModal">
+          <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>">
           <span class=" navTopBar__right__item--member">
           <span class="glyphicon glyphicon-certificate"></span>
           <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
