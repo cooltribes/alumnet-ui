@@ -1,0 +1,16 @@
+<table class="table tableAdmin" id="regions-table">
+	<thead>
+		<tr>
+		  <th>Name/Countries</th>
+      <th>Region Admins</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+
+
+
+
+
+

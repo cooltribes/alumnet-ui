@@ -2,29 +2,36 @@
 
   class Entities.Region extends Backbone.Model
     urlRoot: ->
-      AlumNet.api_endpoint + '/regions/'
+      AlumNet.api_endpoint + '/admin/regions/'
+
+    countries: ->
+      @get('countries')
+
+    validation:
+      name:
+        required: true
+        msg: 'Name of the Region is required'
 
   class Entities.Regions extends Backbone.Collection
     url: ->
-      AlumNet.api_endpoint + '/regions'
+      AlumNet.api_endpoint + '/admin/regions/'
     model: Entities.Region
-
-  initializeRegions = ->
-    Entities.regions = new Entities.Regions
-    Entities.regions.fetch({async: false})
 
   API =
     getRegions: ()->
-      initializeRegions() if Entities.regions == undefined
-      Entities.regions
+      new Entities.Regions
+
+    regionsToSelect2: ()->
+      regions = new Entities.Regions
+      regions.fetch
+        async: false
+      regions.map (model)->
+        id: model.id
+        text: model.get('name')
+
 
   AlumNet.reqres.setHandler 'get:regions', ->
     API.getRegions()
 
-  class RegionList
-    window.RegionList =
-      toSelect2: ->
-        regions = AlumNet.request 'get:regions'
-        regions.map (model)->
-          id: model.id
-          text: model.get('name')
+  AlumNet.reqres.setHandler 'get:regions:select2', ->
+    API.regionsToSelect2()
