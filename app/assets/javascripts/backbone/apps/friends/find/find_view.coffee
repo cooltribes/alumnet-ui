@@ -19,7 +19,7 @@
       'click #js-reject-friendship':'clickedReject'
       'click #js-delete-friendship':'clickedDelete'
       'click #js-cancel-friendship':'clickedCancel'
-
+     
 
     clickedAccept: (e)->
       e.preventDefault()

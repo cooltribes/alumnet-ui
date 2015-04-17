@@ -42,6 +42,24 @@ DESCRIPTION: Used for  execute search queries. It includes a title at left hand 
         border: 1px solid rgb(204, 204, 204);
         background: none repeat scroll 0% 0% rgb(255, 255, 255);   
         color: @main-blue; 
+    }
+
+    input{
+        border: 1px solid #cccccc;
+        font-style: italic;
+        font-size: 100%;
+    }
+
+    input.small{
+        height: 30px;
+    } 
+
+    input.medium{
+        height: 50px;
+    } 
+
+    input.large{
+        height: 70px;
     }  
 
     &--right{
@@ -51,7 +69,8 @@ DESCRIPTION: Used for  execute search queries. It includes a title at left hand 
             padding: 0 5px 0 0;
         }
         input{
-            border-right: 0px;
+            border-right:0px;  
+
         }                
     }
     &--left{
@@ -60,8 +79,8 @@ DESCRIPTION: Used for  execute search queries. It includes a title at left hand 
             border-left: 1px solid rgb(204, 204, 204);
             padding-left: 0 0 0 5px;
         }
-        input{
-            border-left: 0px;
+        input{ 
+            border-left:0px;  
         }  
     }   
     input:focus{

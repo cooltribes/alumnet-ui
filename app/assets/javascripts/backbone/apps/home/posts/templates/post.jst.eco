@@ -5,7 +5,7 @@
       <div class="groupPost__avatar">
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
-      <div>
+      <div class="postCard__info">
       <%- @infoLink %>
       </div>
       <!-- Avatar OFF -->
