@@ -73,7 +73,7 @@
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
-            'this field is required'
+            'Event description is required, must be less than 2048 characters'
         success: (response, newValue)->
           view.model.save({description: newValue})
 
@@ -84,7 +84,7 @@
         toggle: 'manual'
         validate: (value)->
           unless /^\d+$/.test(value)
-            'this field should be numeric'
+            'This field should be numeric'
         success: (response, newValue)->
           newValue = parseInt(newValue)
           view.model.save({capacity: newValue})
