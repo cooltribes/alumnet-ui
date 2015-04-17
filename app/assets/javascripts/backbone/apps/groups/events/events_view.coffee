@@ -131,6 +131,7 @@
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userIsAdmin: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
