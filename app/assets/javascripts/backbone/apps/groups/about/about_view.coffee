@@ -88,7 +88,7 @@
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
-            'this field is required'
+            'Group description is required, must be less than 2048 characters'
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
 
