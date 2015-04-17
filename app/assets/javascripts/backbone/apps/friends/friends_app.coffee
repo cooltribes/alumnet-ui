@@ -4,6 +4,8 @@
     appRoutes:
       "friends": "listFriends"
       "friends/find": "findFriends"
+      "friends/contacts": "importContacts"
+      "friends/networks": "importNetworks"
       # "friends/received": "receivedRequests"
       # "friends/sent": "sentRequests"
 
@@ -35,6 +37,12 @@
     userMutual: (layout, id)->
       controller = new FriendsApp.List.Controller
       controller.showMyMutual(layout, id)
+    importContacts: ->
+      controller = new FriendsApp.Import.Controller
+      controller.importContacts()
+    importNetworks: ->
+      controller = new FriendsApp.Import.Controller
+      controller.importNetworks()
 
   AlumNet.on "friends:received", ->
     AlumNet.navigate("friends/received")

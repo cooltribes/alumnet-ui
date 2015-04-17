@@ -25,10 +25,6 @@
       model = @model
       date = new Date()
       userCanEdit: @userCanEdit
-      cortado: ()->
-        if(model.get('name').length>30)
-          return model.get('name').substr(0,29)+'...'
-        return model.get('name')
       cover_style: ->
         cover = model.get('cover')
         if cover.main
