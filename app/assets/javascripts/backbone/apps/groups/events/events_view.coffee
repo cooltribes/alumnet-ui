@@ -99,7 +99,6 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
