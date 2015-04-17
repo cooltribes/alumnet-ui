@@ -28,6 +28,15 @@
       'click a#js-edit-join-process': 'toggleEditJoinProcess'
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
+      'click a#js-delete-group': 'deleteGroup'
+
+    deleteGroup:(e)->
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy
+          success: ->
+            AlumNet.trigger "groups:manage"
 
     sendJoin:(e)->
       e.preventDefault()
@@ -77,7 +86,6 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
-
 
     onRender: ->
       view = this

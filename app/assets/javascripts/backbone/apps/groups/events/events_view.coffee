@@ -99,7 +99,6 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
@@ -132,6 +131,7 @@
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userIsAdmin: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->

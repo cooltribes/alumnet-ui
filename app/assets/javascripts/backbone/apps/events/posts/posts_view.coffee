@@ -216,6 +216,10 @@
       @picture_ids = []
 
     templateHelpers: ->
+      event_attendances: @event.get('attendances_count')
+      event_going: @event.get('going_count')
+      even_maybe: @event.get('maybe_count')
+      even_not_goin: @event.get('not_going_count')
       userCanPost: @event.userIsInvited()
       eventIsClose: @event.isClose()
 
