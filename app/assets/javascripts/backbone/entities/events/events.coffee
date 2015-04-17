@@ -50,9 +50,12 @@
     validation:
       name:
         required: true
-        msg: 'Name of the Event is required'
+        maxLength: 250
+        msg: "Event name is required, must be less than 250 characters long."
       description:
         required: true
+        maxLength: 2048
+        msg: "Event description is required, must be less than 2048 characters"
       start_date:
         required: true
       end_date:

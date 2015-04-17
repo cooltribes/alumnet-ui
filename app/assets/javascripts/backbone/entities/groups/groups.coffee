@@ -67,11 +67,11 @@
       name:
         required: true
         maxLength: 250
-        msg: "Group name must be less than 250 characters"
+        msg: "Group name is required, must be less than 250 characters long."
       description:
         required: true
         maxLength: 2048
-        msg: "Group description must be less than 2048 characters"
+        msg: "Group description is required, must be less than 2048 characters"
       cover:
         required: true
       join_process:
