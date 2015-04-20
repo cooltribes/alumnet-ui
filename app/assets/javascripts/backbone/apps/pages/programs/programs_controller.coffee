@@ -24,3 +24,4 @@
       page = new Programs.AlumNite
       AlumNet.mainRegion.show(page)
       AlumNet.execute('render:pages:submenu')
+    

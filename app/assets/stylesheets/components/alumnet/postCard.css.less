@@ -14,13 +14,22 @@ DESCRIPTION: A card that contains a post (content plus comments)
 		margin-top: 15px;
 		margin-bottom: 15px;
 		border: 1px solid #c3c3c3;
+	&__info{
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
 
 	&__userName{
 		color: @black;
 		font-size: 30px;
-		margin-bottom: 5px;
+		margin-bottom: 5px;	
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+		max-width: 85%;	 
 		a{
-			color: @black;
+			color: @black;			
 		}
 	}
 	&__date{

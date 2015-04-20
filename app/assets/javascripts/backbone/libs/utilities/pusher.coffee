@@ -11,7 +11,9 @@
         count = user.get('unread_messages_count')
         count++
         user.set('unread_messages_count', count)
-        user.messages.fetch()
+        user.messages.fetch
+          success: ->
+            ion.sound.play("water_droplet_3")
       channel.bind 'new_notification', (data) =>
         count = user.get('unread_notifications_count')
         count++

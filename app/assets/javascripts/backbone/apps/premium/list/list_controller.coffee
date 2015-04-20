@@ -4,5 +4,3 @@
       subscriptionsView = new List.SubscriptionsView
       	current_user: AlumNet.current_user
       AlumNet.mainRegion.show(subscriptionsView)
-      #AlumNet.execute('render:events:submenu')
-

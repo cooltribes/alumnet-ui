@@ -49,6 +49,8 @@
       'click @ui.changeHeader': 'changeHeader'
       'click @ui.notificationsMarkAll': 'markAllNotifications'
       'click .navTopBar__left__item' : 'menuOptionClicked'
+      'click #programsList li' : 'dropdownClicked'
+      'click #accountList li' : 'accountDropdownClicked'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -71,7 +73,7 @@
     templateHelpers: ->
       model = @model
       first_name: @model.profile.get("first_name")
-      isAlumnetAdmin: @model.isAlumnetAdmin()
+      isAdmin: @model.isAdmin()
       daysLeft: model.get('days_membership')
       memberTitle: ->
         if(model.get('member')==1)
@@ -122,14 +124,21 @@
       AlumNet.execute('header:show:admin')
 
     menuOptionClicked: (e)->
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $(".navTopBar__left__item").children()
-        .removeClass "navTopBar__left__item--active"
-      if($(e.target).parent().hasClass 'dropdown-toggle')
-        $(e.target).removeClass "navTopBar__left__item--active"
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      if $(e.target).is('i')
+        if ! $(e.target).parent().hasClass 'dropdown-toggle'
+          $(e.target).parent().addClass "navTopBar__left__item--active"
       else
-        $(e.target).addClass "navTopBar__left__item--active"
+        if ! $(e.target).hasClass 'dropdown-toggle'
+          $(e.target).addClass "navTopBar__left__item--active"
+
+
+    dropdownClicked: (e)->
+      $('#programsLayoutOption').addClass "navTopBar__left__item--active"
+
+    accountDropdownClicked: (e)->
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+
 
 
 
@@ -149,7 +158,6 @@
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
-
     changeHeader: (e)->
       # e.preventDefault()
 

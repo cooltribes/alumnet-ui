@@ -37,12 +37,14 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    &__avatar{
     text-align: center;
    }
+
    &__name{
     color:@blue;
     font-size: 22px;
     margin-bottom: 5px;
 
    }
+
    &__actions{
     background-color: @light-blue;
     text-align: center;
@@ -102,7 +104,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         background-color: @red;
       }
     }
+
    }
+
    &__GroupAdminActions{
     position: relative;
 
@@ -166,6 +170,15 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       margin-top: 10px;
     }
    }
+  
+  &--selected
+  { 
+    border: 1px solid @main-blue;
+    background-color: lighten(@main-blue,40%);
+    h4{
+      color:#434;
+    }
+  }
 }
 
 

@@ -11,6 +11,7 @@ DESCRIPTION: Displays a list of groups in the Groups
     background-color: @white;
     margin-bottom: 2em;
     position: relative;
+    
 
 
     &__subGroupShadow{
@@ -79,6 +80,10 @@ DESCRIPTION: Displays a list of groups in the Groups
         height: 121px;
         overflow: hidden;
         
+        &:hover{
+        box-shadow:0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    }
+        
 
     }
     &__status{
@@ -123,10 +128,10 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
     }
     &__description{
-         font-size: 13px;
-         padding: 0.5*@space_small;
-         padding: 0 15px 10px;
-         overflow: hidden;
+        font-size: 13px;
+        padding: 0.5*@space_small;
+        padding: 0 15px 10px;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         height: 55px;
@@ -167,44 +172,21 @@ DESCRIPTION: Displays a list of groups in the Groups
         text-transform: uppercase;
     }
 
-
-    &__actions{
-        
-
-        &--enter{
-            color: @white;
-            background-color: lighten(@blue,20%);
-            font-size: 85%;
-            border-color: lighten(@blue,20%);
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        &--join{
-            bcolor: @white;
-            background-color: lighten(@blue,20%);
-            font-size: 85%;
-            border-color: lighten(@blue,20%);
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        &--waitingApproval{
-            ccolor: @white;
-            background-color: lighten(@blue,20%);
-            font-size: 85%;
-            border-color: lighten(@blue,20%);
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-        }
-    
-
+    &__animation{
+    transition: all 300ms ease 0s;
+    width: 70px;
+    display: inline-block;
+    float: right;
+    &:hover{
+        width: 150px;
+        text-decoration: none;
+          }
     }
     
-    
+    &__animation:hover &__actions__text{
+      display: inline;
+    }
+  
     &__menu{
         color: @white;
         opacity: 0;
@@ -294,8 +276,7 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
         &__menu{
             &__list{
-                height: 188px;
-                overflow: scroll;
+                height: 188px;                
             }
         }
     }
@@ -322,7 +303,8 @@ DESCRIPTION: Displays a list of groups in the Groups
         &__menu{
             &__list{
                 height: 188px;
-                overflow: scroll;
+                overflow-x: hidden;
+                overflow-y: auto; 
             }
         }
     }    

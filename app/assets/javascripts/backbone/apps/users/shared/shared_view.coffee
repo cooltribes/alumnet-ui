@@ -51,6 +51,8 @@
         model: @model
       @ui.modalCont.html(modal.render().el)
 
+
+
     editCover: (e)->
       e.preventDefault()
       modal = new AlumNet.UsersApp.About.CoverModal

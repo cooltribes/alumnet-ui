@@ -55,7 +55,7 @@
       controller.invitations(event, users)
     listAlbums: (id)->
       controller = new GroupsApp.Pictures.Controller
-      controller.showAlbums(id)  
+      controller.showAlbums(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -83,6 +83,10 @@
 
   AlumNet.on "group:event:invite", (event, users)->
     API.inviteEvent(event, users)
+
+  AlumNet.on "groups:manage", ->
+    AlumNet.navigate("groups/manage")
+    API.manageGroups()
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

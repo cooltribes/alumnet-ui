@@ -80,6 +80,7 @@
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
 
+
     templateHelpers: ->
       permissions = @model.get('permissions')
       current_user_avatar: @current_user.get('avatar').medium
@@ -88,6 +89,7 @@
       canDelete: permissions.canDelete
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
+
 
     onShow: ->
       pictures = @model.get('pictures')
