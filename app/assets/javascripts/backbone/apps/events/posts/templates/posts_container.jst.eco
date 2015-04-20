@@ -24,6 +24,11 @@
 				</div>
 				<!--  -->
 				<% end %>
+				<div class="item col-md-6 ">
+					<div class="groupCreatePostForm clearfix">
+						<h2><%="#{@event_attendances} -- #{@event_going} -- #{@even_maybe}" %></h2>
+					</div>
+				</div>
 			</div>
 			<div id="timeline" class="row posts-container"></div>
 		</div>

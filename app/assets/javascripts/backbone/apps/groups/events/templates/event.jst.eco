@@ -15,6 +15,10 @@
         <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall">
         <div>Invited by:</div>
         <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
+        <% if @userIsAdmin: %>
+          <br>
+          <a href="#events/<%= @id %>/about">Ruedita Aqui!</a>
+        <% end %>
       </div>
       <div class="col-md-4">
         <div>

@@ -15,6 +15,17 @@
 //= require bootstrap
 //= require_self
 
+ion.sound({
+    sounds: [
+      {
+        name: "water_droplet_3"
+      },
+    ],
+    volume: 0.5,
+    path: "sounds/",
+    preload: true
+});
+
 $(function() {
 
   //temp

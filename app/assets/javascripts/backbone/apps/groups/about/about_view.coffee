@@ -28,6 +28,15 @@
       'click a#js-edit-join-process': 'toggleEditJoinProcess'
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
+      'click a#js-delete-group': 'deleteGroup'
+
+    deleteGroup:(e)->
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy
+          success: ->
+            AlumNet.trigger "groups:manage"
 
     sendJoin:(e)->
       e.preventDefault()
@@ -78,7 +87,6 @@
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
 
-
     onRender: ->
       view = this
       @ui.groupDescription.editable
@@ -88,7 +96,7 @@
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
-            'this field is required'
+            'Group description is required, must be less than 2048 characters'
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
 

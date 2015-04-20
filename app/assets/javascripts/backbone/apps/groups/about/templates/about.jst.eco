@@ -73,6 +73,9 @@
           by <%= @creator.name %>
         <% end %>
         </h3>
+        <% if @canEditInformation: %>
+          <a href="#" class="btn btn-danger" id="js-delete-group">Delete</a>
+        <% end %>
       </div>
     </div>
   </div>
