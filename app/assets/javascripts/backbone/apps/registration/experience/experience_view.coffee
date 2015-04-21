@@ -45,6 +45,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+          $el.focus()
 
       @inProfile = options.inProfile ? false
 
