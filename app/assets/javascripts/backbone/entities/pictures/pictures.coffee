@@ -34,6 +34,16 @@
       nextIndex = 0 if nextIndex >= @collection.length
 
       nextModel = @collection.at(nextIndex)
+
+    sumLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count + 1)
+      @set('you_like', true)
+
+    remLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count - 1)
+      @set('you_like', false)
       
     
   class Entities.PictureCollection extends Backbone.Collection
