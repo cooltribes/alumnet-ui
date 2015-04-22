@@ -34,6 +34,9 @@ class AuthController < ApplicationController
 
   def sign_out
     session[:auth_token] = nil
+    session[:linkedin_profile] = nil
+    session[:atoken] = nil
+    session[:asecret] = nil
     redirect_to root_path
   end
 

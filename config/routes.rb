@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   get '/terms', to: 'pages#terms', as: :terms
 
   root 'welcome#index'
+
+  get '/linkedin/auth', to: 'linkedin#auth'
+  get '/linkedin/callback', to: 'linkedin#callback'
   # get '*unmatched_route', to: 'application#raise_not_found!'
 end
