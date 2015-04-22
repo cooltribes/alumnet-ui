@@ -11,10 +11,10 @@
 			<p>Who can confirm that you are an AISEC Alumni</p >
 			<div class="form-group has-feedback">
 				<label class="control-label">Search by name</label>
-				<input type="text" class="form-control input-lg "  placeholder="">
+				<input type="text" class="form-control input-lg" placeholder="Write a name or email" name="search_term" id="search_term">
 				<span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback">
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Search by Country</label>
@@ -41,12 +41,15 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="text-right"><button class="btn btn-primary btn-lg  text-uppercase" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
+			</div> -->
+			<div class="text-right"><button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
 			</div>
 			<hr>
 			<h3>Results</h3>
-			<div class="userCardAproval">
+			<div class="users-list">
+				
+			</div>
+			<!-- <div class="userCardAproval">
 				<div class="row">
 					<div class="col-md-2 userCardAproval__avatar">
 						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
@@ -81,25 +84,8 @@
 					</div>
 					
 				</div>
-			</div>
-			<div class="userCardAproval">
-				<div class="row">
-					<div class="col-md-2 userCardAproval__avatar">
-						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
-					</div>
-					<div class="col-md-6">
-						<h4 class="userCardAproval__name">Morgan Freeman</h4>
-						<p><strong>Local Comitee President</strong> <br>
-						Local, Poland
-						</p>
-					</div>
-					<div class="col-md-4 userCardAproval__actions text-right">
-						<button class="btn  btn-primary btn-sm btn-block text-uppercase" type="submit">ASK FOR ACCEPTANCE</button>
-						
-					</div>
-					
-				</div>
-			</div>
+			</div> -->
+			
 			
 			
 			<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button>

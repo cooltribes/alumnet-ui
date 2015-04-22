@@ -163,11 +163,14 @@
       user.fetch({async:false})
       user
 
-    getUserEntities: (querySearch)->
+    getUserEntities: (querySearch, options)->
       initializeUsers() if Entities.users == undefined
       # Entities.users.fetch()
-      Entities.users.fetch
-        data: querySearch
+      if !(options.fetch?) then options.fetch = true
+
+      if options.fetch
+        Entities.users.fetch
+          data: querySearch
       Entities.users
 
     #List of all users for administration
@@ -217,8 +220,8 @@
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
-  AlumNet.reqres.setHandler 'user:entities', (querySearch)->
-    API.getUserEntities(querySearch)
+  AlumNet.reqres.setHandler 'user:entities', (querySearch, options = {})->
+    API.getUserEntities(querySearch, options)
 
   AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
     API.getUsersList(querySearch)

@@ -7,9 +7,9 @@
     keyControl: false
     # prefix: "picture"
 
-    # ui:
-    #   'likeLink': '.js-vote'
-    #   'likeCounter': '.js-likes-counter'
+    ui:
+      'likeLink': '.js-vote'
+      'likeCounter': '.js-likes-counter'
 
     events:
       'click .js-like': 'clickedLike'
@@ -19,7 +19,8 @@
 
     initialize: (options)->
       @view = options.view
-
+      @model.comments.fetch
+        wait: true
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->
       #     $el = view.$("[name=#{attr}]")
@@ -105,6 +106,7 @@
     getPictureModal: (picture)->
       new PictureShared.PictureModal
         model: picture
+        # collection: picture.comments
 
 
   AlumNet.reqres.setHandler 'picture:modal', (picture) ->

@@ -17,7 +17,10 @@
 ) (_, Backbone, Marionette, Modal) ->
 
   # class Modal extends Backbone.View
-  class Modal extends Marionette.View
+  # console.log Marionette  
+  # console.log Modal  
+  class Modal extends Marionette.CompositeView
+  # class Modal extends Modal
     prefix: 'bbm'
     animate: true
     keyControl: true
@@ -28,7 +31,7 @@
 
     constructor: ->
       @args = Array::slice.apply(arguments)
-      Marionette.View::constructor.apply(this, @args)
+      Marionette.CompositeView::constructor.apply(this, @args)
       # Backbone.View::constructor.apply(this, @args)
 
       

@@ -1,6 +1,11 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Picture extends Backbone.Model
-  
+    
+    initialize: ->
+      @comments = new Entities.CommentsCollection
+      @comments.url = AlumNet.api_endpoint + '/pictures/' + @get('id') + '/comments'
+
+
     getLocation: ->
       city = country = ""
       if @get("city")
