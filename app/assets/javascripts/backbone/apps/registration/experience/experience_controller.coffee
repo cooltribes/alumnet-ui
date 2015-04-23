@@ -64,7 +64,7 @@
       if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && exp_type == 3
         experiences_array = []
         _.each gon.linkedin_profile.experiences, (elem, index, list)->
-          experiences_array.push new AlumNet.Entities.ProfileContact elem
+          experiences_array.push new AlumNet.Entities.Experience elem
       else
         experiences_array = [new AlumNet.Entities.Experience({first: true, exp_type: exp_type})]
 

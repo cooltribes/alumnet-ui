@@ -11,7 +11,7 @@ class AlumnetLinkedin
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
-    "date-of-birth", "first-name", "last-name", "picture-url"]
+    "date-of-birth", "first-name", "last-name", "picture-url", "skills"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
@@ -19,7 +19,7 @@ class AlumnetLinkedin
 
   def profile
     { languages: languages_for_alumnet, contacts: contacts_for_alumnet, experiences: experiences_for_alumnet,
-      profile: profile_for_alumnet }
+      profile: profile_for_alumnet, skills: skills_for_alumnet }
   end
 
   def languages_for_alumnet
@@ -45,6 +45,10 @@ class AlumnetLinkedin
     else
       nil
     end
+  end
+
+  def skills_for_alumnet
+    linkedin ? format_skills(linkedin['skills']) : []
   end
 
   protected
@@ -75,6 +79,12 @@ class AlumnetLinkedin
     def format_languages(languages)
       languages.all.inject([]) do |array, language|
         array << {id: language.id, name: language.language.name}
+      end
+    end
+
+    def format_skills(skills)
+      skills.all.inject([]) do |array, skill|
+        array << { name: skill.skill.name }
       end
     end
 

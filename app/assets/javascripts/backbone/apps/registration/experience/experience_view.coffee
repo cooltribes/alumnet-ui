@@ -219,12 +219,13 @@
 
     submitClicked: (e)->
       e.preventDefault()
-
+      console.log 'here'
       experiences = new Array()
 
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
+        console.log data
         itemView.model.set data
 
       @trigger('form:submit', @model)

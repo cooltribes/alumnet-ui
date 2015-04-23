@@ -63,14 +63,21 @@
     childViewContainer: '#lan-list'
     className: 'row'
 
+    initialize: (options)->
+      @linkedin_skills = options.linkedin_skills
+
+    templateHelpers: ->
+      linkedin_skills: @linkedin_skills.join(", ")
+
     ui:
       'btnAdd': '.js-addRow'
       'btnSubmit': '.js-submit'
       'skills': '#skills-input'
 
     events:
-      "click @ui.btnAdd": "addRow"
-      "click @ui.btnSubmit": "submitClicked"
+      'click @ui.btnAdd': 'addRow'
+      'click @ui.btnSubmit': 'submitClicked'
+      'click .js-linkedin-import': 'linkedinClicked'
 
     onRender: ->
       skillsList = new AlumNet.Entities.Skills
@@ -80,13 +87,13 @@
 
 
     fillSkills: (collection)->
-      skills = _.pluck(collection.models, 'attributes');
-      listOfNames = _.pluck(skills, 'name');
+      skills = _.pluck(collection.models, 'attributes')
+      listOfNames = _.pluck(skills, 'name')
       @ui.skills.select2
         tags: listOfNames
         multiple: true
-        tokenSeparators: [',', ', '],
-        dropdownAutoWidth: true,
+        tokenSeparators: [',', ', ']
+        dropdownAutoWidth: true
 
     addRow: (e)->
       newRow = new AlumNet.Entities.ProfileLanguage
@@ -105,5 +112,10 @@
       skillsData = skillsData.skills.split(',')
 
       this.trigger("form:submit", @model, skillsData)
+
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
+        e.preventDefault()
+        @render()
 
 

@@ -52,7 +52,12 @@
       AlumNet.request("registration:shared:sidebar", step)
 
     getFormView: (collection, profileModel) ->
+      if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
+        linkedin_skills = _.pluck(gon.linkedin_profile.skills, 'name')
+      else
+        linkedin_skills = []
       new Skills.LanguageList
+        linkedin_skills: linkedin_skills
         collection: collection
         model: profileModel
 
