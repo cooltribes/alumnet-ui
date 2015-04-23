@@ -10,14 +10,16 @@ class AlumnetLinkedin
 
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
-  FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions"]
+  FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
+    "date-of-birth", "first-name", "last-name", "picture-url"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
   end
 
   def profile
-    { languages: languages_for_alumnet, contacts: contacts_for_alumnet, experiences: experiences_for_alumnet }
+    { languages: languages_for_alumnet, contacts: contacts_for_alumnet, experiences: experiences_for_alumnet,
+      profile: profile_for_alumnet }
   end
 
   def languages_for_alumnet
@@ -36,9 +38,18 @@ class AlumnetLinkedin
     linkedin ? format_positions(linkedin['positions']) : []
   end
 
+  def profile_for_alumnet
+    if linkedin
+      { first_name: linkedin['first_name'], last_name: linkedin['last_name'], born: format_date_of_birth(linkedin['date-of-birth']),
+        avatar_url: linkedin['picture_url'] }
+    else
+      nil
+    end
+  end
+
   protected
     def linkedin
-      @linkedin ||= client.profile(fields: FIELDS)
+      @linkedin ||= client.profile(fields: FIELDS, headers: {"Accept-Language" => "es_ES"})
     end
 
     def format_im_accounts(accounts)
@@ -85,5 +96,16 @@ class AlumnetLinkedin
       month = date.try(:month) ? date.month : ""
       year = date.try(:year) ? date.year : ""
       { month: month, year: year }
+    end
+
+    def format_date_of_birth(date)
+      day = date.try(:day)
+      month = date.try(:month)
+      year = date.try(:year)
+      if day.present? && month.present? && year.present?
+        "#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}"
+      else
+        ""
+      end
     end
 end
