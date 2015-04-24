@@ -59,6 +59,8 @@
     template: 'events/shared/templates/header'
     templateHelpers: ->
       model = @model
+      console.log @model
+      shortname: short_string(@model.get('name'),50)      
       canEditInformation: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
@@ -67,8 +69,9 @@
       attendance: ->
         if model.get('attendance_info') then model.get('attendance_info') else false
       buttonAttendance: (id, status) ->
+        console.log 'status '+status+' - id'+id
         if status
-          if id == "js-" + status.replace('_','-')
+          if id == "js-att-" + status.replace('_','-')
             return 'groupCoverArea__attendanceOptions--option--active'
 
 

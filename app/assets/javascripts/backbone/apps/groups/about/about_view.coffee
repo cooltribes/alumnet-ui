@@ -29,6 +29,7 @@
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
+      'click .editLink': 'editAttribute'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -87,6 +88,9 @@
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
 
+    editAttribute: (e)->
+      $(e.target).addClass "hide"
+      console.log e.target
     onRender: ->
       view = this
       @ui.groupDescription.editable

@@ -6,6 +6,7 @@
     <!-- COVER ON -->
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
+      <% if _.size(@children) > 0: %>
       <div class="groupCard__menu">
         <h5 class="groupCard__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
         <ul class="groupCard__menu__list">
@@ -21,6 +22,7 @@
         </ul>
 
       </div>
+      <% end %>
       <!-- SUBGROUPS OFF-->
       <% if @official: %><span class="groupCard__ribbon"></span><% end %>
     </div>
