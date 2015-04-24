@@ -43,6 +43,7 @@
         $('#attendance-status').css('background-color','#ea7952')
       if status=='maybe'
         $('#attendance-status').css('background-color','#f5ac45')
+      AlumNet.navigate('premium', true)
 
 
   class Discover.EventsView extends Marionette.CompositeView
