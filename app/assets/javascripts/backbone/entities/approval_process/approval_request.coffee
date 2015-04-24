@@ -5,8 +5,6 @@
     model: Entities.Approval
 
   API =
-    
-
     requestForApproval: (userId)->
       approval = new Entities.Approval
       approval.urlRoot = AlumNet.api_endpoint + '/me/approval_requests'

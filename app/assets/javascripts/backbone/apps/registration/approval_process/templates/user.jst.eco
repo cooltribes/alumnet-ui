@@ -10,7 +10,13 @@
       </p>
     </div>
     <div class="col-md-4 userCardAproval__actions text-right js-actions-container">
-      <button class="btn  btn-primary btn-sm btn-block text-uppercase js-ask" type="button">ASK FOR ACCEPTANCE</button>
+      <% if @approval_status == "sent": %>
+        Your request has been sent <span class="icon-entypo-paper-plane"></span>
+      <% else if @approval_status == "accepted": %>
+        This request has already been approved.
+      <% else if @approval_status == "none": %>
+        <button class="btn  btn-primary btn-sm btn-block text-uppercase js-ask" type="button">ASK FOR ACCEPTANCE</button>
+      <% end %>
       
     </div>
     

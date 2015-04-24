@@ -22,7 +22,14 @@
 
       approvalView.on 'childview:request', (childView)->
         childView.ui.actionsContainer.html('Sending request...')
-        childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
+        
+        userId = childView.model.id
+        approvalR = AlumNet.request("current_user:approval:request", userId)  
+        approvalR.on "save:success", ()->
+          childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
+          
+
+
         
 
     getLayoutView: ->
