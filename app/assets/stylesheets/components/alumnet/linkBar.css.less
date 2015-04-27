@@ -1,0 +1,30 @@
+/***
+
+COMPONENT NAME: linkBar
+DESCRIPTION: list of links separated by "bars"
+
+***/
+
+@import 'conf/conf.css.less';
+
+.linkBar{
+	list-style: none;
+	&__item{
+		
+		border-left: 1px solid #434;		
+		display: inline;
+		&--first{
+			border-left: 0px;			
+		}
+		&__link{
+			color: @main-blue;
+			padding: 5px 10px;
+		}
+		&__link:hover{
+			color: @main-blue;
+			text-decoration: underline;
+		}
+	}
+	
+
+}

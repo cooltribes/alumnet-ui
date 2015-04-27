@@ -28,6 +28,9 @@
       step = @profile.get "register_step"
       step == "approval"
 
+    isAdmin: ->
+      @get "is_admin"
+
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
 
@@ -55,19 +58,9 @@
     getBornDate: ()->
       born = @profile.get('born')
       array = []
-      # array.push(born.year ? "1900")
-      # array.push(born.month ? "01")
-      # array.push(born.day ? "01")
       array.push(born.year) if born.year
       array.push(born.month) if born.month
       array.push(born.day) if born.day
-
-      # date = ""
-      # if born.month
-      #   date = new Date(born.month, born.day)
-      #   console.log date
-      #   console.log moment(date).format("MMMM DD")
-
       array.join("/")
 
     getBornComplete: ()->
@@ -76,7 +69,6 @@
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
       array.join(" in ")
-
 
     getAge: ()->
         if @profile.get("born")
@@ -112,8 +104,17 @@
         "system"
       else if @get('is_alumnet_admin')
         "alumnet"
+      else if @get('is_regional_admin')
+        "regional"
+      else if @get('is_nacional_admin')
+        "nacional"
       else
         "regular"
+
+    incrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value + val)
+      @get("#{counter}_count")
 
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")

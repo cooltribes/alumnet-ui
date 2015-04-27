@@ -1,0 +1,218 @@
+<div class="row">
+	<div class="col-md-2">
+		<a class="btn btn-lg btn-import btn-import--larger margin_left_small">
+			<span class="icon-char">‹</span> FIND FRIENDS 
+		</a>
+	</div>
+	<div class="col-md-8 text-center">
+		<h1 class="no_margin_top">
+			Invite your friends
+		</h1>
+		<small>
+			Select wich contacts to invite from the list below
+		</small>
+	</div>
+	<div class="col-md-2">
+
+	</div>
+ </div>
+
+	
+	<div class="container margin_top">
+
+
+		<div class="row-fluid clearfix">
+			<div class="col-md-3">
+				<form id="search-form">
+					<div class="input-group input-group--left">                   
+				            <span class="input-group-addon">
+				              <span class="glyphicon glyphicon-search"></span>
+				            </span> 
+				            <input class="searchBar__searchInput medium" type="text" name="seach_term"
+				            id="js-search-input"  placeholder="Search contacts...">
+				                        
+				    </div>   
+				<!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
+				</form>
+			</div>
+			<div class="col-md-5"></div>
+			<div class="col-md-4 text-right">
+				<ul class=" navbar-right linkBar">
+					<li class="linkBar__item linkBar__item--first"> <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#" class="linkBar__item__link"  id="js-different-service">Choose a different service 
+					</a>
+					</li>
+					<li class="linkBar__item">
+						<a class="linkBar__item__link" href="#"  id="js-all">Select All
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>   
+
+		<div class="row-fluid margin_top">
+		<!-- *****************************  Contact card ***************************** -->
+			<div class="col-md-3">
+				<div class="userCard userCard--selected user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard userCard--selected user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard userCard--selected user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard userCard--selected user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="userCard user-info">
+				  
+				      <h4 class="userCard__name">
+				      	Morgan Freeman
+				      </h4>
+				      <p class="userCard__position member-position text-small">
+				      	morgan@freeman.com
+				      </p>
+				    
+				</div>
+			</div>
+
+
+
+			<!-- *****************************  Contact card ***************************** -->
+			<div class="row-fluid">
+				<div class="col-md-5 col-md-offset-7 text-right">
+					<a class="btn btn-lg btn-import">
+						ATTACH NOTE 
+					</a>
+					<a class="btn btn-lg btn-import btn-import--active">
+						SEND INVITATIONS
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	
+

@@ -27,7 +27,7 @@
     showAdmin: ->
       current_user = AlumNet.current_user
       AlumNet.headerRegion.reset()
-      if current_user.isAlumnetAdmin()
+      if current_user.isAdmin()
         menuLayout = new Menu.AdminBar
           model: current_user
         AlumNet.headerRegion.show(menuLayout)

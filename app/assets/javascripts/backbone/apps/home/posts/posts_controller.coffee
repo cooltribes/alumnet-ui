@@ -16,6 +16,7 @@
           success: (model, response, options) ->
             posts.collection.add(model, {at: 0})
 
+
       posts.on "childview:post:edit", (postView, value)->
         post = postView.model
         post.save { body: value }
@@ -26,7 +27,7 @@
         comment = AlumNet.request("comment:post:new", post.id)
         comment.save data,
           success: (model, response, options) ->
-            postView.collection.add(model, {at: 0})
+            postView.collection.add(model, {at: postView.collection.length})                      
 
       #Like in post
       posts.on "childview:post:like", (postView) ->

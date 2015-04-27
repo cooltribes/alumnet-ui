@@ -40,7 +40,6 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
         $(window).on 'scroll' , =>
-          console.log "HAUH"
           if $('body').scrollTop()>50
             $('#aboutUseraffix').css
               'position': 'fixed'

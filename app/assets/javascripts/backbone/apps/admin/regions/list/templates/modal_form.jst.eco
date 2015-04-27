@@ -1,0 +1,34 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Region <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" id="name" name="name" class="form-control input-lg" value="<%= @name %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Countries</label>
+          <input class="js-countries" type="hidden" name="country_ids" id="country_ids" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <% unless @regionIsNew: %>
+    <a href="#" class="btn btn-danger pull-left" id="js-modal-delete">Delete</a>
+  <% end %>
+  <a href="#" class="btn btn-primary" id="js-modal-save">Save</a>
+  <a href="#" class="btn btn-default" id="js-modal-close">Cancel</a>
+</div>

@@ -31,6 +31,16 @@
         id: model.id
         text: model.get('name')
 
+    getAvailableCountries: ()->
+      countries = new Entities.Countries
+      countries.fetch
+        async: false
+        data: { q: {region_id_null: 1 } }
+      countries.map (model)->
+        id: model.id
+        text: model.get('name')
+
+
   AlumNet.reqres.setHandler 'countries:html', (collection) ->
     API.getCountriesHtml(collection)
 
@@ -42,6 +52,9 @@
 
   AlumNet.reqres.setHandler 'get:filtered:countries', (filter)->
     API.getFilteredCountries(filter)
+
+  AlumNet.reqres.setHandler 'get:availables:countries', ->
+    API.getAvailableCountries()
 
   class CountryList
     window.CountryList =

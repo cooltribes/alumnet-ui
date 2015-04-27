@@ -16,6 +16,8 @@ gem 'marionette-rails'
 gem 'httparty'
 gem 'settingslogic'
 gem 'dotenv-deployment'
+gem 'paymentwall'
+gem 'linkedin'
 
 group :development do
   gem 'spring'

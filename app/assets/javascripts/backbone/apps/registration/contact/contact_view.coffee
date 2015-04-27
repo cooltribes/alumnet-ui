@@ -5,11 +5,11 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     ui:
       'rmvRow': '.js-rmvRow'
       "contact_type": "[name=contact_type]"
-      "selectType": ".contact_method"      
+      "selectType": ".contact_method"
       "info": "[name=info]"
       "privacy": "[name=privacy]"
 
-      
+
     events:
       "click @ui.rmvRow": "rmvRowClicked"
       "change .contact_method, click .contact_method": "changePlaceholder"
@@ -23,25 +23,25 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       isReadOnly: ->
         if @readOnly
           'disabled'
-      
+
       placeholder: ->
         contact_type = model.get("contact_type")
         if contact_type == 0
-          return "email@example.com"   
-        if contact_type == 1          
-          return "+PhoneNumber"   
+          return "email@example.com"
+        if contact_type == 1
+          return "+PhoneNumber"
         if contact_type == 2
-          return "Skype" 
+          return "Skype"
         if contact_type == 3
-          return "Yahoo account"      
+          return "Yahoo account"
         if contact_type == 4
-          return "/Facebook"      
+          return "/Facebook"
         if contact_type == 5
           return "@Twitter"
-        if contact_type == 5
+        if contact_type == 6
           return "Account"
-        if contact_type == 5
-          return "https://www.example.com"                      
+        if contact_type == 7
+          return "https://www.example.com"
 
 
     initialize: ->
@@ -67,7 +67,7 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       @model.destroy()
 
     changePlaceholder: (e)->
-      if @ui.selectType.val() == "0" 
+      if @ui.selectType.val() == "0"
         @ui.info.attr("placeholder", "email@example.com")
       else if @ui.selectType.val() == "1"
         @ui.info.attr("placeholder", "+PhoneNumber")
@@ -81,10 +81,12 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
         @ui.info.attr("placeholder", "@Twitter")
       else if @ui.selectType.val() == "6"
         @ui.info.attr("placeholder", "Account")
-      else  
+      else if @ui.selectType.val() == "7"
         @ui.info.attr("placeholder", "https://www.example.com")
-        
-        
+      else
+        @ui.info.attr("placeholder", "https://www.LinkedIn.com/example")
+
+
 
   class Contact.Form extends Marionette.CompositeView
     template: 'registration/contact/templates/form'
@@ -96,7 +98,7 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     events:
       'click @ui.addRow': 'addRowClicked'
       'click .js-submit': 'submitClicked'
-
+      'click .js-linkedin-import': 'linkedinClicked'
 
     addRowClicked: (e)->
       e.preventDefault()
@@ -109,5 +111,13 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
         view.model.set(view.serialize())
       @trigger 'form:submit'
 
-
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.profile.length > 0
+        e.preventDefault()
+        collection = @collection
+        _.each gon.linkedin_profile.contacts, (elem, index, list)->
+          contact = collection.findWhere({info: elem.info, contact_type: elem.contact_type})
+          unless contact
+            collection.add new AlumNet.Entities.ProfileContact
+              contact_type: elem.contact_type, info: elem.info
 

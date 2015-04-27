@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills" id="groupMenuList">
 				<% if @groupIsClose && not @userIsMember: %>
 					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
 						<span class="icon-entypo-dot-3"></span>
@@ -18,9 +18,9 @@
 					<li>  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link">
 						<span class="ico-company"></span>
 					Alumni in Group</a></li>
-					<!-- <li>  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
 						<span class="icon-entypo-picture"></span>
-					Pictures</a></li> -->
+					Pictures</a></li>
 					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link">
 						<span class="glyphicon glyphicon-align-left"></span>
 					SubGroup</a></li>

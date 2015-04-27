@@ -13,11 +13,38 @@
 
       null  
 
-    # validation:
-    #   name:
-    #     required: true
+    prev: ->
+      if !@collection
+        return false
 
+      currentIndex = @collection.indexOf(@)
+      prevIndex = currentIndex - 1
+      console.log prevIndex
+      prevIndex = (@collection.length - 1) if prevIndex < 0
+      console.log prevIndex
+
+      nextModel = @collection.at(prevIndex)
+
+    next: ->
+      if !@collection
+        return false
+
+      currentIndex = @collection.indexOf(@)
+      nextIndex = currentIndex + 1
+      nextIndex = 0 if nextIndex >= @collection.length
+
+      nextModel = @collection.at(nextIndex)
+
+    sumLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count + 1)
+      @set('you_like', true)
+
+    remLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count - 1)
+      @set('you_like', false)
+      
+    
   class Entities.PictureCollection extends Backbone.Collection
     model: Entities.Picture
-
-  

@@ -1,0 +1,29 @@
+<div class=" row">
+  <div class="col-md-12">
+    <h4>
+      <%%= @name %>   (<%%= @pictures_count %>)         
+
+      <%% if @userCanEdit: %>
+        <button type="button" class="close js-rmvItem"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <%% end %>
+
+    </h4>
+
+
+  </div>
+</div>
+<a href="#" class="js-detail">  
+<div>
+  <div class=" row">
+    <div class="col-md-12">
+    <%% if @cover_picture: %>
+      <img src="<%%= @cover_picture.card %>" alt="<%%= @name %>" width="100%">
+    <%% else: %>
+      <%= image_tag("general/326x346.png", width: "100%", class:"albums-list__upload__bordedBox") %>
+      
+
+    <%% end %>
+    </div>
+  </div>
+</div>
+</a>

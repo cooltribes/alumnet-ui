@@ -29,14 +29,14 @@
         <h3>Description</h3>
         <a href="#" id="description" class="js-attribute"><%= @description %></a>
         <% if @canEditInformation: %>
-        <a href="#" id="js-edit-description">[edit]</a>
+        <a href="#" id="js-edit-description" class="editLink">[edit]</a>
          <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
         <h3>Join Process</h3>
         <a href="#" id="join_process" class="js-attribute"><%= @joinProcessText %></a>
         <% if @canChangeJoinProcess: %>
-          <a href="#" id="js-edit-join-process">[edit]</a>
+          <a href="#" id="js-edit-join-process" class="editLink">[edit]</a>
         <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
@@ -45,7 +45,7 @@
           <% if @official: %>it's an official group<% else: %>it's not an official group<% end %>
           </a>
         <% if @currentUserIsAdmin: %>
-          <a href="#" id="js-edit-official">[edit]</a>
+          <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
     </div>
@@ -54,7 +54,7 @@
         <h3>Type</h3>
         <a href="#" id="group_type" class="js-attribute"><%= @group_type.text %></a>
         <% if @canEditInformation: %>
-          <a href="#" id="js-edit-group-type">[edit]</a>
+          <a href="#" id="js-edit-group-type" class="editLink">[edit]</a>
         <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
@@ -73,6 +73,9 @@
           by <%= @creator.name %>
         <% end %>
         </h3>
+        <% if @canEditInformation: %>
+          <a href="#" class="btn btn-danger" id="js-delete-group">Delete</a>
+        <% end %>
       </div>
     </div>
   </div>

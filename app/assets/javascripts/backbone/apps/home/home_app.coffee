@@ -5,7 +5,6 @@
       "conversations": "currentUserConversations"
       "conversations/:id": "currentUserConversation"
       "notifications": "currentUserNotifications"
-      "prueba": "prueba"
 
   API =
     currentUserPosts: ->
@@ -20,9 +19,9 @@
     currentUserNotifications: ->
       controller = new HomeApp.Notifications.Controller
       controller.showCurrentUserNotifications()
-    prueba: ->
-      controller = new HomeApp.Prueba.Controller
-      controller.prueba()
+    conversationWithRecipient: (user)->
+      controller = new HomeApp.Conversations.Controller
+      controller.showCurrentUserConversations(undefined, user)
 
   AlumNet.on "home", ->
     AlumNet.navigate("posts")
@@ -35,6 +34,10 @@
   AlumNet.on "conversation", (conversation_id)->
     AlumNet.navigate("conversations/#{conversation_id}")
     API.currentUserConversation(conversation_id)
+
+  AlumNet.on "conversation:recipient", (user)->
+    AlumNet.navigate("conversations")
+    API.conversationWithRecipient(user)
 
   AlumNet.on "notifications", ->
     AlumNet.navigate("notifications")

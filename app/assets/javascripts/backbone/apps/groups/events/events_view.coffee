@@ -99,13 +99,12 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
 
       @ui.endDate.Zebra_DatePicker
-        direction: 1
+        direction: true
         show_icon: false
         show_select_today: false
 
@@ -132,6 +131,8 @@
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userIsAdmin: @model.userIsAdmin()
+      userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
@@ -181,7 +182,7 @@
       $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
-      userCanCreateSubGroup: @model.canDo('create_subgroup')
+      userIsMember: @model.userIsMember()
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

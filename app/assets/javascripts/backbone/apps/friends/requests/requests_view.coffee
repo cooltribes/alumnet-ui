@@ -11,12 +11,14 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'delete'
+      #layout.model.decrementCount('pending_received_friendships')
 
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
-
+      #layout.model.decrementCount('pending_received_friendships')
+      
 
   class Requests.RequestsView extends Marionette.CompositeView
     template: 'friends/requests/templates/requests_container'
@@ -29,7 +31,7 @@
     events:
       'click #js-requests-sent, #js-requests-received':'getRequests'
 
-    getRequests: (e)->
+     getRequests: (e)->
       e.stopPropagation()
       e.preventDefault()
       if $(e.currentTarget).attr('id') == 'js-requests-sent'

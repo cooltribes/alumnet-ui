@@ -65,13 +65,13 @@
       <select class="form-control input-lg" id="attendance-status" name="status">
         <option value="invited"></option>
         <option value="going" <%= @select(@attendance_status(), "going") %>>
-          Going
+          Attending
         </option>
         <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
           Maybe
         </option>
         <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
-          Not Going
+          Not attending
         </option>
       </select>
     <% end %>

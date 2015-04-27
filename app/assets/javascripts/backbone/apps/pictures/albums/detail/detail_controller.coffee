@@ -3,7 +3,7 @@
     showAlbum: (layout, album)->
       
       albumable = layout.model
-      userCanEdit = true #user.isCurrentUser()
+      userCanEdit = album.collection.userCanEdit
 
       photosCollection = new AlumNet.Entities.PictureCollection     
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
@@ -22,6 +22,8 @@
           AlumNet.trigger "albums:user:list", layout, albumable
         else if albumable instanceof AlumNet.Entities.Group
           AlumNet.trigger "albums:group:list", layout, albumable
+        else if albumable instanceof AlumNet.Entities.Event
+          AlumNet.trigger "albums:event:list", layout, albumable
 
 
       albumView.on "upload:picture", (data)->
@@ -36,13 +38,10 @@
         data.save data.attributes,
           # wait: true
           success: (model, response) ->
-            # console.log model
-            # console.log response
-            # data.set(response)
             
             AlumNet.trigger "albums:show:detail", layout, data
           error: (model, response, options) ->
-            console.log "error"
+            console.error response
 
         console.log data
 

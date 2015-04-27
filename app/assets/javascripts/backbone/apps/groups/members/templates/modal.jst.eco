@@ -19,6 +19,17 @@
 <div class="bbm-modal__section">
   <form class="row formANet form">
       <% if @current_user_permission.make_admin == 2: %>
+      <div id="hidden_msg_user" class="hidden" style="text-align:right;">
+        <label>
+          Permissions he gets
+        </label>
+        <label>
+          &nbsp;Permissions he can give 
+        </label>
+      </div>
+      <div id= "space" style="padding: 2.5px;">
+        &nbsp;
+      </div>
       <div class="row">
         <div class="col-md-6">
           <label>

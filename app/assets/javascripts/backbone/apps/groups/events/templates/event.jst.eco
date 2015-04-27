@@ -1,6 +1,6 @@
-<div class="row eventsTableView margin_bottom_xsmall"> 
+<div class="row eventsTableView margin_bottom_xsmall">
   <div class="col-md-1 no-padding ">
-    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>'); background-size: 100%;" >
+    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>'); background-size: 100%; background-repeat: no-repeat;" >
     <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
     </div>
   </div>
@@ -15,6 +15,10 @@
         <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall">
         <div>Invited by:</div>
         <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
+        <% if @userIsAdmin: %>
+          <br>
+          <a href="#events/<%= @id %>/about">Ruedita Aqui!</a>
+        <% end %>
       </div>
       <div class="col-md-4">
         <div>
@@ -31,10 +35,11 @@
         Attending:<%= @attendances_count %>
       </div>
       <div class="col-md-3 no-padding">
-        <% unless @isPast: %>
-        
+
+      <% if not @isPast: %>
+
         <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
-          <option value="invited">INVITED</option>
+          <option value="invited">RSVP</option>
           <option value="going" <%= @select(@attendance_status(), "going") %>>
             JOIN
           </option>

@@ -1,0 +1,54 @@
+<div class="searchBar row ">
+  <div class="col-md-5">
+    <h1 class="searchBar__title margin_left_small">Manage events</h1>
+  </div>
+  <div class="col-md-6">
+    <form id="search-form">
+      <div class="input-group">
+      <!--  <input type="text" name="search_term" name="seach_term"
+            id="js-search-input" class="searchBar__searchInput form-control " placeholder="Search">
+        <span class="input-group-btn">
+
+        <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>-->
+        </span>
+      </div>
+      <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
+    </form>
+    <!-- /input-group -->
+  </div>
+  <!--<div class="col-md-3 hidden-sm hidden-xs searchBar__renderOptions">
+    <div class="pull-right">
+      <a class="searchBar__renderOptions__icon searchBar__renderOptions__iconActive searchBar__ViewCard js-viewCard" title="View results in cards">
+        <span class="glyphicon glyphicon-th-large"></span>
+      </a>
+      <a class="searchBar__renderOptions__icon searchBar__ViewList js-viewList" title="View results in list">
+      <span class="glyphicon glyphicon-align-justify"></span></a>
+    </div>
+  </div>-->
+</div>
+
+
+
+
+<div class="sortingMenu margin_top">
+  <div class="col-md-8">
+    <ul class="sortingMenu" id="filter-link-container">
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link"
+          id="js-upcoming-events">Upcoming events
+        </a>
+      </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" class="sortingMenu__item__link sortingMenu__item__link"
+          id="js-past-events">Past events
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    
+  </div>
+</div>
+<hr class="no_margin_top">
+<div class="row main-events-area no-margin"><!-- Begin group container -->
+</div>

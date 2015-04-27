@@ -80,7 +80,91 @@ DESCRIPTION: Specific style for the forms of AlumNet
 		text-decoration: underline;
 	}
 
-	
+	&--rounded{
+		padding:10px;
+		border-radius: 50%;
+		font-size: 30px;
+	}
 
+}
+.btn-commentImage{
 
+		color:@white;
+		background-color: #677f8b;
+		transition:1s;
+		border-radius: 0px;
+		margin-top:-3px;
+		border:solid 1px #677f8b;		
+	&--close{
+		opacity:0.5;
+		margin-top:0px;
+	}
+	&--close:hover{
+		opacity:1;
+		color:@white;
+		background-color: #677f8b;
+	}
+}
+
+.btn-commentImage:hover{	
+
+	color:#677f8b;
+	background-color: @white;
+	border:solid 1px #677f8b;
+}
+.btn-commentImage:focus, .btn-commentImage:active, .btn-commentImage:visited{
+	color:#FFF;
+	background-color: #677f8b;
+	border:solid 1px #677f8b;
+}
+
+.btn-import{
+	border: 1px solid @main-blue;
+	color: @main-blue;
+	font-size: 14px;
+	line-height: 26px;
+	vertical-align: middle;
+	font-weight: 400;
+	padding: 10px 20px 10px 15px;
+	border-radius: 0px;
+	&--larger{
+		padding: 14px 20px 14px 15px;
+	}
+	&--active{
+		background-color: @main-blue;
+		color: @white;
+	}
+	&--active:hover{
+		color: @white !important;
+	}
+	&:hover{
+		color: @main-blue;
+	}
+	span.icon-char{
+		font-size: 26px;
+		padding-right: 4px;
+	}
+}
+/* file type inpout button */
+input.uploadBox{
+	height: 60px;
+	border:solid 2px #677f8b;
+}
+input.uploadBox::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input.uploadBox::before {
+  content: 'BROWSE';
+  display: inline-block;
+  background: #677f8b;
+  border: 1px solid #999;
+  margin-top: 5px;
+  color:@white;
+  padding: 8px 10px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
 }

@@ -10,13 +10,30 @@
       <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
-      <div class="postCard__btn--like">
-      <% if @you_like: %>
-        <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
-      <% else: %>
-        <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
-      <% end %>
+    <!-- PICTURES -->
+    <% if @pictures: %>
+      <div class="modal-container"></div>
+      <div class="pictures-container">
+        <% counter = 0 %>
+        <% for picture in @pictures: %>
+          <% counter = counter + 1 %>
+          <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
+            <img src="<%= picture.picture.original %>" class="first-item picture-post" data-id="<%= picture.id %>">
+          <% else: %>
+            <img src="<%= picture.picture.original %>" class="item picture-post" data-id="<%= picture.id %>">
+          <% end %>
+        <% end %>
       </div>
+    <% end %>
+    <hr>
+    <!-- PICTURES OFF     -->
+    <div class="postCard__btn--like">
+    <% if @you_like: %>
+      <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+    <% else: %>
+      <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+    <% end %>
+    </div>
     (<span class="js-likes-counter"><%= @likes_count %></span> likes)
     <% if @canEdit: %>
       <a href="#" id='js-edit-post'>edit</a>

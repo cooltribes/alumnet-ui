@@ -1,7 +1,7 @@
 <div class="clearfix">
   <!-- Avatar -->
   <div class="navTopBar__notification__avatar">
-    <img src="<%= @sender.avatar %>" class="img-circle">
+    <img src="<%= @sender.avatar.avatar.medium.url %>" class="img-circle">
   </div>
   <!-- Content -->
   <div class="navTopBar__notification__content">
