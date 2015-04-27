@@ -1,5 +1,13 @@
 <form class="formANet form" role="form">
-	<h2 class="h2">Aproval process</h2>
+	<h2 class="h2">Aproval process
+	<small>
+		<%= @approved_requests_count %>/3
+
+		<small>
+			Approved requests
+		</small>
+	</small>
+	</h2>
 	<p class="lead">Lorem Ipsum Dolor set explaining why there is an aproval process</p>
 	<hr>
 	<div class="row">
@@ -49,46 +57,9 @@
 			<div class="users-list">
 				
 			</div>
-			<!-- <div class="userCardAproval">
-				<div class="row">
-					<div class="col-md-2 userCardAproval__avatar">
-						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
-					</div>
-					<div class="col-md-6">
-						<h4 class="userCardAproval__name">Morgan Freeman</h4>
-						<p><strong>Local Comitee President</strong> <br>
-						Local, Poland
-						</p>
-					</div>
-					<div class="col-md-4 userCardAproval__actions text-right">
-						Your request has been sent <span class="icon-entypo-paper-plane"></span>
-						
-					</div>
-					
-				</div>
-			</div>
-			<div class="userCardAproval">
-				<div class="row">
-					<div class="col-md-2 userCardAproval__avatar">
-						<img src="http://placehold.it/80" class="img-circle" alt="User's name">
-					</div>
-					<div class="col-md-6">
-						<h4 class="userCardAproval__name">Morgan Freeman</h4>
-						<p><strong>Local Comitee President</strong> <br>
-						Local, Poland
-						</p>
-					</div>
-					<div class="col-md-4 userCardAproval__actions text-right">
-						<button class="btn  btn-primary btn-sm btn-block text-uppercase" type="submit">ASK FOR ACCEPTANCE</button>
-						
-					</div>
-					
-				</div>
-			</div> -->
 			
 			
-			
-			<button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button>
+			<!-- <button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button> -->
 		</div>
 	</div>
 	<hr>

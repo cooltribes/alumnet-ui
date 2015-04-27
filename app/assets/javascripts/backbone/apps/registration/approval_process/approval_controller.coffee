@@ -27,10 +27,7 @@
         approvalR = AlumNet.request("current_user:approval:request", userId)  
         approvalR.on "save:success", ()->
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
-          
-
-
-        
+             
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")  
@@ -39,5 +36,8 @@
       AlumNet.request("registration:shared:sidebar", 5)
 
     getFormView: (users) ->
+      current_user = AlumNet.current_user
+
       new Approval.Form
+        model: current_user  
         collection: users  
