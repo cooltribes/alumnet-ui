@@ -34,10 +34,13 @@
     Entities.languages.fetch({async: false})
 
   API =
-    getLanguagesHtml: (collection)  ->
+    getLanguagesHtml: (collection, selected)  ->
       html = '<option value="">Select a language</option>'
       _.forEach collection.models, (item, index, list)->
-        html += '<option value="' + (item.get("id")) + '">' + item.get("name") + '</option>'
+        if item.get("name") == selected
+          html += '<option value="' + (item.get("id")) + '" selected >' + item.get("name") + '</option>'
+        else
+          html += '<option value="' + (item.get("id")) + '">' + item.get("name") + '</option>'
       html
 
     getLanguages: ()->
@@ -45,7 +48,7 @@
       Entities.languages
 
 
-  AlumNet.reqres.setHandler 'languages:html', ->
+  AlumNet.reqres.setHandler 'languages:html', (selected)->
     collection = API.getLanguages()
-    API.getLanguagesHtml(collection)
+    API.getLanguagesHtml(collection, selected)
 

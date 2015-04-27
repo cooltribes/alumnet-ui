@@ -1,12 +1,7 @@
 @AlumNet.module 'RegistrationApp.Skills', (Skills, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Skills.FormLanguage extends Marionette.ItemView
-    # template: 'registration/experience/templates/aiesecExperience'
-
     template: "registration/skills/templates/form"
-
-    # className: 'row'
-    # tagName: 'fieldset'
     tagName: 'form'
 
     initialize: ->
@@ -21,12 +16,11 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
     ui:
       'btnRmv': '.js-rmvRow'
-
     events:
       "click @ui.btnRmv": "removeItem"
-
 
     removeItem: (e)->
       @model.destroy()
@@ -54,7 +48,7 @@
 
       #Render the list of languages
       dropdown = $("[name=language_id]", $(@el))
-      content = AlumNet.request("languages:html")
+      content = AlumNet.request("languages:html", @model.get("name"))
       dropdown.html(content)
 
   class Skills.LanguageList extends Marionette.CompositeView

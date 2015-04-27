@@ -9,15 +9,7 @@
 	</form>
 	<hr>
 	<h2>Languages</h2>
-
-
-
-	<div id="lan-list">
-
-
-
-	</div>
-
+	<div id="lan-list"></div>
 	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addRow" type="button">+ Add another language</button>
 	<hr>
 	<div class="text-right ">
