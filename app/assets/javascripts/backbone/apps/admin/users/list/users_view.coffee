@@ -203,6 +203,10 @@
       'btnEdit': '.js-edit'
     events:
       'click @ui.btnEdit': 'showActions'
+      'click #editPremium': 'openPremium'
+      'click #editStatus': 'openStatus'
+      'click #delete-user': 'deleteUser'
+      'click #editRole': 'openRole'
 
     initialize: (options) ->
       @modals = options.modals
@@ -259,6 +263,40 @@
         modals: @modals
 
       @modals.show(modalsView)
+
+    deleteUser: (e)->
+      e.preventDefault()
+      resp = confirm("Are you sure?")
+      if resp
+        @model.destroy()
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.
+
+    openPremium: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalPremium
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
+
+    openStatus: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalStatus
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
+
+    openRole: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalRole
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
 
 
   class Users.UsersTable extends Marionette.CompositeView
