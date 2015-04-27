@@ -8,6 +8,9 @@
         <option value="email">Email</option>
         <option value="profile_residence_country_name">Country of residence</option>
         <option value="profile_birth_country_name">Country of origin</option>
+        <option value="profile_residence_city_name">City of residence</option>
+        <option value="profile_birth_city_name">City of origin</option>
+        <option value="profile_gender">Gender</option>
         <!--<option value="created_at">Joining date</option> 
             <option value="id">ID</option>  -->
 
