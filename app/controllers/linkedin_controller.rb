@@ -49,6 +49,7 @@ class LinkedinController < ApplicationController
       session[:auth_token] = registration.user.auth_token
       init_registration
     else
+      @path = linkedin_sign_up_path
       @email = user_params[:email]
       @errors_registration = registration.errors
       render 'auth/registration'

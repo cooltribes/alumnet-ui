@@ -19,7 +19,6 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
       avatar_picture: ->
         if model.get('avatar_url')
           model.get('avatar_url')
@@ -27,6 +26,8 @@
           model.get('avatar').extralarge
         else
           null
+      select_gender: (value)->
+        if value == model.get('gender') then 'selected' else ''
     ui:
       'selectBirthCountries': '#js-birth-countries'
       'selectBirthCities': '#js-birth-cities'
