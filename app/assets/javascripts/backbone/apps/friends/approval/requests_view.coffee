@@ -10,7 +10,7 @@
     clickedDelete: (e)->
       e.preventDefault()
       e.stopPropagation()
-      @trigger 'delete'
+      @trigger 'decline'
 
     clickedAccept: (e)->
       e.preventDefault()
