@@ -14,6 +14,9 @@
       
       friendsLayout.on "friends:show:sent", (layout)=>        
         AlumNet.trigger "my:friends:sent", layout        
+      
+      friendsLayout.on "show:approval:requests", (layout)=>        
+        AlumNet.trigger "my:approval:requests", layout        
 
       friendsLayout.on 'friends:search', (querySearch, collection)->        
         collection.fetch(data: querySearch)

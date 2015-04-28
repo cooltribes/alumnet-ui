@@ -51,7 +51,7 @@
     API.destroyCurrentUserFriendship(attrs)
 
   AlumNet.reqres.setHandler 'current_user:friendship:request', (attrs) ->
-    API.requestCurrentUserFriendship(attrs)
+    API.requestCurrentUserFriendship(attrs)  
 
   AlumNet.reqres.setHandler 'current_user:friendships:get', (filter) ->
     API.getCurrentUserFriendship(filter)
