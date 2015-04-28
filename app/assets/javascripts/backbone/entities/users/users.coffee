@@ -123,8 +123,6 @@
       @get("#{counter}_count")
 
     setCount: (counter, value = 0)->
-      console.log @get("#{counter}_count")
-      console.log value
       @set("#{counter}_count", value) if @get("#{counter}_count") != value
       
 

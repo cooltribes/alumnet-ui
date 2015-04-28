@@ -21,8 +21,18 @@
     childView: Approval.UserView
     childViewContainer: '.users-list'
 
+    ui:
+      'adminRequestBtn': '.js-askAdmin'
     events:
       'click .js-search': 'performSearch'
+      'click @ui.adminRequestBtn':'clickedRequestAdmin'
+
+
+    clickedRequestAdmin: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      # @trigger("request")
+      # console.log "RequestAdmin"  
 
     performSearch: (e) ->
       e.preventDefault()
