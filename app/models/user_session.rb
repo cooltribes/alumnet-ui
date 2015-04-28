@@ -14,6 +14,11 @@ class UserSession
     @last_response = self.class.post("/sign_in", options)
   end
 
+  def oauth(params)
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: params }
+    @last_response = self.class.post("/oauth_sign_in", options)
+  end
+
   def user
     @user ||= User.new(@last_response.parsed_response)
   end

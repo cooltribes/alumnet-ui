@@ -8,6 +8,9 @@
 	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addExp" type="button">+ Add another <%= @title() %></button>
 	<hr>
 	<div class="text-right ">
+		<% if @exp_type == 3: %>
+	  	<a href="/linkedin/auth?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+	  <% end %>
 		<% if @skipButton(): %>
 			<button class="btn btn-primary btn-lg  text-uppercase js-skip" type="button">Skip </button>
 		<% end %>

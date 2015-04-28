@@ -13,10 +13,13 @@
 
       profile = user.profile
 
-      languages = new AlumNet.Entities.ProfileLanguageCollection [
-        first: true
-        level: 3
-      ]
+      languages = if gon.linkedin_profile && gon.linkedin_profile.languages.length > 0
+        languagesCollection = new AlumNet.Entities.ProfileLanguageCollection
+        _.forEach gon.linkedin_profile.languages, (elem, index, list)->
+          languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
+        languagesCollection
+      else
+        new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
 
       #get the view according to exp_type 1:alumni
       formView = @getFormView(languages, profile)
@@ -52,7 +55,12 @@
       AlumNet.request("registration:shared:sidebar", step)
 
     getFormView: (collection, profileModel) ->
+      if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
+        linkedin_skills = _.pluck(gon.linkedin_profile.skills, 'name')
+      else
+        linkedin_skills = []
       new Skills.LanguageList
+        linkedin_skills: linkedin_skills
         collection: collection
         model: profileModel
 

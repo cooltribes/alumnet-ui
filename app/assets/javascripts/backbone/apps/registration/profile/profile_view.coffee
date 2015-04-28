@@ -17,6 +17,16 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    templateHelpers: ->
+      model = @model
+      console.log model
+      avatar_picture: ->
+        if model.get('avatar_url')
+          model.get('avatar_url')
+        else if model.get('avatar').extralarge
+          model.get('avatar').extralarge
+        else
+          null
     ui:
       'selectBirthCountries': '#js-birth-countries'
       'selectBirthCities': '#js-birth-cities'
@@ -29,6 +39,7 @@
       'change #profile-avatar': 'previewImage'
       'change #js-birth-countries': 'setBirthCities'
       'change #js-residence-countries': 'setResidenceCities'
+      'click .js-linkedin-import': 'linkedinClicked'
 
 
     submitClicked: (e)->
@@ -46,6 +57,7 @@
       input = @.$('#profile-avatar')
       preview = @.$('#preview-avatar')
       if input[0] && input[0].files[0]
+        @.$('#avatar-url').val('')
         reader = new FileReader()
         reader.onload = (e)->
           preview.attr("src", e.target.result)
@@ -106,4 +118,10 @@
 
       @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))
       @ui.selectResidenceCountries.select2('val', @model.get('residence_country_id'))
+
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.profile
+        e.preventDefault()
+        @model.set(gon.linkedin_profile.profile)
+        @render()
 
