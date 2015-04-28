@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
   get '/linkedin/auth', to: 'linkedin#auth'
   get '/linkedin/callback', to: 'linkedin#callback'
+  get '/linkedin/registration', to: 'linkedin#registration', as: :linkedin_registration
+  post '/linkedin/sign_up', to: 'linkedin#sign_up', as: :linkedin_sign_up
   # get '*unmatched_route', to: 'application#raise_not_found!'
 end
