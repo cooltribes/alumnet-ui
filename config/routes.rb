@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get '/linkedin/auth', to: 'linkedin#auth'
-  get '/linkedin/callback', to: 'linkedin#callback'
+  get '/auth/linkedin', to: 'linkedin#auth'
+  get '/auth/linkedin/callback', to: 'linkedin#callback'
   get '/linkedin/registration', to: 'linkedin#registration', as: :linkedin_registration
   post '/linkedin/sign_up', to: 'linkedin#sign_up', as: :linkedin_sign_up
 

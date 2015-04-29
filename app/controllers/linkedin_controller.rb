@@ -4,12 +4,8 @@ class LinkedinController < ApplicationController
 
   def auth
     init_client
-    callback_url = if params[:registration]
-      "http://#{request.host_with_port}/linkedin/callback?registration=1"
-    else
-      "http://#{request.host_with_port}/linkedin/callback"
-    end
-    request_token = @client.request_token(:oauth_callback => callback_url)
+    flag = params[:registration] ? "?registration=1" : ""
+    request_token = @client.request_token(:oauth_callback => "http://#{request.host_with_port}/auth/linkedin/callback#{flag}")
     session[:rtoken] = request_token.token
     session[:rsecret] = request_token.secret
     redirect_to @client.request_token.authorize_url
