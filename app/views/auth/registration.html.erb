@@ -1,0 +1,22 @@
+<div class="row text-center">
+  <div id="registerHomeForm" class="collapse in ">
+    <div class=" homeAlumNet__registerForm">
+      <%= form_tag @path do %>
+      <% if @errors_registration && @errors_registration.any? %>
+      <div class="alert alert-danger ">
+        <% @errors_registration.full_messages.each do |msg| %>
+        <%= msg %><br>
+        <% end %>
+      </div>
+      <% end %>
+      <%= label_tag :email, nil ,class: 'sr-only' %>
+      <%= text_field_tag 'user[email]', @email, class: "form-control input-lg", placeholder: "Enter email" %>
+      <%= label_tag :password, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+      <%= label_tag :password_confirmation, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
+      <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>

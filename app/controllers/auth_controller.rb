@@ -19,13 +19,6 @@ class AuthController < ApplicationController
     end
   end
 
-  def createFacebook
-    registration = UserRegistration.new
-    registration = registration.from_omniauth(env["omniauth.auth"])
-    #session[:user_id] = user.id
-    redirect_to root_url
-  end
-
   def sign_up
     registration = UserRegistration.new
     registration.register(user_params)

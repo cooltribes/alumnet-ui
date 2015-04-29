@@ -11,10 +11,14 @@ class AlumnetLinkedin
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
-    "date-of-birth", "first-name", "last-name", "picture-url", "skills"]
+    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
+  end
+
+  def auth_params
+    { email: linkedin['email_address'], provider: "linkedin", uid: linkedin['id'], oauth_token: ""}
   end
 
   def profile
