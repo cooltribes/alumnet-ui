@@ -15,11 +15,15 @@ DESCRIPTION: CSS for styling a list of events
 		height: 105px; 
 		width: 90px;
 	}
-
+  h3{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:100%;
+  }
   &__name{
     text-transform: capitalize;
     padding-top: 0.1em;
-
     & a{
       color: #000;
 
@@ -93,6 +97,13 @@ DESCRIPTION: CSS for styling a list of events
         width: 51px;
         z-index: 10;
         float:left;
+  }
+  .creatorName{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    height: 2em;
   }
 
 }

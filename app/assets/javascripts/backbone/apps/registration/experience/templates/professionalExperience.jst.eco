@@ -37,13 +37,13 @@
 									<% if x==10 : %> October <% end %>
 									<% if x==11 : %> November <% end %>
 									<% if x==12 : %> December <% end %>
-								</option>		
+								</option>
 							<% end %>
 						</select>
 					</div>
 				</div>
 			</div><button class="formANet__colOneHalf btn btn-lg btn-default btn-primary-noBackground js-addMonth hidden" type="button">+ Month</button>
-			
+
 			<span class="help-block"></span>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-								
+
 							<% end %>
 						</select>
 					</div>
@@ -82,7 +82,7 @@
 									<% if x==10 : %> October <% end %>
 									<% if x==11 : %> November <% end %>
 									<% if x==12 : %> December <% end %>
-								</option>							
+								</option>
 							<% end %>
 						</select>
 					</div>
@@ -135,7 +135,6 @@
 <% if @inProfile: %>
 
 	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
-
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
 

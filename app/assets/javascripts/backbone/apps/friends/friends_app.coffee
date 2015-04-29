@@ -31,6 +31,11 @@
     myReceived: (layout)->
       controller = new FriendsApp.Requests.Controller
       controller.showMyReceived(layout)
+    
+    myApproval: (layout)->
+      controller = new FriendsApp.Approval.Controller
+      controller.showReceived(layout)
+    
     userFriends: (layout, id)->
       controller = new FriendsApp.List.Controller
       controller.showSomeonesFriends(layout, id)
@@ -62,6 +67,9 @@
     
   AlumNet.on "my:friends:received", (layout)->    
     API.myReceived(layout)  
+
+  AlumNet.on "my:approval:requests", (layout)->    
+    API.myApproval(layout)  
 
   AlumNet.on "user:friends:get", (layout, id)->    
     API.userFriends(layout, id)  

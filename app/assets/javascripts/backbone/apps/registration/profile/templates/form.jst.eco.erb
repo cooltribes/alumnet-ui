@@ -4,8 +4,8 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group text-center">
-        <%% if @avatar.extralarge: %>
-        <img src="<%%= @avatar.extralarge %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <%% if @avatar_picture(): %>
+        <img src="<%%= @avatar_picture() %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <%% else: %>
 
                 <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar",  width:"240px", height:"240px")  %>
@@ -14,6 +14,7 @@
         <label class="control-label" for="profilePicture">Choose your avatar</label>
         <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
+        <input type="hidden" id="avatar-url" name="avatar_url" value="<%%= @avatar_url %>">
       </div>
     </div>
     <div class="col-md-6">
@@ -46,7 +47,7 @@
           </div>
           <span class="help-block"></span>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -92,6 +93,7 @@
   <hr>
   <!-- Buttons -->
   <div class="form-group text-right">
+    <a href="/linkedin/auth" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
     <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>

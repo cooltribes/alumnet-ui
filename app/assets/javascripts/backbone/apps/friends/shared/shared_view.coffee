@@ -16,6 +16,13 @@
     regions:
       body: '.friends-list'
 
+    #for Stickit
+    bindings:
+      "#js-approvalCount": 
+        observe: "pending_approval_requests_count" 
+        onGet: (value, options)->
+          "Approval Requests (#{value})"
+
   
     initialize: (options) ->
       @listenTo(@model, 'change:pending_sent_friendships_count', @changedCountSent)
@@ -40,6 +47,7 @@
     events:
       'click .js-search': 'performSearch'
       'click #js-friends, #js-mutual, #js-myfriends, #js-sent, #js-received': 'showList'
+      'click #js-approval': 'showApprovalList'
 
     performSearch: (e) ->
       e.preventDefault()
@@ -49,8 +57,15 @@
     showList: (e)->
       e.stopPropagation()
       e.preventDefault()
+      actionId = $(e.currentTarget).attr('id').substring(3)
+      @trigger "friends:show:#{actionId}", this
+      @toggleLink(actionId)
+
+    showApprovalList: (e)->
+      e.stopPropagation()
+      e.preventDefault()
       id = $(e.currentTarget).attr('id').substring(3)
-      @trigger "friends:show:#{id}", this
+      @trigger "show:approval:requests", this
       @toggleLink(id)
 
     buildQuerySearch: (searchTerm) ->
@@ -76,6 +91,9 @@
     changedCount: ->
       message = "Friends (#{@model.get('friends_count')})"
       @ui.changedCount.html(message)  
+
+    onRender: ()->
+      @stickit()
 
 
   API =
