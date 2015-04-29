@@ -25,8 +25,24 @@
 				<!--  -->
 				<% end %>
 				<div class="item col-md-6 ">
-					<div class="groupCreatePostForm clearfix">
-						<h2><%="#{@event_attendances} -- #{@event_going} -- #{@even_maybe}" %></h2>
+					<div class="attendantsQuantity clearfix">
+						<div class="row no-margin">
+							<div class="col-md-4 attendantsQuantity__boxNumber attendantsQuantity__bRight">
+								<span class="attendantsQuantity__number"><%="#{@event_attendances}"%></span>
+								<span class="attendantsQuantity__type">going</span>
+							</div>
+							<div class="col-md-4 attendantsQuantity__boxNumber">
+								<span class="attendantsQuantity__number"><%="#{@event_going}" %></span>
+								<span class="attendantsQuantity__type">maybe</span>	
+							</div>
+							<div class="col-md-4 attendantsQuantity__boxNumber attendantsQuantity__bLeft">
+								<span class="attendantsQuantity__number"><%="#{@even_maybe}" %></span>
+								<span class="attendantsQuantity__type">invited</span>
+							</div>
+						</div>
+						<!--<div class="row no-margin attendantsQuantity__bTop padding_small">
+							<span class="attendantsQuantity__friends attendantsQuantity__type">friends going</span>
+						</div>-->
 					</div>
 				</div>
 			</div>
