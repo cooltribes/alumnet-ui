@@ -1,0 +1,36 @@
+<div class="row main-events-area">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="control-label" for="inputName">Select country for different payment options</label>
+      <input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <div id="paymentwall-content">
+    <h3>Event: <%%= @name %></h3>
+    <%=
+    # Paymentwall Ruby Library: https://www.paymentwall.com/lib/ruby
+    require_relative '/path/to/paymentwall-ruby/lib/paymentwall.rb'
+    Paymentwall::Base::setApiType(Paymentwall::Base::API_GOODS)
+    Paymentwall::Base::setAppKey('t_f5b21d348125116968e4f9304eb60d')
+    Paymentwall::Base::setSecretKey('t_1b3379dadc02d3c473f430aeb510f6')
+
+    widget = Paymentwall::Widget.new(
+        'user40012',
+        'p10',
+        [
+            Paymentwall::Product.new(
+                'product301',
+                9.99,
+                'USD',
+                'Gold Membership',
+                Paymentwall::Product::TYPE_FIXED
+            )
+      ],
+        { 'email' => 'user@hostname.com'}
+    )
+    puts widget.getHtmlCode()
+    %>
+    
+  </div>
+</div>

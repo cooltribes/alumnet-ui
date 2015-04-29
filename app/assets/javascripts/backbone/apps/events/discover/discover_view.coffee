@@ -37,13 +37,13 @@
           attendance.save()
       if status=='going'
         $('#attendance-status').css('background-color','#72da9e')
+        AlumNet.navigate('events/'+@model.id+'/payment', true)
       if status=='invited'
         $('#attendance-status').css('background-color','#6dc2e9')
       if status=='not_going'
         $('#attendance-status').css('background-color','#ea7952')
       if status=='maybe'
         $('#attendance-status').css('background-color','#f5ac45')
-      AlumNet.navigate('premium', true)
 
 
   class Discover.EventsView extends Marionette.CompositeView
