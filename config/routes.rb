@@ -20,10 +20,12 @@ Rails.application.routes.draw do
   get '/auth/linkedin', to: 'linkedin#auth'
   get '/auth/linkedin/callback', to: 'linkedin#callback'
   get '/linkedin/registration', to: 'linkedin#registration', as: :linkedin_registration
+  post '/linkedin/sign_in', to: 'linkedin#sign_in', as: :linkedin_sign_in
   post '/linkedin/sign_up', to: 'linkedin#sign_up', as: :linkedin_sign_up
 
   get '/auth/facebook/callback', to: 'facebook#callback'
   get '/facebook/registration', to: 'facebook#registration', as: :facebook_registration
+  post '/facebook/sign_in', to: 'facebook#sign_in', as: :facebook_sign_in
   post '/facebook/sign_up', to: 'facebook#sign_up', as: :facebook_sign_up
 
 end

@@ -15,18 +15,10 @@ class UserRegistration
     @last_response = self.class.post("/register", options)
   end
 
-  def from_omniauth(auth)
-   # auth.uid
-    # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-    #   user.provider = auth.provider
-    #   user.uid = auth.uid
-    #   user.name = auth.info.name
-    #   user.oauth_token = auth.credentials.token
-    #   user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-    #   user.save!
+  def oauth_register(user_params, provider_params)
     options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" },
-    body: { user: auth } }
-    @last_response = self.class.post("/registerFacebook", options)
+      body: { user: user_params.merge( oauth_providers_attributes: [provider_params]) } }
+    @last_response = self.class.post("/oauth_register", options)
   end
 
   def user
