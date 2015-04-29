@@ -1,18 +1,47 @@
 @AlumNet.module 'RegistrationApp.Approval', (Approval, @AlumNet, Backbone, Marionette, $, _) ->
+  class Approval.UserView extends Marionette.ItemView
+    template: 'registration/approval_process/templates/user'  
 
-	# class Approval.Form extends Marionette.LayoutView
- #      # template: 'registration/Approval_process/templates/layout'
- #    	template: 'registration/Approval_process/templates/layout'
- #    	id: 'main-wrapper'
- #    	className: 'col-md-12'
+    ui:
+      'requestBtn': '.js-ask'
+      'actionsContainer': '.js-actions-container'
+    
+    events:
+      'click @ui.requestBtn':'clickedRequest'
+    
+    clickedRequest: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @trigger("request")
+      
 
- #    	regions:
- #      		side_region: '#sidebar-region' #any name you want to give to the region, any css selector you have used inside the layout template
- #      		content_region:   '#registration-content-region' #any name you want to give to the region, any css selector you have used inside the layout template
+      
+  class Approval.Form extends Marionette.CompositeView
+    template: 'registration/approval_process/templates/form'  
+    childView: Approval.UserView
+    childViewContainer: '.users-list'
+
+    ui:
+      'adminRequestBtn': '.js-askAdmin'
+    events:
+      'click .js-search': 'performSearch'
+      'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
 
- #  	class Approval.Sidebar extends Marionette.CompositeView
- #    	template: 'registration/account/templates/sidebar'
+    clickedRequestAdmin: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      # @trigger("request")
+      # console.log "RequestAdmin"  
 
-	class Approval.Form extends Marionette.ItemView
-  	template: 'registration/approval_process/templates/formTemporal'  
+    performSearch: (e) ->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      @trigger('users:search', @buildQuerySearch(data.search_term))
+
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        profile_first_name_cont: searchTerm
+        profile_last_name_cont: searchTerm
+        email_cont: searchTerm

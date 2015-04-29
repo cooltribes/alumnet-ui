@@ -49,6 +49,14 @@
 
 					</a>
 				</li>
+				<li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+					<a href=""  class="sortingMenu__item__link sortingMenu__item__link<%= @classOf(3)%>" title="Approval Requests" id="js-approval">
+						<span id="js-approvalCount">
+							Approval Requests (<%= @pending_approval_requests_count %>)
+						</span>
+
+					</a>
+				</li>
 
 			</ul>
 

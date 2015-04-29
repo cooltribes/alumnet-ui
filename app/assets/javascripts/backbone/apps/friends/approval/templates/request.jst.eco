@@ -1,0 +1,27 @@
+<!-- requests that i received from a user-->
+<div class="userCard requester-info">
+  <div class=" row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle" width="80" height="80">
+    </div>
+    <div class=" col-md-6 ">
+      <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @requester.name %></a></h4>
+      <p class="userCard__position member-position text-small"><%= @requester.last_experience %></p>
+    </div>
+    <div class=" col-md-3">
+      <a href="#" id="js-accept" title="Approve request">
+        <div class="userCard__actions--Approve userCard__animation">
+            <span class="userCard__actions__text">ACCEPT</span>
+            <span class="glyphicon glyphicon-ok"></span>
+        </div>
+      </a>
+      <a href="#" id="js-delete" title="Decline request">
+        <div class="userCard__actions--Decline userCard__animation">
+          <span class="userCard__actions__text">DECLINE</span>
+          <span class="glyphicon glyphicon-user"></span> 
+          <span class="glyphicon glyphicon-remove"></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
