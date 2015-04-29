@@ -36,13 +36,17 @@
         q = {}
 
         @collection.each (model)->
-          if model.isValid(true)
+          #if model.isValid(true)
 
             field = model.get("field")
             operator = model.get("operator")
             comparator = model.get("comparator")
             value = model.get("value")
             attr = "#{field}_#{comparator}"
+            console.log field
+            console.log operator
+            console.log value
+            console.log attr
             
 
             if comparator in ["cont_any", "in"]
@@ -52,8 +56,8 @@
                 q[attr] = [value]
             
 
-          else
-            validCollection = false
+          #else
+            #validCollection = false
             
 
         #Only if all filters are valid

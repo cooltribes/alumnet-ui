@@ -283,12 +283,12 @@
     ui:
       'btnRmv': '.js-rmvRow'
       'field': 'input[name=field]'
+      "selectType": ".filter_by"
       'me': 'el'
-
-
+      
     events:
       "click @ui.btnRmv": "removeRow"
-      "change @ui.field": "changeField"
+      "change .filter_by, click .filter_by" : "changeField"
       "sumbit me": "sumbitForm"
 
     initialize: ->
@@ -303,6 +303,84 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+
+    onRender: ->
+      console.log  @ui.field.val()
+      console.log  @ui.field
+      @$(".js-date").Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: ['2015-01-01', '2030-12-12']
+        onOpen: (e) ->
+          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
+          
+    comparatorOption: (comparator) ->
+      if comparator == null || comparator == 0
+        $('#comparator2').hide()
+        $('#comparator1').show()    
+      else if comparator == 1
+        $('#comparator1').hide()    
+        $('#comparator2').show()
+    valueOption: (value) ->
+      if value == null || value == 0
+        $('#value2').hide()    
+        $('#value3').hide()    
+        $('#value4').hide()    
+        $('#value5').hide()    
+        $('#value1').show()
+      else if value == 1
+        $('#value1').hide()
+        $('#value3').hide()    
+        $('#value4').hide()    
+        $('#value5').hide()  
+        $('#value2').show()    
+      else if value == 2
+        $('#value1').hide()
+        $('#value2').hide()    
+        $('#value4').hide()    
+        $('#value5').hide()
+        $('#value3').show()
+      else if value == 3
+        $('#value1').hide()
+        $('#value2').hide()    
+        $('#value5').hide()
+        $('#value3').hide()          
+        $('#value4').show()    
+                          
+
+    changeField: (e) ->
+      if @ui.selectType.val() =='profile_first_name_or_profile_last_name'
+        @comparatorOption(0)
+        @valueOption(0)        
+      else if @ui.selectType.val() =='email'
+        @comparatorOption(0)
+        @valueOption(0)        
+      else if @ui.selectType.val() =='profile_residence_country_name'
+        console.log "country residence"
+        @comparatorOption(0)
+        @valueOption(0)
+      else if @ui.selectType.val() =='profile_birth_country_name'
+        console.log "birth country"
+        @comparatorOption(0)
+        @valueOption(0)       
+      else if @ui.selectType.val() =='profile_residence_city_name'
+        console.log "city residence"
+        @comparatorOption(0)
+        @valueOption(0)       
+      else if @ui.selectType.val() =='profile_birth_city_name'
+        console.log "birth city"
+        @comparatorOption(0)
+        @valueOption(0)
+      else if @ui.selectType.val() =='profile_gender'
+        console.log "gender"
+        @comparatorOption(0)
+        @valueOption(1)       
+      else if @ui.selectType.val() =='created_at'   
+        console.log "created at"
+        @comparatorOption(1)
+        @valueOption(2)
 
     sumbitForm: (e)->
       e.preventDefault()
@@ -344,7 +422,6 @@
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
       @trigger('filters:search')
-
 
 
 

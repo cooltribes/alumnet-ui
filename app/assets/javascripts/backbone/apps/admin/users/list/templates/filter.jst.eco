@@ -2,7 +2,7 @@
   <div class="col-md-3 ">
     <div class="form-group">
      <% if @first: %> <label class="control-label">Filter by</label><% end %>
-      <select name="field" class="form-control  input-lg">
+      <select name="field" class="form-control  input-lg filter_by">
         <option value="">Select field</option>
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
@@ -11,42 +11,84 @@
         <option value="profile_residence_city_name">City of residence</option>
         <option value="profile_birth_city_name">City of origin</option>
         <option value="profile_gender">Gender</option>
-        <!--<option value="created_at">Joining date</option> 
-            <option value="id">ID</option>  -->
+        <option value="created_at">Joining date</option> 
+        <!-- <option value="id">ID</option>  -->
 
-        <!-- <option value="joined">Join date</option>
-        <option value="gender">Gender</option> -->
+        
       </select>
       <span class="help-block"></span>
     </div>
   </div>
   <div class="col-md-2 ">
     <div class="form-group">
-      <% if @first: %> <label class="control-label">Comparator</label><% end %>
-      <select name="comparator" class="form-control input-lg">
-        <option value="">Select comparator</option>
-        <option value="cont_any">Contains</option>
-        <option value="in">=</option>
-        <!-- <option value="eq">Equals</option> -->
+      <% if @first: %><label class="control-label">Comparator</label><% end %>
 
-        <!-- 
-        <option value=">">></option>
-        <option value="<"><</option>
-        <option value="<>"><></option>
-        <option value="<="><=</option>
-         -->
-         
-      </select>
-      <span class="help-block"></span>
+      <div id="comparator1">
+        <select  name="comparator" class="form-control input-lg">
+          <option value="">Select comparator</option>
+          <option value="cont_any">Contains</option>
+          <option value="in">=</option>           
+        </select> 
+        <span class="help-block"></span>
+      </div>    
+
+      <div id="comparator2" style="display: none;">
+        <select name="comparator" class="form-control input-lg">
+          <option value="">Select comparator</option>
+          <option value="gt">></option>
+          <option value="lt"><</option>
+          <option value="lteq"><=</option>
+          <option value="gteq">>=</option>
+          <option value="eq">=</option>
+        </select>
+      </div>            
+                 
     </div>
   </div>
-  <div class="col-md-3 ">
+
+  <div class="col-md-3 "> 
     <div class="form-group">
       <% if @first: %> <label class="control-label" for="registerLocalcomitee">Value</label><% end %>
-      <input type="text" name="value" id="value" class="form-control input-lg">
-      <span class="help-block"></span>
+        <div id="value1">
+          <input type="text" name="value" id="value" class="form-control input-lg">           
+        </div> 
+
+        <div id="value2" style="display: none;">
+          <select name="value" class="form-control input-lg value_by">
+            <option value="M">Male</option>  
+            <option value="F">Female</option> 
+          </select>    
+        </div>   
+
+        <div id="value3" style="display: none;">
+          <input type="text" value="Select date" class="form-control input-lg js-date" name="born" id="born">
+        </div> 
+
+        <div id="value4" style="display: none;">
+          <option value="0">Registered</option> 
+          <option value="1">Banned</option>     
+          <option value="2">Erased</option>   
+        </div>      
+
+        <div id="value5" style="display: none;">
+          <option value="0">Registrant</option> 
+          <option value="1">Member</option>     
+          <option value="2">Lifetime Member</option>
+        </div>   
+
+
+        <!----> 
+        
     </div>
   </div>
+
+ 
+         
+        
+  
+
+
+
   <div class="col-md-2 ">
 
     <div class="form-group">
