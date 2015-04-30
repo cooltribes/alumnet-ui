@@ -274,7 +274,6 @@
 
 
 
-
   ###Filters views###
   class Users.Filter extends Marionette.ItemView
     template: 'admin/users/list/templates/filter'

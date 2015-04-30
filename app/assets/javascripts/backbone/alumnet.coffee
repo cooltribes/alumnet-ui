@@ -20,8 +20,8 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()
-      App.navigate('#posts', {trigger: true})
+      Backbone.history.start()      
+      App.navigate('#posts', {trigger: true}) if App.getCurrentRoute() == ""
 
 
   App.addRegions
