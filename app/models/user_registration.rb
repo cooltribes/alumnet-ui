@@ -15,6 +15,12 @@ class UserRegistration
     @last_response = self.class.post("/register", options)
   end
 
+  def oauth_register(user_params, provider_params)
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" },
+      body: { user: user_params.merge( oauth_providers_attributes: [provider_params]) } }
+    @last_response = self.class.post("/oauth_register", options)
+  end
+
   def user
     @user ||= User.new(@last_response.parsed_response)
   end
