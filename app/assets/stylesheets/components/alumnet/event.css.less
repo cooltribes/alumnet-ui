@@ -1,0 +1,54 @@
+/***
+
+APP NAME: event	
+DESCRIPTION:diferents styles for events
+***/
+
+@import 'conf/conf.css.less';
+
+.event{
+
+	&__capacity{
+		color: #000;
+  		font-size: 1.1em;
+	}
+}
+
+input[type="checkbox"] {
+	margin-right:0.5em;
+}
+
+.attendantsQuantity{
+	background: @blue-gray;
+  	color: @white;
+  	border: none;
+
+  	&__boxNumber{
+  		padding: 10px 0px 10px 20px;
+  	}
+
+  	&__number{
+  		font-size: 2.4em;
+  		display: block;
+  	}
+
+  	&__type{
+  		font-weight: 300;
+  		font-size: 1.2em;
+  	}
+
+  	&__bRight{
+		border-right: 1px solid @white;
+  	}
+  	&__bLeft{
+		border-left: 1px solid @white;
+  	}
+  	&__bTop{
+		border-top: 1px solid @white;
+  	}
+
+  	&__friends{
+  		display: block;
+  		text-align: center;
+  	}
+}

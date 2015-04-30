@@ -10,7 +10,7 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class=""><a href="#events/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Events</a></li>
+        <li class="<%= @classOf(0)%>"><a href="#events/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Events</a></li>
       </ul>
       <!-- CREATE A NEW GROUP BTN -->
       <a href="#events/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a event</a>

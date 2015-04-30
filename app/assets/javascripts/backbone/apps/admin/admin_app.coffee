@@ -8,6 +8,7 @@
       "admin/regions": "regionsList"
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
+      "admin/baner": "banerList"
 
   API =
     usersList: (id)->      
@@ -25,6 +26,9 @@
     regionsList: ->
       controller = new AdminApp.Regions.Controller
       controller.regionsList()
+    banerList: ->
+      controller = new AdminApp.BanerList.Controller
+      controller.banerList()   
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -41,3 +45,7 @@
   AlumNet.on "admin:groups:deleted", ->
     AlumNet.navigate("admin/groups/deleted")
     API.groupsDeleted()
+
+  AlumNet.on "admin:baner", ->
+    AlumNet.navigate("admin/baner")
+    API.banerList()
