@@ -4,7 +4,8 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->      
-      @tab = options.tab      
+      @tab = options.tab
+      @pointsBar = options.pointsBar   
       @class = [
         "", "", ""
         "", ""
@@ -13,21 +14,29 @@
 
     templateHelpers: ->
       model = @model
+      pointsBar : @pointsBar
       classOf: (step) =>
         @class[step]
+      prizes : 2
+      chosenPrizes: (prizes) =>
+        if(prizes>0)
+          return "pointsBar--active"
+        else
+          return ""
 
   API =
-    renderSubmenu: (view,tab)->
+    renderSubmenu: (view,tab,pointsBar)->
       if view == null
         AlumNet.submenuRegion.empty()
       else
         if view == undefined
           submenu = new Submenu.Menu
             tab: tab
+            pointsBar: pointsBar
         else
           submenu = view
         AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:points:submenu',(view,tab) ->
-    API.renderSubmenu(view,tab)
+  AlumNet.commands.setHandler 'render:points:submenu',(view,tab,pointsBar) ->
+    API.renderSubmenu(view,tab,pointsBar)
