@@ -82,14 +82,8 @@
       e.preventDefault()
       @trigger 'join'
       @model.fetch()
-      @trigger 'show'
-      console.log "Reseted"
-      #@model.reset()
-      #@trigger "reset"
-      #AlumNet.submenuRegion.reset()
-      #@collection.reset()
-      #@model.collection.trigger "reset"
-
+      @render() 
+      
     onRender: ->
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()

@@ -285,6 +285,8 @@
       'field': 'input[name=field]'
       "selectType": ".filter_by"
       'me': 'el'
+      "value": "[name=value]"
+      "comparator": "[name=comparator]"
       
     events:
       "click @ui.btnRmv": "removeRow"
@@ -304,9 +306,7 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-    onRender: ->
-      console.log  @ui.field.val()
-      console.log  @ui.field
+    onRender: ->      
       @$(".js-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
@@ -315,75 +315,79 @@
         direction: ['2015-01-01', '2030-12-12']
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
-          
-    comparatorOption: (comparator) ->
-      if comparator == null || comparator == 0
-        $('#comparator2').hide()
-        $('#comparator1').show()    
-      else if comparator == 1
-        $('#comparator1').hide()    
-        $('#comparator2').show()
-    valueOption: (value) ->
-      if value == null || value == 0
-        $('#value2').hide()    
-        $('#value3').hide()    
-        $('#value4').hide()    
-        $('#value5').hide()    
-        $('#value1').show()
-      else if value == 1
-        $('#value1').hide()
-        $('#value3').hide()    
-        $('#value4').hide()    
-        $('#value5').hide()  
-        $('#value2').show()    
-      else if value == 2
-        $('#value1').hide()
-        $('#value2').hide()    
-        $('#value4').hide()    
-        $('#value5').hide()
-        $('#value3').show()
-      else if value == 3
-        $('#value1').hide()
-        $('#value2').hide()    
-        $('#value5').hide()
-        $('#value3').hide()          
-        $('#value4').show()    
-                          
-
-    changeField: (e) ->
-      if @ui.selectType.val() =='profile_first_name_or_profile_last_name'
-        @comparatorOption(0)
-        @valueOption(0)        
-      else if @ui.selectType.val() =='email'
-        @comparatorOption(0)
-        @valueOption(0)        
-      else if @ui.selectType.val() =='profile_residence_country_name'
-        console.log "country residence"
-        @comparatorOption(0)
-        @valueOption(0)
-      else if @ui.selectType.val() =='profile_birth_country_name'
-        console.log "birth country"
-        @comparatorOption(0)
-        @valueOption(0)       
-      else if @ui.selectType.val() =='profile_residence_city_name'
-        console.log "city residence"
-        @comparatorOption(0)
-        @valueOption(0)       
-      else if @ui.selectType.val() =='profile_birth_city_name'
-        console.log "birth city"
-        @comparatorOption(0)
-        @valueOption(0)
-      else if @ui.selectType.val() =='profile_gender'
-        console.log "gender"
-        @comparatorOption(0)
-        @valueOption(1)       
+                                    
+    
+    #TO DO: refactor this
+    changeField: (e) ->      
+      if @ui.selectType.val() =="profile_first_name_or_profile_last_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")         
+      else if @ui.selectType.val() =="email"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_city_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_city_name" 
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.replaceWith("<input type='text' name='value' id='value' class='form-control input-lg'>")                
+      else if @ui.selectType.val() =="profile_gender"        
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='M'>Male</option>  
+          <option value='F'>Female</option> </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")                       
       else if @ui.selectType.val() =='created_at'   
-        console.log "created at"
-        @comparatorOption(1)
-        @valueOption(2)
+        @ui.comparator.html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='gt'>></option>
+          <option value='lt'><</option>
+          <option value='lteq'><=</option>
+          <option value='gteq'>>=</option>
+          <option value='eq'>=</option>
+          </select>")
+        @ui.value.empty().append("<input type='text' value='Select date' class='form-control input-lg js-date' name='value'>")
+      else if @ui.selectType.val() =='status'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Inactive</option>  
+          <option value='1'>Active</option> 
+          <option value='2'>Banned</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+        
 
     sumbitForm: (e)->
       e.preventDefault()
+      @render()
 
     removeRow: (e)->
       @model.destroy()
@@ -421,9 +425,8 @@
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
+        console.log itemView.model
       @trigger('filters:search')
-
-
 
     # initialize: (options) ->
     #   @modals = options.modals
