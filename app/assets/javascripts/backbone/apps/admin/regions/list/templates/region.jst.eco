@@ -1,15 +1,32 @@
 <td>
-  <h4><b><%= @name %></b></h4>
-  <% if @countries: %>
+  <div>
+    <h4><b><%= @name %></b></h4>
+  </div>
+  <div class="region__CountryBox">
+  <% if @countries: %>  
+    <% aux = 0 %>
     <% for country in @countries: %>
-      <%= country.text %>
-    <% end %>
+      <% if aux==0: %>
+        <ul class="region__CountryList">
+      <% end %> 
+      <li>
+        <%= country.text %> 
+        <% aux=aux+1 %>
+      </li>
+      <% if aux==parseInt(@countries_length/4): %>
+        <% aux = 0  %>
+        </ul>
+      <% console.log aux %>
+      <% end %>   
+    <% end %>   
   <% end %>
-  <h4>
-    <a href="#" class="btn-default btn js-edit" title="Edit Region" id="js-new-region">Edit Region</a>
-  </h4>
+  </div>
+  <div>
+    <h4>
+      <a href="#" class="groupPost__btn--comment js-edit" title="Edit Region" id="js-new-region">Edit Region</a>
+    </h4>
+  </div>
 </td>
-<td>
+<td class="region__admins">
   <%= @countries_length %>
 </td>
-

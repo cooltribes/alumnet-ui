@@ -22,6 +22,7 @@
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
+      
 
 
     events:

@@ -1,12 +1,12 @@
 <div class="row eventsTableView margin_bottom_xsmall">
   <div class="col-md-1 no-padding ">
-    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: 100%;" >
+    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
     <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
     </div>
   </div>
   <div class="col-md-11">
     <div>
-      <h3 class="margin_top_xsmall">
+      <h3 class="margin_top_xsmall overfloadText">
         <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
       </h2>
     </div>
@@ -20,7 +20,7 @@
           <div class="col-md-10">
             <div>Invited by:</div>
             <a href="#users/<%= @creator.id %>/posts">
-              <div class="creatorName">
+              <div class="creatorName overfloadText">
                 <%= @creator.name %>
               </div> 
             </a>
@@ -29,14 +29,12 @@
         </div>
       </div>
 
-
-
       <div class="col-md-4">
         <div>
           <span class="glyphicon glyphicon-time"></span>
           <%= moment(@start_date).format('MM/YYYY') %>, <%= @start_hour %>
         </div>
-        <div>
+        <div class="overfloadText">
           <span class="glyphicon glyphicon-map-marker"></span>
           <%= @location %>
         </div>

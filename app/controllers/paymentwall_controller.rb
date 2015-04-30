@@ -16,11 +16,15 @@ class PaymentwallController < ApplicationController
     @reference = @pingback.getParameter('ref')
 
     #if @pingback.validate()
-      if(@pingback.getParameter('type') == '0')
-        if(@pingback.getParameter('goodsid') == '222')
-          @lifetime = true
-        else
-          @end = DateTime.now + 1.year
+      if(@pingback.getParameter('payment_type') == 'event')
+        render :text => "Event"+@pingback.getParameter('ag_name')
+      else
+        if(@pingback.getParameter('type') == '0')
+          if(@pingback.getParameter('goodsid') == '222')
+            @lifetime = true
+          else
+            @end = DateTime.now + 1.year
+          end
         end
       end
       subscription = Subscription.new

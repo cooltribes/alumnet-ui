@@ -1,6 +1,6 @@
 @AlumNet.module 'AdminApp.Users', (Users, @AlumNet, Backbone, Marionette, $, _) ->
   class Users.Controller
-    usersList: ->
+    usersList: (id)->
       AlumNet.execute('render:admin:users:submenu', undefined, 0)
 
       # Main container
@@ -9,7 +9,15 @@
       AlumNet.mainRegion.show(layoutView)
 
       # current_user = AlumNet.current_user
-      users = AlumNet.request("admin:user:entities", {})
+      if id?
+        querySearch = 
+          q:
+            "id_eq": id
+        users = AlumNet.request("admin:user:entities", querySearch)
+      else
+        users = AlumNet.request("admin:user:entities", {})
+      
+
       window.users = users
 
       # Region with users list

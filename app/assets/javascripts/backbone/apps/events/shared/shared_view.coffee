@@ -52,6 +52,7 @@
         processData: false
         data: formData
         success: ->
+          model.trigger('change:cover')
           modal.destroy()
       @model.save {}, options
 
@@ -91,11 +92,15 @@
       'click @ui.going, @ui.maybe, @ui.notGoing': 'updateAttendance'
 
     coverChanged: ->
-      cover = @model.get('cover')
-      @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
-
+      #cover = @model.get('cover')
+      #@ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
+      view = @
+      @model.fetch
+        success: (model)->
+          console.log model
+          view.render()
+    
     uploadClicked: (e)->
-      e.preventDefault()
       modal = new Shared.Modal
         model: @model
       $('#js-modal-cover-container').html(modal.render().el)
