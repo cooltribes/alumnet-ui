@@ -1,0 +1,112 @@
+/***
+
+COMPONENT NAME: navTopBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.pointsBar{
+    background:#FFF;
+    height: 70px;
+    line-height: 65px;
+    &__leftIcon{
+        font-size: 35px;
+        position: absolute;
+        left: 0;
+
+    }
+    &__quantity{
+        font-size: 60px;
+        font-weight: 500;
+        color: #222;
+        margin-left: 25px;
+    }
+    &__topLegend{
+        margin-top: -6px;
+        position: absolute;
+        color: #222;
+        font-size: 12px;
+    }
+    &__bottomLegend{
+        margin-top: 6px;
+        position: absolute;
+        color: #222;
+        font-size: 12px;
+    }
+    &__prizes{
+        color: #2099d0;
+        font-size: 30px;
+        &__link:hover{
+            text-decoration:none;
+        }
+    }
+
+    &--active{
+        background-color: darken(@orange, 10%);
+        border-color: transparent;
+        .pointsBar__leftIcon{
+            color: white;
+        }
+        .pointsBar__quantity{
+            color: white;
+        }
+        .pointsBar__topLegend{
+            color: white;
+        }
+        .pointsBar__bottomLegend{
+            color: white;
+        }
+        .pointsBar__prizes{
+            color: white !important;
+            &__link:hover, &__link:focus, &__link:visited{
+                text-decoration: none;
+                color: white !important;
+            }
+            #chosenSummary, #chosenSummary:hover, #chosenSummary:focus, #chosenSummary:visited{
+                text-decoration: none;
+                color: white !important;
+            }
+        }
+
+    }
+}
+#chosenPrizes.open{
+    background-color: #3e494f;
+    opacity: .9;
+    height:100%;
+}
+#chosenMenu{
+    top:95%;
+    background-color: #3e494f;
+    opacity: .9;
+    width: 100%;
+    padding: 0px 20px;    
+    li{
+        .prize, .cost, .delete{
+            padding:0px;
+        }
+        .delete{
+            a{
+                color: #111 !important;
+            }
+            
+        }
+        .item{
+            border-bottom: solid 1px #677f8b;
+            height: 50px;
+            vertical-align: middle;
+            line-height: 50px;
+            font-weight: 400;
+        }
+
+    }
+    li.button{
+        padding:10px 12%;
+        a{
+            font-weight: 600;
+        }
+
+    }
+}

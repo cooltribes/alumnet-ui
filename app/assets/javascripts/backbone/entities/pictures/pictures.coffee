@@ -1,6 +1,11 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Picture extends Backbone.Model
-  
+    
+    initialize: ->
+      @comments = new Entities.CommentsCollection
+      @comments.url = AlumNet.api_endpoint + '/pictures/' + @get('id') + '/comments'
+
+
     getLocation: ->
       city = country = ""
       if @get("city")
@@ -34,6 +39,16 @@
       nextIndex = 0 if nextIndex >= @collection.length
 
       nextModel = @collection.at(nextIndex)
+
+    sumLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count + 1)
+      @set('you_like', true)
+
+    remLike: ->
+      count = @get('likes_count')
+      @set('likes_count', count - 1)
+      @set('you_like', false)
       
     
   class Entities.PictureCollection extends Backbone.Collection

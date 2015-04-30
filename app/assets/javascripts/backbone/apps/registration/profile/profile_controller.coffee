@@ -39,5 +39,14 @@
       AlumNet.request('registration:shared:sidebar', 1)
 
     getFormView: (profile) ->
+      if gon.linkedin_profile && gon.linkedin_profile.profile
+        profile.set(gon.linkedin_profile.profile)
+      else if gon.facebook_profile
+        profile.set
+          first_name: gon.facebook_profile.first_name
+          last_name: gon.facebook_profile.last_name
+          gender: gon.facebook_profile.gender
+          avatar_url: gon.facebook_profile.avatar_url
+
       new Profile.Form
         model: profile

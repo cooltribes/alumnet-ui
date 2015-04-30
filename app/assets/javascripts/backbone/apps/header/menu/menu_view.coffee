@@ -74,6 +74,7 @@
       model = @model
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
+      points: 3000
       daysLeft: model.get('days_membership')
       memberTitle: ->
         if(model.get('member')==1)
@@ -125,7 +126,7 @@
 
     menuOptionClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
-      if $(e.target).is('i')
+      if $(e.target).is('i') || $(e.target).is('span')
         if ! $(e.target).parent().hasClass 'dropdown-toggle'
           $(e.target).parent().addClass "navTopBar__left__item--active"
       else

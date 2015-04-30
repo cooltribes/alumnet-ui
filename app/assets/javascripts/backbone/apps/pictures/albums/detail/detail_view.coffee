@@ -35,12 +35,11 @@
         @model.destroy
           wait: true
 
-    showDetail: (e)->
+    showDetail: (e)->      
       e.preventDefault()      
 
-      if @model.picture
+      if @model.get("picture")
         modal = AlumNet.request "picture:modal", @model        
-
         @ui.modalCont.html(modal.render().el)
 
     modelChange: ()  ->

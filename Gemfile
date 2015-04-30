@@ -17,6 +17,8 @@ gem 'httparty'
 gem 'settingslogic'
 gem 'dotenv-deployment'
 gem 'paymentwall'
+gem 'omniauth-facebook'
+gem 'linkedin'
 
 group :development do
   gem 'spring'

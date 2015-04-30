@@ -1,0 +1,45 @@
+<h2><%= @provider %></h2>
+<%= link_to "Cancel", home_path, class: "btn btn-primary" %>
+<div class="row text-center">
+  <div id="registerHomeForm" class="collapse in ">
+    <div class=" homeAlumNet__registerForm">
+      <%= form_tag sign_in_path_for(@provider) do %>
+      <% if @errors_login && @errors_login.any? %>
+      <div class="alert alert-danger ">
+        <% @errors_login.full_messages.each do |msg| %>
+        <%= msg %>
+        <% end %>
+      </div>
+      <% end %>
+      <%= label_tag :email, nil ,class: 'sr-only' %>
+      <%= text_field_tag 'user[email]', @email, class: "form-control input-lg", placeholder: "Enter email" %>
+      <%= label_tag :password, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+      <%= submit_tag "Sign in ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center">
+  <div id="registerHomeForm" class="collapse in ">
+    <div class=" homeAlumNet__registerForm">
+      <%= form_tag sign_up_path_for(@provider) do %>
+      <% if @errors_registration && @errors_registration.any? %>
+      <div class="alert alert-danger ">
+        <% @errors_registration.full_messages.each do |msg| %>
+        <%= msg %><br>
+        <% end %>
+      </div>
+      <% end %>
+      <%= label_tag :email, nil ,class: 'sr-only' %>
+      <%= text_field_tag 'user[email]', @sign_up_email, class: "form-control input-lg", placeholder: "Enter email" %>
+      <%= label_tag :password, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+      <%= label_tag :password_confirmation, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
+      <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
     gon.api_endpoint = Settings.api_endpoint
     gon.pusher_key = Settings.pusher_key
     gon.auth_token = current_user if signed_in?
+    if session[:linkedin_profile].present?
+      gon.linkedin_profile = session[:linkedin_profile]
+    end
+    if session[:facebook_profile].present?
+      gon.facebook_profile = session[:facebook_profile]
+    end
   end
 
   def signed_in?

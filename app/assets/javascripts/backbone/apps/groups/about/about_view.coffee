@@ -29,6 +29,7 @@
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
+      'click .editLink': 'editAttribute'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -87,6 +88,9 @@
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
 
+    editAttribute: (e)->
+      $(e.target).addClass "hide"
+      console.log e.target
     onRender: ->
       view = this
       @ui.groupDescription.editable
@@ -97,6 +101,8 @@
         validate: (value)->
           if $.trim(value) == ''
             'Group description is required, must be less than 2048 characters'
+          if $.trim(value).length >= 2048  
+            'Group Description is larger than 2048 characters'                           
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
 

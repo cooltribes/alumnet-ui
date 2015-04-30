@@ -135,7 +135,7 @@ DESCRIPTION: Specific style for the forms of AlumNet
 		color: @white;
 	}
 	&--active:hover{
-		color: @white !important;
+		color: @main-blue !important;
 	}
 	&:hover{
 		color: @main-blue;
@@ -144,4 +144,27 @@ DESCRIPTION: Specific style for the forms of AlumNet
 		font-size: 26px;
 		padding-right: 4px;
 	}
+}
+/* file type inpout button */
+input.uploadBox{
+	height: 60px;
+	border:solid 2px #677f8b;
+}
+input.uploadBox::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input.uploadBox::before {
+  content: 'BROWSE';
+  display: inline-block;
+  background: #677f8b;
+  border: 1px solid #999;
+  margin-top: 5px;
+  color:@white;
+  padding: 8px 10px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
 }

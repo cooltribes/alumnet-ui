@@ -7,13 +7,20 @@
     keyControl: false
     # prefix: "picture"
 
+    ui:
+      'likeLink': '.js-vote'
+      'likeCounter': '.js-likes-counter'
+
     events:
+      'click .js-like': 'clickedLike'
+      'click .js-unlike': 'clickedUnLike'      
       "click .js-next-picture": "nextPicture"
       "click .js-prev-picture": "prevPicture"
 
     initialize: (options)->
       @view = options.view
-
+      @model.comments.fetch
+        wait: true
       # Backbone.Validation.bind this,
       #   valid: (view, attr, selector) ->
       #     $el = view.$("[name=#{attr}]")
@@ -40,8 +47,6 @@
       getLocation: ->
         model.getLocation()
 
-      # creator: model.collection.album.get("creator")
-
       current_user_avatar: AlumNet.current_user.get('avatar').medium
 
     nextPicture: (e)->
@@ -56,10 +61,52 @@
       @model = @model.prev()
       @render()
 
+    clickedLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      picture = @model
+      thisView = @
+      like = AlumNet.request("like:picture:new", picture.id)
+      like.save {},
+        success: ->
+          # console.log thisView
+          # picture.sumLike()
+          thisView.sumLike()
+          # console.log thisView
+
+    clickedUnLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      picture = @model
+      thisView = @
+      unlike = AlumNet.request("unlike:picture:new", picture.id)
+      unlike.save {},
+        success: ->
+          # picture.remLike()
+          thisView.remLike()
+
+    sumLike:()->
+      # @model.sumLike()
+      likeLink = @$(".js-vote")
+      likeCounter = @$(".js-likes-counter")     
+      val = parseInt(likeCounter.html()) + 1
+      likeCounter.html(val)
+      likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+
+    remLike:()->
+      # @model.remLike()
+      likeLink = @$(".js-vote")
+      likeCounter = @$(".js-likes-counter")
+      val = parseInt(likeCounter.html()) - 1
+      likeCounter.html(val)
+      likeLink.removeClass('js-unlike').addClass('js-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')  
+
   API =
     getPictureModal: (picture)->
       new PictureShared.PictureModal
         model: picture
+        # collection: picture.comments
 
 
   AlumNet.reqres.setHandler 'picture:modal', (picture) ->
