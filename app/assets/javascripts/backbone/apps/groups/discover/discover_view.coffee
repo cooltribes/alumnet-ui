@@ -82,7 +82,8 @@
       e.preventDefault()
       @trigger 'join'
       @model.fetch()
-
+      @render() 
+      
     onRender: ->
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
