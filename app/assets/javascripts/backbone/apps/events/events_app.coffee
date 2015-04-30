@@ -5,6 +5,7 @@
       "events/:id/posts": "postsEvent"
       "events/:id/attendances": "attendancesEvent"
       "events/:id/photos": "listAlbums"
+      "events/:id/payment": "paymentEvent"
       "events/manage": "manageEvents"
       "events/new": "createEvent"
       "events": "discoverEvents"
@@ -30,6 +31,10 @@
     createEvent: ->
       controller = new EventsApp.Create.Controller
       controller.createEvent(AlumNet.current_user.id)
+
+    paymentEvent: (id)->
+      controller = new EventsApp.Payment.Controller
+      controller.payEvent(id)
 
     discoverEvents: ->
       controller = new EventsApp.Discover.Controller

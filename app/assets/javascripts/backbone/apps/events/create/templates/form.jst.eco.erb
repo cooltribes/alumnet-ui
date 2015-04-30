@@ -57,7 +57,7 @@
             <%% if @userIsAdmin: %>
               <div class="form-group">
                 <label class="control-label">Official Event</label>
-                <select class="form-control input-lg" name="official">
+                <select class="form-control input-lg" id="official" name="official">
                   <option value="0">it's not an official event</option>
                   <option value="1">it's an official event</option>
                 </select>
@@ -65,6 +65,38 @@
             <%% end %>
           </div>
         </div>
+        
+          <%% if @userIsAdmin: %>
+          <div class="row hide" id="admission-type-container">
+            <div class="col-md-4 col-md-offset-4 margin_top_medium">
+              <div class="form-group">
+                <label class="control-label">Admission Type</label>
+                <select class="form-control input-lg" id="admission-type" name="admission_type">
+                  <option value="0">Free</option>
+                  <option value="1">Paid</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+          <div class="row hide" id="prices-container">
+            <div class="col-md-4 col-md-offset-4 margin_top_medium">
+              <div class="form-group">
+                <label class="control-label">Regular price ($)</label>
+                <input type="text" name="regular_price"  id="event-regular-price"  class="form-control input-lg" placeholder="e.g 45.99">
+                <span class="help-block"></span>
+              </div>
+            </div>
+            <div class="col-md-4 margin_top_medium">
+              <div class="form-group">
+                <label class="control-label">Premium price ($)</label>
+                <input type="text" name="premium_price"  id="event-premium-price" class="form-control input-lg" placeholder="e.g 25.99">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </div>
+          <%% end %>
+        
         <!-- ROW 2 OFF -->
         <hr>
         <!-- ROW 3 ON -->
