@@ -1,15 +1,12 @@
 class LinkedinController < ApplicationController
   skip_before_action :setup_gon
   skip_before_action :authenticate!
+  before_action :check_provider, only: [:registration, :sign_up, :sign_in]
 
   def auth
     init_client
-    callback_url = if params[:registration]
-      "http://#{request.host_with_port}/linkedin/callback?registration=1"
-    else
-      "http://#{request.host_with_port}/linkedin/callback"
-    end
-    request_token = @client.request_token(:oauth_callback => callback_url)
+    flag = params[:registration] ? "?registration=1" : ""
+    request_token = @client.request_token(:oauth_callback => "http://#{request.host_with_port}/auth/linkedin/callback#{flag}")
     session[:rtoken] = request_token.token
     session[:rsecret] = request_token.secret
     redirect_to @client.request_token.authorize_url
@@ -33,41 +30,58 @@ class LinkedinController < ApplicationController
   end
 
   def registration
-    init_client
-    @client.authorize_from_access(session[:atoken], session[:asecret])
-    @path = linkedin_sign_up_path
-    @email = @linkedin.auth_params[:email]
+    @sign_up_email = @linkedin.auth_params[:email]
     render 'auth/registration'
   end
 
   def sign_up
+    init_client
     registration = UserRegistration.new
-    registration.register(user_params)
+    registration.oauth_register(user_params, @linkedin.auth_params)
     if registration.valid?
-      init_client
-      @client.authorize_from_access(session[:atoken], session[:asecret])
       session[:auth_token] = registration.user.auth_token
       init_registration
     else
-      @path = linkedin_sign_up_path
-      @email = user_params[:email]
+      @sign_up_email = user_params[:email]
       @errors_registration = registration.errors
       render 'auth/registration'
     end
   end
 
+  def sign_in
+    init_client
+    user_session = UserSession.new
+    user_session.auth(signin_params.merge(@linkedin.auth_params))
+    if user_session.valid?
+      session[:auth_token] = user_session.user.auth_token
+      redirect_to root_path
+    else
+      @email = signin_params[:email]
+      @sign_up_email = @linkedin.auth_params[:email]
+      @errors_login = user_session.errors
+      render 'auth/registration'
+    end
+  end
+
   private
+
+    def check_provider
+      init_client
+      @provider = "linkedin"
+    end
+
     def init_client
       @linkedin = AlumnetLinkedin.new
       @client = @linkedin.client
+      if session[:atoken].present? && session[:asecret].present?
+        @client.authorize_from_access(session[:atoken], session[:asecret])
+      end
     end
 
     def init_session
       user_session = UserSession.new
       user_session.oauth(@linkedin.auth_params)
       if user_session.valid?
-        session[:atoken] = nil
-        session[:asecret] = nil
         session[:auth_token] = user_session.user.auth_token
         redirect_to root_path
       else
@@ -78,6 +92,10 @@ class LinkedinController < ApplicationController
     def init_registration
       session[:linkedin_profile] = @linkedin.profile
       redirect_to "http://#{request.host_with_port}/#registration"
+    end
+
+    def signin_params
+      params.require(:user).permit(:email, :password)
     end
 
     def user_params
