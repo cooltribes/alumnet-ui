@@ -31,7 +31,7 @@
     clickedRequestAdmin: (e)->
       e.stopPropagation()
       e.preventDefault()
-      # @trigger("request")
+      @trigger("request:admin")
       # console.log "RequestAdmin"  
 
     performSearch: (e) ->

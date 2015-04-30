@@ -20,6 +20,19 @@
       approvalView.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)  
 
+      approvalView.on 'request:admin', ()->
+        url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"        
+        Backbone.ajax
+          url: url
+          type: "PUT"
+          # success: (data) =>
+          #   @model.set(data)
+          #   @model.trigger 'change:role'
+          # error: (data) =>
+          #   text = data.responseJSON[0]
+          #   $.growl.error({ message: text })
+        
+      
       approvalView.on 'childview:request', (childView)->
         childView.ui.actionsContainer.html('Sending request...')
         
