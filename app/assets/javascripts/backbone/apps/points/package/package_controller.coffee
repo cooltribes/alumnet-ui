@@ -3,6 +3,6 @@
     listPackages: ->
       page = new Package.PackagesView
       AlumNet.mainRegion.show(page)
-      AlumNet.execute('render:points:submenu')
+      AlumNet.execute('render:points:submenu',undefined,2,true)
 
  
