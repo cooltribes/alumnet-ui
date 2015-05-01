@@ -10,10 +10,9 @@
         <option value="profile_birth_country_name">Country of origin</option>
         <option value="profile_residence_city_name">City of residence</option>
         <option value="profile_birth_city_name">City of origin</option>
-        <option value="profile_gender">Gender</option>
-        <option value="created_at">Joining date</option>
+        <option value="profile_gender">Gender</option>        
         <option value="status">Status</option>  
-        <!-- <option value="id">ID</option>  -->       
+        <!-- <option value="created_at">Joining date</option>  -->       
       </select>
       <span class="help-block"></span>
     </div>
@@ -44,13 +43,10 @@
 
        
 <!-- 
-        Date
-        <input type="text" value="Select date" class="form-control input-lg js-date" name="value" id="born">
+        Date picker
+        <input type="text" value="Select date" class="form-control input-lg js-date">
        
-        Status
-        <option value="0">Registered</option> 
-        <option value="1">Banned</option>     
-        <option value="2">Erased</option>   
+
             
         Membership
         <option value="0">Registrant</option> 
