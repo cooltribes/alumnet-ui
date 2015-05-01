@@ -10,58 +10,6 @@
       filters: '#filters-region'
       main: '#table-region'
 
-
-  #----Modal principal con las acciones----
-  class Users.ModalActions extends Backbone.Modal
-    template: 'admin/users/list/templates/modal_actions'
-
-    cancelEl: '#close-btn'
-    submitEl: "#save-status"
-
-    events:
-      'click #editPremium': 'openPremium'
-      'click #editStatus': 'openStatus'
-      'click #delete-user': 'deleteUser'
-      'click #editRole': 'openRole'
-
-
-    initialize: (options) ->
-      @modals = options.modals
-
-    deleteUser: (e)->
-      e.preventDefault()
-      resp = confirm("Are you sure?")
-      if resp
-        @model.destroy()
-        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.
-
-    openPremium: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalPremium
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
-    openStatus: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalStatus
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
-    openRole: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalRole
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
   #----Modal para cambiar suscripcion
   class Users.ModalPremium extends Backbone.Modal
     template: 'admin/users/list/templates/modal_premium'
@@ -203,6 +151,10 @@
       'btnEdit': '.js-edit'
     events:
       'click @ui.btnEdit': 'showActions'
+      'click #editPremium': 'openPremium'
+      'click #editStatus': 'openStatus'
+      'click #delete-user': 'deleteUser'
+      'click #editRole': 'openRole'
 
     initialize: (options) ->
       @modals = options.modals
@@ -249,16 +201,39 @@
     modelChange: ->
       @render()
 
-
-    showActions: (e)->
-      e.stopPropagation()
+    deleteUser: (e)->
       e.preventDefault()
+      resp = confirm("Are you sure?")
+      if resp
+        @model.destroy()
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.
 
-      modalsView = new Users.ModalActions
+    openPremium: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalPremium
         model: @model
         modals: @modals
 
-      @modals.show(modalsView)
+      @modals.show(statusView)
+
+    openStatus: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalStatus
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
+
+    openRole: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalRole
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
 
 
   class Users.UsersTable extends Marionette.CompositeView
@@ -271,7 +246,6 @@
 
     childViewOptions: (model, index) ->
       modals: @modals
-
 
 
 

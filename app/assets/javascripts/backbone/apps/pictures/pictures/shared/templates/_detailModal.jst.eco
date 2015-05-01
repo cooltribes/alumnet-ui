@@ -85,7 +85,9 @@
           </div>
 
 
-        <div class="groupPost__commentsContainer comments-container margin_top"></div>
+        <div class="groupPost__commentsContainer comments-container margin_top">
+          
+        </div>
         <form class="groupPost__commentForm clearfix form">
           <div class="groupPost__commentForm__avatar">
             <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">

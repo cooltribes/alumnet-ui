@@ -1,0 +1,13 @@
+<div class="row main-events-area">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="control-label" for="inputName">Select country for different payment options</label>
+      <input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <h3>Event: <%= @name %></h3>
+  <div id="paymentwall-content">
+    
+  </div>
+</div>

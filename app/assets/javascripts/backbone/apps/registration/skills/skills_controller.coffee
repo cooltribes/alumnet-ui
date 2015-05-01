@@ -17,7 +17,6 @@
         languagesCollection = new AlumNet.Entities.ProfileLanguageCollection
         _.forEach gon.linkedin_profile.languages, (elem, index, list)->
           languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
-        console.log languagesCollection
         languagesCollection
       else
         new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]

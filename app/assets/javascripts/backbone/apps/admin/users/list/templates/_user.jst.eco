@@ -33,4 +33,30 @@
 <td><%= @getAge() %></td>
 <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
 <td><%= @getRoleText %></td>
-<td class="tableAdmin__actions"><button class="js-edit"> <span class="icon-entypo-cog"></span> </button></td>
+<td class="tableAdmin__actions">
+  <div class="dropdown">
+  <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    <span class="icon-entypo-cog"></span> 
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu tableAdmin__dropdown" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" id="editPremium" title="Edit premium access">Change user subscription</a>
+    </li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" id="editStatus" title="Edit user status">Edit user Access</a>
+    </li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" id="editRole" title="Edit user role">Edit user Role</a>
+    </li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" id="delete-user">Delete user</a>
+    </li>
+  </ul>
+</div>
+
+<!--<button class="js-edit"> 
+  <span class="icon-entypo-cog"></span> 
+</button>-->
+
+</td>

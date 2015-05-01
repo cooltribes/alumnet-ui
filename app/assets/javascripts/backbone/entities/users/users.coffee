@@ -118,8 +118,13 @@
 
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")
+      return if value == 0
       @set("#{counter}_count", value - val)
       @get("#{counter}_count")
+
+    setCount: (counter, value = 0)->
+      @set("#{counter}_count", value) if @get("#{counter}_count") != value
+      
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -163,11 +168,14 @@
       user.fetch({async:false})
       user
 
-    getUserEntities: (querySearch)->
+    getUserEntities: (querySearch, options)->
       initializeUsers() if Entities.users == undefined
       # Entities.users.fetch()
-      Entities.users.fetch
-        data: querySearch
+      if !(options.fetch?) then options.fetch = true
+
+      if options.fetch
+        Entities.users.fetch
+          data: querySearch
       Entities.users
 
     #List of all users for administration
@@ -175,6 +183,7 @@
       initializeUsersList() if Entities.allUsers == undefined
       Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
       Entities.allUsers.comparator = "id"
+      console.log querySearch
       Entities.allUsers.fetch
         data: querySearch
       Entities.allUsers
@@ -217,8 +226,8 @@
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
-  AlumNet.reqres.setHandler 'user:entities', (querySearch)->
-    API.getUserEntities(querySearch)
+  AlumNet.reqres.setHandler 'user:entities', (querySearch, options = {})->
+    API.getUserEntities(querySearch, options)
 
   AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
     API.getUsersList(querySearch)
