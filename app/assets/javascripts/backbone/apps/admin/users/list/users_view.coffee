@@ -387,7 +387,13 @@
           <option value='2'>Banned</option>
           </select>" )  
         @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
-        
+      else if @ui.selectType.val() =='member'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Registrant</option> 
+          <option value='1'>Member</option>     
+          <option value='2'>Lifetime Member</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
 
     sumbitForm: (e)->
       e.preventDefault()
