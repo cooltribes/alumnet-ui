@@ -280,7 +280,7 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-    onRender: ->      
+    onRender: ->  
       @$(".js-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
@@ -338,9 +338,11 @@
       else if @ui.selectType.val() =="profile_gender"        
         @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
           <option value='M'>Male</option>  
-          <option value='F'>Female</option> </select>" )  
+          <option value='F'>Female</option>
+          </select>" )  
         @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")                       
-      else if @ui.selectType.val() =='created_at'   
+      else if @ui.selectType.val() =='profile_created_at'   
+        @onRender()        
         @ui.comparator.html(" <select  name='comparator' class='form-control input-lg'>
           <option value=''>Select comparator</option>
           <option value='gt'>></option>
@@ -349,7 +351,9 @@
           <option value='gteq'>>=</option>
           <option value='eq'>=</option>
           </select>")
-        @ui.value.empty().append("<input type='text' value='Select date' class='form-control input-lg js-date' name='value'>")
+        @ui.value.empty().append("<div name='value' >
+          <input type='text' class='form-control input-lg js-date' id='born'>
+          </div> ")
       else if @ui.selectType.val() =='status'       
         @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
           <option value='0'>Inactive</option>  
