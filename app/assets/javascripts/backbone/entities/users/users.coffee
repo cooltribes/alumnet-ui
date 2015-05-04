@@ -183,6 +183,7 @@
       initializeUsersList() if Entities.allUsers == undefined
       Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
       Entities.allUsers.comparator = "id"
+      console.log querySearch
       Entities.allUsers.fetch
         data: querySearch
       Entities.allUsers

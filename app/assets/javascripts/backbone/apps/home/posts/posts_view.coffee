@@ -82,6 +82,7 @@
 
 
     templateHelpers: ->
+      model = @model
       permissions = @model.get('permissions')
       current_user_avatar: @current_user.get('avatar').medium
       infoLink: @model.infoLink()
@@ -89,7 +90,11 @@
       canDelete: permissions.canDelete
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
-
+      picturesToShow: ->
+        if model.get('pictures').length > 5
+          _.first(model.get('pictures'), 5)
+        else
+          model.get('pictures')
 
     onShow: ->
       pictures = @model.get('pictures')

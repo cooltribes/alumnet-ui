@@ -249,7 +249,6 @@
 
 
 
-
   ###Filters views###
   class Users.Filter extends Marionette.ItemView
     template: 'admin/users/list/templates/filter'
@@ -258,12 +257,14 @@
     ui:
       'btnRmv': '.js-rmvRow'
       'field': 'input[name=field]'
+      "selectType": ".filter_by"
       'me': 'el'
-
-
+      "value": "[name=value]"
+      "comparator": "[name=comparator]"
+      
     events:
       "click @ui.btnRmv": "removeRow"
-      "change @ui.field": "changeField"
+      "change .filter_by, click .filter_by" : "changeField"
       "sumbit me": "sumbitForm"
 
     initialize: ->
@@ -279,8 +280,98 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    onRender: ->  
+      @$(".js-date").Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: ['2015-01-01', '2030-12-12']
+        onOpen: (e) ->
+          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
+                                    
+    
+    #TO DO: refactor this
+    changeField: (e) ->      
+      if @ui.selectType.val() =="profile_first_name_or_profile_last_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")         
+      else if @ui.selectType.val() =="email"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_city_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_city_name" 
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.replaceWith("<input type='text' name='value' id='value' class='form-control input-lg'>")                
+      else if @ui.selectType.val() =="profile_gender"        
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='M'>Male</option>  
+          <option value='F'>Female</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")                       
+      else if @ui.selectType.val() =='profile_created_at'   
+        @onRender()        
+        @ui.comparator.html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='gt'>></option>
+          <option value='lt'><</option>
+          <option value='lteq'><=</option>
+          <option value='gteq'>>=</option>
+          <option value='eq'>=</option>
+          </select>")
+        @ui.value.empty().append("<div name='value' >
+          <input type='text' class='form-control input-lg js-date' id='born'>
+          </div> ")
+      else if @ui.selectType.val() =='status'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Inactive</option>  
+          <option value='1'>Active</option> 
+          <option value='2'>Banned</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+      else if @ui.selectType.val() =='member'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Registrant</option> 
+          <option value='1'>Member</option>     
+          <option value='2'>Lifetime Member</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+
     sumbitForm: (e)->
       e.preventDefault()
+      @render()
 
     removeRow: (e)->
       @model.destroy()
@@ -318,10 +409,8 @@
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
+        console.log itemView.model
       @trigger('filters:search')
-
-
-
 
     # initialize: (options) ->
     #   @modals = options.modals

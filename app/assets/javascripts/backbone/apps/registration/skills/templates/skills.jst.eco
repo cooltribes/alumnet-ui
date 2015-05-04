@@ -13,7 +13,7 @@
 	<button class="btn btn-default text-uppercase btn-primary-noBackground js-addRow" type="button">+ Add another language</button>
 	<hr>
 	<div class="text-right ">
-    <a href="/linkedin/auth" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
 		<button class="btn btn-primary btn-lg  text-uppercase js-submit" type="button">Next <span class="glyphicon glyphicon-chevron-right"></span> </button>
 	</div>
 </div>

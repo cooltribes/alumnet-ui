@@ -18,12 +18,12 @@
       <div class="modal-container"></div>
       <div class="pictures-container">
         <% counter = 0 %>
-        <% for picture in @pictures: %>
+        <% for picture in @picturesToShow(): %>
           <% counter = counter + 1 %>
-          <% if counter == 1 && (@pictures_is_odd(@pictures)) : %>
-            <img src="<%= picture.picture.original %>" class="first-item picture-post" data-id="<%= picture.id %>">
+          <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
+            <img src="<%= picture.picture.card %>" class="first-item picture-post" data-id="<%= picture.id %>">
           <% else: %>
-            <img src="<%= picture.picture.original %>" class="item picture-post" data-id="<%= picture.id %>">
+            <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
           <% end %>
         <% end %>
       </div>

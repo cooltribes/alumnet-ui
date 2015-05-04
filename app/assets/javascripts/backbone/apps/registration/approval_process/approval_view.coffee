@@ -31,7 +31,8 @@
     clickedRequestAdmin: (e)->
       e.stopPropagation()
       e.preventDefault()
-      # @trigger("request")
+      @trigger("request:admin")
+      @ui.adminRequestBtn.parent().empty().html('Your request has been sent to admin <span class="icon-entypo-paper-plane"></span>')
       # console.log "RequestAdmin"  
 
     performSearch: (e) ->

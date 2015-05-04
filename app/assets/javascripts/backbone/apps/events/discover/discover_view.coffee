@@ -36,7 +36,8 @@
           attendance.set('status', status)
           attendance.save()
       if status=='going'
-        $(e.target).css('background-color','#72da9e')
+        $('#attendance-status').css('background-color','#72da9e')
+        AlumNet.navigate('events/'+@model.id+'/payment', true)
       if status=='invited'
         $(e.target).css('background-color','#6dc2e9')
       if status=='not_going'

@@ -1,5 +1,5 @@
 class AlumnetLinkedin
-  attr_accessor :client
+  attr_accessor :client, :valid
 
   API_KEY = "77m01gfshs64pi"
   API_SECRET = "7f9vbnhJJa4Lu9DD"
@@ -11,10 +11,15 @@ class AlumnetLinkedin
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
-    "date-of-birth", "first-name", "last-name", "picture-url", "skills"]
+    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
+    @valid = true
+  end
+
+  def auth_params
+    { email: linkedin['email_address'], provider: "linkedin", uid: linkedin['id'] }
   end
 
   def profile
@@ -54,6 +59,8 @@ class AlumnetLinkedin
   protected
     def linkedin
       @linkedin ||= client.profile(fields: FIELDS, headers: {"Accept-Language" => "es_ES"})
+    rescue
+      @valid = false
     end
 
     def format_im_accounts(accounts)

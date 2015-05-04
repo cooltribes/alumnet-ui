@@ -82,6 +82,7 @@
       @current_user = options.current_user
 
     templateHelpers: ->
+      model = @model
       permissions = @model.get('permissions')
       userCanComment: @event.userIsInvited()
       current_user_avatar: @current_user.get('avatar').medium
@@ -89,6 +90,11 @@
       canDelete: permissions.canDelete
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
+      picturesToShow: ->
+        if model.get('pictures').length > 5
+          _.first(model.get('pictures'), 5)
+        else
+          model.get('pictures')
 
     childViewOptions: ->
       event: @event

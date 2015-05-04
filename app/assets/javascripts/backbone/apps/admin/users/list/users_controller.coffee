@@ -1,6 +1,6 @@
 @AlumNet.module 'AdminApp.Users', (Users, @AlumNet, Backbone, Marionette, $, _) ->
   class Users.Controller
-    usersList: ->
+    usersList: (id)->
       AlumNet.execute('render:admin:users:submenu', undefined, 0)
 
       # Main container
@@ -9,7 +9,15 @@
       AlumNet.mainRegion.show(layoutView)
 
       # current_user = AlumNet.current_user
-      users = AlumNet.request("admin:user:entities", {})
+      if id?
+        querySearch = 
+          q:
+            "id_eq": id
+        users = AlumNet.request("admin:user:entities", querySearch)
+      else
+        users = AlumNet.request("admin:user:entities", {})
+      
+
       window.users = users
 
       # Region with users list
@@ -43,9 +51,9 @@
             comparator = model.get("comparator")
             value = model.get("value")
             attr = "#{field}_#{comparator}"
-            
+                       
 
-            if comparator in ["cont_any", "in"]
+            if comparator in ["cont_any","in",'not_in','not_eq','gt','lt','lteq','gteq','eq']
               if q[attr]?
                 q[attr].push value
               else
