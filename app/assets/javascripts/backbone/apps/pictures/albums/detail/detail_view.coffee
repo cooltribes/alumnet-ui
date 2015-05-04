@@ -74,7 +74,8 @@
       "modalCont": "#js-modal-container"  
       "fileInput": "#picture-file"  
       "mainUploadButton": "#js-upload"  
-      "uploadButtons": ".js-upload"  
+      "uploadButtons": ".js-upload" 
+      "descrption":'#js-album-desc' 
 
     triggers:    
       'click .js-returnAlbums': 'return:to:albums'
@@ -90,7 +91,9 @@
       # console.log @ui.mainUploadButton
       # @ui.mainUploadButton.mousedown()
       # @ui.mainUploadButton.mouse()
-
+    onRender: ->
+      view = this
+      @ui.descrption.linkify()
 
     onShow: ->
       # console.log "ui"

@@ -17,6 +17,6 @@
 	</div>
 	
 	<div class="message__content">
-		<p><%= @body %></p>
+		<p id="js-mensaje"><%= @body %></p>
 	</div>
 </div>

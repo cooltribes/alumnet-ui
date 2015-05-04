@@ -14,7 +14,7 @@
 				<h3 class="groupCardManage__title">
 				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
 				</h3>
-				<p class="groupCardManage__description"><%= @group.description %></p>
+				<p id="js-description" class="groupCardManage__description"><%= @group.description %></p>
 			</div>
 			
 		</div>

@@ -16,6 +16,9 @@
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
       "smoothClick":".smoothClick"
+      "facebook":"js-link-fb"
+      "twitter":"js-link-tw"
+      "web":"js-link-web"
 
     events:
       "click @ui.addSkill": "addSkill"
@@ -73,7 +76,7 @@
         type: 2
       @ui.modalCont.html(modal.render().el)
 
-    # onRender: ->
+    #onRender: ->    
     #   $('#aboutUseraffix').affix({
     #     offset: {
     #       top: 100,
@@ -574,6 +577,11 @@
     template: 'users/about/templates/_contact'
     tagName: "li"
 
+    ui:
+      "facebook":"#js-link-fb"
+      "twitter":"#js-link-tw"
+      "web":"#js-link-web"
+
     events:
       "click .js-rmvRow": "removeItem"
 
@@ -610,7 +618,11 @@
       @model.save()
 
     onRender: ->
+      view = this
       @stickit()
+      @ui.facebook.linkify()
+      @ui.twitter.linkify()
+      @ui.web.linkify()
 
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact
@@ -638,6 +650,7 @@
       "addExp": "#js-addExp"
       "editExp": "#js-editExp"
       'btnRmv': '.js-rmvRow'
+      'description':"#js-description"
 
     events:
       "click @ui.addExp": "addExp"
@@ -700,6 +713,7 @@
 
     onRender: ->
       @stickit()
+      @ui.description.linkify()
 
     addExp: (e)->
       e.preventDefault()
