@@ -12,6 +12,7 @@
       "groups/:id/events/new": "createEvent"
       "groups/:id/events": "listEvents"
       "groups/:id/photos": "listAlbums"
+      "groups/:id/baner": "banersList"
 
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
@@ -56,6 +57,9 @@
     listAlbums: (id)->
       controller = new GroupsApp.Pictures.Controller
       controller.showAlbums(id)
+    banersList: (id)->
+      controller = new GroupsApp.BanerList.Controller
+      controller.banerList(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -87,6 +91,10 @@
   AlumNet.on "groups:manage", ->
     AlumNet.navigate("groups/manage")
     API.manageGroups()
+
+  AlumNet.on "group:baner", (id)->
+    AlumNet.navigate("groups/#{id}/baner")
+    API.banerList(id)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router
