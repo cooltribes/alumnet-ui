@@ -82,10 +82,11 @@ DESCRIPTION: Top navigation bar with menus
     background-color: #3e494f;
     opacity: .9;
     width: 100%;
-    padding: 0px 20px;    
+    padding: 0px 5px;
+        
     li{
         .prize, .cost, .delete{
-            padding:0px;
+            padding: 0px;
         }
         .delete{
             a{
@@ -103,10 +104,37 @@ DESCRIPTION: Top navigation bar with menus
 
     }
     li.button{
-        padding:10px 12%;
         a{
             font-weight: 600;
         }
 
     }
+}
+
+@media (min-width: @media-small-min) {
+    #chosenMenu{
+        padding: 0px 10px;
+        li.button{
+            padding: 10px 12%;
+        }
+    }
+
+}
+@media (min-width: @media-medium-min) {
+    #chosenMenu{
+        padding: 0px 20px;
+        li.button{
+            padding: 10px 12%;
+        }
+    }
+
+}
+@media (min-width: @media-large-min) {
+    #chosenMenu{
+        padding: 0px 20px;
+        li.button{           
+            padding: 10px 12%;
+        }
+    } 
+
 }

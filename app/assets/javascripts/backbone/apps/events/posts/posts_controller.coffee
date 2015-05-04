@@ -9,7 +9,7 @@
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request('event:layout', event)
+          layout = AlumNet.request('event:layout', event, 0)
           header = AlumNet.request('event:header', event)
 
           #configure the composite view of posts
