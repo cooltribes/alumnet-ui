@@ -43,7 +43,7 @@
 	</div>
 <% end %>
 
-	<div class="experienceCard__description"><br>
+	<div id="js-description" class="experienceCard__description"><br>
 	<%= @description %>
 	</div>
 </div>

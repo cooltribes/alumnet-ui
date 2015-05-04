@@ -57,6 +57,7 @@
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
+      'description':'#js-description'
 
 
     initialize: (options)->
@@ -87,6 +88,7 @@
     onRender: ->
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
+      @ui.description.linkify()
 
   class Discover.EmptyView extends Marionette.ItemView
     template: 'groups/discover/templates/empty'

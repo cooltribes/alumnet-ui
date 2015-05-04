@@ -54,7 +54,7 @@
           Open
         <% end %>
         </span>
-        <p class="groupCard__description"><%= @description %></p>
+        <p id="js-description" class="groupCard__description"><%= @description %></p>
       </div>
       <div class="groupCard__atributes">
         <div class="clearfix ">

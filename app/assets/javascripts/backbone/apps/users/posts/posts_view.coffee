@@ -24,6 +24,8 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'comment:edit', newValue
+      @ui.commentText.linkify()
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -117,6 +119,7 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'post:edit', newValue
+      @ui.bodyPost.linkify()
 
     ui:
       'item': '.item'

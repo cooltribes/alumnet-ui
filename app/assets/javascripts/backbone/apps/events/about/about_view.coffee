@@ -78,6 +78,7 @@
             'Event Description is larger than 2048 characters'  
         success: (response, newValue)->
           view.model.save({description: newValue})
+      @ui.eventDescription.linkify()
 
       @ui.capacity.editable
         type: 'text'

@@ -105,6 +105,7 @@
             'Group Description is larger than 2048 characters'                           
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
+      @ui.groupDescription.linkify()
 
       @ui.groupType.editable
         type: 'select'
