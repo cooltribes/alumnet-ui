@@ -11,6 +11,7 @@ DESCRIPTION: Displays a list of groups in the Groups
     background-color: @white;
     margin-bottom: 2em;
     position: relative;
+    box-shadow: 1px 1px 5px #666;
     
 
 
@@ -230,6 +231,27 @@ DESCRIPTION: Displays a list of groups in the Groups
         &:hover{
             opacity: 1;
         }
+    }
+}
+
+.stacked{
+    width: 94%;
+    height: 88%;
+    background: white;
+    position: absolute;
+    top: 0%;
+    left: 3%;
+    box-shadow: 1px 1px 5px #666;
+
+    &--356deg{
+        -ms-transform: rotate(356deg);
+        -webkit-transform: rotate(356deg);
+        transform: rotate(356deg);        
+    }
+    &--358deg{        
+        -ms-transform: rotate(358deg);
+        -webkit-transform: rotate(358deg);
+        transform: rotate(358deg);
     }
 }
 
