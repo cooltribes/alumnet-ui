@@ -47,11 +47,17 @@
 				</div>
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
-						 <!--
-              Avatars of people who has joined the group
-
-              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10 -->
+						<% aux = 0 %>
+              			<% for friends in @friends_in: %>  
+                			<img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+              			  <% aux=aux+1 %>
+              			  <% if aux==3: %>
+              			    <% break %>
+              			  <% end %> 
+              			<% end %>
+              			<% if @friends_in.length>3: %>
+              			  +<%= @friends_in.length-3 %>
+              			<% end %>
 					</div>
 				</div>
 			</div>
