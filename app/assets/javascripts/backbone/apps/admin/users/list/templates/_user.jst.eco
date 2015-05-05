@@ -44,10 +44,10 @@
       <a role="menuitem" tabindex="-1" href="#" id="editPremium" title="Edit premium access">Change user subscription</a>
     </li>
     <li role="presentation">
-      <a role="menuitem" tabindex="-1" href="#" id="editStatus" title="Edit user status">Edit user Access</a>
+      <a role="menuitem" tabindex="-1" href="#" id="editStatus" title="Edit user status">Edit user access</a>
     </li>
     <li role="presentation">
-      <a role="menuitem" tabindex="-1" href="#" id="editRole" title="Edit user role">Edit user Role</a>
+      <a role="menuitem" tabindex="-1" href="#" id="editRole" title="Edit user role">Edit user role</a>
     </li>
     <li role="presentation">
       <a role="menuitem" tabindex="-1" href="#" id="delete-user">Delete user</a>
