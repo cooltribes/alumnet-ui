@@ -10,7 +10,7 @@
         else if group.isSecret() && not group.userIsMember()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request("group:layout", group)
+          layout = AlumNet.request("group:layout", group,6)
           header = AlumNet.request("group:header", group)
 
           banerTable = new BanerList.BanerTable

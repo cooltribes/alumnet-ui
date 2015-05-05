@@ -113,24 +113,36 @@
       "click #groupMenuList li":"menuClicked"
 
     menuClicked: (e) ->
-      $('.groupMenu__link').removeClass "groupMenu__link--active"
-      $(e.target).closest('a').removeClass "groupMenu__link--active"
+     $('.groupMenu__link').removeClass "groupMenu__link--active"
+     $(e.target).closest('a').removeClass "groupMenu__link--active"
 
     regions:
       header: '#group-header'
       body: '#group-body'
 
+    initialize: (options) ->
+      @tab = options.tab
+      @class = ["", "", ""
+        "", ""
+      ]
+      @class[parseInt(@tab)] = "--active"
+
+    templateHelpers: ->
+      classOf: (step) =>
+        @class[step]
+
   API =
-    getGroupLayout: (model)->
+    getGroupLayout: (model, tab)->
       new Shared.Layout
         model: model
+        tab: tab
 
     getGroupHeader: (model)->
       new Shared.Header
         model: model
 
-  AlumNet.reqres.setHandler 'group:layout', (model) ->
-    API.getGroupLayout(model)
+  AlumNet.reqres.setHandler 'group:layout', (model,tab) ->
+    API.getGroupLayout(model,tab)
 
   AlumNet.reqres.setHandler 'group:header', (model)->
     API.getGroupHeader(model)

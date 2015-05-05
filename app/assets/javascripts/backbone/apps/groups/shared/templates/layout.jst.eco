@@ -9,25 +9,25 @@
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
 				<% else : %>
-					<li>  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link<%= @classOf(0)%>">
 						<span class="glyphicon glyphicon-list-alt"></span>
 					Posts</a></li>
-					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
-					<li>  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link<%= @classOf(2)%>">
 						<span class="ico-company"></span>
 					Alumni in Group</a></li>
-					<li>  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link<%= @classOf(3)%>">
 						<span class="icon-entypo-picture"></span>
 					Pictures</a></li>
-					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link<%= @classOf(4)%>">
 						<span class="glyphicon glyphicon-align-left"></span>
 					SubGroup</a></li>
-					<li>  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link<%= @classOf(5)%>">
 						<span class="ico-calendar"></span>
 					Events</a></li>
-					<li>  <a href="#groups/<%= @id %>/baner" id="js-events" class="groupMenu__link">
+					<li>  <a href="#groups/<%= @id %>/baner" id="js-events" class="groupMenu__link<%= @classOf(6)%>">
 						<span class="glyphicon glyphicon-cog"></span>
 					Setting</a></li>
 				<% end  %>
