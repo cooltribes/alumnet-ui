@@ -1,4 +1,49 @@
-<%= @language_name %>
+<span><%= @language_name %></span>
+
 <% if @userCanEdit: %>
-  <button type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <button style="  display: inline-block" type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<% end %>
+<% if @level==1: %>
+  <div class="progress" style=" display: inline-block;
+  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-placement="bottom" title="Elementary">
+    <div class="progress-bar progress-bar-danger" style="width: 10%" >
+    <span class="sr-only">Elementary</span>
+    </div>
+  </div>
+<% end %>
+
+<% if @level==2: %>
+  <div class="progress" style=" display: inline-block;
+  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Limited working">
+    <div class="progress-bar progress-bar-warning" style="width: 25%" >
+      <span class="sr-only">Limited working</span>
+    </div>
+  </div>
+<% end %>
+
+<% if @level==3: %>
+  <div class="progress" style=" display: inline-block;
+  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Professional working">
+    <div class="progress-bar progress-bar-info" style="width: 50%" >
+      <span class="sr-only">Professional working</span>
+    </div>
+  </div>
+<% end %>
+
+<% if @level==4: %>
+  <div class="progress" style=" display: inline-block;
+  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Full profesional">
+    <div class="progress-bar progress-bar-info" style="width: 75%" >
+      <span class="sr-only">Full profesional</span>
+    </div>
+  </div>
+<% end %>
+
+<% if @level==5: %>
+  <div class="progress" style=" display: inline-block;
+  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Native o bilingual">
+    <div class="progress-bar progress-bar-success" style="width: 100%" >
+      <span class="sr-only">Native o bilingual</span>
+    </div>
+  </div>
 <% end %>
