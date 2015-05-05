@@ -1,6 +1,10 @@
 @AlumNet.module 'HeaderApp.Menu', (Menu, @AlumNet, Backbone, Marionette, $, _) ->
   class Menu.Controller
     show: ->
+
+      if AlumNet.headerRegion.currentView instanceof Menu.MenuBar
+        return
+
       current_user = AlumNet.current_user
       AlumNet.headerRegion.reset()
       menuLayout = new Menu.MenuBar
@@ -22,9 +26,14 @@
       else
         menuLayout = new Menu.MenuBar
           model: current_user
+
         AlumNet.headerRegion.show(menuLayout)
 
-    showAdmin: ->
+    showAdmin: ->     
+
+      if AlumNet.headerRegion.currentView instanceof Menu.AdminBar
+        return
+        
       current_user = AlumNet.current_user
       AlumNet.headerRegion.reset()
       if current_user.isAdmin()
