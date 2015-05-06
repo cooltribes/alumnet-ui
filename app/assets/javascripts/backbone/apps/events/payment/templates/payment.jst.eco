@@ -1,5 +1,5 @@
 <div class="main-events-area">
-  <h3>Event: <%= @name %></h3>
+  <h3 class="overfloadText">Event: <%= @name %></h3>
   <div class="">
     <div class="form-group">
       <label class="control-label pay__label" for="inputName">Select country for different payment options</label>
