@@ -1,6 +1,6 @@
 <div class="row eventsTableView margin_bottom_xsmall">
   <div class="col-md-1 no-padding ">
-    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>'); background-size: 100%; background-repeat: no-repeat;" >
+    <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>');background-size: cover;" >
     <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
     </div>
   </div>
@@ -15,10 +15,6 @@
         <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall">
         <div>Invited by:</div>
         <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
-        <% if @userIsAdmin: %>
-          <br>
-          <a href="#events/<%= @id %>/about">Ruedita Aqui!</a>
-        <% end %>
       </div>
       <div class="col-md-4">
         <div>
@@ -37,7 +33,18 @@
       <div class="col-md-3 no-padding">
 
       <% if not @isPast: %>
-
+        <% if @userIsAdmin: %>
+          
+          <a href="#events/<%= @id %>/about">
+            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
+              <span class="ico-company"></span>
+            </div>
+            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--right">
+              <span class="glyphicon glyphicon-cog"></span>
+              <span >EDIT</span>
+            </div>
+          </a>
+        <% else: %>
         <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
           <option value="invited">RSVP</option>
           <option value="going" <%= @select(@attendance_status(), "going") %>>
@@ -52,6 +59,7 @@
         </select>
         <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
         <span id="attendance-status" class="sr-only">(success)</span>
+        <% end %>
       <% end %>
       </div>
     </div>
