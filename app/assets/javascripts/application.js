@@ -10,6 +10,7 @@
 //= require backbone/alumnet
 //= require_tree ./backbone/libs
 //= require_tree ./backbone/concerns
+//= require_tree ./backbone/controllers
 //= require_tree ./backbone/entities
 //= require_tree ./backbone/apps
 //= require bootstrap

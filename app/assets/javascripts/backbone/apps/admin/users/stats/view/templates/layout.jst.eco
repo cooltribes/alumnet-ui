@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="container-fluid ">
+    <div class="row ">
+
+      <div class="col-md-9">
+        <ul class="sortingMenu js-tabs" id="filter-link-container">
+
+          <li class="sortingMenu__item sortingMenu__item--lg">
+            <!-- Tip: add the class 'sortingMenu__item__link--active' for highlighting the link when active -->
+            <a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link--active" id="js-myfriends">
+            All
+            </a>
+          </li>
+          <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+            <a href="" class="sortingMenu__item__link" id="js-sent">
+              Users
+              <span id="js-allCount">
+              </span>
+            </a>
+          </li>
+          <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+            <a href=""  class="sortingMenu__item__link" title="Friends Requests" id="js-received">
+              <span id="js-receivedCount">
+                Memebers
+              </span>
+
+            </a>
+          </li>
+          <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+            <a href=""  class="sortingMenu__item__link" title="Approval Requests" id="js-approval">
+              <span id="js-approvalCount">
+                LifeTime Members
+              </span>
+
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- <div class="col-md-3 text-right">
+        <a href="#" title="+ import contacts" class="btn-primary-noBackground btn  btn-primary">+ import contacts</a>
+      </div> -->
+
+    </div>
+    <hr class="no_margin_top">
+    <div class="tab-content-region row">
+
+    </div>
+  </div>
+</div>
