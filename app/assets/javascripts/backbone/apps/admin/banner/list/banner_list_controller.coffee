@@ -7,10 +7,11 @@
       layoutView = new BannerList.Layout
       bannerTable = new BannerList.BannerTable
       createBanner = new BannerList.CreateView
+        model: new AlumNet.Entities.Banner
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(bannerTable)
       layoutView.create.show(createBanner)
       
       AlumNet.execute('render:admin:banner:submenu', undefined, 0)
-      
+
