@@ -24,6 +24,9 @@
       'selectCountries':'.js-countries'
       'selectCities':'.js-cities'
       'selectJoinProcess': '#join-process'
+      'mailchimpCheckbox': '#mailchimp'
+      'mailchimpCheckboxContainer': '#mailchimp-check-container'
+      'mailchimpParameters': '#mailchimp-parameters-container'
 
     events:
       'click button.js-submit': 'submitClicked'
@@ -31,6 +34,23 @@
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
+      'change #official': 'showMailchimpCheckbox'
+      'change #mailchimp': 'showMailchimpParamaters'
+
+    showMailchimpCheckbox: (e)->
+      select = $(e.currentTarget)
+      if(select.val() == "1")
+        @ui.mailchimpCheckboxContainer.removeClass('hide')
+      else
+        @ui.mailchimpCheckboxContainer.addClass('hide')
+
+    showMailchimpParamaters: (e)->
+      check = $(e.currentTarget)
+      console.log(check.is(':checked'))
+      if(check.is(':checked'))
+        @ui.mailchimpParameters.removeClass('hide')
+      else
+        @ui.mailchimpParameters.addClass('hide')
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
