@@ -33,16 +33,29 @@
       #   ['Zucchini', 1],
       #   ['Pepperoni', 2]
       # ]);
-      graph = new AlumNet.Utilities.GoogleChart
-        chartType: 'ColumnChart',
-        dataTable: [
-          ['Pais','Users', 'Members', 'LT Members'],
-          ['Users', 700, 300, 400]
-        ]
-        options:
-          'title': 'Registrants'
+      layout = @layout
+      statsModel = new AlumNet.Entities.UserStats
 
-      @layout.tab_content_region.show(graph)
+      statsModel.fetch
+        success: (model)->
+          users = model.get("users")
+          members = model.get("members")
+          lt_members = model.get("lt_members")
+
+          graph = new AlumNet.Utilities.GoogleChart
+            chartType: 'ColumnChart',
+            dataTable: [
+              ['Country','Users', 'Members', 'LT Members'],
+              ['Users', users, members, lt_members]
+            ]
+            options:
+              'title': 'Registrants'
+
+          layout.tab_content_region.show(graph)
+
+
+
+
     getLayoutView: ->
       view = new UserStats.Layout
 
