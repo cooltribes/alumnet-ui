@@ -8,7 +8,7 @@
     <div class=" col-md-6 ">
       <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @requester.name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @requester.last_experience %></p>
-      <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
+      <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @friend.first_committee %></p>
     </div>
     <div class=" col-md-3">
       <a href="#" id="js-accept-friendship" title="Approve friend request">
@@ -38,7 +38,7 @@
     <div class=" col-md-6 ">
       <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @friend.name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @friend.last_experience %></p>  
-      <h3 class="userCard__position member-position text-small"><%= this.aiesec_experience %></h3>          
+      <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @friend.first_committee %></p>         
     </div>
     <div class=" col-md-3 ">
       <a href="#" id="js-delete-friendship" title="Cancel request">
