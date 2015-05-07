@@ -23,7 +23,7 @@ class LinkedinController < ApplicationController
       @client.authorize_from_access(session[:atoken], session[:asecret])
     end
     if params[:registration]
-      init_registration
+      redirect_to root_path
     else
       init_session
     end
@@ -40,7 +40,7 @@ class LinkedinController < ApplicationController
     registration.oauth_register(user_params, @linkedin.auth_params)
     if registration.valid?
       session[:auth_token] = registration.user.auth_token
-      init_registration
+      redirect_to root_path
     else
       @sign_up_email = user_params[:email]
       @errors_registration = registration.errors
@@ -87,11 +87,6 @@ class LinkedinController < ApplicationController
       else
         redirect_to linkedin_registration_path
       end
-    end
-
-    def init_registration
-      session[:linkedin_profile] = @linkedin.profile
-      redirect_to "http://#{request.host_with_port}/#registration"
     end
 
     def signin_params

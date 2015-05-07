@@ -124,7 +124,7 @@
 
     setCount: (counter, value = 0)->
       @set("#{counter}_count", value) if @get("#{counter}_count") != value
-      
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->

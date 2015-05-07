@@ -1,0 +1,93 @@
+<div class="row">
+	<div class="col-md-2">
+		<a href="#friends/find" class="btn btn-lg btn-import btn-import--larger margin_left_small">
+			<span class="icon-char">‹</span>FIND FRIENDS
+		</a>
+	</div>
+	<div class="col-md-8 text-center">
+		<h1 class="no_margin_top">
+			Invite your contacts
+		</h1>
+		<small>
+			<span class="icon-entypo-lock"></span> We will not store your password or login information
+		</small>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+
+<div class="container margin_top">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="row-fluid">
+			<div class="col-md-6 col-md-offset-3">
+				<ul class="row-fluid clearfix importMenu" >
+					<li class="col-md-4 importMenu text-left importMenu__option active" id="to-byService">
+						<a href='#'><span class="icon-entypo-book-open"></span>Addressbook</a></li>
+					<li id="to-byUpload" class="col-md-4 importMenu text-center importMenu__option">
+						<a href='#'><span class="icon-entypo-upload"></span>Contact File</a></li>
+					<li id="to-byEnter" class="col-md-4 importMenu text-right importMenu__option">
+						<a href='#'><span class="icon-entypo-keyboard"></span>Enter contacts</a></li>
+				</ul>
+				<div id="spin" class="text-center"style="display:none">
+					Sending Emails...
+				</div>
+				<div class="alert alert-danger" role="alert" style="display:none"></div>
+				<div class="alert alert-success" role="alert" style="display:none">Contacts Send!</div>
+				<!-- *************** FORM to import contacts from social network ************ -->
+				<div id="byService" class="importContactForm margin_top text-center">
+				  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
+				    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
+				  </a>
+				  <a class="deep-link delayed" onclick="return cloudsponge.launch('facebook');">
+				    <%= image_tag("social_contacts/facebook.png", alt: "Facebook") %>
+				  </a>
+				  <a class="deep-link delayed" onclick="return cloudsponge.launch('yahoo');">
+				    <%= image_tag("social_contacts/yahoo.png", alt: "Yahoo") %>
+				  </a>
+				  <a class="deep-link delayed" onclick="return cloudsponge.launch('windowslive');">
+				    <%= image_tag("social_contacts/outlook.com.png", alt: "Windows Live") %>
+				  </a>
+				  <a class="deep-link delayed" onclick="return cloudsponge.launch('gmail');">
+				    <%= image_tag("social_contacts/gmail.png", alt: "Gmail") %>
+				  </a>
+				</div>
+				<!-- *************** FORM to import contacts from a contacts file ************ -->
+				<form id="byUpload" class="importContactForm margin_top" style="display:none">
+					<p class="text-center note">
+						Supported file formats: csv, txt
+					</p>
+					<p class="text-center">
+						<a href="#"><small>Learn how to create a contact file »</small></a>
+					</p>
+					<div class="margin_top_small uploadFileBox">
+						<input class="form-control" type="file" name="file" id="contacts-file">
+					</div>
+					<div class="margin_top text-center">
+						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-file">
+							SEND FILE
+						</a>
+					</div>
+				</form>
+				<!-- *************** FORM to import contacts by typing them *********** -->
+				<form id="byEnter" class="importContactForm margin_top" style="display:none">
+					<p class="text-center note">
+						Enter your contacts separated by commas (Maximum 2000 contacts)
+					</p>
+					<p class="text-center">
+						<a href="#"><small>List of supported formats »</small></a>
+					</p>
+
+					<div class="margin_top_small">
+						<textarea class="form-control text-left" id="js-enter-contacts" rows="6" name="emails">
+
+						</textarea>
+					</div>
+					<div class="margin_top text-center">
+						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-emails">
+							SEND EMAILS
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

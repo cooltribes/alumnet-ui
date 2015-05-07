@@ -4,7 +4,7 @@
 <div class="modalBox__content">
   <form>
     <div class="add-cover-photo">
-      <img src="<%=@cover.main %>" alt="Upload cover" width= "100%" id= "preview-cover">
+      <img src="<%="#{@cover.main}?#{ new Date().getTime() }" %>" alt="Upload cover" width= "100%" id= "preview-cover">
     </div>
     <div class="form-group modalBox__content__UploadImg">
       <input type="file" name="cover"  id="group-cover" >
