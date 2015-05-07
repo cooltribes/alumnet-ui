@@ -28,6 +28,9 @@
       'change #BannerImg': 'previewImage'
       'click #js-addBanner': 'addBanner'
 
+    templateHelper: ()->
+       
+
     addBanner: (e)->  
       e.preventDefault()     
       formData = new FormData()
@@ -36,8 +39,8 @@
         formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
-      @model.set(data) 
-      console.log @model
+      @model.set(data)      
+      console.log @model 
       if @model.isValid(true)
         options_for_save =
           wait: true
@@ -45,11 +48,10 @@
           processData: false
           data: formData
           success: (model, response, options)->
-            console.log "success"
+            console.log "success"   #               <------
         @model.save(formData, options_for_save)
         
-        
-
+ 
     previewImage: (e)->
       input = @.$('#BannerImg')
       preview = @.$('#preview-banner')
@@ -65,9 +67,39 @@
   class BannerList.BannerView extends Marionette.ItemView
     template: 'admin/banner/list/templates/banner'
 
+    initialize: (options)->
+      @banner = options.banner
+      console.log @model #               <------
+     
+
+    Events:  
+      'click #js-deleteBanner': 'deleteBanner'
+           
+      
+    deleteBanner:(e)->
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy
+          success: ->
+            @collection.fetch()
+            @collection.render()
+            console.log "Banner borrado"
+
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
+
+   initialize: (options) ->
+      getBannersCount: ->
+        model.get('collection').length
+
+
+    childViewOptions: ->
+      banners: @banners
+
+      
+ 
     

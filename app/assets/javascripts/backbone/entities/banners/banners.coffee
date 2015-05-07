@@ -3,11 +3,38 @@
     urlRoot: -> 
       AlumNet.api_endpoint + '/banners/'
 
+    validation:
+      title:
+        required: true
+        maxLength: 250
+        msg: "Banner title is required, must be less than 250 characters long."
+      link:
+        required: true
+        maxLength: 250
+        msg: "Banner link is required, must be less than 250 characters long."  
+      description:
+        required: true
+        maxLength: 2048
+        msg: "Banner description is required, must be less than 2048 characters"
+      picture:
+        required: true
+  
+    getTitle: ()->
+      @get "title"
+
+    getLink: ()->
+      @get "link"  
+
+    getDescription: ()->
+      @get "description"    
 
   class Entities.BannerCollection extends Backbone.Collection
-  
     model: Entities.Banner
   
     url: -> 
       AlumNet.api_endpoint + '/banners/'
+
+    
+   
+      
   
