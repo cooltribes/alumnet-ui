@@ -2,10 +2,10 @@
   # FriendsApp.Router = Marionette.AppRouter.extend
   class FriendsApp.Router extends AlumNet.Routers.Base
     appRoutes:
-      "friends": "listFriends"
       "friends/find": "findFriends"
       "friends/contacts": "importContacts"
       "friends/networks": "importNetworks"
+      "friends": "listFriends"
       # "friends/received": "receivedRequests"
       # "friends/sent": "sentRequests"
 
@@ -31,11 +31,11 @@
     myReceived: (layout)->
       controller = new FriendsApp.Requests.Controller
       controller.showMyReceived(layout)
-    
+
     myApproval: (layout)->
       controller = new FriendsApp.Approval.Controller
       controller.showReceived(layout)
-    
+
     userFriends: (layout, id)->
       controller = new FriendsApp.List.Controller
       controller.showSomeonesFriends(layout, id)
@@ -59,24 +59,27 @@
     AlumNet.navigate("friends")
     API.listFriends()
 
-  AlumNet.on "my:friends:get", (layout)->    
+  AlumNet.on "my:friends:get", (layout)->
     API.myFriends(layout)
 
-  AlumNet.on "my:friends:sent", (layout)->    
-    API.mySent(layout)  
-    
-  AlumNet.on "my:friends:received", (layout)->    
-    API.myReceived(layout)  
+  AlumNet.on "my:friends:sent", (layout)->
+    API.mySent(layout)
 
-  AlumNet.on "my:approval:requests", (layout)->    
-    API.myApproval(layout)  
+  AlumNet.on "my:friends:received", (layout)->
+    API.myReceived(layout)
 
-  AlumNet.on "user:friends:get", (layout, id)->    
-    API.userFriends(layout, id)  
+  AlumNet.on "my:approval:requests", (layout)->
+    API.myApproval(layout)
 
-  AlumNet.on "user:friends:mutual", (layout, id)->    
-    API.userMutual(layout, id)  
+  AlumNet.on "user:friends:get", (layout, id)->
+    API.userFriends(layout, id)
 
+  AlumNet.on "user:friends:mutual", (layout, id)->
+    API.userMutual(layout, id)
+
+  AlumNet.on "friends:contacts", ->
+    AlumNet.navigate("friends/contacts")
+    API.importContacts()
 
   AlumNet.addInitializer ->
     new FriendsApp.Router
