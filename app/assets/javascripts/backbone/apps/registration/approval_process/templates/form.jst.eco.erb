@@ -1,18 +1,18 @@
 <form class="formANet form" role="form">
 	<h2 class="h2">Aproval process
 	<small>
-		<%= @approved_requests_count %>/3
+		<%%= @approved_requests_count %>/3
 
 		<small>
 			Approved requests
 		</small>
 	</small>
 	</h2>
-	<p class="lead">Lorem Ipsum Dolor set explaining why there is an aproval process</p>
+	<p class="lead">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
-			<img src="assets/registration/searchIcon.png" alt="Search mark"  width="90px" height="90px" class="img-circle">
+			<%= image_tag("registration/searchIcon.png", alt: "question mark", width: 90, height: 90, class: "img-circle") %>
 		</div>
 		<div class="col-md-10">
 			<h3>Find 3 People</h3>
@@ -65,7 +65,8 @@
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
-			<img src="assets/registration/questionIcon.png" alt="question mark"  width="90px" height="90px" class="img-circle">
+			<%= image_tag("registration/questionIcon.png", alt: "question mark", width: 90, height: 90, class: "img-circle") %>
+			<!--<img src="assets/registration/questionIcon.png" alt="question mark"  width="90px" height="90px" class="img-circle">-->
 		</div>
 		<div class="col-md-10">
 			<h3 >Didnt find anyone?</h3>

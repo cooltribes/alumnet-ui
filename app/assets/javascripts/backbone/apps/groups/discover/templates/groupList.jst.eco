@@ -69,12 +69,17 @@
     <div class="groupTableView__colText"><%= @membership_users.length %> </div>
   </td>
 	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
-    100
-		<!--
-              Avatars of people who has joined the group
-
-              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10 -->
+    <% aux = 0 %>
+      <% for friends in @friends_in: %>  
+        <img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+        <% aux=aux+1 %>
+        <% if aux==2: %>
+          <% break %>
+        <% end %> 
+      <% end %>
+      <% if @friends_in.length>2: %>
+        +<%= @friends_in.length-2 %>
+      <% end %>
 	</td>
 	<td class="groupTableView__col">
 		<% if @membership_status == "approved": %>
