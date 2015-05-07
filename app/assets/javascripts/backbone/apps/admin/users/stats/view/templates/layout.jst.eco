@@ -8,10 +8,10 @@
           <li class="sortingMenu__item sortingMenu__item--lg">
             <!-- Tip: add the class 'sortingMenu__item__link--active' for highlighting the link when active -->
             <a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link--active" id="js-myfriends">
-            All
+            All users
             </a>
           </li>
-          <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+          <!-- <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
             <a href="" class="sortingMenu__item__link" id="js-sent">
               Users
               <span id="js-allCount">
@@ -21,7 +21,7 @@
           <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
             <a href=""  class="sortingMenu__item__link" title="Friends Requests" id="js-received">
               <span id="js-receivedCount">
-                Memebers
+                Members
               </span>
 
             </a>
@@ -33,7 +33,7 @@
               </span>
 
             </a>
-          </li>
+          </li> -->
 
         </ul>
 

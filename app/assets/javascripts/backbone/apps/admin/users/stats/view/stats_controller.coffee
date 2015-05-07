@@ -33,25 +33,70 @@
       #   ['Zucchini', 1],
       #   ['Pepperoni', 2]
       # ]);
-      layout = @layout
-      statsModel = new AlumNet.Entities.UserStats
 
-      statsModel.fetch
-        success: (model)->
-          users = model.get("users")
-          members = model.get("members")
-          lt_members = model.get("lt_members")
+      graphsCollection = new AlumNet.Entities.UserStatsCollection
+      graphsListView = new UserStats.Graphics
+        collection: graphsCollection
 
-          graph = new AlumNet.Utilities.GoogleChart
-            chartType: 'ColumnChart',
-            dataTable: [
-              ['Country','Users', 'Members', 'LT Members'],
-              ['Users', users, members, lt_members]
-            ]
-            options:
-              'title': 'Registrants'
+      
+      #Model for general graph
+      generalStats = new AlumNet.Entities.UserStats
+      graphsCollection.add(generalStats)
+        
+      
+      #Model for region graph
+      regionStats = new AlumNet.Entities.UserStats
+        graphType: 1
+        location_id: 0
+      graphsCollection.add(regionStats)
 
-          layout.tab_content_region.show(graph)
+
+      #Model for counrty graph
+      countryStats = new AlumNet.Entities.UserStats
+        graphType: 2
+        location_id: 2
+      graphsCollection.add(countryStats)
+
+      
+      #Show graph list in the general layout
+      @layout.tab_content_region.show(graphsListView)
+      
+      # layout = @layout
+
+      generalStats.fetch
+        data: 
+          q: generalStats.get("q")
+
+      regionStats.fetch
+        data:
+          q: regionStats.get("q")
+
+      countryStats.fetch
+        data:
+          q: countryStats.get("q")
+
+
+        # data: @get("q")
+        
+      # countryStats.fetch
+      #   data: @get("q")
+
+        # success: (model)->
+        #   model.trigger("")
+          # users = model.get("users")
+          # members = model.get("members")
+          # lt_members = model.get("lt_members")
+
+          # graph = new AlumNet.Utilities.GoogleChart
+          #   chartType: 'ColumnChart',
+          #   dataTable: [
+          #     ['Country','Users', 'Members', 'LT Members'],
+          #     ['Users', users, members, lt_members]
+          #   ]
+          #   options:
+          #     'title': 'Registrants'
+
+          # layout.tab_content_region.show(graph)
 
 
 
