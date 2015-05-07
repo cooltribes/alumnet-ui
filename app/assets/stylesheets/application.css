@@ -5,4 +5,5 @@
  *= require_tree ./apps
  *= require temporal-cooltribes
  *= require_self
+ *= require bootstrap-editable
  */
