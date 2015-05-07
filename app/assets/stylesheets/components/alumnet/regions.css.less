@@ -17,6 +17,15 @@ DESCRIPTION: styles for pages regions in admin section
 		display: inline-block;
   		list-style: none;
   		padding: 10px;
+
+  		& li{
+  			padding: 5px;
+  			width: 200px;
+  		}
+
+  		& li:nth-child(odd){
+  			background:@form-header-gray;
+  		}
 	}
 
 	&__admins{
