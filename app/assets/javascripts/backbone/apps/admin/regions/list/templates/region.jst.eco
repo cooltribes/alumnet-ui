@@ -28,5 +28,15 @@
   </div>
 </td>
 <td class="region__admins">
-  <%= @countries_length %>
+  <ul class="region__admin">
+    <% for admins in @admins: %>
+      <li>
+        <img src="<%= admins.avatar %>" alt="<%= admins.name %> avatar" class="img-circle">
+        <a href="#users/<%= admins.id %>/posts"><%= admins.name %></a>
+      </li>
+    <% end %>  
+  </ul>
+  <h4>
+    <a href="#" class="groupPost__btn--comment js-edit" title="Edit Region" id="js-new-region">+ Add Admin</a>
+  </h4>
 </td>
