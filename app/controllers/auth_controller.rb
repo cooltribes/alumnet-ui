@@ -4,10 +4,6 @@ class AuthController < ApplicationController
   skip_before_action :authenticate!
 
   def home
-    session[:atoken] = nil
-    session[:asecret] = nil
-    session[:linkedin_profile] = nil
-    session[:facebook_profile] = nil
   end
 
   def sign_in
@@ -37,12 +33,8 @@ class AuthController < ApplicationController
   end
 
   def sign_out
-    session[:auth_token] = nil
-    session[:linkedin_profile] = nil
-    session[:facebook_profile] = nil
-    session[:atoken] = nil
-    session[:asecret] = nil
-    redirect_to root_path
+    reset_session
+    redirect_to home_path
   end
 
   private

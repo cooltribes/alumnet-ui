@@ -124,7 +124,7 @@
 
     setCount: (counter, value = 0)->
       @set("#{counter}_count", value) if @get("#{counter}_count") != value
-      
+
 
   class Entities.UserCollection extends Backbone.Collection
     url: ->
@@ -183,7 +183,6 @@
       initializeUsersList() if Entities.allUsers == undefined
       Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
       Entities.allUsers.comparator = "id"
-      console.log querySearch
       Entities.allUsers.fetch
         data: querySearch
       Entities.allUsers
