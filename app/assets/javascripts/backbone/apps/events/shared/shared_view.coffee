@@ -63,6 +63,7 @@
       shortname: short_string(@model.get('name'),50)
       canEditInformation: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
+      isPast: @model.isPast()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
       hasInvitation: ->
         if model.get('attendance_info') then true else false
