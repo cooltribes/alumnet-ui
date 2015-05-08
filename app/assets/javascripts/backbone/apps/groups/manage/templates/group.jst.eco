@@ -7,7 +7,6 @@
 		</div>
 
 		<!-- ************* SUBGROUP MENU ******************* -->
-		<% if false: %>
 		<a class="dropdown-toggle groupCardManage__subgroupsToogle" role="menu" aria-labelledby="Prizes" data-toggle="dropdown" aria-expanded="false" href="#">
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
 			<% if @group.official: %><span class="groupCardManage__ribbon"></span><% end %>
@@ -17,10 +16,12 @@
 		
 	    	<ul class="dropdown-menu dropdown-menu-right groupCardManage__subgroups" role="menu" aria-labelledby="chosenSummary" aria-expanded="false">
 			    <li role="presentation" class="groupCardManage__subgroups__item clearfix">
+			    		<div class="caret"></div>
 			    		<div class="row-fluid">
-			    	
+			    			
 				    		<div class="col-md-7  col-lg-7  col-sm-7  col-xs-7 groupCardManage__subgroups__item__name">
 				    			<a href="#">SUBGROUP</a>
+
 				    		</div>
 				    		<div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 groupCardManage__subgroups__item__icon">
 				    			<a href="#">(XXX)</a>
@@ -43,8 +44,7 @@
 			    </li> 
 			   
 			</ul>
-	
-		<% end %>
+
 		<!-- *************************** END SUBMENU GROUP ******************* !>
 		
 		<!-- COVER OFF -->
@@ -87,11 +87,17 @@
 				</div>
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
-						 <!--
-              Avatars of people who has joined the group
-
-              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10 -->
+						<% aux = 0 %>
+              			<% for friends in @friends_in: %>  
+                			<img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+              			  <% aux=aux+1 %>
+              			  <% if aux==3: %>
+              			    <% break %>
+              			  <% end %> 
+              			<% end %>
+              			<% if @friends_in.length>3: %>
+              			  +<%= @friends_in.length-3 %>
+              			<% end %>
 					</div>
 				</div>
 			</div>

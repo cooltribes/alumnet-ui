@@ -9,7 +9,7 @@
         else if group.isSecret() && not group.userIsMember()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request('group:layout', group)
+          layout = AlumNet.request('group:layout', group,0)
           header = AlumNet.request('group:header', group)
 
           #configure the composite view of posts

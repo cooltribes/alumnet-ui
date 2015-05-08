@@ -551,6 +551,9 @@
     template: 'users/about/templates/_language'
     tagName: "li"
 
+    ui:
+      'level': '.progress'
+
     events:
       "click .js-rmvRow": "removeItem"
 
@@ -563,6 +566,9 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
+    onRender: ->
+      view = this
+      @ui.level.tooltip()
 
   class About.LanguagesView extends Marionette.CollectionView
     childView: About.Language

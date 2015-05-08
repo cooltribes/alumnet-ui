@@ -1,0 +1,29 @@
+<div class="row margin_bottom">
+  <div class="col-md-9 js-graph">
+    Loading graph...
+
+  </div>
+
+  <div class="col-md-3">
+    <% if @graphType == 1: %>
+      
+        <label class="control-label" for="inputName">Region of Residence</label>
+        <input id="js-residence-region" type="hidden" name="residence_country_id" style="width: 100%">
+      
+
+    <% else if @graphType == 2: %>
+     <!--  <div class="row">
+        <div class="col-md-12"> -->
+        <label class="control-label" for="inputName">Country of Residence</label>
+        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
+        <!-- </div>   
+      </div> -->
+    <% else if @graphType == 0: %>
+      Total users in AlumNet
+
+    <% end %>
+  </div>
+
+</div>
+<hr>
+

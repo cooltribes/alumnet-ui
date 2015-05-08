@@ -60,8 +60,7 @@
     template: 'events/shared/templates/header'
     templateHelpers: ->
       model = @model
-      console.log @model
-      shortname: short_string(@model.get('name'),50)      
+      shortname: short_string(@model.get('name'),50)
       canEditInformation: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
@@ -70,11 +69,9 @@
       attendance: ->
         if model.get('attendance_info') then model.get('attendance_info') else false
       buttonAttendance: (id, status) ->
-        console.log 'status '+status+' - id'+id
         if status
           if id == "js-att-" + status.replace('_','-')
             return 'groupCoverArea__attendanceOptions--option--active'
-
 
     modelEvents:
       'change:cover': 'coverChanged'
@@ -97,9 +94,8 @@
       view = @
       @model.fetch
         success: (model)->
-          console.log model
           view.render()
-    
+
     uploadClicked: (e)->
       modal = new Shared.Modal
         model: @model
@@ -134,12 +130,12 @@
     initialize: (options) ->
       @current_user = AlumNet.current_user
       @tab = options.tab
-      @pointsBar = options.pointsBar   
+      @pointsBar = options.pointsBar
       @class = [
         "", "", ""
         "", ""
-      ]  
-      @class[parseInt(@tab)] = "active" 
+      ]
+      @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
       classOf: (step) =>

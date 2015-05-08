@@ -20,6 +20,11 @@
             <span class="navTopSubBar__icon glyphicon"></span> Deleted Users
           </a>
         </li>
+        <li class="<%= @classOf(2)%>">
+          <a href="#admin/users/stats" class="navTopSubBar__link" title="Stats">
+            Users Stats <span class="navTopSubBar__icon glyphicon glyphicon-stats"></span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

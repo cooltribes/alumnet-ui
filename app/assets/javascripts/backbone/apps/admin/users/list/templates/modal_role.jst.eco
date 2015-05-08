@@ -4,16 +4,16 @@
 </div>
 
 <div class="bbm-modal__section">
-  <h2>Update user Role</h2>
+  <h2>Update user role</h2>
     <p>
     <form>
       <div class="form-group">
         <select name="role" class="form-control input-lg" id="role">
           <option value="regular" <%= selected("regular", @roleText) %>>Regular</option>
-          <option value="nacional" <%= selected("nacional", @roleText) %>>Nacional Admin</option>
-          <option value="regional" <%= selected("regional", @roleText) %>>Regional Admin</option>
-          <option value="alumnet" <%= selected("alumnet", @roleText) %>>Alument Admin</option>
-          <option value="system" <%= selected("system", @roleText) %>>System Admin</option>
+          <option value="nacional" <%= selected("nacional", @roleText) %>>National admin</option>
+          <option value="regional" <%= selected("regional", @roleText) %>>Regional admin</option>
+          <option value="alumnet" <%= selected("alumnet", @roleText) %>>Alument admin</option>
+          <option value="system" <%= selected("system", @roleText) %>>System admin</option>
         </select>
       </div>
       <div class="form-group">

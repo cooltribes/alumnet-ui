@@ -23,9 +23,7 @@ class ApplicationController < ActionController::Base
     gon.api_endpoint = Settings.api_endpoint
     gon.pusher_key = Settings.pusher_key
     gon.auth_token = current_user if signed_in?
-    if session[:linkedin_profile].present?
-      gon.linkedin_profile = session[:linkedin_profile]
-    end
+    init_linkedin_for_registration
     if session[:facebook_profile].present?
       gon.facebook_profile = session[:facebook_profile]
     end
@@ -41,5 +39,14 @@ class ApplicationController < ActionController::Base
 
   def render_not_found
     render template: "errors/404"
+  end
+
+  def init_linkedin_for_registration
+    if session[:atoken].present? && session[:asecret].present?
+      @linkedin = AlumnetLinkedin.new
+      @client = @linkedin.client
+      @client.authorize_from_access(session[:atoken], session[:asecret])
+      gon.linkedin_profile = @linkedin.profile
+    end
   end
 end
