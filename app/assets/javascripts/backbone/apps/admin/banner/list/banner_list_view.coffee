@@ -67,38 +67,43 @@
   class BannerList.BannerView extends Marionette.ItemView
     template: 'admin/banner/list/templates/banner'
 
-    initialize: (options)->
-      @banner = options.banner
-      console.log @model #               <------
-     
-
-    Events:  
+    events:  
       'click #js-deleteBanner': 'deleteBanner'
-           
-      
-    deleteBanner:(e)->
+      'change': 'renderView'      
+     
+    deleteBanner: (e)->
       e.preventDefault()
-      resp = confirm('Are you sure?')
+      resp = confirm("Are you sure?")
       if resp
-        @model.destroy
-          success: ->
-            @collection.fetch()
-            @collection.render()
-            console.log "Banner borrado"
-
+        console.log @model.url
+        console.log @model.collection
+        @model.destroy()
+        
+     
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
-   initialize: (options) ->
-      getBannersCount: ->
-        model.get('collection').length
+    initialize: (options) ->
+      console.log "CompositeView"
 
+    events:  
+      'change': 'renderView'   
+
+    renderView: ->
+      @model.fetch()
+      @model.render()          
+         
+    templateHelpers: ->
+       getBannersCount: ->
+          model.get('children').length
+          console.log model.get('children').length
 
     childViewOptions: ->
       banners: @banners
+
 
       
  
