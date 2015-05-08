@@ -2,16 +2,17 @@
 
   class AdminApp.Router extends AlumNet.Routers.Admin
     appRoutes:
-      "admin/users": "usersList"
-      "admin/users/:id": "usersList"
-      "admin/groups": "groupsList"
-      "admin/regions": "regionsList"
+      "admin/users/stats": "statsList"
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
+      "admin/users/:id": "usersList"
+      "admin/users": "usersList"
+      "admin/groups": "groupsList"
+      "admin/regions": "regionsList"
       "admin/baner": "banerList"
 
   API =
-    usersList: (id)->      
+    usersList: (id)->
       controller = new AdminApp.Users.Controller
       controller.usersList(id)
     usersDeleted: ->
@@ -28,7 +29,10 @@
       controller.regionsList()
     banerList: ->
       controller = new AdminApp.BanerList.Controller
-      controller.banerList()   
+      controller.banerList()
+    statsList: ->
+      controller = new AdminApp.UserStats.Controller
+      controller.showStats()
 
   AlumNet.addInitializer ->
     new AdminApp.Router

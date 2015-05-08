@@ -2,7 +2,7 @@
  
     <% if @canEditInformation: %>
       <a href="#" id="name" class="clearfix">
-        <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
+        <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
           <%= @name %>
         </h1>      
       </a>

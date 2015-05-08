@@ -18,8 +18,6 @@
         users = AlumNet.request("admin:user:entities", {})
       
 
-      window.users = users
-
       # Region with users list
       usersView = new Users.UsersTable
         collection: users

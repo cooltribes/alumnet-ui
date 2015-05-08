@@ -19,13 +19,11 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 	&__title{
 		font-size: 60px;
 		padding: 10px 20px;
-		color: @white;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-height: 210px;
-		
-		
+		color: @white;		
 		background: rgba(0, 0, 0, 0.5);
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		a{
 			color: @white;
 			&:hover{
@@ -171,9 +169,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			display: inline-block;
 			width: auto;
 		}
-		&__title{
-			float: left;
-		}
+		
 		&__editCover{			
 			text-align: right; 			
 		}
@@ -198,8 +194,6 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			display: inline-block;
 			width: auto;
 		}
-		&__title{
-			float: left;
-		}
+		
  	}
  }

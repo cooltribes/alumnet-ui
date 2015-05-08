@@ -17,8 +17,14 @@
       controller.showAbout(id)
 
     postsEvent: (id)->
-      controller = new EventsApp.Posts.Controller
-      controller.showPosts(id)
+      event = AlumNet.request('event:find', id)
+      event.on 'find:success', ->
+        if event.get('admission_type') == 1 && event.get('attendance_info').status == "going"
+          controller = new EventsApp.Payment.Controller
+          controller.payEvent(id)
+        else
+          controller = new EventsApp.Posts.Controller
+          controller.showPosts(id)
 
     attendancesEvent: (id)->
       controller = new EventsApp.Attendances.Controller

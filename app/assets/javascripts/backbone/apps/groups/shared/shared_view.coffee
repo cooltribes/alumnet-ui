@@ -55,6 +55,7 @@
         success: ->
           modal.destroy()
       @model.save {}, options
+      @model.trigger('change:cover')
 
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
@@ -75,8 +76,12 @@
       'click @ui.uploadCover': 'uploadClicked'
 
     coverChanged: ->
-      cover = @model.get('cover')
-      @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
+      # cover = @model.get('cover')
+      # @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
+      view = @
+      @model.fetch
+        success: (model)->
+          view.render()
 
     uploadClicked: (e)->
       e.preventDefault()
@@ -101,7 +106,7 @@
     template: 'groups/shared/templates/layout'
     initialize: ->
       @current_user = AlumNet.current_user
- 
+
 
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
