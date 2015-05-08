@@ -24,11 +24,15 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+		display: inline-block;
 		a{
 			color: @white;
 			&:hover{
 				text-decoration: none;
 
+			}
+			&.editable-click{
+				border-bottom: 0;
 			}
 		}
 	}
@@ -128,10 +132,18 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			color:@white;
 		}
 
-
-
-
-
+		&--past{
+			cursor: default;
+			color:@white;
+			transition:1s;
+			border-radius: 0px;
+			margin:1px;
+			border:2px solid @gray;
+			width:10em;
+		}
+		&--past:hover, &--option--active{
+			color:@white;
+		}
 	}
 
 }
