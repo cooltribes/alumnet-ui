@@ -29,7 +29,7 @@
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
-      'click .editLink': 'editAttribute'
+      #'click .editLink': 'editAttribute'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -90,7 +90,7 @@
 
     editAttribute: (e)->
       $(e.target).addClass "hide"
-      console.log e.target
+      
     onRender: ->
       view = this
       @ui.groupDescription.editable
@@ -105,6 +105,7 @@
             'Group Description is larger than 2048 characters'                           
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
+      @ui.groupDescription.linkify()
 
       @ui.groupType.editable
         type: 'select'

@@ -11,7 +11,7 @@
         else
           AlumNet.execute('render:events:submenu')
           
-          layout = AlumNet.request("event:layout", event)
+          layout = AlumNet.request("event:layout", event, 3)
           header = AlumNet.request("event:header", event)
 
 

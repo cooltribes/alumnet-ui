@@ -13,6 +13,7 @@
           AlumNet.trigger 'show:banned'
           false
         else
+          AlumNet.execute('header:show:regular')
           true
 
     goToRegistration: (step)->
@@ -37,4 +38,5 @@
       unless current_user.isAdmin()
         return false
 
+      AlumNet.execute('header:show:admin')  
       true

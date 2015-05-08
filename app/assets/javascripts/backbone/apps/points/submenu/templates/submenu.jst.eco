@@ -21,26 +21,26 @@
 </nav>
 <% if @pointsBar: %>
 <nav class="navbar navbar-default row-fluid pointsBar <%= @chosenPrizes(@prizes)%>" id="pointsBar">
-    <div class="col-md-6 col-sm-6 text-left">
+    <div class="col-xs-5 col-md-6 col-sm-6 text-left">
         <span class="icon-entypo-lifebuoy pointsBar__leftIcon"></span>
         <span class="pointsBar__quantity">3000</span>
         <span class="pointsBar__topLegend">POINTS</span>
         <span class="pointsBar__bottomLegend">TO SPEND</span>
     </div>
-    <div class="col-md-4 col-sm-6 col-lg-4 col-md-offset-2 col-lg-offset-2 text-right pointsBar__prizes" id="chosenPrizes">
+    <div class="col-xs-7  col-md-4 col-sm-6 col-lg-4 col-md-offset-2 col-lg-offset-2 text-right pointsBar__prizes" id="chosenPrizes">
     		<a class="pointsBar__prizes__link dropdown-toggle" role="menu" aria-labelledby="Prizes" data-toggle="dropdown" id="chosenSummary" aria-expanded="false" href="#">
     		<span class="icon-entypo-bag"></span>Chosen prizes: <%= @prizes %>
 	    	</a>
 	    	<ul class="dropdown-menu dropdown-menu-right navTopBar__dropdownMenu " role="menu" aria-labelledby="chosenSummary" aria-expanded="false" id="chosenMenu">
 			    <li role="presentation">
 			    	<div class="row-fluid clearfix item">
-			    		<div class="col-md-8 col-lg-8 col-sm-8 prize">
+			    		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 prize">
 			    			PRIZE
 			    		</div>
-			    		<div class="col-md-3 col-lg-3 col-sm-3 cost">
+			    		<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 cost">
 			    			COST pts
 			    		</div>
-			    		<div class="col-md-1 col-lg-1 col-sm-1 delete">
+			    		<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 delete">
 			    			<a href="#" class="deletePrize" title="Delete prize">
 			    				<span class="icon-entypo-trash"></span>
 			    			</a>
@@ -49,13 +49,13 @@
 			    </li>
 			    <li role="presentation">
 			    	<div class="row-fluid clearfix item">
-			    		<div class="col-md-8 col-lg-8 col-sm-8 prize">
+			    		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 prize">
 			    			PRIZE
 			    		</div>
-			    		<div class="col-md-3 col-lg-3 col-sm-3 cost">
+			    		<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 cost">
 			    			COST pts
 			    		</div>
-			    		<div class="col-md-1 col-lg-1 col-sm-1 delete">
+			    		<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 delete">
 			    			<a href="#" class="deletePrize" title="Delete prize">
 			    				<span class="icon-entypo-trash"></span>
 			    			</a>

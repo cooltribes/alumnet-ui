@@ -23,6 +23,7 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'comment:edit', newValue
+      @ui.commentText.linkify()
 
     ui:
       'likeLink': '.js-vote'
@@ -72,7 +73,7 @@
     template: 'home/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post item col-md-6'
+    className: 'post item'
     childViewOptions: ->
       current_user: @current_user
 
@@ -117,6 +118,7 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'post:edit', newValue
+      @ui.bodyPost.linkify()
 
     ui:
       'item': '.item'

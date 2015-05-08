@@ -2,6 +2,7 @@
 
   class AdminApp.Router extends AlumNet.Routers.Admin
     appRoutes:
+      "admin/users/stats": "statsList"
       "admin/users": "usersList"
       "admin/users/:id": "usersList"
       "admin/groups": "groupsList"
@@ -29,6 +30,9 @@
     banerList: ->
       controller = new AdminApp.BanerList.Controller
       controller.banerList()   
+    statsList: ->
+      controller = new AdminApp.UserStats.Controller
+      controller.showStats()   
 
   AlumNet.addInitializer ->
     new AdminApp.Router

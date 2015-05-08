@@ -9,9 +9,11 @@
     template: 'home/conversations/templates/message'
     ui:
       'markLink': '.js-mark'
+      'mensaje':'#js-mensaje'
     events:
       'click .unread': 'clickedUnReadLink'
       'click .read': 'clickedReadLink'
+      
 
     clickedReadLink: (e)->
       e.stopPropagation()
@@ -30,6 +32,9 @@
       else if @ui.markLink.hasClass('unread')
         @ui.markLink.removeClass('unread').addClass('read').html("Mark as Read")
 
+    onRender: ->
+      view = this
+      @ui.mensaje.linkify()
 
   class Conversations.ConversationsView extends Marionette.CollectionView
     template: 'home/conversations/templates/conversations_container'

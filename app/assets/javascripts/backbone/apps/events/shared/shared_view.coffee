@@ -131,26 +131,36 @@
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'events/shared/templates/layout'
-    initialize: ->
+    initialize: (options) ->
       @current_user = AlumNet.current_user
+      @tab = options.tab
+      @pointsBar = options.pointsBar   
+      @class = [
+        "", "", ""
+        "", ""
+      ]  
+      @class[parseInt(@tab)] = "active" 
 
     templateHelpers: ->
+      classOf: (step) =>
+        @class[step]
 
     regions:
       header: '#event-header'
       body: '#event-body'
 
   API =
-    getEventLayout: (model)->
+    getEventLayout: (model,tab)->
       new Shared.Layout
         model: model
+        tab: tab
 
     getEventHeader: (model)->
       new Shared.Header
         model: model
 
-  AlumNet.reqres.setHandler 'event:layout', (model) ->
-    API.getEventLayout(model)
+  AlumNet.reqres.setHandler 'event:layout', (model,tab) ->
+    API.getEventLayout(model,tab)
 
   AlumNet.reqres.setHandler 'event:header', (model)->
     API.getEventHeader(model)

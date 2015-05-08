@@ -4,7 +4,51 @@
       <%%= @name %>   (<%%= @pictures_count %>)         
 
       <%% if @userCanEdit: %>
-        <button type="button" class="close js-rmvItem"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+<a class="dropdown-toggle albums-list__editButton" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+  <span class="icon-entypo-down-open-mini"></span>
+</a>
+<ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">
+    <li role="presentation">
+      <span class="ico-company"></span> Privacy
+    </li>
+    <li role="presentation">
+      <a href="#">
+        Edit Album       
+      </a>
+    </li> 
+    <li role="presentation">
+      <a href="#"  class="js-rmvItem">
+        Delete Album      
+      </a>
+    </li>   
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <%% end %>
 
     </h4>

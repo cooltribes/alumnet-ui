@@ -32,6 +32,9 @@
       # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
 
+  App.reqres.setHandler 'default:region', -> App.mainRegion
+    
+
   App.navigate = (route, options)->
     options || (options = {})
     Backbone.history.navigate(route, options)
