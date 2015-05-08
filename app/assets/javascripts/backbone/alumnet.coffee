@@ -27,7 +27,9 @@
   App.addRegions
     headerRegion: "#header-region"
     submenuRegion: "#submenu-region"
-    mainRegion: "#main-region"
+    mainRegion: 
+      selector: "#main-region"
+      # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
 
   App.reqres.setHandler 'default:region', -> App.mainRegion

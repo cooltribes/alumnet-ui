@@ -1,4 +1,4 @@
-<div class="userCoverArea" style="<%=@cover_style()%>" role="group">
+<div class="userCoverArea coverArea" style="<%=@cover_style()%>" role="group">
   <div class="userCoverArea__avatar text-center">
     <% if @avatar.extralarge: %>
       <img src=<%= @add_timestamp(@avatar.extralarge) %> alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">

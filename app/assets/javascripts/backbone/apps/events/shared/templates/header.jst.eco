@@ -1,4 +1,4 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
+<div class="groupCoverArea coverArea" style="background-image: url('<%= @cover_image %>');">
  
     <% if @canEditInformation: %>
       
