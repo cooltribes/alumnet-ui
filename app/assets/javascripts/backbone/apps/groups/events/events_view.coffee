@@ -126,7 +126,7 @@
 
   class Events.EventView extends Marionette.ItemView
     template: 'groups/events/templates/event'
-    className: 'row'
+    className: ''
 
     templateHelpers: ->
       model = @model
