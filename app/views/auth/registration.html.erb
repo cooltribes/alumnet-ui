@@ -1,9 +1,14 @@
+<div class="row margin_top_large_minus">
+  <div class="col-md-2 padding_left">
+    <%= link_to "Back", home_path, class: "btn btn-primary" %>
+  </div>
+</div>
 <div class="row text-center">
-  <h2><%= @provider %></h2>
-  <%= link_to "Cancel", home_path, class: "btn btn-primary" %>
+  <h2>Create a New Account in AlumNet</h2> 
+  <small>Welcome to AlumNet, please enter your e-mail and password</small> 
 </div>
 
-<div class="row text-center">
+<div class="row text-center" id="login" style="display: none">
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_in_path_for(@provider) do %>
@@ -21,10 +26,15 @@
       <%= submit_tag "Sign in ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
       <% end %>
     </div>
+    <div>
+      <small>
+      Already have an AlumNet account? Click <a href="#" id="to-register">here</a> to login
+    </small>
+    </div>
   </div>
 </div>
 
-<div class="row text-center">
+<div class="row text-center" id="register">
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_up_path_for(@provider) do %>
@@ -44,5 +54,21 @@
       <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
       <% end %>
     </div>
+    <div>
+      <small>
+      Don't have an AlumNet account? Click <a href="#" id="to-login">here</a> to create one
+    </small>
+    </div>
   </div>
 </div>
+<script>
+  $('#to-register').click(function(){
+    $('#login').hide();
+    $('#register').show();
+  });
+  $('#to-login').click(function(){
+    $('#register').hide();
+    $('#login').show();
+  });
+
+</script>
