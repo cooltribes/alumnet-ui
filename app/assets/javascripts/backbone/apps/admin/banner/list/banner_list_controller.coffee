@@ -1,5 +1,4 @@
 @AlumNet.module 'AdminApp.BannerList', (BannerList, @AlumNet, Backbone, Marionette, $, _) ->
-  
   class BannerList.Controller
     bannerList: ->
       banner = AlumNet.request('banner:entities:admin', {})

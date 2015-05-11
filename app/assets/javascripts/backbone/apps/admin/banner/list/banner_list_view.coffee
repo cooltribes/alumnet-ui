@@ -28,9 +28,6 @@
       'change #BannerImg': 'previewImage'
       'click #js-addBanner': 'addBanner'
 
-    templateHelper: ()->
-       
-
     addBanner: (e)->  
       e.preventDefault()     
       formData = new FormData()
@@ -50,6 +47,7 @@
           success: (model, response, options)->
             console.log "success"   #               <------
         @model.save(formData, options_for_save)
+        @render()
         
  
     previewImage: (e)->
@@ -78,6 +76,7 @@
         console.log @model.url
         console.log @model.collection
         @model.destroy()
+        @destroy()
         
      
   #Vista para lista de banners
@@ -86,21 +85,13 @@
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
-    initialize: (options) ->
-      console.log "CompositeView"
-
     events:  
       'change': 'renderView'   
 
     renderView: ->
       @model.fetch()
       @model.render()          
-         
-    templateHelpers: ->
-       getBannersCount: ->
-          model.get('children').length
-          console.log model.get('children').length
-
+      
     childViewOptions: ->
       banners: @banners
 

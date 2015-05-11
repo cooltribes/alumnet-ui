@@ -1,9 +1,10 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Banner extends Backbone.Model
     urlRoot: -> 
-      AlumNet.api_endpoint + '/banners/'
-
-    validation:
+      AlumNet.api_endpoint + '/banners'
+   
+    ###   
+    validation: 
       title:
         required: true
         maxLength: 250
@@ -17,16 +18,8 @@
         maxLength: 2048
         msg: "Banner description is required, must be less than 2048 characters"
       picture:
-        required: true
-  
-    getTitle: ()->
-      @get "title"
+        required: true ###
 
-    getLink: ()->
-      @get "link"  
-
-    getDescription: ()->
-      @get "description"    
 
   class Entities.BannerCollection extends Backbone.Collection
     model: Entities.Banner
@@ -34,7 +27,12 @@
     url: -> 
       AlumNet.api_endpoint + '/banners/'
 
-    
+  API =    
+    getBannerEntities: ->
+      new Entities.Banner 
+      
+  AlumNet.reqres.setHandler 'banner:entities', ->
+    API.getBannerEntities()   
    
       
   

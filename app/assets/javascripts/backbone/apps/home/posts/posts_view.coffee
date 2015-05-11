@@ -244,3 +244,19 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+
+    class Posts.BannersView extends Marionette.CompositeView
+      ##model is current user
+      template: 'home/posts/templates/banners'
+      childView: Posts.BannersView
+      childViewContainer: '.banners_container'
+      initialize: ->  
+        console.log @model
+        console.log @model.bannerCollection 
+
+      childViewOptions: ->
+        bannerCollection: @bannerCollection
+        console.log BannerCollection.models
+        console.log bannerCollection
+      
+      onShow: ->  
