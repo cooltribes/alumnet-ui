@@ -30,6 +30,8 @@
             model.save({join_process: parseInt(newValue)})
           body.on 'group:edit:official', (model, newValue) ->
             model.save({official: parseInt(newValue)})
+          body.on 'group:edit:mailchimp', (model, newValue) ->
+            model.save({mailchimp: parseInt(newValue)})
 
           body.on 'join', () ->
             attrs = { group_id: group.get('id'), user_id: current_user.id }

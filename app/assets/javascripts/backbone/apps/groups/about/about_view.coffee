@@ -13,8 +13,9 @@
       userHasMembership: @model.userHasMembership()
       userIsApproved:  @model.userIsMember()
       joinProcessText: @joinProcessText()
-      mailchimp: @model.get('mailchimp')
-      console.log(@mailchimp)
+      model: @model
+      mailchimp: @model.hasMailchimp()
+      #console.log(@model.hasMailchimp())
 
     ui:
       'groupOfficial': '#official'
@@ -22,6 +23,8 @@
       'groupType': '#group_type'
       'joinProcess': '#join_process'
       'joinDiv': '#js-join-div'
+      'groupMailchimp': '#mailchimp'
+      'mailchimpContainer': '#mailchimpContainer'
 
     events:
       'click a#js-edit-official': 'toggleEditGroupOfficial'
@@ -31,6 +34,7 @@
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
+      'click a#js-edit-mailchimp': 'toggleEditMailchimp'
       #'click .editLink': 'editAttribute'
 
     deleteGroup:(e)->
@@ -89,6 +93,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
+
+    toggleEditMailchimp: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupMailchimp.editable('toggle')
 
     editAttribute: (e)->
       $(e.target).addClass "hide"
@@ -160,3 +169,25 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'group:edit:official', view.model, newValue
+          console.log(view.ui.mailchimpContainer)
+          if newValue == 0
+            view.ui.mailchimpContainer.hide()
+          else
+            view.ui.mailchimpContainer.show()
+
+
+      @ui.groupMailchimp.editable
+        type: 'select'
+        value: view.model.get('mailchimp')
+        pk: view.model.id
+        title: 'Has mailchimp?'
+        toggle: 'manual'
+        source: [
+          {value: 0, text: 'No'}
+          {value: 1, text: 'Yes'}
+        ]
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        success: (response, newValue)->
+          view.trigger 'group:edit:mailchimp', view.model, newValue
