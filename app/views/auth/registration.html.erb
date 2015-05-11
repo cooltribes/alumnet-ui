@@ -1,6 +1,6 @@
-<div class="row margin_top_large_minus">
+<div class="row margin_top_xlarge_minus">
   <div class="col-md-2 padding_left">
-    <%= link_to "Back", home_path, class: "btn btn-primary" %>
+    <%= link_to "Back to home page", home_path, class: "btn btn-primary" %>
   </div>
 </div>
 <div class="row text-center">
@@ -8,7 +8,8 @@
   <small>Welcome to AlumNet, please enter your e-mail and password</small> 
 </div>
 
-<div class="row text-center" id="login" style="display: none">
+<div class="row text-center" id="login" style="display: none; -webkit-transition: display .5s;
+    transition: display .5s;">
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_in_path_for(@provider) do %>
@@ -26,15 +27,16 @@
       <%= submit_tag "Sign in ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
       <% end %>
     </div>
-    <div>
-      <small>
-      Already have an AlumNet account? Click <a href="#" id="to-register">here</a> to login
-    </small>
+    <div class="margin_top_small">
+      Don't have an AlumNet account? 
+       <b>Click <a href="#" id="to-register">here</a> 
+       to create one</b>
     </div>
   </div>
 </div>
 
-<div class="row text-center" id="register">
+<div class="row text-center" id="register" style=" -webkit-transition: display .5s; /* Safari */
+    transition: display .5s;">
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_up_path_for(@provider) do %>
@@ -54,10 +56,10 @@
       <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
       <% end %>
     </div>
-    <div>
-      <small>
-      Don't have an AlumNet account? Click <a href="#" id="to-login">here</a> to create one
-    </small>
+    <div class="margin_top_small">
+      Already have an AlumNet account? <b>Click
+       <a href="#" id="to-login">here</a> to login</b>
+   
     </div>
   </div>
 </div>
