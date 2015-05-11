@@ -3,13 +3,14 @@
     <%= link_to "Back to home page", home_path, class: "btn btn-primary" %>
   </div>
 </div>
-<div class="row text-center">
-  <h2>Create a New Account in AlumNet</h2> 
-  <small>Welcome to AlumNet, please enter your e-mail and password</small> 
-</div>
+
 
 <div class="row text-center" id="login" style="display: none; -webkit-transition: display .5s;
     transition: display .5s;">
+    <div class="row text-center">
+      <h2>Login to AlumNet</h2> 
+      <small>Welcome to AlumNet, please enter your e-mail and password</small> 
+    </div>
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_in_path_for(@provider) do %>
@@ -37,6 +38,12 @@
 
 <div class="row text-center" id="register" style=" -webkit-transition: display .5s; /* Safari */
     transition: display .5s;">
+
+    <div class="row text-center">
+      <h2>Create a New Account in AlumNet</h2> 
+      <small>Welcome to AlumNet, please enter your e-mail and password</small> 
+    </div>
+
   <div id="registerHomeForm" class="collapse in ">
     <div class=" homeAlumNet__registerForm">
       <%= form_tag sign_up_path_for(@provider) do %>
