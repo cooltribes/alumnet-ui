@@ -19,20 +19,18 @@
       'click #js-reject-friendship':'clickedReject'
       'click #js-delete-friendship':'clickedDelete'
       'click #js-cancel-friendship':'clickedCancel'
-     
+
 
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
-      @model.fetch()
-      
+
 
     clickedRequest: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
-      @model.fetch()
 
     clickedReject: (e)->
       e.preventDefault()
@@ -43,7 +41,6 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('pending_received_friendships')
-      @model.fetch()  
 
     clickedDelete: (e)->
       e.preventDefault()
@@ -54,7 +51,7 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('friends')
-      @model.fetch()  
+        self.destroy()
 
     clickedCancel: (e)->
       e.preventDefault()
@@ -65,13 +62,13 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('pending_sent_friendships')
-      @model.fetch()  
-    
+        self.destroy()
+
     removeCancelLink: ->
       @ui.linkContainer.empty()
       @model.set("friendship_status","none")
-           
-      
+
+
 
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'

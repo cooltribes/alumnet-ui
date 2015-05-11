@@ -11,8 +11,8 @@
       layoutView.side_region.show(@getSideView())
       
       #Getting the entire collection of users
-      users = AlumNet.request('user:entities', {})      
-      # users = AlumNet.request('user:entities', {}, {fetch: false})      
+      # users = AlumNet.request('user:entities', {})      
+      users = AlumNet.request('user:entities', {}, {fetch: false})      
       
       approvalView = @getFormView users
       layoutView.form_region.show(approvalView)    

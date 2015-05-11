@@ -18,12 +18,12 @@
 
     #for Stickit
     bindings:
-      "#js-approvalCount": 
-        observe: "pending_approval_requests_count" 
+      "#js-approvalCount":
+        observe: "pending_approval_requests_count"
         onGet: (value, options)->
           "Approval Requests (#{value})"
 
-  
+
     initialize: (options) ->
       @listenTo(@model, 'change:pending_sent_friendships_count', @changedCountSent)
       @listenTo(@model, 'change:pending_received_friendships_count', @changedCountReceived)
@@ -42,7 +42,6 @@
     ui:
       'sendCount': '#js-sendCount'
       'receivedCount': '#js-receivedCount'
-      'changedCount': 'js-myfriends'      
 
     events:
       'click .js-search': 'performSearch'
@@ -86,11 +85,12 @@
 
     changedCountReceived: ->
       messageReceived = "Recieved (#{@model.get('pending_received_friendships_count')})"
-      @ui.receivedCount.html(messageReceived)      
+      @ui.receivedCount.html(messageReceived)
 
     changedCount: ->
+      console.log "here"
       message = "Friends (#{@model.get('friends_count')})"
-      @ui.changedCount.html(message)  
+      @ui.changedCount.html(message)
 
     onRender: ()->
       @stickit()

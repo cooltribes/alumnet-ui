@@ -1,16 +1,14 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
- 
+<div class="groupCoverArea coverArea" style="background-image: url('<%= @cover_image %>');">
     <% if @canEditInformation: %>
-      
-        <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
-          <a href="#" id="name" class="clearfix">
-          <%= @name %>
-          </a>
-        </h1>      
+      <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
+        <a href="#" id="name" class="clearfix">
+        <%= @name %>
+        </a>
+      </h1>
     <% else: %>
-      <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
+      <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
       <%= @shortname %>
-      </h1> 
+      </h1>
     <% end %>
   </h1>
   <% if @canEditInformation: %>
@@ -18,8 +16,7 @@
     <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
     </div>
   <% end %>
-  <% console.log this %>
-  <% if not @isPast: %>
+  <% if @userCanAttend  && not @isPast: %>
     <div class="groupCoverArea__attendanceOptions">
       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option
       <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">

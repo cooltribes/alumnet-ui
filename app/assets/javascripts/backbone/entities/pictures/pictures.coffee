@@ -24,9 +24,7 @@
 
       currentIndex = @collection.indexOf(@)
       prevIndex = currentIndex - 1
-      console.log prevIndex
       prevIndex = (@collection.length - 1) if prevIndex < 0
-      console.log prevIndex
 
       nextModel = @collection.at(prevIndex)
 
