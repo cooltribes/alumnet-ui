@@ -23,10 +23,19 @@
 
     ui:
       'adminRequestBtn': '.js-askAdmin'
+      selectResidenceCountries: "#js-residence-countries"
+
     events:
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
+    onRender: ()->
+      data = CountryList.toSelect2()
+      @ui.selectResidenceCountries.select2
+        placeholder: "Select a Country"
+        data: data
+      # console.log @model  
+      @ui.selectResidenceCountries.select2('val', @model.profile.get('residence_country').id)         
 
     clickedRequestAdmin: (e)->
       e.stopPropagation()
@@ -38,11 +47,13 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      @trigger('users:search', @buildQuerySearch(data.search_term))
+      console.log data
+      @trigger('users:search', @buildQuerySearch(data))
 
-    buildQuerySearch: (searchTerm) ->
+    buildQuerySearch: (data) ->
       q:
-        m: 'or'
-        profile_first_name_cont: searchTerm
-        profile_last_name_cont: searchTerm
-        email_cont: searchTerm
+        m: 'and'        
+        profile_residence_country_id_eq: data.residence_country_id
+        profile_first_name_or_profile_last_name_or_email_cont: data.search_term
+        # profile_last_name_cont: data.searchTerm
+        # email_cont: data.earchTerm
