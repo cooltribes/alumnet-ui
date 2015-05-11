@@ -13,6 +13,8 @@
       userHasMembership: @model.userHasMembership()
       userIsApproved:  @model.userIsMember()
       joinProcessText: @joinProcessText()
+      mailchimp: @model.get('mailchimp')
+      console.log(@mailchimp)
 
     ui:
       'groupOfficial': '#official'

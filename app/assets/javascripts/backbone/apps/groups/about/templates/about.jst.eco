@@ -48,6 +48,17 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
+      <% if @mailchimp: %>
+        <div class="groupAbout__box margin_bottom">
+          <h3>Mailchimp</h3>
+            <a href="#" id="official" class="js-attribute">
+            <% if @official: %>it's an official group<% else: %>it's not an official group<% end %>
+            </a>
+          <% if @currentUserIsAdmin: %>
+            <a href="#" id="js-edit-official" class="editLink">[edit]</a>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="col-md-4">
       <div class="groupAbout__box margin_bottom">
