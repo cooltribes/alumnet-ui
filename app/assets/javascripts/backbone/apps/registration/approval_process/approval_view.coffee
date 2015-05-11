@@ -32,7 +32,7 @@
       e.stopPropagation()
       e.preventDefault()
       @trigger("request:admin")
-      @ui.adminRequestBtn.parent().empty().html('Your request has been sent to admin <span class="icon-entypo-paper-plane"></span>')
+      @ui.adminRequestBtn.parent().empty().html('Your request has been sent to an administrator. You will receive an e-mail notification once your Alumni status had been verified <span class="icon-entypo-paper-plane"></span>')
       # console.log "RequestAdmin"  
 
     performSearch: (e) ->
