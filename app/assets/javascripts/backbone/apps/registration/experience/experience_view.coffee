@@ -22,7 +22,7 @@
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
-      
+
 
 
     events:
@@ -220,7 +220,6 @@
 
     submitClicked: (e)->
       e.preventDefault()
-      console.log 'here'
       experiences = new Array()
 
       #retrieve each itemView data

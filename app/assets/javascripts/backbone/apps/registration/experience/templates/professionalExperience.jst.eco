@@ -15,7 +15,6 @@
 					<option value="">Select Year</option>
 					<% for x in [@firstYear()..@currentYear] by 1 : %>
 						<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-
 					<% end %>
 				</select>
 			</div>
@@ -55,11 +54,9 @@
 					<div class="formANet__select">
 						<select name="end_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
-							<option value="current">Current</option>
-
+							<option <%= if @end_year == 'current' then "selected='selected'" %> value="current">Current</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-
 							<% end %>
 						</select>
 					</div>

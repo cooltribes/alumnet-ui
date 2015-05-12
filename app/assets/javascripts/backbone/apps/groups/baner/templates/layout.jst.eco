@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="search-region"></div>
-  <div id="create-region"></div>
-  <div id="list-region"></div>
+   <div id="search-region"></div>
+   <div id="list-region"></div>
+   <div id="create-region" class="row"></div>
 </div>
