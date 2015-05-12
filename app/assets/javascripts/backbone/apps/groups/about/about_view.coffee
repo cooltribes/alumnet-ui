@@ -170,10 +170,12 @@
         success: (response, newValue)->
           view.trigger 'group:edit:official', view.model, newValue
           console.log(view.ui.mailchimpContainer)
-          if newValue == 0
-            view.ui.mailchimpContainer.hide()
+          console.log(newValue)
+          if newValue == "0"
+            view.ui.mailchimpContainer.addClass('hide')
+            view.trigger 'group:edit:mailchimp', view.model, 0
           else
-            view.ui.mailchimpContainer.show()
+            view.ui.mailchimpContainer.removeClass('hide')
 
 
       @ui.groupMailchimp.editable
