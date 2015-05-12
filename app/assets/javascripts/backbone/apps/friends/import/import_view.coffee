@@ -9,9 +9,7 @@
       'click #js-submit-emails': 'sendEmails'
 
     ui:
-      'errorDiv':'.alert-danger'
-      'successDiv':'.alert-success'
-      'spin':'#spin'
+      'messageDiv':'#message'
 
     onShow: ->
       view = @
@@ -30,11 +28,10 @@
           links = document.getElementsByClassName('delayed');
           for link in links
             link.href = '#'
-        afterSubmitContacts: view.sendContacts
+        afterSubmitContacts: (contacts, source, owner)->
+          view.sendContacts(contacts, view)
 
-    sendContacts: (contacts, source, owner)->
-      view = @
-      @ui.spin.show()
+    sendContacts: (contacts, view)->
       formatedContacts = []
       _.map contacts, (contact)->
         formatedContacts.push({name: contact.fullName(), email: contact.selectedEmail()})
@@ -44,15 +41,15 @@
         data: { contacts: formatedContacts }
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
+          view.showMessage('alert', errors)
+        success: (data)->
+          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
+      @$('#spin').show()
       Backbone.ajax options
 
     sendFile: (e)->
       e.preventDefault()
       view = @
-      @ui.spin.show()
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
@@ -68,15 +65,15 @@
         data: formData
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
+          view.showMessage('alert', errors)
+        success: (data)->
+          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
+      @$('#spin').show()
       Backbone.ajax options
 
     sendEmails: (e)->
       e.preventDefault
       view = @
-      @ui.spin.show()
       formatedContacts = []
       rawEmails = @$('#js-enter-contacts').val().trim()
       arrayEmails = rawEmails.split(',')
@@ -88,20 +85,19 @@
         data: { contacts: formatedContacts }
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
+          view.showMessage('alert', errors)
+        success: (data)->
+          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
+      @$('#spin').show()
       Backbone.ajax options
 
-    showErrors: (errors)->
-      @ui.spin.hide()
-      @ui.successDiv.hide()
-      @ui.errorDiv.html(errors).show()
-
-    showSuccess: ()->
-      @ui.spin.hide()
-      @ui.errorDiv.hide()
-      @ui.successDiv.show()
+    showMessage: (type, message)->
+      @$('#spin').hide()
+      if type == 'alert'
+        @ui.messageDiv.removeClass('alert-success').addClass('alert-danger')
+      else
+        @ui.messageDiv.removeClass('alert-danger').addClass('alert-success')
+      @ui.messageDiv.html(message).show()
 
     importOption: (e)->
       e.preventDefault()
