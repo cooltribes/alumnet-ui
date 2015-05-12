@@ -1,7 +1,10 @@
 <div class="formANet form" role="form">
-	<h1 class="h2"><%= @title() %></h1>
+	<h2><%= @title() %></h2>
+	<% if @exp_type == 0: %>
+		<small>You have to enter <strong>at least one AIESEC Experience</strong> (but the more the better!)</small>
+	<% end %>
 
-	<div id="exp-list">
+	<div id="exp-list" class="margin_top">
 
 	</div>
 
