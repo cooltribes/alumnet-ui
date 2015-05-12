@@ -7,7 +7,7 @@
 		</div>
 
 		<!-- ************* SUBGROUP MENU ******************* -->
-		<a class="dropdown-toggle groupCardManage__subgroupsToogle" role="menu" aria-labelledby="Prizes" data-toggle="dropdown" aria-expanded="false" href="#">
+		<!--<a class="dropdown-toggle groupCardManage__subgroupsToogle" role="menu" aria-labelledby="Prizes" data-toggle="dropdown" aria-expanded="false" href="#">
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
 			<% if @group.official: %><span class="groupCardManage__ribbon"></span><% end %>
 		</div>

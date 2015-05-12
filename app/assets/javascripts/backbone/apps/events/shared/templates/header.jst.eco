@@ -1,15 +1,14 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
- 
+<div class="groupCoverArea coverArea" style="background-image: url('<%= @cover_image %>');">
     <% if @canEditInformation: %>
-      <a href="#" id="name" class="clearfix">
-        <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
-          <%= @name %>
-        </h1>      
-      </a>
+      <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
+        <a href="#" id="name" class="clearfix">
+        <%= @name %>
+        </a>
+      </h1>
     <% else: %>
-      <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>"> 
+      <h1 class="groupCoverArea__title  <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
       <%= @shortname %>
-      </h1> 
+      </h1>
     <% end %>
   </h1>
   <% if @canEditInformation: %>
@@ -17,7 +16,6 @@
     <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
     </div>
   <% end %>
-  <% console.log "hola "+@isPast %>
   <% if @userCanAttend  && not @isPast: %>
     <div class="groupCoverArea__attendanceOptions">
       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option
@@ -30,16 +28,15 @@
       </a>
     </div>
   <% else: %>
-
     <div class="groupCoverArea__attendanceOptions">
-      <a href="#" id="" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option
+      <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past
       <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
         ATTENDED
-      </a>
-      <a href="#" id="" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">MAYBE</a>
-      <a href="#" id="" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-not-going',@attendance().status) %>" data-value="not_going">
+      </div>
+      <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">MAYBE</div>
+      <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past <%= @buttonAttendance('js-att-not-going',@attendance().status) %>" data-value="not_going">
         NOT ATTENDED
-      </a>
+      </div>
     </div>
   <% end %>
 </div>
