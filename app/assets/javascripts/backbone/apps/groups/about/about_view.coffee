@@ -38,6 +38,7 @@
       'click a#js-edit-mailchimp': 'toggleEditMailchimp'
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
+      'click a#js-migrate-users': 'migrateUsers'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -73,6 +74,25 @@
           "Only the admins can invite"
         else
           ""
+
+    migrateUsers:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        id = @model.id
+        url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
+        console.log(id)
+        console.log(url)
+        Backbone.ajax
+          url: url
+          type: "GET"
+          success: (data) =>
+            console.log("success")
+            console.log(data)
+          error: (data) =>
+            console.log("error")
+            console.log(data)
+
     attributeClicked: (e)->
       e.preventDefault()
 
