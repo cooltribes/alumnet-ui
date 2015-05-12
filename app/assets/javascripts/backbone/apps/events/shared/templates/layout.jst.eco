@@ -12,7 +12,7 @@
           About</a></li>
           <li class="<%= @classOf(2)%>">  <a href="#events/<%= @id %>/attendances" id="js-attendances" class="groupMenu__link">
             <span class="ico-company"></span>
-          Attendants</a></li>
+          Attendees</a></li>
           <li class="<%= @classOf(3)%>">  <a href="#events/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
             <span class="icon-entypo-picture"></span>
           Pictures</a></li>

@@ -43,9 +43,8 @@
         options:
           'title': 'Registrants'
 
-      @ui.graph_section.html(graph.render().el)
-  
-  
+      @ui.graph_section.showAnimated(graph.render().el)
+      
 
 
   class UserStats.RegionalGraph extends Marionette.ItemView
@@ -79,7 +78,7 @@
           options:
             'title': 'Registrants'
 
-        @ui.graph_section.html(graph.render().el)
+        @ui.graph_section.showAnimated(graph.render().el)
 
     onRender: ->
       data = AlumNet.request('get:regions:select2')
@@ -135,7 +134,8 @@
           options:
             'title': 'Registrants'
 
-        @ui.graph_section.html(graph.render().el)
+        @ui.graph_section.showAnimated(graph.render().el)
+        
 
     onRender: ->
       data = CountryList.toSelect2()
