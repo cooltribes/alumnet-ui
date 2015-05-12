@@ -70,6 +70,7 @@
         <% if @currentUserIsAdmin: %>
           <a href="#" id="js-edit-list-id" class="editLink">[edit]</a>
         <% end %>
+        </br>
         <% if @currentUserIsAdmin: %>
           <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
         <% end %>
