@@ -1,4 +1,3 @@
-<% console.log @ %>
 <div class="userCardAproval">
   <div class="row">
     <div class="col-md-2 userCardAproval__avatar">
