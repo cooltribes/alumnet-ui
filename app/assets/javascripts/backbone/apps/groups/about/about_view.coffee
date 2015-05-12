@@ -86,6 +86,7 @@
         Backbone.ajax
           url: url
           type: "GET"
+          data: { id: id }
           success: (data) =>
             console.log("success")
             console.log(data)
