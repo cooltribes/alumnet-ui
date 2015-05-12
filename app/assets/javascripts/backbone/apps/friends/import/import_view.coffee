@@ -8,7 +8,6 @@
       'click #js-submit-file': 'sendFile'
       'click #js-submit-emails': 'sendEmails'
 
-
     ui:
       'errorDiv':'.alert-danger'
       'successDiv':'.alert-success'
