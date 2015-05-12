@@ -11,7 +11,8 @@ class AlumnetLinkedin
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
-    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id"]
+    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id",
+    "educations"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
@@ -24,7 +25,7 @@ class AlumnetLinkedin
 
   def profile
     { languages: languages_for_alumnet, contacts: contacts_for_alumnet, experiences: experiences_for_alumnet,
-      profile: profile_for_alumnet, skills: skills_for_alumnet }
+      profile: profile_for_alumnet, skills: skills_for_alumnet, educations: educations_for_alumnet }
   end
 
   def languages_for_alumnet
@@ -56,6 +57,10 @@ class AlumnetLinkedin
     linkedin ? format_skills(linkedin['skills']) : []
   end
 
+  def educations_for_alumnet
+    linkedin ? format_educations(linkedin['educations']) : []
+  end
+
   protected
     def linkedin
       @linkedin ||= client.profile(fields: FIELDS, headers: {"Accept-Language" => "es_ES"})
@@ -80,18 +85,26 @@ class AlumnetLinkedin
     end
 
     def format_twiter(twitter)
-      { info: twitter.provider_account_name, contact_type: 5}
+      { info: twitter.provider_account_name, contact_type: 5} if twitter
     end
 
     def format_languages(languages)
-      languages.all.inject([]) do |array, language|
-        array << {id: language.id, name: language.language.name}
+      if languages
+        languages.all.inject([]) do |array, language|
+          array << {id: language.id, name: language.language.name}
+        end
+      else
+        []
       end
     end
 
     def format_skills(skills)
-      skills.all.inject([]) do |array, skill|
-        array << { name: skill.skill.name }
+      if skills
+        skills.all.inject([]) do |array, skill|
+          array << { name: skill.skill.name }
+        end
+      else
+        []
       end
     end
 
@@ -106,6 +119,14 @@ class AlumnetLinkedin
         array << {exp_type: 3, name: position.title, description: position.summary,
           organization_name: position.company.name, start_year: start_date[:year],
           start_month: start_date[:month], end_year: end_date[:year], end_month: end_date[:month]}
+      end
+    end
+
+    def format_educations(educations)
+      educations.all.inject([]) do |array, education|
+        array << {exp_type: 2, name: education.degree, organization_name: education.school_name,
+        start_month: '01', start_year: education.start_date.year, end_month: '01',
+        end_year: education.end_date.year, description: education.field_of_study }
       end
     end
 
