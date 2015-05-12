@@ -15,7 +15,6 @@
       joinProcessText: @joinProcessText()
       model: @model
       mailchimp: @model.hasMailchimp()
-      #console.log(@model.hasMailchimp())
 
     ui:
       'groupOfficial': '#official'
@@ -25,6 +24,8 @@
       'joinDiv': '#js-join-div'
       'groupMailchimp': '#mailchimp'
       'mailchimpContainer': '#mailchimpContainer'
+      'groupApiKey': '#api_key'
+      'groupListId': '#list_id'
 
     events:
       'click a#js-edit-official': 'toggleEditGroupOfficial'
@@ -35,7 +36,8 @@
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
       'click a#js-edit-mailchimp': 'toggleEditMailchimp'
-      #'click .editLink': 'editAttribute'
+      'click a#js-edit-api-key': 'toggleEditApiKey'
+      'click a#js-edit-list-id': 'toggleEditListId'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -98,6 +100,16 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.groupMailchimp.editable('toggle')
+
+    toggleEditApiKey: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupApiKey.editable('toggle')
+
+    toggleEditListId: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupListId.editable('toggle')
 
     editAttribute: (e)->
       $(e.target).addClass "hide"
@@ -169,14 +181,11 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'group:edit:official', view.model, newValue
-          console.log(view.ui.mailchimpContainer)
-          console.log(newValue)
           if newValue == "0"
             view.ui.mailchimpContainer.addClass('hide')
             view.trigger 'group:edit:mailchimp', view.model, 0
           else
             view.ui.mailchimpContainer.removeClass('hide')
-
 
       @ui.groupMailchimp.editable
         type: 'select'
@@ -193,3 +202,21 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'group:edit:mailchimp', view.model, newValue
+
+      @ui.groupApiKey.editable
+        type: 'text'
+        value: view.model.get('api_key')
+        pk: view.model.id
+        title: 'API Key'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.trigger 'group:edit:api_key', view.model, newValue
+
+      @ui.groupListId.editable
+        type: 'text'
+        value: view.model.get('list_id')
+        pk: view.model.id
+        title: 'List ID'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.trigger 'group:edit:list_id', view.model, newValue
