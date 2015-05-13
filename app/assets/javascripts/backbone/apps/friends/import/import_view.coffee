@@ -6,10 +6,14 @@
     events:
       'click .importMenu>li': 'importOption'
       'click #js-submit-file': 'sendFile'
-      'click #js-submit-emails': 'sendEmails'
+      'click #js-submit-emails': 'byEnter'
+      'click #js-submit-array': 'byUpload'
 
     ui:
       'messageDiv':'#message'
+      'linkUploadFile': '#js-submit-file'
+      'linkSubmitArray': '#js-submit-array'
+      'contactsList': '#js-contacts-list'
 
     onShow: ->
       view = @
@@ -29,23 +33,13 @@
           for link in links
             link.href = '#'
         afterSubmitContacts: (contacts, source, owner)->
-          view.sendContacts(contacts, view)
+          view.byService(contacts)
 
-    sendContacts: (contacts, view)->
+    byService: (contacts)->
       formatedContacts = []
       _.map contacts, (contact)->
         formatedContacts.push({name: contact.fullName(), email: contact.selectedEmail()})
-      options =
-        url: AlumNet.api_endpoint + '/me/send_invitations'
-        type: 'POST'
-        data: { contacts: formatedContacts }
-        error: (xhr)->
-          errors = xhr.responseJSON.errors.join(', ')
-          view.showMessage('alert', errors)
-        success: (data)->
-          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
-      @$('#spin').show()
-      Backbone.ajax options
+      @sendInvitations(formatedContacts)
 
     sendFile: (e)->
       e.preventDefault()
@@ -55,9 +49,9 @@
       _.forEach data, (value, key, list)->
         formData.append(key, value)
       file = @$('#contacts-file')
-      formData.append('contacts', file[0].files[0])
+      formData.append('file', file[0].files[0])
       options =
-        url: AlumNet.api_endpoint + '/me/send_invitations'
+        url: AlumNet.api_endpoint + '/me/contacts/file'
         type: 'POST'
         wait: true
         contentType: false
@@ -67,29 +61,47 @@
           errors = xhr.responseJSON.errors.join(', ')
           view.showMessage('alert', errors)
         success: (data)->
-          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
-      @$('#spin').show()
+          view.contactsFromFile = data.contacts
+          view.showContactsInForm(data.contacts)
+      view.showSpin()
       Backbone.ajax options
 
-    sendEmails: (e)->
-      e.preventDefault
-      view = @
+    byEnter: (e)->
+      e.preventDefault()
       formatedContacts = []
       rawEmails = @$('#js-enter-contacts').val().trim()
       arrayEmails = rawEmails.split(',')
       _.map arrayEmails, (email)->
         formatedContacts.push({name: '', email: email.trim()})
+      @sendInvitations(formatedContacts)
+
+    byUpload: (e)->
+      e.preventDefault()
+      if @contactsFromFile.length > 0
+        @sendInvitations(@contactsFromFile)
+        @ui.contactsList.html("")
+        @ui.linkSubmitArray.hide()
+      else
+        @showMessage('alert', 'No contacts')
+
+    sendInvitations: (contacts)->
+      view = @
       options =
         url: AlumNet.api_endpoint + '/me/send_invitations'
         type: 'POST'
-        data: { contacts: formatedContacts }
+        data: { contacts: contacts }
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
           view.showMessage('alert', errors)
         success: (data)->
           view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
-      @$('#spin').show()
+          view.contactsFromFile = null
+      view.showSpin()
       Backbone.ajax options
+
+    showSpin: ->
+      @$('#spin').show()
+      @ui.messageDiv.hide()
 
     showMessage: (type, message)->
       @$('#spin').hide()
@@ -105,3 +117,14 @@
       $(e.target).closest('li').addClass "active"
       $('.importContactForm').hide()
       $('#'+$(e.target).closest('li').attr('id').replace('to-','')).show()
+
+    showContactsInForm: (contacts)->
+      @$('#spin').hide()
+      if contacts
+        html = ""
+        _.map contacts, (contact)->
+          html += "<li> #{contact.name} - #{contact.email} </li>"
+        @ui.contactsList.html(html)
+        @ui.linkSubmitArray.show()
+      else
+        @showMessage('alert', 'No contacts')
