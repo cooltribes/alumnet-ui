@@ -8,12 +8,14 @@
       'click #js-submit-file': 'sendFile'
       'click #js-submit-emails': 'byEnter'
       'click #js-submit-array': 'byUpload'
+      'click #js-cancel': 'cancelClicked'
 
     ui:
       'messageDiv':'#message'
       'linkUploadFile': '#js-submit-file'
       'linkSubmitArray': '#js-submit-array'
       'contactsList': '#js-contacts-list'
+      'linkCancel': '#js-cancel'
 
     onShow: ->
       view = @
@@ -43,6 +45,7 @@
 
     sendFile: (e)->
       e.preventDefault()
+      return if @$('#contacts-file').val() == ''
       view = @
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
@@ -79,8 +82,7 @@
       e.preventDefault()
       if @contactsFromFile.length > 0
         @sendInvitations(@contactsFromFile)
-        @ui.contactsList.html("")
-        @ui.linkSubmitArray.hide()
+        @clearUploadForm()
       else
         @showMessage('alert', 'No contacts')
 
@@ -95,7 +97,6 @@
           view.showMessage('alert', errors)
         success: (data)->
           view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
-          view.contactsFromFile = null
       view.showSpin()
       Backbone.ajax options
 
@@ -128,3 +129,13 @@
         @ui.linkSubmitArray.show()
       else
         @showMessage('alert', 'No contacts')
+
+    cancelClicked: (e)->
+      e.preventDefault()
+      @clearUploadForm()
+
+    clearUploadForm: ->
+      @$('#contacts-file').val('')
+      @ui.contactsList.html("")
+      @ui.linkSubmitArray.hide()
+      @contactsFromFile = null
