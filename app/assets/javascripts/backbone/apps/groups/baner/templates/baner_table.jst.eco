@@ -17,7 +17,10 @@
 	<hr>
 
   <div class="form-group">
-    <img id="preview-baner" class="createBaner__img" src="">
+    <label class="createBaner__fileLabel createBaner__fileLabelEdit visibility" id="js-editImgBanner">
+      <span class="glyphicon glyphicon-open"></span>Upload image
+      <input class="createBaner__file" type="file" id="BanerImg">
+    </label>
 
     <div class="createBaner__blackBox">
       <h2 class="no-margin">#1</h2>
@@ -27,14 +30,11 @@
       <span id="js-editBanner" class="ico-edit createBaner__btnEdit"</span>
     </div>
 
-    <label class="createBaner__fileLabel visibility margin_top_medium_minus" id="js-editImgBanner">
-      <span class="glyphicon glyphicon-open"></span>Upload image
-      <input class="createBaner__file" type="file" id="BanerImg">
-    </label>
+    <img id="preview-baner" class="createBaner__img margin_top_medium_minus" src="">
 
-    <div class="visibility" id="js-boxEditBanner">
+    <div class="visibility margin_top_small" id="js-boxEditBanner">
       <div class="row">
-        <div class="col-md-6 margin_top_medium_minus">
+        <div class="col-md-6">
           <form>
             <div class="form-group">
                 <label class="createBaner__label" for="banerTitle">Baner's title:</label>
@@ -46,7 +46,7 @@
               </div>
          </form>
         </div>
-        <div class="col-md-6 margin_top_medium_minus">
+        <div class="col-md-6">
           <form>
             <div class="form-group">
                 <label class="createBaner__label" for="banerContent">Content:</label>
