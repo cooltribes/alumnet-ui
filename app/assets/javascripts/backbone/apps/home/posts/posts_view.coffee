@@ -211,11 +211,11 @@
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     initialize: ->
-      @picture_ids = []
-
+      @picture_ids = []    
+        
     childViewOptions: ->
       current_user: @model
-
+      
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
 
@@ -245,18 +245,26 @@
         @ui.bodyInput.val('')
         @ui.fileList.html('')
 
-    class Posts.BannersView extends Marionette.CompositeView
-      ##model is current user
-      template: 'home/posts/templates/banners'
-      childView: Posts.BannersView
-      childViewContainer: '.banners_container'
-      initialize: ->  
-        console.log @model
-        console.log @model.bannerCollection 
+  class Posts.BannersView extends Marionette.CompositeView
+    template: 'home/posts/templates/banners'
+    childView: Posts.BannersView
+    childViewContainer: ''
+    initsialize: ->
+      console.log "initialized CompositeView"
+      console.log @
+      console.log @collection
 
-      childViewOptions: ->
-        bannerCollection: @bannerCollection
-        console.log BannerCollection.models
-        console.log bannerCollection
+  class Posts.BannerView extends Marionette.ItemView
+    template: 'home/posts/templates/_banner'
+    initialize: ->
+      console.log "ItemView initialized"
+      console.log @
       
-      onShow: ->  
+    class Posts.Layout extends Marionette.LayoutView
+    template: 'groups/members/templates/layout'
+    regions:
+      banners: '#banners-container'
+      posts: '#posts-container'    
+        
+  
+       

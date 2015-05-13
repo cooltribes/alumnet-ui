@@ -2,15 +2,32 @@
   class Posts.Controller
 
     showCurrentUserPosts: ->
+
+      #1 crear layout view renderizar en mainRegion
+      #2 banner composite
+      #3
+      AlumNet.execute('render:home:submenu')
+
+      layout = new Posts.Layout
+      AlumNet.mainRegion.show(layout)
+
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch()
-      posts = new Posts.PostsView
+      postsView = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-      AlumNet.mainRegion.show(posts)
-
-      AlumNet.execute('render:home:submenu')
+      
+      layout.current_user.show(postsView)
+           
+      bannerCollection = new AlumNet.Entities.BannerCollection
+      bannerCollection.url = AlumNet.api_endpoint + '/banners/'
+      bannerCollection.fetch()
+      bannersView = new Posts.BannersView #compositeView - region 1
+        model: AlumNet.Entities.Banner
+        collection: bannerCollection
+      layout.bannerCollection.show(bannersView)  
+      
    
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
@@ -69,13 +86,6 @@
         comment = commentView.model
         comment.save { comment: value }
 
-      bannerCollection = new AlumNet.Entities.BannerCollection
-      bannerCollection.url = AlumNet.api_endpoint + '/banners/'
-      bannerCollection.fetch()
-      console.log bannerCollection
-      banners = new Posts.BannersView
-        model: current_user
-        collection: current_user.bannerCollection
 
     
 
