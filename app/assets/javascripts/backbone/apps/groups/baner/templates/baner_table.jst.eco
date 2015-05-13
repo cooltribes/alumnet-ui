@@ -9,7 +9,7 @@
           <option >Change every 10 seconds</option>
           <option >Change every 15 seconds</option>
   </select>
-  <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
+  <!--<span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>-->
   <span id="banner-time" class="sr-only">(success)</span>
 </div>
 
