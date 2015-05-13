@@ -245,26 +245,35 @@
         @ui.bodyInput.val('')
         @ui.fileList.html('')
 
-  class Posts.BannersView extends Marionette.CompositeView
-    template: 'home/posts/templates/banners'
-    childView: Posts.BannersView
-    childViewContainer: ''
-    initsialize: ->
-      console.log "initialized CompositeView"
+  class Posts.Layout extends Marionette.LayoutView
+    template: 'home/posts/templates/layout'
+    regions:
+      banners: '#banners-container'
+      posts: '#posts-container' 
+    initialize: ->
+      console.log "Layout initialized"
       console.log @
-      console.log @collection
 
   class Posts.BannerView extends Marionette.ItemView
-    template: 'home/posts/templates/_banner'
+    template: 'home/posts/templates/banners'
+    className: '.carousel-inner'
     initialize: ->
       console.log "ItemView initialized"
       console.log @
+
+  class Posts.BannersView extends Marionette.CollectionView
+    template: 'home/posts/templates/banners'
+    childView: Posts.BannerView
+    childViewContainer: '.homeSlideshow'
+
+
+
+
+
+
       
-    class Posts.Layout extends Marionette.LayoutView
-    template: 'groups/members/templates/layout'
-    regions:
-      banners: '#banners-container'
-      posts: '#posts-container'    
+
+      
         
   
        

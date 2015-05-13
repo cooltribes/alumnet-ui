@@ -8,27 +8,28 @@
       #3
       AlumNet.execute('render:home:submenu')
 
-      layout = new Posts.Layout
-      AlumNet.mainRegion.show(layout)
 
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch()
-      postsView = new Posts.PostsView
+      posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-      
-      layout.current_user.show(postsView)
-           
+                 
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners/'
       bannerCollection.fetch()
       bannersView = new Posts.BannersView #compositeView - region 1
-        model: AlumNet.Entities.Banner
         collection: bannerCollection
-      layout.bannerCollection.show(bannersView)  
+
+      console.log bannerCollection
+
+      layout = new Posts.Layout
+      AlumNet.mainRegion.show(layout)
+      layout.posts.show(posts)
+      layout.banners.show(bannersView) 
+
       
-   
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
         post.save data,
