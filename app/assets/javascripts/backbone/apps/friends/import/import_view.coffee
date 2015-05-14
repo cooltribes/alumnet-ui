@@ -9,6 +9,7 @@
       'click #js-submit-emails': 'byEnter'
       'click #js-submit-array': 'byUpload'
       'click #js-cancel': 'cancelClicked'
+      'change #contacts-file':'showRuteFile'
 
     ui:
       'messageDiv':'#message'
@@ -16,6 +17,9 @@
       'linkSubmitArray': '#js-submit-array'
       'contactsList': '#js-contacts-list'
       'linkCancel': '#js-cancel'
+
+    showRuteFile: (e)->
+      $('#url-archivo').append("File: "+$(e.target).val())
 
     onShow: ->
       view = @
