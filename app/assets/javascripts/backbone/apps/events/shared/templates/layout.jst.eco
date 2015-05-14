@@ -4,16 +4,16 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <ul class="nav nav-pills">
-          <li>  <a href="#events/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
+          <li class="<%= @classOf(0)%>">  <a href="#events/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
             <span class="glyphicon glyphicon-list-alt"></span>
           Posts</a></li>
-          <li>  <a href="#events/<%= @id %>/about" id="js-about" class="groupMenu__link">
+          <li class="<%= @classOf(1)%>">  <a href="#events/<%= @id %>/about" id="js-about" class="groupMenu__link">
             <span class="icon-entypo-dot-3"></span>
           About</a></li>
-          <li>  <a href="#events/<%= @id %>/attendances" id="js-attendances" class="groupMenu__link">
+          <li class="<%= @classOf(2)%>">  <a href="#events/<%= @id %>/attendances" id="js-attendances" class="groupMenu__link">
             <span class="ico-company"></span>
-          Attendants</a></li>
-          <li>  <a href="#events/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
+          Attendees</a></li>
+          <li class="<%= @classOf(3)%>">  <a href="#events/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
             <span class="icon-entypo-picture"></span>
           Pictures</a></li>
         </ul>

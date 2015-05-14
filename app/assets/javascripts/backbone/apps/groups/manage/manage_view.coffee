@@ -8,6 +8,7 @@
     className: 'col-md-6'
     ui:
       'leaveGroupLink': '#js-leave-group'
+      'description':'#js-description'
     events:
       'click #js-leave-group': 'clickedLeaveLink'
 
@@ -16,7 +17,8 @@
       e.preventDefault()
       @trigger 'click:leave'
 
-
+    onRender: ->
+      @ui.description.linkify()
 
   class Manage.GroupsView extends Marionette.CompositeView
     template: 'groups/manage/templates/groups_container'

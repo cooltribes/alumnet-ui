@@ -1,0 +1,48 @@
+  <hr>
+
+  <div class="form-group">
+    <img id="preview-baner" class="createBaner__img" src="">
+
+    <div class="createBaner__blackBox">
+      <h2 class="no-margin">#1</h2>
+      <span class="createBaner__flecha glyphicon glyphicon-download"></span>
+      <span class="createBaner__flecha glyphicon glyphicon-upload"></span>
+      <h2 class="no-margin">Banner's title</h2>
+      <span id="js-editBanner" class="ico-edit createBaner__btnEdit"</span>
+    </div>
+
+    <label class="createBaner__fileLabel visibility margin_top_medium_minus" id="js-editImgBanner">
+      <span class="glyphicon glyphicon-open"></span>Upload image
+      <input class="createBaner__file" type="file" id="BanerImg">
+    </label>
+
+    <div class="visibility" id="js-boxEditBanner">
+      <div class="row">
+        <div class="col-md-6 margin_top_medium_minus">
+          <form>
+            <div class="form-group">
+                <label class="createBaner__label" for="banerTitle">Baner's title:</label>
+                <input type="text" class="form-control" id="banerTitle" placeholder="Enter the title">
+              </div>
+              <div class="form-group">
+                <label class="createBaner__label" for="banerLink">Link:</label>
+                <input type="text" class="form-control" id="banerLink" placeholder="Enter the link">
+              </div>
+         </form>
+        </div>
+        <div class="col-md-6 margin_top_medium_minus">
+          <form>
+            <div class="form-group">
+                <label class="createBaner__label" for="banerContent">Content:</label>
+               <textarea class="form-control" rows="5" for="banerContent" placeholder="Enter the content"></textarea>
+              </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <a href="#" class="createBaner__btn createBaner__btnAdd" title="Save changes">Save changes</a>
+        <a id="js-cancelEditBanner" href="#" class="createBaner__btn createBaner__btnCancel" title="Cancel">Cancel</a>
+        <a href="#" class="createBaner__btn createBaner__btnDelete" title="Delete baner">DELETE BANER</a>
+      </div>
+    </div>
+  </div>

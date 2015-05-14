@@ -40,6 +40,7 @@
 								<span class="attendantsQuantity__number"><%="#{@even_maybe}" %></span>
 								<span class="attendantsQuantity__type">invited</span>
 							</div>
+
 						</div>
 						<!--<div class="row no-margin attendantsQuantity__bTop padding_small">
 							<span class="attendantsQuantity__friends attendantsQuantity__type">friends going</span>

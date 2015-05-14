@@ -5,13 +5,14 @@ class AlumnetLinkedin
   API_SECRET = "7f9vbnhJJa4Lu9DD"
   CONFIG = { site: 'https://api.linkedin.com',
     authorize_path: '/uas/oauth/authenticate',
-    request_token_path: '/uas/oauth/requestToken?scope=r_basicprofile+r_fullprofile+r_emailaddress+r_network+r_contactinfo',
+    request_token_path: '/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress',
     access_token_path: '/uas/oauth/accessToken' }
 
   CONTACT_TYPE = { "skype" => 2, "yahoo" => 3 }
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
-    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id"]
+    "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id",
+    "educations"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
@@ -24,7 +25,7 @@ class AlumnetLinkedin
 
   def profile
     { languages: languages_for_alumnet, contacts: contacts_for_alumnet, experiences: experiences_for_alumnet,
-      profile: profile_for_alumnet, skills: skills_for_alumnet }
+      profile: profile_for_alumnet, skills: skills_for_alumnet, educations: educations_for_alumnet }
   end
 
   def languages_for_alumnet
@@ -56,14 +57,19 @@ class AlumnetLinkedin
     linkedin ? format_skills(linkedin['skills']) : []
   end
 
+  def educations_for_alumnet
+    linkedin ? format_educations(linkedin['educations']) : []
+  end
+
   protected
     def linkedin
-      @linkedin ||= client.profile(fields: FIELDS, headers: {"Accept-Language" => "es_ES"})
+      @linkedin ||= client.profile(fields: FIELDS)
     rescue
       @valid = false
     end
 
     def format_im_accounts(accounts)
+      return [] unless accounts
       array = []
       accounts.all.each do |account|
         if CONTACT_TYPE.keys.include?(account.im_account_type)
@@ -74,28 +80,33 @@ class AlumnetLinkedin
     end
 
     def format_im_phones(phone_numbers)
+      return [] unless phone_numbers
       phone_numbers.all.inject([]) do |array, phone|
         array << {info: phone.phone_number, contact_type: 1}
       end
     end
 
     def format_twiter(twitter)
-      { info: twitter.provider_account_name, contact_type: 5}
+      return [] unless twitter
+      { info: twitter.provider_account_name, contact_type: 5} if twitter
     end
 
     def format_languages(languages)
+      return [] unless languages
       languages.all.inject([]) do |array, language|
         array << {id: language.id, name: language.language.name}
       end
     end
 
     def format_skills(skills)
+      return [] unless skills
       skills.all.inject([]) do |array, skill|
         array << { name: skill.skill.name }
       end
     end
 
     def format_positions(positions)
+      return [] unless positions
       positions.all.inject([]) do |array, position|
         start_date = format_position_date(position.start_date)
         if position.is_current
@@ -106,6 +117,15 @@ class AlumnetLinkedin
         array << {exp_type: 3, name: position.title, description: position.summary,
           organization_name: position.company.name, start_year: start_date[:year],
           start_month: start_date[:month], end_year: end_date[:year], end_month: end_date[:month]}
+      end
+    end
+
+    def format_educations(educations)
+      return [] unless educations
+      educations.all.inject([]) do |array, education|
+        array << {exp_type: 2, name: education.degree, organization_name: education.school_name,
+        start_month: '01', start_year: education.start_date.year, end_month: '01',
+        end_year: education.end_date.year, description: education.field_of_study }
       end
     end
 

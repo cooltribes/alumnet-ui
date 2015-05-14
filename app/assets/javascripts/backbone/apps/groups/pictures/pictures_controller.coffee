@@ -9,7 +9,7 @@
           AlumNet.trigger('show:error', 404)
         else
           
-          layout = AlumNet.request("group:layout", group)
+          layout = AlumNet.request("group:layout", group,3)
           header = AlumNet.request("group:header", group)
           
           AlumNet.execute('render:groups:submenu')

@@ -23,8 +23,6 @@
       bannersView = new Posts.BannersView #compositeView - region 1
         collection: bannerCollection
 
-      console.log bannerCollection
-
       layout = new Posts.Layout
       AlumNet.mainRegion.show(layout)
       layout.posts.show(posts)

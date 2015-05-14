@@ -13,6 +13,8 @@
       userHasMembership: @model.userHasMembership()
       userIsApproved:  @model.userIsMember()
       joinProcessText: @joinProcessText()
+      model: @model
+      mailchimp: @model.hasMailchimp()
 
     ui:
       'groupOfficial': '#official'
@@ -20,6 +22,10 @@
       'groupType': '#group_type'
       'joinProcess': '#join_process'
       'joinDiv': '#js-join-div'
+      'groupMailchimp': '#mailchimp'
+      'mailchimpContainer': '#mailchimpContainer'
+      'groupApiKey': '#api_key'
+      'groupListId': '#list_id'
 
     events:
       'click a#js-edit-official': 'toggleEditGroupOfficial'
@@ -29,7 +35,10 @@
       'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
-      'click .editLink': 'editAttribute'
+      'click a#js-edit-mailchimp': 'toggleEditMailchimp'
+      'click a#js-edit-api-key': 'toggleEditApiKey'
+      'click a#js-edit-list-id': 'toggleEditListId'
+      'click a#js-migrate-users': 'migrateUsers'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -65,6 +74,26 @@
           "Only the admins can invite"
         else
           ""
+
+    migrateUsers:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        id = @model.id
+        url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
+        console.log(id)
+        console.log(url)
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            console.log("success")
+            console.log(data)
+          error: (data) =>
+            console.log("error")
+            console.log(data)
+
     attributeClicked: (e)->
       e.preventDefault()
 
@@ -88,9 +117,24 @@
       e.preventDefault()
       @ui.joinProcess.editable('toggle')
 
+    toggleEditMailchimp: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupMailchimp.editable('toggle')
+
+    toggleEditApiKey: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupApiKey.editable('toggle')
+
+    toggleEditListId: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.groupListId.editable('toggle')
+
     editAttribute: (e)->
       $(e.target).addClass "hide"
-      console.log e.target
+      
     onRender: ->
       view = this
       @ui.groupDescription.editable
@@ -105,6 +149,7 @@
             'Group Description is larger than 2048 characters'                           
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
+      @ui.groupDescription.linkify()
 
       @ui.groupType.editable
         type: 'select'
@@ -157,3 +202,42 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'group:edit:official', view.model, newValue
+          if newValue == "0"
+            view.ui.mailchimpContainer.addClass('hide')
+            view.trigger 'group:edit:mailchimp', view.model, 0
+          else
+            view.ui.mailchimpContainer.removeClass('hide')
+
+      @ui.groupMailchimp.editable
+        type: 'select'
+        value: view.model.get('mailchimp')
+        pk: view.model.id
+        title: 'Has mailchimp?'
+        toggle: 'manual'
+        source: [
+          {value: 0, text: 'No'}
+          {value: 1, text: 'Yes'}
+        ]
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        success: (response, newValue)->
+          view.trigger 'group:edit:mailchimp', view.model, newValue
+
+      @ui.groupApiKey.editable
+        type: 'text'
+        value: view.model.get('api_key')
+        pk: view.model.id
+        title: 'API Key'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.trigger 'group:edit:api_key', view.model, newValue
+
+      @ui.groupListId.editable
+        type: 'text'
+        value: view.model.get('list_id')
+        pk: view.model.id
+        title: 'List ID'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.trigger 'group:edit:list_id', view.model, newValue

@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>AlumnetUi</title>
+  <title>AlumNet</title>
   <%= stylesheet_link_tag    'public', media: 'all' %>
   <%= javascript_include_tag 'public' %>
 <!--   <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'> -->
@@ -30,6 +30,12 @@
 <link rel="shortcut icon" href="assets/favicon/favicon.ico">
   <%= csrf_meta_tags %>
   <%= include_gon %>
+  <script>
+  (function() {var s=document.createElement('script');
+    s.type='text/javascript';s.async=true;
+    s.src=('https:'==document.location.protocol?'https':'http') +
+    '://ingrid.groovehq.com/widgets/517df84b-0683-434e-9952-f7f5f2121a17/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
+</script>
 </head>
 <body>
   <div id="header-region">

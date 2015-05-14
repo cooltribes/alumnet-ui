@@ -1,0 +1,65 @@
+<div class="createBaner__titulo">
+  <h2>Ads management</h2>
+  <p>Short description of this module</p>
+</div>
+
+<div class="form-group has-feedback createBaner__time">
+  <select class="form-control" id="banner-time" name="status" aria-describedby="banner-time">
+          <option >Change every 5 seconds</option>
+          <option >Change every 10 seconds</option>
+          <option >Change every 15 seconds</option>
+  </select>
+  <!--<span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>-->
+  <span id="banner-time" class="sr-only">(success)</span>
+</div>
+
+<div id="baners-list">
+	<hr>
+
+  <div class="form-group">
+    <label class="createBaner__fileLabel createBaner__fileLabelEdit visibility" id="js-editImgBanner">
+      <span class="glyphicon glyphicon-open"></span>Upload image
+      <input class="createBaner__file" type="file" id="BanerImg">
+    </label>
+
+    <div class="createBaner__blackBox">
+      <h2 class="no-margin">#1</h2>
+      <span class="createBaner__flecha glyphicon glyphicon-download"></span>
+      <span class="createBaner__flecha glyphicon glyphicon-upload"></span>
+      <h2 class="no-margin">Banner's title</h2>
+      <span id="js-editBanner" class="ico-edit createBaner__btnEdit"</span>
+    </div>
+
+    <img id="preview-baner" class="createBaner__img margin_top_medium_minus" src="">
+
+    <div class="visibility margin_top_small" id="js-boxEditBanner">
+      <div class="row">
+        <div class="col-md-6">
+          <form>
+            <div class="form-group">
+                <label class="createBaner__label" for="banerTitle">Baner's title:</label>
+                <input type="text" class="form-control" id="banerTitle" placeholder="Enter the title">
+              </div>
+              <div class="form-group">
+                <label class="createBaner__label" for="banerLink">Link:</label>
+                <input type="text" class="form-control" id="banerLink" placeholder="Enter the link">
+              </div>
+         </form>
+        </div>
+        <div class="col-md-6">
+          <form>
+            <div class="form-group">
+                <label class="createBaner__label" for="banerContent">Content:</label>
+               <textarea class="form-control" rows="5" for="banerContent" placeholder="Enter the content"></textarea>
+              </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <a href="#" class="createBaner__btn createBaner__btnAdd" title="Save changes">Save changes</a>
+        <a id="js-cancelEditBanner" href="#" class="createBaner__btn createBaner__btnCancel" title="Cancel">Cancel</a>
+        <a href="#" class="createBaner__btn createBaner__btnDelete" title="Delete baner">DELETE BANER</a>
+      </div>
+    </div>
+  </div>
+</div>

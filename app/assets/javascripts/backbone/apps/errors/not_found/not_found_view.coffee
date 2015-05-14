@@ -2,4 +2,3 @@
 
   class NotFound.View extends Marionette.ItemView
     template: 'errors/not_found/templates/not_found'
-

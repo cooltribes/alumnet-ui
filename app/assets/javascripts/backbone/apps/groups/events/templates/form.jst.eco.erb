@@ -75,35 +75,40 @@
             <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
             <h2 class="textColor--black margin_top_xsmall ">Dates</h2>
           </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Start Date</label>
-              <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
-              <span class="help-block"></span>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">Start Date</label>
+                  <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">Start Hour</label>
+                  <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
+                  <span class="help-block"></span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Start Hour</label>
-              <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
-              <span class="help-block"></span>
+            <div class="row"> 
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">End Date</label>
+                  <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">End Hour</label>
+                  <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
+                  <span class="help-block"></span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">End Date</label>
-              <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">End Hour</label>
-              <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
-              <span class="help-block"></span>
-            </div>
-          </div>
+          </div>  
         </div>
         <!-- ROW 3 OFF -->
         <hr>
@@ -146,18 +151,26 @@
             <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
             <h2 class="textColor--black margin_top_xsmall ">Capacity</h2>
           </div>
-          <div class="col-md-4 margin_top_medium ">
+          <div class="col-md-8"> 
+            <div class="col-md-4 margin_top_medium ">
             <div class="form-group">
-              <label class="control-label">Maximum of attendants</label>
+              <label class="control-label">Maximum of attendees</label>
               <input type="text" name="capacity"  id="event-capacity"  class="form-control input-lg" placeholder="e.g 200">
               <span class="help-block"></span>
             </div>
           </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group event__capacity padding_top">
-              <input class="margin_right_xsmall" type="checkbox" name="invite_group_members">Invite all members of group<br>
+          <div class="col-md-5 margin_top_medium ">
+            <div class="form-group event__capacity padding_top checkbox">
+              <div class="event__check">
+                
+                <input id="invite_group_members" class="margin_right_xsmall" type="checkbox" name="invite_group_members">
+                <label for="invite_group_members"></label>
+              </div>
+              Invite all members of group
+              <br>
               <span class="help-block"></span>
             </div>
+          </div>
           </div>
         </div>
         <!-- ROW 5 OFF -->
