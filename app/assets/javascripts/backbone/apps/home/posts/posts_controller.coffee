@@ -2,12 +2,10 @@
   class Posts.Controller
 
     showCurrentUserPosts: ->
-
       #1 crear layout view renderizar en mainRegion
       #2 banner composite
       #3
       AlumNet.execute('render:home:submenu')
-
 
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
@@ -17,8 +15,11 @@
         collection: current_user.posts
                  
       bannerCollection = new AlumNet.Entities.BannerCollection
-      bannerCollection.url = AlumNet.api_endpoint + '/banners/'
-      bannerCollection.fetch()
+      bannerCollection.url = AlumNet.api_endpoint + '/banners'
+      bannerCollection.fetch
+        success: (collection)->
+          collection.at(0).set("activeSlide", true)
+
       bannersView = new Posts.BannersView #compositeView - region 1
         collection: bannerCollection
 

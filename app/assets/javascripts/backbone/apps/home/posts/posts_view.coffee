@@ -251,21 +251,30 @@
       banners: '#banners-container'
       posts: '#posts-container' 
     initialize: ->
-      console.log "Layout initialized"
-      console.log @
 
   class Posts.BannerView extends Marionette.ItemView
-    template: 'home/posts/templates/banners'
-    className: '.carousel-inner'
-    initialize: ->
-      console.log "ItemView initialized"
-      console.log @
+    template: 'home/posts/templates/_banner'
+    className: ->      
+      if @model.get ("activeSlide")
+        return 'item active'        
+      else
+        return 'item'
+      #console.log @model
+      #console.log @model.get ("activeSlide")
 
-  class Posts.BannersView extends Marionette.CollectionView
+    modelEvents:
+      "change:activeSlide": "activate"
+
+    activate: ->
+      $(@el).addClass("active")
+        
+
+  class Posts.BannersView extends Marionette.CompositeView
     template: 'home/posts/templates/banners'
     childView: Posts.BannerView
-    childViewContainer: '.homeSlideshow'
-
+    childViewContainer: '.carousel-inner'
+    #childViewOptions: ->
+    #  banner: @banner
 
 
 

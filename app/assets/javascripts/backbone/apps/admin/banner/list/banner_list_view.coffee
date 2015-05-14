@@ -73,8 +73,6 @@
       e.preventDefault()
       resp = confirm("Are you sure?")
       if resp
-        console.log @model.url
-        console.log @model.collection
         @model.destroy()
         @destroy()
         
@@ -84,6 +82,9 @@
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
+    childViewOptions: ->
+      banners: @banners
+    
 
     events:  
       'change': 'renderView'   
@@ -92,8 +93,6 @@
       @model.fetch()
       @model.render()          
       
-    childViewOptions: ->
-      banners: @banners
 
 
       
