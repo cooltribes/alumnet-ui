@@ -59,12 +59,19 @@
 					<p class="text-center">
 						<a href="#"><small>Learn how to create a contact file »</small></a>
 					</p>
+					<ul id="js-contacts-list"></ul>
 					<div class="margin_top_small uploadFileBox">
 						<input class="form-control" type="file" name="file" id="contacts-file">
 					</div>
 					<div class="margin_top text-center">
 						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-file">
 							SEND FILE
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-array" style="display:none">
+							SEND CONTACTS
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-cancel">
+							CANCEL
 						</a>
 					</div>
 				</form>
