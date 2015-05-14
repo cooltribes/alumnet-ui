@@ -58,6 +58,7 @@
         canChangeRegion = false
         canChangeCountry = false
         county_id = current_user.get("admin_location_id")        
+       
 
       #Model for region graph      
       regionStats = new AlumNet.Entities.UserStats

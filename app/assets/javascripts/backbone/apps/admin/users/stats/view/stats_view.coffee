@@ -61,14 +61,6 @@
     bindings:
       "#js-residence-region": "location_id"   
 
-    initialize: ()->
-      current_user = AlumNet.current_user
-      console.log current_user
-      @canChange = current_user.get("is_alumnet_admin")
-      
-    templateHelpers: ->
-      canChange: @canChange  
-
 
     modelChange: (model)->
       queryCounters = model.get("query_counters")
@@ -91,7 +83,7 @@
 
     onRender: ->
 
-      if @canChange
+      if @model.get("canChange")
         data = AlumNet.request('get:regions:select2')
         @ui.selectRegion.select2
           placeholder: "Select a Region"
@@ -125,6 +117,7 @@
     bindings:
       "#js-residence-countries": "location_id" 
 
+  
     modelChange: (model)->
       # if !model.hasChanged("location_id")
       # console.log "model changed"
@@ -149,14 +142,17 @@
         
 
     onRender: ->
-      data = CountryList.toSelect2()
-      @ui.selectResidenceCountries.select2
-        placeholder: "Select a Country"
-        data: data
 
-      @ui.selectResidenceCountries.select2('val', @model.get('location_id')) 
+      if @model.get("canChange")
+        data = CountryList.toSelect2()
+        @ui.selectResidenceCountries.select2
+          placeholder: "Select a Country"
+          data: data
 
-      @stickit()     
+        @ui.selectResidenceCountries.select2('val', @model.get('location_id')) 
+
+        @stickit()     
+      
 
     modelChangeLocation: (model)->
       model.set "q",
