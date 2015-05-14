@@ -27,11 +27,12 @@
 					<li id="to-byEnter" class="col-md-4 importMenu text-right importMenu__option">
 						<a href='#'><span class="icon-entypo-keyboard"></span>Enter contacts</a></li>
 				</ul>
-				<div id="spin" class="text-center"style="display:none">
+				<div id="spin" class="text-center" style="display:none">
 					Sending Emails...
 				</div>
-				<div class="alert alert-danger" role="alert" style="display:none"></div>
-				<div class="alert alert-success" role="alert" style="display:none">Contacts Send!</div>
+				<div id="message" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
 				<!-- *************** FORM to import contacts from social network ************ -->
 				<div id="byService" class="importContactForm margin_top text-center">
 				  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
@@ -58,12 +59,19 @@
 					<p class="text-center">
 						<a href="#"><small>Learn how to create a contact file »</small></a>
 					</p>
+					<ul id="js-contacts-list"></ul>
 					<div class="margin_top_small uploadFileBox">
 						<input class="form-control" type="file" name="file" id="contacts-file">
 					</div>
 					<div class="margin_top text-center">
 						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-file">
 							SEND FILE
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-array" style="display:none">
+							SEND CONTACTS
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-cancel">
+							CANCEL
 						</a>
 					</div>
 				</form>
