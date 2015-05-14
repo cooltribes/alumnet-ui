@@ -6,7 +6,7 @@
   <div class="bbm-modal__section">
     <form>
       <% if @cover: %>
-        <img src="<%= @cover.main %>" alt="upload cover" id="preview-cover" width="480px" height="240px">
+        <img src="<%="#{@cover.main}?#{ new Date().getTime() }" %>" alt="upload cover" id="preview-cover" width="480px" height="240px">
         <% else: %>
         <!-- Hacer esta imagen negra -->
         <img src="assets/registration/uploadAvatar.png" alt="upload cover" id="preview-cover" width="480px" height="240px">

@@ -1,6 +1,6 @@
-@AlumNet.module 'AdminApp.BanerSubmenu', (GroupsSubmenu, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'AdminApp.BannerSubmenu', (GroupsSubmenu, @AlumNet, Backbone, Marionette, $, _) ->
   class GroupsSubmenu.Menu extends Marionette.ItemView
-    template: 'admin/baner/submenu/templates/submenu'
+    template: 'admin/banner/submenu/templates/submenu'
 
     initialize: (options) ->
       @tab = options.tab
@@ -28,5 +28,5 @@
         AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:admin:baner:submenu',(view,tab) ->
+  AlumNet.commands.setHandler 'render:admin:banner:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)

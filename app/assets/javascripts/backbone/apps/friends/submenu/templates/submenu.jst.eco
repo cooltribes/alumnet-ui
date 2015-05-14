@@ -11,8 +11,9 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav no-margin">
 				
-				<li class="<%= @classOf(0)%>"><a id="js-friend" href="#friends" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-user"></span>My Friends</a></li>
+				<li class="<%= @classOf(0)%>"><a id="js-friend" href="#friends" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-user"></span> My Friends</a></li>
 				<li class=""><a id="js-friend" href="#friends/contacts" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-user"></span> Invite friends</a></li>
+				<li class="<%= @classOf(3)%>"><a href="#approval-requests" class="navTopSubBar__link"> <span class="navTopSubBar__icon glyphicon glyphicon-user"></span> Approval Requests</a></li>
 				
 			</ul>
 			

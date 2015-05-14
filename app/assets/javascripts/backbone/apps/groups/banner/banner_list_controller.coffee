@@ -1,7 +1,7 @@
-@AlumNet.module 'GroupsApp.BanerList', (BanerList, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'GroupsApp.BannerList', (BannerList, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class BanerList.Controller
-    banerList: (group_id)->
+  class BannerList.Controller
+    bannerList: (group_id)->
       group = AlumNet.request('group:find', group_id)
       current_user = AlumNet.current_user
       group.on 'find:success', (response, options)->
@@ -13,9 +13,9 @@
           layout = AlumNet.request("group:layout", group,6)
           header = AlumNet.request("group:header", group)
 
-          banerTable = new BanerList.BanerTable
-          createBaner = new BanerList.CreateView
-          body = new BanerList.Layout
+          bannerTable = new BannerList.BannerTable
+          createBanner = new BannerList.CreateView
+          body = new BannerList.Layout
             model: group
             current_user: current_user
           
@@ -23,7 +23,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(body)
-          body.table.show(banerTable)
-          body.create.show(createBaner)
+          body.table.show(bannerTable)
+          body.create.show(createBanner)
           AlumNet.execute('render:groups:submenu')
            
