@@ -90,6 +90,8 @@
           success: (data) =>
             console.log("success")
             console.log(data)
+            if(not data.success)
+              $.growl.error({ message: data.message })
           error: (data) =>
             console.log("error")
             console.log(data)
