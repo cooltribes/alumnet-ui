@@ -6,13 +6,16 @@
     events:
       'click .importMenu>li': 'importOption'
       'click #js-submit-file': 'sendFile'
-      'click #js-submit-emails': 'sendEmails'
-
+      'click #js-submit-emails': 'byEnter'
+      'click #js-submit-array': 'byUpload'
+      'click #js-cancel': 'cancelClicked'
 
     ui:
-      'errorDiv':'.alert-danger'
-      'successDiv':'.alert-success'
-      'spin':'#spin'
+      'messageDiv':'#message'
+      'linkUploadFile': '#js-submit-file'
+      'linkSubmitArray': '#js-submit-array'
+      'contactsList': '#js-contacts-list'
+      'linkCancel': '#js-cancel'
 
     onShow: ->
       view = @
@@ -31,37 +34,27 @@
           links = document.getElementsByClassName('delayed');
           for link in links
             link.href = '#'
-        afterSubmitContacts: view.sendContacts
+        afterSubmitContacts: (contacts, source, owner)->
+          view.byService(contacts)
 
-    sendContacts: (contacts, source, owner)->
-      view = @
-      @ui.spin.show()
+    byService: (contacts)->
       formatedContacts = []
       _.map contacts, (contact)->
         formatedContacts.push({name: contact.fullName(), email: contact.selectedEmail()})
-      options =
-        url: AlumNet.api_endpoint + '/me/send_invitations'
-        type: 'POST'
-        data: { contacts: formatedContacts }
-        error: (xhr)->
-          errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
-      Backbone.ajax options
+      @sendInvitations(formatedContacts)
 
     sendFile: (e)->
       e.preventDefault()
+      return if @$('#contacts-file').val() == ''
       view = @
-      @ui.spin.show()
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
         formData.append(key, value)
       file = @$('#contacts-file')
-      formData.append('contacts', file[0].files[0])
+      formData.append('file', file[0].files[0])
       options =
-        url: AlumNet.api_endpoint + '/me/send_invitations'
+        url: AlumNet.api_endpoint + '/me/contacts/file'
         type: 'POST'
         wait: true
         contentType: false
@@ -69,40 +62,55 @@
         data: formData
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
+          view.showMessage('alert', errors)
+        success: (data)->
+          view.contactsFromFile = data.contacts
+          view.showContactsInForm(data.contacts)
+      view.showSpin()
       Backbone.ajax options
 
-    sendEmails: (e)->
-      e.preventDefault
-      view = @
-      @ui.spin.show()
+    byEnter: (e)->
+      e.preventDefault()
       formatedContacts = []
       rawEmails = @$('#js-enter-contacts').val().trim()
       arrayEmails = rawEmails.split(',')
       _.map arrayEmails, (email)->
         formatedContacts.push({name: '', email: email.trim()})
+      @sendInvitations(formatedContacts)
+
+    byUpload: (e)->
+      e.preventDefault()
+      if @contactsFromFile.length > 0
+        @sendInvitations(@contactsFromFile)
+        @clearUploadForm()
+      else
+        @showMessage('alert', 'No contacts')
+
+    sendInvitations: (contacts)->
+      view = @
       options =
         url: AlumNet.api_endpoint + '/me/send_invitations'
         type: 'POST'
-        data: { contacts: formatedContacts }
+        data: { contacts: contacts }
         error: (xhr)->
           errors = xhr.responseJSON.errors.join(', ')
-          view.showErrors(errors)
-        success: ->
-          view.showSuccess()
+          view.showMessage('alert', errors)
+        success: (data)->
+          view.showMessage('success', "Your invitation has been sent to #{data.count} alumni")
+      view.showSpin()
       Backbone.ajax options
 
-    showErrors: (errors)->
-      @ui.spin.hide()
-      @ui.successDiv.hide()
-      @ui.errorDiv.html(errors).show()
+    showSpin: ->
+      @$('#spin').show()
+      @ui.messageDiv.hide()
 
-    showSuccess: ()->
-      @ui.spin.hide()
-      @ui.errorDiv.hide()
-      @ui.successDiv.show()
+    showMessage: (type, message)->
+      @$('#spin').hide()
+      if type == 'alert'
+        @ui.messageDiv.removeClass('alert-success').addClass('alert-danger')
+      else
+        @ui.messageDiv.removeClass('alert-danger').addClass('alert-success')
+      @ui.messageDiv.html(message).show()
 
     importOption: (e)->
       e.preventDefault()
@@ -110,3 +118,24 @@
       $(e.target).closest('li').addClass "active"
       $('.importContactForm').hide()
       $('#'+$(e.target).closest('li').attr('id').replace('to-','')).show()
+
+    showContactsInForm: (contacts)->
+      @$('#spin').hide()
+      if contacts
+        html = ""
+        _.map contacts, (contact)->
+          html += "<li> #{contact.name} - #{contact.email} </li>"
+        @ui.contactsList.html(html)
+        @ui.linkSubmitArray.show()
+      else
+        @showMessage('alert', 'No contacts')
+
+    cancelClicked: (e)->
+      e.preventDefault()
+      @clearUploadForm()
+
+    clearUploadForm: ->
+      @$('#contacts-file').val('')
+      @ui.contactsList.html("")
+      @ui.linkSubmitArray.hide()
+      @contactsFromFile = null

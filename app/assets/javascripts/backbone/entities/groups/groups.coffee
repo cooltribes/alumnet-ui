@@ -24,6 +24,14 @@
     userIsAdmin: ->
       @get('admin')
 
+    hasMailchimp: ->
+      mailchimp = @get('mailchimp')
+      console.log(mailchimp)
+      if(mailchimp)
+        true
+      else
+        false
+
     canDo: (permission) ->
       permissions = @get('permissions')
       if permissions and permissions[permission] > 0
