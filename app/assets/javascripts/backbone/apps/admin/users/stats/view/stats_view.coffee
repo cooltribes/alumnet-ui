@@ -61,6 +61,15 @@
     bindings:
       "#js-residence-region": "location_id"   
 
+    initialize: ()->
+      current_user = AlumNet.current_user
+      console.log current_user
+      @canChange = current_user.get("is_alumnet_admin")
+      
+    templateHelpers: ->
+      canChange: @canChange  
+
+
     modelChange: (model)->
       queryCounters = model.get("query_counters")
 
@@ -81,14 +90,16 @@
         @ui.graph_section.showAnimated(graph.render().el)
 
     onRender: ->
-      data = AlumNet.request('get:regions:select2')
-      @ui.selectRegion.select2
-        placeholder: "Select a Region"
-        data: data
 
-      @ui.selectRegion.select2('val', @model.get('location_id')) 
+      if @canChange
+        data = AlumNet.request('get:regions:select2')
+        @ui.selectRegion.select2
+          placeholder: "Select a Region"
+          data: data
 
-      @stickit()     
+        @ui.selectRegion.select2('val', @model.get('location_id')) 
+
+        @stickit()     
 
     modelChangeLocation: (model)->
       model.set "q",
