@@ -1,21 +1,39 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   class Posts.Controller
+
     showCurrentUserPosts: ->
+      #1 crear layout view renderizar en mainRegion
+      #2 banner composite
+      #3
+      AlumNet.execute('render:home:submenu')
+
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch()
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-      AlumNet.mainRegion.show(posts)
-      AlumNet.execute('render:home:submenu')
+                 
+      bannerCollection = new AlumNet.Entities.BannerCollection
+      bannerCollection.url = AlumNet.api_endpoint + '/banners'
+      bannerCollection.fetch
+        success: (collection)->
+          collection.at(0).set("activeSlide", true)
 
+      bannersView = new Posts.BannersView #compositeView - region 1
+        collection: bannerCollection
+
+      layout = new Posts.Layout
+      AlumNet.mainRegion.show(layout)
+      layout.posts.show(posts)
+      layout.banners.show(bannersView) 
+
+      
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
         post.save data,
           success: (model, response, options) ->
             posts.collection.add(model, {at: 0})
-
 
       posts.on "childview:post:edit", (postView, value)->
         post = postView.model
@@ -67,3 +85,11 @@
       posts.on "childview:comment:edit", (postView, commentView, value)->
         comment = commentView.model
         comment.save { comment: value }
+
+
+    
+
+
+
+
+

@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
         <li class="<%= @classOf(0)%>">
           <a href="#admin/groups" class="navTopSubBar__link" title="Invites">
-            <span class="navTopSubBar__icon glyphicon"></span> Browse Baners
+            <span class="navTopSubBar__icon glyphicon"></span> Browse Banners
           </a>
         </li>
       </ul>

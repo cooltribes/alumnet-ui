@@ -213,11 +213,11 @@
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     initialize: ->
-      @picture_ids = []
-
+      @picture_ids = []    
+        
     childViewOptions: ->
       current_user: @model
-
+      
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
 
@@ -246,3 +246,45 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+
+  class Posts.Layout extends Marionette.LayoutView
+    template: 'home/posts/templates/layout'
+    regions:
+      banners: '#banners-container'
+      posts: '#posts-container' 
+    initialize: ->
+
+  class Posts.BannerView extends Marionette.ItemView
+    template: 'home/posts/templates/_banner'
+    className: ->      
+      if @model.get ("activeSlide")
+        return 'item active'        
+      else
+        return 'item'
+      #console.log @model
+      #console.log @model.get ("activeSlide")
+
+    modelEvents:
+      "change:activeSlide": "activate"
+
+    activate: ->
+      $(@el).addClass("active")
+        
+
+  class Posts.BannersView extends Marionette.CompositeView
+    template: 'home/posts/templates/banners'
+    childView: Posts.BannerView
+    childViewContainer: '.carousel-inner'
+    #childViewOptions: ->
+    #  banner: @banner
+
+
+
+
+
+      
+
+      
+        
+  
+       

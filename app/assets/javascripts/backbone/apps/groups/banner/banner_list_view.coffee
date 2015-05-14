@@ -1,15 +1,15 @@
-@AlumNet.module 'GroupsApp.BanerList', (BanerList, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'GroupsApp.BannerList', (BannerList, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class BanerList.Layout extends Marionette.LayoutView
-    template: 'groups/baner/templates/layout'
+  class BannerList.Layout extends Marionette.LayoutView
+    template: 'groups/banner/templates/layout'
     className: 'container'
     regions:
       table: '#list-region'
       create: '#create-region'
 
   #Vista para crear un baner
-  class BanerList.CreateView extends Marionette.ItemView
-    template: 'groups/baner/templates/createBaner'
+  class BannerList.CreateView extends Marionette.ItemView
+    template: 'groups/banner/templates/createBaner'
     className: 'col-md-8 col-md-offset-2'
     
     events:
@@ -19,7 +19,7 @@
 
     previewImage: (e)->
       input = @.$('#group-cover')
-      preview = @.$('#preview-baner')
+      preview = @.$('#preview-banner')
       if input[0] && input[0].files[0]
         reader = new FileReader()
         reader.onload = (e)->
@@ -32,16 +32,16 @@
       $("#js-btnNewBanner").toggle("slow") 
 
   #Vista para un baner
-  class BanerList.BanerView extends Marionette.ItemView
-    template: 'groups/baner/templates/baner'
+  class BannerList.BanerView extends Marionette.ItemView
+    template: 'groups/banner/templates/banner'
 
 
   #Vista la lista de baners
-  class BanerList.BanerTable extends Marionette.CompositeView
-    template: 'groups/baner/templates/baner_table'
+  class BannerList.BannerTable extends Marionette.CompositeView
+    template: 'groups/banner/templates/banner_table'
     className: 'col-md-8 col-md-offset-2'
-    childView: BanerList.BanerView
-    childViewContainer: "#baners-list"
+    childView: BanerList.BannerView
+    childViewContainer: "#banners-list"
 
     events:
       'click #js-editBanner':'showBoxEditBanner'

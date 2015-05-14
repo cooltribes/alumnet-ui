@@ -1,0 +1,31 @@
+<h2>Add new banner</h2>
+<div class="row">
+  <div class="col-md-7">
+    <form>
+      <div class="form-group">
+          <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
+          <input type="text" class="form-control" name="title" id="bannerTitle" placeholder="Enter the title">
+        </div>
+        <div class="form-group">
+          <label class="createBanner__label" for="bannerLink">Link:</label>
+          <input type="text" class="form-control" name="link" id="bannerLink" placeholder="Enter the link">
+        </div>
+        <div class="form-group">
+          <label class="createBanner__label" for="bannerContent">Content:</label>
+         <textarea class="form-control" rows="3"  name="description" for="bannerContent" placeholder="Enter the content"></textarea>
+        </div>
+   </form>
+  </div>
+  <div class="col-md-5">
+    <form>
+      <div class="form-group">
+        <img id="preview-banner" class="createBanner__img" src="">
+        <label class="createBanner__fileLabel">
+          <span class="glyphicon glyphicon-open"></span>Upload picture
+          <input class="createBanner__file" type="file" name="picture" id="BannerImg">
+        </label>
+        </div>
+    </form>
+       <a href="#" class="createBanner__btn createBanner__btnAdd" title="Add banner" id="js-addBanner">Add</a>
+  </div>
+</div>
