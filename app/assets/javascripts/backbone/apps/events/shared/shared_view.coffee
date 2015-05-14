@@ -5,7 +5,7 @@
 
     onShow: ->
       model = @model
-      image = @model.get('cover').original
+      image = @model.get('cover').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropUrl: AlumNet.api_endpoint + "/events/#{@model.id}/cropping"
