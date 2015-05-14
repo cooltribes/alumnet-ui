@@ -7,15 +7,26 @@ DESCRIPTION: styles for baners
 
 @import 'conf/conf.css.less';
 
+.visibility, #js-editImgBanner{
+  display: none;
+}
+
 .createBaner{
 	
 	&__img{
 		width: 100%;
-  		height: 250px;
-  		background: @lighter-gray;
-  		position: relative;
-  		z-index: 0;
+  	height: 250px;
+  	background: @blue;
+  	position: relative;
+  	z-index: 0;
 	}
+
+  &__btnEdit{
+    font-size: 2.5em;
+    color: @white;
+    float: right;
+    cursor: pointer;  
+  }
 
 	&__label{
 		font-size: 1.2em;
@@ -44,24 +55,34 @@ DESCRIPTION: styles for baners
   			border: 1px solid @white;
   			font-weight: 400;
   			position: relative;
-  			z-index: 1;
-  			top: -140px;
+  			z-index: 20;
+  			top: 150px;
   			left: 50%;
   			margin-left: -95px;
+
+        &Edit{
+          top: 190px;
+          left: 55%;
+        }
   		}
 	}
 
 	&__btn{
-		padding: 10px 40px;
-  		text-transform: uppercase;
-  		font-size: 1.2em;
-  		float: right;
+		padding: 10px 50px;
+  	text-transform: uppercase;
+  	font-size: 1.2em;
+    margin-bottom: 10px;
+    position: relative;
+    left: 10%;
+    float: left;
 
   		&Add{
   			background: @blue;
   			color: @white;
+        border: 2px solid @blue;
+
   			&:hover{
-  				color: @blue;
+  				color: @white;
   			}
   		}
 
@@ -73,22 +94,89 @@ DESCRIPTION: styles for baners
   				color: @redPure;
   			}
   		}
+
+      &Cancel{
+        color: @blue-gray;
+        border: 1px solid @blue-gray;
+        margin-right: 10px;
+        left: 20%;
+
+        &:hover{
+          color: @blue-gray;
+        }
+      }
 	}
 
 	&__flecha{
-		font-size: 2.4em;
+		font-size: 1.8em;
+    color: @white;
+    margin: 2px;
 	}
 
   &__titulo{
-    display: inline-block;
+    display: block;
   }
 
   &__time{
-    display: inline-block;
     width: 300px;
     height: 55px;
-    float: right;
-    margin-top: -60px;
     font-size: 1.3em;
+    margin-top: 1em;
+
+    & select{
+      height: 60px;
+    }
+
+    & select + span{
+      margin-top: 20px;
+    }
+  }
+
+  &__blackBox{
+    background: rgba(17, 17, 17, 0.71);
+    width: 100%;
+    height: 60px;
+    z-index: 10;
+    position: relative;
+    top: 40px;
+    padding: 10px;
+
+    & h2 {
+      display: inline-block;
+      color: @white;
+      font-size: 1.7em;
+    }
   }
 }
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .createBaner{
+
+      &__titulo{
+        display: inline-block;
+      }
+
+      &__time{
+        display: inline-block;
+        float: right;
+      }
+
+      &__flecha{
+        font-size: 2.1em;
+        color: @white;
+      }
+
+      &__btn{
+        left: 0%;
+
+        &Add{
+          float: right;
+        }
+
+        &Cancel{
+          float: right;
+        }
+      }
+    }
+ }

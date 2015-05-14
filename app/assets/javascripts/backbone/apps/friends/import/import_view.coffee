@@ -68,6 +68,7 @@
           view.showContactsInForm(data.contacts)
       view.showSpin()
       Backbone.ajax options
+      $('.menbrete').css('visibility','visible')
 
     byEnter: (e)->
       e.preventDefault()
@@ -124,7 +125,7 @@
       if contacts
         html = ""
         _.map contacts, (contact)->
-          html += "<li> #{contact.name} - #{contact.email} </li>"
+          html += "<li> <div>#{contact.name}</div> <div>#{contact.email}</div> </li>"
         @ui.contactsList.html(html)
         @ui.linkSubmitArray.show()
       else
