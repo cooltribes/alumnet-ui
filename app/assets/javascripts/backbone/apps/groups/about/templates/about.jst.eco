@@ -3,13 +3,13 @@
     <% if not @userHasMembership && not @userIsApproved : %>
         <div id="js-join-div" class="col-md-4 margin_top col-md-offset-4">
           <div class="panel panel-default text-center">
-              <div class="panel-heading">
-                Join this group to post and comment</div>
+            <div class="panel-heading">
+                Join this group to post and comment
+            </div>
             <div class="panel-body">
               <button class="btn btn-lg btn-primary js-join">+ join group</button>
             </div>
           </div>
-
         </div>
     <% end %>
 
@@ -48,6 +48,64 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
+      <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
+        <h3>Mailchimp mail list        
+        </h3>
+
+        <table>
+          <tr>
+            <td>
+              <h5><b>Active:</b></h5>
+            </td>
+            <td class="padding_left_xsmall">
+              <h4><small><a href="#" id="mailchimp" class="js-attribute">
+                <% if @mailchimp: %>Yes<% else: %>No<% end %>
+              </a>
+              <% if @currentUserIsAdmin: %>
+                <a href="#" id="js-edit-mailchimp" class="editLink">[edit]</a>
+              <% end %></small></h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h5><b>API Key:</b></h5>
+            </td>
+            <td class="padding_left_xsmall">
+              <h4><small>
+                <a href="#" id="api_key" class="js-attribute">
+                  <%= @model.get('api_key') %>
+                </a>
+                <% if @currentUserIsAdmin: %>
+                  <a href="#" id="js-edit-api-key" class="editLink">[edit]</a>
+                <% end %>
+              </small></h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h5><b>List ID:</b></h5>
+            </td>
+            <td class="padding_left_xsmall">
+              <h4><small>
+                <a href="#" id="list_id" class="js-attribute">
+                  <%= @model.get('list_id') %>
+                </a>
+                <% if @currentUserIsAdmin: %>
+                  <a href="#" id="js-edit-list-id" class="editLink">[edit]</a>
+                <% end %>
+
+              </small></h4>
+            </td>
+          </tr>
+        </table>
+
+        
+        <div class="text-right">
+        <% if @currentUserIsAdmin: %>
+          <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
+        <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="groupAbout__box margin_bottom">
@@ -74,7 +132,9 @@
         <% end %>
         </h3>
         <% if @canEditInformation: %>
-          <a href="#" class="btn btn-danger" id="js-delete-group">Delete</a>
+          <div class="text-right">
+          <a href="#" class="btn btn-danger" id="js-delete-group">Delete group</a>
+          </div>
         <% end %>
       </div>
     </div>

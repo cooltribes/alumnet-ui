@@ -51,7 +51,7 @@ class LinkedinController < ApplicationController
   def sign_in
     init_client
     user_session = UserSession.new
-    user_session.auth(signin_params.merge(@linkedin.auth_params))
+    user_session.auth(signin_params.merge(@linkedin.auth_params.except(:email)))
     if user_session.valid?
       session[:auth_token] = user_session.user.auth_token
       redirect_to root_path
