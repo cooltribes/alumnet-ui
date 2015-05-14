@@ -1,25 +1,39 @@
 <div class="row margin_bottom">
   <div class="col-md-9 js-graph">
-    Loading graph...
+    <label class="control-label">Loading charts...</label>
 
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-3 padding_top_large">
     <% if @graphType == 1: %>
       
-        <label class="control-label" for="inputName">Region of Residence</label>
-        <input id="js-residence-region" type="hidden" name="residence_country_id" style="width: 100%">
-      
+        <label class="control-label" for="inputName">Region of Residence:</label>
+        
+      <% if @canChange: %>
+        <input id="js-residence-region" type="hidden" name="residence_region_id" style="width: 100%">
+      <% else: %>
+        <br>
+        <span>My Region</span>
+      <% end %>
+        
 
     <% else if @graphType == 2: %>
      <!--  <div class="row">
         <div class="col-md-12"> -->
-        <label class="control-label" for="inputName">Country of Residence</label>
-        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
+        <label class="control-label" for="inputName">Country of Residence:</label>
+
+        <% if @canChange: %>
+          <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
+        <% else: %>
+          <br>
+          <span>My Country</span>
+        <% end %>
+        
         <!-- </div>   
       </div> -->
     <% else if @graphType == 0: %>
-      Total users in AlumNet
+      
+      <label class="control-label">Total users in AlumNet</label>
 
     <% end %>
   </div>
