@@ -43,18 +43,35 @@
       generalStats = new AlumNet.Entities.UserStats
       graphsCollection.add(generalStats)
         
-      
-      #Model for region graph
+      current_user = AlumNet.current_user
+      if current_user.get("is_alumnet_admin")
+        
+        canChangeRegion = canChangeCountry = true  
+        country_id = current_user.profile.get("residence_country").id        
+        region_id = current_user.profile.get("residence_country").region.id  
+
+      else if current_user.get("is_regional_admin")
+        canChangeRegion = false
+        canChangeCountry = true  
+        region_id = current_user.get("admin_location_id")        
+      else if current_user.get("is_nacional_admin")
+        canChangeRegion = false
+        canChangeCountry = false
+        county_id = current_user.get("admin_location_id")        
+
+      #Model for region graph      
       regionStats = new AlumNet.Entities.UserStats
         graphType: 1
-        location_id: 0
+        location_id: region_id
+        canChange: canChangeRegion
       graphsCollection.add(regionStats)
 
 
       #Model for counrty graph
       countryStats = new AlumNet.Entities.UserStats
         graphType: 2
-        location_id: 2
+        location_id: country_id
+        canChange: canChangeCountry
       graphsCollection.add(countryStats)
 
       

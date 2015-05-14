@@ -37,11 +37,11 @@
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'ColumnChart',
         dataTable: [
-          ['Type of Users','Users', 'Members', 'LT Members'],
+          ['Type of Users','Registrants', 'Members', 'LT Members'],
           ['Total Users', users, members, lt_members]
         ]
         options:
-          'title': 'Registrants'
+          'title': 'Users'
 
       @ui.graph_section.showAnimated(graph.render().el)
       
@@ -72,7 +72,7 @@
         graph = new AlumNet.Utilities.GoogleChart
           chartType: 'ColumnChart',
           dataTable: [
-            ['Type of Users','Users', 'Members', 'LT Members'],
+            ['Type of Users','Registrants', 'Members', 'LT Members'],
             ['Total Users', users, members, lt_members]
           ]
           options:
@@ -128,7 +128,7 @@
         graph = new AlumNet.Utilities.GoogleChart
           chartType: 'ColumnChart',
           dataTable: [
-            ['Type of Users','Users', 'Members', 'LT Members'],
+            ['Type of Users','Registrants', 'Members', 'LT Members'],
             ['Total Users', users, members, lt_members]
           ]
           options:
