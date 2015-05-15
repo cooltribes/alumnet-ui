@@ -148,7 +148,7 @@
           if $.trim(value) == ''
             'Group description is required, must be less than 2048 characters'
           if $.trim(value).length >= 2048  
-            'Group Description is larger than 2048 characters'                           
+            'Group description is too large! Must be less than 2048 characters'                 
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
       @ui.groupDescription.linkify()
