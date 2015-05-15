@@ -40,7 +40,7 @@
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'groups/banner/templates/banner_table'
     className: 'col-md-8 col-md-offset-2'
-    childView: BanerList.BannerView
+    childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
     events:

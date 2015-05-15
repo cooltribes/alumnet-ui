@@ -58,7 +58,7 @@
       controller = new GroupsApp.Pictures.Controller
       controller.showAlbums(id)
     banersList: (id)->
-      controller = new GroupsApp.BanerList.Controller
+      controller = new GroupsApp.BannerList.Controller
       controller.bannerList(id)
 
   AlumNet.on "groups:create",  ->
