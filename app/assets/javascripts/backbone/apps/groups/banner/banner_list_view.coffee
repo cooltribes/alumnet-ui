@@ -7,13 +7,13 @@
       table: '#list-region'
       create: '#create-region'
 
-  #Vista para crear un baner
+  #Vista para crear un banner
   class BannerList.CreateView extends Marionette.ItemView
-    template: 'groups/banner/templates/createBaner'
+    template: 'groups/banner/templates/createBanner'
     className: 'col-md-8 col-md-offset-2'
     
     events:
-      'change #BanerImg': 'previewImage'
+      'change #BannerImg': 'previewImage'
       'click #js-btnNewBanner':'showBoxNewBanner'
       'click #js-cancelNewBanner':'showBoxNewBanner'
 
@@ -31,16 +31,16 @@
       $("#js-newBanner").slideToggle("slow")
       $("#js-btnNewBanner").toggle("slow") 
 
-  #Vista para un baner
-  class BannerList.BanerView extends Marionette.ItemView
+  #Vista para un bnaner
+  class BannerList.BannerView extends Marionette.ItemView
     template: 'groups/banner/templates/banner'
 
 
-  #Vista la lista de baners
+  #Vista la lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'groups/banner/templates/banner_table'
     className: 'col-md-8 col-md-offset-2'
-    childView: BanerList.BannerView
+    childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
     events:
