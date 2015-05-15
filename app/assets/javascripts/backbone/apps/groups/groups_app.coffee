@@ -58,8 +58,8 @@
       controller = new GroupsApp.Pictures.Controller
       controller.showAlbums(id)
     banersList: (id)->
-      controller = new GroupsApp.BanerList.Controller
-      controller.banerList(id)
+      controller = new GroupsApp.BannerList.Controller
+      controller.bannerList(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -94,7 +94,7 @@
 
   AlumNet.on "group:baner", (id)->
     AlumNet.navigate("groups/#{id}/baner")
-    API.banerList(id)
+    API.bannerList(id)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

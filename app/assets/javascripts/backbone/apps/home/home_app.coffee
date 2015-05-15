@@ -5,6 +5,7 @@
       "conversations": "currentUserConversations"
       "conversations/:id": "currentUserConversation"
       "notifications": "currentUserNotifications"
+      "banner": "currentUserPosts"
 
   API =
     currentUserPosts: ->
@@ -22,6 +23,9 @@
     conversationWithRecipient: (user)->
       controller = new HomeApp.Conversations.Controller
       controller.showCurrentUserConversations(undefined, user)
+    currentBanners: ->
+      controller = new HomeApp.Posts.Controller
+      controller.showCurrentUserPosts(undefined,user)  
 
   AlumNet.on "home", ->
     AlumNet.navigate("posts")
@@ -42,6 +46,10 @@
   AlumNet.on "notifications", ->
     AlumNet.navigate("notifications")
     API.currentUserNotifications()
+
+  AlumNet.on "banner", (user) ->
+    AlumNet.navigate("banner")
+    API.bannerList()  
 
   AlumNet.addInitializer ->
     new HomeApp.Router
