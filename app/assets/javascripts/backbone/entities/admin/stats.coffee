@@ -7,6 +7,7 @@
       graphType: 0
       q: ""
       location_id: 0
+      location_name: ""
       canChange: true
 
     events:
