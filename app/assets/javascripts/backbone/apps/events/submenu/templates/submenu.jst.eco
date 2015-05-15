@@ -9,15 +9,16 @@
     </div>
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(0)%>"><a href="#events/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Events</a></li>
       </ul>
-      <!-- CREATE A NEW GROUP BTN -->
-      <a href="#events/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a event</a>
-      <!-- ./ -->
-      <ul class="nav navbar-nav navbar-right">
+      
+      <ul class="nav navbar-nav navbar-right no-margin">
         <li class="<%= @classOf(1)%>"><a href="#events" class="navTopSubBar__link" title="Discover groups"><span class="navTopSubBar__icon glyphicon glyphicon-search" ></span> Discover</a></li>
         <!-- <li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li> -->
+        <!-- CREATE A NEW GROUP BTN -->
+        <a href="#events/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a event</a>
+        <!-- ./ -->
       </ul>
     </div>
   </div>

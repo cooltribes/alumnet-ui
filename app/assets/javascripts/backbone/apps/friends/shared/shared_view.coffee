@@ -17,11 +17,11 @@
       body: '.friends-list'
 
     #for Stickit
-    bindings:
-      "#js-approvalCount":
-        observe: "pending_approval_requests_count"
-        onGet: (value, options)->
-          "Approval Requests (#{value})"
+    # bindings:
+    #   "#js-approvalCount":
+    #     observe: "pending_approval_requests_count"
+    #     onGet: (value, options)->
+    #       "Approval Requests (#{value})"
 
 
     initialize: (options) ->
@@ -46,7 +46,7 @@
     events:
       'click .js-search': 'performSearch'
       'click #js-friends, #js-mutual, #js-myfriends, #js-sent, #js-received': 'showList'
-      'click #js-approval': 'showApprovalList'
+      # 'click #js-approval': 'showApprovalList'
 
     performSearch: (e) ->
       e.preventDefault()
@@ -60,12 +60,12 @@
       @trigger "friends:show:#{actionId}", this
       @toggleLink(actionId)
 
-    showApprovalList: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      id = $(e.currentTarget).attr('id').substring(3)
-      @trigger "show:approval:requests", this
-      @toggleLink(id)
+    # showApprovalList: (e)->
+    #   e.stopPropagation()
+    #   e.preventDefault()
+    #   id = $(e.currentTarget).attr('id').substring(3)
+    #   @trigger "show:approval:requests", this
+    #   @toggleLink(id)
 
     buildQuerySearch: (searchTerm) ->
       q:

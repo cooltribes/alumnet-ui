@@ -76,7 +76,7 @@
         type: 2
       @ui.modalCont.html(modal.render().el)
 
-    #onRender: ->    
+    #onRender: ->
     #   $('#aboutUseraffix').affix({
     #     offset: {
     #       top: 100,
@@ -200,7 +200,7 @@
 
     onShow: ->
       model = @model
-      image = @model.get('avatar').original
+      image = @model.get('avatar').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropData: { "image": 'avatar' }
@@ -219,7 +219,7 @@
 
     onShow: ->
       model = @model
-      image = @model.get('cover').original
+      image = @model.get('cover').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropData: { "image": 'cover' }

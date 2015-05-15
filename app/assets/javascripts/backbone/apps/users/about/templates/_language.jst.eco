@@ -1,11 +1,11 @@
-<span><%= @language_name %></span>
-
+<div class="overfloadText metaInfoCard__language">
+  <%= @language_name %>
+</div>
 <% if @userCanEdit: %>
   <button style="  display: inline-block" type="button" class="close js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 <% end %>
 <% if @level==1: %>
-  <div class="progress" style=" display: inline-block;
-  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-placement="bottom" title="Elementary">
+  <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-placement="bottom" title="Elementary">
     <div class="progress-bar progress-bar-danger" style="width: 10%" >
     <span class="sr-only">Elementary</span>
     </div>
@@ -13,8 +13,7 @@
 <% end %>
 
 <% if @level==2: %>
-  <div class="progress" style=" display: inline-block;
-  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Limited working">
+  <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Limited working">
     <div class="progress-bar progress-bar-warning" style="width: 25%" >
       <span class="sr-only">Limited working</span>
     </div>
@@ -22,8 +21,7 @@
 <% end %>
 
 <% if @level==3: %>
-  <div class="progress" style=" display: inline-block;
-  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Professional working">
+  <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Professional working">
     <div class="progress-bar progress-bar-info" style="width: 50%" >
       <span class="sr-only">Professional working</span>
     </div>
@@ -31,8 +29,7 @@
 <% end %>
 
 <% if @level==4: %>
-  <div class="progress" style=" display: inline-block;
-  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Full profesional">
+  <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Full profesional">
     <div class="progress-bar progress-bar-info" style="width: 75%" >
       <span class="sr-only">Full profesional</span>
     </div>
@@ -40,8 +37,7 @@
 <% end %>
 
 <% if @level==5: %>
-  <div class="progress" style=" display: inline-block;
-  width: 100px; float:right; margin-right: 5px;" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Native o bilingual">
+  <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-toggle="tooltip" data-placement="bottom" title="Native o bilingual">
     <div class="progress-bar progress-bar-success" style="width: 100%" >
       <span class="sr-only">Native o bilingual</span>
     </div>
