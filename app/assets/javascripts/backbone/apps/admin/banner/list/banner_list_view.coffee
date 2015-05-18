@@ -36,8 +36,7 @@
         formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
-      @model.set(data)      
-      console.log @model 
+      @model.set(data)            
       if @model.isValid(true)
         options_for_save =
           wait: true

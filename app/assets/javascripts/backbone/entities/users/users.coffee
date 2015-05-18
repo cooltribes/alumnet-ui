@@ -125,21 +125,24 @@
     setCount: (counter, value = 0)->
       @set("#{counter}_count", value) if @get("#{counter}_count") != value
 
-
-  class Entities.UserCollection extends Backbone.Collection
-    url: ->
-      AlumNet.api_endpoint + '/users'
-    model: Entities.User
-
   class Entities.DeletedUser extends Backbone.Model
     urlRoot: ->
       AlumNet.api_endpoint + '/admin/deleted/users/'
+
+  class Entities.UserCollection extends Backbone.Collection
+    model: Entities.User
+    url: ->
+      AlumNet.api_endpoint + '/users'
 
   class Entities.DeletedUserCollection extends Backbone.Collection
     model: Entities.DeletedUser
     url: ->
       AlumNet.api_endpoint + '/admin/deleted/users/'
 
+  class Entities.ContactsInAlumnet extends Backbone.Collection
+    model: Entities.User
+    url: ->
+      AlumNet.api_endpoint + '/me/contacts/in_alumnet'
 
   ### Other functions and utils###
   initializeUsers = ->
