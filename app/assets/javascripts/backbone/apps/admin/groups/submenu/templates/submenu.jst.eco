@@ -9,7 +9,7 @@
     </div>
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(0)%>">
           <a href="#admin/groups" class="navTopSubBarAdmin__link" title="Invites">
             <span class="navTopSubBarAdmin__icon glyphicon"></span> Browse Groups

@@ -158,7 +158,7 @@
       'click .navTopBarAdmin__left__item' : 'menuOptionClicked'
 
     onShow: ->
-      $('.navTopBarAdmin__left__list a.navTopBarAdmin__left__item:first-child').addClass "navTopBarAdmin__left__item--active"
+      $('.navTopBarAdmin__left__list li:first-child a.navTopBarAdmin__left__item').addClass "navTopBarAdmin__left__item--active"
 
     menuOptionClicked: (e)->
       $('.navTopBarAdmin__left__item').removeClass "navTopBarAdmin__left__item--active"

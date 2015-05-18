@@ -50,7 +50,12 @@ DESCRIPTION: Top navigation bar with menus
 
     &__right{
         &__list{
-            margin-right: -15px;          
+            margin-right: -15px;
+            text-align: center;
+
+            & li{
+                display: inline-block;
+            }          
         }
         &__list &__item--memebershipWrapper{
             margin: 0px;
@@ -80,22 +85,13 @@ DESCRIPTION: Top navigation bar with menus
                 background-color: @black ;
             }     
 
-            &__icon{
-                font-size: 32px;
-                width: 32px;
-
-                &--notificationsIcon, &--cartIcon{
-                    font-size: 24px;
-                    margin-top: 3px;
-                }
-
-            }
             &--arrow{
                 display: block;
                 font-size: 22px;
                 height: 59px;
                 margin-left: 5px;
                 padding: 20px 10px 15px;
+                color: @white;
                 &:hover, &:focus{
                     color: @white;
                     background-color: @black;
@@ -134,13 +130,6 @@ DESCRIPTION: Top navigation bar with menus
         }
     }
 
-    &__badge{
-        position: absolute;
-        right: 0;
-        text-align: center;
-        top: 9px;
-        background-color: @orange;
-    }
     &__mobileToggleBtn{
         background-color: rgba(255,255,255,.1);
         font-size: 20px;
@@ -160,74 +149,6 @@ DESCRIPTION: Top navigation bar with menus
         padding-top: 0;
         padding-bottom: 0;
     }
+
     
 }
-
-
-
-
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @media-small-min) {
-    .navTopBar{
-        &__notification{
-            width: 350px
-        }
-        &__right{
-           &__list &__item{
-                &--membershipExpires{
-                    width: 80%;
-                    margin: 0 auto;
-                    height: auto;
-                }
-            }
-        }
-    }
- }
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: @media-medium-min) {
-    .navTopBar{
-        &__notification{
-            width: 350px;
-        }
-        &__right{
-           &__list &__item{
-                &--membershipExpires{
-                   
-                    width: auto;
-                }
-            }
-        }
-
-    }
-    
- }
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: @media-large-min) { 
-.navTopBar{
-        &__notification{
-            width: 350px;
-        }
-        &__right{
-           &__list &__item{
-                &--membershipExpires{
-                    width: auto;                   
-                }
-
-                
-                &--renew, &--membershipExpires, &--member, &--becomeAMember  {
-                    display: block;
-                    
-                } 
-
-                &--counter{
-                    margin-left:-60px;
-                }
-
-            }
-        }
-    }  
-    
- }
