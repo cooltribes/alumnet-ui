@@ -148,7 +148,19 @@ DESCRIPTION: Top navigation bar with menus
         float: left;
         padding-top: 0;
         padding-bottom: 0;
-    }
-
-    
+    }    
 }
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopBarAdmin{
+        &__right{
+            &__list{
+
+                & li{
+                    display: block;
+                }          
+            }
+        }
+    }  
+ }
