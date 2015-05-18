@@ -27,7 +27,7 @@
 					<li>  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link<%= @classOf(5)%>">
 						<span class="ico-calendar"></span>
 					Events</a></li>
-					<li>  <a href="#groups/<%= @id %>/baner" id="js-events" class="groupMenu__link<%= @classOf(6)%>">
+					<li>  <a href="#groups/<%= @id %>/banner" id="js-events" class="groupMenu__link<%= @classOf(6)%>">
 						<span class="glyphicon glyphicon-cog"></span>
 					Setting</a></li>
 				<% end  %>

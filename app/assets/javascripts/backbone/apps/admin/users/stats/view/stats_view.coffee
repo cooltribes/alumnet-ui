@@ -77,7 +77,7 @@
             ['Total Users', users, members, lt_members]
           ]
           options:
-            'title': 'Registrants'
+            'title': 'Users'
 
         @ui.graph_section.showAnimated(graph.render().el)
 
@@ -136,7 +136,7 @@
             ['Total Users', users, members, lt_members]
           ]
           options:
-            'title': 'Registrants'
+            'title': 'Users'
 
         @ui.graph_section.showAnimated(graph.render().el)
         
