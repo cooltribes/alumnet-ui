@@ -171,6 +171,7 @@
 
     clickedInvite: (e)->
       e.preventDefault()
+      @ui.inviteLink.remove()
       attr = {user_id: @model.id, event_id: @event.id}
       attendance = AlumNet.request('attendance:new')
       view = @
