@@ -1,0 +1,16 @@
+<hr>
+<h2 class="createBanner__titulo">Ads management</h2>
+
+<div>
+  <select class="form-control createBanner__time" id="banner-time" name="status" aria-describedby="banner-time">
+          <option value="5">Change every 5 seconds</option>
+          <option value="10">Change every 10 seconds</option>
+          <option value="15">Change every 15 seconds</option>
+  </select>
+  <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
+  <span id="banner-time" class="sr-only">(success)</span>
+</div>
+
+<div id="banners-list">
+	<hr>
+</div>

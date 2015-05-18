@@ -1,9 +1,10 @@
-<div class="row sortingMenu margin_top">
+
+<div class="sortingMenu margin_top">
   <div class="col-md-9">
     <ul class="sortingMenu" id="filter-link-container">
       <li class="sortingMenu__item sortingMenu__item--lg">
         <a href="" title="All" class="sortingMenu__item__link sortingMenu__item__link--active"
-          id="js-going">Going
+          id="js-going">Attending
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
@@ -19,14 +20,18 @@
       <% if @userIsAdmin: %>
         <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
           <a href="" class="sortingMenu__item__link sortingMenu__item__link"
-            id="js-not-going">Not going
+            id="js-not-going">Not attending
           </a>
         </li>
       <% end %>
     </ul>
   </div>
+  <% if @userIsAdmin || @event_type.text=="open": %>
+    <div class="col-md-3 text-right">
+      <a href="#" id="js-invite-event" class="btn-primary-noBackground btn" title="Add people to group">+ Invite people to event</a>
+    </div>
+  <% end %>
 </div>
 <hr class="no_margin_top">
-
-<div class="row main-attendances-area"><!-- Begin group container -->
+<div class="row main-attendances-area no-margin"><!-- Begin group container -->
 </div>

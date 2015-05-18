@@ -11,7 +11,7 @@
 				<p class="PageError__Parrafo">
 				Page or resource not found. Either it doesn't exist or it was removed from the server.
 				</p>
-				<a href="/#post" class="btn btn-lg btn-primary">Go the main page</a>
+				<a href="/#posts" class="btn btn-lg btn-primary">Go the main page</a>
 			</div>
 		</div>
 	</div>

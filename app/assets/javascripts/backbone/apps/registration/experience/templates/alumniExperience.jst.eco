@@ -15,9 +15,9 @@
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
-								
+
 								<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-								
+
 							<% end %>
 						</select>
 					</div>
@@ -39,7 +39,7 @@
 									<% if x==10 : %> October <% end %>
 									<% if x==11 : %> November <% end %>
 									<% if x==12 : %> December <% end %>
-								</option>		
+								</option>
 							<% end %>
 						</select>
 					</div>
@@ -57,11 +57,10 @@
 					<div class="formANet__select">
 						<select name="end_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
-							<option value="current">Current</option>
-
+							<option <%= if @end_year == 'current' then "selected='selected'" %> value="current">Current</option>
 							<% for x in [@firstYear()..@currentYear] by 1 : %>
 								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
-								
+
 							<% end %>
 						</select>
 					</div>
@@ -84,7 +83,7 @@
 									<% if x==10 : %> October <% end %>
 									<% if x==11 : %> November <% end %>
 									<% if x==12 : %> December <% end %>
-								</option>							
+								</option>
 							<% end %>
 						</select>
 					</div>
@@ -102,11 +101,11 @@
 <div class="row">
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
-			<label class="control-label" for="registerCountry">AIESEC Experience</label>
+			<label class="control-label" for="registerCountry">Level of this experience</label>
 			<div class="formANet__select">
 			  <select name="aiesec_experience" id="aiesec_experience" class=" form-control input-lg">
 					<option value="">Select Type</option>
-	        <option value="Local">Local</option>
+	        <option value="Regional">Regional</option>
 	        <option value="National">National</option>
 	        <option value="International">International</option>
 	      </select>

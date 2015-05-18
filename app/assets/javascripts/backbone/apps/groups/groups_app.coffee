@@ -11,6 +11,8 @@
       "groups/:id/subgroups": "listSubGroups"
       "groups/:id/events/new": "createEvent"
       "groups/:id/events": "listEvents"
+      "groups/:id/photos": "listAlbums"
+      "groups/:id/banner": "bannersList"
 
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
@@ -52,6 +54,12 @@
     inviteEvent: (event, users)->
       controller = new GroupsApp.Events.Controller
       controller.invitations(event, users)
+    listAlbums: (id)->
+      controller = new GroupsApp.Pictures.Controller
+      controller.showAlbums(id)
+    bannersList: (id)->
+      controller = new GroupsApp.BannerList.Controller
+      controller.bannerList(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")
@@ -79,6 +87,14 @@
 
   AlumNet.on "group:event:invite", (event, users)->
     API.inviteEvent(event, users)
+
+  AlumNet.on "groups:manage", ->
+    AlumNet.navigate("groups/manage")
+    API.manageGroups()
+
+  AlumNet.on "group:banner", (id)->
+    AlumNet.navigate("groups/#{id}/banner")
+    API.bannerList(id)
 
   AlumNet.addInitializer ->
     new GroupsApp.Router

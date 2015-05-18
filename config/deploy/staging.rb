@@ -6,7 +6,8 @@ server 'alumnet-test.aiesec-alumni.org',
     forward_agent: true,
     auth_methods: %w(publickey)
   }
-
+set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
+set :branch, 'dev'
 
 # Custom SSH Options
 # ==================

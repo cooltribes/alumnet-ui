@@ -60,10 +60,21 @@
       layoutView.side_region.show(@getSidebarView())
       user = AlumNet.current_user
       profile = user.profile
-      experiences = new AlumNet.Entities.ExperienceCollection [
-        first: true
-        exp_type: exp_type
-      ]
+
+      if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && exp_type == 3
+        experiences_array = []
+        _.each gon.linkedin_profile.experiences, (elem, index, list)->
+          experiences_array.push new AlumNet.Entities.Experience elem
+
+      else if gon.linkedin_profile && gon.linkedin_profile.educations.length > 0 && exp_type == 2
+        experiences_array = []
+        _.each gon.linkedin_profile.educations, (elem, index, list)->
+          experiences_array.push new AlumNet.Entities.Experience elem
+      else
+        experiences_array = [new AlumNet.Entities.Experience({first: true, exp_type: exp_type})]
+
+
+      experiences = new AlumNet.Entities.ExperienceCollection experiences_array
 
       #get the view according to exp_type 1:alumni
       formView = @getFormView(experiences, profile, exp_type)
@@ -76,10 +87,10 @@
     getSidebarView: ->
       AlumNet.request('registration:shared:sidebar', 3)
 
-    getFormView: (experiences, profileModel, exp_type) ->      
+    getFormView: (experiences, profileModel, exp_type) ->
       new Experience.ExperienceList
         collection: experiences
-        model: profileModel        
+        model: profileModel
         exp_type: exp_type
 
 

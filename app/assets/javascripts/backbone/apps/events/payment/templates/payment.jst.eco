@@ -1,0 +1,13 @@
+<div class="main-events-area">
+  <h3 class="overfloadText">Event: <%= @name %></h3>
+  <div class="">
+    <div class="form-group">
+      <label class="control-label pay__label" for="inputName">Please select your country for displaying the local payment options</label>
+      <input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">
+      <span class="help-block"></span>
+    </div>
+  </div>
+  <div id="paymentwall-content">
+    
+  </div>
+</div>

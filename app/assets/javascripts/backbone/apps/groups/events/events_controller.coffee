@@ -20,7 +20,7 @@
               processData: false
               data: data
               success: (model, response, options)->
-                contacts = AlumNet.request('event:contacts', 'groups', group_id, model.id)
+                contacts = AlumNet.request('event:contacts', model.id)
                 AlumNet.trigger('group:event:invite', model, contacts)
 
             model.save(data, options_for_save)
@@ -33,7 +33,7 @@
       group = AlumNet.request("group:find", group_id)
       group.on 'find:success', (response, options)->
         if group.userIsMember()
-          layout = AlumNet.request("group:layout", group)
+          layout = AlumNet.request("group:layout", group,5)
           header = AlumNet.request("group:header", group)
           events = AlumNet.request('event:entities', 'groups', group_id)
           eventsView = new Events.EventsView

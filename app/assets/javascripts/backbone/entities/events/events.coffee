@@ -17,7 +17,6 @@
     isPast: ->
       today = moment()
       start_date = moment(@get('start_date'))
-      console.log today, start_date
       start_date < today
 
     getLocation: ->
@@ -41,6 +40,9 @@
     userIsAdmin: ->
       @get('admin')
 
+    userCanAttend: ->
+      @get('can_attend')
+
     userIsInvited: ->
       attendance = @get('attendance_info')
       if attendance == null then false else true
@@ -48,8 +50,12 @@
     validation:
       name:
         required: true
+        maxLength: 250
+        msg: "Event name is required, must be less than 250 characters long."
       description:
         required: true
+        maxLength: 2048
+        msg: "Event description is required, must be less than 2048 characters"
       start_date:
         required: true
       end_date:
@@ -58,6 +64,10 @@
         required: true
       country_id:
         required: true
+        msg: 'Country is required'
+      city_id:
+        required: true
+        msg: 'City is required'
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
@@ -118,9 +128,14 @@
       events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       events
 
-    getEventContacts: (parent, parent_id, event_id)->
+    getOpenEvents: ()->
+      events = new Entities.EventsCollection
+      events.url = AlumNet.api_endpoint + "/events"
+      events
+
+    getEventContacts: (event_id)->
       contacts = new Entities.EventContacts
-      contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
+      contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
 
     findEvent: (id)->
@@ -148,6 +163,9 @@
 
   AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
     API.getEvents(parent, parent_id)
+
+  AlumNet.reqres.setHandler 'event:entities:open', ->
+    API.getOpenEvents()
 
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)

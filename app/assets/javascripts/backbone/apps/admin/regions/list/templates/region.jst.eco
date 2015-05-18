@@ -1,0 +1,72 @@
+<td>
+  <div>
+    <h4><b><%= @name %></b></h4>
+  </div>
+  <div class="region__CountryBox">
+    <!--<% if @countries: %> 
+      <ul class="region__CountryList">
+        <% for country in @countries: %>
+          <li>
+          <%= country.text %> 
+          </li>
+        <% end %> 
+      </ul>
+    <% end %>-->
+    
+  <% if @countries: %>  
+    <% aux = 0 %>
+    <% aux2= @countries_length-(parseInt((@countries_length/4))*4) %>
+    <% if @countries_length>4: %>  
+      <% for country in @countries: %>
+        <% if aux==0: %>
+          <ul class="region__CountryList">
+        <% end %> 
+        <li class="overfloadText">
+          <%= country.text %> 
+          <% aux=aux+1 %>
+        </li>
+        <% if aux2>0: %>
+          <% if aux==parseInt(@countries_length/4)+1: %>
+            <% aux = 0  %>
+            <% aux2 = aux2-1  %>
+            </ul>
+          <% end %> 
+        <% else: %>
+          <% if aux==parseInt(@countries_length/4): %>
+            <% aux = 0  %>
+            </ul>
+          <% end %> 
+        <% end %>
+      <% end %> 
+    <% else: %> 
+      <% for country in @countries: %>
+        <ul class="region__CountryList">
+          <li class="overfloadText">
+            <%= country.text %> 
+          </li>
+        </ul>
+      <% end %> 
+    <% end %>   
+  <% end %>
+  </div>
+  <div>
+    <h4>
+      <a href="#" class="groupPost__btn--comment js-edit" title="Edit Region" id="js-new-region">Edit Region</a>
+    </h4>
+  </div>
+</td>
+<td class="region__admins">
+  <% if @admins: %> 
+    <ul class="region__admin">
+      <% for admins in @admins: %>
+        <li>
+          <img src="<%= admins.avatar %>" alt="<%= admins.name %> avatar" class="img-circle">
+          <a href="#users/<%= admins.id %>/posts"><%= admins.name %></a>
+        </li>
+      <% end %>  
+    </ul>
+  <% end %> 
+  <!--<h4>
+    <a href="#" class="groupPost__btn--comment js-edit" title="Edit Region" id="js-new-region">+ Add Admin</a>
+  </h4>-->
+</td>

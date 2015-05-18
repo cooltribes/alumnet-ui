@@ -99,13 +99,12 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
 
       @ui.endDate.Zebra_DatePicker
-        direction: 1
+        direction: true
         show_icon: false
         show_select_today: false
 
@@ -127,11 +126,13 @@
 
   class Events.EventView extends Marionette.ItemView
     template: 'groups/events/templates/event'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    className: ''
 
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userIsAdmin: @model.userIsAdmin()
+      userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
@@ -158,6 +159,14 @@
         else
           attendance.set('status', status)
           attendance.save()
+      if status=='going'
+        $('#attendance-status').css('background-color','#72da9e')
+      if status=='invited'
+        $('#attendance-status').css('background-color','#6dc2e9')
+      if status=='not_going'
+        $('#attendance-status').css('background-color','#ea7952')
+      if status=='maybe'
+        $('#attendance-status').css('background-color','#f5ac45')
 
   class Events.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
@@ -168,9 +177,12 @@
 
     initialize: ->
       @searchUpcomingEvents({})
+      $(".navTopBar__left__item")
+        .removeClass "navTopBar__left__item--active"
+      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
-      userCanCreateSubGroup: @model.canDo('create_subgroup')
+      userIsMember: @model.userIsMember()
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

@@ -1,0 +1,25 @@
+<div class="modal-body">
+  <div class="bbm-modal__topbar">
+    <h3 class="bbm-modal__title">Change my Avatar</h3>
+  </div>
+
+  <div class="bbm-modal__section">
+    <form>
+      <% if @avatar: %>
+        <img src="<%="#{@avatar.extralarge}?#{ new Date().getTime() }" %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <% else: %>
+        <!-- Hacer esta imagen negra -->
+        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px">
+      <% end %>
+
+      <input type="file" id="profile-avatar" style="margin-top: 15px" name="avatar" accept="image/*">
+      <span class="help-block"></span>
+    </form>
+  </div>
+
+  <div class="bbm-modal__bottombar">
+    <a href="#" class="btn btn-primary" id="js-save">Upload Avatar</a>
+    <a href="#" class="btn btn-default" id="js-croppic">Crop</a>
+    <a href="#" class="btn btn-default" id="js-close-btn">Close</a>
+  </div>
+</div>

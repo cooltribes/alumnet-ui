@@ -1,11 +1,13 @@
 <!-- HERO AREA ON -->
+
+
 <div class="homeAlumNet__heroArea">
   <nav class="homeAlumNet__navigation navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3  col-md-offset-2">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alumNet-collapse-topBar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alumNet-collapse-topBar" id="alumNet-collapse-topBar-toggle">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -14,7 +16,7 @@
             <a class="navbar-brand" href="#"><%= image_tag('home/alumNetLogoHome.png', width: "230") %></a>
           </div>
         </div>
-        <div class=" col-md-5">
+        <div class=" col-md-5" id="alumNet-collapse-topBar-container">
           <% if @errors_login && @errors_login.any? %>
           <div class="homeAlumNet__alert text-danger text-right alert alert-danger">
             <% @errors_login.full_messages.each do |msg| %>
@@ -53,14 +55,18 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-5 col-md-offset-2">
+      <div class="col-md-6 col-md-offset-3 text-center">
         <h2 class="homeAlumNet__heroArea__title">Join us now!</h2>
         <p class="lead">and help transform our global network of AIESEC alumni into a powerful force for positive change</p>
       </div>
     </div>
     <div class="row text-center">
+      <%= link_to "Sign in with Facebook", "/auth/facebook" ,class: 'btn-loginFB' %>
+      <%= link_to "Sign in with LinkedIn", "/auth/linkedin" ,class: 'btn-loginLIN' %>
+
       <div id="registerHomeForm" class="collapse in ">
         <div class=" homeAlumNet__registerForm">
+
           <%= form_tag sign_up_path do %>
           <% if @errors_registration && @errors_registration.any? %>
           <div class="alert alert-danger ">
@@ -246,7 +252,7 @@
 </div>
 <!-- BLOG ON -->
 <!-- FOOTER ON -->
-
+<!--
     <br>
     <p><small>Ave de Tervuren 300, B-1150 Brussels, Belgium
     International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 VZW- AiSBL.
@@ -254,7 +260,7 @@
   </div>
   <div class="col-md-8 col-lg-8 text-right">
     <div class="clearfix">
-      <!--<ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
+      <ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
         <li>
           <a href="#" title="About Us"> About Us</a>
         </li>
@@ -282,13 +288,13 @@
         <li>
           <a href="#" title="Contact">Contact</a>
         </li>
-      </ul>-->
+      </ul>
     </div>
-    <p class="hidden-xs"><small> Copyright © 
+    <p class="hidden-xs"><small> Copyright ©
 <script>document.write(new Date().getFullYear())</script>
      AIESEC Alumni International. All rights reserved. </small></p>
   </div>
 </div>
 </div>
-</footer>
+</footer>-->
 <!-- FOOTER OFF -->

@@ -2,11 +2,12 @@
 
   class Events.EventView extends Marionette.ItemView
     template: 'users/events/templates/event'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    className: 'container'
 
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
@@ -33,6 +34,14 @@
         else
           attendance.set('status', status)
           attendance.save()
+      if status=='going'
+        $(e.target).css('background-color','#72da9e')
+      if status=='invited'
+        $(e.target).css('background-color','#6dc2e9')
+      if status=='not_going'
+        $(e.target).css('background-color','#ea7952')
+      if status=='maybe'
+        $(e.target).css('background-color','#f5ac45')
 
   class Events.EventsView extends Marionette.CompositeView
     className: 'ng-scope'

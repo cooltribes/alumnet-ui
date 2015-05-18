@@ -10,10 +10,22 @@
 //= require backbone/alumnet
 //= require_tree ./backbone/libs
 //= require_tree ./backbone/concerns
+//= require_tree ./backbone/controllers
 //= require_tree ./backbone/entities
 //= require_tree ./backbone/apps
 //= require bootstrap
 //= require_self
+
+ion.sound({
+    sounds: [
+      {
+        name: "water_droplet_3"
+      },
+    ],
+    volume: 0.5,
+    path: "sounds/",
+    preload: true
+});
 
 $(function() {
 

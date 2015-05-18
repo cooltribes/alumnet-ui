@@ -1,10 +1,12 @@
 <% if _.size(@links) > 0 : %>
 	<div class="breadcrumb-subgroups tableAdminGroups__subGroup___breadcrumb">
 		<a href="#" id="js-groups-home"> 
-			<span class="glyphicon glyphicon-home"></span> <span>Main Groups</span> 
-			<span class="glyphicon glyphicon-chevron-right"></span> </a>
+			<span class="glyphicon glyphicon-home"></span> 
+			<span>Main Groups</span> 
+			<span class="glyphicon glyphicon-chevron-right"></span> 
+		</a>
 		<% _.each @links, (link, index, links)->: %>
-			<% if index == (_.size(links) - 1): %>
+		<% if index == (_.size(links) - 1): %>
 				<%= link.name %>
 			<% else: %>
 				<a href="#" class="js-groups-bc" data-group-id="<%= link.id %>"

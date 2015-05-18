@@ -6,22 +6,34 @@
 
       @on 'change', ->
         @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
+        @setPictures()
+
+      unless @isNew()
+        @setPictures()
 
     validation:
       body:
         required: true
 
+    setPictures: ->
+      pictures = @get('pictures')
+      if pictures
+        @picture_collection = new Entities.PictureCollection pictures
+      else
+        @picture_collection = new Entities.PictureCollection
+
     infoLink: ->
       info = @get('postable_info')
+
       if info.type == "Group"
         url = "#groups/#{info.id}/posts"
-        "in Group <a href='#{url}'>#{info.name}</a>"
+        "in Group <a href='#{url}' title='#{info.name}'>#{info.name}</a>"
       else if info.type == "User"
         url = "#users/#{info.id}/posts"
-        "in profile of <a href='#{url}'>#{info.name}</a>"
+        "in profile of <a href='#{url}' title='#{info.name}'>#{info.name}</a>"
       else if info.type == "Event"
         url = "#events/#{info.id}/posts"
-        "in Event <a href='#{url}'>#{info.name}</a>"
+        "in Event <a href='#{url}' title='#{info.name}'>#{info.name}</a>"
       else
         ""
 

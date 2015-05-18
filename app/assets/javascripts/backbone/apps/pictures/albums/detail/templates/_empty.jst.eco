@@ -1,15 +1,15 @@
-<div class="row">
+<div class="row margin_top_large">
   <div class="col-md-12">
-    <h4>
-      This album is empty
-    </h4>
+    <h3>
+      This album is empty :(
+    </h3>
 
   </div>
 </div>
 <% if @userCanEdit: %>
   <div class="row">
-    <div class="col-md-12">
-      <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload">+ Upload photo</a>
+    <div class="col-md-12 margin_top_small">
+      <a href="#" title="Upload photo" class="btn-primary btn btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
     </div>
   </div>
 <% end %>  

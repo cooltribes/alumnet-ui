@@ -1,4 +1,10 @@
 <div class="col-md-4 col-sm-6 col-xs-12">
+  <% if _.size(@children) > 0: %>
+  <div class="stacked stacked--356deg">
+  </div>
+  <div class="stacked stacked--358deg">
+  </div>
+  <% end %>
       <!-- if groupCard__hasSubgroups -->
       <!-- <div class="groupCard__subGroupShadow"></div> -->
   <div class="groupCard">
@@ -6,6 +12,7 @@
     <!-- COVER ON -->
     <div class="groupCard__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat top center; background-size:cover; " >
       <!-- SUBGROUPS ON-->
+      <% if _.size(@children) > 0: %>
       <div class="groupCard__menu">
         <h5 class="groupCard__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
         <ul class="groupCard__menu__list">
@@ -21,6 +28,7 @@
         </ul>
 
       </div>
+      <% end %>
       <!-- SUBGROUPS OFF-->
       <% if @official: %><span class="groupCard__ribbon"></span><% end %>
     </div>
@@ -52,7 +60,7 @@
           Open
         <% end %>
         </span>
-        <p class="groupCard__description"><%= @description %></p>
+        <p id="js-description" class="groupCard__description"><%= @description %></p>
       </div>
       <div class="groupCard__atributes">
         <div class="clearfix ">
@@ -82,20 +90,33 @@
           </div>
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
-              <!--
-              Avatars of people who has joined the group
-              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10 -->
+              <% aux = 0 %>
+              <% for friends in @friends_in: %>  
+                <img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+                <% aux=aux+1 %>
+                <% if aux==3: %>
+                  <% break %>
+                <% end %> 
+              <% end %>
+              <% if @friends_in.length>3: %>
+                +<%= @friends_in.length-3 %>
+              <% end %>
             </div>
           </div>
         </div>
         <% if @membership_status == "approved": %>
-        <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block"> ENTER </a>
+          <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block">
+          </span>ENTER</span></a>
         <% else if @membership_status == "pending": %>
-        <span class="groupCard__waitingApproval"> <span class="icon-entypo-hourglass"></span> Waiting for approval</span>
-        <% else: %>
-        <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">+ join group
-        </button>
+          <span class="groupCard__btn btn btn-sm btn-primary btn-block"> 
+          <span class="icon-entypo-hourglass">
+            </span> Waiting for approval</span>
+          </span>   
+        <% else if @membership_status == "none": %>
+          <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">
+            </span>+ Join group</span>
+          </button>
+
         <% end %>
       </div>
     </div>
@@ -103,3 +124,6 @@
   </div>
 </div>
 </div>
+
+
+

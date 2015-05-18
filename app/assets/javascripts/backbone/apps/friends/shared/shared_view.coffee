@@ -16,11 +16,18 @@
     regions:
       body: '.friends-list'
 
-    #modelEvents:
-      #"change": "modelChange"  
+    #for Stickit
+    # bindings:
+    #   "#js-approvalCount":
+    #     observe: "pending_approval_requests_count"
+    #     onGet: (value, options)->
+    #       "Approval Requests (#{value})"
+
 
     initialize: (options) ->
-      @listenTo(@model, 'change:pending_sent_friendships_count', @changedCount)
+      @listenTo(@model, 'change:pending_sent_friendships_count', @changedCountSent)
+      @listenTo(@model, 'change:pending_received_friendships_count', @changedCountReceived)
+      @listenTo(@model, 'change:friends_count', @changedCount)
       @tab = options.tab
       @class = [
         "", "", ""
@@ -39,6 +46,7 @@
     events:
       'click .js-search': 'performSearch'
       'click #js-friends, #js-mutual, #js-myfriends, #js-sent, #js-received': 'showList'
+      # 'click #js-approval': 'showApprovalList'
 
     performSearch: (e) ->
       e.preventDefault()
@@ -48,9 +56,16 @@
     showList: (e)->
       e.stopPropagation()
       e.preventDefault()
-      id = $(e.currentTarget).attr('id').substring(3)
-      @trigger "friends:show:#{id}", this
-      @toggleLink(id)
+      actionId = $(e.currentTarget).attr('id').substring(3)
+      @trigger "friends:show:#{actionId}", this
+      @toggleLink(actionId)
+
+    # showApprovalList: (e)->
+    #   e.stopPropagation()
+    #   e.preventDefault()
+    #   id = $(e.currentTarget).attr('id').substring(3)
+    #   @trigger "show:approval:requests", this
+    #   @toggleLink(id)
 
     buildQuerySearch: (searchTerm) ->
       q:
@@ -64,9 +79,22 @@
       this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
       link.addClass("sortingMenu__item__link--active")
 
+    changedCountSent: ->
+      messageSent = "Sent (#{@model.get('pending_sent_friendships_count')})"
+      @ui.sendCount.html(messageSent)
+
+    changedCountReceived: ->
+      messageReceived = "Recieved (#{@model.get('pending_received_friendships_count')})"
+      @ui.receivedCount.html(messageReceived)
+
     changedCount: ->
-      message = "Sent #{@model.get('pending_sent_friendships_count')}"
-      @ui.sendCount.html(message)
+      console.log "here"
+      message = "Friends (#{@model.get('friends_count')})"
+      @ui.changedCount.html(message)
+
+    onRender: ()->
+      @stickit()
+
 
   API =
     getFriendsLayout: (model, tab)->

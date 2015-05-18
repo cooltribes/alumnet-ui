@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navTopSubBar__wrapper" role="navigation">
+<nav class="navbar navbar-default navTopSubBarAdmin__wrapper" role="navigation">
   <div class="container-fluid">
     <!-- Desktop and mobile header ON -->
     <div class="navbar-header">
@@ -9,15 +9,20 @@
     </div>
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(0)%>">
-          <a href="#admin/users" class="navTopSubBar__link" title="Invites">
-            <span class="navTopSubBar__icon glyphicon"></span> Browse Users
+          <a href="#admin/users" class="navTopSubBarAdmin__link" title="Invites">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Browse Users
           </a>
         </li>
         <li class="<%= @classOf(1)%>">
-          <a href="#admin/users/deleted" class="navTopSubBar__link" title="Invites">
-            <span class="navTopSubBar__icon glyphicon"></span> Deleted Users
+          <a href="#admin/users/deleted" class="navTopSubBarAdmin__link" title="Invites">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Deleted Users
+          </a>
+        </li>
+        <li class="<%= @classOf(2)%>">
+          <a href="#admin/users/stats" class="navTopSubBarAdmin__link" title="Stats">
+            Users Stats <span class="navTopSubBarAdmin__icon glyphicon glyphicon-stats"></span>
           </a>
         </li>
       </ul>

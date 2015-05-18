@@ -19,4 +19,6 @@
             data: data
             success: (model, response, options)->
               AlumNet.trigger "groups:invite", model.id
+            error: (model, response, options)->
+              $.growl.error({ message: response.responseJSON.message })
           model.save(data, options_for_save)

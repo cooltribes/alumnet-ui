@@ -9,9 +9,11 @@
     template: 'home/conversations/templates/message'
     ui:
       'markLink': '.js-mark'
+      'mensaje':'#js-mensaje'
     events:
       'click .unread': 'clickedUnReadLink'
       'click .read': 'clickedReadLink'
+      
 
     clickedReadLink: (e)->
       e.stopPropagation()
@@ -30,6 +32,9 @@
       else if @ui.markLink.hasClass('unread')
         @ui.markLink.removeClass('unread').addClass('read').html("Mark as Read")
 
+    onRender: ->
+      view = this
+      @ui.mensaje.linkify()
 
   class Conversations.ConversationsView extends Marionette.CollectionView
     template: 'home/conversations/templates/conversations_container'
@@ -40,6 +45,15 @@
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'
     childView: Conversations.MessageView
+    initialize: (options) ->
+      @recipient = options.recipient
+
+    templateHelpers: ->
+      if @recipient
+        recipient: @recipient.id
+      else
+        recipient: ''
+
     ui:
       'inputBody': '#body'
       'inputSubject': '#subject'
@@ -59,6 +73,8 @@
         @ui.selectRecipients.val('')
 
     onRender: ->
+      if @recipient
+        user_data = { id: @recipient.id, name: @recipient.get('name') }
       @ui.selectRecipients.select2
         placeholder: "Select a Friend"
         multiple: true
@@ -78,6 +94,8 @@
           data.name
         formatSelection: (data)->
           data.name
+        initSelection: (element, callback)->
+          callback(user_data) if user_data
 
   class Conversations.ReplyView extends Marionette.CompositeView
     template: 'home/conversations/templates/reply'

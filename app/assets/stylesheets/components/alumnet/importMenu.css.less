@@ -1,0 +1,40 @@
+/***
+
+APP NAME: navigationTabs	
+DESCRIPTION: tabed navigtation bar
+
+***/
+
+@import 'conf/conf.css.less';
+
+.importMenu{
+	border-bottom: 1px solid #ccc;
+	list-style: none;
+	padding:0px;
+
+	&__option{
+		padding:0 0 .7em 0;
+		border-bottom:0px;
+		&:hover{
+			border-bottom: 3px solid #677d87;
+		}
+		a{
+			color:#677d87;
+			font-size: 16px;
+			font-weight:400;
+		}
+		a:hover,a:visited,a:focus{
+			color:#677d87;
+			text-decoration:none;
+		}
+	}
+	&__option.active{
+		
+		border-bottom: 3px solid #333;
+		a{
+			color:#333;
+		}	
+	}
+
+
+}

@@ -4,12 +4,13 @@
       <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
     </div>
     <div class=" col-md-6 ">
-      <h4 class="userCard__name"><a href="#users/<%= @id %>/posts"><%= @name %></a></h4>
+      <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= @id %>/posts" title="<%= @name %>"><%= @name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @last_experience %></p>
+      <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
     </div>
     <% if @friendship_status == "sent": %>
     <div class=" col-md-3 ">
-      <a href="#" id="js-delete-friendship" title="Cancel request">
+      <a href="#" id="js-cancel-friendship" title="Cancel request">
         <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
           <span class="invitation">
             <span class="userCard__actions__text">CANCEL</span> 
@@ -30,7 +31,7 @@
             <span class="glyphicon glyphicon-ok"></span>
           </div>
         </a>
-        <a href="#" id="js-delete-friendship" title="Decline friend request">
+        <a href="#" id="js-reject-friendship" title="Decline friend request">
           <div class="userCard__actions--Decline userCard__animation">
             <span class="userCard__actions__text">REJECT</span> 
             <span class="glyphicon glyphicon-user"></span> 

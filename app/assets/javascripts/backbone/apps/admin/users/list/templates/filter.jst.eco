@@ -2,44 +2,67 @@
   <div class="col-md-3 ">
     <div class="form-group">
      <% if @first: %> <label class="control-label">Filter by</label><% end %>
-      <select name="field" class="form-control  input-lg">
+      <select name="field" class="form-control  input-lg filter_by">
         <option value="">Select field</option>
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
-
-        <!-- <option value="joined">Join date</option>
-        <option value="gender">Gender</option> -->
+        <option value="profile_residence_country_name">Country of residence</option>
+        <option value="profile_birth_country_name">Country of origin</option>
+        <option value="profile_residence_city_name">City of residence</option>
+        <option value="profile_birth_city_name">City of origin</option>
+        <option value="profile_gender">Gender</option>        
+        <option value="status">Status</option>  
+        <option value="member">Membership</option> <!-- 0-> no member, 1-> Subscription for a year, 2-> Subscription for a year (30 days left or less), 3-> Lifetime -->  
+        <!-- <option value="created_at">Joining date</option>  -->       
       </select>
       <span class="help-block"></span>
     </div>
   </div>
+
+
   <div class="col-md-2 ">
-    <div class="form-group">
-      <% if @first: %> <label class="control-label">Comparator</label><% end %>
-      <select name="comparator" class="form-control  input-lg">
-        <option value="">Select comparator</option>
-        <option value="cont_any">Contains</option>
-        <option value="in">=</option>
-        <!-- <option value="eq">Equals</option> -->
+    <div class="form-group"> 
+      <% if @first: %><label class="control-label">Comparator</label><% end %>    
+        <div name="comparator" >
+          <select  class="form-control input-lg">
+            <option value="">Select comparator</option>
+            <option value="cont_any">Contains</option>
+            <option value="in">=</option> 
+          </select> 
+        </div>
+        <span class="help-block"></span>      
+     
+    </div>
+  </div>
 
-        <!-- 
-        <option value=">">></option>
-        <option value="<"><</option>
-        <option value="<>"><></option>
-        <option value="<="><=</option>
-         -->
-         
-      </select>
-      <span class="help-block"></span>
-    </div>
-  </div>
-  <div class="col-md-3 ">
+  <div class="col-md-3 "> 
     <div class="form-group">
-      <% if @first: %> <label class="control-label" for="registerLocalcomitee">Value</label><% end %>
-      <input type="text" name="value" id="value" class="form-control input-lg">
-      <span class="help-block"></span>
+      <% if @first: %> <label class="control-label value_form" for="registerLocalcomitee">Value</label><% end %>
+      <div name="value" >
+        <input type="text"  id="value" class="form-control input-lg">    
+      </div>  
+
+       
+<!-- 
+        Date picker
+        <input type="text" value="Select date" class="form-control input-lg js-date">
+       
+
+            
+        Membership
+        <option value="0">Registrant</option> 
+        <option value="1">Member</option>     
+        <option value="2">Lifetime Member</option> -->             
     </div>
   </div>
+
+ 
+         
+        
+  
+
+
+
   <div class="col-md-2 ">
 
     <div class="form-group">

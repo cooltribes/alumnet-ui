@@ -63,11 +63,15 @@ DESCRIPTION: Specific style for the forms of AlumNet
 .btn-alert{
 	&--edit{
 		color:@gray;
-		background-color: #2b2b2b;
-		border-radius: 1px;
+		background-color: rgba(0, 0, 0, 0.3);
+		transition:1s;
+		border-radius: 0px;
 	}
 	&--edit:hover{
+
 		color:@main-blue;
+		background-color: rgba(0, 0, 0, 0.9);
+		
 	}
 	&--edit:visited{
 		text-decoration: underline;
@@ -75,4 +79,107 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	&--edit:focus{
 		text-decoration: underline;
 	}
+
+	&--rounded{
+		padding:10px;
+		border-radius: 50%;
+		font-size: 30px;
+	}
+
+}
+.btn-commentImage{
+
+		color:@white;
+		background-color: #677f8b;
+		transition:1s;
+		border-radius: 0px;
+		margin-top:-3px;
+		border:solid 1px #677f8b;		
+	&--close{
+		opacity:0.5;
+		margin-top:0px;
+	}
+	&--close:hover{
+		opacity:1;
+		color:@white;
+		background-color: #677f8b;
+	}
+}
+
+.btn-commentImage:hover{	
+
+	color:#677f8b;
+	background-color: @white;
+	border:solid 1px #677f8b;
+}
+.btn-commentImage:focus, .btn-commentImage:active, .btn-commentImage:visited{
+	color:#FFF;
+	background-color: #677f8b;
+	border:solid 1px #677f8b;
+}
+
+.btn-import{
+	border: 1px solid @main-blue;
+	color: @main-blue;
+	font-size: 14px;
+	line-height: 26px;
+	vertical-align: middle;
+	font-weight: 400;
+	padding: 10px 20px 10px 15px;
+	border-radius: 0px;
+	&--larger{
+		padding: 14px 20px 14px 15px;
+	}
+	&--active{
+		background-color: @main-blue;
+		color: @white;
+	}
+	&--active:hover{
+		color: @white !important;
+	}
+	&:hover{
+		color: @white !important;
+	}
+	span.icon-char{
+		font-size: 26px;
+		padding-right: 4px;
+	}
+}
+/* file type inpout button */
+input.uploadBox{
+	height: 60px;
+	border:solid 2px #677f8b;
+}
+input.uploadBox::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input.uploadBox::before {
+  content: 'BROWSE';
+  display: inline-block;
+  background: #677f8b;
+  border: 1px solid #999;
+  margin-top: 5px;
+  color:@white;
+  padding: 8px 10px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.btn-loginFB{
+	color: #fff;
+  background: #2099d0;
+  padding: 10px 20px;
+  position: relative;
+
+}
+.btn-loginLIN{
+  color: #2099d0;
+  background: #fff;
+  padding: 10px 20px;
+  position: relative;
+
 }

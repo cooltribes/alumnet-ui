@@ -24,6 +24,7 @@
       "selectComitees": "[name=committee_id]"
 
 
+
     events:
       "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"
@@ -45,6 +46,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+          $el.focus()
 
       @inProfile = options.inProfile ? false
 
@@ -176,9 +178,10 @@
       'btnSkip': '.js-skip'
 
     events:
-      "click @ui.btnAdd": "addExperience"
-      "click @ui.btnSubmit": "submitClicked"
-      "click @ui.btnSkip": "skipClicked"
+      'click @ui.btnAdd': 'addExperience'
+      'click @ui.btnSubmit': 'submitClicked'
+      'click @ui.btnSkip': 'skipClicked'
+      'click .js-linkedin-import': 'linkedinClicked'
 
     initialize: (options) ->
       @exp_type = options.exp_type
@@ -196,6 +199,7 @@
           false
 
     templateHelpers: ->
+      exp_type: @exp_type
       title:  =>
         @title
       skipButton: =>
@@ -212,18 +216,26 @@
 
     skipClicked: (e)->
       e.preventDefault()
-      @trigger("form:skip", @model)
+      @trigger('form:skip', @model)
 
     submitClicked: (e)->
       e.preventDefault()
-
       experiences = new Array()
 
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
+        console.log data
         itemView.model.set data
 
-      @trigger("form:submit", @model)
+      @trigger('form:submit', @model)
 
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && @exp_type == 3
+        e.preventDefault()
+        collection = @collection
+        _.each gon.linkedin_profile.experiences, (elem, index, list)->
+          contact = collection.findWhere({name: elem.name, organization_name: elem.organization_name})
+          unless contact
+            collection.add new AlumNet.Entities.ProfileContact elem
 

@@ -37,12 +37,34 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
    &__avatar{
     text-align: center;
    }
+
    &__name{
     color:@blue;
     font-size: 22px;
     margin-bottom: 5px;
 
    }
+
+   &__attending{
+      height: 60px;
+      margin-top: -10px;
+      padding: 20px 10px;
+      text-align: center;
+      color: #fff;
+      font-size: 0.7em;
+
+      &--status{
+        background-color: @light-blue;
+      }
+      &--remove{
+        background-color: @lighter-gray;
+        &:hover{
+          background-color: @light-gray;
+          text-decoration: none;
+        }
+      }
+   }
+
    &__actions{
     background-color: @light-blue;
     text-align: center;
@@ -58,6 +80,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       background-color: @light-blue;
       &:hover{
         background-color: @blue;
+      }
+
+      & span{
+        text-transform: uppercase;
       }
     }
     
@@ -98,7 +124,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         background-color: @red;
       }
     }
+
    }
+
    &__GroupAdminActions{
     position: relative;
 
@@ -162,7 +190,43 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       margin-top: 10px;
     }
    }
+  
+  &--selected
+  { 
+    border: 1px solid @main-blue;
+    background-color: lighten(@main-blue,40%);
+    h4{
+      color:#434;
+    }
+  }
+}
 
+
+.membership{
+  div{
+    background-color: @main-blue;
+    border-radius: 50px;
+    color: #ffffff;                
+    line-height: 20px;
+    vertical-align: middle;
+    padding: 3px;
+    display:inline;
+    .glyphicon{
+      font-size: 8px;
+      top:-1px;
+      &__right{
+        margin-right:2px;        
+      }
+      &__big{
+        font-size: 12px;
+        top:1px; 
+      }
+    } 
+
+  }
+  
+            
+      
 }
 
 
@@ -196,8 +260,8 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
          }
         &__actions{
             height: 100px;
-            margin-top: -10px;
             padding: 40px 0 0;
+            font-size:0.7em;
          }
         &__GroupAdminActions{
         position: relative;

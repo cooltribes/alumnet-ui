@@ -39,6 +39,17 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
+        $(window).on 'scroll' , =>
+          if $('body').scrollTop()>50
+            $('#aboutUseraffix').css
+              'position': 'fixed'
+              'width' : '184px'
+              'top' : '110px'            
+          else
+            $('#aboutUseraffix').css 
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
 
     templateHelpers: ->
       userId: AlumNet.current_user.id          

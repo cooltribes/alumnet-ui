@@ -33,8 +33,8 @@ class AuthController < ApplicationController
   end
 
   def sign_out
-    session[:auth_token] = nil
-    redirect_to root_path
+    reset_session
+    redirect_to home_path
   end
 
   private

@@ -9,7 +9,7 @@
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request('event:layout', event)
+          layout = AlumNet.request('event:layout', event, 2)
           header = AlumNet.request('event:header', event)
 
           attendances = AlumNet.request('attendance:entities', event_id)
