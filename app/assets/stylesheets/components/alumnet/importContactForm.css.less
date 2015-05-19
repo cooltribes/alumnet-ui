@@ -37,3 +37,79 @@ DESCRIPTION: Forms to impor contactas and friends
 #js-enter-contacts{
 	resize:none;
 }
+
+.listContacts{
+	list-style: none;
+  	padding: 0;
+
+  	& li{
+  		background: @lighter-gray;
+  		color: @black;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+
+  		& div{
+  			display: inline-block;
+
+  			&:nth-child(1){
+	  			width: 49%;
+	  		}
+
+	  		&:nth-child(2){
+	  			width: 50%;
+	  		}
+  		}
+  	}
+}
+
+.menbrete{
+	background-color: @blue-gray;
+  	visibility: hidden;
+  	padding: 5px 10px;
+  	color: @white;
+
+  	& div{
+		display: inline-block;
+
+		&:nth-child(1){
+		  	width: 49%;
+		}
+	  
+		&:nth-child(2){
+		  	width: 50%;
+		}
+  	}
+
+}
+
+#contacts-file{
+	z-index: 999;
+	line-height: 0;
+	font-size: 50px;
+	position: absolute;
+	opacity: 0;
+	margin: 0;
+	padding:0;
+	left:0;
+}
+.contacts-fileLabel{
+	  text-align: center;
+	  background-color: @blue;
+	  color: #fff;
+	  display: block;
+	  /* border-radius: 3px; */
+	  width: 90%;
+	  /*height: 30px;*/
+	  font-size: 18px;
+	  float: left;
+	  line-height: 1.6em;
+	  left: 5%;
+	  top: 20px;
+	  position: relative;
+	  cursor: pointer;
+}
+
+#url-archivo{
+	text-align: center;
+  	margin-top: 5px;
+}

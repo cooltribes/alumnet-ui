@@ -55,7 +55,7 @@
       description:
         required: true
         maxLength: 2048
-        msg: "Event description is required, must be less than 2048 characters"
+        msg: "Event description is required, must be less than 2048 characters long"
       start_date:
         required: true
       end_date:

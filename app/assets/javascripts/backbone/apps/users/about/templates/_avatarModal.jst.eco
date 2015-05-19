@@ -6,7 +6,7 @@
   <div class="bbm-modal__section">
     <form>
       <% if @avatar: %>
-        <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <img src="<%="#{@avatar.extralarge}?#{ new Date().getTime() }" %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
         <% else: %>
         <!-- Hacer esta imagen negra -->
         <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px">

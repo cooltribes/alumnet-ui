@@ -37,11 +37,11 @@
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'ColumnChart',
         dataTable: [
-          ['Type of Users','Users', 'Members', 'LT Members'],
+          ['Type of Users','Registrants', 'Members', 'LT Members'],
           ['Total Users', users, members, lt_members]
         ]
         options:
-          'title': 'Registrants'
+          'title': 'Users'
 
       @ui.graph_section.showAnimated(graph.render().el)
       
@@ -61,6 +61,7 @@
     bindings:
       "#js-residence-region": "location_id"   
 
+
     modelChange: (model)->
       queryCounters = model.get("query_counters")
 
@@ -72,23 +73,25 @@
         graph = new AlumNet.Utilities.GoogleChart
           chartType: 'ColumnChart',
           dataTable: [
-            ['Type of Users','Users', 'Members', 'LT Members'],
+            ['Type of Users','Registrants', 'Members', 'LT Members'],
             ['Total Users', users, members, lt_members]
           ]
           options:
-            'title': 'Registrants'
+            'title': 'Users'
 
         @ui.graph_section.showAnimated(graph.render().el)
 
     onRender: ->
-      data = AlumNet.request('get:regions:select2')
-      @ui.selectRegion.select2
-        placeholder: "Select a Region"
-        data: data
 
-      @ui.selectRegion.select2('val', @model.get('location_id')) 
+      if @model.get("canChange")
+        data = AlumNet.request('get:regions:select2')
+        @ui.selectRegion.select2
+          placeholder: "Select a Region"
+          data: data
 
-      @stickit()     
+        @ui.selectRegion.select2('val', @model.get('location_id')) 
+
+        @stickit()     
 
     modelChangeLocation: (model)->
       model.set "q",
@@ -114,6 +117,7 @@
     bindings:
       "#js-residence-countries": "location_id" 
 
+  
     modelChange: (model)->
       # if !model.hasChanged("location_id")
       # console.log "model changed"
@@ -128,24 +132,27 @@
         graph = new AlumNet.Utilities.GoogleChart
           chartType: 'ColumnChart',
           dataTable: [
-            ['Type of Users','Users', 'Members', 'LT Members'],
+            ['Type of Users','Registrants', 'Members', 'LT Members'],
             ['Total Users', users, members, lt_members]
           ]
           options:
-            'title': 'Registrants'
+            'title': 'Users'
 
         @ui.graph_section.showAnimated(graph.render().el)
         
 
     onRender: ->
-      data = CountryList.toSelect2()
-      @ui.selectResidenceCountries.select2
-        placeholder: "Select a Country"
-        data: data
 
-      @ui.selectResidenceCountries.select2('val', @model.get('location_id')) 
+      if @model.get("canChange")
+        data = CountryList.toSelect2()
+        @ui.selectResidenceCountries.select2
+          placeholder: "Select a Country"
+          data: data
 
-      @stickit()     
+        @ui.selectResidenceCountries.select2('val', @model.get('location_id')) 
+
+        @stickit()     
+      
 
     modelChangeLocation: (model)->
       model.set "q",

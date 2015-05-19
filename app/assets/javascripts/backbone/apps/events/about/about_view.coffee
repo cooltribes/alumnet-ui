@@ -82,7 +82,7 @@
           if $.trim(value) == ''
             'Event description is required, must be less than 2048 characters'
           if $.trim(value).length >= 2048  
-            'Event Description is larger than 2048 characters'  
+            'Event description is too large! Must be less than 2048 characters'  
         success: (response, newValue)->
           view.model.save({description: newValue})
       @ui.eventDescription.linkify()
