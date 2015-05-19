@@ -72,15 +72,12 @@
         m: 'and'
         profile_residence_country_id_eq: data.residence_country_id
         profile_first_name_or_profile_last_name_or_email_cont: data.search_term
-        # profile_last_name_cont: data.searchTerm
-        # email_cont: data.earchTerm
 
     formatContact: (contacts)->
       view = @
       formatedContacts = []
       _.map contacts, (contact)->
         formatedContacts.push({name: contact.fullName(), email: contact.selectedEmail()})
-      # @trigger('contacts:search', formatedContacts)
       users = new AlumNet.Entities.ContactsInAlumnet
       users.fetch
         method: 'POST'
