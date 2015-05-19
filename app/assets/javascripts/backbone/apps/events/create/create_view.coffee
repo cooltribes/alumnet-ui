@@ -106,7 +106,7 @@
 
     cancelClicked: (e)->
       e.preventDefault()
-      AlumNet.trigger 'users:posts', @group.id
+      AlumNet.trigger 'events:discover'
 
     previewImage: (e)->
       input = @.$('#event-cover')
