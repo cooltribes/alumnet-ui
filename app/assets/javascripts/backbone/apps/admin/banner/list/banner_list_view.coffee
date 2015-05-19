@@ -64,8 +64,14 @@
   class BannerList.BannerView extends Marionette.ItemView
     template: 'admin/banner/list/templates/banner'
 
+    ui:
+      'buttonUp': '#js-move-up'
+      'buttonDown':'#js-move-down'
+    
     events:  
       'click #js-deleteBanner': 'deleteBanner'
+      'click #js-move-up': 'moveUp'
+      'click #js-move-down': 'moveDown'
       'change': 'renderView'      
      
     deleteBanner: (e)->
@@ -74,6 +80,20 @@
       if resp
         @model.destroy()
         @destroy()
+
+    moveUp: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      console.log "Up"
+      @trigger 'moveBannerDown'
+
+
+    moveDown: (e)->  
+      e.preventDefault()
+      e.stopPropagation()
+      console.log "Down"
+
+
         
      
   #Vista para lista de banners
@@ -84,13 +104,15 @@
     childViewOptions: ->
       banners: @banners
     
-
     events:  
       'change': 'renderView'   
 
     renderView: ->
       @model.fetch()
-      @model.render()          
+      @model.render()   
+
+    setTime: ->
+      console.log ""         
       
 
 
