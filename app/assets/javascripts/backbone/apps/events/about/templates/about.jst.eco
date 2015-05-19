@@ -33,6 +33,12 @@
             <% end %>
           </p>
         </div>
+        <% if(@attendance_status == 'pending_payment'): %>
+          <div class="groupAbout__box margin_bottom">
+            <h3>Payment pending</h3>
+            <a href="#events/<%= @id %>/payment" class="btn btn-warning btn-lg" id="js-migrate-users">Confirm payment</a>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="col-md-4">

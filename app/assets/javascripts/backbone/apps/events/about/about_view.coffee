@@ -48,9 +48,11 @@
       admission_type: @model.get('admission_type')
       regular_price: @model.get('regular_price')
       premium_price: @model.get('premium_price')
+      id: @model.get('id')
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
+      attendance_status: @model.get('attendance_info').status
 
     ui:
       'eventDescription':'#description'

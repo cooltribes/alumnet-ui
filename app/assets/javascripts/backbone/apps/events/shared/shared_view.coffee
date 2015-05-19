@@ -70,7 +70,6 @@
       attendance: ->
         if model.get('attendance_info') then model.get('attendance_info') else false
       buttonAttendance: (id, status) ->
-        console.log(status)
         if status
           if id == "js-att-" + status.replace('_','-')
             return 'groupCoverArea__attendanceOptions--option--active'
