@@ -6,7 +6,7 @@
     defaults:
       activeSlide: false  
 
-    validation: 
+    ###validation: 
       title:
         required: true
         maxLength: 250
@@ -20,7 +20,7 @@
         maxLength: 2048
         msg: "Banner description is required, must be less than 2048 characters"
       picture:
-        required: true 
+        required: true ###
 
   class Entities.BannerCollection extends Backbone.Collection
     model: Entities.Banner
