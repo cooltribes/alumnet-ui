@@ -26,7 +26,6 @@
       "click @ui.addContact": "addContact"
       "click .smoothClick": "smoothClick"
 
-
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       $(window).on 'scroll' , =>
@@ -387,6 +386,7 @@
       @$("#js-cities").select2(@optionsForSelectCities(url))
 
     previewImage: (e)->
+      $('#url-archivo').html("File: "+$(e.target).val())
       input = @$('#profile-avatar')
       preview = @$('#preview-avatar')
       if input[0] && input[0].files[0]
