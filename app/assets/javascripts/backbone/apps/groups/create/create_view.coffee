@@ -55,6 +55,15 @@
     changedGroupType: (e)->
       select = $(e.currentTarget)
       @ui.selectJoinProcess.html(@joinOptionsString(select.val()))
+      $("#js-message-group").html(@changeMessage(select.val()))
+      
+
+    changeMessage: (option)->
+      if option=="closed"
+        'All Members can invite, but the admins approved. The group can be found in group searches.'
+      else if option == "secret"
+        'Only the admins can invite. The group can not be found in group searches.'
+      else 'Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.'
 
     joinOptionsString: (option)->
       if option == "closed"
