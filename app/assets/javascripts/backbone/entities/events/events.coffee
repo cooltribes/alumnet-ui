@@ -112,6 +112,10 @@
       query = $.extend({}, query, { status_eq: 3 })
       @fetch( data: { q: query, event_id: @event_id } )
 
+    getPendingPayment:(query) ->
+      query = $.extend({}, query, { status_eq: 4 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
   class Entities.EventContact extends Backbone.Model
 
   class Entities.EventContacts extends Backbone.Collection
