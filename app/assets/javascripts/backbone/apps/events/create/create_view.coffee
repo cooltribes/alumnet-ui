@@ -171,7 +171,10 @@
 
     clickedInvite: (e)->
       e.preventDefault()
+      @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
+      @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
       @ui.inviteLink.remove()
+      @ui.invitation.html('<span>Sending request <span class="glyphicon glyphicon-time"></span> </span>')
       attr = {user_id: @model.id, event_id: @event.id}
       attendance = AlumNet.request('attendance:new')
       view = @
@@ -183,7 +186,7 @@
       @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
       @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
       @ui.inviteLink.remove()
-      @ui.invitation.append('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
+      @ui.invitation.html('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
 
   class Create.UsersView extends Marionette.CompositeView
     template: 'events/create/templates/users_container'
