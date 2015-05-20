@@ -155,10 +155,24 @@
 
     events:
       'click @ui.changeHeader': 'changeHeader'
+      'click .navTopBarAdmin__left__item' : 'menuOptionClicked'
+
+    onShow: ->
+      $('.navTopBarAdmin__left__list li:first-child a.navTopBarAdmin__left__item').addClass "navTopBarAdmin__left__item--active"
+
+    menuOptionClicked: (e)->
+      $('.navTopBarAdmin__left__item').removeClass "navTopBarAdmin__left__item--active"
+      if $(e.target).is('i') || $(e.target).is('span')
+        if ! $(e.target).parent().hasClass 'dropdown-toggle'
+          $(e.target).parent().addClass "navTopBarAdmin__left__item--active"
+      else
+        if ! $(e.target).hasClass 'dropdown-toggle'
+          $(e.target).addClass "navTopBarAdmin__left__item--active"
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
+
     changeHeader: (e)->
       # e.preventDefault()
 

@@ -27,6 +27,8 @@
     changeAttendanceStatus: (e)->
       e.preventDefault()
       status = $(e.currentTarget).val()
+      if status == 'going' && @model.get('admission_type') == 1
+        status = 'pending_payment'
       attendance = @model.attendance
       if status
         if attendance.isNew()
@@ -36,6 +38,8 @@
           attendance.set('status', status)
           attendance.save()
       if status=='going'
+        $('#attendance-status').css('background-color','#72da9e')
+      if status=='pending_payment'
         $('#attendance-status').css('background-color','#72da9e')
         if(@model.get('admission_type') == 1)
           AlumNet.navigate('events/'+@model.id+'/payment', true)

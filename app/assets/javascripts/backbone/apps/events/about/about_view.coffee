@@ -45,6 +45,9 @@
 
     templateHelpers: ->
       capacity = @model.get('capacity')
+      admission_type: @model.get('admission_type')
+      regular_price: @model.get('regular_price')
+      premium_price: @model.get('premium_price')
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
@@ -57,12 +60,16 @@
       'startHour':'#start_hour'
       'endHour':'#end_hour'
       'capacity': '#capacity'
+      'regularPrice': '#regular_price'
+      'premiumPrice': '#premium_price'
       'Gmap': '#map'
 
     events:
       'click a#js-edit-description': 'toggleEditDescription'
       'click a#js-edit-capacity': 'toggleEditCapacity'
       'click a#js-edit-address': 'showModalLocation'
+      'click a#js-edit-regular-price': 'toggleEditRegularPrice'
+      'click a#js-edit-premium-price': 'toggleEditPremiumPrice'
 
     onRender: ->
       view = this
@@ -91,6 +98,28 @@
         success: (response, newValue)->
           newValue = parseInt(newValue)
           view.model.save({capacity: newValue})
+
+      @ui.regularPrice.editable
+        type: 'text'
+        pk: view.model.id
+        title: 'Enter price for regular users'
+        toggle: 'manual'
+        validate: (value)->
+          unless /^\d+(.\d{1,2})?$/.test(value)
+            'This field should be numeric'
+        success: (response, newValue)->
+          view.model.save({regular_price: newValue})
+
+      @ui.premiumPrice.editable
+        type: 'text'
+        pk: view.model.id
+        title: 'Enter price for premium users'
+        toggle: 'manual'
+        validate: (value)->
+          unless /^\d+(.\d{1,2})?$/.test(value)
+            'This field should be numeric'
+        success: (response, newValue)->
+          view.model.save({premium_price: newValue})
 
       @ui.startDate.Zebra_DatePicker
         show_icon: false
@@ -139,6 +168,16 @@
       modal = new About.ModalLocation
         model: @model #event
       $('#container-modal-location').html(modal.render().el)
+
+    toggleEditRegularPrice: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.regularPrice.editable('toggle')
+
+    toggleEditPremiumPrice: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.premiumPrice.editable('toggle')
 
     renderView: ->
       @model.save()

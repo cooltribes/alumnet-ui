@@ -1,44 +1,47 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
-  <div class="navTopBar__container--topAdmin container-fluid">  <!-- Top Bar -->
+  <div class="navTopBarAdmin__container container-fluid">  <!-- Top Bar -->
+  
   <div class="navbar-header col-md-2">
-    <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+    <button class="navTopBarAdmin__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="ico-menu"></span>
     </button>
-    <a class="navTopBar__left__brand navbar-brand " href="/">
+    <a class="navTopBarAdmin__left__brand navbar-brand " href="/">
       <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
     </a>
   </div>
-  <nav class="navTopBar__left collapse navbar-collapse ">
-    <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
+  <nav class="navTopBarAdmin__left collapse navbar-collapse ">
+    <ul class="navTopBarAdmin__left__list nav navbar-nav js-left-menu ">
       <!-- Left Menu top -->
       <li>
-        <a class="navTopBar__left__item" href="#admin/users">
+        <a class="navTopBarAdmin__left__item" href="#admin/users">
           <i class="icon-entypo-user"></i>
           Users
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#admin/groups">
+        <a class="navTopBarAdmin__left__item" href="#admin/groups">
           <i class="icon-entypo-share"></i>
           Groups
         </a>
       </li>
       <%% if @isAlumnetAdmin: %>
         <li>
-          <a class="navTopBar__left__item" href="#admin/regions">
+          <a class="navTopBarAdmin__left__item" href="#admin/regions">
             <i class="icon-entypo-share"></i>
             Regions
           </a>
         </li>
       <%% end %>
+      <%% if @isAlumnetAdmin: %>
       <li>
-        <a class="navTopBar__left__item" href="#admin/banner">
+        <a class="navTopBarAdmin__left__item" href="#admin/banner">
           <i class="icon-entypo-share"></i>
           Banner
         </a>
-      </li>-->
+      </li>
+      <%% end %>
     </ul>
-    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+    <ul class="navTopBarAdmin__right__list nav navbar-nav  navbar-right js-right-menu">
       <!-- Right menu top -->
       <li>
         <a href="#registration/experience" class="navTopBar__avatar " title="<%%= @name %>">
@@ -46,13 +49,13 @@
         </a>
       </li>
       <li>
-        <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
+        <a class="navTopBarAdmin__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
           <span class="icon-entypo-down-open"></span>
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
+        <ul class="navTopBarAdmin__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
 
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#posts" id="js-changeHeader">User Section</a></li>
-          <li role="presentation" class="navTopBar__dropdownMenu__divider"></li>
+          <li role="presentation" class="navTopBarAdmin__dropdownMenu__divider"></li>
           <li role="presentation">
             <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%%= @first_name %>)</a>
           </li>

@@ -59,6 +59,7 @@
 
     showInvite: (e)->
       e.preventDefault()
+      e.stopImmediatePropagation()
       current_user = AlumNet.current_user
       contacts = AlumNet.request('event:contacts', @model.id)
       AlumNet.trigger('user:event:invite', @model, contacts)
