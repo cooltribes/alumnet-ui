@@ -29,16 +29,22 @@
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       $(window).on 'scroll' , =>
-        if $('body,html').scrollTop()>500
+        if $('body').scrollTop()>500
           $('#aboutUseraffix').css
             'position': 'fixed'
             'width' : '181px'
             'top' : '110px'
         else
-          $('#aboutUseraffix').css
-            'position': 'relative'
-            'top':'0px'
-            'width':'100%'
+          if $('html').scrollTop()>500
+            $('#aboutUseraffix').css
+              'position': 'fixed'
+              'width' : '181px'
+              'top' : '110px'
+          else
+            $('#aboutUseraffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
