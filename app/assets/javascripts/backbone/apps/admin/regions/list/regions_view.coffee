@@ -20,6 +20,7 @@
 
     events:
       'click @ui.editLink': 'showModal'
+      'click #js-add-admin':'showModalAdmin'
 
     renderView: ->
       @render()
@@ -27,6 +28,13 @@
     showModal: (e)->
       e.preventDefault()
       modal = new Regions.ModalRegion
+        model: @model #region
+
+      $('#container-modal').html(modal.render().el)
+
+    showModalAdmin: (e)->
+      e.preventDefault()
+      modal = new Regions.ModalRegionAdmin
         model: @model #region
       $('#container-modal').html(modal.render().el)
 
@@ -38,6 +46,7 @@
   class Regions.ModalRegion extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_form'
     cancelEl: '#js-modal-close'
+
     initialize: (options)->
       @regionTable = options.regionTable
       Backbone.Validation.bind this,
@@ -84,9 +93,45 @@
 
     onRender: ->
       data = AlumNet.request("get:availables:countries")
-
       @.$('.js-countries').select2
         multiple: true
         placeholder: "Select a Country"
         data: data
       @.$('.js-countries').select2('data', @model.countries())
+
+  class Regions.ModalRegionAdmin extends Backbone.Modal
+    template: 'admin/regions/list/templates/modal_admins'
+    cancelEl: '#js-modal-close'
+
+    onRender: ->
+      admins=@model.get('admins')
+      console.log admins
+
+      rAdmins = admins.map (model)->
+        id: model.id
+        text: model.name
+        photo: model.avatar
+
+      users = AlumNet.request('user:entities', {})
+      users.fetch
+       success: ->
+        usersMap = users.map (model)->
+          id: model.id
+          text: model.get('name')
+          photo: model.get('avatar').small
+        console.log usersMap
+        
+
+        @.$('.js-users').select2
+          multiple: true
+          placeholder: "Select a user"
+          data:usersMap
+        @.$('.js-users').select2('data',rAdmins)
+
+        #formatResult: formatResult: (item)->
+          #if !item.id 
+           # return item.text
+          #return '<span><img src="' + item.photo + '" class="img-flag" /> ' + item.text + '</span>'
+      #@.$('.js-users').select2('data', @model.users())
+
+    

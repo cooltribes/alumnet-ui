@@ -1,0 +1,18 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Region <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="form-group">
+      <label class="control-label">Users</label>
+      <input class="js-users" type="hidden" style="width: 100%">
+      <span class="help-block"></span>
+    </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="js-modal-save">Save</a>
+  <a href="#" class="btn btn-default" id="js-modal-close">Cancel</a>
+</div>
