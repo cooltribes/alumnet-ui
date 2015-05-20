@@ -51,6 +51,9 @@
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)
 
+  AlumNet.on "events:discover", ->
+    API.discoverEvents()
+
   AlumNet.addInitializer ->
     new EventsApp.Router
       controller: API
