@@ -1,5 +1,5 @@
 @AlumNet.module 'AdminApp.BannerList', (BannerList, @AlumNet, Backbone, Marionette, $, _) ->
-  
+
   class BannerList.Layout extends Marionette.LayoutView
     template: 'admin/banner/list/templates/layout'
     className: 'container'
@@ -12,6 +12,7 @@
     template: 'admin/banner/list/templates/createBanner'
 
     initialize: (options)->
+      @collection = options.collection
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -22,21 +23,22 @@
           $el = view.$("[name=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
-          $group.find('.help-block').html(error).removeClass('hidden')  
+          $group.find('.help-block').html(error).removeClass('hidden')
 
     events:
       'change #BannerImg': 'previewImage'
       'click #js-addBanner': 'addBanner'
 
-    addBanner: (e)->  
-      e.preventDefault()     
+    addBanner: (e)->
+      e.preventDefault()
+      view = @
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
         formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
-      @model.set(data)            
+      @model.set(data)
       if @model.isValid(true)
         options_for_save =
           wait: true
@@ -44,11 +46,9 @@
           processData: false
           data: formData
           success: (model, response, options)->
-            console.log "success"   #               <------
+            view.collection.add(model)
         @model.save(formData, options_for_save)
-        @render()
-        
- 
+
     previewImage: (e)->
       input = @.$('#BannerImg')
       preview = @.$('#preview-banner')
@@ -67,19 +67,18 @@
     ui:
       'buttonUp': '#js-move-up'
       'buttonDown':'#js-move-down'
-    
-    events:  
+
+    events:
       'click #js-deleteBanner': 'deleteBanner'
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
-      'change': 'renderView'      
-     
+      'change': 'renderView'
+
     deleteBanner: (e)->
       e.preventDefault()
       resp = confirm("Are you sure?")
       if resp
         @model.destroy()
-        @destroy()
 
     moveUp: (e)->
       e.preventDefault()
@@ -88,34 +87,29 @@
       @trigger 'moveBannerDown'
 
 
-    moveDown: (e)->  
+    moveDown: (e)->
       e.preventDefault()
       e.stopPropagation()
       console.log "Down"
 
 
-        
-     
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
-    childViewOptions: ->
-      banners: @banners
-    
-    events:  
-      'change': 'renderView'   
+
+    events:
+      'change': 'renderView'
 
     renderView: ->
       @model.fetch()
-      @model.render()   
+      @model.render()
 
     setTime: ->
-      console.log ""         
-      
+      console.log ""
 
 
-      
- 
-    
+
+
+
