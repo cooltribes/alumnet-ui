@@ -30,6 +30,7 @@
 
     addBanner: (e)->  
       e.preventDefault()     
+      view = @
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
@@ -44,7 +45,8 @@
           processData: false
           data: formData
           success: (model, response, options)->
-            console.log "success"   #               <------
+            console.log "success"
+            view.collection.add(model)   
         @model.save(formData, options_for_save)
         @render()
         
@@ -76,11 +78,12 @@
      
     deleteBanner: (e)->
       e.preventDefault()
+      e.stopPropagation()
       resp = confirm("Are you sure?")
       if resp
         @model.destroy()
-        @destroy()
-
+        console.log "destroyed"
+        
     moveUp: (e)->
       e.preventDefault()
       e.stopPropagation()
@@ -101,9 +104,10 @@
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
-    childViewOptions: ->
-      banners: @banners
-    
+
+    initialize: (options) ->
+      console.log options
+
     events:  
       'change': 'renderView'   
 

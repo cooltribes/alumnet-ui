@@ -11,7 +11,8 @@
         collection: bannerCollection
       createBanner = new BannerList.CreateView
         model: new AlumNet.Entities.Banner
-        view: this
+        collection: bannerCollection
+        
 
       AlumNet.execute('render:admin:banner:submenu', undefined, 0)
       
