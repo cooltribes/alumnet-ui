@@ -1,4 +1,4 @@
-<div class="main-events-area">
+<div class="row main-events-area">
   <h3 class="overfloadText">Event: <%= @name %></h3>
   <div class="">
     <div class="form-group">
