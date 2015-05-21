@@ -15,8 +15,8 @@
           <label class="createBanner__label" for="content">Content:</label>
          <textarea class="form-control" rows="3" for="content" placeholder="Enter the content" disabled></textarea>
         </div>
-        <span class="createBanner__flecha glyphicon glyphicon-download"></span>
-        <span class="createBanner__flecha glyphicon glyphicon-upload"></span>
+        <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
+        <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
    </form>
   </div>
   <div class="col-md-5">
