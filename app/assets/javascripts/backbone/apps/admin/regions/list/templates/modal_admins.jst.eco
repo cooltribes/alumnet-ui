@@ -6,7 +6,7 @@
   <form>
     <div class="form-group">
       <label class="control-label">Users</label>
-      <input class="js-users" type="hidden" style="width: 100%">
+      <input class="js-users" type="hidden" name="users" style="width: 100%">
       <span class="help-block"></span>
     </div>
   </form>

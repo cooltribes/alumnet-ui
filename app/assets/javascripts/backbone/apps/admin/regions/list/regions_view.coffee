@@ -22,7 +22,12 @@
       'click @ui.editLink': 'showModal'
       'click #js-add-admin':'showModalAdmin'
 
+    modelEvents:
+      'updateView':'renderView'
+
     renderView: ->
+      console.log "render view"
+      console.log @model
       @render()
 
     showModal: (e)->
@@ -102,25 +107,76 @@
   class Regions.ModalRegionAdmin extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_admins'
     cancelEl: '#js-modal-close'
+    submitEl: "#js-modal-save"
+
+    submit: ()->
+      model=@model
+      oldAdmins=model.get('admins').map (model)->
+        id: model.id
+      Admins=Backbone.Syphon.serialize(this)
+      newAdmins=Admins.users.split(',')
+      idRegion = @model.id
+      
+      $.each newAdmins, (v,id)->
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
+        Backbone.ajax
+          url:url
+          type: "PUT"
+          data: 
+            role:"regional"
+            admin_location_id:idRegion
+          error: (data) =>
+            text = data.responseJSON[0]
+            $.growl.error({ message: text })
+
+      $.each oldAdmins, (v,oldId)->
+        aux=false
+        for id in newAdmins
+          if oldId.id==parseInt(newAdmins)
+            aux=true
+            break
+        if aux == false
+          url = AlumNet.api_endpoint + "/admin/users/#{oldId.id}/change_role"
+          Backbone.ajax
+            url:url
+            type: "PUT"
+            data: 
+              role:"regular"
+              admin_location_id:1
+      
+      model.fetch
+        success: ->
+          model.trigger('updateView')  
+
+      #  url = AlumNet.api_endpoint + "/admin/users/#{ids}/change_role"
+      #  Backbone.ajax
+      #    url:url
+      #    type: "PUT"
+      #    data: 
+      #      role:"regional"
+      #      admin_location_id:idRegion
+      #    error: (data) =>
+      #      text = data.responseJSON[0]
+      #      $.growl.error({ message: text })
+      #model.fetch
+      #  success: ->
+      #    model.trigger('updateView')
+
+
 
     onRender: ->
       admins=@model.get('admins')
-      console.log admins
-
       rAdmins = admins.map (model)->
         id: model.id
         text: model.name
         photo: model.avatar
-
       users = AlumNet.request('user:entities', {})
       users.fetch
        success: ->
         usersMap = users.map (model)->
           id: model.id
           text: model.get('name')
-          photo: model.get('avatar').small
-        console.log usersMap
-        
+          photo: model.get('avatar').small      
 
         @.$('.js-users').select2
           multiple: true
@@ -132,6 +188,3 @@
           #if !item.id 
            # return item.text
           #return '<span><img src="' + item.photo + '" class="img-flag" /> ' + item.text + '</span>'
-      #@.$('.js-users').select2('data', @model.users())
-
-    
