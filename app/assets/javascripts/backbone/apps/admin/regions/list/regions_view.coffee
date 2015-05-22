@@ -148,21 +148,7 @@
         success: ->
           model.trigger('updateView')  
 
-      #  url = AlumNet.api_endpoint + "/admin/users/#{ids}/change_role"
-      #  Backbone.ajax
-      #    url:url
-      #    type: "PUT"
-      #    data: 
-      #      role:"regional"
-      #      admin_location_id:idRegion
-      #    error: (data) =>
-      #      text = data.responseJSON[0]
-      #      $.growl.error({ message: text })
-      #model.fetch
-      #  success: ->
-      #    model.trigger('updateView')
-
-
+    deleteAdmins: ()->
 
     onRender: ->
       admins=@model.get('admins')
@@ -183,8 +169,3 @@
           placeholder: "Select a user"
           data:usersMap
         @.$('.js-users').select2('data',rAdmins)
-
-        #formatResult: formatResult: (item)->
-          #if !item.id 
-           # return item.text
-          #return '<span><img src="' + item.photo + '" class="img-flag" /> ' + item.text + '</span>'
