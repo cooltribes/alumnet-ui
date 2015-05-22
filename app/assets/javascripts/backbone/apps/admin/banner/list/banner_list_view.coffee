@@ -77,13 +77,11 @@
       'click #js-move-down': 'moveDown'
       'click @ui.uploadBanner': 'uploadClicked'
     
-    modelEvents:
-      'change:banner': 'bannerChanged'
+    #modelEvents:
+      #'change:banner': 'bannerChanged'
 
 
     coverChanged: ->
-      # cover = @model.get('cover')
-      # @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
       view = @
       @model.fetch
         success: (model)->
