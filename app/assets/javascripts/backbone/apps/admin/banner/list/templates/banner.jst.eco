@@ -1,5 +1,5 @@
 <hr>
-<h2>BANNER</h2>
+<h2>BANNER <%= @id %></h2>
 <div class="row">
   <div class="col-md-7">
     <form>
@@ -22,7 +22,7 @@
   <div class="col-md-5">
     <form>
       <div class="form-group">
-        <img class="createBanner__img"  src="<%= @picture.main %>" >
+        <img class="createBanner__img"  src="<%= @picture.main %>"><a id="js-upload-banner" class="ico-edit createBanner__btnEdit">Edit</a></img>
       </div>
     </form>
        <a href="#" class="createBanner__btn createBanner__btnDelete" title="Delete banner" id="js-deleteBanner">Delete Banner</a>
