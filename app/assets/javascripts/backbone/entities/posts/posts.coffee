@@ -47,8 +47,28 @@
       @set('likes_count', count - 1)
       @set('you_like', false)
 
-  class Entities.PostCollection extends Backbone.Collection
+
+  #For infinite pagination
+  # class Entities.PageablePostCollection extends Backbone.Collection
+  #   model: Entities.Post
+
+
+  # class Entities.PostCollection extends Backbone.Collection
+  class Entities.PostCollection extends Backbone.PageableCollection
     model: Entities.Post
+
+    #Overriding method for Infinite pagination
+    parseLinks: (resp, xhr)->      
+      response = 
+        # first: ""
+        # prev: ""
+        next: "algo"
+        # first: "hola"
+        # prev: "previous"
+        # next: "http://nelsoncxcs.com/Adf"
+      # {}
+      # return resp.comments.paging;
+  
 
   API =
     getNewPostForEvent: (event_id)->
