@@ -70,7 +70,6 @@
       attendance: ->
         if model.get('attendance_info') then model.get('attendance_info') else false
       buttonAttendance: (id, status) ->
-        console.log(status)
         if status
           if id == "js-att-" + status.replace('_','-')
             return 'groupCoverArea__attendanceOptions--option--active'
@@ -105,10 +104,13 @@
 
     updateAttendance: (e)->
       $('.groupCoverArea__attendanceOptions--option').removeClass 'groupCoverArea__attendanceOptions--option--active'
-      $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
+      
       value = $(e.currentTarget).data('value')
       if value == 'going' && @model.get('admission_type') == 1
         value = 'pending_payment'
+        $('#js-att-pending-payment').addClass 'groupCoverArea__attendanceOptions--option--active'
+      else
+        $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
       attendance = @model.attendance
       if attendance.isNew()
         values = { event_id: @model.id, user_id: AlumNet.current_user.id, status: value }

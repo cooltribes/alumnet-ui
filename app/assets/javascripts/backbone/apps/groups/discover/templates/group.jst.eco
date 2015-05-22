@@ -18,7 +18,7 @@
         <ul class="groupCard__menu__list">
           <% _.each @children, (child)->: %>
           <li class="groupCard__menu__item">
-            <a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
+            <a href="#groups/<%= child.id %>/posts" title="<%= child.name %>" ><%= child.name %></a>
             <span class="icon-entypo-list pull-right"></span>
           </li>
           <% end %>

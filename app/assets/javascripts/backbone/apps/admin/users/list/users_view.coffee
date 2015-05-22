@@ -120,6 +120,7 @@
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
+      console.log data
       id = @model.id
       url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
       Backbone.ajax
