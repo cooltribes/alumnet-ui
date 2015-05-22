@@ -43,7 +43,7 @@
 				<ul class="groupTableView__SubGroupList">
         			<% _.each @children, (child)->: %>
           			<li >
-            			<a href="#groups/<%= child.id %>/posts" title="Subgroup name" ><%= child.name %></a>
+            			<a href="#groups/<%= child.id %>/posts" title="<%= child.name %>" ><%= child.name %></a>
             			<span class="icon-entypo-list pull-right"></span>
           			</li>
         			<% end %>

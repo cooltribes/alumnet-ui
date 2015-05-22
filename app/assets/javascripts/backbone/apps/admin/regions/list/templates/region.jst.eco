@@ -66,7 +66,7 @@
       <% end %>  
     </ul>
   <% end %> 
-  <!--<h4>
-    <a href="#" class="groupPost__btn--comment js-edit" title="Edit Region" id="js-new-region">+ Add Admin</a>
-  </h4>-->
+  <h4>
+    <a href="#" class="groupPost__btn--comment" title="Edit Region" id="js-add-admin">+ Add Admin</a>
+  </h4>
 </td>
