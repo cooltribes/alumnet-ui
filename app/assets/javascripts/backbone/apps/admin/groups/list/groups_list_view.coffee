@@ -70,6 +70,7 @@
     template: 'admin/groups/list/templates/groups_table'
     childView: GroupsList.GroupView
     childViewContainer: "#groups-table tbody"
+    
     initialize: (options)->
       @linksGroups = options.linksGroups
 
@@ -89,6 +90,7 @@
       @trigger 'groups:bc', index, subgroups
 
     groupsHome: (e)->
+      console.log "hola xD" 
       e.preventDefault()
       @trigger 'groups:home'
 

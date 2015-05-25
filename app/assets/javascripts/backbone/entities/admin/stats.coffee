@@ -7,6 +7,8 @@
       graphType: 0
       q: ""
       location_id: 0
+      location_name: ""
+      canChange: true
 
     events:
       "change:location_id": "changeLocation"  
@@ -27,12 +29,6 @@
         #   @set "q",
         #     profile_residence_country_region_id_eq: options.region_id
         # #query for country of residence
-
-    changeLocation: ->
-      console.log "nelson"  
-      console.log @get "location_id"    
-
-
 
   
   class Entities.UserStatsCollection extends Backbone.Collection

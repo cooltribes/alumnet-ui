@@ -26,7 +26,7 @@
       <% end %>
     </ul>
   </div>
-  <% if @userIsAdmin: %>
+  <% if @userIsAdmin || @event_type.text=="open": %>
     <div class="col-md-3 text-right">
       <a href="#" id="js-invite-event" class="btn-primary-noBackground btn" title="Add people to group">+ Invite people to event</a>
     </div>

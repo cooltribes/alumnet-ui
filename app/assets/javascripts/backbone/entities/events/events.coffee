@@ -55,7 +55,7 @@
       description:
         required: true
         maxLength: 2048
-        msg: "Event description is required, must be less than 2048 characters"
+        msg: "Event description is required, must be less than 2048 characters long"
       start_date:
         required: true
       end_date:
@@ -110,6 +110,10 @@
 
     getNotGoing:(query) ->
       query = $.extend({}, query, { status_eq: 3 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
+    getPendingPayment:(query) ->
+      query = $.extend({}, query, { status_eq: 4 })
       @fetch( data: { q: query, event_id: @event_id } )
 
   class Entities.EventContact extends Backbone.Model

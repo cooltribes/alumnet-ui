@@ -16,9 +16,30 @@
         <h3>Description</h3>
         <p href="#" id="description" class="js-attribute"><%= @description %></p>
         <% if @canEditInformation: %>
-        <a href="#" id="js-edit-description">[edit]</a>
-         <% end %>
+          <a href="#" id="js-edit-description">[edit]</a>
+        <% end %>
       </div>
+      <% if(@admission_type == 1): %>
+        <div class="groupAbout__box margin_bottom">
+          <h3>Price</h3>
+          <p href="#">Regular price ($): <span id="regular_price" class="js-attribute"><%= @regular_price %></span>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-regular-price">[edit]</a>
+            <% end %>
+          </p>
+          <p href="#">Premium price ($): <span id="premium_price" class="js-attribute"><%= @premium_price %></span>
+            <% if @canEditInformation: %>
+              <a href="#" id="js-edit-premium-price">[edit]</a>
+            <% end %>
+          </p>
+        </div>
+        <% if(@attendance_status == 'pending_payment'): %>
+          <div class="groupAbout__box margin_bottom">
+            <h3>Payment pending</h3>
+            <a href="#events/<%= @id %>/payment" class="btn btn-warning btn-lg" id="js-migrate-users">Confirm payment</a>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-md-4">
       <div class="row">

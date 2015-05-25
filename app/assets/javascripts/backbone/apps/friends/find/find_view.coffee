@@ -78,6 +78,26 @@
     events:
       'click .js-search': 'performSearch'
 
+    onShow: ->
+      view = @
+      ((url)->
+        script = document.createElement('script')
+        m = document.getElementsByTagName('script')[0]
+        script.async = 1
+        script.src = url
+        m.parentNode.insertBefore(script, m)
+      )('//api.cloudsponge.com/widget/2b05ca85510fb736f4dac18a06b9b6a28004f5fa.js')
+      window.csPageOptions =
+        skipSourceMenu: true
+        initiallySelectedContacts: true
+        afterInit: ->
+          links = document.getElementsByClassName('delayed');
+          for link in links
+            link.href = '#'
+        beforeDisplayContacts: (contacts, source, owner)->
+          view.formatContact(contacts)
+          false
+
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
@@ -89,3 +109,15 @@
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
+
+    formatContact: (contacts)->
+      view = @
+      formatedContacts = []
+      _.map contacts, (contact)->
+        formatedContacts.push({name: contact.fullName(), email: contact.selectedEmail()})
+      users = new AlumNet.Entities.ContactsInAlumnet
+      users.fetch
+        method: 'POST'
+        data: { contacts: formatedContacts }
+        success: (collection)->
+          view.collection.set(collection.models)

@@ -17,10 +17,6 @@
       controller.showAbout(id)
 
     postsEvent: (id)->
-      event = AlumNet.request('event:find', id)
-      #if event.admission_type == 1 && event.get('attendance_info')
-      console.log('Event this: ')
-      console.log(event.get('attendance_info'))
       controller = new EventsApp.Posts.Controller
       controller.showPosts(id)
 
@@ -54,6 +50,9 @@
 
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)
+
+  AlumNet.on "events:discover", ->
+    API.discoverEvents()
 
   AlumNet.addInitializer ->
     new EventsApp.Router

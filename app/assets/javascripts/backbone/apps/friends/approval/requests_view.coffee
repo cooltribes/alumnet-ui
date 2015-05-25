@@ -1,4 +1,8 @@
 @AlumNet.module 'FriendsApp.Approval', (Approval, @AlumNet, Backbone, Marionette, $, _) ->
+  
+  class Approval.EmptyView extends Marionette.ItemView
+    template: 'friends/approval/templates/empty'    
+
   class Approval.RequestView extends Marionette.ItemView
     template: 'friends/approval/templates/request'
     tagName: 'div'
@@ -20,3 +24,4 @@
   class Approval.RequestsView extends Marionette.CompositeView
     template: 'friends/approval/templates/requests_container'
     childView: Approval.RequestView
+    emptyView: Approval.EmptyView

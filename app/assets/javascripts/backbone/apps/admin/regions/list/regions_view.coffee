@@ -20,13 +20,26 @@
 
     events:
       'click @ui.editLink': 'showModal'
+      'click #js-add-admin':'showModalAdmin'
+
+    modelEvents:
+      'updateView':'renderView'
 
     renderView: ->
+      console.log "render view"
+      console.log @model
       @render()
 
     showModal: (e)->
       e.preventDefault()
       modal = new Regions.ModalRegion
+        model: @model #region
+
+      $('#container-modal').html(modal.render().el)
+
+    showModalAdmin: (e)->
+      e.preventDefault()
+      modal = new Regions.ModalRegionAdmin
         model: @model #region
       $('#container-modal').html(modal.render().el)
 
@@ -38,6 +51,7 @@
   class Regions.ModalRegion extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_form'
     cancelEl: '#js-modal-close'
+
     initialize: (options)->
       @regionTable = options.regionTable
       Backbone.Validation.bind this,
@@ -83,13 +97,75 @@
             modal.destroy()
 
     onRender: ->
-      data = if @model.isNew()
-        AlumNet.request("get:availables:countries")
-      else
-        CountryList.toSelect2()
-
+      data = AlumNet.request("get:availables:countries")
       @.$('.js-countries').select2
         multiple: true
         placeholder: "Select a Country"
         data: data
       @.$('.js-countries').select2('data', @model.countries())
+
+  class Regions.ModalRegionAdmin extends Backbone.Modal
+    template: 'admin/regions/list/templates/modal_admins'
+    cancelEl: '#js-modal-close'
+    submitEl: "#js-modal-save"
+
+    submit: ()->
+      model=@model
+      oldAdmins=model.get('admins').map (model)->
+        id: model.id
+      Admins=Backbone.Syphon.serialize(this)
+      newAdmins=Admins.users.split(',')
+      idRegion = @model.id
+      
+      $.each newAdmins, (v,id)->
+        url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
+        Backbone.ajax
+          url:url
+          type: "PUT"
+          data: 
+            role:"regional"
+            admin_location_id:idRegion
+          error: (data) =>
+            text = data.responseJSON[0]
+            $.growl.error({ message: text })
+
+      $.each oldAdmins, (v,oldId)->
+        aux=false
+        for id in newAdmins
+          if oldId.id==parseInt(newAdmins)
+            aux=true
+            break
+        if aux == false
+          url = AlumNet.api_endpoint + "/admin/users/#{oldId.id}/change_role"
+          Backbone.ajax
+            url:url
+            type: "PUT"
+            data: 
+              role:"regular"
+              admin_location_id:1
+      
+      model.fetch
+        success: ->
+          model.trigger('updateView')  
+
+    deleteAdmins: ()->
+
+    onRender: ->
+      admins=@model.get('admins')
+      rAdmins = admins.map (model)->
+        id: model.id
+        text: model.name
+        photo: model.avatar
+      users = AlumNet.request('user:entities', {})
+      users.fetch
+       success: ->
+        usersMap = users.map (model)->
+          id: model.id
+          text: model.get('name')
+          photo: model.get('avatar').small      
+
+        @.$('.js-users').select2
+          multiple: true
+          placeholder: "Select a user"
+          data:usersMap
+        @.$('.js-users').select2('data',rAdmins)

@@ -90,6 +90,8 @@
           success: (data) =>
             console.log("success")
             console.log(data)
+            if(not data.success)
+              $.growl.error({ message: data.message })
           error: (data) =>
             console.log("error")
             console.log(data)
@@ -146,7 +148,7 @@
           if $.trim(value) == ''
             'Group description is required, must be less than 2048 characters'
           if $.trim(value).length >= 2048  
-            'Group Description is larger than 2048 characters'                           
+            'Group description is too large! Must be less than 2048 characters'                 
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
       @ui.groupDescription.linkify()

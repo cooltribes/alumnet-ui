@@ -12,12 +12,18 @@ class PaymentwallController < ApplicationController
     @end = nil
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
+    #render :text => @pingback.getParameter('payment_type')
     @user_id = @pingback.getParameter('uid')
     @reference = @pingback.getParameter('ref')
+    @event_id = @pingback.getParameter('event_id')
 
     #if @pingback.validate()
       if(@pingback.getParameter('payment_type') == 'event')
-        render :text => "Event"+@pingback.getParameter('ag_name')
+        payment = EventPayment.new
+        @data_text = { :user_id => @user_id, :price => @pingback.getParameter('amount'), :event_id => @pingback.getParameter('event_id'), :attendance_id => @pingback.getParameter('attendance_id'), :reference => @reference }.to_json
+        payment.create(JSON.parse(@data_text), session, @event_id)
+        @response = payment.response
+        render :text => "OK"
       else
         if(@pingback.getParameter('type') == '0')
           if(@pingback.getParameter('goodsid') == '222')
@@ -26,21 +32,18 @@ class PaymentwallController < ApplicationController
             @end = DateTime.now + 1.year
           end
         end
-      end
-      subscription = Subscription.new
-      @data_text = { :user_id => @user_id, :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @user_id, :reference => @reference }.to_json
-      @user_text = { :member => 1 }.to_json
-      subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text), @user_id)
-      @response = subscription.response
-      @response_user = subscription.response_user
+        subscription = Subscription.new
+        @data_text = { :user_id => @user_id, :begin => DateTime.now, :lifetime => @lifetime, :end => @end, :creator_id => @user_id, :reference => @reference }.to_json
+        @user_text = { :member => 1 }.to_json
+        subscription.create(JSON.parse(@data_text), session, JSON.parse(@user_text), @user_id)
+        @response = subscription.response
+        @response_user = subscription.response_user
 
-      render :text => "OK"
+        render :text => "OK"
+      end
     #else
       #@response = @pingback.getErrorSummary()
       #puts @pingback.getErrorSummary()
     #end
   end
 end
-
-
-

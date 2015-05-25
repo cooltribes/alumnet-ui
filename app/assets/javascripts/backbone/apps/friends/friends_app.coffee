@@ -6,7 +6,7 @@
       "friends/contacts": "importContacts"
       "friends/networks": "importNetworks"
       "friends": "listFriends"
-      # "friends/received": "receivedRequests"
+      "approval-requests": "myApproval"
       # "friends/sent": "sentRequests"
 
   API =
@@ -32,9 +32,9 @@
       controller = new FriendsApp.Requests.Controller
       controller.showMyReceived(layout)
 
-    myApproval: (layout)->
+    myApproval: ()->
       controller = new FriendsApp.Approval.Controller
-      controller.showReceived(layout)
+      controller.showReceived()
 
     userFriends: (layout, id)->
       controller = new FriendsApp.List.Controller
@@ -68,8 +68,8 @@
   AlumNet.on "my:friends:received", (layout)->
     API.myReceived(layout)
 
-  AlumNet.on "my:approval:requests", (layout)->
-    API.myApproval(layout)
+  # AlumNet.on "my:approval:requests", (layout)->
+  #   API.myApproval(layout)
 
   AlumNet.on "user:friends:get", (layout, id)->
     API.userFriends(layout, id)

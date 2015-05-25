@@ -17,6 +17,20 @@
 		<div class="col-md-10">
 			<h3>Find 3 People</h3>
 			<p>Who can confirm that you are an AISEC Alumni</p >
+			<div id="byService" class="importContactForm margin_top text-center">
+			  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
+			    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
+			  </a>
+			  <a class="deep-link delayed" onclick="return cloudsponge.launch('yahoo');">
+			    <%= image_tag("social_contacts/yahoo.png", alt: "Yahoo") %>
+			  </a>
+			  <a class="deep-link delayed" onclick="return cloudsponge.launch('windowslive');">
+			    <%= image_tag("social_contacts/outlook.com.png", alt: "Windows Live") %>
+			  </a>
+			  <a class="deep-link delayed" onclick="return cloudsponge.launch('gmail');">
+			    <%= image_tag("social_contacts/gmail.png", alt: "Gmail") %>
+			  </a>
+			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label">Search by name</label>
 				<input type="text" class="form-control input-lg" placeholder="Write a name or email" name="search_term" id="search_term">
@@ -27,14 +41,14 @@
 					<div class="form-group">
 						<label class="control-label">Search by Country</label>
 						<div class="formANet__select">
-			        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">							
+			        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 text-right">
 				  <div class="form-group padding_top_small">
-							<button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>		
+							<button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
 					</div>
 			  </div>
 
@@ -46,10 +60,10 @@
 			<hr>
 			<h3>Results</h3>
 			<div class="users-list">
-				
+
 			</div>
-			
-			
+
+
 			<!-- <button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button> -->
 		</div>
 	</div>
@@ -63,7 +77,7 @@
 			<h3 >Didnt find anyone?</h3>
 			<p class="lead" >Ask an administrator to approve you manually</p>
 			<div class="js-buttonContainer">
-				<button class="btn btn-primary btn-lg text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>				
+				<button class="btn btn-primary btn-lg text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
 			</div>
 		</div>
 	</div>

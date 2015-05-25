@@ -38,9 +38,6 @@
 				  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
 				    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
 				  </a>
-				  <a class="deep-link delayed" onclick="return cloudsponge.launch('facebook');">
-				    <%= image_tag("social_contacts/facebook.png", alt: "Facebook") %>
-				  </a>
 				  <a class="deep-link delayed" onclick="return cloudsponge.launch('yahoo');">
 				    <%= image_tag("social_contacts/yahoo.png", alt: "Yahoo") %>
 				  </a>
@@ -59,12 +56,32 @@
 					<p class="text-center">
 						<a href="#"><small>Learn how to create a contact file »</small></a>
 					</p>
+					<div class="menbrete">
+						<div >Nombre</div>
+						<div >Correo</div>
+					</div>
+
+					<ul id="js-contacts-list" class="listContacts">
+					</ul>
 					<div class="margin_top_small uploadFileBox">
-						<input class="form-control" type="file" name="file" id="contacts-file">
+						<label class="contacts-fileLabel">
+							<span class="glyphicon glyphicon-open">
+							<span>Upload file</span>
+							<input class="form-control" type="file" name="file" id="contacts-file">
+						</label>
+					</div>
+					<div id="url-archivo">
+
 					</div>
 					<div class="margin_top text-center">
 						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-file">
 							SEND FILE
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-submit-array" style="display:none">
+							SEND CONTACTS
+						</a>
+						<a class="btn btn-lg btn-import btn-import--active" id="js-cancel">
+							CANCEL
 						</a>
 					</div>
 				</form>

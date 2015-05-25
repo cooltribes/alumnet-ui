@@ -26,7 +26,6 @@
       "click @ui.addContact": "addContact"
       "click .smoothClick": "smoothClick"
 
-
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       $(window).on 'scroll' , =>
@@ -36,10 +35,16 @@
             'width' : '181px'
             'top' : '110px'
         else
-          $('#aboutUseraffix').css
-            'position': 'relative'
-            'top':'0px'
-            'width':'100%'
+          if $('html').scrollTop()>500
+            $('#aboutUseraffix').css
+              'position': 'fixed'
+              'width' : '181px'
+              'top' : '110px'
+          else
+            $('#aboutUseraffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -76,7 +81,7 @@
         type: 2
       @ui.modalCont.html(modal.render().el)
 
-    #onRender: ->    
+    #onRender: ->
     #   $('#aboutUseraffix').affix({
     #     offset: {
     #       top: 100,
@@ -200,7 +205,7 @@
 
     onShow: ->
       model = @model
-      image = @model.get('avatar').original
+      image = @model.get('avatar').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropData: { "image": 'avatar' }
@@ -219,7 +224,7 @@
 
     onShow: ->
       model = @model
-      image = @model.get('cover').original
+      image = @model.get('cover').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropData: { "image": 'cover' }
@@ -387,6 +392,7 @@
       @$("#js-cities").select2(@optionsForSelectCities(url))
 
     previewImage: (e)->
+      $('#url-archivo').html("File: "+$(e.target).val())
       input = @$('#profile-avatar')
       preview = @$('#preview-avatar')
       if input[0] && input[0].files[0]
