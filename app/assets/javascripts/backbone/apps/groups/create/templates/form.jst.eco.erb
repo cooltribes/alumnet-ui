@@ -5,9 +5,22 @@
         <h1 class="textColor--blue ">Create a new Group</h1>
         <!-- ROW 1 ON -->
         <div class="row">
-          <div class="col-md-6 text-center">
-            <div class="add-cover-photo">
-              <%= image_tag("groups/uploadCover.png", alt: "Upload cover", width: "100%", id: "preview-cover") %>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Group's cover</label>
+              <div class="add-cover-photo">
+                <label class="uploadFile uploadFile--cover">
+                  <div class="uploadFile--img">
+                      <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
+                  </div>
+                  <div class="uploadFile--text">
+                    <span class="glyphicon glyphicon-open"></span>
+                    <span>Upload cover photo</span>
+                    <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+                  </div>
+                  <input type="file" name="cover" id="group-cover">
+                </label>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -22,14 +35,9 @@
               <label class="control-label">Group's Description</label>
 
               <textarea name="description" id="group-description"
-              class="form-control input-lg" rows="4" style="resize:none"></textarea>
+              class="form-control input-lg" rows="5" style="resize:none"></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
 
-            </div>
-            <div class="form-group">
-              <label class="control-label">Group's cover</label>
-              <input type="file" name="cover"  id="group-cover" >
-              <span class="help-block"></span>
             </div>
           </div>
         </div>

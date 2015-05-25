@@ -23,6 +23,17 @@ DESCRIPTION: Specific style for the forms of AlumNet
   	cursor: pointer;
   	padding: 5px;
 
+  	&--img{
+  		position: relative;
+  		z-index: 2;
+  	}
+
+  	& small{
+  		display: block;
+		font-size: 0.5em;
+		margin-top: 2px;
+  	}
+
   	&--cover{
   		padding: 0;
   		left: 0;
@@ -32,9 +43,11 @@ DESCRIPTION: Specific style for the forms of AlumNet
 
   	&--text{
   		color: #fff;
-  		top: -120px;
+  		top: -140px;
   		font-weight: 700;
   		font-size: 1.7em;
+  		position: relative;
+  		z-index: 3;
   	}
 
 	& input{
