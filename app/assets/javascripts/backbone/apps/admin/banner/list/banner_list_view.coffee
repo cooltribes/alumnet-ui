@@ -80,7 +80,6 @@
     #modelEvents:
       #'change:banner': 'bannerChanged'
 
-
     coverChanged: ->
       view = @
       @model.fetch
