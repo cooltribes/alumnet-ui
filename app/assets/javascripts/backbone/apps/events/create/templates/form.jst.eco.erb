@@ -5,9 +5,19 @@
         <h1 class="textColor--blue ">Create Event for <%%= @user_name %></h1>
         <!-- ROW 1 ON -->
         <div class="row">
-          <div class="col-md-6 text-center">
-            <div class="add-cover-photo">
-              <%= image_tag("groups/uploadCover.png", alt: "Upload cover", width: "100%", id: "preview-cover") %>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Event's cover</label>
+              <div class="add-cover-photo">
+                <label class="uploadFile uploadFile--cover">
+                  <div class="uploadFile--img">
+                      <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
+                  </div>
+                  <span class="glyphicon glyphicon-open uploadFile--text">
+                  <span>Upload avatar</span>
+                  <input type="file" name="cover" id="event-cover">
+                </label>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -22,14 +32,9 @@
               <label class="control-label">Event's Description</label>
 
               <textarea name="description" id="event-description"
-              class="form-control input-lg" rows="4" style="resize:none"></textarea>
+              class="form-control input-lg" rows="5" style="resize:none"></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
 
-            </div>
-            <div class="form-group">
-              <label class="control-label">Event's cover</label>
-              <input type="file" name="cover"  id="event-cover" >
-              <span class="help-block"></span>
             </div>
           </div>
         </div>
