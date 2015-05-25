@@ -89,14 +89,14 @@
       )('//api.cloudsponge.com/widget/2b05ca85510fb736f4dac18a06b9b6a28004f5fa.js')
       window.csPageOptions =
         skipSourceMenu: true
-        displaySelectAllNone: true
         initiallySelectedContacts: true
-        afterInit: ()->
+        afterInit: ->
           links = document.getElementsByClassName('delayed');
           for link in links
             link.href = '#'
-        afterSubmitContacts: (contacts, source, owner)->
+        beforeDisplayContacts: (contacts, source, owner)->
           view.formatContact(contacts)
+          false
 
     performSearch: (e) ->
       e.preventDefault()

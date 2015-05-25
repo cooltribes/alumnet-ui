@@ -52,7 +52,7 @@
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
-      attendance_status: @model.get('attendance_info').status
+      attendance_status: if @model.get('attendance_info') then @model.get('attendance_info').status else ""
 
     ui:
       'eventDescription':'#description'
