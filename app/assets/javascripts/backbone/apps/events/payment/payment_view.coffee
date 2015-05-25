@@ -2,7 +2,7 @@
 
   class Payment.PaymentView extends Marionette.ItemView
     template: 'events/payment/templates/payment'
-    className: 'col-md-8 col-md-offset-3'
+    className: 'row'
 
     initialize: (options)->
       @current_user = options.current_user
