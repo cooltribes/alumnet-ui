@@ -10,18 +10,16 @@
           AlumNet.trigger('show:error', 404)
         else
           layout = AlumNet.request('event:layout', event)
-          #header = AlumNet.request('event:header', event)
+          header = AlumNet.request('event:header', event)
 
-          
           paymentView = new Payment.PaymentView
             model: event
             current_user: AlumNet.current_user
 
           AlumNet.mainRegion.show(layout)
-          #layout.header.show(header)
+          layout.header.show(header)
           layout.body.show(paymentView)
-          #AlumNet.execute('render:events:submenu')
-
+          AlumNet.execute('render:events:submenu')
 
       event.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

@@ -104,14 +104,21 @@
 
     updateAttendance: (e)->
       $('.groupCoverArea__attendanceOptions--option').removeClass 'groupCoverArea__attendanceOptions--option--active'
-      $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
+      
       value = $(e.currentTarget).data('value')
+      if value == 'going' && @model.get('admission_type') == 1
+        value = 'pending_payment'
+        $('#js-att-pending-payment').addClass 'groupCoverArea__attendanceOptions--option--active'
+      else
+        $(e.target).addClass 'groupCoverArea__attendanceOptions--option--active'
       attendance = @model.attendance
       if attendance.isNew()
         values = { event_id: @model.id, user_id: AlumNet.current_user.id, status: value }
       else
         values = { status: value }
       attendance.save values
+      if(@model.get('admission_type') == 1 && value == 'pending_payment')
+        AlumNet.navigate('events/'+@model.id+'/payment', true)
 
     onRender: ->
       model = this.model
@@ -139,6 +146,7 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
+      admissionType: @model.get('admission_type')
       classOf: (step) =>
         @class[step]
 
