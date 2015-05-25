@@ -12,10 +12,10 @@
 
       #Pageable Collection
       @posts = new Entities.PostCollection [],
-        # mode: "infinite"
+        mode: "infinite"
         # ,
-        state: 
-          pageSize: 2
+        # state: 
+        #   pageSize: 
           # firstPage: 1
           # currentPage: 1
         ,

@@ -240,7 +240,8 @@
 
     loadMore: (e)->
       e.preventDefault()
-      @collection.getNextPage()
+      if @collection.pageableCollection.hasNextPage()
+        @collection.pageableCollection.getNextPage()
 
 
 
