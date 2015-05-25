@@ -242,6 +242,7 @@
       e.preventDefault()
       if @collection.pageableCollection.hasNextPage()
         @collection.pageableCollection.getNextPage()
+        
 
 
 

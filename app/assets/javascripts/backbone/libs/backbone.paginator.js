@@ -1192,7 +1192,7 @@
                                         _extend(opts, {parse: false})));
             // console.log (self.state)
 
-            console.log (self)
+            // console.log (self)
             self.trigger("reset", self, opts);
           }
 
