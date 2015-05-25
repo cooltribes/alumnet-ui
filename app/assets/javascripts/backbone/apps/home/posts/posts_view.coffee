@@ -227,21 +227,21 @@
       'fileList': '#js-filelist'
       'uploadLink': '#upload-picture'
       'postContainer': '#timeline'
-      'loadMore': '#js-load-more'
+      # 'loadMore': '#js-load-more'
 
     events:
       'click a#js-post-submit': 'submitClicked'
-      'click @ui.loadMore': 'loadMore'
+      # 'click @ui.loadMore': 'loadMore'
 
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
 
-    loadMore: (e)->
-      e.preventDefault()
-      if @collection.pageableCollection.hasNextPage()
-        @collection.pageableCollection.getNextPage()
+    # loadMore: (e)->
+    #   e.preventDefault()
+    #   if @collection.pageableCollection.hasNextPage()
+    #     @collection.pageableCollection.getNextPage()
         
 
 

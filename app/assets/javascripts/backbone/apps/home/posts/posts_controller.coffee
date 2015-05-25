@@ -16,8 +16,8 @@
 
       posts = new Posts.PostsView
         model: current_user
-        # collection: current_user.posts
-        collection: current_user.posts.fullCollection
+        collection: current_user.posts
+        # collection: current_user.posts.fullCollection
                  
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners'

@@ -47,25 +47,25 @@
       @set('likes_count', count - 1)
       @set('you_like', false)
 
-  # class Entities.PostCollection extends Backbone.Collection
-  class Entities.PostCollection extends Backbone.PageableCollection
+  class Entities.PostCollection extends Backbone.Collection
+  # class Entities.PostCollection extends Backbone.PageableCollection
     model: Entities.Post
 
-    state: 
-      pageSize: 2
-      currentPage: 1
+    # state: 
+    #   pageSize: 2
+    #   currentPage: 1
 
     # initialize: ->
     #   @perPaginate: 2 #default value
 
     #Overriding method for Infinite pagination
-    parseLinks: (resp, xhr)->      
-      nextLink = if resp.length >= @state.pageSize then @url else null
-      response = 
-        first: "null" #this is only because the plugin require it as a string
-        prev: "null" #this is only because the plugin require it as a string
-        # next: @url        
-        next: nextLink
+    # parseLinks: (resp, xhr)->      
+    #   nextLink = if resp.length >= @state.pageSize then @url else null
+    #   response = 
+    #     first: "null" #this is only because the plugin require it as a string
+    #     prev: "null" #this is only because the plugin require it as a string
+    #     # next: @url        
+    #     next: nextLink
   
 
   API =

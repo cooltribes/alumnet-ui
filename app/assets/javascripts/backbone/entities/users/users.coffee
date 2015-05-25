@@ -9,23 +9,24 @@
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
+      @posts = new Entities.PostCollection
+      @posts.url = @urlRoot() + @id + '/posts'
 
       #Pageable Collection
-      @posts = new Entities.PostCollection [],
-        mode: "infinite"
+      # @posts = new Entities.PostCollection [],
+        # mode: "infinite"
         # ,
         # state: 
         #   pageSize: 
           # firstPage: 1
           # currentPage: 1
-        ,
-        url: @urlRoot() + @id + '/posts'
+        # ,
+        # url: @urlRoot() + @id + '/posts'
         # queryParams:
           # totalPages: null,
           # totalRecords: null,
       
 
-      # @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
         @profile.fetch({async:false})
