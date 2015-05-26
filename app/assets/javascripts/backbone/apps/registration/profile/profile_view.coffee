@@ -5,6 +5,7 @@
     className: 'container-fluid'
 
     initialize: ->
+      document.title = " AlumNet - Registration"
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
