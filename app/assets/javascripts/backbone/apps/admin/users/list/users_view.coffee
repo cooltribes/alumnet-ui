@@ -266,6 +266,7 @@
     events:
       "click @ui.btnRmv": "removeRow"
       "change .filter_by, click .filter_by" : "changeField"
+      "click .filter_by": "datePicker"
       "sumbit me": "sumbitForm"
 
     initialize: ->
@@ -281,7 +282,7 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-    onRender: ->  
+    datePicker: ->  
       @$(".js-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
@@ -290,6 +291,7 @@
         direction: ['2015-01-01', '2030-12-12']
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
+        
                                     
     
     #TO DO: refactor this
@@ -369,6 +371,18 @@
           <option value='2'>Lifetime Member</option>
           </select>" )  
         @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+      else if @ui.selectType.val() =='created_at' 
+        @datePicker()
+        @ui.value.html("<input type='text' class='form-control input-lg js-date' name='value' id='start_date'>")  
+        @ui.comparator.empty().append("<select name='comparator' class='form-control input-lg value_by'>
+          <option value=''>Select comparator</option>
+          <option value='gt'>></option>
+          <option value='lt'><</option>
+          <option value='lteq'><=</option>
+          <option value='gteq'>>=</option>
+          <option value='eq'>=</option>
+          </select>")
+       
 
     sumbitForm: (e)->
       e.preventDefault()
