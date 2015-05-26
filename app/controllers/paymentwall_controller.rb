@@ -20,8 +20,9 @@ class PaymentwallController < ApplicationController
     #if @pingback.validate()
       if(@pingback.getParameter('payment_type') == 'event')
         payment = EventPayment.new
+        @auth_token = @pingback.getParameter('auth_token')
         @data_text = { :user_id => @user_id, :price => @pingback.getParameter('amount'), :event_id => @pingback.getParameter('event_id'), :attendance_id => @pingback.getParameter('attendance_id'), :reference => @reference }.to_json
-        payment.create(JSON.parse(@data_text), session, @event_id)
+        payment.create(JSON.parse(@data_text), session, @event_id, @auth_token)
         @response = payment.response
         render :text => "OK"
       else
