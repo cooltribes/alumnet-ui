@@ -244,6 +244,7 @@
 
     initialize: (options) ->
       @modals = options.modals
+      document.title='AlumNet - Users Management'
 
     childViewOptions: (model, index) ->
       modals: @modals

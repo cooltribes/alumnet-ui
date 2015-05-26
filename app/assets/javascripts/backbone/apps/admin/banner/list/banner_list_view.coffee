@@ -99,6 +99,9 @@
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
+    initialize: (options)->
+      document.title='AlumNet - Banners Management'
+
     events:
       'change': 'renderView'
 

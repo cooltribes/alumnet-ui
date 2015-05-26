@@ -60,6 +60,7 @@
 
     initialize: ->
       @searchUpcomingEvents({})
+      document.title='AlumNet - Discover Events'
 
     ui:
       'searchInput': '#js-search-input'

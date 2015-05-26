@@ -213,6 +213,7 @@
     childView: Posts.PostView
     childViewContainer: '.posts-container'
     initialize: ->
+      document.title='AlumNet - Home'
       @picture_ids = []    
         
     childViewOptions: ->
