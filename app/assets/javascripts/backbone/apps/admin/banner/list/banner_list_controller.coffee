@@ -20,3 +20,9 @@
       layoutView.create.show(createBanner)
 
 
+      #body.on 'banner:update',(model, newValue) ->
+      #      model.save({
+      #        description: newValue,
+      #        })
+
+      

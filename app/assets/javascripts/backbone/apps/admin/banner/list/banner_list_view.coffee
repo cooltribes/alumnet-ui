@@ -76,7 +76,8 @@
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
       'click @ui.uploadBanner': 'uploadClicked'
-    
+      'change' : 'coverChanged'
+
     #modelEvents:
       #'change:banner': 'bannerChanged'
 
@@ -149,6 +150,21 @@
       'click .js-modal-crop': 'cropClicked'
       'change #BannerImg': 'previewImage'
 
+    initialize: (options)->
+      @collection = options.collection
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+  
+
     cropClicked: (e)->
       e.preventDefault()
       modal = new BannerList.CropCoverModal
@@ -170,9 +186,12 @@
       e.preventDefault()
       modal = @
       model = @model
+      console.log model
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
+      console.log data
       _.forEach data, (value, key, list)->
+        formData.append(key, value)    
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
       @model.set(data)
@@ -183,7 +202,8 @@
           processData: false
           data: formData
           success: ->
-            modal.destroy()
-      @model.save {}, options
-      @model.trigger('change:banner')  
+            model.trigger('change:banner')
+      @model.save(formData, options)
+      console.log @model
+      @destroy()
 
