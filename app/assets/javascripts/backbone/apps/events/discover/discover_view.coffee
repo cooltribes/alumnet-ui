@@ -2,7 +2,7 @@
 
   class Discover.EventView extends Marionette.ItemView
     template: 'events/discover/templates/event'
-    className: 'container'
+    className: 'eventsTableView margin_bottom_xsmall'
 
     templateHelpers: ->
       model = @model
@@ -50,26 +50,44 @@
       if status=='maybe'
         $(e.target).css('background-color','#f5ac45')
 
-
   class Discover.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'events/discover/templates/events_container'
     childView: Discover.EventView
     childViewContainer: ".main-events-area"
-
-    initialize: ->
-      @searchUpcomingEvents({})
-      document.title='AlumNet - Discover Events'
-
+     
     ui:
       'searchInput': '#js-search-input'
+      'calendario': '#calendar'
 
     events:
       'keypress @ui.searchInput': 'searchEvents'
+      'click .js-viewtable': 'viewTable'
+      'click .js-viewCalendar': 'viewCalendar'
+
+    initialize: ->
+      @searchUpcomingEvents({})
+      document.title = 'AlumNet - Discover Events'
 
     searchUpcomingEvents: (query)->
-      @collection.getUpcoming(query)
+      ui = @ui
+      options = 
+        success: (collection)-> 
+          console.log collection.models.get("start_date")         
+          eventsArray = collection.models.map (model) ->
+            title: model.get("name")
+            description: model.get("description")
+            datetime: new Date(model.get("start_date"))
+          console.log eventsArray
+
+          $(ui.calendario).eCalendar
+            weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            months: ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December']
+            events: eventsArray
+
+      @collection.getUpcoming(query, options)
       @flag = "upcoming"
 
     searchEvents: (e)->

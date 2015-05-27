@@ -49,7 +49,7 @@
     childViewContainer: "#regions-table tbody"
 
     initialize: (options) ->
-      document.title='AlumNet - Regions Management'
+      document.title = 'AlumNet - Regions Management'
 
   class Regions.ModalRegion extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_form'
@@ -113,11 +113,11 @@
     submitEl: "#js-modal-save"
 
     submit: ()->
-      model=@model
-      oldAdmins=model.get('admins').map (model)->
+      model = @model
+      oldAdmins = model.get('admins').map (model)->
         id: model.id
-      Admins=Backbone.Syphon.serialize(this)
-      newAdmins=Admins.users.split(',')
+      Admins = Backbone.Syphon.serialize(this)
+      newAdmins = Admins.users.split(',')
       idRegion = @model.id
       
       $.each newAdmins, (v,id)->
