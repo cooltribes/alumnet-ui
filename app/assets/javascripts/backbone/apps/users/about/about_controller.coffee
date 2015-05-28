@@ -57,38 +57,16 @@
         expCollection.comparator = (a, b)->
           typeA = a.get("exp_type")
           typeB = b.get("exp_type")
-          resp = typeA - typeB
 
-          positions = [2,1,3,0] #Arbitrary order
-
-          # console.log "A: " + a.id + " Name: " + a.get("name") + " - Type: " + a.get("exp_type") + " - Title?: " + a.get("asTitle")
-          # console.log "B: " + b.id + " Name: " + b.get("name") + " - Type: " + b.get("exp_type") + " - Title?: " + b.get("asTitle")
-          # console.log "-------"
+          positions = [2,1,3,0] #Arbitrary order        
        
           resp = positions[typeA] - positions[typeB]
-          # if a.get("asTitle")
-            # console.log a
-
-          # if typeA == 3
-          #   resp = -1
-          # else if typeA == 1
-          #   resp = -1
-          # else if typeA == 0
-          #   resp = -1
-          # else if typeA == 2
-          #   resp = -1  
 
           if resp == 0
             if a.get("asTitle")
               return -1
             else
               return 1
-
-          # if resp == 0
-          #   if a.get("cid") >= b.get("cid")
-          #     return -1
-          #   else
-          #     return 1  
 
           resp
 
@@ -99,8 +77,6 @@
               #only allowed if user can edit
               # if userCanEdit
               collection.addTitles()
-
-                # collection.addExperiencesTitles()
 
         body = new About.View
           model: user

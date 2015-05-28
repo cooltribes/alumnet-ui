@@ -7,6 +7,7 @@
       "users/:id/friends": "userFriends"
       "users/:id/photos": "userPictures"
       "users/:id/events": "userEvents"
+      "users/:id/business-exchange": "userBusiness"
 
 
 
@@ -34,6 +35,10 @@
     userEvents: (id)->
       controller = new UsersApp.Events.Controller
       controller.showEvents(id)
+    
+    userBusiness: (id)->
+      controller = new UsersApp.Business.Controller
+      controller.showBusiness(id)
 
 
   AlumNet.on "user:posts", (user_id) ->

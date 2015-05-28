@@ -17,7 +17,11 @@
       'click #js-message-send':'sendMensagge'
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
+      @userCanEdit = AlumNet.current_user.isAlumnetAdmin() || @model.isCurrentUser()
+      
+      if options.userCanEdit?
+        @userCanEdit = options.userCanEdit
+
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
 
