@@ -1,6 +1,10 @@
+a:hover{
+    color: white;
+    text-decoration: none;
+}
 .calendar  * {
     box-sizing: border-box;
-    font-family: Tahoma;
+    font-family: Roboto, sans-serif;
     font-size: 14px;
 }
 .calendar-sm {
@@ -10,8 +14,8 @@
 }
 .calendar {
     cursor: default;
-    width: 600px;
-    height: 270px;
+    width: 100%;
+    height: auto;
 }
 
 .calendar-sm .c-pad-top {
@@ -19,17 +23,17 @@
 }
 
 .calendar .c-pad-top {
-    padding-top: 3%;
+    padding: 3%;
 }
 
 .c-grid {
-    box-shadow: 2px 2px 5px #888888;
+    /*box-shadow: 2px 2px 5px #888888;*/
     height: inherit;
 }
 .c-day {
     width: 14.28%;
     height: 13%;
-    background-color: #EFF4F9;
+    background-color: #F9FBFD;
     float: left;
     text-align: center;
 }
@@ -37,7 +41,7 @@
 .c-day-previous-month {
     width: 14.28%;
     height: 13%;
-    background-color: #F9FBFD;
+    background-color: #F5F5F5;
     float: left;
     text-align: center;
     color: gray;
@@ -46,7 +50,7 @@
 .c-day-next-month {
     width: 14.28%;
     height: 13%;
-    background-color: #F9FBFD;
+    background-color: #F5F5F5;
     float: left;
     text-align: center;
     color: gray;
@@ -55,7 +59,7 @@
 .c-week-day {
     width: 14.28%;
     height: 10.38%;
-    background-color: rgb(145, 172, 203);
+    background-color: #16688e;
     color: white;
     float: left;
     text-align: center;
@@ -67,7 +71,7 @@
     width: 12.5%;
     height: 12%;
     padding: 2% 2% 0 2%;
-    text-align: right;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -75,7 +79,7 @@
     width: 12.5%;
     height: 12%;
     padding: 2% 2% 0 2%;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -91,11 +95,12 @@
 }
 
 .c-today {
-    background-color: #D8EAF1;
+    background-color: #004263;
+    color: white;
 }
 
 .c-event {
-    background-color: rgb(166, 166, 166);
+    background-color: #2299d0;
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -107,17 +112,17 @@
 }
 
 .c-event-grid {
-    margin-left: 1px;
+    /*margin-left: 1px;*/
     height: inherit;
     width: 49%;
     float: left;
-    box-shadow: 2px 2px 5px #888888;
+    /*box-shadow: 2px 2px 5px #888888;*/
 }
 
 .c-grid-title {
     font-weight: bold;
     float: left;
-    background-color: rgb(112, 145, 183);
+    background-color: #004263;
     color: white;
 }
 
@@ -126,8 +131,9 @@
     height: 12%;
     text-align: center;
     font-weight: bold;
-    background-color: rgb(135, 155, 188);
+    background-color: #004263;
     color: white;
+    font-size: 15px;
 }
 
 .c-event-body {
@@ -141,7 +147,11 @@
     height: 95%;
 }
 
-.c-event-item > .title {
+.c-event-info > .title, .c-event-info .description{
+    font-weight: 100;
+}
+
+.c-event-info > .title > h2 {
     font-weight: bold;
 }
 
@@ -150,19 +160,40 @@
     width: inherit;
     overflow: hidden;
     white-space: nowrap;
-}
-
-.c-event-item {
-    padding-left: 10px;
-    margin-bottom: 10px;
-}
-
-.c-event-over {
-    background-color: lightgray;
-    font-weight: bold;
     color: black;
 }
 
-.c-event-over > .description {
-    font-weight: normal;
+.c-event-item {
+    padding: 10px;
+    color: black;
+    display: inline-block;
+    width: 100%;
+}
+
+.c-event-over {
+    background-color: #f5ac45;
+    font-weight: bold;
+    color: white;
+}
+
+.c-event-over > .c-event-info .description, .c-event-over > .c-event-info > .title{
+    font-weight: 400;
+    color: white;
+}
+
+.c-event-over > .c-event-info > .title > h2{
+    font-weight: 400;
+    color: white;
+}
+
+.c-event-item > div.c-event-img{
+    width: 20%;
+    float: left;
+    height: 100px;
+    background-size: cover;
+}
+
+.c-event-item > div.c-event-info{
+    width: 79%;
+    padding: 10px;
 }

@@ -122,7 +122,7 @@
                     }
                     for (var j = 0; j < settings.events.length; j++) {
                         var d = settings.events[j].datetime;
-                        if (d.getDate() == day && (d.getMonth() - 1) == dMonth && d.getFullYear() == dYear) {
+                        if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
                             cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                         }
@@ -137,14 +137,27 @@
             var eventList = $('<div/>').addClass('c-event-list');
             for (var i = 0; i < settings.events.length; i++) {
                 var d = settings.events[i].datetime;
-                if ((d.getMonth() - 1) == dMonth && d.getFullYear() == dYear) {
+                if (d.getMonth() == dMonth && d.getFullYear() == dYear) {
                     var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth(), 2) + ' ' + lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2);
-                    var item = $('<div/>').addClass('c-event-item');
-                    var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title + '<br/>');
+                    var item = $('<a/>').addClass('c-event-item');
+                    var cover = $('<div/>').addClass("c-event-img").css({"background":'url('+settings.events[i].cover+') no-repeat','background-size':'contain'});
+                    var info = $('<div/>').addClass("c-event-info")
+                    var title = $('<div/>').addClass('title').html('<h2 class="no-margin">' + settings.events[i].title + '</h2><span>' + date + '</span>');
                     var description = $('<div/>').addClass('description').html(settings.events[i].description + '<br/>');
+                    console.log(cover);
+                    //cover.attr("src", settings.events[i].cover)
+                    info.append().append(title).append(description);
                     item.attr('data-event-day', d.getDate());
+                    item.attr('href','#events/'+settings.events[i].id+'/posts')
                     item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
-                    item.append(title).append(description);
+
+                    if (settings.events[i].official){
+                        var ribbon = $('<span/>').addClass("eventsTableView__ribbon");
+                        console.log(ribbon);
+                        cover.append(ribbon)
+                        console.log("true");
+                    }
+                    item.append(cover).append(info);
                     eventList.append(item);
                 }
             }
@@ -164,15 +177,13 @@
 
     // plugin defaults
     $.fn.eCalendar.defaults = {
-        weekDays: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        months: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
         textArrows: {previous: '<', next: '>'},
-        eventTitle: 'Eventos',
+        eventTitle: 'Events list',
         url: '',
         events: [
-            {title: 'Brasil x Croácia', description: 'Abertura da copa do mundo 2014', datetime: new Date(2014, 6, 12, 17)},
-            {title: 'Brasil x México', description: 'Segundo jogo da seleção brasileira', datetime: new Date(2014, 6, 17, 16)},
-            {title: 'Brasil x Camarões', description: 'Terceiro jogo da seleção brasileira', datetime: new Date(2014, 6, 23, 16)}
+            
         ]
     };
 

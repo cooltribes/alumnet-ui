@@ -71,24 +71,28 @@
       document.title = 'AlumNet - Discover Events'
 
     searchUpcomingEvents: (query)->
+      seft = this
       ui = @ui
       options = 
         success: (collection)-> 
-          console.log collection.models.get("start_date")         
+          console.log collection
           eventsArray = collection.models.map (model) ->
+            id: model.get("id")
             title: model.get("name")
             description: model.get("description")
-            datetime: new Date(model.get("start_date"))
-          console.log eventsArray
-
+            datetime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
+            cover: model.get("cover").card
+            official: model.get("official")
           $(ui.calendario).eCalendar
-            weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-            months: ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
             events: eventsArray
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
+
+    eventDate: (date,hour)->
+      console.log date + " " + hour
+      datetime = date.split("-")
+      return new Date(datetime[0]+"/"+datetime[1]+"/"+datetime[2]+" "+hour)
 
     searchEvents: (e)->
       if e.which == 13
