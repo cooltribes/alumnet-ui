@@ -408,7 +408,6 @@
         var pageStart = currentPage * pageSize, pageEnd = pageStart + pageSize;
 
         if (event == "add") {
-          // console.log "ENTRO ADD"
           var pageIndex, fullIndex, addAt, colToAdd, options = options || {};
           if (collection == fullCol) {
             fullIndex = fullCol.indexOf(model);
@@ -928,12 +927,10 @@
       if (self.mode == "infinite") {
         var success = options.success;
         var currentPage = self.state.currentPage;
-        console.log (currentPage);
         
         options.success = function (resp, status, xhr) {
           var links = self.links;
-          var newLinks = self.parseLinks(resp, _extend({xhr: xhr}, options));
-          console.log (newLinks);
+          var newLinks = self.parseLinks(resp, _extend({xhr: xhr}, options));          
           if (newLinks.first) links[self.state.firstPage] = newLinks.first;
           if (newLinks.prev) links[currentPage - 1] = newLinks.prev;
           if (newLinks.next) links[currentPage + 1] = newLinks.next;
@@ -1193,6 +1190,9 @@
           else {
             fullCol.add(models, _extend({at: fullCol.length},
                                         _extend(opts, {parse: false})));
+            // console.log (self.state)
+
+            // console.log (self)
             self.trigger("reset", self, opts);
           }
 

@@ -9,14 +9,15 @@
 
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
-      current_user.posts.fetch
-        success: (coll)->
-          console.log coll
+      current_user.posts.fetch()
+        # success: (coll)->
+        #   console.log coll
 
 
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
+        # collection: current_user.posts.fullCollection
                  
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
