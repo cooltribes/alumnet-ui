@@ -105,13 +105,19 @@
       e.preventDefault()
       e.stopPropagation()
       console.log "Up"
-      @trigger 'moveBannerDown'
-
-
+      index = @model.collection.indexOf(@model)
+      console.log index
+      if index > 0 
+        @trigger 'Swap:Up', index, index-1
+      @render()
+      
     moveDown: (e)->
       e.preventDefault()
       e.stopPropagation()
       console.log "Down"
+      index = @model.collection.indexOf(@model)
+      console.log index
+      @trigger 'Swap:Down', index, index+1
 
 
   #Vista para lista de banners
@@ -123,6 +129,18 @@
     initialize: (options) ->
       console.log options
 
+    onChildviewSwapUp: (indexA, indexB)->
+      alert "Swap Up"      
+      console.log indexA
+      console.log indexB
+      console.log @collection
+      @collection[indexA] = @collection.splice(indexB, 1, @collection[indexA])[0];
+        
+    onChildviewSwapDown: (indexA, indexB) ->
+      alert "Swap Down"
+      console.log indexA
+      console.log indexB
+      @model.collection[indexA] = BannerCollection.splice(indexB, 1, @model.collection[indexA])[0];  
 
 
   class BannerList.CropCoverModal extends Backbone.Modal
