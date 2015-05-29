@@ -88,7 +88,6 @@
           view.render()
 
     uploadClicked: (e)->
-      console.log "upload Banner"
       e.preventDefault()
       modal = new BannerList.Modal
         model: @model 
@@ -106,7 +105,6 @@
       e.stopPropagation()
       indexToUp = @model.collection.indexOf(@model)
       above = parseInt(indexToUp)
-      console.log above
       if indexToUp > 0 
         @trigger 'Swap:Up',indexToUp, indexToUp+1, above
       
@@ -127,31 +125,23 @@
     initialize: (options) ->
       
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
-      console.log bannerToUp
       indexAbove = indexAbove-2
-      console.log "Current Index: "+currentIndex
-      console.log "Up Position: "+indexAbove
       bannerAbove = @collection.at(indexAbove)
       bannerAbove = @collection.remove(bannerAbove) 
       currentBanner = @collection.remove(bannerToUp) 
-      console.log @collection
       @collection.add(currentBanner, {at: indexAbove}) 
       @collection.add(bannerAbove, at: currentIndex)
-      @collection.save()
+      @collection.set()
       
             
         
     onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
-      console.log bannerToDown
-      console.log "Current Index: "+currentIndex
-      console.log "Down Position: "+indexBelow
       bannerBelow = @collection.at(indexBelow)
       bannerBelow = @collection.remove(bannerBelow) 
       currentBanner = @collection.remove(bannerToDown) 
-      console.log @collection
       @collection.add(currentBanner, {at: indexBelow}) 
       @collection.add(bannerBelow, at: currentIndex)
-      @.save()
+      @collection.set()
 
 
   class BannerList.CropCoverModal extends Backbone.Modal
