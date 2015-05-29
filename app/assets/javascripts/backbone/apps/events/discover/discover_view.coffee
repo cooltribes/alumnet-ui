@@ -75,24 +75,66 @@
       ui = @ui
       options = 
         success: (collection)-> 
-          console.log collection
-          eventsArray = collection.models.map (model) ->
-            id: model.get("id")
-            title: model.get("name")
-            description: model.get("description")
-            datetime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
-            cover: model.get("cover").card
-            official: model.get("official")
+          eventsArray = seft.eventsMap(seft,collection)
+          eventsArray = seft.longEvents(seft,eventsArray)
+          $.each eventsArray, (id,content)->
+            if content["duracion"]> 0
+              content["datetime"] = content["startime"]
           $(ui.calendario).eCalendar
             events: eventsArray
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
 
+    eventsMap: (seft,collection)->
+      eventsArray = collection.models.map (model) ->
+        id: model.get("id")
+        title: model.get("name")
+        description: model.get("description")
+        datetime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
+        startime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
+        endtime: seft.eventDate(model.get("end_date"),model.get("end_hour"))
+        cover: model.get("cover").card
+        official: model.get("official")
+        duracion: seft.duracion(model.get("start_date"),model.get("end_date"))
+      return eventsArray
+
+    longEvents: (seft, eventsArray) ->
+      $.each eventsArray, (id,content)->
+        if content["duracion"]> 0
+          for eventos in [1 .. content["duracion"]]
+            aux = {
+              id: content["id"]
+              title: content["title"]
+              description: content["description"]
+              datetime: seft.addDay(content["datetime"])
+              startime: content["startime"]
+              endtime: content["endtime"]
+              cover: content["cover"]
+              official: content["official"]
+              duracion: 0
+            }
+            eventsArray.push(aux)
+      return eventsArray
+
     eventDate: (date,hour)->
-      console.log date + " " + hour
       datetime = date.split("-")
       return new Date(datetime[0]+"/"+datetime[1]+"/"+datetime[2]+" "+hour)
+
+    addDay: (date)->
+      aux = date
+      day = aux.getTime()
+      milisegundos = parseInt(24*60*60*1000);
+      aux.setTime(day+milisegundos)
+      day =  aux.getFullYear().toString()+"/"+(aux.getMonth()+1).toString()+"/"+aux.getDate().toString()
+      return new Date(day)
+
+    duracion: (dStart,dEnd)->
+      start = dStart.split("-")
+      end = dEnd.split("-")
+      diff = new Date(end[0]+"/"+end[1]+"/"+end[2]).getTime() - new Date(start[0]+"/"+start[1]+"/"+start[2]).getTime();
+      dias = Math.floor(diff / (1000 * 60 * 60 * 24))
+      return dias
 
     searchEvents: (e)->
       if e.which == 13

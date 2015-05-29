@@ -42,12 +42,12 @@
         var mouseOverItem = function () {
             $(this).addClass('c-event-over');
             var d = $(this).attr('data-event-day');
-            $('div.c-event[data-event-day="' + d + '"]').addClass('c-event-over');
+            $('div.c-event[data-event-day'+d+'="' + d + '"]').addClass('c-event-over');
         };
         var mouseLeaveItem = function () {
             $(this).removeClass('c-event-over')
             var d = $(this).attr('data-event-day');
-            $('div.c-event[data-event-day="' + d + '"]').removeClass('c-event-over');
+            $('div.c-event[data-event-day'+d+'="' + d + '"]').removeClass('c-event-over');
         };
         var nextMonth = function () {
             if (dMonth < 11) {
@@ -123,7 +123,7 @@
                     for (var j = 0; j < settings.events.length; j++) {
                         var d = settings.events[j].datetime;
                         if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
-                            cDay.addClass('c-event').attr('data-event-day', d.getDate());
+                            cDay.addClass('c-event').attr('data-event-day'+settings.events[j].id, settings.events[j].id);
                             cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                         }
                     }
@@ -137,28 +137,30 @@
             var eventList = $('<div/>').addClass('c-event-list');
             for (var i = 0; i < settings.events.length; i++) {
                 var d = settings.events[i].datetime;
-                if (d.getMonth() == dMonth && d.getFullYear() == dYear) {
-                    var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth(), 2) + ' ' + lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2);
-                    var item = $('<a/>').addClass('c-event-item');
-                    var cover = $('<div/>').addClass("c-event-img").css({"background":'url('+settings.events[i].cover+') no-repeat','background-size':'contain'});
-                    var info = $('<div/>').addClass("c-event-info")
-                    var title = $('<div/>').addClass('title').html('<h2 class="no-margin">' + settings.events[i].title + '</h2><span>' + date + '</span>');
-                    var description = $('<div/>').addClass('description').html(settings.events[i].description + '<br/>');
-                    console.log(cover);
-                    //cover.attr("src", settings.events[i].cover)
-                    info.append().append(title).append(description);
-                    item.attr('data-event-day', d.getDate());
-                    item.attr('href','#events/'+settings.events[i].id+'/posts')
-                    item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
+                var start = settings.events[i].startime;
+                var end = settings.events[i].endtime;
+                if (d.getMonth() == dMonth && d.getFullYear() == dYear || start.getMonth() == dMonth && start.getFullYear() == dYear) {
+                    if ( eventList[0]["outerHTML"].indexOf('data-event-day="'+settings.events[i].id+'"') ==-1){
+                        var date = lpad(start.getDate(), 2) + '/' + lpad(start.getMonth(), 2) + ' ' + lpad(start.getHours(), 2) + ':' + lpad(start.getMinutes(), 2);
+                        var dateEnd = lpad(end.getDate(), 2) + '/' + lpad(end.getMonth(), 2) + ' ' + lpad(end.getHours(), 2) + ':' + lpad(end.getMinutes(), 2);
+                        var item = $('<a/>').addClass('c-event-item');
+                        var cover = $('<div/>').addClass("c-event-img").css({"background":'url('+settings.events[i].cover+') no-repeat','background-size':'contain'});
+                        var info = $('<div/>').addClass("c-event-info")
+                        var title = $('<div/>').addClass('title').html('<h2 class="no-margin overfloadText">' + settings.events[i].title + '</h2><span> Start: ' + date + '</span><br><span>End: '+dateEnd+'</span>');
+                        var description = $('<div/>').addClass('description overfloadText').html(settings.events[i].description + '<br/>');
+                        info.append().append(title).append(description);
+                        item.attr('data-event-day', settings.events[i].id);
+                        item.attr('href','#events/'+settings.events[i].id+'/posts')
+                        item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
 
-                    if (settings.events[i].official){
-                        var ribbon = $('<span/>').addClass("eventsTableView__ribbon");
-                        console.log(ribbon);
-                        cover.append(ribbon)
-                        console.log("true");
+                        if (settings.events[i].official){
+                            var ribbon = $('<span/>').addClass("eventsTableView__ribbon");
+                            cover.append(ribbon)
+                        }
+                        item.append(cover).append(info);
+                        eventList.append(item);
                     }
-                    item.append(cover).append(info);
-                    eventList.append(item);
+                    
                 }
             }
             $(instance).addClass('calendar');

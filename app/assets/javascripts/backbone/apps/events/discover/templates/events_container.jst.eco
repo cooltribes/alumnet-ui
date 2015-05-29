@@ -18,7 +18,7 @@
     <!-- /input-group 
   </div>-->
 <hr/>
-<div class="container">
+<div class="container hidden-sm hidden-xs">
   <div role="tabpanel">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -47,5 +47,10 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container hidden-md hidden-lg">
+  <div class="main-events-area ">
+   <!-- Events Table View -->
   </div>
 </div>
