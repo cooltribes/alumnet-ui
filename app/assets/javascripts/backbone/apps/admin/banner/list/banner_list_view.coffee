@@ -104,20 +104,18 @@
     moveUp: (e)->
       e.preventDefault()
       e.stopPropagation()
-      console.log "Up"
-      index = @model.collection.indexOf(@model)
-      console.log index
-      if index > 0 
-        @trigger 'Swap:Up', index, index-1
-      @render()
+      indexToUp = @model.collection.indexOf(@model)
+      above = parseInt(indexToUp)
+      console.log above
+      if indexToUp > 0 
+        @trigger 'Swap:Up',indexToUp, indexToUp+1, above
       
     moveDown: (e)->
       e.preventDefault()
       e.stopPropagation()
-      console.log "Down"
-      index = @model.collection.indexOf(@model)
-      console.log index
-      @trigger 'Swap:Down', index, index+1
+      indexToDown = @model.collection.indexOf(@model)
+      @trigger 'Swap:Down', indexToDown, indexToDown+1, indexToDown+2
+
 
 
   #Vista para lista de banners
@@ -127,20 +125,33 @@
     childViewContainer: "#banners-list"
 
     initialize: (options) ->
-      console.log options
-
-    onChildviewSwapUp: (indexA, indexB)->
-      alert "Swap Up"      
-      console.log indexA
-      console.log indexB
+      
+    onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
+      console.log bannerToUp
+      indexAbove = indexAbove-2
+      console.log "Current Index: "+currentIndex
+      console.log "Up Position: "+indexAbove
+      bannerAbove = @collection.at(indexAbove)
+      bannerAbove = @collection.remove(bannerAbove) 
+      currentBanner = @collection.remove(bannerToUp) 
       console.log @collection
-      @collection[indexA] = @collection.splice(indexB, 1, @collection[indexA])[0];
+      @collection.add(currentBanner, {at: indexAbove}) 
+      @collection.add(bannerAbove, at: currentIndex)
+      @collection.save()
+      
+            
         
-    onChildviewSwapDown: (indexA, indexB) ->
-      alert "Swap Down"
-      console.log indexA
-      console.log indexB
-      @model.collection[indexA] = BannerCollection.splice(indexB, 1, @model.collection[indexA])[0];  
+    onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
+      console.log bannerToDown
+      console.log "Current Index: "+currentIndex
+      console.log "Down Position: "+indexBelow
+      bannerBelow = @collection.at(indexBelow)
+      bannerBelow = @collection.remove(bannerBelow) 
+      currentBanner = @collection.remove(bannerToDown) 
+      console.log @collection
+      @collection.add(currentBanner, {at: indexBelow}) 
+      @collection.add(bannerBelow, at: currentIndex)
+      @.save()
 
 
   class BannerList.CropCoverModal extends Backbone.Modal
