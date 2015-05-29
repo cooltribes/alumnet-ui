@@ -37,7 +37,7 @@ class LinkedinController < ApplicationController
   def sign_up
     init_client
     registration = UserRegistration.new
-    registration.oauth_register(user_params, @linkedin.auth_params)
+    registration.oauth_register(user_params, @linkedin.auth_params, cookies[:invitation_token])
     if registration.valid?
       session[:auth_token] = registration.user.auth_token
       redirect_to root_path
