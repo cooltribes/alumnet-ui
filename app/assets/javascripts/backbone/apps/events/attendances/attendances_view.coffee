@@ -6,6 +6,7 @@
     initialize: (options)->
       @event = options.event
 
+
     templateHelpers: ->
       model = @model
       userIsAdmin: @event.userIsAdmin()
@@ -39,6 +40,7 @@
 
     initialize: ->
       @collection.getByStatus(1, {})
+      document.title='AlumNet - '+@model.get('name')
 
     templateHelpers: ->
       userIsAdmin: @model.userIsAdmin()

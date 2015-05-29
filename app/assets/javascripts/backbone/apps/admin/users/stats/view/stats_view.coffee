@@ -168,6 +168,10 @@
 
   class UserStats.Graphics extends Marionette.CompositeView
     template: 'admin/users/stats/view/templates/graphics'
+
+    initialize: (options) ->
+      document.title='AlumNet - Users Statistics'
+
     getChildView: (item)->
       type = item.get("graphType")
       if type == 0

@@ -119,10 +119,11 @@
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
-    initialize: (options) ->
-      console.log options
+    initialize: (options)->
+      document.title='AlumNet - Banners Management'
 
-
+    events:
+      'change': 'renderView'
 
   class BannerList.CropCoverModal extends Backbone.Modal
     template: 'admin/banner/list/templates/crop_modal'

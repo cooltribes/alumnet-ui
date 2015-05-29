@@ -28,6 +28,7 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+
       $(window).on 'scroll' , =>
         if $('body').scrollTop()>500
           $('#aboutUseraffix').css
