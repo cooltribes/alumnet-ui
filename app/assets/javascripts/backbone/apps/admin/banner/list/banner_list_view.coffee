@@ -131,9 +131,7 @@
       currentBanner = @collection.remove(bannerToUp) 
       @collection.add(currentBanner, {at: indexAbove}) 
       @collection.add(bannerAbove, at: currentIndex)
-      @collection.set()
-      
-            
+                
         
     onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
       bannerBelow = @collection.at(indexBelow)
@@ -141,7 +139,6 @@
       currentBanner = @collection.remove(bannerToDown) 
       @collection.add(currentBanner, {at: indexBelow}) 
       @collection.add(bannerBelow, at: currentIndex)
-      @collection.set()
 
 
   class BannerList.CropCoverModal extends Backbone.Modal
