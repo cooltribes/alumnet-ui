@@ -9,7 +9,7 @@
 
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
-      current_user.posts.fetch()
+      current_user.posts.fetch({reset: true})
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
@@ -28,7 +28,11 @@
       layout.posts.show(posts)
       layout.banners.show(bannersView) 
 
-      
+      posts.on "render:collection", ->
+        container = $('#timeline')
+        container.masonry
+          itemSelector: '.post' 
+
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
         post.save data,

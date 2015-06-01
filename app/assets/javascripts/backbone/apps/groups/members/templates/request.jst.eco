@@ -4,13 +4,26 @@
       <div class="userCard__avatar  col-md-3 ">
         <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
-      <div class="col-md-9 ">
-        <h4 class="userCard__name"><%= @user.name %></h4>
+      <div class="col-md-6 ">
+        <h4 class="userCard__name overfloadText"><%= @user.name %></h4>
         <p class="member-position text-small"><% @user.last_experience %></p>
-        <br/>
-        <a href="#" id="js-accept-membership" class="btn btn-sm  btn-success-noBackground" title="Approve friend request">Approve <span class="glyphicon glyphicon-ok"></span> </a>
-        <a href="#" id="js-delete-membership"  class="btn btn-sm  btn-danger-noBackground" title="Decline friend request">Decline <span class="glyphicon glyphicon-remove"></span></a>
       </div>
+      <div class=" col-md-3">
+      <a href="#" id="js-accept-membership" title="Approve request">
+        <div class="userCard__actions--Approve userCard__animation">
+            <span class="userCard__actions__text">APPROVE</span>
+            <span class="glyphicon glyphicon-ok"></span>
+        </div>
+      </a>
+      <a href="#" id="js-delete-membership" title="Decline request">
+        <div class="userCard__actions--Decline userCard__animation">
+          <span class="userCard__actions__text">DECLINE</span>
+          <span class="glyphicon glyphicon-user"></span> 
+          <span class="glyphicon glyphicon-remove"></span>
+        </div>
+      </a>
+    </div>
+  </div>
 
     </div>
   </div>

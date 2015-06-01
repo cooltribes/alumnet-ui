@@ -222,6 +222,7 @@
     initialize:(options)->
       @group = options.group
       @picture_ids = []
+      document.title='AlumNet - '+@group.get('name')
 
     templateHelpers: ->
       userCanPost: @group.userIsMember()

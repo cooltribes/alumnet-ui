@@ -122,8 +122,12 @@
     childViewContainer: "#banners-list"
       
     initialize: (options)->
+      #document.title='AlumNet - Banners Management'
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
+
+    events:
+      'change': 'renderView'
   
          
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->

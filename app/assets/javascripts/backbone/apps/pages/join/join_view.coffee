@@ -2,3 +2,6 @@
 
 	class Join.View extends Marionette.ItemView
     	template: 'pages/join/templates/join_AAI'
+
+    	initialize: ()->
+    		document.title='AlumNet - Join us'
