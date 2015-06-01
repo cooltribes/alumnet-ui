@@ -115,15 +115,17 @@
       @trigger 'Swap:Down', indexToDown, indexToDown+1, indexToDown+2
 
 
-
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
-
-    initialize: (options) ->
       
+    initialize: (options)->
+      @collection.each (model)->     
+        attrs = { order: model.get('order')}   
+  
+         
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
       indexAbove = indexAbove-2
       bannerAbove = @collection.at(indexAbove)
@@ -131,7 +133,8 @@
       currentBanner = @collection.remove(bannerToUp) 
       @collection.add(currentBanner, {at: indexAbove}) 
       @collection.add(bannerAbove, at: currentIndex)
-                
+      @trigger 'banner:count'
+            
         
     onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
       bannerBelow = @collection.at(indexBelow)
@@ -139,6 +142,7 @@
       currentBanner = @collection.remove(bannerToDown) 
       @collection.add(currentBanner, {at: indexBelow}) 
       @collection.add(bannerBelow, at: currentIndex)
+      @trigger 'banner:count'
 
 
   class BannerList.CropCoverModal extends Backbone.Modal
@@ -201,11 +205,9 @@
     saveClicked: (e)->
       e.preventDefault()
       modal = @
-      model = @model
-      console.log model
+      model = @model      
       formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      console.log data
+      data = Backbone.Syphon.serialize(this)      
       _.forEach data, (value, key, list)->
         formData.append(key, value)    
       file = @$('#BannerImg')
@@ -219,7 +221,6 @@
           data: formData
           success: ->
             model.trigger('change:banner')
-      @model.save(formData, options)
-      console.log @model
+      @model.save(formData, options)      
       @destroy()
 

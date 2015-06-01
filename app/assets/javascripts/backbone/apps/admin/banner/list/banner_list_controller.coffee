@@ -1,6 +1,7 @@
 @AlumNet.module 'AdminApp.BannerList', (BannerList, @AlumNet, Backbone, Marionette, $, _) ->
   class BannerList.Controller
     bannerList: ->
+        
       banner = AlumNet.request('banner:entities:admin', {})
 
       bannerCollection = new AlumNet.Entities.BannerCollection
@@ -9,6 +10,7 @@
       layoutView = new BannerList.Layout
       bannerTable = new BannerList.BannerTable
         collection: bannerCollection
+
       createBanner = new BannerList.CreateView
         model: new AlumNet.Entities.Banner
         collection: bannerCollection
@@ -19,9 +21,15 @@
       layoutView.table.show(bannerTable)
       layoutView.create.show(createBanner)
 
-      #body.on 'banner:update',(model, newValue) ->
-      #      model.save({
-      #        description: newValue,
-      #        })
-
+      bannerTable.on 'banner:count', ()->
+        bannerCollection.each (model)->     
+          index = bannerCollection.indexOf(model)
+          order = { order: model.get('order')}
+          model.set('order', index)
+          model.save()
+        bannerCollection.sortBy (model) ->
+          model.order 
+    
       
+              
+
