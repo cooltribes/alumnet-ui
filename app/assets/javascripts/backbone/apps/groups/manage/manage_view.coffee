@@ -26,3 +26,5 @@
     childViewContainer: ".groups-container"
     emptyView: Manage.EmptyView
 
+    initialize: ()->
+      document.title='AlumNet - My Groups'

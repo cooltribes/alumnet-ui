@@ -4,6 +4,7 @@ class AuthController < ApplicationController
   skip_before_action :authenticate!
 
   def home
+    cookies[:invitation_token] = params[:invitation_token] if params[:invitation_token].present?
   end
 
   def sign_in
@@ -21,7 +22,7 @@ class AuthController < ApplicationController
 
   def sign_up
     registration = UserRegistration.new
-    registration.register(user_params)
+    registration.register(user_params, cookies[:invitation_token])
     if registration.valid?
       session[:auth_token] = registration.user.auth_token
       redirect_to root_path

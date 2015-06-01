@@ -15,16 +15,16 @@ class PaymentwallController < ApplicationController
     #render :text => @pingback.getParameter('payment_type')
     @user_id = @pingback.getParameter('uid')
     @reference = @pingback.getParameter('ref')
+    @event_id = @pingback.getParameter('event_id')
 
     #if @pingback.validate()
       if(@pingback.getParameter('payment_type') == 'event')
         payment = EventPayment.new
+        @auth_token = @pingback.getParameter('auth_token')
         @data_text = { :user_id => @user_id, :price => @pingback.getParameter('amount'), :event_id => @pingback.getParameter('event_id'), :attendance_id => @pingback.getParameter('attendance_id'), :reference => @reference }.to_json
-        payment.create(JSON.parse(@data_text), session, @user_id)
+        payment.create(JSON.parse(@data_text), session, @event_id, @auth_token)
         @response = payment.response
-        render json: @response
-        #render :text => "Event: "+@pingback.getParameter('ag_name')
-        #render :text => "Event: "
+        render :text => "OK"
       else
         if(@pingback.getParameter('type') == '0')
           if(@pingback.getParameter('goodsid') == '222')

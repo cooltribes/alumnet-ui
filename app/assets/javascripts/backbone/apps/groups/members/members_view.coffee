@@ -129,6 +129,7 @@
 
     initialize: (options)->
       @group = options.group
+      document.title='AlumNet - '+ @group.get('name')
 
     templateHelpers: ->
       userCanMakeAdmin: @group.canDo('make_admin')
@@ -136,10 +137,8 @@
 
     memberIsCurrentUser: ->
       user = @model.get 'user'
-      console.log(user.last_experience)
       current_user = AlumNet.current_user
       user.id == current_user.id
-
 
     ui:
       'removeMemberLink': '.js-remove-member'

@@ -26,9 +26,9 @@
       "click @ui.addContact": "addContact"
       "click .smoothClick": "smoothClick"
 
-
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+
       $(window).on 'scroll' , =>
         if $('body').scrollTop()>500
           $('#aboutUseraffix').css
@@ -36,10 +36,16 @@
             'width' : '181px'
             'top' : '110px'
         else
-          $('#aboutUseraffix').css
-            'position': 'relative'
-            'top':'0px'
-            'width':'100%'
+          if $('html').scrollTop()>500
+            $('#aboutUseraffix').css
+              'position': 'fixed'
+              'width' : '181px'
+              'top' : '110px'
+          else
+            $('#aboutUseraffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -387,6 +393,7 @@
       @$("#js-cities").select2(@optionsForSelectCities(url))
 
     previewImage: (e)->
+      $('#url-archivo').html("File: "+$(e.target).val())
       input = @$('#profile-avatar')
       preview = @$('#preview-avatar')
       if input[0] && input[0].files[0]

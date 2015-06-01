@@ -7,6 +7,66 @@ DESCRIPTION: Specific style for the forms of AlumNet
 
 @import 'conf/conf.css.less';
 
+#js-message-group{
+	padding: 10px 5px;
+  	font-size: 0.9em;
+  	text-align: justify;
+}
+
+.uploadFile{
+	text-align: center;
+  	background-color: #2099d0;
+  	color: #fff;
+  	width: 100%;
+  	left: 5%;
+  	position: relative;
+  	cursor: pointer;
+  	padding: 5px;
+
+  	&--img{
+  		position: relative;
+  		z-index: 2;
+  	}
+
+  	& small{
+  		display: block;
+		font-size: 0.5em;
+		margin-top: 2px;
+  	}
+
+  	&--cover{
+  		padding: 0;
+  		left: 0;
+  		height: 215px;
+  		cursor: pointer;
+  	}
+
+  	&--text{
+  		color: #fff;
+  		top: -140px;
+  		font-weight: 700;
+  		font-size: 1.7em;
+  		position: relative;
+  		z-index: 3;
+  	}
+
+	& input{
+		z-index: 999;
+		line-height: 0;
+		font-size: 50px;
+		position: absolute;
+		opacity: 0;
+		margin: 0;
+		padding:0;
+		left:0;
+		width: 100px;
+	}
+
+	&__path{
+		margin-left: 9%;
+	}
+}
+
 .formANet{
 
 

@@ -57,3 +57,6 @@
     template: 'admin/groups/deleted/templates/groups_deleted_table'
     childView: GroupsDeleted.GroupView
     childViewContainer: "#groups-deleted-table tbody"
+
+    initialize: ()->
+      document.title='AlumNet - Groups Management'

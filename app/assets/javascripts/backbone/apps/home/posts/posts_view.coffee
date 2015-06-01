@@ -81,7 +81,6 @@
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
 
-
     templateHelpers: ->
       model = @model
       permissions = @model.get('permissions')
@@ -105,7 +104,7 @@
           container.masonry
             columnWidth: '.item'
             gutter: 1
-
+    
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -212,7 +211,9 @@
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    
     initialize: ->
+      document.title = " AlumNet - Home"
       @picture_ids = []    
         
     childViewOptions: ->
@@ -237,15 +238,6 @@
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
-
-    # loadMore: (e)->
-    #   e.preventDefault()
-    #   if @collection.pageableCollection.hasNextPage()
-    #     @collection.pageableCollection.getNextPage()
-        
-
-
-
 
     submitClicked: (e)->
       e.stopPropagation()

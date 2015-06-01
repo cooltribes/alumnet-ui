@@ -202,9 +202,11 @@
     template: 'users/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    
     initialize: (options)->
       @current_user = options.current_user
       @picture_ids = []
+      document.title = 'AlumNet - '+@current_user.get('name')
 
     childViewOptions: ->
       userModel: @model

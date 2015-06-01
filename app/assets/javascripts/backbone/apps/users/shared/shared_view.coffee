@@ -70,7 +70,7 @@
       friendship.on 'save:success', (response, options) =>
       @model.fetch
         success: ->
-          @$('#js-request-send').hide() # or remove.
+          @$('#js-request-sent').html('<a type="button" class="userCoverArea__btnInvite userCoverArea__btnInviteSent btn-lg" style="right: 280px;"> REQUEST SENT</a>') # or remove.
 
     sendMensagge: (e)->
       e.preventDefault()
