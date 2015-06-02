@@ -1,0 +1,4 @@
+<td class="tableAdminGroups__colText"><%= @name %></td>
+<td class="tableAdminGroups__colText"><%= @description %></td>
+<td class="tableAdminGroups__colText"><%= @status %></td>
+<td class="tableAdminGroups__colText"><%= @value %></td>
