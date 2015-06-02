@@ -25,3 +25,5 @@
     template: 'friends/approval/templates/requests_container'
     childView: Approval.RequestView
     emptyView: Approval.EmptyView
+    initialize: ->
+      document.title='AlumNet - Approval requests'

@@ -9,15 +9,19 @@ class UserRegistration
 
   attr_accessor :last_response
 
-  def register(user_params)
+  def register(user_params, invitation_token = "")
+    body_params = { user: user_params }
+    body_params.merge!({ invitation_token: invitation_token}) if invitation_token.present?
     options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" },
-      body: { user: user_params } }
+      body: body_params }
     @last_response = self.class.post("/register", options)
   end
 
-  def oauth_register(user_params, provider_params)
+  def oauth_register(user_params, provider_params, invitation_token = "")
+    body_params = { user: user_params.merge(oauth_providers_attributes: [provider_params]) }
+    body_params.merge!({ invitation_token: invitation_token}) if invitation_token.present?
     options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" },
-      body: { user: user_params.merge( oauth_providers_attributes: [provider_params]) } }
+      body: body_params }
     @last_response = self.class.post("/oauth_register", options)
   end
 

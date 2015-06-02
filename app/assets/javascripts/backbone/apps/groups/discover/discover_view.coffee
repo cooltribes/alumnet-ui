@@ -17,6 +17,7 @@
 
     initialize: (options)->
       #View for showing the groups (class Discover.GroupsView)
+      document.title = 'AlumNet - Discover Groups'
       @groupsView = options.groupsView
 
 
@@ -83,7 +84,7 @@
       e.preventDefault()
       @trigger 'join'
       @model.fetch()
-      @render() 
+      @model.render() 
       
     onRender: ->
       @ui.groupCard.tooltip()
@@ -145,6 +146,3 @@
       e.preventDefault()
       console.log 'here nOff', @nonOfficial
       @collection.reset(@nonOfficial)
-
-    #renderView: ->
-    #  @render()

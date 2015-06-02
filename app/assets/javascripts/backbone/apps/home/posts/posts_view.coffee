@@ -215,8 +215,10 @@
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    
     initialize: ->
-      @picture_ids = [] 
+      document.title = " AlumNet - Home"
+      @picture_ids = []    
         
     childViewOptions: ->
       current_user: @model

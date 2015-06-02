@@ -100,6 +100,9 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
       'click .js-submit': 'submitClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
+    initialize: ->
+      document.title = " AlumNet - Registration"
+
     addRowClicked: (e)->
       e.preventDefault()
       contact = new AlumNet.Entities.ProfileContact

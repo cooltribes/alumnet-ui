@@ -23,7 +23,7 @@ class FacebookController < ApplicationController
 
   def sign_up
     registration = UserRegistration.new
-    registration.oauth_register(user_params, session[:facebook_profile])
+    registration.oauth_register(user_params, session[:facebook_profile], cookies[:invitation_token])
     if registration.valid?
       session[:auth_token] = registration.user.auth_token
       redirect_to "http://#{request.host_with_port}/#registration"

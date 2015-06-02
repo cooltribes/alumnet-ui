@@ -31,7 +31,7 @@
     events:
       'click #js-requests-sent, #js-requests-received':'getRequests'
 
-     getRequests: (e)->
+    getRequests: (e)->
       e.stopPropagation()
       e.preventDefault()
       if $(e.currentTarget).attr('id') == 'js-requests-sent'
