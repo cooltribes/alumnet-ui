@@ -33,7 +33,9 @@ $(function() {
   $.fn.editable.defaults.mode = 'inline';
   options = {
     api_endpoint: gon.api_endpoint,
-    pusher_key: gon.pusher_key
+    pusher_key: gon.pusher_key,
+    profinda_api_endpoint: gon.profinda_api_endpoint,
+    profinda_account_domain: gon.profinda_account_domain
   };
   return AlumNet.start(options);
 });
