@@ -75,16 +75,12 @@
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()
-
-    renderView: (e)->
-      @model.fetch()
-      @model.render()
+     
 
     sendJoin: (e)->
       e.preventDefault()
       @trigger 'join'
-      @model.fetch()
-      @model.render() 
+      @trigger 'Catch:Up'
       
     onRender: ->
       @ui.groupCard.tooltip()
@@ -130,7 +126,13 @@
       'click #js-filter-all': 'filterAll'
       'click #js-filter-official': 'filterOfficial'
       'click #js-filter-non-official': 'filterNonOfficial'
-    #'change': 'renderView'
+    
+    onChildviewCatchUp: ->
+      view = @
+      @collection.fetch
+        success: (model)->
+          view.render()
+
 
     filterAll: (e)->
       e.preventDefault()
