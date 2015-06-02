@@ -28,25 +28,30 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         background: url('/assets/groups/ribbon-orange-noShadow.png') no-repeat;
         background-size: contain;
         display: block;
-        height: 90px;
+        height: 170px;
     }
 
     &__content{
-        width: auto;
-       height: 100px;
-       float: left;
-       border-bottom: 1px solid @white;
-       padding-bottom: 10px;
-       
+        width: 100%;
+        height: 100px;
+        float: left;
+        border-bottom: 1px solid @white;
+        padding-bottom: 10px;
+        display: inline-block;
        
     }
     &__text{
-        height: 80px;
+        height: 60px;
         overflow: hidden;
         
 
     }
     
+    &__linkSubgroups{
+          padding: 5px 15px;
+          cursor: pointer;
+    }
+
     &__title{
 
         font-size: 19px;
@@ -67,6 +72,8 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
     }
     &__atributes{
         background: none repeat scroll 0 0 #e1ecf1;
+        display: inline-block;
+        width: 100%;
       
     }
     &__atribute{
@@ -78,6 +85,8 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         font-size: 1.2em;
         &__container{
             padding: 10px 13px;
+            min-height: 44px;
+
         }
         &__container--odd{
             padding: 10px 13px;
@@ -101,54 +110,11 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         text-align: center;
         text-transform: uppercase;
     }
-    &__menu{
-        color: @white;
-        opacity: 0;
-        background-color: rgba(0,0,0,.5);
-        position: relative;
-        z-index: 100;
-        &:before{
-            content: "";
-            display: block;
-            position: absolute;
-            right: -15px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 15px 15px 0 0;
-            border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
-        }
-        &__title{
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 10px;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 0;
 
-        }
-        &__list{
-            padding-left: 0;
-            list-style: none;
-        }
-        &__item{
-            padding: 6px 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            &:hover{
-                background-color: rgba(255, 255, 255, 0.2)
-            }
-        }
-        
-        a{
-            color: @white;
-        }
-        &:hover{
-            opacity: 1;
-        }
-    }
     &__actions{
             width: 100%;
             float: left;
+            margin-top: -10px;
             &__wrapper{
                 background-color: #e1ecf1;
                 border: 1px solid #fff;
@@ -161,7 +127,7 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 
                 &--admin{
                     background-color: lighten(@blue-gray, 20%);
-                    height: 90px;
+                    height: 50px;
                     justify-content: center;
                     
                     a {
@@ -189,54 +155,52 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             }
 
         }
-    &__subgroups{
-        left: 14%;
-        top: 45%;
-        padding: 0px 0px;
-        right: auto;
+
+    &__menu{
         color: @white;
-        margin-left: -3px;
-        width: 40%;
-        background-color: #495257;
-        opacity: .9;
-        &__item{
-            border-bottom: solid 1px #677f8b;
-            height: 40px;
-            vertical-align: middle;
-            line-height: 30px;
-            font-weight: 400;
-            padding: 3px 5px;
-            &__name{
-                padding: 0px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-            &__icon{
-                padding: 0px;
-            }
-            &--all{
-                padding-left: 5px;
-                background-color: #3c667c;                
-            }
-            a{
-                color: white !important;
-                padding: 0 !important;
-                display: inline !important;
-                span{
-                    color: #AAA;
-                }
-        
-            }
-            a:hover{
-                background-color: transparent !important;
-                color: white !important;
-            }        
-            
-            
+        top: 10px;
+        background-color: rgba(0,0,0,.5);
+        position: relative;
+        z-index: 100;
+
+        &:before{
+            left: 0;
+            top: -15px;
+            -ms-transform: rotate(270deg); /* IE 9 */
+            -webkit-transform: rotate(270deg); /* Safari */
+            transform: rotate(270deg);
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 15px 0 0;
+            border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
         }
-        &__item:hover{
-            background: #6d7578;
+        &__title{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        &__list{
+            padding-left: 0;
+            list-style: none;
+        }
+        &__item{
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.2)
+            }
+        }
+        
+        a{
+            color: @white;
+        }
+        &::target{
         }
     }
 }
@@ -249,10 +213,13 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__cover{
             width: 50%;
             float: left;
-            height: 80px;
+            height: 150px;
             img{
                 width: 100%;
             }
+        }
+        &__ribbon{
+            height: 130px;
         }
         &__content{
             width: 50%;
@@ -288,7 +255,10 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             width: auto;
             border-bottom:none;
             padding-bottom: 20px;
-            height: 80px;
+            height: 100px;
+        }
+        &__ribbon{
+            height: 155px;
         }
         &__atribute{
             height: auto;
@@ -326,13 +296,18 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__actions{
             width: 15%;
             float: left;
-            
-
+            margin-top: 0;
+            &__wrapper--admin{
+                height: 90px;
+            }
         }
         &__atributes{
-           
             width: 40%;
             float: left;
+        }
+
+        &__ribbon{
+            height: 80px;
         }
     }    
     

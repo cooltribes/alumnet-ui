@@ -5,12 +5,13 @@
 
   class Manage.GroupView extends Marionette.ItemView
     template: 'groups/manage/templates/group'
-    className: 'col-md-6'
+    className: 'col-md-6 col-sm-6'
     ui:
       'leaveGroupLink': '#js-leave-group'
       'description':'#js-description'
     events:
       'click #js-leave-group': 'clickedLeaveLink'
+      'click #js-subgroups': 'showSubgroups'
 
     clickedLeaveLink: (e)->
       e.stopPropagation()
