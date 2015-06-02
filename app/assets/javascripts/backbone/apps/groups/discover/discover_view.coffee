@@ -54,12 +54,12 @@
     events:
       'click .js-join':'sendJoin'
       'change': 'renderView'
+      'click #js-subgroups': 'showSubgroups'
 
     ui:
       'groupCard': '.groupCard__atribute__container'
       'groupCardOdd': '.groupCard__atribute__container--odd'
       'description':'#js-description'
-
 
     initialize: (options)->
       #@listenTo(@model, 'change:sendJoin', @renderView)
@@ -90,6 +90,15 @@
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
       @ui.description.linkify()
+
+    showSubgroups: (e)->
+      console.log "click"
+      id = $(e.currentTarget).attr("aria-controls")
+      child = $(e.currentTarget).attr("data-child")
+      $('#'+id).on('hidden.bs.collapse', () -> 
+        $('#js-subgroups').html("Show subgroups ("+child+")"))
+      $('#'+id).on('shown.bs.collapse', () -> 
+        $('#js-subgroups').html("Hide subgroups ("+child+")"))
 
   class Discover.EmptyView extends Marionette.ItemView
     template: 'groups/discover/templates/empty'

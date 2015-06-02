@@ -18,6 +18,14 @@
       e.preventDefault()
       @trigger 'click:leave'
 
+    showSubgroups: (e)->
+      id = $(e.currentTarget).attr("aria-controls")
+      child = $(e.currentTarget).attr("data-child")
+      $('#'+id).on('hidden.bs.collapse', () -> 
+        $('#js-subgroups').html("Show subgroups ("+child+")"))
+      $('#'+id).on('shown.bs.collapse', () -> 
+        $('#js-subgroups').html("Hide subgroups ("+child+")"))
+
     onRender: ->
       @ui.description.linkify()
 
