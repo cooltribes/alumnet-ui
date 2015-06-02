@@ -9,7 +9,8 @@
 
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
-      current_user.posts.fetch({reset: true})
+      current_user.posts.fetch {reset: true}
+      current_user.posts.comparator = 'last_comment_at'
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
@@ -28,16 +29,27 @@
       layout.posts.show(posts)
       layout.banners.show(bannersView) 
 
-      posts.on "render:collection", ->
+      posts.on "add:child", (viewInstance)->
         container = $('#timeline')
         container.masonry
-          itemSelector: '.post' 
+          itemSelector: '.post'        
+        container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+        container.imagesLoaded ->
+          container.masonry 'layout'
+       
+
+      posts.on "render:collection", ->
+        container = $('#timeline')
+        container.masonry 'layout'
+
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
         post.save data,
           success: (model, response, options) ->
             posts.collection.add(model, {at: 0})
+            container = $('#timeline')
+            container.masonry "reloadItems"
 
       posts.on "childview:post:edit", (postView, value)->
         post = postView.model
