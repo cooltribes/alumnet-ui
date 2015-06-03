@@ -9,3 +9,17 @@
 
       AlumNet.mainRegion.show(createForm)
       AlumNet.execute('render:tasks:submenu')
+
+    updateJobExchange: (id)->
+      current_user = AlumNet.current_user
+      task = new AlumNet.Entities.JobExchange { id: id }
+      task.fetch
+        success: ->
+          createForm = new JobExchange.Form
+            model: task
+            user: current_user
+
+          AlumNet.mainRegion.show(createForm)
+          AlumNet.execute('render:tasks:submenu')
+
+        error: ->

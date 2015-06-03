@@ -8,7 +8,7 @@
           <div class="col-md-6">
             <div class="form-group has-feedback">
               <label class="control-label">Title of the job post</label>
-              <input type="text" name="name"  id="task-name"  class="form-control input-lg">
+              <input type="text" name="name" id="task-name" class="form-control input-lg" value="<%= @name %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
               <span class="help-block"></span>
             </div>
@@ -25,7 +25,7 @@
           <div class="col-md-12">
             <div class="form-group has-feedback">
               <label class="control-label">Job Description (responsabilities)</label>
-              <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"></textarea>
+              <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"><%= @description %></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
               <span class="help-block"></span>
             </div>
@@ -38,7 +38,7 @@
           <div class="col-md-12">
             <div class="form-group has-feedback">
               <label class="control-label">your offer, could be salary, perks, etc</label>
-              <textarea name="offer" id="task-offer" class="form-control input-lg" rows="5" style="resize:none"></textarea>
+              <textarea name="offer" id="task-offer" class="form-control input-lg" rows="5" style="resize:none"><%= @offer %></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
               <span class="help-block"></span>
             </div>
@@ -86,7 +86,7 @@
           <div class="col-md-4 margin_top_medium">
             <div class="form-group">
               <label class="control-label">City</label>
-              <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
+              <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_helper %>">
               <span class="help-block"></span>
             </div>
           </div>

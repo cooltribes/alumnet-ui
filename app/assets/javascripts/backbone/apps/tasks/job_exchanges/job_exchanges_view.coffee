@@ -17,6 +17,9 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    templateHelpers: ->
+      city_value: if @model.get('city') then @model.get('city').text else ''
+
     ui:
       'submitLink': '.js-submit'
       'cancelLink': '.js-cancel'
@@ -31,7 +34,8 @@
       'change @ui.selectCountries': 'setCities'
 
     onRender: ->
-      ##TODO: get the companies
+      console.log @model
+      ## set select2 to inputs
       @ui.selectCompany.select2
         placeholder: "Select a Company"
         data: []
@@ -43,6 +47,12 @@
         placeholder: "Select a Country"
         data: data
       @ui.selectProfindaObjects.select2 @select2_profinda_options()
+
+      ## set initial value
+      unless @model.isNew()
+        @ui.selectCountries.select2('val', @model.get('country').value)
+        @setSelectCities(@model.get('country').value)
+
 
     submitClicked: (e)->
       e.preventDefault()
@@ -59,7 +69,15 @@
       console.log 'cancel'
 
     setCities: (e)->
-      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      @setSelectCities(e.val)
+
+    setSelectCities: (val)->
+      if @model.get('city')
+        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+      else
+        initialValue = false
+
+      url = AlumNet.api_endpoint + '/countries/' + val + '/cities'
       @ui.selectCities.select2
         placeholder: "Select a City"
         minimumInputLength: 2
@@ -76,6 +94,8 @@
           data.name
         formatSelection: (data)->
           data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
 
     select2_profinda_options: ->
       multiple: true

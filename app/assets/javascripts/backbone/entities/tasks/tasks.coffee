@@ -9,6 +9,10 @@
         required: true
         maxLength: 2048
         msg: "Description is required, must be less than 2048 characters long"
+      nice_have_list:
+        required: true
+      must_have_list:
+        required: true
 
   class Entities.JobExchange extends Entities.Tasks
     urlRoot: ->
