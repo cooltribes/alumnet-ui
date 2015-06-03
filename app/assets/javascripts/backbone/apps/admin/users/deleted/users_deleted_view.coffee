@@ -55,3 +55,6 @@
     template: 'admin/users/deleted/templates/users_deleted_table'
     childView: UsersDeleted.UserView
     childViewContainer: "#users-deleted-table tbody"
+
+    initialize: (options) ->
+      document.title='AlumNet - Users Management'

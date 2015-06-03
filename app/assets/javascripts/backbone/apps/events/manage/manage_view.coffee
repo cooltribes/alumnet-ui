@@ -53,6 +53,7 @@
 
     initialize: ->
       @searchUpcomingEvents({})
+      document.title='AlumNet - Manage Events'
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

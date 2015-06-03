@@ -58,6 +58,7 @@
     className: 'row'
 
     initialize: (options)->
+      document.title = " AlumNet - Registration"
       @linkedin_skills = options.linkedin_skills
 
     templateHelpers: ->

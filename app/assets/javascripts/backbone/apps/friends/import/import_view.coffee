@@ -18,6 +18,9 @@
       'contactsList': '#js-contacts-list'
       'linkCancel': '#js-cancel'
 
+    initialize: ->
+      document.title='AlumNet - Invite Friends'
+
     showRuteFile: (e)->
       $('#url-archivo').append("File: "+$(e.target).val())
 

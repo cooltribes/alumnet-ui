@@ -72,10 +72,12 @@
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
 
-    getUpcoming:(query) ->
+    getUpcoming:(query, options) ->
       today = moment().format('YYYY-MM-DD')
       query = $.extend({}, query, { start_date_gteq: today })
-      @fetch( data: { q: query } )
+      data = { q: query }
+      options = $.extend({}, options, { data: data })
+      @fetch( options )
 
     getPast:(query) ->
       today = moment().format('YYYY-MM-DD')
