@@ -1,12 +1,12 @@
-@AlumNet.module 'AdminApp.ActionsList', (ActionsList, @AlumNet, Backbone, Marionette, $, _) ->
-  class ActionsList.Layout extends Marionette.LayoutView
-    template: 'admin/actions/list/templates/layout'
+@AlumNet.module 'AdminApp.PrizesList', (PrizesList, @AlumNet, Backbone, Marionette, $, _) ->
+  class PrizesList.Layout extends Marionette.LayoutView
+    template: 'admin/prizes/list/templates/layout'
     className: 'container'
     regions:
       table: '#table-region'
 
-  class ActionsList.ActionView extends Marionette.ItemView
-    template: 'admin/actions/list/templates/action'
+  class PrizesList.PrizeView extends Marionette.ItemView
+    template: 'admin/prizes/list/templates/prize'
     tagName: "tr"
 
     modelEvents:
@@ -23,8 +23,8 @@
       ".js-description": 
         observe: "description"
         events: ['blur']
-      ".js-value": 
-        observe: "value"
+      ".js-price": 
+        observe: "price"
         events: ['blur']
       ".js-status": 
         observe: "status"
@@ -44,7 +44,7 @@
     modelChange: (e)->
       @model.save()
 
-  class ActionsList.ActionsTable extends Marionette.CompositeView
-    template: 'admin/actions/list/templates/actions_table'
-    childView: ActionsList.ActionView
-    childViewContainer: "#actions-table tbody"
+  class PrizesList.PrizesTable extends Marionette.CompositeView
+    template: 'admin/prizes/list/templates/prizes_table'
+    childView: PrizesList.PrizeView
+    childViewContainer: "#prizes-table tbody"
