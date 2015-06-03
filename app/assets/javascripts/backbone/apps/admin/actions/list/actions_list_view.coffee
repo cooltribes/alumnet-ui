@@ -21,15 +21,40 @@
     template: 'admin/actions/list/templates/action'
     tagName: "tr"
 
-    #initialize: ->
+    modelEvents:
+      "change": "modelChange"
+
+    initialize: ()->
+      #view.$("[name=status]")
       #@listenTo(@model, 'render:view', @renderView)
 
-    templateHelpers: ->
-      model = @model
-      name: model.get('name')
-      description: model.get('description')
-      value: model.get('value')
-      status: model.get('status')
+    bindings:
+      ".js-name": 
+        observe: "name"
+        events: ['blur']
+      ".js-description": 
+        observe: "description"
+        events: ['blur']
+      ".js-value": 
+        observe: "value"
+        events: ['blur']
+      ".js-status": 
+        observe: "status"
+        selectOptions:
+          collection: [
+            value: "inactive"
+            label: "inactive"
+          ,
+            value: "active"
+            label: "active"
+          ,
+          ]
+
+    onRender: ->
+      @stickit()
+
+    modelChange: (e)->
+      @model.save()
 
     #ui:
       # 'editLink': '.js-edit'

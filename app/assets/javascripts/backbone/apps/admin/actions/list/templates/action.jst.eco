@@ -1,4 +1,7 @@
-<td class="tableAdminGroups__colText"><%= @name %></td>
-<td class="tableAdminGroups__colText"><%= @description %></td>
-<td class="tableAdminGroups__colText"><%= @status %></td>
-<td class="tableAdminGroups__colText"><%= @value %></td>
+<td class="tableAdminGroups__colText js-name" contenteditable="true"></td>
+<td class="tableAdminGroups__colText js-description" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-status" name="status">    
+  	</select>
+</td>
+<td class="tableAdminGroups__colText js-value" contenteditable="true"></td>

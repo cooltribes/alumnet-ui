@@ -2,11 +2,9 @@
   class ActionsList.Controller
     actionsList: ->
       actions = AlumNet.request('action:entities', {})
-      console.log(actions)
       layoutView = new ActionsList.Layout
       actionsTable = new ActionsList.ActionsTable
          collection: actions
-      #   linksGroups: []
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(actionsTable)
