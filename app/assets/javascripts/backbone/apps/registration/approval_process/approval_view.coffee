@@ -29,6 +29,9 @@
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
+    initialize: ->
+      document.title = " AlumNet - Registration"
+
     onShow: ->
       view = @
       ((url)->

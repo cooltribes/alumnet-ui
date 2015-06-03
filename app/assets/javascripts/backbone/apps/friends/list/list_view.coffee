@@ -10,6 +10,8 @@
     # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
+    initialize: ->
+      document.title='AlumNet - My Friends'
 
     performSearch: (e) ->
       e.preventDefault()

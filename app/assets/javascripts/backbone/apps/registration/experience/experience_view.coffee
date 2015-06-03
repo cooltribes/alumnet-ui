@@ -35,6 +35,7 @@
 
 
     initialize: (options)->
+      document.title = " AlumNet - registration"
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name^=#{attr}]")
@@ -184,6 +185,7 @@
       'click .js-linkedin-import': 'linkedinClicked'
 
     initialize: (options) ->
+      document.title = " AlumNet - Registration"
       @exp_type = options.exp_type
 
       @title = 'Experience in AIESEC'

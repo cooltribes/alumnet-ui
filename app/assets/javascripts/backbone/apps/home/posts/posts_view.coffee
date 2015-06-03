@@ -25,6 +25,10 @@
           view.trigger 'comment:edit', newValue
       @ui.commentText.linkify()
 
+    onShow: ->
+      container = $('#timeline')
+      container.masonry 'layout'
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -80,8 +84,7 @@
     initialize: (options)->
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
-
-
+    
     templateHelpers: ->
       model = @model
       permissions = @model.get('permissions')
@@ -105,7 +108,7 @@
           container.masonry
             columnWidth: '.item'
             gutter: 1
-
+    
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -212,12 +215,14 @@
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
+    
     initialize: ->
+      document.title = " AlumNet - Home"
       @picture_ids = []    
         
     childViewOptions: ->
       current_user: @model
-      
+    
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
 
@@ -235,7 +240,7 @@
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
-
+  
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -246,6 +251,7 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        console.log "submitClicked"
 
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
@@ -277,6 +283,8 @@
     childViewContainer: '.carousel-inner'
     #childViewOptions: ->
     #  banner: @banner
+
+
 
 
 

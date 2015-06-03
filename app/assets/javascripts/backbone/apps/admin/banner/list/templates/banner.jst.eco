@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label class="createBanner__label" for="content">Content:</label>
-         <textarea class="form-control" rows="3" for="content" placeholder="Enter the content" disabled></textarea>
+         <textarea class="form-control" rows="3" for="content" placeholder="<%= @description %>" disabled></textarea>
         </div>
         <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
         <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
