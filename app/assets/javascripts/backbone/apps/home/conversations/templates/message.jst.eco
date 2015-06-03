@@ -1,7 +1,7 @@
 <div class="message">
 	<div class="message__metaContainer">
 		<div class="message__avatar sender">
-			<img src="<%= @sender.avatar %>" alt="<%= @sender.name %>" widht="80" height="80" class="img-circle">
+			<img src="<%= @sender.avatar.avatar.large.url %>" alt="<%= @sender.name %>" widht="80" height="80" class="img-circle">
 			
 		</div>
 		<div class="message__meta">
@@ -17,6 +17,6 @@
 	</div>
 	
 	<div class="message__content">
-		<p><%= @body %></p>
+		<p id="js-mensaje"><%= @body %></p>
 	</div>
 </div>

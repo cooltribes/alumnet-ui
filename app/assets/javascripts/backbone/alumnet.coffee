@@ -20,15 +20,20 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()
-      App.navigate('#posts', {trigger: true})
+      Backbone.history.start()      
+      App.navigate('#posts', {trigger: true}) if App.getCurrentRoute() == ""
 
 
   App.addRegions
     headerRegion: "#header-region"
     submenuRegion: "#submenu-region"
-    mainRegion: "#main-region"
+    mainRegion: 
+      selector: "#main-region"
+      # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
+
+  App.reqres.setHandler 'default:region', -> App.mainRegion
+    
 
   App.navigate = (route, options)->
     options || (options = {})

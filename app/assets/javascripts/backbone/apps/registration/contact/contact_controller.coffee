@@ -14,14 +14,22 @@
       profile = user.profile
 
       # initial contacts
-      contacts = new AlumNet.Entities.ProfileContactsCollection [
-        new AlumNet.Entities.ProfileContact
+      if gon.linkedin_profile && gon.linkedin_profile.contacts.length > 0
+        contacts_array = []
+        contacts_array.push new AlumNet.Entities.ProfileContact
           contact_type: 0, info: user.get('email'), showDelete: false, readOnly: true
-        new AlumNet.Entities.ProfileContact {contact_type: 1 }
-        new AlumNet.Entities.ProfileContact {contact_type: 2 }
-        new AlumNet.Entities.ProfileContact {contact_type: 3 }
-      ]
+        _.each gon.linkedin_profile.contacts, (elem, index, list)->
+          contacts_array.push new AlumNet.Entities.ProfileContact elem
+      else
+        contacts_array = [
+          new AlumNet.Entities.ProfileContact
+            contact_type: 0, info: user.get('email'), showDelete: false, readOnly: true
+          new AlumNet.Entities.ProfileContact {contact_type: 1 }
+          new AlumNet.Entities.ProfileContact {contact_type: 2 }
+          new AlumNet.Entities.ProfileContact {contact_type: 3 }
+        ]
 
+      contacts = new AlumNet.Entities.ProfileContactsCollection contacts_array
       contactForm = @getFormView(profile, contacts)
       layoutView.form_region.show(contactForm)
 

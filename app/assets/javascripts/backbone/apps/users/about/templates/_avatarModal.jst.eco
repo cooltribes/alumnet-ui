@@ -4,21 +4,38 @@
   </div>
 
   <div class="bbm-modal__section">
-    <form>
-      <% if @avatar: %>
-        <img src="<%= @avatar.extralarge %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-        <% else: %>
-        <!-- Hacer esta imagen negra -->
-        <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px">
-      <% end %>
-
-      <input type="file" id="profile-avatar" style="margin-top: 15px" name="avatar" accept="image/*">
-      <span class="help-block"></span>
-    </form>
+    <div class="row">
+      <div class="col-md-6">
+        <form>
+          <% if @avatar: %>
+            <img src="<%="#{@avatar.extralarge}?#{ new Date().getTime() }" %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+            <% else: %>
+            <!-- Hacer esta imagen negra -->
+            <img src="assets/registration/uploadAvatar.png" alt="upload avatar" id="preview-avatar" width="240px" height="240px">
+          <% end %>
+          
+          <label class="margin_top_small uploadFile">
+            <span class="glyphicon glyphicon-open">
+            <span>Upload avatar</span>
+            <input type="file" id="profile-avatar" style="margin-top: 15px" name="avatar" accept="image/*">
+          </label>
+          <small id="url-archivo" class="uploadFile__path"></small>
+        </form>
+      </div>
+      <div class="col-md-6 steps">
+        <br>
+        <h3>Steps</h3>
+        <br>
+        <ol>
+          <li>Upload and Save your photo</li>
+          <li>Crop and Save  </li>
+        </ol>
+      </div>
+    </div>
   </div>
 
   <div class="bbm-modal__bottombar">
-    <a href="#" class="btn btn-success" id="js-save">Save</a>
+    <a href="#" class="btn btn-primary" id="js-save">Upload Avatar</a>
     <a href="#" class="btn btn-default" id="js-croppic">Crop</a>
     <a href="#" class="btn btn-default" id="js-close-btn">Close</a>
   </div>

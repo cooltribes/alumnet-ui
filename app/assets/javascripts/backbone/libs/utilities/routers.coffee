@@ -13,6 +13,7 @@
           AlumNet.trigger 'show:banned'
           false
         else
+          AlumNet.execute('header:show:regular')
           true
 
     goToRegistration: (step)->
@@ -34,7 +35,8 @@
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->
       current_user = AlumNet.current_user
-      unless current_user.isAlumnetAdmin()
+      unless current_user.isAdmin()
         return false
 
+      AlumNet.execute('header:show:admin')  
       true

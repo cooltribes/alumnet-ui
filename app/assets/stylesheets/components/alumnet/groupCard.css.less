@@ -11,6 +11,8 @@ DESCRIPTION: Displays a list of groups in the Groups
     background-color: @white;
     margin-bottom: 2em;
     position: relative;
+    box-shadow: 1px 1px 5px #666;
+    
 
 
     &__subGroupShadow{
@@ -69,7 +71,7 @@ DESCRIPTION: Displays a list of groups in the Groups
     }
 
     &__content{
-        width: auto;
+        width: 100%;
        height: 224px;
        float: left;
        
@@ -78,6 +80,10 @@ DESCRIPTION: Displays a list of groups in the Groups
     &__text{
         height: 121px;
         overflow: hidden;
+        
+        &:hover{
+        box-shadow:0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    }
         
 
     }
@@ -123,10 +129,10 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
     }
     &__description{
-         font-size: 13px;
-         padding: 0.5*@space_small;
-         padding: 0 15px 10px;
-         overflow: hidden;
+        font-size: 13px;
+        padding: 0.5*@space_small;
+        padding: 0 15px 10px;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         height: 55px;
@@ -141,6 +147,8 @@ DESCRIPTION: Displays a list of groups in the Groups
         border-bottom: 1px solid @white;
         width: 50%;
         float: left;
+        font-size: 0.9em;
+        min-height: 36px;
         &__container{
             padding: 8px 10px;
         }
@@ -166,8 +174,22 @@ DESCRIPTION: Displays a list of groups in the Groups
         text-align: center;
         text-transform: uppercase;
     }
+
+    &__animation{
+    transition: all 300ms ease 0s;
+    width: 70px;
+    display: inline-block;
+    float: right;
+    &:hover{
+        width: 150px;
+        text-decoration: none;
+          }
+    }
     
-    
+    &__animation:hover &__actions__text{
+      display: inline;
+    }
+  
     &__menu{
         color: @white;
         opacity: 0;
@@ -214,6 +236,27 @@ DESCRIPTION: Displays a list of groups in the Groups
     }
 }
 
+.stacked{
+    width: 94%;
+    height: 88%;
+    background: white;
+    position: absolute;
+    top: 0%;
+    left: 3%;
+    box-shadow: 1px 1px 5px #666;
+
+    &--356deg{
+        -ms-transform: rotate(356deg);
+        -webkit-transform: rotate(356deg);
+        transform: rotate(356deg);        
+    }
+    &--358deg{        
+        -ms-transform: rotate(358deg);
+        -webkit-transform: rotate(358deg);
+        transform: rotate(358deg);
+    }
+}
+
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
@@ -226,11 +269,16 @@ DESCRIPTION: Displays a list of groups in the Groups
                 width: 100%;
             }
         }
+        &__text{
+            height: 121px;
+        }
         &__content{
             width: 50%;
         }
         &__atribute{
             height: auto;
+            min-height: 37px;
+            font-size: 0.8em;
         }
     }
  }
@@ -246,6 +294,9 @@ DESCRIPTION: Displays a list of groups in the Groups
                 width: 100%;
             }
         }
+        &__text{
+            height: 163px;
+        }
         &__content{
             width: 50%;
         }
@@ -257,8 +308,7 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
         &__menu{
             &__list{
-                height: 188px;
-                overflow: scroll;
+                height: 188px;                
             }
         }
     }
@@ -279,13 +329,17 @@ DESCRIPTION: Displays a list of groups in the Groups
         &__content{
             width: 50%;
         }
+        &__text{
+            height: 123px;
+        }
         &__atribute{
             height: 37px;
         }
         &__menu{
             &__list{
                 height: 188px;
-                overflow: scroll;
+                overflow-x: hidden;
+                overflow-y: auto; 
             }
         }
     }    

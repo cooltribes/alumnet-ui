@@ -1,11 +1,35 @@
 @AlumNet.module 'GroupsApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
+
+  class Shared.CropCoverModal extends Backbone.Modal
+    template: 'groups/shared/templates/crop_modal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      model = @model
+      image = @model.get('cover').original + "?#{ new Date().getTime() }"
+      options =
+        loadPicture: image
+        cropUrl: AlumNet.api_endpoint + "/groups/#{@model.id}/cropping"
+        onAfterImgCrop: ->
+          model.trigger('change:cover')
+
+      cropper = new Croppic('croppic', options)
+
   class Shared.Modal extends Backbone.Modal
     template: 'groups/shared/templates/upload_modal'
     cancelEl: '.js-modal-close'
 
     events:
       'click .js-modal-save': 'saveClicked'
+      'click .js-modal-crop': 'cropClicked'
       'change #group-cover': 'previewImage'
+
+    cropClicked: (e)->
+      e.preventDefault()
+      modal = new Shared.CropCoverModal
+        model: @model
+      @destroy()
+      $('#js-modal-cover-container').html(modal.render().el)
 
     previewImage: (e)->
       input = @.$('#group-cover')
@@ -31,12 +55,14 @@
         success: ->
           modal.destroy()
       @model.save {}, options
+      @model.trigger('change:cover')
 
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
+      cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
 
     modelEvents:
       'change:cover': 'coverChanged'
@@ -50,8 +76,12 @@
       'click @ui.uploadCover': 'uploadClicked'
 
     coverChanged: ->
-      cover = @model.get('cover')
-      @ui.coverArea.css('background-image',"url('#{cover.main}'")
+      # cover = @model.get('cover')
+      # @ui.coverArea.css('background-image',"url('#{cover.main}?#{ new Date().getTime() }')")
+      view = @
+      @model.fetch
+        success: (model)->
+          view.render()
 
     uploadClicked: (e)->
       e.preventDefault()
@@ -77,27 +107,47 @@
     initialize: ->
       @current_user = AlumNet.current_user
 
+
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
       userIsMember: @model.userIsMember()
       groupIsClose: @model.isClose()
 
+    events:
+      "click #groupMenuList li":"menuClicked"
+
+    menuClicked: (e) ->
+     $('.groupMenu__link').removeClass "groupMenu__link--active"
+     $(e.target).closest('a').removeClass "groupMenu__link--active"
+
     regions:
       header: '#group-header'
       body: '#group-body'
 
+    initialize: (options) ->
+      @tab = options.tab
+      @class = ["", "", ""
+        "", ""
+      ]
+      @class[parseInt(@tab)] = "--active"
+
+    templateHelpers: ->
+      classOf: (step) =>
+        @class[step]
+
   API =
-    getGroupLayout: (model)->
+    getGroupLayout: (model, tab)->
       new Shared.Layout
         model: model
+        tab: tab
 
     getGroupHeader: (model)->
       new Shared.Header
         model: model
 
-  AlumNet.reqres.setHandler 'group:layout', (model) ->
-    API.getGroupLayout(model)
+  AlumNet.reqres.setHandler 'group:layout', (model,tab) ->
+    API.getGroupLayout(model,tab)
 
   AlumNet.reqres.setHandler 'group:header', (model)->
     API.getGroupHeader(model)

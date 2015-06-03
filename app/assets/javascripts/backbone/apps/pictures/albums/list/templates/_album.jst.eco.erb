@@ -1,0 +1,73 @@
+<div class=" row">
+  <div class="col-md-12">
+    <h4>
+      <%%= @name %>   (<%%= @pictures_count %>)         
+
+      <%% if @userCanEdit: %>
+
+<a class="dropdown-toggle albums-list__editButton" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+  <span class="icon-entypo-down-open-mini"></span>
+</a>
+<ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">
+    <li role="presentation">
+      <span class="ico-company"></span> Privacy
+    </li>
+    <li role="presentation">
+      <a href="#">
+        Edit Album       
+      </a>
+    </li> 
+    <li role="presentation">
+      <a href="#"  class="js-rmvItem">
+        Delete Album      
+      </a>
+    </li>   
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <%% end %>
+
+    </h4>
+
+
+  </div>
+</div>
+<a href="#" class="js-detail">  
+<div>
+  <div class=" row">
+    <div class="col-md-12">
+    <%% if @cover_picture: %>
+      <img src="<%%= @cover_picture.card %>" alt="<%%= @name %>" width="100%">
+    <%% else: %>
+      <%= image_tag("general/326x346.png", width: "100%", class:"albums-list__upload__bordedBox") %>
+      
+
+    <%% end %>
+    </div>
+  </div>
+</div>
+</a>

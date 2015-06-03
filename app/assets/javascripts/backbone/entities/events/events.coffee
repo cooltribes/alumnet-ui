@@ -17,7 +17,6 @@
     isPast: ->
       today = moment()
       start_date = moment(@get('start_date'))
-      console.log today, start_date
       start_date < today
 
     getLocation: ->
@@ -41,6 +40,9 @@
     userIsAdmin: ->
       @get('admin')
 
+    userCanAttend: ->
+      @get('can_attend')
+
     userIsInvited: ->
       attendance = @get('attendance_info')
       if attendance == null then false else true
@@ -48,9 +50,12 @@
     validation:
       name:
         required: true
-        msg: 'Name of the Event is required'
+        maxLength: 250
+        msg: "Event name is required, must be less than 250 characters long."
       description:
         required: true
+        maxLength: 2048
+        msg: "Event description is required, must be less than 2048 characters long"
       start_date:
         required: true
       end_date:
@@ -67,10 +72,12 @@
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
 
-    getUpcoming:(query) ->
+    getUpcoming:(query, options) ->
       today = moment().format('YYYY-MM-DD')
       query = $.extend({}, query, { start_date_gteq: today })
-      @fetch( data: { q: query } )
+      data = { q: query }
+      options = $.extend({}, options, { data: data })
+      @fetch( options )
 
     getPast:(query) ->
       today = moment().format('YYYY-MM-DD')
@@ -107,6 +114,10 @@
       query = $.extend({}, query, { status_eq: 3 })
       @fetch( data: { q: query, event_id: @event_id } )
 
+    getPendingPayment:(query) ->
+      query = $.extend({}, query, { status_eq: 4 })
+      @fetch( data: { q: query, event_id: @event_id } )
+
   class Entities.EventContact extends Backbone.Model
 
   class Entities.EventContacts extends Backbone.Collection
@@ -123,9 +134,14 @@
       events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       events
 
-    getEventContacts: (parent, parent_id, event_id)->
+    getOpenEvents: ()->
+      events = new Entities.EventsCollection
+      events.url = AlumNet.api_endpoint + "/events"
+      events
+
+    getEventContacts: (event_id)->
       contacts = new Entities.EventContacts
-      contacts.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events/#{event_id}/contacts"
+      contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
 
     findEvent: (id)->
@@ -153,6 +169,9 @@
 
   AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
     API.getEvents(parent, parent_id)
+
+  AlumNet.reqres.setHandler 'event:entities:open', ->
+    API.getOpenEvents()
 
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)

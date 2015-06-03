@@ -9,8 +9,9 @@
 			<% else: %>
 			col-md-7
 			<% end %>">
-			<h4 class="userCard__name"><%= @name %></h4>
-			<p class="member-position text-small"><%= @last_experience %></p>
+			<h4 class="userCard__name overfloadText"><%= @name %></h4>
+			<p class="userCard__position member-position text-small"><%= @last_experience %></p>
+			<p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
 		</div>
 		<div id="js-invitation-box" class="
 			<% if @wasInvited(): %>

@@ -4,38 +4,44 @@
 
     ui:
       "editPic": "#js-editPic"
-      "cropPic": "#js-cropPic"
       "editCover": "#js-editCover"
-      "cropCover": "#js-cropCover"
       "modalCont": "#js-picture-modal-container"
       'requestLink': '#js-request-send'   #Id agregado
       'coverArea': 'userCoverArea'
+      'imgAvatar': '#preview-avatar'
+
     events:
       "click @ui.editPic": "editPic"
-      "click @ui.cropPic": "cropPic"
       "click @ui.editCover": "editCover"
-      "click @ui.cropCover": "cropCover"
       'click #js-request-send':'sendRequest' #Evento agregado
-    modelEvents:
-      "change": "modelChange"
+      'click #js-message-send':'sendMensagge'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+      @listenTo(@model, 'change:avatar', @renderView)
+      @listenTo(@model, 'change:cover', @renderView)
 
     templateHelpers: ->
       model = @model
+      date = new Date()
       userCanEdit: @userCanEdit
       cover_style: ->
         cover = model.get('cover')
-        if cover
-          "background-image: url('#{cover.main}');"
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');"
         else
           "background-color: #2b2b2b;"
+      add_timestamp: (file)->
+        "#{file}?#{date.getTime()}"
+
       position: ->
         model.profile.get("last_experience") ? "No Position"
 
-    modelChange: ->
-      @render()
+    renderView: ->
+      view = @
+      @model.fetch
+        success: ->
+          view.render()
 
     editPic: (e)->
       e.preventDefault()
@@ -45,11 +51,7 @@
         model: @model
       @ui.modalCont.html(modal.render().el)
 
-    cropPic: (e)->
-      e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CropAvatarModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
+
 
     editCover: (e)->
       e.preventDefault()
@@ -57,18 +59,18 @@
         model: @model
       @ui.modalCont.html(modal.render().el)
 
-    cropCover: (e)->
-      e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CropCoverModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
-
     sendRequest: (e)->
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
+      AlumNet.current_user.incrementCount('pending_sent_friendships')
       friendship.on 'save:success', (response, options) =>
-        @model.fetch()
+      @model.fetch
+        success: ->
+          @$('#js-request-sent').html('<a type="button" class="userCoverArea__btnInvite userCoverArea__btnInviteSent btn-lg" style="right: 280px;"> REQUEST SENT</a>') # or remove.
 
+    sendMensagge: (e)->
+      e.preventDefault()
+      AlumNet.trigger('conversation:recipient', @model)
 
 
   class Shared.Layout extends Marionette.LayoutView

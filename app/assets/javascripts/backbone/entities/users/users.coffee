@@ -28,6 +28,9 @@
       step = @profile.get "register_step"
       step == "approval"
 
+    isAdmin: ->
+      @get "is_admin"
+
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
 
@@ -55,19 +58,9 @@
     getBornDate: ()->
       born = @profile.get('born')
       array = []
-      # array.push(born.year ? "1900")
-      # array.push(born.month ? "01")
-      # array.push(born.day ? "01")
       array.push(born.year) if born.year
       array.push(born.month) if born.month
       array.push(born.day) if born.day
-
-      # date = ""
-      # if born.month
-      #   date = new Date(born.month, born.day)
-      #   console.log date
-      #   console.log moment(date).format("MMMM DD")
-
       array.join("/")
 
     getBornComplete: ()->
@@ -76,7 +69,6 @@
       array.push(@getOriginLocation())
       array.push(@getBornDate()) if @getBornDate()
       array.join(" in ")
-
 
     getAge: ()->
         if @profile.get("born")
@@ -112,28 +104,45 @@
         "system"
       else if @get('is_alumnet_admin')
         "alumnet"
+      else if @get('is_regional_admin')
+        "regional"
+      else if @get('is_nacional_admin')
+        "nacional"
       else
         "regular"
 
+    incrementCount: (counter, val = 1)->
+      value = @get("#{counter}_count")
+      @set("#{counter}_count", value + val)
+      @get("#{counter}_count")
+
     decrementCount: (counter, val = 1)->
       value = @get("#{counter}_count")
+      return if value == 0
       @set("#{counter}_count", value - val)
       @get("#{counter}_count")
 
-  class Entities.UserCollection extends Backbone.Collection
-    url: ->
-      AlumNet.api_endpoint + '/users'
-    model: Entities.User
+    setCount: (counter, value = 0)->
+      @set("#{counter}_count", value) if @get("#{counter}_count") != value
 
   class Entities.DeletedUser extends Backbone.Model
     urlRoot: ->
       AlumNet.api_endpoint + '/admin/deleted/users/'
+
+  class Entities.UserCollection extends Backbone.Collection
+    model: Entities.User
+    url: ->
+      AlumNet.api_endpoint + '/users'
 
   class Entities.DeletedUserCollection extends Backbone.Collection
     model: Entities.DeletedUser
     url: ->
       AlumNet.api_endpoint + '/admin/deleted/users/'
 
+  class Entities.ContactsInAlumnet extends Backbone.Collection
+    model: Entities.User
+    url: ->
+      AlumNet.api_endpoint + '/me/contacts/in_alumnet'
 
   ### Other functions and utils###
   initializeUsers = ->
@@ -162,11 +171,14 @@
       user.fetch({async:false})
       user
 
-    getUserEntities: (querySearch)->
+    getUserEntities: (querySearch, options)->
       initializeUsers() if Entities.users == undefined
       # Entities.users.fetch()
-      Entities.users.fetch
-        data: querySearch
+      if !(options.fetch?) then options.fetch = true
+
+      if options.fetch
+        Entities.users.fetch
+          data: querySearch
       Entities.users
 
     #List of all users for administration
@@ -216,8 +228,8 @@
   AlumNet.reqres.setHandler 'user:new', ->
     API.getNewUser()
 
-  AlumNet.reqres.setHandler 'user:entities', (querySearch)->
-    API.getUserEntities(querySearch)
+  AlumNet.reqres.setHandler 'user:entities', (querySearch, options = {})->
+    API.getUserEntities(querySearch, options)
 
   AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
     API.getUsersList(querySearch)

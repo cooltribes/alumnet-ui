@@ -136,7 +136,10 @@ DESCRIPTION: CSS for styling the admin tables
 			}
     	}
     }
-	
+	table& > tbody > tr >  td {
+		position: relative;
+		z-index: -1
+	}
 	table& > tbody > tr >  td&__edit{
 		padding: 0px;
 	}
@@ -254,11 +257,9 @@ DESCRIPTION: CSS for styling the admin tables
 				
 			}
 
-  			
+    }
 
-		}
-
-	}
+  }
 
 }
 

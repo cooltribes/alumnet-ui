@@ -34,6 +34,8 @@
     childViewContainer: ".container"
     events:
       'click #js-mark-all-read': "markAllAsRead"
+    initialize: ->
+      document.title='AlumNet - Notifications'
 
     markAllAsRead: (e)->
       e.preventDefault()

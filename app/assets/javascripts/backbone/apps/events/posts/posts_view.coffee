@@ -5,6 +5,7 @@
     className: 'groupPost__comment'
     initialize: (options)->
       @event = options.event
+
       @current_user = options.current_user
 
     templateHelpers: ->
@@ -25,6 +26,7 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'comment:edit', newValue
+      @ui.commentText.linkify()
 
     ui:
       'likeLink': '.js-vote'
@@ -82,22 +84,32 @@
       @current_user = options.current_user
 
     templateHelpers: ->
+      model = @model
       permissions = @model.get('permissions')
       userCanComment: @event.userIsInvited()
       current_user_avatar: @current_user.get('avatar').medium
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      pictures_is_odd: (pictures)->
+        pictures.length % 2 != 0
+      picturesToShow: ->
+        if model.get('pictures').length > 5
+          _.first(model.get('pictures'), 5)
+        else
+          model.get('pictures')
 
     childViewOptions: ->
       event: @event
       current_user: @current_user
 
     onShow: ->
-      container = @ui.picturesContainer
-      container.montage
-        liquid: false
-        fillLastRow : true
-        alternateHeight: true
+      pictures = @model.get('pictures')
+      if pictures && pictures.length > 1
+        container = @ui.picturesContainer
+        container.imagesLoaded ->
+          container.masonry
+            columnWidth: '.item'
+            gutter: 1
 
     onRender: ->
       view = this
@@ -111,6 +123,7 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'post:edit', newValue
+      @ui.bodyPost.linkify()
 
     ui:
       'item': '.item'
@@ -123,6 +136,7 @@
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
       'picturesContainer': '.pictures-container'
+      'modalContainer': '.modal-container'
 
     events:
       'keypress .comment': 'commentSend'
@@ -131,6 +145,15 @@
       'click .js-goto-comment': 'clickedGotoComment'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
+      'click .picture-post': 'clickedPicture'
+
+    clickedPicture: (e)->
+      e.preventDefault()
+      element = $(e.currentTarget)
+      id = element.data('id')
+      picture = @model.picture_collection.get(id)
+      modal = AlumNet.request "picture:modal", picture
+      @ui.modalContainer.html(modal.render().el)
 
     commentSend: (e)->
       e.stopPropagation()
@@ -199,9 +222,14 @@
 
     initialize:(options)->
       @event = options.event
+      document.title='AlumNet - '+@event.get('name')
       @picture_ids = []
 
     templateHelpers: ->
+      event_attendances: @event.get('attendances_count')
+      event_going: @event.get('going_count')
+      even_maybe: @event.get('maybe_count')
+      even_not_goin: @event.get('not_going_count')
       userCanPost: @event.userIsInvited()
       eventIsClose: @event.isClose()
 
@@ -231,5 +259,6 @@
       data.picture_ids = @picture_ids
       if data.body != ''
         @trigger 'post:submit', data
+        @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')

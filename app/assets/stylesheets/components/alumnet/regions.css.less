@@ -1,0 +1,43 @@
+/***
+
+COMPONENT NAME: regions
+DESCRIPTION: styles for pages regions in admin section
+
+***/
+
+@import 'conf/conf.css.less';
+
+.region{
+
+	&__CountryBox{
+		display: inline-flex;
+	}
+
+	&__CountryList{
+		display: inline-block;
+  		list-style: none;
+  		padding: 10px;
+
+  		& li{
+  			padding: 5px;
+  			width: 200px;
+  		}
+
+  		& li:nth-child(odd){
+  			background:@form-header-gray;
+  		}
+	}
+
+	&__admins{
+		min-width: 250px;
+	}
+
+	&__admin{
+		list-style: none;
+  		padding-left: 10px;
+
+  		& li{
+  			margin-top: 10px;
+  		}
+	}
+}

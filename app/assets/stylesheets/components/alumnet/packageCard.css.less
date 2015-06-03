@@ -1,0 +1,102 @@
+/***
+
+APP NAME: packageCard
+DESCRIPTION: A card that contains a package to buy
+
+***/
+
+@import 'conf/conf.css.less';
+
+.packageCard{
+
+    height: initial;
+    overflow: hidden;
+
+
+	&__image{
+		background-color: #000; 
+		height: 200px;
+		transition: margin-top 1s;
+	}
+	&__cost{
+		border-radius: 50px;
+		background-color: #677f8b;
+		padding: 0px 15px;
+		height: 55px;
+		line-height: 46px;
+		vertical-align: middle;
+		color: #FFF;
+		font-weight: bold;
+		position: absolute;
+		top: 5px;
+		right: 20px;
+		font-size: 35px;
+		transition: background-color 1s;
+		&--legend{
+			font-weight: 300; 
+			font-size: 12px;
+			height: 12px;
+			margin-top: -26px;
+		}
+	}
+	
+	&__legend{
+		color: #FFF;
+		position: absolute;
+		bottom: 60px;
+		left: 20px;	
+		transition:bottom 1s;	
+		&--number{
+			font-size: 90px;
+			font-weight:300;
+			.glyphicon{
+				font-size: 35px;
+				margin-left: -15px;
+			}
+		}
+		&--text{
+			font-size: 50px;
+			font-weight:300;
+			margin-bottom:10px;
+		}		
+				
+	}
+
+
+
+	&__info{
+	    height: 80px;
+	    background-color: white;
+	    overflow:hidden;
+	    transition: height 1s;
+	    color: #222;
+	    font-size: 16px;
+	    &__button{
+	    	background-color: @main-blue;
+	    	color:white;
+	    	padding: 10px 20px;
+	    	font-size: 14px;
+	    	&:hover, &:focus, &:visited{
+	    		color:white;
+	    		text-decoration: none;
+	    	}
+	    }
+
+	}
+	&:hover &__image{
+
+		margin-top: -70px;
+	}
+
+	&:hover &__info{
+	    height: 150px;
+	}
+
+	&:hover &__legend{
+	    bottom: 130px;
+	}
+	&:hover &__cost{
+		background-color: darken(@orange, 10%)
+	}
+	
+}

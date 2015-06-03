@@ -10,58 +10,6 @@
       filters: '#filters-region'
       main: '#table-region'
 
-
-  #----Modal principal con las acciones----
-  class Users.ModalActions extends Backbone.Modal
-    template: 'admin/users/list/templates/modal_actions'
-
-    cancelEl: '#close-btn'
-    submitEl: "#save-status"
-
-    events:
-      'click #editPremium': 'openPremium'
-      'click #editStatus': 'openStatus'
-      'click #delete-user': 'deleteUser'
-      'click #editRole': 'openRole'
-
-
-    initialize: (options) ->
-      @modals = options.modals
-
-    deleteUser: (e)->
-      e.preventDefault()
-      resp = confirm("Are you sure?")
-      if resp
-        @model.destroy()
-        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.        
-
-    openPremium: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalPremium
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
-    openStatus: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalStatus
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
-    openRole: (e) ->
-      e.preventDefault();
-
-      statusView = new Users.ModalRole
-        model: @model
-        modals: @modals
-
-      @modals.show(statusView)
-
   #----Modal para cambiar suscripcion
   class Users.ModalPremium extends Backbone.Modal
     template: 'admin/users/list/templates/modal_premium'
@@ -79,24 +27,19 @@
 
       Backbone.ajax
         url: url
-        type: "POST" 
+        type: "POST"
         data: data
         success: (data) =>
-          #@model.set(data)
-          #@model.trigger 'change:role'
           console.log("success")
           console.log(data)
         error: (data) =>
           console.log("error")
           console.log(data)
-          #text = data.responseJSON[0]
-          #$.growl.error({ message: text })
-      
 
     onRender: ->
       min_date = moment().format("YYYY-MM-DD")
       max_date = moment().add(20, 'years').format("YYYY-MM-DD")
-      @$(".js-date-begin").Zebra_DatePicker
+      @$(".js-date-start-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
@@ -105,7 +48,7 @@
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
-      @$(".js-date-end").Zebra_DatePicker
+      @$(".js-date-end-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
@@ -149,11 +92,37 @@
     initialize: ->
       @model.set('roleText', @model.getRole())
 
+    onRender: ->
+      role = @model.getRole()
+      @setSelectLocation(role, @model.get('admin_location'))
+
+    events:
+      'change select#role': 'displayLocations'
+
+    displayLocations: (e)->
+      role = $(e.currentTarget).val()
+      @setSelectLocation(role)
+
+    setSelectLocation: (role, value)->
+      if role == "nacional"
+        data = CountryList.toSelect2()
+      else if role == "regional"
+        data = AlumNet.request('get:regions:select2')
+      else
+        @.$('#js-location').select2('destroy')
+
+      if data
+        @.$('#js-location').select2
+          placeholder: "Select Location"
+          data: data
+        if value
+          @.$('#js-location').select2('data', value)
+
     submit: () ->
       data = Backbone.Syphon.serialize(this)
+      console.log data
       id = @model.id
       url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
-
       Backbone.ajax
         url: url
         type: "PUT"
@@ -183,6 +152,10 @@
       'btnEdit': '.js-edit'
     events:
       'click @ui.btnEdit': 'showActions'
+      'click #editPremium': 'openPremium'
+      'click #editStatus': 'openStatus'
+      'click #delete-user': 'deleteUser'
+      'click #editRole': 'openRole'
 
     initialize: (options) ->
       @modals = options.modals
@@ -190,6 +163,8 @@
 
 
     templateHelpers: () ->
+
+      member= @model.member
 
       getRoleText: @model.getRole()
 
@@ -227,16 +202,39 @@
     modelChange: ->
       @render()
 
-
-    showActions: (e)->
-      e.stopPropagation()
+    deleteUser: (e)->
       e.preventDefault()
+      resp = confirm("Are you sure?")
+      if resp
+        @model.destroy()
+        @modals.destroy() #Se debe llamar destroy en la region de los modals, no el modal como tal.
 
-      modalsView = new Users.ModalActions
+    openPremium: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalPremium
         model: @model
         modals: @modals
 
-      @modals.show(modalsView)
+      @modals.show(statusView)
+
+    openStatus: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalStatus
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
+
+    openRole: (e) ->
+      e.preventDefault();
+
+      statusView = new Users.ModalRole
+        model: @model
+        modals: @modals
+
+      @modals.show(statusView)
 
 
   class Users.UsersTable extends Marionette.CompositeView
@@ -246,10 +244,10 @@
 
     initialize: (options) ->
       @modals = options.modals
+      document.title='AlumNet - Users Management'
 
     childViewOptions: (model, index) ->
       modals: @modals
-
 
 
 
@@ -261,12 +259,14 @@
     ui:
       'btnRmv': '.js-rmvRow'
       'field': 'input[name=field]'
+      "selectType": ".filter_by"
       'me': 'el'
-
-
+      "value": "[name=value]"
+      "comparator": "[name=comparator]"
+      
     events:
       "click @ui.btnRmv": "removeRow"
-      "change @ui.field": "changeField"
+      "change .filter_by, click .filter_by" : "changeField"
       "sumbit me": "sumbitForm"
 
     initialize: ->
@@ -282,8 +282,98 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
+    onRender: ->  
+      @$(".js-date").Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: ['2015-01-01', '2030-12-12']
+        onOpen: (e) ->
+          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
+                                    
+    
+    #TO DO: refactor this
+    changeField: (e) ->      
+      if @ui.selectType.val() =="profile_first_name_or_profile_last_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")         
+      else if @ui.selectType.val() =="email"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_country_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_residence_city_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>") 
+      else if @ui.selectType.val() =="profile_birth_city_name" 
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.replaceWith("<input type='text' name='value' id='value' class='form-control input-lg'>")                
+      else if @ui.selectType.val() =="profile_gender"        
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='M'>Male</option>  
+          <option value='F'>Female</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")                       
+      else if @ui.selectType.val() =='profile_created_at'   
+        @onRender()        
+        @ui.comparator.html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='gt'>></option>
+          <option value='lt'><</option>
+          <option value='lteq'><=</option>
+          <option value='gteq'>>=</option>
+          <option value='eq'>=</option>
+          </select>")
+        @ui.value.empty().append("<div name='value' >
+          <input type='text' class='form-control input-lg js-date' id='born'>
+          </div> ")
+      else if @ui.selectType.val() =='status'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Inactive</option>  
+          <option value='1'>Active</option> 
+          <option value='2'>Banned</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+      else if @ui.selectType.val() =='member'       
+        @ui.value.html( "<select name='value' class='form-control input-lg value_by'>
+          <option value='0'>Registrant</option> 
+          <option value='1'>Member</option>     
+          <option value='2'>Lifetime Member</option>
+          </select>" )  
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+
     sumbitForm: (e)->
       e.preventDefault()
+      @render()
 
     removeRow: (e)->
       @model.destroy()
@@ -321,10 +411,8 @@
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
+        console.log itemView.model
       @trigger('filters:search')
-
-
-
 
     # initialize: (options) ->
     #   @modals = options.modals

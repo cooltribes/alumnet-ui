@@ -11,6 +11,7 @@
         <option value="5" <%= @selected(5) %>>Twitter</option>
         <option value="6" <%= @selected(6) %>>IRC</option>
         <option value="7" <%= @selected(7) %>>Web Site</option>
+        <option value="8" <%= @selected(8) %>>LinkedIn</option>
       </select>
       <span class="help-block"></span>
     </div>

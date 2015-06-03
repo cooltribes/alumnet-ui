@@ -1,0 +1,166 @@
+/***
+
+COMPONENT NAME: navTopBar
+DESCRIPTION: Top navigation bar with menus
+
+***/
+
+@import 'conf/conf.css.less';
+
+.navTopBarAdmin{
+    margin-bottom: 10px;
+    &__container{
+        background-color: @site_nav_bg;
+    }
+
+    &__left{
+    
+        &__brand{
+            display: block;
+            height: auto;
+            padding: 15px 0;
+
+        }
+        .nav .open > &__item:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }  
+        
+        & &__item{
+                color: @white;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;                
+            &:hover{
+                color: @white;
+                background-color: @black;
+            }
+            &--active, &:focus{
+                background-color:@light-gray;
+                color: @white;
+            }
+
+
+        }
+    }
+
+    &__right{
+        &__list{
+            margin-right: -15px;
+            text-align: center;
+
+            & li{
+                display: inline-block;
+            }          
+        }
+        &__list &__item--memebershipWrapper{
+            margin: 0px;
+            padding: 6px 0 0;
+            display: inline-block;
+
+        } 
+        
+
+        .nav .open > &__item:focus, .nav .open > &__item--arrow:focus{ //hack for bootstrap menu
+            color: @white ;
+            background-color: @black ;
+        }   
+        &__list &__item
+        {
+            color: @white;
+            font-size: 18px;
+            font-weight: 300;
+            height: 59px;
+            line-height: 18px;
+            min-width: 59px;
+            padding: 14px 3px;
+            text-align: center;
+            transition: all 300ms ease 0s;
+            &:hover, &:focus{
+                color: @white ;
+                background-color: @black ;
+            }     
+
+            &--arrow{
+                display: block;
+                font-size: 22px;
+                height: 59px;
+                margin-left: 5px;
+                padding: 20px 10px 15px;
+                color: @white;
+                &:hover, &:focus{
+                    color: @white;
+                    background-color: @black;
+                 }  
+
+            }         
+            
+        }
+        
+    }
+
+    & &__avatar{
+        margin-top: 10px;
+        padding: 0;
+        &:hover{
+            background-color: transparent;
+        }
+    }
+    &__dropdownMenu{
+        min-width: 250px;
+        padding: 0;
+        background-color: @black;
+        border: none;
+        list-style: none;
+        color: @white;
+        & > li > a{
+            color: @white;
+            padding-top:10px;
+            padding-bottom: 10px; 
+        }
+        &__divider{
+            background-color: #444;
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+        }
+    }
+
+    &__mobileToggleBtn{
+        background-color: rgba(255,255,255,.1);
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 5px 16px;
+    }
+    &__text{
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 20px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        margin-left: 0 !important;
+        margin-top: 17px;
+        padding-left: 21px;
+        float: left;
+        padding-top: 0;
+        padding-bottom: 0;
+    }    
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+    .navTopBarAdmin{
+        &__right{
+            &__list{
+
+                & li{
+                    display: block;
+                }          
+            }
+        }
+    }  
+ }

@@ -23,7 +23,7 @@
     <% end %>
     
   </div>
-  <hr class="no_margin_top">
+  <hr>
   <div class="albums-list row">
     
   </div>

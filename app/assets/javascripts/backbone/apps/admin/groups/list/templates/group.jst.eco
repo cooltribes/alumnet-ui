@@ -58,6 +58,7 @@
           <a href="#"><span class="icon-entypo-cog"></span></a>
         </div>
       </li>
+
     </ul>
   </div>
   <% end %>
@@ -92,3 +93,4 @@
 <td class="tableAdminGroups__edit">
   <button class="js-edit tableAdminGroups__btnEdit"><span class="icon-entypo-cog"></span></button>
 </td>
+

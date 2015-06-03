@@ -10,17 +10,17 @@
         
         <div class="col-md-6">
             <label class="control-label" for="inputBorn">Begin Date</label>
-            <input type="text" value="" class="form-control input-lg js-date-begin" name="begin" id="begin">
+            <input type="text" value="" class="form-control input-lg js-date-start-date" name="start_date" id="start_date">
             <span class="help-block"></span>            
         </div>       
         <div class="col-md-6">
           <label class="control-label" for="inputBorn">End Date</label>
-          <input type="text" value="" class="form-control input-lg js-date-end" name="end" id="end">
+          <input type="text" value="" class="form-control input-lg js-date-end-date" name="end_date" id="end_date">
           <span class="help-block"></span>
         </div>
         <div class="row-fluid">
             <label class="control-label col-md-7 col-md-offset-4 text-right" for="inputBorn">Lifetime subscription</label>
-            <input type="checkbox" value="lifetime" class="js-lifetime col-md-1" name="lifetime" id="lifetime">
+            <input type="checkbox" class="js-lifetime col-md-1" name="lifetime" id="lifetime">
         </div>
 
 

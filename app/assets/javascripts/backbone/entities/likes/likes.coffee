@@ -14,6 +14,16 @@
       unlike.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + "/unlike"
       unlike
 
+    createLikeToPicture: (picture_id)->
+      like = new Entities.Like
+      like.urlRoot = AlumNet.api_endpoint + '/pictures/' + picture_id + "/like"
+      like
+
+    createUnLikeToPicture: (picture_id)->
+      unlike = new Entities.UnLike
+      unlike.urlRoot = AlumNet.api_endpoint + '/pictures/' + picture_id + "/unlike"
+      unlike
+
     createLikeToComment: (post_id, comment_id)->
       like = new Entities.Like
       like.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + "/comments/" + comment_id + "/like"
@@ -30,6 +40,12 @@
 
   AlumNet.reqres.setHandler 'unlike:post:new', (post_id) ->
     API.createUnLikeToPost(post_id)
+
+  AlumNet.reqres.setHandler 'like:picture:new', (picture_id) ->
+    API.createLikeToPicture(picture_id)
+
+  AlumNet.reqres.setHandler 'unlike:picture:new', (picture_id) ->
+    API.createUnLikeToPicture(picture_id)
 
   AlumNet.reqres.setHandler 'like:comment:new', (post_id, comment_id) ->
     API.createLikeToComment(post_id, comment_id)

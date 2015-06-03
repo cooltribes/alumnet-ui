@@ -11,12 +11,14 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'delete'
+      #layout.model.decrementCount('pending_received_friendships')
 
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
-
+      #layout.model.decrementCount('pending_received_friendships')
+      
 
   class Requests.RequestsView extends Marionette.CompositeView
     template: 'friends/requests/templates/requests_container'

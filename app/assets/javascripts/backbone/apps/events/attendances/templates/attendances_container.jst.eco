@@ -26,6 +26,11 @@
       <% end %>
     </ul>
   </div>
+  <% if @userIsAdmin || @event_type.text=="open": %>
+    <div class="col-md-3 text-right">
+      <a href="#" id="js-invite-event" class="btn-primary-noBackground btn" title="Add people to group">+ Invite people to event</a>
+    </div>
+  <% end %>
 </div>
 <hr class="no_margin_top">
 <div class="row main-attendances-area no-margin"><!-- Begin group container -->

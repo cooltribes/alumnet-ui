@@ -1,0 +1,32 @@
+<div  class="container-fluid margin_top_small">
+	<div class="row">
+		<div  class="col-md-8 col-md-offset-2">
+			<div class="row" >
+				<!-- FORM ON -->
+				<div class="item col-md-6 ">
+					<div class="groupCreatePostForm clearfix">
+						<div class="groupCreatePostForm__avatar">
+							<img src="<%= @current_user_avatar %>" class="img-circle">
+						</div>
+						<div class="groupCreatePostForm__form">
+							<form class="form">
+								<div class="form-group groupCreatePostForm__textarea ">
+									<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
+								</div>
+								<a id="js-add-picture" class="groupPost__btn--comment" href="javascript:;">
+									<i class="icon-entypo-picture"></i>
+									Add Picture
+								</a>
+								<a href="#" class="groupPost__btn--comment" id="js-post-submit">Post</a>
+							</form>
+							<!-- Pictures -->
+							<ul id="js-filelist"></ul>
+						</div>
+					</div>
+				</div>
+				<!-- FORM OFF -->
+			</div>
+			<div id="timeline" class="row posts-container"></div>
+		</div>
+	</div>
+</div>

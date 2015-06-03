@@ -9,7 +9,7 @@
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request('event:layout', event)
+          layout = AlumNet.request('event:layout', event, 0)
           header = AlumNet.request('event:header', event)
 
           #configure the composite view of posts
@@ -53,7 +53,7 @@
             comment.save data,
               success: (model, response, options)->
                 #post.comments.fetch()
-                postView.collection.add(model, {at: 0})
+                postView.collection.add(model, {at: postView.collection.length})
 
           #Like in post
           posts.on 'childview:post:like', (postView) ->

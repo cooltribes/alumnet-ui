@@ -16,6 +16,9 @@
       "addContact": ".js-addContact"
       "modalCont": "#js-modal-container"
       "smoothClick":".smoothClick"
+      "facebook":"js-link-fb"
+      "twitter":"js-link-tw"
+      "web":"js-link-web"
 
     events:
       "click @ui.addSkill": "addSkill"
@@ -23,9 +26,9 @@
       "click @ui.addContact": "addContact"
       "click .smoothClick": "smoothClick"
 
-
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+
       $(window).on 'scroll' , =>
         if $('body').scrollTop()>500
           $('#aboutUseraffix').css
@@ -33,10 +36,16 @@
             'width' : '181px'
             'top' : '110px'
         else
-          $('#aboutUseraffix').css
-            'position': 'relative'
-            'top':'0px'
-            'width':'100%'
+          if $('html').scrollTop()>500
+            $('#aboutUseraffix').css
+              'position': 'fixed'
+              'width' : '181px'
+              'top' : '110px'
+          else
+            $('#aboutUseraffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -73,7 +82,7 @@
         type: 2
       @ui.modalCont.html(modal.render().el)
 
-    # onRender: ->
+    #onRender: ->
     #   $('#aboutUseraffix').affix({
     #     offset: {
     #       top: 100,
@@ -191,29 +200,38 @@
         tokenSeparators: [',', ', '],
         dropdownAutoWidth: true,
 
-  class About.CropCoverModal extends Backbone.Modal
-    template: 'users/about/templates/_cropCoverModal'
-    cancelEl: '#js-close-btn'
-
-    onShow: ->
-      image = @model.get('cover').original
-      options =
-        loadPicture: image
-        cropData: { "image": 'cover' }
-        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
-
-      cropper = new Croppic('croppic', options)
-
   class About.CropAvatarModal extends Backbone.Modal
     template: 'users/about/templates/_cropAvatarModal'
     cancelEl: '#js-close-btn'
 
     onShow: ->
-      image = @model.get('avatar').original
+      model = @model
+      image = @model.get('avatar').original + "?#{ new Date().getTime() }"
       options =
         loadPicture: image
         cropData: { "image": 'avatar' }
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        onAfterImgCrop: ()->
+          # imgUrl = @croppedImg.attr('src')
+          model.trigger('change:cover')
+          if model.isCurrentUser()
+            AlumNet.current_user.trigger('change:avatar')
+
+      cropper = new Croppic('croppic', options)
+
+  class About.CropCoverModal extends Backbone.Modal
+    template: 'users/about/templates/_cropCoverModal'
+    cancelEl: '#js-close-btn'
+
+    onShow: ->
+      model = @model
+      image = @model.get('cover').original + "?#{ new Date().getTime() }"
+      options =
+        loadPicture: image
+        cropData: { "image": 'cover' }
+        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        onAfterImgCrop: ->
+          model.trigger('change:cover')
 
       cropper = new Croppic('croppic', options)
 
@@ -229,18 +247,21 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize this
       if data.cover != ""
+        model = @model
+        modal = @
         formData = new FormData()
         file = @$('#profile-cover')
         formData.append('cover', file[0].files[0])
-        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.id
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.profile.save formData,
           wait: true
           data: formData
           contentType: false
           processData: false
-          success: ()=>
-            @destroy()
-            @model.fetch()
+          success: ()->
+            model.trigger('change:cover')
+            modal.destroy()
+
 
     previewImage: (e)->
       input = @$('#profile-cover')
@@ -303,19 +324,6 @@
       $('#js-picture-modal-container').html(modal.render().el)
 
     onShow: ->
-      if @type == 3
-        modal = @
-        model = @model
-        avatar = AlumNet.current_user.get('avatar').original
-        options =
-          loadPicture: avatar
-          cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.id}/cropping"
-          onAfterImgCrop: ->
-            model.trigger 'change'
-            modal.destroy()
-        cropper = new Croppic('croppic', options)
-
-
       @$("#js-cities").select2
         placeholder: "Select a City"
         data: []
@@ -385,6 +393,7 @@
       @$("#js-cities").select2(@optionsForSelectCities(url))
 
     previewImage: (e)->
+      $('#url-archivo').html("File: "+$(e.target).val())
       input = @$('#profile-avatar')
       preview = @$('#preview-avatar')
       if input[0] && input[0].files[0]
@@ -549,6 +558,9 @@
     template: 'users/about/templates/_language'
     tagName: "li"
 
+    ui:
+      'level': '.progress'
+
     events:
       "click .js-rmvRow": "removeItem"
 
@@ -561,6 +573,9 @@
     removeItem: (e)->
       if confirm("Are you sure you want to delete this item from your profile ?")
         @model.destroy()
+    onRender: ->
+      view = this
+      @ui.level.tooltip()
 
   class About.LanguagesView extends Marionette.CollectionView
     childView: About.Language
@@ -574,6 +589,11 @@
   class About.Contact extends Marionette.ItemView
     template: 'users/about/templates/_contact'
     tagName: "li"
+
+    ui:
+      "facebook":"#js-link-fb"
+      "twitter":"#js-link-tw"
+      "web":"#js-link-web"
 
     events:
       "click .js-rmvRow": "removeItem"
@@ -611,7 +631,11 @@
       @model.save()
 
     onRender: ->
+      view = this
       @stickit()
+      @ui.facebook.linkify()
+      @ui.twitter.linkify()
+      @ui.web.linkify()
 
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact
@@ -639,6 +663,7 @@
       "addExp": "#js-addExp"
       "editExp": "#js-editExp"
       'btnRmv': '.js-rmvRow'
+      'description':"#js-description"
 
     events:
       "click @ui.addExp": "addExp"
@@ -701,6 +726,7 @@
 
     onRender: ->
       @stickit()
+      @ui.description.linkify()
 
     addExp: (e)->
       e.preventDefault()

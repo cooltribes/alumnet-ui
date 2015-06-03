@@ -9,10 +9,10 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 
 .userCoverArea{
 	background-size: cover;
-	background-position: top center;
+	background-position:center;
 	background-repeat: no-repeat;
 	overflow: hidden;
-	margin-top: -53px;
+	margin-top: -55px;
 	padding: 10px 0;
 	position: relative;
 
@@ -23,9 +23,13 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 		position: relative;
 		left: auto;
 	    top: auto;
+	    max-width: 85%;
 	    z-index: 0;
 	    text-transform: capitalize;
 	    text-align: center;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
 		
 		background: rgba(0, 0, 0, 0.3);
 		a{
@@ -122,6 +126,15 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			background-color: rgba(0, 0, 0, 0.8);
 		}
 
+		&Sent{
+			cursor: default;
+			&:hover{
+				color: @white;
+				background-color: rgba(0, 0, 0, 0.3);
+				text-decoration: none;
+			}
+
+		}
 	}
 
 	&__btnMessage{
@@ -165,11 +178,12 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 @media (min-width: @media-small-min) {
  	.userCoverArea{
  		height: 550px;
- 		margin-top: -51px;
+ 		margin-top: -55px;
 		
 		&__btnInvite{
 			position: relative;
-			display: block;margin: 20px auto;
+			display: block;
+			margin: 20px auto;
 			
 	 	}	
 
@@ -265,7 +279,7 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 @media (min-width: @media-large-min) {
     .userCoverArea{
     	height: 428px;
-    	margin-top: -51px;
+    	margin-top: -55px;
 
     	&__title{
 			font-size: 60px;
@@ -317,6 +331,7 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 			right: 20px;
 			display: inline-block;
 			width: auto;
+
 		}
 
 		&__btnMessage{

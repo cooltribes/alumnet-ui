@@ -99,7 +99,6 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
@@ -127,11 +126,13 @@
 
   class Events.EventView extends Marionette.ItemView
     template: 'groups/events/templates/event'
-    className: 'row'
+    className: ''
 
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
+      userIsAdmin: @model.userIsAdmin()
+      userCanAttend: @model.userCanAttend()
       isPast: @model.isPast()
       select: (value, option)->
         if value == option then "selected" else ""
@@ -181,7 +182,7 @@
       $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
-      userCanCreateSubGroup: @model.canDo('create_subgroup')
+      userIsMember: @model.userIsMember()
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

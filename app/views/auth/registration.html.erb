@@ -1,0 +1,84 @@
+<% content_for :title, "AlumNet - Registration" %>
+<div class="row margin_top_xlarge_minus">
+  <div class="col-md-2 btnBackHome">
+    <%= link_to "Back to home page", home_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+
+<div class="row text-center" id="login" style="display: none; -webkit-transition: display .5s;
+    transition: display .5s;">
+    <div class="row text-center">
+      <h2>Login to AlumNet</h2> 
+      <small>Welcome to AlumNet, please enter your e-mail and password</small> 
+    </div>
+  <div id="registerHomeForm" class="collapse in ">
+    <div class=" homeAlumNet__registerForm">
+      <%= form_tag sign_in_path_for(@provider) do %>
+      <% if @errors_login && @errors_login.any? %>
+      <div class="alert alert-danger ">
+        <% @errors_login.full_messages.each do |msg| %>
+        <%= msg %>
+        <% end %>
+      </div>
+      <% end %>
+      <%= label_tag :email, nil ,class: 'sr-only' %>
+      <%= text_field_tag 'user[email]', @email, class: "form-control input-lg", placeholder: "Enter email" %>
+      <%= label_tag :password, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+      <%= submit_tag "Sign in ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
+      <% end %>
+    </div>
+    <div class="margin_top_small">
+      Don't have an AlumNet account? 
+       <b>Click <a href="#" id="to-register">here</a> 
+       to create one</b>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center" id="register" style=" -webkit-transition: display .5s; /* Safari */
+    transition: display .5s;">
+
+    <div class="row text-center">
+      <h2>Create a New Account in AlumNet</h2> 
+      <small>Welcome to AlumNet, please enter your e-mail and password</small> 
+    </div>
+
+  <div id="registerHomeForm" class="collapse in ">
+    <div class=" homeAlumNet__registerForm">
+      <%= form_tag sign_up_path_for(@provider) do %>
+      <% if @errors_registration && @errors_registration.any? %>
+      <div class="alert alert-danger ">
+        <% @errors_registration.full_messages.each do |msg| %>
+        <%= msg %><br>
+        <% end %>
+      </div>
+      <% end %>
+      <%= label_tag :email, nil ,class: 'sr-only' %>
+      <%= text_field_tag 'user[email]', @sign_up_email, class: "form-control input-lg", placeholder: "Enter email" %>
+      <%= label_tag :password, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password]', nil , class: "form-control input-lg", placeholder: "Enter password" %>
+      <%= label_tag :password_confirmation, nil ,class: 'sr-only' %>
+      <%= password_field_tag 'user[password_confirmation]',nil, class: "form-control input-lg", placeholder: "Confirm password" %>
+      <%= submit_tag "Sign up ", class: "btn text-uppercase btn-primary btn-block btn-lg" %>
+      <% end %>
+    </div>
+    <div class="margin_top_small">
+      Already have an AlumNet account? <b>Click
+       <a href="#" id="to-login">here</a> to login</b>
+   
+    </div>
+  </div>
+</div>
+<script>
+  $('#to-register').click(function(){
+    $('#login').hide();
+    $('#register').show();
+  });
+  $('#to-login').click(function(){
+    $('#register').hide();
+    $('#login').show();
+  });
+
+</script>

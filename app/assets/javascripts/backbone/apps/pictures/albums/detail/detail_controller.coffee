@@ -22,6 +22,8 @@
           AlumNet.trigger "albums:user:list", layout, albumable
         else if albumable instanceof AlumNet.Entities.Group
           AlumNet.trigger "albums:group:list", layout, albumable
+        else if albumable instanceof AlumNet.Entities.Event
+          AlumNet.trigger "albums:event:list", layout, albumable
 
 
       albumView.on "upload:picture", (data)->

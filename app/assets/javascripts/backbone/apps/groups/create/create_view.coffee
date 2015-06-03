@@ -4,6 +4,7 @@
     template: 'groups/create/templates/form'
 
     initialize: (options)->
+      document.title='AlumNet - Create Group'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -24,6 +25,9 @@
       'selectCountries':'.js-countries'
       'selectCities':'.js-cities'
       'selectJoinProcess': '#join-process'
+      'mailchimpCheckbox': '#mailchimp'
+      'mailchimpCheckboxContainer': '#mailchimp-check-container'
+      'mailchimpParameters': '#mailchimp-parameters-container'
 
     events:
       'click button.js-submit': 'submitClicked'
@@ -31,10 +35,36 @@
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
+      'change #official': 'showMailchimpCheckbox'
+      'change #mailchimp': 'showMailchimpParamaters'
+
+    showMailchimpCheckbox: (e)->
+      select = $(e.currentTarget)
+      if(select.val() == "1")
+        @ui.mailchimpCheckboxContainer.removeClass('hide')
+      else
+        @ui.mailchimpCheckboxContainer.addClass('hide')
+
+    showMailchimpParamaters: (e)->
+      check = $(e.currentTarget)
+      console.log(check.is(':checked'))
+      if(check.is(':checked'))
+        @ui.mailchimpParameters.removeClass('hide')
+      else
+        @ui.mailchimpParameters.addClass('hide')
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
       @ui.selectJoinProcess.html(@joinOptionsString(select.val()))
+      $("#js-message-group").html(@changeMessage(select.val()))
+      
+
+    changeMessage: (option)->
+      if option=="closed"
+        'All Members can invite, but the admins approved. The group can be found in group searches.'
+      else if option == "secret"
+        'Only the admins can invite. The group can not be found in group searches.'
+      else 'Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.'
 
     joinOptionsString: (option)->
       if option == "closed"

@@ -1,73 +1,93 @@
-<% console.log this %>
 <div class="bbm-modal__section clearfix">
-      
+
 
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture" style="height:100%" >
-        <img width="100%" src="<%= @picture.modal %>">
+        <% if @horizontal: %>
+          <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
+        <% else: %>
+          <img height="100%" src="<%= @picture.original %>">
+        <% end %>
+        <% if @showMorePics: %>
+          <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+              margin-right:3px;
+              right: 0;
+              position: absolute;
+              top: 50%;
+          "><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+          <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+              margin-left:3px;
+              left: 0;
+              position: absolute;
+              top: 50%;
+          "><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <% end %>
 
       </div>
       <aside class="col-md-4 ">
         <div class="row">
           <div class="col-md-12 toClose">
-            <button type="button" class="js-rmvRow pull-right js-close btn btn-lg btn-commentImage btn-commentImage--close">CLOSE <span aria-hidden="true">X</span><span class="sr-only">Close</span></button> 
+            <button type="button" class="js-rmvRow pull-right js-close btn btn-lg btn-commentImage btn-commentImage--close">CLOSE <span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
           </div>
         <div class="padding_right_small padding_left_small">
 
           <div class="row">
             <div class="col-md-5 groupPost__avatar">
-                <img src="<%= @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle">
+                <img src="<%= @uploader.avatar.large %>" alt="Carlos Ruiz" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
               <h3> 
-                <%= @creator.name %>                 
+                <%= @uploader.name %>                 
               </h3>
               <small class="margin_top_xsmall_minus">
-                <%= moment(@date_taken).fromNow() %>
+                <%= moment(@created_at).fromNow() %>
               </small>
             </div>
           </div>
+
           <div class="row margin_top_small">
-          <% if @getLocation(): %>
-          <div class="row-fluid clearfix albumInfo">
-            <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
-              <span class="icon-entypo-location"></span>
-            </div>
-            <div class="col-md-10 no_margin_left albumInfo__value"> 
-               <%= @getLocation() %>
-            </div>
-          </div>
-          <% end %>
-          <% if @date_taken: %>
-          <div class="row-fluid albumInfo">
-            <div class="col-md-2 text-right no_margin_right albumInfo__icon">
-              <span class="icon-entypo-clock"></span>
-            </div>
-            <div class="col-md-10 no_margin_left albumInfo__value"> 
-                <%= moment(@date_taken).format('MMMM Do, YYYY') %>
-            </div>
-          </div>
-          <% end %>
+            <% if @getLocation(): %>
+              <div class="row-fluid clearfix albumInfo">
+                <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
+                  <span class="icon-entypo-location"></span>
+                </div>
+                <div class="col-md-10 no_margin_left albumInfo__value">
+                   <%= @getLocation() %>
+                </div>
+              </div>
+            <% end %>
+            <% if @date_taken: %>
+              <div class="row-fluid albumInfo">
+                <div class="col-md-2 text-right no_margin_right albumInfo__icon">
+                  <span class="icon-entypo-clock"></span>
+                </div>
+                <div class="col-md-10 no_margin_left albumInfo__value">
+                    <%= moment(@date_taken).format('MMMM Do, YYYY') %>
+                </div>
+              </div>
+            <% end %>
           </div>
           <form>
           <div class="row margin_top">
             <div class="col-md-12">
-            
+
               <a href="#" class="btn btn-lg btn-commentImage js-goto-comment">COMMENT <span class="icon-entypo-comment"></span></a>
               <div class="btn-lg groupPost__btn--like">
-                <% # if @you_like: %>
-                <% if false: %>
-                  <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+                <% if @you_like: %>                
+                  <a href="#" class="js-unlike js-vote" title="Unlike">Unlike</a>
                 <% else: %>
-                  <a href="#" class=" js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
+                  <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
                 <% end %>
               </div>
-
+              (<span class="js-likes-counter"><%= @likes_count %></span> likes)
             </div>
+          </div>
+
+
+        <div class="groupPost__commentsContainer comments-container margin_top">
+          
         </div>
-        
- 
-        <div class="groupPost__commentsContainer comments-container margin_top"></div>
         <form class="groupPost__commentForm clearfix form">
           <div class="groupPost__commentForm__avatar">
             <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
@@ -77,14 +97,13 @@
               <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
             </div>
           </div>
-        </form> 
-      
+        </form>
+
         </div>
       </div>
-        
+
       </aside>
     </div>
- 
 
 
 
@@ -93,7 +112,8 @@
 
 
 
-  <form>   
+
+  <form>
 
   </form>
 </div>

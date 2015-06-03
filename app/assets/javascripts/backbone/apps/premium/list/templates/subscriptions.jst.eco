@@ -1,3 +1,12 @@
 <div class="row main-events-area">
-	<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid=<%= @current_user.get("id") %>" width="750" height="400" frameborder="0"></iframe>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label class="control-label" for="inputName">Select country for different payment options</label>
+			<input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+    </div>
+    <div id="paymentwall-content">
+		<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid=<%= @current_user.get("id") %>&country_code=<%= @country %>" width="750" height="318" frameborder="0"></iframe>
+	</div>
 </div>

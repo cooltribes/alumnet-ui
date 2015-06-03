@@ -9,7 +9,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 
 .groupCoverArea{
 	background-size: cover;
-	background-position: top center;
+	background-position:center;
 	background-repeat: no-repeat;
 	overflow: hidden;
 	margin-top: -53px;
@@ -19,15 +19,20 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 	&__title{
 		font-size: 60px;
 		padding: 10px 20px;
-		color: @white;
-		
-		
+		color: @white;		
 		background: rgba(0, 0, 0, 0.5);
+		display: inline-block;
 		a{
 			color: @white;
 			&:hover{
 				text-decoration: none;
 
+			}
+			&.editable-click{
+				border-bottom: 0;
+				&:hover{
+					border-bottom: 0;
+				}
 			}
 		}
 	}
@@ -106,31 +111,39 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 	  padding: 10px;
 	  margin-top:12px;
 	  	&--option{
-			color:@white;
-			transition:1s;
+			color: @white;
+			transition: 1s;
 			border-radius: 0px;
-			margin:1px;
-			border:2px solid @gray;
-			width:7em;
+			margin: 1px;
+			border: 2px solid @gray;
+			width: 10em;
 		}
 		&--option:hover, &--option--active{
-			color:@white;
+			color: @white;
 			background-color: @main-blue;
 			opacity: 0.9;
 		}
 		&--option:visited{
 			text-decoration: none;
-			color:@white;
+			color: @white;
 		}
 		&--option:focus{
 			text-decoration: none;
-			color:@white;
+			color: @white;
 		}
 
-
-
-
-
+		&--past{
+			cursor: default;
+			color: @white;
+			transition: 1s;
+			border-radius: 0px;
+			margin: 1px;
+			border: 2px solid @gray;
+			width: 10em;
+		}
+		&--past:hover, &--option--active{
+			color:@white;
+		}
 	}
 
 }
@@ -168,9 +181,7 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			display: inline-block;
 			width: auto;
 		}
-		&__title{
-			float: left;
-		}
+		
 		&__editCover{			
 			text-align: right; 			
 		}
@@ -195,8 +206,6 @@ DESCRIPTION: Hero area of the group page. it includes the name of the group and 
 			display: inline-block;
 			width: auto;
 		}
-		&__title{
-			float: left;
-		}
+		
  	}
  }

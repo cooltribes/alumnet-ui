@@ -11,15 +11,18 @@
     <span class="icon-entypo-link"></span> <%= @info %>
 <% end %>
 <% if @contact_type== 4: %>
-    <span class="icon-entypo-facebook"></span> <%= @info %>
+  <span class="icon-entypo-facebook"></span><span id="js-link-fb"><%= @info %></span> 
 <% end %>
 <% if @contact_type==5: %>
-    <span class="icon-entypo-twitter"></span> <%= @info %>
+  <span class="icon-entypo-twitter"></span><span id="js-link-tw"><%= @info %></span>
 <% end %>
 <% if @contact_type== 6: %>
     <span class="icon-entypo-chat"></span> <%= @info %>
 <% end %>
 <% if @contact_type== 7: %>
+  <span class="icon-entypo-link"></span> <span id="js-link-web"><%= @info %></span>
+<% end %>
+<% if @contact_type== 8: %>
     <span class="icon-entypo-link"></span> <%= @info %>
 <% end %>
 

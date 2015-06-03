@@ -1,0 +1,7 @@
+<img src="<%= @picture.main %>" alt="" class="homeSlideshow__banner">
+<div class="carousel-caption homeSlideshow__caption">
+	<p>
+		<%= @title %>
+		<br><%= @description %>
+	</p>
+</div>

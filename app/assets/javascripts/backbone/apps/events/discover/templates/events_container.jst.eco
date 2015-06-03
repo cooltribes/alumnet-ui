@@ -1,0 +1,56 @@
+<div class="searchBar">
+  <div>
+    <h1 class="searchBar__title margin_left_small">Discover</h1>
+  </div>
+  <!--<div class="col-md-5">
+    <form id="search-form">
+      <div class="input-group">
+    
+      <input class="form-control searchBar__searchInput " type="text" name="seach_term" id="js-search-input" placeholder="Search">
+      <span class="input-group-addon">
+          <span class="glyphicon glyphicon-search"></span>
+      </span>
+    
+
+      </div>
+      <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-
+    </form>
+    <!-- /input-group 
+  </div>-->
+<hr/>
+<div class="container hidden-sm hidden-xs">
+  <div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#table" aria-controls="table" role="tab" data-toggle="tab">
+          <span class="glyphicon glyphicon-align-justify"></span>
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">
+          <span class="ico-calendar"></span>
+        </a>
+      </li>
+    </ul>
+    <!-- Nav tabs -->
+    <!-- Tab panes -->
+    <div class="tab-content padding_small">
+      <div role="tabpanel" class="tab-pane active" id="table">
+        <div class="main-events-area">
+          <!-- Events Table View -->
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="calendar">
+        <div id="calendar" class="container">
+          <!-- Events Calendar View -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container hidden-md hidden-lg">
+  <div class="main-events-area ">
+   <!-- Events Table View -->
+  </div>
+</div>

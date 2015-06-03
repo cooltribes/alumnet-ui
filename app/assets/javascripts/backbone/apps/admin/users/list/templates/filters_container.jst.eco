@@ -5,9 +5,7 @@
     <label class="control-label">Matching</label>
     <select name="logicOp" class="form-control  input-lg">  
       <option value="or">Any</option>
-      <option value="and">All</option>
-      <!-- <option value="joined">Join date</option>
-      <option value="gender">Gender</option> -->
+      <option value="and">All</option>      
     </select>
   </div>
 </div>

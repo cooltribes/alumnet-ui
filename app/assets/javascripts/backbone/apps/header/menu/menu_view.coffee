@@ -24,8 +24,13 @@
 
   class Menu.MenuBar extends Marionette.LayoutView
     initialize: ->
-      @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
-      @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
+      @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
+      @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
+      @listenTo(@model, 'change:avatar', @changeAvatar)
+
+      # @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
+      # @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
+
 
     getTemplate: ->
       if @model.isActive()
@@ -44,20 +49,22 @@
       'click @ui.changeHeader': 'changeHeader'
       'click @ui.notificationsMarkAll': 'markAllNotifications'
       'click .navTopBar__left__item' : 'menuOptionClicked'
+      'click #programsList li' : 'dropdownClicked'
+      'click #accountList li' : 'accountDropdownClicked'
 
     ui:
       'messagesBadge': '#js-messages-badge'
       'notificationsBadge': '#js-notifications-badge'
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
+      'avatarImg': '#header-avatar'
 
-    #OJO: Quite esto porque no se para que se tiene que hacer rerender del layout.
-    #Marionette no recomienda esto. Ademas rompe varios codigos.
-    # modelEvents:
-    #   "change": "modelChange"
-
-    # modelChange: ->
-    #   @render()
+    changeAvatar: ->
+      view = @
+      @model.fetch
+        success: (model)->
+          avatar = "#{model.get('avatar').medium}?#{new Date().getTime()}"
+          view.ui.avatarImg.attr('src', avatar)
 
     markAllNotifications: (e)->
       e.preventDefault()
@@ -66,16 +73,18 @@
     templateHelpers: ->
       model = @model
       first_name: @model.profile.get("first_name")
-      isAlumnetAdmin: @model.isAlumnetAdmin()
-      memberTitle: ->        
+      isAdmin: @model.isAdmin()
+      points: 3000
+      daysLeft: model.get('days_membership')
+      memberTitle: ->
         if(model.get('member')==1)
           return "Active member"
         if(model.get('member')==2)
           return "Expiring membership"
         if(model.get('member')==3)
           return "Lifetime member"
-        return "Become a member"
-      daysLeft: 30
+        return "Not a member"
+
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')
@@ -116,11 +125,21 @@
       AlumNet.execute('header:show:admin')
 
     menuOptionClicked: (e)->
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $(".navTopBar__left__item").children()
-        .removeClass "navTopBar__left__item--active"
-      $(e.target).addClass "navTopBar__left__item--active"
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      if $(e.target).is('i') || $(e.target).is('span')
+        if ! $(e.target).parent().hasClass 'dropdown-toggle'
+          $(e.target).parent().addClass "navTopBar__left__item--active"
+      else
+        if ! $(e.target).hasClass 'dropdown-toggle'
+          $(e.target).addClass "navTopBar__left__item--active"
+
+
+    dropdownClicked: (e)->
+      $('#programsLayoutOption').addClass "navTopBar__left__item--active"
+
+    accountDropdownClicked: (e)->
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+
 
 
 
@@ -136,6 +155,19 @@
 
     events:
       'click @ui.changeHeader': 'changeHeader'
+      'click .navTopBarAdmin__left__item' : 'menuOptionClicked'
+
+    onShow: ->
+      $('.navTopBarAdmin__left__list li:first-child a.navTopBarAdmin__left__item').addClass "navTopBarAdmin__left__item--active"
+
+    menuOptionClicked: (e)->
+      $('.navTopBarAdmin__left__item').removeClass "navTopBarAdmin__left__item--active"
+      if $(e.target).is('i') || $(e.target).is('span')
+        if ! $(e.target).parent().hasClass 'dropdown-toggle'
+          $(e.target).parent().addClass "navTopBarAdmin__left__item--active"
+      else
+        if ! $(e.target).hasClass 'dropdown-toggle'
+          $(e.target).addClass "navTopBarAdmin__left__item--active"
 
     templateHelpers: ->
       first_name: @model.profile.get("first_name")

@@ -4,6 +4,7 @@
     template: 'events/create/templates/form'
 
     initialize:(options)->
+      document.title='AlumNet - Cerate Event'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -29,6 +30,10 @@
       'selectCountries':'.js-countries'
       'selectCities':'.js-cities'
       'selectInvitationProcess': '#invitation-process'
+      'official': '#official'
+      'admissionTypeContainer': '#admission-type-container'
+      'admissionType': '#admission-type'
+      'pricesContainer': '#prices-container'
 
     events:
       'click button.js-submit': 'submitClicked'
@@ -36,10 +41,28 @@
       'change #event-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
+      'change #official': 'changedOfficial'
+      'change #admission-type': 'changedAdmissionType'
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
       @ui.selectInvitationProcess.html(@invitationOptionsString(select.val()))
+
+    changedOfficial: (e)->
+      console.log(@ui.official.val())
+      if(@ui.official.val() == "1")
+        @ui.admissionTypeContainer.removeClass('hide')
+        if(@ui.admissionType.val() == "1")
+          @ui.pricesContainer.removeClass('hide')
+      else if(@ui.official.val() == "0")
+        @ui.admissionTypeContainer.addClass('hide')
+        @ui.pricesContainer.addClass('hide')
+
+    changedAdmissionType: (e)->
+      if(@ui.admissionType.val() == "1")
+        @ui.pricesContainer.removeClass('hide')
+      else if(@ui.admissionType.val() == "0")
+        @ui.pricesContainer.addClass('hide')
 
     invitationOptionsString: (option)->
       if option == "closed"
@@ -84,7 +107,7 @@
 
     cancelClicked: (e)->
       e.preventDefault()
-      AlumNet.trigger 'users:posts', @group.id
+      AlumNet.trigger 'events:discover'
 
     previewImage: (e)->
       input = @.$('#event-cover')
@@ -149,6 +172,10 @@
 
     clickedInvite: (e)->
       e.preventDefault()
+      @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
+      @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
+      @ui.inviteLink.remove()
+      @ui.invitation.html('<span>Sending request <span class="glyphicon glyphicon-time"></span> </span>')
       attr = {user_id: @model.id, event_id: @event.id}
       attendance = AlumNet.request('attendance:new')
       view = @
@@ -160,7 +187,7 @@
       @ui.infoUser.removeClass('col-md-7').addClass('col-md-6')
       @ui.invitationBox.removeClass('col-md-2').addClass('col-md-3')
       @ui.inviteLink.remove()
-      @ui.invitation.append('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
+      @ui.invitation.html('<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>')
 
   class Create.UsersView extends Marionette.CompositeView
     template: 'events/create/templates/users_container'

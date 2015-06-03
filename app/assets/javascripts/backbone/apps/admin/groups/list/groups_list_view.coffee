@@ -6,6 +6,18 @@
       search: '#search-region'
       table: '#table-region'
 
+  class GroupsList.SearchView extends Marionette.ItemView
+    template: 'admin/groups/list/templates/search'
+
+    events:
+      'click .js-search': 'searchCliked'
+
+    searchCliked: (e)->
+      e.preventDefault()
+      term = @.$('#search_term').val()
+      @trigger 'search', term
+
+
   class GroupsList.GroupView extends Marionette.ItemView
     template: 'admin/groups/list/templates/group'
     tagName: "tr"
@@ -58,8 +70,10 @@
     template: 'admin/groups/list/templates/groups_table'
     childView: GroupsList.GroupView
     childViewContainer: "#groups-table tbody"
+    
     initialize: (options)->
       @linksGroups = options.linksGroups
+      document.title='AlumNet - Groups Management'
 
     templateHelpers: ->
       links: @linksGroups
@@ -77,6 +91,7 @@
       @trigger 'groups:bc', index, subgroups
 
     groupsHome: (e)->
+      console.log "hola xD" 
       e.preventDefault()
       @trigger 'groups:home'
 
@@ -93,7 +108,7 @@
 
     deleteClicked: (e)->
       e.preventDefault()
-      resp = confirm("¿Are you sure?")
+      resp = confirm("Are you sure?")
       if resp
         @model.destroy()
         @destroy()

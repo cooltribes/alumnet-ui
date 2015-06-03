@@ -2,11 +2,9 @@
 <div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->
-		
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
 			<% if @group.official: %><span class="groupCardManage__ribbon"></span><% end %>
-		</div>
-		
+		</div>		
 		<!-- COVER OFF -->
 		<!-- CONTENT ON -->
 		<div class=" groupCardManage__content">
@@ -14,9 +12,23 @@
 				<h3 class="groupCardManage__title">
 				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
 				</h3>
-				<p class="groupCardManage__description"><%= @group.description %></p>
+				<p id="js-description" class="groupCardManage__description overfloadText"><%= @group.description %></p>
 			</div>
+			<% if _.size(@children) > 0: %>
+			<a id="js-subgroups" class="groupCardManage__linkSubgroups" data-toggle="collapse" data-target="#<%= @id %>" data-child="<%= _.size(@children) %>" aria-expanded="false" aria-controls="<%= @id %>">Show subgroups (<%= _.size(@children) %>) </a>
 			
+			<div class="groupCardManage__menu collapse" id="<%= @id %>">
+		        <h5 class="groupCardManage__menu__title">Sub-Groups (<%= _.size(@children) %>)</h5>
+		        <ul class="groupCardManage__menu__list">
+		          <% _.each @children, (child)->: %>
+		          <li class="groupCardManage__menu__item">
+		            <a href="#groups/<%= child.id %>/posts" title="<%= child.name %>" ><%= child.name %></a>
+		            <span class="icon-entypo-list pull-right"></span>
+		          </li>
+		          <% end %>
+		        </ul>
+		    </div>
+			<% end %>
 		</div>
 		<!-- CONTENT OFF -->
 		<!-- ATRIBUTES ON -->
@@ -47,11 +59,17 @@
 				</div>
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
-						 <!--
-              Avatars of people who has joined the group
-
-              <img class="" src="assets/groups/people-like-face.png" width="20px" height="20px"><img class="margin_left_small_minus" src="assets/groups/people-like-face.png" width="20px" height="20px">
-              +10 -->
+						<% aux = 0 %>
+              			<% for friends in @friends_in: %>  
+                			<img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+              			  <% aux=aux+1 %>
+              			  <% if aux==3: %>
+              			    <% break %>
+              			  <% end %> 
+              			<% end %>
+              			<% if @friends_in.length>3: %>
+              			  +<%= @friends_in.length-3 %>
+              			<% end %>
 					</div>
 				</div>
 			</div>

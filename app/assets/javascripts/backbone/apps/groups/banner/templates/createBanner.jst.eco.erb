@@ -1,0 +1,45 @@
+<hr>
+
+<a id="js-btnNewBanner" href="#" class="createBanner__btn createBanner__btnAdd" title="Add banner">
+  Add new banner
+</a>
+
+<div id="js-newBanner" class="visibility">
+  <h2>Add new banner</h2>
+
+  <div class="form-group">
+    <label class="createBanner__fileLabel">
+      <span class="glyphicon glyphicon-open"></span>Upload image
+      <input class="createBanner__file" type="file" id="BannerImg">
+    </label>
+
+    <img id="preview-banner" class="createBanner__img" src="">
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+            <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
+            <input type="text" class="form-control" id="bannerTitle" placeholder="Enter the title">
+          </div>
+          <div class="form-group">
+            <label class="createBanner__label" for="bannerLink">Link:</label>
+            <input type="text" class="form-control" id="bannerLink" placeholder="Enter the link">
+          </div>
+     </form>
+    </div>
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+            <label class="createBanner__label" for="bannerContent">Content:</label>
+           <textarea class="form-control" rows="5" for="bannerContent" placeholder="Enter the content"></textarea>
+          </div>
+      </form>
+    </div>
+    <div>
+      <a href="#" class="createBanner__btn createBanner__btnAdd" title="Add banner">create banner</a>
+      <a id="js-cancelNewBanner" href="#" class="createBanner__btn createBanner__btnCancel" title="Add banner">Cancel</a>
+    </div>
+  </div>
+</div>
