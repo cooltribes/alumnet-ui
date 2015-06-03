@@ -136,10 +136,7 @@ DESCRIPTION: CSS for styling the admin tables
 			}
     	}
     }
-	table& > tbody > tr >  td {
-		position: relative;
-		z-index: -1
-	}
+
 	table& > tbody > tr >  td&__edit{
 		padding: 0px;
 	}
@@ -188,7 +185,7 @@ DESCRIPTION: CSS for styling the admin tables
 			background-color: transparent;
 			width: 100%;
 			padding: 20px;
-			
+			min-height: 115px;
 			&:hover, &:focus, &:active{
 				background-color: transparent;
 				color: @white;
@@ -216,12 +213,13 @@ DESCRIPTION: CSS for styling the admin tables
 		    height: 50px;
 		    width: 50px;
 		    margin-right:10px; 
+		    border: 3px solid rgba(0, 0, 0, 0.56);
 		}
 		&__userName{
 		   font-size: 25px;
 		    font-weight: 300;
 		    text-transform: capitalize;
-		    margin-top:5px; 
+		    margin-top:10px; 
 		    .glyphicon-asterisk{
 		    	font-size:16px ;
 		    }
@@ -233,7 +231,7 @@ DESCRIPTION: CSS for styling the admin tables
 				color: @white;
 			}
 			.dropdown-menu{
-				background-color: @site_nav_bg;
+				background-color: rgba(43, 43, 43, 0.96);
 				width: 350px;
 				color:@white;
 				margin-right: -1px;
@@ -253,6 +251,14 @@ DESCRIPTION: CSS for styling the admin tables
 					  
 					  -webkit-flex-flow: row wrap;
 					  flex-flow: row wrap;
+				}
+
+				li:hover .tableAdminGroups__admins__avatar {
+					border: 3px solid #2299d0;
+				}
+
+				li:hover .glyphicon-asterisk{
+					color: #2299d0;
 				}
 				
 			}

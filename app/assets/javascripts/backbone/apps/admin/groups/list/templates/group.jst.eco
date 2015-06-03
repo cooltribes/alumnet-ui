@@ -38,33 +38,32 @@
   <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>
 </td>
 <td class="js-show-admins tableAdminGroups__colText tableAdminGroups__admins">
-  <% if @admins.length: %>
-  <% for admins in @admins: %>
   <div class="dropdown tableAdminGroups__adminsList ">
     <button class="tableAdminGroups__adminsdropdownButton btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     <%= @getAdminsCount() %>
     <span class="caret"></span>
     </button>
     <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+      <% if @admins.length: %>
+      <% for admins in @admins: %>
       <li role="presentation">
         <div class="tableAdminGroups__admins__userData">
           <a role="menuitem" tabindex="-1" href="#">
-                  <img src="<%= admins.avatar %>" class="img-circle img-responsive tableAdminGroups__admins__avatar " alt="">
-                  <div class="tableAdminGroups__admins__userName"><%= admins.name %> 
-                                    <span class="glyphicon glyphicon-asterisk"></span></div>
-                </a>
-              </div>
+            <img src="<%= admins.avatar %>" class="img-circle img-responsive tableAdminGroups__admins__avatar " alt="">
+            <div class="tableAdminGroups__admins__userName"><%= admins.name %> 
+              <span class="glyphicon glyphicon-asterisk"></span>
+            </div>
+          </a>
+        </div>
         <div class="tableAdminGroups__admins__actions">
           <a href="#"><span class="icon-entypo-cog"></span></a>
         </div>
       </li>
-
+      <% end %>
+      <% end %>
     </ul>
   </div>
-  <% end %>
-  <% else: %>
-  No admins
-  <% end %>
+
   <!-- <div class="tableAdminGroups__adminsList"> -->
   <!-- <ul>
     <% if @admins.length: %>
