@@ -1,12 +1,26 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
 
   class JobExchange.Task extends Marionette.ItemView
-    template: 'programs/job_exchanges/templates/task'
+
+    initialize: (options)->
+      @mode = options.mode
+
+    getTemplate: ->
+      console.log @model, @mode
+      if @mode == 'detail'
+        'programs/job_exchanges/templates/detail'
+      else
+        'programs/job_exchanges/templates/task'
 
     templateHelpers: ->
+      model = @model
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
-
+      location: ->
+        location = []
+        location.push model.get('country').text unless model.get('country').text == ""
+        location.push model.get('city').text unless model.get('city').text == ""
+        location.join(', ')
     ui:
       'deleteLink': '.js-job-delete'
 
@@ -89,7 +103,7 @@
 
     cancelClicked: (e)->
       e.preventDefault()
-      console.log 'cancel'
+      AlumNet.trigger("program:job:my")
 
     setCities: (e)->
       @setSelectCities(e.val)
