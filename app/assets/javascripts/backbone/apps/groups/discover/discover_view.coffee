@@ -53,8 +53,10 @@
 
     events:
       'click .js-join':'sendJoin'
-      'change': 'renderView'
       'click #js-subgroups': 'showSubgroups'
+
+    modelEvents:
+      'change': 'renderView'
 
     ui:
       'groupCard': '.groupCard__atribute__container'
@@ -77,13 +79,16 @@
       userIsMember: @model.userIsMember()
 
     renderView: (e)->
-      @model.fetch()
-      @model.render()
+      @render()
+
 
     sendJoin: (e)->
       e.preventDefault()
       @trigger 'join'
-      @model.fetch()
+      model = @model
+      @model.fetch
+        success: ->
+          model.trigger('renderView')  
       @render() 
       
     onRender: ->
@@ -99,6 +104,7 @@
         $('#js-subgroups').html("Show subgroups ("+child+")"))
       $('#'+id).on('shown.bs.collapse', () -> 
         $('#js-subgroups').html("Hide subgroups ("+child+")"))
+
 
   class Discover.EmptyView extends Marionette.ItemView
     template: 'groups/discover/templates/empty'
