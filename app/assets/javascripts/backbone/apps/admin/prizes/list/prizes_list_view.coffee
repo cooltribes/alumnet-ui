@@ -48,3 +48,52 @@
     template: 'admin/prizes/list/templates/prizes_table'
     childView: PrizesList.PrizeView
     childViewContainer: "#prizes-table tbody"
+
+  class PrizesList.ModalPrize extends Backbone.Modal
+    template: 'admin/prizes/list/templates/modal_form'
+    cancelEl: '#js-modal-close'
+
+    initialize: (options)->
+      console.log options
+      @prizeTable = options.prizeTable
+      # Backbone.Validation.bind this,
+      #   valid: (view, attr, selector) ->
+      #     $el = view.$("[name=#{attr}]")
+      #     $group = $el.closest('.form-group')
+      #     $group.removeClass('has-error')
+      #     $group.find('.help-block').html('').addClass('hidden')
+      #   invalid: (view, attr, error, selector) ->
+      #     $el = view.$("[name=#{attr}]")
+      #     $group = $el.closest('.form-group')
+      #     $group.addClass('has-error')
+      #     $group.find('.help-block').html(error).removeClass('hidden')
+
+    templateHelpers: ->
+      prizeIsNew: @model.isNew()
+
+    events:
+      'click #js-modal-save': 'saveClicked'
+      'click #js-modal-delete': 'deleteClicked'
+
+    saveClicked: (e)->
+      e.preventDefault()
+      modal = @
+      model = @model
+      table = @prizeTable
+      data = Backbone.Syphon.serialize(modal)
+      @model.save data,
+        success: ->
+          modal.destroy()
+          model.trigger('render:view')
+          console.log table
+          if table
+            table.collection.add(model)
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      modal = @
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy
+          success: ->
+            modal.destroy()

@@ -8,3 +8,4 @@
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(prizesTable)
+      AlumNet.execute('render:admin:prizes:submenu', undefined, 0, prizesTable)
