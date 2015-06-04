@@ -28,9 +28,9 @@
 
     showMainView: ->
       if @businessCollection.length
-        self.showSection(@businessCollection.at(0))
+        @showSection(@businessCollection.at(0))
       else
-        self.showEmpty()
+        @showEmpty()
         
 
     showEmpty: ->
