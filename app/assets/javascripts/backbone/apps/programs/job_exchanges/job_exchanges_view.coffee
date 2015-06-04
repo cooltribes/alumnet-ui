@@ -1,7 +1,31 @@
-@AlumNet.module 'TasksApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
+
+  class JobExchange.Task extends Marionette.ItemView
+    template: 'programs/job_exchanges/templates/task'
+
+    templateHelpers: ->
+      canEdit: @model.canEdit()
+      canDelete: @model.canDelete()
+
+    ui:
+      'deleteLink': '.js-job-delete'
+
+    events:
+      'click @ui.deleteLink': 'DeleteClicked'
+
+    DeleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm('Are you sure?')
+      if resp
+        @model.destroy()
+
+  class JobExchange.MyJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/my_jobs'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
 
   class JobExchange.Form extends Marionette.ItemView
-    template: 'tasks/job_exchanges/templates/form'
+    template: 'programs/job_exchanges/templates/form'
 
     initialize: (options)->
       @current_user = options.user
@@ -18,7 +42,7 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
-      city_value: if @model.get('city') then @model.get('city').text else ''
+      city_helper: if @model.get('city') then @model.get('city').text
 
     ui:
       'submitLink': '.js-submit'
@@ -34,7 +58,6 @@
       'change @ui.selectCountries': 'setCities'
 
     onRender: ->
-      console.log @model
       ## set select2 to inputs
       @ui.selectCompany.select2
         placeholder: "Select a Company"

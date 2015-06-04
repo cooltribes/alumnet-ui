@@ -1,0 +1,15 @@
+<div class="job-post">
+  <div class="name"><h3><%= @name %></h3></div>
+  <div class="name"><h3><b><%= @company.text %></b></h3></div>
+  <div class="description"><%= @description %></div>
+  <hr>
+  <div class="buttons">
+    <% if @canDelete: %>
+      <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+    <% end %>
+    <% if @canEdit: %>
+      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+    <% end %>
+      <a href="#" class="btn btn-primary js-job-details" >Details</a>
+  </div>
+</div>

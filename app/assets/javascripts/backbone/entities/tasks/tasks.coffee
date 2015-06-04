@@ -1,5 +1,12 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Tasks extends Backbone.Model
+
+    canEdit: ->
+      @canDelete()
+
+    canDelete: ->
+      @get('user').id == AlumNet.current_user.id
+
     validation:
       name:
         required: true
@@ -21,5 +28,5 @@
   class Entities.JobExchangeCollection extends Backbone.Collection
     model:
       Entities.JobExchange
-    urlRoot: ->
+    url: ->
       AlumNet.api_endpoint + '/job_exchanges'
