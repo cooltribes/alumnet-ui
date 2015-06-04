@@ -38,6 +38,3 @@
       groupsTable.on 'groups:home', ->
         @linksGroups = []
         reRenderTable(groups)
-
-
-
