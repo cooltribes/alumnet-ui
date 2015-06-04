@@ -1,0 +1,55 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Prize <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" id="name" name="name" class="form-control input-lg" value="<%= @name %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Description</label>
+          <input type="text" id="description" name="description" class="form-control input-lg" value="<%= @description %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Price</label>
+          <input type="text" id="price" name="price" class="form-control input-lg" value="<%= @price %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Type</label>
+          <select name="prize_type" class="form-control input-lg ">
+            <option value="0">Time remaining</option>
+            <option value="1">Times used</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <% unless @prizeIsNew: %>
+    <a href="#" class="btn btn-danger pull-left" id="js-modal-delete">Delete</a>
+  <% end %>
+  <a href="#" class="btn btn-primary" id="js-modal-save">Save</a>
+  <a href="#" class="btn btn-default" id="js-modal-close">Cancel</a>
+</div>
