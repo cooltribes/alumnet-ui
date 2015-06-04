@@ -1,0 +1,39 @@
+<div class="container-fluid margin_top">
+  <div class="row ">
+    
+    <div class="col-md-3 col-md-offset-1">
+      <div class="js-company-name">
+        
+      </div>
+
+      <% if @userCanEdit: %>
+        <a href="#" title="Create Business" class="btn-primary btn btn-primary js-create"><span class="glyphicon glyphicon-plus"></span> Create new section</a>
+      <% end %>  
+
+    </div>
+
+    <div class="col-md-8">
+      <h2>        
+        What I Offer
+      </h2>
+      <div class="js-offer">
+        
+      </div>
+      <h2>        
+        What I'm looking for
+      </h2>
+      <div class="js-search">
+        
+      </div>
+      <h2>        
+        Why to make business with me
+      </h2>
+      <div class="js-business-me">
+          
+      </div>
+    </div>  
+    
+
+
+  </div>
+</div>

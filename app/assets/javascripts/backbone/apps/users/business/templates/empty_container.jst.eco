@@ -1,0 +1,8 @@
+<% if @userCanEdit: %>
+  <div class="row margin_top_large text-center">
+    <div class="col-md-12 margin_top_small">
+      <a href="#" title="Create Business" class="btn-primary btn btn-primary js-upload"><span class="glyphicon glyphicon-plus"></span> Create new section</a>
+    </div>
+  </div>
+<% end %>  
+

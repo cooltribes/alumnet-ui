@@ -48,8 +48,8 @@
       @set('you_like', false)
 
   class Entities.PostCollection extends Backbone.Collection
-  # class Entities.PostCollection extends Backbone.PageableCollection
     model: Entities.Post
+  # class Entities.PostCollection extends Backbone.PageableCollection
 
     # state: 
     #   pageSize: 2
