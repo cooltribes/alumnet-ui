@@ -26,8 +26,6 @@
       'updateView':'renderView'
 
     renderView: ->
-      console.log "render view"
-      console.log @model
       @render()
 
     showModal: (e)->
