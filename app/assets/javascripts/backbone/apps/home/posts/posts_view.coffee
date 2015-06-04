@@ -217,8 +217,10 @@
     childViewContainer: '.posts-container'
     
     initialize: ->
+      _.bindAll(this, 'loadMoreBooks');
       document.title = " AlumNet - Home"
       @picture_ids = []    
+      $(window).scroll(@loadMoreBooks);
         
     childViewOptions: ->
       current_user: @model
@@ -235,12 +237,18 @@
 
     events:
       'click a#js-post-submit': 'submitClicked'
+      'click a#js-post-test': 'submitTest'
+      
 
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
-  
+    
+    loadMoreBooks: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'post:reload'
+
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
