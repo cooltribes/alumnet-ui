@@ -1,0 +1,11 @@
+<table class="table tableAdminActions" id="actions-table">
+	<thead>
+		<tr>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Name</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Description</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Status</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Value</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>

@@ -5,6 +5,8 @@
 
   App.on 'before:start', (options) ->
     App.api_endpoint = options.api_endpoint
+    App.profinda_api_endpoint = options.profinda_api_endpoint
+    App.profinda_account_domain = options.profinda_account_domain
     current_user_token = App.request 'user:token'
     App.current_token = current_user_token
     if current_user_token
@@ -20,20 +22,20 @@
 
   App.on 'start', ->
     if Backbone.history
-      Backbone.history.start()      
+      Backbone.history.start()
       App.navigate('#posts', {trigger: true}) if App.getCurrentRoute() == ""
 
 
   App.addRegions
     headerRegion: "#header-region"
     submenuRegion: "#submenu-region"
-    mainRegion: 
+    mainRegion:
       selector: "#main-region"
       # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
 
   App.reqres.setHandler 'default:region', -> App.mainRegion
-    
+
 
   App.navigate = (route, options)->
     options || (options = {})
