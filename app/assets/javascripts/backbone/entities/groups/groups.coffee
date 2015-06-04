@@ -26,7 +26,6 @@
 
     hasMailchimp: ->
       mailchimp = @get('mailchimp')
-      console.log(mailchimp)
       if(mailchimp)
         true
       else
