@@ -27,6 +27,8 @@
         @userCanEdit = user.isCurrentUser()
 
     showMainView: ->
+      @showCreateForm()
+      return true
       if @businessCollection.length
         @showSection(@businessCollection.at(0))
       else
@@ -41,11 +43,16 @@
 
 
     showCreateForm: ()->
+
       view = new Business.CreateForm
-      
+        model: new AlumNet.Entities.Business
+
       controller = @  
       view.on "cancel", (view)->
         controller.showMainView()
+      
+      view.on "submit", (model)->
+        controller.businessCollection.create(model)
 
       @layout.body.show view
 
