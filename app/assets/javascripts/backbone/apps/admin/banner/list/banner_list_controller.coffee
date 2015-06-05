@@ -2,23 +2,22 @@
   class BannerList.Controller
     bannerList: ->
         
-      banner = AlumNet.request('banner:entities:admin', {})
-
+      #banner = AlumNet.request('banner:entities:admin', {})
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.fetch()
-
       layoutView = new BannerList.Layout
       bannerTable = new BannerList.BannerTable
         collection: bannerCollection
-
       createBanner = new BannerList.CreateView
         model: new AlumNet.Entities.Banner
         collection: bannerCollection
 
       AlumNet.execute('render:admin:banner:submenu', undefined, 0)
 
+
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(bannerTable)
+
       layoutView.create.show(createBanner)
 
       bannerTable.on 'banner:count', ()->
@@ -28,7 +27,7 @@
           model.set('order', index)
           model.save()
         bannerCollection.sortBy (model) ->
-          model.order 
+          model.order
     
       
               
