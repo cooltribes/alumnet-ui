@@ -54,19 +54,7 @@
     cancelEl: '#js-modal-close'
 
     initialize: (options)->
-      console.log options
       @prizeTable = options.prizeTable
-      # Backbone.Validation.bind this,
-      #   valid: (view, attr, selector) ->
-      #     $el = view.$("[name=#{attr}]")
-      #     $group = $el.closest('.form-group')
-      #     $group.removeClass('has-error')
-      #     $group.find('.help-block').html('').addClass('hidden')
-      #   invalid: (view, attr, error, selector) ->
-      #     $el = view.$("[name=#{attr}]")
-      #     $group = $el.closest('.form-group')
-      #     $group.addClass('has-error')
-      #     $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
       prizeIsNew: @model.isNew()
@@ -85,7 +73,6 @@
         success: ->
           modal.destroy()
           model.trigger('render:view')
-          console.log table
           if table
             table.collection.add(model)
 
