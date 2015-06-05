@@ -42,10 +42,12 @@
         ]
         options:
           'title': 'Users'
+          'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
+          'titleTextStyle': { 'fontSize': 16 }
+
 
       @ui.graph_section.showAnimated(graph.render().el)
-      
-
 
   class UserStats.RegionalGraph extends Marionette.ItemView
     template: 'admin/users/stats/view/templates/_graph'
@@ -78,6 +80,9 @@
           ]
           options:
             'title': 'Users'
+            'legend': {'position': 'bottom', 'alignment':'center'}
+            'height': 270
+            'titleTextStyle': { 'fontSize': 16 }
 
         @ui.graph_section.showAnimated(graph.render().el)
 
@@ -100,8 +105,6 @@
       model.fetch
         data: 
           q: model.get("q")    
-  
-
 
   class UserStats.NationalGraph extends Marionette.ItemView
     template: 'admin/users/stats/view/templates/_graph'
@@ -137,6 +140,9 @@
           ]
           options:
             'title': 'Users'
+            'legend': {'position': 'bottom', 'alignment':'center'}
+            'height': 270
+            'titleTextStyle': { 'fontSize': 16 }
 
         @ui.graph_section.showAnimated(graph.render().el)
         
@@ -162,15 +168,11 @@
         data: 
           q: model.get("q")
 
-      
-
-
-
   class UserStats.Graphics extends Marionette.CompositeView
     template: 'admin/users/stats/view/templates/graphics'
 
     initialize: (options) ->
-      document.title='AlumNet - Users Statistics'
+      document.title = 'AlumNet - Users Statistics'
 
     getChildView: (item)->
       type = item.get("graphType")

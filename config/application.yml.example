@@ -2,6 +2,8 @@ defaults: &defaults
   api_endpoint: http://localhost:4000
   api_endpoint_domain: localhost:4000
   pusher_key: 51c54e51c6823ec65d89
+  profinda_api_endpoint: http://apistaging.profinda.com/api #staging
+  profinda_account_domain: cooltribes-staging.profinda.com
 
 development:
   <<: *defaults
