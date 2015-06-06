@@ -31,6 +31,7 @@
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
           AlumNet.trigger "groups:posts", group.get('id')
+
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
 

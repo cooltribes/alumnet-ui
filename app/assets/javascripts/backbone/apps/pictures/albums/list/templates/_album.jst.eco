@@ -1,0 +1,22 @@
+
+    <h4>
+      <%= @name %>   (<%= @pictures_count %>)         
+
+      <% if @userCanEdit: %>
+        <button type="button" class="close js-rmvItem"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <% end %>
+
+    </h4>
+
+
+<div class="js-detail">
+ 
+    <% if @cover_picture: %>
+      <img src="<%= @cover_picture.card %>" alt="<%= @name %>" width="100%">
+    <% else: %>
+      <img src="" alt="<%= @name %>" class="img-rounded">
+      
+
+    <% end %>
+  
+</div>

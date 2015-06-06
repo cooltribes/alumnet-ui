@@ -25,6 +25,10 @@
           view.trigger 'comment:edit', newValue
       @ui.commentText.linkify()
 
+    onShow: ->
+      container = $('#timeline')
+      container.masonry 'layout'
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
@@ -80,7 +84,7 @@
     initialize: (options)->
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
-
+    
     templateHelpers: ->
       model = @model
       permissions = @model.get('permissions')
@@ -213,12 +217,14 @@
     childViewContainer: '.posts-container'
     
     initialize: ->
+      _.bindAll(this, 'loadMoreBooks');
       document.title = " AlumNet - Home"
       @picture_ids = []    
+      $(window).scroll(@loadMoreBooks);
         
     childViewOptions: ->
       current_user: @model
-      
+    
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
 
@@ -231,12 +237,18 @@
 
     events:
       'click a#js-post-submit': 'submitClicked'
+      'click a#js-post-test': 'submitTest'
+      
 
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
-  
+    
+    loadMoreBooks: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'post:reload'
+
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -247,6 +259,7 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        console.log "submitClicked"
 
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
@@ -278,6 +291,8 @@
     childViewContainer: '.carousel-inner'
     #childViewOptions: ->
     #  banner: @banner
+
+
 
 
 

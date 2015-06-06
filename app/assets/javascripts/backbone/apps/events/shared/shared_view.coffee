@@ -10,9 +10,11 @@
         loadPicture: image
         cropUrl: AlumNet.api_endpoint + "/events/#{@model.id}/cropping"
         onAfterImgCrop: ->
+          console.log model
           model.trigger('change:cover')
 
       cropper = new Croppic('croppic', options)
+      console.log cropper
 
   class Shared.Modal extends Backbone.Modal
     template: 'events/shared/templates/upload_modal'

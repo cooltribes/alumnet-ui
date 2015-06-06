@@ -1,4 +1,4 @@
-<div class="groupCoverArea coverArea" style="background-image: url('<%= @cover_image %>');">
+<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
 	<h1 class="groupCoverArea__title 
 .overfloadText  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
     <% if @canEditInformation: %>

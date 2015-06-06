@@ -158,9 +158,6 @@
       @model.set data
       @trigger "save:experience"
 
-    cancelEdit: (e)->
-      @trigger "cancelEdit:experience"
-
 
     removeExperience: (e)->
       if confirm("Are you sure you want to delete this experience?")
