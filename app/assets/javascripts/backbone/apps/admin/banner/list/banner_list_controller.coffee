@@ -2,9 +2,11 @@
   class BannerList.Controller
     bannerList: ->
         
-      #banner = AlumNet.request('banner:entities:admin', {})
+      banner = AlumNet.request('banner:entities:admin', {})
+      
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.fetch()
+
       layoutView = new BannerList.Layout
       bannerTable = new BannerList.BannerTable
         collection: bannerCollection

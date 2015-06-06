@@ -76,21 +76,18 @@
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
       'click @ui.uploadBanner': 'uploadClicked'
-      'change' : 'coverChanged'
-
-    initialize: ->
-      @listenTo(@model, 'render:view', @coverChanged)
-
-    #renderView: -> 
-      #@model.fetch()       
-      #@render()
-        
-    coverChanged: ->
+ 
+    modelEvents:
+      'change:banner': 'bannerChanged'
+ 
+    bannerChanged: (file) ->
+      picture = file
+      console.log file
       view = @
       @model.fetch
         success: (model)->
-          view.render()
-
+          view.render()          
+  
     uploadClicked: (e)->
       e.preventDefault()
       modal = new BannerList.Modal
@@ -212,6 +209,7 @@
     saveClicked: (e)->
       e.preventDefault()
       view = @
+      model = @model
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
@@ -227,7 +225,7 @@
           data: formData
           success: (model, response, options)->
             view.model.set(formData)       
-            model.trigger 'render:view'
+            model.trigger('change:banner', file)
         @model.save(formData, options_for_save)
         @destroy()
 
