@@ -375,14 +375,21 @@
       else if @ui.selectType.val() =='created_at' 
         @datePicker()
         @ui.value.html("<input type='text' class='form-control input-lg js-date' name='value' id='start_date'>")  
+        #@ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")   
         @ui.comparator.empty().append("<select name='comparator' class='form-control input-lg value_by'>
           <option value=''>Select comparator</option>
           <option value='gt'>></option>
           <option value='lt'><</option>
           <option value='lteq'><=</option>
           <option value='gteq'>>=</option>
-          <option value='eq'>=</option>
           </select>")
+      else if @ui.selectType.val() =="profile_first_committee_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")   
        
 
     sumbitForm: (e)->
@@ -424,10 +431,6 @@
       e.preventDefault()
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
-        itemView.model.set data
-        console.log itemView.model
+        itemView.model.set data        
       @trigger('filters:search')
-
-    # initialize: (options) ->
-    #   @modals = options.modals
 

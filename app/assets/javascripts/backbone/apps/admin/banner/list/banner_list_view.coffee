@@ -50,6 +50,7 @@
             view.collection.add(model)
         @model.save(formData, options_for_save)
         @render()
+  
 
     previewImage: (e)->
       input = @.$('#BannerImg')
@@ -59,7 +60,6 @@
         reader.onload = (e)->
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
-
 
 
   #Vista para un banner
@@ -76,17 +76,18 @@
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
       'click @ui.uploadBanner': 'uploadClicked'
-      'change' : 'coverChanged'
-
-    #modelEvents:
-      #'change:banner': 'bannerChanged'
-
-    coverChanged: ->
+ 
+    modelEvents:
+      'change:banner': 'bannerChanged'
+ 
+    bannerChanged: (file) ->
+      picture = file
+      console.log file
       view = @
       @model.fetch
         success: (model)->
-          view.render()
-
+          view.render()          
+  
     uploadClicked: (e)->
       e.preventDefault()
       modal = new BannerList.Modal
@@ -122,14 +123,13 @@
     childViewContainer: "#banners-list"
       
     initialize: (options)->
-      #document.title='AlumNet - Banners Management'
+      document.title='AlumNet - Banners Management'
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
 
-    events:
-      'change': 'renderView'
-  
-         
+    #events:
+      #'change': 'renderView'
+          
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
       indexAbove = indexAbove-2
       bannerAbove = @collection.at(indexAbove)
@@ -205,26 +205,30 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
-
+        
     saveClicked: (e)->
       e.preventDefault()
-      modal = @
-      model = @model      
+      view = @
+      model = @model
       formData = new FormData()
-      data = Backbone.Syphon.serialize(this)      
+      data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
-        formData.append(key, value)    
+        formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
       @model.set(data)
       if @model.isValid(true)
-        options =
+        options_for_save =
           wait: true
           contentType: false
           processData: false
           data: formData
-          success: ->
-            model.trigger('change:banner')
-      @model.save(formData, options)      
-      @destroy()
+          success: (model, response, options)->
+            view.model.set(formData)       
+            model.trigger('change:banner', file)
+        @model.save(formData, options_for_save)
+        @destroy()
 
+     
+
+      
