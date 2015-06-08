@@ -267,6 +267,7 @@
     events:
       "click @ui.btnRmv": "removeRow"
       "change .filter_by, click .filter_by" : "changeField"
+      "click .filter_by": "datePicker"
       "sumbit me": "sumbitForm"
 
     initialize: ->
@@ -282,7 +283,7 @@
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
 
-    onRender: ->  
+    datePicker: ->  
       @$(".js-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
@@ -291,6 +292,7 @@
         direction: ['2015-01-01', '2030-12-12']
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999) 
+        
                                     
     
     #TO DO: refactor this
@@ -370,6 +372,25 @@
           <option value='2'>Lifetime Member</option>
           </select>" )  
         @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>") 
+      else if @ui.selectType.val() =='created_at' 
+        @datePicker()
+        @ui.value.html("<input type='text' class='form-control input-lg js-date' name='value' id='start_date'>")  
+        #@ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")   
+        @ui.comparator.empty().append("<select name='comparator' class='form-control input-lg value_by'>
+          <option value=''>Select comparator</option>
+          <option value='gt'>></option>
+          <option value='lt'><</option>
+          <option value='lteq'><=</option>
+          <option value='gteq'>>=</option>
+          </select>")
+      else if @ui.selectType.val() =="profile_first_committee_name"
+        @ui.comparator.empty().html(" <select  name='comparator' class='form-control input-lg'>
+          <option value=''>Select comparator</option>
+          <option value='cont_any'>Contains</option>
+          <option value='in'>=</option>
+          </select>" )  
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")   
+       
 
     sumbitForm: (e)->
       e.preventDefault()
@@ -410,10 +431,6 @@
       e.preventDefault()
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
-        itemView.model.set data
-        console.log itemView.model
+        itemView.model.set data        
       @trigger('filters:search')
-
-    # initialize: (options) ->
-    #   @modals = options.modals
 

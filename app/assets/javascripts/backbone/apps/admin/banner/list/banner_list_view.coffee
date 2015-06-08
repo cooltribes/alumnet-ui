@@ -50,6 +50,7 @@
             view.collection.add(model)
         @model.save(formData, options_for_save)
         @render()
+  
 
     previewImage: (e)->
       input = @.$('#BannerImg')
@@ -59,7 +60,6 @@
         reader.onload = (e)->
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
-
 
 
   #Vista para un banner
@@ -76,18 +76,19 @@
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
       'click @ui.uploadBanner': 'uploadClicked'
-    
-    #modelEvents:
-      #'change:banner': 'bannerChanged'
-
-    coverChanged: ->
+ 
+    modelEvents:
+      'change:banner': 'bannerChanged'
+ 
+    bannerChanged: (file) ->
+      picture = file
+      console.log file
       view = @
       @model.fetch
         success: (model)->
-          view.render()
-
+          view.render()          
+  
     uploadClicked: (e)->
-      console.log "upload Banner"
       e.preventDefault()
       modal = new BannerList.Modal
         model: @model 
@@ -103,14 +104,16 @@
     moveUp: (e)->
       e.preventDefault()
       e.stopPropagation()
-      console.log "Up"
-      @trigger 'moveBannerDown'
-
-
+      indexToUp = @model.collection.indexOf(@model)
+      above = parseInt(indexToUp)
+      if indexToUp > 0 
+        @trigger 'Swap:Up',indexToUp, indexToUp+1, above
+      
     moveDown: (e)->
       e.preventDefault()
       e.stopPropagation()
-      console.log "Down"
+      indexToDown = @model.collection.indexOf(@model)
+      @trigger 'Swap:Down', indexToDown, indexToDown+1, indexToDown+2
 
 
   #Vista para lista de banners
@@ -118,12 +121,33 @@
     template: 'admin/banner/list/templates/banner_table'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
-
+      
     initialize: (options)->
       document.title='AlumNet - Banners Management'
+      @collection.each (model)->     
+        attrs = { order: model.get('order')}   
 
-    events:
-      'change': 'renderView'
+    #events:
+      #'change': 'renderView'
+          
+    onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
+      indexAbove = indexAbove-2
+      bannerAbove = @collection.at(indexAbove)
+      bannerAbove = @collection.remove(bannerAbove) 
+      currentBanner = @collection.remove(bannerToUp) 
+      @collection.add(currentBanner, {at: indexAbove}) 
+      @collection.add(bannerAbove, at: currentIndex)
+      @trigger 'banner:count'
+            
+        
+    onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
+      bannerBelow = @collection.at(indexBelow)
+      bannerBelow = @collection.remove(bannerBelow) 
+      currentBanner = @collection.remove(bannerToDown) 
+      @collection.add(currentBanner, {at: indexBelow}) 
+      @collection.add(bannerBelow, at: currentIndex)
+      @trigger 'banner:count'
+
 
   class BannerList.CropCoverModal extends Backbone.Modal
     template: 'admin/banner/list/templates/crop_modal'
@@ -150,6 +174,21 @@
       'click .js-modal-crop': 'cropClicked'
       'change #BannerImg': 'previewImage'
 
+    initialize: (options)->
+      @collection = options.collection
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+  
+
     cropClicked: (e)->
       e.preventDefault()
       modal = new BannerList.CropCoverModal
@@ -166,25 +205,30 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
-
+        
     saveClicked: (e)->
       e.preventDefault()
-      modal = @
+      view = @
       model = @model
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
+        formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
       @model.set(data)
       if @model.isValid(true)
-        options =
+        options_for_save =
           wait: true
           contentType: false
           processData: false
           data: formData
-          success: ->
-            modal.destroy()
-      @model.save {}, options
-      @model.trigger('change:banner')  
+          success: (model, response, options)->
+            view.model.set(formData)       
+            model.trigger('change:banner', file)
+        @model.save(formData, options_for_save)
+        @destroy()
 
+     
+
+      

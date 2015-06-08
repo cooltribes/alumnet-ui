@@ -1,21 +1,20 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   class Posts.Controller
-
+    
     showCurrentUserPosts: ->
       #1 crear layout view renderizar en mainRegion
       #2 banner composite
       #3
       AlumNet.execute('render:home:submenu')
-
+      checkNewPost = false
       current_user = AlumNet.current_user
-      current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
-      current_user.posts.fetch({reset: true})
-
+      current_user.posts.url = AlumNet.api_endpoint + '/me/posts?page='+current_user.posts.page+'&per_page='+current_user.posts.rows
+      current_user.posts.fetch 
+        reset: true
 
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-        # collection: current_user.posts.fullCollection
                  
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
@@ -31,16 +30,38 @@
       layout.posts.show(posts)
       layout.banners.show(bannersView) 
 
-      posts.on "render:collection", ->
+      posts.on "post:reload", ->
+        ++posts.collection.page
+        newCollection = AlumNet.request("post:current")
+        newCollection.url = AlumNet.api_endpoint + '/me/posts?page='+posts.collection.page+'&per_page='+posts.collection.rows
+        newCollection.fetch
+          success: (collection)->
+            posts.collection.add(collection.models)
+
+      posts.on "add:child", (viewInstance)->
         container = $('#timeline')
-        container.masonry
-          itemSelector: '.post' 
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.post'        
+        if checkNewPost
+          container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+          container.imagesLoaded ->
+            container.masonry 'layout'
+        else
+          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        checkNewPost = false
+
+      posts.on "render:collection", ->
+        console.log "render"
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
         post.save data,
           success: (model, response, options) ->
+            checkNewPost = true
             posts.collection.add(model, {at: 0})
+            container = $('#timeline')
+            container.masonry "reloadItems"
 
       posts.on "childview:post:edit", (postView, value)->
         post = postView.model
@@ -93,6 +114,13 @@
         comment = commentView.model
         comment.save { comment: value }
 
+    getData: (page)->
+      rows = @collection.rows
+      start = page * rows
+      end = start + rows
+      console.log @collection
+      console.log start+" end "+end+" length "+@collection.length
+      @collection.slice(start,end)
 
     
 

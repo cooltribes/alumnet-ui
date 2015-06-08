@@ -12,8 +12,9 @@
         <option value="profile_birth_city_name">City of origin</option>
         <option value="profile_gender">Gender</option>        
         <option value="status">Status</option>  
-        <option value="member">Membership</option> <!-- 0-> no member, 1-> Subscription for a year, 2-> Subscription for a year (30 days left or less), 3-> Lifetime -->  
-        <!-- <option value="created_at">Joining date</option>  -->       
+        <option value="member">Membership</option> 
+        <option value="created_at">Joining date</option>    
+        <option value="profile_first_committee_name">Local Committee</option>    
       </select>
       <span class="help-block"></span>
     </div>
@@ -40,15 +41,11 @@
       <% if @first: %> <label class="control-label value_form" for="registerLocalcomitee">Value</label><% end %>
       <div name="value" >
         <input type="text"  id="value" class="form-control input-lg">    
-      </div>  
-
-       
+      </div>     
 <!-- 
         Date picker
         <input type="text" value="Select date" class="form-control input-lg js-date">
-       
-
-            
+                   
         Membership
         <option value="0">Registrant</option> 
         <option value="1">Member</option>     

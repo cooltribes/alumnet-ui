@@ -49,24 +49,8 @@
 
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
-  # class Entities.PostCollection extends Backbone.PageableCollection
-
-    # state: 
-    #   pageSize: 2
-    #   currentPage: 1
-
-    # initialize: ->
-    #   @perPaginate: 2 #default value
-
-    #Overriding method for Infinite pagination
-    # parseLinks: (resp, xhr)->      
-    #   nextLink = if resp.length >= @state.pageSize then @url else null
-    #   response = 
-    #     first: "null" #this is only because the plugin require it as a string
-    #     prev: "null" #this is only because the plugin require it as a string
-    #     # next: @url        
-    #     next: nextLink
-  
+    rows: 3
+    page: 1
 
   API =
     getNewPostForEvent: (event_id)->
@@ -94,6 +78,11 @@
       post.urlRoot = AlumNet.api_endpoint + '/me/posts'
       post
 
+    getAllPostForCurrentUser: ->
+      post = new Entities.PostCollection
+      post.urlRoot = AlumNet.api_endpoint + '/me/posts?page=1$per_page=3'
+      post
+
   AlumNet.reqres.setHandler 'post:event:new',(event_id)->
     API.getNewPostForEvent(event_id)
 
@@ -103,5 +92,10 @@
   AlumNet.reqres.setHandler 'post:user:new',(user_id)->
     API.getNewPostForUser(user_id)
 
+  AlumNet.reqres.setHandler 'post:current',->
+    API.getAllPostForCurrentUser()
+
   AlumNet.reqres.setHandler 'post:new',(postable, postable_id)->
     API.getNewPostFor(postable, postable_id)
+
+    
