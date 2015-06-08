@@ -6,7 +6,6 @@
       @mode = options.mode
 
     getTemplate: ->
-      console.log @model, @mode
       if @mode == 'detail'
         'programs/job_exchanges/templates/detail'
       else
@@ -23,11 +22,22 @@
         location.join(', ')
     ui:
       'deleteLink': '.js-job-delete'
+      'refreshLink': '.js-job-refresh'
+
 
     events:
-      'click @ui.deleteLink': 'DeleteClicked'
+      'click @ui.deleteLink': 'deleteClicked'
+      'click @ui.refreshLink': 'refreshClicked'
 
-    DeleteClicked: (e)->
+    refreshClicked: (e)->
+      e.preventDefault()
+      view = @
+      @model.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/matches'
+        success: ->
+          view.render()
+
+    deleteClicked: (e)->
       e.preventDefault()
       resp = confirm('Are you sure?')
       if resp
@@ -97,7 +107,7 @@
       @model.save data,
         success: ->
           ##TODO Match
-          console.log "Ok"
+          AlumNet.trigger("program:job:my")
         error: (model, response, options)->
           $.growl.error({ message: response.responseJSON })
 
