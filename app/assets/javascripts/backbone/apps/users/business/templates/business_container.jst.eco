@@ -2,6 +2,7 @@
   <div class="row ">
     
     <div class="col-md-3 col-md-offset-1">
+    <strong>Company: </strong>
       <div class="js-company-name">
         
       </div>
@@ -19,6 +20,18 @@
       <div class="js-offer">
         
       </div>
+      <div class="js-kwO">
+        <ul>
+          <% _.each @keywords, (item, index, collection)->: %>
+          <li>
+            <%= item %>
+            
+          </li>
+            
+          <% end%>
+        </ul>
+      </div>
+
       <h2>        
         What I'm looking for
       </h2>

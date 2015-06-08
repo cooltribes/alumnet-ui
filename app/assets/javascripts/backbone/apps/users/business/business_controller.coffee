@@ -27,8 +27,8 @@
         @userCanEdit = user.isCurrentUser()
 
     showMainView: ->
-      @showCreateForm()
-      return true
+      # @showCreateForm()
+      # return true
       if @businessCollection.length
         @showSection(@businessCollection.at(0))
       else
@@ -38,6 +38,10 @@
     showEmpty: ->
       view = new Business.EmptyView
         userCanEdit: @userCanEdit
+
+      controller = @  
+      view.on "showCreateForm", (view)->
+        controller.showCreateForm()  
 
       @layout.body.show view
 
@@ -52,7 +56,11 @@
         controller.showMainView()
       
       view.on "submit", (model)->
-        controller.businessCollection.create(model)
+        controller.businessCollection.create model,
+          success: ()->
+            controller.showMainView()
+            
+
 
       @layout.body.show view
 
