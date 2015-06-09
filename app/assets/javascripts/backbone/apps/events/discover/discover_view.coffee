@@ -73,6 +73,8 @@
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui
+
+      @collection.comparator = 'start_date'
       options = 
         success: (collection)-> 
           eventsArray = seft.eventsMap(seft,collection)
