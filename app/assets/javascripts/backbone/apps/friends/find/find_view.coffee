@@ -24,13 +24,14 @@
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
-      @trigger 'accept'
-
+      @trigger 'accept'    
+      @trigger 'Catch:Up'
 
     clickedRequest: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
+      @trigger 'Catch:Up'
 
     clickedReject: (e)->
       e.preventDefault()
@@ -51,7 +52,6 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('friends')
-        self.destroy()
 
     clickedCancel: (e)->
       e.preventDefault()
@@ -62,11 +62,10 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('pending_sent_friendships')
-        self.destroy()
 
-    removeCancelLink: ->
-      @ui.linkContainer.empty()
+    removeCancelLink: -> 
       @model.set("friendship_status","none")
+      @trigger 'Catch:Up'
 
 
 
@@ -99,6 +98,15 @@
         beforeDisplayContacts: (contacts, source, owner)->
           view.formatContact(contacts)
           false
+
+    onChildviewCatchUp: ->
+      view = @
+      @collection.fetch
+        success: (model)->
+          view.render()
+          console.log "success"
+
+            
 
     performSearch: (e) ->
       e.preventDefault()
