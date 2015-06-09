@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   def setup_gon
     gon.api_endpoint = Settings.api_endpoint
     gon.pusher_key = Settings.pusher_key
+    gon.profinda_api_endpoint = Settings.profinda_api_endpoint
+    gon.profinda_account_domain = Settings.profinda_account_domain
     gon.auth_token = current_user if signed_in?
     init_linkedin_for_registration
     if session[:facebook_profile].present?

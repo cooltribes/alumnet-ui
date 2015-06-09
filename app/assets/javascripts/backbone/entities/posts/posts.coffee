@@ -49,6 +49,8 @@
 
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
+    rows: 3
+    page: 1
 
   API =
     getNewPostForEvent: (event_id)->
@@ -76,6 +78,11 @@
       post.urlRoot = AlumNet.api_endpoint + '/me/posts'
       post
 
+    getAllPostForCurrentUser: ->
+      post = new Entities.PostCollection
+      post.urlRoot = AlumNet.api_endpoint + '/me/posts?page=1$per_page=3'
+      post
+
   AlumNet.reqres.setHandler 'post:event:new',(event_id)->
     API.getNewPostForEvent(event_id)
 
@@ -85,5 +92,10 @@
   AlumNet.reqres.setHandler 'post:user:new',(user_id)->
     API.getNewPostForUser(user_id)
 
+  AlumNet.reqres.setHandler 'post:current',->
+    API.getAllPostForCurrentUser()
+
   AlumNet.reqres.setHandler 'post:new',(postable, postable_id)->
     API.getNewPostFor(postable, postable_id)
+
+    

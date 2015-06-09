@@ -12,6 +12,8 @@
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
       "admin/banner": "bannerList"
+      "admin/actions": "actionsList"
+      "admin/prizes": "prizesList"
 
   API =
     usersList: (id)->
@@ -35,7 +37,12 @@
     statsList: ->
       controller = new AdminApp.UserStats.Controller
       controller.showStats()
-
+    actionsList: ->
+      controller = new AdminApp.ActionsList.Controller
+      controller.actionsList()
+    prizesList: ->
+      controller = new AdminApp.PrizesList.Controller
+      controller.prizesList()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -56,3 +63,7 @@
   AlumNet.on "admin:banner", ->
     AlumNet.navigate("admin/banner")
     API.bannerList()
+
+  AlumNet.on "admin:actions", ->
+    AlumNet.navigate("admin/actions")
+    API.groupsList()

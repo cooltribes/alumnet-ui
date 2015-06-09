@@ -34,11 +34,9 @@
         	<p id="js-description" class="groupTableView__description">
         		<%= @description %> 
         	</p>
-			<a <% if _.size(@children)>0: %>class="groupTableView__SubGroup" <% end %> data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" aria-controls="<%= @id %>">
-				
-        <% if _.size(@children)>0: %> Show Sub-Groups (<%= _.size(@children) %>) <span class="caret"></span> <% end %> 
-			</a>
       <% if _.size(@children)>0: %>
+			<a id="js-subgroups" class="groupTableView__SubGroup" data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" data-child="<%= _.size(@children) %>" aria-controls="<%= @id %>"> Show subgroups (<%= _.size(@children) %>) <span class="caret"></span></a>
+      
 			<div class="collapse" id="<%= @id %>">
 				<ul class="groupTableView__SubGroupList">
         			<% _.each @children, (child)->: %>
