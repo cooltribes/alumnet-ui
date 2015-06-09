@@ -34,6 +34,9 @@
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
     <% end %>
       <a href="#job-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
       <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
   </div>
 </div>

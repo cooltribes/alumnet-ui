@@ -36,5 +36,8 @@
     <% if @canEdit: %>
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
     <% end %>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
   </div>
 </div>

@@ -1,6 +1,9 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Tasks extends Backbone.Model
 
+    canApply: ->
+      not @canDelete()
+
     canEdit: ->
       @canDelete()
 

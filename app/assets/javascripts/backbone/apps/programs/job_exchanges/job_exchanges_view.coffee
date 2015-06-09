@@ -7,14 +7,17 @@
 
     getTemplate: ->
       if @mode == 'detail'
-        'programs/job_exchanges/templates/detail'
+        'programs/job_exchanges/templates/detail_task'
+      else if @mode == 'discover'
+        'programs/job_exchanges/templates/discover_task'
       else
-        'programs/job_exchanges/templates/task'
+        'programs/job_exchanges/templates/my_task'
 
     templateHelpers: ->
       model = @model
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
+      canApply: @model.canApply()
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""
@@ -23,7 +26,6 @@
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
-
 
     events:
       'click @ui.deleteLink': 'deleteClicked'
@@ -47,6 +49,13 @@
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+
+  class JobExchange.DiscoverJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/discover'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
 
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
