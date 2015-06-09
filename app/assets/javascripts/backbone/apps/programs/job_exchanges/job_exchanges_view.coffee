@@ -57,6 +57,13 @@
     childViewOptions:
       mode: 'discover'
 
+  class JobExchange.AutomatchesJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/automatches'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
 

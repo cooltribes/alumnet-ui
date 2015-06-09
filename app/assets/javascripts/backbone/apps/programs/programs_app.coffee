@@ -3,6 +3,7 @@
     appRoutes:
       "job-exchange": "discoverJobExchange"
       "job-exchange/my-posts": "myJobExchange"
+      "job-exchange/automatches": "automatchesJobExchange"
       "job-exchange/new": "createJobExchange"
       "job-exchange/:id/edit": "updateJobExchange"
       "job-exchange/:id": "showJobExchange"
@@ -11,6 +12,9 @@
     discoverJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.discoverJobExchange()
+    automatchesJobExchange: ->
+      controller = new ProgramsApp.JobExchange.Controller
+      controller.automatchesJobExchange()
     myJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.myJobExchange()
