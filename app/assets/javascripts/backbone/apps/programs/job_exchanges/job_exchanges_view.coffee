@@ -75,7 +75,12 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
+      model = @model
       city_helper: if @model.get('city') then @model.get('city').text
+      select_employment_type: (value)->
+        if value == model.get('employment').value then "selected" else ""
+      select_position_type: (value)->
+        if value == model.get('position').value then "selected" else ""
 
     ui:
       'submitLink': '.js-submit'
