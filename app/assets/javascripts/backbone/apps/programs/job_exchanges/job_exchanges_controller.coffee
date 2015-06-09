@@ -1,8 +1,26 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
   class JobExchange.Controller
 
+    automatchesJobExchange:->
+      tasks = new AlumNet.Entities.JobExchangeCollection
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/automatches'
+      automatchView = new JobExchange.AutomatchesJobs
+        collection: tasks
+
+      AlumNet.mainRegion.show(automatchView)
+      AlumNet.execute('render:programs:submenu', undefined, 1)
+
+    discoverJobExchange:->
+      tasks = new AlumNet.Entities.JobExchangeCollection
+      tasks.fetch()
+      discoverView = new JobExchange.DiscoverJobs
+        collection: tasks
+
+      AlumNet.mainRegion.show(discoverView)
+      AlumNet.execute('render:programs:submenu', undefined, 2)
+
     showJobExchange: (id)->
-      current_user = AlumNet.current_user
       task = new AlumNet.Entities.JobExchange { id: id }
       task.fetch
         success: ->
@@ -17,9 +35,9 @@
           AlumNet.trigger('show:error', response.status)
 
     myJobExchange: ->
-      current_user = AlumNet.current_user
       tasks = new AlumNet.Entities.JobExchangeCollection
-      tasks.fetch()
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/my'
       myJobsView = new JobExchange.MyJobs
         collection: tasks
 
@@ -27,7 +45,6 @@
       AlumNet.execute('render:programs:submenu', undefined, 0)
 
     createJobExchange: ->
-      current_user = AlumNet.current_user
       task = new AlumNet.Entities.JobExchange
       createForm = new JobExchange.Form
         model: task
