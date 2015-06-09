@@ -7,14 +7,17 @@
 
     getTemplate: ->
       if @mode == 'detail'
-        'programs/job_exchanges/templates/detail'
+        'programs/job_exchanges/templates/detail_task'
+      else if @mode == 'discover'
+        'programs/job_exchanges/templates/discover_task'
       else
-        'programs/job_exchanges/templates/task'
+        'programs/job_exchanges/templates/my_task'
 
     templateHelpers: ->
       model = @model
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
+      canApply: @model.canApply()
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""
@@ -23,7 +26,6 @@
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
-
 
     events:
       'click @ui.deleteLink': 'deleteClicked'
@@ -48,6 +50,20 @@
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
 
+  class JobExchange.DiscoverJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/discover'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
+  class JobExchange.AutomatchesJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/automatches'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
 
@@ -66,7 +82,12 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
+      model = @model
       city_helper: if @model.get('city') then @model.get('city').text
+      select_employment_type: (value)->
+        if value == model.get('employment').value then "selected" else ""
+      select_position_type: (value)->
+        if value == model.get('position').value then "selected" else ""
 
     ui:
       'submitLink': '.js-submit'

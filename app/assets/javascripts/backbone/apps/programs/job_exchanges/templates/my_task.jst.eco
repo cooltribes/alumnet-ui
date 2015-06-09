@@ -9,7 +9,7 @@
     <% for apply in @applied: %>
       <div class="applied">
         <img src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
-        <a href="#users/<%= apply.user.id %>"><%= apply.user.name %></a><br>
+        <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
         <small class="groupPost__date"> <%= moment(apply.updated_at).fromNow() %></small>
       </div>
     <% end %>
@@ -21,7 +21,7 @@
     <% for match in @matches: %>
       <div class="matches">
         <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
-        <a href="#users/<%= match.user.id %>"><%= match.user.name %></a>
+        <a href="#users/<%= match.user.id %>/posts"><%= match.user.name %></a>
       </div>
     <% end %>
   <% end %>
@@ -34,6 +34,9 @@
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
     <% end %>
       <a href="#job-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
       <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
   </div>
 </div>
