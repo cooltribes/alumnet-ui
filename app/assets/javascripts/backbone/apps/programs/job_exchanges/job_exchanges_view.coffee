@@ -62,6 +62,13 @@
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
 
+  class JobExchange.AppliedJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/applied'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
   class JobExchange.DiscoverJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/discover'
     childView: JobExchange.Task
