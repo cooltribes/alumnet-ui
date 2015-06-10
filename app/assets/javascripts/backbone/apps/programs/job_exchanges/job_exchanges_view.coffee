@@ -26,10 +26,22 @@
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
+      'applyLink':'.js-job-apply'
 
     events:
       'click @ui.deleteLink': 'deleteClicked'
       'click @ui.refreshLink': 'refreshClicked'
+      'click @ui.applyLink': 'applyClicked'
+
+    applyClicked: (e)->
+      e.preventDefault()
+      view = @
+      Backbone.ajax
+        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+        method: 'PUT'
+        success: ->
+          view.model.set('user_can_apply', false)
+          view.render()
 
     refreshClicked: (e)->
       e.preventDefault()
@@ -49,6 +61,13 @@
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+
+  class JobExchange.AppliedJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/applied'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
 
   class JobExchange.DiscoverJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/discover'

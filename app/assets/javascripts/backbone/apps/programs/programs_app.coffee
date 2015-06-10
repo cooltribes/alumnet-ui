@@ -3,6 +3,7 @@
     appRoutes:
       "job-exchange": "discoverJobExchange"
       "job-exchange/my-posts": "myJobExchange"
+      "job-exchange/applied": "appliedJobExchange"
       "job-exchange/automatches": "automatchesJobExchange"
       "job-exchange/new": "createJobExchange"
       "job-exchange/:id/edit": "updateJobExchange"
@@ -12,21 +13,24 @@
     discoverJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.discoverJobExchange()
-    automatchesJobExchange: ->
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.automatchesJobExchange()
     myJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.myJobExchange()
+    appliedJobExchange: ->
+      controller = new ProgramsApp.JobExchange.Controller
+      controller.appliedJobExchange()
+    automatchesJobExchange: ->
+      controller = new ProgramsApp.JobExchange.Controller
+      controller.automatchesJobExchange()
     createJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.createJobExchange()
-    showJobExchange: (id)->
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.showJobExchange(id)
     updateJobExchange: (id)->
       controller = new ProgramsApp.JobExchange.Controller
       controller.updateJobExchange(id)
+    showJobExchange: (id)->
+      controller = new ProgramsApp.JobExchange.Controller
+      controller.showJobExchange(id)
 
   AlumNet.on "program:job:my", ->
     AlumNet.navigate("job-exchange/my-posts")

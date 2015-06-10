@@ -34,6 +34,16 @@
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)
 
+    appliedJobExchange: ->
+      tasks = new AlumNet.Entities.JobExchangeCollection
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/applied'
+      appliedJobsView = new JobExchange.AppliedJobs
+        collection: tasks
+
+      AlumNet.mainRegion.show(appliedJobsView)
+      AlumNet.execute('render:programs:submenu', undefined, 3)
+
     myJobExchange: ->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.fetch
