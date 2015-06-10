@@ -4,7 +4,6 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->
-      console.log options
       @tab = options.tab
       @pointsBar = options.pointsBar   
       @class = [

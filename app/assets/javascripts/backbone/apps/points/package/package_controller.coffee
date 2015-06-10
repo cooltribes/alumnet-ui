@@ -2,7 +2,7 @@
 	class Package.Controller
 		listPackages: ->
 			prizes = AlumNet.request("prize:entities", {})
-			page = new Package.PackagesView
+			page = new Package.ListView
 				collection: prizes
 			AlumNet.mainRegion.show(page)
 			AlumNet.execute('render:points:submenu',undefined,2,true)
