@@ -57,6 +57,43 @@
       if resp
         @model.destroy()
 
+  class JobExchange.TaskInvitation extends Marionette.ItemView
+    template: 'programs/job_exchanges/templates/invitation'
+
+    ui:
+      'linkAccept': '.js-invitation-accept'
+      'linkDecline': '.js-invitation-decline'
+
+    events:
+      'click @ui.linkAccept': 'acceptClicked'
+      'click @ui.linkDecline': 'declineClicked'
+
+    templateHelpers: ->
+      model = @model
+      location: ->
+        location = []
+        task = model.get('task')
+        if task
+          location.push task.country.text unless task.country.text == ""
+          location.push task.city.text unless task.city.text == ""
+          location.join(', ')
+
+    acceptClicked: (e)->
+      e.preventDefault()
+      view = @
+      @model.save {},
+        success: ->
+          view.destroy()
+
+    declineClicked: (e)->
+      e.preventDefault()
+      @model.destroy()
+
+  class JobExchange.TaskInvitations extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/invitations'
+    childView: JobExchange.TaskInvitation
+    childViewContainer: '.invitations-container'
+
   class JobExchange.MyJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task

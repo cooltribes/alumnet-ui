@@ -5,6 +5,7 @@
       "job-exchange/my-posts": "myJobExchange"
       "job-exchange/applied": "appliedJobExchange"
       "job-exchange/automatches": "automatchesJobExchange"
+      "job-exchange/invitations": "invitationsJobExchange"
       "job-exchange/new": "createJobExchange"
       "job-exchange/:id/edit": "updateJobExchange"
       "job-exchange/:id": "showJobExchange"
@@ -22,6 +23,9 @@
     automatchesJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.automatchesJobExchange()
+    invitationsJobExchange: ->
+      controller = new ProgramsApp.JobExchange.Controller
+      controller.invitationsJobExchange()
     createJobExchange: ->
       controller = new ProgramsApp.JobExchange.Controller
       controller.createJobExchange()

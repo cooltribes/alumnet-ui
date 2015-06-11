@@ -11,6 +11,15 @@
       AlumNet.mainRegion.show(automatchView)
       AlumNet.execute('render:programs:submenu', undefined, 1)
 
+    invitationsJobExchange: ->
+      invitations = new AlumNet.Entities.TaskInvitationCollection
+      invitations.fetch()
+      invitationsView = new JobExchange.TaskInvitations
+        collection: invitations
+
+      AlumNet.mainRegion.show(invitationsView)
+      AlumNet.execute('render:programs:submenu', undefined, 4)
+
     discoverJobExchange:->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.fetch()
