@@ -1,7 +1,7 @@
 <div class="job-post">
-  <div class="name"><h3><%= @name %></h3></div>
-  <div class="company"><h3><b><%= @company.text %></b></h3></div>
-  <div class="description"><%= @description %></div>
+  <div class="jobPost__name"><h3><%= @name %></h3></div>
+  <div class="company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+  <div class="jobPost__description"><%= @description %></div>
   <!-- Applied -->
   <% if @applied_count > 0: %>
     <hr>
@@ -26,7 +26,7 @@
     <% end %>
   <% end %>
   <hr>
-  <div class="buttons">
+  <div class="jobPostDetail__buttons">
     <% if @canDelete: %>
       <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
     <% end %>
