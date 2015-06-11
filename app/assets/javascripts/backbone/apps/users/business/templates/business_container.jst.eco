@@ -16,27 +16,50 @@
     <div class="col-md-8">
       <h2>        
         What I Offer
-      </h2>
-      <div class="js-offer">
+        <% if @userCanEdit: %>
+          <a href="#" class="editLink js-edit-offer" >[edit]</a>
+        <% end %>
+      </h2>      
         
+      <div class="js-offer">
+        <%= @offer %>        
       </div>
+
+      <h2>        
+        What Keywords I Offer
+      </h2>
       <div class="js-kwO">
         <ul>
-          <% _.each @keywords, (item, index, collection)->: %>
+          <% _.each @offer_keywords, (item, index, collection)->: %>
           <li>
-            <%= item %>
+            <%= item.name %>
             
           </li>
             
           <% end%>
         </ul>
       </div>
+      
 
       <h2>        
         What I'm looking for
       </h2>
       <div class="js-search">
         
+      </div>
+      <h2>        
+        What Keywords I'm looking for
+      </h2>
+      <div class="js-kwO">
+        <ul>
+          <% _.each @search_keywords, (item, index, collection)->: %>
+          <li>
+            <%= item.name %>
+            
+          </li>
+            
+          <% end%>
+        </ul>
       </div>
       <h2>        
         Why to make business with me

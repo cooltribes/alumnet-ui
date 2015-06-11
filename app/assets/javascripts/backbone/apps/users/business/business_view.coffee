@@ -11,6 +11,12 @@
 
     triggers:
       "click .js-create": "showCreateForm"
+    
+    events:
+      "click .js-edit-offer": "editOffer"
+    
+    ui:
+      "offer": ".js-offer"
 
     bindings:
       ".js-offer": "offer"
@@ -22,30 +28,38 @@
           value.name
 
     onRender: ->
-      @stickit()  
+      view = @     
+      
+      # @stickit()  
+
+      @ui.offer.editable
+        type: 'textarea'
+        pk: view.model.id
+        title: 'Enter the description of Group'
+        toggle: 'manual'
+        validate: (value)->
+          if $.trim(value) == ''
+            'Group description is required, must be less than 2048 characters'
+          if $.trim(value).length >= 2048  
+            'Group description is too large! Must be less than 2048 characters'                 
+        success: (response, newValue)->
+          console.log "Yeah"
+          view.trigger 'group:edit:description', view.model, newValue
+    
+    
+    editOffer: (e)->
+      e.preventDefault()
+      @ui.offer.editable("toggle")
+
+
   
-
-
-  class Business.EmptyView extends Marionette.ItemView
-    template: 'users/business/templates/empty_container'
-
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
-
-    templateHelpers: ->
-      userCanEdit: @userCanEdit
-
-    triggers:
-      "click .js-create": "showCreateForm"  
-
-
-
+  
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'
 
     initialize: ()->      
       Backbone.Validation.bind @,
-        valid: (view, attr, selector) ->          
+        valid: (view, attr, selector) ->            
           $el = view.$("[name='#{attr}']")
           $group = $el.closest('.form-group')
           $group.removeClass('has-error')
@@ -61,14 +75,20 @@
 
     events:
       "click .js-submit": "submit"
-    
+      'change @ui.logo': 'previewImage'
+
     ui:
       "keywords_offer": "[name = keywords_offer]"
       "keywords_search": "[name = keywords_search]"
+      "logo": "[name = company_logo]"
+      "previewImage": "#preview-image"
 
     onRender: ->
       keywords = new AlumNet.Entities.KeywordsCollection [
           { name: "PHP" },
+          { name: "Angular" },
+          { name: "Backbone" },
+          { name: "Marketing" },
           { name: "Rails" }
         ]
 
@@ -84,12 +104,37 @@
       data.keywords_offer = data.keywords_offer.split(',')
       data.keywords_search = data.keywords_search.split(',')
 
+      formData = new FormData()
+      _.forEach data, (value, key, list)->  
+        
+        # if key == "keywords_offer" 
+    
+        #   _.forEach value, (value, key, list)->  
+        #     formData.append("keywords_offer[#{key}]", value)
+        # else    
+          formData.append(key, value)
 
+      #Add the image to form submit
+      file = @ui.logo
+      formData.append('company_logo', file[0].files[0])
+      
       @model.set(data)
       
-      #submit the model only if it is valid
+      #submit the model if valid
       unless @model.validate() 
-        @trigger "submit", @model
+        @trigger "submit", 
+          model: @model
+          data: data
+
+    previewImage: (e)->
+      file = @ui.logo
+      preview = @ui.previewImage
+
+      if file[0] && file[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(file[0].files[0])    
 
 
     fillKeywords: (collection)->
@@ -107,3 +152,17 @@
         multiple: true
         tokenSeparators: [',', ', ']
         dropdownAutoWidth: true
+
+
+
+  class Business.EmptyView extends Marionette.ItemView
+    template: 'users/business/templates/empty_container'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+    templateHelpers: ->
+      userCanEdit: @userCanEdit
+
+    triggers:
+      "click .js-create": "showCreateForm"  
