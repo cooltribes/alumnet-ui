@@ -1,6 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
 
   class JobExchange.Task extends Marionette.ItemView
+    className: 'container'
 
     initialize: (options)->
       @mode = options.mode
@@ -37,6 +38,7 @@
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+    className: 'container'
 
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
