@@ -1,0 +1,50 @@
+<% if @action.key_name == 'accepted_invitation': %>
+	<div class="row-fluid pointsTimeline__collection__item clearfix">
+		<div class="col-xs-4   col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 col-sm-4 col-sm-offset-2 text-right pointsTimeline__collection__item__quantity pointsTimeline__collection__item__quantity--friend">
+		<%= @user_action.value %> points
+		
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pointsTimeline__collection__item__activity">	
+			<div class="pointsTimeline__collection__item__activity__friend">	<span class="pointsTimeline__collection__item__activity__friend__landmarkBottom"></span>  
+			      
+				<div class="row-fluid">
+					<div class="col-md-2 col-sm-2 col-lg-2 cardImage">
+						<img src="<%= @invited_user.avatar %>" width="100%"/>
+					</div>
+					<div class="col-md-9 col-sm-9 col-lg-9 cardInfo">
+						<div class="margin_top">
+							<div class="name"><%= @invited_user.name %></div>
+							<div class="time"><%= @getCreatedTime() %></div>
+							<div class="legend">joined AlumNet thanks to you</div>			
+							
+						</div>
+					</div>
+					<div class="col-md-1 col-sm-1 col-lg-1 text-right">
+						<span class="icon-entypo-check"></span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+<% else: %>
+
+	<div class="row-fluid pointsTimeline__collection__item clearfix">
+		<div class="col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 col-sm-4 col-sm-offset-2 col-xs-4   text-right pointsTimeline__collection__item__quantity pointsTimeline__collection__item__quantity--self">
+		<%= @user_action.value %> points
+		
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pointsTimeline__collection__item__activity">	
+			<div class="pointsTimeline__collection__item__activity__self">	<span class="pointsTimeline__collection__item__activity__self__landmarkMiddle"></span>  
+				<div class="cardInfo">
+					<div class="legend">You were using AlumNet for 15 days</div>
+					<div class="time">November 7, 2014.</div>
+				</div>
+					    
+			</div>
+			
+		</div>
+	</div>
+<% end %>

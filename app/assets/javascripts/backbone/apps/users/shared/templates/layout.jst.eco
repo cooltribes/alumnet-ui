@@ -26,10 +26,17 @@
 						<span class="ico-calendar"></span>
 					Events</a></li>
 
+					<li>  <a href="#users/<%= @id %>/business-exchange" class="groupMenu__link<%= @classOf(5)%>">
+						<span class="icon-entypo-bookmark"></span>
+					Business Exchange</a></li>
+
 				</ul>
 			</div>
 		</div>
 	</div>
 </nav>
 
-<div id="user-body"></div>
+<div id="user-body">
+	
+	
+</div>

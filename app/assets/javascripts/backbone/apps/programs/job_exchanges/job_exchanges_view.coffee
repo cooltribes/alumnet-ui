@@ -6,16 +6,18 @@
       @mode = options.mode
 
     getTemplate: ->
-      console.log @model, @mode
       if @mode == 'detail'
-        'programs/job_exchanges/templates/detail'
+        'programs/job_exchanges/templates/detail_task'
+      else if @mode == 'discover'
+        'programs/job_exchanges/templates/discover_task'
       else
-        'programs/job_exchanges/templates/task'
+        'programs/job_exchanges/templates/my_task'
 
     templateHelpers: ->
       model = @model
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
+      canApply: @model.canApply()
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""
@@ -23,20 +25,100 @@
         location.join(', ')
     ui:
       'deleteLink': '.js-job-delete'
+      'refreshLink': '.js-job-refresh'
+      'applyLink':'.js-job-apply'
 
     events:
-      'click @ui.deleteLink': 'DeleteClicked'
+      'click @ui.deleteLink': 'deleteClicked'
+      'click @ui.refreshLink': 'refreshClicked'
+      'click @ui.applyLink': 'applyClicked'
 
-    DeleteClicked: (e)->
+    applyClicked: (e)->
+      e.preventDefault()
+      view = @
+      Backbone.ajax
+        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+        method: 'PUT'
+        success: ->
+          view.model.set('user_can_apply', false)
+          view.render()
+
+    refreshClicked: (e)->
+      e.preventDefault()
+      view = @
+      @model.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/matches'
+        success: ->
+          view.render()
+
+    deleteClicked: (e)->
       e.preventDefault()
       resp = confirm('Are you sure?')
       if resp
         @model.destroy()
 
+  class JobExchange.TaskInvitation extends Marionette.ItemView
+    template: 'programs/job_exchanges/templates/invitation'
+
+    ui:
+      'linkAccept': '.js-invitation-accept'
+      'linkDecline': '.js-invitation-decline'
+
+    events:
+      'click @ui.linkAccept': 'acceptClicked'
+      'click @ui.linkDecline': 'declineClicked'
+
+    templateHelpers: ->
+      model = @model
+      location: ->
+        location = []
+        task = model.get('task')
+        if task
+          location.push task.country.text unless task.country.text == ""
+          location.push task.city.text unless task.city.text == ""
+          location.join(', ')
+
+    acceptClicked: (e)->
+      e.preventDefault()
+      view = @
+      @model.save {},
+        success: ->
+          view.destroy()
+
+    declineClicked: (e)->
+      e.preventDefault()
+      @model.destroy()
+
+  class JobExchange.TaskInvitations extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/invitations'
+    childView: JobExchange.TaskInvitation
+    childViewContainer: '.invitations-container'
+
   class JobExchange.MyJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+
+  class JobExchange.AppliedJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/applied'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
+  class JobExchange.DiscoverJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/discover'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
+
+  class JobExchange.AutomatchesJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/automatches'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
 
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
@@ -56,7 +138,14 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
+      model = @model
       city_helper: if @model.get('city') then @model.get('city').text
+      select_employment_type: (value)->
+        if model.get('employment')
+          if value == model.get('employment').value then "selected" else ""
+      select_position_type: (value)->
+        if model.get('position')
+          if value == model.get('position').value then "selected" else ""
 
     ui:
       'submitLink': '.js-submit'
@@ -97,7 +186,7 @@
       @model.save data,
         success: ->
           ##TODO Match
-          console.log "Ok"
+          AlumNet.trigger("program:job:my")
         error: (model, response, options)->
           $.growl.error({ message: response.responseJSON })
 

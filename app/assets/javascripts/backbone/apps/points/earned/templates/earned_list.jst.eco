@@ -1,0 +1,6 @@
+<div class="container margin_bottom_small pointsTimeline">
+	<h1 class="text-center">How you earned points</h1>
+	<div class="row-fluid pointsTimeline__collection" id="points_container">
+
+	</div>
+</div>

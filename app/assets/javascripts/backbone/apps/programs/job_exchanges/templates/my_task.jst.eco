@@ -1,0 +1,42 @@
+<div class="job-post">
+  <div class="name"><h3><%= @name %></h3></div>
+  <div class="company"><h3><b><%= @company.text %></b></h3></div>
+  <div class="description"><%= @description %></div>
+  <!-- Applied -->
+  <% if @applied_count > 0: %>
+    <hr>
+      applied(<%= @applied_count %>)
+    <% for apply in @applied: %>
+      <div class="applied">
+        <img src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
+        <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
+        <small class="groupPost__date"> <%= moment(apply.updated_at).fromNow() %></small>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- Matches -->
+  <% if @matches_count > 0: %>
+    <hr>
+      matches(<%= @matches_count %>)
+    <% for match in @matches: %>
+      <div class="matches">
+        <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+        <a href="#users/<%= match.user.id %>/posts"><%= match.user.name %></a>
+      </div>
+    <% end %>
+  <% end %>
+  <hr>
+  <div class="buttons">
+    <% if @canDelete: %>
+      <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+    <% end %>
+    <% if @canEdit: %>
+      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+    <% end %>
+      <a href="#job-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
+      <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
+  </div>
+</div>
