@@ -1,5 +1,11 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Tasks extends Backbone.Model
+  # EMPLOYMENT_TYPES = { 0 => "Full-time", 1 => "Part-time", 2 => "Internship", 3 => "Temporary"}
+  # POSITION_TYPES = { 0 => "Top Management/Director", 1 => "Middle management", 2 => "Senior Specialist",
+  #   3 => "Junior Specialist", 4 => "Entry job" }
+
+    canApply: ->
+      @get('user_can_apply')
 
     canEdit: ->
       @canDelete()
