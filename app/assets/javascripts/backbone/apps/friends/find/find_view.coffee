@@ -77,7 +77,7 @@
     events:
       'click .js-search': 'performSearch'
     initialize: ->
-      document.title='AlumNet - Discover Friends'
+      document.title = 'AlumNet - Discover Friends'
 
     onShow: ->
       view = @

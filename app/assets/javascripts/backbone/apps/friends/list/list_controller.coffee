@@ -46,6 +46,8 @@
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
           AlumNet.current_user.incrementCount('pending_sent_friendships')  #Sent requests count increased
+          console.log "success"
+          friendsView.render()
         friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
 

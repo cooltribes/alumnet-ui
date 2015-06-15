@@ -206,7 +206,7 @@
     initialize: (options)->
       @current_user = options.current_user
       @picture_ids = []
-      document.title = 'AlumNet - '+@current_user.get('name')
+      #document.title = 'AlumNet - ' + @current_user.get('name')
 
     childViewOptions: ->
       userModel: @model
