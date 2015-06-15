@@ -50,3 +50,25 @@
     <% end %>
   </div>
 </div>
+
+<% if @canInvite && @matches_count > 0: %>
+  <h2>Invite Alumni to Apply</h2>
+  <% for match in @matches: %>
+    <div class="userCard user-info">
+      <div class=" row">
+        <div class="userCard__avatar col-md-3 ">
+          <img src="<%=  match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
+        </div>
+        <div class=" col-md-6 ">
+          <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= match.user.id %>/posts" title="<%= match.user.name %>"><%= match.user.name %></a></h4>
+          <p class="userCard__position member-position text-small"><%= match.user.last_experience %></p>
+        </div>
+        <div class=" col-md-3 ">
+          <% unless match.user_has_invitation : %>
+            <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">Invite</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
