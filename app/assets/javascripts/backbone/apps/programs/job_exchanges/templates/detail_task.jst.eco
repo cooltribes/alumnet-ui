@@ -1,11 +1,7 @@
 <div class="job-post-detail ">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="jobPostDetail__name"><h3><%= @name %></h3></div>
-      <div class="jobPostDetail__company">
-        <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
-      </div>
-    </div>
+  <div class="jobPostDetail__name"><h3><%= @name %></h3></div>
+  <div class="jobPostDetail__company">
+    <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
   </div>
   <div class="row">
     <div class="col-md-8">
