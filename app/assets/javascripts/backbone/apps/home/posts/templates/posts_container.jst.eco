@@ -3,7 +3,7 @@
 		<div  class="col-md-8 col-md-offset-2">
 			<div class="row" >
 				<!-- FORM ON -->
-				<div class="item col-md-6 ">
+				<div class="item col-md-12">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
 							<img src="<%= @current_user_avatar %>" class="img-circle">
