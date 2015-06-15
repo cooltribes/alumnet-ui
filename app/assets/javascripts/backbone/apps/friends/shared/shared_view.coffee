@@ -90,7 +90,7 @@
     changedCount: ->
       console.log "here"
       message = "Friends (#{@model.get('friends_count')})"
-      @ui.changedCount.html(message)
+      $(@ui.changedCount).html(message)
 
     onRender: ()->
       @stickit()

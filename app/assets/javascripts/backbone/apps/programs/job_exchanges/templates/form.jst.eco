@@ -48,10 +48,17 @@
         <hr>
         <!-- ROW 3 ON -->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="form-job has-feedback">
               <label class="control-label">Skills required (Must have)</label>
-              <input class="js-profinda-object" type="hidden" name="must_have_list" id="task-must-have" style="width: 100%">
+              <input class="js-profinda-skills" type="hidden" name="skills_must_have" id="skills-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Skills desired (Nice to have)</label>
+              <input class="js-profinda-skills" type="hidden" name="skills_nice_have" id="skills-nice-have" style="width: 100%">
               <span class="help-block"></span>
             </div>
           </div>
@@ -60,10 +67,17 @@
         <hr>
         <!-- ROW 4 ON -->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="form-job has-feedback">
-              <label class="control-label">Skills desired (Nice to have)</label>
-              <input class="js-profinda-object" type="hidden" name="nice_have_list" id="task-nice-have" style="width: 100%">
+              <label class="control-label">Languages required (Must have)</label>
+              <input class="js-profinda-languages" type="hidden" name="languages_must_have" id="languages-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Languages desired (Nice to have)</label>
+              <input class="js-profinda-languages" type="hidden" name="languages_nice_have" id="languages-nice-have" style="width: 100%">
               <span class="help-block"></span>
             </div>
           </div>

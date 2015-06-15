@@ -11,6 +11,15 @@
       AlumNet.mainRegion.show(automatchView)
       AlumNet.execute('render:programs:submenu', undefined, 1)
 
+    invitationsJobExchange: ->
+      invitations = new AlumNet.Entities.TaskInvitationCollection
+      invitations.fetch()
+      invitationsView = new JobExchange.TaskInvitations
+        collection: invitations
+
+      AlumNet.mainRegion.show(invitationsView)
+      AlumNet.execute('render:programs:submenu', undefined, 4)
+
     discoverJobExchange:->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.fetch()
@@ -33,6 +42,16 @@
 
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)
+
+    appliedJobExchange: ->
+      tasks = new AlumNet.Entities.JobExchangeCollection
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/applied'
+      appliedJobsView = new JobExchange.AppliedJobs
+        collection: tasks
+
+      AlumNet.mainRegion.show(appliedJobsView)
+      AlumNet.execute('render:programs:submenu', undefined, 3)
 
     myJobExchange: ->
       tasks = new AlumNet.Entities.JobExchangeCollection

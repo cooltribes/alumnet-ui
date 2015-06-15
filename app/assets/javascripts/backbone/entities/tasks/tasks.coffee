@@ -5,7 +5,10 @@
   #   3 => "Junior Specialist", 4 => "Entry job" }
 
     canApply: ->
-      not @canDelete()
+      @get('user_can_apply')
+
+    canInvite: ->
+      @canDelete()
 
     canEdit: ->
       @canDelete()

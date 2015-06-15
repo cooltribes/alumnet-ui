@@ -15,6 +15,7 @@
 
     templateHelpers: ->
       model = @model
+      canInvite: @model.canInvite()
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
@@ -26,10 +27,33 @@
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
+      'applyLink':'.js-job-apply'
+      'inviteLink':'.js-job-invite'
 
     events:
       'click @ui.deleteLink': 'deleteClicked'
       'click @ui.refreshLink': 'refreshClicked'
+      'click @ui.applyLink': 'applyClicked'
+      'click @ui.inviteLink': 'inviteClicked'
+
+    inviteClicked: (e)->
+      e.preventDefault()
+      user_id = $(e.currentTarget).data('user')
+      task_id = $(e.currentTarget).data('task')
+      invite = new AlumNet.Entities.TaskInvitation
+      invite.save { user_id: user_id, task_id: task_id },
+        success: ->
+          $(e.currentTarget).remove()
+
+    applyClicked: (e)->
+      e.preventDefault()
+      view = @
+      Backbone.ajax
+        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+        method: 'PUT'
+        success: ->
+          view.model.set('user_can_apply', false)
+          view.render()
 
     refreshClicked: (e)->
       e.preventDefault()
@@ -45,10 +69,54 @@
       if resp
         @model.destroy()
 
+  class JobExchange.TaskInvitation extends Marionette.ItemView
+    template: 'programs/job_exchanges/templates/invitation'
+
+    ui:
+      'linkAccept': '.js-invitation-accept'
+      'linkDecline': '.js-invitation-decline'
+
+    events:
+      'click @ui.linkAccept': 'acceptClicked'
+      'click @ui.linkDecline': 'declineClicked'
+
+    templateHelpers: ->
+      model = @model
+      location: ->
+        location = []
+        task = model.get('task')
+        if task
+          location.push task.country.text unless task.country.text == ""
+          location.push task.city.text unless task.city.text == ""
+          location.join(', ')
+
+    acceptClicked: (e)->
+      e.preventDefault()
+      view = @
+      @model.save {},
+        success: ->
+          view.destroy()
+
+    declineClicked: (e)->
+      e.preventDefault()
+      @model.destroy()
+
+  class JobExchange.TaskInvitations extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/invitations'
+    childView: JobExchange.TaskInvitation
+    childViewContainer: '.invitations-container'
+
   class JobExchange.MyJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+
+  class JobExchange.AppliedJobs extends Marionette.CompositeView
+    template: 'programs/job_exchanges/templates/applied'
+    childView: JobExchange.Task
+    childViewContainer: '.tasks-container'
+    childViewOptions:
+      mode: 'discover'
 
   class JobExchange.DiscoverJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/discover'
@@ -85,9 +153,11 @@
       model = @model
       city_helper: if @model.get('city') then @model.get('city').text
       select_employment_type: (value)->
-        if value == model.get('employment').value then "selected" else ""
+        if model.get('employment')
+          if value == model.get('employment').value then "selected" else ""
       select_position_type: (value)->
-        if value == model.get('position').value then "selected" else ""
+        if model.get('position')
+          if value == model.get('position').value then "selected" else ""
 
     ui:
       'submitLink': '.js-submit'
@@ -95,7 +165,8 @@
       'selectCountries': '.js-countries'
       'selectCities': '.js-cities'
       'selectCompany': '#task-company'
-      'selectProfindaObjects': '.js-profinda-object'
+      'selectProfindaSkills': '.js-profinda-skills'
+      'selectProfindaLanguages': '.js-profinda-languages'
 
     events:
       'click @ui.submitLink': 'submitClicked'
@@ -114,7 +185,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
-      @ui.selectProfindaObjects.select2 @select2_profinda_options()
+      @ui.selectProfindaSkills.select2 @select2_profinda_options('alumnet_skills')
+      @ui.selectProfindaLanguages.select2 @select2_profinda_options('alumnet_languages')
 
       ## set initial value
       unless @model.isNew()
@@ -125,6 +197,8 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.must_have_list = data.skills_must_have + "," + data.languages_must_have
+      data.nice_have_list = data.skills_nice_have + "," + data.languages_nice_have
       @model.save data,
         success: ->
           ##TODO Match
@@ -165,7 +239,7 @@
         initSelection: (element, callback)->
           callback(initialValue) if initialValue
 
-    select2_profinda_options: ->
+    select2_profinda_options: (type)->
       multiple: true
       placeholder: "Select"
       minimumInputLength: 2
@@ -175,14 +249,14 @@
             "Accept": "application/vnd.profinda+json;version=1"
             "PROFINDAACCOUNTDOMAIN": AlumNet.profinda_account_domain
             "PROFINDAAPITOKEN": AlumNet.current_user.get('profinda_api_token')
-        url: AlumNet.profinda_api_endpoint + "/autocomplete/suggestions"
+        url: AlumNet.profinda_api_endpoint + "/autocomplete/dictionary_objects"
         method: 'GET'
         data: (term)->
-            term: term
+            { term: term, type: type }
         results: (data, page) ->
           results:
             data
       formatResult: (data)->
-        data.value
+        data.text
       formatSelection: (data)->
-        data.value
+        data.text

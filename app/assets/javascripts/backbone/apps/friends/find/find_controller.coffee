@@ -19,7 +19,7 @@
         attrs = { friend_id: childView.model.id }
         friendship = AlumNet.request('current_user:friendship:request', attrs)
         friendship.on 'save:success', (response, options) ->
-          AlumNet.current_user.incrementCount('pending_sent_friendships')  #Sent requests count increased
+          AlumNet.current_user.incrementCount('pending_sent_friendships')#Sent requests count increased          
         friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
 
@@ -29,6 +29,7 @@
         friendship.on 'save:success', (response, options) ->
           AlumNet.current_user.decrementCount('pending_received_friendships') #Recieved requests count decreased
           AlumNet.current_user.incrementCount('friends') #Friend counter increased
+          usersView.render()
           friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
 
