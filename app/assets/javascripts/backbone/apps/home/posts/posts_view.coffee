@@ -85,7 +85,6 @@
     initialize: (options)->
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
-      console.log @model
     
     templateHelpers: ->
       model = @model

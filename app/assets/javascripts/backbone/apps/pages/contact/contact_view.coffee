@@ -2,6 +2,3 @@
 
 	class Contact.View extends Marionette.ItemView
     	template: 'pages/contact/templates/contact'
-
-    	initialize: ()->
-    		document.title='AlumNet - Contact us'

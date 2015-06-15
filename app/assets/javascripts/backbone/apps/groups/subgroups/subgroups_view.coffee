@@ -126,8 +126,5 @@
     childView: SubGroups.GroupView
     childViewContainer: ".main-groups-area"
 
-    initialize: ()->
-      document.title='AlumNet - '+ @model.get('name')
-
     templateHelpers: ->
       userCanCreateSubGroup: @model.canDo('create_subgroup')

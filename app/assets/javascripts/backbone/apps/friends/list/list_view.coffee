@@ -10,8 +10,8 @@
     # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
+    
     initialize: (options)->
-      document.title = 'AlumNet - My'
       console.log @collection
 
     performSearch: (e) ->

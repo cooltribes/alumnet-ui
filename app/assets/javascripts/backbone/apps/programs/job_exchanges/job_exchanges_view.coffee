@@ -101,9 +101,6 @@
     childViewContainer: '.tasks-container'
     className: 'container'
 
-    initialize: ->
-      document.title = 'AlumNet - My jobs'
-
   class JobExchange.AppliedJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/applied'
     childView: JobExchange.Task
