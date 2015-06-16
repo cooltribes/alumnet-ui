@@ -58,6 +58,29 @@ DESCRIPTION: A card that contains a post in a group
 		text-transform: uppercase;
 	}
 
+	&__comment--scroll{
+		max-height: 300px;
+		overflow-y:auto;
+		overflow-x:hidden;  
+	}
+
+	&__btn--loadMore{
+		width: 100%;
+		text-align: center;
+		background-color: #2099d0;
+		padding: 10px 15px 5px 10px;
+		margin-right: 5px;
+		display: inline-block;
+		text-transform: uppercase;
+		color: #fff;
+
+		&:hover{
+			color:#fff;
+			text-decoration: none;
+			background: @main-dark-blue;
+		}
+	}
+
 	&__comment{
 		background-color: #F4F4F4;
 		padding: 10px 20px 20px;
@@ -79,6 +102,7 @@ DESCRIPTION: A card that contains a post in a group
 			}
 		}
 	}
+
 	&__commentForm{
 		background-color: #F4F4F4;
 		padding: 10px 20px 10px;

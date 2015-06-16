@@ -1,6 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
 
   class JobExchange.Task extends Marionette.ItemView
+    className: 'container'
 
     initialize: (options)->
       @mode = options.mode
@@ -110,6 +111,7 @@
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
+    className: 'container'
 
   class JobExchange.AppliedJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/applied'
@@ -125,6 +127,9 @@
     childViewOptions:
       mode: 'discover'
 
+    initialize: ->
+      document.title = 'AlumNet - Discover jobs'
+
   class JobExchange.AutomatchesJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/automatches'
     childView: JobExchange.Task
@@ -136,6 +141,7 @@
     template: 'programs/job_exchanges/templates/form'
 
     initialize: (options)->
+      document.title = 'AlumNet - Create a job'
       @current_user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->

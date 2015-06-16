@@ -56,6 +56,7 @@
       @render()
 
     editClicked: (e)->
+      console.log "algo"
       e.preventDefault()
       modal = new GroupsList.ModalEdit
         model: @model #group
@@ -73,7 +74,7 @@
     
     initialize: (options)->
       @linksGroups = options.linksGroups
-      document.title='AlumNet - Groups Management'
+      document.title = 'AlumNet - Groups Management'
 
     templateHelpers: ->
       links: @linksGroups

@@ -129,7 +129,6 @@
 
     initialize: (options)->
       @group = options.group
-      document.title='AlumNet - '+ @group.get('name')
 
     templateHelpers: ->
       userCanMakeAdmin: @group.canDo('make_admin')

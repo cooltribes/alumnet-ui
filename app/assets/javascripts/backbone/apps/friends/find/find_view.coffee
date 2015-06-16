@@ -76,8 +76,6 @@
     childViewContainer: '.users-list'
     events:
       'click .js-search': 'performSearch'
-    initialize: ->
-      document.title='AlumNet - Discover Friends'
 
     onShow: ->
       view = @

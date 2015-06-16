@@ -5,7 +5,6 @@
     className: 'groupPost__comment'
     initialize: (options)->
       @event = options.event
-
       @current_user = options.current_user
 
     templateHelpers: ->
@@ -222,7 +221,6 @@
 
     initialize:(options)->
       @event = options.event
-      document.title='AlumNet - '+@event.get('name')
       @picture_ids = []
 
     templateHelpers: ->

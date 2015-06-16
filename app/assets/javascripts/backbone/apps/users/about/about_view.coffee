@@ -516,7 +516,6 @@
 
       @ui.modalCont.html(modal.render().el)
 
-
   #For all collection views
   class About.Empty extends Marionette.ItemView
     template: 'users/about/templates/_empty'

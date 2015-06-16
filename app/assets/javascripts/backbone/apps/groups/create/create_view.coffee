@@ -4,7 +4,6 @@
     template: 'groups/create/templates/form'
 
     initialize: (options)->
-      document.title='AlumNet - Create Group'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->

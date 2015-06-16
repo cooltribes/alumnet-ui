@@ -10,8 +10,9 @@
     # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
-    initialize: ->
-      document.title='AlumNet - My Friends'
+    
+    initialize: (options)->
+      console.log @collection
 
     performSearch: (e) ->
       e.preventDefault()
@@ -24,3 +25,10 @@
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
+
+    onChildviewCatchUp: ->
+      view = @
+      @collection.fetch
+        success: (model)->
+          view.render()
+          console.log "success"

@@ -5,7 +5,6 @@
 
     initialize: (options)->
       @current_user = options.current_user
-      document.title='AlumNet - '+ @model.get('name')
 
     templateHelpers: ->
       currentUserIsAdmin: @current_user.isAlumnetAdmin()

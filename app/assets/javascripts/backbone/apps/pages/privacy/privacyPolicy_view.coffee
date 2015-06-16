@@ -2,6 +2,3 @@
 
 	class Privacy.View extends Marionette.ItemView
     	template: 'pages/privacy/templates/privacy_policy'
-
-    	initialize: ()->
-    		document.title='AlumNet - Privacy Policy'
