@@ -1,10 +1,13 @@
 @AlumNet.module 'UsersApp.Business', (Business, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Business.SectionView extends Marionette.LayoutView
-    template: 'users/business/templates/business_container'
+    template: 'users/business/templates/business_details'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+      Backbone.Validation.bind @,
+        attributes: ["offer"]
+
       
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -12,45 +15,58 @@
     triggers:
       "click .js-create": "showCreateForm"
     
-    events:
-      "click .js-edit-offer": "editOffer"
+    events:      
+      "click .js-edit": "editField"
     
     ui:
       "offer": ".js-offer"
+      "search": ".js-search"
 
-    bindings:
-      ".js-offer": "offer"
-      ".js-search": "search"
-      ".js-business-me": "business_me"
-      ".js-company-name": 
-        observe: "company"
-        onGet: (value)->
-          value.name
+    # bindings:
+    #   ".js-offer": "offer"
+    #   ".js-search": "search"
+    #   ".js-business-me": "business_me"
+    #   ".js-company-name": 
+    #     observe: "company"
+    #     onGet: (value)->
+    #       value.name
 
     onRender: ->
       view = @     
       
-      # @stickit()  
-
-      @ui.offer.editable
-        type: 'textarea'
-        pk: view.model.id
-        title: 'Enter the description of Group'
+      @ui.offer.editable      
+        type: 'textarea'      
         toggle: 'manual'
         validate: (value)->
-          if $.trim(value) == ''
-            'Group description is required, must be less than 2048 characters'
-          if $.trim(value).length >= 2048  
-            'Group description is too large! Must be less than 2048 characters'                 
-        success: (response, newValue)->
-          console.log "Yeah"
-          view.trigger 'group:edit:description', view.model, newValue
-    
-    
-    editOffer: (e)->
-      e.preventDefault()
-      @ui.offer.editable("toggle")
+          view.model.set "offer", value          
+          errors = view.model.validate()
+            # "offer": value
 
+          if errors?  
+            errors.offer
+          
+        success: (response, newValue)->          
+          view.model.save()
+
+      @ui.search.editable      
+        type: 'textarea'      
+        toggle: 'manual'
+        validate: (value)->
+          view.model.set "search", value          
+          errors = view.model.validate()
+
+          if errors?  
+            errors.search
+          
+        success: (response, newValue)->          
+          view.model.save()    
+          
+    
+    editField: (e)->
+      e.preventDefault()
+      e.stopPropagation()   
+      target = $(e.currentTarget).attr("data-target")
+      @$(".js-#{target}").editable("toggle")    
 
   
   

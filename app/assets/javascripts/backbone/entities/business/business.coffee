@@ -2,7 +2,7 @@
   class Entities.Business extends Backbone.Model
 
     validation:
-      "company_name":
+      company_name:
         required: true
         msg: "This field is required and must be less than 250 characters long."
       offer:
