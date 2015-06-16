@@ -23,7 +23,7 @@
 <nav class="navbar navbar-default row-fluid pointsBar <%= @chosenPrizes(@prizes)%>" id="pointsBar">
     <div class="col-xs-5 col-md-6 col-sm-6 text-left">
         <span class="icon-entypo-lifebuoy pointsBar__leftIcon"></span>
-        <span class="pointsBar__quantity">3000</span>
+        <span class="pointsBar__quantity"><%= @points %></span>
         <span class="pointsBar__topLegend">POINTS</span>
         <span class="pointsBar__bottomLegend">TO SPEND</span>
     </div>

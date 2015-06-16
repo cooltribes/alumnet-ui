@@ -4,7 +4,7 @@
 			<div class="row" >
 				<% if @userCanPost: %>
 				<!-- FORM -->
-				<div class="item col-md-6 ">
+				<div class="item col-md-12">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
 							<img src="<%= @avatar.large %>" class="img-circle" >

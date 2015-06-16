@@ -17,7 +17,6 @@
 
     initialize: (options)->
       #View for showing the groups (class Discover.GroupsView)
-      document.title = 'AlumNet - Discover Groups'
       @groupsView = options.groupsView
 
 

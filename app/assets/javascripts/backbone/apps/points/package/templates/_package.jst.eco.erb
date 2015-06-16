@@ -1,0 +1,26 @@
+<div class="col-md-3 col-xs-6 packageCard margin_top_medium">
+	<div>
+		<%= image_tag('points/blank.jpg', width:"100%", class:"packageCard__image") %>
+		<span class="packageCard__cost">
+			<div class="text-center">
+				<%%= @price %>
+				<div class="packageCard__cost--legend">
+					POINTS
+				</div>
+			</div>
+		</span>
+		<span class="packageCard__legend">
+			<div class="text-center packageCard__legend--number">
+				<%%= @quantity %> <span class="glyphicon glyphicon-briefcase"></span>	
+			</div>
+		</span>
+	</div>
+	<div class="packageCard__info text-center">
+		<div class="margin_top_small">
+			<%%= @description %>
+		</div>
+		<a class="btn btn-large margin_top margin_bottom packageCard__info__button" href="#">
+			BUY
+		</a>
+	</div>
+</div>

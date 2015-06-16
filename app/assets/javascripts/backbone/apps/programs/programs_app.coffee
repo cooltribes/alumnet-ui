@@ -12,21 +12,27 @@
 
   API =
     discoverJobExchange: ->
+      document.title = 'AlumNet - Discover jobs'
       controller = new ProgramsApp.JobExchange.Controller
       controller.discoverJobExchange()
     myJobExchange: ->
+      document.title = 'AlumNet - My jobs'
       controller = new ProgramsApp.JobExchange.Controller
       controller.myJobExchange()
     appliedJobExchange: ->
+      document.title = 'AlumNet - Applied jobs'
       controller = new ProgramsApp.JobExchange.Controller
       controller.appliedJobExchange()
     automatchesJobExchange: ->
+      document.title = 'AlumNet - Automatches'
       controller = new ProgramsApp.JobExchange.Controller
       controller.automatchesJobExchange()
     invitationsJobExchange: ->
+      document.title = 'AlumNet - Job invitations'
       controller = new ProgramsApp.JobExchange.Controller
       controller.invitationsJobExchange()
     createJobExchange: ->
+      document.title = 'AlumNet - Create a job'
       controller = new ProgramsApp.JobExchange.Controller
       controller.createJobExchange()
     updateJobExchange: (id)->

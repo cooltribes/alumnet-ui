@@ -42,7 +42,6 @@
     initialize: (options)->
       @listenTo(@model, 'change:start_date change:end_date change:location', @renderView)
       @current_user = options.current_user
-      document.title='AlumNet - '+@model.get('name')
 
     templateHelpers: ->
       capacity = @model.get('capacity')

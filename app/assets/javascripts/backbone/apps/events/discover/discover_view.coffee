@@ -68,7 +68,6 @@
 
     initialize: ->
       @searchUpcomingEvents({})
-      document.title = 'AlumNet - Discover Events'
 
     searchUpcomingEvents: (query)->
       seft = this
