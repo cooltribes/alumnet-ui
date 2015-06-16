@@ -97,7 +97,6 @@
       @ui.description.linkify()
 
     showSubgroups: (e)->
-      console.log "click"
       id = $(e.currentTarget).attr("aria-controls")
       child = $(e.currentTarget).attr("data-child")
       $('#'+id).on('hidden.bs.collapse', () -> 
