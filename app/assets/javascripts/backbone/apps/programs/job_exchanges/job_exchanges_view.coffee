@@ -16,6 +16,7 @@
 
     templateHelpers: ->
       model = @model
+      canInvite: @model.canInvite()
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
@@ -28,11 +29,22 @@
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
       'applyLink':'.js-job-apply'
+      'inviteLink':'.js-job-invite'
 
     events:
       'click @ui.deleteLink': 'deleteClicked'
       'click @ui.refreshLink': 'refreshClicked'
       'click @ui.applyLink': 'applyClicked'
+      'click @ui.inviteLink': 'inviteClicked'
+
+    inviteClicked: (e)->
+      e.preventDefault()
+      user_id = $(e.currentTarget).data('user')
+      task_id = $(e.currentTarget).data('task')
+      invite = new AlumNet.Entities.TaskInvitation
+      invite.save { user_id: user_id, task_id: task_id },
+        success: ->
+          $(e.currentTarget).remove()
 
     applyClicked: (e)->
       e.preventDefault()
@@ -159,7 +171,8 @@
       'selectCountries': '.js-countries'
       'selectCities': '.js-cities'
       'selectCompany': '#task-company'
-      'selectProfindaObjects': '.js-profinda-object'
+      'selectProfindaSkills': '.js-profinda-skills'
+      'selectProfindaLanguages': '.js-profinda-languages'
 
     events:
       'click @ui.submitLink': 'submitClicked'
@@ -178,7 +191,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
-      @ui.selectProfindaObjects.select2 @select2_profinda_options()
+      @ui.selectProfindaSkills.select2 @select2_profinda_options('alumnet_skills')
+      @ui.selectProfindaLanguages.select2 @select2_profinda_options('alumnet_languages')
 
       ## set initial value
       unless @model.isNew()
@@ -189,6 +203,8 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      data.must_have_list = data.skills_must_have + "," + data.languages_must_have
+      data.nice_have_list = data.skills_nice_have + "," + data.languages_nice_have
       @model.save data,
         success: ->
           ##TODO Match
@@ -229,7 +245,7 @@
         initSelection: (element, callback)->
           callback(initialValue) if initialValue
 
-    select2_profinda_options: ->
+    select2_profinda_options: (type)->
       multiple: true
       placeholder: "Select"
       minimumInputLength: 2
@@ -239,14 +255,14 @@
             "Accept": "application/vnd.profinda+json;version=1"
             "PROFINDAACCOUNTDOMAIN": AlumNet.profinda_account_domain
             "PROFINDAAPITOKEN": AlumNet.current_user.get('profinda_api_token')
-        url: AlumNet.profinda_api_endpoint + "/autocomplete/suggestions"
+        url: AlumNet.profinda_api_endpoint + "/autocomplete/dictionary_objects"
         method: 'GET'
         data: (term)->
-            term: term
+            { term: term, type: type }
         results: (data, page) ->
           results:
             data
       formatResult: (data)->
-        data.value
+        data.text
       formatSelection: (data)->
-        data.value
+        data.text

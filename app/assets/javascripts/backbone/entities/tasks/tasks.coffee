@@ -7,6 +7,9 @@
     canApply: ->
       @get('user_can_apply')
 
+    canInvite: ->
+      @canDelete()
+
     canEdit: ->
       @canDelete()
 
