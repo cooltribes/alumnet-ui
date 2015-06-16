@@ -7,3 +7,12 @@
 			AlumNet.mainRegion.show(page)
 			AlumNet.execute('render:points:submenu',undefined,2,true)
 
+			page.on 'childview:buy', (childView) ->
+				prize = childView.model
+				attrs = { prize_id: prize.get('id'), user_id: AlumNet.current_user.id, price: prize.get('price'), status: 1, prize_type: prize.get('prize_type'), remaining_quantity: prize.get('quantity') }
+				request = AlumNet.request('user_prize:create', attrs)
+				request.on 'save:success', (response, options)->
+					AlumNet.trigger "points:earned"
+
+				request.on 'save:error', (response, options)->
+					console.log response.responseJSON
