@@ -8,12 +8,25 @@
         <div class="form-group">
           <label class="control-label">name of the company</label>
           <input type="text" name="company_name" id="company-name" class="form-control input-lg">
-
           <span class="help-block"></span>
+        </div>
+        <!-- <div class="form-group">
+          <label class="control-label">logo</label>
+          <input type="file" name="company_logo">         
+          <span class="help-block"></span>
+        </div> -->
+        <div class="form-group">
+          <img height="100" id="preview-image"></img>
         </div>
         <hr>
         <br>
 
+        <div class="form-group">
+          <label class="control-label">Tagline</label>
+          <input type="text" name="tagline" class="form-control input-lg">
+
+          <span class="help-block"></span>
+        </div>
         <div class="form-group">
           <label class="control-label">what I offer</label>
           <input type="text" name="offer" class="form-control input-lg">
@@ -23,6 +36,8 @@
         <div class="form-group">
           <label class="control-label">What keywords I offer</label>
           <input style="padding:0" id="keywords-offer" name="keywords_offer" class="form-control input-lg " type="text" value="">          
+          <span class="help-block"></span>
+
         </div>
         <hr>
         <br>
@@ -36,6 +51,8 @@
         <div class="form-group">
           <label class="control-label">What keywords I'm looking for</label>
           <input style="padding:0" id="keywords-search" name="keywords_search" class="form-control input-lg " type="text" value="">          
+          <span class="help-block"></span>
+
         </div>
          <hr>
         <br>

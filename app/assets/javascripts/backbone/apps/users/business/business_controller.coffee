@@ -55,12 +55,16 @@
       view.on "cancel", (view)->
         controller.showMainView()
       
-      view.on "submit", (model)->
-        controller.businessCollection.create model,
+      view.on "submit", (options)->
+        # console.log controller.businessCollection.url()
+        options.model.url = controller.businessCollection.url()
+        controller.businessCollection.create options.model,
+          wait: true
+          # contentType: false
+          # processData: false
+          # data: options.data
           success: ()->
             controller.showMainView()
-            
-
 
       @layout.body.show view
 

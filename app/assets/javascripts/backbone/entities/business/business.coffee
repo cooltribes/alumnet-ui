@@ -2,7 +2,7 @@
   class Entities.Business extends Backbone.Model
 
     validation:
-      "company_name":
+      company_name:
         required: true
         msg: "This field is required and must be less than 250 characters long."
       offer:
@@ -13,10 +13,14 @@
         required: true
         maxLength: 250
         msg: "This field is required and must be less than 250 characters long."
-      "keywords_offer":
-        required: true
-      "keywords_search":
-        required: true
+      
+      keywords_offer: (value, attr, computedState) ->
+        if value[0] == ""
+          "This field is required"
+
+      keywords_search: (value, attr, computedState) ->
+        if value[0] == ""
+          "This field is required"
       
     
 

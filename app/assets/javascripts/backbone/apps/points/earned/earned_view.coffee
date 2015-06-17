@@ -12,7 +12,6 @@
 		childView: Earned.EarnedView
 		childViewContainer: '#points_container'
 		initialize: (options) ->
-			console.log options
 			$('#pointsBar').hide();
 
 		templateHelpers: ->

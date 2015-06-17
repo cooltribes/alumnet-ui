@@ -13,6 +13,10 @@
       controller = new PointsApp.Earned.Controller
       controller.listEarned()
 
+  AlumNet.on "points:earned", ->
+    AlumNet.navigate("points/earned")
+    API.listEarned()
+
   AlumNet.addInitializer ->
     new PointsApp.Router
       controller: API
