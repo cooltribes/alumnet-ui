@@ -28,17 +28,21 @@
 
       <h2>        
         What Keywords I Offer
+        <% if @userCanEdit: %>
+          <a href="#" data-target="kwO" class="editLink js-edit" >[edit]</a>
+        <% end %>
       </h2>
       <div class="js-kwO">
-        <ul>
-          <% _.each @keywords_offer, (item, index, collection)->: %>
-          <li>
+        
+          <% _.each @offer_keywords, (item, index, collection)->: %>
+        
+            <% if index > 0: %>
+              <%= ", " %>
+            <% end %>
             <%= item.name %>
             
-          </li>
-            
           <% end%>
-        </ul>
+        
       </div>
       
 
@@ -54,14 +58,17 @@
       </div>
       <h2>        
         What Keywords I'm looking for
+        <% if @userCanEdit: %>
+          <a href="#" data-target="kwS" class="editLink js-edit" >[edit]</a>
+        <% end %>
       </h2>
-      <div class="js-kwO">
-        <ul>
-          <% _.each @keywords_search, (item, index, collection)->: %>
-          <li>
+      <div class="js-kwS">
+        <% _.each @search_keywords, (item, index, collection)->: %>
+        
+            <% if index > 0: %>
+              <%= ", " %>
+            <% end %>
             <%= item.name %>
-            
-          </li>
             
           <% end%>
         </ul>
@@ -69,10 +76,10 @@
       <h2>        
         Why to make business with me
         <% if @userCanEdit: %>
-          <a href="#" data-target="business_me" class="editLink js-edit" >[edit]</a>
+          <a href="#" data-target="business-me" class="editLink js-edit" >[edit]</a>
         <% end %>
       </h2>
-      <div class="js-business_me">
+      <div class="js-business-me">
         <%= @business_me %>        
           
       </div>

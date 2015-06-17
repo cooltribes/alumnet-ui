@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">What keywords I offer</label>
-          <input style="padding:0" id="keywords-offer" name="keywords_offer" class="form-control input-lg " type="text" value="">          
+          <input style="padding:0" id="keywords-offer" name="offer_keywords" class="form-control input-lg " type="text" value="">          
           <span class="help-block"></span>
 
         </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">What keywords I'm looking for</label>
-          <input style="padding:0" id="keywords-search" name="keywords_search" class="form-control input-lg " type="text" value="">          
+          <input style="padding:0" id="keywords-search" name="search_keywords" class="form-control input-lg " type="text" value="">          
           <span class="help-block"></span>
 
         </div>
