@@ -1,5 +1,8 @@
 @AlumNet.module 'HeaderApp.Menu', (Menu, @AlumNet, Backbone, Marionette, $, _) ->
-
+  class Menu.MessageViewEmpty extends Marionette.ItemView
+    template: 'header/menu/templates/messageEmpty'
+    className: 'notification__empty'
+  
   class Menu.MessageView extends Marionette.ItemView
     tagName: 'li'
     role: 'presentation'
@@ -10,6 +13,11 @@
     tagName: 'ul'
     className: 'navTopBar__dropdownMenu'
     childView: Menu.MessageView
+    emptyView: Menu.MessageViewEmpty
+
+  class Menu.NotificationViewEmpty extends Marionette.ItemView
+    template: 'header/menu/templates/notificationEmpty'
+    className: 'notification__empty'
 
   class Menu.NotificationView extends Marionette.ItemView
     tagName: 'li'
@@ -21,6 +29,7 @@
     tagName: 'ul'
     className: 'navTopBar__dropdownMenu'
     childView: Menu.NotificationView
+    emptyView: Menu.NotificationViewEmpty
 
   class Menu.MenuBar extends Marionette.LayoutView
     initialize: ->
@@ -139,11 +148,6 @@
 
     accountDropdownClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
-
-
-
-
-
 
   class Menu.AdminBar extends Marionette.LayoutView
     template: 'header/menu/templates/admin_layout'

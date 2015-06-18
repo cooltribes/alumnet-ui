@@ -95,7 +95,7 @@
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Name of the institution providing the education</label>
 	<input name="organization_name" type="text" value="<%= @organization_name %>" class="form-control input-lg " id="" placeholder="">
-	<span class="formANet__input__icon icon-entypo-suitcase form-control-feedback" aria-hidden="true"></span>
+	<span class="formANet__input__icon icon-entypo-graduation-cap form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
 <div class="form-group has-feedback">
