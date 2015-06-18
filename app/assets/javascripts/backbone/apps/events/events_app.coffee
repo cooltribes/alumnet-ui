@@ -52,6 +52,7 @@
     API.inviteEvent(event, users)
 
   AlumNet.on "events:discover", ->
+    AlumNet.navigate("events")
     API.discoverEvents()
 
   AlumNet.addInitializer ->

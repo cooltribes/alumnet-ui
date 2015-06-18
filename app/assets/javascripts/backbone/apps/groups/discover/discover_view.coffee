@@ -34,7 +34,7 @@
       q:
         m: 'or'
         name_cont: searchTerm
-        description_cont: searchTerm
+        description_cont: searchTerm        
 
     ViewCard: (e)->
       $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")

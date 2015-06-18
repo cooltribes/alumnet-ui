@@ -5,6 +5,7 @@
     className: 'eventsTableView margin_bottom_xsmall'
 
     templateHelpers: ->
+      console.log @model
       model = @model
       location: @model.getLocation()
       isPast: @model.isPast()
@@ -65,11 +66,36 @@
       'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
+      'click .js-search-input': 'performSearch'      
+      #'click .js-search': 'performSearch'
 
     initialize: ->
+      console.log @collection
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
+    
+    ###
+    searchCliked: (e)->
+      console.log "Searching"
+      e.preventDefault()
+      term = @.$('.js-search').val()
+      @trigger 'search', term  
+    ###
+    
+    performSearch: (e) ->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      this.trigger('events:search', this.buildQuerySearch(data.search_term))
 
+    buildQuerySearch: (searchTerm) ->
+      q:
+        m: 'or'
+        address_cont: searchTerm         
+        name_cont: searchTerm 
+        city_text_cont: searchTerm
+        country_text_cont: searchTerm
+        
+        
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui

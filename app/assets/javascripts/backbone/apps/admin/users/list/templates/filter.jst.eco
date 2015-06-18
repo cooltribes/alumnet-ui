@@ -14,7 +14,7 @@
         <option value="status">Status</option>  
         <option value="member">Membership</option> 
         <option value="created_at">Joining date</option>    
-        <option value="profile_first_committee_name">Local Committee</option>    
+        <option value="local_committee_name">Local Committee</option>    
       </select>
       <span class="help-block"></span>
     </div>
@@ -53,10 +53,6 @@
     </div>
   </div>
 
- 
-         
-        
-  
 
 
 

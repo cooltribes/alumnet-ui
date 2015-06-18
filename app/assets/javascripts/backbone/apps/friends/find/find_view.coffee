@@ -105,21 +105,20 @@
         success: (model)->
           view.render()
           console.log "success"
-
             
-
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      console.log data     
       @trigger('users:search', @buildQuerySearch(data.search_term))
-
+      
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
-
+              
     formatContact: (contacts)->
       view = @
       formatedContacts = []
