@@ -18,7 +18,7 @@
   <% end %>
   <% if @userCanAttend  && not @isPast && (@capacity > @attendances_count || not @capacity): %>
     <div class="groupCoverArea__attendanceOptions">
-      <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option<%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
+      <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
         ATTENDING
       </a>
       <a href="#" id="js-att-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">

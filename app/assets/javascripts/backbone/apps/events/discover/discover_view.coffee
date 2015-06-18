@@ -72,6 +72,7 @@
     initialize: ->
       console.log @collection
       @searchUpcomingEvents({})
+<<<<<<< HEAD
       document.title = 'AlumNet - Discover Events'
     
     ###
@@ -86,6 +87,8 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       this.trigger('events:search', this.buildQuerySearch(data.search_term))
+=======
+>>>>>>> 61bac51c76c56465b045e3effba7b46eb904fd5e
 
     buildQuerySearch: (searchTerm) ->
       q:
@@ -99,6 +102,8 @@
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui
+
+      @collection.comparator = 'start_date'
       options = 
         success: (collection)-> 
           eventsArray = seft.eventsMap(seft,collection)

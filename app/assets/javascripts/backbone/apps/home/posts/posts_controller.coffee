@@ -114,6 +114,10 @@
         comment = commentView.model
         comment.save { comment: value }
 
+      posts.on "childview:comment:collection", (collection)->
+        console.log "comment"
+        console.log collection
+
     getData: (page)->
       rows = @collection.rows
       start = page * rows

@@ -12,10 +12,6 @@
     modelEvents:
       "change": "modelChange"
 
-    initialize: ()->
-      #view.$("[name=status]")
-      #@listenTo(@model, 'render:view', @renderView)
-
     bindings:
       ".js-name": 
         observe: "name"
@@ -37,6 +33,20 @@
             label: "active"
           ,
           ]
+      ".js-type": 
+        observe: "prize_type"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Time remaining"
+          ,
+            value: 1
+            label: "Times used"
+          ,
+          ]
+      ".js-quantity": 
+        observe: "quantity"
+        events: ['blur']
 
     onRender: ->
       @stickit()

@@ -4,7 +4,6 @@
     template: 'events/create/templates/form'
 
     initialize:(options)->
-      document.title='AlumNet - Cerate Event'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->

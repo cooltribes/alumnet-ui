@@ -95,7 +95,7 @@ DESCRIPTION: this cards group information about the user and will mainly appear 
 
     li{
       border-bottom: 1px solid lighten(@blue-gray, 50%);
-      padding: 10px ;
+      padding: 10px 0;
 
       &:last-child{
           border-bottom: none;
@@ -126,8 +126,18 @@ DESCRIPTION: this cards group information about the user and will mainly appear 
         text-decoration:none;
       }
    }
+
+   &__contact{
+      display: inline-block;
+      width: 40%;
+
+      &__select{
+        width: 100px;
+      }
+   }
    
 }
+
 
 
 

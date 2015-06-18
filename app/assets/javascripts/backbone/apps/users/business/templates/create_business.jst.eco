@@ -1,0 +1,81 @@
+<div class="container-fluid margin_top">
+  <div class="row ">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Create a Company / Project</h1>
+      
+    <form class="formANet form "> 
+    <div class="row">
+        <div class="form-group">
+          <label class="control-label">name of the company</label>
+          <input type="text" name="company_name" id="company-name" class="form-control input-lg">
+          <span class="help-block"></span>
+        </div>
+        <!-- <div class="form-group">
+          <label class="control-label">logo</label>
+          <input type="file" name="company_logo">         
+          <span class="help-block"></span>
+        </div> -->
+        <div class="form-group">
+          <img height="100" id="preview-image"></img>
+        </div>
+        <hr>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label">Tagline</label>
+          <input type="text" name="tagline" class="form-control input-lg">
+
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label class="control-label">what I offer</label>
+          <input type="text" name="offer" class="form-control input-lg">
+
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label class="control-label">What keywords I offer</label>
+          <input style="padding:0" id="keywords-offer" name="offer_keywords" class="form-control input-lg " type="text" value="">          
+          <span class="help-block"></span>
+
+        </div>
+        <hr>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label">what I'm looking for</label>
+          <input type="text" name="search" class="form-control input-lg">
+
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label class="control-label">What keywords I'm looking for</label>
+          <input style="padding:0" id="keywords-search" name="search_keywords" class="form-control input-lg " type="text" value="">          
+          <span class="help-block"></span>
+
+        </div>
+         <hr>
+        <br>
+
+
+
+        
+        <div class="form-group">
+          <label class="control-label">Why to make business with me</label>
+          <input type="text" name="business_me" class="form-control input-lg">
+
+          <span class="help-block"></span>
+        </div>
+        
+
+      <div class="text-right">
+        <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+        <button class="btn btn-primary btn-lg js-submit">SAVE</button>
+      </div>
+
+    </div>
+    </form>
+
+
+  </div>
+</div>

@@ -60,7 +60,9 @@
 
   class Shared.Header extends Marionette.ItemView
     template: 'events/shared/templates/header'
+
     templateHelpers: ->
+      document.title = 'AlumNet - ' + @model.get('name')
       model = @model
       shortname: short_string(@model.get('name'),50)
       canEditInformation: @model.userIsAdmin()

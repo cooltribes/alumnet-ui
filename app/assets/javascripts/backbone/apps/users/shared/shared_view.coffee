@@ -17,7 +17,13 @@
       'click #js-message-send':'sendMensagge'
 
     initialize: (options)->
-      @userCanEdit = options.userCanEdit
+      @model = options.model
+      document.title = 'AlumNet - '+@model.get("name")
+      @userCanEdit = AlumNet.current_user.isAlumnetAdmin() || @model.isCurrentUser()
+      
+      if options.userCanEdit?
+        @userCanEdit = options.userCanEdit
+
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
 
@@ -50,8 +56,6 @@
         type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
-
-
 
     editCover: (e)->
       e.preventDefault()
