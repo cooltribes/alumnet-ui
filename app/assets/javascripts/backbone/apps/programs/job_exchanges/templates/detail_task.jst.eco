@@ -39,7 +39,7 @@
 
     </div>
   </div>
-  <div class="jobPostDetail__buttons">
+  <div class="jobPostDetail__buttons text-right">
     <% if @canDelete: %>
       <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
     <% end %>

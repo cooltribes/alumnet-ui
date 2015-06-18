@@ -1,7 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
 
   class JobExchange.Task extends Marionette.ItemView
-    #className: 'container'
+    className: 'col-md-4 no-padding-rigth'
 
     initialize: (options)->
       @mode = options.mode
@@ -111,7 +111,7 @@
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
-    className: 'container'
+    className: 'container-fluid'
 
   class JobExchange.AppliedJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/applied'
