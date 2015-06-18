@@ -1,7 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
 
   class JobExchange.Task extends Marionette.ItemView
-    className: 'container'
+    #className: 'container'
 
     initialize: (options)->
       @mode = options.mode

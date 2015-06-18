@@ -50,20 +50,50 @@ DESCRIPTION: background colors and patters
 
 	&__buttons{
 		float: right;
+		padding-top: 15px;
 	}
 }
 
 .jobPost{
+	background-color: @white;
+	padding: 10px 18px;
+	border: 1px solid @admin-box-border;
+	margin-left: 10px;
+	color: @black;
 
-	&__name h3{
+	&__name h3,&__company h3{
 		text-transform: capitalize;
-  		font-size: 3em;
-  		color: #000;
+  		font-size: 2em;
+	}
+
+	&__company h3{
+		text-transform: uppercase;
 	}
 
 	&__description{
-		background-color: @white;
-		padding: 20px;
-		border: 1px solid @admin-box-border;
+		text-transform: capitalize;
+  		margin-bottom: 10px;
+  		line-height: 24px;
+	}
+
+	&__user span{
+		display: block;
+  		font-weight: 100;
+  		color: @error-gray-blue;
+  		font-weight: 100;
+  		font-size: 0.9em;
+	}
+	&__user span:first-child{
+  		color:@black;
+	}
+	&__user a{
+		font-size: 1.2em;
+  		color: @black;
+	}
+
+	&__geo span{
+		color: @error-gray-blue;
+		font-size: 1.4em;
+  		font-weight: 100;
 	}
 }

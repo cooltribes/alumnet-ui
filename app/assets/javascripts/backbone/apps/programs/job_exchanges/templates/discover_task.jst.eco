@@ -1,34 +1,27 @@
-<div class="job-post">
-  <div class="jobPost__name"><h3><%= @name %></h3></div>
-  <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="jobPostDetail__description"><%= @description %></div>
-    </div>
-    <div class="col-md-4">
-        <% if @user: %>
-          <div class="row user">
-            <div class="col-md-3">
-              <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
-            </div>
-            <div class="no-padding col-md-9 jobPostDetail__user">
-              <span>Posted by</span>
-              <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
-              <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
-              <span>On <%= moment(@created_at).format('MMM Do YYYY') %></span>
-            </div>
+<div class="jobPost col-md-4">
+  <div class="jobPost__name"><h3 class="no-margin"><%= @name %></h3></div>
+  <div class="jobPost__company"><h3 class="no-margin"><b><%= @company.text %> Cooltribes</b></h3></div>
+  <div class="jobPost__description margin_top_xsmall"><%= @description %>Ya habréis visto artículos parecidos como este a lo largo de liGNUx, pero me imagino que aparte de ver los diferentes escritorios que existen, a el lector le gustara conocer los repositorios de los diferentes escritorios y poder instalarlos incluso en aquellas distribuciones en las que no lo llevan ni por defecto ni en los repositorios.</div>
+      <% if @user: %>
+        <div class="row user">
+          <div class="col-md-2 no-padding-rigth">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
           </div>
+          <div class="col-md-10 jobPost__user">
+            <span>Posted by</span>
+            <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
+            <span class="userCard__position member-position text-small"><%= @uselast_experience %></span>
+            <span>On <%= moment(@created_at).format('MMM Do YYYY') %></span>
+          </div>
+        </div>
         <% end %>
-        <div class="jobPostDetail__geo padding_top">
-          <span class="ico-location"></span>
-          <%= @location() %>
-        </div>
-        <div class="skills">
-          <!-- SKILLS PENDING -->
-        </div>
+    <div class="jobPost__geo padding_top">
+      <span class="ico-location"></span>
+      <span><%= @location() %></span>
     </div>
-  </div>
-  <hr>
+    <div class="skills">
+      <!-- SKILLS PENDING -->
+    </div>
   <div class="jobPostDetail__buttons">
     <% if @canDelete: %>
       <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
