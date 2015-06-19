@@ -83,6 +83,12 @@
         <%= @business_me %>        
           
       </div>
+      <h2>        
+        My links        
+      </h2>
+      <div class="js-links-region">              
+          
+      </div>
     </div>  
     
 

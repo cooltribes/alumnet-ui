@@ -3,6 +3,9 @@
   class Business.SectionView extends Marionette.LayoutView
     template: 'users/business/templates/business_details'
 
+    regions:
+      links_region: ".js-links-region"
+
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       Backbone.Validation.bind @,
@@ -71,7 +74,6 @@
       validate: (value)->
         view.model.set field, value      
         errors = view.model.validate()
-        console.log view.model
         if errors?  
           errors[field]
       success: (response, newValue)->                  
@@ -101,6 +103,113 @@
     fillKeywords: ()->
       keywords = _.pluck(@keywords.models, 'attributes')
       _.pluck(keywords, 'name')
+
+  class Business.EmptyLinkView extends Marionette.ItemView
+    template: 'users/business/templates/_emptyLinks'
+
+    
+  class Business.LinkView extends Marionette.ItemView
+    template: 'users/business/templates/_link'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+      Backbone.Validation.bind @ #For model validations to work
+
+
+    templateHelpers: ()->
+      userCanEdit: @userCanEdit
+
+    ui:
+      "title": ".js-title"  
+      "description": ".js-description"  
+      "url": ".js-url"  
+    
+    events:    
+      "click .js-edit": "editItem"  
+      "click .js-delete": "deleteItem"  
+
+    editItem: (e)->
+      e.preventDefault()      
+      e.stopPropagation()   
+      target = $(e.currentTarget).attr("data-target")
+      @$(".js-#{target}").editable("toggle")      
+      
+      
+    deleteItem: (e)->
+      e.preventDefault()
+      if confirm("Are you sure you want to delete this link?")
+        @model.destroy()
+
+    onRender: ()->
+      if @userCanEdit
+        @ui.title.editable @editableParams("title")
+        @ui.description.editable @editableParams("description")
+        @ui.url.editable @editableParams("url")
+
+    editableParams: (field)->
+      view = @     
+
+      type: 'text'      
+      toggle: 'manual'
+      validate: (value)->
+        view.model.set field, value          
+        errors = view.model.validate()
+        if errors?  
+          errors[field]        
+      success: (response, newValue)->          
+        view.model.save()        
+ 
+      
+        
+  class Business.LinksView extends Marionette.CompositeView
+    template: 'users/business/templates/links_container'
+    childView: Business.LinkView
+    emptyView: Business.EmptyLinkView
+    childViewContainer: ".js-links"
+    childViewOptions: ()->
+      userCanEdit: @userCanEdit      
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+      @model = new AlumNet.Entities.Link
+
+      Backbone.Validation.bind @,
+        valid: (view, attr, selector) ->            
+          $el = view.$("[name='#{attr}']")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->          
+          $el = view.$("[name='#{attr}']")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    templateHelpers: ()->
+      userCanEdit: @userCanEdit
+          
+
+    events:
+      "submit .js-linkForm": "saveLink"
+
+    bindings:
+      "[name=title]": "title"
+      "[name=description]": "description"
+      "[name=url]": "url"
+
+    onRender: ()->
+      if @userCanEdit
+        @stickit()
+      
+
+    saveLink: (e)->
+      e.preventDefault()
+      unless @model.validate()        
+        @collection.create @model.attributes,
+          wait: true
+        @model.clear()
+        # console.log "listo"
+
 
   
   class Business.CreateForm extends Marionette.ItemView
@@ -201,7 +310,6 @@
         multiple: true
         tokenSeparators: [',', ', ']
         dropdownAutoWidth: true
-
 
 
   class Business.EmptyView extends Marionette.ItemView
