@@ -1,5 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
-
+  class JobExchange.Empty extends Marionette.ItemView
+    template: 'programs/job_exchanges/templates/empty'
+  
   class JobExchange.Task extends Marionette.ItemView
     className: 'col-md-4 no-padding-rigth'
 
@@ -106,12 +108,14 @@
     template: 'programs/job_exchanges/templates/invitations'
     childView: JobExchange.TaskInvitation
     childViewContainer: '.invitations-container'
+    emptyView: JobExchange.Empty
 
   class JobExchange.MyJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/my_jobs'
     childView: JobExchange.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
+    emptyView: JobExchange.Empty
 
   class JobExchange.AppliedJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/applied'
@@ -119,6 +123,7 @@
     childViewContainer: '.tasks-container'
     childViewOptions:
       mode: 'discover'
+    emptyView: JobExchange.Empty
 
   class JobExchange.DiscoverJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/discover'
@@ -126,9 +131,7 @@
     childViewContainer: '.tasks-container'
     childViewOptions:
       mode: 'discover'
-
-    initialize: ->
-      document.title = 'AlumNet - Discover jobs'
+    emptyView: JobExchange.Empty
 
   class JobExchange.AutomatchesJobs extends Marionette.CompositeView
     template: 'programs/job_exchanges/templates/automatches'
@@ -136,6 +139,7 @@
     childViewContainer: '.tasks-container'
     childViewOptions:
       mode: 'discover'
+    emptyView: JobExchange.Empty
 
   class JobExchange.Form extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/form'
