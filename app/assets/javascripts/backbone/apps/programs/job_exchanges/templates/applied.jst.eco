@@ -1,2 +1,2 @@
 <h1>Applied</h1>
-<div class="tasks-container"></div>
+<div class="tasks-container container-fluid"></div>

@@ -1,4 +1,6 @@
 @AlumNet.module 'EventsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
+  class Manage.Empty extends Marionette.ItemView
+    template: 'events/manage/templates/empty'
 
   class Manage.EventView extends Marionette.ItemView
     template: 'events/manage/templates/event'
@@ -50,6 +52,7 @@
     template: 'events/manage/templates/events_container'
     childView: Manage.EventView
     childViewContainer: ".main-events-area"
+    emptyView: Manage.Empty
 
     initialize: ->
       @searchUpcomingEvents({})
