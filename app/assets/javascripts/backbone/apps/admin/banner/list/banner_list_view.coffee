@@ -145,8 +145,8 @@
           data: formData
           success: (model, response, options)->          
             view.model.set(formData)  
-            model.trigger('change:banner', file)                 
-        @model.save(formData, options_for_save)
+        @model.save(formData, options_for_save)        
+        @model.trigger 'banner:count'
         $("[name='title']").prop('disabled', true)
         $("[name='link']").prop('disabled', true)
         $("[name='description']").prop('disabled', true)
@@ -174,10 +174,7 @@
       document.title='AlumNet - Banners Management'      
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
-
-    onChildviewChangeBanner: ->      
-      @collection.render()            
-          
+         
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
       indexAbove = indexAbove-2
       bannerAbove = @collection.at(indexAbove)

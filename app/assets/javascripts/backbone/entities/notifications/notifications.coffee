@@ -51,6 +51,7 @@
       _.extend(options, opts)
       (@sync || Backbone.sync).call(@, null, @, options)
 
+
   API =
     getNotifications: (querySearch)->
       notifications = new Entities.NotificationsCollection
