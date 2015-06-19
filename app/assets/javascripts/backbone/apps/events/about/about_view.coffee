@@ -40,7 +40,7 @@
     template: 'events/about/templates/about'
 
     initialize: (options)->
-      @listenTo(@model, 'change:start_date change:end_date change:location', @renderView)
+      @listenTo(@model, 'change:start_date change:end_date change:location change:admission_type', @renderView)
       @current_user = options.current_user
 
     templateHelpers: ->
@@ -64,6 +64,7 @@
       'capacity': '#capacity'
       'regularPrice': '#regular_price'
       'premiumPrice': '#premium_price'
+      'admisionType':'#admision_type'
       'Gmap': '#map'
 
     events:
@@ -72,6 +73,7 @@
       'click a#js-edit-address': 'showModalLocation'
       'click a#js-edit-regular-price': 'toggleEditRegularPrice'
       'click a#js-edit-premium-price': 'toggleEditPremiumPrice'
+      'click a#js-edit-admision_type': 'toggleEditAdmisionType'
 
     onRender: ->
       view = this
@@ -88,6 +90,20 @@
         success: (response, newValue)->
           view.model.save({description: newValue})
       @ui.eventDescription.linkify()
+
+      @ui.admisionType.editable
+        type:'select'
+        value: view.model.get('admission_type')    
+        source: [
+              {value: 0, text: 'Free'},
+              {value: 1, text: 'Paid'}
+           ]
+        pk: view.model.id
+        title: 'Enter the admision type of Event'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save({admission_type: newValue,premium_price: null,regular_price: null})
+          view.model.trigger('change:admission_type')
 
       @ui.capacity.editable
         type: 'text'
@@ -180,6 +196,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.premiumPrice.editable('toggle')
+
+    toggleEditAdmisionType: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.admisionType.editable('toggle')
 
     renderView: ->
       @model.save()
