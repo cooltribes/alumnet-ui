@@ -27,9 +27,8 @@
         @userCanEdit = user.isCurrentUser()
 
     showMainView: ->
-      # @showCreateForm()
-      # return true
-      if @businessCollection.length
+      #if there are any existing business section show it. else show empty view
+      if @businessCollection.length        
         @showSection(@businessCollection.at(0))
       else
         @showEmpty()
@@ -57,19 +56,25 @@
       
       view.on "submit", (options)->
         # console.log controller.businessCollection.url()
-        options.model.url = controller.businessCollection.url()
+        options.model.url = controller.businessCollection.url()        
         controller.businessCollection.create options.model,
           wait: true
           # contentType: false
           # processData: false
           # data: options.data
-          success: ()->
+          success: (model)->            
+            # model.updateLinksURL()
             controller.showMainView()
 
       @layout.body.show view
 
 
-      
+    linksView: (model)->
+      view = new Business.LinksView
+        collection: model.linksCollection              
+        userCanEdit: @userCanEdit
+    
+
     showSection: (model)->
       view = new Business.SectionView
         model: model
@@ -80,4 +85,5 @@
         controller.showCreateForm()
 
       @layout.body.show view
+      view.links_region.show @linksView(model)
 
