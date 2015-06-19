@@ -72,6 +72,9 @@
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
 
+    url: ->
+      AlumNet.api_endpoint + '/events'
+
     getUpcoming:(query, options) ->
       today = moment().format('YYYY-MM-DD')
       query = $.extend({}, query, { start_date_gteq: today })
@@ -123,6 +126,9 @@
   class Entities.EventContacts extends Backbone.Collection
     model: Entities.EventContact
 
+  initializeEvents = ->
+    Entities.events = new Entities.EventsCollection  
+
   API =
     createEvent: (parent, parent_id)->
       evento = new Entities.Event
@@ -143,6 +149,14 @@
       contacts = new Entities.EventContacts
       contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
+
+    getEventEntities: (querySearch)->
+      initializeEvents() if Entities.events == undefined
+      Entities.events.fetch
+        data: querySearch
+        success: (model, response, options) ->
+          Entities.events.trigger('fetch:success')
+      Entities.events 
 
     findEvent: (id)->
       evento = new Entities.Event
@@ -184,3 +198,6 @@
 
   AlumNet.reqres.setHandler 'attendance:entities', (event_id)->
     API.getAttendances(event_id)
+
+  AlumNet.reqres.setHandler 'event:entities', (querySearch) ->
+    API.getEventEntities(querySearch)  
