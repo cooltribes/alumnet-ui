@@ -1,6 +1,6 @@
 <h3>
   <% if @userCanEdit: %>
-    <a href="#" class="editLink js-delete" >[delete]</a>
+    <a href="#" class="editLink text-danger js-delete" >[delete]</a>
   <% end %>  
   <br>
   <% if @userCanEdit: %>

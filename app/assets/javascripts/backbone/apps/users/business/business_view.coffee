@@ -11,13 +11,7 @@
       Backbone.Validation.bind @,
         attributes: ["offer"]
 
-      @keywords = new AlumNet.Entities.KeywordsCollection [
-          { name: "PHP" },
-          { name: "Angular" },
-          { name: "Backbone" },
-          { name: "Marketing" },
-          { name: "Rails" }
-        ]  
+      @keywords = options.keywords
 
       
     templateHelpers: ->
@@ -38,6 +32,19 @@
 
     onRender: ->
       #Make the fields editable as text
+      # view = @     
+      # @ui.company_name.editable
+      #   type: 'textarea'      
+      #   toggle: 'manual'
+      #   validate: (value)->
+      #     view.model.set field, value          
+      #     errors = view.model.validate()
+      #     if errors?  
+      #       errors[field]        
+      #   success: (response, newValue)->          
+      #     view.model.save()    
+
+
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
       @ui.business_me.editable @editableParams("business_me")             
@@ -159,8 +166,7 @@
       success: (response, newValue)->          
         view.model.save()        
  
-      
-        
+ 
   class Business.LinksView extends Marionette.CompositeView
     template: 'users/business/templates/links_container'
     childView: Business.LinkView
@@ -215,7 +221,8 @@
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'
 
-    initialize: ()->      
+    initialize: (options)->      
+      @keywords = options.keywords      
       Backbone.Validation.bind @,
         valid: (view, attr, selector) ->            
           $el = view.$("[name='#{attr}']")
@@ -242,19 +249,7 @@
       "previewImage": "#preview-image"
 
     onRender: ->
-      keywords = new AlumNet.Entities.KeywordsCollection [
-          { name: "PHP" },
-          { name: "Angular" },
-          { name: "Backbone" },
-          { name: "Marketing" },
-          { name: "Rails" }
-        ]
-
-      @fillKeywords(keywords)  
-
-      # keywords.fetch
-      #   success: (collection) ->
-      #     @fillKeywords(collection)  
+      @fillKeywords()  
 
     submit: (e)->
       e.preventDefault()
@@ -295,8 +290,8 @@
         reader.readAsDataURL(file[0].files[0])    
 
 
-    fillKeywords: (collection)->
-      keywords = _.pluck(collection.models, 'attributes')
+    fillKeywords: ()->
+      keywords = _.pluck(@keywords.models, 'attributes')
       listOfNames = _.pluck(keywords, 'name')
 
       @ui.offer_keywords.select2

@@ -18,10 +18,13 @@
         @businessCollection = new AlumNet.Entities.BusinessCollection
           user_id: id
 
+        @keywordsList = new AlumNet.Entities.KeywordsCollection
+        @keywordsList.fetch
+          wait: true
+              
         @businessCollection.fetch
           success: (collection, res, options)->
             self.showMainView()
-              
 
 
         @userCanEdit = user.isCurrentUser()
@@ -49,6 +52,7 @@
 
       view = new Business.CreateForm
         model: new AlumNet.Entities.Business
+        keywords: @keywordsList
 
       controller = @  
       view.on "cancel", (view)->
@@ -79,6 +83,7 @@
       view = new Business.SectionView
         model: model
         userCanEdit: @userCanEdit
+        keywords: @keywordsList
 
       controller = @  
       view.on "showCreateForm", (view)->
