@@ -21,8 +21,7 @@
 
         AlumNet.headerRegion.show(menuLayout)
         menuLayout.messagesBox.show(messagesList)
-        menuLayout.notificationsBox.show(notificationsList)
-
+        menuLayout.notificationsBox.show(notificationsList)       
       else
         menuLayout = new Menu.MenuBar
           model: current_user

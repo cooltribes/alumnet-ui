@@ -66,39 +66,35 @@
       'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
-      'click .js-search-input': 'performSearch'      
+      'click .js-search-input': 'searchCliked'      
       #'click .js-search': 'performSearch'
 
     initialize: ->
-      console.log @collection
       @searchUpcomingEvents({})
-<<<<<<< HEAD
       document.title = 'AlumNet - Discover Events'
     
-    ###
+    
     searchCliked: (e)->
       console.log "Searching"
       e.preventDefault()
-      term = @.$('.js-search').val()
+      term = @.$('#search_term').val()
       @trigger 'search', term  
+      console.log term
+
     ###
     
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       this.trigger('events:search', this.buildQuerySearch(data.search_term))
-=======
->>>>>>> 61bac51c76c56465b045e3effba7b46eb904fd5e
 
     buildQuerySearch: (searchTerm) ->
       q:
-        m: 'or'
-        address_cont: searchTerm         
-        name_cont: searchTerm 
-        city_text_cont: searchTerm
-        country_text_cont: searchTerm
-        
-        
+        id_cont: searchTerm
+                
+    
+    ###    
+
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui

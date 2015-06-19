@@ -150,7 +150,7 @@
       contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
 
-    getEventEntities: (querySearch, options)->
+    getEventEntities: (querySearch)->
       initializeEvents() if Entities.events == undefined
       Entities.events.fetch
         data: querySearch
@@ -199,5 +199,5 @@
   AlumNet.reqres.setHandler 'attendance:entities', (event_id)->
     API.getAttendances(event_id)
 
-  AlumNet.reqres.setHandler 'events:entities', (querySearch) ->
+  AlumNet.reqres.setHandler 'event:entities', (querySearch) ->
     API.getEventEntities(querySearch)  

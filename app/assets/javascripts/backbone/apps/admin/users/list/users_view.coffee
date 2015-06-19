@@ -373,7 +373,7 @@
           <option value='eq'>=</option>
           <option value='in'>=</option>
           </select>")
-      else if @ui.selectType.val() == 'local_committee_name'
+      else if @ui.selectType.val() == 'profile_experience_local_committee_name'
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg'>
           <option value=''>Select comparator</option>
           <option value='cont_any'>Contains</option>
@@ -407,7 +407,7 @@
       "click @ui.btnAdd": "addRow"
       "click @ui.btnSearch": "search"
       "click @ui.btnReset": "reset"
-
+    
     addRow: (e)->
       newFilter = new AlumNet.Entities.Filter
       @collection.add(newFilter)
@@ -423,4 +423,6 @@
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data        
       @trigger('filters:search')
+
+
 

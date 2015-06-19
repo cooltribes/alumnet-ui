@@ -102,12 +102,11 @@
       @collection.fetch
         success: (model)->
           view.render()
-          console.log "success"
+          
             
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      console.log data     
       @trigger('users:search', @buildQuerySearch(data.search_term))
       
     buildQuerySearch: (searchTerm) ->
