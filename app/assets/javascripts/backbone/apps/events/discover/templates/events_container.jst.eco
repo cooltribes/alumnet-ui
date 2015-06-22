@@ -1,5 +1,8 @@
- <div class="col-md-6">
- <h1 class="searchBar__title margin_left_small">Discover</h1>
+ <div class="searchBar row ">
+  <div class="col-md-5">
+    <h1 class="searchBar__title margin_left_small">Discover</h1>
+  </div>
+  <div class="col-md-6">
     <form id="search-form">
       <div class="input-group">
         <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search for events">
@@ -11,6 +14,8 @@
     </form>
     <!-- /input-group -->
   </div>
+</div>
+
 <hr/>
 <div class="container hidden-sm hidden-xs">
   <div role="tabpanel">
