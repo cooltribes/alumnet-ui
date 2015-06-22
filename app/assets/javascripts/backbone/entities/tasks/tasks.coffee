@@ -37,3 +37,13 @@
       Entities.JobExchange
     url: ->
       AlumNet.api_endpoint + '/job_exchanges'
+
+  class Entities.BusinessExchange extends Entities.Tasks
+    urlRoot: ->
+      AlumNet.api_endpoint + '/business_exchanges'
+
+  class Entities.BusinessExchangeCollection extends Backbone.Collection
+    model:
+      Entities.JobExchange
+    url: ->
+      AlumNet.api_endpoint + '/business_exchanges'

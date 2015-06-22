@@ -1,0 +1,141 @@
+<div id="" class="ng-scope">
+  <div class="container-fluid">
+    <form class="row formANet form ">
+      <div class="col-md-10 col-md-offset-1">
+        <h1 class="textColor--blue "><%= if @is_new then "Create a new " else "Update a " %>Task</h1>
+        <!-- ROW 1 ON -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-job has-feedback">
+              <label class="control-label">Title of the task</label>
+              <input type="text" name="name" id="task-name" class="form-control input-lg" value="<%= @name %>">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-job has-feedback">
+              <label class="control-label">Deadline</label>
+              <input type="text" name="post_until" id="task-until" class="form-control input-lg" value="<%= @post_until %>">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-job has-feedback">
+              <label class="control-label">Description of the task</label>
+              <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"><%= @description %></textarea>
+              <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 1 OFF -->
+        <hr>
+        <!-- ROW 2 ON -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Skills required (Must have)</label>
+              <input class="js-profinda-skills" type="hidden" name="skills_must_have" id="skills-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Skills desired (Nice to have)</label>
+              <input class="js-profinda-skills" type="hidden" name="skills_nice_have" id="skills-nice-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 2 OFF -->
+        <hr>
+        <!-- ROW 3 ON -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Languages required (Must have)</label>
+              <input class="js-profinda-languages" type="hidden" name="languages_must_have" id="languages-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Languages desired (Nice to have)</label>
+              <input class="js-profinda-languages" type="hidden" name="languages_nice_have" id="languages-nice-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 3 OFF -->
+        <hr>
+        <!-- ROW 4 ON -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Location required (Must have)</label>
+              <input class="js-profinda-location" type="hidden" name="location_must_have" id="location-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Location desired (Nice to have)</label>
+              <input class="js-profinda-location" type="hidden" name="location_nice_have" id="location-nice-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 4 OFF -->
+        <hr>
+        <!-- ROW 5 ON -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Sectors required (Must have)</label>
+              <input class="js-profinda-sectors" type="hidden" name="sectors_must_have" id="sectors-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Sectors desired (Nice to have)</label>
+              <input class="js-profinda-sectors" type="hidden" name="sectors_nice_have" id="sectors-nice-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 5 OFF -->
+        <hr>
+        <!-- ROW 5 ON -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Brands required (Must have)</label>
+              <input class="js-profinda-brands" type="hidden" name="brands_must_have" id="brands-must-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-job has-feedback">
+              <label class="control-label">Brands desired (Nice to have)</label>
+              <input class="js-profinda-brands" type="hidden" name="brands_nice_have" id="brands-nice-have" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 5 OFF -->
+        <hr>
+        <!-- ACTIONS ON -->
+        <div class="text-right">
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">SAVE & SEE MATCHES</button>
+        </div>
+        <!-- ACTIONS OFF -->
+      </div>
+    </form>
+  </div>
+</div>
