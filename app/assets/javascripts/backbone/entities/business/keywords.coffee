@@ -3,8 +3,8 @@
 
   class Entities.KeywordsCollection extends Backbone.Collection
     model: Entities.Keyword
-    # url: -> 
-    #   AlumNet.api_endpoint + "/keywords"
+    url: -> 
+      AlumNet.api_endpoint + "/keywords"
 
 
   

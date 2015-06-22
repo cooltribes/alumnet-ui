@@ -46,7 +46,7 @@
 
     destroyClicked: (e)->
       e.preventDefault()
-      resp = confirm('This action destroy the group permanently. ¿Are you sure?')
+      resp = confirm('This action destroy the group permanently. Are you sure?')
       if resp
         @model.destroy()
 

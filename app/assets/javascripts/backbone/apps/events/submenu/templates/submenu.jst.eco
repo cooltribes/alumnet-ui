@@ -10,7 +10,7 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
-        <li class="<%= @classOf(0)%>"><a href="#events/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Manage Events</a></li>
+        <li class="<%= @classOf(0)%>"><a href="#events/manage" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> My Events</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right no-margin">

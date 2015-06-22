@@ -3,10 +3,15 @@
   class Business.SectionView extends Marionette.LayoutView
     template: 'users/business/templates/business_details'
 
+    regions:
+      links_region: ".js-links-region"
+
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       Backbone.Validation.bind @,
         attributes: ["offer"]
+
+      @keywords = options.keywords
 
       
     templateHelpers: ->
@@ -21,59 +26,203 @@
     ui:
       "offer": ".js-offer"
       "search": ".js-search"
-
-    # bindings:
-    #   ".js-offer": "offer"
-    #   ".js-search": "search"
-    #   ".js-business-me": "business_me"
-    #   ".js-company-name": 
-    #     observe: "company"
-    #     onGet: (value)->
-    #       value.name
+      "business_me": ".js-business-me"
+      "keywords_offer": ".js-kwO"
+      "keywords_search": ".js-kwS"
 
     onRender: ->
-      view = @     
+      #Make the fields editable as text
+      # view = @     
+      # @ui.company_name.editable
+      #   type: 'textarea'      
+      #   toggle: 'manual'
+      #   validate: (value)->
+      #     view.model.set field, value          
+      #     errors = view.model.validate()
+      #     if errors?  
+      #       errors[field]        
+      #   success: (response, newValue)->          
+      #     view.model.save()    
+
+
+      @ui.offer.editable @editableParams("offer")
+      @ui.search.editable @editableParams("search")        
+      @ui.business_me.editable @editableParams("business_me")             
+        
+      #Make the fields editable as select2 with multiple options
+      @ui.keywords_offer.editable @tagEditableParams("offer_keywords")
+      @ui.keywords_search.editable @tagEditableParams("search_keywords")
+
+          
+    tagEditableParams: (field)->    
+      view = @          
+         
+      select2: 
+        tags: @fillKeywords()     
+        multiple: true
+        tokenSeparators: [',', ', ']
+        dropdownAutoWidth: true     
+      type: "select2" 
+      toggle: 'manual'
+      # display: (value, sourceData, response)->
+      #    #display checklist as comma-separated values
+      #   # html = []
+      #   # checked = $.fn.editableutils.itemsByValue(value, sourceData);                   
+        # _.each value ... AQUI SE ARMA el HTML        
+        # if checked.length
+        #   $.each checked, (i, v) ->
+        #     html.push($.fn.editableutils.escape(v.text));
+
+        #   $(this).html(html.join(', '));
+        # else
+        # $(this).empty();         
+        
       
-      @ui.offer.editable      
-        type: 'textarea'      
-        toggle: 'manual'
-        validate: (value)->
-          view.model.set "offer", value          
-          errors = view.model.validate()
-            # "offer": value
+      validate: (value)->
+        view.model.set field, value      
+        errors = view.model.validate()
+        if errors?  
+          errors[field]
+      success: (response, newValue)->                  
+        view.model.save()      
+        
+    editableParams: (field)->
+      view = @     
 
-          if errors?  
-            errors.offer
-          
-        success: (response, newValue)->          
-          view.model.save()
+      type: 'textarea'      
+      toggle: 'manual'
+      validate: (value)->
+        view.model.set field, value          
+        errors = view.model.validate()
+        if errors?  
+          errors[field]        
+      success: (response, newValue)->          
+        view.model.save()      
 
-      @ui.search.editable      
-        type: 'textarea'      
-        toggle: 'manual'
-        validate: (value)->
-          view.model.set "search", value          
-          errors = view.model.validate()
 
-          if errors?  
-            errors.search
-          
-        success: (response, newValue)->          
-          view.model.save()    
-          
-    
     editField: (e)->
       e.preventDefault()
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
       @$(".js-#{target}").editable("toggle")    
 
-  
+    
+    fillKeywords: ()->
+      keywords = _.pluck(@keywords.models, 'attributes')
+      _.pluck(keywords, 'name')
+
+  class Business.EmptyLinkView extends Marionette.ItemView
+    template: 'users/business/templates/_emptyLinks'
+
+    
+  class Business.LinkView extends Marionette.ItemView
+    template: 'users/business/templates/_link'
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+      Backbone.Validation.bind @ #For model validations to work
+
+
+    templateHelpers: ()->
+      userCanEdit: @userCanEdit
+
+    ui:
+      "title": ".js-title"  
+      "description": ".js-description"  
+      "url": ".js-url"  
+    
+    events:    
+      "click .js-edit": "editItem"  
+      "click .js-delete": "deleteItem"  
+
+    editItem: (e)->
+      e.preventDefault()      
+      e.stopPropagation()   
+      target = $(e.currentTarget).attr("data-target")
+      @$(".js-#{target}").editable("toggle")      
+      
+      
+    deleteItem: (e)->
+      e.preventDefault()
+      if confirm("Are you sure you want to delete this link?")
+        @model.destroy()
+
+    onRender: ()->
+      if @userCanEdit
+        @ui.title.editable @editableParams("title")
+        @ui.description.editable @editableParams("description")
+        @ui.url.editable @editableParams("url")
+
+    editableParams: (field)->
+      view = @     
+
+      type: 'text'      
+      toggle: 'manual'
+      validate: (value)->
+        view.model.set field, value          
+        errors = view.model.validate()
+        if errors?  
+          errors[field]        
+      success: (response, newValue)->          
+        view.model.save()        
+ 
+ 
+  class Business.LinksView extends Marionette.CompositeView
+    template: 'users/business/templates/links_container'
+    childView: Business.LinkView
+    emptyView: Business.EmptyLinkView
+    childViewContainer: ".js-links"
+    childViewOptions: ()->
+      userCanEdit: @userCanEdit      
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+      @model = new AlumNet.Entities.Link
+
+      Backbone.Validation.bind @,
+        valid: (view, attr, selector) ->            
+          $el = view.$("[name='#{attr}']")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->          
+          $el = view.$("[name='#{attr}']")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    templateHelpers: ()->
+      userCanEdit: @userCanEdit
+          
+
+    events:
+      "submit .js-linkForm": "saveLink"
+
+    bindings:
+      "[name=title]": "title"
+      "[name=description]": "description"
+      "[name=url]": "url"
+
+    onRender: ()->
+      if @userCanEdit
+        @stickit()
+      
+
+    saveLink: (e)->
+      e.preventDefault()
+      unless @model.validate()        
+        @collection.create @model.attributes,
+          wait: true
+        @model.clear()
+        # console.log "listo"
+
+
   
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'
 
-    initialize: ()->      
+    initialize: (options)->      
+      @keywords = options.keywords      
       Backbone.Validation.bind @,
         valid: (view, attr, selector) ->            
           $el = view.$("[name='#{attr}']")
@@ -94,31 +243,19 @@
       'change @ui.logo': 'previewImage'
 
     ui:
-      "keywords_offer": "[name = keywords_offer]"
-      "keywords_search": "[name = keywords_search]"
+      "offer_keywords": "[name = offer_keywords]"
+      "search_keywords": "[name = search_keywords]"
       "logo": "[name = company_logo]"
       "previewImage": "#preview-image"
 
     onRender: ->
-      keywords = new AlumNet.Entities.KeywordsCollection [
-          { name: "PHP" },
-          { name: "Angular" },
-          { name: "Backbone" },
-          { name: "Marketing" },
-          { name: "Rails" }
-        ]
-
-      @fillKeywords(keywords)  
-
-      # keywords.fetch
-      #   success: (collection) ->
-      #     @fillKeywords(collection)  
+      @fillKeywords()  
 
     submit: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize @
-      data.keywords_offer = data.keywords_offer.split(',')
-      data.keywords_search = data.keywords_search.split(',')
+      data.offer_keywords = data.offer_keywords.split(',')
+      data.search_keywords = data.search_keywords.split(',')
 
       formData = new FormData()
       _.forEach data, (value, key, list)->  
@@ -131,8 +268,8 @@
           formData.append(key, value)
 
       #Add the image to form submit
-      file = @ui.logo
-      formData.append('company_logo', file[0].files[0])
+      # file = @ui.logo
+      # formData.append('company_logo', file[0].files[0])
       
       @model.set(data)
       
@@ -153,22 +290,21 @@
         reader.readAsDataURL(file[0].files[0])    
 
 
-    fillKeywords: (collection)->
-      keywords = _.pluck(collection.models, 'attributes')
+    fillKeywords: ()->
+      keywords = _.pluck(@keywords.models, 'attributes')
       listOfNames = _.pluck(keywords, 'name')
 
-      @ui.keywords_offer.select2
+      @ui.offer_keywords.select2
         tags: listOfNames
         multiple: true
         tokenSeparators: [',', ', ']
         dropdownAutoWidth: true
 
-      @ui.keywords_search.select2
+      @ui.search_keywords.select2
         tags: listOfNames
         multiple: true
         tokenSeparators: [',', ', ']
         dropdownAutoWidth: true
-
 
 
   class Business.EmptyView extends Marionette.ItemView

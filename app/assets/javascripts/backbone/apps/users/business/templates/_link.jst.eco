@@ -1,0 +1,33 @@
+<h3>
+  <% if @userCanEdit: %>
+    <a href="#" class="editLink text-danger js-delete" >[delete]</a>
+  <% end %>  
+  <br>
+  <% if @userCanEdit: %>
+    <a href="#" data-target="title" class="editLink js-edit" >[edit title]</a>
+  <% end %>
+  <div class="js-title">
+   <%= @title %>    
+  </div>
+
+  
+</h3>
+<br>
+<% if @userCanEdit: %>
+  <a href="#" data-target="description" class="editLink js-edit" >[edit description]</a>
+<% end %>
+<div class="js-description">
+  <%= @description %>
+</div>
+
+<br>
+<% if @userCanEdit: %>
+  <a href="#" data-target="url" class="editLink js-edit" >[edit url]</a>
+<% end %>
+<div class="js-url">
+  <a href="<%= @url %>"><%= @url %></a>
+</div>
+
+
+<hr>
+ 

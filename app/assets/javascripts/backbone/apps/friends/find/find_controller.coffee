@@ -33,7 +33,7 @@
           friendship.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-
-
       usersView.on 'users:search', (querySearch)->
-        AlumNet.request('user:entities', querySearch)
+        searchedFriends = AlumNet.request('user:entities', querySearch)
+        console.log querySearch
+        
