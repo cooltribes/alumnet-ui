@@ -52,3 +52,16 @@
       @ui.selectPaymentCountries.select2
         placeholder: "Select a Country"
         data: data
+
+  class Payment.ReceiptView extends Marionette.ItemView
+    template: 'events/payment/templates/receipt'
+    className: 'row'
+
+    initialize: (options)->
+      @current_user = options.current_user
+      @model = options.model
+
+    templateHelpers: ->
+      current_user: @current_user
+      model: @model
+      name: @model.get('name')

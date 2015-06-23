@@ -12,7 +12,6 @@
         querySearch = { q: name_cont: term }
         eventsView.collection.fetch
           data: querySearch
-        console.log querySearch
 
        
     
