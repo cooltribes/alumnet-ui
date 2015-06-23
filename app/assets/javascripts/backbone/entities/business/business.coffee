@@ -1,6 +1,15 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Business extends Backbone.Model
 
+    initialize: ()->      
+      @linksCollection = new Entities.LinksCollection @get("links")
+      @updateLinksURL()
+      
+      @on "change:id", @updateLinksURL
+
+    updateLinksURL: ()->
+      @linksCollection.url = AlumNet.api_endpoint + "/business/#{@id}/links"
+
     validation:
       company_name:
         required: true
@@ -14,14 +23,15 @@
         maxLength: 250
         msg: "This field is required and must be less than 250 characters long."
       
-      keywords_offer: (value, attr, computedState) ->
-        if value[0] == ""
+      offer_keywords: (value, attr, computedState) ->
+        unless value[0]? && value[0] != ""
           "This field is required"
 
-      keywords_search: (value, attr, computedState) ->
-        if value[0] == ""
+      search_keywords: (value, attr, computedState) ->
+        unless value[0]? && value[0] != ""        
           "This field is required"
       
+
     
 
   class Entities.BusinessCollection extends Backbone.Collection

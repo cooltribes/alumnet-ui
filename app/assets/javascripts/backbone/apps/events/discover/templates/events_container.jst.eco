@@ -1,22 +1,21 @@
-<div class="searchBar">
-  <div>
+ <div class="searchBar row ">
+  <div class="col-md-5">
     <h1 class="searchBar__title margin_left_small">Discover</h1>
   </div>
-  <!--<div class="col-md-5">
+  <div class="col-md-6">
     <form id="search-form">
       <div class="input-group">
-    
-      <input class="form-control searchBar__searchInput " type="text" name="seach_term" id="js-search-input" placeholder="Search">
-      <span class="input-group-addon">
-          <span class="glyphicon glyphicon-search"></span>
-      </span>
-    
-
+        <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search for events">
+        <span class="input-group-btn">
+        <button class="searchBar__searchBtn btn btn-default js-search-input"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
       </div>
-      <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-
+      <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
     </form>
-    <!-- /input-group 
-  </div>-->
+    <!-- /input-group -->
+  </div>
+</div>
+
 <hr/>
 <div class="container hidden-sm hidden-xs">
   <div role="tabpanel">

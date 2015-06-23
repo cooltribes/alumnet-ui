@@ -1,4 +1,4 @@
-<div class="job-post">
+<div class="jobpost">
   <div class="name"><h3><%= @task.name %></h3></div>
   <div class="company"><h3><b><%= @task.company.text %></b></h3></div>
   <div class="description"><%= @task.description %></div>
