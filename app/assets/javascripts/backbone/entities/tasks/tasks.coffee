@@ -44,6 +44,6 @@
 
   class Entities.BusinessExchangeCollection extends Backbone.Collection
     model:
-      Entities.JobExchange
+      Entities.BusinessExchange
     url: ->
       AlumNet.api_endpoint + '/business_exchanges'

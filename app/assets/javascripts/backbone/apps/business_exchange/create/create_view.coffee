@@ -58,15 +58,13 @@
       @model.save data,
         success: ->
           ##TODO Match
-          # AlumNet.trigger("program:job:my")
-          console.log "Create Ok"
+          AlumNet.trigger("program:business:my")
         error: (model, response, options)->
           $.growl.error({ message: response.responseJSON })
 
     cancelClicked: (e)->
       e.preventDefault()
-      console.log "Cancel Ok"
-      # AlumNet.trigger("program:job:my")
+      AlumNet.trigger("program:business:my")
 
     select2_profinda_options: (type)->
       multiple: true
