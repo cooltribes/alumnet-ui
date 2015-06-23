@@ -104,7 +104,8 @@
       e.preventDefault()
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
-      @$(".js-#{target}").editable("toggle")    
+      @$(".js-#{target}").editable("toggle") 
+      @$(".js-#{target}").css('display','none')
 
     
     fillKeywords: ()->
@@ -117,6 +118,7 @@
     
   class Business.LinkView extends Marionette.ItemView
     template: 'users/business/templates/_link'
+    tagName: 'li'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit

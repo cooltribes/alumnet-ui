@@ -1,97 +1,167 @@
-<div class="container-fluid margin_top">
+<div class="container margin_top">
   <div class="row ">
-    
-    <div class="col-md-3 col-md-offset-1">
-    <strong>Company: </strong>      
-      <div class="js-company-name">
-        <%= @company.name %>        
-        
-      </div>
+    <!-- Barra lateral -->
+    <div class="col-md-3">
 
-      <% if @userCanEdit: %>
-        <a href="#" title="Create Business" class="btn-primary btn btn-primary js-create"><span class="glyphicon glyphicon-plus"></span> Create new section</a>
-      <% end %>  
-
-    </div>
-
-    <div class="col-md-8">
-      <h2>        
-        What I Offer
-        <% if @userCanEdit: %>
-          <a href="#" data-target="offer"class="editLink js-edit" >[edit]</a>
-        <% end %>
-      </h2>      
-        
-      <div class="js-offer">
-        <%= @offer %>        
-      </div>
-
-      <h2>        
-        What Keywords I Offer
-        <% if @userCanEdit: %>
-          <a href="#" data-target="kwO" class="editLink js-edit" >[edit]</a>
-        <% end %>
-      </h2>
-      <div class="js-kwO">
-        
-          <% _.each @offer_keywords, (item, index, collection)->: %>
-        
-            <% if index > 0: %>
-              <%= ", " %>
+      <div > 
+        <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
+          <div>
+            <img src="" class="userBusiness__logo img-responsive">
+          </div>
+          <div class="userBusiness__company">
+            <p class="js-company-name userBusiness__companyN">
+              <%= @company.name %>     
+            </p>
+            <% if @userCanEdit: %>
+              <a href="#" class="userBusiness__companyE" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
             <% end %>
-            <%= item.name %>
-            
-          <% end%>
-        
+          </div>
+          <ul class="nav nav-pills nav-stacked">
+            <li>
+              <a href="" class="text-uppercase">
+                what  i offer
+              </a>
+            </li>
+            <li>
+              <a href="" class="text-uppercase">
+                what  i'm looking for
+              </a>
+            </li>
+            <li>
+              <a href="" class="text-uppercase">
+                why me
+              </a>
+            </li>
+          </ul> 
+        </div>
+        <div>
+
+        </div>
+        <% if @userCanEdit: %>
+          <a href="#" title="Create Business" class="btn-primary btn btn-primary js-create"><span class="glyphicon glyphicon-plus"></span> Create new section</a>
+        <% end %>  
+      </div>
+    </div>
+    <!-- Barra lateral -->
+    <!-- Info -->
+    <div class="col-md-9 no-padding">
+      <div class="userBusiness__row">
+
+        <div class="userBusiness__cell userBusiness__cell--left">
+          <h3 class="no-margin">        
+            What I Offer
+            <% if @userCanEdit: %>
+              <a href="#" data-target="offer"class="editLink js-edit pull-right" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            <% end %>
+          </h3>
+          <div class="js-offer">
+            <%= @offer %>        
+          </div>  
+        </div>
+
+        <div class="userBusiness__cell userBusiness__cell--right">
+          <h3 class="no-margin">        
+            Keywords
+            <% if @userCanEdit: %>
+              <a href="#" data-target="kwO" class="editLink js-edit pull-right" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            <% end %>
+          </h3>
+          <div class="js-kwO userBusiness__keys">
+              <% _.each @offer_keywords, (item, index, collection)->: %>
+                <% if index > 0: %>
+                  <%= ", " %>
+                <% end %>
+                <%= item.name %>
+              <% end%>
+          </div>
+          <ul>
+            <% _.each @offer_keywords, (item, index, collection)->: %>
+              <li># <%= item.name %></li>
+            <% end%>
+          </ul> 
+        </div>
       </div>
       
+      <div class="userBusiness__row--help"></div>
 
-      <h2>        
-        What I'm looking for
-        <% if @userCanEdit: %>
-          <a href="#" data-target="search" class="editLink js-edit" >[edit]</a>
-        <% end %>
-      </h2>
-      <div class="js-search">
-        <%= @search %>        
-        
-      </div>
-      <h2>        
-        What Keywords I'm looking for
-        <% if @userCanEdit: %>
-          <a href="#" data-target="kwS" class="editLink js-edit" >[edit]</a>
-        <% end %>
-      </h2>
-      <div class="js-kwS">
-        <% _.each @search_keywords, (item, index, collection)->: %>
-        
-            <% if index > 0: %>
-              <%= ", " %>
+      <div class="userBusiness__row">
+
+        <div class="userBusiness__cell userBusiness__cell--left">
+          <h3 class="no-margin">        
+            What I'm looking for
+            <% if @userCanEdit: %>
+              <a href="#" data-target="search" class="editLink js-edit pull-right" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
             <% end %>
-            <%= item.name %>
-            
-          <% end%>
-        </ul>
+          </h3>
+          <div class="js-search">
+            <%= @search %>        
+          </div>
+        </div>
+
+        <div class="userBusiness__cell userBusiness__cell--right">
+          <h3 class="no-margin">        
+            Keywords
+            <% if @userCanEdit: %>
+              <a href="#" data-target="kwS" class="editLink js-edit pull-right" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            <% end %>
+          </h3>
+          <div class="js-kwS userBusiness__keys">
+            <% _.each @search_keywords, (item, index, collection)->: %>
+              <% if index > 0: %>
+                <%= ", " %>
+              <% end %>
+              <%= item.name %>
+            <% end%>
+          </div>
+          <ul>
+            <% _.each @search_keywords, (item, index, collection)->: %>
+              <li># <%= item.name %></li>
+            <% end%>
+          </ul>
+        </div>
+
       </div>
-      <h2>        
-        Why to make business with me
-        <% if @userCanEdit: %>
-          <a href="#" data-target="business-me" class="editLink js-edit" >[edit]</a>
-        <% end %>
-      </h2>
-      <div class="js-business-me">
-        <%= @business_me %>        
-          
+
+      <div class="userBusiness__row--help"></div>
+
+      <div class="userBusiness__row">
+
+        <div class="userBusiness__cell userBusiness__cell--left">
+          <h3 class="no-margin">        
+            Why to make business with me
+            <% if @userCanEdit: %>
+              <a href="#" data-target="business-me" class="editLink js-edit pull-right" >
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            <% end %>
+          </h3>
+          <div class="js-business-me">
+            <%= @business_me %>        
+          </div>
+        </div>
+
+        <div class="userBusiness__cell userBusiness__cell--links">
+          <h3>        
+            Links        
+          </h3>
+          <div class="js-links-region">              
+              
+          </div>
+        </div>
+
       </div>
-      <h2>        
-        My links        
-      </h2>
-      <div class="js-links-region">              
-          
-      </div>
-    </div>  
     
-
-
+    </div>  
+   
   </div>
 </div>

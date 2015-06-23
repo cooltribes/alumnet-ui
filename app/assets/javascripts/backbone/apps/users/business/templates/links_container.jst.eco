@@ -1,8 +1,8 @@
-<div class="js-links">
+<ul class="js-links">
   
 
 
-</div>
+</ul>
 <% if @userCanEdit: %>
   
 <div class="js-form">
