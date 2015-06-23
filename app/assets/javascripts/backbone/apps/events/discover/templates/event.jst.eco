@@ -8,7 +8,11 @@
 
     <div class="col-md-11 col-xs-8 col-sm-10">
       <h3 class="margin_top_xsmall overfloadText">
-        <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
+        <% if @attendance_info: %>
+          <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
+        <% else: %>
+          <a href="#events/<%= @id %>/about" class="js-group eventsTableView__name"> <%= @name %> </a>
+        <% end %>
       </h2>
     </div>
 
@@ -41,7 +45,7 @@
 
     <div class="col-md-2 col-xs-12 col-sm-3">
       <span class="ico-company"></span>
-      Attending:<%= @attendances_count %>
+      Attending: <%= @going_count %>
     </div>
 
     <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall">
@@ -56,7 +60,7 @@
             </div>
         </a>
       <% else: %>
-        <% if @userCanAttend && not @isPast && (@capacity > @attendances_count || not @capacity): %>
+        <% if @userCanAttend && not @isPast && (@capacity > @going_count || not @capacity): %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" || @attendance_status() == "pending_payment" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
             <option value="invited">RSVP</option>
             <option value="going" <%= @select(@attendance_status(), "going") %>>
