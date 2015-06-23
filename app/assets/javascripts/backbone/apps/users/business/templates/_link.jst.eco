@@ -27,7 +27,5 @@
 <div class="js-url">
   <a href="<%= @url %>"><%= @url %></a>
 </div>
-
-
 <hr>
  

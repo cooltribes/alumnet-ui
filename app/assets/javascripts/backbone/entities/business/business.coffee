@@ -2,7 +2,7 @@
   class Entities.Business extends Backbone.Model
 
     initialize: ()->      
-      @linksCollection = new Entities.LinksCollection @get("links")      
+      @linksCollection = new Entities.LinksCollection @get("links")
       @updateLinksURL()
       
       @on "change:id", @updateLinksURL

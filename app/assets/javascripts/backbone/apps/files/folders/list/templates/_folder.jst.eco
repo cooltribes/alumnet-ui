@@ -1,0 +1,32 @@
+<div class=" row">
+  <div class="col-md-12">
+    <h4>
+      <%= @name %>   (<%= @files_count %>)         
+
+      <% if @userCanEdit: %>
+        <a class="dropdown-toggle albums-list__editButton" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+          <span class="icon-entypo-down-open-mini"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">            
+            <li role="presentation">
+              <a href="#"  class="js-rmvItem">
+                Delete Folder      
+              </a>
+            </li>   
+        </ul>
+      <% end %>
+
+    </h4>
+
+
+  </div>
+</div>
+<a href="#" class="js-detail">  
+<div>
+  <div class=" row">
+    <div class="col-md-12">
+      FOLDER ICON
+    </div>
+  </div>
+</div>
+</a>

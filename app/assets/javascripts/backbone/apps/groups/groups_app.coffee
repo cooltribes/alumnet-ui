@@ -12,6 +12,7 @@
       "groups/:id/events/new": "createEvent"
       "groups/:id/events": "listEvents"
       "groups/:id/photos": "listAlbums"
+      "groups/:id/files": "listFiles"
       "groups/:id/banner": "bannersList"
 
       "groups/manage": "manageGroups"
@@ -54,6 +55,9 @@
     listEvents: (id)->
       controller = new GroupsApp.Events.Controller
       controller.listEvents(id)
+    listFiles: (id)->
+      controller = new GroupsApp.Files.Controller
+      controller.listFiles(id)
     inviteEvent: (event, users)->
       controller = new GroupsApp.Events.Controller
       controller.invitations(event, users)
