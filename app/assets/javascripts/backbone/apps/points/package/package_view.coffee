@@ -9,9 +9,17 @@
 			e.preventDefault()
 			@trigger 'buy'
 
+		initialize: (options) ->
+			@points = AlumNet.current_user.profile.get('points')
+			console.log @points
+
+		templateHelpers: ->
+      		points: @points
+
 	class Package.ListView extends Marionette.CompositeView
 		template: 'points/package/templates/packages_list'
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
 		initialize: (options) ->
+			console.log options
 			$('#pointsBar').hide();
