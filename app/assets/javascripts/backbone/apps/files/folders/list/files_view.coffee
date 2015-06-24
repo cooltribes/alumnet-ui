@@ -5,8 +5,8 @@
     template: 'files/folders/list/files_templates/_file'
     className: 'col-md-3 col-sm-6'
     
-    # triggers:
-    #   'click .js-detail': "download"
+    triggers:
+      'click .js-moveFile': "move:file"
     
     events:
       'click .js-rmvItem': "removeItem"
@@ -59,5 +59,38 @@
       @trigger "new:file"
       console.log "create new file"      
 
+  class Folders.MoveFileModal extends Backbone.Modal
+    template: 'files/folders/list/files_templates/move_file_modal'    
 
+    cancelEl: '#js-close'
+    submitEl: '#js-save'
+    keyControl: false    
+
+    events:
+      "submit form": "submitForm"
+    
+    initialize: (options)->      
+      @folder_id = options.folder_id
+      
+    templateHelpers: ->
+      folder_id: @folder_id
+    
+    # onRender: ()->
+    #   @stickit()
+
+    submitForm: (e)->
+      e.preventDefault()
+      @triggerSubmit()
+    # templateHelpers: ->     
+      # isNew: @model.isNew()
+
+    # beforeSubmit: ()->
+    #   #Validations
+    #   @model.isValid(true)
+
+
+
+    submit: ()->  
+      # @trigger "submit"
+      console.log "submit"
   

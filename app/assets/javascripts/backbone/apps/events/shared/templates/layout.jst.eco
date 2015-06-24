@@ -21,6 +21,14 @@
               <span class="icon-entypo-star"></span>
             Payment</a></li>
           <% end %>
+
+          <li class="<%= @classOf(5)%>">
+            <a href="#events/<%= @id %>/files" class="groupMenu__link">
+              <span class="glyphicon glyphicon-file"></span>
+              Files
+            </a>
+          </li>
+          
         </ul>
       </div>
     </div>
