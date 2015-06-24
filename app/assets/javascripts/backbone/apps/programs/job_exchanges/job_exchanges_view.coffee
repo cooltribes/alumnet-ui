@@ -1,7 +1,7 @@
 @AlumNet.module 'ProgramsApp.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
   class JobExchange.Empty extends Marionette.ItemView
     template: 'programs/job_exchanges/templates/empty'
-  
+
   class JobExchange.Task extends Marionette.ItemView
     className: 'col-md-4 no-padding-rigth'
 
@@ -175,8 +175,10 @@
       'selectCountries': '.js-countries'
       'selectCities': '.js-cities'
       'selectCompany': '#task-company'
-      'selectProfindaSkills': '.js-profinda-skills'
-      'selectProfindaLanguages': '.js-profinda-languages'
+      'selectProfindaMustHaveSkills': '#skills-must-have'
+      'selectProfindaNiceHaveSkills': '#skills-nice-have'
+      'selectProfindaMustHaveLanguages': '#languages-must-have'
+      'selectProfindaNiceHaveLanguages': '#languages-nice-have'
 
     events:
       'click @ui.submitLink': 'submitClicked'
@@ -195,20 +197,21 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
-      @ui.selectProfindaSkills.select2 @select2_profinda_options('alumnet_skills')
-      @ui.selectProfindaLanguages.select2 @select2_profinda_options('alumnet_languages')
+      @ui.selectProfindaMustHaveSkills.select2 @select2_profinda_options('alumnet_skills', @model.must_have_initial_values('alumnet_skills'))
+      @ui.selectProfindaNiceHaveSkills.select2 @select2_profinda_options('alumnet_skills', @model.nice_have_initial_values('alumnet_skills'))
+      @ui.selectProfindaMustHaveLanguages.select2 @select2_profinda_options('alumnet_languages', @model.must_have_initial_values('alumnet_languages'))
+      @ui.selectProfindaNiceHaveLanguages.select2 @select2_profinda_options('alumnet_languages', @model.nice_have_initial_values('alumnet_languages'))
 
       ## set initial value
       unless @model.isNew()
         @ui.selectCountries.select2('val', @model.get('country').value)
         @setSelectCities(@model.get('country').value)
 
-
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      data.must_have_list = data.skills_must_have + "," + data.languages_must_have
-      data.nice_have_list = data.skills_nice_have + "," + data.languages_nice_have
+      data.must_have_list = [data.skills_must_have, data.languages_must_have].join(",").replace(/(^\s*,)|(,\s*$)/g, '')
+      data.nice_have_list = [data.skills_nice_have, data.languages_nice_have].join(",").replace(/(^\s*,)|(,\s*$)/g, '')
       @model.save data,
         success: ->
           ##TODO Match
@@ -249,7 +252,7 @@
         initSelection: (element, callback)->
           callback(initialValue) if initialValue
 
-    select2_profinda_options: (type)->
+    select2_profinda_options: (type, initial_data)->
       multiple: true
       placeholder: "Select"
       minimumInputLength: 2
@@ -270,3 +273,5 @@
         data.text
       formatSelection: (data)->
         data.text
+      initSelection : (element, callback) ->
+        callback(initial_data)

@@ -66,7 +66,7 @@
       e.preventDefault()
       AlumNet.trigger("program:business:my")
 
-    select2_profinda_options: (type)->
+    select2_profinda_options: (type, initial_data)->
       multiple: true
       placeholder: "Select"
       minimumInputLength: 2
@@ -87,3 +87,5 @@
         data.text
       formatSelection: (data)->
         data.text
+      initSelection: (element, callback)->
+        callback(initial_data)

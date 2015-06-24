@@ -16,6 +16,30 @@
     canDelete: ->
       @get('user').id == AlumNet.current_user.id
 
+    get_nice_have_attributes_by: (custom_field)->
+      if @get('nice_have_attributes')
+        _.where(@get('nice_have_attributes'), { custom_field: custom_field })
+      else
+        []
+
+    get_must_have_attributes_by: (custom_field)->
+      if @get('must_have_attributes')
+        _.where(@get('must_have_attributes'), { custom_field: custom_field })
+      else
+        []
+
+    nice_have_initial_values: (custom_field)->
+      data = []
+      _.each @get_nice_have_attributes_by(custom_field), (element, index, list)->
+        data.push { id: element.profinda_id, text: element.value }
+      data
+
+    must_have_initial_values: (custom_field)->
+      data = []
+      _.each @get_must_have_attributes_by(custom_field), (element, index, list)->
+        data.push { id: element.profinda_id, text: element.value }
+      data
+
     validation:
       name:
         required: true

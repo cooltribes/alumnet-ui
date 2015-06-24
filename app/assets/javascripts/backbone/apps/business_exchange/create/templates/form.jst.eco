@@ -39,7 +39,7 @@
           <div class="col-md-6">
             <div class="form-job has-feedback">
               <label class="control-label">Skills required (Must have)</label>
-              <input class="js-profinda-skills" type="hidden" name="skills_must_have" id="skills-must-have" style="width: 100%">
+              <input class="js-profinda-skills" type="hidden" name="skills_must_have" id="skills-must-have" style="width: 100%" value="">
               <span class="help-block"></span>
             </div>
           </div>
