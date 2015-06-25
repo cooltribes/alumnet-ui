@@ -66,6 +66,24 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/business_exchanges'
 
+    nice_have_initial_values: ->
+      data = []
+      if @get('nice_have_attributes')
+        _.each @get('nice_have_attributes'), (element, index, list)->
+          data.push { id: element.profinda_id, value: element.value }
+        data
+      else
+        data
+
+    must_have_initial_values: ->
+      data = []
+      if @get('must_have_attributes')
+        _.each @get('must_have_attributes'), (element, index, list)->
+          data.push { id: element.profinda_id, value: element.value }
+        data
+      else
+        data
+
   class Entities.BusinessExchangeCollection extends Backbone.Collection
     model:
       Entities.BusinessExchange

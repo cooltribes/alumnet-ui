@@ -36,17 +36,10 @@
         <hr>
         <!-- ROW 2 ON -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-job has-feedback">
               <label class="control-label">Skills required (Must have)</label>
-              <input class="js-profinda-skills" type="hidden" name="skills_must_have" id="skills-must-have" style="width: 100%" value="">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Skills desired (Nice to have)</label>
-              <input class="js-profinda-skills" type="hidden" name="skills_nice_have" id="skills-nice-have" style="width: 100%">
+              <input class="js-profinda-skills" type="hidden" name="must_have_list" id="must-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>
           </div>
@@ -55,79 +48,15 @@
         <hr>
         <!-- ROW 3 ON -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Languages required (Must have)</label>
-              <input class="js-profinda-languages" type="hidden" name="languages_must_have" id="languages-must-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Languages desired (Nice to have)</label>
-              <input class="js-profinda-languages" type="hidden" name="languages_nice_have" id="languages-nice-have" style="width: 100%">
+              <label class="control-label">Skills desired (Nice to have)</label>
+              <input class="js-profinda-skills" type="hidden" name="nice_have_list" id="nice-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>
           </div>
         </div>
         <!-- ROW 3 OFF -->
-        <hr>
-        <!-- ROW 4 ON -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Location required (Must have)</label>
-              <input class="js-profinda-location" type="hidden" name="location_must_have" id="location-must-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Location desired (Nice to have)</label>
-              <input class="js-profinda-location" type="hidden" name="location_nice_have" id="location-nice-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 4 OFF -->
-        <hr>
-        <!-- ROW 5 ON -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Sectors required (Must have)</label>
-              <input class="js-profinda-sectors" type="hidden" name="sectors_must_have" id="sectors-must-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Sectors desired (Nice to have)</label>
-              <input class="js-profinda-sectors" type="hidden" name="sectors_nice_have" id="sectors-nice-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 5 OFF -->
-        <hr>
-        <!-- ROW 5 ON -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Brands required (Must have)</label>
-              <input class="js-profinda-brands" type="hidden" name="brands_must_have" id="brands-must-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-job has-feedback">
-              <label class="control-label">Brands desired (Nice to have)</label>
-              <input class="js-profinda-brands" type="hidden" name="brands_nice_have" id="brands-nice-have" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 5 OFF -->
         <hr>
         <!-- ACTIONS ON -->
         <div class="text-right">
