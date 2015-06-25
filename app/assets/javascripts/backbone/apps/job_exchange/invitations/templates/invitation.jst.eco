@@ -1,4 +1,4 @@
-<div class="jobpost">
+<div class="job-post">
   <div class="name"><h3><%= @task.name %></h3></div>
   <div class="company"><h3><b><%= @task.company.text %></b></h3></div>
   <div class="description"><%= @task.description %></div>
@@ -19,7 +19,7 @@
   </div>
   <hr>
   <div class="buttons">
-    <a href="#job-exchange/<%= @task.id %>" class="btn btn-primary js-job-details" >Details</a>
+    <a href="#business-exchange/<%= @task.id %>" class="btn btn-primary js-job-details" >Details</a>
     <a href="#" class="btn btn-success js-invitation-accept" >Accept</a>
     <a href="#" class="btn btn-warning js-invitation-decline" >Decline</a>
   </div>

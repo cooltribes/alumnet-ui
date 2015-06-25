@@ -1,6 +1,6 @@
 @AlumNet.module 'ProgramsApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
-    template: 'programs/submenu/templates/submenu'
+    template: 'job_exchange/submenu/templates/submenu'
     className: 'navTopSubBar'
 
     initialize: (options) ->
@@ -29,5 +29,5 @@
         AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:programs:submenu',(view,tab) ->
+  AlumNet.commands.setHandler 'render:job_exchange:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)
