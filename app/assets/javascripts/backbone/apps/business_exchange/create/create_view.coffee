@@ -24,12 +24,10 @@
     ui:
       'submitLink': '.js-submit'
       'cancelLink': '.js-cancel'
-      'selectProfindaSkills': '.js-profinda-skills'
-      'selectProfindaLanguages': '.js-profinda-languages'
-      'selectProfindaLocation': '.js-profinda-location'
-      'selectProfindaSectors': '.js-profinda-sectors'
-      'selectProfindaBrands': '.js-profinda-brands'
       'datePickerDeadline': '#task-until'
+      'selectProfindaMustHaveList': '#must-have-list'
+      'selectProfindaNiceHaveList': '#nice-have-list'
+
 
     events:
       'click @ui.submitLink': 'submitClicked'
@@ -40,21 +38,16 @@
         show_icon: false
         show_select_today: false
         default_position: 'below'
-      @ui.selectProfindaSkills.select2 @select2_profinda_options('alumnet_skills')
-      @ui.selectProfindaLanguages.select2 @select2_profinda_options('alumnet_languages')
-      @ui.selectProfindaLocation.select2 @select2_profinda_options('alumnet_location')
-      @ui.selectProfindaSectors.select2 @select2_profinda_options('alumnet_sectors')
-      @ui.selectProfindaBrands.select2 @select2_profinda_options('alumnet_brands')
+      @ui.selectProfindaMustHaveList.select2 @select2_profinda_options(@model.must_have_initial_values())
+      @ui.selectProfindaNiceHaveList.select2 @select2_profinda_options(@model.nice_have_initial_values())
 
 
 
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      data.must_have_list = [data.skills_must_have, data.languages_must_have,
-        data.location_must_have, data.sectors_must_have, data.brands_must_have].join(",")
-      data.nice_have_list = [data.skills_nice_have, data.languages_nice_have,
-        data.location_nice_have, data.sectors_nice_have, data.brands_nice_have].join(",")
+      data.must_have_list = data.must_have_list.replace(/(^\s*,)|(,\s*$)/g, '')
+      data.nice_have_list = data.nice_have_list.replace(/(^\s*,)|(,\s*$)/g, '')
       @model.save data,
         success: ->
           ##TODO Match
@@ -66,7 +59,7 @@
       e.preventDefault()
       AlumNet.trigger("program:business:my")
 
-    select2_profinda_options: (type, initial_data)->
+    select2_profinda_options: (initial_data)->
       multiple: true
       placeholder: "Select"
       minimumInputLength: 2
@@ -76,16 +69,16 @@
             "Accept": "application/vnd.profinda+json;version=1"
             "PROFINDAACCOUNTDOMAIN": AlumNet.profinda_account_domain
             "PROFINDAAPITOKEN": AlumNet.current_user.get('profinda_api_token')
-        url: AlumNet.profinda_api_endpoint + "/autocomplete/dictionary_objects"
+        url: AlumNet.profinda_api_endpoint + "/autocomplete/suggestions"
         method: 'GET'
         data: (term)->
-            { term: term, type: type }
+            { term: term }
         results: (data, page) ->
           results:
             data
       formatResult: (data)->
-        data.text
+        data.value +  " - " + data.name
       formatSelection: (data)->
-        data.text
+        data.value
       initSelection: (element, callback)->
         callback(initial_data)
