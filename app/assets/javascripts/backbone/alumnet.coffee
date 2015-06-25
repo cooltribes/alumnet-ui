@@ -9,6 +9,8 @@
     App.profinda_account_domain = options.profinda_account_domain
     current_user_token = App.request 'user:token'
     App.current_token = current_user_token
+    App.environment = options.environment
+    App.paymentwall_project_key = options.paymentwall_project_key
     if current_user_token
       $.ajaxSetup
         headers:
