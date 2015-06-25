@@ -18,6 +18,24 @@
         $(".editLink").css('display','inline-block')
         #$("div.userBusiness__keys").css('display','none')
         #self.render()
+
+      $(window).on 'scroll' , =>
+        if $('body').scrollTop()>500
+          $('#userBusinessAffix').css
+            'position': 'fixed'
+            'width' : '265px'
+            'top' : '120px'
+        else
+          if $('html').scrollTop()>500
+            $('#userBusinessAffix').css
+              'position': 'fixed'
+              'width' : '265px'
+              'top' : '120px'
+          else
+            $('#userBusinessAffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
       
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -50,7 +68,7 @@
       #       errors[field]        
       #   success: (response, newValue)->          
       #     view.model.save()    
-      #$("div.userBusiness__keys").css('display','none')
+      $("div.userBusiness__keys").css('display','none')
 
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
@@ -91,8 +109,10 @@
         if errors?  
           errors[field]
       success: (response, newValue)->                  
-        view.model.save()  
-        #view.render()    
+        view.model.save() 
+        #view.model.fetch
+        #  success: ->
+        #    view.render()    
         
     editableParams: (field)->
       view = @     

@@ -3,7 +3,7 @@
     <!-- Barra lateral -->
     <div class="col-md-3">
 
-      <div > 
+      <div id="userBusinessAffix"> 
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <div>
             <label class="uploadF uploadF--positionLogo ">
