@@ -48,7 +48,6 @@
       @ui.selectInvitationProcess.html(@invitationOptionsString(select.val()))
 
     changedOfficial: (e)->
-      console.log(@ui.official.val())
       if(@ui.official.val() == "1")
         @ui.admissionTypeContainer.removeClass('hide')
         if(@ui.admissionType.val() == "1")

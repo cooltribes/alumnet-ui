@@ -21,6 +21,7 @@
     templateHelpers: ->
       group_name: @group.get('name')
       userIsAdmin: @user.isAlumnetAdmin()
+      group_official: @group.get('official')
 
     ui:
       'startDate':'#event-start-date'
@@ -30,6 +31,12 @@
       'selectCountries':'.js-countries'
       'selectCities':'.js-cities'
       'selectInvitationProcess': '#invitation-process'
+      'official': '#official'
+      'admissionTypeContainer': '#admission-type-container'
+      'admissionType': '#admission-type'
+      'pricesContainer': '#prices-container'
+      'regularPrice': '#event-regular-price'
+      'premiumPrice': '#event-premium-price'
 
     events:
       'click button.js-submit': 'submitClicked'
@@ -37,10 +44,32 @@
       'change #event-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
+      'change #official': 'changedOfficial'
+      'change #admission-type': 'changedAdmissionType'
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
       @ui.selectInvitationProcess.html(@invitationOptionsString(select.val()))
+
+    changedOfficial: (e)->
+      if(@ui.official.val() == "1")
+        @ui.admissionTypeContainer.removeClass('hide')
+        if(@ui.admissionType.val() == "1")
+          @ui.pricesContainer.removeClass('hide')
+      else if(@ui.official.val() == "0")
+        @ui.admissionTypeContainer.addClass('hide')
+        @ui.pricesContainer.addClass('hide')
+        @ui.admissionType.val('0')
+        @ui.regularPrice.val('')
+        @ui.premiumPrice.val('')
+
+    changedAdmissionType: (e)->
+      if(@ui.admissionType.val() == "1")
+        @ui.pricesContainer.removeClass('hide')
+      else if(@ui.admissionType.val() == "0")
+        @ui.pricesContainer.addClass('hide')
+        @ui.regularPrice.val('')
+        @ui.premiumPrice.val('')
 
     invitationOptionsString: (option)->
       if option == "closed"
