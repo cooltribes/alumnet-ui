@@ -47,9 +47,9 @@
       attendance = @get('attendance_info')
       if attendance == null then false else true
 
-    isPaid: ->
+    isPaidAlready: ->
       attendance = @get('attendance_info')
-      if attendance.status == 'going' then true else false
+      if attendance.status == 'going' && @get('admission_type') == 1 then true else false
 
     validation:
       name:

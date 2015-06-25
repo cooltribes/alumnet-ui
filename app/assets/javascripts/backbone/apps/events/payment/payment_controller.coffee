@@ -8,7 +8,7 @@
           $.growl.error({ message: "You cannot see information on this Event. This is a Closed Event" })
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
-        else if event.isPaid()
+        else if event.isPaidAlready()
           layout = AlumNet.request('event:layout', event)
           header = AlumNet.request('event:header', event)
 
