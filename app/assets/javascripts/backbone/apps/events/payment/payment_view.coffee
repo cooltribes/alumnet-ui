@@ -41,8 +41,8 @@
       price = view.model.get("regular_price")
       auth_token = AlumNet.current_token
       attendance_id = view.model.get('attendance_info').id
-      #paymentwall_return_url = window.location.href
-      paymentwall_return_url = window.location.origin
+      paymentwall_return_url = window.location.href
+      #paymentwall_return_url = window.location.origin
       # if(AlumNet.environment == "development")
       #   paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'+window.location.hash+'/'
 
