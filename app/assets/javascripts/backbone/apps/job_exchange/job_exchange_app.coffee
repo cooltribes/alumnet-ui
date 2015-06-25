@@ -1,5 +1,5 @@
-@AlumNet.module 'ProgramsApp', (ProgramsApp, @AlumNet, Backbone, Marionette, $, _) ->
-  class ProgramsApp.Router extends AlumNet.Routers.Base
+@AlumNet.module 'JobExchangeApp', (JobExchangeApp, @AlumNet, Backbone, Marionette, $, _) ->
+  class JobExchangeApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "job-exchange": "discoverJobExchange"
       "job-exchange/my-posts": "myJobExchange"
@@ -13,34 +13,34 @@
   API =
     discoverJobExchange: ->
       document.title = 'AlumNet - Discover jobs'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.discoverJobExchange()
+      controller = new JobExchangeApp.Discover.Controller
+      controller.discover()
     myJobExchange: ->
       document.title = 'AlumNet - My jobs'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.myJobExchange()
+      controller = new JobExchangeApp.MyJobs.Controller
+      controller.myJobs()
     appliedJobExchange: ->
       document.title = 'AlumNet - Applied jobs'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.appliedJobExchange()
+      controller = new JobExchangeApp.Applied.Controller
+      controller.applied()
     automatchesJobExchange: ->
       document.title = 'AlumNet - Automatches'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.automatchesJobExchange()
+      controller = new JobExchangeApp.AutoMatches.Controller
+      controller.automatches()
     invitationsJobExchange: ->
       document.title = 'AlumNet - Job invitations'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.invitationsJobExchange()
+      controller = new JobExchangeApp.Invitations.Controller
+      controller.invitations()
     createJobExchange: ->
       document.title = 'AlumNet - Create a job'
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.createJobExchange()
+      controller = new JobExchangeApp.Create.Controller
+      controller.create()
     updateJobExchange: (id)->
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.updateJobExchange(id)
+      controller = new JobExchangeApp.Create.Controller
+      controller.update(id)
     showJobExchange: (id)->
-      controller = new ProgramsApp.JobExchange.Controller
-      controller.showJobExchange(id)
+      controller = new JobExchangeApp.Show.Controller
+      controller.show(id)
 
   AlumNet.on "program:job:my", ->
     AlumNet.navigate("job-exchange/my-posts")
@@ -51,5 +51,5 @@
     API.discoverJobExchange()
 
   AlumNet.addInitializer ->
-    new ProgramsApp.Router
+    new JobExchangeApp.Router
       controller: API
