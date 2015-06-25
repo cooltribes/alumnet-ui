@@ -4,7 +4,6 @@
       event = AlumNet.request("event:find", event_id)
       current_user = AlumNet.current_user
       event.on 'find:success', (response, options)->
-        console.log event
         if event.isClose() && not event.userIsInvited()
           $.growl.error({ message: "You cannot see information on this Event. This is a Closed Event" })
         else if event.isSecret() && not event.userIsInvited()

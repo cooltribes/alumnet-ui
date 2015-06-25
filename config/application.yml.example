@@ -4,6 +4,7 @@ defaults: &defaults
   pusher_key: 51c54e51c6823ec65d89
   profinda_api_endpoint: http://apistaging.profinda.com/api #staging
   profinda_account_domain: cooltribes-staging.profinda.com
+  paymentwall_project_key: '1acce8f2587d6f7cca456c87cc672bd2'
 
 development:
   <<: *defaults
@@ -18,3 +19,4 @@ staging:
 production:
   <<: *defaults
   pusher_key: <%= ENV["PUSHER_KEY"] %>
+  paymentwall_project_key: '64b36453ab8379d343402ab3a85d6ab9'
