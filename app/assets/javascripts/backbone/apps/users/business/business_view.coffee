@@ -16,7 +16,7 @@
       self = @
       jQuery(document).click -> 
         $(".editLink").css('display','inline-block')
-        #$("div.userBusiness__keys").css('display','none')
+        $("div.userBusiness__keys").css('display','none')
         #self.render()
 
       $(window).on 'scroll' , =>
@@ -110,6 +110,8 @@
           errors[field]
       success: (response, newValue)->                  
         view.model.save() 
+        $("div.userBusiness__keys").css('display','none')
+        view.render() 
         #view.model.fetch
         #  success: ->
         #    view.render()    
@@ -137,7 +139,7 @@
 
     showEditField: ()->
       $(".editLink").css('display','inline-block')
-      #$("div.userBusiness__keys").css('display','none')
+      $("div.userBusiness__keys").css('display','none')
       #@render()
 
 
