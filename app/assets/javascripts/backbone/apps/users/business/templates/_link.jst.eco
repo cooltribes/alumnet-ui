@@ -1,3 +1,4 @@
+<div> 
   <div>
     <div>
       <div class="js-title userBusiness__link userBusiness__linkT">
@@ -10,7 +11,7 @@
       <% end %>
     </div>
 
-    <div>
+    <div class="margin_top_xsmall_minus">
       <div class="js-description userBusiness__link userBusiness__linkD">
         <%= @description %>
       </div>
@@ -22,8 +23,7 @@
       <% end %>
     </div>
 
-    <div>
-      
+    <div class="margin_top_xsmall_minus">
         <div class="js-url userBusiness__link userBusiness__linkD">
           <a href="<%= @url %>"><%= @url %></a>
         </div>
@@ -35,7 +35,9 @@
     </div>
   </div>
   <% if @userCanEdit: %>
-    <a href="#" class="editLink text-danger js-delete userBusiness__linkR" >
+    <a href="#" class="text-danger js-delete userBusiness__linkR" >
       <span class="glyphicon glyphicon-remove"></span>
     </a>
   <% end %> 
+</div> 
+<div></div>

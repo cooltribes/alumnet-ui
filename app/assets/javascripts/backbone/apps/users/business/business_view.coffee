@@ -13,6 +13,11 @@
 
       @keywords = options.keywords
 
+      self = @
+      jQuery(document).click -> 
+        $(".editLink").css('display','inline-block')
+        #$("div.userBusiness__keys").css('display','none')
+        #self.render()
       
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -22,6 +27,8 @@
     
     events:      
       "click .js-edit": "editField"
+      "click .editable-submit":"showEditField"
+      "click .editable-cancel":"showEditField"
     
     ui:
       "offer": ".js-offer"
@@ -43,7 +50,7 @@
       #       errors[field]        
       #   success: (response, newValue)->          
       #     view.model.save()    
-
+      #$("div.userBusiness__keys").css('display','none')
 
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
@@ -84,7 +91,8 @@
         if errors?  
           errors[field]
       success: (response, newValue)->                  
-        view.model.save()      
+        view.model.save()  
+        #view.render()    
         
     editableParams: (field)->
       view = @     
@@ -105,7 +113,13 @@
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
       @$(".js-#{target}").editable("toggle") 
-      @$(".js-#{target}").css('display','none')
+      @$(e.currentTarget).css('display','none')
+
+    showEditField: ()->
+      $(".editLink").css('display','inline-block')
+      #$("div.userBusiness__keys").css('display','none')
+      #@render()
+
 
     
     fillKeywords: ()->
@@ -199,6 +213,8 @@
 
     events:
       "submit .js-linkForm": "saveLink"
+      "click #js-addLink":"showForm"
+      "click .js-cancel":"hideForm"
 
     bindings:
       "[name=title]": "title"
@@ -217,8 +233,18 @@
           wait: true
         @model.clear()
         # console.log "listo"
+        $(".userBusiness__form").css("display", "none");
+        $("#js-addLink").css("display", "block");
 
+    showForm: (e)->
+      e.preventDefault()
+      $(".userBusiness__form").css("display", "block");
+      $(e.currentTarget).css("display", "none");
 
+    hideForm: (e)->
+      e.preventDefault()
+      $(".userBusiness__form").css("display", "none");
+      $("#js-addLink").css("display", "block");
   
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'

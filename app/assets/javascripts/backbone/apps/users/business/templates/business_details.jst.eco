@@ -6,6 +6,13 @@
       <div > 
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <div>
+            <label class="uploadF uploadF--positionLogo ">
+              <div class="uploadF--blue">
+                <span class="glyphicon glyphicon-open"></span>
+                <span>Upload logo</span>
+              </div>
+              <input type="file" class="logo">
+            </label>
             <img src="" class="userBusiness__logo img-responsive">
           </div>
           <div class="userBusiness__company">
@@ -36,11 +43,16 @@
             </li>
           </ul> 
         </div>
-        <div>
-
+        <div class="userBusiness__flechas">
+          <div class="userBusiness__flechas--disable">
+            <div class="userBusiness__flechas--in"><</div>
+          </div>
+          <div class="userBusiness__flechas--out">
+            <div class="userBusiness__flechas--in">></div>
+          </div>
         </div>
         <% if @userCanEdit: %>
-          <a href="#" title="Create Business" class="btn-primary btn btn-primary js-create"><span class="glyphicon glyphicon-plus"></span> Create new section</a>
+          <a href="#" title="Create Business" class="btn btn-primary-noBackground userBusiness__btnCreate js-create"><span class="glyphicon glyphicon-plus"></span> Add new section</a>
         <% end %>  
       </div>
     </div>

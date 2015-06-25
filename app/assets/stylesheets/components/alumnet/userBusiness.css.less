@@ -45,15 +45,23 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   			& ul{
 		  		padding: 10px 0 10px 10px;
 		  		list-style: none;
-		  		display: table;
-		  		width: 320px;
 
 		  		& li{
-		  			display: table-row;
-
+            display: table;
+            width: 320px;
 		  			& > div{
-		  				display: table-cell;
-		  				width: 80%;
+		  				display: table-row;
+
+              & > div {
+                display: table-cell;
+                width: 90%;
+                border-bottom: 1px solid #CFCFCF;
+                border-top: 1px solid #cfcfcf;
+                padding-left: 10px;
+              }
+              &:last-child{
+                height: 10px
+              }
 		  			}
 		  		}
 		  	}
@@ -80,7 +88,30 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   				}
   			}
   		}
-  	}
+
+    & .select2-container,& .editable-input,&.editable-input, & .editable-buttons, & .editable-container.editable-inline,& .form-inline .form-group{
+      display: block;
+    }
+
+    & .editableform .form-control {
+      display: block;
+      width: 100%;
+    }
+
+    & .editable-buttons{
+      margin-top: 10px;
+      text-align: right;
+
+      & button {
+          padding: 5px 20px;
+      }
+    }
+
+    & .select2-container-multi .select2-choices{
+      margin-top: 5px;
+      background-image: none; 
+    }
+  }
 
   	&__keys{
   		display: none;
@@ -94,9 +125,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   		&R {
   			display: table-cell;
 		  	text-align: center;
-			vertical-align: middle;
-			background-color: @darkRed;
-			color: #fff;
+			  vertical-align: middle;
+			  background-color: @darkRed;
+			  color: #fff;
+        width: 10%;
   		}
 
   		&T {
@@ -139,5 +171,52 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
   	&__menu{
   		margin-top: 0;
+      margin-bottom: 0;
   	}
+
+    &__flechas{
+      text-align: center;
+      padding: 10px;
+
+      &--disable{
+        background-color: lightgray;
+        display: inline-block;
+        padding: 7px;
+        border-radius: 50%;
+      }
+
+      &--in{
+        width: 30px;
+        height: 30px;
+        border: 2px solid @white;
+        border-radius: 50%;
+        color: @white;
+        font-size: 1.3em;
+        font-weight: bold; 
+
+      }
+
+      &--out{
+        background-color: gray;
+        display: inline-block;
+        padding: 7px;
+        border-radius: 50%;
+      }
+      
+    }
+
+    &__btnCreate{
+      display: block;
+      background-color: #fff;
+      text-transform: uppercase;
+      border-width: 2px;
+    }
+
+    &__form{
+      display: none;
+    }
+}
+
+#js-addLink{
+  display: block;
 }
