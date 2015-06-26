@@ -40,7 +40,6 @@
             attrs = { event_id: event.get('id'), user_id: current_user.id }
             request = AlumNet.request('membership:create', attrs)
             request.on 'save:success', (response, options)->
-              console.log response.responseJSON
               AlumNet.trigger "events:posts", event.get('id')
 
             request.on 'save:error', (response, options)->

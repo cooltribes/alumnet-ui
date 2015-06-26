@@ -16,7 +16,7 @@
     <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
     </div>
   <% end %>
-  <% if @userCanAttend  && not @isPast && (@capacity > @attendances_count || not @capacity): %>
+  <% if @userCanAttend  && not @isPast && (@capacity > @going_count || not @capacity): %>
     <div class="groupCoverArea__attendanceOptions">
       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
         ATTENDING

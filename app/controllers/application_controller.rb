@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
     gon.profinda_api_endpoint = Settings.profinda_api_endpoint
     gon.profinda_account_domain = Settings.profinda_account_domain
     gon.auth_token = current_user if signed_in?
+    gon.environment = Rails.env
+    gon.paymentwall_project_key = Settings.paymentwall_project_key
     init_linkedin_for_registration
     if session[:facebook_profile].present?
       gon.facebook_profile = session[:facebook_profile]

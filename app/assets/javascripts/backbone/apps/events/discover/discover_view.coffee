@@ -5,7 +5,6 @@
     className: 'eventsTableView margin_bottom_xsmall'
 
     templateHelpers: ->
-      console.log @model
       model = @model
       location: @model.getLocation()
       isPast: @model.isPast()
@@ -75,11 +74,9 @@
     
     
     searchCliked: (e)->
-      console.log "Searching"
       e.preventDefault()
       term = @.$('#search_term').val()
       @trigger 'search', term  
-      console.log term
 
     ###
     
