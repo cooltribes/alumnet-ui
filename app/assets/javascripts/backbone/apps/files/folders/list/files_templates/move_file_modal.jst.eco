@@ -10,9 +10,10 @@
   <form>    
     <div class="form-group">
       <label class="control-label" for="folder">Folders</label>
-      <select class="form-control" name="folder">
+      <select class="form-control" name="folder_id">
+        <% folder_id = @folder_id %>
         <% _.each @items, (folder, index, foldersCollection)->: %>
-          <option <%= if @folder_id == folder.id then "selected" %>value="<%= folder.id %>"><%= folder.name %></option>
+          <option <%= if folder_id == folder.id then 'selected="selected"' %>value="<%= folder.id %>"><%= folder.name %></option>
         <% end %>
       </select>
       <span class="help-block"></span>

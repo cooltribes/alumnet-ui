@@ -21,7 +21,7 @@
 
     removeItem: (e)->
       e.preventDefault()
-      if confirm("Are you sure you want to delete this folder and all its files?")
+      if confirm("Are you sure you want to delete this file?")
         @model.destroy
           wait: true
     
@@ -84,13 +84,13 @@
     # templateHelpers: ->     
       # isNew: @model.isNew()
 
-    # beforeSubmit: ()->
-    #   #Validations
-    #   @model.isValid(true)
+    beforeSubmit: ()->
+      #Validations
+      data = Backbone.Syphon.serialize @      
+      @folder_id = parseInt(data.folder_id)      
+      (@folder_id?) && Number.isInteger(@folder_id) && (@folder_id > 0)
 
-
-
+      
     submit: ()->  
-      # @trigger "submit"
-      console.log "submit"
+      @trigger "submit", @folder_id
   

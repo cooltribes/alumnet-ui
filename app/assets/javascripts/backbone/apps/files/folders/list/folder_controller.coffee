@@ -61,13 +61,13 @@
       files_view.on "return", ()->        
         self.showAllFolders()
 
-      files_view.on "childview:move:file", ()->        
-        self.showMoveFileModal(@)  
+      files_view.on "childview:move:file", (childview)->        
+        self.showMoveFileModal(@, childview.model)  
 
       @layout.show files_view
 
 
-    showMoveFileModal: (files_view)->
+    showMoveFileModal: (files_view, file)->
       # folders_list = @folders_collection.filter (folder)->
       #   folder.id != files_view.model.id
       view = new Folders.MoveFileModal
@@ -75,9 +75,23 @@
         folder_id: files_view.model.id
         # collection: folders_list
       
-      # controller = @
-      # view.on "submit", ()->         
-      #   controller.folders_collection.create @model.attributes,
-      #     wait: true          
+      controller = @
+      view.on "submit", (new_folder_id)->                 
+        
+        old_folder_id = file.get "folder_id"        
+        
+        file.set "folder_id", new_folder_id
 
+        file.save {},
+          success: (model)->
+            # if model.get("folder_id") != old_folder_id
+              #remove file from one collection and add it to new one
+            current_folder = controller.folders_collection.get files_view.model.id
+            new_folder = controller.folders_collection.get new_folder_id
+
+            model = current_folder.files_collection.remove model.id
+            new_folder.files_collection.add model
+        
+                
+            
       files_view.ui.modals.html view.render().el  
