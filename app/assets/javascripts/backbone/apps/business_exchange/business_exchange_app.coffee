@@ -4,6 +4,7 @@
       "business-exchange": "discoverBusinessExchange"
       "business-exchange/your-tasks": "yourTasksBusinessExchange"
       "business-exchange/applied": "appliedBusinessExchange"
+      "business-exchange/automatches": "automatchesBusinessExchange"
       "business-exchange/invitations": "invitationsBusinessExchange"
       "business-exchange/new": "createBusinessExchange"
       "business-exchange/:id/edit": "updateBusinessExchange"
@@ -22,6 +23,10 @@
       document.title = 'AlumNet - Applied Tasks'
       controller = new BusinessExchangeApp.Applied.Controller
       controller.applied()
+    automatchesBusinessExchange: ->
+      document.title = 'AlumNet - Tasks Automatches'
+      controller = new BusinessExchangeApp.AutoMatches.Controller
+      controller.automatches()
     invitationsBusinessExchange: ->
       document.title = 'AlumNet - Tasks Invitations'
       controller = new BusinessExchangeApp.Invitations.Controller

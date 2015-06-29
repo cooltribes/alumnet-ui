@@ -4,6 +4,18 @@
   # POSITION_TYPES = { 0 => "Top Management/Director", 1 => "Middle management", 2 => "Senior Specialist",
   #   3 => "Junior Specialist", 4 => "Entry job" }
 
+    validation:
+      name:
+        required: true
+        maxLength: 250
+        msg: "Name is required, must be less than 250 characters long."
+      description:
+        required: true
+        maxLength: 2048
+        msg: "Description is required, must be less than 2048 characters long"
+      nice_have_list:
+        required: true
+
     canApply: ->
       @get('user_can_apply')
 
@@ -39,18 +51,6 @@
       _.each @get_must_have_attributes_by(custom_field), (element, index, list)->
         data.push { id: element.profinda_id, text: element.value }
       data
-
-    validation:
-      name:
-        required: true
-        maxLength: 250
-        msg: "Name is required, must be less than 250 characters long."
-      description:
-        required: true
-        maxLength: 2048
-        msg: "Description is required, must be less than 2048 characters long"
-      nice_have_list:
-        required: true
 
   class Entities.JobExchange extends Entities.Tasks
     urlRoot: ->
