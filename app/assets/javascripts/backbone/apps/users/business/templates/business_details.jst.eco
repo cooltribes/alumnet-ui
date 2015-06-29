@@ -27,17 +27,17 @@
           </div>
           <ul class="nav nav-pills nav-stacked">
             <li>
-              <a href="" class="text-uppercase">
+              <a id="toWhatiOffer" class="text-uppercase smoothClick">
                 what  i offer
               </a>
             </li>
             <li>
-              <a href="" class="text-uppercase">
+              <a id="toWhatImLookingFor" class="text-uppercase smoothClick">
                 what  i'm looking for
               </a>
             </li>
             <li>
-              <a href="" class="text-uppercase">
+              <a id="toWhyMe" class="text-uppercase smoothClick">
                 why me
               </a>
             </li>
@@ -62,7 +62,7 @@
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin">        
+          <h3 class="no-margin" id="WhatiOffer">        
             What I Offer
             <% if @userCanEdit: %>
               <a href="#" data-target="offer"class="editLink js-edit pull-right" >
@@ -105,7 +105,7 @@
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin">        
+          <h3 class="no-margin" id="WhatImLookingFor">        
             What I'm looking for
             <% if @userCanEdit: %>
               <a href="#" data-target="search" class="editLink js-edit pull-right" >
@@ -149,7 +149,7 @@
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin">        
+          <h3 class="no-margin" id="WhyMe">        
             Why to make business with me
             <% if @userCanEdit: %>
               <a href="#" data-target="business-me" class="editLink js-edit pull-right" >

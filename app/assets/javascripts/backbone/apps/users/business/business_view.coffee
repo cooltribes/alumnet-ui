@@ -47,6 +47,7 @@
       "click .js-edit": "editField"
       "click .editable-submit":"showEditField"
       "click .editable-cancel":"showEditField"
+      'click .smoothClick':'smoothClick'
     
     ui:
       "offer": ".js-offer"
@@ -142,8 +143,17 @@
       $("div.userBusiness__keys").css('display','none')
       #@render()
 
+    smoothClick: (e)->
+      if $(e.target).prop("tagName")!='a'
+        element = e.target.closest 'a'
+      else
+        element = e.target
+      String id = element.id
+      id='#'+id.replace('to','')
+      $('html,body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
 
-    
     fillKeywords: ()->
       keywords = _.pluck(@keywords.models, 'attributes')
       _.pluck(keywords, 'name')
