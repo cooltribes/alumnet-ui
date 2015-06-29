@@ -18,14 +18,13 @@
     
     events:
       'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: true
       
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
     templateHelpers: ->
       userCanEdit: @userCanEdit  
+      files_length: @model.files_collection.length
 
     removeItem: (e)->
       e.preventDefault()

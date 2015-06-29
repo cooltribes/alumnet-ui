@@ -109,16 +109,12 @@
        
        
       uploader.bind 'FilesAdded',(up, files)->
-        # html = ''
         #Add loading bar...
-
-          # html = html + "<li id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </li>"
-        # view.ui.fileList.html(html)
+        view.showUploading()                  
         uploader.start()
             
       uploader.bind 'UploadComplete', ()->
-        #Remove the img with "Uploading .." message        
-        # view.collection.pop()
+        view.hideUploading()
 
       uploader.bind 'fileUploaded', (up, file, response)->
         if response.status == 201
