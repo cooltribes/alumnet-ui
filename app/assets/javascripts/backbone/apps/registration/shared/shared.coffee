@@ -4,6 +4,7 @@
     template: 'registration/shared/templates/sidebar'
    
     initialize: (options) ->
+      document.title = " AlumNet - Registration"
       @step = options.step || ""
       @class = [
         "", "", ""

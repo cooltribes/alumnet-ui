@@ -30,7 +30,7 @@
     </div>
   <div class="jobPostDetail__buttons text-right">
     <% if @canDelete: %>
-      <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+      <a href="#" class="btn btn-danger js-job-delete" ><span class="glyphicon glyphicon-remove"></span></a>
     <% end %>
     <% if @canEdit: %>
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
