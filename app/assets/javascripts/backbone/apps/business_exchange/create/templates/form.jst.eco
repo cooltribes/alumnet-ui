@@ -38,8 +38,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Skills required (Must have)</label>
-              <input class="js-profinda-skills" type="hidden" name="must_have_list" id="must-have-list" style="width: 100%" value=",">
+              <label class="control-label">Attributes desired (Nice to have)</label>
+              <input class="js-profinda-skills" type="hidden" name="nice_have_list" id="nice-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>
           </div>
@@ -50,8 +50,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Skills desired (Nice to have)</label>
-              <input class="js-profinda-skills" type="hidden" name="nice_have_list" id="nice-have-list" style="width: 100%" value=",">
+              <label class="control-label">Attributes required (Must have)</label>
+              <input class="js-profinda-skills" type="hidden" name="must_have_list" id="must-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>
           </div>
