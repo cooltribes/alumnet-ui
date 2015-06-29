@@ -32,7 +32,7 @@
 
       </div>      
     </form>
-       <a href="#" class="createBanner__btn createBanner__btnDelete" title="Delete banner" id="js-deleteBanner">Delete Banner</a>
-       <button class="btn btn-primary btn-lg js-update">Update</button>
+       <a href="#" class="btn btn-danger" title="Delete banner" id="js-deleteBanner">Delete</a>
+       <button class="btn btn-primary js-update">Update</button>
   </div>
 </div>
