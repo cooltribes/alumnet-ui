@@ -92,3 +92,43 @@
           # picture = JSON.parse(response.response)
           # view.picture_ids.push picture.id 
       @uploader = uploader
+
+  class Utilities.PluploaderFolders
+    constructor: (browse_triggers, view)->
+      uploader = new plupload.Uploader
+        browse_button: browse_triggers
+        url: AlumNet.api_endpoint + '/folders/' + view.model.id + "/attachments"
+        headers:
+          'Authorization': 'Token token="' + AlumNet.current_token + '"'
+          'Accept': 'application/vnd.alumnet+json;version=1'
+        # filters:
+        #   mime_types:[
+        #     title: "Images Files"
+        #     extensions: "jpg,png,gif"            
+        #   ]
+       
+       
+      uploader.bind 'FilesAdded',(up, files)->
+        #Add loading bar...
+        view.showUploading()                  
+        uploader.start()
+            
+      uploader.bind 'UploadComplete', ()->
+        view.hideUploading()
+
+      uploader.bind 'fileUploaded', (up, file, response)->
+        if response.status == 201
+          # console.log "Upladed a file"
+          # console.log response
+          # lastPic = view.collection.last()
+          #Get the last index of the
+          lastIndex = view.collection.length - 1
+          view.collection.add JSON.parse(response.response),
+            at: lastIndex
+          # console.log modelo  
+          # lastIndex = view.collection.indexOf(view.collection.last())
+          # console.log "lastindex" + lastIndex
+          # console.log "length" + view.collection.length
+          # picture = JSON.parse(response.response)
+          # view.picture_ids.push picture.id 
+      @uploader = uploader

@@ -64,7 +64,7 @@
 							<img src="http://placehold.it/80" alt="name of the user" class="img-circle">
 						</div>
 						<div class=" col-md-10 ">
-							<h4 class="userCard__name">Morgan Freeman</h4>
+							<h4 class="userCard__name overfloadText">Morgan Freeman</h4>
 							<p class="member-position text-small">Local Comitee President</p>
 						</div>
 					</div>
@@ -238,7 +238,7 @@
 							<img src="http://placehold.it/80" alt="name of the user" class="img-circle">
 						</div>
 						<div class=" col-md-10 ">
-							<h4 class="userCard__name">Morgan Freeman</h4>
+							<h4 class="userCard__name overfloadText">Morgan Freeman</h4>
 							<p class="member-position text-small">Local Comitee President</p>
 						</div>
 					</div>

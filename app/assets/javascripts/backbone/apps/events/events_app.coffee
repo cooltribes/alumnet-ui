@@ -6,6 +6,7 @@
       "events/:id/attendances": "attendancesEvent"
       "events/:id/photos": "listAlbums"
       "events/:id/payment": "paymentEvent"
+      "events/:id/files": "showFiles"
       "events/manage": "manageEvents"
       "events/new": "createEvent"
       "events": "discoverEvents"
@@ -37,6 +38,10 @@
     paymentEvent: (id)->
       controller = new EventsApp.Payment.Controller
       controller.payEvent(id)
+
+    showFiles: (id)->
+      controller = new EventsApp.Files.Controller
+      controller.showFiles(id)
 
     discoverEvents: ->
       document.title = 'AlumNet - Discover Events'

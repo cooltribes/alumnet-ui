@@ -1,54 +1,14 @@
 # Animation for regions and showing views
 # ---
-# This is a kind of simple "plugin" for animate the views while showing them in the entire application
-# Use:
-#  Use the method ".showAnimated(view)" instead of .html() jQuery function
+# Overriding "attachHtml" Method of Marionette Regions
 
 # Nelson Ramirez
 
 
-
-
-
-# (function( $ ) {
- 
-#     $.fn.showAnimated = function(view) {
- 
-#         this.css({opacity: 0})
-#         this.html(view.el)
-#         this.animate({opacity: 1}, 300)
- 
-#         return this;
- 
-#     };
- 
-# }( jQuery ));
 Backbone.Marionette.Region::attachHtml = (newView) ->
   @$el.css({opacity: 0})
   @$el.html(newView.el)
   @$el.animate({opacity: 1}, 300)
-
-# (( $ )->
-#   console.log "declaring"
-#   $.fn.showAnimated = (view) ->
-
-#     this.css({opacity: 0})
-#     this.html(view.el)
-#     this.animate({opacity: 1}, 300)
-
-#     this;
-
-  
- 
-# ( jQuery ))
-
-
-
-
-
-
-
-
 
 
 

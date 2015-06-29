@@ -1,0 +1,44 @@
+<div class="job-post">
+  <div class="jobPost__name"><h3><%= @name %></h3></div>
+  <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="jobPostDetail__description"><%= @description %></div>
+    </div>
+    <div class="col-md-4">
+        <% if @user: %>
+          <div class="row user">
+            <div class="col-md-3">
+              <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+            </div>
+            <div class="no-padding col-md-9 jobPostDetail__user">
+              <span>Posted by</span>
+              <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
+              <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
+              <span>On <%= moment(@created_at).format('MMM Do YYYY') %></span>
+            </div>
+          </div>
+        <% end %>
+        <div class="jobPostDetail__geo padding_top">
+          <span class="ico-location"></span>
+          <%= @location() %>
+        </div>
+        <div class="skills">
+          <!-- SKILLS PENDING -->
+        </div>
+    </div>
+  </div>
+  <hr>
+  <div class="jobPostDetail__buttons">
+    <% if @canDelete: %>
+      <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+    <% end %>
+    <% if @canEdit: %>
+      <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+    <% end %>
+    <a href="#business-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class=" row">
+  <div class="col-md-12">
+    <h4>
+      <%= @name %>  
+
+      <% if @userCanEdit: %>
+        <a class="dropdown-toggle albums-list__editButton" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+          <span class="icon-entypo-down-open-mini"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-expanded="false">            
+            <li role="presentation">
+              <a href="#"  class="js-rmvItem">
+                Delete
+              </a>
+            </li> 
+            <li role="presentation">
+              <a href="#"  class="js-moveFile">
+                Move
+              </a>
+            </li>   
+        </ul>
+      <% end %>
+
+    </h4>
+
+
+  </div>
+</div>
+<a href="<%= @url %>" download="<%= @url %>" class="js-detail">  
+<div>
+  <div class=" row">
+    <div class="col-md-12">
+      File ICON
+    </div>
+  </div>
+</div>
+</a>

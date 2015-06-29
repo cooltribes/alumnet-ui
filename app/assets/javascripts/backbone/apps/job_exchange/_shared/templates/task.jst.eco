@@ -1,0 +1,56 @@
+<div class="jobPost">
+  <% if @canDelete: %>
+      <a href="#" id="iconDelete" class="glyphicon glyphicon-remove js-job-delete pull-right" ata-toggle="tooltip" title="Delete this Job Post"></a>
+    <% end %>
+  <div class="jobPost__name"><h3><%= @name %></h3></div>
+  <div class="company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+  <div class="jobPost__description"><%= @description %></div>
+  <!-- Applied -->
+  <% if @applied_count > 0: %>
+    <hr>
+    <div class="container-fluid no-padding">
+      <h3>APPLIED (<%= @applied_count %>)</h3>
+      <% for apply in @applied: %>
+        <div class="applied row margin_top_small">
+          <div class="col-md-2 col-xs-3 col-sm-1">
+            <img class="jobPost__avatarA" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
+          </div>
+          <div class="col-md-10 col-xs-9 col-sm-11">
+            <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
+            <span><%= apply.user.last_experience %></span><br>
+            <small> <%= moment(apply.updated_at).fromNow() %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <!-- Matches -->
+  <% if @matches_count > 0: %>
+    <hr>
+    <div class="container-fluid no-padding">
+      <h3>MATCHES (<%= @matches_count %>)</h3>
+      <% for match in @matches: %>
+        <div class="matches row margin_top_small">
+          <div class="col-md-2 col-xs-2 col-sm-1">
+            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+          </div>
+          <div class="col-md-10 col-xs-10 col-sm-11">
+            <a href="#users/<%= match.user.id %>/posts"><%= match.user.name %></a><br>
+            <span><%= match.user.last_experience %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="jobPostDetail__buttons text-right">
+    
+    <% if @canEdit: %>
+      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+    <% end %>
+      <a href="#job-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
+      <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
+  </div>
+</div>
