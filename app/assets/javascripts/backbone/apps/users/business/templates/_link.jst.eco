@@ -28,7 +28,7 @@
           <a href="<%= @url %>"><%= @url %></a>
         </div>
       <% if @userCanEdit: %>
-        <a href="#" data-target="url" class="editLink js-edit ">
+        <a href="#" data-target="url" class="editLink js-edit">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>
       <% end %>

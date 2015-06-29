@@ -42,6 +42,12 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   			background-color: #e6e6e8;
   			padding-right: 0;
 
+        & .editable-container.editable-inline{
+          margin-top: 10px;
+          margin-right: 5px;
+          margin-bottom: 10px;
+        }
+
   			& ul{
 		  		padding: 10px 0 10px 10px;
 		  		list-style: none;
@@ -75,7 +81,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 		  	top: -10px;
   		}
 
-  		& > ul{
+  		& ul{
   			padding: 10px;
   			list-style: none;
 
@@ -161,6 +167,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   			vertical-align: middle;
   			color: @white;
   			background-color: @blue;
+
+        &:hover{
+          color:@white;
+        }
   		}
   	}
 

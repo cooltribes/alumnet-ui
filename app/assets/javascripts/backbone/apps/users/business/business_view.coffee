@@ -69,7 +69,7 @@
       #       errors[field]        
       #   success: (response, newValue)->          
       #     view.model.save()    
-      $("div.userBusiness__keys").css('display','none')
+      #$("div.userBusiness__keys").css('display','none')
 
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
@@ -90,18 +90,15 @@
         dropdownAutoWidth: true     
       type: "select2" 
       toggle: 'manual'
-      # display: (value, sourceData, response)->
-      #    #display checklist as comma-separated values
-      #   # html = []
-      #   # checked = $.fn.editableutils.itemsByValue(value, sourceData);                   
-        # _.each value ... AQUI SE ARMA el HTML        
-        # if checked.length
-        #   $.each checked, (i, v) ->
-        #     html.push($.fn.editableutils.escape(v.text));
+      display : (value, sourceData, response)->
+        html = []
 
-        #   $(this).html(html.join(', '));
-        # else
-        # $(this).empty();         
+        if value
+          $.each value, (i, v) ->
+            html+= '<li> # '+v+'</li>';
+          $(this).html('<ul>'+html+'</ul>'); 
+        else
+          $(this).empty();         
         
       
       validate: (value)->
@@ -111,8 +108,8 @@
           errors[field]
       success: (response, newValue)->                  
         view.model.save() 
-        $("div.userBusiness__keys").css('display','none')
-        view.render() 
+        #$("div.userBusiness__keys").css('display','none')
+        #view.render() 
         #view.model.fetch
         #  success: ->
         #    view.render()    
@@ -141,7 +138,6 @@
     showEditField: ()->
       $(".editLink").css('display','inline-block')
       $("div.userBusiness__keys").css('display','none')
-      #@render()
 
     smoothClick: (e)->
       if $(e.target).prop("tagName")!='a'
@@ -182,13 +178,15 @@
     events:    
       "click .js-edit": "editItem"  
       "click .js-delete": "deleteItem"  
+      "click .editable-submit":"showEditField"
+      "click .editable-cancel":"showEditField"
 
     editItem: (e)->
       e.preventDefault()      
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
-      @$(".js-#{target}").editable("toggle")      
-      
+      @$(".js-#{target}").editable("toggle")
+      @$(e.currentTarget).css('display','none')      
       
     deleteItem: (e)->
       e.preventDefault()
@@ -203,7 +201,6 @@
 
     editableParams: (field)->
       view = @     
-
       type: 'text'      
       toggle: 'manual'
       validate: (value)->
@@ -212,8 +209,12 @@
         if errors?  
           errors[field]        
       success: (response, newValue)->          
-        view.model.save()        
- 
+        view.model.save()  
+
+    showEditField: ()->
+      $(".editLink").css('display','inline-block')
+      $("div.userBusiness__keys").css('display','none')
+
  
   class Business.LinksView extends Marionette.CompositeView
     template: 'users/business/templates/links_container'
