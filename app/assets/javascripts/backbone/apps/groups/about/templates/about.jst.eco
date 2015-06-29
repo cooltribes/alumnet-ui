@@ -102,6 +102,7 @@
         
         <div class="text-right">
         <% if @currentUserIsAdmin: %>
+          <a href="#" class="btn btn-info" id="js-validate-mailchimp">Validate Mailchimp Parameters</a>
           <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
         <% end %>
         </div>
