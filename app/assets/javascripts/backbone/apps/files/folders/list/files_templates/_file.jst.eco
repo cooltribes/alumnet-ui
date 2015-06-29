@@ -10,7 +10,12 @@
         <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-expanded="false">            
             <li role="presentation">
               <a href="#"  class="js-rmvItem">
-                Delete file      
+                Delete
+              </a>
+            </li> 
+            <li role="presentation">
+              <a href="#"  class="js-moveFile">
+                Move
               </a>
             </li>   
         </ul>

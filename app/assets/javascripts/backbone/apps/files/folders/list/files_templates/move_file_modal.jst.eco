@@ -1,6 +1,6 @@
 <div class="bbm-modal__topbar">  
   <h3 class="bbm-modal__title">  
-    New folder
+    Move file to:
   <button type="button" class="close js-rmvRow pull-right margin_left_small" id="js-close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 
   </h3>
@@ -9,10 +9,16 @@
 <div class="bbm-modal__section">
   <form>    
     <div class="form-group">
-      <label class="control-label" for="name">Folder Name</label>
-      <input type="text" value="<%= @name %>" class="form-control input-lg" name="name" placeholder="Enter name" autofocus>
+      <label class="control-label" for="folder">Folders</label>
+      <select class="form-control" name="folder_id">
+        <% folder_id = @folder_id %>
+        <% _.each @items, (folder, index, foldersCollection)->: %>
+          <option <%= if folder_id == folder.id then 'selected="selected"' %>value="<%= folder.id %>"><%= folder.name %></option>
+        <% end %>
+      </select>
       <span class="help-block"></span>
-    </div>     
+    </div>
+
 
   </form>
 </div>
