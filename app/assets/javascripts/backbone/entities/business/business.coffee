@@ -7,6 +7,9 @@
       
       @on "change:id", @updateLinksURL
 
+      @company = new Entities.Company @get("company")
+
+
     updateLinksURL: ()->
       @linksCollection.url = AlumNet.api_endpoint + "/business/#{@id}/links"
 

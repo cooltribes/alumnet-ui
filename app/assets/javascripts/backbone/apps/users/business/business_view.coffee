@@ -8,8 +8,7 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-      Backbone.Validation.bind @,
-        attributes: ["offer"]
+      Backbone.Validation.bind @
 
       @keywords = options.keywords
 
@@ -24,6 +23,7 @@
       "click .js-edit": "editField"
     
     ui:
+      "company_name": ".js-company-name"
       "offer": ".js-offer"
       "search": ".js-search"
       "business_me": ".js-business-me"
@@ -43,6 +43,19 @@
       #       errors[field]        
       #   success: (response, newValue)->          
       #     view.model.save()    
+
+      view = @
+      @ui.company_name.editable
+        type: 'text'      
+        toggle: 'manual'
+        validate: (value)->
+          view.model.company.set "name", value          
+          errors = view.model.company.validate()
+          if errors?  
+            errors["name"]        
+        success: (response, newValue)->                    
+          view.model.company.save()
+          
 
 
       @ui.offer.editable @editableParams("offer")
