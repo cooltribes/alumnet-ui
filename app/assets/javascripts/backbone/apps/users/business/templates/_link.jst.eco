@@ -1,31 +1,43 @@
-<h3>
-  <% if @userCanEdit: %>
-    <a href="#" class="editLink text-danger js-delete" >[delete]</a>
-  <% end %>  
-  <br>
-  <% if @userCanEdit: %>
-    <a href="#" data-target="title" class="editLink js-edit" >[edit title]</a>
-  <% end %>
-  <div class="js-title">
-   <%= @title %>    
+<div> 
+  <div>
+    <div>
+      <div class="js-title userBusiness__link userBusiness__linkT">
+       <%= @title %>    
+      </div>
+      <% if @userCanEdit: %>
+        <a href="#" data-target="title" class="editLink js-edit" >
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="margin_top_xsmall_minus">
+      <div class="js-description userBusiness__link userBusiness__linkD">
+        <%= @description %>
+      </div>
+
+      <% if @userCanEdit: %>
+        <a href="#" data-target="description" class="editLink js-edit ">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="margin_top_xsmall_minus">
+        <div class="js-url userBusiness__link userBusiness__linkD">
+          <a href="<%= @url %>"><%= @url %></a>
+        </div>
+      <% if @userCanEdit: %>
+        <a href="#" data-target="url" class="editLink js-edit">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      <% end %>
+    </div>
   </div>
-
-  
-</h3>
-<br>
-<% if @userCanEdit: %>
-  <a href="#" data-target="description" class="editLink js-edit" >[edit description]</a>
-<% end %>
-<div class="js-description">
-  <%= @description %>
-</div>
-
-<br>
-<% if @userCanEdit: %>
-  <a href="#" data-target="url" class="editLink js-edit" >[edit url]</a>
-<% end %>
-<div class="js-url">
-  <a href="<%= @url %>"><%= @url %></a>
-</div>
-<hr>
- 
+  <% if @userCanEdit: %>
+    <a href="#" class="text-danger js-delete userBusiness__linkR" >
+      <span class="glyphicon glyphicon-remove"></span>
+    </a>
+  <% end %> 
+</div> 
+<div></div>

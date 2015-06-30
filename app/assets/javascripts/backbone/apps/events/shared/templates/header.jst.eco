@@ -1,3 +1,4 @@
+<% console.log this %>
 <div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
     <% if @canEditInformation: %>
       <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
@@ -16,7 +17,7 @@
     <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
     </div>
   <% end %>
-  <% if @userCanAttend  && not @isPast && (@capacity > @going_count || not @capacity): %>
+  <% if @userCanAttend  && not @isPast && (@capacity > @going_count || not @capacity) && @attendance().status != 'going' && !@payment_info: %>
     <div class="groupCoverArea__attendanceOptions">
       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
         ATTENDING

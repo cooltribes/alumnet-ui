@@ -103,6 +103,9 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     initialize: ->
       document.title = " AlumNet - Registration"
 
+    onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
+
     addRowClicked: (e)->
       e.preventDefault()
       contact = new AlumNet.Entities.ProfileContact

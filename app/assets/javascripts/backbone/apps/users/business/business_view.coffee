@@ -12,6 +12,29 @@
 
       @keywords = options.keywords
 
+      self = @
+      jQuery(document).click -> 
+        $(".editLink").css('display','inline-block')
+        $("div.userBusiness__keys").css('display','none')
+        #self.render()
+
+      $(window).on 'scroll' , =>
+        if $('body').scrollTop()>500
+          $('#userBusinessAffix').css
+            'position': 'fixed'
+            'width' : '265px'
+            'top' : '120px'
+        else
+          if $('html').scrollTop()>500
+            $('#userBusinessAffix').css
+              'position': 'fixed'
+              'width' : '265px'
+              'top' : '120px'
+          else
+            $('#userBusinessAffix').css
+              'position': 'relative'
+              'top':'0px'
+              'width':'100%'
       
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -21,6 +44,9 @@
     
     events:      
       "click .js-edit": "editField"
+      "click .editable-submit":"showEditField"
+      "click .editable-cancel":"showEditField"
+      'click .smoothClick':'smoothClick'
     
     ui:
       "company_name": ".js-company-name"
@@ -31,32 +57,19 @@
       "keywords_search": ".js-kwS"
 
     onRender: ->
-      #Make the fields editable as text
-      # view = @     
-      # @ui.company_name.editable
-      #   type: 'textarea'      
-      #   toggle: 'manual'
-      #   validate: (value)->
-      #     view.model.set field, value          
-      #     errors = view.model.validate()
-      #     if errors?  
-      #       errors[field]        
-      #   success: (response, newValue)->          
-      #     view.model.save()    
-
+      #Make all fields editable as text
       view = @
       @ui.company_name.editable
         type: 'text'      
         toggle: 'manual'
         validate: (value)->
+          console.log view.model.company
           view.model.company.set "name", value          
           errors = view.model.company.validate()
           if errors?  
             errors["name"]        
         success: (response, newValue)->                    
           view.model.company.save()
-          
-
 
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
@@ -77,18 +90,15 @@
         dropdownAutoWidth: true     
       type: "select2" 
       toggle: 'manual'
-      # display: (value, sourceData, response)->
-      #    #display checklist as comma-separated values
-      #   # html = []
-      #   # checked = $.fn.editableutils.itemsByValue(value, sourceData);                   
-        # _.each value ... AQUI SE ARMA el HTML        
-        # if checked.length
-        #   $.each checked, (i, v) ->
-        #     html.push($.fn.editableutils.escape(v.text));
+      display : (value, sourceData, response)->
+        html = []
 
-        #   $(this).html(html.join(', '));
-        # else
-        # $(this).empty();         
+        if value
+          $.each value, (i, v) ->
+            html+= '<li> # '+v+'</li>';
+          $(this).html('<ul>'+html+'</ul>'); 
+        else
+          $(this).empty();         
         
       
       validate: (value)->
@@ -97,7 +107,7 @@
         if errors?  
           errors[field]
       success: (response, newValue)->                  
-        view.model.save()      
+        view.model.save()    
         
     editableParams: (field)->
       view = @     
@@ -117,9 +127,24 @@
       e.preventDefault()
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
-      @$(".js-#{target}").editable("toggle")    
+      @$(".js-#{target}").editable("toggle") 
+      @$(e.currentTarget).css('display','none')
 
-    
+    showEditField: ()->
+      $(".editLink").css('display','inline-block')
+      $("div.userBusiness__keys").css('display','none')
+
+    smoothClick: (e)->
+      if $(e.target).prop("tagName")!='a'
+        element = e.target.closest 'a'
+      else
+        element = e.target
+      String id = element.id
+      id='#'+id.replace('to','')
+      $('html,body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
+
     fillKeywords: ()->
       keywords = _.pluck(@keywords.models, 'attributes')
       _.pluck(keywords, 'name')
@@ -130,6 +155,7 @@
     
   class Business.LinkView extends Marionette.ItemView
     template: 'users/business/templates/_link'
+    tagName: 'li'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -147,13 +173,15 @@
     events:    
       "click .js-edit": "editItem"  
       "click .js-delete": "deleteItem"  
+      "click .editable-submit":"showEditField"
+      "click .editable-cancel":"showEditField"
 
     editItem: (e)->
       e.preventDefault()      
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
-      @$(".js-#{target}").editable("toggle")      
-      
+      @$(".js-#{target}").editable("toggle")
+      @$(e.currentTarget).css('display','none')      
       
     deleteItem: (e)->
       e.preventDefault()
@@ -168,7 +196,6 @@
 
     editableParams: (field)->
       view = @     
-
       type: 'text'      
       toggle: 'manual'
       validate: (value)->
@@ -177,8 +204,12 @@
         if errors?  
           errors[field]        
       success: (response, newValue)->          
-        view.model.save()        
- 
+        view.model.save()  
+
+    showEditField: ()->
+      $(".editLink").css('display','inline-block')
+      $("div.userBusiness__keys").css('display','none')
+
  
   class Business.LinksView extends Marionette.CompositeView
     template: 'users/business/templates/links_container'
@@ -210,6 +241,8 @@
 
     events:
       "submit .js-linkForm": "saveLink"
+      "click #js-addLink":"showForm"
+      "click .js-cancel":"hideForm"
 
     bindings:
       "[name=title]": "title"
@@ -228,8 +261,18 @@
           wait: true
         @model.clear()
         # console.log "listo"
+        $(".userBusiness__form").css("display", "none");
+        $("#js-addLink").css("display", "block");
 
+    showForm: (e)->
+      e.preventDefault()
+      $(".userBusiness__form").css("display", "block");
+      $(e.currentTarget).css("display", "none");
 
+    hideForm: (e)->
+      e.preventDefault()
+      $(".userBusiness__form").css("display", "none");
+      $("#js-addLink").css("display", "block");
   
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'
