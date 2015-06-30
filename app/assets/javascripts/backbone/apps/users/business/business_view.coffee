@@ -14,8 +14,8 @@
 
       self = @
       jQuery(document).click -> 
-        $(".editLink").css('display','inline-block')
-        $("div.userBusiness__keys").css('display','none')
+        self.showEditField()
+        # $(".editLink").css('display','inline-block')
         #self.render()
 
       $(window).on 'scroll' , =>
@@ -128,11 +128,12 @@
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
       @$(".js-#{target}").editable("toggle") 
-      @$(e.currentTarget).css('display','none')
+      @$(e.currentTarget).hide()
+      # @$(e.currentTarget).css('display','none')
 
     showEditField: ()->
-      $(".editLink").css('display','inline-block')
-      $("div.userBusiness__keys").css('display','none')
+      $(".editLink").show()
+      # $(".editLink").css('display','inline-block')
 
     smoothClick: (e)->
       if $(e.target).prop("tagName")!='a'
