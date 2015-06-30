@@ -1,4 +1,3 @@
-<% console.log this %>
 <div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
     <% if @canEditInformation: %>
       <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
