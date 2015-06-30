@@ -155,6 +155,7 @@
       data: committees
 
     saveExperience: (e)->
+      e.preventDefault()
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
@@ -183,7 +184,6 @@
       'click .js-linkedin-import': 'linkedinClicked'
 
     initialize: (options) ->
-      document.title = " AlumNet - Registration"
       @exp_type = options.exp_type
 
       @title = 'Experience in AIESEC'
@@ -208,6 +208,9 @@
             true
           else
             false
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience

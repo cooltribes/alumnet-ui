@@ -52,7 +52,7 @@
         checkNewPost = false
 
       posts.on "render:collection", ->
-        console.log "render"
+        #console.log "render"
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
