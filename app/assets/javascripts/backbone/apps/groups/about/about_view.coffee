@@ -39,6 +39,7 @@
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
       'click a#js-migrate-users': 'migrateUsers'
+      'click a#js-validate-mailchimp': 'validateMailchimp'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -81,20 +82,33 @@
       if resp
         id = @model.id
         url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
-        console.log(id)
-        console.log(url)
         Backbone.ajax
           url: url
           type: "GET"
           data: { id: id }
           success: (data) =>
-            console.log("success")
-            console.log(data)
             if(not data.success)
               $.growl.error({ message: data.message })
           error: (data) =>
-            console.log("error")
-            console.log(data)
+            $.growl.error({ message: 'Unknow error, please try again' })
+
+    validateMailchimp:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        id = @model.id
+        url = AlumNet.api_endpoint + "/groups/#{id}/validate_mailchimp"
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            if(data.success)
+              $.growl.notice({ message: 'Valid parameters' })
+            else
+              $.growl.error({ message: data.message })
+          error: (data) =>
+            $.growl.error({ message: 'Unknow error, please try again' })
 
     attributeClicked: (e)->
       e.preventDefault()
