@@ -48,6 +48,16 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
+      <% if @currentUserIsAdmin: %>      
+        <div class="groupAbout__box margin_bottom">
+          <h3>Who can upload files</h3>
+            <a href="#" id="upload" class="js-attribute">
+            <% if @upload_files: %>Only administrators<% else: %>All members<% end %>
+            </a>          
+            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
+          
+        </div>
+      <% end %>
       <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
         <h3>Mailchimp mail list        
         </h3>

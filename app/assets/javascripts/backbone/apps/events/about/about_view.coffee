@@ -65,6 +65,7 @@
       'regularPrice': '#regular_price'
       'premiumPrice': '#premium_price'
       'admisionType':'#admision_type'
+      'uploadFiles':'#upload_files'
       'Gmap': '#map'
 
     events:
@@ -74,6 +75,7 @@
       'click a#js-edit-regular-price': 'toggleEditRegularPrice'
       'click a#js-edit-premium-price': 'toggleEditPremiumPrice'
       'click a#js-edit-admision_type': 'toggleEditAdmisionType'
+      'click a#js-edit-upload': 'toggleEditUploadFiles'
 
     onRender: ->
       view = this
@@ -90,6 +92,19 @@
         success: (response, newValue)->
           view.model.save({description: newValue})
       @ui.eventDescription.linkify()
+
+      @ui.uploadFiles.editable
+        type:'select'
+        value: view.model.get('upload_files')    
+        source: [
+              {value: 0, text: 'Only administrators'},
+              {value: 1, text: 'All members'}
+           ]
+        toggle: 'manual'
+        success: (response, newValue)->
+          # view.model.save({admission_type: newValue,premium_price: null,regular_price: null})
+          # view.model.trigger('change:admission_type')
+
 
       @ui.admisionType.editable
         type:'select'
@@ -201,6 +216,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.admisionType.editable('toggle')
+
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
 
     renderView: ->
       @model.save()
