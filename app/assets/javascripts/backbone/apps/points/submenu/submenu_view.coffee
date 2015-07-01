@@ -4,6 +4,7 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->
+      #@listenTo(@model, 'render:view', @renderView)
       @tab = options.tab
       @pointsBar = options.pointsBar   
       @class = [
@@ -24,6 +25,9 @@
         else
           return ""
       points: AlumNet.current_user.profile.get('points')
+
+    renderView: ->
+      @render()
 
   API =
     renderSubmenu: (view,tab,pointsBar)->
