@@ -11,7 +11,7 @@
 
   class Folders.FolderView extends Marionette.ItemView
     template: 'files/folders/list/templates/_folder'
-    className: 'col-md-3 col-sm-6'
+    className: 'col-md-3 col-sm-6 file__background'
     
     triggers:
       'click .js-detail': "show:detail"
@@ -19,7 +19,7 @@
     events:
       'click .js-rmvItem': "removeItem"
       # event: 'view:detail'
-      # preventDefault: true
+      # preventDefault: truec
       
     initialize: (options)->
       @userCanEdit = options.userCanEdit
