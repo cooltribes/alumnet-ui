@@ -5,7 +5,7 @@ class PaymentwallController < ApplicationController
   def callback
     require 'paymentwall'
     Paymentwall::Base::setApiType(Paymentwall::Base::API_GOODS)
-    Paymentwall::Base::setAppKey('1acce8f2587d6f7cca456c87cc672bd2')
+    Paymentwall::Base::setAppKey(Settings.paymentwall_project_key)
     Paymentwall::Base::setSecretKey('ea9c9cad7ce7d4c6ad745b48f36a9d45')
 
     @lifetime = false
