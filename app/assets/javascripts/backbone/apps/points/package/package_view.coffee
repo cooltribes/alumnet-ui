@@ -10,6 +10,8 @@
 			@trigger 'buy'
 
 		initialize: (options) ->
+			#console.log "opciones"
+			console.log options
 			@points = AlumNet.current_user.profile.get('points')
 			console.log @points
 
@@ -21,5 +23,5 @@
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
 		initialize: (options) ->
-			console.log options
+			#console.log options
 			$('#pointsBar').hide();
