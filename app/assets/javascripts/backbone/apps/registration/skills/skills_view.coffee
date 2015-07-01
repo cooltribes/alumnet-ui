@@ -74,11 +74,12 @@
       'click @ui.btnSubmit': 'submitClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
-    onRender: ->
+    oonRender: ->
       skillsList = new AlumNet.Entities.Skills
       skillsList.fetch
         success: =>
           @fillSkills(skillsList)
+      $('body,html').animate({scrollTop: 20}, 600);
 
 
     fillSkills: (collection)->

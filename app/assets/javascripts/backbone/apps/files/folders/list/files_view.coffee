@@ -38,6 +38,8 @@
       
     ui:
       "modals": "#js-modal-container"
+      "uploadBtn": ".js-upload"
+      "loadingBar": ".js-loading"
        
     
     triggers:
@@ -54,10 +56,18 @@
       uploader = new AlumNet.Utilities.PluploaderFolders($(".js-upload", @.$el).get(), @).uploader               
       uploader.init()    
 
-    uploadFile: (e)->
-      e.preventDefault()
-      @trigger "new:file"
-      console.log "create new file"      
+    showUploading: ()-> 
+      @ui.uploadBtn.hide()      
+      @ui.loadingBar.slideDown()
+
+    
+    hideUploading: ()-> 
+      @ui.uploadBtn.show()
+      @ui.loadingBar.slideUp()
+      $.growl.notice 
+        title: "Files"
+        message: "All files have been uploaded successfully"
+      
 
   class Folders.MoveFileModal extends Backbone.Modal
     template: 'files/folders/list/files_templates/move_file_modal'    

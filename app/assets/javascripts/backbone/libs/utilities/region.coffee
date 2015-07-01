@@ -2,7 +2,7 @@
 # ---
 # Overriding "attachHtml" Method of Marionette Regions
 
-# Nelson Ramirez
+# NRamirez
 
 
 Backbone.Marionette.Region::attachHtml = (newView) ->

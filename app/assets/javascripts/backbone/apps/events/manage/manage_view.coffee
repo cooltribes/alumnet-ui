@@ -8,7 +8,6 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
       location: @model.getLocation()
       isPast: @model.isPast()
       select: (value, option)->
