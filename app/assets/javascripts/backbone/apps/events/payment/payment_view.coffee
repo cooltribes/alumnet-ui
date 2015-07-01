@@ -7,6 +7,7 @@
     initialize: (options)->
       @current_user = options.current_user
       @model = options.model
+      @is_premium = @current_user.is_premium?
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
@@ -26,6 +27,9 @@
         id: e.val
       view = this
       price = view.model.get("regular_price")
+      if(view.current_user.get('is_premium'))
+        price = view.model.get("premium_price")
+      
       paymentwall_return_url = window.location.origin
       paymentwall_project_key = AlumNet.paymentwall_project_key
       country.fetch
@@ -51,7 +55,7 @@
       #   paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'+window.location.hash+'/'
 
       paymentwall_project_key = AlumNet.paymentwall_project_key
-      if(view.current_user.is_premium)
+      if(view.current_user.get('is_premium'))
         price = view.model.get("premium_price")
       #parameters_string = 'ag_external_id=order_no_555123ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'currencyCode=USDevent_id='+view.model.get("id")+'key=1acce8f2587d6f7cca456c87cc672bd2payment_type=eventsign_version=2success_url=http://alumnet-test.aiesec-alumni.orguid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
       parameters_string = 'ag_external_id=order_no_555123ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'currencyCode=USDevent_id='+view.model.get("id")+'key='+paymentwall_project_key+'payment_type=eventsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
