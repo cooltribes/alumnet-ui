@@ -13,7 +13,6 @@
 				request = AlumNet.request('user_prize:create', attrs)
 				request.on 'save:success', (response, options)->
 					AlumNet.trigger "points:earned"
-					AlumNet.execute('render:points:submenu',undefined,2,true)
 
 				request.on 'save:error', (response, options)->
 					console.log response.responseJSON
