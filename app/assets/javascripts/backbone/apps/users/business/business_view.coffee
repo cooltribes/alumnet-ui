@@ -8,15 +8,14 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-      Backbone.Validation.bind @,
-        attributes: ["offer"]
+      Backbone.Validation.bind @
 
       @keywords = options.keywords
 
       self = @
       jQuery(document).click -> 
-        $(".editLink").css('display','inline-block')
-        $("div.userBusiness__keys").css('display','none')
+        self.showEditField()
+        # $(".editLink").css('display','inline-block')
         #self.render()
 
       $(window).on 'scroll' , =>
@@ -50,6 +49,7 @@
       'click .smoothClick':'smoothClick'
     
     ui:
+      "company_name": ".js-company-name"
       "offer": ".js-offer"
       "search": ".js-search"
       "business_me": ".js-business-me"
@@ -57,19 +57,19 @@
       "keywords_search": ".js-kwS"
 
     onRender: ->
-      #Make the fields editable as text
-      # view = @     
-      # @ui.company_name.editable
-      #   type: 'textarea'      
-      #   toggle: 'manual'
-      #   validate: (value)->
-      #     view.model.set field, value          
-      #     errors = view.model.validate()
-      #     if errors?  
-      #       errors[field]        
-      #   success: (response, newValue)->          
-      #     view.model.save()    
-      #$("div.userBusiness__keys").css('display','none')
+      #Make all fields editable as text
+      view = @
+      @ui.company_name.editable
+        type: 'text'      
+        toggle: 'manual'
+        validate: (value)->
+          console.log view.model.company
+          view.model.company.set "name", value          
+          errors = view.model.company.validate()
+          if errors?  
+            errors["name"]        
+        success: (response, newValue)->                    
+          view.model.company.save()
 
       @ui.offer.editable @editableParams("offer")
       @ui.search.editable @editableParams("search")        
@@ -107,12 +107,7 @@
         if errors?  
           errors[field]
       success: (response, newValue)->                  
-        view.model.save() 
-        #$("div.userBusiness__keys").css('display','none')
-        #view.render() 
-        #view.model.fetch
-        #  success: ->
-        #    view.render()    
+        view.model.save()    
         
     editableParams: (field)->
       view = @     
@@ -133,11 +128,12 @@
       e.stopPropagation()   
       target = $(e.currentTarget).attr("data-target")
       @$(".js-#{target}").editable("toggle") 
-      @$(e.currentTarget).css('display','none')
+      @$(e.currentTarget).hide()
+      # @$(e.currentTarget).css('display','none')
 
     showEditField: ()->
-      $(".editLink").css('display','inline-block')
-      $("div.userBusiness__keys").css('display','none')
+      $(".editLink").show()
+      # $(".editLink").css('display','inline-block')
 
     smoothClick: (e)->
       if $(e.target).prop("tagName")!='a'

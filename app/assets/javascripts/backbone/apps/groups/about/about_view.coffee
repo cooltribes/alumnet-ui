@@ -17,6 +17,7 @@
       mailchimp: @model.hasMailchimp()
 
     ui:
+      'uploadFiles': '#upload'
       'groupOfficial': '#official'
       'groupDescription':'#description'
       'groupType': '#group_type'
@@ -28,6 +29,7 @@
       'groupListId': '#list_id'
 
     events:
+      'click a#js-edit-upload': 'toggleEditUploadFiles'
       'click a#js-edit-official': 'toggleEditGroupOfficial'
       'click a#js-edit-description': 'toggleEditGroupDescription'
       'click a#js-edit-group-type': 'toggleEditGroupType'
@@ -39,6 +41,7 @@
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
       'click a#js-migrate-users': 'migrateUsers'
+      'click a#js-validate-mailchimp': 'validateMailchimp'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -82,27 +85,45 @@
         $(".loadingAnimation__migrateUsers").css('display','inline-block')
         id = @model.id
         url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
-        console.log(id)
-        console.log(url)
         Backbone.ajax
           url: url
           type: "GET"
           data: { id: id }
           success: (data) =>
-            console.log("success")
-            console.log(data)
             if(not data.success)
               $.growl.error({ message: data.message })
             else
               $(".loadingAnimation__migrateUsers").css('display','none')
               $.growl.notice({ message: "Successful migration" })
           error: (data) =>
-            console.log("error")
-            console.log(data)
+            $.growl.error({ message: 'Unknow error, please try again' })
+
+    validateMailchimp:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        id = @model.id
+        url = AlumNet.api_endpoint + "/groups/#{id}/validate_mailchimp"
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            if(data.success)
+              $.growl.notice({ message: 'Valid parameters' })
+            else
+              $.growl.error({ message: data.message })
+          error: (data) =>
+            $.growl.error({ message: 'Unknow error, please try again' })
 
     attributeClicked: (e)->
       e.preventDefault()
 
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
+    
     toggleEditGroupOfficial: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -156,6 +177,21 @@
         success: (response, newValue)->
           view.trigger 'group:edit:description', view.model, newValue
       @ui.groupDescription.linkify()
+
+      @ui.uploadFiles.editable
+        type: 'select'
+        value: view.model.get('group_type').value
+        title: 'Select option'
+        toggle: 'manual'
+        source: [
+          {value: 0, text: 'Only administrators'}
+          {value: 1, text: 'All members'}          
+        ]
+        validate: (value)->
+          if $.trim(value) == ''
+            'This field is required'
+        success: (response, newValue)->
+          # view.trigger 'group:edit:group_type', view.model, newValue
 
       @ui.groupType.editable
         type: 'select'

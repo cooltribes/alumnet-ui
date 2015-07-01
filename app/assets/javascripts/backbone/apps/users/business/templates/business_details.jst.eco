@@ -20,7 +20,7 @@
               <%= @company.name %>     
             </p>
             <% if @userCanEdit: %>
-              <a href="#" class="userBusiness__companyE" >
+              <a href="#" data-target="company-name" class="editLink userBusiness__companyE js-edit">
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             <% end %>
@@ -65,7 +65,7 @@
           <h3 class="no-margin" id="WhatiOffer">        
             What I Offer
             <% if @userCanEdit: %>
-              <a href="#" data-target="offer"class="editLink js-edit pull-right" >
+              <a href="#" data-target="offer" class="editLink js-edit pull-right" >
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             <% end %>
