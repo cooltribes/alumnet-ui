@@ -36,6 +36,7 @@
       @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
       @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
       @listenTo(@model, 'change:avatar', @changeAvatar)
+      @listenTo(@model, 'change:member', @changeMembresia)
 
       # @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
       # @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
@@ -68,6 +69,9 @@
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
 
+    changeMembresia: ->
+      @render()
+
     changeAvatar: ->
       view = @
       @model.fetch
@@ -81,6 +85,7 @@
 
     templateHelpers: ->
       model = @model
+      #console.log @model
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
       points: 3000
@@ -179,5 +184,4 @@
 
     changeHeader: (e)->
       # e.preventDefault()
-
       AlumNet.execute('header:show:regular')
