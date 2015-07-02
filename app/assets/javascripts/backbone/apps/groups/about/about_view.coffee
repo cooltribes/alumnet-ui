@@ -15,8 +15,10 @@
       joinProcessText: @joinProcessText()
       model: @model
       mailchimp: @model.hasMailchimp()
+      uploadFilesText: @model.uploadFilesText(true)
 
     ui:
+      'uploadFiles': '#upload-files'
       'groupOfficial': '#official'
       'groupDescription':'#description'
       'groupType': '#group_type'
@@ -39,6 +41,8 @@
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
       'click a#js-migrate-users': 'migrateUsers'
+      'click a#js-edit-upload': 'toggleEditUploadFiles'
+
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -134,11 +138,26 @@
       e.preventDefault()
       @ui.groupListId.editable('toggle')
 
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
+
     editAttribute: (e)->
       $(e.target).addClass "hide"
       
     onRender: ->
       view = this
+
+      @ui.uploadFiles.editable
+        type:'select'
+        value: view.model.get('upload_files')    
+        source: view.model.uploadFilesText()
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save
+            "upload_files": newValue
+
       @ui.groupDescription.editable
         type: 'textarea'
         pk: view.model.id
