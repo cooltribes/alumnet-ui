@@ -3,7 +3,7 @@
   
   class Folders.FileView extends Marionette.ItemView
     template: 'files/folders/list/files_templates/_file'
-    className: 'col-md-3 col-sm-6'
+    className: 'col-md-3 col-sm-6 file__background'
     
     triggers:
       'click .js-moveFile': "move:file"
