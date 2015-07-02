@@ -53,6 +53,7 @@
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
       attendance_status: if @model.get('attendance_info') then @model.get('attendance_info').status else ""
+      uploadFilesText: @model.uploadFilesText(true)      
 
     ui:
       'eventDescription':'#description'
@@ -65,7 +66,7 @@
       'regularPrice': '#regular_price'
       'premiumPrice': '#premium_price'
       'admisionType':'#admision_type'
-      'uploadFiles':'#upload_files'
+      'uploadFiles':'#upload-files'
       'Gmap': '#map'
 
     events:
@@ -96,15 +97,11 @@
       @ui.uploadFiles.editable
         type:'select'
         value: view.model.get('upload_files')    
-        source: [
-              {value: 0, text: 'Only administrators'},
-              {value: 1, text: 'All members'}
-           ]
+        source: view.model.uploadFilesText()
         toggle: 'manual'
         success: (response, newValue)->
-          # view.model.save({admission_type: newValue,premium_price: null,regular_price: null})
-          # view.model.trigger('change:admission_type')
-
+          view.model.save
+            "upload_files": newValue
 
       @ui.admisionType.editable
         type:'select'

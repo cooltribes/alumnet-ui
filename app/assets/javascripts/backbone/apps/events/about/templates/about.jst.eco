@@ -73,8 +73,8 @@
       <% if @canEditInformation: %>    
         <div class="groupAbout__box margin_bottom">
           <h3>Who can upload files</h3>
-          <span id="upload_files" class="js-attribute">
-            <% if @upload_files: %>Only administrators<% else: %>All members<% end %>
+          <span href="#" id="upload-files" class="js-attribute">
+            <%= @uploadFilesText %>
           </span>          
           <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
           

@@ -51,6 +51,18 @@
       attendance = @get('attendance_info')
       if attendance.status == 'going' && @get('admission_type') == 1 then true else false
 
+    # return representing string for upload_files value if param "value" is true
+    # if "value" is false, return the entire list for use in dropdown, etc.
+    uploadFilesText: (value = false)->
+      values = [
+        {value: 0, text: 'Only administrators'},
+        {value: 1, text: 'All members'}
+      ]
+      if value
+        values[ @get("upload_files").text ]          
+      else
+        values
+
     validation:
       name:
         required: true
