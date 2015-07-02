@@ -53,6 +53,7 @@
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
       attendance_status: if @model.get('attendance_info') then @model.get('attendance_info').status else ""
+      uploadFilesText: @model.uploadFilesText(true)      
 
     ui:
       'eventDescription':'#description'
@@ -65,6 +66,7 @@
       'regularPrice': '#regular_price'
       'premiumPrice': '#premium_price'
       'admisionType':'#admision_type'
+      'uploadFiles':'#upload-files'
       'Gmap': '#map'
 
     events:
@@ -74,6 +76,7 @@
       'click a#js-edit-regular-price': 'toggleEditRegularPrice'
       'click a#js-edit-premium-price': 'toggleEditPremiumPrice'
       'click a#js-edit-admision_type': 'toggleEditAdmisionType'
+      'click a#js-edit-upload': 'toggleEditUploadFiles'
 
     onRender: ->
       view = this
@@ -90,6 +93,15 @@
         success: (response, newValue)->
           view.model.save({description: newValue})
       @ui.eventDescription.linkify()
+
+      @ui.uploadFiles.editable
+        type:'select'
+        value: view.model.get('upload_files')    
+        source: view.model.uploadFilesText()
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save
+            "upload_files": newValue
 
       @ui.admisionType.editable
         type:'select'
@@ -201,6 +213,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.admisionType.editable('toggle')
+
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
 
     renderView: ->
       @model.save()

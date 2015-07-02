@@ -48,15 +48,14 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
-
+      
       <% if @currentUserIsAdmin: %>      
         <div class="groupAbout__box margin_bottom">
           <h3>Who can upload files</h3>
-            <a href="#" id="upload" class="js-attribute">
-            <% if @official: %>Only administrators<% else: %>All members<% end %>
-            </a>          
-            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
-          
+            <span href="#" id="upload-files" class="js-attribute">
+              <%= @uploadFilesText %>
+            </span>          
+            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>          
         </div>
       <% end %>
 
