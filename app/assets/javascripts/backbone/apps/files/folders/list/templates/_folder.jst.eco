@@ -1,32 +1,30 @@
 <div class=" row">
   <div class="col-md-12">
     <h4>
-      <%= @name %>   (<%= @files_length %>)         
-
+      <div class="overfloadText file__nameFolder">
+        <%= @name %>   (<%= @files_count %>)  
+      </div>           
       <% if @userCanEdit: %>
-        <a class="dropdown-toggle albums-list__editButton" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+        <a class="dropdown-toggle albums-list__editButton file__positionDropdown" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
           <span class="icon-entypo-down-open-mini"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">            
-            <li role="presentation">
-              <a href="#"  class="js-rmvItem">
-                Delete Folder      
-              </a>
-            </li>   
+          <li role="presentation">
+            <a href="#"  class="js-rmvItem">
+              Delete Folder      
+            </a>
+          </li>   
         </ul>
       <% end %>
-
     </h4>
-
-
   </div>
 </div>
-<a href="#" class="js-detail">  
 <div>
-  <div class=" row">
-    <div class="col-md-12">
-      FOLDER ICON
+  <div class="row">
+    <div class="col-md-12 file__iconFileC">
+      <a href="#" class="js-detail">  
+        <span class="glyphicon glyphicon-folder-open"></span>
+      </a>
     </div>
   </div>
 </div>
-</a>

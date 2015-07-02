@@ -1,3 +1,30 @@
 <h1>Discover</h1>
-<div class="advanced-search"></div>
+
+<div class="advanced-search">
+  <div class="advanced-search-container" id="searcher">
+    <div class="filter">
+      <div class="filter-attribute-container">
+        <select class="filter-attribute">
+          <option value="">Attributes</option>
+          <option value="name">Title</option>
+          <option value="country_name">Country</option>
+          <option value="city_name">City</option>
+          <option value="task_attributes_value">Attributes</option>
+
+        </select>
+      </div>
+      <div class="filter-comparator-container">
+        <select class="filter-comparator"></select>
+      </div>
+      <div class="filter-value-container">
+        <input class="filter-value"></input>
+      </div>
+      <a href="#" class="close-filter">x</a>
+    </div>
+  </div>
+  <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
+  <a href="#" class="search btn btn-default">Search</a>
+  <a href="#" class="clear btn btn-default">Clear</a>
+</div>
+
 <div class="tasks-container tasks-container container-fluid"></div>

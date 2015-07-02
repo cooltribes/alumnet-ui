@@ -25,6 +25,9 @@
           return ""
       points: AlumNet.current_user.profile.get('points')
 
+    renderView: ->
+      @render()
+
   API =
     renderSubmenu: (view,tab,pointsBar)->
       if view == null

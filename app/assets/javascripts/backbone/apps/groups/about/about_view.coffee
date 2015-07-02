@@ -82,6 +82,7 @@
       e.preventDefault()
       resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
       if resp
+        $(".loadingAnimation__migrateUsers").css('display','inline-block')
         id = @model.id
         url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
         Backbone.ajax
@@ -91,6 +92,9 @@
           success: (data) =>
             if(not data.success)
               $.growl.error({ message: data.message })
+            else
+              $(".loadingAnimation__migrateUsers").css('display','none')
+              $.growl.notice({ message: "Successful migration" })
           error: (data) =>
             $.growl.error({ message: 'Unknow error, please try again' })
 
