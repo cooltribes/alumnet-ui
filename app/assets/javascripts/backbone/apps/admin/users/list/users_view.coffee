@@ -23,8 +23,6 @@
       url = AlumNet.api_endpoint + "/users/#{id}/subscriptions"
       data.user_id = id
 
-      console.log(data)
-
       Backbone.ajax
         url: url
         type: "POST"
@@ -120,7 +118,6 @@
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
-      console.log data
       id = @model.id
       url = AlumNet.api_endpoint + "/admin/users/#{id}/change_role"
       Backbone.ajax
@@ -243,7 +240,6 @@
     childViewContainer: "#users-table tbody"
 
     initialize: (options) ->
-      console.log @collection
       @modals = options.modals
       document.title='AlumNet - Users Management'
 

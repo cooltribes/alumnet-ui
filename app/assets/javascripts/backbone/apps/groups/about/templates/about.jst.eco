@@ -48,6 +48,18 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
+
+      <% if @currentUserIsAdmin: %>      
+        <div class="groupAbout__box margin_bottom">
+          <h3>Who can upload files</h3>
+            <a href="#" id="upload" class="js-attribute">
+            <% if @official: %>Only administrators<% else: %>All members<% end %>
+            </a>          
+            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
+          
+        </div>
+      <% end %>
+
       <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
         <h3>Mailchimp mail list        
         </h3>
@@ -105,8 +117,8 @@
             <div class="loader" id="loader"></div>
           </div>
         <% if @currentUserIsAdmin: %>
-          <a href="#" class="btn btn-warning" id="js-migrate-users">
-          Migrate users</a>
+          <a href="#" class="btn btn-info" id="js-validate-mailchimp">Validate Mailchimp Parameters</a>
+          <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
         <% end %>
         </div>
       </div>

@@ -11,7 +11,7 @@
     <div class="form-group">
       <label class="control-label" for="name">Folder Name</label>
       <input type="text" value="<%= @name %>" class="form-control input-lg" name="name" placeholder="Enter name" autofocus>
-      <span class="help-block"></span>
+      <span class="help-block overfloadText"></span>
     </div>     
 
   </form>
