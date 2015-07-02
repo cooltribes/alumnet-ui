@@ -1,4 +1,4 @@
-<div class="row <% if @first: %>margin_top_small <% end %>">
+<div class="row <% if @first: %>margin_top_small <% end %> browse__colorFilter">
   <div class="col-md-3 ">
     <div class="form-group">
      <% if @first: %> <label class="control-label">Filter by</label><% end %>
@@ -74,8 +74,9 @@
   <% if !@first: %>
   <div class="col-md-2">
     <div class="form-group">
-      <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      
+      <button type="button" class="btn btn-default js-rmvRow browse__iconDelete">
+         <span class="glyphicon glyphicon-trash"></span>
+      </button>
     </div>
   </div>
   <% end %>

@@ -16,7 +16,7 @@
   
 </div>
 
-  <button class="btn js-addRow" type="button">Add new filter +</button>
+  <button class="btn browse__btnAdd js-addRow" type="button">Add new filter +</button>
 
 <div class="margin_bottom search-control">
   <hr>
