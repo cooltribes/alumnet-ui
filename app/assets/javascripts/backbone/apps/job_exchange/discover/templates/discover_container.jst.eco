@@ -6,6 +6,7 @@
     <div class="col-md-9">
       <div class="advanced-search margin_bottom">
         <div class="advanced-search-container jobPost__search" id="searcher">
+          <h3 class="no-margin">Search a job</h3>
           <div class="filter">
             <div class="filter-attribute-container">
               <select class="filter-attribute">
