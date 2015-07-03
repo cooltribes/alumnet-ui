@@ -1,15 +1,13 @@
 @AlumNet.module 'FilesApp.Folders', (Folders, @AlumNet, Backbone, Marionette, $, _) ->
   class Folders.Controller
     listFolders: (layout, folderable)->      
-      @userCanEdit = false # initialy nobody can create or edit
+      @userCanEdit = folderable.get "user_can_upload_file"
       folderable_route = "" #groups/ or events/
 
       if folderable instanceof AlumNet.Entities.Group #If is group
         folderable_route = "groups"
-        @userCanEdit = folderable.get("admin") #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
       else if folderable instanceof AlumNet.Entities.Event #If is group
         folderable_route = "events"
-        @userCanEdit = folderable.get("admin") #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
       else
         return  
 
