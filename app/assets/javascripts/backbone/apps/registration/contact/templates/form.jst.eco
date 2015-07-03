@@ -1,8 +1,10 @@
 <form class="formANet form " role="form">
   <h1 class="h2">Contact & Privacy</h1>
-  <div class="form-group">
-    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD CONTACT</button>
-  </div>
+  <h4>
+      Please add your contact information and select your privacy settings preferences. 
+      You can add more contact information by clicking on "Add Contact"
+  </h4>
+  </br>
   <div class="row">
     <div class="col-md-8">
       <label for="inputName">Contact</label>
@@ -13,6 +15,9 @@
   </div>
   <hr>
   <div class="js-fields-container"></div>
+  <div class="form-group">
+    <button type="button" class="btn btn-default btn-primary-noBackground js-addRow">+ ADD CONTACT</button>
+  </div>
   <hr>
   <!-- Buttons -->
   <div class="form-group text-right">
