@@ -33,10 +33,12 @@
 
   class Menu.MenuBar extends Marionette.LayoutView
     initialize: ->
+      @points = @model.profile.get("points")
       @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
       @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
       @listenTo(@model, 'change:avatar', @changeAvatar)
       @listenTo(@model, 'change:member', @changeMembresia)
+      @listenTo(@model, 'render:points', @changePoints)
 
       # @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
       # @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
@@ -69,6 +71,9 @@
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
 
+    changePoints: ->
+      $(".totalPoints").text(@model.profile.get("points"))
+
     changeMembresia: ->
       @render()
 
@@ -88,7 +93,7 @@
       #console.log @model
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
-      points: 3000
+      points: @points 
       daysLeft: model.get('days_membership')
       memberTitle: ->
         if(model.get('member')==1)
