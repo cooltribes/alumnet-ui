@@ -1,7 +1,7 @@
 @AlumNet.module 'FilesApp.Folders', (Folders, @AlumNet, Backbone, Marionette, $, _) ->
   class Folders.Controller
     listFolders: (layout, folderable)->      
-      @userCanEdit = folderable.get "user_can_upload_file"
+      @userCanEdit = folderable.get "user_can_upload_files"
       folderable_route = "" #groups/ or events/
 
       if folderable instanceof AlumNet.Entities.Group #If is group
@@ -23,6 +23,7 @@
       @albumsView = new Folders.FoldersView
         collection: @folders_collection
         userCanEdit: @userCanEdit
+        
       @folders_collection.fetch()
       
       self = @  
@@ -58,7 +59,12 @@
       
       controller = @
       view.on "submit", ()->                 
-        @model.save()
+        @model.save {},
+          success: (model)->
+            model.trigger "save:name"
+            $.growl.notice 
+              # title: "Notice"
+              message: "The folder has been successfully saved"
 
       @albumsView.ui.modals.html view.render().el
 

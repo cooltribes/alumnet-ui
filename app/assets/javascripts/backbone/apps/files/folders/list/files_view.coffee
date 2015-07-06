@@ -10,15 +10,7 @@
     
     events:
       'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: true
-      
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
-
-    templateHelpers: ->
-      userCanEdit: @userCanEdit  
-
+        
     removeItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this file?")
@@ -32,9 +24,7 @@
     emptyView: Folders.EmptyView
     emptyViewOptions: 
       message: "There are no files here"
-    childViewContainer: '.files-list'
-    childViewOptions: ->
-      userCanEdit: @userCanEdit
+    childViewContainer: '.files-list'    
       
     ui:
       "modals": "#js-modal-container"
@@ -59,7 +49,6 @@
     showUploading: ()-> 
       @ui.uploadBtn.hide()      
       @ui.loadingBar.slideDown()
-
     
     hideUploading: ()-> 
       @ui.uploadBtn.show()
@@ -67,6 +56,15 @@
       $.growl.notice 
         title: "Files"
         message: "All files have been uploaded successfully"
+
+    checkDuplicated: (file_names)->
+      duplicated_name = @collection.checkDuplicated file_names
+
+      if duplicated_name
+        alert "A file with the name \"" + duplicated_name + "\" already exists in this folder. You have to change the name before upload it." 
+        return false
+        
+      true    
       
 
   class Folders.MoveFileModal extends Backbone.Modal

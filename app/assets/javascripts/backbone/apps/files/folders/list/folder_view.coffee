@@ -24,15 +24,8 @@
       "save:name": "modelChanged"
 
     modelChanged: ->
-      console.log "change name"
       @render()
-      
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
-
-    templateHelpers: ->
-      userCanEdit: @userCanEdit  
-
+    
     removeItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this folder and all its files?")
@@ -46,9 +39,7 @@
     emptyView: Folders.EmptyView
     emptyViewOptions: 
       message: "There are no folders here"
-    childViewContainer: '.folders-list'
-    childViewOptions: ->
-      userCanEdit: @userCanEdit
+    childViewContainer: '.folders-list'    
       
     ui:
       "modals": "#js-modal-container"
@@ -58,7 +49,6 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -108,7 +98,6 @@
       data = Backbone.Syphon.serialize this
       @model.set data
       @model.isValid(true)
-      # @model.trigger "validated:invalid", @model, errors
 
     cancel: ()->  
       @model.set "name", @previousName

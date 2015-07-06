@@ -49,7 +49,7 @@
         <% end %>
       </div>
       
-      <% if @currentUserIsAdmin: %>      
+      <% if @canEditInformation: %>      
         <div class="groupAbout__box margin_bottom">
           <h3>Who can upload files</h3>
             <span href="#" id="upload-files" class="js-attribute">
