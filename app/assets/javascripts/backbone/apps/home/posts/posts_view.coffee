@@ -84,17 +84,20 @@
       current_user: @current_user
 
     initialize: (options)->
+      
       @comments = options.model.comments
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
       self = @
       self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
       @model.comments.fetch
         success: (collection)->
+          start = 
           #if collection.length > 0
           #  $(".groupPost__commentsContainer").addClass('groupPost__comment--scroll')
           if collection.length > 3
-            self.collection.add(collection.slice(0,3))
+            self.collection.add(collection.slice((collection.length-3),collection.length))
             $(self.ui.moreComment).show()
             
           else
