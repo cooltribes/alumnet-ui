@@ -1,0 +1,10 @@
+<table class="table tableAdminFeatures" id="features-table">
+	<thead>
+		<tr>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Name</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Description</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Status</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
