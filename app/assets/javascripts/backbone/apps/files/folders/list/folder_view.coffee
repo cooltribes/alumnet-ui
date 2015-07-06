@@ -15,11 +15,17 @@
     
     triggers:
       'click .js-detail': "show:detail"
+      'click .js-editItem': "show:edit"
     
     events:
       'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: truec
+    
+    modelEvents:
+      "save:name": "modelChanged"
+
+    modelChanged: ->
+      console.log "change name"
+      @render()
       
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -72,11 +78,9 @@
     events:
       "submit form": "submitForm"
 
-    bindings:
-      "[name=name]": "name"  
-
     initialize: (options)->      
-      
+      @previousName = @model.get "name"
+
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -92,20 +96,22 @@
     onShow: ()->
       @$("[name=name]").select()
 
-    onRender: ()->
-      @stickit()
-
     submitForm: (e)->
       e.preventDefault()
       @triggerSubmit()
-    # templateHelpers: ->     
-      # isNew: @model.isNew()
+    
+    templateHelpers: ->     
+      isNew: @model.isNew()
 
     beforeSubmit: ()->
       #Validations
+      data = Backbone.Syphon.serialize this
+      @model.set data
       @model.isValid(true)
+      # @model.trigger "validated:invalid", @model, errors
 
-
+    cancel: ()->  
+      @model.set "name", @previousName
 
     submit: ()->  
       @trigger "submit"

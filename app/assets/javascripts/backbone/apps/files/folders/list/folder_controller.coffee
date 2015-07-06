@@ -26,11 +26,14 @@
       @folders_collection.fetch()
       
       self = @  
-
+      #each folder events
       @albumsView.on "childview:show:detail", (childview)->          
         self.showFiles childview.model
-        
 
+      @albumsView.on "childview:show:edit", (childview)->          
+        self.showEditFolder childview.model
+        
+      #all folders events  
       @albumsView.on "new:folder", ()->
         self.showCreateForm()
       
@@ -45,6 +48,17 @@
       view.on "submit", ()->         
         controller.folders_collection.create @model.attributes,
           wait: true          
+
+      @albumsView.ui.modals.html view.render().el
+
+
+    showEditFolder: (model)->
+      view = new Folders.FolderModal
+        model: model            
+      
+      controller = @
+      view.on "submit", ()->                 
+        @model.save()
 
       @albumsView.ui.modals.html view.render().el
 

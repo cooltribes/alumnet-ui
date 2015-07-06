@@ -11,7 +11,12 @@
         <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">            
           <li role="presentation">
             <a href="#"  class="js-rmvItem">
-              Delete Folder      
+              Delete folder      
+            </a>
+          </li>   
+          <li role="presentation">
+            <a href="#"  class="js-editItem">
+              Edit folder      
             </a>
           </li>   
         </ul>
