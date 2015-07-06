@@ -95,6 +95,9 @@
     onRender: ()->
       @stickit()
 
+    bindings:
+      "#js-receivedCount": "pending_received_friendships_count"  
+      "#js-myFriendsCount":"friends_count"
 
   API =
     getFriendsLayout: (model, tab)->
