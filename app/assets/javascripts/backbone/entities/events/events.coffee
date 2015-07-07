@@ -171,6 +171,7 @@
       Entities.events.fetch
         data: querySearch
         success: (model, response, options) ->
+          console.log response
           Entities.events.trigger('fetch:success')
       Entities.events 
 
