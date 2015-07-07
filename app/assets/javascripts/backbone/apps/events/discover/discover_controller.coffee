@@ -8,10 +8,14 @@
       AlumNet.execute('render:events:submenu',undefined, 1)
       
       
-      eventsView.on 'search', (term)->        
-        querySearch = { q: name_cont: term }
-        eventsView.collection.fetch
-          data: querySearch
+      eventsView.on 'events:search', (term)->        
+        console.log term
+        #querySearch = { q: name_cont: term }
+        @collection.fetch
+          data: term
+          success: (collection)->
+            console.log collection
+
 
        
     

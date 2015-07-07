@@ -28,8 +28,7 @@
           <input class="createBanner__file" type="file" name="picture" id="BannerImg">         
           <span class="help-block"></span>
         </label>
-        <img class="createBanner__img" id="preview-banner" name="picture" src="<%= @picture.main %>"><a id="js-edit-banner" class="ico-edit createBanner__btnEdit">Edit</a></img>
-
+        <img class="createBanner__img" id="preview-banner" name="picture" src="<%= @picture.main %>"><a id="js-edit-banner" class="btn btn-default createBanner__btnEdit">Edit</a></img>
       </div>      
     </form>
        <a href="#" class="btn btn-danger" title="Delete banner" id="js-deleteBanner">Delete</a>

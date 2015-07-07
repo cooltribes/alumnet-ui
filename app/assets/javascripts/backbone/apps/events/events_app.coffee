@@ -2,6 +2,7 @@
   class EventsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "events/:id/about": "aboutEvent"
+      "events/:event_id/posts/:id": "postEvent"
       "events/:id/posts": "postsEvent"
       "events/:id/attendances": "attendancesEvent"
       "events/:id/photos": "listAlbums"
@@ -16,6 +17,10 @@
     aboutEvent: (id)->
       controller = new EventsApp.About.Controller
       controller.showAbout(id)
+
+    postEvent: (event_id, id)->
+      controller = new EventsApp.Posts.Controller
+      controller.showPost(event_id, id)
 
     postsEvent: (id)->
       controller = new EventsApp.Posts.Controller

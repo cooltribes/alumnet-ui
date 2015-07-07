@@ -5,7 +5,11 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <div class="jobPostDetail__description"><%= @description %></div>
+      <div class="jobPostDetail__description"><%- @formatted_description %></div>
+      <div class="jobPostDetail__description">
+        <h3><span class="ico-points"></span> Offer</h3>
+        <p><%= @offer %></p>
+      </div>
     </div>
     <div class="col-md-4">
       <% if @user: %>
@@ -28,8 +32,6 @@
         <span> <%= @position.text %> </span><br>
         <span class="glyphicon glyphicon-time"></span>
         <span> <%= @employment.text %> </span><br>
-        <span class="ico-points"></span>
-        <span> <%= @offer %> </span><br>
         <span class="ico-location"></span>
         <span><%= @location() %></span>
       </div>
@@ -52,16 +54,17 @@
   </div>
 </div>
 <% if @canInvite && @matches_count > 0: %>
+<div class="container-fluid padding_small">
   <h2>Invite Alumni to Apply</h2>
   <% for match in @matches: %>
     <div class="userCard user-info">
       <div class=" row">
-        <div class="userCard__avatar col-md-3 ">
+        <div class="userCard__avatar col-md-2">
           <img src="<%=  match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
         </div>
-        <div class=" col-md-6 ">
+        <div class=" col-md-7">
           <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= match.user.id %>/posts" title="<%= match.user.name %>"><%= match.user.name %></a></h4>
-          <p class="userCard__position member-position text-small"><%= match.user.last_experience %></p>
+          <p class="overfloadText member-position text-small"><%= match.user.last_experience %></p>
         </div>
         <div class=" col-md-3 ">
           <% unless match.user_has_invitation : %>
@@ -71,4 +74,5 @@
       </div>
     </div>
   <% end %>
+</div>
 <% end %>

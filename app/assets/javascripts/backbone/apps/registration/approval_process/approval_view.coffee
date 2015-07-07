@@ -52,12 +52,12 @@
           false
 
     onRender: ()->
+      $('body,html').animate({scrollTop: 20}, 600);
       data = CountryList.toSelect2()
       @ui.selectResidenceCountries.select2
         placeholder: "Select a Country"
         data: data
       @ui.selectResidenceCountries.select2('val', @model.profile.get('residence_country').id)
-      $('body,html').animate({scrollTop: 20}, 600);
 
     clickedRequestAdmin: (e)->
       e.stopPropagation()

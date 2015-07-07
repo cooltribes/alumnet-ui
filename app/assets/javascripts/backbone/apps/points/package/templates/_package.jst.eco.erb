@@ -19,7 +19,7 @@
 		<div class="margin_top_small packageCard__info__des">
 			<%%= @description %>
 		</div>
-		<%% if @points > 0 : %>
+		<%% if @points >= @price : %>
 		<a class="btn btn-large margin_top_small margin_bottom packageCard__info__button js-buy" href="#">
 			BUY
 		</a>
