@@ -8,4 +8,4 @@
     model: Entities.File
 
     checkDuplicated: (file_names)->
-      true
+      false
