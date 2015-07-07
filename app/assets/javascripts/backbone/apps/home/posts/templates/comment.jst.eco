@@ -3,6 +3,7 @@
     <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
   </div>
   <h5 class="groupPost__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
+  <span><%= moment(@created_at).fromNow() %></span>
 </div>
 <p id="js-comment-text"><%= @comment %></p>
 <% if @you_like: %>

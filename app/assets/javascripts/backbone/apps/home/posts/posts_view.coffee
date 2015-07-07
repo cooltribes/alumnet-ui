@@ -91,6 +91,7 @@
       self = @
       self.collection = new AlumNet.Entities.CommentsCollection
       self.collection.comparator = 'created_at'
+      console.log self.collection
       @model.comments.fetch
         success: (collection)->
           start = 
