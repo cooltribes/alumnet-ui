@@ -1,9 +1,11 @@
 @AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
-  # COMMENT VIEW
+
+  ###### COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
     template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
     initialize: (options)->
+      @post = options.post
       @group = options.group
       @current_user = options.current_user
 
@@ -24,7 +26,7 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          view.trigger 'comment:edit', newValue
+          view.model.save { comment: newValue }
       @ui.commentText.linkify()
 
     ui:
@@ -39,7 +41,6 @@
       'click .js-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
-
 
     clickedEdit: (e)->
       e.stopPropagation()
@@ -56,22 +57,33 @@
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @trigger 'comment:like'
+      view = @
+      like = AlumNet.request('like:comment:new', @post.id, @model.id)
+      like.save {},
+        success: ->
+          view.sumLike()
+
     clickedUnLike: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @trigger 'comment:unlike'
+      view = @
+      unlike = AlumNet.request('unlike:comment:new', @post.id, @model.id)
+      unlike.save {},
+        success: ->
+          view.remLike()
+
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
 
-  # POST VIEW
+  ###### POST VIEW
   class Posts.PostView extends Marionette.CompositeView
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
@@ -99,6 +111,7 @@
 
     childViewOptions: ->
       group: @group
+      post: @model
       current_user: @current_user
 
     onShow: ->
@@ -109,6 +122,10 @@
           container.masonry
             columnWidth: '.item'
             gutter: 1
+
+    onBeforeRender: ->
+      @model.comments.fetch()
+      @collection = @model.comments
 
     onRender: ->
       view = this
@@ -121,7 +138,7 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          view.trigger 'post:edit', newValue
+          view.model.save { body: newValue }
       @ui.bodyPost.linkify()
 
     ui:
@@ -160,8 +177,12 @@
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
         if data.body != ''
-          @trigger 'comment:submit', data
-          @ui.commentInput.val('')
+          view = @
+          comment = AlumNet.request('comment:post:new', @model.id)
+          comment.save data,
+            success: (model, response, options)->
+              view.ui.commentInput.val('')
+              view.collection.add(model, {at: view.collection.length})
 
     clickedEdit: (e)->
       e.stopPropagation()
@@ -178,39 +199,43 @@
     clickedLike: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @trigger 'post:like'
+      view = @
+      like = AlumNet.request('like:post:new', @model.id)
+      like.save {},
+        success: ->
+          view.sumLike()
+
     clickedUnLike: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @trigger 'post:unlike'
+      view = @
+      unlike = AlumNet.request('unlike:post:new', @model.id)
+      unlike.save {},
+        success: ->
+          view.remLike()
+
     clickedGotoComment: (e)->
       e.stopPropagation()
       e.preventDefault()
       @ui.textareaComment.focus()
+
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
 
+  ###### POST DETAIL
+  class Posts.PostDetail extends Posts.PostView
+    template: 'groups/posts/templates/post_detail'
+    className: 'container-fluid margin_top_small'
 
-    #Init the render of a comment
-    # TODO: try to put this code on onAddChild of CompositeView
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
-      #subdelegating the events on commentsView to postView
-      @on 'childview:comment:like', (commentView) ->
-        @trigger 'comment:like', commentView
-      @on 'childview:comment:unlike', (commentView) ->
-        @trigger 'comment:unlike', commentView
-      @on 'childview:comment:edit', (commentView, newValue) ->
-        @trigger 'comment:edit', commentView, newValue
-
+  ###### POSTS COLLECTION
   class Posts.PostsView extends Marionette.CompositeView
     template: 'groups/posts/templates/posts_container'
     childView: Posts.PostView
@@ -246,7 +271,13 @@
 
     sendJoin:(e)->
       e.preventDefault()
-      @trigger 'join'
+      group = @group
+      attrs = { group_id: group.id, user_id: current_user.id }
+      request = AlumNet.request('membership:create', attrs)
+      request.on 'save:success', (response, options)->
+        AlumNet.trigger "groups:posts", group.id
+      request.on 'save:error', (response, options)->
+        console.log response.responseJSON
 
     submitClicked: (e)->
       e.stopPropagation()
@@ -254,7 +285,13 @@
       data = Backbone.Syphon.serialize(this)
       data.picture_ids = @picture_ids
       if data.body != ''
-        @trigger 'post:submit', data
+        view = @
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        post = AlumNet.request('post:group:new', @group.id)
+        post.save data,
+          success: (model, response, options)->
+            view.collection.add(model, {at: 0})
+
+
