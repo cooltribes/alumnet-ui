@@ -6,6 +6,7 @@
       <div id="userBusinessAffix"> 
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <div>
+            <% if @userCanEdit: %>
             <label class="uploadF uploadF--positionLogo ">
               <div class="uploadF--blue">
                 <span class="glyphicon glyphicon-open"></span>
@@ -13,6 +14,7 @@
               </div>
               <input type="file" class="logo">
             </label>
+            <% end %> 
             <img src="" class="userBusiness__logo img-responsive">
           </div>
           <div class="userBusiness__company">

@@ -10,8 +10,6 @@
 			@trigger 'buy'
 
 		initialize: (options) ->
-			#console.log "opciones"
-			console.log options
 			@points = AlumNet.current_user.profile.get('points')
 			console.log @points
 

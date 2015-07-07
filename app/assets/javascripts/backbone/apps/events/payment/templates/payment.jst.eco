@@ -3,6 +3,32 @@
     <h3 class="overfloadText">Event: <%= @name %></h3>
     <div id="country"></div>
     <div class="">
+      <div>
+        <div class="row js-birth-location">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="inputName">Country of Origin</label>
+              <input id="js-birth-countries" type="" name="birth_country_id" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="inputName">City of Origin</label>
+              <input id="js-birth-cities" type="" name="birth_city_id" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="form-group has-feedback">
+            <label class="control-label" for="inputName">Address</label>
+            <input type="text" value="" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter your address">
+            <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label class="control-label pay__label" for="inputName">Please select your country for displaying the local payment options</label>
         <input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">

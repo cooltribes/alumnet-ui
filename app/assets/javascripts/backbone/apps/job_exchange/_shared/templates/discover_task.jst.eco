@@ -20,8 +20,7 @@
       <span> <%= @position.text %> </span><br>
       <span class="glyphicon glyphicon-time"></span>
       <span> <%= @employment.text %> </span><br>
-      <span class="ico-points"></span>
-      <span> <%= @offer %> </span><br>
+      <p class="overfloadText"><span class="ico-points"></span> <%= @offer %> </p>
       <span class="ico-location"></span>
       <span><%= @location() %></span>
     </div>
