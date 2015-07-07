@@ -123,6 +123,10 @@
             columnWidth: '.item'
             gutter: 1
 
+    onBeforeRender: ->
+      @model.comments.fetch()
+      @collection = @model.comments
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -135,12 +139,7 @@
             'this field is required'
         success: (response, newValue)->
           view.model.save { body: newValue }
-
       @ui.bodyPost.linkify()
-
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
 
     ui:
       'item': '.item'

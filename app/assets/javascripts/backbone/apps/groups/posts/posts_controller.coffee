@@ -47,6 +47,8 @@
 
               AlumNet.mainRegion.show(postView)
               AlumNet.execute('render:groups:submenu')
+            error: ->
+              AlumNet.trigger('show:error', 404)
 
       group.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
