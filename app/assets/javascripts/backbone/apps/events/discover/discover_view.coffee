@@ -62,37 +62,39 @@
       'calendario': '#calendar'
 
     events:
-      'keypress @ui.searchInput': 'searchEvents'
+      'submit #js-search-form': 'searchEvents'
+      #'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
-      'click .js-search-input': 'searchCliked'      
-      #'click .js-search': 'performSearch'
+      #'click .js-search-input': 'searchCliked'      
+      #'click .js-search': 'searchEvents'
 
     initialize: ->
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
     
     
-    searchCliked: (e)->
-      e.preventDefault()
-      term = @.$('#search_term').val()
-      @trigger 'search', term  
+    #searchCliked: (e)->
+      #e.preventDefault()
+      #term = @.$('#search_term').val()
+      #@trigger 'search', term  
 
-    ###
     
     performSearch: (e) ->
+      console.log "performSearch"
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      this.trigger('events:search', this.buildQuerySearch(data.search_term))
+      #this.trigger('events:search', this.buildQuerySearch(data.search_term))
+      #console.log data
 
     buildQuerySearch: (searchTerm) ->
       q:
-        id_cont: searchTerm
+        m: 'or'
+        name_cont: searchTerm
+        description_cont: searchTerm
                 
-    
-    ###    
-
     searchUpcomingEvents: (query)->
+      console.log query
       seft = this
       ui = @ui
 
@@ -106,6 +108,7 @@
               content["datetime"] = content["startime"]
           $(ui.calendario).eCalendar
             events: eventsArray
+          seft.render()  
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
@@ -161,9 +164,10 @@
       return dias
 
     searchEvents: (e)->
-      if e.which == 13
-        unless @ui.searchInput.val() == ""
-          query = { name_cont: @ui.searchInput.val() }
-        else
-          query = {}
-        @searchUpcomingEvents(query)
+      e.preventDefault()
+      #if e.which == 13
+      unless @ui.searchInput.val() == ""
+        query = { name_cont: @ui.searchInput.val() }
+      else
+        query = {}
+      @searchUpcomingEvents(query)
