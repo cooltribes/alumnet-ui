@@ -84,14 +84,13 @@
       current_user: @current_user
 
     initialize: (options)->
-      
+      $(@ui.moreComment).hide()
       @comments = options.model.comments
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
       self = @
       self.collection = new AlumNet.Entities.CommentsCollection
       self.collection.comparator = 'created_at'
-      console.log self.collection
       @model.comments.fetch
         success: (collection)->
           start = 

@@ -7,14 +7,14 @@
         <div class="row js-birth-location">
           <div class="col-md-6">
             <div class="form-group">
-              <label class="control-label" for="inputName">Country of Origin</label>
+              <label class="control-label" for="inputName">Country of resident</label>
               <input id="js-birth-countries" type="" name="birth_country_id" style="width: 100%">
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label class="control-label" for="inputName">City of Origin</label>
+              <label class="control-label" for="inputName">City of resident</label>
               <input id="js-birth-cities" type="" name="birth_city_id" style="width: 100%">
               <span class="help-block"></span>
             </div>

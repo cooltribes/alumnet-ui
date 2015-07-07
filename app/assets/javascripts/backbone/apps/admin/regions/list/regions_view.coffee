@@ -32,7 +32,6 @@
       e.preventDefault()
       modal = new Regions.ModalRegion
         model: @model #region
-
       $('#container-modal').html(modal.render().el)
 
     showModalAdmin: (e)->
@@ -52,6 +51,7 @@
   class Regions.ModalRegion extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_form'
     cancelEl: '#js-modal-close'
+    keyControl: false
 
     initialize: (options)->
       @regionTable = options.regionTable
@@ -109,6 +109,7 @@
     template: 'admin/regions/list/templates/modal_admins'
     cancelEl: '#js-modal-close'
     submitEl: "#js-modal-save"
+    keyControl: false
 
     submit: ()->
       model = @model
@@ -148,8 +149,6 @@
       model.fetch
         success: ->
           model.trigger('updateView')  
-
-    deleteAdmins: ()->
 
     onRender: ->
       admins=@model.get('admins')
