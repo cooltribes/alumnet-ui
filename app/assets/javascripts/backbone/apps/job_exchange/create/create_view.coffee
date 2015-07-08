@@ -44,8 +44,14 @@
       'change @ui.selectCountries': 'setCities'
 
     onShow: ->
-      $('#task-description').summernote()
-      # $('#task-offer').summernote()
+      summernote_options =
+        height: 100
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']]
+          ['para', ['ul', 'ol']]
+        ]
+      $('#task-description').summernote(summernote_options)
+      $('#task-offer').summernote(summernote_options)
 
     onRender: ->
       ## set select2 to inputs
