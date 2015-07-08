@@ -18,6 +18,11 @@
                 <a href="#"  class="js-moveFile">
                   Move
                 </a>
+              </li> 
+              <li role="presentation">
+                <a href="#"  class="js-editItem">
+                  Rename
+                </a>
               </li>   
           </ul>
         <% end %>

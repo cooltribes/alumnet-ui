@@ -81,6 +81,9 @@
 
       files_view.on "childview:move:file", (childview)->        
         self.showMoveFileModal(@, childview.model)  
+      
+      files_view.on "childview:show:edit", (childview)->        
+        self.showRenameFileModal(@, childview.model)  
 
       @layout.show files_view
 
@@ -106,5 +109,23 @@
 
               model = current_folder.files_collection.remove model.id
               new_folder.files_collection.add model
+            
+      files_view.ui.modals.html view.render().el  
+
+
+    showRenameFileModal: (files_view, file)->
+      
+      view = new Folders.FileModal
+        model: file
+
+      controller = @
+      view.on "submit", ()->                 
+        @model.save {},
+          success: (model)->
+            console.log "success"
+            model.trigger "save:name"
+            $.growl.notice 
+              # title: "Notice"
+              message: "The file has been successfully renamed"
             
       files_view.ui.modals.html view.render().el  

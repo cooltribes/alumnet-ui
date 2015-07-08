@@ -104,13 +104,11 @@
        
        
       uploader.bind 'FilesAdded',(up, files)->
-        #Add loading bar...
-        # console.log files       
-        # file_names = _.pluck(files, "name")
         
-        # if view.checkDuplicated(file_names)
-        view.showUploading()  
-        uploader.start()
+        if view.checkDuplicated(files)
+          #Add loading bar...
+          view.showUploading()  
+          uploader.start()
             
       uploader.bind 'UploadComplete', ()->
         view.hideUploading()

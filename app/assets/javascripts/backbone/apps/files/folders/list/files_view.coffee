@@ -7,6 +7,7 @@
     
     triggers:
       'click .js-moveFile': "move:file"
+      'click .js-editItem': "show:edit"
     
     events:
       'click .js-rmvItem': "removeItem"
@@ -57,15 +58,9 @@
         title: "Files"
         message: "All files have been uploaded successfully"
 
-    checkDuplicated: (file_names)->
-      duplicated_name = @collection.checkDuplicated file_names
-
-      if duplicated_name
-        alert "A file with the name \"" + duplicated_name + "\" already exists in this folder. You have to change the name before upload it." 
-        return false
-        
-      true    
-      
+    checkDuplicated: (files)->
+      @collection.checkDuplicated files
+  
 
   class Folders.MoveFileModal extends Backbone.Modal
     template: 'files/folders/list/files_templates/move_file_modal'    
@@ -101,4 +96,51 @@
       
     submit: ()->  
       @trigger "submit", @folder_id
-  
+
+
+  class Folders.FileModal extends Backbone.Modal
+    template: 'files/folders/list/files_templates/_fileModal'    
+
+    cancelEl: '#js-close'
+    submitEl: '#js-save'
+    keyControl: false    
+
+    events:
+      "submit form": "submitForm"
+
+    initialize: (options)->      
+      @previousName = @model.get "name"
+
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    onShow: ()->
+      @$("[name=name]").select()
+
+    submitForm: (e)->
+      e.preventDefault()
+      @triggerSubmit()
+    
+    templateHelpers: ->     
+      isNew: @model.isNew()
+
+    beforeSubmit: ()->
+      #Validations
+      data = Backbone.Syphon.serialize this
+      @model.set data
+      @model.isValid(true)
+
+    cancel: ()->  
+      @model.set "name", @previousName
+
+    submit: ()->  
+      @trigger "submit"  
