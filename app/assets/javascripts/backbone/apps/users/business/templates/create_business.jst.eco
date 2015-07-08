@@ -4,7 +4,7 @@
 
     <form class="formANet form margin_top">
       <div class="row">
-        
+
         <div class="col-md-8">
           <div class="form-group">
             <label class="control-label">Company / Project name</label>
@@ -20,17 +20,17 @@
             <span class="help-block"></span>
           </div>
         </div>
-      
+
       </div>
       <hr>
       <div class="row">
-        
+
         <div class="col-md-8">
           <div class="form-group">
             <label class="control-label">What I offer</label>
             <br>
             <small>A short description helping with filling in that form</small>
-            <textarea name="offer" class="form-control input-lg input--xxl"></textarea>
+            <textarea name="offer" class="form-control input-lg input--xxl" id="business-offer"></textarea>
             <span class="help-block"></span>
           </div>
         </div>
@@ -40,20 +40,20 @@
             <label class="control-label">What I offer - keywords</label>
             <br>
             <small>A short description helping with filling in that form</small>
-            <input style="padding:0" id="keywords-offer" name="offer_keywords" class="form-control input-lg" type="text" value="">          
+            <input style="padding:0" id="keywords-offer" name="offer_keywords" class="form-control input-lg" type="text" value="">
             <span class="help-block"></span>
           </div>
         </div>
 
       </div>
       <div class="row">
-        
+
         <div class="col-md-8">
           <div class="form-group">
             <label class="control-label">What I'm looking for</label>
             <br>
             <small>A short description helping with filling in that form</small>
-            <textarea name="search" class="form-control input-lg input--xxl"></textarea>
+            <textarea name="search" class="form-control input-lg input--xxl" id="business-search"></textarea>
             <span class="help-block"></span>
           </div>
         </div>
@@ -63,7 +63,7 @@
             <label class="control-label">What I'm looking for - keywords</label>
             <br>
             <small>A short description helping with filling in that form</small>
-            <input style="padding:0" id="keywords-search" name="search_keywords" class="form-control input-lg" type="text" value="">          
+            <input style="padding:0" id="keywords-search" name="search_keywords" class="form-control input-lg" type="text" value="">
             <span class="help-block"></span>
           </div>
         </div>
@@ -76,7 +76,7 @@
             <label class="control-label">Why to make business with me</label>
             <br>
             <small>A short description helping with filling in that form</small>
-            <textarea name="business_me" class="form-control input-lg input--xxl"></textarea>
+            <textarea name="business_me" class="form-control input-lg input--xxl" id="business-me"></textarea>
             <span class="help-block"></span>
           </div>
         </div>

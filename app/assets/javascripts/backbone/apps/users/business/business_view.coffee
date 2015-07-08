@@ -13,7 +13,7 @@
       @keywords = options.keywords
 
       self = @
-      jQuery(document).click -> 
+      jQuery(document).click ->
         self.showEditField()
         # $(".editLink").css('display','inline-block')
         #self.render()
@@ -35,19 +35,19 @@
               'position': 'relative'
               'top':'0px'
               'width':'100%'
-      
+
     templateHelpers: ->
       userCanEdit: @userCanEdit
 
     triggers:
       "click .js-create": "showCreateForm"
-    
-    events:      
+
+    events:
       "click .js-edit": "editField"
       "click .editable-submit":"showEditField"
       "click .editable-cancel":"showEditField"
       'click .smoothClick':'smoothClick'
-    
+
     ui:
       "company_name": ".js-company-name"
       "offer": ".js-offer"
@@ -60,35 +60,35 @@
       #Make all fields editable as text
       view = @
       @ui.company_name.editable
-        type: 'text'      
+        type: 'text'
         toggle: 'manual'
         validate: (value)->
           console.log view.model.company
-          view.model.company.set "name", value          
+          view.model.company.set "name", value
           errors = view.model.company.validate()
-          if errors?  
-            errors["name"]        
-        success: (response, newValue)->                    
+          if errors?
+            errors["name"]
+        success: (response, newValue)->
           view.model.company.save()
 
       @ui.offer.editable @editableParams("offer")
-      @ui.search.editable @editableParams("search")        
-      @ui.business_me.editable @editableParams("business_me")             
-        
+      @ui.search.editable @editableParams("search")
+      @ui.business_me.editable @editableParams("business_me")
+
       #Make the fields editable as select2 with multiple options
       @ui.keywords_offer.editable @tagEditableParams("offer_keywords")
       @ui.keywords_search.editable @tagEditableParams("search_keywords")
 
-          
-    tagEditableParams: (field)->    
-      view = @          
-         
-      select2: 
-        tags: @fillKeywords()     
+
+    tagEditableParams: (field)->
+      view = @
+
+      select2:
+        tags: @fillKeywords()
         multiple: true
         tokenSeparators: [',', ', ']
-        dropdownAutoWidth: true     
-      type: "select2" 
+        dropdownAutoWidth: true
+      type: "select2"
       toggle: 'manual'
       display : (value, sourceData, response)->
         html = []
@@ -96,38 +96,38 @@
         if value
           $.each value, (i, v) ->
             html+= '<li> # '+v+'</li>';
-          $(this).html('<ul>'+html+'</ul>'); 
+          $(this).html('<ul>'+html+'</ul>');
         else
-          $(this).empty();         
-        
-      
-      validate: (value)->
-        view.model.set field, value      
-        errors = view.model.validate()
-        if errors?  
-          errors[field]
-      success: (response, newValue)->                  
-        view.model.save()    
-        
-    editableParams: (field)->
-      view = @     
+          $(this).empty();
 
-      type: 'textarea'      
+
+      validate: (value)->
+        view.model.set field, value
+        errors = view.model.validate()
+        if errors?
+          errors[field]
+      success: (response, newValue)->
+        view.model.save()
+
+    editableParams: (field)->
+      view = @
+
+      type: 'textarea'
       toggle: 'manual'
       validate: (value)->
-        view.model.set field, value          
+        view.model.set field, value
         errors = view.model.validate()
-        if errors?  
-          errors[field]        
-      success: (response, newValue)->          
-        view.model.save()      
+        if errors?
+          errors[field]
+      success: (response, newValue)->
+        view.model.save()
 
 
     editField: (e)->
       e.preventDefault()
-      e.stopPropagation()   
+      e.stopPropagation()
       target = $(e.currentTarget).attr("data-target")
-      @$(".js-#{target}").editable("toggle") 
+      @$(".js-#{target}").editable("toggle")
       @$(e.currentTarget).hide()
       # @$(e.currentTarget).css('display','none')
 
@@ -153,7 +153,7 @@
   class Business.EmptyLinkView extends Marionette.ItemView
     template: 'users/business/templates/_emptyLinks'
 
-    
+
   class Business.LinkView extends Marionette.ItemView
     template: 'users/business/templates/_link'
     tagName: 'li'
@@ -167,23 +167,23 @@
       userCanEdit: @userCanEdit
 
     ui:
-      "title": ".js-title"  
-      "description": ".js-description"  
-      "url": ".js-url"  
-    
-    events:    
-      "click .js-edit": "editItem"  
-      "click .js-delete": "deleteItem"  
+      "title": ".js-title"
+      "description": ".js-description"
+      "url": ".js-url"
+
+    events:
+      "click .js-edit": "editItem"
+      "click .js-delete": "deleteItem"
       "click .editable-submit":"showEditField"
       "click .editable-cancel":"showEditField"
 
     editItem: (e)->
-      e.preventDefault()      
-      e.stopPropagation()   
+      e.preventDefault()
+      e.stopPropagation()
       target = $(e.currentTarget).attr("data-target")
       @$(".js-#{target}").editable("toggle")
-      @$(e.currentTarget).css('display','none')      
-      
+      @$(e.currentTarget).css('display','none')
+
     deleteItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this link?")
@@ -196,41 +196,41 @@
         @ui.url.editable @editableParams("url")
 
     editableParams: (field)->
-      view = @     
-      type: 'text'      
+      view = @
+      type: 'text'
       toggle: 'manual'
       validate: (value)->
-        view.model.set field, value          
+        view.model.set field, value
         errors = view.model.validate()
-        if errors?  
-          errors[field]        
-      success: (response, newValue)->          
-        view.model.save()  
+        if errors?
+          errors[field]
+      success: (response, newValue)->
+        view.model.save()
 
     showEditField: ()->
       $(".editLink").css('display','inline-block')
       $("div.userBusiness__keys").css('display','none')
 
- 
+
   class Business.LinksView extends Marionette.CompositeView
     template: 'users/business/templates/links_container'
     childView: Business.LinkView
     emptyView: Business.EmptyLinkView
     childViewContainer: ".js-links"
     childViewOptions: ()->
-      userCanEdit: @userCanEdit      
+      userCanEdit: @userCanEdit
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
       @model = new AlumNet.Entities.Link
 
       Backbone.Validation.bind @,
-        valid: (view, attr, selector) ->            
+        valid: (view, attr, selector) ->
           $el = view.$("[name='#{attr}']")
           $group = $el.closest('.form-group')
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
-        invalid: (view, attr, error, selector) ->          
+        invalid: (view, attr, error, selector) ->
           $el = view.$("[name='#{attr}']")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
@@ -238,7 +238,7 @@
 
     templateHelpers: ()->
       userCanEdit: @userCanEdit
-          
+
 
     events:
       "submit .js-linkForm": "saveLink"
@@ -253,11 +253,11 @@
     onRender: ()->
       if @userCanEdit
         @stickit()
-      
+
 
     saveLink: (e)->
       e.preventDefault()
-      unless @model.validate()        
+      unless @model.validate()
         @collection.create @model.attributes,
           wait: true
         @model.clear()
@@ -274,19 +274,19 @@
       e.preventDefault()
       $(".userBusiness__form").css("display", "none");
       $("#js-addLink").css("display", "block");
-  
+
   class Business.CreateForm extends Marionette.ItemView
     template: 'users/business/templates/create_business'
 
-    initialize: (options)->      
-      @keywords = options.keywords      
+    initialize: (options)->
+      @keywords = options.keywords
       Backbone.Validation.bind @,
-        valid: (view, attr, selector) ->            
+        valid: (view, attr, selector) ->
           $el = view.$("[name='#{attr}']")
           $group = $el.closest('.form-group')
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
-        invalid: (view, attr, error, selector) ->          
+        invalid: (view, attr, error, selector) ->
           $el = view.$("[name='#{attr}']")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
@@ -305,34 +305,43 @@
       "logo": "[name = company_logo]"
       "previewImage": "#preview-image"
 
+    onShow: ->
+      summernote_options =
+        height: 100
+      $('#business-me').summernote(summernote_options)
+      $('#business-offer').summernote(summernote_options)
+      $('#business-search').summernote(summernote_options)
+
     onRender: ->
-      @fillKeywords()  
+      @fillKeywords()
 
     submit: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize @
       data.offer_keywords = data.offer_keywords.split(',')
       data.search_keywords = data.search_keywords.split(',')
-
+      data.offer = $('#business-offer').code()
+      data.search = $('#business-search').code()
+      data.business_me = $('#business-me').code()
       formData = new FormData()
-      _.forEach data, (value, key, list)->  
-        
-        # if key == "keywords_offer" 
-    
-        #   _.forEach value, (value, key, list)->  
+      _.forEach data, (value, key, list)->
+
+        # if key == "keywords_offer"
+
+        #   _.forEach value, (value, key, list)->
         #     formData.append("keywords_offer[#{key}]", value)
-        # else    
+        # else
           formData.append(key, value)
 
       #Add the image to form submit
       # file = @ui.logo
       # formData.append('company_logo', file[0].files[0])
-      
+
       @model.set(data)
-      
+
       #submit the model if valid
-      unless @model.validate() 
-        @trigger "submit", 
+      unless @model.validate()
+        @trigger "submit",
           model: @model
           data: data
 
@@ -344,7 +353,7 @@
         reader = new FileReader()
         reader.onload = (e)->
           preview.attr("src", e.target.result)
-        reader.readAsDataURL(file[0].files[0])    
+        reader.readAsDataURL(file[0].files[0])
 
 
     fillKeywords: ()->
@@ -374,4 +383,4 @@
       userCanEdit: @userCanEdit
 
     triggers:
-      "click .js-create": "showCreateForm"  
+      "click .js-create": "showCreateForm"

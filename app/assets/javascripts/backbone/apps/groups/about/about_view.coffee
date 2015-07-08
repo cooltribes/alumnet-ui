@@ -28,6 +28,7 @@
       'mailchimpContainer': '#mailchimpContainer'
       'groupApiKey': '#api_key'
       'groupListId': '#list_id'
+      'linkSaveDescription': 'a#js-save-description'
 
     events:
       'click a#js-edit-upload': 'toggleEditUploadFiles'
@@ -35,13 +36,13 @@
       'click a#js-edit-description': 'toggleEditGroupDescription'
       'click a#js-edit-group-type': 'toggleEditGroupType'
       'click a#js-edit-join-process': 'toggleEditJoinProcess'
-      'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
       'click a#js-edit-mailchimp': 'toggleEditMailchimp'
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
       'click a#js-migrate-users': 'migrateUsers'
+      'click @ui.linkSaveDescription': 'saveDescription'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -116,23 +117,36 @@
           error: (data) =>
             $.growl.error({ message: 'Unknow error, please try again' })
 
-    attributeClicked: (e)->
-      e.preventDefault()
-
     toggleEditUploadFiles: (e)->
       e.stopPropagation()
       e.preventDefault()
       @ui.uploadFiles.editable('toggle')
-    
+
     toggleEditGroupOfficial: (e)->
       e.stopPropagation()
       e.preventDefault()
       @ui.groupOfficial.editable('toggle')
 
     toggleEditGroupDescription: (e)->
-      e.stopPropagation()
       e.preventDefault()
-      @ui.groupDescription.editable('toggle')
+      link = $(e.currentTarget)
+      if link.html() == '[edit]'
+        @ui.groupDescription.summernote({height: 100})
+        link.html('[close]')
+        @ui.linkSaveDescription.show()
+      else
+        @ui.groupDescription.destroy()
+        link.html('[edit]')
+        @ui.linkSaveDescription.hide()
+
+    saveDescription: (e)->
+      e.preventDefault()
+      value = @ui.groupDescription.code()
+      unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
+        @trigger 'group:edit:description', @model, value
+        @ui.groupDescription.destroy()
+        $('a#js-edit-description').html('[edit]')
+        $(e.currentTarget).hide()
 
     toggleEditGroupType: (e)->
       e.stopPropagation()
@@ -166,32 +180,33 @@
 
     editAttribute: (e)->
       $(e.target).addClass "hide"
-      
+
+
     onRender: ->
       view = this
 
       @ui.uploadFiles.editable
         type:'select'
-        value: view.model.get('upload_files')    
+        value: view.model.get('upload_files')
         source: view.model.uploadFilesText()
         toggle: 'manual'
         success: (response, newValue)->
           view.model.save
             "upload_files": newValue
 
-      @ui.groupDescription.editable
-        type: 'textarea'
-        pk: view.model.id
-        title: 'Enter the description of Group'
-        toggle: 'manual'
-        validate: (value)->
-          if $.trim(value) == ''
-            'Group description is required, must be less than 2048 characters'
-          if $.trim(value).length >= 2048  
-            'Group description is too large! Must be less than 2048 characters'                 
-        success: (response, newValue)->
-          view.trigger 'group:edit:description', view.model, newValue
-      @ui.groupDescription.linkify()
+      # @ui.groupDescription.editable
+      #   type: 'textarea'
+      #   pk: view.model.id
+      #   title: 'Enter the description of Group'
+      #   toggle: 'manual'
+      #   validate: (value)->
+      #     if $.trim(value) == ''
+      #       'Group description is required, must be less than 2048 characters'
+      #     if $.trim(value).length >= 2048
+      #       'Group description is too large! Must be less than 2048 characters'
+      #   success: (response, newValue)->
+      #     view.trigger 'group:edit:description', view.model, newValue
+      # @ui.groupDescription.linkify()
 
       @ui.uploadFiles.editable
         type: 'select'
@@ -200,7 +215,7 @@
         toggle: 'manual'
         source: [
           {value: 0, text: 'Only administrators'}
-          {value: 1, text: 'All members'}          
+          {value: 1, text: 'All members'}
         ]
         validate: (value)->
           if $.trim(value) == ''
