@@ -2,6 +2,27 @@
   class Create.Controller
     create: ->
       task = new AlumNet.Entities.JobExchange
+      #feature = new AlumNet.Entities.Feature { key_name: 'job_post' }
+      url = AlumNet.api_endpoint + "/features/validate"
+      console.log AlumNet.current_user
+      Backbone.ajax
+        url: url
+        type: "GET"
+        data: { key_name: 'job_post' }
+        success: (data) =>
+          console.log data
+        error: (data) =>
+          $.growl.error({ message: 'Unknow error, please try again' })
+      #feature = AlumNet.request('feature:findByKeyName', 'job_post')
+      
+      ###feature.fetch
+        success: ->
+          console.log feature
+
+        error: (model, response, options)->
+          console.log 'error controller'
+          AlumNet.trigger('show:error', response.status)###
+
       createForm = new Create.Form
         model: task
 
@@ -25,4 +46,3 @@
 
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)
-
