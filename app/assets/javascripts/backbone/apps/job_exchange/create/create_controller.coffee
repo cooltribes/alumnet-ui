@@ -4,13 +4,26 @@
       task = new AlumNet.Entities.JobExchange
       #feature = new AlumNet.Entities.Feature { key_name: 'job_post' }
       url = AlumNet.api_endpoint + "/features/validate"
-      console.log AlumNet.current_user
+      current_user = AlumNet.current_user
       Backbone.ajax
         url: url
         type: "GET"
         data: { key_name: 'job_post' }
         success: (data) =>
           console.log data
+          if data.validation
+            if current_user.get('is_premium')
+              createForm = new Create.Form
+                model: task
+              AlumNet.mainRegion.show(createForm)
+              AlumNet.execute('render:job_exchange:submenu')
+            else
+
+          else
+            createForm = new Create.Form
+              model: task
+            AlumNet.mainRegion.show(createForm)
+            AlumNet.execute('render:job_exchange:submenu')
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
       #feature = AlumNet.request('feature:findByKeyName', 'job_post')
@@ -23,11 +36,7 @@
           console.log 'error controller'
           AlumNet.trigger('show:error', response.status)###
 
-      createForm = new Create.Form
-        model: task
-
-      AlumNet.mainRegion.show(createForm)
-      AlumNet.execute('render:job_exchange:submenu')
+      
 
     update: (id)->
       current_user = AlumNet.current_user

@@ -48,22 +48,6 @@
           model.trigger('find:success')
       feature
 
-    findFeatureByKeyName: (key_name)->
-      feature = @findFeatureOnApiByKeyName(key_name)
-
-    findFeatureOnApiByKeyName: (key_name)->
-      feature = new Entities.Feature
-      feature.set("key_name", key_name)
-      console.log 'inside function'
-      console.log feature
-      feature.fetch
-        # async: false
-        error: (model, response, options) ->
-          model.trigger('find:error', response, options)
-        success: (model, response, options) ->
-          model.trigger('find:success')
-      feature
-
   AlumNet.reqres.setHandler 'feature:new', ->
     API.getNewFeature()
 
@@ -72,7 +56,3 @@
 
   AlumNet.reqres.setHandler 'feature:find', (id)->
     API.findFeature(id)
-
-  AlumNet.reqres.setHandler 'feature:findByKeyName', (key_name)->
-    console.log 'key_name: '+key_name
-    API.findFeatureByKeyName(key_name)
