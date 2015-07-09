@@ -173,9 +173,17 @@
           null
     ui:
       attendanceStatus: '#attendance-status'
+      linkCancel: '#js-attendance-cancel'
 
     events:
       'change @ui.attendanceStatus': 'changeAttendanceStatus'
+      'click @ui.linkCancel': 'cancelEvent'
+
+    cancelEvent: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
