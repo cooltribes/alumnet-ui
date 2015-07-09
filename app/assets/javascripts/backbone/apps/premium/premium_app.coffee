@@ -5,9 +5,9 @@
 
 
   API =
-    listPremium: (id)->
+    listPremium: (condition)->
       controller = new PremiumApp.List.Controller
-      controller.list(AlumNet.current_user.id)
+      controller.list(condition)
 
   AlumNet.addInitializer ->
     new PremiumApp.Router
