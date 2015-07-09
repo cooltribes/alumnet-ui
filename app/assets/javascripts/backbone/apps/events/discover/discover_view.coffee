@@ -71,49 +71,29 @@
     template: 'events/discover/templates/events_container'
     childView: Discover.EventView
     childViewContainer: ".main-events-area"
-     
+
     ui:
       'searchInput': '#js-search-input'
       'calendario': '#calendar'
 
     events:
-      'keypress @ui.searchInput': 'searchEvents'
+      'submit #js-search-form': 'searchEvents'
+      #'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
-      'click .js-search-input': 'searchCliked'      
-      #'click .js-search': 'performSearch'
+      #'click .js-search-input': 'searchCliked'
+      #'click .js-search': 'searchEvents'
 
     initialize: ->
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
-    
-    
-    searchCliked: (e)->
-      e.preventDefault()
-      term = @.$('#search_term').val()
-      @trigger 'search', term  
-
-    ###
-    
-    performSearch: (e) ->
-      e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      this.trigger('events:search', this.buildQuerySearch(data.search_term))
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        id_cont: searchTerm
-                
-    
-    ###    
 
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui
-
       @collection.comparator = 'start_date'
-      options = 
-        success: (collection)-> 
+      options =
+        success: (collection)->
           eventsArray = seft.eventsMap(seft,collection)
           eventsArray = seft.longEvents(seft,eventsArray)
           $.each eventsArray, (id,content)->
@@ -121,6 +101,7 @@
               content["datetime"] = content["startime"]
           $(ui.calendario).eCalendar
             events: eventsArray
+          seft.render()
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
@@ -176,9 +157,9 @@
       return dias
 
     searchEvents: (e)->
-      if e.which == 13
-        unless @ui.searchInput.val() == ""
-          query = { name_cont: @ui.searchInput.val() }
-        else
-          query = {}
-        @searchUpcomingEvents(query)
+      e.preventDefault()
+      unless @ui.searchInput.val() == ""
+        query = { name_cont: @ui.searchInput.val() }
+      else
+        query = {}
+      @searchUpcomingEvents(query)

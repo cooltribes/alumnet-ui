@@ -1,6 +1,10 @@
 <div class="bbm-modal__topbar">  
   <h3 class="bbm-modal__title">  
-    New folder
+    <% if !@isNew: %>
+      Editing: <%= @name %>
+    <% else: %>
+      New folder
+    <% end %>
   <button type="button" class="close js-rmvRow pull-right margin_left_small" id="js-close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 
   </h3>
@@ -9,7 +13,7 @@
 <div class="bbm-modal__section">
   <form>    
     <div class="form-group">
-      <label class="control-label" for="name">Folder Name</label>
+      <label class="control-label" for="name">Folder name</label>
       <input type="text" value="<%= @name %>" class="form-control input-lg" name="name" placeholder="Enter name" autofocus>
       <span class="help-block overfloadText"></span>
     </div>     

@@ -1,7 +1,7 @@
 <div class="eventsTableView margin_bottom_xsmall">
 
   <div class="row no-margin">
-    
+
     <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
       <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
@@ -24,7 +24,7 @@
           <a href="#users/<%= @creator.id %>/posts">
             <div class="creatorName overfloadText">
               <%= @creator.name %>
-            </div> 
+            </div>
           </a>
         </div>
       </div>
@@ -57,6 +57,7 @@
               <span class="glyphicon glyphicon-cog"></span>
               <span >EDIT</span>
             </div>
+            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm">CANCEL</a>
           </a>
         <% else: %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">

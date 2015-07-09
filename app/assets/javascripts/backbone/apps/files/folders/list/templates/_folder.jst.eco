@@ -4,14 +4,19 @@
       <div class="overfloadText file__nameFolder">
         <%= @name %>   (<%= @files_count %>)  
       </div>           
-      <% if @userCanEdit: %>
+      <% if @user_can_edit: %>
         <a class="dropdown-toggle albums-list__editButton file__positionDropdown" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
           <span class="icon-entypo-down-open-mini"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="Edit Album" aria-expanded="false">            
           <li role="presentation">
             <a href="#"  class="js-rmvItem">
-              Delete Folder      
+              Delete folder      
+            </a>
+          </li>   
+          <li role="presentation">
+            <a href="#"  class="js-editItem">
+              Edit folder      
             </a>
           </li>   
         </ul>

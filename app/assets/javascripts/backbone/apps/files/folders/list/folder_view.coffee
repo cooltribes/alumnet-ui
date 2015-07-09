@@ -15,18 +15,17 @@
     
     triggers:
       'click .js-detail': "show:detail"
+      'click .js-editItem': "show:edit"
     
     events:
       'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: truec
-      
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
+    
+    modelEvents:
+      "save:name": "modelChanged"
 
-    templateHelpers: ->
-      userCanEdit: @userCanEdit  
-
+    modelChanged: ->
+      @render()
+    
     removeItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this folder and all its files?")
@@ -40,9 +39,7 @@
     emptyView: Folders.EmptyView
     emptyViewOptions: 
       message: "There are no folders here"
-    childViewContainer: '.folders-list'
-    childViewOptions: ->
-      userCanEdit: @userCanEdit
+    childViewContainer: '.folders-list'    
       
     ui:
       "modals": "#js-modal-container"
@@ -52,7 +49,6 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-
 
     templateHelpers: ->
       userCanEdit: @userCanEdit
@@ -72,11 +68,9 @@
     events:
       "submit form": "submitForm"
 
-    bindings:
-      "[name=name]": "name"  
-
     initialize: (options)->      
-      
+      @previousName = @model.get "name"
+
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -92,20 +86,21 @@
     onShow: ()->
       @$("[name=name]").select()
 
-    onRender: ()->
-      @stickit()
-
     submitForm: (e)->
       e.preventDefault()
       @triggerSubmit()
-    # templateHelpers: ->     
-      # isNew: @model.isNew()
+    
+    templateHelpers: ->     
+      isNew: @model.isNew()
 
     beforeSubmit: ()->
       #Validations
+      data = Backbone.Syphon.serialize this
+      @model.set data
       @model.isValid(true)
 
-
+    cancel: ()->  
+      @model.set "name", @previousName
 
     submit: ()->  
       @trigger "submit"

@@ -1,15 +1,13 @@
 @AlumNet.module 'FilesApp.Folders', (Folders, @AlumNet, Backbone, Marionette, $, _) ->
   class Folders.Controller
     listFolders: (layout, folderable)->      
-      @userCanEdit = false # initialy nobody can create or edit
+      @userCanEdit = folderable.get "user_can_upload_files"
       folderable_route = "" #groups/ or events/
 
       if folderable instanceof AlumNet.Entities.Group #If is group
         folderable_route = "groups"
-        @userCanEdit = folderable.get("admin") #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
       else if folderable instanceof AlumNet.Entities.Event #If is group
         folderable_route = "events"
-        @userCanEdit = folderable.get("admin") #user.isCurrentUser() # || AlumNet.current_user.isAlumnetAdmin()
       else
         return  
 
@@ -25,14 +23,18 @@
       @albumsView = new Folders.FoldersView
         collection: @folders_collection
         userCanEdit: @userCanEdit
+        
       @folders_collection.fetch()
       
       self = @  
-
+      #each folder events
       @albumsView.on "childview:show:detail", (childview)->          
         self.showFiles childview.model
-        
 
+      @albumsView.on "childview:show:edit", (childview)->          
+        self.showEditFolder childview.model
+        
+      #all folders events  
       @albumsView.on "new:folder", ()->
         self.showCreateForm()
       
@@ -51,6 +53,22 @@
       @albumsView.ui.modals.html view.render().el
 
 
+    showEditFolder: (model)->
+      view = new Folders.FolderModal
+        model: model            
+      
+      controller = @
+      view.on "submit", ()->                 
+        @model.save {},
+          success: (model)->
+            model.trigger "save:name"
+            $.growl.notice 
+              # title: "Notice"
+              message: "The folder has been successfully saved"
+
+      @albumsView.ui.modals.html view.render().el
+
+
     showFiles: (folder)->
       files_view = new Folders.FilesView
         model: folder
@@ -63,6 +81,9 @@
 
       files_view.on "childview:move:file", (childview)->        
         self.showMoveFileModal(@, childview.model)  
+      
+      files_view.on "childview:show:edit", (childview)->        
+        self.showRenameFileModal(@, childview.model)  
 
       @layout.show files_view
 
@@ -88,5 +109,23 @@
 
               model = current_folder.files_collection.remove model.id
               new_folder.files_collection.add model
+            
+      files_view.ui.modals.html view.render().el  
+
+
+    showRenameFileModal: (files_view, file)->
+      
+      view = new Folders.FileModal
+        model: file
+
+      controller = @
+      view.on "submit", ()->                 
+        @model.save {},
+          success: (model)->
+            console.log "success"
+            model.trigger "save:name"
+            $.growl.notice 
+              # title: "Notice"
+              message: "The file has been successfully renamed"
             
       files_view.ui.modals.html view.render().el  

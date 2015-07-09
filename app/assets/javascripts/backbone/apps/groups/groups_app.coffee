@@ -3,6 +3,7 @@
   class GroupsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "groups/new": "createGroup"
+      "groups/:group_id/posts/:id": "postGroup"
       "groups/:id/posts": "postsGroup"
       "groups/:id/invite": "inviteGroup"
       "groups/:id/about": "aboutGroup"
@@ -14,7 +15,6 @@
       "groups/:id/photos": "listAlbums"
       "groups/:id/files": "listFiles"
       "groups/:id/banner": "bannersList"
-
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
@@ -31,6 +31,9 @@
       document.title = 'AlumNet - Create groups'
       controller = new GroupsApp.Create.Controller
       controller.createGroup()
+    postGroup: (group_id, id)->
+      controller = new GroupsApp.Posts.Controller
+      controller.showPost(group_id, id)
     postsGroup: (id)->
       controller = new GroupsApp.Posts.Controller
       controller.showPosts(id)

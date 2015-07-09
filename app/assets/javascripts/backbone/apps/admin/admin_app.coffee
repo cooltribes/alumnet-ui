@@ -14,6 +14,7 @@
       "admin/banner": "bannerList"
       "admin/actions": "actionsList"
       "admin/prizes": "prizesList"
+      "admin/features": "featuresList"
 
   API =
     usersList: (id)->
@@ -43,6 +44,9 @@
     prizesList: ->
       controller = new AdminApp.PrizesList.Controller
       controller.prizesList()
+    featuresList: ->
+      controller = new AdminApp.FeaturesList.Controller
+      controller.featuresList()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -67,3 +71,7 @@
   AlumNet.on "admin:actions", ->
     AlumNet.navigate("admin/actions")
     API.groupsList()
+
+  AlumNet.on "admin:features", ->
+    AlumNet.navigate("admin/features")
+    API.featuresList()

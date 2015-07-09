@@ -25,7 +25,7 @@
           <div class="col-md-12">
             <div class="form-job has-feedback">
               <label class="control-label">Job Description (responsabilities)</label>
-              <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"><%= @description %></textarea>
+              <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"><%= @formatted_description %></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
               <span class="help-block"></span>
             </div>
