@@ -55,13 +55,9 @@
         element = $(e.target).closest 'a'
       else
         element = e.target
-        console.log element
       String id = $(element).attr("id")
       id = '#'+id.replace('to','')
-      $('body').animate({
-        scrollTop: $(id).offset().top-120
-      }, 1000);
-      $('html').animate({
+      $('html,body').animate({
         scrollTop: $(id).offset().top-120
       }, 1000);
 
