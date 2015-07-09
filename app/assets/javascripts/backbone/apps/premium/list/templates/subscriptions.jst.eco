@@ -1,5 +1,10 @@
 <div class="row main-events-area">
 	<div class="col-md-6">
+		<% if @condition && @condition == 'members_only': %>
+			<div class="form-group" id="condition-message">
+				Members only feature
+			</div>
+		<% end %>
 		<div class="form-group">
 			<label class="control-label" for="inputName">Select country for different payment options</label>
 			<input id="js-payment-countries" type="" name="birth_country_id" style="width: 100%">

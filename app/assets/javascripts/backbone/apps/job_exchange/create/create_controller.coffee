@@ -17,7 +17,7 @@
               AlumNet.mainRegion.show(createForm)
               AlumNet.execute('render:job_exchange:submenu')
             else
-              AlumNet.navigate("premium", {trigger: true})
+              AlumNet.navigate("premium?members_only", {trigger: true})
           else
             createForm = new Create.Form
               model: task
