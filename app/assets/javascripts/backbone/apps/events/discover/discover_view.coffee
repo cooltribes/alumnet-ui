@@ -56,7 +56,7 @@
     template: 'events/discover/templates/events_container'
     childView: Discover.EventView
     childViewContainer: ".main-events-area"
-     
+
     ui:
       'searchInput': '#js-search-input'
       'calendario': '#calendar'
@@ -66,41 +66,19 @@
       #'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
-      #'click .js-search-input': 'searchCliked'      
+      #'click .js-search-input': 'searchCliked'
       #'click .js-search': 'searchEvents'
 
     initialize: ->
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
-    
-    
-    #searchCliked: (e)->
-      #e.preventDefault()
-      #term = @.$('#search_term').val()
-      #@trigger 'search', term  
 
-    
-    performSearch: (e) ->
-      console.log "performSearch"
-      e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      #this.trigger('events:search', this.buildQuerySearch(data.search_term))
-      #console.log data
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        m: 'or'
-        name_cont: searchTerm
-        description_cont: searchTerm
-                
     searchUpcomingEvents: (query)->
-      console.log query
       seft = this
       ui = @ui
-
       @collection.comparator = 'start_date'
-      options = 
-        success: (collection)-> 
+      options =
+        success: (collection)->
           eventsArray = seft.eventsMap(seft,collection)
           eventsArray = seft.longEvents(seft,eventsArray)
           $.each eventsArray, (id,content)->
@@ -108,7 +86,7 @@
               content["datetime"] = content["startime"]
           $(ui.calendario).eCalendar
             events: eventsArray
-          seft.render()  
+          seft.render()
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
@@ -165,7 +143,6 @@
 
     searchEvents: (e)->
       e.preventDefault()
-      #if e.which == 13
       unless @ui.searchInput.val() == ""
         query = { name_cont: @ui.searchInput.val() }
       else
