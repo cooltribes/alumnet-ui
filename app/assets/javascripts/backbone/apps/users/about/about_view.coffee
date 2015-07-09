@@ -52,12 +52,16 @@
 
     smoothClick: (e)->
       if $(e.target).prop("tagName")!='a'
-        element = e.target.closest 'a'
+        element = $(e.target).closest 'a'
       else
-        element=e.target
-      String id = element.id
-      id='#'+id.replace('to','')
-      $('html,body').animate({
+        element = e.target
+        console.log element
+      String id = $(element).attr("id")
+      id = '#'+id.replace('to','')
+      $('body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
+      $('html').animate({
         scrollTop: $(id).offset().top-120
       }, 1000);
 
