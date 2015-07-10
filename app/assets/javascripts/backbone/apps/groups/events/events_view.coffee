@@ -1,4 +1,6 @@
 @AlumNet.module 'GroupsApp.Events', (Events, @AlumNet, Backbone, Marionette, $, _) ->
+  class Events.EmptyView extends Marionette.ItemView
+    template: 'groups/events/templates/empty'
 
   class Events.EventForm extends Marionette.ItemView
     template: 'groups/events/templates/form'
@@ -222,6 +224,7 @@
     idName: 'wrapper'
     template: 'groups/events/templates/events_container'
     childView: Events.EventView
+    emptyView: Events.EmptyView
     childViewContainer: ".main-events-area"
 
     childViewOptions: ->
