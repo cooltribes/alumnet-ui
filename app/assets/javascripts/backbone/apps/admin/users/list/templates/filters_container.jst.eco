@@ -21,11 +21,8 @@
 
 <div class="margin_bottom search-control">
   <button class="glyphicon glyphicon-search btn btn-primary btn-lg js-search userBrowse__btnSearch" type="button"> Search</button>
-  <hr>
-  
-
 </div>
-
+ <hr>
 
 
 
