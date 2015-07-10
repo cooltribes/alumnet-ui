@@ -57,6 +57,7 @@ DESCRIPTION: CSS for styling the admin tables
 		}
 		&:nth-child(5),&:nth-child(3){
 			min-width: 140px;
+			max-width: 140px;
 		}
 		&:nth-child(6),&:nth-child(7){
 			min-width: 90px;
@@ -111,6 +112,10 @@ DESCRIPTION: CSS for styling the admin tables
 
     &__creator{
     	color: @main-text;	
+
+    	& .overfloadText{
+    		max-width: 140px;
+    	}
     }
 
     &__subGroup{

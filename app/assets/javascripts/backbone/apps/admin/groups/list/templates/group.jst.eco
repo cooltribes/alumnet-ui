@@ -31,8 +31,10 @@
 </td>
 <td class=" tableAdminGroups__colText">
   <% if @creator: %>
-  <a class="tableAdminGroups__creator" href="#users/<%= @creator.id %>/about">
-    <%= @creator.name %>
+  <a class="tableAdminGroups__creator overfloadText" href="#users/<%= @creator.id %>/about">
+    <div class="overfloadText">
+      <%= @creator.name %>
+    </div>
   </a><br>
   <% end %>
   <small><%= moment(@created_at).format('DD/MM/YYYY') %></small>

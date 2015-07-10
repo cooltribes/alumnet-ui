@@ -7,11 +7,10 @@
   <h2>Update user status</h2>
     <p>
     <form>
-      <select name="status" class="form-control input-lg eventsTableView__status--white">
+      <select name="status" class="form-control input-lg">
         <option value="1"<%= selected(1, @status.value) %>>Active</option>
         <option value="2" <%= selected(2, @status.value) %>>Banned</option>
       </select>
-      <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>"
     </form>
   </p>
 </div>
