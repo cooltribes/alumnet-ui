@@ -6,10 +6,10 @@
 				<!-- FORM -->
 				<div class="item col-md-6 ">
 					<div class="groupCreatePostForm clearfix">
-						<div class="groupCreatePostForm__avatar">
+						<div class="groupCreatePostForm__avatar--events">
 							<img src="<%= @avatar.large %>" class="img-circle" >
 						</div>
-						<div class="groupCreatePostForm__form">
+						<div class="groupCreatePostForm__form--events">
 							<form class="form">
 								<div class="form-group groupCreatePostForm__textarea ">
 									<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>

@@ -49,11 +49,6 @@
             comparator = model.get("comparator")
             value = model.get("value")
             attr = "#{field}_#{comparator}"
-            console.log field
-            console.log operator
-            console.log comparator
-            console.log value
-            console.log attr                       
 
             if comparator in ["cont_any","in",'not_in','not_eq','gt','lt','lteq','gteq','eq']
               if q[attr]?

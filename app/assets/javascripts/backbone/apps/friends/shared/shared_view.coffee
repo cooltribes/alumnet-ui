@@ -90,11 +90,14 @@
     changedCount: ->
       console.log "here"
       message = "Friends (#{@model.get('friends_count')})"
-      @ui.changedCount.html(message)
+      $(@ui.changedCount).html(message)
 
     onRender: ()->
       @stickit()
 
+    bindings:
+      "#js-receivedCount": "pending_received_friendships_count"  
+      "#js-myFriendsCount":"friends_count"
 
   API =
     getFriendsLayout: (model, tab)->

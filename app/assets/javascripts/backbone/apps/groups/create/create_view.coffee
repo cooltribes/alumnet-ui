@@ -4,7 +4,6 @@
     template: 'groups/create/templates/form'
 
     initialize: (options)->
-      document.title='AlumNet - Create Group'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -79,6 +78,7 @@
 
     submitClicked: (e)->
       e.preventDefault()
+      $(e.currentTarget).removeClass('js-submit')
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->

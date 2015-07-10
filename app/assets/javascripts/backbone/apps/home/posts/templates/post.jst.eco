@@ -21,7 +21,7 @@
         <% for picture in @picturesToShow(): %>
           <% counter = counter + 1 %>
           <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
-            <img src="<%= picture.picture.card %>" class="first-item picture-post" data-id="<%= picture.id %>">
+            <img src="<%= picture.picture.main %>" class="first-item picture-post" data-id="<%= picture.id %>">
           <% else: %>
             <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
           <% end %>
@@ -46,6 +46,7 @@
       <a href="#" id='js-delete-post'>delete</a>
     <% end %>
   </div>
+  <a href="#" class="groupPost__btn--loadMore" id="js-load-more">Show previews comments</a>
   <div class="groupPost__commentsContainer comments-container"></div>
   <form class="groupPost__commentForm clearfix form">
     <div class="groupPost__commentForm__avatar">

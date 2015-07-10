@@ -2,10 +2,12 @@
   class EventsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "events/:id/about": "aboutEvent"
+      "events/:event_id/posts/:id": "postEvent"
       "events/:id/posts": "postsEvent"
       "events/:id/attendances": "attendancesEvent"
       "events/:id/photos": "listAlbums"
       "events/:id/payment": "paymentEvent"
+      "events/:id/files": "showFiles"
       "events/manage": "manageEvents"
       "events/new": "createEvent"
       "events": "discoverEvents"
@@ -16,6 +18,10 @@
       controller = new EventsApp.About.Controller
       controller.showAbout(id)
 
+    postEvent: (event_id, id)->
+      controller = new EventsApp.Posts.Controller
+      controller.showPost(event_id, id)
+
     postsEvent: (id)->
       controller = new EventsApp.Posts.Controller
       controller.showPosts(id)
@@ -25,10 +31,12 @@
       controller.showAttendances(id)
 
     manageEvents: (id)->
+      document.title = 'AlumNet - Manage Events'
       controller = new EventsApp.Manage.Controller
       controller.manage(AlumNet.current_user.id)
 
     createEvent: ->
+      document.title = 'AlumNet - Create Event'
       controller = new EventsApp.Create.Controller
       controller.createEvent(AlumNet.current_user.id)
 
@@ -36,7 +44,12 @@
       controller = new EventsApp.Payment.Controller
       controller.payEvent(id)
 
+    showFiles: (id)->
+      controller = new EventsApp.Files.Controller
+      controller.showFiles(id)
+
     discoverEvents: ->
+      document.title = 'AlumNet - Discover Events'
       controller = new EventsApp.Discover.Controller
       controller.discover()
 
@@ -52,6 +65,7 @@
     API.inviteEvent(event, users)
 
   AlumNet.on "events:discover", ->
+    AlumNet.navigate("events")
     API.discoverEvents()
 
   AlumNet.addInitializer ->

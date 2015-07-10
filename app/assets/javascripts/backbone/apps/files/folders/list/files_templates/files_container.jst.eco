@@ -1,0 +1,51 @@
+<div class="container-fluid margin_top">
+  <div class="row ">
+    
+    <div class="col-md-9">
+      <ul class="sortingMenu" id="filter-link-container">
+        
+        <li class="sortingMenu__item sortingMenu__item--lg">
+          <!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->    
+          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%= @name %> 
+          </div>
+         <!--  <a href="#" title="All" class="sortingMenu__item__link sortingMenu__item__link--active">Photos (0)
+          </a> -->
+        </li>
+        
+      </ul>
+      
+    </div>
+    <% if @userCanEdit: %>
+
+      <div class="col-md-3 text-right">
+        <button title="+ Upload file" class="btn-primary-noBackground btn  btn-primary js-upload">
+          <span class="icon-entypo-upload"></span> Upload new file
+        </button>
+      </div>
+    <% end %>
+    
+  </div>
+  <hr>
+  <div class="row ">
+    
+    <div class="col-md-12">
+      <a href="#" class="js-return">Back to folders</a> 
+    </div>
+      
+  </div>
+  <div class="row js-loading" style="display: none;">    
+    <div class="col-md-12">
+      <h2>Uploading files ...</h2>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        </div>
+      </div>
+    </div>      
+  </div>
+  <div class="files-list row">
+    
+  </div>
+</div>
+<div id="js-modal-container">
+        
+</div>

@@ -170,7 +170,53 @@
         @push newExperience
       ,
         this
+
       @sort()
+
+    
+    setOrder: ->
+      @comparator = (a, b)->
+        typeA = a.get("exp_type")
+        typeB = b.get("exp_type")
+        end_dateA = a.get "end_date"
+        end_dateB = b.get "end_date"
+        dateA = moment(end_dateA)
+        dateB = moment(end_dateB)
+
+        positions = [2,1,3,0] #Arbitrary order for experience types        
+     
+        resp = positions[typeA] - positions[typeB]
+
+        if resp == 0
+          
+          if a.get("asTitle")
+            # return -1
+            resp = -1
+          else
+
+            if a.get("asTitle") == b.get("asTitle")
+              #Order inside a group of experiences depending on type
+              if end_dateA == null
+                resp = -1
+              else
+                if end_dateB != null
+                  # console.log dateA
+                  # console.log dateB
+                  # console.log ""
+
+                  resp = -dateA.diff(dateB)
+                  # console.log resp
+
+                else
+                  resp = 1
+
+            else
+              resp = 1    
+                      
+            # return 1
+
+        resp
+        
       # @trigger "reset"
 
     # addExperiencesTitles: ->

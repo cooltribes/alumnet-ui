@@ -1,5 +1,8 @@
 @AlumNet.module 'HeaderApp.Menu', (Menu, @AlumNet, Backbone, Marionette, $, _) ->
-
+  class Menu.MessageViewEmpty extends Marionette.ItemView
+    template: 'header/menu/templates/messageEmpty'
+    className: 'notification__empty'
+  
   class Menu.MessageView extends Marionette.ItemView
     tagName: 'li'
     role: 'presentation'
@@ -10,6 +13,11 @@
     tagName: 'ul'
     className: 'navTopBar__dropdownMenu'
     childView: Menu.MessageView
+    emptyView: Menu.MessageViewEmpty
+
+  class Menu.NotificationViewEmpty extends Marionette.ItemView
+    template: 'header/menu/templates/notificationEmpty'
+    className: 'notification__empty'
 
   class Menu.NotificationView extends Marionette.ItemView
     tagName: 'li'
@@ -21,12 +29,16 @@
     tagName: 'ul'
     className: 'navTopBar__dropdownMenu'
     childView: Menu.NotificationView
+    emptyView: Menu.NotificationViewEmpty
 
   class Menu.MenuBar extends Marionette.LayoutView
     initialize: ->
+      @points = @model.profile.get("points")
       @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
       @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
       @listenTo(@model, 'change:avatar', @changeAvatar)
+      @listenTo(@model, 'change:member', @changeMembresia)
+      @listenTo(@model, 'render:points', @changePoints)
 
       # @model.on('change:unread_messages_count', @updateMessagesCountBadge, @)
       # @model.on('change:unread_notifications_count', @updateNotificationsCountBadge, @)
@@ -59,6 +71,12 @@
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
 
+    changePoints: ->
+      $(".totalPoints").text(@model.profile.get("points"))
+
+    changeMembresia: ->
+      @render()
+
     changeAvatar: ->
       view = @
       @model.fetch
@@ -72,9 +90,10 @@
 
     templateHelpers: ->
       model = @model
+      #console.log @model
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
-      points: 3000
+      points: @points 
       daysLeft: model.get('days_membership')
       memberTitle: ->
         if(model.get('member')==1)
@@ -140,11 +159,6 @@
     accountDropdownClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
 
-
-
-
-
-
   class Menu.AdminBar extends Marionette.LayoutView
     template: 'header/menu/templates/admin_layout'
 
@@ -175,5 +189,4 @@
 
     changeHeader: (e)->
       # e.preventDefault()
-
       AlumNet.execute('header:show:regular')

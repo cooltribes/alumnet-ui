@@ -45,8 +45,6 @@
     modelChange: ()  ->
       @render()
 
-    # onRender: ()  ->
-    #   console.log @model
 
   class AlbumDetail.DetailView extends Marionette.CompositeView
     template: 'pictures/albums/detail/templates/albumDetail'
@@ -81,28 +79,15 @@
       'click .js-returnAlbums': 'return:to:albums'
     
     events:    
-      # 'click @ui.uploadButtons': 'triggerFile'
       'click .js-edit': 'editAlbum'
       'change @ui.fileInput': 'uploadPicture'
 
-    # triggerFile: (e)->
-      # e.preventDefault()
-      # console.log "upload buttons"
-      # console.log @ui.mainUploadButton
-      # @ui.mainUploadButton.mousedown()
-      # @ui.mainUploadButton.mouse()
     onRender: ->
       view = this
       @ui.descrption.linkify()
 
-    onShow: ->
-      # console.log "ui"
-      # console.log @ui.uploadButtons.get()
-      # console.log "selkecsyt"
-      # window.vista =
-      # console.log 
+    onShow: ->     
       #Init the file uploader
-      # uploader = new AlumNet.Utilities.PluploaderAlbums('js-upload', @).uploader               
       uploader = new AlumNet.Utilities.PluploaderAlbums($(".js-upload", @.$el).get(), @).uploader               
       uploader.init()       
 

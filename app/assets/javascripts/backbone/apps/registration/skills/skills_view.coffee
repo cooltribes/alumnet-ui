@@ -26,6 +26,7 @@
       @model.destroy()
 
     onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
       #Render the slider
       slideItem = $("#slider", @el)
       levelTextItem = slideItem.next("#level")
@@ -79,6 +80,7 @@
       skillsList.fetch
         success: =>
           @fillSkills(skillsList)
+      $('body,html').animate({scrollTop: 20}, 600);
 
 
     fillSkills: (collection)->

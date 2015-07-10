@@ -128,6 +128,7 @@
       unless aiesecExp == "International"
         @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      console.log @optionsForSelect2(cities_url, 'City')
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
@@ -154,6 +155,7 @@
       data: committees
 
     saveExperience: (e)->
+      e.preventDefault()
       data = Backbone.Syphon.serialize this
       @model.set data
       @trigger "save:experience"
@@ -182,7 +184,6 @@
       'click .js-linkedin-import': 'linkedinClicked'
 
     initialize: (options) ->
-      document.title = " AlumNet - Registration"
       @exp_type = options.exp_type
 
       @title = 'Experience in AIESEC'
@@ -207,6 +208,9 @@
             true
           else
             false
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
 
     addExperience: (e)->
       newExperience = new AlumNet.Entities.Experience

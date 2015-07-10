@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-3 ticket__background">
+  <div class="main-events-area">
+    <h3 class="overfloadText">Event: <%= @name %></h3>
+    <div class="">
+      Reference: <%= @payment_info.reference %> </br>
+      Price: <%= @payment_info.price %> </br>
+      Date: <%= @payment_info.created_at %> </br>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,6 @@
     template: 'events/create/templates/form'
 
     initialize:(options)->
-      document.title='AlumNet - Cerate Event'
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -49,7 +48,6 @@
       @ui.selectInvitationProcess.html(@invitationOptionsString(select.val()))
 
     changedOfficial: (e)->
-      console.log(@ui.official.val())
       if(@ui.official.val() == "1")
         @ui.admissionTypeContainer.removeClass('hide')
         if(@ui.admissionType.val() == "1")
@@ -125,7 +123,9 @@
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
-
+        onSelect: (date, standarDate, jsDate, input)->
+          $("#event-end-date").val(date)
+          
       @ui.endDate.Zebra_DatePicker
         direction: true
         show_icon: false
@@ -146,6 +146,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+
+
 
   # INVITE
 
@@ -203,10 +205,11 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       this.trigger('users:search', this.buildQuerySearch(data.search_term))
-
+     
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
+       

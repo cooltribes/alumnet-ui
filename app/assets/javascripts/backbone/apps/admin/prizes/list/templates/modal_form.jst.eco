@@ -43,6 +43,15 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Quantity</label>
+          <input type="text" id="quantity" name="quantity" class="form-control input-lg" value="<%= @quantity %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
 

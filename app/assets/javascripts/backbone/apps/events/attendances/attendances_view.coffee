@@ -40,7 +40,6 @@
 
     initialize: ->
       @collection.getByStatus(1, {})
-      document.title='AlumNet - '+@model.get('name')
 
     templateHelpers: ->
       userIsAdmin: @model.userIsAdmin()

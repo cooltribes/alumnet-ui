@@ -5,15 +5,15 @@
     <form>
       <div class="form-group">
           <label class="createBanner__label" for="title">Banner's title </label>
-          <input type="text" class="form-control" id="title" placeholder="<%= @title %>" disabled>
+          <input type="text" name="title" class="form-control" id="title" placeholder="<%= @title %>" disabled>
         </div>
         <div class="form-group">
           <label class="createBanner__label" for="link">Link:</label>
-          <input type="text" class="form-control" id="link" placeholder="<%= @link %>" disabled>
+          <input type="text" name="link" class="form-control" id="link" placeholder="<%= @link %>" disabled>
         </div>
         <div class="form-group">
           <label class="createBanner__label" for="content">Content:</label>
-         <textarea class="form-control" rows="3" for="content" placeholder="<%= @description %>" disabled></textarea>
+         <textarea class="form-control" name="description" rows="3" for="content" placeholder="<%= @description %>" disabled></textarea>
         </div>
         <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
         <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
@@ -22,9 +22,16 @@
   <div class="col-md-5">
     <form>
       <div class="form-group">
-        <img class="createBanner__img"  src="<%= @picture.main %>"><a id="js-upload-banner" class="ico-edit createBanner__btnEdit">Edit</a></img>
-      </div>
+
+        <label class="createBanner__fileLabel uploadLabel">
+          <span class="glyphicon glyphicon-open"></span>Upload picture
+          <input class="createBanner__file" type="file" name="picture" id="BannerImg">         
+          <span class="help-block"></span>
+        </label>
+        <img class="createBanner__img" id="preview-banner" name="picture" src="<%= @picture.main %>"><a id="js-edit-banner" class="btn btn-default createBanner__btnEdit">Edit</a></img>
+      </div>      
     </form>
-       <a href="#" class="createBanner__btn createBanner__btnDelete" title="Delete banner" id="js-deleteBanner">Delete Banner</a>
+       <a href="#" class="btn btn-danger" title="Delete banner" id="js-deleteBanner">Delete</a>
+       <button class="btn btn-primary js-update">Update</button>
   </div>
 </div>

@@ -10,15 +10,17 @@
       <%= @name %>
       </h1>
     <% end %>
-  </h1>
+    <% if @capacity == @going_count: %>
+    
+    <% end %>
   <% if @canEditInformation: %>
   <div class="groupCoverArea__editCover">
     <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
     </div>
   <% end %>
-  <% if @userCanAttend  && not @isPast && (@capacity > @attendances_count || not @capacity): %>
+  <% if @userCanAttend  && not @isPast && (@capacity > @going_count || not @capacity) && @attendance().status != 'going' && !@payment_info: %>
     <div class="groupCoverArea__attendanceOptions">
-      <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option<%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
+      <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">
         ATTENDING
       </a>
       <a href="#" id="js-att-maybe" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">
@@ -34,6 +36,7 @@
       <% end %>
     </div>
   <% else: %>
+    <% if @capacity > @going_count: %>
     <div class="groupCoverArea__attendanceOptions">
       <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">ATTENDED</div>
       <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past <%= @buttonAttendance('js-att-maybe',@attendance().status) %>" data-value="maybe">MAYBE</div>
@@ -42,6 +45,13 @@
         <div class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--past <%= @buttonAttendance('js-att-pending-payment',@attendance().status) %>" data-value="pending_payment">PENDING FEE</div>
       <% end %>
     </div>
+    <% else: %>
+    <div  class="groupCoverArea__attendanceOptions groupCoverArea__attendanceOptions--soldOut">
+      <span class="groupCoverArea__attendanceOptions--past btn label-danger">
+        Sold Out
+      </span>
+    </div>
+    <% end %>
   <% end %>
 </div>
 <div id="js-modal-cover-container">

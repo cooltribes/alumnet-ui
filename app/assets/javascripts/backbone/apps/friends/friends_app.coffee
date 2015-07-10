@@ -17,9 +17,11 @@
     #   controller = new FriendsApp.Requests.Controller
     #   controller.showSent()
     findFriends: ->
+      document.title = 'AlumNet - Discover Friends'
       controller = new FriendsApp.Find.Controller
       controller.findUsers()
     listFriends: ->
+      document.title = 'AlumNet - My Friends'
       controller = new FriendsApp.List.Controller
       controller.showFriends()
     myFriends: (layout)->
@@ -33,6 +35,7 @@
       controller.showMyReceived(layout)
 
     myApproval: ()->
+      document.title = 'AlumNet - Approval requests'
       controller = new FriendsApp.Approval.Controller
       controller.showReceived()
 
@@ -43,9 +46,11 @@
       controller = new FriendsApp.List.Controller
       controller.showMyMutual(layout, id)
     importContacts: ->
+      document.title = 'AlumNet - Invite Friends'
       controller = new FriendsApp.Import.Controller
       controller.importContacts()
     importNetworks: ->
+      document.title = 'AlumNet - Invite Friends'
       controller = new FriendsApp.Import.Controller
       controller.importNetworks()
 

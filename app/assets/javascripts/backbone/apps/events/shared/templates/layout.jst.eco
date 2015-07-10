@@ -16,11 +16,17 @@
           <li class="<%= @classOf(3)%>">  <a href="#events/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
             <span class="icon-entypo-picture"></span>
           Pictures</a></li>
-          <% if @admissionType == 1: %>
+          <% if @admissionType == 1 && @capacity > @going_count: %>
             <li class="<%= @classOf(4)%>">  <a href="#events/<%= @id %>/payment" id="js-payment" class="groupMenu__link">
               <span class="icon-entypo-star"></span>
             Payment</a></li>
           <% end %>
+          <li class="<%= @classOf(5)%>">
+            <a href="#events/<%= @id %>/files" class="groupMenu__link">
+              <span class="glyphicon glyphicon-file"></span>
+              Files
+            </a>
+          </li>
         </ul>
       </div>
     </div>

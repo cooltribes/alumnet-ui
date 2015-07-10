@@ -1,6 +1,5 @@
-a:hover{
-    text-decoration: none;
-}
+
+
 .calendar  * {
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
@@ -173,6 +172,11 @@ a:hover{
     background-color: #f5ac45;
     font-weight: bold;
     color: white;
+    text-decoration: none;
+}
+
+a.c-event-over {
+    text-decoration: none;
 }
 
 .c-event-over > .c-event-info .description, .c-event-over > .c-event-info > .title{

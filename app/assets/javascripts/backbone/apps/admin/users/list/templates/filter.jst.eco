@@ -1,8 +1,8 @@
-<div class="row <% if @first: %>margin_top_small <% end %>">
+<div class="row <% if @first: %>margin_top_small <% end %> userBrowse__colorFilter">
   <div class="col-md-3 ">
     <div class="form-group">
-     <% if @first: %> <label class="control-label">Filter by</label><% end %>
-      <select name="field" class="form-control  input-lg filter_by">
+     <% if @first: %> <label class="userBrowse__font">Filter by</label><% end %>
+      <select name="field" class="form-control input-lg filter_by eventsTableView__status--white">
         <option value="">Select field</option>
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
         <option value="email">Email</option>
@@ -14,32 +14,35 @@
         <option value="status">Status</option>  
         <option value="member">Membership</option> 
         <option value="created_at">Joining date</option>    
+        <option value="profile_experience_local_committee_name">Local Committee</option>    
       </select>
+      <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
       <span class="help-block"></span>
     </div>
   </div>
 
 
-  <div class="col-md-2 ">
+  <div class="col-md-3 ">
     <div class="form-group"> 
-      <% if @first: %><label class="control-label">Comparator</label><% end %>    
+      <% if @first: %><label class="userBrowse__font">Comparator</label><% end %>    
         <div name="comparator" >
-          <select  class="form-control input-lg">
+          <select  class="form-control input-lg eventsTableView__status--white">
             <option value="">Select comparator</option>
             <option value="cont_any">Contains</option>
             <option value="in">=</option> 
-          </select> 
+          </select>
+          <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
         </div>
         <span class="help-block"></span>      
      
     </div>
   </div>
 
-  <div class="col-md-3 "> 
+  <div class="col-md-2 "> 
     <div class="form-group">
-      <% if @first: %> <label class="control-label value_form" for="registerLocalcomitee">Value</label><% end %>
+      <% if @first: %> <label class="value_form" for="registerLocalcomitee">Value</label><% end %>
       <div name="value" >
-        <input type="text"  id="value" class="form-control input-lg">    
+        <input type="text"  id="value" class="form-control input-lg eventsTableView__status--white">    
       </div>     
 <!-- 
         Date picker
@@ -52,10 +55,6 @@
     </div>
   </div>
 
- 
-         
-        
-  
 
 
 
@@ -77,8 +76,9 @@
   <% if !@first: %>
   <div class="col-md-2">
     <div class="form-group">
-      <button type="button" class="close formANet__removableRow__removeButton js-rmvRow"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      
+      <button type="button" class="btn btn-default js-rmvRow userBrowse__iconDelete">
+         <span class="glyphicon glyphicon-trash"></span>
+      </button>
     </div>
   </div>
   <% end %>

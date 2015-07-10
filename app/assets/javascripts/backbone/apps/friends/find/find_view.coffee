@@ -25,12 +25,13 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
-
+      @trigger 'Catch:Up'
 
     clickedRequest: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'request'
+      @trigger 'Catch:Up'
 
     clickedReject: (e)->
       e.preventDefault()
@@ -51,7 +52,6 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('friends')
-        self.destroy()
 
     clickedCancel: (e)->
       e.preventDefault()
@@ -62,11 +62,10 @@
       friendship.on 'delete:success', (response, options) ->
         self.removeCancelLink()
         AlumNet.current_user.decrementCount('pending_sent_friendships')
-        self.destroy()
 
     removeCancelLink: ->
-      @ui.linkContainer.empty()
       @model.set("friendship_status","none")
+      @trigger 'Catch:Up'
 
 
 
@@ -77,8 +76,6 @@
     childViewContainer: '.users-list'
     events:
       'click .js-search': 'performSearch'
-    initialize: ->
-      document.title='AlumNet - Discover Friends'
 
     onShow: ->
       view = @
@@ -100,6 +97,13 @@
           view.formatContact(contacts)
           false
 
+    onChildviewCatchUp: ->
+      view = @
+      @collection.fetch
+        success: (model)->
+          view.render()
+
+
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
@@ -108,9 +112,9 @@
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
-        profile_first_name_cont: searchTerm
-        profile_last_name_cont: searchTerm
-        email_cont: searchTerm
+        profile_first_name_cont_any: searchTerm.split(" ")
+        profile_last_name_cont_any: searchTerm.split(" ")
+        email_cont_any: searchTerm
 
     formatContact: (contacts)->
       view = @

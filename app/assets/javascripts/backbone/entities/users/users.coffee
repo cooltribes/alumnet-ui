@@ -9,9 +9,24 @@
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
-
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
+
+      #Pageable Collection
+      # @posts = new Entities.PostCollection [],
+        # mode: "infinite"
+        # ,
+        # state: 
+        #   pageSize: 
+          # firstPage: 1
+          # currentPage: 1
+        # ,
+        # url: @urlRoot() + @id + '/posts'
+        # queryParams:
+          # totalPages: null,
+          # totalRecords: null,
+      
+
 
       @on "change", ->
         @profile.fetch({async:false})
@@ -173,12 +188,10 @@
 
     getUserEntities: (querySearch, options)->
       initializeUsers() if Entities.users == undefined
-      # Entities.users.fetch()
-      if !(options.fetch?) then options.fetch = true
-
-      if options.fetch
-        Entities.users.fetch
-          data: querySearch
+      Entities.users.fetch
+        data: querySearch
+        success: (model, response, options) ->
+          Entities.users.trigger('fetch:success')
       Entities.users
 
     #List of all users for administration

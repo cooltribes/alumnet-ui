@@ -5,3 +5,8 @@
   	</select>
 </td>
 <td class="tableAdminGroups__colText js-price" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-type" name="type">    
+  	</select>
+</td>
+<td class="tableAdminGroups__colText js-quantity" contenteditable="true"></td>

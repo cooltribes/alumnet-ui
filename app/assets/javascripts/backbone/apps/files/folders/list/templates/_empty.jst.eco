@@ -1,0 +1,8 @@
+<div class="row margin_top_large">
+  <div class="col-md-12 text-center">
+    <h3>
+      <%= @message %>
+    </h3>
+
+  </div>
+</div>

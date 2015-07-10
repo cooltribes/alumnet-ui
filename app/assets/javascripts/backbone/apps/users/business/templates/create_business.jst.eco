@@ -1,0 +1,95 @@
+<div class="container margin_top">
+
+    <h1>Create a Company / Project</h1>
+
+    <form class="formANet form margin_top">
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label">Company / Project name</label>
+            <input type="text" name="company_name" id="company-name" class="form-control input-lg">
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Company / Project tagline</label>
+            <input type="text" name="tagline" class="form-control input-lg">
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label">What I offer</label>
+            <br>
+            <small>A short description helping with filling in that form</small>
+            <textarea name="offer" class="form-control input-lg input--xxl" id="business-offer"></textarea>
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group userBusiness__formkeywords">
+            <label class="control-label">What I offer - keywords</label>
+            <br>
+            <small>A short description helping with filling in that form</small>
+            <input style="padding:0" id="keywords-offer" name="offer_keywords" class="form-control input-lg" type="text" value="">
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label">What I'm looking for</label>
+            <br>
+            <small>A short description helping with filling in that form</small>
+            <textarea name="search" class="form-control input-lg input--xxl" id="business-search"></textarea>
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group userBusiness__formkeywords">
+            <label class="control-label">What I'm looking for - keywords</label>
+            <br>
+            <small>A short description helping with filling in that form</small>
+            <input style="padding:0" id="keywords-search" name="search_keywords" class="form-control input-lg" type="text" value="">
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label">Why to make business with me</label>
+            <br>
+            <small>A short description helping with filling in that form</small>
+            <textarea name="business_me" class="form-control input-lg input--xxl" id="business-me"></textarea>
+            <span class="help-block"></span>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="row padding_small pull-right">
+
+        <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+        <button class="btn btn-primary btn-lg js-submit">SAVE</button>
+
+      </div>
+
+    </form>
+
+</div>

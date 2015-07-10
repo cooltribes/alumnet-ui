@@ -50,6 +50,7 @@
             view.collection.add(model)
         @model.save(formData, options_for_save)
         @render()
+  
 
     previewImage: (e)->
       input = @.$('#BannerImg')
@@ -61,7 +62,6 @@
         reader.readAsDataURL(input[0].files[0])
 
 
-
   #Vista para un banner
   class BannerList.BannerView extends Marionette.ItemView
     template: 'admin/banner/list/templates/banner'
@@ -69,29 +69,41 @@
     ui:
       'buttonUp': '#js-move-up'
       'buttonDown':'#js-move-down'
-      'uploadBanner':'#js-upload-banner'      
+      'editBanner':'#js-edit-banner'      
+      'upload':'.uploadLabel' 
+      'update':'.js-update'
 
     events:
       'click #js-deleteBanner': 'deleteBanner'
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
-      'click @ui.uploadBanner': 'uploadClicked'
-      'change' : 'coverChanged'
+      'click @ui.editBanner': 'editClicked'
+      'click @ui.update':'updateClicked' 
+      'change #BannerImg': 'previewImage'
 
-    #modelEvents:
-      #'change:banner': 'bannerChanged'
-
-    coverChanged: ->
-      view = @
-      @model.fetch
-        success: (model)->
-          view.render()
-
-    uploadClicked: (e)->
+    initialize: (options)->      
+      @collection = options.collection
+      $(@ui.upload).hide()
+      $(@ui.update).hide()
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+              
+    editClicked: (e)->
       e.preventDefault()
-      modal = new BannerList.Modal
-        model: @model 
-      $('#js-modal-banner-container').html(modal.render().el)
+      $("[name='title']").prop('disabled', false)
+      $("[name='link']").prop('disabled', false)
+      $("[name='description']").prop('disabled', false)
+      $(@ui.upload).show()
+      $(@ui.update).show()
 
     deleteBanner: (e)->
       e.preventDefault()
@@ -114,6 +126,43 @@
       indexToDown = @model.collection.indexOf(@model)
       @trigger 'Swap:Down', indexToDown, indexToDown+1, indexToDown+2
 
+    updateClicked: (e)->
+      e.preventDefault()
+      view = @
+      model = @model
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = @$('#BannerImg')
+      formData.append('picture', file[0].files[0])
+      @model.set(data)
+      if @model.isValid(true)
+        options_for_save =
+          wait: true
+          contentType: false
+          processData: false
+          data: formData
+          success: (model, response, options)->          
+            view.model.set(formData)  
+        @model.save(formData, options_for_save)        
+        @model.trigger 'banner:count'
+        $("[name='title']").prop('disabled', true)
+        $("[name='link']").prop('disabled', true)
+        $("[name='description']").prop('disabled', true)
+        $(@ui.upload).hide()
+        $(@ui.update).hide()
+ 
+  
+    previewImage: (e)->
+      input = @.$('#BannerImg')
+      preview = @.$('#preview-banner')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])  
+
 
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
@@ -122,13 +171,9 @@
     childViewContainer: "#banners-list"
       
     initialize: (options)->
-      #document.title='AlumNet - Banners Management'
+      document.title='AlumNet - Banners Management'      
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
-
-    events:
-      'change': 'renderView'
-  
          
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
       indexAbove = indexAbove-2
@@ -164,7 +209,7 @@
 
       cropper = new Croppic('croppic', options)    
 
-
+###
   class BannerList.Modal extends Backbone.Modal
     template: 'admin/banner/list/templates/upload_modal'
     cancelEl: '.js-modal-close'
@@ -205,26 +250,30 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
-
+        
     saveClicked: (e)->
       e.preventDefault()
-      modal = @
-      model = @model      
+      view = @
+      model = @model
       formData = new FormData()
-      data = Backbone.Syphon.serialize(this)      
+      data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
-        formData.append(key, value)    
+        formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
       @model.set(data)
       if @model.isValid(true)
-        options =
+        options_for_save =
           wait: true
           contentType: false
           processData: false
           data: formData
-          success: ->
-            model.trigger('change:banner')
-      @model.save(formData, options)      
-      @destroy()
+          success: (model, response, options)->
+            view.model.set(formData)       
+            model.trigger('change:banner', file)
+        @model.save(formData, options_for_save)
+        @destroy()
+###
+     
 
+      

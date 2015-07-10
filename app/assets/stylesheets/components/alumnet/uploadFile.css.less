@@ -1,0 +1,73 @@
+/***
+
+COMPONENT NAME: formANet
+DESCRIPTION: Specific style for the forms of AlumNet
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.uploadF{
+	text-align: center;
+  	width: 100%;
+  	position: relative;
+  	cursor: pointer;
+  	padding: 5px;
+
+  	&--blue{
+  		border: 3px solid @blue;
+  		color: @blue;
+  	}
+
+  	&--positionLogo{
+  		position: absolute;
+  		width: 262px;
+  		height: 100px;
+  		padding: 35px;
+  	}
+
+  	&--img{
+  		position: relative;
+  		z-index: 2;
+  	}
+
+  	& small{
+  		display: block;
+		font-size: 0.5em;
+		margin-top: 2px;
+  	}
+
+  	&--cover{
+  		padding: 0;
+  		left: 0;
+  		height: 215px;
+  		cursor: pointer;
+  	}
+
+  	&--text{
+  		color: #fff;
+  		top: -140px;
+  		font-weight: 700;
+  		font-size: 1.7em;
+  		position: relative;
+  		z-index: 3;
+  	}
+
+	& input{
+		position: absolute;
+		opacity: 0;
+		margin: 0;
+		padding:0;
+		left:0;
+		width: 100%;
+
+		&.logo{
+			top: -25px;
+		}
+	}
+
+	&__path{
+		margin-left: 9%;
+	}
+}

@@ -3,6 +3,7 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'home/posts/templates/comment'
     className: 'groupPost__comment'
+      
     initialize: (options)->
       @current_user = options.current_user
 
@@ -78,20 +79,47 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
+    
     childViewOptions: ->
       current_user: @current_user
 
     initialize: (options)->
+      @comments = options.model.comments
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
+      self = @
+      self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
+      @model.comments.fetch
+        success: (collection)->
+          start = 
+          #if collection.length > 0
+          #  $(".groupPost__commentsContainer").addClass('groupPost__comment--scroll')
+          if collection.length > 3
+            self.collection.add(collection.slice((collection.length-3),collection.length))
+            $(self.ui.moreComment).show()
+            
+          else
+            self.collection.add(collection.models)
+            $(self.ui.moreComment).hide()
+          #console.log self
+      #subdelegating the events on commentsView to postView
+      @on 'childview:comment:like', (commentView) ->
+        @trigger 'comment:like', commentView
+      @on 'childview:comment:unlike', (commentView) ->
+        @trigger 'comment:unlike', commentView
+      @on 'childview:comment:edit', (commentView, newValue) ->
+        @trigger 'comment:edit', commentView, newValue
     
     templateHelpers: ->
       model = @model
       permissions = @model.get('permissions')
+
       current_user_avatar: @current_user.get('avatar').medium
       infoLink: @model.infoLink()
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      showMore: @mostrar
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -135,7 +163,7 @@
       'bodyPost': '#js-body-post'
       'picturesContainer': '.pictures-container'
       'modalContainer': '.modal-container'
-
+      'moreComment':'#js-load-more'
 
     events:
       'keypress .comment': 'commentSend'
@@ -145,6 +173,7 @@
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
+      'click @ui.moreComment': 'loadMore'
 
     clickedPicture: (e)->
       e.preventDefault()
@@ -179,19 +208,23 @@
       e.stopPropagation()
       e.preventDefault()
       @trigger 'post:like'
+
     clickedUnLike: (e)->
       e.stopPropagation()
       e.preventDefault()
       @trigger 'post:unlike'
+
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
+
     clickedGotoComment: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -200,15 +233,16 @@
     #Init the render of a comment
     # TODO: try to put this code on onAddChild of CompositeView
     onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
-      #subdelegating the events on commentsView to postView
-      @on 'childview:comment:like', (commentView) ->
-        @trigger 'comment:like', commentView
-      @on 'childview:comment:unlike', (commentView) ->
-        @trigger 'comment:unlike', commentView
-      @on 'childview:comment:edit', (commentView, newValue) ->
-        @trigger 'comment:edit', commentView, newValue
+      
+
+    loadMore: (e)->
+      $(e.currentTarget).hide()
+      e.stopPropagation()
+      e.preventDefault()
+      self = @
+      @model.comments.fetch
+        success: (collection)->
+          self.collection.add(collection.models)
 
   class Posts.PostsView extends Marionette.CompositeView
     ##model is current user
@@ -284,23 +318,9 @@
     activate: ->
       $(@el).addClass("active")
         
-
   class Posts.BannersView extends Marionette.CompositeView
     template: 'home/posts/templates/banners'
     childView: Posts.BannerView
     childViewContainer: '.carousel-inner'
     #childViewOptions: ->
-    #  banner: @banner
-
-
-
-
-
-
-
-      
-
-      
-        
-  
-       
+    #  banner: @banner     

@@ -1,0 +1,157 @@
+/***
+
+COMPONENT NAME: backgrounds
+DESCRIPTION: background colors and patters 
+
+***/
+
+@import 'conf/conf.css.less';
+
+.jobPostDetail{
+	&__name h3,&__company h3{
+		text-align: center;
+		color:@black;
+	}
+
+	&__name h3{
+		text-transform: capitalize;
+  		font-size: 3em;
+	}
+	&__company h3{
+		text-transform: uppercase;
+	}
+
+	&__description{
+		background-color: @white;
+		padding: 20px 25px;
+		border: 1px solid @admin-box-border;
+		color: @black;
+  		line-height: 24px;
+
+  		&:last-child{
+  			margin-top: 10px;
+  		}
+	}
+
+	&__avatar{
+		width: 100%;
+	}
+	&__user span{
+		display: block;
+  		font-weight: 100;
+  		color: @error-gray-blue;
+  		font-weight: 100;
+	}
+	&__user span:first-child{
+  		font-size: 1.2em;
+  		color:@black;
+	}
+	&__user a{
+		font-size: 2em;
+  		color: @black;
+	}
+
+	&__buttons{
+		padding-top: 15px;
+	}
+}
+
+.jobPost{
+	background-color: @white;
+	padding: 10px 18px;
+	border: 1px solid @admin-box-border;
+	color: @black;
+	margin-bottom: 10px;
+
+	&__name h3,&__company h3{
+		text-transform: capitalize;
+  		font-size: 2em;
+  		margin: 5px 0;
+	}
+
+	&__company h3{
+		text-transform: uppercase;
+	}
+
+	&__description{
+		text-transform: capitalize;
+  		margin-bottom: 10px;
+  		line-height: 24px;
+
+  		
+	}
+
+	&__user span{
+		display: block;
+  		font-weight: 100;
+  		color: @error-gray-blue;
+  		font-weight: 100;
+  		font-size: 0.9em;
+	}
+	&__user span:first-child{
+  		color:@black;
+	}
+	&__user a{
+		font-size: 1.2em;
+  		color: @black;
+	}
+
+	&__details span,&__details p{
+		color: @error-gray-blue;
+		font-size: 1.4em;
+  		font-weight: 100;
+	}
+	&__details p{
+		margin-bottom: 0;
+	}
+
+	&__avatarA{
+		width: 130%;;
+	}
+
+	& small{
+		color: #677f8a;
+	}
+
+	#iconDelete{
+		color: @black;
+	}
+
+	&__search{
+		& h3{
+			font-style: oblique;
+		}
+
+		& .filter{
+			padding: 10px 0;
+
+			& > div{
+				display: inline-block;
+
+				& > select{
+				  border-radius: 0px;
+				  box-shadow: none;
+				  padding: 14px;
+				  background-color: #fff;
+				}
+
+				&:nth-child(3) input{
+					width: 500px;
+	  				height: 50px;
+				}
+			}
+
+			& > a {
+				padding: 15px;
+	  			background-color: red;
+	  			color: #fff;
+	  			font-weight: bolder;
+			}
+		}
+
+		& + div{
+			text-align: right;
+  			padding-right: 200px;
+		}
+	}
+}

@@ -12,10 +12,6 @@
     modelEvents:
       "change": "modelChange"
 
-    initialize: ()->
-      #view.$("[name=status]")
-      #@listenTo(@model, 'render:view', @renderView)
-
     bindings:
       ".js-name": 
         observe: "name"
@@ -37,6 +33,20 @@
             label: "active"
           ,
           ]
+      ".js-type": 
+        observe: "prize_type"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Time remaining"
+          ,
+            value: 1
+            label: "Times used"
+          ,
+          ]
+      ".js-quantity": 
+        observe: "quantity"
+        events: ['blur']
 
     onRender: ->
       @stickit()
@@ -54,19 +64,7 @@
     cancelEl: '#js-modal-close'
 
     initialize: (options)->
-      console.log options
       @prizeTable = options.prizeTable
-      # Backbone.Validation.bind this,
-      #   valid: (view, attr, selector) ->
-      #     $el = view.$("[name=#{attr}]")
-      #     $group = $el.closest('.form-group')
-      #     $group.removeClass('has-error')
-      #     $group.find('.help-block').html('').addClass('hidden')
-      #   invalid: (view, attr, error, selector) ->
-      #     $el = view.$("[name=#{attr}]")
-      #     $group = $el.closest('.form-group')
-      #     $group.addClass('has-error')
-      #     $group.find('.help-block').html(error).removeClass('hidden')
 
     templateHelpers: ->
       prizeIsNew: @model.isNew()
@@ -85,7 +83,6 @@
         success: ->
           modal.destroy()
           model.trigger('render:view')
-          console.log table
           if table
             table.collection.add(model)
 

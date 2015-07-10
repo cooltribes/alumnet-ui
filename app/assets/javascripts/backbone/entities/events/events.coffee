@@ -47,6 +47,22 @@
       attendance = @get('attendance_info')
       if attendance == null then false else true
 
+    isPaidAlready: ->
+      attendance = @get('attendance_info')
+      if attendance.status == 'going' && @get('admission_type') == 1 then true else false
+
+    # return representing string for upload_files value if param "value" is true
+    # if "value" is false, return the entire list for use in dropdown, etc.
+    uploadFilesText: (value = false)->
+      values = [
+        {value: 0, text: 'Only administrators'},
+        {value: 1, text: 'All members'}
+      ]
+      if value
+        values[ @get("upload_files").text ]
+      else
+        values
+
     validation:
       name:
         required: true
@@ -71,6 +87,16 @@
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
+
+    initialize: (models, options)->
+      @eventable = if options then options.eventable else null
+      @eventable_id = if options then options.eventable_id else null
+
+    url: ->
+      if @eventable && @eventable_id
+        AlumNet.api_endpoint + "/#{@eventable}/#{@eventable_id}" + "/events"
+      else
+        AlumNet.api_endpoint + '/events'
 
     getUpcoming:(query, options) ->
       today = moment().format('YYYY-MM-DD')
@@ -123,26 +149,28 @@
   class Entities.EventContacts extends Backbone.Collection
     model: Entities.EventContact
 
+  initializeEvents = ->
+    Entities.events = new Entities.EventsCollection
+
   API =
     createEvent: (parent, parent_id)->
       evento = new Entities.Event
       evento.urlRoot = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       evento
 
-    getEvents: (parent, parent_id)->
-      events = new Entities.EventsCollection
-      events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
-      events
-
-    getOpenEvents: ()->
-      events = new Entities.EventsCollection
-      events.url = AlumNet.api_endpoint + "/events"
-      events
-
     getEventContacts: (event_id)->
       contacts = new Entities.EventContacts
       contacts.url = AlumNet.api_endpoint + "/events/#{event_id}/contacts"
       contacts
+
+    getEventEntities: (querySearch)->
+      initializeEvents() if Entities.events == undefined
+      Entities.events.fetch
+        data: querySearch
+        success: (model, response, options) ->
+          console.log response
+          Entities.events.trigger('fetch:success')
+      Entities.events
 
     findEvent: (id)->
       evento = new Entities.Event
@@ -167,12 +195,6 @@
   AlumNet.reqres.setHandler 'event:new', (parent, parent_id) ->
     API.createEvent(parent, parent_id)
 
-  AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
-    API.getEvents(parent, parent_id)
-
-  AlumNet.reqres.setHandler 'event:entities:open', ->
-    API.getOpenEvents()
-
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)
 
@@ -184,3 +206,6 @@
 
   AlumNet.reqres.setHandler 'attendance:entities', (event_id)->
     API.getAttendances(event_id)
+
+  AlumNet.reqres.setHandler 'event:entities', (querySearch) ->
+    API.getEventEntities(querySearch)

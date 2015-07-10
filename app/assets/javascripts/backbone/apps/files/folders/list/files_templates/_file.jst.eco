@@ -1,0 +1,44 @@
+<div class=" row">
+  <div class="col-md-12">
+    <h4>
+       <div class="overfloadText file__nameFolder">
+        <%= @name %>  
+       </div>
+       <% if @user_can_edit: %>
+          <a class="dropdown-toggle albums-list__editButton file__positionDropdown" role="menu" aria-labelledby="Edit" data-toggle="dropdown"  aria-expanded="false" href="#" style="float:right">
+            <span class="icon-entypo-down-open-mini"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-expanded="false">            
+              <li role="presentation">
+                <a href="#"  class="js-rmvItem">
+                  Delete
+                </a>
+              </li> 
+              <li role="presentation">
+                <a href="#"  class="js-moveFile">
+                  Move
+                </a>
+              </li> 
+              <li role="presentation">
+                <a href="#"  class="js-editItem">
+                  Rename
+                </a>
+              </li>   
+          </ul>
+        <% end %>
+    </h4>
+
+
+  </div>
+</div> 
+<div>
+  <div class=" row">
+    <div class="col-md-12 file__iconFileD">
+      <% if @url: %>
+        <a href="<%= @url %>" download="<%= @url %>" class="js-detail"> 
+          <span class="glyphicon glyphicon-save"></span>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,6 @@
 
     initialize: (options)->
       #View for showing the groups (class Discover.GroupsView)
-      document.title = 'AlumNet - Discover Groups'
       @groupsView = options.groupsView
 
 
@@ -34,7 +33,7 @@
       q:
         m: 'or'
         name_cont: searchTerm
-        description_cont: searchTerm
+        description_cont: searchTerm        
 
     ViewCard: (e)->
       $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
@@ -97,7 +96,6 @@
       @ui.description.linkify()
 
     showSubgroups: (e)->
-      console.log "click"
       id = $(e.currentTarget).attr("aria-controls")
       child = $(e.currentTarget).attr("data-child")
       $('#'+id).on('hidden.bs.collapse', () -> 

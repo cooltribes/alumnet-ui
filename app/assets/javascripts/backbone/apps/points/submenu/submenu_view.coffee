@@ -3,14 +3,14 @@
     template: 'points/submenu/templates/submenu'
     className: 'navTopSubBar'
 
-    initialize: (options) ->      
+    initialize: (options) ->
       @tab = options.tab
       @pointsBar = options.pointsBar   
       @class = [
         "", "", ""
         "", ""
       ]  
-      @class[parseInt(@tab)] = "active" 
+      @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
       model = @model
@@ -23,6 +23,10 @@
           return "pointsBar--active"
         else
           return ""
+      points: AlumNet.current_user.profile.get('points')
+
+    renderView: ->
+      @render()
 
   API =
     renderSubmenu: (view,tab,pointsBar)->

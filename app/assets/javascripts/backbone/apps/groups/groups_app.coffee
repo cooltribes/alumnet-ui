@@ -3,6 +3,7 @@
   class GroupsApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "groups/new": "createGroup"
+      "groups/:group_id/posts/:id": "postGroup"
       "groups/:id/posts": "postsGroup"
       "groups/:id/invite": "inviteGroup"
       "groups/:id/about": "aboutGroup"
@@ -12,21 +13,27 @@
       "groups/:id/events/new": "createEvent"
       "groups/:id/events": "listEvents"
       "groups/:id/photos": "listAlbums"
+      "groups/:id/files": "listFiles"
       "groups/:id/banner": "bannersList"
-
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
   API =
     manageGroups: ->
+      document.title = 'AlumNet - My groups'
       controller = new GroupsApp.Manage.Controller
       controller.manageGroups()
     discoverGroups: ->
+      document.title = 'AlumNet - Discover groups'
       controller = new GroupsApp.Discover.Controller
       controller.discoverGroups()
     createGroup: ->
+      document.title = 'AlumNet - Create groups'
       controller = new GroupsApp.Create.Controller
       controller.createGroup()
+    postGroup: (group_id, id)->
+      controller = new GroupsApp.Posts.Controller
+      controller.showPost(group_id, id)
     postsGroup: (id)->
       controller = new GroupsApp.Posts.Controller
       controller.showPosts(id)
@@ -51,6 +58,9 @@
     listEvents: (id)->
       controller = new GroupsApp.Events.Controller
       controller.listEvents(id)
+    listFiles: (id)->
+      controller = new GroupsApp.Files.Controller
+      controller.listFiles(id)
     inviteEvent: (event, users)->
       controller = new GroupsApp.Events.Controller
       controller.invitations(event, users)

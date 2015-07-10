@@ -73,6 +73,11 @@
       post.urlRoot = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts'
       post
 
+    findPost: (postable, postable_id, post_id)->
+      post = new Entities.Post
+      post.urlRoot = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts/' + post_id
+      post
+
     getNewPostForCurrentUser: ->
       post = new Entities.Post
       post.urlRoot = AlumNet.api_endpoint + '/me/posts'
@@ -98,4 +103,6 @@
   AlumNet.reqres.setHandler 'post:new',(postable, postable_id)->
     API.getNewPostFor(postable, postable_id)
 
-    
+  AlumNet.reqres.setHandler 'post:find',(postable, postable_id, post_id)->
+    API.findPost(postable, postable_id, post_id)
+

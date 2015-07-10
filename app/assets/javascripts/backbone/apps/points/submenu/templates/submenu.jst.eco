@@ -23,10 +23,11 @@
 <nav class="navbar navbar-default row-fluid pointsBar <%= @chosenPrizes(@prizes)%>" id="pointsBar">
     <div class="col-xs-5 col-md-6 col-sm-6 text-left">
         <span class="icon-entypo-lifebuoy pointsBar__leftIcon"></span>
-        <span class="pointsBar__quantity">3000</span>
+        <span class="pointsBar__quantity"><%= @points %></span>
         <span class="pointsBar__topLegend">POINTS</span>
         <span class="pointsBar__bottomLegend">TO SPEND</span>
     </div>
+    <!-- 
     <div class="col-xs-7  col-md-4 col-sm-6 col-lg-4 col-md-offset-2 col-lg-offset-2 text-right pointsBar__prizes" id="chosenPrizes">
     		<a class="pointsBar__prizes__link dropdown-toggle" role="menu" aria-labelledby="Prizes" data-toggle="dropdown" id="chosenSummary" aria-expanded="false" href="#">
     		<span class="icon-entypo-bag"></span>Chosen prizes: <%= @prizes %>
@@ -71,14 +72,8 @@
 			</ul>
 
     </div>
+    -->
 </nav>
-
-
-
-
-
-
-
 <% end %>
 
 

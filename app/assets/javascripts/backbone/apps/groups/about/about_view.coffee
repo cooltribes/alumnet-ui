@@ -5,7 +5,6 @@
 
     initialize: (options)->
       @current_user = options.current_user
-      document.title='AlumNet - '+ @model.get('name')
 
     templateHelpers: ->
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
@@ -16,8 +15,10 @@
       joinProcessText: @joinProcessText()
       model: @model
       mailchimp: @model.hasMailchimp()
+      uploadFilesText: @model.uploadFilesText(true)
 
     ui:
+      'uploadFiles': '#upload-files'
       'groupOfficial': '#official'
       'groupDescription':'#description'
       'groupType': '#group_type'
@@ -27,19 +28,21 @@
       'mailchimpContainer': '#mailchimpContainer'
       'groupApiKey': '#api_key'
       'groupListId': '#list_id'
+      'linkSaveDescription': 'a#js-save-description'
 
     events:
+      'click a#js-edit-upload': 'toggleEditUploadFiles'
       'click a#js-edit-official': 'toggleEditGroupOfficial'
       'click a#js-edit-description': 'toggleEditGroupDescription'
       'click a#js-edit-group-type': 'toggleEditGroupType'
       'click a#js-edit-join-process': 'toggleEditJoinProcess'
-      'click .js-attribute': 'attributeClicked'
       'click .js-join':'sendJoin'
       'click a#js-delete-group': 'deleteGroup'
       'click a#js-edit-mailchimp': 'toggleEditMailchimp'
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
       'click a#js-migrate-users': 'migrateUsers'
+      'click @ui.linkSaveDescription': 'saveDescription'
 
     deleteGroup:(e)->
       e.preventDefault()
@@ -80,25 +83,44 @@
       e.preventDefault()
       resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
       if resp
+        $(".loadingAnimation__migrateUsers").css('display','inline-block')
         id = @model.id
         url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
-        console.log(id)
-        console.log(url)
         Backbone.ajax
           url: url
           type: "GET"
           data: { id: id }
           success: (data) =>
-            console.log("success")
-            console.log(data)
             if(not data.success)
               $.growl.error({ message: data.message })
+            else
+              $(".loadingAnimation__migrateUsers").css('display','none')
+              $.growl.notice({ message: "Successful migration" })
           error: (data) =>
-            console.log("error")
-            console.log(data)
+            $.growl.error({ message: 'Unknow error, please try again' })
 
-    attributeClicked: (e)->
+    validateMailchimp:(e)->
       e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        id = @model.id
+        url = AlumNet.api_endpoint + "/groups/#{id}/validate_mailchimp"
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            if(data.success)
+              $.growl.notice({ message: 'Valid parameters' })
+            else
+              $.growl.error({ message: data.message })
+          error: (data) =>
+            $.growl.error({ message: 'Unknow error, please try again' })
+
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
 
     toggleEditGroupOfficial: (e)->
       e.stopPropagation()
@@ -106,9 +128,25 @@
       @ui.groupOfficial.editable('toggle')
 
     toggleEditGroupDescription: (e)->
-      e.stopPropagation()
       e.preventDefault()
-      @ui.groupDescription.editable('toggle')
+      link = $(e.currentTarget)
+      if link.html() == '[edit]'
+        @ui.groupDescription.summernote({height: 100})
+        link.html('[close]')
+        @ui.linkSaveDescription.show()
+      else
+        @ui.groupDescription.destroy()
+        link.html('[edit]')
+        @ui.linkSaveDescription.hide()
+
+    saveDescription: (e)->
+      e.preventDefault()
+      value = @ui.groupDescription.code()
+      unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
+        @trigger 'group:edit:description', @model, value
+        @ui.groupDescription.destroy()
+        $('a#js-edit-description').html('[edit]')
+        $(e.currentTarget).hide()
 
     toggleEditGroupType: (e)->
       e.stopPropagation()
@@ -135,24 +173,55 @@
       e.preventDefault()
       @ui.groupListId.editable('toggle')
 
+    toggleEditUploadFiles: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.uploadFiles.editable('toggle')
+
     editAttribute: (e)->
       $(e.target).addClass "hide"
-      
+
+
     onRender: ->
       view = this
-      @ui.groupDescription.editable
-        type: 'textarea'
-        pk: view.model.id
-        title: 'Enter the description of Group'
+
+      @ui.uploadFiles.editable
+        type:'select'
+        value: view.model.get('upload_files')
+        source: view.model.uploadFilesText()
         toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save
+            "upload_files": newValue
+
+      # @ui.groupDescription.editable
+      #   type: 'textarea'
+      #   pk: view.model.id
+      #   title: 'Enter the description of Group'
+      #   toggle: 'manual'
+      #   validate: (value)->
+      #     if $.trim(value) == ''
+      #       'Group description is required, must be less than 2048 characters'
+      #     if $.trim(value).length >= 2048
+      #       'Group description is too large! Must be less than 2048 characters'
+      #   success: (response, newValue)->
+      #     view.trigger 'group:edit:description', view.model, newValue
+      # @ui.groupDescription.linkify()
+
+      @ui.uploadFiles.editable
+        type: 'select'
+        value: view.model.get('group_type').value
+        title: 'Select option'
+        toggle: 'manual'
+        source: [
+          {value: 0, text: 'Only administrators'}
+          {value: 1, text: 'All members'}
+        ]
         validate: (value)->
           if $.trim(value) == ''
-            'Group description is required, must be less than 2048 characters'
-          if $.trim(value).length >= 2048  
-            'Group description is too large! Must be less than 2048 characters'                 
+            'This field is required'
         success: (response, newValue)->
-          view.trigger 'group:edit:description', view.model, newValue
-      @ui.groupDescription.linkify()
+          # view.trigger 'group:edit:group_type', view.model, newValue
 
       @ui.groupType.editable
         type: 'select'

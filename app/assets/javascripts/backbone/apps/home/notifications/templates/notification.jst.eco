@@ -1,4 +1,5 @@
   <div class="col-md-4 notification__info">
+    <img src="<%= @sender_avatar %>">
     <!--<h2 class="notification__userName">User name</h2>-->
     <small><%= moment(@created_at).fromNow() %></small>
   </div>
@@ -17,6 +18,10 @@
       <% else: %>
       <a href="#" id="js-mark-as-read" class="notification__contentBox__markRead">Mark as Read</a>
       <% end %>
-      <a href="#" id="js-delete" class="notification__contentBox__delete">Delete</a>
+      <a href="#" id="js-delete" class="notification__contentBox__delete btn-delete glyphicon glyphicon-remove"></a>
+      <a href="#<%= @url %>" class="notification__contentBox__go btn-go">Learn more > </a>
     </div>
   </div>
+  <!--<div>
+  type <%= @type %>
+  </div> -->

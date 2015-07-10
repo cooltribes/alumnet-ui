@@ -92,3 +92,32 @@
           # picture = JSON.parse(response.response)
           # view.picture_ids.push picture.id 
       @uploader = uploader
+
+  class Utilities.PluploaderFolders
+    constructor: (browse_triggers, view)->
+      uploader = new plupload.Uploader
+        browse_button: browse_triggers
+        url: AlumNet.api_endpoint + '/folders/' + view.model.id + "/attachments"
+        headers:
+          'Authorization': 'Token token="' + AlumNet.current_token + '"'
+          'Accept': 'application/vnd.alumnet+json;version=1'
+       
+       
+      uploader.bind 'FilesAdded',(up, files)->
+        
+        if view.checkDuplicated(files)
+          #Add loading bar...
+          view.showUploading()  
+          uploader.start()
+            
+      uploader.bind 'UploadComplete', ()->
+        view.hideUploading()
+
+      uploader.bind 'fileUploaded', (up, file, response)->
+        if response.status == 201
+        
+          lastIndex = view.collection.length - 1
+          view.collection.add JSON.parse(response.response),
+            at: lastIndex
+       
+      @uploader = uploader

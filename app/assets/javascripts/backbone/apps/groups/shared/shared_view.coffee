@@ -59,6 +59,11 @@
 
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
+
+    initialize: (options)->
+      @model = options.model
+      document.title = 'AlumNet - '+@model.get("name")
+
     templateHelpers: ->
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()

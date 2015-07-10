@@ -2,15 +2,21 @@
 
   class UsersApp.Router extends AlumNet.Routers.Base
     appRoutes:
+      "users/:user_id/posts/:id": "userPost"
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
       "users/:id/friends": "userFriends"
       "users/:id/photos": "userPictures"
       "users/:id/events": "userEvents"
+      "users/:id/business-exchange": "userBusiness"
 
 
 
   API =
+    userPost: (user_id, id)->
+      controller = new UsersApp.Posts.Controller
+      controller.showPost(user_id, id)
+
     userPosts: (id)->
       controller = new UsersApp.Posts.Controller
       controller.showPosts(id)
@@ -34,6 +40,10 @@
     userEvents: (id)->
       controller = new UsersApp.Events.Controller
       controller.showEvents(id)
+
+    userBusiness: (id)->
+      controller = new UsersApp.Business.Controller
+      controller.showBusiness(id)
 
 
   AlumNet.on "user:posts", (user_id) ->

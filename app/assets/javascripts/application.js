@@ -35,7 +35,9 @@ $(function() {
     api_endpoint: gon.api_endpoint,
     pusher_key: gon.pusher_key,
     profinda_api_endpoint: gon.profinda_api_endpoint,
-    profinda_account_domain: gon.profinda_account_domain
+    profinda_account_domain: gon.profinda_account_domain,
+    environment: gon.environment,
+    paymentwall_project_key: gon.paymentwall_project_key
   };
   return AlumNet.start(options);
 });

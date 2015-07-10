@@ -52,6 +52,7 @@
           false
 
     onRender: ()->
+      $('body,html').animate({scrollTop: 20}, 600);
       data = CountryList.toSelect2()
       @ui.selectResidenceCountries.select2
         placeholder: "Select a Country"

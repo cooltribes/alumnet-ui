@@ -52,7 +52,7 @@
         checkNewPost = false
 
       posts.on "render:collection", ->
-        console.log "render"
+        #console.log "render"
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
@@ -113,6 +113,10 @@
       posts.on "childview:comment:edit", (postView, commentView, value)->
         comment = commentView.model
         comment.save { comment: value }
+
+      posts.on "childview:comment:collection", (collection)->
+        console.log "comment"
+        console.log collection
 
     getData: (page)->
       rows = @collection.rows

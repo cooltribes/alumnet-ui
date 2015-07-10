@@ -1,12 +1,16 @@
 @AlumNet.module 'EventsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
+  class Manage.Empty extends Marionette.ItemView
+    template: 'events/manage/templates/empty'
 
   class Manage.EventView extends Marionette.ItemView
     template: 'events/manage/templates/event'
     className: 'container'
 
+    initialize: (options)->
+      @collection =  options.collection
+
     templateHelpers: ->
       model = @model
-      console.log model
       location: @model.getLocation()
       isPast: @model.isPast()
       select: (value, option)->
@@ -19,9 +23,27 @@
           null
     ui:
       attendanceStatus: '#attendance-status'
+      linkCancel: '#js-attendance-cancel'
 
     events:
       'change @ui.attendanceStatus': 'changeAttendanceStatus'
+      'click @ui.linkCancel': 'cancelEvent'
+
+    cancelEvent: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        collection = @collection
+        model = @model
+        Backbone.ajax
+          url: @model.url()
+          method: 'DELETE'
+          success: (data, textStatus, xhr)->
+            collection.remove(model)
+          error: (xhr, textStatus, error)->
+            if xhr.status == 409
+              alert xhr.responseJSON.message
+
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
@@ -50,10 +72,13 @@
     template: 'events/manage/templates/events_container'
     childView: Manage.EventView
     childViewContainer: ".main-events-area"
+    emptyView: Manage.Empty
 
     initialize: ->
       @searchUpcomingEvents({})
-      document.title='AlumNet - Manage Events'
+
+    childViewOptions: ->
+      collection: @collection
 
     ui:
       'upcomingEvents':'#js-upcoming-events'
