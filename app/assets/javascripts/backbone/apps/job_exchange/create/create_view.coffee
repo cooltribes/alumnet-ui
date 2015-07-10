@@ -44,8 +44,14 @@
       'change @ui.selectCountries': 'setCities'
 
     onShow: ->
-      $('#task-description').summernote()
-      # $('#task-offer').summernote()
+      summernote_options =
+        height: 100
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']]
+          ['para', ['ul', 'ol']]
+        ]
+      $('#task-description').summernote(summernote_options)
+      $('#task-offer').summernote(summernote_options)
 
     onRender: ->
       ## set select2 to inputs
@@ -76,6 +82,7 @@
       data.nice_have_list = [data.skills_nice_have, data.languages_nice_have].join(",").replace(/(^\s*,)|(,\s*$)/g, '')
       data.description = $('#task-description').code().replace(/<\/?[^>]+(>|$)/g, "")
       data.formatted_description = $('#task-description').code()
+      data.offer = $('#task-offer').code()
       @model.save data,
         success: ->
           ##TODO Match

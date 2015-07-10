@@ -6,6 +6,9 @@
     template: 'events/manage/templates/event'
     className: 'container'
 
+    initialize: (options)->
+      @collection =  options.collection
+
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
@@ -20,9 +23,27 @@
           null
     ui:
       attendanceStatus: '#attendance-status'
+      linkCancel: '#js-attendance-cancel'
 
     events:
       'change @ui.attendanceStatus': 'changeAttendanceStatus'
+      'click @ui.linkCancel': 'cancelEvent'
+
+    cancelEvent: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        collection = @collection
+        model = @model
+        Backbone.ajax
+          url: @model.url()
+          method: 'DELETE'
+          success: (data, textStatus, xhr)->
+            collection.remove(model)
+          error: (xhr, textStatus, error)->
+            if xhr.status == 409
+              alert xhr.responseJSON.message
+
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
@@ -55,6 +76,9 @@
 
     initialize: ->
       @searchUpcomingEvents({})
+
+    childViewOptions: ->
+      collection: @collection
 
     ui:
       'upcomingEvents':'#js-upcoming-events'

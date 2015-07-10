@@ -84,7 +84,6 @@
       current_user: @current_user
 
     initialize: (options)->
-      $(@ui.moreComment).hide()
       @comments = options.model.comments
       @current_user = options.current_user
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')

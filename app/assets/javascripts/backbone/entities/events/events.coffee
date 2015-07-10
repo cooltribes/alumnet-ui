@@ -59,7 +59,7 @@
         {value: 1, text: 'All members'}
       ]
       if value
-        values[ @get("upload_files").text ]          
+        values[ @get("upload_files").text ]
       else
         values
 
@@ -88,8 +88,15 @@
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
 
+    initialize: (models, options)->
+      @eventable = if options then options.eventable else null
+      @eventable_id = if options then options.eventable_id else null
+
     url: ->
-      AlumNet.api_endpoint + '/events'
+      if @eventable && @eventable_id
+        AlumNet.api_endpoint + "/#{@eventable}/#{@eventable_id}" + "/events"
+      else
+        AlumNet.api_endpoint + '/events'
 
     getUpcoming:(query, options) ->
       today = moment().format('YYYY-MM-DD')
@@ -143,23 +150,13 @@
     model: Entities.EventContact
 
   initializeEvents = ->
-    Entities.events = new Entities.EventsCollection  
+    Entities.events = new Entities.EventsCollection
 
   API =
     createEvent: (parent, parent_id)->
       evento = new Entities.Event
       evento.urlRoot = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
       evento
-
-    getEvents: (parent, parent_id)->
-      events = new Entities.EventsCollection
-      events.url = AlumNet.api_endpoint + "/#{parent}/#{parent_id}/events"
-      events
-
-    getOpenEvents: ()->
-      events = new Entities.EventsCollection
-      events.url = AlumNet.api_endpoint + "/events"
-      events
 
     getEventContacts: (event_id)->
       contacts = new Entities.EventContacts
@@ -173,7 +170,7 @@
         success: (model, response, options) ->
           console.log response
           Entities.events.trigger('fetch:success')
-      Entities.events 
+      Entities.events
 
     findEvent: (id)->
       evento = new Entities.Event
@@ -198,12 +195,6 @@
   AlumNet.reqres.setHandler 'event:new', (parent, parent_id) ->
     API.createEvent(parent, parent_id)
 
-  AlumNet.reqres.setHandler 'event:entities', (parent, parent_id) ->
-    API.getEvents(parent, parent_id)
-
-  AlumNet.reqres.setHandler 'event:entities:open', ->
-    API.getOpenEvents()
-
   AlumNet.reqres.setHandler 'event:contacts', (parent, parent_id, event_id) ->
     API.getEventContacts(parent, parent_id, event_id)
 
@@ -217,4 +208,4 @@
     API.getAttendances(event_id)
 
   AlumNet.reqres.setHandler 'event:entities', (querySearch) ->
-    API.getEventEntities(querySearch)  
+    API.getEventEntities(querySearch)

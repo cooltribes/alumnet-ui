@@ -53,7 +53,7 @@
       canEditInformation: @model.userIsAdmin()
       capacity_text: if capacity then capacity else '--'
       attendance_status: if @model.get('attendance_info') then @model.get('attendance_info').status else ""
-      uploadFilesText: @model.uploadFilesText(true)      
+      uploadFilesText: @model.uploadFilesText(true)
 
     ui:
       'eventDescription':'#description'
@@ -68,6 +68,7 @@
       'admisionType':'#admision_type'
       'uploadFiles':'#upload-files'
       'Gmap': '#map'
+      'linkSaveDescription': 'a#js-save-description'
 
     events:
       'click a#js-edit-description': 'toggleEditDescription'
@@ -77,26 +78,14 @@
       'click a#js-edit-premium-price': 'toggleEditPremiumPrice'
       'click a#js-edit-admision_type': 'toggleEditAdmisionType'
       'click a#js-edit-upload': 'toggleEditUploadFiles'
+      'click @ui.linkSaveDescription': 'saveDescription'
 
     onRender: ->
       view = this
-      @ui.eventDescription.editable
-        type: 'textarea'
-        pk: view.model.id
-        title: 'Enter the description of Event'
-        toggle: 'manual'
-        validate: (value)->
-          if $.trim(value) == ''
-            'Event description is required, must be less than 2048 characters'
-          if $.trim(value).length >= 2048  
-            'Event description is too large! Must be less than 2048 characters'  
-        success: (response, newValue)->
-          view.model.save({description: newValue})
-      @ui.eventDescription.linkify()
 
       @ui.uploadFiles.editable
         type:'select'
-        value: view.model.get('upload_files')    
+        value: view.model.get('upload_files')
         source: view.model.uploadFilesText()
         toggle: 'manual'
         success: (response, newValue)->
@@ -105,7 +94,7 @@
 
       @ui.admisionType.editable
         type:'select'
-        value: view.model.get('admission_type')    
+        value: view.model.get('admission_type')
         source: [
               {value: 0, text: 'Free'},
               {value: 1, text: 'Paid'}
@@ -184,9 +173,25 @@
           view.model.save { end_hour: hour }
 
     toggleEditDescription: (e)->
-      e.stopPropagation()
       e.preventDefault()
-      @ui.eventDescription.editable('toggle')
+      link = $(e.currentTarget)
+      if link.html() == '[edit]'
+        @ui.eventDescription.summernote({height: 100})
+        link.html('[close]')
+        @ui.linkSaveDescription.show()
+      else
+        @ui.eventDescription.destroy()
+        link.html('[edit]')
+        @ui.linkSaveDescription.hide()
+
+    saveDescription: (e)->
+      e.preventDefault()
+      value = @ui.eventDescription.code()
+      unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
+        @model.save({description: value})
+        @ui.eventDescription.destroy()
+        $('a#js-edit-description').html('[edit]')
+        $(e.currentTarget).hide()
 
     toggleEditCapacity: (e)->
       e.stopPropagation()

@@ -33,7 +33,13 @@
       'click @ui.cancelLink': 'cancelClicked'
 
     onShow: ->
-      $('#task-description').summernote()
+      summernote_options =
+        height: 100
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']]
+          ['para', ['ul', 'ol']]
+        ]
+      $('#task-description').summernote(summernote_options)
 
     onRender: ->
       @ui.datePickerDeadline.Zebra_DatePicker

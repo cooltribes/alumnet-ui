@@ -27,9 +27,10 @@
     <div class="col-md-4 col-md-offset-2">
       <div class="groupAbout__box margin_bottom">
         <h3>Description</h3>
-        <p href="#" id="description" class="js-attribute"><%= @description %></p>
+        <div id="description" class="js-attribute"><%- @description %></div>
         <% if @canEditInformation: %>
-        <a href="#" id="js-edit-description" class="editLink">[edit]</a>
+          <a href="#" id="js-edit-description" class="editLink">[edit]</a>
+          <a href="#" id="js-save-description" class="editLink" style="display:none">[save]</a>
          <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
@@ -48,19 +49,19 @@
           <a href="#" id="js-edit-official" class="editLink">[edit]</a>
         <% end %>
       </div>
-      
-      <% if @canEditInformation: %>      
+
+      <% if @canEditInformation: %>
         <div class="groupAbout__box margin_bottom">
           <h3>Who can upload files</h3>
             <span href="#" id="upload-files" class="js-attribute">
               <%= @uploadFilesText %>
-            </span>          
-            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>          
+            </span>
+            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
         </div>
       <% end %>
 
       <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
-        <h3>Mailchimp mail list        
+        <h3>Mailchimp mail list
         </h3>
 
         <table>
@@ -110,7 +111,7 @@
           </tr>
         </table>
 
-        
+
         <div class="text-right">
           <div id="contenedor" class="loadingAnimation__migrateUsers">
             <div class="loader" id="loader"></div>
