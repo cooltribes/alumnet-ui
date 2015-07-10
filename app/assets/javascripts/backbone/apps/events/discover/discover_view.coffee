@@ -88,19 +88,25 @@
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
 
+    onRender: ->
+      seft = this
+      eventsArray = seft.eventsMap(seft,@collection)
+      eventsArray = seft.longEvents(seft,eventsArray)
+
+      $.each eventsArray, (id,content)->
+        if content["duracion"]> 0
+          content["datetime"] = content["startime"]
+      console.log eventsArray
+
+      $(@ui.calendario).eCalendar
+        events: eventsArray
+
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui
       @collection.comparator = 'start_date'
       options =
         success: (collection)->
-          eventsArray = seft.eventsMap(seft,collection)
-          eventsArray = seft.longEvents(seft,eventsArray)
-          $.each eventsArray, (id,content)->
-            if content["duracion"]> 0
-              content["datetime"] = content["startime"]
-          $(ui.calendario).eCalendar
-            events: eventsArray
           seft.render()
 
       @collection.getUpcoming(query, options)
