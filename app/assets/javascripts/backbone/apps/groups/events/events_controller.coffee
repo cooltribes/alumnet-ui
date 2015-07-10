@@ -32,7 +32,7 @@
     listEvents: (group_id)->
       group = AlumNet.request("group:find", group_id)
       group.on 'find:success', (response, options)->
-        if group.userIsMember()
+        if group.userIsMember() || group.isOpen()
           layout = AlumNet.request("group:layout", group, 5)
           header = AlumNet.request("group:header", group)
           events = new AlumNet.Entities.EventsCollection null,
