@@ -40,9 +40,9 @@
 
   <div class="col-md-2 "> 
     <div class="form-group">
-      <% if @first: %> <label class="value_form eventsTableView__status--white" for="registerLocalcomitee">Value</label><% end %>
+      <% if @first: %> <label class="value_form" for="registerLocalcomitee">Value</label><% end %>
       <div name="value" >
-        <input type="text"  id="value" class="form-control input-lg">    
+        <input type="text"  id="value" class="form-control input-lg eventsTableView__status--white">    
       </div>     
 <!-- 
         Date picker
