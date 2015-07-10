@@ -1,4 +1,6 @@
 @AlumNet.module 'GroupsApp.Events', (Events, @AlumNet, Backbone, Marionette, $, _) ->
+  class Events.EmptyView extends Marionette.ItemView
+    template: 'groups/events/templates/empty'
 
   class Events.EventForm extends Marionette.ItemView
     template: 'groups/events/templates/form'
@@ -222,6 +224,7 @@
     idName: 'wrapper'
     template: 'groups/events/templates/events_container'
     childView: Events.EventView
+    emptyView: Events.EmptyView
     childViewContainer: ".main-events-area"
 
     childViewOptions: ->
@@ -229,9 +232,9 @@
 
     initialize: ->
       @searchUpcomingEvents({})
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
+      #$(".navTopBar__left__item")
+      #  .removeClass "navTopBar__left__item--active"
+      #$('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()

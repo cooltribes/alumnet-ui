@@ -38,17 +38,32 @@
           attendance.set('status', status)
           attendance.save()
       if status=='going'
-        $(e.target).css('background-color','#72da9e')
+        $(e.target).removeClass('eventsTableView__status--not_going')
+        $(e.target).removeClass('eventsTableView__status--else')
+        $(e.target).removeClass('eventsTableView__status--maybe')
+        $(e.target).addClass('eventsTableView__status--going')
       if status=='pending_payment'
-        $(e.target).css('background-color','#f5ac45')
+        $(e.target).removeClass('eventsTableView__status--not_going')
+        $(e.target).removeClass('eventsTableView__status--else')
+        $(e.target).removeClass('eventsTableView__status--going')
+        $(e.target).addClass('eventsTableView__status--maybe')
         if(@model.get('admission_type') == 1)
           AlumNet.navigate('events/'+@model.id+'/payment', true)
       if status=='invited'
-        $(e.target).css('background-color','#6dc2e9')
+        $(e.target).removeClass('eventsTableView__status--not_going')
+        $(e.target).removeClass('eventsTableView__status--going')
+        $(e.target).removeClass('eventsTableView__status--maybe')
+        $(e.target).addClass('eventsTableView__status--else')
       if status=='not_going'
-        $(e.target).css('background-color','#ea7952')
+        $(e.target).removeClass('eventsTableView__status--else')
+        $(e.target).removeClass('eventsTableView__status--going')
+        $(e.target).removeClass('eventsTableView__status--maybe')
+        $(e.target).addClass('eventsTableView__status--not_going')
       if status=='maybe'
-        $(e.target).css('background-color','#f5ac45')
+        $(e.target).removeClass('eventsTableView__status--not_going')
+        $(e.target).removeClass('eventsTableView__status--else')
+        $(e.target).removeClass('eventsTableView__status--going')
+        $(e.target).addClass('eventsTableView__status--maybe')
 
   class Discover.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
@@ -73,19 +88,25 @@
       @searchUpcomingEvents({})
       document.title = 'AlumNet - Discover Events'
 
+    onRender: ->
+      seft = this
+      eventsArray = seft.eventsMap(seft,@collection)
+      eventsArray = seft.longEvents(seft,eventsArray)
+
+      $.each eventsArray, (id,content)->
+        if content["duracion"]> 0
+          content["datetime"] = content["startime"]
+      console.log eventsArray
+
+      $(@ui.calendario).eCalendar
+        events: eventsArray
+
     searchUpcomingEvents: (query)->
       seft = this
       ui = @ui
       @collection.comparator = 'start_date'
       options =
         success: (collection)->
-          eventsArray = seft.eventsMap(seft,collection)
-          eventsArray = seft.longEvents(seft,eventsArray)
-          $.each eventsArray, (id,content)->
-            if content["duracion"]> 0
-              content["datetime"] = content["startime"]
-          $(ui.calendario).eCalendar
-            events: eventsArray
           seft.render()
 
       @collection.getUpcoming(query, options)

@@ -2,7 +2,7 @@
 <nav class="groupMenu navbar group-menu navbar-default" role="navigation">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-2">
+			<div class="col-md-10 col-md-offset-1">
 				<ul class="nav nav-pills" id="groupMenuList">
 				<% if @groupIsClose && not @userIsMember: %>
 					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
