@@ -157,6 +157,9 @@
     template: 'groups/events/templates/event'
     className: ''
 
+    initialize: (options)->
+      @collection =  options.collection
+
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
@@ -183,7 +186,16 @@
       e.preventDefault()
       resp = confirm "Are you sure?"
       if resp
-        @model.destroy()
+        collection = @collection
+        model = @model
+        Backbone.ajax
+          url: @model.url()
+          method: 'DELETE'
+          success: (data, textStatus, xhr)->
+            collection.remove(model)
+          error: (xhr, textStatus, error)->
+            if xhr.status == 409
+              alert xhr.responseJSON.message
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
@@ -211,6 +223,9 @@
     template: 'groups/events/templates/events_container'
     childView: Events.EventView
     childViewContainer: ".main-events-area"
+
+    childViewOptions: ->
+      collection: @collection
 
     initialize: ->
       @searchUpcomingEvents({})
