@@ -93,7 +93,9 @@
               <!-- TODO: MOVER ESTOS ESTILOS A CSS -->
               <input type="text" value="<%=@start_hour%>" id="start_hour" style="width: 80px; background: transparent; border: none" readonly>
               </h3>
-              <a href="#" id="js-edit-start-date">[edit]</a>
+              <a href="#" id="js-edit-start-date">[edit Date]</a>
+              <a href="#" id="js-edit-start-hour">[edit Hour]</a>
+
             <% else: %>
               <h3>Starts: <b><%= moment(@start_date).format('dddd') %></b></h3>
               <h3><%= moment(@start_date).format('MMM Do YYYY') %>, <%= @start_hour %></h3>
@@ -110,7 +112,8 @@
               <!-- TODO: MOVER ESTOS ESTILOS A CSS -->
               <input type="text" value="<%=@end_hour%>" id="end_hour" style="width: 80px; background: transparent; border: none" readonly>
               </h3>
-              <a href="#" id="js-edit-end-date">[edit]</a>
+              <a href="#" id="js-edit-end-date">[edit Date]</a>
+              <a href="#" id="js-edit-end-hour">[edit Hour]</a>
             <% else: %>
               <h3>Ends: <b><%= moment(@end_date).format('dddd') %></b></h3>
               <h3><%= moment(@end_date).format('MMM Do YYYY') %>, <%= @end_hour %></h3>
