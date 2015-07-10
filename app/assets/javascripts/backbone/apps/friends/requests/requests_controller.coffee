@@ -12,12 +12,14 @@
         friendships.remove(friendship)
         layout.model.decrementCount('pending_received_friendships')
         layout.model.incrementCount('friends')
+        $.growl.notice({ message: "Invitation accepted" })
 
       requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
         layout.model.decrementCount('pending_received_friendships')
+        $.growl.notice({ message: "Declined invitation" })
         
       layout.body.show(requestsView)
 

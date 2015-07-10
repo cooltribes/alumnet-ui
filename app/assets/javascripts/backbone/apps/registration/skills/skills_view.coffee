@@ -75,7 +75,7 @@
       'click @ui.btnSubmit': 'submitClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
-    oonRender: ->
+    onRender: ->
       skillsList = new AlumNet.Entities.Skills
       skillsList.fetch
         success: =>

@@ -123,7 +123,9 @@
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
-
+        onSelect: (date, standarDate, jsDate, input)->
+          $("#event-end-date").val(date)
+          
       @ui.endDate.Zebra_DatePicker
         direction: true
         show_icon: false
@@ -144,6 +146,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+
+
 
   # INVITE
 

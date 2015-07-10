@@ -7,15 +7,20 @@
       <div class="advanced-search margin_bottom">
         <div class="advanced-search-container jobPost__search" id="searcher">
           <h3 class="no-margin">Search a job</h3>
+          <div class="filter-logic-operator-container">
+            <select id="filter-logic-operator">
+              <option value="any">Any</option>
+              <option value="all">All</option>
+            </select>
+          </div>
           <div class="filter">
             <div class="filter-attribute-container">
               <select class="filter-attribute">
-                <option value="">Attributes</option>
+                <option value="">Select field</option>
                 <option value="name">Title</option>
                 <option value="country_name">Country</option>
                 <option value="city_name">City</option>
                 <option value="task_attributes_value">Attributes</option>
-
               </select>
             </div>
             <div class="filter-comparator-container">
@@ -28,9 +33,9 @@
           </div>
         </div>
         <div>
-        <a href="#" class="search btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
-        <a href="#" class="clear btn btn-default">Clear</a>
-        <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
+          <a href="#" class="search btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
+          <a href="#" class="clear btn btn-default">Clear</a>
+          <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
         </div>
       </div>
     </div>

@@ -20,6 +20,14 @@
       'click .add-new-filter': 'addNewFilter'
       'click .search': 'search'
       'click .clear': 'clear'
+      'change #filter-logic-operator': 'changeOperator'
+
+    changeOperator: (e)->
+      e.preventDefault()
+      if $(e.currentTarget).val() == "any"
+        @searcher.activateOr = false
+      else
+        @searcher.activateOr = true
 
     addNewFilter: (e)->
       e.preventDefault()

@@ -8,13 +8,14 @@
     <p>
     <form>
       <div class="form-group">
-        <select name="role" class="form-control input-lg" id="role">
+        <select name="role" class="form-control input-lg eventsTableView__status--white" id="role">
           <option value="regular" <%= selected("regular", @roleText) %>>Regular</option>
           <option value="nacional" <%= selected("nacional", @roleText) %>>National admin</option>
           <option value="regional" <%= selected("regional", @roleText) %>>Regional admin</option>
           <option value="alumnet" <%= selected("alumnet", @roleText) %>>Alument admin</option>
           <option value="system" <%= selected("system", @roleText) %>>System admin</option>
         </select>
+        <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>"
       </div>
       <div class="form-group">
         <input type="hidden" id="js-location" name="admin_location_id" style="width:100%">

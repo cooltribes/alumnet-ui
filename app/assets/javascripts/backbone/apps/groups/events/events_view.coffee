@@ -1,4 +1,6 @@
 @AlumNet.module 'GroupsApp.Events', (Events, @AlumNet, Backbone, Marionette, $, _) ->
+  class Events.EmptyView extends Marionette.ItemView
+    template: 'groups/events/templates/empty'
 
   class Events.EventForm extends Marionette.ItemView
     template: 'groups/events/templates/form'
@@ -157,6 +159,9 @@
     template: 'groups/events/templates/event'
     className: ''
 
+    initialize: (options)->
+      @collection =  options.collection
+
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
@@ -173,9 +178,26 @@
           null
     ui:
       attendanceStatus: '#attendance-status'
+      linkCancel: '#js-attendance-cancel'
 
     events:
       'change @ui.attendanceStatus': 'changeAttendanceStatus'
+      'click @ui.linkCancel': 'cancelEvent'
+
+    cancelEvent: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        collection = @collection
+        model = @model
+        Backbone.ajax
+          url: @model.url()
+          method: 'DELETE'
+          success: (data, textStatus, xhr)->
+            collection.remove(model)
+          error: (xhr, textStatus, error)->
+            if xhr.status == 409
+              alert xhr.responseJSON.message
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
@@ -202,13 +224,17 @@
     idName: 'wrapper'
     template: 'groups/events/templates/events_container'
     childView: Events.EventView
+    emptyView: Events.EmptyView
     childViewContainer: ".main-events-area"
+
+    childViewOptions: ->
+      collection: @collection
 
     initialize: ->
       @searchUpcomingEvents({})
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
+      #$(".navTopBar__left__item")
+      #  .removeClass "navTopBar__left__item--active"
+      #$('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()

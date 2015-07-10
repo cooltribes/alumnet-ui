@@ -54,22 +54,7 @@
 
         expCollection = new AlumNet.Entities.ExperienceCollection
         
-        expCollection.comparator = (a, b)->
-          typeA = a.get("exp_type")
-          typeB = b.get("exp_type")
-
-          positions = [2,1,3,0] #Arbitrary order        
-       
-          resp = positions[typeA] - positions[typeB]
-
-          if resp == 0
-            if a.get("asTitle")
-              return -1
-            else
-              return 1
-
-          resp
-
+        expCollection.setOrder()
 
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
         expCollection.fetch
