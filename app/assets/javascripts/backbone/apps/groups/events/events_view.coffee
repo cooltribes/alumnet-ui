@@ -232,9 +232,9 @@
 
     initialize: ->
       @searchUpcomingEvents({})
-      $(".navTopBar__left__item")
-        .removeClass "navTopBar__left__item--active"
-      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
+      #$(".navTopBar__left__item")
+      #  .removeClass "navTopBar__left__item--active"
+      #$('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()
