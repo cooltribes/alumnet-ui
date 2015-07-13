@@ -739,8 +739,11 @@
       @model.collection.trigger "reset" #For re-render the itemview
 
     removeItem: (e)->
-      if confirm("Are you sure you want to delete this item from your profile ?")
-        @model.destroy()
+      if @model.canBeDeleted()
+        if confirm("Are you sure you want to delete this item from your profile ?")
+          @model.destroy()
+      else
+        alert "You can't delete all your AIESEC experiences"
 
     modelChange: ->
       if @model.hasChanged("privacy")
