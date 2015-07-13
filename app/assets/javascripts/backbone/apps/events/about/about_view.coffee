@@ -79,6 +79,8 @@
       'click a#js-edit-admision_type': 'toggleEditAdmisionType'
       'click a#js-edit-upload': 'toggleEditUploadFiles'
       'click @ui.linkSaveDescription': 'saveDescription'
+      'click #js-edit-start-hour': 'editStartHour'
+      'click #js-edit-end-hour': 'editEndHour'
 
     onRender: ->
       view = this
@@ -158,19 +160,30 @@
         onSelect: (dateFormated, dateRegular, dateJavaScript, element )->
          view.model.set('end_date', dateFormated)
 
-      @ui.startHour.clockpicker
+      @cp_startHour = @ui.startHour.clockpicker
         donetext: 'Select'
         autoclose: true
         afterDone: ->
           hour = view.ui.startHour.val()
           view.model.save { start_hour: hour }
 
-      @ui.endHour.clockpicker
+      @cp_endHour = @ui.endHour.clockpicker
         donetext: 'Select'
         autoclose: true
         afterDone: ->
           hour = view.ui.endHour.val()
           view.model.save { end_hour: hour }
+
+    editStartHour: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @cp_startHour.clockpicker('show')
+
+    editEndHour: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      @cp_endHour.clockpicker('show')
+
 
     toggleEditDescription: (e)->
       e.preventDefault()

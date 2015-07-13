@@ -22,7 +22,8 @@
     template: 'admin/groups/list/templates/group'
     tagName: "tr"
 
-    initialize: ->
+    initialize: (options)->
+      @groupsTable = options.groupsTable
       @listenTo(@model, 'render:view', @renderView)
 
     templateHelpers: ->
@@ -65,13 +66,21 @@
     subGroupsClicked: (e)->
       e.preventDefault()
       subgroups = AlumNet.request('subgroups:entities:admin', @model.id, {})
-      @trigger 'subgroups:show', subgroups
+      groupsTable = @groupsTable
+      model = @model
+      subgroups.fetch
+        success: ->
+          groupsTable.linksGroups.push({id: model.id, name: model.get('name')})
+          groupsTable.renderView(subgroups)
 
   class GroupsList.GroupsTable extends Marionette.CompositeView
     template: 'admin/groups/list/templates/groups_table'
     childView: GroupsList.GroupView
     childViewContainer: "#groups-table tbody"
-    
+
+    childViewOptions: ->
+      groupsTable: @
+
     initialize: (options)->
       @linksGroups = options.linksGroups
       document.title = 'AlumNet - Groups Management'
@@ -89,12 +98,24 @@
       group_id = link.data('group-id')
       index = link.data('index')
       subgroups = AlumNet.request('subgroups:entities:admin', group_id, {})
-      @trigger 'groups:bc', index, subgroups
+      view = @
+      subgroups.fetch
+        success: ->
+          view.linksGroups = view.linksGroups.slice(0, (index + 1))
+          view.renderView(subgroups)
 
     groupsHome: (e)->
-      console.log "hola xD" 
       e.preventDefault()
-      @trigger 'groups:home'
+      groups = AlumNet.request('group:entities:admin', {})
+      view = @
+      groups.fetch
+        success: ->
+          view.linksGroups = []
+          view.renderView(groups)
+
+    renderView: (collection)->
+      @collection = collection
+      @render()
 
   class GroupsList.ModalEdit extends Backbone.Modal
     template: 'admin/groups/list/templates/modal_edit'
