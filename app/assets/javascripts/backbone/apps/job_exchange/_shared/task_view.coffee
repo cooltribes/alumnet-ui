@@ -40,12 +40,33 @@
     applyClicked: (e)->
       e.preventDefault()
       view = @
+
+      url = AlumNet.api_endpoint + "/features/validate"
+      current_user = AlumNet.current_user
       Backbone.ajax
-        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
-        method: 'PUT'
-        success: ->
-          view.model.set('user_can_apply', false)
-          view.render()
+        url: url
+        type: "GET"
+        data: { key_name: 'apply_for_a_job' }
+        success: (data) =>
+          if data.validation
+            if current_user.get('is_premium')
+              Backbone.ajax
+                url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+                method: 'PUT'
+                success: ->
+                  view.model.set('user_can_apply', false)
+                  view.render()
+            else
+              AlumNet.navigate("premium?members_only", {trigger: true})
+          else
+            Backbone.ajax
+              url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+              method: 'PUT'
+              success: ->
+                view.model.set('user_can_apply', false)
+                view.render()
+        error: (data) =>
+          $.growl.error({ message: 'Unknow error, please try again' })
 
     refreshClicked: (e)->
       e.preventDefault()
