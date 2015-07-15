@@ -45,7 +45,8 @@
         method: 'PUT'
         success: ->
           view.model.set('user_can_apply', false)
-          view.render()
+          AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+          # view.render()
 
     refreshClicked: (e)->
       e.preventDefault()
