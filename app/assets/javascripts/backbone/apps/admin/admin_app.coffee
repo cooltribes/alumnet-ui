@@ -15,6 +15,7 @@
       "admin/actions": "actionsList"
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
+      # "dashboard/alumni": "dashboardUsers"
 
   API =
     usersList: (id)->
