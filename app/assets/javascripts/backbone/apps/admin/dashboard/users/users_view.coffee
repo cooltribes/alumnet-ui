@@ -3,22 +3,55 @@
   class Users.Layout extends Marionette.LayoutView
     template: 'admin/dashboard/users/templates/layout'
 
-    # ui:
+    ui:
+      start_date: ".js-start-date"
+      end_date: ".js-end-date"
+      submit: ".js-submit"
 
-    # events:
-    #   'click .js-user-tabs a[rel]' : 'tabClicked'
+    events:
+      'click @ui.submit' : 'sendDates'
 
     regions:
       chart_type_1: '.chart_type_1'
       chart_type_2: '.chart_type_2'
 
-    # tabClicked: (e) ->
-    #   tab_name = e.currentTarget.rel
-    #   @ui.tab_elements.removeClass('active')
-    #   $(e.currentTarget).parent().addClass('active')
+    initialize: (options)->
+      @dates = options.dates
 
-    #   @trigger('tab_selected', tab_name)
+    templateHelpers: ()->
+      start_date: @dates.start  
+      end_date: @dates.end  
 
+    onRender: () ->
+      @ui.start_date.Zebra_DatePicker
+        show_icon: false
+        show_select_today: false
+        view: 'years'
+        default_position: 'below'
+        direction: [@dates.start, @dates.end]
+        pair: @ui.end_date
+
+      @ui.end_date.Zebra_DatePicker
+        show_icon: false
+        # show_select_today: true
+        view: 'years'
+        default_position: 'below'
+        direction: [true, @dates.end]
+        
+
+    sendDates: (e)->
+      e.preventDefault()
+      a = @ui.start_date.val()
+      b = @ui.end_date.val()
+      return unless a != "" && b != ""
+      
+      dates = 
+        start: a
+        end: b
+
+      @trigger "submit", dates
+        
+        
   
   class Users.ChartType1 extends Marionette.ItemView
     template: 'admin/dashboard/users/templates/_graph'
@@ -30,10 +63,26 @@
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'AreaChart',
         dataTable: dataTable
-        # options:
-        #   'title': 'Users'
-        #   'legend': {'position': 'bottom', 'alignment':'center'}
-        #   'height': 270
-        #   'titleTextStyle': { 'fontSize': 16 }
+        options:
+          'legend': {'position': 'bottom', 'alignment':'center'}
+          # 'height': 270
+          # 'titleTextStyle': { 'fontSize': 16 }
+
+      @ui.graph_section.showAnimated(graph.render().el)
+
+
+
+  class Users.ChartType2 extends Marionette.ItemView
+    template: 'admin/dashboard/users/templates/_graph'
+
+    ui:
+      graph_section: ".js-graph"
+
+    drawGraph: (dataTable)->
+      graph = new AlumNet.Utilities.GoogleChart
+        chartType: 'PieChart',
+        dataTable: dataTable
+        options:
+          is3D: true
 
       @ui.graph_section.showAnimated(graph.render().el)
