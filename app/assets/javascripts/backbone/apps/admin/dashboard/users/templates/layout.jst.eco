@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="container-fluid ">    
+    <div class="charts-region row">
+      <h4>Alumni per type of membership</h4>
+      <hr>
+      <div class="col-md-6 chart_type_1">
+
+      </div>
+      
+      <div class="col-md-6 chart_type_2">
+
+      </div>
+      
+    </div>
+  </div>
+</div>
