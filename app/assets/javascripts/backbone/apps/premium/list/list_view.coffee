@@ -10,15 +10,38 @@
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
+      'selectPaymentCities': '#js-payment-cities'
       'divCountry': '#country'
       'paymentwallContent': '#paymentwall-content'
 
     events:
-      'change #js-payment-countries': 'reloadWidget'
+      'change #js-payment-countries': 'loadCities'
 
     templateHelpers: ->
       current_user: @current_user
       condition: @condition
+
+    optionsForSelectCities: (url)->
+      placeholder: "Select a City"
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q:
+            name_cont: term
+        results: (data, page) ->
+          results:
+            data
+      formatResult: (data)->
+        data.name
+      formatSelection: (data)->
+        data.name
+
+    loadCities: (e)->
+      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      @$("#js-payment-cities").select2(@optionsForSelectCities(url))
+
 
     reloadWidget: (e)->
       country = new AlumNet.Entities.Country
@@ -47,6 +70,8 @@
       profile = view.current_user.profile
       birthday = profile.get('born')
       birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+      console.log view.current_user
+      console.log profile
       
       if(AlumNet.environment == "development")
         paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
@@ -58,3 +83,6 @@
       @ui.selectPaymentCountries.select2
         placeholder: "Select a Country"
         data: data
+
+      @ui.selectPaymentCities.select2
+        placeholder: "Select a City"
