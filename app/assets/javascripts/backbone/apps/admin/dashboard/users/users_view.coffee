@@ -44,7 +44,7 @@
       a = @ui.start_date.val()
       b = @ui.end_date.val()
       return unless a != "" && b != ""
-      
+
       dates = 
         start: a
         end: b
@@ -84,5 +84,6 @@
         dataTable: dataTable
         options:
           is3D: true
+          'legend': {'position': 'bottom', 'alignment':'center'}          
 
       @ui.graph_section.showAnimated(graph.render().el)

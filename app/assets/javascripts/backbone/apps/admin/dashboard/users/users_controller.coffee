@@ -29,6 +29,7 @@
 
     fetchDataForCharts: (dates)->
       @fetchDataType1 dates
+      @fetchDataType2 dates
       
 
     fetchDataType1: (dates)->
