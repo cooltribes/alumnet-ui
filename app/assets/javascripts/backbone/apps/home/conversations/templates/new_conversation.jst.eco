@@ -4,7 +4,7 @@
       <input type="hidden" name="recipients" id="recipients" style="width: 100%" value="<%= @recipient %>">
     </div>
     <div class="form-group">
-      <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
+      <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" value="<%= @subject %>">
     </div>
     <div class="form-group">
       <textarea name="body" id="body" class="form-control" placeholder="Write a message.."></textarea>

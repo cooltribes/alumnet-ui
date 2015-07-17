@@ -52,6 +52,12 @@
         data.push { id: element.profinda_id, text: element.value }
       data
 
+    getCreator: ->
+      if @get('user')
+        new AlumNet.Entities.User @get('user')
+      else
+        null
+
   ##JOB EXCHANGE
 
   class Entities.JobExchange extends Entities.Tasks
