@@ -1,6 +1,6 @@
-@AlumNet.module 'JobExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'MeetupExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Task extends Marionette.CompositeView
-    className: 'col-md-4 no-padding-rigth'
+    className: 'container'
 
     initialize: (options)->
       @mode = options.mode
@@ -40,39 +40,18 @@
     applyClicked: (e)->
       e.preventDefault()
       view = @
-
-      url = AlumNet.api_endpoint + "/features/validate"
-      current_user = AlumNet.current_user
       Backbone.ajax
-        url: url
-        type: "GET"
-        data: { key_name: 'apply_for_a_job' }
-        success: (data) =>
-          if data.validation
-            if current_user.get('is_premium')
-              Backbone.ajax
-                url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
-                method: 'PUT'
-                success: ->
-                  view.model.set('user_can_apply', false)
-                  view.render()
-            else
-              AlumNet.navigate("premium?members_only", {trigger: true})
-          else
-            Backbone.ajax
-              url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
-              method: 'PUT'
-              success: ->
-                view.model.set('user_can_apply', false)
-                view.render()
-        error: (data) =>
-          $.growl.error({ message: 'Unknow error, please try again' })
+        url: AlumNet.api_endpoint + '/meetup_exchanges/' + @model.id + '/apply'
+        method: 'PUT'
+        success: ->
+          view.model.set('user_can_apply', false)
+          view.render()
 
     refreshClicked: (e)->
       e.preventDefault()
       view = @
       @model.fetch
-        url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/matches'
+        url: AlumNet.api_endpoint + '/meetup_exchanges/' + @model.id + '/matches'
         success: ->
           view.render()
 

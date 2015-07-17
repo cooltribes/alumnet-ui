@@ -19,7 +19,7 @@ class PaymentwallController < ApplicationController
     @reference = @pingback.getParameter('ref')
     @event_id = @pingback.getParameter('event_id')
 
-    #if @pingback.validate()
+    if @pingback.validate()
       if(@pingback.getParameter('payment_type') == 'event')
         payment = EventPayment.new
         @data_text = { :user_id => @user_id, :price => @pingback.getParameter('amount'), :event_id => @pingback.getParameter('event_id'), :attendance_id => @pingback.getParameter('attendance_id'), :reference => @reference }.to_json
@@ -44,9 +44,9 @@ class PaymentwallController < ApplicationController
 
         render :text => "OK"
       end
-    #else
-      #@response = @pingback.getErrorSummary()
-      #puts @pingback.getErrorSummary()
-    #end
+    else
+      @response = @pingback.getErrorSummary()
+      puts @pingback.getErrorSummary()
+    end
   end
 end
