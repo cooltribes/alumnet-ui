@@ -10,7 +10,10 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
+        <li class="<%= @classOf(5)%>"><a href="#business-exchange/home" class="navTopSubBar__link" title="Home"><span class="navTopSubBar__icon glyphicon glyphicon-home"></span> Home</a></li>
+
         <li class="<%= @classOf(0)%>"><a href="#business-exchange/applied" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Business Exchange</a></li>
+
         <li class="<%= @classOf(1)%>"><a href="#business-exchange/your-tasks" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Your Tasks</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right no-margin">
