@@ -49,7 +49,26 @@
 
 
     showCreateForm: ()->
+      controller = @
+      url = AlumNet.api_endpoint + "/features/validate"
+      current_user = AlumNet.current_user
+      user_can_access = false
+      Backbone.ajax
+        url: url
+        type: "GET"
+        data: { key_name: 'create_business_exchange_tab' }
+        success: (data) =>
+          if data.validation
+            if current_user.get('is_premium')
+              controller.showForm()
+            else
+              AlumNet.navigate("premium?members_only", {trigger: true})
+          else
+            controller.showForm()
+        error: (data) =>
+          $.growl.error({ message: 'Unknow error, please try again' })
 
+    showForm: ()->
       view = new Business.CreateForm
         model: new AlumNet.Entities.Business
         keywords: @keywordsList

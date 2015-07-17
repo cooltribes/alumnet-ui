@@ -70,8 +70,6 @@
       profile = view.current_user.profile
       birthday = profile.get('born')
       birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
-      console.log view.current_user
-      console.log profile
       
       if(AlumNet.environment == "development")
         paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
@@ -84,5 +82,5 @@
         placeholder: "Select a Country"
         data: data
 
-      @ui.selectPaymentCities.select2
-        placeholder: "Select a City"
+      # @ui.selectPaymentCities.select2
+      #   placeholder: "Select a City"
