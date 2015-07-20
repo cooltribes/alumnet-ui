@@ -5,7 +5,7 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</div>
 			<div class="col-md-10">
-				<p class="lead">It seems that there's no sub-groups in this group.</p>
+				<p class="lead">This Group doesn't have any Sub-Groups.</p>
 			</div>
 		</div>
 	</div>
