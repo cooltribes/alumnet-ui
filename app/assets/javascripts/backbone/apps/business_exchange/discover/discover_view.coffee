@@ -3,8 +3,9 @@
     className: 'container'
     template: 'business_exchange/_shared/templates/discover_task'
 
-  class Discover.ProfilesList extends Marionette.CompositeView
-    template: 'business_exchange/discover/templates/profiles_list'
+  class Discover.Profile extends AlumNet.BusinessExchangeApp.Shared.Profile
+    className: 'container'
+    template: 'business_exchange/_shared/templates/profile'
 
   class Discover.TasksList extends Marionette.CompositeView
     template: 'business_exchange/discover/templates/tasks_list'
@@ -53,6 +54,19 @@
       e.preventDefault()
       @collection.fetch()
 
+  class Discover.ProfilesList extends Discover.TasksList
+    template: 'business_exchange/discover/templates/profiles_list'
+    childView: Discover.Profile
+    childViewContainer: '.profiles-container'
+    className: 'container'
+
+    onShow: ->
+      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
+        { attribute: "company_name", type: "string", values: "" },
+        { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
+
+      ])
+
   class Discover.Layout extends  Marionette.LayoutView
     template: 'business_exchange/discover/templates/discover_container'
     regions:
@@ -80,5 +94,9 @@
       e.preventDefault()
       @ui.linkDiscoverTask.removeClass('active')
       @ui.linkDiscoverProfile.addClass('active')
+      profiles = new AlumNet.Entities.BusinessCollection
+      profiles.url = AlumNet.api_endpoint + "/business"
+      profiles.fetch()
       profilesList = new Discover.ProfilesList
+        collection: profiles
       @content.show(profilesList)
