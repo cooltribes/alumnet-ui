@@ -15,12 +15,15 @@
       chart_type_1: '.chart_type_1'
       chart_type_2: '.chart_type_2'
 
+
     initialize: (options)->
       @dates = options.dates
+
 
     templateHelpers: ()->
       start_date: @dates.start  
       end_date: @dates.end  
+
 
     onRender: () ->
       @ui.start_date.Zebra_DatePicker
@@ -59,8 +62,19 @@
     ui:
       graph_section: ".js-graph"
     
+    bindings:
+      "[name=interval]": "interval"
+
     initialize:(options)->
       @interval = "days"
+      @model = new Backbone.Model
+        interval: @interval
+
+    onRender: ->
+      @stickit()    
+
+    # templateHelpers: ->
+    #   interval: @interval  
 
     drawGraph: (dataTable)->
       graph = new AlumNet.Utilities.GoogleChart
