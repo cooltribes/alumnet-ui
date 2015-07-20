@@ -47,6 +47,7 @@
       controller.prizesList()
     featuresList: ->
       controller = new AdminApp.FeaturesList.Controller
+      controller.featuresList()
 
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
