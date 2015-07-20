@@ -1,6 +1,6 @@
 @AlumNet.module 'BusinessExchangeApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Users.Layout extends Marionette.LayoutView
+  class Home.Layout extends Marionette.LayoutView
     template: 'admin/dashboard/users/templates/layout'
 
     ui:
