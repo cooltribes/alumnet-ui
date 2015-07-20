@@ -58,6 +58,9 @@
 
     ui:
       graph_section: ".js-graph"
+    
+    initialize:(options)->
+      @interval = "days"
 
     drawGraph: (dataTable)->
       graph = new AlumNet.Utilities.GoogleChart
