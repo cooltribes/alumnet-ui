@@ -22,7 +22,7 @@
                 <option value="profile_first_name_or_profile_last_name">User</option>
               </select>
             </div>
-            <div class="filter-comparator-container">
+            <div class="filter-comparator-container" style="display:none">
               <select class="filter-comparator"></select>
             </div>
             <div class="filter-value-container">
