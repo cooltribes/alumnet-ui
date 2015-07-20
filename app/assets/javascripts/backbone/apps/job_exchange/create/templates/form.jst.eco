@@ -41,25 +41,27 @@
           <div class="col-md-4 margin_top_medium">
             <div class="form-job">
               <label class="control-label">Experience</label>
-              <select class="form-control input-lg" id="employment-type" name="position_type">
+              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="position_type">
                 <option value="0" <%= @select_position_type(0) %>>Top Management/Director</option>
                 <option value="1" <%= @select_position_type(1) %>>Middle management</option>
                 <option value="2" <%= @select_position_type(2) %>>Senior Specialist</option>
                 <option value="3" <%= @select_position_type(3) %>>Junior Specialist</option>
                 <option value="4" <%= @select_position_type(4) %>>Entry job</option>
               </select>
+              <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIconJP" aria-hidden="true"></span>
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-4 margin_top_medium ">
             <div class="form-job">
               <label class="control-label">Type of Employment</label>
-              <select class="form-control input-lg" id="employment-type" name="employment_type">
+              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="employment_type">
                 <option value="0" <%= @select_employment_type(0) %>>Full-time</option>
                 <option value="1" <%= @select_employment_type(1) %>>Part-time</option>
                 <option value="2" <%= @select_employment_type(2) %>>Internship</option>
                 <option value="3" <%= @select_employment_type(3) %>>Temporary</option>
               </select>
+              <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIconJP" aria-hidden="true"></span>
               <span class="help-block"></span>
             </div>
           </div>
@@ -89,7 +91,7 @@
         <hr>
         <p>
           <h5>
-          Please add the Keywords that defines your desired and required skills and languages. These keywords will be used in order to match your job position with suitable candidates.
+          Please add the <strong>Keywords</strong> that defines your desired and required skills and languages. These keywords will be used in order to match your job position with suitable candidates.
           </h5>
         </p>
         <!-- ROW 3 ON -->
