@@ -58,12 +58,11 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 		  			& > div{
 		  				display: table-row;
 
-              & > div {
+              & > div,& > a:first-child {
                 display: table-cell;
                 width: 90%;
                 border-bottom: 1px solid #CFCFCF;
                 border-top: 1px solid #cfcfcf;
-                padding-left: 10px;
               }
               &:last-child{
                 height: 10px
@@ -128,6 +127,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   		width: 90%;
   		color: @blue;
 
+      & + div{
+        display: inline-block;
+      }
   		&R {
   			display: table-cell;
 		  	text-align: center;
