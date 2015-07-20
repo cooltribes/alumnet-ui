@@ -3,20 +3,18 @@
     initialize: ->
       AlumNet.execute('render:business_exchange:submenu', undefined, 5)
 
-      # @layout = @getLayoutView()
+      @layout = @getLayoutView()
 
-      # @listenTo @layout, 'show', =>        
-      #   @showGraphType1()
-      #   @showGraphType2()
 
       @show @layout
-      # tasks = new AlumNet.Entities.BusinessExchangeCollection
-      # tasks.fetch()
-      # discoverView = new Home.List
-      #   collection: tasks
+      
+      tasks = new AlumNet.Entities.BusinessExchangeCollection
+      tasks.fetch
+        data: 
+          limit: 3      
 
       # AlumNet.mainRegion.show(discoverView)
 
-    # getLayoutView: ->
-    #   view = new Home.Layout
+    getLayoutView: ->
+      view = new Home.Layout
      

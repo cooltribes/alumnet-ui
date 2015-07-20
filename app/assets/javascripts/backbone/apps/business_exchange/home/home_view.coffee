@@ -1,7 +1,7 @@
 @AlumNet.module 'BusinessExchangeApp.Home', (Home, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Users.Layout extends Marionette.LayoutView
-    template: 'admin/dashboard/users/templates/layout'
+  class Home.Layout extends Marionette.LayoutView
+    template: 'business_exchange/home/templates/discover_container'
 
     ui:
       start_date: ".js-start-date"
@@ -14,3 +14,8 @@
     regions:
       chart_type_1: '.chart_type_1'
       chart_type_2: '.chart_type_2'
+
+
+  # class Discover.List extends Marionette.CompositeView
+  #   template: 'business_exchange/discover/templates/discover_container'
+  #   childView: Discover.Task
