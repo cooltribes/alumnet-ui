@@ -25,9 +25,6 @@
     className: 'navTopBar__notification'
     template: 'header/menu/templates/notification'
 
-    initialize: (options)->
-      console.log options
-
   class Menu.NotificationsView extends Marionette.CollectionView
     tagName: 'ul'
     className: 'navTopBar__dropdownMenu'
