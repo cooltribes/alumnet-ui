@@ -1,7 +1,7 @@
 @AlumNet.module 'JobExchangeApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
   class Create.Controller
     create: ->
-      task = new AlumNet.Entities.JobExchange
+      controller = @
       #feature = new AlumNet.Entities.Feature { key_name: 'job_post' }
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
@@ -12,30 +12,20 @@
         success: (data) =>
           if data.validation
             if current_user.get('is_premium')
-              createForm = new Create.Form
-                model: task
-              AlumNet.mainRegion.show(createForm)
-              AlumNet.execute('render:job_exchange:submenu')
+              controller.showForm()
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
-            createForm = new Create.Form
-              model: task
-            AlumNet.mainRegion.show(createForm)
-            AlumNet.execute('render:job_exchange:submenu')
+            controller.showForm()
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
-      #feature = AlumNet.request('feature:findByKeyName', 'job_post')
-      
-      ###feature.fetch
-        success: ->
-          console.log feature
 
-        error: (model, response, options)->
-          console.log 'error controller'
-          AlumNet.trigger('show:error', response.status)###
-
-      
+    showForm: ->
+      task = new AlumNet.Entities.JobExchange
+      createForm = new Create.Form
+        model: task
+      AlumNet.mainRegion.show(createForm)
+      AlumNet.execute('render:job_exchange:submenu')
 
     update: (id)->
       current_user = AlumNet.current_user

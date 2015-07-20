@@ -20,7 +20,7 @@
       @model = options.model
       document.title = 'AlumNet - '+@model.get("name")
       @userCanEdit = AlumNet.current_user.isAlumnetAdmin() || @model.isCurrentUser()
-      
+
       if options.userCanEdit?
         @userCanEdit = options.userCanEdit
 
@@ -74,7 +74,7 @@
 
     sendMensagge: (e)->
       e.preventDefault()
-      AlumNet.trigger('conversation:recipient', @model)
+      AlumNet.trigger('conversation:recipient', null, @model)
 
 
   class Shared.Layout extends Marionette.LayoutView
