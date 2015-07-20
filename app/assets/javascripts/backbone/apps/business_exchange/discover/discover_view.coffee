@@ -16,7 +16,7 @@
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "name", type: "string", values: "" },
-        { attribute: "post_until", type: "numeric", values: "" },
+        { attribute: "post_until", type: "date", values: "" },
         { attribute: "task_attributes_value", type: "string", values: "" }
       ])
 

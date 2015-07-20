@@ -23,7 +23,7 @@
                 <option value="task_attributes_value">Attributes</option>
               </select>
             </div>
-            <div class="filter-comparator-container">
+            <div class="filter-comparator-container" style="display:none">
               <select class="filter-comparator"></select>
             </div>
             <div class="filter-value-container">
