@@ -129,6 +129,15 @@
     getMonthType: ->
       @MonthType[@get "Month_type"]
 
+    canBeDeleted: ->
+      #if this experience belongs to a collection and its type is not AIESEC
+      return true if (@collection?) && @get("exp_type") != 0
+
+      #if there are more than 1 Aiesec experiences, then this can be deleted
+      return @collection.where({"exp_type": 0, "asTitle": false}).length > 1
+
+      
+
     experienceType:
       0: 'AIESEC Experience'
       1: 'Alumni Experience'

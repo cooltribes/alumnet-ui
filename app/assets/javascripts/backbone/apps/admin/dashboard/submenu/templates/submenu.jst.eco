@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default navTopSubBarAdmin__wrapper" role="navigation">
+  <div class="container-fluid">
+    <!-- Desktop and mobile header ON -->
+    <div class="navbar-header">
+      <button type="button" class="navTopSubBarAdmin__burguerMenu navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="ico-menu"></span>
+      </button>
+    </div>
+    <!-- Desktop and mobile header OFF -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav no-margin">
+        <li class="<%= @classOf(0)%>">
+          <a href="#dashboard/alumni" class="navTopSubBarAdmin__link" title="Users">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Alumni
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

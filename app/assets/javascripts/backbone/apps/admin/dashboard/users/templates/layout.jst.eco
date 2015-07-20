@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="container-fluid ">    
+    <div class="charts-region row">
+      
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <input type="text" value="<%= @start_date %>" class="form-control input-lg js-start-date" name="start_date">
+          </div>
+          <div class="col-md-3">
+            <input type="text" value="<%= @end_date %>" class="form-control input-lg js-end-date" name="start_date">
+          </div>
+          <div class="col-md-2">
+            <a href="#" class="btn btn-primary btn-lg js-submit">Submit</a>            
+          </div>
+        </div>
+      
+      </div>
+      <h4>Alumni per type of membership</h4>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 chart_type_1">
+
+        </div>
+        
+        <div class="col-md-6 chart_type_2">
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
