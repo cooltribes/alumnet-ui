@@ -9,11 +9,7 @@
         @showTasks()
 
       @show @layout
-      # tasks = new AlumNet.Entities.BusinessExchangeCollection
-      # tasks.fetch()
-      # discoverView = new Home.List
-      #   collection: tasks
-
+      
       # AlumNet.mainRegion.show(discoverView)
 
     getLayoutView: ->
@@ -22,7 +18,9 @@
      
     showTasks: ->
       tasks = new AlumNet.Entities.BusinessExchangeCollection
-      tasks.fetch()
+      tasks.fetch
+        data: 
+          limit: 3      
 
       view = new Home.Tasks
         collection: tasks

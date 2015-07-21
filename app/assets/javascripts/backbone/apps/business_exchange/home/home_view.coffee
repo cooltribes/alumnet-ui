@@ -19,4 +19,3 @@
 
   class Home.Tasks extends Marionette.CollectionView
     childView: AlumNet.BusinessExchangeApp.Shared.Task
-
