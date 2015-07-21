@@ -6,6 +6,7 @@
       @layout = @getLayoutView()
 
       @listenTo @layout, 'show', =>        
+        @showProfiles()
         @showTasks()
 
       @show @layout
@@ -16,6 +17,7 @@
       view = new Home.Layout
         model: AlumNet.current_user
      
+
     showTasks: ->
       tasks = new AlumNet.Entities.BusinessExchangeCollection
       tasks.fetch
@@ -26,3 +28,17 @@
         collection: tasks
 
       @layout.tasks.show view  
+
+
+    showProfiles: ->
+      business = new AlumNet.Entities.BusinessCollection
+      business.fetch
+        url: AlumNet.api_endpoint + "/business"        
+        data: 
+          limit: 3      
+
+          
+      view = new Home.Profiles
+        collection: business
+
+      @layout.profiles.show view  

@@ -19,3 +19,6 @@
 
   class Home.Tasks extends Marionette.CollectionView
     childView: AlumNet.BusinessExchangeApp.Shared.Task
+
+  class Home.Profiles extends Marionette.CollectionView
+    childView: AlumNet.BusinessExchangeApp.Shared.Profile
