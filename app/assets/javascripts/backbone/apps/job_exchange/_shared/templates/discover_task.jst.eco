@@ -1,6 +1,9 @@
 <div class="jobPost">
+  <% if @canDelete: %>
+    <a href="#" id="iconDelete"  class="pull-right js-job-delete" ><span class="glyphicon glyphicon-remove"></span></a>
+  <% end %>
   <div class="jobPost__name"><h3 class="no-margin"><%= @name %></h3></div>
-  <div class="jobPost__company"><h3 class="no-margin"><b><%= @company.text %></b></h3></div>
+  <div class="jobPost__company"><h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
   <div class="jobPost__description margin_top_xsmall"><%- @formatted_description %></div>
       <% if @user: %>
         <div class="row user">
@@ -20,7 +23,6 @@
       <span> <%= @position.text %> </span><br>
       <span class="glyphicon glyphicon-time"></span>
       <span> <%= @employment.text %> </span><br>
-      <p class="overfloadText"><span class="ico-points"></span> <%= @offer %> </p>
       <span class="ico-location"></span>
       <span><%= @location() %></span>
     </div>
@@ -28,9 +30,7 @@
       <!-- SKILLS PENDING -->
     </div>
   <div class="jobPostDetail__buttons text-right">
-    <% if @canDelete: %>
-      <a href="#" class="btn btn-danger js-job-delete" ><span class="glyphicon glyphicon-remove"></span></a>
-    <% end %>
+    
     <% if @canEdit: %>
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
     <% end %>

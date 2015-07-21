@@ -15,11 +15,11 @@
           <div class="filter">
             <div class="filter-attribute-container">
               <select class="filter-attribute">
-                <option value="">Select field</option>
+                <option value="">Find by</option>
                 <option value="name">Title</option>
                 <option value="country_name">Country</option>
                 <option value="city_name">City</option>
-                <option value="task_attributes_value">Attributes</option>
+                <option value="task_attributes_value">Skills</option>
               </select>
             </div>
             <div class="filter-comparator-container">
