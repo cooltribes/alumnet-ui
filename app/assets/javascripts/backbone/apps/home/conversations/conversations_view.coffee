@@ -13,7 +13,7 @@
     events:
       'click .unread': 'clickedUnReadLink'
       'click .read': 'clickedReadLink'
-      
+
 
     clickedReadLink: (e)->
       e.stopPropagation()
@@ -50,17 +50,16 @@
     childView: Conversations.MessageView
     initialize: (options) ->
       @recipient = options.recipient
+      @subject = options.subject
 
     templateHelpers: ->
-      if @recipient
-        recipient: @recipient.id
-      else
-        recipient: ''
-
+      recipient: if @recipient then @recipient.id else ''
+      subject: if @subject then @subject else ''
     ui:
       'inputBody': '#body'
       'inputSubject': '#subject'
       'selectRecipients': '#recipients'
+
     events:
       'click .js-submit':'clickedSubmit'
 

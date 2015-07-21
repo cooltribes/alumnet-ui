@@ -1,7 +1,8 @@
 @AlumNet.module 'BusinessExchangeApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
   class Create.Controller
     create: ->
-      task = new AlumNet.Entities.BusinessExchange
+      controller = @
+      
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
       Backbone.ajax
@@ -11,19 +12,11 @@
         success: (data) =>
           if data.validation
             if current_user.get('is_premium')
-              createForm = new Create.Form
-                model: task
-
-              AlumNet.mainRegion.show(createForm)
-              AlumNet.execute('render:business_exchange:submenu')
+              controller.showForm()
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
-            createForm = new Create.Form
-              model: task
-
-            AlumNet.mainRegion.show(createForm)
-            AlumNet.execute('render:business_exchange:submenu')
+            controller.showForm()
         error: (data) =>
           console.log data
           $.growl.error({ message: 'Unknow error, please try again' })
@@ -33,6 +26,14 @@
 
       AlumNet.mainRegion.show(createForm)
       AlumNet.execute('render:business_exchange:submenu')###
+
+    showForm: ->
+      task = new AlumNet.Entities.BusinessExchange
+      createForm = new Create.Form
+        model: task
+
+      AlumNet.mainRegion.show(createForm)
+      AlumNet.execute('render:business_exchange:submenu')
 
     update: (id)->
       current_user = AlumNet.current_user

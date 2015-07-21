@@ -40,7 +40,6 @@
     applyClicked: (e)->
       e.preventDefault()
       view = @
-
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
       Backbone.ajax
@@ -55,7 +54,7 @@
                 method: 'PUT'
                 success: ->
                   view.model.set('user_can_apply', false)
-                  view.render()
+                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -64,7 +63,7 @@
               method: 'PUT'
               success: ->
                 view.model.set('user_can_apply', false)
-                view.render()
+                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 

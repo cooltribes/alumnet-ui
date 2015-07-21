@@ -1,12 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
-      <h1>Discover</h1>
+    <div class="col-md-9">
+      <input type="text" name="search" id="input-search">
+      <a href="#" class="search btn bt-default btn-primary">Search</a>
     </div>
     <div class="col-md-9">
       <div class="advanced-search margin_bottom">
         <div class="advanced-search-container jobPost__search" id="searcher">
-          <h3 class="no-margin">Search a job</h3>
+          <h3 class="no-margin">Search a Task</h3>
           <div class="filter-logic-operator-container">
             <select id="filter-logic-operator">
               <option value="any">Any</option>
@@ -18,8 +19,7 @@
               <select class="filter-attribute">
                 <option value="">Select field</option>
                 <option value="name">Title</option>
-                <option value="country_name">Country</option>
-                <option value="city_name">City</option>
+                <option value="post_until">Deadline</option>
                 <option value="task_attributes_value">Attributes</option>
               </select>
             </div>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div>
-          <a href="#" class="search btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
+          <a href="#" class="advanced-search-link btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
           <a href="#" class="clear btn btn-default">Clear</a>
           <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
         </div>
@@ -42,4 +42,4 @@
   </div>
 </div>
 
-<div class="tasks-container tasks-container container-fluid"></div>
+<div class="tasks-container container-fluid"></div>
