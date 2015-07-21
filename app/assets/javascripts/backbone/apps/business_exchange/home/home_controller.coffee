@@ -3,11 +3,10 @@
     initialize: ->
       AlumNet.execute('render:business_exchange:submenu', undefined, 5)
 
-      # @layout = @getLayoutView()
+      @layout = @getLayoutView()
 
-      # @listenTo @layout, 'show', =>        
-      #   @showGraphType1()
-      #   @showGraphType2()
+      @listenTo @layout, 'show', =>        
+        @showTasks()
 
       @show @layout
       # tasks = new AlumNet.Entities.BusinessExchangeCollection
@@ -17,6 +16,15 @@
 
       # AlumNet.mainRegion.show(discoverView)
 
-    # getLayoutView: ->
-    #   view = new Home.Layout
+    getLayoutView: ->
+      view = new Home.Layout
+        model: AlumNet.current_user
      
+    showTasks: ->
+      tasks = new AlumNet.Entities.BusinessExchangeCollection
+      tasks.fetch()
+
+      view = new Home.Tasks
+        collection: tasks
+
+      @layout.tasks.show view  
