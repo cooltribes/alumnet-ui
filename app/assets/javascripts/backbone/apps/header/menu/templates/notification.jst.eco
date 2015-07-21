@@ -1,7 +1,30 @@
 <div class="clearfix">
   <!-- Content -->
-  <div class="navTopBar__notification__content">
-    <span class="navTopBar__notification__summary"><%= @body %></span>
-    <span class="navTopBar__notification__date"><%= moment(@created_at).fromNow() %></span></a>
-  </div>
+  <a href="#<%= @url %>">
+  	<div class="navTopBar__notification__avatar">
+  		<img src="<%= @sender_avatar %>">
+  	</div>
+  	<div class="navTopBar__notification__content">
+  		<% if @type: %>
+    		<% if @type=="comment": %>
+    		<span class="navTopBar__notification__type glyphicon glyphicon-comment pull-right"></span>
+    		<% end %>
+    		<% if @type=="post": %>
+    		<span class="pull-right navTopBar__notification__type glyphicon glyphicon-thumbs-up"></span>
+    		<% end %>
+    		<% if @type=="friendship": %>
+    		<span class="pull-right navTopBar__notification__type icon-entypo-user"></span>
+    		<% end %>
+    		<% if @type=="group": %>
+    		<span class="pull-right navTopBar__notification__type icon-entypo-share"></span>
+    		<% end %>
+    		<% if @type=="event": %>
+    		<span class="pull-right navTopBar__notification__type ico-calendar"></span>
+    		<% end %>
+    	<% end %>
+    	<h5 class="navTopBar__notification__title no-margin"><%= @sender_name%></h5>
+  		<span class="navTopBar__notification__summary"><%= @body %></span>
+    	<span class="navTopBar__notification__date"><%= moment(@created_at).fromNow() %></span>
+  	</div>
+  </a>
 </div>

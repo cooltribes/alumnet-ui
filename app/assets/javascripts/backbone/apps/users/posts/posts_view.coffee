@@ -224,7 +224,7 @@
   ###### POST DETAIL
   class Posts.PostDetail extends Posts.PostView
     template: 'users/posts/templates/post_detail'
-    className: 'container-fluid margin_top_small'
+    className: 'container margin_top_small'
 
   #### POST COLLECTION
   class Posts.PostsView extends Marionette.CompositeView
