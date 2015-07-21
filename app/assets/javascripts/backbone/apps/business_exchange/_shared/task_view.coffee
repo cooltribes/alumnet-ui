@@ -1,10 +1,8 @@
 @AlumNet.module 'BusinessExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Profile extends Marionette.CompositeView
-    className: 'container'
     template: 'business_exchange/_shared/templates/profile'
 
   class Shared.Task extends Marionette.CompositeView
-    className: 'container'
     template: 'business_exchange/_shared/templates/task'
 
     templateHelpers: ->
