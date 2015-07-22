@@ -28,10 +28,18 @@
       'selectProfindaMustHaveList': '#must-have-list'
       'selectProfindaNiceHaveList': '#nice-have-list'
 
-
     events:
       'click @ui.submitLink': 'submitClicked'
       'click @ui.cancelLink': 'cancelClicked'
+
+    onShow: ->
+      summernote_options =
+        height: 100
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']]
+          ['para', ['ul', 'ol']]
+        ]
+      $('#task-description').summernote(summernote_options)
 
     onRender: ->
       @ui.datePickerDeadline.Zebra_DatePicker
@@ -48,6 +56,8 @@
       data = Backbone.Syphon.serialize(this)
       data.must_have_list = data.must_have_list.replace(/(^\s*,)|(,\s*$)/g, '')
       data.nice_have_list = data.nice_have_list.replace(/(^\s*,)|(,\s*$)/g, '')
+      data.description = $('#task-description').code().replace(/<\/?[^>]+(>|$)/g, "")
+      data.formatted_description = $('#task-description').code()
       @model.save data,
         success: ->
           ##TODO Match

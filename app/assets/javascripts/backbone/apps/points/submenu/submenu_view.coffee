@@ -4,7 +4,6 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->
-      #@listenTo(@model, 'render:view', @renderView)
       @tab = options.tab
       @pointsBar = options.pointsBar   
       @class = [

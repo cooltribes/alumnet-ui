@@ -1,6 +1,6 @@
 @AlumNet.module 'HomeApp.Conversations', (Conversations, @AlumNet, Backbone, Marionette, $, _) ->
   class Conversations.Controller
-    showCurrentUserConversations: (conversation_id, user)->
+    showCurrentUserConversations: (conversation_id, subject, user)->
       conversations = AlumNet.request('conversations:get', {})
       layout = new Conversations.Layout
 
@@ -10,6 +10,7 @@
       replyView = new Conversations.ReplyView
       newConversationView = new Conversations.NewConversationView
         recipient: user
+        subject: subject
 
       AlumNet.mainRegion.show(layout)
       layout.conversations.show(conversationsView)

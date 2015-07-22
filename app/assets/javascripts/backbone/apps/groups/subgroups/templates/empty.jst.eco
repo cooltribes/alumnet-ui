@@ -1,0 +1,12 @@
+<div class="col-md-6 ">
+	<div class="well">
+		<div class="row">
+			<div class="col-md-2 lead fontSize--xl text-center">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</div>
+			<div class="col-md-10">
+				<p class="lead">This Group doesn't have any Sub-Groups.</p>
+			</div>
+		</div>
+	</div>
+</div>

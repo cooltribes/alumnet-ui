@@ -7,18 +7,11 @@
     
     triggers:
       'click .js-moveFile': "move:file"
+      'click .js-editItem': "show:edit"
     
     events:
       'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: true
-      
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
-
-    templateHelpers: ->
-      userCanEdit: @userCanEdit  
-
+        
     removeItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this file?")
@@ -32,9 +25,7 @@
     emptyView: Folders.EmptyView
     emptyViewOptions: 
       message: "There are no files here"
-    childViewContainer: '.files-list'
-    childViewOptions: ->
-      userCanEdit: @userCanEdit
+    childViewContainer: '.files-list'    
       
     ui:
       "modals": "#js-modal-container"
@@ -59,7 +50,6 @@
     showUploading: ()-> 
       @ui.uploadBtn.hide()      
       @ui.loadingBar.slideDown()
-
     
     hideUploading: ()-> 
       @ui.uploadBtn.show()
@@ -67,7 +57,10 @@
       $.growl.notice 
         title: "Files"
         message: "All files have been uploaded successfully"
-      
+
+    checkDuplicated: (files)->
+      @collection.checkDuplicated files
+  
 
   class Folders.MoveFileModal extends Backbone.Modal
     template: 'files/folders/list/files_templates/move_file_modal'    
@@ -103,4 +96,51 @@
       
     submit: ()->  
       @trigger "submit", @folder_id
-  
+
+
+  class Folders.FileModal extends Backbone.Modal
+    template: 'files/folders/list/files_templates/_fileModal'    
+
+    cancelEl: '#js-close'
+    submitEl: '#js-save'
+    keyControl: false    
+
+    events:
+      "submit form": "submitForm"
+
+    initialize: (options)->      
+      @previousName = @model.get "name"
+
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    onShow: ()->
+      @$("[name=name]").select()
+
+    submitForm: (e)->
+      e.preventDefault()
+      @triggerSubmit()
+    
+    templateHelpers: ->     
+      isNew: @model.isNew()
+
+    beforeSubmit: ()->
+      #Validations
+      data = Backbone.Syphon.serialize this
+      @model.set data
+      @model.isValid(true)
+
+    cancel: ()->  
+      @model.set "name", @previousName
+
+    submit: ()->  
+      @trigger "submit"  

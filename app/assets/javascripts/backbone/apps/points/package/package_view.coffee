@@ -21,5 +21,5 @@
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
 		initialize: (options) ->
-			console.log options
+			#console.log options
 			$('#pointsBar').hide();

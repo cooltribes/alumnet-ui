@@ -2,24 +2,28 @@
   <% if @canDelete: %>
       <a href="#" id="iconDelete" class="glyphicon glyphicon-remove js-job-delete pull-right" ata-toggle="tooltip" title="Delete this Job Post"></a>
     <% end %>
-  <div class="jobPost__name"><h3><%= @name %></h3></div>
-  <div class="company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="jobPost__description"><%= @description %></div>
+  <div class="jobPost__name"><h3 class="no-margin"><%= @name %></h3></div>
+  <div class="jobPost__company"><h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+  <div class="jobPost__description margin_top_xsmall"><%- @formatted_description %></div>
   <!-- Applied -->
   <% if @applied_count > 0: %>
     <hr>
     <div class="container-fluid no-padding">
-      <h3>APPLIED (<%= @applied_count %>)</h3>
+      <h5 class="no-margin">APPLIED (<%= @applied_count %>)</h5>
       <% for apply in @applied: %>
         <div class="applied row margin_top_small">
           <div class="col-md-2 col-xs-3 col-sm-1">
-            <img class="jobPost__avatarA" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
+            <img class="jobPost__avatarA img-circle" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
           </div>
-          <div class="col-md-10 col-xs-9 col-sm-11">
+          <div class="col-md-7 col-xs-6 col-sm-8">
             <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
             <span><%= apply.user.last_experience %></span><br>
             <small> <%= moment(apply.updated_at).fromNow() %></small>
           </div>
+          <!-- Mensajes  -->
+          <!--<div class="col-md-3 col-xs-3 col-sm-3">
+            <span></span>
+          </div>-->
         </div>
       <% end %>
     </div>
@@ -28,22 +32,16 @@
   <% if @matches_count > 0: %>
     <hr>
     <div class="container-fluid no-padding">
-      <h3>MATCHES (<%= @matches_count %>)</h3>
+      <h5 class="no-margin">MATCHES (<%= @matches_count %>)</h5>
+      <div class="matches margin_top_small jobPost__matches">
       <% for match in @matches: %>
-        <div class="matches row margin_top_small">
-          <div class="col-md-2 col-xs-2 col-sm-1">
-            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
-          </div>
-          <div class="col-md-10 col-xs-10 col-sm-11">
-            <a href="#users/<%= match.user.id %>/posts"><%= match.user.name %></a><br>
-            <span><%= match.user.last_experience %></span>
-          </div>
-        </div>
+        <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>" class="img-responsive img-circle">
       <% end %>
+      </div>
     </div>
   <% end %>
-  <div class="jobPostDetail__buttons text-right">
-    
+  <div class="text-right">
+
     <% if @canEdit: %>
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
     <% end %>

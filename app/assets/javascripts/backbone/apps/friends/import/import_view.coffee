@@ -2,7 +2,8 @@
 
   class Import.Contacts extends Marionette.ItemView
     template: 'friends/import/templates/import_contacts'
-
+    className: 'container-fluid'
+      
     events:
       'click .importMenu>li': 'importOption'
       'click #js-submit-file': 'sendFile'
@@ -10,6 +11,7 @@
       'click #js-submit-array': 'byUpload'
       'click #js-cancel': 'cancelClicked'
       'change #contacts-file':'showRuteFile'
+      'click #js-downloadCVS': 'downloadCVS'
 
     ui:
       'messageDiv':'#message'
@@ -17,6 +19,11 @@
       'linkSubmitArray': '#js-submit-array'
       'contactsList': '#js-contacts-list'
       'linkCancel': '#js-cancel'
+
+    downloadCVS: (e)->
+      console.log e
+      e.preventDefault()
+      document.location = $(e.currentTarget).attr("href")
 
     showRuteFile: (e)->
       $('#url-archivo').append("File: "+$(e.target).val())

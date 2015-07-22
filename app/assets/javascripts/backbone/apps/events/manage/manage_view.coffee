@@ -6,6 +6,9 @@
     template: 'events/manage/templates/event'
     className: 'container'
 
+    initialize: (options)->
+      @collection =  options.collection
+
     templateHelpers: ->
       model = @model
       location: @model.getLocation()
@@ -20,9 +23,27 @@
           null
     ui:
       attendanceStatus: '#attendance-status'
+      linkCancel: '#js-attendance-cancel'
 
     events:
       'change @ui.attendanceStatus': 'changeAttendanceStatus'
+      'click @ui.linkCancel': 'cancelEvent'
+
+    cancelEvent: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        collection = @collection
+        model = @model
+        Backbone.ajax
+          url: @model.url()
+          method: 'DELETE'
+          success: (data, textStatus, xhr)->
+            collection.remove(model)
+          error: (xhr, textStatus, error)->
+            if xhr.status == 409
+              alert xhr.responseJSON.message
+
 
     changeAttendanceStatus: (e)->
       e.preventDefault()
@@ -56,6 +77,9 @@
     initialize: ->
       @searchUpcomingEvents({})
 
+    childViewOptions: ->
+      collection: @collection
+
     ui:
       'upcomingEvents':'#js-upcoming-events'
       'pastEvents':'#js-past-events'
@@ -64,7 +88,8 @@
     events:
       'click @ui.upcomingEvents': 'clickUpcoming'
       'click @ui.pastEvents': 'clickPast'
-      'keypress @ui.searchInput': 'searchEvents'
+      'submit #js-search-form': 'searchEvents'
+      #'keypress @ui.searchInput': 'searchEvents'
 
     clickUpcoming: (e)->
       e.preventDefault()
@@ -86,17 +111,24 @@
       @collection.getPast(query)
       @flag = "past"
 
-
     searchEvents: (e)->
-      if e.which == 13
-        unless @ui.searchInput.val() == ""
-          query = { name_cont: @ui.searchInput.val() }
-        else
-          query = {}
-        if @flag == "upcoming"
-          @searchUpcomingEvents(query)
-        else
-          @searchPastEvents(query)
+      e.preventDefault()
+      unless @ui.searchInput.val() == ""
+        query = { name_cont: @ui.searchInput.val() }
+      else
+        query = {}
+      @searchUpcomingEvents(query)
+
+    #searchEvents: (e)->
+      #if e.which == 13
+        #unless @ui.searchInput.val() == ""
+          #query = { name_cont: @ui.searchInput.val() }
+        #else
+          #query = {}
+        #if @flag == "upcoming"
+          #@searchUpcomingEvents(query)
+        #else
+          #@searchPastEvents(query)
 
     setActiveClass: (target)->
       target.addClass("sortingMenu__item__link sortingMenu__item__link--active")

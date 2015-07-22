@@ -1,4 +1,6 @@
 @AlumNet.module 'GroupsApp.SubGroups', (SubGroups, @AlumNet, Backbone, Marionette, $, _) ->
+  class SubGroups.EmptyView extends Marionette.ItemView
+    template: 'groups/subgroups/templates/empty'
 
   class SubGroups.GroupForm extends Marionette.ItemView
     template: 'groups/subgroups/templates/form'
@@ -124,6 +126,7 @@
     idName: 'wrapper'
     template: 'groups/subgroups/templates/groups_container'
     childView: SubGroups.GroupView
+    emptyView: SubGroups.EmptyView 
     childViewContainer: ".main-groups-area"
 
     templateHelpers: ->

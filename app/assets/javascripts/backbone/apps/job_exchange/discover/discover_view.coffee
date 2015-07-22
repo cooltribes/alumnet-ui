@@ -2,6 +2,7 @@
 
   class Discover.Task extends AlumNet.JobExchangeApp.Shared.Task
     template: 'job_exchange/_shared/templates/discover_task'
+    className: 'col-md-4'
 
   class Discover.List extends Marionette.CompositeView
     template: 'job_exchange/discover/templates/discover_container'
@@ -20,6 +21,14 @@
       'click .add-new-filter': 'addNewFilter'
       'click .search': 'search'
       'click .clear': 'clear'
+      'change #filter-logic-operator': 'changeOperator'
+
+    changeOperator: (e)->
+      e.preventDefault()
+      if $(e.currentTarget).val() == "any"
+        @searcher.activateOr = false
+      else
+        @searcher.activateOr = true
 
     addNewFilter: (e)->
       e.preventDefault()

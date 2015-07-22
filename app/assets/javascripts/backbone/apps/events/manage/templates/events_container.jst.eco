@@ -1,14 +1,12 @@
 <div class="searchBar row ">
-  <div class="col-md-5">
-    <h1 class="searchBar__title margin_left_small">Manage events</h1>
+  <div class="col-md-3">
+    <h2 class="searchBar__title margin_left_small">Manage events</h2>
   </div>
   <div class="col-md-6">
-    <form id="search-form">
+    <form id="js-search-form">
       <div class="input-group">
-      <!--  <input type="text" name="search_term" name="seach_term"
-            id="js-search-input" class="searchBar__searchInput form-control " placeholder="Search">
+        <input type="text" name="search_term" name="seach_term" id="js-search-input" class="searchBar__searchInput form-control " placeholder="Search for events">
         <span class="input-group-btn">
-
         <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>-->
         </span>
       </div>

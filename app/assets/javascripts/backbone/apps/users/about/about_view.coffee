@@ -52,11 +52,11 @@
 
     smoothClick: (e)->
       if $(e.target).prop("tagName")!='a'
-        element = e.target.closest 'a'
+        element = $(e.target).closest 'a'
       else
-        element=e.target
-      String id = element.id
-      id='#'+id.replace('to','')
+        element = e.target
+      String id = $(element).attr("id")
+      id = '#'+id.replace('to','')
       $('html,body').animate({
         scrollTop: $(id).offset().top-120
       }, 1000);
@@ -739,8 +739,11 @@
       @model.collection.trigger "reset" #For re-render the itemview
 
     removeItem: (e)->
-      if confirm("Are you sure you want to delete this item from your profile ?")
-        @model.destroy()
+      if @model.canBeDeleted()
+        if confirm("Are you sure you want to delete this item from your profile ?")
+          @model.destroy()
+      else
+        alert "You can't delete all your AIESEC experiences"
 
     modelChange: ->
       if @model.hasChanged("privacy")

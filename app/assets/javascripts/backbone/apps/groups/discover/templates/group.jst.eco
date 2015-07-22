@@ -1,4 +1,4 @@
-<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="col-md-4 col-sm-6 col-xs-12 groupTableView__marginText">
   <% if _.size(@children) > 0: %>
   <div class="stacked stacked--356deg">
   </div>
@@ -91,12 +91,12 @@
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCard__atribute__container">
               <% aux = 0 %>
-              <% for friends in @friends_in: %>  
+              <% for friends in @friends_in: %>
                 <img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
                 <% aux=aux+1 %>
                 <% if aux==3: %>
                   <% break %>
-                <% end %> 
+                <% end %>
               <% end %>
               <% if @friends_in.length>3: %>
                 +<%= @friends_in.length-3 %>
@@ -108,10 +108,10 @@
           <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block">
           </span>ENTER</span></a>
         <% else if @membership_status == "pending": %>
-          <span class="groupCard__btn btn btn-sm btn-primary btn-block"> 
+          <span class="groupCard__btn btn btn-sm btn-primary btn-block">
           <span class="icon-entypo-hourglass">
             </span> Waiting for approval</span>
-          </span>   
+          </span>
         <% else if @membership_status == "none": %>
           <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">
             </span>+ Join group</span>

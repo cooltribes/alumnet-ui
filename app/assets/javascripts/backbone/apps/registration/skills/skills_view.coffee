@@ -26,6 +26,7 @@
       @model.destroy()
 
     onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
       #Render the slider
       slideItem = $("#slider", @el)
       levelTextItem = slideItem.next("#level")
@@ -74,7 +75,7 @@
       'click @ui.btnSubmit': 'submitClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
-    oonRender: ->
+    onRender: ->
       skillsList = new AlumNet.Entities.Skills
       skillsList.fetch
         success: =>

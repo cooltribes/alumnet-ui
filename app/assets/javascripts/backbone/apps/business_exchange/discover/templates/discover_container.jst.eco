@@ -1,3 +1,12 @@
-<h1>Discover</h1>
-<div class="advanced-search"></div>
-<div class="tasks-container"></div>
+<div class="discover">
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" class="discover-tasks">Discover Tasks</a>
+      <a href="#" class="discover-profiles">Discover Profile</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" id="discover-content">
+    </div>
+  </div>
+</div>

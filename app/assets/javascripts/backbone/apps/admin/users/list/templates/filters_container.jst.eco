@@ -3,10 +3,11 @@
 <div class="row margin_bottom">
   <div class="col-md-3 ">
     <label class="control-label">Matching</label>
-    <select name="logicOp" class="form-control  input-lg">  
+    <select name="logicOp" class="form-control input-lg eventsTableView__status--white">  
       <option value="or">Any</option>
       <option value="and">All</option>      
     </select>
+    <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
   </div>
 </div>
 
@@ -16,16 +17,17 @@
   
 </div>
 
-  <button class="btn js-addRow" type="button">Add new filter +</button>
-
-<div class="margin_bottom search-control">
-  <hr>
-  <button class="btn btn-primary btn-lg js-search" type="button">Search</button>
-  <button class="btn btn-default btn-lg js-reset" type="button">Reset</button>
-
+<div class="row">
+  <div class="col-md-8 ">
+    <button class="btn-addFilter js-addRow" type="button">+ Add another filter</button>
+  </div>
+  <div class="col-md-4 ">
+    <div class="margin_bottom search-control">
+      <button class="glyphicon glyphicon-search btn btn-primary btn-lg js-search userBrowse__btnSearch" type="button"> Search</button>
+    </div>
+  </div>
 </div>
-
-
+ <hr>
 
 
 

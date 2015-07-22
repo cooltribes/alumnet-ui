@@ -7,6 +7,12 @@ DESCRIPTION: background colors and patters
 
 @import 'conf/conf.css.less';
 
+.jobPostBox{
+	width: 32%;
+  	padding: 0 10px;
+  	display: inline-block;
+}
+
 .jobPostDetail{
 	&__name h3,&__company h3{
 		text-align: center;
@@ -27,6 +33,10 @@ DESCRIPTION: background colors and patters
 		border: 1px solid @admin-box-border;
 		color: @black;
   		line-height: 24px;
+
+  		&:last-child{
+  			margin-top: 10px;
+  		}
 	}
 
 	&__avatar{
@@ -48,7 +58,7 @@ DESCRIPTION: background colors and patters
 	}
 
 	&__buttons{
-		padding-top: 15px;
+		text-align: center;
 	}
 }
 
@@ -72,7 +82,36 @@ DESCRIPTION: background colors and patters
 	&__description{
 		text-transform: capitalize;
   		margin-bottom: 10px;
-  		line-height: 24px;
+
+  		&, & > *{
+  			font-size: 0.9em !important;
+  			line-height: 14px !important;
+  			font-family: Roboto, sans-serif !important;
+  			min-height: 4rem;/*line-height por nº de líneas*/
+  			max-height: 4rem;
+
+  		}
+  		
+  		& p:first-child{
+  			display:block;
+  			min-height: 4rem;/*line-height por nº de líneas*/
+  			max-height: 4rem;
+  			overflow: hidden;
+  			text-align: justify; 
+
+  			&::before {
+			  	content: '...';
+  				background: #FFFFFF;
+  				position: absolute;
+  				top: 10.75rem;
+  				right: 18px;
+  				padding: 0 18px 0 2px;
+			}
+  		}
+
+  		& > *{
+  			display: none;
+  		}
 	}
 
 	&__user span{
@@ -90,14 +129,17 @@ DESCRIPTION: background colors and patters
   		color: @black;
 	}
 
-	&__details span{
+	&__details span,&__details p{
 		color: @error-gray-blue;
-		font-size: 1.4em;
+		font-size: 1.2em;
   		font-weight: 100;
+	}
+	&__details p{
+		margin-bottom: 0;
 	}
 
 	&__avatarA{
-		width: 130%;;
+		width: 60px;
 	}
 
 	& small{
@@ -106,5 +148,52 @@ DESCRIPTION: background colors and patters
 
 	#iconDelete{
 		color: @black;
+	}
+
+	&__search{
+		& h3{
+			font-style: oblique;
+		}
+
+		& .filter{
+			padding: 10px 0;
+
+			& > div{
+				display: inline-block;
+
+				& .filter-comparator{
+					width: 170px;
+				}
+
+				& > select{
+				  border-radius: 0px;
+				  box-shadow: none;
+				  padding: 14px;
+				  background-color: #fff;
+				}
+
+				&:nth-child(3) input{
+					width: 500px;
+	  				height: 50px;
+				}
+			}
+
+			& > a {
+				padding: 15px;
+	  			background-color: red;
+	  			color: #fff;
+	  			font-weight: bolder;
+			}
+		}
+
+		& + div{
+			text-align: right;
+  			padding-right: 200px;
+		}
+	}
+
+	&__matches img{
+		display: inline-block;
+		width: 50px;
 	}
 }

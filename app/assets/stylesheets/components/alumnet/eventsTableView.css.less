@@ -39,21 +39,17 @@ DESCRIPTION: CSS for styling a list of events
 
   &__status{
     border-radius: 0px;
-    -moz-appearance: none;
-    -webkit-appearance : none;
-    appearance : none;
     border: none;
+    
     box-shadow: none;
     padding: 0px 0px 0px 20px;
     color:@white;
-    appearance:none;
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none;
-    option{
-      color: #484848;
-    }
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
 
     & option{
+      color: #484848;
       -moz-appearance: none;
       background: #fff;
       border: none;
@@ -66,25 +62,73 @@ DESCRIPTION: CSS for styling a list of events
 
     &--going{
       background: #72da9e;
+      &::-ms-expand {
+        padding: .25em;
+        margin-left: .25em;
+        color: rgba(0, 0, 0, .25);
+        background-color: #72da9e;
+        border: 1px solid #72da9e;
+        box-shadow: none;
+      }
     }
 
     &--maybe{
       background: #f5ac45;
+      &::-ms-expand {
+        padding: .25em;
+        margin-left: .25em;
+        color: rgba(0, 0, 0, .25);
+        background-color: #f5ac45;
+        border: 1px solid #f5ac45;
+        box-shadow: none;
+      }
     }
 
     &--else{
       background-color: #6dc2e9;
+      &::-ms-expand {
+        padding: .25em;
+        margin-left: .25em;
+        color: rgba(0, 0, 0, .25);
+        background-color: #6dc2e9;
+        border: 1px solid #6dc2e9;
+        box-shadow: none;
+      }
     }
 
     &--not_going{
       background-color: #ea7952;
+
+      &::-ms-expand {
+        padding: .25em;
+        margin-left: .25em;
+        color: rgba(0, 0, 0, .25);
+        background-color: #ea7952;
+        border: 1px solid #ea7952;
+        box-shadow: none;
+      }
     }
+
+    &--white{
+      border-radius: 0px;
+      -moz-appearance: none;
+      -webkit-appearance : none;
+      box-shadow: none;
+      padding: 0px 0px 0px 8px;
+      option{
+        color: #484848;
+      }    
+    }
+
+
 
     &:active,&:checked,&:focus {
       box-shadow: none;
     }
 
   }
+
+
 
 	&__ribbon{
         background: image-url('groups/ribbon-orange-noShadow.png') no-repeat;
@@ -114,6 +158,16 @@ DESCRIPTION: CSS for styling a list of events
     }
     &--right{
       padding: 10px 70px;
+    }
+
+    &--rightMyevents{
+      padding: 10px 30px;
+    }
+
+    &--paddingCancel{
+      padding: 11px;
+      margin-top: -5px;
+      border-left: 3px solid;
     }
 
     &:hover,&:focus{

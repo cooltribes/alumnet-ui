@@ -3,9 +3,10 @@
     <!-- Barra lateral -->
     <div class="col-md-3">
 
-      <div id="userBusinessAffix"> 
+      <div id="userBusinessAffix">
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <div>
+            <% if @userCanEdit: %>
             <label class="uploadF uploadF--positionLogo ">
               <div class="uploadF--blue">
                 <span class="glyphicon glyphicon-open"></span>
@@ -13,11 +14,12 @@
               </div>
               <input type="file" class="logo">
             </label>
+            <% end %>
             <img src="" class="userBusiness__logo img-responsive">
           </div>
           <div class="userBusiness__company">
             <p class="js-company-name userBusiness__companyN">
-              <%= @company.name %>     
+              <%= @company.name %>
             </p>
             <% if @userCanEdit: %>
               <a href="#" data-target="company-name" class="editLink userBusiness__companyE js-edit">
@@ -41,7 +43,7 @@
                 why me
               </a>
             </li>
-          </ul> 
+          </ul>
         </div>
         <div class="userBusiness__flechas">
           <div class="userBusiness__flechas--disable">
@@ -53,7 +55,7 @@
         </div>
         <% if @userCanEdit: %>
           <a href="#" title="Create Business" class="btn btn-primary-noBackground userBusiness__btnCreate js-create"><span class="glyphicon glyphicon-plus"></span> Add new section</a>
-        <% end %>  
+        <% end %>
       </div>
     </div>
     <!-- Barra lateral -->
@@ -62,7 +64,7 @@
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin" id="WhatiOffer">        
+          <h3 class="no-margin" id="WhatiOffer">
             What I Offer
             <% if @userCanEdit: %>
               <a href="#" data-target="offer" class="editLink js-edit pull-right" >
@@ -71,12 +73,12 @@
             <% end %>
           </h3>
           <div class="js-offer">
-            <%= @offer %>        
-          </div>  
+            <%- @offer %>
+          </div>
         </div>
 
         <div class="userBusiness__cell userBusiness__cell--right">
-          <h3 class="no-margin">        
+          <h3 class="no-margin">
             Keywords
             <% if @userCanEdit: %>
               <a href="#" data-target="kwO" class="editLink js-edit pull-right" >
@@ -92,16 +94,16 @@
               <%= item.name %>
             <% end%>
           </div>
-          
+
         </div>
       </div>
-      
+
       <div class="userBusiness__row--help"></div>
 
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin" id="WhatImLookingFor">        
+          <h3 class="no-margin" id="WhatImLookingFor">
             What I'm looking for
             <% if @userCanEdit: %>
               <a href="#" data-target="search" class="editLink js-edit pull-right" >
@@ -110,12 +112,12 @@
             <% end %>
           </h3>
           <div class="js-search">
-            <%= @search %>        
+            <%- @search %>
           </div>
         </div>
 
         <div class="userBusiness__cell userBusiness__cell--right">
-          <h3 class="no-margin">        
+          <h3 class="no-margin">
             Keywords
             <% if @userCanEdit: %>
               <a href="#" data-target="kwS" class="editLink js-edit pull-right" >
@@ -140,7 +142,7 @@
       <div class="userBusiness__row">
 
         <div class="userBusiness__cell userBusiness__cell--left">
-          <h3 class="no-margin" id="WhyMe">        
+          <h3 class="no-margin" id="WhyMe">
             Why to make business with me
             <% if @userCanEdit: %>
               <a href="#" data-target="business-me" class="editLink js-edit pull-right" >
@@ -149,22 +151,22 @@
             <% end %>
           </h3>
           <div class="js-business-me">
-            <%= @business_me %>        
+            <%- @business_me %>
           </div>
         </div>
 
         <div class="userBusiness__cell userBusiness__cell--links">
-          <h3>        
-            Links        
+          <h3>
+            Links
           </h3>
-          <div class="js-links-region">              
-              
+          <div class="js-links-region">
+
           </div>
         </div>
 
       </div>
-    
-    </div>  
-   
+
+    </div>
+
   </div>
 </div>

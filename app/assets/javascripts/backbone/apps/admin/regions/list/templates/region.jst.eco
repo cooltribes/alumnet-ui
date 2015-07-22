@@ -60,8 +60,10 @@
     <ul class="region__admin">
       <% for admins in @admins: %>
         <li>
-          <img src="<%= admins.avatar %>" alt="<%= admins.name %> avatar" class="img-circle">
-          <a href="#users/<%= admins.id %>/posts"><%= admins.name %></a>
+          <div class="overfloadText region__longName">
+            <img src="<%= admins.avatar %>" alt="<%= admins.name %> avatar" class="img-circle">
+            <a href="#users/<%= admins.id %>/posts"><%= admins.name %></a>
+          </div>
         </li>
       <% end %>  
     </ul>
