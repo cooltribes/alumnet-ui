@@ -1,40 +1,58 @@
-<% if @user: %>
-  <div class="row user">
-    <div class="col-md-3">
-      <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
-    </div>
-    <div class="no-padding col-md-9 jobPostDetail__user">
-      <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
-      <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
-    </div>
-  </div>
-<% end %>
-<% if @company: %>
-  <div class="row company">
-    <div class="col-md-3">
-      <img src="<%= @company.logo %>" alt="<%= @company.name %>" class="img-circle">
-    </div>
-    <div class="col-md-9">
-      <a href="#" title="<%= @company.name %>"><%= @company.name %></a>
-      <span class="userCard__position member-position text-small"><%= @tagline %></span>
-    </div>
-  </div>
-<% end %>
 
-<div>
-  <b>What i offer</b></br>
-  <% if @offer_keywords.length > 0: %>
-    <% for keywords in @offer_keywords: %>
-      <%= "##{keywords.name}" %>
-    <% end %>
-  <% end %>
-</div>
+<div class="col-md-4">
+  <div class="businessCard businessProfileCard">
+  
 
-<div>
-  <b>What i search</b></br>
-  <% if @search_keywords.length > 0: %>
-    <% for keywords in @search_keywords: %>
-      <%= "##{keywords.name}" %>
-    <% end %>
-  <% end %>
+      <% if @user: %>
+        <div class="row businessProfileCard__user">
+          <div class="col-md-3">
+          <a href="#users/<%= @user.id %>/business-exchange">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+          </a>
+          </div>
+          <div class="no-padding col-md-9 businessProfileCard__user__name">
+            <a href="#users/<%= @user.id %>/business-exchange" title="<%= @user.name %>"><%= @user.name %></a>
+            <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
+          </div>
+        </div>
+      <% end %>
+      <% if @company: %>
+        <div class="row businessProfileCard__company">
+          <div class="col-md-3 text-center businessProfileCard__company__logo">
+            <span class="ico-position"></span>
+              <!-- <img src="<%= @company.logo %>" alt="<%= @company.name %>" class="img-circle"> -->
+            </div>
+          <div class="col-md-9">
+            <div class="businessProfileCard__company__name">
+                <%= @company.name %>
+            </div>
+            <div>
+              <span class="userCard__position member-position text-small"><%= @tagline %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    
+
+    <div class="row businessProfileCard__keywords">
+      
+      <p>        
+      <b>What I offer</b></br>
+      <% if @offer_keywords.length > 0: %>
+        <% for keywords in @offer_keywords: %>
+          <%= "##{keywords.name}" %>
+        <% end %>
+      <% end %>
+      </p>
+      
+      <b>What I'm looking for</b></br>
+      <% if @search_keywords.length > 0: %>
+        <% for keywords in @search_keywords: %>
+          <%= "##{keywords.name}" %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+  </div>
 </div>
