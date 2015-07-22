@@ -52,8 +52,8 @@
           paymentwall_project_key = AlumNet.paymentwall_project_key
           paymentwall_return_url = window.location.origin
           auth_token = AlumNet.current_token
-          if(AlumNet.environment == "development")
-            paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
+          #if(AlumNet.environment == "development")
+            #paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
 
           profile = view.current_user.profile
           birthday = profile.get('born')
@@ -71,8 +71,8 @@
       birthday = profile.get('born')
       birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
       
-      if(AlumNet.environment == "development")
-        paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
+      #if(AlumNet.environment == "development")
+        #paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
       paymentwall_project_key = AlumNet.paymentwall_project_key
       view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&country_code='+'&auth_token='+auth_token+'" width="750" height="800" frameborder="0"></iframe>')
 
