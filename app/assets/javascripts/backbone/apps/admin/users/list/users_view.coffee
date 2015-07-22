@@ -304,7 +304,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>")
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="email"
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
           <option value=''>Select comparator</option>
@@ -312,7 +312,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="profile_residence_country_name"
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
           <option value=''>Select comparator</option>
@@ -320,7 +320,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="profile_birth_country_name"
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
           <option value=''>Select comparator</option>
@@ -328,7 +328,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="profile_residence_city_name"
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
           <option value=''>Select comparator</option>
@@ -336,7 +336,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="profile_birth_city_name"
         @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
           <option value=''>Select comparator</option>
@@ -344,14 +344,14 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
       else if @ui.selectType.val() =="profile_gender"
         @ui.value.empty().append( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
           <option value='M'>Male</option>
           <option value='F'>Female</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select><span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>")
       else if @ui.selectType.val() =='status'
         @ui.value.empty().append( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
           <option value='0'>Inactive</option>
@@ -359,7 +359,7 @@
           <option value='2'>Banned</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select><span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>")
       else if @ui.selectType.val() =='member'
         @ui.value.html( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
           <option value='0'>Registrant</option>
@@ -367,11 +367,11 @@
           <option value='2'>Lifetime Member</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg'><option value='in'> = </option><option value='not_in'> <> </option></select>")
+        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select><span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>")
       else if @ui.selectType.val() =='created_at'
           #@datePicker()
           #@ui.value.empty().append("<input type='text' class='form-control input-lg js-date' name='value' id='start_date'>")
-        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
         @ui.comparator.empty().append("<select name='comparator' class='form-control input-lg value_by eventsTableView__status--white'>
           <option value=''>Select comparator</option>
           <option value='gt'>></option>
@@ -389,7 +389,7 @@
           <option value='in'>=</option>
           </select>
           <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
+        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
 
 
 
