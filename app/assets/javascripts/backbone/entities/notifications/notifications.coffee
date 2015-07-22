@@ -3,6 +3,9 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/me/notifications'
 
+    defaults:
+      principio: false
+
     markAs:(state)->
       # states read - unread
       self = @
@@ -51,7 +54,15 @@
       _.extend(options, opts)
       (@sync || Backbone.sync).call(@, null, @, options)
 
-
+    firstNotification: (e)->
+      self = @
+      date = "fecha"
+      for notificaciones in [0 .. (self.length-1)]
+        if date != moment(self.at(notificaciones).get("created_at")).fromNow()
+          self.at(notificaciones).set({principio: true}) 
+          date = moment(self.at(notificaciones).get("created_at")).fromNow()
+        else
+          self.at(notificaciones).set({principio: false})
   API =
     getNotifications: (querySearch)->
       notifications = new Entities.NotificationsCollection
