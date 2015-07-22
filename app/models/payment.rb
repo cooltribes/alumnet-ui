@@ -10,6 +10,5 @@ class Payment
   def create(params, session, auth_token)
     options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1", "Authorization" => 'Token token='+auth_token }, body: params }
     @response = self.class.post("/payments", options)
-    #@response = { event_id: event_id }
   end
 end
