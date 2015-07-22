@@ -47,19 +47,19 @@
 <hr>
 <div class="jobPostDetail__buttons text-right">
   <% if @canDelete: %>
-    <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+    <a href="#" class="btn btn-danger js-job-delete" >DELETE <span class="glyphicon glyphicon-remove"></span></a>
   <% end %>
    <% if @canEdit: %>
-    <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+    <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT <span class="glyphicon glyphicon-pencil"></span></a>
   <% end %>
   <% if @canApply: %>
-    <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <a href="#" class="btn btn-primary js-job-apply" >APPLY FOR A JOB</a>
   <% end %>
 </div>
 <% if @canInvite && @matches_count > 0: %>
 <hr>
 <div class="container-fluid padding_small">
-  <h2>Invite Alumni to Apply</h2>
+  <h2 class="text-center margin_bottom_small">Invite Alumni to Apply</h2>
   <div class="row">
   <% for match in @matches: %>
   <div class="col-md-4">

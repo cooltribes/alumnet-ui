@@ -7,8 +7,8 @@
   <div class="jobPost__description margin_top_xsmall"><%- @formatted_description %></div>
       <% if @user: %>
         <div class="row user">
-          <div class="col-md-2 no-padding-rigth">
-            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+          <div class="col-md-2 no-padding-rigth text-right">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
           </div>
           <div class="col-md-10 jobPost__user">
             <span>Posted by</span>

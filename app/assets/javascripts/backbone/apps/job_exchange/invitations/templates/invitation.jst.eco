@@ -6,8 +6,8 @@
   
   <% if @user: %>
     <div class="row user">
-      <div class="col-md-2 no-padding-rigth">
-        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+      <div class="col-md-2 no-padding-rigth text-right">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
       </div>
       <div class="col-md-10 jobPost__user">
         <span>Posted by</span>
@@ -25,7 +25,7 @@
   <div class="skills">
     <!-- SKILLS PENDING -->
   </div>
-  <div class="jobPostDetail__buttons text-right buttons">
+  <div class="text-right buttons">
     <a href="#business-exchange/<%= @task.id %>" class="btn btn-primary js-job-details" >Details</a>
     <a href="#" class="btn btn-primary-noBackground  js-invitation-accept" >Accept</a>
   </div>
