@@ -2,6 +2,7 @@
 
   class Discover.Task extends AlumNet.JobExchangeApp.Shared.Task
     template: 'job_exchange/_shared/templates/discover_task'
+    className: 'col-md-4'
 
   class Discover.List extends Marionette.CompositeView
     template: 'job_exchange/discover/templates/discover_container'

@@ -27,7 +27,7 @@
     <div class="skills">
       <!-- SKILLS PENDING -->
     </div>
-  <div class="jobPostDetail__buttons text-right">
+  <div class="text-right">
     
     <% if @canEdit: %>
       <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>

@@ -5,7 +5,9 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <div class="jobPostDetail__description"><%- @formatted_description %></div>
+      <div class="jobPostDetail__description">
+        <h3><span class="ico-points"></span> About</h3>
+        <%- @formatted_description %></div>
       <div class="jobPostDetail__description">
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
@@ -41,22 +43,26 @@
 
     </div>
   </div>
-  <div class="jobPostDetail__buttons text-right">
-    <% if @canDelete: %>
-      <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
-    <% end %>
-    <% if @canEdit: %>
-      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
-    <% end %>
-    <% if @canApply: %>
-      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
-    <% end %>
-  </div>
+</div>
+<hr>
+<div class="jobPostDetail__buttons text-right">
+  <% if @canDelete: %>
+    <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
+  <% end %>
+   <% if @canEdit: %>
+    <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+  <% end %>
+  <% if @canApply: %>
+    <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+  <% end %>
 </div>
 <% if @canInvite && @matches_count > 0: %>
+<hr>
 <div class="container-fluid padding_small">
   <h2>Invite Alumni to Apply</h2>
+  <div class="row">
   <% for match in @matches: %>
+  <div class="col-md-4">
     <div class="userCard user-info">
       <div class=" row">
         <div class="userCard__avatar col-md-2">
@@ -67,12 +73,29 @@
           <p class="overfloadText member-position text-small"><%= match.user.last_experience %></p>
         </div>
         <div class=" col-md-3 ">
-          <% unless match.user_has_invitation : %>
-            <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">Invite</a>
+          <% if match.user_has_invitation : %>
+            <div class="userCard__actions userCard__animation userCard__actions--Cancel">
+              <span class="invitation">
+                <span class="userCard__actions__text">INVITED</span> 
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-ok"></span>
+              </span>
+            </div>
+          <% else: %>
+            <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
+              <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
+                <span class="invitation">
+                  <span class="userCard__actions__text">INVITED</span>
+                  <span class="icon-entypo-user-add"></span> 
+                </span>
+              </div>
+            </a>
           <% end %>
         </div>
       </div>
     </div>
+  </div>
   <% end %>
+  </div>
 </div>
 <% end %>
