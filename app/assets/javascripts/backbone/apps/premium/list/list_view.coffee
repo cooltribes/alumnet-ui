@@ -16,6 +16,7 @@
 
     events:
       'change #js-payment-countries': 'loadCities'
+      'click button.js-submit': 'submitClicked'
 
     templateHelpers: ->
       current_user: @current_user
@@ -84,3 +85,15 @@
 
       # @ui.selectPaymentCities.select2
       #   placeholder: "Select a City"
+
+    submitClicked: (e)->
+      e.preventDefault()
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      console.log data
+      # _.forEach data, (value, key, list)->
+      #   formData.append(key, value)
+      # file = @$('#event-cover')
+      # formData.append('cover', file[0].files[0])
+      # @model.set(data)
+      # @trigger 'form:submit', @model, formData
