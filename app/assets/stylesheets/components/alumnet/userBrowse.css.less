@@ -10,11 +10,20 @@ DESCRIPTION: Management users
 .userBrowse{
 
 	&__colorFilter{
-		background-color: #677f8b;
+		
 		color: @white;
 		margin-left: 0px;
 		margin-right: 0px;
 		font-weight: 100;
+
+		&--blue{
+			background-color: #677f8b;
+		}
+
+		&--grey{
+			background-color: @light-gray;
+		}
+
 	}
 
 	&__btnSearch{
@@ -42,7 +51,6 @@ DESCRIPTION: Management users
 	}
 
 	&__selectIcon{
-		color: #4c6672;
 		position: absolute;
 		margin-top: -30px;
 		right: 10px;
@@ -50,17 +58,9 @@ DESCRIPTION: Management users
 		line-height: 34px;
 		text-align: center;
 		pointer-events: none;
+
+		&--grey{
+			color: #4c6672;
+		}
 	}
-
-		&__selectIconJP{
-		position: absolute;
-		margin-top: -30px;
-		right: 10px;
-		width: 34px;
-		line-height: 34px;
-		text-align: center;
-		pointer-events: none;
-	}
-
-
 }

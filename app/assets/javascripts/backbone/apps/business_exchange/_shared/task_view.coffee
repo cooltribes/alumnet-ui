@@ -1,10 +1,8 @@
 @AlumNet.module 'BusinessExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Profile extends Marionette.CompositeView
-    className: 'container'
     template: 'business_exchange/_shared/templates/profile'
 
   class Shared.Task extends Marionette.CompositeView
-    className: 'container'
     template: 'business_exchange/_shared/templates/task'
 
     templateHelpers: ->
@@ -57,7 +55,7 @@
                 method: 'PUT'
                 success: ->
                   view.model.set('user_can_apply', false)
-                  view.render()
+                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -66,7 +64,8 @@
               method: 'PUT'
               success: ->
                 view.model.set('user_can_apply', false)
-                view.render()
+                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 

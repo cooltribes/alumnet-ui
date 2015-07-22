@@ -6,7 +6,6 @@
     <div class="col-md-9">
       <div class="advanced-search margin_bottom">
         <div class="advanced-search-container jobPost__search" id="searcher">
-          <h3 class="no-margin">Search a Task</h3>
           <div class="filter-logic-operator-container">
             <select id="filter-logic-operator">
               <option value="any">Any</option>
@@ -23,7 +22,7 @@
                 <option value="task_attributes_value">Attributes</option>
               </select>
             </div>
-            <div class="filter-comparator-container" style="display:none">
+            <div class="filter-comparator-container">
               <select class="filter-comparator"></select>
             </div>
             <div class="filter-value-container">
