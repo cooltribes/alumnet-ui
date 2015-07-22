@@ -18,13 +18,11 @@
           </div>
         </div>
         <% end %>
+
     <div class="jobPost__details padding_top">
-      <span class="ico-jobfunction"></span>
-      <span> <%= @position.text %> </span><br>
-      <span class="glyphicon glyphicon-time"></span>
-      <span> <%= @employment.text %> </span><br>
-      <span class="ico-location"></span>
-      <span><%= @location() %></span>
+      <p><span class="ico-jobfunction"></span> <%= @position.text %></p>
+      <p><span class="glyphicon glyphicon-time"></span> <%= @employment.text %></p>
+      <p class="overfloadText"><span class="ico-location"></span> <%= @location() %></p>
     </div>
     <div class="skills">
       <!-- SKILLS PENDING -->

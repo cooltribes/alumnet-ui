@@ -1,6 +1,6 @@
 @AlumNet.module 'JobExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Task extends Marionette.CompositeView
-    className: 'col-md-4 no-padding-rigth'
+    className: 'jobPostBox'
 
     initialize: (options)->
       @mode = options.mode
