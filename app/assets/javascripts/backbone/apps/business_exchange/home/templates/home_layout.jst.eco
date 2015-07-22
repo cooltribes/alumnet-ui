@@ -1,48 +1,109 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      Create your business profile
-      <a href="#users/<%= @id %>/business-exchange" class="btn btn-default">Create</a>
+      <div class="businessCard actionCard">        
+        <h2>
+          Create your Business Exchange Profile        
+        </h2>
+
+        <div class="row actionCard__button">
+          <div class="col-md-6 text-left">
+            <span class="icon-entypo-user"></span>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="#users/<%= @id %>/business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground">Create</a>            
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="col-md-3">
+      <div class="businessCard actionCard">        
+        <h2>
+          Browse <br> Business Exchange Profiles       
+        </h2>
+
+        <div class="row actionCard__button">
+          <div class="col-md-6 text-left">
+            <span class="icon-entypo-user"></span>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="#business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
+          </div>
+          
+        </div>
+      </div>
 
     </div>
     <div class="col-md-3">
-      Browse business profiles
-      <a href="#business-exchange" class="btn btn-default">Browse</a>
+      <div class="businessCard actionCard">        
+        <h2>
+          Create a Task
+        </h2>
 
-    </div>
+        <div class="row actionCard__button">
+          <div class="col-md-6 text-left">
+            <span class="glyphicon glyphicon-th-list"></span>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="#business-exchange/new" class="btn btn-primary btn-lg btn-primary-noBackground">Create</a>            
+          </div>
+          
+        </div>
+      </div>
+
+    </div>    
     <div class="col-md-3">
-      Create a task
-      <a href="#business-exchange/new" class="btn btn-default">Create</a>
+      <div class="businessCard actionCard">        
+        <h2>
+          Browse Tasks
+        </h2>
+
+        <div class="row actionCard__button">
+          <div class="col-md-6 text-left">
+            <span class="glyphicon glyphicon-th-list"></span>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="#business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
+          </div>
+          
+        </div>
+      </div>
 
     </div>
-    <div class="col-md-3">
-      Browse tasks
-      <a href="#business-exchange" class="btn btn-default">Browse</a>
-
-    </div>
-  </div>
+    
+     </div>
+  
+  <h2 class="margin_top_medium margin_bottom_small">
+    Business Exchange Profiles      
+  </h2>
   <div class="row">
-    <h2>
-      Business Exchange Profiles      
-    </h2>
     <div class="profiles-region">
       
       
     </div>
-    <div class="col-md-12 text-center">
-      <a href="#business-exchange" class="btn btn-default">Browse All</a>
+    <div class="col-md-12 text-center margin_top">
+      <a href="#business-exchange" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
     </div>
   </div>
+
+  <h2 class="margin_top_medium margin_bottom_small">
+    Tasks
+  </h2>
+
   <div class="row">
-    <h2>
-      Tasks
-    </h2>
     <div class="tasks-region">
       
       
     </div>
-    <div class="col-md-12 text-center">
-      <a href="#business-exchange" class="btn btn-default">Browse All</a>
+    <div class="col-md-12 text-center margin_top">
+      <a href="#business-exchange" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
       
     </div>
   </div>
