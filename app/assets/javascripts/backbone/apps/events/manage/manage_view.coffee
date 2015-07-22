@@ -88,7 +88,8 @@
     events:
       'click @ui.upcomingEvents': 'clickUpcoming'
       'click @ui.pastEvents': 'clickPast'
-      'keypress @ui.searchInput': 'searchEvents'
+      'submit #js-search-form': 'searchEvents'
+      #'keypress @ui.searchInput': 'searchEvents'
 
     clickUpcoming: (e)->
       e.preventDefault()
@@ -110,17 +111,24 @@
       @collection.getPast(query)
       @flag = "past"
 
-
     searchEvents: (e)->
-      if e.which == 13
-        unless @ui.searchInput.val() == ""
-          query = { name_cont: @ui.searchInput.val() }
-        else
-          query = {}
-        if @flag == "upcoming"
-          @searchUpcomingEvents(query)
-        else
-          @searchPastEvents(query)
+      e.preventDefault()
+      unless @ui.searchInput.val() == ""
+        query = { name_cont: @ui.searchInput.val() }
+      else
+        query = {}
+      @searchUpcomingEvents(query)
+
+    #searchEvents: (e)->
+      #if e.which == 13
+        #unless @ui.searchInput.val() == ""
+          #query = { name_cont: @ui.searchInput.val() }
+        #else
+          #query = {}
+        #if @flag == "upcoming"
+          #@searchUpcomingEvents(query)
+        #else
+          #@searchPastEvents(query)
 
     setActiveClass: (target)->
       target.addClass("sortingMenu__item__link sortingMenu__item__link--active")

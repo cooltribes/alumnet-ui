@@ -7,8 +7,10 @@
       AlumNet.execute('render:admin:dashboard:submenu', undefined, 0)
 
       @initialDates = 
-        start: "2015-01-01"
+        start: "2014-01-01"
         end: moment().format("YYYY-MM-DD")
+
+      initialInterval = "years"  
 
       @layout = @getLayoutView()
 
@@ -33,25 +35,30 @@
       
 
     fetchDataType1: (dates)->
-      data = [
-          ['Year', 'Lt Members', 'Members', "Registrants"],
-          ['2013',  1000,      400, 550],
-          ['2014',  1170,      460, 766],
-          ['2015',  660,       1120, 829],
-          ['2016',  1030,      540, 900]
-        ]
+     
+      interval = @viewChartType1.interval
 
-      @viewChartType1.drawGraph data
+      Backbone.ajax      
+        url: AlumNet.api_endpoint + "/admin/stats/type_of_membership"
+        data:
+          init_date: dates.start
+          end_date: dates.end
+          interval: interval
+        dataType: 'json'
+        success: (data)=>    
+          @viewChartType1.drawGraph data.line
+
     
     fetchDataType2: (dates)->
-      data = [
-          ['Types', 'Count'],
-          ['Lt Members',     11],
-          ['Members',      7],
-          ['Registrants',  9],          
-        ]
-
-      @viewChartType2.drawGraph data
+      Backbone.ajax      
+        url: AlumNet.api_endpoint + "/admin/stats/type_of_membership"
+        data:
+          init_date: dates.start
+          end_date: dates.end
+          interval: "years" #doesn't matter the interval
+        dataType: 'json'
+        success: (data)=>  
+          @viewChartType2.drawGraph data.pie
       
 
     showGraphType1: ->

@@ -149,6 +149,9 @@
 			such a way that the payments due to AAI increase, you will be charged on a prorated basis for the
 			current billing period. 
 		</p>
+		<p>
+			<strong>6.4</strong> At the point when an end-user wishes to make a payment, his registration details may be passed to Paymentwall that provides payment processing services, in order for Paymentwall to better protect service and end-users from unauthorized payments.
+		</p>
 		<h4><strong>Section 7 Term, termination and remedies</strong></h4>
 		<p>
 			<strong>7.1 Term.</strong> Subject to the termination provisions in this Section 7, this Agreement shall begin on the Effective Date and shall end upon termination as provided herein (the "Term").

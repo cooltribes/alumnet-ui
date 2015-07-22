@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      Create your business profile
+      <a href="#users/<%= @id %>/business-exchange" class="btn btn-default">Create</a>
+
+    </div>
+    <div class="col-md-3">
+      Browse business profiles
+      <a href="#business-exchange" class="btn btn-default">Browse</a>
+
+    </div>
+    <div class="col-md-3">
+      Create a task
+      <a href="#business-exchange/new" class="btn btn-default">Create</a>
+
+    </div>
+    <div class="col-md-3">
+      Browse tasks
+      <a href="#business-exchange" class="btn btn-default">Browse</a>
+
+    </div>
+  </div>
+  <div class="row">
+    <h2>
+      Business Exchange Profiles      
+    </h2>
+    <div class="profiles-region">
+      
+      
+    </div>
+    <div class="col-md-12 text-center">
+      <a href="#business-exchange" class="btn btn-default">Browse All</a>
+    </div>
+  </div>
+  <div class="row">
+    <h2>
+      Tasks
+    </h2>
+    <div class="tasks-region">
+      
+      
+    </div>
+    <div class="col-md-12 text-center">
+      <a href="#business-exchange" class="btn btn-default">Browse All</a>
+      
+    </div>
+  </div>
+</div>
