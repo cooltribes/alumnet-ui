@@ -15,7 +15,7 @@
 
 
 
-    <div class="taskCard__description"><%- @formatted_description %></div>
+    <div class="taskCard__description margin_top_small"><%- @formatted_description %></div>
     <div class="taskCard__user">
       <% if @user: %>
           <div class="row user">
