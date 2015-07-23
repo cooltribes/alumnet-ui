@@ -39,12 +39,12 @@
     <hr class="no-margin">
     <div>
       <h4>Matches(<%= @matches_count %>)</h4> 
-      <% if @matches_count<7: %>    
+      <% if @matches_count<7: %> 
+        <div class="matches jobPost__matches">   
         <% for match in @matches: %>
-          <div class="matches jobPost__matches">
             <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
-          </div>
         <% end %>
+        </div>
       <% else: %>
         <div class="matches jobPost__matches">
         <% _.each @matches, (match, i)->: %>
