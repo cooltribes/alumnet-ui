@@ -48,6 +48,7 @@
 </div>
 
 <% if @canInvite && @matches_count > 0: %>
+<div class="container-fluid padding_small">
   <h2>Invite Alumni to Apply</h2>
   <% for match in @matches: %>
     <div class="userCard user-info">
@@ -67,4 +68,5 @@
       </div>
     </div>
   <% end %>
+</div>
 <% end %>
