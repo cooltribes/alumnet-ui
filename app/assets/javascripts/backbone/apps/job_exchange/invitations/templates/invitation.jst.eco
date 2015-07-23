@@ -1,26 +1,32 @@
-<div class="job-post">
-  <div class="name"><h3><%= @task.name %></h3></div>
-  <div class="company"><h3><b><%= @task.company.text %></b></h3></div>
-  <div class="description"><%= @task.description %></div>
+<div class="job-post jobPost">
+  <a href="#" class="btn btn-default-gray js-invitation-decline pull-right" >Decline <span class="glyphicon glyphicon-remove"></span></a>
+  <div class="jobPost__name"><h3><%= @task.name %></h3></div>
+  <div class="jobPost__company"><h3><b><%= @task.company.text %></b></h3></div>
+  <div class="jobPost__description margin_top_xsmall"><%= @task.description %></div>
+  
   <% if @user: %>
-    <div class="user">
-      <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
-      Posted by
-      <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
-      <p class="userCard__position member-position text-small"><%= @user.last_experience %></p>
-      On <%= moment(@task.created_at).format('MMM Do YYYY') %>
+    <div class="row user">
+      <div class="col-md-2 no-padding-rigth text-right">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
+      </div>
+      <div class="col-md-10 jobPost__user">
+        <span>Posted by</span>
+        <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
+        <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
+        <span>On <%= moment(@task.created_at).format('MMM Do YYYY') %></span>
+      </div>
     </div>
   <% end %>
-  <div class="geo">
-    <%= @location() %>
+  <div class="jobPost__details padding_top">
+    <p><span class="ico-jobfunction"></span> <%= @task.position.text %></p>
+    <p><span class="glyphicon glyphicon-time"></span> <%= @task.employment.text %></p>
+    <p><span class="ico-location"></span> <%= @location() %></p>
   </div>
   <div class="skills">
     <!-- SKILLS PENDING -->
   </div>
-  <hr>
-  <div class="buttons">
+  <div class="text-right buttons">
     <a href="#business-exchange/<%= @task.id %>" class="btn btn-primary js-job-details" >Details</a>
-    <a href="#" class="btn btn-success js-invitation-accept" >Accept</a>
-    <a href="#" class="btn btn-warning js-invitation-decline" >Decline</a>
+    <a href="#" class="btn btn-primary-noBackground  js-invitation-accept" >Accept</a>
   </div>
 </div>

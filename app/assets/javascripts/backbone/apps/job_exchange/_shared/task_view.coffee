@@ -1,6 +1,5 @@
 @AlumNet.module 'JobExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Task extends Marionette.CompositeView
-    className: 'col-md-4 no-padding-rigth'
 
     initialize: (options)->
       @mode = options.mode
@@ -54,7 +53,7 @@
                 method: 'PUT'
                 success: ->
                   view.model.set('user_can_apply', false)
-                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+                  view.render()
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -63,7 +62,7 @@
               method: 'PUT'
               success: ->
                 view.model.set('user_can_apply', false)
-                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+                view.render()
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 
