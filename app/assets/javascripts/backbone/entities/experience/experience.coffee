@@ -66,6 +66,7 @@
       if month == '' then month = "01"
 
       if year == 'current'
+        @set "current", true
         year = 0 #"0000"
         month = 0 # "00"
         day = 0 # "00"
@@ -136,7 +137,7 @@
       #if there are more than 1 Aiesec experiences, then this can be deleted
       return @collection.where({"exp_type": 0, "asTitle": false}).length > 1
 
-      
+
 
     experienceType:
       0: 'AIESEC Experience'
@@ -182,7 +183,7 @@
 
       @sort()
 
-    
+
     setOrder: ->
       @comparator = (a, b)->
         typeA = a.get("exp_type")
@@ -192,12 +193,12 @@
         dateA = moment(end_dateA)
         dateB = moment(end_dateB)
 
-        positions = [2,1,3,0] #Arbitrary order for experience types        
-     
+        positions = [2,1,3,0] #Arbitrary order for experience types
+
         resp = positions[typeA] - positions[typeB]
 
         if resp == 0
-          
+
           if a.get("asTitle")
             # return -1
             resp = -1
@@ -220,12 +221,12 @@
                   resp = 1
 
             else
-              resp = 1    
-                      
+              resp = 1
+
             # return 1
 
         resp
-        
+
       # @trigger "reset"
 
     # addExperiencesTitles: ->

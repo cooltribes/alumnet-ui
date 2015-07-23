@@ -53,9 +53,9 @@
 
     templateHelpers: ->
       model = @model
-      month= @MonthType
+      month = @MonthType
       inProfile: @inProfile
-
+      months: AlumNet.months
       isEditing: @model.isEditing
 
       currentYear: new Date().getFullYear()
@@ -66,6 +66,11 @@
       firstYear: ()->
         born = AlumNet.current_user.profile.get("born")
         parseInt(born.year) + 15
+
+      seniorities:()->
+        seniorities = new AlumNet.Utilities.Seniorities
+        seniorities.fetch()
+        seniorities.results
 
     onRender: ->
       @cleanAllSelects()

@@ -1,6 +1,6 @@
 @AlumNet.module 'MeetupExchangeApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
   class Discover.Task extends AlumNet.MeetupExchangeApp.Shared.Task
-    className: 'container'
+    className: 'col-md-4'
     template: 'meetup_exchange/_shared/templates/discover_task'
 
   class Discover.List extends Marionette.CompositeView

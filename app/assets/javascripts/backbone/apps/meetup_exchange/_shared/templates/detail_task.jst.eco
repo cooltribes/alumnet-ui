@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <div class="jobPostDetail__description"><%- @formatted_description %></div>
+      <div class="jobPostDetail__description overfloadText"><%- @formatted_description %></div>
     </div>
     <div class="col-md-4">
       <% if @user: %>
