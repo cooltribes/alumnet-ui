@@ -3,7 +3,7 @@
     template: 'business_exchange/_shared/templates/profile'
 
   class Shared.Task extends Marionette.CompositeView
-    template: 'business_exchange/_shared/templates/task'
+    template: 'business_exchange/_shared/templates/discover_task'
 
     templateHelpers: ->
       model = @model

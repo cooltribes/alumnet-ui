@@ -1,12 +1,12 @@
-<div class="job-post">
-  <div class="jobPost__name"><h3><%= @name %></h3></div>
-  <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="jobPostDetail__description"><%- @formatted_description %></div>
-    </div>
-    <div class="col-md-4">
-        <% if @user: %>
+<div class="col-md-4">
+  <div class="businessCard taskCard">
+
+
+    <h3><%= @name %></h3>
+    <div class="taskCard__deadline">deadline</div>
+    <div class="taskCard__description"><%- @formatted_description %></div>
+    <div class="taskCard__user">
+      <% if @user: %>
           <div class="row user">
             <div class="col-md-3">
               <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
@@ -19,16 +19,17 @@
             </div>
           </div>
         <% end %>
-        <div class="jobPostDetail__geo padding_top">
-          <span class="ico-location"></span>
-          <%= @location() %>
-        </div>
-        <div class="skills">
-          <!-- SKILLS PENDING -->
-        </div>
     </div>
-  </div>
-  <hr>
+    <div class="taskCard__otherData">
+      <h4><span class="glyphicon glyphicon-map-marker"></span> <%= @location() %> Rio de Janeiro - Brazil</h4>
+    </div>
+    <div class="taskCard__otherData">
+      <h4><span class="ico-skill"></span> FrontEnd, Backbone, Bootstrap</h4>
+    </div>
+    <div class="taskCard__otherData">
+      <h4><span class="ico-position"></span> <%= @company.text %> Cooltribes Company</h4>
+    </div>
+
   <div class="jobPostDetail__buttons">
     <% if @canDelete: %>
       <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
@@ -40,5 +41,9 @@
     <% if @canApply: %>
       <a href="#" class="btn btn-default js-job-apply" >Apply</a>
     <% end %>
+  </div>
+
+
+
   </div>
 </div>
