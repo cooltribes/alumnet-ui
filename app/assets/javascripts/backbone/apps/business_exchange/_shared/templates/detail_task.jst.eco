@@ -1,4 +1,4 @@
-<div class="job-post-detail ">
+<div class="job-post-detail container">
   <div class="jobPostDetail__name"><h3><%= @name %></h3></div>
   <div class="jobPostDetail__company">
     <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
@@ -41,13 +41,13 @@
 
 <div class="jobPostDetail__buttons">
   <% if @canDelete: %>
-    <a href="#" class="btn btn-danger js-job-delete" >DELETE</a>
+    <a href="#" class="btn btn-danger js-job-delete" >DELETE <span class="glyphicon glyphicon-remove"></span></a>
   <% end %>
   <% if @canEdit: %>
-    <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT</a>
+    <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT <span class="glyphicon glyphicon-pencil"></span></a>
   <% end %>
   <% if @canApply: %>
-    <a href="#" class="btn btn-default js-job-apply" >APPLY</a>
+    <a href="#" class="btn btn-default js-job-apply" >APPLY FOR A JOB</a>
   <% end %>
 </div>
 
@@ -57,7 +57,7 @@
   <h2 class="text-center margin_bottom_small">Invite Alumni to Apply</h2>
   <div class="row">
   <% for match in @matches: %>
-  <div class="col-md-4"></div>
+  <div class="col-md-4">
     <div class="userCard user-info">
       <div class=" row">
         <div class="userCard__avatar col-md-3 ">
@@ -92,5 +92,5 @@
   </div>
   <% end %>
   </div>
-  </div>
+</div>
 <% end %>

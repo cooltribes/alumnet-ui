@@ -1,8 +1,8 @@
 <div class="job-post jobPost">
   <a href="#" class="btn btn-default-gray js-invitation-decline pull-right" >Decline <span class="glyphicon glyphicon-remove"></span></a>
   <div class="jobPost__name"><h3><%= @task.name %></h3></div>
-  <div class="jobPost__company"><h3><b><%= @task.company.text %></b></h3></div>
-  <div class="jobPost__description"><%= @task.description %></div>
+  <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @task.company.text %></b></h3></div>
+  <div class="jobPost__description margin_top_xsmall overfloadText"><%= @task.description %></div>
   <% if @user: %>
     <div class="user row">
       <div class="col-md-2 no-padding-rigth text-right">
@@ -24,9 +24,8 @@
   <div class="skills">
     <!-- SKILLS PENDING -->
   </div>
-  <hr>
   <div class="text-right buttons">
     <a href="#business-exchange/<%= @task.id %>" class="btn btn-primary js-job-details" >Details</a>
-    <a href="#" class="btn btn-success js-invitation-accept" >Accept</a>
+    <a href="#" class="btn btn-primary-noBackground js-invitation-accept" >Accept</a>
   </div>
 </div>
