@@ -23,20 +23,8 @@
 					<div class="formANet__select">
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>"><% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -65,37 +53,37 @@
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>">
-									<% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
 				</div>
 			</div>
-
 			<span class="help-block"></span>
 		</div>
 	</div>
 </div>
+
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Company / Organization</label>
 	<input name="organization_name" value="<%= @organization_name %>" type="text" class="form-control input-lg " id="" placeholder="">
 	<span class="formANet__input__icon icon-entypo-suitcase form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
+
+<div class="form-group has-feedback">
+	<label class="control-label" for="registerCity">Position</label>
+	<div class="formANet__select">
+		<select name="seniority_id" class=" form-control input-lg ">
+			<option value="">Select Position</option>
+      <% for seniority in @seniorities(): %>
+        <option value="<%= seniority.id %>"><%= seniority.name %></option>
+      <% end %>
+		</select>
+	</div>
+</div>
+
 <div class="form-group has-feedback">
 	<label class="control-label" for="registerDescription">Description</label>
 	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>

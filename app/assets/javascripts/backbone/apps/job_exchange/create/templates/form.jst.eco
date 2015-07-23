@@ -41,12 +41,12 @@
           <div class="col-md-4 margin_top_medium">
             <div class="form-job">
               <label class="control-label">Experience</label>
-              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="position_type">
-                <option value="0" <%= @select_position_type(0) %>>Top Management/Director</option>
-                <option value="1" <%= @select_position_type(1) %>>Middle management</option>
-                <option value="2" <%= @select_position_type(2) %>>Senior Specialist</option>
-                <option value="3" <%= @select_position_type(3) %>>Junior Specialist</option>
-                <option value="4" <%= @select_position_type(4) %>>Entry job</option>
+              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="seniority_id">
+                <% for seniority in @seniorities(): %>
+                  <option value="<%= seniority.id %>"<%= @select_position_type(seniority.id) %>>
+                    <%= seniority.name %>
+                  </option>
+                <% end %>
               </select>
               <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIconJP" aria-hidden="true"></span>
               <span class="help-block"></span>
@@ -95,7 +95,7 @@
           </h5>
         </p>
         <!-- ROW 3 ON -->
-        <div class="row"> 
+        <div class="row">
           <div class="col-md-6">
             <div class="form-job has-feedback">
               <label class="control-label">Desired skills</label>
