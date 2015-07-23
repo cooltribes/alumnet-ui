@@ -4,6 +4,8 @@
       tasks = new AlumNet.Entities.BusinessExchangeCollection
       tasks.fetch
         url: AlumNet.api_endpoint + '/business_exchanges/applied'
+
+        
       appliedView = new Applied.List
         collection: tasks
 
