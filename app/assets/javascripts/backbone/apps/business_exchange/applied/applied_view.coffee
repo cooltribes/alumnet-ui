@@ -6,4 +6,5 @@
     template: 'business_exchange/applied/templates/applied_container'
     childView: Applied.Task
     childViewContainer: '.tasks-container'
+    className: 'container-fluid'
 

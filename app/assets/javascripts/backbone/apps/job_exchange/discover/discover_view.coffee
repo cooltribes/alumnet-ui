@@ -8,6 +8,7 @@
     template: 'job_exchange/discover/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
+    className: 'container-fluid'
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [

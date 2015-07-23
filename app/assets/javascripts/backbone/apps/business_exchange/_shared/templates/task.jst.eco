@@ -42,17 +42,17 @@
       <% if @matches_count<7: %> 
         <div class="matches jobPost__matches">   
         <% for match in @matches: %>
-            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
         <% end %>
         </div>
       <% else: %>
         <div class="matches jobPost__matches">
         <% _.each @matches, (match, i)->: %>
           <% if i<7: %>   
-            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
           <% end %>
           <% if i==7: %>   
-            <div>+<%= @matches_count-6 %></div>
+            <div>+<%= @matches_count %></div>
           <% end %>
         <% end %>
         </div>
