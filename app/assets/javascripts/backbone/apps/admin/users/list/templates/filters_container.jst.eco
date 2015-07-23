@@ -7,7 +7,7 @@
       <option value="or">Any</option>
       <option value="and">All</option>      
     </select>
-    <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
+    <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey" aria-hidden="true"></span>
   </div>
 </div>
 

@@ -35,7 +35,15 @@
       invite = new AlumNet.Entities.TaskInvitation
       invite.save { user_id: user_id, task_id: task_id },
         success: ->
-          $(e.currentTarget).remove()
+          $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
+              <span class="invitation">
+                <span class="userCard__actions__text">INVITED</span> 
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-ok"></span>
+              </span>
+            </div>')
+          #$(e.currentTarget).remove()
+
 
     applyClicked: (e)->
       e.preventDefault()
@@ -55,7 +63,7 @@
                 method: 'PUT'
                 success: ->
                   view.model.set('user_can_apply', false)
-                  view.render()
+                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -64,7 +72,8 @@
               method: 'PUT'
               success: ->
                 view.model.set('user_can_apply', false)
-                view.render()
+                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 

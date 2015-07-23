@@ -1,4 +1,4 @@
-<div class="row <% if @first: %>margin_top_small <% end %> userBrowse__colorFilter">
+<div class="row <% if @first: %>margin_top_small <% end %> userBrowse__colorFilter userBrowse__colorFilter--grey">
   <div class="col-md-3 ">
     <div class="form-group">
      <% if @first: %> <label class="userBrowse__font">Filter by</label><% end %>
@@ -16,7 +16,7 @@
         <option value="created_at">Joining date</option>    
         <option value="profile_experience_local_committee_name">Local Committee</option>    
       </select>
-      <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
+      <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey" aria-hidden="true"></span>
       <span class="help-block"></span>
     </div>
   </div>
@@ -31,7 +31,7 @@
             <option value="cont_any">Contains</option>
             <option value="in">=</option> 
           </select>
-          <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon" aria-hidden="true"></span>
+          <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey" aria-hidden="true"></span>
         </div>
         <span class="help-block"></span>      
      

@@ -7,6 +7,12 @@ DESCRIPTION: background colors and patters
 
 @import 'conf/conf.css.less';
 
+.jobPostBox{
+	width: 32%;
+  	padding: 0 10px;
+  	display: inline-block;
+}
+
 .jobPostDetail{
 	&__name h3,&__company h3{
 		text-align: center;
@@ -52,7 +58,7 @@ DESCRIPTION: background colors and patters
 	}
 
 	&__buttons{
-		padding-top: 15px;
+		text-align: center;
 	}
 }
 
@@ -80,6 +86,7 @@ DESCRIPTION: background colors and patters
   		&, & > *{
   			font-size: 0.9em !important;
   			line-height: 14px !important;
+  			font-family: Roboto, sans-serif !important;
   			min-height: 4rem;/*line-height por nº de líneas*/
   			max-height: 4rem;
 
@@ -124,7 +131,7 @@ DESCRIPTION: background colors and patters
 
 	&__details span,&__details p{
 		color: @error-gray-blue;
-		font-size: 1.4em;
+		font-size: 1.2em;
   		font-weight: 100;
 	}
 	&__details p{
@@ -132,7 +139,7 @@ DESCRIPTION: background colors and patters
 	}
 
 	&__avatarA{
-		width: 130%;;
+		width: 60px;
 	}
 
 	& small{
@@ -154,9 +161,9 @@ DESCRIPTION: background colors and patters
 			& > div{
 				display: inline-block;
 
-				& .filter-comparator{
+				/*& .filter-comparator{
 					width: 170px;
-				}
+				}*/
 
 				& > select{
 				  border-radius: 0px;
@@ -165,23 +172,28 @@ DESCRIPTION: background colors and patters
 				  background-color: #fff;
 				}
 
-				&:nth-child(3) input{
-					width: 500px;
-	  				height: 50px;
-				}
+				/*&:nth-child(3) input{
+					//width: 500px;
+	  				//height: 50px;
+				}*/
 			}
 
-			& > a {
+			/*& > a {
 				padding: 15px;
 	  			background-color: red;
 	  			color: #fff;
 	  			font-weight: bolder;
-			}
+			}*/
 		}
 
 		& + div{
 			text-align: right;
   			padding-right: 200px;
 		}
+	}
+
+	&__matches img{
+		display: inline-block;
+		width: 50px;
 	}
 }

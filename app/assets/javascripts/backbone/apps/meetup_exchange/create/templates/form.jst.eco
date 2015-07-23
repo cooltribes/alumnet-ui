@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue "><%= if @is_new then "Create a new " else "Update a " %>Task</h1>
+        <h1 class="textColor--blue "><%= if @is_new then "Create a new " else "Update a " %>Meetup</h1>
         <!-- ROW 1 ON -->
         <div class="row">
           <div class="col-md-6">
             <div class="form-job has-feedback">
-              <label class="control-label">Title of the task</label>
+              <label class="control-label">Title of the meetup</label>
               <input type="text" name="name" id="task-name" class="form-control input-lg" value="<%= @name %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
               <span class="help-block"></span>
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Description of the task</label>
+              <label class="control-label">Description of the meetup</label>
               <textarea name="description" id="task-description" class="form-control input-lg" rows="5" style="resize:none"><%= @formatted_description %></textarea>
               <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
               <span class="help-block"></span>
