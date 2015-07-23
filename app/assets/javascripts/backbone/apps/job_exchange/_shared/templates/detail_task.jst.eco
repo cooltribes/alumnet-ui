@@ -82,7 +82,7 @@
               </span>
             </div>
           <% else: %>
-            <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
+          <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
               <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
                 <span class="invitation">
                   <span class="userCard__actions__text">INVITE</span>

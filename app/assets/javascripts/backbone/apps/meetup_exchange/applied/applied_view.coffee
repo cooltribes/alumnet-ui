@@ -7,5 +7,5 @@
     template: 'meetup_exchange/applied/templates/applied_container'
     childView: Applied.Task
     childViewContainer: '.tasks-container'
-    className: 'container'
+    className: 'container-fluid'
 

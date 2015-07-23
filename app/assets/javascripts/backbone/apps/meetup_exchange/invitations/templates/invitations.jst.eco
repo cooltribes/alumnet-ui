@@ -1,2 +1,4 @@
-<h1>Invitations</h1>
-<div class="invitations-container"></div>
+<div class="container-fluid">
+	<h1>Invitations</h1>
+	<div class="invitations-container"></div>	
+</div>
