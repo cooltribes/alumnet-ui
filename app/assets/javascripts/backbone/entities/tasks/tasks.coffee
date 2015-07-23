@@ -52,6 +52,14 @@
         data.push { id: element.profinda_id, text: element.value }
       data
 
+    getCreator: ->
+      if @get('user')
+        new AlumNet.Entities.User @get('user')
+      else
+        null
+
+  ##JOB EXCHANGE
+
   class Entities.JobExchange extends Entities.Tasks
     urlRoot: ->
       AlumNet.api_endpoint + '/job_exchanges'
@@ -61,6 +69,8 @@
       Entities.JobExchange
     url: ->
       AlumNet.api_endpoint + '/job_exchanges'
+
+  ##BUSINESS EXCHANGE
 
   class Entities.BusinessExchange extends Entities.Tasks
     urlRoot: ->
@@ -89,3 +99,40 @@
       Entities.BusinessExchange
     url: ->
       AlumNet.api_endpoint + '/business_exchanges'
+
+  ##MEETUP EXCHANGE
+
+  class Entities.MeetupExchange extends Entities.Tasks
+    urlRoot: ->
+      AlumNet.api_endpoint + '/meetup_exchanges'
+
+    country_initial_value: ->
+      if @get('must_have_attributes')
+        country = _.findWhere(@get('must_have_attributes'), {custom_field: "alumnet_country_residence"})
+        { id: country.profinda_id, text: country.value }
+      else
+        {}
+
+    city_initial_value: ->
+      if @get('nice_have_attributes')
+        city = _.findWhere(@get('nice_have_attributes'), {custom_field: "alumnet_city_residence"})
+        { id: city.profinda_id, text: city.value }
+      else
+        {}
+
+    attributes_initial_values: ->
+      data = []
+      if @get('nice_have_attributes')
+        attributes = _.reject @get('nice_have_attributes'), (element)->
+          element.custom_field == "alumnet_city_residence"
+        _.each attributes, (element, index, list)->
+          data.push { id: element.profinda_id, value: element.value }
+        data
+      else
+        data
+
+  class Entities.MeetupExchangeCollection extends Backbone.Collection
+    model:
+      Entities.MeetupExchange
+    url: ->
+      AlumNet.api_endpoint + '/meetup_exchanges'

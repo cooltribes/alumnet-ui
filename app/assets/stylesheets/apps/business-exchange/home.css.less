@@ -1,0 +1,146 @@
+/***
+
+APP NAME: groups
+DESCRIPTION: shared styles among group applications
+
+***/
+
+@import 'conf/conf.css.less';
+
+.businessCard {
+  background-color: @white;
+  padding: 10px;
+
+}
+
+
+.actionCard {
+  color: @blue;
+
+  h2{
+    color: @blue;
+    min-height: 110px;
+    font-size: 2em;
+    margin-top: 0;
+  }
+
+  &__button {
+    min-height: 55px;
+    
+    span {
+      font-size: 2.5em;
+
+    }
+
+  }
+
+}
+
+
+.businessProfileCard {
+  padding: 15px;
+  border: 1px solid @blue;
+
+  h2 {
+    color: @blue;
+  }
+
+  &__user {
+    &__name {
+      a {
+        color: @blue;
+        font-size: 2em;
+      }  
+    }
+  }
+
+
+
+  &__company {
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &__logo{
+      span {
+        font-size: 2.5em;
+      }
+    }
+
+    &__name {
+      font-weight: bold;
+      color: @black;
+    }
+
+  }
+
+  &__keywords{
+    padding: 10px 10px 0 10px;
+    border-top: 1px solid @blue;
+    color: @blue;    
+
+    b {
+      color: @black;
+    }
+  }
+}
+
+.taskCard {
+
+  border: 1px solid @gray;
+  padding: 10px 15px;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  &__buttons{
+    text-align: right;
+  }
+
+}
+
+
+.businessDiscoverMenu ul.sortingMenu {
+  border-bottom: 1px solid @gray;
+
+  a.sortingMenu__item__link {
+    font-size: 28px;
+  }
+}
+
+.yourTaskCard{
+  border: 1px solid @gray;
+  background-color: @white;
+
+  & > div{
+    padding: 10px 15px;
+
+    &:last-child{
+      text-align: right;
+    }
+  }
+
+  &__deadline span{
+    color: #8e8e8e;
+    font-weight: 100;
+  }
+
+  &__deadlineProgress{
+    height: 10px;
+    background-color: @main-light-blue;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-bottom: 0; 
+
+    & .progress-bar-grey{
+      background-color: @blue-gray;
+    }
+
+  }
+
+  &__message {
+    font-size: 2em;
+  }
+
+}

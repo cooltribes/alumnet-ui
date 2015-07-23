@@ -1,13 +1,13 @@
 <div> 
-  <div>
+  <a href="<%= @url %>">
     <div>
       <div class="js-title userBusiness__link userBusiness__linkT">
        <%= @title %>    
       </div>
       <% if @userCanEdit: %>
-        <a href="#" data-target="title" class="editLink js-edit" >
+        <div data-target="title" class="editLink js-edit" >
           <span class="glyphicon glyphicon-pencil"></span>
-        </a>
+        </div>
       <% end %>
     </div>
 
@@ -17,27 +17,26 @@
       </div>
 
       <% if @userCanEdit: %>
-        <a href="#" data-target="description" class="editLink js-edit ">
+        <div data-target="description" class="editLink js-edit ">
           <span class="glyphicon glyphicon-pencil"></span>
-        </a>
+        </div>
       <% end %>
     </div>
-
+    <% if @userCanEdit: %>
     <div class="margin_top_xsmall_minus">
         <div class="js-url userBusiness__link userBusiness__linkD">
-          <a href="<%= @url %>"><%= @url %></a>
+          <div><%= @url %></div>
         </div>
-      <% if @userCanEdit: %>
-        <a href="#" data-target="url" class="editLink js-edit">
+        <div data-target="url" class="editLink js-edit">
           <span class="glyphicon glyphicon-pencil"></span>
-        </a>
-      <% end %>
+        </div>
     </div>
-  </div>
+    <% end %>
+  </a>
   <% if @userCanEdit: %>
-    <a href="#" class="text-danger js-delete userBusiness__linkR" >
+    <div class="text-danger js-delete userBusiness__linkR" >
       <span class="glyphicon glyphicon-remove"></span>
-    </a>
+    </div>
   <% end %> 
 </div> 
 <div></div>

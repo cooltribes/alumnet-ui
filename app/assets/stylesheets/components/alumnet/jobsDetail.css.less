@@ -7,6 +7,12 @@ DESCRIPTION: background colors and patters
 
 @import 'conf/conf.css.less';
 
+.jobPostBox{
+	width: 32%;
+  	padding: 0 10px;
+  	display: inline-block;
+}
+
 .jobPostDetail{
 	&__name h3,&__company h3{
 		text-align: center;
@@ -52,7 +58,7 @@ DESCRIPTION: background colors and patters
 	}
 
 	&__buttons{
-		padding-top: 15px;
+		text-align: center;
 	}
 }
 
@@ -76,9 +82,36 @@ DESCRIPTION: background colors and patters
 	&__description{
 		text-transform: capitalize;
   		margin-bottom: 10px;
-  		line-height: 24px;
 
+  		&, & > *{
+  			font-size: 0.9em !important;
+  			line-height: 14px !important;
+  			font-family: Roboto, sans-serif !important;
+  			min-height: 4rem;/*line-height por nº de líneas*/
+  			max-height: 4rem;
+
+  		}
   		
+  		& p:first-child{
+  			display:block;
+  			min-height: 4rem;/*line-height por nº de líneas*/
+  			max-height: 4rem;
+  			overflow: hidden;
+  			text-align: justify; 
+
+  			&::before {
+			  	content: '...';
+  				background: #FFFFFF;
+  				position: absolute;
+  				top: 10.75rem;
+  				right: 18px;
+  				padding: 0 18px 0 2px;
+			}
+  		}
+
+  		& > *{
+  			display: none;
+  		}
 	}
 
 	&__user span{
@@ -98,7 +131,7 @@ DESCRIPTION: background colors and patters
 
 	&__details span,&__details p{
 		color: @error-gray-blue;
-		font-size: 1.4em;
+		font-size: 1.2em;
   		font-weight: 100;
 	}
 	&__details p{
@@ -106,7 +139,7 @@ DESCRIPTION: background colors and patters
 	}
 
 	&__avatarA{
-		width: 130%;;
+		width: 60px;
 	}
 
 	& small{
@@ -128,6 +161,10 @@ DESCRIPTION: background colors and patters
 			& > div{
 				display: inline-block;
 
+				/*& .filter-comparator{
+					width: 170px;
+				}*/
+
 				& > select{
 				  border-radius: 0px;
 				  box-shadow: none;
@@ -135,18 +172,18 @@ DESCRIPTION: background colors and patters
 				  background-color: #fff;
 				}
 
-				&:nth-child(3) input{
+				/*&:nth-child(3) input{
 					width: 500px;
 	  				height: 50px;
-				}
+				}*/
 			}
 
-			& > a {
+			/*& > a {
 				padding: 15px;
 	  			background-color: red;
 	  			color: #fff;
 	  			font-weight: bolder;
-			}
+			}*/
 		}
 
 		& + div{
@@ -154,4 +191,54 @@ DESCRIPTION: background colors and patters
   			padding-right: 200px;
 		}
 	}
+
+	&__matches img{
+		display: inline-block;
+		width: 10%;
+  		margin: 5px;
+	}
+
+	&__matches div{
+		width: 10%;
+	  	height: 10%;
+	  	display: inline-block;
+	  	background-color: #2299d0;
+	  	border-radius: 50%;
+	  	padding: 3.5% 0;
+	  	font-size: 0.8em;
+	  	color: #fff;
+	  	text-align: center;
+	}
 }
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+ 	.jobPost{
+
+ 	}
+ 		
+ }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+ 	.jobPost{
+ 		&__matches div{
+		  	width: 12%;
+  			height: 20%;
+		}
+ 		
+ 	}
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .jobPost{
+ 		&__matches div{
+ 			width: 10%;
+	  		height: 10%;
+		}
+ 	}
+ }

@@ -1,4 +1,3 @@
-<%= console.log @ %>
 <div class="row margin_bottom">
   <div class="col-md-9 js-graph">
     <label class="control-label">Loading charts...</label>

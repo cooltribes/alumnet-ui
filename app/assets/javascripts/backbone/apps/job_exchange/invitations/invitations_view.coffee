@@ -1,6 +1,7 @@
 @AlumNet.module 'JobExchangeApp.Invitations', (Invitations, @AlumNet, Backbone, Marionette, $, _) ->
   class Invitations.TaskInvitation extends Marionette.ItemView
     template: 'job_exchange/invitations/templates/invitation'
+    className: 'col-md-4'
 
     ui:
       'linkAccept': '.js-invitation-accept'

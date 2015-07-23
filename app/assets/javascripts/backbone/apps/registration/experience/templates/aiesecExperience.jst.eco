@@ -1,7 +1,7 @@
 <div class="form-group has-feedback">
 	<label class="control-label" >Name of the position</label>
 	<input type="text" name="name" class="form-control input-lg" value="<%= @name %>" placeholder="Enter position">
-	
+
 	<span class="formANet__input__icon icon-entypo-newspaper form-control-feedback" aria-hidden="true"></span>
 	<span class="help-block"></span>
 </div>
@@ -26,21 +26,8 @@
 					<div class="formANet__select">
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>">
-									<% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -68,21 +55,8 @@
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>">
-									<% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -93,7 +67,7 @@
 	</div>
 </div>
 <div class="form-group has-feedback">
-	<label class="control-label" for="registerDescription">Description/Achievements</label>	
+	<label class="control-label" for="registerDescription">Description/Achievements</label>
 	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>
 	<span class="help-block"></span>
 </div>

@@ -19,7 +19,12 @@
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').text
+      city_helper: if @model.get('city') then @model.get('city').value
+      seniorities:()->
+        seniorities = new AlumNet.Utilities.Seniorities
+        seniorities.fetch()
+        seniorities.results
+
       select_employment_type: (value)->
         if model.get('employment')
           if value == model.get('employment').value then "selected" else ""
@@ -37,6 +42,7 @@
       'selectProfindaNiceHaveSkills': '#skills-nice-have'
       'selectProfindaMustHaveLanguages': '#languages-must-have'
       'selectProfindaNiceHaveLanguages': '#languages-nice-have'
+      'selectPosition': '#employment-type'
 
     events:
       'click @ui.submitLink': 'submitClicked'
@@ -83,6 +89,7 @@
       data.description = $('#task-description').code().replace(/<\/?[^>]+(>|$)/g, "")
       data.formatted_description = $('#task-description').code()
       data.offer = $('#task-offer').code()
+      console.log data
       @model.save data,
         success: ->
           ##TODO Match

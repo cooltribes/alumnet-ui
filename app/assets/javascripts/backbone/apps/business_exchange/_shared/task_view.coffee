@@ -1,9 +1,9 @@
 @AlumNet.module 'BusinessExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
-  class Shared.Task extends Marionette.CompositeView
-    className: 'container'
+  class Shared.Profile extends Marionette.CompositeView
+    template: 'business_exchange/_shared/templates/profile'
 
-    initialize: (options)->
-      @mode = options.mode
+  class Shared.Task extends Marionette.CompositeView
+    template: 'business_exchange/_shared/templates/discover_task'
 
     templateHelpers: ->
       model = @model
@@ -35,17 +35,47 @@
       invite = new AlumNet.Entities.TaskInvitation
       invite.save { user_id: user_id, task_id: task_id },
         success: ->
-          $(e.currentTarget).remove()
+          $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
+              <span class="invitation">
+                <span class="userCard__actions__text">INVITED</span> 
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-ok"></span>
+              </span>
+            </div>')
+          #$(e.currentTarget).remove()
+
 
     applyClicked: (e)->
       e.preventDefault()
       view = @
+
+      url = AlumNet.api_endpoint + "/features/validate"
+      current_user = AlumNet.current_user
       Backbone.ajax
-        url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
-        method: 'PUT'
-        success: ->
-          view.model.set('user_can_apply', false)
-          view.render()
+        url: url
+        type: "GET"
+        data: { key_name: 'give_help' }
+        success: (data) =>
+          if data.validation
+            if current_user.get('is_premium')
+              Backbone.ajax
+                url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
+                method: 'PUT'
+                success: ->
+                  view.model.set('user_can_apply', false)
+                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+            else
+              AlumNet.navigate("premium?members_only", {trigger: true})
+          else
+            Backbone.ajax
+              url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
+              method: 'PUT'
+              success: ->
+                view.model.set('user_can_apply', false)
+                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+
+        error: (data) =>
+          $.growl.error({ message: 'Unknow error, please try again' })
 
     refreshClicked: (e)->
       e.preventDefault()

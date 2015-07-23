@@ -1,0 +1,26 @@
+<div class="row margin_bottom">
+  
+  <div class="col-md-12 js-graph">
+    <label class="control-label">Loading chart...</label>
+
+  </div>
+  <% if @interval: %>
+    <div class="col-md-4">
+      <label class="control-label">Interval</label>    
+
+    </div>
+    <div class="col-md-8 text-rigth">
+      <label class="radio-inline">
+        <input type="radio" name="interval" value="years">Years
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="interval" value="months">Months
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="interval" value="days">Days
+      </label>
+    </div>
+  <% end %>
+</div>
+
+

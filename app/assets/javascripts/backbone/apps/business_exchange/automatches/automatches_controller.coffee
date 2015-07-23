@@ -4,6 +4,7 @@
       tasks = new AlumNet.Entities.BusinessExchangeCollection
       tasks.fetch
         url: AlumNet.api_endpoint + '/business_exchanges/automatches'
+      
       automatchesView = new AutoMatches.List
         collection: tasks
 
