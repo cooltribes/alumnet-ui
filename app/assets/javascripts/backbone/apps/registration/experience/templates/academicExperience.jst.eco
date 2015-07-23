@@ -25,21 +25,8 @@
 					<div class="formANet__select">
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @start_month == x then "selected='selected'" %> value="<%= x %>">
-									<% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -67,21 +54,8 @@
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
-							<% for x in [1..12] by 1 : %>
-								<option <%= if @end_month == x then "selected='selected'" %> value="<%= x %>">
-									<% if x==1 : %> January	<% end %>
-									<% if x==2 : %> February <% end %>
-									<% if x==3 : %> March <% end %>
-									<% if x==4 : %> April <% end %>
-									<% if x==5 : %> May <% end %>
-									<% if x==6 : %> June <% end %>
-									<% if x==7 : %> July <% end %>
-									<% if x==8 : %> August <% end %>
-									<% if x==9 : %> September <% end %>
-									<% if x==10 : %> October <% end %>
-									<% if x==11 : %> November <% end %>
-									<% if x==12 : %> December <% end %>
-								</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -123,7 +97,7 @@
 <button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span>Delete this experience</button>
 <% end %>
 
-<% if @inProfile: %>	
+<% if @inProfile: %>
 	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
 	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
 <% end %>
