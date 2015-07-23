@@ -65,17 +65,17 @@
       this.render()
 
     onRender: ->
-      view = this
-      auth_token = AlumNet.current_token
-      paymentwall_return_url = window.location.origin
-      profile = view.current_user.profile
-      birthday = profile.get('born')
-      birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+      # view = this
+      # auth_token = AlumNet.current_token
+      # paymentwall_return_url = window.location.origin
+      # profile = view.current_user.profile
+      # birthday = profile.get('born')
+      # birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
       
-      #if(AlumNet.environment == "development")
-        #paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
-      paymentwall_project_key = AlumNet.paymentwall_project_key
-      view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&country_code='+'&auth_token='+auth_token+'" width="750" height="800" frameborder="0"></iframe>')
+      # #if(AlumNet.environment == "development")
+      #   #paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'
+      # paymentwall_project_key = AlumNet.paymentwall_project_key
+      # #view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&country_code='+'&auth_token='+auth_token+'" width="750" height="800" frameborder="0"></iframe>')
 
       data = CountryList.toSelect2()
 
@@ -88,12 +88,27 @@
 
     submitClicked: (e)->
       e.preventDefault()
+      view = this
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
-      console.log data
-      # _.forEach data, (value, key, list)->
-      #   formData.append(key, value)
-      # file = @$('#event-cover')
-      # formData.append('cover', file[0].files[0])
-      # @model.set(data)
-      # @trigger 'form:submit', @model, formData
+      valid_address = true
+      profile = view.current_user.profile
+      address = {}
+      _.forEach data, (value, key, list)->
+        if value == '' then valid_address = false
+
+      if valid_address
+        country = new AlumNet.Entities.Country
+          id: data.country_id
+        country.fetch
+          success: (model) ->
+            auth_token = AlumNet.current_token
+            paymentwall_return_url = window.location.origin
+            birthday = profile.get('born')
+            birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+            paymentwall_project_key = AlumNet.paymentwall_project_key
+
+            parameters_string = 'address='+data.address+'auth_token='+auth_token+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'city_id='+data.city_id+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
+            view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>')
+      else
+        $.growl.error({ message: "Please fill address fields" })
