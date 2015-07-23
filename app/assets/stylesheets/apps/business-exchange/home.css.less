@@ -95,3 +95,39 @@ DESCRIPTION: shared styles among group applications
   }
 
 }
+
+.yourTaskCard{
+  border: 1px solid @gray;
+  background-color: @white;
+
+  & > div{
+    padding: 10px 15px;
+
+    &:last-child{
+      text-align: right;
+    }
+  }
+
+  &__deadline span{
+    color: #8e8e8e;
+    font-weight: 100;
+  }
+
+  &__deadlineProgress{
+    height: 10px;
+    background-color: @main-light-blue;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-bottom: 0; 
+
+    & .progress-bar-grey{
+      background-color: @blue-gray;
+    }
+
+  }
+
+  &__message {
+    font-size: 2em;
+  }
+
+}
