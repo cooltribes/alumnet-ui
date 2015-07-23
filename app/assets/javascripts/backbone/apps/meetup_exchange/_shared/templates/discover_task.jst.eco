@@ -3,8 +3,8 @@
   <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
   <div class="row">
     <div class="col-md-8">
-      <div class="jobPostDetail__description"><%- @formatted_description %></div>
-      <div class="jobPostDetail__description">
+      <div class="jobPostDetail__description overfloadText"><%- @formatted_description %></div>
+      <div class="jobPostDetail__description overfloadText">
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
       </div>
