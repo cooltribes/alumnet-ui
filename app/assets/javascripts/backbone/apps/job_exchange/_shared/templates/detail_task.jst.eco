@@ -65,10 +65,10 @@
   <div class="col-md-4">
     <div class="userCard user-info">
       <div class=" row">
-        <div class="userCard__avatar col-md-2">
+        <div class="userCard__avatar col-md-3">
           <img src="<%=  match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
         </div>
-        <div class=" col-md-7">
+        <div class=" col-md-6">
           <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= match.user.id %>/posts" title="<%= match.user.name %>"><%= match.user.name %></a></h4>
           <p class="overfloadText member-position text-small"><%= match.user.last_experience %></p>
         </div>
@@ -82,7 +82,7 @@
               </span>
             </div>
           <% else: %>
-            <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
+          <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
               <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
                 <span class="invitation">
                   <span class="userCard__actions__text">INVITE</span>

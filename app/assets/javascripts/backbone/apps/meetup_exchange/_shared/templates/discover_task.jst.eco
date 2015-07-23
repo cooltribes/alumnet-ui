@@ -12,7 +12,7 @@
       <div class="col-md-2 no-padding-rigth text-right">
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
       </div>
-      <div class="col-md-10 jobPost__user">
+      <div class="col-md-10 jobPost__user overfloadText">
         <span>Posted by</span>
         <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
         <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
