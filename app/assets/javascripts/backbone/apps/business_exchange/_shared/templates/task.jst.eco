@@ -1,62 +1,76 @@
-
-<div class="col-md-4">
-  <div class="businessCard taskCard">
-
-      <h3><%= @name %></h3>
-      <div class="taskCard__deadline">deadline</div>
-      <div class="taskCard__description"><%- @formatted_description %></div>
-      <div class="taskCard__user">
-        USER - NAME
+<div class="yourTaskCard">
+  <div>
+    <div class="jobPost__name"><h3><%= @name %></h3></div>
+    <div class="yourTaskCard__deadline">
+      <b>14 days left</b>/ <span>deadline 21.06.2015</span>
+      <div class="progress yourTaskCard__deadlineProgress">
+        <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+          <span class="sr-only">20% Complete</span>
+        </div>
       </div>
-      <div class="taskCard__otherData">
-        <h4><span class="glyphicon glyphicon-map-marker"></span> <%= @location() %> Rio de Janeiro - Brazil</h4>
-      </div>
-      <div class="taskCard__otherData">
-        <h4><span class="ico-skill"></span> FrontEnd, Backbone, Bootstrap</h4>
-      </div>
-      <div class="taskCard__otherData">
-        <h4><span class="ico-position"></span> <%= @company.text %> Cooltribes Company</h4>
-      </div>
-      
-      
-      <!-- Applied -->
-      <% if @applied_count > 0: %>
-        <hr>
-          applied(<%= @applied_count %>)
-        <% for apply in @applied: %>
-          <div class="applied">
-            <img src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
-            <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
-            <small class="groupPost__date"> <%= moment(apply.updated_at).fromNow() %></small>
-          </div>
+    </div>
+  </div>
+  <% if @applied_count > 0: %>
+  <hr class="no-margin">
+  <div>
+    <h4>Helping (<%= @applied_count %>)</h4>   
+    <% for apply in @applied: %>
+      <div class="applied row">
+        <div class="col-md-3 col-xs-3 col-sm-1">
+          <img class="jobPost__avatarA img-circle" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
+        </div>
+        <div class="col-md-6 col-xs-6 col-sm-8 padding_top_small">
+          <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
+          <small class="groupPost__date"> <%= moment(apply.updated_at).fromNow() %></small>
+        </div>
+        <div class="col-md-3 col-xs-3 col-sm-3 padding_top_small">
+          <span class="ico-chat yourTaskCard__message"></span>
+          <span class="yourTaskCard__message">5</span>
+        </div>
+        
+        <% if apply!=0 && apply<@applied: %>
+        <hr class="no-margin">
         <% end %>
-      <% end %>
-      <!-- Matches -->
-      <% if @matches_count > 0: %>
-        <hr>
-          matches(<%= @matches_count %>)
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+  <% if @matches_count > 0: %>
+    <hr class="no-margin">
+    <div>
+      <h4>Matches(<%= @matches_count %>)</h4> 
+      <% if @matches_count<7: %> 
+        <div class="matches jobPost__matches">   
         <% for match in @matches: %>
-          <div class="matches">
             <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
-            <a href="#users/<%= match.user.id %>/posts"><%= match.user.name %></a>
-          </div>
         <% end %>
+        </div>
+      <% else: %>
+        <div class="matches jobPost__matches">
+        <% _.each @matches, (match, i)->: %>
+          <% if i<7: %>   
+            <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+          <% end %>
+          <% if i==7: %>   
+            <div>+<%= @matches_count-6 %></div>
+          <% end %>
+        <% end %>
+        </div>
       <% end %>
-      <hr>
-      <div class="jobPostDetail__buttons">
-        <% if @canDelete: %>
-          <a href="#" class="btn btn-danger js-job-delete" >Delete</a>
-        <% end %>
-        <% if @canEdit: %>
-          <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
-        <% end %>
-          <a href="#business-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
-        <% if @canApply: %>
-          <a href="#" class="btn btn-default js-job-apply" >Apply</a>
-        <% end %>
-          <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
-      </div>
-  
-
+    </div>
+  <% end %>
+  <hr class="no-margin">
+  <div class="yourTaskCard__button">
+    <% if @canDelete: %>
+      <a href="#" class="pull-left btn btn-danger-noBackground js-job-delete" >Delete</a>
+    <% end %>
+    <% if @canEdit: %>
+      <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary-noBackground js-job-edit" >Edit</a>
+    <% end %>
+       <a href="#business-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
+    <% if @canApply: %>
+      <a href="#" class="btn btn-default js-job-apply" >Apply</a>
+    <% end %>
+      <a href="#" class="btn btn-default js-job-refresh" >Refresh</a>
   </div>
 </div>

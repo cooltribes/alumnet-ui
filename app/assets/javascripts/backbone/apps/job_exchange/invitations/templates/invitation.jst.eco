@@ -6,10 +6,10 @@
   
   <% if @user: %>
     <div class="row user">
-      <div class="col-md-2 no-padding-rigth text-right">
+      <div class="col-md-3 no-padding-rigth text-right">
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
       </div>
-      <div class="col-md-10 jobPost__user">
+      <div class="col-md-9 jobPost__user">
         <span>Posted by</span>
         <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
         <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>

@@ -65,10 +65,10 @@
   <div class="col-md-4">
     <div class="userCard user-info">
       <div class=" row">
-        <div class="userCard__avatar col-md-2">
+        <div class="userCard__avatar col-md-3">
           <img src="<%=  match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
         </div>
-        <div class=" col-md-7">
+        <div class=" col-md-6">
           <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= match.user.id %>/posts" title="<%= match.user.name %>"><%= match.user.name %></a></h4>
           <p class="overfloadText member-position text-small"><%= match.user.last_experience %></p>
         </div>
