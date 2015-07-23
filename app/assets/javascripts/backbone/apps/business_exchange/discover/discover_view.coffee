@@ -1,17 +1,14 @@
 @AlumNet.module 'BusinessExchangeApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
   class Discover.Task extends AlumNet.BusinessExchangeApp.Shared.Task
-    className: 'container'
     template: 'business_exchange/_shared/templates/discover_task'
 
   class Discover.Profile extends AlumNet.BusinessExchangeApp.Shared.Profile
-    className: 'container'
     template: 'business_exchange/_shared/templates/profile'
 
   class Discover.TasksList extends Marionette.CompositeView
     template: 'business_exchange/discover/templates/tasks_list'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
-    className: 'container'
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -23,7 +20,8 @@
     events:
       'click .add-new-filter': 'addNewFilter'
       'click .advanced-search-link': 'advancedSearch'
-      'click .search': 'search'
+      'click .js-search': 'search'
+      'click .js-advancedSearch': 'toggleAdvancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
 
@@ -38,6 +36,10 @@
       e.preventDefault()
       @searcher.addNewFilter()
 
+    toggleAdvancedSearch: (e)->
+      e.preventDefault()
+      $('#js-advanced-search-container').toggle()
+
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
@@ -46,7 +48,7 @@
 
     search: (e)->
       e.preventDefault()
-      value = $('#input-search').val()
+      value = $('#search_term').val()
       @collection.fetch
         data: { q: { name_cont: value } }
 
@@ -58,7 +60,6 @@
     template: 'business_exchange/discover/templates/profiles_list'
     childView: Discover.Profile
     childViewContainer: '.profiles-container'
-    className: 'container'
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -82,8 +83,8 @@
 
     discoverTasks: (e)->
       e.preventDefault()
-      @ui.linkDiscoverProfile.removeClass('active')
-      @ui.linkDiscoverTask.addClass('active')
+      @ui.linkDiscoverProfile.removeClass('sortingMenu__item__link--active')
+      @ui.linkDiscoverTask.addClass('sortingMenu__item__link--active')
       tasks = new AlumNet.Entities.BusinessExchangeCollection
       tasks.fetch()
       tasksList = new Discover.TasksList
@@ -92,8 +93,8 @@
 
     discoverProfiles: (e)->
       e.preventDefault()
-      @ui.linkDiscoverTask.removeClass('active')
-      @ui.linkDiscoverProfile.addClass('active')
+      @ui.linkDiscoverTask.removeClass('sortingMenu__item__link--active')
+      @ui.linkDiscoverProfile.addClass('sortingMenu__item__link--active')
       profiles = new AlumNet.Entities.BusinessCollection
       profiles.url = AlumNet.api_endpoint + "/business"
       profiles.fetch()
