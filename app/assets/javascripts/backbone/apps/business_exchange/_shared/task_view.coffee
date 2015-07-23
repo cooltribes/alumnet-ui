@@ -35,7 +35,15 @@
       invite = new AlumNet.Entities.TaskInvitation
       invite.save { user_id: user_id, task_id: task_id },
         success: ->
-          $(e.currentTarget).remove()
+          $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
+              <span class="invitation">
+                <span class="userCard__actions__text">INVITED</span> 
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-ok"></span>
+              </span>
+            </div>')
+          #$(e.currentTarget).remove()
+
 
     applyClicked: (e)->
       e.preventDefault()
