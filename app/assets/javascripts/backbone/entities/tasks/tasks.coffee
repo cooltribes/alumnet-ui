@@ -107,18 +107,18 @@
       AlumNet.api_endpoint + '/meetup_exchanges'
 
     country_initial_value: ->
+      data = {}
       if @get('must_have_attributes')
         country = _.findWhere(@get('must_have_attributes'), {custom_field: "alumnet_country_residence"})
-        { id: country.profinda_id, text: country.value }
-      else
-        {}
+        data = { id: country.profinda_id, text: country.value } if country
+      data
 
     city_initial_value: ->
+      data = {}
       if @get('nice_have_attributes')
         city = _.findWhere(@get('nice_have_attributes'), {custom_field: "alumnet_city_residence"})
-        { id: city.profinda_id, text: city.value }
-      else
-        {}
+        data = { id: city.profinda_id, text: city.value } if city
+      data
 
     attributes_initial_values: ->
       data = []
@@ -127,9 +127,7 @@
           element.custom_field == "alumnet_city_residence"
         _.each attributes, (element, index, list)->
           data.push { id: element.profinda_id, value: element.value }
-        data
-      else
-        data
+      data
 
   class Entities.MeetupExchangeCollection extends Backbone.Collection
     model:
