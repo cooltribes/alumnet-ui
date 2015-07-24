@@ -20,6 +20,7 @@
     templateHelpers: ->
       model = @model
       city_helper: if @model.get('city') then @model.get('city').value
+      company_helper: if @model.get('company') then @model.get('company').text
       seniorities:()->
         seniorities = new AlumNet.Utilities.Seniorities
         seniorities.fetch()
@@ -61,9 +62,12 @@
 
     onRender: ->
       ## set select2 to inputs
-      @ui.selectCompany.select2
-        placeholder: "Select a Company"
-        data: []
+      # @ui.selectCompany.select2
+      #   placeholder: "Select a Company"
+      #   data: []
+
+      @selectCompany(@ui.selectCompany)
+
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []
@@ -103,6 +107,18 @@
 
     setCities: (e)->
       @setSelectCities(e.val)
+
+    selectCompany: (element)->
+      view = @
+      Backbone.ajax
+        url: AlumNet.api_endpoint + "/companies"
+        success: (data)->
+          element.select2
+            placeholder: "Select a Company"
+            data: { results: data, text: "name" }
+          if view.model.get('company')
+            company = view.model.get('company')
+            element.select2('data', { id: company.value, name: company.text })
 
     setSelectCities: (val)->
       if @model.get('city')
