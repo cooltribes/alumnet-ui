@@ -41,27 +41,25 @@
           <div class="col-md-4 margin_top_medium">
             <div class="form-job">
               <label class="control-label">Experience</label>
-              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="seniority_id">
+              <select class="form-control input-lg" id="employment-type" name="seniority_id">               
                 <% for seniority in @seniorities(): %>
                   <option value="<%= seniority.id %>"<%= @select_position_type(seniority.id) %>>
                     <%= seniority.name %>
                   </option>
                 <% end %>
               </select>
-              <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIconJP" aria-hidden="true"></span>
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-4 margin_top_medium ">
             <div class="form-job">
               <label class="control-label">Type of Employment</label>
-              <select class="form-control input-lg eventsTableView__status--white" id="employment-type" name="employment_type">
+              <select class="form-control input-lg" id="employment-type" name="employment_type">
                 <option value="0" <%= @select_employment_type(0) %>>Full-time</option>
                 <option value="1" <%= @select_employment_type(1) %>>Part-time</option>
                 <option value="2" <%= @select_employment_type(2) %>>Internship</option>
                 <option value="3" <%= @select_employment_type(3) %>>Temporary</option>
               </select>
-              <span class="ico-triangle-down margin_right_xsmall userBrowse__selectIconJP" aria-hidden="true"></span>
               <span class="help-block"></span>
             </div>
           </div>

@@ -1,8 +1,11 @@
 <div class="col-md-4">
   <div class="businessCard taskCard margin_bottom_small">
 
-
-    <h3><%= @name %></h3>
+    <h3>
+      <a href="#business-exchange/<%= @id %>">
+        <%= @name %>
+      </a>
+    </h3>
     
     <div class="yourTaskCard__deadline">
       <b>14 days left</b>/ <span>deadline 21.06.2015</span>
@@ -13,9 +16,7 @@
       </div>
     </div>
 
-
-
-    <div class="taskCard__description margin_top_small"><%- @formatted_description %></div>
+    <div class="programCardDescription taskCard__description margin_top_small"><%- @formatted_description %></div>
     <div class="taskCard__user">
       <% if @user: %>
           <div class="row user">

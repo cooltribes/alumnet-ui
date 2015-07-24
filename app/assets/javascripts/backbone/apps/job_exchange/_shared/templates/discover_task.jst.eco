@@ -3,11 +3,15 @@
     <a href="#" id="iconDelete"  class="pull-right js-job-delete" ><span class="glyphicon glyphicon-remove"></span>
     </a>
   <% end %>
-  <div class="jobPost__name"><h3 class="no-margin"><%= @name %></h3></div>
+  <div class="jobPost__name"><h3 class="no-margin">
+    <a href="#job-exchange/<%= @id %>">
+      <%= @name %>
+    </a>
+  </h3></div>
   <div class="jobPost__company">
     <h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3>
   </div>
-  <div class="jobPost__description margin_top_xsmall">
+  <div class="programCardDescription jobPost__description margin_top_xsmall">
     <%- @formatted_description %>
   </div>
       <% if @user: %>

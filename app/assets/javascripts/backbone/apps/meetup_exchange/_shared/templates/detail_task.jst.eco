@@ -1,6 +1,8 @@
 
 <div class="job-post-detail">
-  <div class="jobPostDetail__name"><h3><%= @name %></h3></div>
+  <div class="jobPostDetail__name"><h3>
+      <%= @name %>    
+  </h3></div>
   <div class="jobPostDetail__company">
     <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
   </div>

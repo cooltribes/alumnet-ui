@@ -68,6 +68,17 @@
 
       ])
 
+    search: (e)->
+      e.preventDefault()
+      value = $('#search_term').val()
+      @collection.fetch
+        data:
+          q: 
+            m: 'or'
+            profile_first_name_cont_any: value.split(" ")
+            profile_last_name_cont_any: value.split(" ")
+
+
   class Discover.Layout extends  Marionette.LayoutView
     template: 'business_exchange/discover/templates/discover_container'
     regions:

@@ -1,7 +1,11 @@
 <div class="jobPost">
-  <div class="jobPost__name"><h3><%= @name %></h3></div>
+  <div class="jobPost__name"><h3>
+    <a href="#meetup-exchange/<%= @id %>">
+      <%= @name %>
+    </a>
+  </h3></div>
   <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="jobPost__description overfloadText"><%- @formatted_description %></div>
+  <div class="programCardDescription jobPost__description overfloadText"><%- @formatted_description %></div>
       <!--<div class="jobPostDetail__description overfloadText">
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
