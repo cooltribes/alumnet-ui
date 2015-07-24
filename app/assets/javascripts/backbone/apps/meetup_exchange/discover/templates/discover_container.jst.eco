@@ -3,8 +3,17 @@
     <div class="col-md-3">
       <h1>Discover</h1>
     </div>
-    <div class="col-md-9">
-      <div class="advanced-search margin_bottom">
+    <div class="col-md-6">
+      <form id="search-form">
+          <div class="input-group">
+            <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
+            <span class="input-group-btn">
+            <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
+          <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
+        </form>
+      <!-- <div class="advanced-search margin_bottom">
         <div class="advanced-search-container jobPost__search" id="searcher">
           <div class="filter-logic-operator-container">
             <select id="filter-logic-operator">
@@ -36,7 +45,7 @@
           <a href="#" class="clear btn btn-default">Clear</a>
           <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

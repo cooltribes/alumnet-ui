@@ -10,3 +10,13 @@
 
     templateHelpers: ->
       message: @message 
+
+  #Improved template
+  class Utilities.GeneralEmptyView extends Marionette.ItemView
+    template: 'shared/views/templates/_betterEmpty'
+  
+    initialize: (options)->
+      @message = options.message
+
+    templateHelpers: ->
+      message: @message 

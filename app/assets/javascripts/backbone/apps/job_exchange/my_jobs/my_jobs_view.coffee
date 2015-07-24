@@ -7,4 +7,8 @@
     template: 'job_exchange/my_jobs/templates/my_jobs_container'
     childView: MyJobs.Task
     childViewContainer: '.tasks-container'
+    getEmptyView: ->
+      AlumNet.Utilities.GeneralEmptyView
+    emptyViewOptions: 
+      message: "You don't have any active Post."
     className: 'container-fluid'

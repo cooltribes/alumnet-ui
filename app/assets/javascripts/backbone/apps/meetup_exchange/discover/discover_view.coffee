@@ -19,7 +19,7 @@
 
     events:
       'click .add-new-filter': 'addNewFilter'
-      'click .search': 'search'
+      'click .js-search': 'search'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
 
@@ -36,9 +36,12 @@
 
     search: (e)->
       e.preventDefault()
-      query = @searcher.getQuery()
+      # query = @searcher.getQuery()
+      value = $('#search_term').val()            
       @collection.fetch
-        data: { q: query }
+        # data: { q: query }
+        data: { q: { name_cont: value } }
+
 
     clear: (e)->
       e.preventDefault()

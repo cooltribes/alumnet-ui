@@ -11,15 +11,15 @@
         </div>
         <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
       </form>
-      <div class="text-right">
-        <a href="#" class="js-advancedSearch" title="Nelson Ramirez">Advanced search</a>
-      </div>
+      <!-- <div class="text-right">
+        <a href="#" class="js-advancedSearch" title="Advanced search">Advanced search</a>
+      </div> -->
       <!-- /input-group -->
     </div>
 
 
   <!-- Advanced Search START-->
-    <div id="js-advanced-search-container" class="col-md-6 col-md-offset-3 advanced-search margin_bottom advancedSearch" style="display:none">
+    <!-- <div id="js-advanced-search-container" class="col-md-6 col-md-offset-3 advanced-search margin_bottom advancedSearch" style="display:none">
       <div class="advanced-search-container jobPost__search" id="searcher">
         <h3 class="no-margin">Advanced Search</h3>
         
@@ -56,7 +56,7 @@
         <a href="#" class="clear btn btn-default">Clear</a>
         <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
       </div>
-    </div>
+    </div> -->
   <!-- Advanced Search END-->
 
 

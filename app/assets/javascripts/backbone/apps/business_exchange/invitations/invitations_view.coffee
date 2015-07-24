@@ -36,3 +36,4 @@
     template: 'business_exchange/invitations/templates/invitations'
     childView: Invitations.TaskInvitation
     childViewContainer: '.invitations-container'
+    className: 'container-fluid'

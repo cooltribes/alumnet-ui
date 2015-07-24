@@ -2,7 +2,12 @@
   <% if @canDelete: %>
       <a href="#" id="iconDelete" class="glyphicon glyphicon-remove js-job-delete pull-right" ata-toggle="tooltip" title="Delete this Job Post"></a>
   <% end %>
-  <div class="jobPost__name"><h3><%= @name %></h3></div>
+  <div class="jobPost__name"><h3>
+    <a href="#meetup-exchange/<%= @id %>">
+      <%= @name %>
+    </a>
+
+  </h3></div>
   <div class="company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
   <div class="jobPost__description"><%- @formatted_description %></div>
   <!-- Applied -->
@@ -13,10 +18,10 @@
       <h5 class="no-margin">APPLIED (<%= @applied_count %>)</h5>
       <% for apply in @applied: %>
         <div class="applied row margin_top_small">
-          <div class="col-md-2 col-xs-3 col-sm-1">
+          <div class="col-md-3 col-xs-3 col-sm-1">
             <img src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
           </div>
-          <div class="col-md-7 col-xs-6 col-sm-8">
+          <div class="col-md-6 col-xs-6 col-sm-8">
             <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>
             <small class="groupPost__date"> <%= moment(apply.updated_at).fromNow() %></small>
           </div>
@@ -31,7 +36,7 @@
         <h5 class="no-margin">MATCHES (<%= @matches_count %>)</h5>
         <div class="matches margin_top_small jobPost__matches">
           <% for match in @matches: %>
-          <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>">
+          <img src="<%= match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
           <% end %>
         </div>
     </div>

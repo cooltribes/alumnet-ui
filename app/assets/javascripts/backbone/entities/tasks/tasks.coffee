@@ -11,7 +11,7 @@
         msg: "Name is required, must be less than 250 characters long."
       description:
         required: true
-        maxLength: 2048
+        # maxLength: 2048
         msg: "Description is required, must be less than 2048 characters long"
       nice_have_list:
         required: true
