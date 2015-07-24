@@ -1,0 +1,13 @@
+<hr>
+<div class="col-md-6 ">
+  <div class="well">
+    <div class="row">
+      <div class="col-md-2 lead fontSize--xl text-center">
+        <span class="glyphicon glyphicon-info-sign"></span>
+      </div>
+      <div class="col-md-10">
+        <p class="lead"><%= @message %></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,3 +8,7 @@
     childView: YourTasks.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
+    getEmptyView: ->
+      AlumNet.Utilities.GeneralEmptyView
+    emptyViewOptions: 
+      message: "You don't have any active Task."

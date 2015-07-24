@@ -15,8 +15,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right no-margin">
         <li class="<%= @classOf(4)%>"><a href="#meetup-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
-        <li class="<%= @classOf(2)%>"><a href="#meetup-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Invitations</a></li>
-        <li class="<%= @classOf(3)%>"><a href="#meetup-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Discover</a></li>
+        <li class="<%= @classOf(2)%>"><a href="#meetup-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> Invitations</a></li>
+        <li class="<%= @classOf(3)%>"><a href="#meetup-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
         <a href="#meetup-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a new meet up</a>
       </ul>
     </div>

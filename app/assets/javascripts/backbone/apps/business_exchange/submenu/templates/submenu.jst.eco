@@ -11,16 +11,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(5)%>">
-          <a class="navTopSubBar__link" href="" id="businessMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <a class="navTopSubBar__link" href="#business-exchange/home">
+          <!-- <a class="navTopSubBar__link" href="#business-exchange/home" id="businessMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> -->
             <span class="navTopSubBar__icon glyphicon glyphicon-home"></span> Global Business Exchange
-            <span class="ico-triangle-down"></span>
+            <!-- <span class="ico-triangle-down"></span> -->
           </a>
-          <ul class="navTopSubBar__dropdownMenu dropdown-menu" aria-labelledby="businessMenu1">
+          <!-- <ul class="navTopSubBar__dropdownMenu dropdown-menu" aria-labelledby="businessMenu1">
             <li class="<%= @classOf(5)%>"><a href="#business-exchange/home" class="navTopSubBar__link" title="Home"><span class="navTopSubBar__icon glyphicon glyphicon-home"></span> Home</a></li>
 
-            <li class="<%= @classOf(4)%>"><a href="#business-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
-
-          </ul>
+             <li class="<%= @classOf(4)%>"><a href="#business-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
+ 
+          </ul> -->
         </li>
         <li>
           <a class="navTopSubBar__link" href="" id="businessMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -44,7 +45,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right no-margin">
+        <li class="<%= @classOf(4)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
+
         <li class="<%= @classOf(3)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
+
         <li class="<%= @classOf(2)%>"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> Invites</a></li>
         <a href="#business-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a new Task</a>
       </ul>
