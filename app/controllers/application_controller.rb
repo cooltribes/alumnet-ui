@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     gon.auth_token = current_user if signed_in?
     gon.environment = Rails.env
     gon.paymentwall_project_key = Settings.paymentwall_project_key
+    gon.paymentwall_secret_key = Settings.paymentwall_secret_key
     init_linkedin_for_registration
     if session[:facebook_profile].present?
       gon.facebook_profile = session[:facebook_profile]
