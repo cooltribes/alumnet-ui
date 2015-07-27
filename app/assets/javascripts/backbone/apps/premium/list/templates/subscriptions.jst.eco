@@ -34,11 +34,13 @@
         <!-- ACTIONS OFF -->
       </form>
     <div class="col-md-6">
-		<% if @condition && @condition == 'members_only': %>
-			<div class="form-group" id="condition-message">
-				Members only feature
-			</div>
-		<% end %>
+  		<% if @condition && @condition == 'members_only': %>
+  			<div class="form-group" id="condition-message">
+  				Members only feature
+  			</div>
+  		<% end %>
+      <div class="form-group" id="country">
+      </div>
     </div>
     <div id="paymentwall-content">
 		<!-- <iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid=<%= #@current_user.get("id") %>&email=<%= #@current_user.get("email") %>&country_code=<%= #@country %>" width="750" height="800" frameborder="0"></iframe> -->
