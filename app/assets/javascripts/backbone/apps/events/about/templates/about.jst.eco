@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2">
       <div class="groupAbout__box margin_bottom">
         <h3>Description</h3>
         <p href="#" id="description" class="js-attribute"><%- @description %></p>
@@ -20,7 +20,11 @@
           <a href="#" id="js-save-description" style="display:none">[save]</a>
         <% end %>
       </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
       <div class="groupAbout__box margin_bottom">
         <h3>Admision type:</h3>
         <p>
@@ -61,15 +65,15 @@
         </p>
         <% end %>
       </div>
-        <% if(@admission_type == 1): %>
-        <% if(@attendance_status == 'pending_payment'): %>
-          <div class="groupAbout__box margin_bottom">
-            <h3>Payment pending</h3>
-            <a href="#events/<%= @id %>/payment" class="btn btn-warning btn-lg" id="js-migrate-users">Confirm payment</a>
-          </div>
-        <% end %>
-        <% end %>
 
+      <% if(@admission_type == 1): %>
+      <% if(@attendance_status == 'pending_payment'): %>
+        <div class="groupAbout__box margin_bottom">
+          <h3>Payment pending</h3>
+          <a href="#events/<%= @id %>/payment" class="btn btn-warning btn-lg" id="js-migrate-users">Confirm payment</a>
+        </div>
+      <% end %>
+      <% end %>
 
       <% if @canEditInformation: %>
         <div class="groupAbout__box margin_bottom">
@@ -78,11 +82,18 @@
             <%= @uploadFilesText %>
           </span>
           <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
-
-
         </div>
       <% end %>
+   
+      <div class="groupAbout__box margin_bottom">
+        <h3><%= @country.text %>, <%= @city.text %></h3>
+        <h3><span id="address"><%= @address %></span></h3>
+        <% if @canEditInformation: %>
+          <a href="#" id="js-edit-address">[edit]</a>
+        <% end %>
+      </div>
     </div>
+
     <div class="col-md-4">
       <div class="row">
         <div class="col-md-12">
@@ -121,17 +132,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="groupAbout__box margin_bottom">
-            <h3><%= @country.text %>, <%= @city.text %></h3>
-            <h3><span id="address"><%= @address %></span></h3>
-            <% if @canEditInformation: %>
-              <a href="#" id="js-edit-address">[edit]</a>
-            <% end %>
-          </div>
-        </div>
-      </div>
+ 
       <div class="row">
         <div class="col-md-12">
           <div class="groupAbout__box margin_bottom">
@@ -141,8 +142,10 @@
             <% end %>
           </div>
         </div>
-      </div>
+      </div> 
+
     </div>
+  </div>
   </div>
 </div>
 <div id="container-modal-location"></div>
