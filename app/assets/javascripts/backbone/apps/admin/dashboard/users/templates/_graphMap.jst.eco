@@ -4,36 +4,43 @@
       <label class="control-label">Loading chart...</label>
     </div>    
     <div class="col-md-6 js-table">
-      <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+
+      <% if @dataTable: %>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th><a href="#" class="js-changeType" data-type="1" >
+              Registrants
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="2" >
+              Members
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="3" >
+              LT Members
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="4" >
+              Total
+            </a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% _.each @dataTable, (country, i, dataTable)->: %>
+            <% if i > 0: %>
+                <tr>
+                  <th scope="row"><%= country[0] %></th>
+                  <td><%= country[1] %></td>
+                  <td><%= country[2] %></td>
+                  <td><%= country[3] %></td>
+                  <td><%= country[4] %></td>
+                </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>      
+    <% else: %>
+      <label class="control-label">Loading table...</label>        
+    <% end %>
     </div>    
   </div>
   

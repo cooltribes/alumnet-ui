@@ -119,38 +119,57 @@
 
     ui:
       graph_section: ".js-graph"
+      changeTypeBtn: ".js-changeType"
     
     modelEvents:
       "change:geo": "changeGeo"
 
+    events:
+      "click @ui.changeTypeBtn": "changeType"
+    
     bindings:
       "[name=geo]": "geo"
 
     initialize:(options)->      
       @model = new Backbone.Model
         geo: options.geo        
-        type: options.type #type 1:regist, 2:memb, 3:ltmemb, 4:total      
+        type: options.type #type 1:regist, 2:memb, 3:ltmemb, 4:total   
+        dataTable: []   
+
+    changeType: (e)->
+      e.preventDefault()
+      link = $(e.currentTarget)
+      link.addClass("active")
+      link.parent().siblings().find("a").removeClass("active")
+      @model.set "type", link.attr("data-type")
+      @drawGraph @model.get("dataTable")
+
 
     changeGeo: ->
       @trigger "changeGeo"
 
     getGeo: ->
       @model.get "geo"
+    
+    getType: ->
+      @model.get "type"
 
     onRender: ->
       @stickit()    
 
-    drawGraph: (dataTable)->
+    drawAll: (dataTable)->
+      @model.set "dataTable", dataTable
+      @render()
 
-      console.log dataTable
+      @drawGraph(dataTable)
+
+
+    drawGraph: (dataTable)->
       newTable = []
       _.each dataTable, (country, index, table)->
         newTable[index] = [country[0], country[@model.get("type")]]
       ,
         @ #Context
-
-      console.log "newtable"    
-      console.log newTable    
 
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'GeoChart',

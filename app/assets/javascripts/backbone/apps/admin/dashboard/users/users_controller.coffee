@@ -81,7 +81,7 @@
           geo: geo
         dataType: 'json'
         success: (data)=>  
-          @viewChartMap1.drawGraph data
+          @viewChartMap1.drawAll data
 
     # METHODS FOR SHOWING EACH CHART
     showGraphType1: ->
@@ -109,8 +109,9 @@
       view = new Users.ChartMap1
         geo: @initialGeo
         type: @initialType
-        
+
       @layout.chart_map_1.show view
       @viewChartMap1 = view
+    
 
       @fetchDataMap1()
