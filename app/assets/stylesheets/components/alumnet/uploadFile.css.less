@@ -1,7 +1,7 @@
 /***
 
-COMPONENT NAME: formANet
-DESCRIPTION: Specific style for the forms of AlumNet
+COMPONENT NAME: uploadF
+DESCRIPTION: Specific style for the input for upload and file
 
 ***/
 
@@ -10,10 +10,10 @@ DESCRIPTION: Specific style for the forms of AlumNet
 
 .uploadF{
 	text-align: center;
-  	width: 100%;
-  	position: relative;
-  	cursor: pointer;
-  	padding: 5px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
 
   	&--blue{
   		border: 3px solid @blue;
@@ -27,15 +27,29 @@ DESCRIPTION: Specific style for the forms of AlumNet
   		padding: 35px;
   	}
 
+    &--positionPhotoPrize{
+      top: 90px;
+      z-index: 120;
+      position: relative;
+      width: 200px;
+      margin: auto;
+    }
+
   	&--img{
   		position: relative;
   		z-index: 2;
   	}
 
+    &--prizePhoto{
+      top: -40px;
+      width: 480px;
+      height: 240px;    
+    }
+
   	& small{
   		display: block;
-		font-size: 0.5em;
-		margin-top: 2px;
+		  font-size: 0.5em;
+		  margin-top: 2px;
   	}
 
   	&--cover{

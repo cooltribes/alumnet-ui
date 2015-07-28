@@ -52,6 +52,23 @@
         </div>
       </div>
     </div>
+    <!-- Subir imagen prize 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Photo</label>
+          <label class="uploadF">
+            <div class="uploadF--blue uploadF--positionPhotoPrize">
+              <span class="glyphicon glyphicon-open"></span>
+              <span>Upload prize photo</span>
+            </div>
+            <input type="file" id="prize-photo">
+            <img src="" id="prewiev-prize-photo" class="uploadF--img uploadF--prizePhoto">
+          </label>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div> -->
   </form>
 </div>
 

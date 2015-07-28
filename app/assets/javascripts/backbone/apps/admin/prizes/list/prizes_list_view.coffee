@@ -72,12 +72,37 @@
     events:
       'click #js-modal-save': 'saveClicked'
       'click #js-modal-delete': 'deleteClicked'
+      'change #prize-photo': 'previewImage'
 
     saveClicked: (e)->
       e.preventDefault()
       modal = @
       model = @model
       table = @prizeTable
+
+      #Guardar con imagen
+      # formData = new FormData()
+      # data = Backbone.Syphon.serialize(this)
+      # console.log data
+      # _.forEach data, (value, key, list)->
+      #   formData.append(key, value)
+      # file = @$('#prize-photo')
+      # formData.append('image', file[0].files[0])
+      # console.log formData
+
+      # options_for_save =
+      #   wait: true
+      #   contentType: false
+      #   processData: false
+      #   data: formData
+      #   success: (model, response, options)->
+      #     modal.destroy()
+      #     model.trigger('render:view')
+      #     if table
+      #       table.collection.add(model)
+      # model.save(formData, options_for_save)
+
+      #Guardar sin la imagen
       data = Backbone.Syphon.serialize(modal)
       @model.save data,
         success: ->
@@ -94,3 +119,12 @@
         @model.destroy
           success: ->
             modal.destroy()
+
+    previewImage: (e)->
+      input = @.$('#prize-photo')
+      preview = @.$('#prewiev-prize-photo')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])
