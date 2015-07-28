@@ -1,8 +1,6 @@
 <div class="col-md-3 col-xs-6 packageCard margin_top_medium">
 	<div>
-		<%%= console.log @image %>
-		<img src="<%%= @price %>" class="packageCard__image">
-		<!--<%= image_tag(@image, width:"100%", class:"packageCard__image") %>-->
+		<%= image_tag(@image, width:"100%", class:"packageCard__image") %>
 		<span class="packageCard__cost">
 			<div class="text-center">
 				<%%= @price %>
