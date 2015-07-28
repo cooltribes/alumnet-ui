@@ -47,7 +47,7 @@
     <a href="#business-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT <span class="glyphicon glyphicon-pencil"></span></a>
   <% end %>
   <% if @canApply: %>
-    <a href="#" class="btn btn-default js-job-apply" >APPLY FOR A JOB</a>
+    <a href="#" class="btn btn-default js-job-apply" >OFFER HELP</a>
   <% end %>
 </div>
 
