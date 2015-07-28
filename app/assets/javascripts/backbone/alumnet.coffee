@@ -11,6 +11,7 @@
     App.current_token = current_user_token
     App.environment = options.environment
     App.paymentwall_project_key = options.paymentwall_project_key
+    App.paymentwall_secret_key = options.paymentwall_secret_key
     if current_user_token
       $.ajaxSetup
         headers:

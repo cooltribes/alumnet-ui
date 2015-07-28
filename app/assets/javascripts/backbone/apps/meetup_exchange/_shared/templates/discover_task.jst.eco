@@ -10,7 +10,6 @@
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
       </div>-->
-
   <% if @user: %>
     <div class="row user">
       <div class="col-md-3 no-padding-rigth text-right">
