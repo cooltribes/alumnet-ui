@@ -10,7 +10,7 @@
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
       </div>-->
-  
+
   <% if @user: %>
     <div class="row user">
       <div class="col-md-3 no-padding-rigth text-right">
@@ -25,12 +25,12 @@
     </div>
   <% end %>
   <div class="jobPostDetail__geo padding_top">
-    <p class="overfloadText"><span class="ico-location"></span> <%= @location() %></p>
+    <p class="overfloadText"><span class="ico-location"></span> <%= @location %></p>
   </div>
   <div class="skills">
     <!-- SKILLS PENDING -->
   </div>
-    
+
   <hr>
   <div class="jobPostDetail__buttons">
     <% if @canDelete: %>

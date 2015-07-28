@@ -1,7 +1,7 @@
 
 <div class="job-post-detail">
   <div class="jobPostDetail__name"><h3>
-      <%= @name %>    
+      <%= @name %>
   </h3></div>
   <div class="jobPostDetail__company">
     <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
@@ -28,7 +28,7 @@
       <% end %>
       <div class="jobPostDetail__geo padding_top">
         <span class="ico-location"></span>
-        <span><%= @location() %></span>
+        <span><%= @location %></span>
       </div>
       <div class="skills">
         <!-- SKILLS PENDING -->
@@ -69,7 +69,7 @@
           <% if match.user_has_invitation : %>
             <div class="userCard__actions userCard__animation userCard__actions--Cancel">
               <span class="invitation">
-                <span class="userCard__actions__text">INVITED</span> 
+                <span class="userCard__actions__text">INVITED</span>
                 <span class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon glyphicon-ok"></span>
               </span>
@@ -79,7 +79,7 @@
             <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
                 <span class="invitation">
                   <span class="userCard__actions__text">INVITE</span>
-                  <span class="icon-entypo-user-add"></span> 
+                  <span class="icon-entypo-user-add"></span>
                 </span>
             </div>
           </a>
