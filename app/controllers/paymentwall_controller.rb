@@ -43,7 +43,7 @@ class PaymentwallController < ApplicationController
         @response_user = subscription.response_user
 
         payment = Payment.new
-        @payment_text = { :user_id => @user_id, :paymentable_id => @response['id'], :paymentable_type => "Subscription", :subtotal => @event_id = @pingback.getParameter('amount'), :iva => 0, :total => @event_id = @pingback.getParameter('amount'), :reference => @reference }.to_json
+        @payment_text = { :user_id => @user_id, :paymentable_id => @response['id'], :paymentable_type => "Subscription", :subtotal => @pingback.getParameter('amount'), :iva => 0, :total => @pingback.getParameter('amount'), :reference => @reference, :country_id => @pingback.getParameter('country_id'), :city_id => @pingback.getParameter('city_id'), :address => @pingback.getParameter('address') }.to_json
         payment.create(JSON.parse(@payment_text), session, @auth_token)
         @response_payment = payment.response
         render :text => "OK"
