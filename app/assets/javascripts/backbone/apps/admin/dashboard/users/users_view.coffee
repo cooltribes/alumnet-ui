@@ -15,6 +15,9 @@
       chart_type_1: '.chart_type_1'
       chart_type_2: '.chart_type_2'
       chart_map_1: '.chart_map_1'
+      chart_generation: '.chart_generation'
+      chart_generation: '.chart_generation'
+      chart_seniority: '.chart_seniority'
 
 
     initialize: (options)->
@@ -114,7 +117,7 @@
       @ui.graph_section.showAnimated(graph.render().el)
 
 
-  class Users.ChartMap1 extends Marionette.ItemView
+  class Users.ChartMap extends Marionette.ItemView
     template: 'admin/dashboard/users/templates/_graphMap'
 
     ui:
@@ -176,6 +179,41 @@
         dataTable: newTable
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
-          'height': 270
+          'height': 468
+
+      @ui.graph_section.showAnimated(graph.render().el)
+
+
+  class Users.ChartGeneration extends Marionette.ItemView
+    template: 'admin/dashboard/users/templates/_graph'
+
+    ui:
+      graph_section: ".js-graph"
+
+    drawGraph: (dataTable)->
+      graph = new AlumNet.Utilities.GoogleChart
+        chartType: 'ColumnChart',
+        dataTable: dataTable
+        options:
+          'legend': {'position': 'bottom', 'alignment':'center'}    
+          'height': 270                
+
+      @ui.graph_section.showAnimated(graph.render().el)
+
+
+  class Users.ChartSeniority extends Marionette.ItemView
+    template: 'admin/dashboard/users/templates/_graph'
+
+    ui:
+      graph_section: ".js-graph"
+
+    drawGraph: (dataTable)->
+      graph = new AlumNet.Utilities.GoogleChart
+        chartType: 'PieChart',
+        dataTable: dataTable
+        options:
+          is3D: true
+          # 'legend': {'position': 'bottom', 'alignment':'center'}    
+          'height': 270                
 
       @ui.graph_section.showAnimated(graph.render().el)

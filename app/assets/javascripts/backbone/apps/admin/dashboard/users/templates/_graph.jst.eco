@@ -11,15 +11,20 @@
 
       </div>
       <div class="col-md-6 text-rigth">
-        <label class="radio-inline">
-          <input type="radio" name="interval" value="years">Years
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="interval" value="months">Months
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="interval" value="days">Days
-        </label>
+        
+
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default <%= 'active' if @interval == 'years' %>">
+            <input type="radio" name="interval" id="option1" value="years" autocomplete="off" <%= "checked" if @interval == "years" %>> Years
+          </label>
+          <label class="btn btn-default <%= 'active' if @interval == 'months' %>">
+            <input type="radio" name="interval" id="option2" value="months" autocomplete="off" <%= "checked" if @interval == "months" %>> Months
+          </label> 
+          <label class="btn btn-default <%= 'active' if @interval == 'days' %>">
+            <input type="radio" name="interval" id="option2" value="days" autocomplete="off" <%= "checked" if @interval == "days" %>> Days
+          </label>          
+        </div>
+
       </div>
     </div>
   <% end %>

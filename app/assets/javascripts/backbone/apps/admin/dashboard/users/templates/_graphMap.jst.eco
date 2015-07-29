@@ -4,9 +4,19 @@
       <label class="control-label">Loading chart...</label>
     </div>    
     <div class="col-md-6 js-table">
-
+  
       <% if @dataTable: %>
-        <table class="table table-striped">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default <%= 'active' if @geo == 'countries' %>">
+            <input type="radio" name="geo" id="option1" value="countries" autocomplete="off" <%= "checked" if @geo == "countries" %>> Alumni per Country
+          </label>
+          <label class="btn btn-default <%= 'active' if @geo == 'regions' %>">
+            <input type="radio" name="geo" id="option2" value="regions" autocomplete="off" <%= "checked" if @geo == "regions" %>> Alumni per Region
+          </label>          
+        </div>
+
+
+        <table class="table table-striped margin_top">
         <thead>
           <tr>
             <th></th>
@@ -25,7 +35,9 @@
           </tr>
         </thead>
         <tbody>
-          <% _.each @dataTable, (country, i, dataTable)->: %>
+          <% _.all @dataTable, (country, i, dataTable)->: %>
+
+            <% return if i > 10 %>
             <% if i > 0: %>
                 <tr>
                   <th scope="row"><%= country[0] %></th>

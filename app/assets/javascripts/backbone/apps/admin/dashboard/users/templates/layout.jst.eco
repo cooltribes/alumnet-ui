@@ -28,7 +28,7 @@
     
     
   <div class="charts-region">
-    <h4>Alumni per type of membership</h4>
+    <h4>Alumni per type of membership</h4>  
     <hr>
     <div class="row">
       <div class="col-md-8 chart_type_1">
@@ -39,12 +39,24 @@
 
       </div>      
     </div>
-    <h4>Alumni per type of membership</h4>
+    <h4>Alumni per Country</h4>    
     <hr>
     <div class="row">
       <div class="col-md-12 chart_map_1">
 
       </div>      
     </div>
+    <h4>Generations and Seniority</h4>    
+    <hr>
+    <div class="row">
+      <div class="col-md-6 chart_generation">
+
+      </div>      
+      <div class="col-md-6 chart_seniority">
+
+      </div>      
+    </div>
+
+    
   </div>
 </div>
