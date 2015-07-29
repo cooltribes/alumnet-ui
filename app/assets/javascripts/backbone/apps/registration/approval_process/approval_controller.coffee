@@ -12,13 +12,18 @@
 
       #Getting the entire collection of users
       # users = AlumNet.request('user:entities', {})
-      users = AlumNet.request('user:entities', {}, {fetch: false})
+      users = AlumNet.request('user:entities', {}, {fetch: true})
+      users.on "fetch:success", ->
+        if users.length > 3
+          users.set(users.slice(0,3))
 
-      approvalView = @getFormView users
+      approvalView = @getFormView users,true
       layoutView.form_region.show(approvalView)
 
       approvalView.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
+        #users.on "fetch:success", ->
+        #  console.log users.length 
 
       approvalView.on 'contacts:search', (contacts)->
         approvalView.collection = new AlumNet.Entities.ContactsInAlumnet
@@ -53,9 +58,10 @@
     getSideView: ->
       AlumNet.request("registration:shared:sidebar", 5)
 
-    getFormView: (users) ->
+    getFormView: (users,bandera) ->
       current_user = AlumNet.current_user
 
       new Approval.Form
         model: current_user
         collection: users
+        bandera: bandera
