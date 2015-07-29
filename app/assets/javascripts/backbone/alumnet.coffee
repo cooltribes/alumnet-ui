@@ -11,6 +11,7 @@
     App.current_token = current_user_token
     App.environment = options.environment
     App.paymentwall_project_key = options.paymentwall_project_key
+    App.paymentwall_secret_key = options.paymentwall_secret_key
     if current_user_token
       $.ajaxSetup
         headers:
@@ -25,7 +26,11 @@
   App.on 'start', ->
     if Backbone.history
       Backbone.history.start()
-      App.navigate('#posts', {trigger: true}) if App.getCurrentRoute() == ""
+      if App.getCurrentRoute() == ""
+        if App.current_user.isExternal()
+          App.navigate('#job-exchange', {trigger: true})
+        else
+          App.navigate('#posts', {trigger: true})
 
 
   App.addRegions

@@ -10,6 +10,10 @@
       # "registration/skills": "createSkills"
 
   API =
+    activateUser: ->
+      controller = new RegistrationApp.Approval.Controller
+      controller.activateUser()
+
     showRegister: ->
       controller = new RegistrationApp.Account.Controller
       controller.showRegister()
@@ -34,6 +38,9 @@
       controller = new RegistrationApp.Approval.Controller
       controller.showApproval()
 
+
+  AlumNet.on "registration:activate",  ->
+    API.activateUser()
 
   AlumNet.on "registration:show",  ->
     API.showRegister()
