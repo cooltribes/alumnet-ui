@@ -2,6 +2,24 @@
 
   class Approval.Controller
 
+    activateUser: ->
+      Backbone.ajax
+        url: AlumNet.api_endpoint + "/me/activate"
+        method: "post"
+        success: (data)->
+          if data.status == "active"
+            AlumNet.current_user.fetch
+              success: ->
+                if AlumNet.current_user.profile.get('role') == "External"
+                  AlumNet.headerRegion.reset()
+                  alert "Hola Externo!"
+                else
+                  AlumNet.headerRegion.reset()
+                  AlumNet.navigate("posts", { trigger: true })
+          else
+            console.log "nop"
+            $.growl.error { message: data.status }
+
     showApproval: ->
       # creating layout
       layoutView = @getLayoutView()
