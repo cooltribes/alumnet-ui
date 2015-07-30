@@ -11,11 +11,7 @@
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
-      location: ->
-        location = []
-        location.push model.get('country').text unless model.get('country').text == ""
-        location.push model.get('city').text unless model.get('city').text == ""
-        location.join(', ')
+      location: @model.get_location()
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
@@ -37,7 +33,7 @@
         success: ->
           $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
               <span class="invitation">
-                <span class="userCard__actions__text">INVITED</span> 
+                <span class="userCard__actions__text">INVITED</span>
                 <span class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon glyphicon-ok"></span>
               </span>

@@ -46,7 +46,10 @@
 
           profileModel.save {},
             success: (model)->
-              AlumNet.trigger "registration:approval"
+              if model.get('role') == 'Regular' && model.get('created_by_admin')
+                AlumNet.trigger "registration:activate"
+              else
+                AlumNet.trigger "registration:approval"
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")

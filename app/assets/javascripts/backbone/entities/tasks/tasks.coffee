@@ -129,6 +129,12 @@
           data.push { id: element.profinda_id, value: element.value }
       data
 
+    get_location: ->
+      location = []
+      location.push @city_initial_value().text unless @city_initial_value().text == undefined
+      location.push @country_initial_value().text unless @country_initial_value().text == undefined
+      location.join(", ")
+
   class Entities.MeetupExchangeCollection extends Backbone.Collection
     model:
       Entities.MeetupExchange

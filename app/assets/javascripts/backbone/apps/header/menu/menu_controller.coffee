@@ -21,18 +21,18 @@
 
         AlumNet.headerRegion.show(menuLayout)
         menuLayout.messagesBox.show(messagesList)
-        menuLayout.notificationsBox.show(notificationsList)       
+        menuLayout.notificationsBox.show(notificationsList)
       else
         menuLayout = new Menu.MenuBar
           model: current_user
 
         AlumNet.headerRegion.show(menuLayout)
 
-    showAdmin: ->     
+    showAdmin: ->
 
       if AlumNet.headerRegion.currentView instanceof Menu.AdminBar
         return
-        
+
       current_user = AlumNet.current_user
       AlumNet.headerRegion.reset()
       if current_user.isAdmin()
@@ -40,6 +40,18 @@
           model: current_user
         AlumNet.headerRegion.show(menuLayout)
 
-  
+    showExternal: ->
+
+      if AlumNet.headerRegion.currentView instanceof Menu.ExternalBar
+        return
+
+      current_user = AlumNet.current_user
+      AlumNet.headerRegion.reset()
+      if current_user.isExternal() && current_user.isActive()
+        menuLayout = new Menu.ExternalBar
+          model: current_user
+        AlumNet.headerRegion.show(menuLayout)
+
+
 
 
