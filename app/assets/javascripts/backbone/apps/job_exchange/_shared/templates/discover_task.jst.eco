@@ -3,7 +3,7 @@
     <a href="#" id="iconDelete"  class="pull-right js-job-delete" ><span class="glyphicon glyphicon-remove"></span>
     </a>
   <% end %>
-  <div class="jobPost__name"><h3 class="no-margin overfloadText">
+  <div class="jobPost__name"><h3 class="no-margin overfloadText overfloadText--blue">
     <a href="#job-exchange/<%= @id %>">
       <%= @name %>
     </a>

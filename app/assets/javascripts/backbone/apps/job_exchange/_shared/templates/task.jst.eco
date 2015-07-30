@@ -2,7 +2,7 @@
   <% if @canDelete: %>
       <a href="#" id="iconDelete" class="glyphicon glyphicon-remove js-job-delete pull-right" ata-toggle="tooltip" title="Delete this Job Post"></a>
     <% end %>
-  <div class="jobPost__name"><h3 class="no-margin overfloadText">
+  <div class="jobPost__name"><h3 class="no-margin overfloadText overfloadText--blue">
       <a href="#job-exchange/<%= @id %>">
         <%= @name %>
       </a>

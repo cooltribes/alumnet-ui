@@ -10,7 +10,7 @@
 
   <img class="createBanner__img margin_top_large_minus" id="preview-banner" name="picture" src="<%= @picture.main %>">
 
-  <label class="createBanner__fileLabel createBanner__fileLabelEdit visibility margin_top_large_minus" id="js-editImgBanner">
+  <label class="createBanner__fileLabel createBanner__fileLabelEdit visibility" id="js-editImgBanner">
      <span class="glyphicon glyphicon-open"></span>Upload image
      <input class="createBanner__file" type="file" id="BannerImg">
   </label>
@@ -18,7 +18,7 @@
   <div class="visibility" id="js-boxEditBanner">
       <div class="row">
         <form>
-          <div class="col-md-6 margin_top_medium_minus">
+          <div class="col-md-6 margin_top_medium">
             <div class="form-group">
               <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
               <input type="text" class="form-control" id="bannerTitle" placeholder="<%= @title %>">
@@ -28,7 +28,7 @@
               <input type="text" class="form-control" id="bannerLink" placeholder="<%= @link %>">
             </div>
           </div>
-        <div class="col-md-6 margin_top_medium_minus">
+        <div class="col-md-6 margin_top_medium">
             <div class="form-group">
               <label class="createBanner__label" for="bannerContent">Content:</label>
               <textarea class="form-control" rows="5" for="bannerContent" placeholder="<%= @description %>"></textarea>
