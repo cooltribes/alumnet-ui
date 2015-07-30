@@ -50,8 +50,9 @@
         placeholder: "Select a Country"
         data: data
 
-      # @ui.selectPaymentCities.select2
-      #   placeholder: "Select a City"
+      @ui.selectPaymentCities.select2
+        placeholder: "Select a City"
+        data: []
 
     submitClicked: (e)->
       e.preventDefault()
