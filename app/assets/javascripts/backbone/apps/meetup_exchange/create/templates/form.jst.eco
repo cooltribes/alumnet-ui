@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="form-job has-feedback">
+            <div class="form-job has-feedback form-group">
               <label class="control-label">Arrival Date</label>
               <input type="text" name="arrival_date" id="task-arrival" class="form-control input-lg" value="<%= @arrival_date %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="form-job has-feedback">
+            <div class="form-job has-feedback form-group">
               <label class="control-label">Departure Date</label>
               <input type="text" name="post_until" id="task-until" class="form-control input-lg" value="<%= @post_until %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>

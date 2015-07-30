@@ -1,4 +1,3 @@
-
 <div class="job-post-detail">
   <div class="jobPostDetail__name"><h3>
       <%= @name %>
