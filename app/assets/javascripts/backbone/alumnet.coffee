@@ -26,7 +26,11 @@
   App.on 'start', ->
     if Backbone.history
       Backbone.history.start()
-      App.navigate('#posts', {trigger: true}) if App.getCurrentRoute() == ""
+      if App.getCurrentRoute() == ""
+        if App.current_user.isExternal()
+          App.navigate('#job-exchange', {trigger: true})
+        else
+          App.navigate('#posts', {trigger: true})
 
 
   App.addRegions

@@ -16,8 +16,8 @@
       # @posts = new Entities.PostCollection [],
         # mode: "infinite"
         # ,
-        # state: 
-        #   pageSize: 
+        # state:
+        #   pageSize:
           # firstPage: 1
           # currentPage: 1
         # ,
@@ -25,7 +25,7 @@
         # queryParams:
           # totalPages: null,
           # totalRecords: null,
-      
+
 
 
       @on "change", ->
@@ -45,6 +45,9 @@
 
     isAdmin: ->
       @get "is_admin"
+
+    isExternal: ->
+      @profile.get("role") == "External"
 
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"

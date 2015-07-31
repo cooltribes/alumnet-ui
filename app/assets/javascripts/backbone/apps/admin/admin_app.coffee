@@ -5,6 +5,7 @@
       "admin/users/stats": "statsList"
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
+      "admin/users/create": "usersCreate"
       "admin/users/:id": "usersList"
       "admin/users": "usersList"
       "admin/groups": "groupsList"
@@ -30,12 +31,15 @@
     groupsDeleted: ->
       controller = new AdminApp.GroupsDeleted.Controller
       controller.groupsDeleted()
+    usersCreate: ->
+      controller = new AdminApp.UsersCreate.Controller
+      controller.create()
     regionsList: ->
       controller = new AdminApp.Regions.Controller
       controller.regionsList()
     bannerList: ->
       controller = new AdminApp.BannerList.Controller
-      controller.bannerList()   
+      controller.bannerList()
     statsList: ->
       controller = new AdminApp.UserStats.Controller
       controller.showStats()
@@ -51,7 +55,7 @@
 
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
-      
+
 
   AlumNet.addInitializer ->
     new AdminApp.Router

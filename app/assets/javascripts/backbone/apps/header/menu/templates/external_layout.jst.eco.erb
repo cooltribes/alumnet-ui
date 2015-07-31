@@ -13,62 +13,16 @@
     <ul class="navTopBarAdmin__left__list nav navbar-nav js-left-menu ">
       <!-- Left Menu top -->
       <li>
-        <a class="navTopBarAdmin__left__item" href="#dashboard/alumni">
-          <i class="glyphicon glyphicon-stats"></i>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/users">
+        <a class="navTopBarAdmin__left__item" href="#job-exchange">
           <i class="icon-entypo-user"></i>
-          Users
+          Job Exchange
         </a>
       </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/groups">
-          <i class="icon-entypo-share"></i>
-          Groups
-        </a>
-      </li>
-      <%% if @isAlumnetAdmin: %>
-        <li>
-          <a class="navTopBarAdmin__left__item" href="#admin/regions">
-            <i class="glyphicon glyphicon-globe"></i>
-            Regions
-          </a>
-        </li>
-      <%% end %>
-      <%% if @isAlumnetAdmin: %>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/banner">
-          <i class="glyphicon glyphicon-list"></i>
-          Banner
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/actions">
-          <i class="icon-entypo-basket"></i>
-          Points System
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/prizes">
-          <i class="glyphicon glyphicon-gift"></i>
-          Prizes
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/features">
-          <i class="icon-entypo-star"></i>
-          Features
-        </a>
-      </li>
-      <%% end %>
     </ul>
     <ul class="navTopBarAdmin__right__list nav navbar-nav  navbar-right js-right-menu">
       <!-- Right menu top -->
       <li>
-        <a href="#registration/experience" class="navTopBar__avatar " title="<%%= @name %>">
+        <a href="#" class="navTopBar__avatar " title="<%%= @name %>">
           <img src="<%%= @avatar.medium %>" alt="<%%= @name %>" class="img-circle">
         </a>
       </li>
@@ -77,8 +31,6 @@
           <span class="icon-entypo-down-open"></span>
         </a>
         <ul class="navTopBarAdmin__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions">
-
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#posts" id="js-changeHeader">User Section</a></li>
           <li role="presentation" class="navTopBarAdmin__dropdownMenu__divider"></li>
           <li role="presentation">
             <a role="menuitem" tabindex="-1" href="sign_out">Logout (<%%= @first_name %>)</a>
