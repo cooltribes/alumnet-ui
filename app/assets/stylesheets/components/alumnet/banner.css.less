@@ -14,6 +14,9 @@ DESCRIPTION: styles for banners
 
 .createBanner{
 
+  &__editButtons{
+      margin: 5px 0 30px;
+  }
 	
 	&__img{
 		width: 100%;
@@ -26,7 +29,6 @@ DESCRIPTION: styles for banners
   &__btnEdit{
     font-size: 1.5em;
     color: @white;
-    float: right;
     cursor: pointer;  
   }
 
@@ -63,7 +65,7 @@ DESCRIPTION: styles for banners
   			margin-left: -95px;
 
         &Edit{
-          top: 190px;
+          top: -130px;
           left: 55%;
         }
   		}
@@ -76,7 +78,6 @@ DESCRIPTION: styles for banners
     margin-bottom: 10px;
     position: relative;
     left: 10%;
-    float: left;
 
   		&Add{
   			background: @blue;
@@ -140,7 +141,7 @@ DESCRIPTION: styles for banners
     height: 60px;
     z-index: 10;
     position: relative;
-    top: 40px;
+    top: -5px;
     padding: 10px;
 
     & h2 {

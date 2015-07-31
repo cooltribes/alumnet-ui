@@ -1,5 +1,5 @@
 <div class="jobPost">
-  <div class="jobPost__name"><h3>
+  <div class="jobPost__name"><h3 class="overfloadText overfloadText--blue">
     <a href="#meetup-exchange/<%= @id %>">
       <%= @name %>
     </a>

@@ -135,6 +135,14 @@
       location.push @country_initial_value().text unless @country_initial_value().text == undefined
       location.join(", ")
 
+    validation:
+      arrival_date:
+        required: true
+        msg: "Arrival Date is required"
+      post_until:
+        required: true
+        msg: "Departure Date is required"
+        
   class Entities.MeetupExchangeCollection extends Backbone.Collection
     model:
       Entities.MeetupExchange
