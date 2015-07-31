@@ -97,14 +97,12 @@
     
     showBoxEditBanner:(e)->
       e.preventDefault()
-      $(e.currentTarget).parent().siblings("#js-boxEditBanner").slideToggle("slow")
-      $(e.currentTarget).parent().siblings("label").slideToggle("slow")
-      #$("#js-boxEditBanner").slideToggle("slow")
-      $("#js-editImgBanner").toggle()
+      $(e.currentTarget).parent().parent().siblings("#js-boxEditBanner").slideToggle("slow")
+      $(e.currentTarget).parent().parent().siblings("label").slideToggle("slow")
 
     hideBoxEditBanner:(e)->
       e.preventDefault()
-      $(e.currentTarget).parent().parent().slideToggle("slow")
+      $(e.currentTarget).parent().parent().parent().slideToggle("slow")
       $(e.currentTarget).parent().parent().siblings("label").slideToggle("slow")
 
     initialize: (options)->      

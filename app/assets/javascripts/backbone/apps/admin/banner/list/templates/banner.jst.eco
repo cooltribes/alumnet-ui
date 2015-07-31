@@ -1,20 +1,20 @@
 <div class="form-group">
+  <div>
+    <div class="createBanner__blackBox" id="js-blackBox">
+      <h2 class="no-margin">#<%= @id %></h2>
+      <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
+      <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
+      <h2 class="no-margin"><%= @title %></h2>
+      <span id="js-editBanner" class="ico-edit createBanner__btnEdit"> </span>
+    </div>
 
-  <div class="createBanner__blackBox">
-    <h2 class="no-margin">#<%= @id %></h2>
-    <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
-    <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
-    <h2 class="no-margin"><%= @title %></h2>
-    <span id="js-editBanner" class="ico-edit createBanner__btnEdit"> </span>
+    <img class="createBanner__img margin_top_large_minus" id="preview-banner" name="picture" src="<%= @picture.main %>">
+
+    <label class="createBanner__fileLabel createBanner__fileLabelEdit visibility" id="js-editImgBanner">
+       <span class="glyphicon glyphicon-open"></span>Upload image
+       <input class="createBanner__file" type="file" id="BannerImg">
+    </label>
   </div>
-
-  <img class="createBanner__img margin_top_large_minus" id="preview-banner" name="picture" src="<%= @picture.main %>">
-
-  <label class="createBanner__fileLabel createBanner__fileLabelEdit visibility" id="js-editImgBanner">
-     <span class="glyphicon glyphicon-open"></span>Upload image
-     <input class="createBanner__file" type="file" id="BannerImg">
-  </label>
-
   <div class="visibility" id="js-boxEditBanner">
       <div class="row">
         <form>
@@ -36,7 +36,7 @@
         </div>
       </form>
       </div>
-      <div>
+      <div class="createBanner__editButtons">
         <a href="#" class="createBanner__btn createBanner__btnAdd" title="Save changes">Save changes</a>
         <a id="js-cancelEditBanner" href="#" class="createBanner__btn createBanner__btnCancel" title="Cancel">Cancel</a>
         <a href="#" id="js-deleteBanner" class="createBanner__btn createBanner__btnDelete" title="Delete banner">DELETE BANNER</a>
