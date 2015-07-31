@@ -25,6 +25,11 @@
             Users Stats <span class="navTopSubBarAdmin__icon glyphicon glyphicon-stats"></span>
           </a>
         </li>
+        <li class="<%= @classOf(3)%>">
+          <a href="#admin/users/create" class="navTopSubBarAdmin__link" title="Invites">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Create User
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -2,13 +2,13 @@
   <% if @canDelete: %>
       <a href="#" id="iconDelete" class="glyphicon glyphicon-remove js-job-delete pull-right" ata-toggle="tooltip" title="Delete this Job Post"></a>
     <% end %>
-  <div class="jobPost__name"><h3 class="no-margin">
+  <div class="jobPost__name"><h3 class="no-margin overfloadText overfloadText--blue">
       <a href="#job-exchange/<%= @id %>">
         <%= @name %>
       </a>
   </h3></div>
   <div class="jobPost__company"><h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="jobPost__description margin_top_xsmall"><%- @formatted_description %></div>
+  <div class="programCardDescription jobPost__description"><%- @formatted_description %></div>
   <!-- Applied -->
   <% if @applied_count > 0: %>
     <hr>
