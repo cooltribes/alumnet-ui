@@ -1,0 +1,30 @@
+<div class="row margin_top_medium">
+  <div class="col-md-3">
+    <div id="companyBusinessAffix">
+        <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
+          <ul class="nav nav-pills nav-stacked">
+            <li>
+              <a id="toWhatiOffer" class="text-uppercase smoothClick">
+                Details
+              </a>
+            </li>
+            <li>
+              <a id="toWhatImLookingFor" class="text-uppercase smoothClick">
+                Contact & Web
+              </a>
+            </li>
+            <li>
+              <a id="toWhyMe" class="text-uppercase smoothClick">
+                Branches
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div id="details"></div>
+    <div id="contact-web"></div>
+    <div id="branches"></div>
+  </div>
+</div>

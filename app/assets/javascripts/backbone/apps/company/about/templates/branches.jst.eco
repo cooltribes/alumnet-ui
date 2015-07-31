@@ -1,0 +1,34 @@
+<h3>Branches</h3>
+<div class="row company__row company__cell">
+	<div class="col-md-4 company__cell--right">
+		<ul>
+			<li>Portugal, Lisbon</li>
+			<li>Venezuela, San Cristobal</li>	
+		</ul>
+
+	</div>
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<p><b>Berna</b></p>
+					<p>street #1</p>
+					<p>34234 Switzerland</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<p>Lorem upsum</p>
+				<p>Lorem upsum</p>
+			</div>
+			<div class="col-md-4">
+				<p>Lorem upsum</p>
+				<p>Lorem upsum</p>
+				<p>Lorem upsum</p>
+			</div>
+		</div>
+		<div>
+			<p>Mapa</p>
+		</div>
+	</div>
+</div>
