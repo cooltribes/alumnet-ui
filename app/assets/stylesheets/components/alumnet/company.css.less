@@ -9,6 +9,30 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 
 .company{
+  &__branchesTable{
+    display: table;
+    padding-right: 10px;
+    min-width: 100%;
+  }
+  &__branches{
+    display: table-row;
+    
+    &__cell{
+      padding: 20px 20px 10px;
+      display: table-cell;
+      vertical-align: top;
+      
+      &--left{
+        background-color: @blue-gray-lighter;
+        width: 38%;
+      }
+
+      &--right{
+        background-color: @white;
+        width: 60%;
+      }
+    }
+  }
 
   &__imgFriends{
     margin-top: 10px;
@@ -37,7 +61,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   		}
   		&--right{
   			background-color: @blue-gray-lighter;
-  			border-left: 0;
+  			border-right:0; 
   		}
 
   		&--links{

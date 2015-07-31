@@ -5,9 +5,12 @@
       className: 'container'
 
       regions:
-         details: "#details"
-         contact_web: "#contact-web"
-         branches: "#branches"
+         details: "#Details"
+         contact_web: "#Contact-Web"
+         branches: "#Branches"
+
+      events:
+        'click .smoothClick':'smoothClick'
 
       initialize: ->
          $(window).on 'scroll' , =>
@@ -27,6 +30,17 @@
                  'position': 'relative'
                  'top':'0px'
                  'width':'100%'
+
+      smoothClick: (e)->
+        if $(e.target).prop("tagName")!='a'
+          element = $(e.target).closest 'a'
+        else
+          element = e.target
+        String id = $(element).attr("id")
+        id = '#'+id.replace('to','')
+        $('html,body').animate({
+          scrollTop: $(id).offset().top-120
+        }, 1000);
          
    class About.details extends Marionette.CompositeView
       template: 'company/about/templates/details'

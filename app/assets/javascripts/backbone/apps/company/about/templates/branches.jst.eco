@@ -1,13 +1,14 @@
 <h3>Branches</h3>
-<div class="row company__row company__cell">
-	<div class="col-md-4 company__cell--right">
+<div class="company__branchesTable">
+<div class="company__branches">
+	<div class="company__branches__cell company__branches__cell--left">
 		<ul>
 			<li>Portugal, Lisbon</li>
 			<li>Venezuela, San Cristobal</li>	
 		</ul>
 
 	</div>
-	<div class="col-md-8">
+	<div class="company__branches__cell company__branches__cell--right">
 		<div class="row">
 			<div class="col-md-4">
 				<div class="col-md-3"></div>
@@ -31,4 +32,5 @@
 			<p>Mapa</p>
 		</div>
 	</div>
+</div>
 </div>
