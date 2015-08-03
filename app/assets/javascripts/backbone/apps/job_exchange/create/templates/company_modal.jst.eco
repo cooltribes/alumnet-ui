@@ -1,0 +1,36 @@
+<div class="bbm-modal__section">
+  <h2>Create Company</h2>
+    <form class="clearfix">
+      <div class="row">
+        <div class="col-md-12 form-col">
+          <label class="control-label" for="inputBorn">Name</label>
+          <input type="text" value="" class="form-control input-lg" name="name" id="name">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-col">
+          <label class="control-label" for="size">Size</label>
+          <select name="size" id="size" style="width: 100%"><%- @sizes_options() %></select>
+          <span class="help-block"></span>
+        </div>
+        <div class="col-md-6 form-col">
+          <label class="control-label">Sector</label>
+          <input type="hidden" name="sector_id" id="sectors" style="width: 100%">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-col">
+          <label class="control-label">Description</label>
+          <textarea name="description" id="description" class="form-control input-lg" rows="3" style="resize:none"></textarea>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="save">Save</a>
+  <a href="#" class="btn btn-default" id="cancel">Cancel</a>
+</div>
