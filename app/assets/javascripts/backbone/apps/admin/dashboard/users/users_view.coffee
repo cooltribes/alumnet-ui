@@ -94,6 +94,11 @@
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 270
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true
+          
           # 'titleTextStyle': { 'fontSize': 16 }
 
       @ui.graph_section.showAnimated(graph.render().el)
@@ -112,7 +117,11 @@
         options:
           is3D: true
           'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270                
+          'height': 270          
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true      
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -180,6 +189,10 @@
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 468
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -196,7 +209,11 @@
         dataTable: dataTable
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270                
+          'height': 270   
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true             
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -214,6 +231,10 @@
         options:
           is3D: true
           # 'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270                
+          'height': 270  
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true              
 
       @ui.graph_section.showAnimated(graph.render().el)

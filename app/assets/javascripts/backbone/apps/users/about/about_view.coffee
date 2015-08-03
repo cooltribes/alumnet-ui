@@ -411,16 +411,10 @@
       "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
 
-
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
-
-
-    # bindings:
-
-
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -777,3 +771,69 @@
       index = @collection.indexOf(childView.model)
       @collection.add newExperience,
         at: index + 1
+
+
+  class About.PublicProfile extends Marionette.LayoutView
+    template: 'users/about/templates/public_profile'
+
+    regions:
+      profile: "#profile-info"
+      skills: "#skills-list"
+      languages: "#languages-list"
+      experiences: "#experiences-list"
+
+    ui:
+      "addSkill": ".js-addSkill"
+      "addLanguage": ".js-addLanguage"
+      "modalCont": "#js-modal-container"
+      "facebook":"js-link-fb"
+      "twitter":"js-link-tw"
+      "web":"js-link-web"
+
+    events:
+      "click @ui.addSkill": "addSkill"
+      "click @ui.addLanguage": "addLanguage"
+      "click .smoothClick": "smoothClick"
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+
+      # $(window).on 'scroll' , =>
+      #   if $('body').scrollTop()>500
+      #     $('#aboutUseraffix').css
+      #       'position': 'fixed'
+      #       'width' : '181px'
+      #       'top' : '110px'
+      #   else
+      #     if $('html').scrollTop()>500
+      #       $('#aboutUseraffix').css
+      #         'position': 'fixed'
+      #         'width' : '181px'
+      #         'top' : '110px'
+      #     else
+      #       $('#aboutUseraffix').css
+      #         'position': 'relative'
+      #         'top':'0px'
+      #         'width':'100%'
+
+    templateHelpers: ->
+      userCanEdit: @userCanEdit
+      add_timestamp: (file)->
+        date = new Date()        
+        "#{file}?#{date.getTime()}"
+
+
+    addSkill: (e)->
+      e.preventDefault()
+      modal = new About.Modal
+        view: @skills.currentView
+        type: 0
+      @ui.modalCont.html(modal.render().el)
+
+
+    addLanguage: (e)->
+      e.preventDefault()
+      modal = new About.Modal
+        view: @languages.currentView
+        type: 1
+      @ui.modalCont.html(modal.render().el)

@@ -9,6 +9,7 @@
       "users/:id/photos": "userPictures"
       "users/:id/events": "userEvents"
       "users/:id/business-exchange": "userBusiness"
+      "users/:id/profile": "publicProfile"
 
 
 
@@ -24,6 +25,10 @@
     userAbout: (id)->
       controller = new UsersApp.About.Controller
       controller.showAbout(id)
+
+    publicProfile: (id)->
+      controller = new UsersApp.About.Controller
+      controller.showProfile(id)
 
     userFriends: (id)->
       controller = new UsersApp.Friends.Controller
