@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div class="col-md-6 form-col">
-          <label class="control-label" for="size">Size</label>
+          <label class="control-label" for="size">Company size</label>
           <select name="size" id="size" style="width: 100%"><%- @sizes_options() %></select>
           <span class="help-block"></span>
         </div>

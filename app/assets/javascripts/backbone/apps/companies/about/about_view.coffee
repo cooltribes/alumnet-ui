@@ -1,7 +1,7 @@
 @AlumNet.module 'CompaniesApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
    #Si son regiones utilizo layout
    class About.View extends Marionette.LayoutView
-      template: 'company/about/templates/about'
+      template: 'companies/about/templates/about'
       className: 'container'
 
       regions:
@@ -41,15 +41,15 @@
         $('html,body').animate({
           scrollTop: $(id).offset().top-120
         }, 1000);
-         
+
    class About.details extends Marionette.CompositeView
-      template: 'company/about/templates/details'
+      template: 'companies/about/templates/details'
       className: 'container-fluid'
 
    class About.contact_web extends Marionette.CompositeView
-      template: 'company/about/templates/contact_web'
+      template: 'companies/about/templates/contact_web'
       className: 'container-fluid'
 
    class About.branches extends Marionette.CompositeView
-      template: 'company/about/templates/branches'
+      template: 'companies/about/templates/branches'
       className: 'container-fluid'
