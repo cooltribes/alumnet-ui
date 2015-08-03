@@ -22,8 +22,8 @@
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
-
-
+      "selectCompany": "[name=company_id]"
+      "inputCompany": "#organization_name"
 
     events:
       "click .js-rmvRow": "removeItem"
@@ -73,6 +73,24 @@
         seniorities.results
 
     onRender: ->
+      view = @
+      companies = new Bloodhound
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        prefetch: AlumNet.api_endpoint + '/companies/'
+        remote:
+          wildcard: '%query'
+          url: AlumNet.api_endpoint + '/companies/?q[name_cont]=%query'
+
+      @ui.inputCompany.typeahead null,
+        name: 'companies'
+        display: 'name'
+        source: companies
+
+      @ui.inputCompany.bind 'typeahead:select', (e, suggestion)->
+        view.model.set(company_id: suggestion.id)
+        console.log view.model.get("company_id")
+
       @cleanAllSelects()
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
@@ -133,7 +151,6 @@
       unless aiesecExp == "International"
         @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      console.log @optionsForSelect2(cities_url, 'City')
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
@@ -233,7 +250,6 @@
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
-        console.log data
         itemView.model.set data
 
       @trigger('form:submit', @model)

@@ -1,6 +1,6 @@
 @AlumNet.module 'CompaniesApp.Submenu', (Submenu, @AlumNet, Backbone, Marionette, $, _) ->
   class Submenu.Menu extends Marionette.ItemView
-    template: 'company/submenu/templates/submenu'
+    template: 'companies/submenu/templates/submenu'
     className: 'navTopSubBar'
 
     initialize: (options) ->

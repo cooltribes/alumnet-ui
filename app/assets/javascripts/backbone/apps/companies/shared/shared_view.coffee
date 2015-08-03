@@ -1,10 +1,10 @@
 @AlumNet.module 'CompaniesApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Header extends Marionette.ItemView
-    template: 'company/shared/templates/header'
+    template: 'companies/shared/templates/header'
 
-    
+
   class Shared.Layout extends Marionette.LayoutView
-    template: 'company/shared/templates/layout'
+    template: 'companies/shared/templates/layout'
 
     regions:
       header: '#company-header'

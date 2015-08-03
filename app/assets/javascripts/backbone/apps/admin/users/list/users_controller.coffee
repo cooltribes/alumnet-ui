@@ -10,13 +10,13 @@
 
       # current_user = AlumNet.current_user
       if id?
-        querySearch = 
+        querySearch =
           q:
             "id_eq": id
         users = AlumNet.request("admin:user:entities", querySearch)
       else
         users = AlumNet.request("admin:user:entities", {})
-      
+
 
       # Region with users list
       usersView = new Users.UsersTable
@@ -55,11 +55,11 @@
                 q[attr].push value
               else
                 q[attr] = [value]
-            
+
 
           else
             validCollection = false
-            
+
 
         #Only if all filters are valid
         if validCollection
@@ -67,60 +67,7 @@
           q.m = @ui.logicOp.val()
           q["profile_first_name_or_cont"]
 
-          querySearch = 
+          querySearch =
             q: q
 
           AlumNet.request("admin:user:entities", querySearch)
-
-        #   @collection.each model, ->
-
-
-
-        #   model = @collection.at 0
-
-        #   #The main search query
-        #   querySearch = {}
-
-
-        #   if field == "name"
-        #     querySearch =
-        #       # q: [
-        #       #   s: [
-        #       #     {
-        #       #       name: ""
-        #       #       dir: "asc"
-        #       #     }
-        #       #   ]
-        #       #   g: [
-        #       #     {
-        #       #       c: [
-        #       #         {
-        #       #           a: [
-        #       #             {
-        #       #               name: "profile_first_name"
-        #       #             }
-        #       #           ]
-        #       #           p: "cont"
-        #       #           v: [
-        #       #             {
-        #       #               value: "go"
-        #       #             }
-        #       #           ]
-
-        #       #         }
-        #       #       ]
-        #       #       m: "and"
-        #       #     }
-        #       #   ]
-        #       # ]
-
-        #       q :
-        #         m: operator
-        #         profile_first_name_cont: value
-        #         profile_last_name_cont: value
-
-
-
-
-
-
