@@ -36,6 +36,7 @@
             newCollection.url = AlumNet.api_endpoint + '/groups/'+ group_id + '/posts?page='+posts.collection.page+'&per_page='+posts.collection.rows
             newCollection.fetch
               success: (collection)->
+                console.log collection
                 posts.collection.add(collection.models)
 
           posts.on "add:child", (viewInstance)->

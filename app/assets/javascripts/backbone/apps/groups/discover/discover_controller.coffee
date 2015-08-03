@@ -5,9 +5,8 @@
       groups = AlumNet.request("group:entities", {})
       groupsView = @getContainerView(groups)
       searchView = @getHeaderView(groupsView)
-
       layoutView = @getLayoutView()
-
+      console.log 'inicio: '+groupsView.collection.page
       AlumNet.mainRegion.show(layoutView)
 
       layoutView.header_region.show(searchView)
@@ -18,12 +17,14 @@
       # events for paginate
       groupsView.on "group:reload", ->
         ++groupsView.collection.page
-        newCollection = AlumNet.request("group:entities", {})
+        newCollection = AlumNet.request("group:pagination", {})
+        console.log groupsView.collection.page
         newCollection.url = AlumNet.api_endpoint + '/groups?page='+groupsView.collection.page+'&per_page='+groupsView.collection.rows
         newCollection.fetch
           success: (collection)->
-            console.log collection
+            console.log groupsView.collection
             groupsView.collection.add(collection.models)
+
       
       checkNewPost = false #flag for new posts
       groupsView.on "add:child", (viewInstance)->

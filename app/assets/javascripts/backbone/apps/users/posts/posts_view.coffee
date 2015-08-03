@@ -274,4 +274,5 @@
 
     loadMorePosts: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        console.log 'posts: '+@.cid
         @trigger 'post:reload' 

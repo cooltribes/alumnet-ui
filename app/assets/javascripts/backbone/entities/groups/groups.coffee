@@ -134,18 +134,23 @@
           model.trigger('save:success', response, options)
       join
 
+    getGroupPagination: (querySearch)->
+      newGroups = new Entities.GroupCollection
+      newGroups.url = AlumNet.api_endpoint + '/groups?page=1&per_page=3'
+      newGroups
+
     getGroupEntities: (querySearch)->
       initializeGroups() if Entities.groups == undefined
+      Entities.groups.page = 1
       Entities.groups.url = AlumNet.api_endpoint + '/groups?page='+Entities.groups.page+'&per_page='+Entities.groups.rows
       Entities.groups.fetch
         data: querySearch
-        reset: true
         success: (model, response, options) ->
           Entities.groups.trigger('fetch:success')
       Entities.groups
 
     getGroupsForAdmin: (querySearch)->
-      
+      groups = new Entities.GroupCollection
       groups.url = AlumNet.api_endpoint + '/admin/groups'
       groups.fetch
         data: querySearch
@@ -201,6 +206,9 @@
 
   AlumNet.reqres.setHandler 'group:entities', (querySearch) ->
     API.getGroupEntities(querySearch)
+
+  AlumNet.reqres.setHandler 'group:pagination', (querySearch) ->
+    API.getGroupPagination(querySearch)
 
   AlumNet.reqres.setHandler 'group:find', (id)->
     API.findGroup(id)

@@ -140,6 +140,7 @@
         view.official = @where({official: true})
         view.nonOfficial = @where({official: false})
         view.all = @slice()
+      console.log @
       $(window).scroll(@loadMoreGroups);
 
     events:
@@ -172,4 +173,5 @@
     loadMoreGroups: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'group:reload' 
+        console.log @.cid
         console.log "entro loadMoreGroups"
