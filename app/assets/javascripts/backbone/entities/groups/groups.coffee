@@ -100,6 +100,8 @@
 
   class Entities.GroupCollection extends Backbone.Collection
     model: Entities.Group
+    rows: 3
+    page: 1
 
     url: ->
       AlumNet.api_endpoint + '/groups'
@@ -134,14 +136,16 @@
 
     getGroupEntities: (querySearch)->
       initializeGroups() if Entities.groups == undefined
+      Entities.groups.url = AlumNet.api_endpoint + '/groups?page='+Entities.groups.page+'&per_page='+Entities.groups.rows
       Entities.groups.fetch
         data: querySearch
+        reset: true
         success: (model, response, options) ->
           Entities.groups.trigger('fetch:success')
       Entities.groups
 
     getGroupsForAdmin: (querySearch)->
-      groups = new Entities.GroupCollection
+      
       groups.url = AlumNet.api_endpoint + '/admin/groups'
       groups.fetch
         data: querySearch
@@ -209,3 +213,4 @@
 
   AlumNet.reqres.setHandler 'group:entities:deleted', (querySearch)->
     API.getGroupsDeleted(querySearch)
+
