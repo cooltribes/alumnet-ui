@@ -42,9 +42,11 @@
 
           <div class="col-md-3">
             <div class="filter-comparator-container form-group">
-              <select class="filter-comparator filters__input filters__input--lg form-control input-lg"></select>
+              <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
+                  <option value="">Select comparator</option>
+              </select>
+              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
               <span class="help-block"></span>
-              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--greySelectComparator" aria-hidden="true"></span>
             </div>
           </div>
 
