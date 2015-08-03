@@ -28,9 +28,14 @@
     events:
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
+      'click #showMore': 'showMore'
 
-    initialize: ->
+    initialize: (options)->
+      @bandera = options.bandera
       document.title = " AlumNet - Registration"
+
+    templateHelpers: ->
+      bandera: @bandera
 
     onShow: ->
       view = @
@@ -87,3 +92,10 @@
         data: { contacts: formatedContacts }
         success: (collection)->
           view.collection.set(collection.models)
+
+    showMore: (e)->
+      e.preventDefault()
+      @collection.fetch 
+        success: ->
+          $('#showMore').hide()
+          @bandera = false

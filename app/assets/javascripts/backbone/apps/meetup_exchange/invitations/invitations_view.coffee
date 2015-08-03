@@ -1,4 +1,7 @@
 @AlumNet.module 'MeetupExchangeApp.Invitations', (Invitations, @AlumNet, Backbone, Marionette, $, _) ->
+  class Invitations.TaskInvitationEmpty extends Marionette.ItemView
+    template: 'meetup_exchange/invitations/templates/empty'
+
   class Invitations.TaskInvitation extends Marionette.ItemView
     template: 'meetup_exchange/invitations/templates/invitation'
 
@@ -35,3 +38,4 @@
     template: 'meetup_exchange/invitations/templates/invitations'
     childView: Invitations.TaskInvitation
     childViewContainer: '.invitations-container'
+    emptyView: Invitations.TaskInvitationEmpty

@@ -1,26 +1,31 @@
-<div class="row margin_bottom">
-  
-  <div class="col-md-12 js-graph">
-    <label class="control-label">Loading chart...</label>
-
+<div class="margin_bottom">  
+  <div class="row">
+    <div class="col-md-12 js-graph">
+      <label class="control-label">Loading chart...</label>
+    </div>    
   </div>
   <% if @interval: %>
-    <div class="col-md-4">
-      <label class="control-label">Interval</label>    
+    <div class="row margin_top_small">
+      <div class="col-md-2 col-md-offset-3">
+        <label class="control-label">Interval</label>    
 
-    </div>
-    <div class="col-md-8 text-rigth">
-      <label class="radio-inline">
-        <input type="radio" name="interval" value="years">Years
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="interval" value="months">Months
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="interval" value="days">Days
-      </label>
+      </div>
+      <div class="col-md-6 text-rigth">
+        
+
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default <%= 'active' if @interval == 'years' %>">
+            <input type="radio" name="interval" id="option1" value="years" autocomplete="off" <%= "checked" if @interval == "years" %>> Years
+          </label>
+          <label class="btn btn-default <%= 'active' if @interval == 'months' %>">
+            <input type="radio" name="interval" id="option2" value="months" autocomplete="off" <%= "checked" if @interval == "months" %>> Months
+          </label> 
+          <label class="btn btn-default <%= 'active' if @interval == 'days' %>">
+            <input type="radio" name="interval" id="option2" value="days" autocomplete="off" <%= "checked" if @interval == "days" %>> Days
+          </label>          
+        </div>
+
+      </div>
     </div>
   <% end %>
 </div>
-
-

@@ -1,52 +1,65 @@
 <div class="container-fluid">
+  <h1>Discover</h1>
   <div class="row">
     <div class="col-md-3">
-      <h1>Discover</h1>
+      <div class="filter-logic-operator-container">
+        <select id="filter-logic-operator" class="filters__input filters__input--lg form-control input-lg">
+          <option value="any">Any</option>
+          <option value="all">All</option>
+        </select>
+        <span class="ico-triangle-down margin_right_xsmall filters__selectIcon" aria-hidden="true"></span>
+      </div>
     </div>
-    <div class="col-md-6">
-      <form id="search-form">
-          <div class="input-group">
-            <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
-            <span class="input-group-btn">
-            <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
-          </div>
-          <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
-        </form>
-      <!-- <div class="advanced-search margin_bottom">
-        <div class="advanced-search-container jobPost__search" id="searcher">
-          <div class="filter-logic-operator-container">
-            <select id="filter-logic-operator">
-              <option value="any">Any</option>
-              <option value="all">All</option>
-            </select>
-          </div>
-          <div class="filter">
+  </div>
+
+    <!--
+  <form id="search-form">
+    <div class="input-group">
+      <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
+      <span class="input-group-btn">
+      <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+    </div>
+    <p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>
+  </form> -->
+
+  
+  <div class="advanced-search margin_bottom">
+    <div class="advanced-search-container jobPost__search" id="searcher">
+      <div class="row">
+        <div class="filter">
+          <div class="col-md-4">
             <div class="filter-attribute-container">
-              <select class="filter-attribute">
+              <select class="filter-attribute filters__input filters__input--lg input-lg">
                 <option value="">Select field</option>
                 <option value="name">Title</option>
                 <option value="arrival_date">Arrival Date</option>
                 <option value="post_until">Departure Date</option>
                 <option value="task_attributes_value">Attributes</option>
               </select>
+              <span class="ico-triangle-down margin_right_xsmall filters__selectIcon" aria-hidden="true"></span>
             </div>
-            <div class="filter-comparator-container">
-              <select class="filter-comparator"></select>
-            </div>
-            <div class="filter-value-container">
-              <input class="filter-value"></input>
-            </div>
-            <a href="#" class="close-filter"><span class="glyphicon glyphicon-remove"></span></a>
           </div>
+          <div class="col-md-4">
+            <div class="filter-comparator-container">
+              <select class="filter-comparator filters__input filters__input--lg input-lg"></select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="filter-value-container">
+              <input class="filter-value filters__input filters__input--lg input-lg">
+            </div>
+          </div>
+          <a href="#" class="close-filter"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
+      </div>
+    </div> 
+  </div>
         <div>
           <a href="#" class="search btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
           <a href="#" class="clear btn btn-default">Clear</a>
           <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
         </div>
-      </div> -->
-    </div>
   </div>
 </div>
 

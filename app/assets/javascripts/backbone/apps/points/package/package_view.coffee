@@ -10,16 +10,19 @@
 			@trigger 'buy'
 
 		initialize: (options) ->
+			@prizeImage = options.model.get('image').image.card.url
 			@points = AlumNet.current_user.profile.get('points')
 			console.log @points
 
 		templateHelpers: ->
       		points: @points
+      		prizeImage: @prizeImage
 
 	class Package.ListView extends Marionette.CompositeView
 		template: 'points/package/templates/packages_list'
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
+		
 		initialize: (options) ->
-			#console.log options
+			console.log options.models
 			$('#pointsBar').hide();
