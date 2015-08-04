@@ -782,58 +782,20 @@
       languages: "#languages-list"
       experiences: "#experiences-list"
 
-    ui:
-      "addSkill": ".js-addSkill"
-      "addLanguage": ".js-addLanguage"
-      "modalCont": "#js-modal-container"
-      "facebook":"js-link-fb"
-      "twitter":"js-link-tw"
-      "web":"js-link-web"
-
     events:
-      "click @ui.addSkill": "addSkill"
-      "click @ui.addLanguage": "addLanguage"
-      "click .smoothClick": "smoothClick"
+      'click #js-message-send':'sendMensagge'      
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-
-      # $(window).on 'scroll' , =>
-      #   if $('body').scrollTop()>500
-      #     $('#aboutUseraffix').css
-      #       'position': 'fixed'
-      #       'width' : '181px'
-      #       'top' : '110px'
-      #   else
-      #     if $('html').scrollTop()>500
-      #       $('#aboutUseraffix').css
-      #         'position': 'fixed'
-      #         'width' : '181px'
-      #         'top' : '110px'
-      #     else
-      #       $('#aboutUseraffix').css
-      #         'position': 'relative'
-      #         'top':'0px'
-      #         'width':'100%'
-
+   
     templateHelpers: ->
       userCanEdit: @userCanEdit
       add_timestamp: (file)->
         date = new Date()        
         "#{file}?#{date.getTime()}"
 
-
-    addSkill: (e)->
+    sendMensagge: (e)->
       e.preventDefault()
-      modal = new About.Modal
-        view: @skills.currentView
-        type: 0
-      @ui.modalCont.html(modal.render().el)
+      AlumNet.trigger('conversation:recipient', null, @model)    
 
-
-    addLanguage: (e)->
-      e.preventDefault()
-      modal = new About.Modal
-        view: @languages.currentView
-        type: 1
-      @ui.modalCont.html(modal.render().el)
+   
