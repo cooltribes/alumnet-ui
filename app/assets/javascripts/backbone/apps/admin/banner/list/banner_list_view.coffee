@@ -83,7 +83,7 @@
       'buttonDown':'#js-move-down'
       'editBanner':'#js-edit-banner'      
       'upload':'.uploadLabel' 
-      'update':'.js-update'
+      'update':'#js-update'
 
     events:
       'click #js-deleteBanner': 'deleteBanner'
@@ -93,17 +93,13 @@
       'click @ui.update':'updateClicked' 
       'change #BannerImg': 'previewImage'
       'click #js-editBanner':'showBoxEditBanner'
-      'click #js-cancelEditBanner':'hideBoxEditBanner'
+      'click #js-cancelEditBanner':'showBoxEditBanner'
     
     showBoxEditBanner:(e)->
       e.preventDefault()
-      $(e.currentTarget).parent().parent().siblings("#js-boxEditBanner").slideToggle("slow")
-      $(e.currentTarget).parent().siblings("label").slideToggle("slow")
-
-    hideBoxEditBanner:(e)->
-      e.preventDefault()
-      $(e.currentTarget).parent().parent('#js-boxEditBanner').slideToggle("slow")
-      $(e.currentTarget).parent().parent().siblings().children("label").slideToggle("slow")
+      $("#js-boxEditBanner").slideToggle("slow")
+      $("#js-editImgBanner").slideToggle("slow")
+   
 
     initialize: (options)->      
       @collection = options.collection
@@ -123,7 +119,6 @@
               
     editClicked: (e)->
       e.preventDefault()
-      console.log "edit"
       $("[name='title']").prop('disabled', false)
       $("[name='link']").prop('disabled', false)
       $("[name='description']").prop('disabled', false)
