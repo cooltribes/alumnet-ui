@@ -20,9 +20,16 @@
               <!-- <img src="<%= @company.logo %>" alt="<%= @company.name %>" class="img-circle"> -->
             </div>
           <div class="col-md-9">
-            <div class="businessProfileCard__company__name">
+            <% if @tagline == null: %>
+              <div class="businessProfileCard__company__name--align">
                 <%= @company.name %>
-            </div>
+              </div>
+            <% end %>
+            <% if @tagline != null: %>
+              <div class="businessProfileCard__company__name">
+                <%= @company.name %>
+              </div>
+            <% end %>
             <div>
               <span class="userCard__position member-position text-small"><%= @tagline %></span>
             </div>
@@ -49,7 +56,9 @@
         <% end %>
       <% end %>
     </div>
-
+    <div class="taskCard__buttons">
+         <a href="#users/<%= @user.id %>/business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground js-job-details" >Learn more...</a>
+    </div>
 
   </div>
 </div>
