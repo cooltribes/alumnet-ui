@@ -14,6 +14,15 @@
         options = options + "<option value='#{key}' #{selected}>#{value}</option>"
       options
 
+    employees_count: ->
+      @get('employees').length
+
+    branches_count: ->
+      @get('branches').length
+
+    links_count: ->
+      @get('links').length
+
     validation:
       name:
         required: true
@@ -21,6 +30,11 @@
         required: true
       size:
         required: true
+
+  class Entities.CompaniesCollection extends Backbone.Collection
+    model: Entities.Company
+    url: ->
+      AlumNet.api_endpoint + "/companies"
 
 
 

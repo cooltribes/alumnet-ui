@@ -1,0 +1,18 @@
+<img src="<%= @logo.card %>">
+<div>
+  <%= @name %>
+</div>
+<div>
+  <%= @description %>
+</div>
+<div>
+  <%= @location() %>
+</div>
+<div>
+  <%= @sector.text %>
+</div>
+<div>
+  employees: <%= @employees_count %>
+  branches: <%= @branches_count %>
+  links: <%= @links_count %>
+</div>
