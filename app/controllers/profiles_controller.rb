@@ -4,8 +4,12 @@ class ProfilesController < ApplicationController
   skip_before_action :authenticate!
 
   def show
-    
+    public_profile = PublicProfile.new
+    @user = public_profile.user(params[:slug])
+    unless public_profile.valid?
+      render 'errors/e404'
+    end
   end
 
-    
+
 end

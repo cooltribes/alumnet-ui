@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post '/facebook/sign_up', to: 'facebook#sign_up', as: :facebook_sign_up
 
   #public profiles
-  get '/profiles', to: 'profiles#show'
+  get '/profiles/:slug', to: 'profiles#show'
   # get '/profiles', to: 'facebook#callback'
 
 

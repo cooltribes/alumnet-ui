@@ -1,13 +1,13 @@
 <% content_for :title, "AlumNet - Public Profile" %>
 <article class="container-fluid publicProfile">
   <div class="row col-md-10 col-md-offset-1">
-    
+
     <div class="col-md-3">
       <img src="http://placehold.it/250x250" alt="avatar" class="img-circle avatarImage">
     </div>
-    
+
     <div class="col-md-9">
-      
+
       <div class="publicProfile__membership">
         <div>
           <span class="glyphicon glyphicon-certificate"></span>
@@ -22,7 +22,7 @@
 
           <div class="metaInfoCard">
             <h3 class="metaInfoCard__title">
-              Nelson Ramirez  
+              <%= @user.name %>
             </h3>
 
             <ul class="metaInfoCard__list">
@@ -30,24 +30,24 @@
                 <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> City 1 of Country 0001 - Country 0001 in 1990/8/24
               </li>
               <li>
-                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> London - United Kingdom              
+                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> London - United Kingdom
               </li>
-            
-              <li>              
+
+              <li>
                 <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
                 nramirez@upsidecorp.ch
               </li>
-            </ul>        
+            </ul>
           </div>
 
         </div>
-        
+
         <div class="col-md-3">
           <div class="metaInfoCard">
             <h3 class="metaInfoCard__title">Languages</h3>
-            
+
             <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills" style="opacity: 1;">
-              
+
               <li>
                 <div class="overfloadText metaInfoCard__language">
                   English
@@ -69,56 +69,56 @@
                 </div>
               </li>
 
-            </ul>   
+            </ul>
 
-          </div>  
+          </div>
         </div>
         <div class="col-md-3">
-          
+
           <div class="metaInfoCard">
             <h3 class="metaInfoCard__title">Skills</h3>
-            
+
             <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills" style="opacity: 1;">
-              
+
               <li>
                 <div class="overfloadText metaInfoCard__language">
                   Marketing
                 </div>
-                
+
               </li>
               <li>
                 <div class="overfloadText metaInfoCard__language">
                   Backbone
-                </div>                
+                </div>
               </li>
               <li>
                 <div class="overfloadText metaInfoCard__language">
                   Ruby
-                </div>                
+                </div>
               </li>
               <li>
                 <div class="overfloadText metaInfoCard__language">
                   UI Design
-                </div>                
+                </div>
               </li>
 
-            </ul>   
+            </ul>
 
           </div>
 
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-10">
           <h2 id="professionalExperience">
-              Professional Experience    
+              Professional Experience
           </h2>
 
           <!-- One experience start -->
             <div class="experienceCard">
             <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position            
+              Name of the Position
             </h3>
             <h4>
               Name of the organization
@@ -136,7 +136,7 @@
             </ul>
 
             <div class="experienceCard__description">
-              Level of Experience: level one or two <br> 
+              Level of Experience: level one or two <br>
             </div>
 
             <div id="js-description" class="experienceCard__description"><br>
@@ -148,7 +148,7 @@
           <!-- One experience start -->
             <div class="experienceCard">
             <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position            
+              Name of the Position
             </h3>
             <h4>
               Name of the organization
@@ -166,7 +166,7 @@
             </ul>
 
             <div class="experienceCard__description">
-              Level of Experience: level one or two <br> 
+              Level of Experience: level one or two <br>
             </div>
 
             <div id="js-description" class="experienceCard__description"><br>
@@ -174,12 +174,12 @@
             </div>
           </div>
           <!-- One experience end -->
-          
+
           <%= image_tag("profile/aiesec130x20.png", alt: "AIESEC") %>
           <!-- One experience start -->
             <div class="experienceCard">
             <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position            
+              Name of the Position
             </h3>
             <h4>
               Name of the organization
@@ -197,7 +197,7 @@
             </ul>
 
             <div class="experienceCard__description">
-              Level of Experience: level one or two <br> 
+              Level of Experience: level one or two <br>
             </div>
 
             <div id="js-description" class="experienceCard__description"><br>
@@ -211,7 +211,7 @@
            <!-- One experience start -->
             <div class="experienceCard">
             <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position            
+              Name of the Position
             </h3>
             <h4>
               Name of the organization
@@ -229,7 +229,7 @@
             </ul>
 
             <div class="experienceCard__description">
-              Level of Experience: level one or two <br> 
+              Level of Experience: level one or two <br>
             </div>
 
             <div id="js-description" class="experienceCard__description"><br>
@@ -246,5 +246,5 @@
 
   </div>
 
-  
+
 </article>
