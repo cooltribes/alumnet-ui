@@ -78,8 +78,29 @@
             profile = view.current_user.profile
             birthday = profile.get('born')
             birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+
+            parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")
+            content_html = '<iframe src="https://api.paymentwall.com/api/cart/?address='+data.address+'&auth_token='+auth_token+'&city_id='+data.city_id+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&customer[address]='+data.address+'&customer[birthday]='+birthday_object.getTime()+'&customer[country]='+model.get('name')+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&email='+view.current_user.get("email")
+
+            subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription' }})
+            subscriptions.on 'fetch:success', (collection)->
+              subscriptions.each (subscription, index)->
+                console.log subscription
+                console.log index
+                parameters_string += 'external_ids['+index+']='+subscription.get('sku')
+                content_html += '&external_ids['+index+']='+subscription.get('sku')
+
+              parameters_string +='key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
+              console.log parameters_string
+              content_html += '&key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&widget=p1_1'+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+              console.log content_html
+              view.ui.paymentwallContent.html(content_html)
+                
+
+            #parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
+            #content_html = '<iframe src="https://api.paymentwall.com/api/cart/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&customer[address]='+data.address+'&customer[country]='+model.get('name')+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
             
-            parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
-            view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&customer[address]='+data.address+'&customer[country]='+model.get('name')+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>')
+
+            
       else
         $.growl.error({ message: "Please fill address fields" })

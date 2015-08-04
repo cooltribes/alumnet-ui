@@ -27,8 +27,8 @@
       initializeProducts() if Entities.products == undefined
       Entities.products.fetch
         data: querySearch
-        success: (model, response, options) ->
-          Entities.products.trigger('fetch:success')
+        success: (collection, response, options) ->
+          Entities.products.trigger('fetch:success', collection)
       Entities.products
 
     getNewProduct: ->
