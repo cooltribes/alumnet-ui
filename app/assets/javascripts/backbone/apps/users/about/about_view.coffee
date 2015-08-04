@@ -411,16 +411,10 @@
       "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
 
-
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
-
-
-    # bindings:
-
-
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -777,3 +771,31 @@
       index = @collection.indexOf(childView.model)
       @collection.add newExperience,
         at: index + 1
+
+
+  class About.PublicProfile extends Marionette.LayoutView
+    template: 'users/about/templates/public_profile'
+
+    regions:
+      profile: "#profile-info"
+      skills: "#skills-list"
+      languages: "#languages-list"
+      experiences: "#experiences-list"
+
+    events:
+      'click #js-message-send':'sendMensagge'      
+
+    initialize: (options)->
+      @userCanEdit = options.userCanEdit
+   
+    templateHelpers: ->
+      userCanEdit: @userCanEdit
+      add_timestamp: (file)->
+        date = new Date()        
+        "#{file}?#{date.getTime()}"
+
+    sendMensagge: (e)->
+      e.preventDefault()
+      AlumNet.trigger('conversation:recipient', null, @model)    
+
+   
