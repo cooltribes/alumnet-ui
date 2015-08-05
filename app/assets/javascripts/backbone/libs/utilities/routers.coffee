@@ -1,7 +1,7 @@
 @AlumNet.module 'Routers', (Routers, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Routers.Base extends Marionette.AppRouter
-    before: (route)->
+    before: (route, args)->
       current_user = AlumNet.current_user
       unless current_user.isApproved()
         ## TODO: for security fetch profile, to be sure that the data is trusted
@@ -9,7 +9,21 @@
         @goToRegistration(step)
         false
       else
-        if current_user.isBanned()
+        if current_user.isExternal()
+          AlumNet.execute('header:show:external')
+
+          console.log "before"  
+          console.log route
+          route = @changeRouteForExternal(route)
+          console.log route
+          
+          
+          if _.contains(@externalRoutes(), route)
+            true
+          else
+            AlumNet.trigger 'show:error', 403
+            false
+        else if current_user.isBanned()
           AlumNet.trigger 'show:banned'
           false
         else
@@ -31,6 +45,37 @@
           AlumNet.trigger 'registration:approval'
         else
           false
+
+    changeRouteForExternal: (route)->
+      from = [
+        "users/:id/posts"
+      ]
+
+      if _.contains(from, route)
+        to = [
+          "users/:id/profile"
+        ]
+        changes = _.object(from, to)
+        route = changes[route]
+        # AlumNet.navigate("##{route}")
+
+      route
+
+    onRoute: (name, path, args)->
+      console.log "onroute"  
+      console.log name
+      console.log path
+      console.log args
+
+
+    externalRoutes: ->
+      [
+        "job-exchange",
+        "job-exchange/my-posts",
+        "job-exchange/new",
+        "job-exchange/automatches",
+        "users/:id/profile",
+      ]
 
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->
