@@ -12,22 +12,6 @@
       @posts = new Entities.PostCollection
       @posts.url = @urlRoot() + @id + '/posts'
 
-      #Pageable Collection
-      # @posts = new Entities.PostCollection [],
-        # mode: "infinite"
-        # ,
-        # state: 
-        #   pageSize: 
-          # firstPage: 1
-          # currentPage: 1
-        # ,
-        # url: @urlRoot() + @id + '/posts'
-        # queryParams:
-          # totalPages: null,
-          # totalRecords: null,
-      
-
-
       @on "change", ->
         @profile.fetch({async:false})
 
@@ -45,6 +29,9 @@
 
     isAdmin: ->
       @get "is_admin"
+
+    isExternal: ->
+      @profile.get("role") == "External"
 
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
@@ -123,6 +110,8 @@
         "regional"
       else if @get('is_nacional_admin')
         "nacional"
+      else if @get('is_external')
+        "external"
       else
         "regular"
 

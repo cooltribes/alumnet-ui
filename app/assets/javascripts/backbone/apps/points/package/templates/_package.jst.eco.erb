@@ -1,6 +1,10 @@
 <div class="col-md-3 col-xs-6 packageCard margin_top_medium">
 	<div>
-		<%= image_tag('points/blank.jpg', width:"100%", class:"packageCard__image") %>
+		<%% if @prizeImage: %>
+		<img src="<%%= @prizeImage %>" class="packageCard__image" alt="Image not available">
+		<%% else: %>
+		<%= image_tag('points/blank.jpg', class:"packageCard__image") %>
+		<%% end %>
 		<span class="packageCard__cost">
 			<div class="text-center">
 				<%%= @price %>

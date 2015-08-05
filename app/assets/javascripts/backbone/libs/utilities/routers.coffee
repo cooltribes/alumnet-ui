@@ -16,8 +16,7 @@
           console.log route
           route = @changeRouteForExternal(route)
           console.log route
-          
-          
+
           if _.contains(@externalRoutes(), route)
             true
           else
@@ -77,11 +76,12 @@
         "users/:id/profile",
       ]
 
+
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->
       current_user = AlumNet.current_user
       unless current_user.isAdmin()
         return false
 
-      AlumNet.execute('header:show:admin')  
+      AlumNet.execute('header:show:admin')
       true

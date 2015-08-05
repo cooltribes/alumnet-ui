@@ -1,4 +1,7 @@
 @AlumNet.module 'BusinessExchangeApp.Invitations', (Invitations, @AlumNet, Backbone, Marionette, $, _) ->
+  class Invitations.TaskInvitationEmpty extends Marionette.ItemView
+    template: 'business_exchange/invitations/templates/empty'
+
   class Invitations.TaskInvitation extends Marionette.ItemView
     template: 'business_exchange/invitations/templates/invitation'
     className: 'col-md-4'
@@ -37,3 +40,4 @@
     childView: Invitations.TaskInvitation
     childViewContainer: '.invitations-container'
     className: 'container-fluid'
+    emptyView: Invitations.TaskInvitationEmpty

@@ -10,6 +10,7 @@
   #Vista para crear un banner
   class BannerList.CreateView extends Marionette.ItemView
     template: 'admin/banner/list/templates/createBanner'
+    className: 'col-md-8 col-md-offset-2'
 
     initialize: (options)->
       @collection = options.collection
@@ -26,10 +27,18 @@
           $group.find('.help-block').html(error).removeClass('hidden')
 
     events:
+      'click #js-btnNewBanner':'showBoxNewBanner'
+      'click #js-cancelNewBanner':'showBoxNewBanner'
       'change #BannerImg': 'previewImage'
       'click #js-addBanner': 'addBanner'
 
 
+    showBoxNewBanner:(e) ->
+      e.preventDefault()
+      $("#js-newBanner").slideToggle("slow")
+      $("#js-btnNewBanner").toggle("slow") 
+
+    
     addBanner: (e)->
       e.preventDefault()
       view = @
@@ -39,7 +48,10 @@
         formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
+      console.log data
+      
       @model.set(data)
+
       if @model.isValid(true)
         options_for_save =
           wait: true
@@ -50,7 +62,7 @@
             view.collection.add(model)
         @model.save(formData, options_for_save)
         @render()
-  
+    
 
     previewImage: (e)->
       input = @.$('#BannerImg')
@@ -71,7 +83,7 @@
       'buttonDown':'#js-move-down'
       'editBanner':'#js-edit-banner'      
       'upload':'.uploadLabel' 
-      'update':'.js-update'
+      'update':'#js-update'
 
     events:
       'click #js-deleteBanner': 'deleteBanner'
@@ -80,6 +92,14 @@
       'click @ui.editBanner': 'editClicked'
       'click @ui.update':'updateClicked' 
       'change #BannerImg': 'previewImage'
+      'click #js-editBanner':'showBoxEditBanner'
+      'click #js-cancelEditBanner':'showBoxEditBanner'
+    
+    showBoxEditBanner:(e)->
+      e.preventDefault()
+      $("#js-boxEditBanner").slideToggle("slow")
+      $("#js-editImgBanner").slideToggle("slow")
+   
 
     initialize: (options)->      
       @collection = options.collection
@@ -167,11 +187,15 @@
   #Vista para lista de banners
   class BannerList.BannerTable extends Marionette.CompositeView
     template: 'admin/banner/list/templates/banner_table'
+    className: 'col-md-8 col-md-offset-2'
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
+
+    
+
       
     initialize: (options)->
-      document.title='AlumNet - Banners Management'      
+      document.title= 'AlumNet - Banners Management'      
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
          

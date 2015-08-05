@@ -10,6 +10,7 @@
       <div class="form-group">
         <select name="role" class="form-control input-lg" id="role">
           <option value="regular" <%= selected("regular", @roleText) %>>Regular</option>
+          <option value="external" <%= selected("external", @roleText) %>>External</option>
           <option value="nacional" <%= selected("nacional", @roleText) %>>National admin</option>
           <option value="regional" <%= selected("regional", @roleText) %>>Regional admin</option>
           <option value="alumnet" <%= selected("alumnet", @roleText) %>>Alument admin</option>

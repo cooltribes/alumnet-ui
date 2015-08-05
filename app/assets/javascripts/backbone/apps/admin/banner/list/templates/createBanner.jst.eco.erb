@@ -1,35 +1,47 @@
-<h2>Add new banner</h2>
-<div class="row">
-  <div class="col-md-7">
+<hr>
+<div class="text-right">
+  <a id="js-btnNewBanner" href="#" class="createBanner__btn createBanner__btnAdd" title="Add banner">
+  Add new banner
+  </a>
+</div>
+
+<div id="js-newBanner" class="visibility">
+  <h2>Add new banner</h2>
+
+  <div class="form-group">
+    <label class="createBanner__fileLabel">
+      <span class="glyphicon glyphicon-open"></span>Upload image
+      <input class="createBanner__file" type="file" name="picture" id="BannerImg">
+    </label>
+       <img id="preview-banner" class="createBanner__img" src="">
+  </div>
+
+  <div class="row">
     <form>
-      <div class="form-group">
-          <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
-          <input type="text" class="form-control" name="title" id="bannerTitle" placeholder="Enter the title">
-           <span class="help-block"></span>
-        </div>
+      <div class="col-md-6">
         <div class="form-group">
-          <label class="createBanner__label" for="bannerLink">Link:</label>
-          <input type="text" class="form-control" name="link" id="bannerLink" placeholder="http://www.example.com/">
-           <span class="help-block"></span>
+            <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
+            <input type="text" class="form-control" id="bannerTitle" name="title"  placeholder="Enter the title">
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <label class="createBanner__label" for="bannerLink">Link:</label>
+            <input type="text" class="form-control" name="link" id="bannerLink" placeholder="Enter the link">
+            <span class="help-block"></span>
+          </div>
         </div>
+    <div class="col-md-6">
         <div class="form-group">
           <label class="createBanner__label" for="bannerContent">Content:</label>
-         <textarea class="form-control" rows="3"  name="description" for="bannerContent" placeholder="Enter the content"></textarea>
+          <textarea class="form-control" rows="3" name="description" for="bannerContent" placeholder="Enter the content"></textarea>
           <span class="help-block"></span>
-        </div>
-   </form>
-  </div>
-  <div class="col-md-5">
-    <form>
-      <div class="form-group">
-        <label class="createBanner__fileLabel">
-          <span class="glyphicon glyphicon-open"></span>Upload picture
-          <input class="createBanner__file" type="file" name="picture" id="BannerImg">          
-          <span class="help-block"></span>
-        </label>
-        <img id="preview-banner" class="createBanner__img" src="">
-        </div>
+          </div>
+    </div>
+
+    <div class="createBanner__editButtons col-md-12 text-right">
+      <a id="js-cancelNewBanner" href="#" class="createBanner__btn btn-default-noBackground--borderGray" title="Add banner">Cancel</a>
+      <a href="#" id="js-addBanner" class="createBanner__btn btn-primary btn-primary-noBackground--borderBlue" title="Add banner">Create</a>
+    </div>
     </form>
-       <a href="#" class="createBanner__btn createBanner__btnAdd" title="Add banner" id="js-addBanner">Add</a>
   </div>
 </div>
