@@ -238,6 +238,10 @@
       @picture_ids = []
       $(window).scroll(@loadMorePosts);
 
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+      
     childViewOptions: ->
       userModel: @model
       current_user: @current_user

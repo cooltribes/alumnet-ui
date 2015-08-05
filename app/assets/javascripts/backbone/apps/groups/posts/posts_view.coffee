@@ -250,6 +250,10 @@
       @picture_ids = []
       $(window).scroll(@loadMorePosts);
 
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+      
     templateHelpers: ->
       userCanPost: @group.userIsMember()
       groupJoinProccess: @group.get('join_proccess')

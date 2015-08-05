@@ -142,6 +142,10 @@
         view.all = @slice()
       console.log @
       $(window).scroll(@loadMoreGroups);
+    
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
 
     events:
       'click #js-filter-all': 'filterAll'
@@ -172,6 +176,4 @@
 
     loadMoreGroups: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'group:reload' 
-        console.log @.cid
-        console.log "entro loadMoreGroups"
+        @trigger 'group:reload'

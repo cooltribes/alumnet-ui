@@ -255,7 +255,11 @@
       document.title = " AlumNet - Home"
       @picture_ids = []    
       $(window).scroll(@loadMoreBooks);
-        
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+              
     childViewOptions: ->
       current_user: @model
     
