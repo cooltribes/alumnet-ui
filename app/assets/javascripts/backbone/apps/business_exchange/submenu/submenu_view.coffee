@@ -14,7 +14,7 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
-      console.log @invitations.length
+      # console.log @invitations.length
       length: @invitations.length
       model = @model
       classOf: (step) =>
