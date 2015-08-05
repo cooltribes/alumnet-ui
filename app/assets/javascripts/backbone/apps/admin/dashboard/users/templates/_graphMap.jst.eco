@@ -1,0 +1,59 @@
+<div class="margin_bottom">  
+  <div class="row">
+    <div class="col-md-6 js-graph">
+      <label class="control-label">Loading chart...</label>
+    </div>    
+    <div class="col-md-6 js-table">
+  
+      <% if @dataTable: %>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default <%= 'active' if @geo == 'countries' %>">
+            <input type="radio" name="geo" id="option1" value="countries" autocomplete="off" <%= "checked" if @geo == "countries" %>> Alumni per Country
+          </label>
+          <label class="btn btn-default <%= 'active' if @geo == 'regions' %>">
+            <input type="radio" name="geo" id="option2" value="regions" autocomplete="off" <%= "checked" if @geo == "regions" %>> Alumni per Region
+          </label>          
+        </div>
+
+
+        <table class="table table-striped margin_top">
+        <thead>
+          <tr>
+            <th></th>
+            <th><a href="#" class="js-changeType" data-type="1" >
+              Registrants
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="2" >
+              Members
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="3" >
+              LT Members
+            </a></th>
+            <th><a href="#" class="js-changeType" data-type="4" >
+              Total
+            </a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% _.all @dataTable, (country, i, dataTable)->: %>
+
+            <% return if i > 10 %>
+            <% if i > 0: %>
+                <tr>
+                  <th scope="row"><%= country[0] %></th>
+                  <td><%= country[1] %></td>
+                  <td><%= country[2] %></td>
+                  <td><%= country[3] %></td>
+                  <td><%= country[4] %></td>
+                </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>      
+    <% else: %>
+      <label class="control-label">Loading table...</label>        
+    <% end %>
+    </div>    
+  </div>
+  
+</div>

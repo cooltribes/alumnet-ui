@@ -5,7 +5,7 @@
 
       <div id="userBusinessAffix">
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
-          <div>
+         <!--  <div>
             <% if @userCanEdit: %>
             <label class="uploadF uploadF--positionLogo ">
               <div class="uploadF--blue">
@@ -16,7 +16,7 @@
             </label>
             <% end %>
             <img src="" class="userBusiness__logo img-responsive">
-          </div>
+          </div> -->
           <div class="userBusiness__company">
             <p class="js-company-name userBusiness__companyN">
               <%= @company.name %>
@@ -45,17 +45,17 @@
             </li>
           </ul>
         </div>
-        <div class="userBusiness__flechas">
+      <!--   <div class="userBusiness__flechas">
           <div class="userBusiness__flechas--disable">
             <div class="userBusiness__flechas--in"><</div>
           </div>
           <div class="userBusiness__flechas--out">
             <div class="userBusiness__flechas--in">></div>
           </div>
-        </div>
-        <% if @userCanEdit: %>
+        </div> -->
+        <!-- <% if @userCanEdit: %>
           <a href="#" title="Create Business" class="btn btn-primary-noBackground userBusiness__btnCreate js-create"><span class="glyphicon glyphicon-plus"></span> Add new section</a>
-        <% end %>
+        <% end %> -->
       </div>
     </div>
     <!-- Barra lateral -->
@@ -143,7 +143,7 @@
 
         <div class="userBusiness__cell userBusiness__cell--left">
           <h3 class="no-margin" id="WhyMe">
-            Why to make business with me
+            Why me
             <% if @userCanEdit: %>
               <a href="#" data-target="business-me" class="editLink js-edit pull-right" >
                 <span class="glyphicon glyphicon-pencil"></span>

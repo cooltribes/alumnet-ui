@@ -1,21 +1,23 @@
 <div class="jobPost">
-  <div class="jobPost__name"><h3>
+  <div class="jobPost__name"><h3 class="overfloadText overfloadText--blue">
     <a href="#meetup-exchange/<%= @id %>">
       <%= @name %>
     </a>
   </h3></div>
   <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
-  <div class="programCardDescription jobPost__description overfloadText"><%- @formatted_description %></div>
+  <div class="programCardDescription jobPost__description">
+    <%- @formatted_description %>
+  </div>
       <!--<div class="jobPostDetail__description overfloadText">
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
       </div>-->
   <% if @user: %>
     <div class="row user">
-      <div class="col-md-3 no-padding-rigth text-right">
-        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+      <div class="col-md-2 text-text-right">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
       </div>
-      <div class="col-md-9 jobPost__user overfloadText">
+      <div class="col-md-10 jobPost__user overfloadText">
         <span>Posted by</span>
         <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
         <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>

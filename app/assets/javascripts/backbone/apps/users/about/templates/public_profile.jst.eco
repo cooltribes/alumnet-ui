@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row col-md-10 col-md-offset-1">
+    
+    <div class="col-md-3">
+      <% if @avatar.extralarge: %>
+        <img src=<%= @add_timestamp(@avatar.extralarge) %> alt="avatar" id="preview-avatar" class="img-circle publicProfile__avatarImage">
+      <% else: %>
+        <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" class="img-circle publicProfile__avatarImage">
+      <% end %>
+
+      <a href="#" id="js-message-send" title="Send a message" class="publicProfile__btnMessage ico-chat btn btn-lg btn-primary-noBackground"> SEND A MESSAGE</a>
+
+    </div>
+
+    <div class="col-md-9">
+
+      <% if @member==1 || @member==2: %>
+        <div class="publicProfile__membership">
+          <div>            
+            <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+            MEMBER
+          </div>
+        </div>
+      <% end %>
+      <% if @member==3: %>
+        <div class="publicProfile__membership">
+          <div>
+            <span class="glyphicon glyphicon-certificate"></span>
+            <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
+            <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+            LIFETIME MEMBER
+          </div>
+        </div>
+      <% end %>
+
+      
+
+      <div class="row">
+
+        <div class="col-md-6" >
+          <div id="profile-info" class="metaInfoCard">
+          </div>
+        </div>
+        <div class="col-md-3">      
+          <div class="metaInfoCard">
+            
+            <h3 class="metaInfoCard__title">Languages</h3>            
+            <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills">
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="metaInfoCard">
+            <h3 class="metaInfoCard__title">Skills</h3>
+            <ul id="skills-list" class="metaInfoCard__list metaInfoCard__list--skills">
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-10">
+          <div id="experiences-list">
+            
+          </div>
+        </div>
+      </div>
+
+
+      
+    </div>
+
+  </div>
+  
+</div>

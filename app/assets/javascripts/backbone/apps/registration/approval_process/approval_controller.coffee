@@ -2,6 +2,24 @@
 
   class Approval.Controller
 
+    activateUser: ->
+      Backbone.ajax
+        url: AlumNet.api_endpoint + "/me/activate"
+        method: "post"
+        success: (data)->
+          if data.status == "active"
+            AlumNet.current_user.fetch
+              success: ->
+                if AlumNet.current_user.profile.get('role') == "External"
+                  AlumNet.headerRegion.reset()
+                  alert "Hola Externo!"
+                else
+                  AlumNet.headerRegion.reset()
+                  AlumNet.navigate("posts", { trigger: true })
+          else
+            console.log "nop"
+            $.growl.error { message: data.status }
+
     showApproval: ->
       # creating layout
       layoutView = @getLayoutView()
@@ -12,13 +30,18 @@
 
       #Getting the entire collection of users
       # users = AlumNet.request('user:entities', {})
-      users = AlumNet.request('user:entities', {}, {fetch: false})
+      users = AlumNet.request('user:entities', {}, {fetch: true})
+      users.on "fetch:success", ->
+        if users.length > 3
+          users.set(users.slice(0,3))
 
-      approvalView = @getFormView users
+      approvalView = @getFormView users,true
       layoutView.form_region.show(approvalView)
 
       approvalView.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
+        #users.on "fetch:success", ->
+        #  console.log users.length 
 
       approvalView.on 'contacts:search', (contacts)->
         approvalView.collection = new AlumNet.Entities.ContactsInAlumnet
@@ -53,9 +76,10 @@
     getSideView: ->
       AlumNet.request("registration:shared:sidebar", 5)
 
-    getFormView: (users) ->
+    getFormView: (users,bandera) ->
       current_user = AlumNet.current_user
 
       new Approval.Form
         model: current_user
         collection: users
+        bandera: bandera

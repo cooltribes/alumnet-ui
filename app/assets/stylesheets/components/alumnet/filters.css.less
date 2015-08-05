@@ -1,0 +1,73 @@
+/***
+
+COMPONENT NAME: Filters
+DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
+
+***/
+
+@import 'conf/conf.css.less';
+
+.filters{
+
+	&__input{
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		box-shadow: none;
+		padding: 0px 0px 0px 8px;
+
+		&--lg{
+			background-color: #fff;
+			border-radius: 0px;
+		}
+	}
+
+	&__selectIcon{
+		position: absolute;
+	    margin-top: -30px;
+	    right: 10px;
+	    width: 34px;
+	    pointer-events: none;
+
+		&--grey{
+			color: #4c6672;
+		}
+	
+	}
+
+	&__colorFilter{
+		
+		color: @black;
+		padding: 1px 5px 10px 20px;
+    	margin-top: 20px;
+		font-weight: 100;
+
+		&--blue{
+			background-color: @blue;
+			
+		}
+	}
+
+	&__iconDelete{
+		color: @white;
+		background-color: #1978A4;
+		margin-top: 10px;
+	}
+
+	&__btnClear{
+		margin-top: 10px;
+	  	border: #FFFFFF;
+	  	background-color: #FFFFFF;
+	  	text-transform: uppercase;
+	  	font-size: inherit;
+	  	color: @blue;
+	}
+
+	&__btnSearch{
+		margin-top: 10px;
+	  	border: #2099d0;
+	  	background-color: #2099d0;
+	  	text-transform: uppercase;
+	  	font-size: inherit;
+	}	
+
+}

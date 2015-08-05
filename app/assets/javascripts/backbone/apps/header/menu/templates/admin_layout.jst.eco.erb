@@ -1,6 +1,6 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
   <div class="navTopBarAdmin__container container-fluid">  <!-- Top Bar -->
-  
+
   <div class="navbar-header col-md-2">
     <button class="navTopBarAdmin__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="ico-menu"></span>
@@ -31,37 +31,45 @@
         </a>
       </li>
       <%% if @isAlumnetAdmin: %>
-        <li>
-          <a class="navTopBarAdmin__left__item" href="#admin/regions">
-            <i class="glyphicon glyphicon-globe"></i>
-            Regions
-          </a>
-        </li>
+      <li>
+        <a class="navTopBarAdmin__left__item" href="#admin/regions">
+          <i class="glyphicon glyphicon-globe"></i>
+          Regions
+        </a>
+      </li>
       <%% end %>
       <%% if @isAlumnetAdmin: %>
       <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/banner">
-          <i class="glyphicon glyphicon-list"></i>
-          Banner
+        <a class="navTopBarAdmin__left__item" href="" id="adminSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <i class="glyphicon glyphicon-cog"></i>
+          SETTINGS
         </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/actions">
-          <i class="icon-entypo-basket"></i>
-          Points System
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/prizes">
-          <i class="glyphicon glyphicon-gift"></i>
-          Prizes
-        </a>
-      </li>
-      <li>
-        <a class="navTopBarAdmin__left__item" href="#admin/features">
-          <i class="icon-entypo-star"></i>
-          Features
-        </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="adminSettings">
+          <li role="presentation">
+            <a role="menuitem" href="#admin/banner">
+              <i class="glyphicon glyphicon-list"></i>
+              Banner
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" href="#admin/actions">
+              <i class="icon-entypo-basket"></i>
+              Points System
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" href="#admin/prizes">
+              <i class="glyphicon glyphicon-gift"></i>
+              Prizes
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" href="#admin/features">
+              <i class="icon-entypo-star"></i>
+              Features
+            </a>
+          </li>
+        </ul>
       </li>
       <%% end %>
     </ul>
@@ -89,5 +97,5 @@
   </nav>
 </div>
 </div>
-<div id="submenu-region">
+<div id="submenu-region"></div>
 </header>

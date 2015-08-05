@@ -1,0 +1,18 @@
+<div class="row">
+  <form>
+    <div class="form-group">
+      <input name="email" id="email">
+      <span class= "help-block"></span>
+    </div>
+    <div class="form-group">
+      <select name="role" id="role">
+        <option value="admin">AlumNet Admin</option>
+        <option value="regular">Regular</option>
+        <option value="external">External</option>
+      </select>
+      <span class= "help-block"></span>
+    </div>
+    <a href="#" id="js-cancel" class="btn btn-default">CANCEL</a>
+    <a href="#" id="js-save" class="btn btn-default">SAVE</a>
+  </form>
+</div>

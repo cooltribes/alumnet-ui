@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-md-8">
+		<div class="company__row company__cell">
+			<span id="description"><%= @description %></span>
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-description">edit</a>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class=" company__row company__cell">
+			<h3 class="no-margin">Company size</h3>
+			<span id="size"><%= @size.text %></span> employees
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-size">edit</a>
+			<% end %>
+			<ul>
+				<li>Employees: <%= @employees_count %></li>
+				<li>Alumni</li>
+			</ul>
+		</div>
+		<div class=" company__row company__cell">
+			<h3 class="no-margin">Friends</h3>
+			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
+			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
+			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
+			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
+		</div>
+		<div class=" company__row company__cell">
+			<h3 class="no-margin">Industry</h3>
+			<span id="sector"><%= @sector.text %></span>
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-sector">edit</a>
+			<% end %>
+		</div>
+	</div>
+</div>

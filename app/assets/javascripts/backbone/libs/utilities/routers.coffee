@@ -9,7 +9,14 @@
         @goToRegistration(step)
         false
       else
-        if current_user.isBanned()
+        if current_user.isExternal()
+          AlumNet.execute('header:show:external')
+          if _.contains(@externalRoutes(), route)
+            true
+          else
+            AlumNet.trigger 'show:error', 403
+            false
+        else if current_user.isBanned()
           AlumNet.trigger 'show:banned'
           false
         else
@@ -32,11 +39,14 @@
         else
           false
 
+    externalRoutes: ->
+      ["job-exchange"]
+
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->
       current_user = AlumNet.current_user
       unless current_user.isAdmin()
         return false
 
-      AlumNet.execute('header:show:admin')  
+      AlumNet.execute('header:show:admin')
       true

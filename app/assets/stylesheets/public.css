@@ -15,5 +15,6 @@
  *= require_tree ./libs
  *= require temporal-cooltribes
  *= require apps/homeAlumNet/homeAlumNet
+ *= require_tree ./apps/public-pages
  *= require_self
  */

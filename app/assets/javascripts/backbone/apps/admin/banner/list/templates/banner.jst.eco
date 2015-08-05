@@ -1,37 +1,51 @@
-<hr>
-<h2>BANNER <%= @id %></h2>
-<div class="row">
-  <div class="col-md-7">
-    <form>
-      <div class="form-group">
-          <label class="createBanner__label" for="title">Banner's title </label>
-          <input type="text" name="title" class="form-control" id="title" placeholder="<%= @title %>" disabled>
-        </div>
-        <div class="form-group">
-          <label class="createBanner__label" for="link">Link:</label>
-          <input type="text" name="link" class="form-control" id="link" placeholder="<%= @link %>" disabled>
-        </div>
-        <div class="form-group">
-          <label class="createBanner__label" for="content">Content:</label>
-         <textarea class="form-control" name="description" rows="3" for="content" placeholder="<%= @description %>" disabled></textarea>
-        </div>
-        <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
-        <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
-   </form>
-  </div>
-  <div class="col-md-5">
-    <form>
-      <div class="form-group">
+<div class="form-group">
+  <div>
+    <div class="createBanner__blackBox" id="js-blackBox">
+      <h2 class="no-margin">#<%= @id %></h2>
+      <a class="createBanner__flecha glyphicon glyphicon-download js-move-down" id="js-move-down"></a>
+      <a class="createBanner__flecha glyphicon glyphicon-upload js-move-up" id="js-move-up"></a>
+      <h2 class="no-margin"><%= @title %></h2>
+      <span id="js-editBanner" class="ico-edit createBanner__btnEdit"> </span>
+    </div>
 
-        <label class="createBanner__fileLabel uploadLabel">
-          <span class="glyphicon glyphicon-open"></span>Upload picture
-          <input class="createBanner__file" type="file" name="picture" id="BannerImg">         
-          <span class="help-block"></span>
-        </label>
-        <img class="createBanner__img" id="preview-banner" name="picture" src="<%= @picture.main %>"><a id="js-edit-banner" class="btn btn-default createBanner__btnEdit">Edit</a></img>
-      </div>      
-    </form>
-       <a href="#" class="btn btn-danger" title="Delete banner" id="js-deleteBanner">Delete</a>
-       <button class="btn btn-primary js-update">Update</button>
+    <img class="createBanner__img margin_top_large_minus" id="preview-banner" name="picture" src="<%= @picture.main %>">
+
+    <label class="createBanner__fileLabel createBanner__fileLabelEdit visibility" id="js-editImgBanner">
+       <span class="glyphicon glyphicon-open"></span>Upload image
+       <input class="createBanner__file" type="file" id="BannerImg">
+    </label>
+  </div>
+  <div class="visibility" id="js-boxEditBanner">
+      <div class="row">
+        <form>
+          <div class="col-md-6 margin_top_medium">
+            <div class="form-group">
+              <label class="createBanner__label" for="bannerTitle">Banner's title:</label>
+              <input type="text"  name="title" class="form-control" id="bannerTitle" placeholder="<%= @title %>">
+            </div>
+            <div class="form-group">
+              <label class="createBanner__label" for="bannerLink">Link:</label>
+              <input type="text" name="link" class="form-control" id="bannerLink" placeholder="<%= @link %>">
+            </div>
+          </div>
+        <div class="col-md-6 margin_top_medium">
+            <div class="form-group">
+              <label class="createBanner__label" for="bannerContent">Content:</label>
+              <textarea class="form-control" rows="5" name="description" for="bannerContent" placeholder="<%= @description %>"></textarea>
+            </div> 
+        </div>
+      </form>
+      </div>
+      <div class="row">
+        <div class="col-md-5 createBanner__editButtons">
+          <a href="#" id="js-deleteBanner" class="createBanner__btn btn-danger-noBackground btn-danger-noBackground--borderRed" title="Delete banner">DELETE BANNER</a>
+        </div>
+        <div class="col-md-7 createBanner__editButtons text-right">
+          <a id="js-cancelEditBanner" href="#" class="createBanner__btn btn-default-noBackground btn-default-noBackground--borderGray" title="Cancel">Cancel</a>
+          <a id="js-update" href="#" class="createBanner__btn btn-primary btn-primary-noBackground--borderBlue" title="Save changes">Save changes</a>
+        </div>
+      </div>
   </div>
 </div>
+
+

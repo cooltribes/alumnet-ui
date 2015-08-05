@@ -46,7 +46,10 @@
           @model.save {},
             success: (model)->
               step = model.get('register_step')
-              AlumNet.trigger "registration:experience", step
+              if model.get('role') == 'External' && model.get('created_by_admin')
+                AlumNet.trigger "registration:activate"
+              else
+                AlumNet.trigger "registration:experience", step
 
     getLayoutView: ->
       AlumNet.request("registration:shared:layout")

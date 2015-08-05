@@ -35,8 +35,43 @@ DESCRIPTION: Used for  execute search queries. It includes a title at left hand 
         }
         
     }
+    &__link{
+        color: #2099d0;
+    }
+
 }
 
+.searchBarD{   
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    &__searchInput{
+        height: 70px;
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+    &__searchBtn{
+        padding: 24px 43px;
+        color: @blue;
+        margin-top: 20px;
+    }
+    &__title{
+        margin-top: 0;
+    }
+    &__renderOptions{
+         margin-top: 10px;
+        &__icon{
+            display: inline-block;
+            font-size: 40px;
+            margin-left: 10px;
+            &Active{
+               color: @dark-blue;
+            }
+        }
+        
+    }
+
+}
 .input-group{
     .input-group-addon{
         border: 1px solid rgb(204, 204, 204);
