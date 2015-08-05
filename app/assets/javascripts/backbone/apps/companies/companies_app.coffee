@@ -5,7 +5,7 @@
         # "companies": "about"
         "companies": "discover"
         "companies/new": "createCompany"
-        #"companies/:id/about": "about"
+        "companies/:id/about": "about"
 
 
     API =
@@ -14,10 +14,10 @@
         controller = new CompaniesApp.Discover.Controller
         controller.discover()
 
-      about: ->
+      about: (id)->
         document.title = 'AlumNet - Companies'
         controller = new CompaniesApp.About.Controller
-        controller.showAbout()
+        controller.about(id)
 
       createCompany: ->
         document.title = 'AlumNet - Companies'

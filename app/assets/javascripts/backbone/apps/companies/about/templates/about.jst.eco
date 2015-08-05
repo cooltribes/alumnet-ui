@@ -23,8 +23,9 @@
     </div>
   </div>
   <div class="col-md-9">
-    <div id="Details"></div>
-    <div id="Contact-Web"></div>
-    <div id="Branches"></div>
+    <div id="details"></div>
+    <div id="services"></div>
+    <div id="contacts"></div>
+    <div id="branches"></div>
   </div>
 </div>
