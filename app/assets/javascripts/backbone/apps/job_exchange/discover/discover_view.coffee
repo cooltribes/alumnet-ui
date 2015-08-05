@@ -33,8 +33,8 @@
       $("#search-form").slideToggle("hide");
 
     showBoxAdvanceBasic: (e)->
-      $("#js-advance-search").slideToggle("hide")
       $("#search-form").slideToggle("slow");
+      $("#js-advance-search").slideToggle("hide")
 
     changeOperator: (e)->
       e.preventDefault()
