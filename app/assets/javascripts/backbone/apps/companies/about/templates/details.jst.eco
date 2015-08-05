@@ -26,24 +26,20 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row company__row company__cell">
 	<div class="col-md-6">
-		<div class=" company__row company__cell">
-			<h3 class="no-margin">Productos</h3>
-			<ul>
-				<li>Mobile</li>
-				<li>Laptos</li>	
-			</ul>
-		</div>
+		<h3 class="no-margin">Productos</h3>
+		<ul>
+			<li>Mobile</li>
+			<li>Laptos</li>	
+		</ul>
 	</div>
 
 	<div class="col-md-6">
-		<div class=" company__row company__cell">
-			<h3 class="no-margin">Services</h3>
-			<ul>
-				<li>Hosting</li>
-				<li>Desing</li>	
-			</ul>
-		</div>
+		<h3 class="no-margin">Services</h3>
+		<ul>
+			<li>Hosting</li>
+			<li>Desing</li>	
+		</ul>
 	</div>
 </div>

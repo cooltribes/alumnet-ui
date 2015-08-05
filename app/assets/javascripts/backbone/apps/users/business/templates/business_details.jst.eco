@@ -53,9 +53,9 @@
             <div class="userBusiness__flechas--in">></div>
           </div>
         </div> -->
-        <% if @userCanEdit: %>
+        <!-- <% if @userCanEdit: %>
           <a href="#" title="Create Business" class="btn btn-primary-noBackground userBusiness__btnCreate js-create"><span class="glyphicon glyphicon-plus"></span> Add new section</a>
-        <% end %>
+        <% end %> -->
       </div>
     </div>
     <!-- Barra lateral -->
