@@ -2,7 +2,6 @@
   class Shared.Header extends Marionette.ItemView
     template: 'companies/shared/templates/header'
 
-
   class Shared.Layout extends Marionette.LayoutView
     template: 'companies/shared/templates/layout'
 
@@ -22,18 +21,18 @@
         @class[step]
 
   API =
-    getCompanyLayout: (tab)->
+    getCompanyLayout: (model, tab)->
       new Shared.Layout
-        #model: model
+        model: model
         tab: tab
 
-    getCompanyHeader: ()->
-      #options = _.extend options, model: model
-      new Shared.Header #options
+    getCompanyHeader: (model)->
+      new Shared.Header
+        model: model
 
 
-  AlumNet.reqres.setHandler 'company:layout', (tab) ->
-    API.getCompanyLayout(tab)
+  AlumNet.reqres.setHandler 'company:layout', (model, tab) ->
+    API.getCompanyLayout(model, tab)
 
-  AlumNet.reqres.setHandler 'company:header', ()->
-    API.getCompanyHeader()
+  AlumNet.reqres.setHandler 'company:header', (model)->
+    API.getCompanyHeader(model)

@@ -29,5 +29,5 @@
         AlumNet.submenuRegion.reset()
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:company:submenu',(view,tab) ->
+  AlumNet.commands.setHandler 'render:companies:submenu',(view,tab) ->
     API.renderSubmenu(view,tab)

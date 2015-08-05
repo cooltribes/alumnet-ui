@@ -1,14 +1,14 @@
 <div class="userCoverArea" role="group">
   <div class="userCoverArea__avatar text-center">
-    <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <img src="<%= @logo.main %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
     <a id="js-editPic" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change avatar</a>
   </div>
-  
+
    <h1 class="userCoverArea__title " title="<%= @name %>">
-    Company name
+    <%= @name %>
     <br>
    </h1>
-   
+
 <!--   <p class="userCoverArea__subTitle">
     Subtitulo
   </p> -->
