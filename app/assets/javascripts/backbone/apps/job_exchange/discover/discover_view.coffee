@@ -20,10 +20,21 @@
 
     events:
       'click .add-new-filter': 'addNewFilter'
-      #'click .js-search': 'search'
-      'click .search': 'search'
+      'click .js-search': 'search'
+      'click .search': 'searchadvance'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
+      'click #js-advance':'showBoxAdvanceSearch'
+      'click #js-basic' : 'showBoxAdvanceBasic'
+
+
+    showBoxAdvanceSearch: (e)->
+      $("#js-advance-search").slideToggle("slow")
+      $("#search-form").slideToggle("hide");
+
+    showBoxAdvanceBasic: (e)->
+      $("#js-advance-search").slideToggle("hide")
+      $("#search-form").slideToggle("slow");
 
     changeOperator: (e)->
       e.preventDefault()
@@ -41,8 +52,17 @@
       query = @searcher.getQuery()
       value = $('#search_term').val()      
       @collection.fetch
+        #data: { q: query }
+        data: { q: { name_cont: value } }
+
+    searchadvance: (e)->
+      e.preventDefault()
+      query = @searcher.getQuery()
+      value = $('#search_term').val()      
+      @collection.fetch
         data: { q: query }
         #data: { q: { name_cont: value } }
+        
         
 
     clear: (e)->

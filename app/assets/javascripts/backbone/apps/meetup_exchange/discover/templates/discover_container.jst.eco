@@ -1,6 +1,9 @@
 <div class="container">
-  <h1>Discover</h1>
   <div class="row">
+    <div class="col-md-3">
+      <h1>Discover</h1>
+    </div>
+ <!--  <div class="row">
     <div class="col-md-3">
       <div class="filter-logic-operator-container">
         <select id="filter-logic-operator" class="filters__input filters__input--lg form-control input-lg">
@@ -10,20 +13,21 @@
         <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
       </div>
     </div>
-  </div>
+  </div> -->
 
-    <!--
-  <form id="search-form">
-    <div class="input-group">
-      <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
-      <span class="input-group-btn">
-      <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
-      </span>
+    <div class="col-md-9"> 
+      <form id="search-form">
+        <div class="input-group">
+          <input type="text" name="search_term" id="search_term" class="searchBarD__searchInput form-control " placeholder="Search Meetups">
+          <span class="input-group-btn">
+          <button class="searchBarD__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+        <!-- <p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p> -->
+      </form> 
     </div>
-    <p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>
-  </form> -->
-
-  <div class="advanced-search margin_bottom filters__colorFilter filters__colorFilter--blue">
+  </div>
+  <!-- <div class="advanced-search margin_bottom filters__colorFilter filters__colorFilter--blue">
     <div class="advanced-search-container jobPost__search" id="searcher">
       <div class="filter row margin_top_medium">
           <div class="col-md-3">
@@ -62,7 +66,7 @@
      
       </div>
     </div> 
-  </div>
+  </div> 
         <div class="row">
           <div class="col-md-7">
             <button class="btn-addFilter add-new-filter" type="button">+ Add New filter</button>
@@ -73,7 +77,7 @@
               <button class="glyphicon glyphicon-refresh btn btn-primary btn-lg clear filters__btnClear" type="button"> Clear</button>
             </div>
           </div>
-        </div>
+        </div> -->
 </div>
 
 <div class="tasks-container tasks-container container-fluid">
