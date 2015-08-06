@@ -1,49 +1,12 @@
 <div class="row main-events-area">
-	<div class="">
-      <form class="row formANet form ">
-        <div class="row js-birth-location">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label" for="inputName">Country of residence</label>
-              <input id="js-payment-countries" type="" name="country_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label" for="inputName">City of residence</label>
-              <input id="js-payment-cities" type="" name="city_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="form-group has-feedback">
-            <label class="control-label" for="inputName">Address</label>
-            <input type="text" value="" class="form-control input-lg" id="address" name="address" placeholder="Enter your address">
-            <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-            <span class="help-block"></span>
-          </div>
-        </div>
-        <hr>
-        <!-- ACTIONS ON -->
-        <div class="text-right">
-          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
-          <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
-        </div>
-        <!-- ACTIONS OFF -->
-      </form>
-    <div class="col-md-6">
-  		<% if @condition && @condition == 'members_only': %>
-  			<div class="form-group" id="condition-message">
-  				Members only feature
-  			</div>
-  		<% end %>
-      <div class="form-group" id="country">
-      </div>
-    </div>
-    <div id="paymentwall-content">
-		<!-- <iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&uid=1&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid=<%= #@current_user.get("id") %>&email=<%= #@current_user.get("email") %>&country_code=<%= #@country %>" width="750" height="800" frameborder="0"></iframe> -->
-  	</div>
+<%= console.log @items %>
+  <% for item in @items: %>
+    Item </br>
+  <% end %>
+	<!-- ACTIONS ON -->
+  <div class="text-right">
+    <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+    <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
   </div>
+  <!-- ACTIONS OFF -->
 </div>

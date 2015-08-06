@@ -8,6 +8,23 @@
       document.title = 'AlumNet - Become a member'
       @current_user = options.current_user
       @condition = options.condition
+      console.log @collection
+
+    events:
+      'click button.js-submit': 'submitClicked'
+
+    submitClicked: (e)->
+      e.preventDefault()
+      console.log 'tal'
+
+  class List.PaymentView extends Marionette.ItemView
+    template: 'premium/list/templates/payments'
+    className: 'col-md-8 col-md-offset-3'
+
+    initialize: (options)->
+      document.title = 'AlumNet - Become a member'
+      @current_user = options.current_user
+      @condition = options.condition
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
