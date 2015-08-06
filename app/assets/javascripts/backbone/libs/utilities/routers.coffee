@@ -17,7 +17,6 @@
             return false
 
           if _.contains(@externalRoutes(), route)
-            console.log "true"
             true
           else
             AlumNet.trigger 'show:error', 403
