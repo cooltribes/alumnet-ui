@@ -14,10 +14,13 @@
 
           console.log "before"  
           console.log route
-          route = @changeRouteForExternal(route)
+          routeChanged = @changeRouteForExternal(route, args)
           console.log route
+          if routeChanged
+            return false
 
           if _.contains(@externalRoutes(), route)
+            console.log "true"
             true
           else
             AlumNet.trigger 'show:error', 403
@@ -45,27 +48,30 @@
         else
           false
 
-    changeRouteForExternal: (route)->
+    # This method checks the incoming url and change it
+    # for the allowed url and then triggers the navigation again,
+    # If user is external and the route is in "from" array, basically user will
+    # be redirected to correspondant route in "to" array
+    # Nelson
+    changeRouteForExternal: (route, args)->
+
       from = [
         "users/:id/posts"
+        "users/:id/about"
       ]
 
       if _.contains(from, route)
         to = [
-          "users/:id/profile"
+          "users/#{args[0]}/profile"
+          # "users/:id/profile"
         ]
         changes = _.object(from, to)
         route = changes[route]
-        # AlumNet.navigate("##{route}")
+        AlumNet.navigate("##{route}", {trigger: true})
+        return true
 
-      route
-
-    onRoute: (name, path, args)->
-      console.log "onroute"  
-      console.log name
-      console.log path
-      console.log args
-
+      false
+    
 
     externalRoutes: ->
       [
