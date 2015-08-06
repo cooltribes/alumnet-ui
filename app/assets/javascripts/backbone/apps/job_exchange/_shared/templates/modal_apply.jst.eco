@@ -1,0 +1,13 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Application Successfull</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+   	<p> You have successfully applied.</p>
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-default" id="js-close-btn">Close</a>
+</div>
