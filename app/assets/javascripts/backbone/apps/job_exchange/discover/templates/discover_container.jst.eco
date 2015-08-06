@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="filters__hidden">
               <div class="filter-comparator-container form-group">
                 <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
                     <option value="">Select comparator</option>
@@ -57,7 +57,7 @@
               </div>
             </div>
             
-            <div class="col-md-2 close-filter">
+            <div class="col-md-5 close-filter">
                 <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
             </div> 
         </div>
