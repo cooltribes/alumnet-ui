@@ -8,7 +8,7 @@
       <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
       </span>
     </div>
-    <p class="help-block text-right glyphicon glyphicon-chevron-right searchBar__link" id="js-advance"><a href="#" title="Advance search"> Advance search</a></p>
+    <p class="help-block text-right glyphicon glyphicon-chevron-right searchBar__link" id="js-advance"><a href="#" title="Advance search"> Advanced search</a></p>
   </form>
 
   <div class="visibility" id="js-advance-search">

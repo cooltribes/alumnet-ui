@@ -40,6 +40,10 @@
         <span> <%= @employment.text %> </span><br>
         <span class="ico-location"></span>
         <span><%= @location() %></span>
+        <span class="ico-location"></span>
+         <!--<% for skill in @must_have_attributes: %>
+          <span> <%= skill.value %> </span><br>
+        <% end %>-->
       </div>
       <div class="skills">
         <!-- SKILLS PENDING -->
@@ -103,3 +107,5 @@
   </div>
 </div>
 <% end %>
+
+<div id="container-modal-apply"></div>
