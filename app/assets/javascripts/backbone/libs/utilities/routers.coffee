@@ -12,10 +12,7 @@
         if current_user.isExternal()
           AlumNet.execute('header:show:external')
 
-          console.log "before"  
-          console.log route
           routeChanged = @changeRouteForExternal(route, args)
-          console.log route
           if routeChanged
             return false
 
@@ -63,7 +60,7 @@
       if _.contains(from, route)
         to = [
           "users/#{args[0]}/profile"
-          # "users/:id/profile"
+          "users/#{args[0]}/profile"
         ]
         changes = _.object(from, to)
         route = changes[route]
