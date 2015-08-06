@@ -20,5 +20,6 @@
 <div class="col-md-9">
 		<h2 class="sortingMenu__title">Suggested groups</h2>
 </div>
-<div class="row main-groups-area groupTableView__marginText"><!-- Begin group container -->
+<div class="clearfix "></div>
+<div id="groups_container" class="row main-groups-area groupTableView__marginText"><!-- Begin group container -->
 </div>

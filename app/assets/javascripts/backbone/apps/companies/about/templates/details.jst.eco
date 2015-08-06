@@ -1,20 +1,24 @@
 <div class="row">
 	<div class="col-md-8">
 		<div class="company__row company__cell">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nisl lorem, molestie lobortis placerat eget, eleifend ut nulla. Sed tristique, lacus at porttitor volutpat, odio erat finibus est, et fermentum neque nibh a dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean a luctus erat, eget faucibus ipsum. Pellentesque ante neque, venenatis a condimentum sollicitudin, auctor placerat tortor. Duis tempus sem id justo tincidunt interdum. Morbi interdum nunc eu lectus lobortis, tristique malesuada felis consectetur. Quisque semper risus ut lacinia sollicitudin.
-
-			Suspendisse non dolor mi. In dictum tellus ac ipsum volutpat, nec molestie turpis molestie. Morbi aliquet blandit nunc et elementum. Sed imperdiet est non turpis feugiat egestas. In feugiat pulvinar cursus. Integer eleifend nulla in nulla mollis varius. Fusce vitae consectetur nibh. Aliquam viverra at nulla quis ultricies. Duis iaculis sit amet justo sed tincidunt. Nullam ipsum tortor, sagittis dapibus dolor quis, pulvinar commodo orci. Nulla ipsum odio, fermentum id nibh at, laoreet fermentum neque. Aenean non vehicula enim, vitae aliquet tellus. Quisque imperdiet metus lectus, at varius turpis efficitur ac.
-		</div>	
-
+			<span id="description"><%= @description %></span>
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-description">edit</a>
+			<% end %>
+		</div>
 	</div>
 
 	<div class="col-md-4">
 		<div class=" company__row company__cell">
 			<h3 class="no-margin">Company size</h3>
+			<span id="size"><%= @size.text %></span> employees
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-size">edit</a>
+			<% end %>
 			<ul>
-				<li>Employees</li>
-				<li>Alumni</li>	
-			</ul>	
+				<li>Employees: <%= @employees_count %></li>
+				<li>Alumni</li>
+			</ul>
 		</div>
 		<div class=" company__row company__cell">
 			<h3 class="no-margin">Friends</h3>
@@ -23,27 +27,12 @@
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-6">
 		<div class=" company__row company__cell">
-			<h3 class="no-margin">Productos</h3>
-			<ul>
-				<li>Mobile</li>
-				<li>Laptos</li>	
-			</ul>
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<div class=" company__row company__cell">
-			<h3 class="no-margin">Services</h3>
-			<ul>
-				<li>Hosting</li>
-				<li>Desing</li>	
-			</ul>
+			<h3 class="no-margin">Industry</h3>
+			<span id="sector"><%= @sector.text %></span>
+			<% if @userCanEdit: %>
+				<a href="#" id="js-edit-company-sector">edit</a>
+			<% end %>
 		</div>
 	</div>
 </div>

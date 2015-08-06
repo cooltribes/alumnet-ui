@@ -11,11 +11,12 @@
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts?page='+current_user.posts.page+'&per_page='+current_user.posts.rows
       current_user.posts.fetch 
         reset: true
+      current_user.posts.page = 1
 
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-                 
+               
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
       bannerCollection.fetch

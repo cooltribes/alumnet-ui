@@ -1,29 +1,38 @@
 @AlumNet.module 'CompaniesApp.About', (About, @AlumNet, Backbone, Marionette, $, _) ->
   class About.Controller
-    showAbout: ->
+    about: (id)->
+      company = new AlumNet.Entities.Company { id: id }
+      company.fetch
+        success: ->
+          #Se llaman el header y menu de las compañias
+          layout = AlumNet.request("company:layout", company, 0)
+          header = AlumNet.request("company:header", company)
 
-      
+          #Se crean las vistas de las regiones
+          details = new About.DetailsView
+            model: company
+          services = new About.ServicesView
+            model: company
+            collection: company.servicesCollection()
+          contacts = new About.ContactsView
+            model: company
+          branches = new About.BranchesView
 
-      #Se llaman el header y menu de las compañias
-      layout = AlumNet.request("company:layout",0)
-      header = AlumNet.request("company:header")
+          #Vista principal del about
+          body = new About.Layout
 
-      #Se crean las vistas de las regiones
-      details = new About.details
-      contact_web = new About.contact_web      
-      branches = new About.branches
+          #Se asigna las vistas a las regiones correspondientes
+          AlumNet.mainRegion.show(layout)
+          layout.header.show(header)
+          layout.body.show(body)
 
-      #Vista principal del about
-      body = new About.View
+          body.details.show(details)
+          body.services.show(services)
+          body.contacts.show(contacts)
+          body.branches.show(branches)
 
-      #Se asigna las vistas a las regiones correspondientes
-      AlumNet.mainRegion.show(layout)
-      layout.header.show(header)
-      layout.body.show(body)
+          #Llamada al submenu de la compañia
+          AlumNet.execute('render:companies:submenu',undefined, 1)
 
-      body.details.show(details)
-      body.contact_web.show(contact_web)
-      body.branches.show(branches)
-
-      #Llamada al submenu de la compañia
-      AlumNet.execute('render:company:submenu',undefined, 1)
+        error: (model, response, options)->
+          AlumNet.trigger('show:error', response.status)

@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="company__row company__cell">
+			<h3 class="no-margin">Products</h3>
+			<ul class="products_services">
+			</ul>
+			<% if @userCanEdit: %>
+				<form class="form-inline">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input name="name" type="text" class="form-control input-lg " id="name" placeholder="">
+								<a href="#" id="js-save-service" class="btn btn-default">Add</a>
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
+				</form>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class=" company__row company__cell">
+			<h3 class="no-margin">Services</h3>
+			<ul>
+				<li>Hosting</li>
+				<li>Desing</li>
+			</ul>
+		</div>
+	</div>
+</div>
