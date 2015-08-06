@@ -205,6 +205,76 @@
 
   #### CONTACTS ####
 
+  class About.AddressModal extends Backbone.Modal
+    template: 'companies/about/templates/address_modal'
+    cancelEl: '#cancel'
+
+    initialize: (options)->
+      @contactsView = options.contactsView
+
+    events:
+      'change #country_id': 'setCities'
+      'click #save': 'saveClicked'
+
+    templateHelpers: ->
+      model = @model
+      city_helper: if @model.get('city') then @model.get('city').value
+
+    onRender: ->
+      @.$('#city_id').select2
+        placeholder: "Select a City"
+        data: []
+      @.$('#country_id').select2
+        placeholder: "Select a Country"
+        data: CountryList.toSelect2()
+
+      ## set initial value
+      unless @model.isNew()
+        @.$('#country_id').select2('val', @model.get('country').value)
+        @setSelectCities(@model.get('country').value)
+
+    setCities: (e)->
+      @.$('#city_id').select2('val', {})
+      @setSelectCities(e.val)
+
+    setSelectCities: (country_id)->
+      if @model.get('city')
+        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+      else
+        initialValue = false
+
+      url = AlumNet.api_endpoint + '/countries/' + country_id + '/cities'
+      @.$('#city_id').select2
+        placeholder: "Select a City"
+        minimumInputLength: 2
+        ajax:
+          url: url
+          dataType: 'json'
+          data: (term)->
+            q:
+              name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
+
+    saveClicked: (e)->
+      e.preventDefault()
+      view = @
+      data = Backbone.Syphon.serialize(this)
+      @model.save data,
+        success: (model)->
+          view.destroy()
+          view.contactsView.model.trigger('change:main_address')
+          view.contactsView.changeLocation()
+        error: (model, response)->
+          console.log response
+
   class About.ContactsView extends Marionette.CompositeView
     template: 'companies/about/templates/contacts'
     className: 'container-fluid'
@@ -226,7 +296,7 @@
         lng: -109.364124
 
       GMaps.geocode
-        address: @model.get('main_address')
+        address: @model.getLocation()
         callback: (results, status)->
           if status == 'OK'
             latlng = results[0].geometry.location
@@ -237,27 +307,23 @@
 
     templateHelpers: ->
       userCanEdit: @model.userIsAdmin()
-
-    ui:
-      'companyAddress': '#address'
+      location: @model.getLocation()
 
     events:
-      'click #js-edit-company-address': 'toggleEditAddress'
+      'click #js-edit-company-address': 'modalEditAddress'
 
-    onRender: ->
-      view = @
-      @ui.companyAddress.editable
-        type: 'text'
-        pk: view.model.id
-        title: 'Enter the address of Company'
-        toggle: 'manual'
-        success: (response, newValue)->
-          view.model.save { main_address: newValue }
-
-    toggleEditAddress: (e)->
-      e.stopPropagation()
+    modalEditAddress: (e)->
       e.preventDefault()
-      @ui.companyAddress.editable('toggle')
+      modal = new About.AddressModal
+        model: @model
+        contactsView: @
+      $('#js-modal-address-container').html(modal.render().el)
+
+    changeLocation: ->
+      $('#js-location').html(@model.getLocation())
+
+
+  #### BRANCHES ####
 
   class About.BranchesView extends Marionette.CompositeView
     template: 'companies/about/templates/branches'

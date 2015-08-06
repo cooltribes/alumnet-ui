@@ -44,6 +44,13 @@
       collection.url = AlumNet.api_endpoint + "/companies/#{@id}/product_services"
       collection
 
+    getLocation: ->
+      location = []
+      location.push(@get('main_address')) unless @get('main_address') == ""
+      location.push(@get('city').text) unless @get('city').text == ""
+      location.push(@get('country').text) unless @get('country').text == ""
+      location.join(", ")
+
     validation:
       name:
         required: true

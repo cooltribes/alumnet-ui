@@ -1,5 +1,9 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.ProfileContact extends Backbone.Model
+    # privacy:
+    #   1: 'Only me'
+    #   2: 'Everyone'
+    #   3: 'Friends'
 
     defaults:
       showDelete: true
@@ -8,7 +12,7 @@
     validation:
       contact_type:
         required: true
-      info: 'customValidation'        
+      info: 'customValidation'
       privacy:
         required: true
 
@@ -16,38 +20,30 @@
       contact_type = @get('contact_type')
       pattern = /([+]\d+)/
       if contact_type == '0'
-        Backbone.Validation.validators.pattern(value, attr, 'email', @)     
-      else if contact_type == '1'  
-        Backbone.Validation.validators.pattern(value, attr, pattern, @)     
+        Backbone.Validation.validators.pattern(value, attr, 'email', @)
+      else if contact_type == '1'
+        Backbone.Validation.validators.pattern(value, attr, pattern, @)
       else if contact_type == '2' #skype
         if value.indexOf(" ") > -1 || value == ''
           return "Enter a valid Skype account"
       else if contact_type == '7'
-        Backbone.Validation.validators.pattern(value, attr, 'url', @) 
+        Backbone.Validation.validators.pattern(value, attr, 'url', @)
        else if contact_type == '8'
-        Backbone.Validation.validators.pattern(value, attr, 'url', @)           
+        Backbone.Validation.validators.pattern(value, attr, 'url', @)
       else
         Backbone.Validation.validators.required(value, attr, true, @)
 
-    contactTypes:
-      0: 'Email'
-      1: 'Phone'
-      2: 'Skype'
-      3: 'Yahoo'
-      4: 'Facebook'
-      5: 'Twitter'
-      6: 'IRC'
-      7: 'Web Site'
-      8: 'LinkedIn'
-
-    # canShow: (friend, contact)->
-    #   priv = if contact? then contact.get "privacy" else @get "privacy"      
-    #   !((priv == 0 && friend != "current user") || (priv == 1 && friend != "accepted" && friend != "current user"))
-      
-    # privacy:
-    #   1: 'Only me'
-    #   2: 'Everyone'
-    #   3: 'Friends'
+    contactTypes: [
+      { value: 0, text: 'Email', placeholder: 'email@example.com'  }
+      { value: 1, text: 'Phone', placeholder: '+PhoneNumber'  }
+      { value: 2, text: 'Skype', placeholder: 'Skype'  }
+      { value: 3, text: 'Yahoo', placeholder: 'Yahoo account'  }
+      { value: 4, text: 'Facebook', placeholder: '/Facebook'  }
+      { value: 5, text: 'Twitter', placeholder: '@Twitter'  }
+      { value: 6, text: 'IRC', placeholder: 'Account'  }
+      { value: 7, text: 'Web Site', placeholder: 'https://www.example.com'  }
+      { value: 8, text: 'LinkedIn', placeholder: 'https://www.LinkedIn.com/example'  }
+    ]
 
   class Entities.ProfileContactsCollection extends Backbone.Collection
     model: Entities.ProfileContact
