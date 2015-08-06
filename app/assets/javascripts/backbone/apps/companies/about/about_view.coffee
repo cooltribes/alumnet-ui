@@ -128,6 +128,7 @@
               values.push { value: element.id, text: element.name }
             view.fillEditableSectors(values)
 
+  #### SERVICES ####
 
   class About.ServiceView extends Marionette.CompositeView
     template: 'companies/about/templates/_product_service'
@@ -139,6 +140,18 @@
 
     templateHelpers: ->
       userCanEdit: true #@company.userIsAdmin()
+
+    ui:
+      'deleteLink':'#js-delete-service'
+
+    events:
+      'click @ui.deleteLink': 'deleteClicked'
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
 
   class About.ServicesView extends Marionette.CompositeView
     template: 'companies/about/templates/services'
@@ -161,6 +174,20 @@
     templateHelpers: ->
       userCanEdit: @model.userIsAdmin()
 
+    onShow: ->
+      services = new Bloodhound
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        prefetch: AlumNet.api_endpoint + '/product_services/'
+        remote:
+          wildcard: '%query'
+          url: AlumNet.api_endpoint + '/product_services/?q[name_cont]=%query'
+
+      @ui.inputName.typeahead null,
+        name: 'services'
+        display: 'name'
+        source: services
+
     saveClicked: (e)->
       e.preventDefault()
       view = @
@@ -176,9 +203,61 @@
           error: (model)->
             console.log "error"
 
+  #### CONTACTS ####
+
   class About.ContactsView extends Marionette.CompositeView
     template: 'companies/about/templates/contacts'
     className: 'container-fluid'
+
+    initialize: ->
+      @listenTo(@model, 'change:main_address', @renderView)
+
+    onDomRefresh: ->
+      @renderMap()
+
+    renderView: ->
+      @render()
+
+    renderMap: ->
+      view = @
+      @gMap = new GMaps
+        div: '#map'
+        lat: -27.116849
+        lng: -109.364124
+
+      GMaps.geocode
+        address: @model.get('main_address')
+        callback: (results, status)->
+          if status == 'OK'
+            latlng = results[0].geometry.location
+            view.gMap.setCenter(latlng.lat(), latlng.lng())
+            view.gMap.addMarker
+              lat: latlng.lat()
+              lng: latlng.lng()
+
+    templateHelpers: ->
+      userCanEdit: @model.userIsAdmin()
+
+    ui:
+      'companyAddress': '#address'
+
+    events:
+      'click #js-edit-company-address': 'toggleEditAddress'
+
+    onRender: ->
+      view = @
+      @ui.companyAddress.editable
+        type: 'text'
+        pk: view.model.id
+        title: 'Enter the address of Company'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save { main_address: newValue }
+
+    toggleEditAddress: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.companyAddress.editable('toggle')
 
   class About.BranchesView extends Marionette.CompositeView
     template: 'companies/about/templates/branches'

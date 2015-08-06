@@ -5,9 +5,16 @@
 			<ul class="products_services">
 			</ul>
 			<% if @userCanEdit: %>
-				<form>
-					<input type="text" name="name" id="name">
-					<a href="#" id="js-save-service" class="btn btn-default">Add</a>
+				<form class="form-inline">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input name="name" type="text" class="form-control input-lg " id="name" placeholder="">
+								<a href="#" id="js-save-service" class="btn btn-default">Add</a>
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
 				</form>
 			<% end %>
 		</div>

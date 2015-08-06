@@ -15,6 +15,7 @@
             model: company
             collection: company.servicesCollection()
           contacts = new About.ContactsView
+            model: company
           branches = new About.BranchesView
 
           #Vista principal del about
