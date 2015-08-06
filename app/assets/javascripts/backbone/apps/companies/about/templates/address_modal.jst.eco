@@ -2,7 +2,7 @@
   <h2>Edit Address Company</h2>
     <form class="clearfix">
       <div class="row">
-        <div class="col-md-12 form-col">
+        <div class="col-md-12">
           <label class="control-label" for="inputBorn">Address</label>
           <input type="text" value="<%= @main_address %>" class="form-control input-lg" name="main_address" id="address">
           <span class="help-block"></span>

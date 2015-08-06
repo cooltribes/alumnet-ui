@@ -6,6 +6,7 @@
     #   3: 'Friends'
 
     defaults:
+      privacy: 2
       showDelete: true
       readOnly: false
 
@@ -44,6 +45,15 @@
       { value: 7, text: 'Web Site', placeholder: 'https://www.example.com'  }
       { value: 8, text: 'LinkedIn', placeholder: 'https://www.LinkedIn.com/example'  }
     ]
+
+    findContactType: (value)->
+      _.findWhere @contactTypes, { value: parseInt(value) }
+
+    contactTypesToSelect2: ->
+      result = []
+      _.each @contactTypes, (element, list)->
+        result.push { id: element.value, text: element.text }
+      result
 
   class Entities.ProfileContactsCollection extends Backbone.Collection
     model: Entities.ProfileContact
