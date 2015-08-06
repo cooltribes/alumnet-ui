@@ -6,6 +6,7 @@
 
     templateHelpers: ->
       model = @model
+      console.log model
       canInvite: @model.canInvite()
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
@@ -26,6 +27,12 @@
       'click @ui.refreshLink': 'refreshClicked'
       'click @ui.applyLink': 'applyClicked'
       'click @ui.inviteLink': 'inviteClicked'
+      #'click #js-apply': 'modalShow'
+
+    modalShow: (e)->
+      e.preventDefault()
+      modal = new Shared.ModalApply
+      $('#container-modal-apply').html(modal.render().el)
 
     inviteClicked: (e)->
       e.preventDefault()
@@ -61,6 +68,8 @@
                 success: ->
                   view.model.set('user_can_apply', false)
                   view.render()
+                  modal = new Shared.ModalApply
+                  $('#container-modal-apply').html(modal.render().el)
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -70,6 +79,8 @@
               success: ->
                 view.model.set('user_can_apply', false)
                 view.render()
+                modal = new Shared.ModalApply
+                $('#container-modal-apply').html(modal.render().el)
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 
@@ -86,3 +97,7 @@
       resp = confirm('Are you sure?')
       if resp
         @model.destroy()
+
+  class Shared.ModalApply extends Backbone.Modal
+    template: 'job_exchange/_shared/templates/modal_apply'
+    cancelEl: '#js-close-btn'

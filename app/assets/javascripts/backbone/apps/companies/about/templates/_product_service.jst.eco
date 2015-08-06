@@ -1,0 +1,4 @@
+<%= @name %>
+<% if @userCanEdit: %>
+  <a href="#" id="js-delete-service">x</a>
+<% end %>

@@ -129,8 +129,10 @@
 
       type: @type
       tagName: tagName
+      #className: "group_children"
 
     initialize: ->
+      _.bindAll(this, 'loadMoreGroups');
       # Initialize the type of grid to use (cards or list)
       @type = "cards"
       view = @
@@ -138,6 +140,12 @@
         view.official = @where({official: true})
         view.nonOfficial = @where({official: false})
         view.all = @slice()
+      console.log @
+      $(window).scroll(@loadMoreGroups);
+    
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
 
     events:
       'click #js-filter-all': 'filterAll'
@@ -165,3 +173,7 @@
       e.preventDefault()
       console.log 'here nOff', @nonOfficial
       @collection.reset(@nonOfficial)
+
+    loadMoreGroups: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'group:reload'

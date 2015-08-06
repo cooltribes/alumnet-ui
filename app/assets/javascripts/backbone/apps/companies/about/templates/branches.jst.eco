@@ -11,7 +11,9 @@
 	<div class="company__branches__cell company__branches__cell--right">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="col-md-3"></div>
+				<div class="col-md-3">
+					<span class="glyphicon glyphicon-map-marker"></span>
+				</div>
 				<div class="col-md-9">
 					<p><b>Berna</b></p>
 					<p>street #1</p>
@@ -28,8 +30,14 @@
 				<p>Lorem upsum</p>
 			</div>
 		</div>
-		<div>
-			<p>Mapa</p>
+		<div class="text-center">
+			<img src='assets/companies/Mapa.png' width="450px" height="200px"> 
+			<div class="userBusiness__flechas--disable text-left">
+            	<div class="userBusiness__flechas--in"><</div>
+          	</div>
+          	<div class="userBusiness__flechas--out text-right">
+            	<div class="userBusiness__flechas--in">></div>
+          	</div>
 		</div>
 	</div>
 </div>

@@ -245,9 +245,15 @@
       current_user: @model
 
     initialize:(options)->
+      _.bindAll(this, 'loadMorePosts');
       @group = options.group
       @picture_ids = []
+      $(window).scroll(@loadMorePosts);
 
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+      
     templateHelpers: ->
       userCanPost: @group.userIsMember()
       groupJoinProccess: @group.get('join_proccess')
@@ -285,13 +291,15 @@
       data = Backbone.Syphon.serialize(this)
       data.picture_ids = @picture_ids
       if data.body != ''
+        @trigger 'post:submit', data
         view = @
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
-        post = AlumNet.request('post:group:new', @group.id)
-        post.save data,
-          success: (model, response, options)->
-            view.collection.add(model, {at: 0})
+
+
+    loadMorePosts: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'post:reload' 
 
 

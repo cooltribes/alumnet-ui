@@ -7,24 +7,28 @@
               <a id="toDetails" class="text-uppercase smoothClick">
                 Details
               </a>
+               <span class="glyphicon glyphicon-list-alt text-right"></span>
             </li>
             <li>
               <a id="toContact-Web" class="text-uppercase smoothClick">
                 Contact & Web
               </a>
+              <span class="glyphicon glyphicon-envelope text-right"></span>
             </li>
             <li>
               <a id="toBranches" class="text-uppercase smoothClick">
                 Branches
               </a>
+               <span class="glyphicon glyphicon-map-marker text-right"></span>
             </li>
           </ul>
       </div>
     </div>
   </div>
   <div class="col-md-9">
-    <div id="Details"></div>
-    <div id="Contact-Web"></div>
-    <div id="Branches"></div>
+    <div id="details"></div>
+    <div id="services"></div>
+    <div id="contacts"></div>
+    <div id="branches"></div>
   </div>
 </div>
