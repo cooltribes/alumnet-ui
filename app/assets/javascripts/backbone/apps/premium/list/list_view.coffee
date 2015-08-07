@@ -8,7 +8,6 @@
       document.title = 'AlumNet - Become a member'
       @current_user = options.current_user
       @condition = options.condition
-      console.log @collection
 
     events:
       'click button.js-submit': 'submitClicked'
