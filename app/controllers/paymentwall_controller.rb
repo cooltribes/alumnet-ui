@@ -51,7 +51,7 @@ class PaymentwallController < ApplicationController
         elsif(@pingback.getParameter('type') == '2') #deactivate membership
           payment = Payment.new
           @payment_text = { :status => 2 }.to_json
-          payment.update(@pingback.getParameter('payment_id'), JSON.parse(@payment_text), session, @auth_token)
+          payment.update(@reference, JSON.parse(@payment_text), session, @auth_token)
           @response_payment = payment.response
           render :text => "OK"
           #render json: @response_payment

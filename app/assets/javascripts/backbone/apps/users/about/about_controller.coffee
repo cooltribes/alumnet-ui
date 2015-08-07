@@ -164,6 +164,7 @@
         languagesView = new About.LanguagesView
           collection: languages
           userCanEdit: userCanEdit
+          showLevel: false
 
         experiencesView = new About.Experiences
           collection: expCollection
