@@ -6,11 +6,22 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
+      # arraySkill ; @model.nice_have_attributes()
+      # arraySkill : _.findWhere(arraySkill, {custom_field: "alumnet_skills"});
+      # # arraySkill : _.pluck(arraySkill,'value');
+      # console.log arraySkill
+
+      # arraySkillDesired = @model.get('nice_have_attributes')
+      # arraySkill : _.where(arraySkill, {custom_field: "alumnet_skills"});
+      # console.log arraySkill
+      # arraySkill: _.pluck(arraySkill,'value');
+
       canInvite: @model.canInvite()
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
+      
+
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""

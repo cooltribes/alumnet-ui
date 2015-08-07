@@ -11,11 +11,12 @@
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
+
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""
         location.push model.get('city').text unless model.get('city').text == ""
-        location.join(', ')
+        location.join(',')
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
