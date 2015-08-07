@@ -10,7 +10,7 @@
 		<!-- Desktop and mobile header OFF -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="<%= @classOf(0)%>"><a href="#" class="navTopSubBar__link" title="Invite">Invite Alumni to Alumnet</a></li>
+				<li class="<%= @classOf(0)%>"><a href="#" class="navTopSubBar__link" title="Invite">Invite Alumni to AlumNet</a></li>
 
 				<li class="<%= @classOf(1)%>"><a href="#points/earned" class="navTopSubBar__link" title="Know"> How you earned your points</a></li>
 
