@@ -1,12 +1,14 @@
 <div id="" class="ng-scope">
-  <div class="container-fluid">
+  <div class="container">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create a Company/Organization</h1>
+        <h1>Create a Company/Organization</h1>
+        
         <div class="row">
-          <div class="col-md-6">
+
+          <div class="col-md-5">
             <div class="form-company has-feedback">
-              <label class="control-label">Logo</label>
+              <label class="control-label">Company / Project Logo</label>
               <div class="add-logo">
                 <label class="uploadFile uploadFile--cover">
                   <div class="uploadFile--img">
@@ -22,41 +24,35 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-company has-feedback">
-              <label class="control-label">Name</label>
+          
+          <div class="col-md-7">
+             <div class="form-company has-feedback">
+              <label class="control-label">Company / Project Name</label>
               <input type="text" name="name" id="name" class="form-control input-lg" value="<%= @name %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
               <span class="help-block"></span>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
+
             <div class="form-company has-feedback">
-              <label class="control-label">Sector</label>
+              <label class="control-label">Industry</label>
               <input type="hidden" name="sector_id" id="sectors" value="<%= @sector_id %>" style="width: 100%">
               <span class="help-block"></span>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
+
             <div class="form-company has-feedback">
               <label class="control-label" for="size">Company size</label>
               <select name="size" id="size" style="width: 100%"><%- @sizes_options() %></select>
               <span class="help-block"></span>
             </div>
           </div>
+
         </div>
         <hr>
         <div class="row">
           <div class="col-md-12">
             <div class="form-company has-feedback">
               <label class="control-label">About</label>
-              <textarea name="description" id="description" class="form-control input-lg" rows="3" style="resize:none"><%= @description %></textarea>
+              <textarea name="description" id="description" class="form-control input-lg" rows="10" style="resize:none"><%= @description %></textarea>
               <span class="help-block"></span>
             </div>
           </div>
