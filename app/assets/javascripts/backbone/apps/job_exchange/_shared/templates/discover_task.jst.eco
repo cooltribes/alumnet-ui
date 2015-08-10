@@ -44,7 +44,8 @@
     <% end %>
     <a href="#job-exchange/<%= @id %>" class="btn btn-primary-noBackground js-job-details" >LEARN MORE >> </a>
     <% if @canApply: %>
-      <a href="#" class="btn btn-default js-job-apply btn-primary" >APPLY FOR A JOB </a>
+      <a href="#" class="btn btn-default js-job-apply btn-primary">APPLY FOR A JOB </a>
     <% end %>
   </div>
 </div>
+<div id="container-modal-apply"></div>

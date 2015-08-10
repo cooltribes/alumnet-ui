@@ -92,6 +92,19 @@
       'click @ui.linkDiscoverTask': 'discoverTasks'
       'click @ui.linkDiscoverProfile': 'discoverProfiles'
 
+    initialize: (options)->
+      @classes = {
+        "people": ""       
+        "tasks": ""       
+      }
+
+      @classes[options.view] = " sortingMenu__item__link--active "
+    
+    templateHelpers: ->
+      active: (value)=>        
+        @classes[value]
+          
+
     discoverTasks: (e)->
       e.preventDefault()
       @ui.linkDiscoverProfile.removeClass('sortingMenu__item__link--active')

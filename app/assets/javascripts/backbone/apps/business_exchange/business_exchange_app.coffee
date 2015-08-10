@@ -2,6 +2,7 @@
   class BusinessExchangeApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "business-exchange": "discoverBusinessExchange"
+      "business-exchange/view-:view": "discoverBusinessExchange"
       "business-exchange/home": "homeBusinessExchange"
       "business-exchange/your-tasks": "yourTasksBusinessExchange"
       "business-exchange/applied": "appliedBusinessExchange"
@@ -16,10 +17,10 @@
       document.title = 'AlumNet - Business Exchange Program'
       new BusinessExchangeApp.Home.Controller
       
-    discoverBusinessExchange: ->
+    discoverBusinessExchange: (view)->
       document.title = 'AlumNet - Discover Tasks'
       controller = new BusinessExchangeApp.Discover.Controller
-      controller.discover()
+      controller.discover(view)
     yourTasksBusinessExchange: ->
       document.title = 'AlumNet - Your Tasks'
       controller = new BusinessExchangeApp.YourTasks.Controller

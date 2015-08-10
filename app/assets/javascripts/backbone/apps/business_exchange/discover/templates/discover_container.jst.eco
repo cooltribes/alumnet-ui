@@ -4,11 +4,11 @@
     <div class="col-md-6 col-md-offset-3 text-center">
       <ul class="sortingMenu">
         <li class="sortingMenu__item sortingMenu__item--lg">
-          <a href="" title="All" class="sortingMenu__item__link discover-profiles">Discover People
+          <a href="" title="All" class="sortingMenu__item__link <%= @active('people') %>discover-profiles">Discover People
           </a>
         </li>
         <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-          <a href="" class="sortingMenu__item__link sortingMenu__item__link--active discover-tasks">Discover Tasks
+          <a href="" class="sortingMenu__item__link <%= @active('tasks') %>discover-tasks">Discover Tasks
           </a>
         </li>
       </ul>

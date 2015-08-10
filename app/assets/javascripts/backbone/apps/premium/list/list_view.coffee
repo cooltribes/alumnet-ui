@@ -13,7 +13,7 @@
       'selectPaymentCountries': '#js-payment-countries'
       'selectPaymentCities': '#js-payment-cities'
       'divCountry': '#country'
-      'paymentwallContent': '#paymentwall-content'
+      'paymentwallContent': '#paymentwall-content-2'
 
     events:
       'change #js-payment-countries': 'loadCities'

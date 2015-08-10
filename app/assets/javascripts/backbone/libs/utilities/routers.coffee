@@ -1,7 +1,7 @@
 @AlumNet.module 'Routers', (Routers, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Routers.Base extends Marionette.AppRouter
-    before: (route)->
+    before: (route, args)->
       current_user = AlumNet.current_user
       unless current_user.isApproved()
         ## TODO: for security fetch profile, to be sure that the data is trusted
@@ -11,6 +11,11 @@
       else
         if current_user.isExternal()
           AlumNet.execute('header:show:external')
+
+          routeChanged = @changeRouteForExternal(route, args)
+          if routeChanged
+            return false
+
           if _.contains(@externalRoutes(), route)
             true
           else
@@ -39,8 +44,40 @@
         else
           false
 
+    # This method checks the incoming url and change it
+    # for the allowed url and then triggers the navigation again,
+    # If user is external and the route is in "from" array, basically user will
+    # be redirected to correspondant route in "to" array
+    # Nelson
+    changeRouteForExternal: (route, args)->
+
+      from = [
+        "users/:id/posts"
+        "users/:id/about"
+      ]
+
+      if _.contains(from, route)
+        to = [
+          "users/#{args[0]}/profile"
+          "users/#{args[0]}/profile"
+        ]
+        changes = _.object(from, to)
+        route = changes[route]
+        AlumNet.navigate("##{route}", {trigger: true})
+        return true
+
+      false
+    
+
     externalRoutes: ->
-      ["job-exchange"]
+      [
+        "job-exchange",
+        "job-exchange/my-posts",
+        "job-exchange/new",
+        "job-exchange/automatches",
+        "users/:id/profile",
+      ]
+
 
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->

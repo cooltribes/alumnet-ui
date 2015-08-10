@@ -547,6 +547,11 @@
       @userCanEdit = options.userCanEdit
 
   #For languages
+  class About.LanguageNoLevel extends Marionette.ItemView
+    template: 'users/about/templates/_languageNoLevel'
+    tagName: "li"
+
+
   class About.Language extends Marionette.ItemView
     template: 'users/about/templates/_language'
     tagName: "li"
@@ -571,12 +576,24 @@
       @ui.level.tooltip()
 
   class About.LanguagesView extends Marionette.CollectionView
-    childView: About.Language
+    # childView: About.Language
+    getChildView: ->
+      if @showLevel
+        About.Language
+      else
+        About.LanguageNoLevel
+
     childViewOptions: ->
       userCanEdit: @userCanEdit
 
     initialize: (options)->
+      _.defaults options,
+        showLevel: true
+
       @userCanEdit = options.userCanEdit
+      @showLevel = options.showLevel
+
+        
 
   #For contact info
   class About.Contact extends Marionette.ItemView
