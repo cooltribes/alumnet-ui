@@ -10,6 +10,15 @@
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
 
+    initialize: ->
+      $(window).unbind('scroll');
+      _.bindAll(this, 'loadMoreJobs')
+      $(window).scroll(@loadMoreJobs)
+
+    loadMoreJobs: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'job:reload'
+
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "name", type: "string", values: "" },

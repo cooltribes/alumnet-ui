@@ -8,3 +8,12 @@
     childView: AutoMatches.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
+
+    initialize: ->
+      $(window).unbind('scroll');
+      _.bindAll(this, 'loadMoreJobs')
+      $(window).scroll(@loadMoreJobs)
+
+    loadMoreJobs: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'job:reload'

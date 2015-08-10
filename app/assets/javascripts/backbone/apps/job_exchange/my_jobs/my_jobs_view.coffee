@@ -7,6 +7,16 @@
     template: 'job_exchange/my_jobs/templates/my_jobs_container'
     childView: MyJobs.Task
     childViewContainer: '.tasks-container'
+    
+    initialize: ->
+      $(window).unbind('scroll');
+      _.bindAll(this, 'loadMoreJobs')
+      $(window).scroll(@loadMoreJobs)
+
+    loadMoreJobs: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'job:reload'
+
     getEmptyView: ->
       AlumNet.Utilities.GeneralEmptyView
     emptyViewOptions: 
