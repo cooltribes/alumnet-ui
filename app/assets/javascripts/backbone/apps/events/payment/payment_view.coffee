@@ -11,63 +11,85 @@
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
+      'selectPaymentCities': '#js-payment-cities'
       'divCountry': '#country'
-      'paymentwallContent': '#paymentwall-content'
+      'paymentwallContent': '#paymentwall-content-2'
 
     events:
-      'change #js-payment-countries': 'reloadWidget'
+      'change #js-payment-countries': 'loadCities'
+      'click button.js-submit': 'submitClicked'
 
     templateHelpers: ->
       current_user: @current_user
       model: @model
       name: @model.get('name')
 
-    reloadWidget: (e)->
-      country = new AlumNet.Entities.Country
-        id: e.val
-      view = this
-      price = view.model.get("regular_price")
-      if(view.current_user.get('is_premium'))
-        price = view.model.get("premium_price")
-      
-      paymentwall_return_url = window.location.origin
-      paymentwall_project_key = AlumNet.paymentwall_project_key
-      country.fetch
-        success: (model) ->
-          parameters_string = 'ag_external_id=order_no_555123ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'country_code='+model.get('cc_fips')+'currencyCode=USDevent_id='+view.model.get("id")+'key='+paymentwall_project_key+'payment_type=eventsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
-          #view.ui.divCountry.html('Country set to: '+model.get('cc_fips')+'</br>String: '+parameters_string+'</br></br>Sign calculated: '+CryptoJS.MD5(parameters_string).toString())
-          view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&country_code='+model.get('cc_fips')+'&widget=p1_1&amount='+price+'&currencyCode=USD&ag_name='+view.model.get("name")+'&ag_external_id=order_no_555123&ag_type=fixed&sign_version=2&payment_type=event&event_id='+view.model.get("id")+'&attendance_id='+attendance_id+'&auth_token='+auth_token+'&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>')
-          #view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&widget=p1_1&amount='+price+'&currencyCode=USD&ag_name='+view.model.get("name")+'&ag_external_id=order_no_555123&ag_type=fixed&sign_version=2&payment_type=event&event_id='+view.model.get("id")+'&attendance_id='+attendance_id+'&auth_token='+auth_token+'&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="318" frameborder="0"></iframe>')
-          #view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key=1acce8f2587d6f7cca456c87cc672bd2&widget=p1_1&success_url=http://alumnet-test.aiesec-alumni.org&uid='+view.current_user.get("id")+'&country_code='+model.get('cc_fips')+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="318" frameborder="0"></iframe>')
-      this.render()
+    optionsForSelectCities: (url)->
+      placeholder: "Select a City"
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q:
+            name_cont: term
+        results: (data, page) ->
+          results:
+            data
+      formatResult: (data)->
+        data.name
+      formatSelection: (data)->
+        data.name
+
+    loadCities: (e)->
+      url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      @$("#js-payment-cities").select2(@optionsForSelectCities(url))
       
     onRender: ->
-      view = this
-      price = view.model.get("regular_price")
-      auth_token = AlumNet.current_token
-      attendance_id = view.model.get('attendance_info').id
-      #paymentwall_return_url = encodeURI(window.location.href)
-      #paymentwall_return_url = "http://localhost:3000/%23events/10/payment"
-      #paymentwall_return_url = paymentwall_return_url.replace("#", "%23")
-      #console.log paymentwall_return_url
-      paymentwall_return_url = window.location.origin
-      # if(AlumNet.environment == "development")
-      #   paymentwall_return_url = 'http://alumnet-test.aiesec-alumni.org/'+window.location.hash+'/'
-
-      paymentwall_project_key = AlumNet.paymentwall_project_key
-      if(view.current_user.get('is_premium'))
-        price = view.model.get("premium_price")
-      #parameters_string = 'ag_external_id=order_no_555123ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'currencyCode=USDevent_id='+view.model.get("id")+'key=1acce8f2587d6f7cca456c87cc672bd2payment_type=eventsign_version=2success_url=http://alumnet-test.aiesec-alumni.orguid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
-      parameters_string = 'ag_external_id=order_no_555123ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'currencyCode=USDemail='+view.current_user.get('email')+'event_id='+view.model.get("id")+'key='+paymentwall_project_key+'payment_type=eventsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1ea9c9cad7ce7d4c6ad745b48f36a9d45'
-      #view.ui.divCountry.html('String: '+parameters_string+'</br></br>Sign calculated: '+CryptoJS.MD5(parameters_string).toString())
-      #view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription?key=1acce8f2587d6f7cca456c87cc672bd2&success_url=http://localhost:3000/#events/7/payment&uid='+view.current_user.get("id")+'&widget=p1_1&amount='+price+'&currencyCode=USD&ag_name='+view.model.get("name")+'&ag_external_id=order_no_555123&ag_type=fixed&sign_version=2&payment_type=event&event_id='+view.model.get("id")+'&attendance_id='+attendance_id+'&auth_token='+auth_token+'&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="318" frameborder="0"></iframe>')
-      view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&email='+view.current_user.get('email')+'&widget=p1_1&amount='+price+'&currencyCode=USD&ag_name='+view.model.get("name")+'&ag_external_id=order_no_555123&ag_type=fixed&sign_version=2&payment_type=event&event_id='+view.model.get("id")+'&attendance_id='+attendance_id+'&auth_token='+auth_token+'&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>')
-
       data = CountryList.toSelect2()
 
       @ui.selectPaymentCountries.select2
         placeholder: "Select a Country"
         data: data
+
+      @ui.selectPaymentCities.select2
+        placeholder: "Select a City"
+        data: []
+
+    submitClicked: (e)->
+      e.preventDefault()
+      view = this
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      valid_address = true
+      profile = view.current_user.profile
+      address = {}
+      _.forEach data, (value, key, list)->
+        if value == '' then valid_address = false
+
+      if valid_address
+        country = new AlumNet.Entities.Country
+          id: data.country_id
+        country.fetch
+          success: (model) ->
+            paymentwall_project_key = AlumNet.paymentwall_project_key
+            paymentwall_secret_key = AlumNet.paymentwall_secret_key
+            paymentwall_return_url = window.location.origin
+            auth_token = AlumNet.current_token
+            
+            profile = view.current_user.profile
+            birthday = profile.get('born')
+            birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+
+            attendance_id = view.model.get('attendance_info').id
+            price = view.model.get("regular_price")
+            if(view.current_user.get('is_premium'))
+              price = view.model.get("premium_price")
+            
+            parameters_string = 'address='+data.address+'ag_external_id=event'+view.model.get("id")+'ag_name='+view.model.get("name")+'ag_type=fixedamount='+price+'attendance_id='+attendance_id+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'currencyCode=USDcustomer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'event_id='+view.model.get("id")+'key='+paymentwall_project_key+'payment_type=eventsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
+            view.ui.paymentwallContent.html('<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&amount='+price+'&currencyCode=USD&ag_name='+view.model.get("name")+'&ag_type=fixed&currencyCode=USD&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&attendance_id='+attendance_id+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&customer[address]='+data.address+'&customer[country]='+model.get('name')+'&event_id='+view.model.get("id")+'&payment_type=event&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&ag_external_id=event'+view.model.get("id")+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>')
+      else
+        $.growl.error({ message: "Please fill address fields" })
 
   class Payment.ReceiptView extends Marionette.ItemView
     template: 'events/payment/templates/receipt'
