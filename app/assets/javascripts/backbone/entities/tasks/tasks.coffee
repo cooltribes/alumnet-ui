@@ -67,6 +67,8 @@
   class Entities.JobExchangeCollection extends Backbone.Collection
     model:
       Entities.JobExchange
+    rows: 3
+    page: 1
     url: ->
       AlumNet.api_endpoint + '/job_exchanges'
 

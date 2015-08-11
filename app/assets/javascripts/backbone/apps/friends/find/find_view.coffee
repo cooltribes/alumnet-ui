@@ -77,6 +77,15 @@
     events:
       'click .js-search': 'performSearch'
 
+    initialize: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')   
+      $(window).scroll(@loadMoreUsers)
+
+    loadMoreUsers: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'user:reload'
+
     onShow: ->
       view = @
       ((url)->

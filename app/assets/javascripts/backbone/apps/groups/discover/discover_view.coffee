@@ -132,7 +132,8 @@
       #className: "group_children"
 
     initialize: ->
-      _.bindAll(this, 'loadMoreGroups');
+      $(window).unbind('scroll');
+      _.bindAll(this, 'loadMoreGroups')
       # Initialize the type of grid to use (cards or list)
       @type = "cards"
       view = @
@@ -140,12 +141,12 @@
         view.official = @where({official: true})
         view.nonOfficial = @where({official: false})
         view.all = @slice()
-      console.log @
-      $(window).scroll(@loadMoreGroups);
+      $(window).scroll(@loadMoreGroups)
     
-    remove: ->
-      $(window).unbind('scroll');
-      Backbone.View.prototype.remove.call(this)
+    #remove: ->
+    #  $(window).unbind('scroll');
+    #  console.log "remove"
+    #  Backbone.View.prototype.remove.call(this)
 
     events:
       'click #js-filter-all': 'filterAll'
