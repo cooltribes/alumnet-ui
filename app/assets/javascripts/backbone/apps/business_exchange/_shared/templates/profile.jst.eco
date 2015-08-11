@@ -15,11 +15,11 @@
       <% end %>
       <% if @company: %>
         <div class="row businessProfileCard__company">
-          <div class="col-md-3 text-center businessProfileCard__company__logo">
+          <div class="col-md-2 text-right businessProfileCard__company__logo">
             <span class="ico-position"></span>
               <!-- <img src="<%= @company.logo %>" alt="<%= @company.name %>" class="img-circle"> -->
             </div>
-          <div class="col-md-9">
+          <div class="col-md-10">
             <% if @tagline == null: %>
               <div class="businessProfileCard__company__name businessProfileCard__company__name--align">
                 <%= @company.name %>
