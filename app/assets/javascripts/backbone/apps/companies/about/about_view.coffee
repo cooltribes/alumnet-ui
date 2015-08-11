@@ -138,7 +138,7 @@
       @company = options.company
 
     templateHelpers: ->
-      userCanEdit: true #@company.userIsAdmin()
+      userCanEdit: @company.userIsAdmin()
 
     ui:
       'deleteLink':'#js-delete-service'
@@ -156,8 +156,8 @@
     template: 'companies/about/templates/services'
     className: 'container-fluid'
     childView: About.ServiceView
-    childViewContainer: '.products_services'
-    childViewOptions:
+    childViewContainer: '#js-products-services-list'
+    childViewOptions: ->
       company: @model
 
     ui:
@@ -346,7 +346,7 @@
       model = @model
       contactTypeText: (contact_type)->
         model.findContactType(contact_type)
-      userCanEdit: true #@company.userIsAdmin()
+      userCanEdit: @company.userIsAdmin()
 
     ui:
       'editLink':'#js-edit-contact'
@@ -436,7 +436,127 @@
 
 
   #### BRANCHES ####
+  class About.BranchView extends Marionette.CompositeView
+    template: 'companies/about/templates/_branch'
+    tagName: 'li'
+
+    initialize: (options)->
+      @company = options.company
+      @branchesView = options.branchesView
+
+    templateHelpers: ->
+      location: @model.getLocation()
+      userCanEdit: @company.userIsAdmin()
+
+    ui:
+      'deleteLink':'#js-delete-branch'
+      'editLink':'#js-edit-branch'
+
+    events:
+      'click @ui.deleteLink': 'deleteClicked'
+      'click @ui.editLink': 'editClicked'
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
+
+    editClicked: (e)->
+      e.preventDefault()
+      modal = new About.BranchModal
+        model: @model
+        branchesView: @branchesView
+      $('#js-modal-branch-container').html(modal.render().el)
+
+  class About.BranchModal extends Backbone.Modal
+    template: 'companies/about/templates/branch_modal'
+    cancelEl: '#cancel'
+
+    initialize: (options)->
+      @branchesView = options.branchesView
+
+    events:
+      'change #country_id': 'setCities'
+      'click #save': 'saveClicked'
+
+    templateHelpers: ->
+      model = @model
+      city_helper: if @model.get('city') then @model.get('city').value
+
+    onRender: ->
+      @.$('#city_id').select2
+        placeholder: "Select a City"
+        data: []
+      @.$('#country_id').select2
+        placeholder: "Select a Country"
+        data: CountryList.toSelect2()
+
+      ## set initial value
+      unless @model.isNew()
+        @.$('#country_id').select2('val', @model.get('country').value)
+        @setSelectCities(@model.get('country').value)
+
+    setCities: (e)->
+      @.$('#city_id').select2('val', {})
+      @setSelectCities(e.val)
+
+    setSelectCities: (country_id)->
+      if @model.get('city')
+        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+      else
+        initialValue = false
+
+      url = AlumNet.api_endpoint + '/countries/' + country_id + '/cities'
+      @.$('#city_id').select2
+        placeholder: "Select a City"
+        minimumInputLength: 2
+        ajax:
+          url: url
+          dataType: 'json'
+          data: (term)->
+            q:
+              name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          data.name
+        formatSelection: (data)->
+          data.name
+        initSelection: (element, callback)->
+          callback(initialValue) if initialValue
+
+    saveClicked: (e)->
+      e.preventDefault()
+      view = @
+      data = Backbone.Syphon.serialize(this)
+      @model.save data,
+        success: (model)->
+          view.destroy()
+          view.branchesView.collection.add(model)
+          view.branchesView.render()
+        error: (model, response)->
+          console.log response
 
   class About.BranchesView extends Marionette.CompositeView
     template: 'companies/about/templates/branches'
     className: 'container-fluid'
+    childView: About.BranchView
+    childViewContainer: '#js-branches-list'
+    childViewOptions: ->
+      branchesView: @
+      company: @model
+
+    events:
+      'click #js-add-branch': 'modalAddBranch'
+
+    modalAddBranch: (e)->
+      e.preventDefault()
+      branch = new AlumNet.Entities.Branch
+      branch.url = AlumNet.api_endpoint + "/companies/#{@model.id}/branches"
+      modal = new About.BranchModal
+        model: branch
+        branchesView: @
+      $('#js-modal-branch-container').html(modal.render().el)
+

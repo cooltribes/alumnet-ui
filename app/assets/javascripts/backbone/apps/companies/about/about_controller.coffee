@@ -18,6 +18,8 @@
             model: company
             collection: company.contactsCollection()
           branches = new About.BranchesView
+            model: company
+            collection: company.branchesCollection()
 
           #Vista principal del about
           body = new About.Layout

@@ -2,12 +2,10 @@
 <div class="company__branchesTable">
 <div class="company__branches">
 	<div class="company__branches__cell company__branches__cell--left">
-		<ul>
-			<li>Portugal, Lisbon</li>
-			<li>Venezuela, San Cristobal</li>	
-		</ul>
-
+	<a href="#" id="js-add-branch" class="btn btn-default">Add Branch</a>
+		<ul id="js-branches-list"></ul>
 	</div>
+	<div id="js-modal-branch-container"></div>
 	<div class="company__branches__cell company__branches__cell--right">
 		<div class="row">
 			<div class="col-md-4">
@@ -31,7 +29,7 @@
 			</div>
 		</div>
 		<div class="text-center">
-			<img src='assets/companies/Mapa.png' width="450px" height="200px"> 
+			<img src='assets/companies/Mapa.png' width="450px" height="200px">
 			<div class="userBusiness__flechas--disable text-left">
             	<div class="userBusiness__flechas--in"><</div>
           	</div>

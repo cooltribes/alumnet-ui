@@ -1,0 +1,5 @@
+<%= @location %>
+<% if @userCanEdit: %>
+  <a href="#" id="js-delete-branch">x</a>
+  <a href="#" id="js-edit-branch">edit</a>
+<% end %>
