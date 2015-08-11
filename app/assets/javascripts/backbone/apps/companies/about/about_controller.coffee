@@ -17,9 +17,8 @@
           contacts = new About.ContactsView
             model: company
             collection: company.contactsCollection()
-          branches = new About.BranchesView
+          branches = new About.BranchesLayout
             model: company
-            collection: company.branchesCollection()
 
           #Vista principal del about
           body = new About.Layout

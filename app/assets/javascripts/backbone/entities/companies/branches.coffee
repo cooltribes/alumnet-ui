@@ -4,8 +4,10 @@
       address:
         required: true
 
-    getLocation: ->
+    getLocation:(address) ->
       location = []
+      if address
+        location.push(@get('address')) unless @get('address') == ""
       location.push(@get('city').text) unless @get('city').text == ""
       location.push(@get('country').text) unless @get('country').text == ""
       location.join(", ")
