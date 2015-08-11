@@ -26,7 +26,6 @@
 
       view = new Discover.List
         collection: companies
-
       view
     
 

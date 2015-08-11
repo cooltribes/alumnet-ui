@@ -1,31 +1,29 @@
 <td>
-<img src="<%= @logo.card %>">
-  
+  <img src="<%= @logo.card %>">
 </td>
 
 <td>
-  <%= @name %>
-  
+  <h4>
+    <%= @name %>
+  </h4>
+  <br>
+  <%= @description %>  
 </td>
 
 <td>
-  <%= @description %>
-  
+  <%= @location() %>  
 </td>
 
 <td>
-  <%= @location() %>
-  
+  <%= @sector.text %>  
 </td>
 
 <td>
-  <%= @sector.text %>
-  
+  <%= @branches_count %>
 </td>
 
 <td>
-   employees: <%= @employees_count %>
-  branches: <%= @branches_count %>
-  links: <%= @links_count %>
+  <%= @employees_count %>
+  <!-- links: <%= @links_count %> -->
 </td>
 

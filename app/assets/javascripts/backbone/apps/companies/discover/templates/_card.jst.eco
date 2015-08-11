@@ -17,13 +17,15 @@
         <%= @location() %>
       </p>
 
-      <p><span class="glyphicon glyphicon-time"></span> 
+      <p><span class="ico-sector"></span> 
         <%= @sector.text %>        
       </p>
-      <p><span class="glyphicon glyphicon-time"></span> 
-        employees: <%= @employees_count %>
-        branches: <%= @branches_count %>
-        links: <%= @links_count %>       
+      <p><span class="ico-company"></span> 
+        Employees: <%= @employees_count %>
+         - 
+        Branches: <%= @branches_count %>
+         - 
+        Links: <%= @links_count %>
       </p>
 
 
