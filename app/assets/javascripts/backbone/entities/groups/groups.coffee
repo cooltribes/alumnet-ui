@@ -136,7 +136,7 @@
 
     getGroupPagination: (querySearch)->
       newGroups = new Entities.GroupCollection
-      newGroups.url = AlumNet.api_endpoint + '/groups?page=1&per_page=3'
+      newGroups.url = AlumNet.api_endpoint + '/groups'
       newGroups
 
     getGroupEntities: (querySearch)->

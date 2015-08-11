@@ -52,8 +52,8 @@
         <span class="ico-location"></span>
         <span><%= @location() %></span><br>
 
-        <!-- <span class="ico-skill"></span> -->
-        <!-- <span> <%= @arraySkill %></span> -->
+        <span class="ico-skill"></span> 
+        <span> <%= @arraySkill.join(", ") %></span> 
       </div>
 
     </div>

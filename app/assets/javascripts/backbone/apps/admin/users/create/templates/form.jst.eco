@@ -1,18 +1,39 @@
-<div class="row">
-  <form>
-    <div class="form-group">
-      <input name="email" id="email">
+<h1>Create users</h1>
+<hr>
+<form>
+  <div class="row">
+    <div class=" col-md-4 col-md-offset-4 form-group">
+      <div class=" col-md-4">
+        <label class="userBrowse__font">Email: </label>
+      </div>
+      <div class=" col-md-8">
+        <input name="email" id="email" class="userBrowse__input input-lg">
+      </div>
       <span class= "help-block"></span>
     </div>
-    <div class="form-group">
-      <select name="role" id="role">
-        <option value="admin">AlumNet Admin</option>
-        <option value="regular">Regular</option>
-        <option value="external">External</option>
-      </select>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 form-group">
+      <div class=" col-md-4">
+        <label class="userBrowse__font">User type: </label>
+      </div>
+      <div class=" col-md-8">
+        <select name="role" id="role" class="userBrowse__input input-lg">
+          <option value="admin">AlumNet Admin</option>
+          <option value="regular">Regular</option>
+          <option value="external">External</option>
+        </select>
+        <span class="ico-triangle-down" aria-hidden="true"></span>
+      </div>
       <span class= "help-block"></span>
     </div>
-    <a href="#" id="js-cancel" class="btn btn-default">CANCEL</a>
-    <a href="#" id="js-save" class="btn btn-default">SAVE</a>
+  </div>
+  <div class="row">
+    <div class=" col-md-4 col-md-offset-4 text-center margin_top_medium">
+    <a href="#" id="js-cancel" class="btn btn-default btn-danger-noBackground">CANCEL</a>
+    <a href="#" id="js-save" class="btn btn-default btn-primary-noBackground">SAVE</a>
+    </div>
+  </div>
   </form>
 </div>
