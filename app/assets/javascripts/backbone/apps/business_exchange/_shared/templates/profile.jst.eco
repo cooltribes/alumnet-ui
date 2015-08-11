@@ -31,7 +31,7 @@
               </div>
             <% end %>
             <div>
-              <span class="userCard__position member-position text-small"><%= @tagline %></span>
+              <span class="userCard__position member-position text-small businessProfileCard__company__name--alignTagline"><%= @tagline %></span>
             </div>
           </div>
         </div>
