@@ -4,29 +4,32 @@
     initialize: (options)->
       @mode = options.mode
 
+      
     templateHelpers: ->
       model = @model
-      # arraySkill ; @model.nice_have_attributes()
-      # arraySkill : _.findWhere(arraySkill, {custom_field: "alumnet_skills"});
-      # # arraySkill : _.pluck(arraySkill,'value');
-      # console.log arraySkill
 
-      # arraySkillDesired = @model.get('nice_have_attributes')
-      # arraySkill : _.where(arraySkill, {custom_field: "alumnet_skills"});
-      # console.log arraySkill
-      # arraySkill: _.pluck(arraySkill,'value');
+      arraySkill = @model.get('nice_have_attributes')
+      arraySkill = _.where(arraySkill, {custom_field: "alumnet_skills"});
+      arraySkill = _.pluck(arraySkill,'value');
+      
+      arraySkillRequired = @model.get('must_have_attributes')
+      arraySkillRequired = _.where(arraySkillRequired, {custom_field: "alumnet_skills"});
+      arraySkillRequired = _.pluck(arraySkillRequired,'value');
+
+      skills = arraySkill.concat arraySkillRequired
 
       canInvite: @model.canInvite()
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
-      
-
       location: ->
         location = []
         location.push model.get('country').text unless model.get('country').text == ""
         location.push model.get('city').text unless model.get('city').text == ""
         location.join(', ')
+      arraySkill: skills  
+
+        
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
