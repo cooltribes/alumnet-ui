@@ -135,6 +135,8 @@
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
+    rows: 3
+    page: 1
     url: ->
       AlumNet.api_endpoint + '/users'
 
