@@ -41,9 +41,10 @@
     </div>
     <div class="col-md-3">
       <div class="businessCard actionCard">        
-        <h2>
+        <h3>
           Create a Task
-        </h2>
+        </h3>
+        <p>Get Help</p>
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
@@ -60,9 +61,10 @@
     </div>    
     <div class="col-md-3">
       <div class="businessCard actionCard">        
-        <h2>
+        <h3>
           Browse Tasks
-        </h2>
+        </h3>
+        <p>Give Help</p>
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
