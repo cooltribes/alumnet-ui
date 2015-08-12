@@ -1,6 +1,7 @@
 @AlumNet.module 'FriendsApp.Find', (Find, @AlumNet, Backbone, Marionette, $, _) ->
   class Find.Controller
     findUsers: ->
+      controller = @
       controller.querySearch = ''
       users = AlumNet.request('user:entities', {})
       usersView = new Find.UsersView

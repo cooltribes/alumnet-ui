@@ -1,0 +1,229 @@
+/***
+
+APP NAME: groups
+DESCRIPTION: shared styles among group applications
+
+***/
+
+@import 'conf/conf.css.less';
+
+
+.companyCard {
+  color: @black;
+  &__logo {
+    text-align: center;
+    padding: 10px;
+  }
+
+  &__description {
+    h3 {
+      text-transform: uppercase;
+      font-weight: bold;
+      // color: @black
+    }
+  }
+}
+
+
+.companiesTable {
+
+  background-color: transparent;
+  color: @black;
+
+  // &__cover{
+  //   background-size:cover; 
+  //   height: 90px; 
+  //   width: 90px;
+  // }
+
+  tr {
+    border: none;
+    display: block;
+    margin-bottom: 10px
+  }
+
+  tbody > tr > td {
+    border:none;
+    vertical-align: middle;
+    padding: 20px;
+  }
+
+  table& > thead > tr > th {
+    background-color: @main-bg;
+    border: none;
+    text-transform: uppercase;
+    color: @blue-gray;
+    font-size: 1.7em;
+
+    &:nth-child(1){
+      width: 25em;
+    }
+    &:nth-child(2){
+      width: 28em;      
+    }
+    &:nth-child(3){
+      width: 10em;      
+    }
+    &:nth-child(4){
+      width: 14em;      
+    }
+    &:nth-child(5){
+      width: 3em;      
+    }
+    &:nth-child(6){
+      width: 5em;      
+    }
+  }
+  
+  table& > tbody > tr {
+    background-color: @white;
+    border: 1px solid @gray;
+    
+
+    &:hover{
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    & > td {
+      &:nth-child(1){
+        text-align: center;
+        width: 21em;
+      }
+      &:nth-child(2){
+        width: 26em;      
+      }
+      &:nth-child(3){
+        width: 10em;      
+      }
+      &:nth-child(4){
+        width: 14em;      
+      }
+       &:nth-child(5){
+        width: 5em;      
+      }
+      &:nth-child(6){
+        width: 5em;      
+      }
+      
+    }
+
+  }
+
+  &__description {
+    height: 75px;
+    overflow: hidden;
+    h4 {
+      font-size: 22px;
+      margin-top: 0;      
+    }
+
+  }
+  
+
+   
+
+  //   table& > tbody > tr > td:nth-child(6){
+  //      min-width: 130px;
+  //   }
+
+  // table > tbody > tr > td&__col{
+  //      vertical-align: middle;
+  //      text-align: center;
+  //      min-width: 79px;
+
+  //      &Text{
+  //         padding: 0px 10px;
+  //      }
+  //   }
+
+  // &__label{
+  //   border-radius: 1em;
+  //   padding: 2px 10px;
+  //   font-weight: 400;
+  //   font-size: 0.7em;
+  // }
+
+  // &__ribbon{
+  //       background: image-url('groups/ribbon-orange-noShadow.png') no-repeat;
+  //       background-size: contain;
+  //       display: block;
+  //       height: 100px;
+  //       position: relative;
+  //       top: -3px;
+  //       width: 51px;
+  //       z-index: 10;
+  //       float:left;
+  //   }
+
+  // &__actions{
+  //       background-color: @blue-gray;
+        
+  //       border:none;
+       
+  //       text-align: center;
+  //     button{
+  //         border:none;
+  //         padding:10px 5px;
+  //         background-color: @blue-gray;
+  //         color: @white;
+  //         width: 100%;
+  //     }
+
+  //     &--enter{
+  //           background-color: @light-blue;
+  //           color: darken(#e1ecf1, 50%);
+  //           background-color: darken(#e1ecf1, 10%);
+  //           text-align: center;
+  //           padding: 5px;
+  //           display: block;
+  //       }
+
+  //       &--join{
+  //           background-color: @lighter-gray;
+  //           color: darken(#e1ecf1, 50%);
+  //           background-color: darken(#e1ecf1, 10%);
+  //           text-align: center;
+  //           padding: 5px;
+  //           display: block;
+  //       }
+
+  //       &--waitingApproval{
+  //           color: darken(#e1ecf1, 50%);
+  //           background-color: darken(#e1ecf1, 10%);
+  //           text-align: center;
+  //           padding: 5px;
+  //           display: block;
+  //       }
+    
+
+  //   }
+
+  //   &__join{
+  //     background-color: #fff;
+  //   border: 0px;
+  //   color: @blue;
+  //   margin: 30px 0px;
+  //   }
+
+  // &__SubGroup{
+  //     cursor: pointer;
+  //   }
+
+  //   &__SubGroupList{
+  //     list-style: none;
+  //   }
+
+  //   &__description{
+  //     overflow: hidden;
+  //   text-overflow: ellipsis;
+  //   white-space: nowrap;
+  //   width: 570px;
+  //   }
+  
+  // &__marginText{
+  //   margin-top: 20px;
+
+  // }
+    
+
+}

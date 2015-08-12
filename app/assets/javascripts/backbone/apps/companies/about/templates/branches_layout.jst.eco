@@ -1,0 +1,10 @@
+<h3>Branches</h3>
+<div class="company__branchesTable">
+  <div class="company__branches">
+    <div id="js-branches" class="company__branches__cell company__branches__cell--left">
+    </div>
+
+    <div id="js-branch-detail" class="company__branches__cell company__branches__cell--right">
+    </div>
+  </div>
+</div>
