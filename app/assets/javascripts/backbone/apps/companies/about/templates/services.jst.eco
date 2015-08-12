@@ -2,7 +2,7 @@
 	<div class="col-md-6">
 		<div class="company__row company__cell">
 			<h3 class="no-margin">Products</h3>
-			<ul class="products_services">
+			<ul id="js-products-services-list">
 			</ul>
 			<% if @userCanEdit: %>
 				<form class="form-inline">
