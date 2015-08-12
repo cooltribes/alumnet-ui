@@ -12,6 +12,9 @@
     modelEvents:
       "change": "modelChange"
 
+    events:
+      'change #prize-photo': 'previewImage'
+
     bindings:
       ".js-name": 
         observe: "name"
@@ -48,11 +51,59 @@
         observe: "quantity"
         events: ['blur']
 
+      ".js-prizeImage": "image"
+
+    initialize: (options) ->
+      @prizeImage = options.model.get('image').image.card.url
+
+    templateHelpers: ->
+      prizeImage: @prizeImage
+
     onRender: ->
       @stickit()
 
     modelChange: (e)->
       @model.save()
+
+    previewImage: (e)->
+      console.log e
+      $(e.currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','inline-block')
+      $(e.currentTarget).siblings('.uploadF--blue').css('display','none')
+      $(e.currentTarget).siblings('img').css('top',0)
+      input = @.$('#prize-photo')
+      preview = @.$('#prewiev-prize-photo')
+      model = @model
+      currentTarget= e.currentTarget
+
+      formData = new FormData()
+      file = @$('#prize-photo')
+      formData.append('image', file[0].files[0])
+      console.log formData
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          if input[0] && input[0].files[0]
+           reader = new FileReader()
+           reader.onload = (e)->
+              preview.attr("src", e.target.result)
+              $(currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','none')
+              $(currentTarget).siblings('.uploadF--blue').css('display','inline-block')
+              $(currentTarget).siblings('img').css('top',-30)
+           reader.readAsDataURL(input[0].files[0])
+          #modal.destroy()
+          #model.trigger('render:view')
+          #if table
+            #table.collection.add(model)
+      model.save(formData, options_for_save)
+      # if input[0] && input[0].files[0]
+      #   reader = new FileReader()
+      #   reader.onload = (e)->
+      #     preview.attr("src", e.target.result)
+      #   reader.readAsDataURL(input[0].files[0])
 
   class PrizesList.PrizesTable extends Marionette.CompositeView
     template: 'admin/prizes/list/templates/prizes_table'
@@ -72,19 +123,44 @@
     events:
       'click #js-modal-save': 'saveClicked'
       'click #js-modal-delete': 'deleteClicked'
+      'change #prize-photo': 'previewImage'
 
     saveClicked: (e)->
       e.preventDefault()
       modal = @
       model = @model
       table = @prizeTable
-      data = Backbone.Syphon.serialize(modal)
-      @model.save data,
-        success: ->
+
+      #Guardar con imagen
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      console.log data
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = @$('#prize-photo')
+      formData.append('image', file[0].files[0])
+      console.log formData
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
           modal.destroy()
           model.trigger('render:view')
           if table
             table.collection.add(model)
+      model.save(formData, options_for_save)
+
+      #Guardar sin la imagen
+      # data = Backbone.Syphon.serialize(modal)
+      # @model.save data,
+      #   success: ->
+      #     modal.destroy()
+      #     model.trigger('render:view')
+      #     if table
+      #       table.collection.add(model)
 
     deleteClicked: (e)->
       e.preventDefault()
@@ -94,3 +170,12 @@
         @model.destroy
           success: ->
             modal.destroy()
+
+    previewImage: (e)->
+      input = @.$('#prize-photo')
+      preview = @.$('#prewiev-prize-photo')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])

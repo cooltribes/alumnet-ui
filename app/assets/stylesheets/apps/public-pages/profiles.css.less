@@ -1,0 +1,52 @@
+/***
+
+DESCRIPTION: These are the styles for profiles pages in public scope
+
+***/
+
+@import 'conf/conf.css.less';
+
+.publicProfile {
+  margin-top: 50px;
+
+  &__membership {
+    padding-top: 18px;
+
+    div {
+      background-color: #2099d0;
+      border-radius: 50px;
+      color: #ffffff;      
+      padding: 9px 18px 9px 13px;
+      display: inline;
+
+      .glyphicon__right {
+        margin-right: 5px;
+      }
+      .glyphicon__big {
+        font-size: 20px;
+        top: 3px;
+      }
+
+    }
+
+  }
+
+  &__avatarImage {
+    width: 100%;
+  }
+  
+  &__btnMessage{
+    
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    display: block;
+    width: 250px;
+    margin: 20px auto;
+    padding: 17px 20px;
+    -ms-border-radius: 0;
+    -moz-border-radius: 0;
+  }
+}

@@ -14,6 +14,7 @@
             </div>
           </div>
           <div class="col-md-6">
+            <a href="#" id="js-show-modal" style="display:none">Create a Company</a>
             <div class="form-job has-feedback">
               <label class="control-label">Name of the Company</label>
               <input class="js-companies" type="hidden" name="company_id" id="task-company" style="width: 100%">
@@ -41,7 +42,7 @@
           <div class="col-md-4 margin_top_medium">
             <div class="form-job">
               <label class="control-label">Experience</label>
-              <select class="form-control input-lg" id="employment-type" name="seniority_id">               
+              <select class="form-control input-lg" id="employment-type" name="seniority_id">
                 <% for seniority in @seniorities(): %>
                   <option value="<%= seniority.id %>"<%= @select_position_type(seniority.id) %>>
                     <%= seniority.name %>
@@ -139,3 +140,4 @@
     </form>
   </div>
 </div>
+<div id="js-modal-company-container"></div>

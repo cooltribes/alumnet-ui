@@ -13,7 +13,7 @@
     constructor: (container_id, options)->
       @activateOr = false
       @container = $("##{container_id}")
-      @htmlFilter = '<div class="filter">' + @container.find('.filter').html() + "</div>"
+      @htmlFilter = '<div class="filter row margin_top_medium">' + @container.find('.filter').html() + "</div>"
       @options = options
       @initializeEvents()
 
@@ -58,7 +58,7 @@
     generateOptions: ($filterContainer, value)->
       options = @_getOptionsFor(value)
       filterComparator = $filterContainer.find('.filter-comparator')
-      valueContainer = $filterContainer.find('.filter-value-container')
+      valueContainer = $filterContainer.find('.filter-value-container filters__input filters__input--lg input-lg')
       if options
         filterComparator.html @_htmlForComparator(options.type)
         valueContainer.html @_inputForFilter(options)

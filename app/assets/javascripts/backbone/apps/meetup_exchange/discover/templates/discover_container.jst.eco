@@ -1,53 +1,85 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-3">
       <h1>Discover</h1>
     </div>
-    <div class="col-md-6">
+ <!--  <div class="row">
+    <div class="col-md-3">
+      <div class="filter-logic-operator-container">
+        <select id="filter-logic-operator" class="filters__input filters__input--lg form-control input-lg">
+          <option value="any">Any</option>
+          <option value="all">All</option>
+        </select>
+        <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="col-md-9"> 
       <form id="search-form">
-          <div class="input-group">
-            <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
-            <span class="input-group-btn">
-            <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
-          </div>
-          <!--<p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p>-->
-        </form>
-      <!-- <div class="advanced-search margin_bottom">
-        <div class="advanced-search-container jobPost__search" id="searcher">
-          <div class="filter-logic-operator-container">
-            <select id="filter-logic-operator">
-              <option value="any">Any</option>
-              <option value="all">All</option>
-            </select>
-          </div>
-          <div class="filter">
-            <div class="filter-attribute-container">
-              <select class="filter-attribute">
+        <div class="input-group">
+          <input type="text" name="search_term" id="search_term" class="searchBarD__searchInput form-control " placeholder="Search Meetups">
+          <span class="input-group-btn">
+          <button class="searchBarD__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+        <!-- <p class="help-block text-right"><a href="#" title="Acvance search">Advance search</a></p> -->
+      </form> 
+    </div>
+  </div>
+  <!-- <div class="advanced-search margin_bottom filters__colorFilter filters__colorFilter--blue">
+    <div class="advanced-search-container jobPost__search" id="searcher">
+      <div class="filter row margin_top_medium">
+          <div class="col-md-3">
+            <div class="filter-attribute-container form-group">
+              <select class="filter-attribute filters__input filters__input--lg form-control input-lg">
                 <option value="">Select field</option>
                 <option value="name">Title</option>
                 <option value="arrival_date">Arrival Date</option>
                 <option value="post_until">Departure Date</option>
                 <option value="task_attributes_value">Attributes</option>
               </select>
+              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+              <span class="help-block"></span>
             </div>
-            <div class="filter-comparator-container">
-              <select class="filter-comparator"></select>
-            </div>
-            <div class="filter-value-container">
-              <input class="filter-value"></input>
-            </div>
-            <a href="#" class="close-filter"><span class="glyphicon glyphicon-remove"></span></a>
           </div>
-        </div>
-        <div>
-          <a href="#" class="search btn btn-default btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
-          <a href="#" class="clear btn btn-default">Clear</a>
-          <a href="#" class="add-new-filter btn btn-default">Add New filter</a>
-        </div>
-      </div> -->
-    </div>
-  </div>
+
+          <div class="col-md-3">
+            <div class="filter-comparator-container form-group">
+              <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
+                  <option value="">Select comparator</option>
+              </select>
+              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="filter-value-container form-group">
+              <input class="filter-value filters__input filters__input--lg form-control input-lg">
+            </div>
+          </div>
+          
+          <div class="col-md-3 close-filter">
+              <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
+          </div> 
+     
+      </div>
+    </div> 
+  </div> 
+        <div class="row">
+          <div class="col-md-7">
+            <button class="btn-addFilter add-new-filter" type="button">+ Add New filter</button>
+          </div>
+          <div class="col-md-5">
+            <div class="margin_bottom search-control pull-right">
+              <button class="glyphicon glyphicon-search btn btn-primary btn-lg search filters__btnSearch" type="button"> Search</button>
+              <button class="glyphicon glyphicon-refresh btn btn-primary btn-lg clear filters__btnClear" type="button"> Clear</button>
+            </div>
+          </div>
+        </div> -->
 </div>
 
-<div class="tasks-container tasks-container container-fluid"></div>
+<div class="tasks-container tasks-container container-fluid">
+  <hr>
+</div>

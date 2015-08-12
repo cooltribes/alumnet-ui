@@ -245,8 +245,10 @@
       current_user: @model
 
     initialize:(options)->
+      _.bindAll(this, 'loadMorePosts');
       @event = options.event
       @picture_ids = []
+      $(window).scroll(@loadMorePosts);
 
     templateHelpers: ->
       event_attendances: @event.get('attendances_count')
@@ -287,11 +289,12 @@
       data = Backbone.Syphon.serialize(this)
       data.picture_ids = @picture_ids
       if data.body != ''
+        @trigger 'post:submit', data
         view = @
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
-        post = AlumNet.request('post:event:new', @event.id)
-        post.save data,
-          success: (model, response, options)->
-            view.collection.add(model, {at: 0})
+
+    loadMorePosts: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'post:reload' 

@@ -1,0 +1,3 @@
+<div class="overfloadText metaInfoCard__language">
+  <%= @language_name %>
+</div>

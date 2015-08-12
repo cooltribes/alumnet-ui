@@ -49,7 +49,7 @@
 
         <li class="<%= @classOf(3)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
 
-        <li class="<%= @classOf(2)%>"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> Invites</a></li>
+        <li class="<%= @classOf(2)%>"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span>Invites</a></li>
         <a href="#business-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a new Task</a>
       </ul>
     </div>

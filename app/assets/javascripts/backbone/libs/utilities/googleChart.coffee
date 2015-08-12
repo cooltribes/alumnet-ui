@@ -20,10 +20,18 @@
     # 
     ###
     initialize: ( options ) ->
+
+      _.defaults options,
+        materialDesign: false
+
       chartOptions = _.extend({},options)
       _(['el','id','attributes','className','tagName']).map (k) -> delete chartOptions[k]
 
+
+      # if chartOptions 
       google.load('visualization', '1', packages: ['corechart'], callback: => @onGoogleLoad "loaded")
+
+
 
       @onGoogleLoad =>
         @google = google.visualization

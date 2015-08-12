@@ -1,6 +1,7 @@
 @AlumNet.module 'MeetupExchangeApp.AutoMatches', (AutoMatches, @AlumNet, Backbone, Marionette, $, _) ->
   class AutoMatches.Task extends AlumNet.MeetupExchangeApp.Shared.Task
     template: 'meetup_exchange/_shared/templates/discover_task'
+    className: 'col-md-4'
 
   class AutoMatches.List extends Marionette.CompositeView
     template: 'meetup_exchange/automatches/templates/automatches_container'

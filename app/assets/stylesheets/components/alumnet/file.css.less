@@ -10,38 +10,43 @@ DESCRIPTION: Style to folder and files in groups.
 .file{
 
 	&__background{
+  		height: 50px;
+      padding: 5px;
 
-		background-color: @white;
-  		margin-right: 5px;
-  		margin-top: 10px;
-  		margin-left: 10px;
-  		width: 300px;
-  		height: 100px;
+      &--blue{
+        background-color: @blue;
+      }
+
+      &--white{
+        background-color: #fff;
+      }
   	} 
 
   	&__iconFileC{
-
-		padding-left: 260px;
-		margin-top: 25px;
-		font-size: 180%;
-		color: #818181;
-  	}
-
-  	&__iconFileD{
-
-		padding-left: 264px;
-		margin-top: 30px;
-		font-size: 150%;
-		color: #818181;
+		  font-size: 130%;
+      padding: inherit;
+        
+        &--sizeIcon{
+          font-size: 160%;
+        }
   	}
 
   	&__nameFolder{
-		
-		width: 200px;
+		  color: @blue;
+      font-size: 17px;
+
+      &--align {
+        text-align: left;
+      }
   	}
 
   	&__positionDropdown{
-
-		margin-top: -20px;
+		  margin-top: -20px;
   	}
+
+    &__backFolder{
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
 }

@@ -73,7 +73,7 @@
 
         <div class="col-md-8">
           <div class="form-group">
-            <label class="control-label">Why to make business with me</label>
+            <label class="control-label">Why me</label>
             <br>
             <!-- <small>A short description helping with filling in that form</small> -->
             <textarea name="business_me" class="form-control input-lg input--xxl" id="business-me"></textarea>

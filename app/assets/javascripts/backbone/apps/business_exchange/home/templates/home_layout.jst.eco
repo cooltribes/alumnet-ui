@@ -32,7 +32,7 @@
           </div>
 
           <div class="col-md-6 text-right">
-            <a href="#business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
+            <a href="#business-exchange/view-people" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
           </div>
           
         </div>
@@ -70,7 +70,7 @@
           </div>
 
           <div class="col-md-6 text-right">
-            <a href="#business-exchange" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
+            <a href="#business-exchange/view-tasks" class="btn btn-primary btn-lg btn-primary-noBackground">Browse</a>            
           </div>
           
         </div>
@@ -89,7 +89,7 @@
       
     </div>
     <div class="col-md-12 text-center margin_top">
-      <a href="#business-exchange" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
+      <a href="#business-exchange/view-people" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
     </div>
   </div>
 
@@ -103,7 +103,7 @@
       
     </div>
     <div class="col-md-12 text-center margin_top">
-      <a href="#business-exchange" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
+      <a href="#business-exchange/view-tasks" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
       
     </div>
   </div>

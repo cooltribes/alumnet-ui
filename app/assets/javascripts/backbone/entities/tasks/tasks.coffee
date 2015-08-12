@@ -67,6 +67,8 @@
   class Entities.JobExchangeCollection extends Backbone.Collection
     model:
       Entities.JobExchange
+    rows: 3
+    page: 1
     url: ->
       AlumNet.api_endpoint + '/job_exchanges'
 
@@ -129,6 +131,20 @@
           data.push { id: element.profinda_id, value: element.value }
       data
 
+    get_location: ->
+      location = []
+      location.push @city_initial_value().text unless @city_initial_value().text == undefined
+      location.push @country_initial_value().text unless @country_initial_value().text == undefined
+      location.join(", ")
+
+    validation:
+      arrival_date:
+        required: true
+        msg: "Arrival Date is required"
+      post_until:
+        required: true
+        msg: "Departure Date is required"
+        
   class Entities.MeetupExchangeCollection extends Backbone.Collection
     model:
       Entities.MeetupExchange

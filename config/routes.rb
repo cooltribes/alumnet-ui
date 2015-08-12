@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   get '/facebook/registration', to: 'facebook#registration', as: :facebook_registration
   post '/facebook/sign_in', to: 'facebook#sign_in', as: :facebook_sign_in
   post '/facebook/sign_up', to: 'facebook#sign_up', as: :facebook_sign_up
+
+  #public profiles
+  get '/profiles/:slug', to: 'profiles#show'
+  # get '/profiles', to: 'facebook#callback'
+
+
   #error pages
   get '/500', to: 'errors#e500', as: :e500
   get '/404', to: 'errors#e404', as: :e404

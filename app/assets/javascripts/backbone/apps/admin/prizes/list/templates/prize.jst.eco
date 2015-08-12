@@ -10,3 +10,17 @@
   	</select>
 </td>
 <td class="tableAdminGroups__colText js-quantity" contenteditable="true"></td>
+<td class="tableAdminGroups__colText" style="width: 150px;">
+  
+	<label class="uploadF" style="height: 100px;">
+    <div id="contenedor" class="loadingAnimation__migrateUsers loadingAnimation__prizesPhoto">
+      <div class="loader" id="loader"></div>
+    </div>
+    <div class="uploadF--white uploadF--positionPhotoPrize uploadF--positionPhotoPrize--table">
+    	<span class="glyphicon glyphicon-open"></span>
+    	<span>Upload prize photo</span>
+    </div>
+    <input type="file" id="prize-photo" >
+    <img src="<%= @prizeImage %>" id="prewiev-prize-photo" class="js-prizeImage uploadF--img uploadF--prizePhoto">
+  </label>
+</td>

@@ -4,6 +4,8 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->
+      @invitations = new AlumNet.Entities.TaskInvitationCollection
+      @invitations.fetch()
       @tab = options.tab
       @class = [
         "", "", ""
@@ -12,6 +14,10 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
+      
+      # length: @invitations.length
+      # console.log @invitations.length
+
       model = @model
       classOf: (step) =>
         @class[step]

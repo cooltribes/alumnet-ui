@@ -21,10 +21,7 @@
         <h2><%= @name %></h2>
         <% end %>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+
       <div class="groupAbout__box margin_bottom">
         <h3>Description</h3>
         <div id="description" class="js-attribute"><%- @description %></div>
@@ -33,6 +30,10 @@
           <a href="#" id="js-save-description" class="editLink" style="display:none">[save]</a>
          <% end %>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
       <div class="groupAbout__box margin_bottom">
         <h3>Join Process</h3>
         <a href="#" id="join_process" class="js-attribute"><%= @joinProcessText %></a>

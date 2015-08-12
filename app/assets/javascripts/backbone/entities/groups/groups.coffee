@@ -100,6 +100,8 @@
 
   class Entities.GroupCollection extends Backbone.Collection
     model: Entities.Group
+    rows: 3
+    page: 1
 
     url: ->
       AlumNet.api_endpoint + '/groups'
@@ -132,8 +134,15 @@
           model.trigger('save:success', response, options)
       join
 
+    getGroupPagination: (querySearch)->
+      newGroups = new Entities.GroupCollection
+      newGroups.url = AlumNet.api_endpoint + '/groups'
+      newGroups
+
     getGroupEntities: (querySearch)->
       initializeGroups() if Entities.groups == undefined
+      Entities.groups.page = 1
+      Entities.groups.url = AlumNet.api_endpoint + '/groups?page='+Entities.groups.page+'&per_page='+Entities.groups.rows
       Entities.groups.fetch
         data: querySearch
         success: (model, response, options) ->
@@ -198,6 +207,9 @@
   AlumNet.reqres.setHandler 'group:entities', (querySearch) ->
     API.getGroupEntities(querySearch)
 
+  AlumNet.reqres.setHandler 'group:pagination', (querySearch) ->
+    API.getGroupPagination(querySearch)
+
   AlumNet.reqres.setHandler 'group:find', (id)->
     API.findGroup(id)
 
@@ -209,3 +221,4 @@
 
   AlumNet.reqres.setHandler 'group:entities:deleted', (querySearch)->
     API.getGroupsDeleted(querySearch)
+

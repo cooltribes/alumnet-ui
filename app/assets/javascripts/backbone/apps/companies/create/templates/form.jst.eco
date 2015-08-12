@@ -1,0 +1,99 @@
+<div id="" class="ng-scope">
+  <div class="container-fluid">
+    <form class="row formANet form ">
+      <div class="col-md-10 col-md-offset-1">
+        <h1 class="textColor--blue ">Create a Company/Organization</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label">Logo</label>
+              <div class="add-logo">
+                <label class="uploadFile uploadFile--cover">
+                  <div class="uploadFile--img">
+                    <img src="" alt="" width="100%" height="215px" id="preview-logo">
+                  </div>
+                  <div class="uploadFile--text">
+                    <span class="glyphicon glyphicon-open"></span>
+                    <span>Upload cover photo</span>
+                    <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+                  </div>
+                  <input type="file" name="logo" id="logo">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label">Name</label>
+              <input type="text" name="name" id="name" class="form-control input-lg" value="<%= @name %>">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label">Sector</label>
+              <input type="hidden" name="sector_id" id="sectors" value="<%= @sector_id %>" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label" for="size">Company size</label>
+              <select name="size" id="size" style="width: 100%"><%- @sizes_options() %></select>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-company has-feedback">
+              <label class="control-label">About</label>
+              <textarea name="description" id="description" class="form-control input-lg" rows="3" style="resize:none"><%= @description %></textarea>
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label">Country (optional)</label>
+              <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-company has-feedback">
+              <label class="control-label">City (optional)</label>
+              <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_helper %>">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-company has-feedback">
+              <label class="control-label">Address (optional)</label>
+              <input type="text" name="main_address" id="address" class="form-control input-lg" value="<%= @address %>">
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+        <!-- ACTIONS ON -->
+        <div class="text-right">
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">SAVE</button>
+        </div>
+        <!-- ACTIONS OFF -->
+      </div>
+    </form>
+  </div>
+</div>

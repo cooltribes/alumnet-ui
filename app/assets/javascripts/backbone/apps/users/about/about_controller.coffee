@@ -111,6 +111,80 @@
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
 
+    showProfile: (id)->
+      user = AlumNet.request("user:find", id)
+      user.on 'find:success', (response, options)=>
+
+        # if user.isCurrentUser()
+        #   AlumNet.trigger('show:error', 404)    
+        #   return
+
+        profileId = user.profile.id
+        #Edit Options - permissions
+        userCanEdit = false #None of users can edit in this profile view
+
+        # layout = AlumNet.request("user:layout", user, 1)
+        # header = AlumNet.request "user:header", user,
+          # userCanEdit: userCanEdit
+
+        #get the skills of the user
+        skills = new AlumNet.Entities.Skills
+        skills.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/skills"
+        skills.fetch()
+
+        #get the languages of the user
+        languages = new AlumNet.Entities.Languages
+        languages.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/language_levels"
+        languages.fetch()
+
+        
+        expCollection = new AlumNet.Entities.ExperienceCollection
+        
+        expCollection.setOrder()
+
+        expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
+        expCollection.fetch
+          success: (collection)=>
+              #only allowed if user can edit
+              # if userCanEdit
+              collection.addTitles()
+
+        body = new About.PublicProfile
+          model: user
+          userCanEdit: userCanEdit
+
+        profileView = new About.Profile
+          model: user
+          userCanEdit: userCanEdit
+
+        skillsView = new About.SkillsView
+          collection: skills
+          userCanEdit: userCanEdit
+
+        languagesView = new About.LanguagesView
+          collection: languages
+          userCanEdit: userCanEdit
+          showLevel: false
+
+        experiencesView = new About.Experiences
+          collection: expCollection
+          userCanEdit: userCanEdit
+
+        AlumNet.mainRegion.show(body)
+        # layout.header.show(header)
+        # layout.body.show(body)
+
+        #Show each region of the about page
+        body.profile.show(profileView)
+        body.skills.show(skillsView)
+        body.languages.show(languagesView)
+        body.experiences.show(experiencesView)
+
+        AlumNet.execute('render:users:submenu')
+
+      user.on 'find:error', (response, options)->
+        AlumNet.trigger('show:error', response.status)    
+
     #set the action when modal is submitted for each info
     #0-skills, 1-languages,
     setEditActions: (view, type)->

@@ -4,9 +4,14 @@
       <%= @name %>
     
   </h3></div>
-  <div class="jobPostDetail__company">
-    <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
-  </div>
+  <% if @company.text == "": %>  
+  <% end %>
+  <% if @company.text != "": %>  
+    <div class="jobPostDetail__company">
+      <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-8">
       <div class="jobPostDetail__description">
@@ -34,15 +39,21 @@
         </div>
       <% end %>
       <div class="jobPost__details padding_top">
-        <span class="ico-jobfunction"></span>
-        <span> <%= @position.text %> </span><br>
+        <% if @position.text == null: %>
+        <% end %>
+        <% if  @position.text != null: %>
+          <span class="ico-jobfunction"></span>
+          <span> <%= @position.text %> </span><br>
+        <% end %>
+
         <span class="glyphicon glyphicon-time"></span>
         <span> <%= @employment.text %> </span><br>
+
         <span class="ico-location"></span>
-        <span><%= @location() %></span>
-      </div>
-      <div class="skills">
-        <!-- SKILLS PENDING -->
+        <span><%= @location() %></span><br>
+
+        <!-- <span class="ico-skill"></span> -->
+        <!-- <span> <%= @arraySkill %></span> -->
       </div>
 
     </div>
@@ -103,3 +114,4 @@
   </div>
 </div>
 <% end %>
+<div id="container-modal-apply"></div>

@@ -1,0 +1,5 @@
+<%= @contactTypeText(@contact_type).text %>: <%= @info %>
+<% if @userCanEdit: %>
+  <a href="#" id="js-delete-contact">x</a>
+  <a href="#" id="js-edit-contact">edit</a>
+<% end %>

@@ -3,23 +3,28 @@
     <a href="#" id="iconDelete"  class="pull-right js-job-delete" ><span class="glyphicon glyphicon-remove"></span>
     </a>
   <% end %>
-  <div class="jobPost__name"><h3 class="no-margin">
+  <div class="jobPost__name"><h3 class="no-margin overfloadText overfloadText--blue">
     <a href="#job-exchange/<%= @id %>">
       <%= @name %>
     </a>
   </h3></div>
   <div class="jobPost__company">
-    <h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% if @company.text == "": %> 
+      <h3 class="no-margin" style="visibility:hidden"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% end %>
+    <% if @company.text != "": %>  
+      <h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% end %>
   </div>
-  <div class="programCardDescription jobPost__description margin_top_xsmall">
+  <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
   </div>
       <% if @user: %>
         <div class="row user">
-          <div class="col-md-3 no-padding-rigth text-right">
+          <div class="col-md-2 text-right">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
           </div>
-          <div class="col-md-9 jobPost__user">
+          <div class="col-md-10 jobPost__user">
             <span>Posted by</span>
             <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
             <span class="userCard__position member-position text-small"><%= @uselast_experience %></span>
@@ -29,8 +34,14 @@
         <% end %>
 
     <div class="jobPost__details padding_top">
-      <p><span class="ico-jobfunction"></span> <%= @position.text %></p>
+      <% if @position.text == null: %>
+      <% end %>
+      <% if  @position.text != null: %>
+        <p><span class="ico-jobfunction"></span> <%= @position.text %></p>
+      <% end %>
+      
       <p><span class="glyphicon glyphicon-time"></span> <%= @employment.text %></p>
+
       <p class="overfloadText"><span class="ico-location"></span> <%= @location() %></p>
     </div>
 
@@ -44,7 +55,8 @@
     <% end %>
     <a href="#job-exchange/<%= @id %>" class="btn btn-primary-noBackground js-job-details" >LEARN MORE >> </a>
     <% if @canApply: %>
-      <a href="#" class="btn btn-default js-job-apply btn-primary" >APPLY FOR A JOB </a>
+      <a href="#" class="btn btn-default js-job-apply btn-primary">APPLY FOR A JOB </a>
     <% end %>
   </div>
 </div>
+<div id="container-modal-apply"></div>

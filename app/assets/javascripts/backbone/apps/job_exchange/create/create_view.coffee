@@ -1,4 +1,64 @@
 @AlumNet.module 'JobExchangeApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
+  class Create.CompanyModal extends Backbone.Modal
+    template: 'job_exchange/create/templates/company_modal'
+    cancelEl: '#cancel'
+
+    initialize: (options)->
+      @taskView = options.taskView
+      Backbone.Validation.bind this,
+      valid: (view, attr, selector) ->
+        view.clearErrors(attr)
+      invalid: (view, attr, error, selector) ->
+        view.addErrors(attr, error)
+
+    events:
+      'click #save': 'saveClicked'
+
+    templateHelpers: ->
+      model = @model
+      sizes_options: (item)->
+        model.sizes_options(item)
+
+    onRender: ->
+      $selectSectors = @$('#sectors')
+      @$('#size').select2()
+      Backbone.ajax
+        url: AlumNet.api_endpoint + '/sectors'
+        success: (data)->
+          $selectSectors.select2
+            data: { results: data, text: "name" }
+
+    clearErrors: (attr)->
+      $el = @$("[name=#{attr}]")
+      $group = $el.closest('.form-col')
+      $group.removeClass('has-error')
+      $group.find('.help-block').html('').addClass('hidden')
+
+    addErrors: (attr, error)->
+      $el = @$("[name=#{attr}]")
+      $group = $el.closest('.form-col')
+      $group.addClass('has-error')
+      $group.find('.help-block').html(error).removeClass('hidden')
+
+    saveClicked: (e)->
+      e.preventDefault()
+      view = @
+      data = Backbone.Syphon.serialize(this)
+      @model.set(data)
+      if @model.isValid(true)
+        @model.save {},
+          success: (model)->
+            initialValue = { id: model.id, name: model.get('name') }
+            view.destroy()
+            view.ui.showModalLink.hide()
+            view.taskView.selectCompany view.taskView.ui.selectCompany, initialValue
+          error: (model, response)->
+            errors = response.responseJSON
+            _.each errors, (value, key, list)->
+              view.clearErrors(key)
+              view.addErrors(key, value[0])
+
+
   class Create.Form extends Marionette.ItemView
     template: 'job_exchange/create/templates/form'
 
@@ -44,11 +104,13 @@
       'selectProfindaMustHaveLanguages': '#languages-must-have'
       'selectProfindaNiceHaveLanguages': '#languages-nice-have'
       'selectPosition': '#employment-type'
+      'showModalLink': '#js-show-modal'
 
     events:
       'click @ui.submitLink': 'submitClicked'
       'click @ui.cancelLink': 'cancelClicked'
       'change @ui.selectCountries': 'setCities'
+      'click @ui.showModalLink': 'showCompanyModal'
 
     onShow: ->
       summernote_options =
@@ -61,11 +123,6 @@
       $('#task-offer').summernote(summernote_options)
 
     onRender: ->
-      ## set select2 to inputs
-      # @ui.selectCompany.select2
-      #   placeholder: "Select a Company"
-      #   data: []
-
       @selectCompany(@ui.selectCompany)
 
       @ui.selectCities.select2
@@ -93,7 +150,6 @@
       data.description = $('#task-description').code().replace(/<\/?[^>]+(>|$)/g, "")
       data.formatted_description = $('#task-description').code()
       data.offer = $('#task-offer').code()
-      console.log data
       @model.save data,
         success: ->
           ##TODO Match
@@ -108,7 +164,7 @@
     setCities: (e)->
       @setSelectCities(e.val)
 
-    selectCompany: (element)->
+    selectCompany: (element, initialValue)->
       view = @
       Backbone.ajax
         url: AlumNet.api_endpoint + "/companies"
@@ -116,7 +172,15 @@
           element.select2
             placeholder: "Select a Company"
             data: { results: data, text: "name" }
-          if view.model.get('company')
+            formatNoMatches: ->
+              view.ui.showModalLink.show()
+              "No matches"
+            formatSearching: ->
+              view.ui.showModalLink.hide()
+              "Searching..."
+          if initialValue
+            element.select2('data', initialValue)
+          else if view.model.get('company')
             company = view.model.get('company')
             element.select2('data', { id: company.value, name: company.text })
 
@@ -169,3 +233,10 @@
         data.text
       initSelection : (element, callback) ->
         callback(initial_data)
+
+    showCompanyModal: (e)->
+      e.preventDefault()
+      modal = new Create.CompanyModal
+        model: new AlumNet.Entities.Company
+        taskView: @
+      $('#js-modal-company-container').html(modal.render().el)
