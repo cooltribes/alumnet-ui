@@ -3,19 +3,33 @@
   <div class="row col-md-10 col-md-offset-1">
 
     <div class="col-md-3">
-      <img src="http://placehold.it/250x250" alt="avatar" class="img-circle publicProfile__avatarImage">
+      <% if @user.avatar %>
+        <img src=<%= @user.avatar %> alt="avatar" class="img-circle publicProfile__avatarImage">
+      <% else %>
+        <img src="assets/registration/uploadAvatar.png" alt="avatar" id="preview-avatar" class="img-circle publicProfile__avatarImage">
+      <% end %>
     </div>
 
     <div class="col-md-9">
 
-      <div class="publicProfile__membership">
-        <div>
-          <span class="glyphicon glyphicon-certificate"></span>
-          <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
-          <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
-          LIFETIME MEMBER
+      <% if @user.member==1 || @user.member==2 %>
+        <div class="publicProfile__membership">
+          <div>            
+            <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+            MEMBER
+          </div>
         </div>
-      </div>
+      <% end %>
+      <% if @user.member==3 %>
+        <div class="publicProfile__membership">
+          <div>
+            <span class="glyphicon glyphicon-certificate"></span>
+            <span class="glyphicon glyphicon-certificate glyphicon__big"></span>
+            <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
+            LIFETIME MEMBER
+          </div>
+        </div>
+      <% end %>
 
       <div class="row">
         <div class="col-md-6">
@@ -47,28 +61,13 @@
             <h3 class="metaInfoCard__title">Languages</h3>
 
             <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills" style="opacity: 1;">
-
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  English
-                </div>
-                <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Professional working">
-                  <div class="progress-bar progress-bar-info" style="width: 50%">
-                    <span class="sr-only">Professional working</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  Spanish
-                </div>
-                <div class="progress metaInfoCard__language__lvl" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Professional working">
-                  <div class="progress-bar progress-bar-info" style="width: 50%">
-                    <span class="sr-only">Professional working</span>
-                  </div>
-                </div>
-              </li>
-
+              <% @user.languages.each do |language| %>
+                <li>
+                  <div class="overfloadText metaInfoCard__language">
+                    <%= language["name"] %>
+                  </div>                  
+                </li>
+              <% end %>
             </ul>
 
           </div>
@@ -79,29 +78,13 @@
             <h3 class="metaInfoCard__title">Skills</h3>
 
             <ul id="languages-list" class="metaInfoCard__list metaInfoCard__list--skills" style="opacity: 1;">
-
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  Marketing
-                </div>
-
-              </li>
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  Backbone
-                </div>
-              </li>
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  Ruby
-                </div>
-              </li>
-              <li>
-                <div class="overfloadText metaInfoCard__language">
-                  UI Design
-                </div>
-              </li>
-
+              <% @user.skills.each do |skill| %>
+                <li>
+                  <div class="overfloadText metaInfoCard__language">
+                    <%= skill["name"] %>
+                  </div>                  
+                </li>
+              <% end %>
             </ul>
 
           </div>
