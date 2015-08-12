@@ -9,7 +9,12 @@
     </a>
   </h3></div>
   <div class="jobPost__company">
-    <h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% if @company.text == "": %> 
+      <h3 class="no-margin" style="visibility:hidden"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% end %>
+    <% if @company.text != "": %>  
+      <h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    <% end %>
   </div>
   <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
@@ -29,8 +34,14 @@
         <% end %>
 
     <div class="jobPost__details padding_top">
-      <p><span class="ico-jobfunction"></span> <%= @position.text %></p>
+      <% if @position.text == null: %>
+      <% end %>
+      <% if  @position.text != null: %>
+        <p><span class="ico-jobfunction"></span> <%= @position.text %></p>
+      <% end %>
+      
       <p><span class="glyphicon glyphicon-time"></span> <%= @employment.text %></p>
+
       <p class="overfloadText"><span class="ico-location"></span> <%= @location() %></p>
     </div>
 

@@ -61,14 +61,14 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-company has-feedback">
-              <label class="control-label">Country(optional)</label>
+              <label class="control-label">Country (optional)</label>
               <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
               <span class="help-block"></span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-company has-feedback">
-              <label class="control-label">City(optional)</label>
+              <label class="control-label">City (optional)</label>
               <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_helper %>">
               <span class="help-block"></span>
             </div>
@@ -77,7 +77,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-company has-feedback">
-              <label class="control-label">Address(optional)</label>
+              <label class="control-label">Address (optional)</label>
               <input type="text" name="main_address" id="address" class="form-control input-lg" value="<%= @address %>">
               <span class="help-block"></span>
             </div>

@@ -135,6 +135,8 @@
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
+    rows: 3
+    page: 1
     url: ->
       AlumNet.api_endpoint + '/users'
 
@@ -175,8 +177,15 @@
       user.fetch({async:false})
       user
 
+    getUserPagination: ->
+      newUser = new Entities.UserCollection
+      newUser = AlumNet.api_endpoint + '/users'
+      newUser
+
     getUserEntities: (querySearch, options)->
       initializeUsers() if Entities.users == undefined
+      Entities.users.page = 1
+      Entities.users.url = AlumNet.api_endpoint + '/users?page='+Entities.users.page+'&per_page='+Entities.users.rows
       Entities.users.fetch
         data: querySearch
         success: (model, response, options) ->
@@ -232,6 +241,9 @@
 
   AlumNet.reqres.setHandler 'user:entities', (querySearch, options = {})->
     API.getUserEntities(querySearch, options)
+
+  AlumNet.reqres.setHandler 'user:pagination', ->
+    API.getUserPagination()
 
   AlumNet.reqres.setHandler 'admin:user:entities', (querySearch)->
     API.getUsersList(querySearch)

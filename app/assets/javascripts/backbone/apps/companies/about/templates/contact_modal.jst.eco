@@ -1,0 +1,26 @@
+<div class="bbm-modal__section">
+  <h2>Add new Contact</h2>
+    <form class="clearfix">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-contact has-feedback">
+            <label class="control-label">Type of Contact</label>
+            <input class="js-contact-type" type="hidden" name="contact_type" id="contact-type" style="width: 100%">
+            <span class="help-block"></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-contact has-feedback">
+            <label class="control-label" for="inputBorn">Information</label>
+            <input type="text" class="form-control input-lg" name="info" id="info" value="<%= @info %>">
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="save">Save</a>
+  <a href="#" class="btn btn-default" id="cancel">Cancel</a>
+</div>

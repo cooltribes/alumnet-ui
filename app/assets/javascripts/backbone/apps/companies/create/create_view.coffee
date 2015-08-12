@@ -87,13 +87,13 @@
 
     clearErrors: (attr)->
       $el = @$("[name=#{attr}]")
-      $group = $el.closest('.form-company')
+      $group = $el.closest('.form-contact')
       $group.removeClass('has-error')
       $group.find('.help-block').html('').addClass('hidden')
 
     addErrors: (attr, error)->
       $el = @$("[name=#{attr}]")
-      $group = $el.closest('.form-company')
+      $group = $el.closest('.form-contact')
       $group.addClass('has-error')
       $group.find('.help-block').html(error).removeClass('hidden')
 
