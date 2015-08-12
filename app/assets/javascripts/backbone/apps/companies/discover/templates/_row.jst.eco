@@ -3,11 +3,12 @@
 </td>
 
 <td>
-  <h4>
-    <%= @name %>
-  </h4>
-  <br>
-  <%= @description %>  
+  <div class="companiesTable__description">
+    <h4>
+      <%= @name %>
+    </h4>
+    <%= @description %>  
+  </div>
 </td>
 
 <td>

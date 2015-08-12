@@ -9,6 +9,7 @@ DESCRIPTION: shared styles among group applications
 
 
 .companyCard {
+  color: @black;
   &__logo {
     text-align: center;
     padding: 10px;
@@ -18,7 +19,7 @@ DESCRIPTION: shared styles among group applications
     h3 {
       text-transform: uppercase;
       font-weight: bold;
-      color: @black
+      // color: @black
     }
   }
 }
@@ -27,6 +28,7 @@ DESCRIPTION: shared styles among group applications
 .companiesTable {
 
   background-color: transparent;
+  color: @black;
 
   // &__cover{
   //   background-size:cover; 
@@ -41,7 +43,9 @@ DESCRIPTION: shared styles among group applications
   }
 
   tbody > tr > td {
-    border:none
+    border:none;
+    vertical-align: middle;
+    padding: 20px;
   }
 
   table& > thead > tr > th {
@@ -49,21 +53,25 @@ DESCRIPTION: shared styles among group applications
     border: none;
     text-transform: uppercase;
     color: @blue-gray;
-    // min-width: 79px;
-    text-align: center;
+    font-size: 1.7em;
 
     &:nth-child(1){
-      text-align: center;
-      width: 21em;
+      width: 25em;
     }
     &:nth-child(2){
-      width: 26em;      
+      width: 28em;      
     }
     &:nth-child(3){
-      width: 12em;      
+      width: 10em;      
     }
     &:nth-child(4){
       width: 14em;      
+    }
+    &:nth-child(5){
+      width: 3em;      
+    }
+    &:nth-child(6){
+      width: 5em;      
     }
   }
   
@@ -85,18 +93,31 @@ DESCRIPTION: shared styles among group applications
         width: 26em;      
       }
       &:nth-child(3){
-        width: 12em;      
+        width: 10em;      
       }
       &:nth-child(4){
         width: 14em;      
       }
+       &:nth-child(5){
+        width: 5em;      
+      }
+      &:nth-child(6){
+        width: 5em;      
+      }
       
     }
 
-
   }
 
+  &__description {
+    height: 75px;
+    overflow: hidden;
+    h4 {
+      font-size: 22px;
+      margin-top: 0;      
+    }
 
+  }
   
 
    
