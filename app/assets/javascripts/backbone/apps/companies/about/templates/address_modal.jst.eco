@@ -1,0 +1,33 @@
+<div class="bbm-modal__section">
+  <h2>Edit Address Company</h2>
+    <form class="clearfix">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="control-label" for="inputBorn">Address</label>
+          <input type="text" value="<%= @main_address %>" class="form-control input-lg" name="main_address" id="address">
+          <span class="help-block"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-company has-feedback">
+            <label class="control-label">Country (optional)</label>
+            <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+            <span class="help-block"></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-company has-feedback">
+            <label class="control-label">City (optional)</label>
+            <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_helper %>">
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="save">Save</a>
+  <a href="#" class="btn btn-default" id="cancel">Cancel</a>
+</div>

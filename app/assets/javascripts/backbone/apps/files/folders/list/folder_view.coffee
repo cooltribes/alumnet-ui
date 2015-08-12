@@ -11,7 +11,7 @@
 
   class Folders.FolderView extends Marionette.ItemView
     template: 'files/folders/list/templates/_folder'
-    className: 'col-md-3 col-sm-6 file__background'
+    className: 'col-md-4 col-sm-6 margin_bottom_small'
     
     triggers:
       'click .js-detail': "show:detail"

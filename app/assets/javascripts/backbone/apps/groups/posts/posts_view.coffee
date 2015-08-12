@@ -245,14 +245,11 @@
       current_user: @model
 
     initialize:(options)->
+      $(window).unbind('scroll');
       _.bindAll(this, 'loadMorePosts');
       @group = options.group
       @picture_ids = []
       $(window).scroll(@loadMorePosts);
-
-    remove: ->
-      $(window).unbind('scroll');
-      Backbone.View.prototype.remove.call(this)
       
     templateHelpers: ->
       userCanPost: @group.userIsMember()

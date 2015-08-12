@@ -24,7 +24,6 @@
         newCollection.fetch
           data: querySearch
           success: (collection)->
-            console.log collection
             groupsView.collection.add(collection.models)
 
       

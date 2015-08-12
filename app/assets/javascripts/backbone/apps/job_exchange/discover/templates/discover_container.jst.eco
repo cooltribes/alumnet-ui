@@ -3,7 +3,7 @@
  
   <form id="search-form">
     <div class="input-group">
-      <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Meetups">
+      <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Jobs">
       <span class="input-group-btn">
       <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
       </span>
