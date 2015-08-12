@@ -119,7 +119,15 @@
           ['style', ['bold', 'italic', 'underline', 'clear']]
           ['para', ['ul', 'ol']]
         ]
-      $('#task-description').summernote(summernote_options)
+
+      summernote_options_description =
+        height: 200
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']]
+          ['para', ['ul', 'ol']]
+        ]
+
+      $('#task-description').summernote(summernote_options_description)
       $('#task-offer').summernote(summernote_options)
 
     onRender: ->
