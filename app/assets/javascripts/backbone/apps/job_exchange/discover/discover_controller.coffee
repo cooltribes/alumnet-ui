@@ -22,7 +22,7 @@
       checkNewPost = false #flag for new posts
 
       discoverView.on "add:child", (viewInstance)->
-        container = $('.tasks-container')
+        container = $('#tasks-container')
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'        

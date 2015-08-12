@@ -77,7 +77,7 @@
         </div>
   </div>
 </div>
-
-<div class="tasks-container tasks-container container-fluid">
+<div class="clearfix "></div>
+<div id="tasks-container" class="tasks-container">
   <hr>
 </div>
