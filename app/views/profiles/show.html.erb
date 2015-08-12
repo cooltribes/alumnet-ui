@@ -38,18 +38,25 @@
             <h3 class="metaInfoCard__title">
               <%= @user.name %>
             </h3>
+            <h4>
+              <%= @user.last_experience %>
+              
+            </h4>
 
             <ul class="metaInfoCard__list">
               <li>
-                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> City 1 of Country 0001 - Country 0001 in 1990/8/24
+                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> 
+                
               </li>
               <li>
-                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> London - United Kingdom
+                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span>
+
               </li>
 
               <li>
                 <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
-                nramirez@upsidecorp.ch
+                  <%= @user.email %>
+                
               </li>
             </ul>
           </div>

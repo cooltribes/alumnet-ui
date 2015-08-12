@@ -7,7 +7,6 @@ class ProfilesController < ApplicationController
     public_profile = PublicProfile.new
     @user = public_profile.user(params[:slug])
 
-    byebug
     unless public_profile.valid?
       render 'errors/e404'
     end
