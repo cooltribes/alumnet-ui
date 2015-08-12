@@ -176,5 +176,7 @@
       @collection.reset(@nonOfficial)
 
     loadMoreGroups: (e)->
+      console.log "loadMoreGroups S:"+$(window).scrollTop()+"H:"+($(document).height() - $(window).height())
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        console.log "Entro If"
         @trigger 'group:reload'
