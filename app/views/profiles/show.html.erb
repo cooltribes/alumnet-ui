@@ -44,14 +44,21 @@
             </h4>
 
             <ul class="metaInfoCard__list">
-              <li>
-                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> 
-                
-              </li>
-              <li>
-                <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span>
+            
+              <% if @user.born != "" %>
+                <li>
+                  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> 
+                  <%= @user.born %>
 
-              </li>
+                </li>
+              <% end %>
+
+              <% if @user.residence %>
+                <li>
+                  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span>
+                  <%= @user.residence %>
+                </li>
+              <% end %>
 
               <li>
                 <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
