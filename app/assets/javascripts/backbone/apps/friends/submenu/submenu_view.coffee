@@ -5,8 +5,7 @@
 
     ui:
       'linkMenu':'#js-discover, #js-friend'
-
-
+      
     initialize: (options) ->
       @tab = options.tab
       @class = [
