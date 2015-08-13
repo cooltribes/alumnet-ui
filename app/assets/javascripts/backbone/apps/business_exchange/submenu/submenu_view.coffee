@@ -4,8 +4,22 @@
     className: 'navTopSubBar'
 
     initialize: (options) ->
-      @invitations = new AlumNet.Entities.TaskInvitationCollection
-      @invitations.fetch()
+      view = @
+      invitations = new AlumNet.Entities.TaskInvitationCollection
+      automatches = new AlumNet.Entities.BusinessExchangeCollection
+
+      automatches.fetch
+        url: AlumNet.api_endpoint + '/business_exchanges/automatches'
+        success: (collection_automatches) ->
+          
+          lengthAutomatches = collection_automatches.length
+          view.updateAutomatches(lengthAutomatches)
+
+      invitations.fetch
+        success: (collection_invites)->
+          lengthIvites = collection_invites.length
+          view.updateInvite(lengthIvites)
+
       @tab = options.tab
       @class = [
         "", "", ""
@@ -14,13 +28,29 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
-      
-      # length: @invitations.length
-      # console.log @invitations.length
-
       model = @model
       classOf: (step) =>
         @class[step]
+
+    ui:
+      'linkInvites': '#invites'
+      'numberInvites': '#js-invites'
+      'linkAutomatches': '#automatches'
+      'numberAutomatches': '#js-automatches'
+
+    updateInvite: (length)->
+      if length == 0
+        @ui.linkInvites.hide()
+      else
+        @ui.numberInvites.html(length)
+        @ui.linkInvites.show()
+
+    updateAutomatches: (len)->
+      if len == 0
+        @ui.linkAutomatches.hide()
+      else
+        @ui.numberAutomatches.html(len)
+        @ui.linkAutomatches.show()  
 
   API =
     renderSubmenu: (view,tab)->

@@ -36,6 +36,8 @@
 
           </ul>
         </li>
+
+        <li class="<%= @classOf(4)%>" id="automatches" style="visibility: hidden"><a href="#business-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-star"></span> Automatches(<span id="js-automatches"></span>)</a></li>
 <!--
         <li class="<%= @classOf(5)%>"><a href="#business-exchange/home" class="navTopSubBar__link" title="Home"><span class="navTopSubBar__icon glyphicon glyphicon-home"></span> Home</a></li>
 
@@ -45,11 +47,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right no-margin">
-        <li class="<%= @classOf(4)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
-
+        
         <li class="<%= @classOf(3)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
 
-        <li class="<%= @classOf(2)%>"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span>Invites</a></li>
+        <li class="<%= @classOf(2)%>" id="invites" style="display:none"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span>Invites (<span id="js-invites"></span>)</a></li>
         <a href="#business-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a new Task</a>
       </ul>
     </div>
