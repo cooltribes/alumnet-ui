@@ -75,6 +75,8 @@
         "job-exchange/my-posts",
         "job-exchange/new",
         "job-exchange/automatches",
+        "job-exchange/:id",
+        "job-exchange/:id/edit",
         "users/:id/profile",
       ]
 

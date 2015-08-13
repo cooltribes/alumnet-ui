@@ -15,6 +15,11 @@
       model = @model
       classOf: (step) =>
         @class[step]
+      optionIsVisible: ()->
+        !AlumNet.current_user.isExternal()
+
+
+
 
   API =
     renderSubmenu: (view,tab)->
