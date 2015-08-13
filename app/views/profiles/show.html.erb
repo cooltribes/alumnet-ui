@@ -14,7 +14,7 @@
 
       <% if @user.member==1 || @user.member==2 %>
         <div class="publicProfile__membership">
-          <div>            
+          <div>
             <span class="glyphicon glyphicon-certificate glyphicon__right"></span>
             MEMBER
           </div>
@@ -40,14 +40,14 @@
             </h3>
             <h4>
               <%= @user.last_experience %>
-              
+
             </h4>
 
             <ul class="metaInfoCard__list">
-            
+
               <% if @user.born != "" %>
                 <li>
-                  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span> 
+                  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-asterisk"></span> From:</span>
                   <%= @user.born %>
 
                 </li>
@@ -63,7 +63,7 @@
               <li>
                 <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-envelope"></span> Email:</span>
                   <%= @user.email %>
-                
+
               </li>
             </ul>
           </div>
@@ -78,8 +78,8 @@
               <% @user.languages.each do |language| %>
                 <li>
                   <div class="overfloadText metaInfoCard__language">
-                    <%= language["name"] %>
-                  </div>                  
+                    <%= language.name %>
+                  </div>
                 </li>
               <% end %>
             </ul>
@@ -95,8 +95,8 @@
               <% @user.skills.each do |skill| %>
                 <li>
                   <div class="overfloadText metaInfoCard__language">
-                    <%= skill["name"] %>
-                  </div>                  
+                    <%= skill.name %>
+                  </div>
                 </li>
               <% end %>
             </ul>
