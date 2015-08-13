@@ -1,0 +1,29 @@
+<div class="userCard user-info">
+  <div class=" row">
+    <div class="userCard__avatar col-md-3 ">
+      <img src="<%= @user.avatar.large %>" alt="<%= @user.name %>" class="img-circle">
+    </div>
+    <div class=" col-md-6 ">
+      <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a></h4>
+      <p class="userCard__position member-position text-small"><%= @user.last_experience %></p>
+    </div>
+    <div class=" col-md-3 ">
+      <span class="invitation">
+        <a href="#" class="js-accept-admin" title="Accept admin">
+          <div class="userCard__actions--Approve userCard__animation">
+            <span class="userCard__actions__text">ACCEPT</span>
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+        </a>
+        <a href="#" class="js-reject-admin" title="Reject admin">
+          <div class="userCard__actions--Decline userCard__animation">
+            <span class="userCard__actions__text">REJECT</span>
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+        </a>
+      </span>
+    </div>
+  </div>
+</div>

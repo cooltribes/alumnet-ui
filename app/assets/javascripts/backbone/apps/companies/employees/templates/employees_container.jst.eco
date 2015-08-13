@@ -1,13 +1,12 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<div class="js-modal-container"></div>
 		<div class="searchBar">
-			<h2>Search for members </h2>
+			<h2>Search for Alumni </h2>
 			<form id="search-form">
 				<div class="input-group">
-					<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+					<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name or email">
 					<span class="input-group-btn">
-					<button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+					<a href="#" class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></a>
 					</span>
 				</div>
 			</form>
@@ -30,7 +29,7 @@
 			</li>
 			<li class="sortingMenu__item sortingMenu__item--lg">
 				<a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-admins">
-					Admins(<%= @admins_count %>)
+					Admins(<span id="js-admins-count"><%= @admins_count %></span>)
 				</a>
 			</li>
 		</ul>

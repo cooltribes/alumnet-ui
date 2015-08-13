@@ -1,7 +1,7 @@
 @AlumNet.module 'Shared.Views', (Views, @AlumNet, Backbone, Marionette, $, _) ->
   class Views.UserView extends Marionette.ItemView
 
-    ui:
+    ui: ->
       'linkContainer': '#link-container'
       'requestLink': '#js-request-friendship'
       'acceptLink': '#js-accept-friendship'
@@ -9,7 +9,7 @@
       'cancelLink': '#js-cancel-friendship'
       'deleteLink': '#js-delete-friendship'
 
-    events:
+    events: ->
       'click #js-request-friendship':'clickedRequest'
       'click #js-accept-friendship':'clickedAccept'
       'click #js-reject-friendship':'clickedReject'
