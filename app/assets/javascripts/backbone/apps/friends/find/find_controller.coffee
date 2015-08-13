@@ -16,8 +16,8 @@
 
       AlumNet.mainRegion.show(usersView)
       AlumNet.execute('render:friends:submenu',undefined, 1)
-      usersView.on "group:reload", ->
-        querySearch = controller.querySearch
+      usersView.on "user:reload", ->
+        querySearch = controller.querySearch 
         ++usersView.collection.page
         newCollection = AlumNet.request("user:pagination")
         newCollection.url = AlumNet.api_endpoint + '/users?page='+usersView.collection.page+'&per_page='+usersView.collection.rows
