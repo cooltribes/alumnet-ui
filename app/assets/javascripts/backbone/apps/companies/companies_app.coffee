@@ -6,6 +6,7 @@
         "companies": "discover"
         "companies/new": "createCompany"
         "companies/:id/about": "about"
+        "companies/:id/employees": "employees"
 
 
     API =
@@ -23,6 +24,11 @@
         document.title = 'AlumNet - Companies'
         controller = new CompaniesApp.Create.Controller
         controller.create()
+
+      employees: (id)->
+        document.title = 'AlumNet - Companies'
+        controller = new CompaniesApp.Employees.Controller
+        controller.employees(id)
 
     AlumNet.addInitializer ->
       new CompaniesApp.Router
