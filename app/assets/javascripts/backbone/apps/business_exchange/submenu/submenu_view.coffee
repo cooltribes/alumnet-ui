@@ -5,17 +5,17 @@
 
     initialize: (options) ->
       view = @
-      @invitations = new AlumNet.Entities.TaskInvitationCollection
-      @automatches = new AlumNet.Entities.BusinessExchangeCollection
+      invitations = new AlumNet.Entities.TaskInvitationCollection
+      automatches = new AlumNet.Entities.BusinessExchangeCollection
 
-      @automatches.fetch
+      automatches.fetch
         url: AlumNet.api_endpoint + '/business_exchanges/automatches'
         success: (collection_automatches) ->
           
           lengthAutomatches = collection_automatches.length
           view.updateAutomatches(lengthAutomatches)
 
-      @invitations.fetch
+      invitations.fetch
         success: (collection_invites)->
           lengthIvites = collection_invites.length
           view.updateInvite(lengthIvites)
