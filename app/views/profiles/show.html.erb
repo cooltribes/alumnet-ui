@@ -108,133 +108,129 @@
 
       <div class="row">
         <div class="col-md-10">
+
+          <!-- Professional Experiences -->    
           <h2 id="professionalExperience">
               Professional Experience
           </h2>
+          <% @user.profesional_experiences.each do |experience| %>
+              
+              <!-- One experience start -->
+                <div class="experienceCard">
+                <h3 class="experienceCard__title js-title" style="display: inline">
+                  <%= experience.name %>             
+              
+                </h3>
+                <h4>
+                  <%= experience.organization_name %>                  
+                </h4>
+                <h4>
+                  <% if experience.internship %>                  
+                    AIESEC Internship
+                  <% end %>                  
+                </h4>
+                <ul class="experienceCard__metaInfo">
+                  <li><span class="glyphicon glyphicon-calendar"></span>
+                           
+                  From <%= experience.start_date %> to <%= experience.end_date %>
+                    
+                  </li>
+                  <li><span class="glyphicon glyphicon-map-marker"></span>
+                  Location: 
+                  </li>
+                </ul>
 
-          <!-- One experience start -->
-            <div class="experienceCard">
-            <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position
-            </h3>
-            <h4>
-              Name of the organization
-            </h4>
-            <h4>
-              AIESEC Internship
-            </h4>
-            <ul class="experienceCard__metaInfo">
-              <li><span class="glyphicon glyphicon-calendar"></span>
-                From Jan 21, 2015 to Aug 24, 2015
-              </li>
-              <li><span class="glyphicon glyphicon-map-marker"></span>
-              Location: Paris - France
-              </li>
-            </ul>
-
-            <div class="experienceCard__description">
-              Level of Experience: level one or two <br>
-            </div>
-
-            <div id="js-description" class="experienceCard__description"><br>
-              Description of the experience, a lot of text for testing
-            </div>
-          </div>
-          <!-- One experience end -->
-
-          <!-- One experience start -->
-            <div class="experienceCard">
-            <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position
-            </h3>
-            <h4>
-              Name of the organization
-            </h4>
-            <h4>
-              AIESEC Internship
-            </h4>
-            <ul class="experienceCard__metaInfo">
-              <li><span class="glyphicon glyphicon-calendar"></span>
-                From Jan 21, 2015 to Aug 24, 2015
-              </li>
-              <li><span class="glyphicon glyphicon-map-marker"></span>
-              Location: Paris - France
-              </li>
-            </ul>
-
-            <div class="experienceCard__description">
-              Level of Experience: level one or two <br>
-            </div>
-
-            <div id="js-description" class="experienceCard__description"><br>
-              Description of the experience, a lot of text for testing
-            </div>
-          </div>
-          <!-- One experience end -->
-
-          <%= image_tag("profile/aiesec130x20.png", alt: "AIESEC") %>
-          <!-- One experience start -->
-            <div class="experienceCard">
-            <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position
-            </h3>
-            <h4>
-              Name of the organization
-            </h4>
-            <h4>
-              AIESEC Internship
-            </h4>
-            <ul class="experienceCard__metaInfo">
-              <li><span class="glyphicon glyphicon-calendar"></span>
-                From Jan 21, 2015 to Aug 24, 2015
-              </li>
-              <li><span class="glyphicon glyphicon-map-marker"></span>
-              Location: Paris - France
-              </li>
-            </ul>
-
-            <div class="experienceCard__description">
-              Level of Experience: level one or two <br>
-            </div>
-
-            <div id="js-description" class="experienceCard__description"><br>
-              Description of the experience, a lot of text for testing
-            </div>
-          </div>
-          <!-- One experience end -->
-
+                <div class="experienceCard__description"><br>
+                  <%= experience.description %>
+                </div>
+              </div>
+              <!-- One experience end -->
+              
+          <% end %>
+          
+          <!-- Alumni experiences -->
           <%= image_tag("profile/logoaiesec130.png", alt: "ALUMNI") %>
+          <% @user.alumni_experiences.each do |experience| %>
+              <%= experience %>             
 
-           <!-- One experience start -->
+            <!-- One experience start -->
             <div class="experienceCard">
-            <h3 class="experienceCard__title js-title" style="display: inline">
-              Name of the Position
-            </h3>
-            <h4>
-              Name of the organization
-            </h4>
-            <h4>
-              AIESEC Internship
-            </h4>
-            <ul class="experienceCard__metaInfo">
-              <li><span class="glyphicon glyphicon-calendar"></span>
-                From Jan 21, 2015 to Aug 24, 2015
-              </li>
-              <li><span class="glyphicon glyphicon-map-marker"></span>
-              Location: Paris - France
-              </li>
-            </ul>
+              <h3 class="experienceCard__title js-title" style="display: inline">
+                <%= experience.name %>             
+            
+              </h3>
+              <h4>
+                <%= experience.organization_name %>                  
+              </h4>
+              <h4>
+                <% if experience.internship %>                  
+                  AIESEC Internship
+                <% end %>                  
+              </h4>
+              <ul class="experienceCard__metaInfo">
+                <li><span class="glyphicon glyphicon-calendar"></span>
+                         
+                From <%= experience.start_date %> to <%= experience.end_date %>
+                  
+                </li>
+                <li><span class="glyphicon glyphicon-map-marker"></span>
+                Location: 
+                </li>
+              </ul>
 
-            <div class="experienceCard__description">
-              Level of Experience: level one or two <br>
-            </div>
+              <div class="experienceCard__description">                
+                Level of Experience: <%= experience.aiesec_experience %> <br>
+              </div>
 
-            <div id="js-description" class="experienceCard__description"><br>
-              Description of the experience, a lot of text for testing
-            </div>
-          </div>
-          <!-- One experience end -->
+              <div class="experienceCard__description"><br>
+                <%= experience.description %>
+              </div>
+            </div> 
 
+            <!-- One experience end -->
+          <% end %>
+
+
+          <!-- AIESEC Experiences -->
+          <%= image_tag("profile/aiesec130x20.png", alt: "AIESEC") %>
+
+          <% @user.aiesec_experiences.each do |experience| %>
+            <!-- One experience start -->
+            <div class="experienceCard">
+              <h3 class="experienceCard__title js-title" style="display: inline">
+                <%= experience.name %>             
+            
+              </h3>
+              <h4>
+                <%= experience.organization_name %>                  
+              </h4>
+              <h4>
+                <% if experience.internship %>                  
+                  AIESEC Internship
+                <% end %>                  
+              </h4>
+              <ul class="experienceCard__metaInfo">
+                <li><span class="glyphicon glyphicon-calendar"></span>
+                         
+                From <%= experience.start_date %> to <%= experience.end_date %>
+                  
+                </li>
+                <li><span class="glyphicon glyphicon-map-marker"></span>
+                Location: 
+                </li>
+              </ul>
+
+              <div class="experienceCard__description">                
+                Level of Experience: <%= experience.aiesec_experience %> <br>
+              </div>
+
+              <div class="experienceCard__description"><br>
+                <%= experience.description %>
+              </div>
+            </div> 
+
+            <!-- One experience end -->
+          <% end %>
 
         </div>
       </div>
