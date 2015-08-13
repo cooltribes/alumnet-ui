@@ -1,4 +1,4 @@
-<h1>Create users</h1>
+<h1>Create Users</h1>
 <hr>
 <form>
   <div class="row">
@@ -24,7 +24,6 @@
           <option value="regular">Regular</option>
           <option value="external">External</option>
         </select>
-        <span class="ico-triangle-down" aria-hidden="true"></span>
       </div>
       <span class= "help-block"></span>
     </div>
