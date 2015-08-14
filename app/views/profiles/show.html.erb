@@ -117,32 +117,32 @@
               
               <!-- One experience start -->
                 <div class="experienceCard">
-                <h3 class="experienceCard__title js-title" style="display: inline">
-                  <%= experience.name %>             
-              
-                </h3>
-                <h4>
-                  <%= experience.organization_name %>                  
-                </h4>
-                <h4>
-                  <% if experience.internship %>                  
-                    AIESEC Internship
-                  <% end %>                  
-                </h4>
-                <ul class="experienceCard__metaInfo">
-                  <li><span class="glyphicon glyphicon-calendar"></span>
-                           
-                  From <%= experience.start_date %> to <%= experience.end_date %>
-                    
-                  </li>
-                  <li><span class="glyphicon glyphicon-map-marker"></span>
-                  Location: 
-                  </li>
-                </ul>
+                  <h3 class="experienceCard__title js-title" style="display: inline">
+                    <%= experience.name %>             
+                
+                  </h3>
+                  <h4>
+                    <%= experience.organization_name %>                  
+                  </h4>
+                  <h4>
+                    <% if experience.internship %>                  
+                      AIESEC Internship
+                    <% end %>                  
+                  </h4>
+                  <ul class="experienceCard__metaInfo">
+                    <li><span class="glyphicon glyphicon-calendar"></span>
+                             
+                    From <%= experience.start_date %> to <%= experience.end_date %>
+                      
+                    </li>
+                    <li><span class="glyphicon glyphicon-map-marker"></span>
+                    Location: <%= experience.location %>
+                    </li>
+                  </ul>
 
-                <div class="experienceCard__description"><br>
-                  <%= experience.description %>
-                </div>
+                  <div class="experienceCard__description"><br>
+                    <%= experience.description %>
+                  </div>
               </div>
               <!-- One experience end -->
               
@@ -151,7 +151,6 @@
           <!-- Alumni experiences -->
           <%= image_tag("profile/logoaiesec130.png", alt: "ALUMNI") %>
           <% @user.alumni_experiences.each do |experience| %>
-              <%= experience %>             
 
             <!-- One experience start -->
             <div class="experienceCard">
@@ -174,13 +173,16 @@
                   
                 </li>
                 <li><span class="glyphicon glyphicon-map-marker"></span>
-                Location: 
+                Location: <%= experience.location %>
                 </li>
               </ul>
 
-              <div class="experienceCard__description">                
-                Level of Experience: <%= experience.aiesec_experience %> <br>
-              </div>
+              <% if experience.aiesec_experience != "" %>                  
+                <div class="experienceCard__description">                
+                  Level of Experience: <%= experience.aiesec_experience %> <br>
+                </div>
+              <% end %>                  
+
 
               <div class="experienceCard__description"><br>
                 <%= experience.description %>
@@ -216,13 +218,59 @@
                   
                 </li>
                 <li><span class="glyphicon glyphicon-map-marker"></span>
-                Location: 
+                Location: <%= experience.location %>
                 </li>
               </ul>
 
-              <div class="experienceCard__description">                
-                Level of Experience: <%= experience.aiesec_experience %> <br>
+              <% if experience.aiesec_experience != "" %>                  
+                <div class="experienceCard__description">                
+                  Level of Experience: <%= experience.aiesec_experience %> <br>
+                </div>
+              <% end %>  
+
+              <div class="experienceCard__description"><br>
+                <%= experience.description %>
               </div>
+            </div> 
+
+            <!-- One experience end -->
+          <% end %>
+          <!-- Academic Experiences -->
+          <h2 id="academicExperience">
+              Academic Experience
+          </h2>
+
+          <% @user.academic_experiences.each do |experience| %>
+            <!-- One experience start -->
+            <div class="experienceCard">
+              <h3 class="experienceCard__title js-title" style="display: inline">
+                <%= experience.name %>             
+            
+              </h3>
+              <h4>
+                <%= experience.organization_name %>                  
+              </h4>
+              <h4>
+                <% if experience.internship %>                  
+                  AIESEC Internship
+                <% end %>                  
+              </h4>
+              <ul class="experienceCard__metaInfo">
+                <li><span class="glyphicon glyphicon-calendar"></span>
+                         
+                From <%= experience.start_date %> to <%= experience.end_date %>
+                  
+                </li>
+                <li><span class="glyphicon glyphicon-map-marker"></span>
+                Location: <%= experience.location %>
+                </li>
+              </ul>
+
+              <% if experience.aiesec_experience != "" %>                  
+                <div class="experienceCard__description">                
+                  Level of Experience: <%= experience.aiesec_experience %> <br>
+                </div>
+              <% end %>  
 
               <div class="experienceCard__description"><br>
                 <%= experience.description %>
