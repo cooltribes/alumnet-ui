@@ -6,6 +6,15 @@
     <div class=" col-md-6 ">
       <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= @id %>/posts" title="<%= @name %>"><%= @name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @last_experience %></p>
+      <% if @isCompanyAdmin && not @isUser: %>
+        <div class="js-admin-links">
+          <% if @is_admin: %>
+            <a href="#" class="js-delete-admin">Remove from admins</a>
+          <% else: %>
+            <a href="#" class="js-create-admin">Add to admins</a>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <% if @friendship_status == "sent": %>
     <div class=" col-md-3 ">
