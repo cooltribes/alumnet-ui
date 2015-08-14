@@ -179,7 +179,7 @@
 
     getUserPagination: ->
       newUser = new Entities.UserCollection
-      newUser = AlumNet.api_endpoint + '/users'
+      newUser.url = AlumNet.api_endpoint + '/users'
       newUser
 
     getUserEntities: (querySearch, options)->

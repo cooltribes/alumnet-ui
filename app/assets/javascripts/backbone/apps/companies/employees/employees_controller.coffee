@@ -4,10 +4,10 @@
       company = new AlumNet.Entities.Company { id: id }
       company.fetch
         success: ->
-          layout = AlumNet.request("company:layout", company, 0)
-          header = AlumNet.request("company:header", company)
+          layout = AlumNet.request('company:layout', company, 0)
+          header = AlumNet.request('company:header', company)
 
-          employees = AlumNet.request("get:employees", company.id)
+          employees = AlumNet.request('get:employees', company.id)
 
           employeesView = new Employees.List
             model: company
@@ -19,6 +19,15 @@
           layout.header.show(header)
           layout.body.show(body)
           body.employees.show(employeesView)
+
+          if company.userIsAdmin()
+            requests = AlumNet.request('get:company_admins', company.id)
+            requestsView = new Employees.RequestsList
+              model: company
+              collection: requests
+            body.requests.show(requestsView)
+
+
           AlumNet.execute('render:companies:submenu',undefined, 1)
 
         error: (model, response, options)->
