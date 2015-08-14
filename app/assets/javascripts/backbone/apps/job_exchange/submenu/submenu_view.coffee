@@ -13,6 +13,7 @@
 
       automatches = new AlumNet.Entities.JobExchangeCollection
       automatches.fetch
+        url: AlumNet.api_endpoint + '/job_exchanges/automatches'
         success: (collection_automatches)->
           lengthAutomatches = collection_automatches.length
           view.updateAutomatches(lengthAutomatches)
@@ -38,6 +39,7 @@
       'numberAutomatches': '#js-automatches'
 
     updateAutomatches:(length) ->
+      console.log length
       if length == 0
         @ui.linkAutomatches.hide()
       else

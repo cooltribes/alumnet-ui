@@ -18,7 +18,7 @@
 
         <li class="<%= @classOf(0)%>"><a href="#job-exchange/my-posts" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> My Job Posts</a></li>
         <% if @optionIsVisible(): %>
-          <li class="<%= @classOf(1)%>" id="automatches" style="visibility: hidden"><a href="#job-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches(<span id="js-automatches"></span>)</a></li>
+          <li class="<%= @classOf(1)%>" id="automatches" style="display: none"><a href="#job-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches(<span id="js-automatches"></span>)</a></li>
         <% end %>
 
       </ul>

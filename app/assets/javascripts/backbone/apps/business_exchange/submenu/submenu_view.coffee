@@ -45,11 +45,12 @@
         @ui.numberInvites.html(length)
         @ui.linkInvites.show()
 
-    updateAutomatches: (len)->
-      if len == 0
+    updateAutomatches: (length)->
+      console.log length
+      if length == 0
         @ui.linkAutomatches.hide()
       else
-        @ui.numberAutomatches.html(len)
+        @ui.numberAutomatches.html(length)
         @ui.linkAutomatches.show()  
 
   API =
