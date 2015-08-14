@@ -1,0 +1,30 @@
+<td>
+  <img src="<%= @logo.card %>">
+</td>
+
+<td>
+  <div class="companiesTable__description">
+    <h4>
+      <%= @name %>
+    </h4>
+    <%= @description %>  
+  </div>
+</td>
+
+<td>
+  <%= @location() %>  
+</td>
+
+<td>
+  <%= @sector.text %>  
+</td>
+
+<td>
+  <%= @branches_count %>
+</td>
+
+<td>
+  <%= @employees_count %>
+  <!-- links: <%= @links_count %> -->
+</td>
+

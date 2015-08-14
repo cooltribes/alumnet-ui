@@ -135,7 +135,7 @@
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
-    rows: 3
+    rows: 6
     page: 1
     url: ->
       AlumNet.api_endpoint + '/users'
@@ -179,7 +179,7 @@
 
     getUserPagination: ->
       newUser = new Entities.UserCollection
-      newUser = AlumNet.api_endpoint + '/users'
+      newUser.url = AlumNet.api_endpoint + '/users'
       newUser
 
     getUserEntities: (querySearch, options)->

@@ -10,69 +10,68 @@ DESCRIPTION: CSS for styling a list of groups
 .groupTableView{
 	background-color: transparent;
 
-	&__cover{
-		background-size:cover; 
-		height: 90px; 
-		width: 90px;
-	}
+  &__cover{
+    background-size:cover; 
+    height: 90px; 
+    width: 90px;
+  }
 
-	tr{
-		border: none;
-		margin-top: 5px;
-		display: block;
+  tr{
+    border: none;
+    margin-top: 5px;
+    display: block;
+  }
 
-	}
+  & > tbody > tr{
+    background-color: @white;
+    &:hover{
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+  }
 
-	& > tbody > tr{
-		background-color: @white;
-		&:hover{
-			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
-			cursor: pointer;
-		}
-	}
+  table& > thead > tr> th{
+    background-color: @main-bg;
+    border: none;
+    text-transform: uppercase;
+    color: @blue-gray;
+    min-width: 79px;
+    text-align: center;
 
-	table& > thead > tr> th{
-		background-color: @main-bg;
-		border: none;
-		text-transform: uppercase;
-		color: @blue-gray;
-		min-width: 79px;
-		text-align: center;
-
-		&:nth-child(1){
-			min-width:700px;
-		}
-		&:nth-child(6){
-			min-width:130px;
-		}
-	}
-	
-	table& > tbody > tr > td:nth-child(1){
+    &:nth-child(1){
+      min-width:700px;
+    }
+    &:nth-child(6){
+      min-width:130px;
+    }
+  }
+  
+  table& > tbody > tr > td:nth-child(1){
        min-width: 700px;
-   	}
+    }
 
-   	table& > tbody > tr > td:nth-child(6){
+    table& > tbody > tr > td:nth-child(6){
        min-width: 130px;
-   	}
+    }
 
-	table > tbody > tr > td&__col{
+  table > tbody > tr > td&__col{
        vertical-align: middle;
        text-align: center;
        min-width: 79px;
 
        &Text{
-       		padding: 0px 10px;
+          padding: 0px 10px;
        }
-   	}
+    }
 
-	&__label{
-		border-radius: 1em;
-		padding: 2px 10px;
-		font-weight: 400;
-		font-size: 0.7em;
-	}
+  &__label{
+    border-radius: 1em;
+    padding: 2px 10px;
+    font-weight: 400;
+    font-size: 0.7em;
+  }
 
-	&__ribbon{
+  &__ribbon{
         background: image-url('groups/ribbon-orange-noShadow.png') no-repeat;
         background-size: contain;
         display: block;
@@ -84,21 +83,21 @@ DESCRIPTION: CSS for styling a list of groups
         float:left;
     }
 
-	&__actions{
+  &__actions{
         background-color: @blue-gray;
         
         border:none;
        
         text-align: center;
-	    button{
-	       	border:none;
-	       	padding:10px 5px;
-	       	background-color: @blue-gray;
-	       	color: @white;
-	       	width: 100%;
-	    }
+      button{
+          border:none;
+          padding:10px 5px;
+          background-color: @blue-gray;
+          color: @white;
+          width: 100%;
+      }
 
-	    &--enter{
+      &--enter{
             background-color: @light-blue;
             color: darken(#e1ecf1, 50%);
             background-color: darken(#e1ecf1, 10%);
@@ -128,25 +127,25 @@ DESCRIPTION: CSS for styling a list of groups
     }
 
     &__join{
-    	background-color: #fff;
-		border: 0px;
-		color: @blue;
-		margin: 30px 0px;
+      background-color: #fff;
+    border: 0px;
+    color: @blue;
+    margin: 30px 0px;
     }
 
-	&__SubGroup{
-    	cursor: pointer;
+  &__SubGroup{
+      cursor: pointer;
     }
 
     &__SubGroupList{
-    	list-style: none;
+      list-style: none;
     }
 
     &__description{
-    	overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		width: 570px;
+      overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 570px;
     }
   
   &__marginText{

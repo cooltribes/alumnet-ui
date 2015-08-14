@@ -17,7 +17,7 @@
       <% for apply in @applied: %>
         <div class="applied row margin_top_small">
           <div class="col-md-3 col-xs-3 col-sm-1">
-            <img class="jobPost__avatarA img-circle" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
+            <img class="jobPost__applied img-circle" src="<%= apply.user.avatar %>" alt="<%= apply.user.name %>">
           </div>
           <div class="col-md-6 col-xs-6 col-sm-8">
             <a href="#users/<%= apply.user.id %>/posts"><%= apply.user.name %></a><br>

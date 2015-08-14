@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="searchBar">
+			<h2>Search for Alumni </h2>
+			<form id="search-form">
+				<div class="input-group">
+					<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name or email">
+					<span class="input-group-btn">
+					<a href="#" class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></a>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row  margin_top">
+	<div class="col-md-9">
+		<ul class="sortingMenu">
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<!-- Tip: add the class 'sortingMenu__item-active' for highlighting the link when active -->
+				<a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-employees">
+					Current Employees(<%= @employees_count %>)
+				</a>
+			</li>
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-past-employees">
+					Past Employees(<%= @past_employees_count %>)
+				</a>
+			</li>
+			<li class="sortingMenu__item sortingMenu__item--lg">
+				<a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-admins">
+					Admins(<span id="js-admins-count"><%= @admins_count %></span>)
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<hr class="no_margin_top">
+<div class="row employees-container"></div>
