@@ -9,7 +9,7 @@
         else if group.isSecret() && not group.userIsMember()
           AlumNet.trigger('show:error', 404)
         else
-          layout = AlumNet.request("group:layout", group,1)
+          layout = AlumNet.request("group:layout", group, 1)
           header = AlumNet.request("group:header", group)
             #todo: implement a function to return the view. like a discovery module
           body = new About.View
