@@ -29,6 +29,9 @@
           null
       select_gender: (value)->
         if value == model.get('gender') then 'selected' else ''
+        
+      isVisible: !AlumNet.current_user.isExternal()    
+        
     ui:
       'selectBirthCountries': '#js-birth-countries'
       'selectBirthCities': '#js-birth-cities'

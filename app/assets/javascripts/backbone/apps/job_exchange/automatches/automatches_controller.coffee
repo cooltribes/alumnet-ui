@@ -15,7 +15,6 @@
         newCollection.url = AlumNet.api_endpoint + '/job_exchanges/automatches?page='+automatchesView.collection.page+'&per_page='+automatchesView.collection.rows
         newCollection.fetch
           success: (collection)->
-            console.log collection
             automatchesView.collection.add(collection.models)
 
       automatchesView.on "add:child", (viewInstance)->

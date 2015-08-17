@@ -21,7 +21,9 @@
   <hr>
   <!-- Buttons -->
   <div class="form-group text-right">
-    <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <% if @isVisible: %>
+      <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <% end %>
     <button type="reset" class="btn btn-default  btn-lg">Clear</button>
     <button type="submit" class="btn btn-primary btn-lg js-submit">Next</button>
   </div>

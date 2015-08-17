@@ -18,6 +18,7 @@
       chart_generation: '.chart_generation'
       chart_generation: '.chart_generation'
       chart_seniority: '.chart_seniority'
+      chart_status: '.chart_status'
 
 
     initialize: (options)->
@@ -58,7 +59,6 @@
 
       @trigger "submit"
         
-        
   
   class Users.ChartType1 extends Marionette.ItemView
     template: 'admin/dashboard/users/templates/_graph'
@@ -87,7 +87,31 @@
     onRender: ->
       @stickit()    
 
+
+    _sortTableForChart: (dataTable)->
+      values = dataTable.slice(1) #Get all but not the titles      
+
+      if @getInterval() == "days"
+        values = _.sortBy values, (el)-> #Sort the arrays
+          return (new Date(el[0]))
+        .reverse()
+
+      else if @getInterval() == "months"  
+        console.log values
+        values = _.sortBy values, (el)-> #Sort the arrays
+          return (new Date("01-".concat(el[0])))        
+
+      else if @getInterval() == "years"  
+        values = _.sortBy values, (el)-> #Sort the arrays
+          return (new Date(el[0])).getFullYear()        
+
+      [dataTable[0]].concat values #Build dataTable again with sorted values
+      
+
     drawGraph: (dataTable)->
+
+      dataTable = @_sortTableForChart(dataTable)      
+      
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'AreaChart',
         dataTable: dataTable
@@ -116,7 +140,7 @@
         dataTable: dataTable
         options:
           is3D: true
-          'legend': {'position': 'bottom', 'alignment':'center'}    
+          # 'legend': {'position': 'bottom', 'alignment':'center'}    
           'height': 270          
           animation:
             duration: 1000
@@ -227,6 +251,30 @@
     drawGraph: (dataTable)->
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'PieChart',
+        dataTable: dataTable
+        options:
+          is3D: true
+          # 'legend': {'position': 'bottom', 'alignment':'center'}    
+          'height': 270  
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true              
+
+      @ui.graph_section.showAnimated(graph.render().el)
+
+  class Users.ChartGeneral extends Marionette.ItemView
+    template: 'admin/dashboard/users/templates/_graph'
+
+    ui:
+      graph_section: ".js-graph"
+
+    initialize: (options)->
+      @typeOfChart = options.type  
+
+    drawGraph: (dataTable)->
+      graph = new AlumNet.Utilities.GoogleChart
+        chartType: @typeOfChart
         dataTable: dataTable
         options:
           is3D: true
