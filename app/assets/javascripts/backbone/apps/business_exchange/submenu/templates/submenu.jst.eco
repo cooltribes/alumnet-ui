@@ -37,7 +37,7 @@
           </ul>
         </li>
 
-        <li class="<%= @classOf(4)%>" id="automatches" style="visibility: hidden"><a href="#business-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-star"></span> Automatches(<span id="js-automatches"></span>)</a></li>
+        <li class="<%= @classOf(4)%>" id="automatches" style="display:none"><a href="#business-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-star"></span> Automatches(<span id="js-automatches"></span>)</a></li>
 <!--
         <li class="<%= @classOf(5)%>"><a href="#business-exchange/home" class="navTopSubBar__link" title="Home"><span class="navTopSubBar__icon glyphicon glyphicon-home"></span> Home</a></li>
 

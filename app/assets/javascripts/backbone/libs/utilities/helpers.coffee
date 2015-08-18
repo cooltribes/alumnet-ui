@@ -15,6 +15,19 @@
     { pos: 12, name: "December" }
   ]
 
+  AlumNet.formatErrorsFromApi = (errors)->
+    ## errors = { attr: [array] }
+    container = []
+    _.each errors, (array, attr, list)->
+      attribute = s.humanize(attr)
+      _.each array, (message)->
+        container.push("#{attribute} #{message}")
+    container.join(", ")
+
+  AlumNet.urlWithTimestamp = (url)->
+    "#{url}?#{new Date().getTime()}"
+
+
   class Utilities.Seniorities
     fetch: (type, callback)->
       self = @
