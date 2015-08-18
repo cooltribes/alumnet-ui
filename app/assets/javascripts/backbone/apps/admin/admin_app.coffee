@@ -20,7 +20,8 @@
       "admin/users/edit/:id/admin": "showAdmin"
       "admin/users/edit/:id/overview": "showOverview"
       "admin/users/edit/:id/professional": "showProfessional"
-  
+      "admin/users/edit/:id/groups": "showGroups"
+      "admin/users/edit/:id/contact": "showContact"
 
   API =
     usersList: (id)->
@@ -67,6 +68,13 @@
     showProfessional: (id)->
       controller = new AdminApp.Edit.Professional.Controller
       controller.showProfessional(id)
+    showGroups: (id)->
+      controller = new AdminApp.Edit.Groups.Controller
+      controller.showGroups(id)
+    showContact: (id)->
+      controller = new AdminApp.Edit.Contact.Controller
+      controller.showContact(id)
+      
 
   AlumNet.addInitializer ->
     new AdminApp.Router
