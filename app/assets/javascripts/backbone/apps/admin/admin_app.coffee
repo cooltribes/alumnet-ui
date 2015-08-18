@@ -17,7 +17,10 @@
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
       "dashboard/alumni": "dashboardUsers"
-      "admin/users/:id/personal": "showPersonal"
+      "admin/users/edit/:id/admin": "showAdmin"
+      "admin/users/edit/:id/overview": "showOverview"
+      "admin/users/edit/:id/professional": "showProfessional"
+  
 
   API =
     usersList: (id)->
@@ -55,11 +58,15 @@
       controller.featuresList()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
-
-    showPersonal: (id)->
-      controller = new AdminApp.Edit.Controller
-      controller.showPersonal(id)  
-
+    showAdmin: (id)->
+      controller = new AdminApp.Edit.Admin.Controller
+      controller.showAdmin(id)
+    showOverview: (id)->
+      controller = new AdminApp.Edit.Overview.Controller
+      controller.showOverview(id)
+    showProfessional: (id)->
+      controller = new AdminApp.Edit.Professional.Controller
+      controller.showProfessional(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
