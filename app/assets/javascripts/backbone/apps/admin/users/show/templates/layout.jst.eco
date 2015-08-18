@@ -4,19 +4,48 @@
   <div class="col-md-12">
     <ul class="sortingMenu">
       <li class="sortingMenu__item sortingMenu__item--lg">
-        <!-- Tip: add the class 'sortingMenu__item-active' for highlighting the link when active -->
-        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-overview">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-overview">
           Overview
         </a>
       </li>
       <li class="sortingMenu__item sortingMenu__item--lg">
-        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-contacts">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-personal">
+          Personal
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-contacts">
           Contacts
         </a>
       </li>
       <li class="sortingMenu__item sortingMenu__item--lg">
-        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-professional">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-professional">
           Professional
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-groups">
+          Groups
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-events">
+          Events
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
+          Purcharses
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-points">
+          Points
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-admin">
+          Admin
         </a>
       </li>
     </ul>

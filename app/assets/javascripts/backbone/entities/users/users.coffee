@@ -164,6 +164,12 @@
       collection.url = AlumNet.api_endpoint + "/profiles/#{@get('profile_id')}/experiences"
       collection
 
+    eventsCollection: ->
+      collection = new AlumNet.Entities.EventsCollection @get('events'),
+        eventable: 'users'
+        eventable_id: @id
+      collection
+
   ### Other functions and utils###
   initializeUsers = ->
     Entities.users = new Entities.UserCollection

@@ -5,12 +5,44 @@
     className: 'container'
     regions:
       'content': '#js-content'
+    ui:
+      'overviewLink': '#js-section-overview'
+      'personalLink': '#js-section-personal'
+      'contactsLink': '#js-section-contacts'
+      'professionalLink': '#js-section-professional'
+      'groupsLink': '#js-section-groups'
+      'eventsLink': '#js-section-events'
+      'purchasesLink': '#js-section-purchases'
+      'pointsLink': '#js-section-points'
+      'adminLink': '#js-section-admin'
+
+    events:
+      'click @ui.overviewLink': 'overviewClicked'
+      'click @ui.personalLink': 'personalClicked'
+      'click @ui.contactsLink': 'contactsClicked'
+      'click @ui.professionalLink': 'professionalClicked'
+      'click @ui.groupsLink': 'groupsClicked'
+      'click @ui.eventsLink': 'eventsClicked'
+      'click @ui.purchasesLink': 'purchasesClicked'
+      'click @ui.pointsLink': 'pointsClicked'
+      'click @ui.adminLink': 'adminClicked'
+
+    overviewClicked: (e)->
+      e.preventDefault()
+      overview = new UserShow.Overview
+        model: @model
+      @content.show(overview)
+
+    adminClicked: (e)->
+      e.preventDefault()
+      @content.empty()
 
   class UserShow.Overview extends Marionette.LayoutView
     template: 'admin/users/show/templates/overview'
     regions:
       'contacts': '#js-overview-contacts'
       'experiences': '#js-overview-experiences'
+      'events_section': '#js-overview-events'
 
     templateHelpers: ->
       getCurrentLocation: @model.getCurrentLocation()
@@ -27,7 +59,7 @@
       links.join(", ")
 
     showManageGroups: ->
-      return "No groups" if @model.get('join_groups').lenght == 0
+      return "No groups" if @model.get('manage_groups').lenght == 0
       links = []
       _.each @model.get('manage_groups'), (element)->
         links.push("<a href='#/groups/#{element.id}'>#{element.name}</a>")
@@ -44,8 +76,14 @@
         collection: contacts
         model: @model
 
+      events = @model.eventsCollection()
+      eventsview = new UserShow.OverviewEvents
+        collection: events
+        model: @model
+
       @contacts.show(contactsview)
       @experiences.show(experiencesview)
+      @events_section.show(eventsview)
 
   class UserShow.OverviewContact extends Marionette.ItemView
     template: 'admin/users/show/templates/_overview_contact'
@@ -60,6 +98,12 @@
       getStartDate: @model.getStartDate()
       getEndDate: @model.getEndDate()
 
+  class UserShow.OverviewEvent extends Marionette.ItemView
+    template: 'admin/users/show/templates/_overview_event'
+    templateHelpers: ->
+      location: @model.getLocation()
+      date: moment(@model.get('start_date')).format('DD MMM YYYY')
+
   class UserShow.OverviewExperiences extends Marionette.CompositeView
     template: 'admin/users/show/templates/overview_experiences'
     childView: UserShow.OverviewExperience
@@ -71,5 +115,12 @@
     template: 'admin/users/show/templates/overview_contacts'
     childView: UserShow.OverviewContact
     childViewContainer: '#js-overview-contacts-container'
+    childViewOptions: ->
+      user: @model
+
+  class UserShow.OverviewEvents extends Marionette.CompositeView
+    template: 'admin/users/show/templates/overview_events'
+    childView: UserShow.OverviewEvent
+    childViewContainer: '#js-overview-events-container'
     childViewOptions: ->
       user: @model

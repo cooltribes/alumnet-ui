@@ -19,3 +19,10 @@
     Joined:<%- @showJoinGroups %>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-3">
+    Events
+    <div id="js-overview-events"></div>
+  </div>
+</div>
