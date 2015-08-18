@@ -46,7 +46,6 @@
         @ui.linkInvites.show()
 
     updateAutomatches: (length)->
-      console.log length
       if length == 0
         @ui.linkAutomatches.hide()
       else

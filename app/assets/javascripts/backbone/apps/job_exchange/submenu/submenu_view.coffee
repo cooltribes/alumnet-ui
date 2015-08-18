@@ -39,7 +39,6 @@
       'numberAutomatches': '#js-automatches'
 
     updateAutomatches:(length) ->
-      console.log length
       if length == 0
         @ui.linkAutomatches.hide()
       else
