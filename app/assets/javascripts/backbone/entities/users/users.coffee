@@ -13,8 +13,10 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-        @profile.fetch({async:false})
+        @profile.fetch({async: false})
 
+    profile_fetch: ->
+      @profile.fetch({async: false})
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
@@ -149,6 +151,18 @@
     model: Entities.User
     url: ->
       AlumNet.api_endpoint + '/me/contacts/in_alumnet'
+
+  class Entities.AdminUser extends Entities.User
+
+    contactsCollection: ->
+      collection = new AlumNet.Entities.ProfileContactsCollection @get('contacts')
+      collection.url = AlumNet.api_endpoint + "/profiles/#{@get('profile_id')}/contact_infos"
+      collection
+
+    experiencesCollection: ->
+      collection = new AlumNet.Entities.ExperienceCollection @get('experiences')
+      collection.url = AlumNet.api_endpoint + "/profiles/#{@get('profile_id')}/experiences"
+      collection
 
   ### Other functions and utils###
   initializeUsers = ->

@@ -6,7 +6,7 @@
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
       "admin/users/create": "usersCreate"
-      "admin/users/:id": "usersList"
+      "admin/users/:id": "userShow"
       "admin/users": "usersList"
       "admin/groups": "groupsList"
       "admin/regions": "regionsList"
@@ -23,6 +23,9 @@
     usersList: (id)->
       controller = new AdminApp.Users.Controller
       controller.usersList(id)
+    userShow: (id)->
+      controller = new AdminApp.UserShow.Controller
+      controller.userShow(id)
     usersDeleted: ->
       controller = new AdminApp.UsersDeleted.Controller
       controller.usersDeleted()
@@ -58,7 +61,7 @@
 
     showPersonal: (id)->
       controller = new AdminApp.Edit.Controller
-      controller.showPersonal(id)  
+      controller.showPersonal(id)
 
 
   AlumNet.addInitializer ->

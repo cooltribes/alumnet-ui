@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    Overview
+    Age: <%= @getBornDate %>(<%= @getAge %>)<br>
+    Residence: <%= @getCurrentLocation %><br>
+    AIESEC: Preguntar
+  </div>
+  <div class="col-md-3">
+    Contacts
+    <div id="js-overview-contacts"></div>
+  </div>
+  <div class="col-md-3">
+    Experiences
+    <div id="js-overview-experiences"></div>
+  </div>
+  <div class="col-md-3">
+    Groups <br>
+    Manage:<%- @showManageGroups %><br>
+    Joined:<%- @showJoinGroups %>
+  </div>
+</div>

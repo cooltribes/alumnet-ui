@@ -1,0 +1,25 @@
+<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+<div><%= @name %></div>
+<div class="row margin_top">
+  <div class="col-md-12">
+    <ul class="sortingMenu">
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <!-- Tip: add the class 'sortingMenu__item-active' for highlighting the link when active -->
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-overview">
+          Overview
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-contacts">
+          Contacts
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-professional">
+          Professional
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="js-content"></div>

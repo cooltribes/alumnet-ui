@@ -1,0 +1,5 @@
+<%= @getStartDate %>
+<%= @getEndDate %>
+<%= @company.text %>
+<%= @seniority.text %>
+<hr>
