@@ -35,7 +35,9 @@
 
     adminClicked: (e)->
       e.preventDefault()
-      @content.empty()
+      admin = new UserShow.Admin
+        model: @model
+      @content.show(admin)
 
   class UserShow.Overview extends Marionette.LayoutView
     template: 'admin/users/show/templates/overview'
@@ -52,14 +54,14 @@
       showManageGroups: @showManageGroups()
 
     showJoinGroups: ->
-      return "No groups" if @model.get('join_groups').lenght == 0
+      return "No groups" if @model.get('join_groups').length == 0
       links = []
       _.each @model.get('join_groups'), (element)->
         links.push("<a href='#/groups/#{element.id}/about'>#{element.name}</a>")
       links.join(", ")
 
     showManageGroups: ->
-      return "No groups" if @model.get('manage_groups').lenght == 0
+      return "No groups" if @model.get('manage_groups').length == 0
       links = []
       _.each @model.get('manage_groups'), (element)->
         links.push("<a href='#/groups/#{element.id}'>#{element.name}</a>")

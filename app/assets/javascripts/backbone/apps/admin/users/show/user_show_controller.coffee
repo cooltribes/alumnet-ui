@@ -11,4 +11,4 @@
             model: user
           AlumNet.mainRegion.show(layout)
           layout.content.show(overview)
-          AlumNet.execute('render:admin:users:submenu', undefined, 3)
+          AlumNet.execute('render:admin:users:submenu', undefined, 0)
