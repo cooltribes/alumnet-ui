@@ -17,11 +17,15 @@
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
       "dashboard/alumni": "dashboardUsers"
-      "admin/users/edit/:id/admin": "showAdmin"
       "admin/users/edit/:id/overview": "showOverview"
+      "admin/users/edit/:id/contact": "showContact"
       "admin/users/edit/:id/professional": "showProfessional"
       "admin/users/edit/:id/groups": "showGroups"
-      "admin/users/edit/:id/contact": "showContact"
+      "admin/users/edit/:id/events":"showEvents"
+      "admin/users/edit/:id/purchases": "showPurchases" 
+      "admin/users/edit/:id/points": "showPoints"
+      "admin/users/edit/:id/admin": "showAdmin"
+
 
   API =
     usersList: (id)->
@@ -58,22 +62,31 @@
       controller = new AdminApp.FeaturesList.Controller
       controller.featuresList()
     dashboardUsers: ->
-      new AdminApp.Dashboard.Users.Controller
-    showAdmin: (id)->
-      controller = new AdminApp.Edit.Admin.Controller
-      controller.showAdmin(id)
+      new AdminApp.Dashboard.Users.Controller  
     showOverview: (id)->
       controller = new AdminApp.Edit.Overview.Controller
       controller.showOverview(id)
+    showContact: (id)->
+      controller = new AdminApp.Edit.Contact.Controller
+      controller.showContact(id)
     showProfessional: (id)->
       controller = new AdminApp.Edit.Professional.Controller
       controller.showProfessional(id)
     showGroups: (id)->
       controller = new AdminApp.Edit.Groups.Controller
       controller.showGroups(id)
-    showContact: (id)->
-      controller = new AdminApp.Edit.Contact.Controller
-      controller.showContact(id)
+    showEvents: (id)->
+      controller = new AdminApp.Edit.Events.Controller
+      controller.showEvents(id)
+    showPurchases: (id)->
+      controller = new AdminApp.Edit.Purchases.Controller
+      controller.showPurchases(id)
+    showPoints: (id)->
+      controller = new AdminApp.Edit.Points.Controller
+      controller.showPoints(id)
+    showAdmin: (id)->
+      controller = new AdminApp.Edit.Admin.Controller
+      controller.showAdmin(id)
       
 
   AlumNet.addInitializer ->

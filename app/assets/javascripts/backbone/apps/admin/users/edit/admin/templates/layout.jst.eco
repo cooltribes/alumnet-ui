@@ -37,10 +37,10 @@
           <li><a href="#admin/users/edit/1/overview" ><i class="glyphicon glyphicon-th-large"></i> Overview</a></li>
           <li><a href="#admin/users/edit/1/contact"><i class="glyphicon glyphicon-earphone"></i> Contact</a></li>
           <li><a href="#admin/users/edit/1/professional"><i class="glyphicon glyphicon-briefcase"></i> Professional</a></li>
-          <li><a href="#admin/users/edit/1/groups"><i class="glyphicon glyphicon-asterisk"></i> Groups</a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-calendar"></i> Events</a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i> Purchases</a></li>
-          <li><a href="#"><i class="ico-points"></i> Points</a></li>
+          <li><a href="#admin/users/edit/1/groups"><i class="glyphicon glyphicon-globe"></i> Groups</a></li>
+          <li><a href="#admin/users/edit/1/events"><i class="glyphicon glyphicon-calendar"></i> Events</a></li>
+          <li><a href="#admin/users/edit/1/purchases"><i class="glyphicon glyphicon-credit-card"></i> Purchases</a></li>
+          <li><a href="#admin/users/edit/1/points"><i class="ico-points"></i> Points</a></li>
           <li><a href="#admin/users/edit/1/admin" class="active"><i class="glyphicon glyphicon-asterisk"></i> Admin</a></li>
         </ul>       
       </div><!-- /.navbar-collapse -->

@@ -1,4 +1,4 @@
-<div class="container admDash">
+ <div class="container admDash">
     
     <div class="admDash__header clearfix">
       <img src="http://placehold.it/90" width="90" class="admDash__avatar img-circle">
@@ -38,8 +38,8 @@
             <li><a href="#admin/users/edit/1/overview" ><i class="glyphicon glyphicon-th-large"></i> Overview</a></li>
             <li><a href="#admin/users/edit/1/contact"><i class="glyphicon glyphicon-earphone"></i> Contact</a></li>
             <li><a href="#admin/users/edit/1/professional"><i class="glyphicon glyphicon-briefcase"></i> Professional</a></li>
-            <li><a href="#admin/users/edit/1/groups" class="active"><i class="glyphicon glyphicon-globe"></i> Groups</a></li>
-            <li><a href="#admin/users/edit/1/events"><i class="glyphicon glyphicon-calendar"></i> Events</a></li>
+            <li><a href="#admin/users/edit/1/groups"><i class="glyphicon glyphicon-globe"></i> Groups</a></li>
+            <li><a href="#admin/users/edit/1/events" class="active"><i class="glyphicon glyphicon-calendar"></i> Events</a></li>
             <li><a href="#admin/users/edit/1/purchases"><i class="glyphicon glyphicon-credit-card"></i> Purchases</a></li>
             <li><a href="#admin/users/edit/1/points"><i class="ico-points"></i> Points</a></li>
             <li><a href="#admin/users/edit/1/admin"><i class="glyphicon glyphicon-asterisk"></i> Admin</a></li>
@@ -63,7 +63,8 @@
             <div class="collapse navbar-collapse" id="js-adminDashSubMenuToggle">
               <ul class="nav navbar-nav">
                 <li><a href="#" class="active" >All</a></li>
-                <li><a href="#"> Joined (2)</a></li>
+                <li><a href="#"> Going to (2)</a></li>
+                <li><a href="#"> Went to (3)</a></li>
                 <li><a href="#"> Manages (20)</a></li>
                
                 
@@ -78,7 +79,7 @@
               <div class="col-md-8 col-md-offset-2">
                 <form id="search-form">
                   <div class="input-group">
-                    <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Groups">
+                    <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search events">
                     <span class="input-group-btn">
                       <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
@@ -86,71 +87,71 @@
                 </form>
               </div>
             </div>
-            <div class="row admDashGroups">
+            <div class="row admDashEvents">
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group, very long so it breaks the flow</a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event, very long so it breaks the flow</a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="admDashGroups__item">
+                <div class="admDashEvents__item">
                   
-                  <small>Joined March 2015</small>
-                  <a href="#" title="Name of the group ">Name of the group </a>
-                  
+                  <small>Going to</small>
+                  <a href="#" title="Name of the event ">Name of the event </a>
+                  Ontario, Canada, 12 Dec 2015
                 </div>
               </div>
             </div>
             
-</div>
+          </div>
