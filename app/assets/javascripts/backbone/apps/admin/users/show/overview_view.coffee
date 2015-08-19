@@ -2,7 +2,8 @@
 
   class UserShow.Layout extends Marionette.LayoutView
     template: 'admin/users/show/templates/layout'
-    className: 'container'
+    #className: 'container'
+      
     regions:
       'content': '#js-content'
     ui:

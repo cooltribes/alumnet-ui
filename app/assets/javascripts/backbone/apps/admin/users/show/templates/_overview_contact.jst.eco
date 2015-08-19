@@ -1,2 +1,11 @@
-<%= @contactTypeText(@contact_type).text %>: <%= @info %>
-<hr>
+<div class="row">
+ 	<div class="col-md-4 col-md-offset-4  admDash__col">
+    	<div class="admDash__card">
+      	<table class="admDash__cardData table">
+       		<%= @contactTypeText(@contact_type).text %>: <%= @info %>
+      	</table>
+      <!-- <a href="#">Show more &raquo;</a> -->
+    	</div>
+    	<hr>
+  	</div>
+</div>
