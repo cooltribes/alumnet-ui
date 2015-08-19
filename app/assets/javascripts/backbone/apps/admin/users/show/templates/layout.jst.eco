@@ -1,0 +1,54 @@
+<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+<div><%= @name %></div>
+<div class="row margin_top">
+  <div class="col-md-12">
+    <ul class="sortingMenu">
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-overview">
+          Overview
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-personal">
+          Personal
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-contacts">
+          Contacts
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-professional">
+          Professional
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-groups">
+          Groups
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-events">
+          Events
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
+          Purcharses
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-points">
+          Points
+        </a>
+      </li>
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-admin">
+          Admin
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="js-content"></div>
