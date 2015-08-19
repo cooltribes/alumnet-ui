@@ -3,7 +3,7 @@
     Overview
     Age: <%= @getBornDate %>(<%= @getAge %>)<br>
     Residence: <%= @getCurrentLocation %><br>
-    AIESEC: Preguntar
+    AIESEC: <%= @aiesec_location %>
   </div>
   <div class="col-md-3">
     Contacts

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <div>Full name: <%= @name %></div>
+    <hr>
+    <div>Gender: <%= @profileData.gender %></div>
+    <hr>
+    <div>Age: <%= @getBornDate %> (<%= @getAge %>)</div>
+    <hr>
+    <div>Member: Member ??</div>
+    <hr>
+    <div>Type of User: <%= @getRole %></div>
+    <hr>
+    <div>Origin: <%= @getOriginLocation %></div>
+    <hr>
+    <div>Residence: <%= @getCurrentLocation %></div>
+    <hr>
+    <div>AIESEC: <%= @aiesec_location %> </div>
+    <hr>
+  </div>
+</div>

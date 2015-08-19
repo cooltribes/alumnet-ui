@@ -33,6 +33,38 @@
         model: @model
       @content.show(overview)
 
+    personalClicked: (e)->
+      e.preventDefault()
+      personal = new UserShow.Personal
+        model: @model
+      @content.show(personal)
+
+    contactsClicked: (e)->
+      e.preventDefault()
+      view = @
+      contacts = new AlumNet.Entities.ProfileContactsCollection
+      contacts.url = AlumNet.api_endpoint + "/profiles/#{@model.get('profile_id')}/contact_infos"
+      contacts.fetch
+        success: ->
+          contactsView = new UserShow.Contacts
+            model: view.model
+            collection: contacts
+          view.content.show(contactsView)
+
+    professionalClicked: (e)->
+      e.preventDefault()
+      view = @
+      experiences = new AlumNet.Entities.ExperienceCollection
+      experiences.url = AlumNet.api_endpoint + "/profiles/#{@model.get('profile_id')}/experiences"
+      experiences.fetch
+        data:
+          q: { exp_type_eq: 3 }
+        success: ->
+          experiencesView = new UserShow.Experiences
+            model: view.model
+            collection: experiences
+          view.content.show(experiencesView)
+
     adminClicked: (e)->
       e.preventDefault()
       admin = new UserShow.Admin
