@@ -8,13 +8,16 @@
       document.title = 'AlumNet - Become a member'
       @current_user = options.current_user
       @condition = options.condition
+      
 
     events:
       'click button.js-submit': 'submitClicked'
 
     submitClicked: (e)->
       e.preventDefault()
-      console.log 'tal'
+      data = Backbone.Syphon.serialize(this)
+      console.log data
+      AlumNet.trigger 'payment:checkout' , data
 
   class List.PaymentView extends Marionette.ItemView
     template: 'premium/list/templates/payments'
