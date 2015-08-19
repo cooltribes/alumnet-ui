@@ -65,7 +65,7 @@
       controller = new AdminApp.FeaturesList.Controller
       controller.featuresList()
     dashboardUsers: ->
-      # new AdminApp.Dashboard.Users.Controller
+      new AdminApp.Dashboard.Users.Controller
     showOverview: (id)->
       controller = new AdminApp.Edit.Overview.Controller
       controller.showOverview(id)
