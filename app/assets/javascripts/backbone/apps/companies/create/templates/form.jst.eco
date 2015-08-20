@@ -7,7 +7,7 @@
         <div class="row">
 
           <div class="col-md-5">
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">Company / Project Logo</label>
               <div class="add-logo">
                 <label class="uploadFile uploadFile--cover">
@@ -26,23 +26,23 @@
           </div>
           
           <div class="col-md-7">
-             <div class="form-company has-feedback">
+             <div class="form-group has-feedback">
               <label class="control-label">Company / Project Name</label>
               <input type="text" name="name" id="name" class="form-control input-lg" value="<%= @name %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
 
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">Industry</label>
               <input type="hidden" name="sector_id" id="sectors" value="<%= @sector_id %>" style="width: 100%">
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
 
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label" for="size">Company size</label>
               <select name="size" id="size" style="width: 100%"><%- @sizes_options() %></select>
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
           </div>
 
@@ -50,36 +50,36 @@
         <hr>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">About</label>
               <textarea name="description" id="description" class="form-control input-lg" rows="10" style="resize:none"><%= @description %></textarea>
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-md-6">
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">Country (optional)</label>
               <input class="js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">City (optional)</label>
               <input class="js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_helper %>">
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-company has-feedback">
+            <div class="form-group has-feedback">
               <label class="control-label">Address (optional)</label>
               <input type="text" name="main_address" id="address" class="form-control input-lg" value="<%= @address %>">
-              <span class="help-block"></span>
+              <span class="help-block hidden"></span>
             </div>
           </div>
         </div>

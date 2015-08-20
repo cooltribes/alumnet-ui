@@ -41,12 +41,14 @@
       'click @ui.refreshLink': 'refreshClicked'
       'click @ui.applyLink': 'applyClicked'
       'click @ui.inviteLink': 'inviteClicked'
-      #'click #js-apply': 'modalShow'
 
-    modalShow: (e)->
-      e.preventDefault()
+    _showModal: ()->
       modal = new Shared.ModalApply
+      
+      modal.on "submit", @_apply2, @
+
       $('#container-modal-apply').html(modal.render().el)
+
 
     inviteClicked: (e)->
       e.preventDefault()
@@ -66,37 +68,9 @@
 
     applyClicked: (e)->
       e.preventDefault()
-      view = @
-      url = AlumNet.api_endpoint + "/features/validate"
-      current_user = AlumNet.current_user
-      Backbone.ajax
-        url: url
-        type: "GET"
-        data: { key_name: 'apply_for_a_job' }
-        success: (data) =>
-          if data.validation
-            if current_user.get('is_premium')
-              Backbone.ajax
-                url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
-                method: 'PUT'
-                success: ->
-                  view.model.set('user_can_apply', false)
-                  view.render()
-                  modal = new Shared.ModalApply
-                  $('#container-modal-apply').html(modal.render().el)
-            else
-              AlumNet.navigate("premium?members_only", {trigger: true})
-          else
-            Backbone.ajax
-              url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
-              method: 'PUT'
-              success: ->
-                view.model.set('user_can_apply', false)
-                view.render()
-                modal = new Shared.ModalApply
-                $('#container-modal-apply').html(modal.render().el)
-        error: (data) =>
-          $.growl.error({ message: 'Unknow error, please try again' })
+      # @ui.applyLink.attr("disabled", "disabled")            
+      @_showModal()
+      
 
     refreshClicked: (e)->
       e.preventDefault()
@@ -112,6 +86,56 @@
       if resp
         @model.destroy()
 
+    _apply2: (data)->  
+
+    _apply: (data)->  
+      view = @
+      url = AlumNet.api_endpoint + "/features/validate"
+      current_user = AlumNet.current_user
+      Backbone.ajax
+        url: url
+        type: "GET"
+        data: { key_name: 'apply_for_a_job' }
+        success: (data) =>
+          if data.validation
+            if current_user.get('is_premium')
+              Backbone.ajax
+                url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+                method: 'PUT'
+                data: data
+                success: ->
+                  view.model.set('user_can_apply', false)
+                  view.render()
+                  $.growl.notice({ message: 'Your application has been sent successfully' })  
+                  
+            else
+              AlumNet.navigate("premium?members_only", {trigger: true})
+          else
+            Backbone.ajax
+              url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
+              method: 'PUT'
+              data: data
+              success: ->
+                view.model.set('user_can_apply', false)
+                view.render()
+                $.growl.notice({ message: 'Your application has been sent successfully' })  
+                
+        error: (data) =>
+          $.growl.error({ message: 'Unknow error, please try again' })  
+
+
   class Shared.ModalApply extends Backbone.Modal
     template: 'job_exchange/_shared/templates/modal_apply'
-    cancelEl: '#js-close-btn'
+    
+    cancelEl: '#js-close'
+    submitEl: '#js-submit'
+    keyControl: false 
+
+    initialize: ()->
+      @model = AlumNet.current_user
+
+    submit: ()->
+      data = Backbone.Syphon.serialize @      
+      @trigger "submit", data
+
+        

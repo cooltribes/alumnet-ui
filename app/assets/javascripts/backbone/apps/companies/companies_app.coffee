@@ -30,6 +30,13 @@
         controller = new CompaniesApp.Employees.Controller
         controller.employees(id)
 
+
+    AlumNet.on "company:about", (id) ->
+      AlumNet.navigate "companies/#{id}/about", 
+        trigger: true
+      # API.about(id)
+
+
     AlumNet.addInitializer ->
       new CompaniesApp.Router
         controller: API

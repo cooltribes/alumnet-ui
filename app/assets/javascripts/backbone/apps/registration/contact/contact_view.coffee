@@ -103,6 +103,9 @@ AlumNet.module 'RegistrationApp.Contact', (Contact, @AlumNet, Backbone, Marionet
     initialize: ->
       document.title = " AlumNet - Registration"
 
+    templateHelpers: ->      
+      isVisible: !AlumNet.current_user.isExternal()      
+
     onRender: ->
       $('body,html').animate({scrollTop: 20}, 600);
 
