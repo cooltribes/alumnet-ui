@@ -1,0 +1,7 @@
+<div class="search-section">
+  <form>
+    <input type="text" id="groups-search" name="term">
+    <a href="#" id="js-search" class="btb btn-default">Search</a>
+  </form>
+</div>
+<div id="js-groups-container"></div>

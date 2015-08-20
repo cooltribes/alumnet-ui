@@ -3,5 +3,4 @@
     create: ->
       formView = new UsersCreate.FormView
       AlumNet.mainRegion.show(formView)
-      layoutView.table.show(groupsTable)
       AlumNet.execute('render:admin:users:submenu', undefined, 3)
