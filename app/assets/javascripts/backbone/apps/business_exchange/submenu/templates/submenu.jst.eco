@@ -10,6 +10,7 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
+        <li class="<%= @classOf(3)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
         <li class="<%= @classOf(5)%>">
           <a class="navTopSubBar__link" href="#business-exchange/home">
           <!-- <a class="navTopSubBar__link" href="#business-exchange/home" id="businessMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> -->
@@ -47,12 +48,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right no-margin">
-        
-        <li class="<%= @classOf(3)%>"><a href="#business-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
-
         <li class="<%= @classOf(2)%>" id="invites" style="display:none"><a href="#business-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span>Invites (<span id="js-invites"></span>)</a></li>
         <a href="#business-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a new Task</a>
       </ul>
+      
     </div>
 	</div>
 </nav>
