@@ -24,6 +24,7 @@
       App.request 'get:aiesec_countries'
 
   App.on 'start', ->
+    App.loadReceptiveWidget()
     if Backbone.history
       Backbone.history.start()
       if App.getCurrentRoute() == ""
