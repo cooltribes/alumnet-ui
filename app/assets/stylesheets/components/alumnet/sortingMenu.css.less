@@ -63,6 +63,78 @@ DESCRIPTION: Used for sorting search results. Includes a title at left hand side
             font-size: 24px;
             font-weight: 300;
         }
+
+        &--md > &__link
+        {
+            font-size: 20px;
+            font-weight: 200;
+        }
+    }
+    &__title
+    {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.sortingMenuAdmin
+{
+    position: relative;
+    margin-bottom: -17px;
+    list-style: outside none none;
+    &:before,
+    &:after
+    {
+        display: table;
+
+        content: ' ';
+    }
+    &:after
+    {
+        clear: both;
+    }
+    &__item
+    {
+        position: relative;
+
+        display: block;
+        float: left;
+
+        list-style: none;
+         &__link
+        {
+            font-size: 14px;
+
+            padding-right: 12px;
+            padding-bottom: 1px;
+            padding-left: 12px;
+
+            color: @blue;
+            &:hover,
+            &--active
+            {
+                background-color: transparent;
+                -webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+                   -moz-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+                        box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+                        text-decoration: none;
+            }
+
+            &:hover,&:focus{
+                text-decoration: none;
+            }
+        }
+        &--lg > &__link
+        {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        &--md > &__link
+        {
+            font-size: 20px;
+            font-weight: 200;
+        }
     }
     &__title
     {

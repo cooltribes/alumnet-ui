@@ -1,28 +1,69 @@
 <div class="row">
-  <div class="col-md-3">
-    Overview
-    Age: <%= @getBornDate %>(<%= @getAge %>)<br>
-    Residence: <%= @getCurrentLocation %><br>
-    AIESEC: <%= @aiesec_location %>
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-th-large"></i> Overview</h2>
+      <table class="admDash__cardData table">
+        <tr>
+          <td>Age</td>
+          <td><%= @getBornDate %> (<%= @getAge %>)</td>
+        </tr>
+        <tr>
+          <td>Residence</td>
+          <td><%= @getCurrentLocation %></td>
+        </tr>
+        <tr>
+          <td>AIESEC</td>
+          <td><%= @aiesec_location %></td>
+        </tr>
+      </table>
+      <a href="#">Show more &raquo;</a>
+    </div>
   </div>
-  <div class="col-md-3">
-    Contacts
-    <div id="js-overview-contacts"></div>
-  </div>
-  <div class="col-md-3">
-    Experiences
-    <div id="js-overview-experiences"></div>
-  </div>
-  <div class="col-md-3">
-    Groups <br>
-    Manage:<%- @showManageGroups %><br>
-    Joined:<%- @showJoinGroups %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-3">
-    Events
-    <div id="js-overview-events"></div>
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-earphone"></i> Contact</h2>
+      <table class="admDash__cardData table">
+        <div id="js-overview-contacts"></div>
+      </table>
+      <!-- <a href="#">Show more &raquo;</a> -->
+    </div>
   </div>
-</div>
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-briefcase"></i> Professional</h2>
+      <table class="admDash__cardData table">
+        <div id="js-overview-experiences"></div>
+      </table>
+      <!-- <a href="#">Show more &raquo;</a> -->
+    </div>
+  </div>
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-globe"></i> Groups</h2>
+      <table class="admDash__cardData table">
+        <tr>
+          <td>Manages</td>
+          <td><%- @showManageGroups %></td>
+        </tr>
+        <tr>
+          <td>Joined</td>
+          <td><%- @showJoinGroups %></td>
+        </tr>
+      </table>
+      <a href="#">Show more &raquo;</a>
+    </div>
+  </div>
+
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-calendar"></i> Events</h2>
+      <table class="admDash__cardData table">
+        <div id="js-overview-events"></div>
+      </table>
+      <!-- <a href="#">Show more &raquo;</a> -->
+    </div>
+  </div>

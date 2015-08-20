@@ -1,0 +1,4 @@
+<%= @is_admin %><br>
+<%= @approved_at %>
+<a href="#groups/<%= @id %>/about"><%= @name %></a><br>
+<hr>

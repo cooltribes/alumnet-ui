@@ -1,5 +1,8 @@
-<%= @getStartDate %>
-<%= @getEndDate %>
-<%= @company.text %>
-<%= @seniority.text %>
-<hr>
+
+     <ul>
+        <li>
+          <p><small><%= @getStartDate %> - <%= @getEndDate %></small></p>
+          <b><%= @seniority.text %></b> <%= @company.text %>
+          <hr>
+        </li>
+      </ul> 

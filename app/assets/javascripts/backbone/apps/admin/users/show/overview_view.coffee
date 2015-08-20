@@ -2,7 +2,8 @@
 
   class UserShow.Layout extends Marionette.LayoutView
     template: 'admin/users/show/templates/layout'
-    className: 'container'
+    #className: 'container'
+      
     regions:
       'content': '#js-content'
     ui:
@@ -64,6 +65,30 @@
             model: view.model
             collection: experiences
           view.content.show(experiencesView)
+
+    groupsClicked: (e)->
+      e.preventDefault()
+      view = @
+      groups = new AlumNet.Entities.GroupCollection
+      groups.url = AlumNet.api_endpoint + "/admin/users/#{@model.id}/groups"
+      groups.fetch
+        success: ->
+          groupsView = new UserShow.Groups
+            model: view.model
+            collection: groups
+          view.content.show(groupsView)
+
+    eventsClicked: (e)->
+      e.preventDefault()
+      view = @
+      events = new AlumNet.Entities.EventsCollection
+      events.url = AlumNet.api_endpoint + "/admin/users/#{@model.id}/events"
+      events.fetch
+        success: ->
+          eventsView = new UserShow.Events
+            model: view.model
+            collection: events
+          view.content.show(eventsView)
 
     adminClicked: (e)->
       e.preventDefault()
