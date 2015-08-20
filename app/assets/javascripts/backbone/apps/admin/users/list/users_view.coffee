@@ -202,6 +202,11 @@
         if @profileData.gender
           return @profileData.gender
         "No gender"
+        
+      getId: () ->
+        id = @model.id
+
+
 
     modelChange: ->
       @render()

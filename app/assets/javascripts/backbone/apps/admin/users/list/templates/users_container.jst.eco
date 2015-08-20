@@ -70,17 +70,16 @@
         </div>
   </div>
 </div>
-
 <hr>
-
-  <div class="col-md-10">
-    <input id="tags"class="filter-value filters__input filters__input--lg form-control input-lg">
+  <div class="row">
+    <div class="col-md-9">
+      <input id="tags"class="filter-value filters__input filters__input--lg form-control input-lg">
+    </div>
+    <div class="col-md-3">
+      <a href="#" id="search-tags"class="glyphicon glyphicon-search btn btn-primary btn-lg search filters__btnSearch"> Search by Tags</a>
+    </div>
+    <br>
   </div>
-  <div class="col-md-2">
-    <a href="#" id="search-tags"class="glyphicon glyphicon-search btn btn-primary btn-lg filters__btnSearch">Search by Tags</a>
-  </div>
-  <br>
-
 <hr>
 
 <table class="table tableAdmin" id="users-table">

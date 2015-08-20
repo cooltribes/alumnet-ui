@@ -1,2 +1,2 @@
 <div id="js-overview-contacts-container"></div>
-<a href="#">Show more &raquo;</a>
+<a href="#" id="js-section-contacts">Show more &raquo;</a>

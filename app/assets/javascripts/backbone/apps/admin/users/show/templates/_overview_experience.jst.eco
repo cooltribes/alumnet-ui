@@ -1,8 +1,8 @@
-
-     <ul>
-        <li>
-          <p><small><%= @getStartDate %> - <%= @getEndDate %></small></p>
-          <b><%= @seniority.text %></b> <%= @company.text %>
-          <hr>
-        </li>
-      </ul> 
+<table class="admDash__cardData table">
+	<tr>
+	  	<td>
+	    	<small><%= @getStartDate %> - <%= @getEndDate %></small><br>
+	    	<strong> <%= @seniority.text %></strong>, <%= @company.text %>
+		</td>
+	</tr>                 
+</table>
