@@ -13,13 +13,18 @@ DESCRIPTION: shared styles among group applications
   &__logo {
     text-align: center;
     padding: 10px;
+    a {
+      display: block;
+    }
   }
 
   &__description {
     h3 {
       text-transform: uppercase;
       font-weight: bold;
-      // color: @black
+      a {
+        color: @black        
+      }
     }
   }
 }
@@ -88,6 +93,9 @@ DESCRIPTION: shared styles among group applications
       &:nth-child(1){
         text-align: center;
         width: 21em;
+        a {
+          display: block;
+        }
       }
       &:nth-child(2){
         width: 26em;      
@@ -114,7 +122,10 @@ DESCRIPTION: shared styles among group applications
     overflow: hidden;
     h4 {
       font-size: 22px;
-      margin-top: 0;      
+      margin-top: 0;   
+      a {
+        color: @black;
+      }   
     }
 
   }

@@ -16,10 +16,10 @@
 </div>
 <div class="text-center">
   <div id="detail-map" style="width: 450px; height: 200px"></div>
-  <div class="userBusiness__flechas--disable text-left">
+  <!-- <div class="userBusiness__flechas--disable text-left">
     <div class="userBusiness__flechas--in"><</div>
   </div>
   <div class="userBusiness__flechas--out text-right">
     <div class="userBusiness__flechas--in">></div>
-  </div>
+  </div> -->
 </div>

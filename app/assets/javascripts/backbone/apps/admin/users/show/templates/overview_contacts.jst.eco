@@ -1,2 +1,11 @@
-<div id="js-overview-contacts-container"></div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4  admDash__col">
+      <div class="admDash__card">
+        <table class="admDash__cardData table" id="js-overview-contacts-container">
+        
+        </table>
+      </div>
+    </div>
+</div>
+
 <a href="#">Show more &raquo;</a>

@@ -208,6 +208,7 @@
   class About.ContactModal extends Backbone.Modal
     template: 'companies/about/templates/contact_modal'
     cancelEl: '#cancel'
+    keyControl: false    
 
     initialize: (options)->
       @parentView = options.parentView
@@ -265,6 +266,8 @@
   class About.AddressModal extends Backbone.Modal
     template: 'companies/about/templates/address_modal'
     cancelEl: '#cancel'
+    keyControl: false    
+
 
     initialize: (options)->
       @contactsView = options.contactsView
@@ -510,6 +513,8 @@
   class About.BranchModal extends Backbone.Modal
     template: 'companies/about/templates/branch_modal'
     cancelEl: '#cancel'
+    keyControl: false    
+    
 
     initialize: (options)->
       @branchesView = options.branchesView

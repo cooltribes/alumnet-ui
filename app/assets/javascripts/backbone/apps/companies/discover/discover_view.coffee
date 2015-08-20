@@ -114,5 +114,5 @@
     
 
     initialize: ()->
-      @type = "list" #default view
+      @type = "cards" #default view
     

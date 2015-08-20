@@ -1,11 +1,15 @@
 <td>
-  <img src="<%= @logo.card %>">
+  <a href="#companies/24/about"> 
+    <img src="<%= @logo.card %>">
+  </a> 
 </td>
 
 <td>
   <div class="companiesTable__description">
     <h4>
-      <%= @name %>
+      <a href="#companies/24/about">
+        <%= @name %>
+      </a>
     </h4>
     <%= @description %>  
   </div>
