@@ -6,7 +6,6 @@
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
       "admin/users/create": "usersCreate"
-      "admin/users/:id": "userShow"
       "admin/users": "usersList"
       "admin/groups": "groupsList"
       "admin/regions": "regionsList"
@@ -16,7 +15,9 @@
       "admin/actions": "actionsList"
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
+      "admin/users/:id": "userShow"
       "dashboard/alumni": "dashboardUsers"
+
       "admin/users/edit/:id/overview": "showOverview"
       "admin/users/edit/:id/contact": "showContact"
       "admin/users/edit/:id/professional": "showProfessional"
@@ -28,9 +29,9 @@
 
 
   API =
-    usersList: (id)->
+    usersList: ->
       controller = new AdminApp.Users.Controller
-      controller.usersList(id)
+      controller.usersList()
     userShow: (id)->
       controller = new AdminApp.UserShow.Controller
       controller.userShow(id)

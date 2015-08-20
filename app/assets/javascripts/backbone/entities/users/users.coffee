@@ -214,12 +214,14 @@
 
     #List of all users for administration
     getUsersList: (querySearch)->
-      initializeUsersList() if Entities.allUsers == undefined
-      Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
-      Entities.allUsers.comparator = "id"
-      Entities.allUsers.fetch
-        data: querySearch
-      Entities.allUsers
+      users = new Entities.UserCollection
+      users.url = AlumNet.api_endpoint + '/admin/users'
+      users
+      # initializeUsersList() if Entities.allUsers == undefined
+      # Entities.allUsers.comparator = "id"
+      # Entities.allUsers.fetch
+      #   data: querySearch
+      # Entities.allUsers
 
     getNewUser: ->
       Entities.user = new Entities.User

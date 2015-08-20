@@ -41,15 +41,14 @@
 
     _inputForFilter: (options)->
       if Array.isArray(options.values) && options.type == "option"
-        "<select class='filter-value'>" + @_generateHtmlOptionsForSelect(options.values, 'Select Value') + "</select>"
-      if options.type == "date"
-        "<input class='filter-value date-search' value='#{options.values}'>"
+        "<select class='filter-value filters__input filters__input--lg form-control input-lg'>" + @_generateHtmlOptionsForSelect(options.values, 'Select Value') + "</select>"
+      else if options.type == "date"
+        "<input class='filter-value filters__input filters__input--lg form-control input-lg date-search' value='#{options.values}'>"
       else
-        "<input class='filter-value' value='#{options.values}'>"
+        "<input class='filter-value filters__input filters__input--lg form-control input-lg' value='#{options.values}'>"
 
     _initializeDateInput: (valueContainer)->
       dateInput = valueContainer.find('.date-search').first()
-      console.log dateInput
       dateInput.Zebra_DatePicker
         show_icon: false
         show_select_today: false
@@ -58,7 +57,7 @@
     generateOptions: ($filterContainer, value)->
       options = @_getOptionsFor(value)
       filterComparator = $filterContainer.find('.filter-comparator')
-      valueContainer = $filterContainer.find('.filter-value-container filters__input filters__input--lg input-lg')
+      valueContainer = $filterContainer.find('.filter-value-container')
       if options
         filterComparator.html @_htmlForComparator(options.type)
         valueContainer.html @_inputForFilter(options)
