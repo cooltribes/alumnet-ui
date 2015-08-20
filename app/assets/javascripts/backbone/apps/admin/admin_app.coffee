@@ -18,16 +18,6 @@
       "admin/users/:id": "userShow"
       "dashboard/alumni": "dashboardUsers"
 
-      "admin/users/edit/:id/overview": "showOverview"
-      "admin/users/edit/:id/contact": "showContact"
-      "admin/users/edit/:id/professional": "showProfessional"
-      "admin/users/edit/:id/groups": "showGroups"
-      "admin/users/edit/:id/events":"showEvents"
-      "admin/users/edit/:id/purchases": "showPurchases"
-      "admin/users/edit/:id/points": "showPoints"
-      "admin/users/edit/:id/admin": "showAdmin"
-
-
   API =
     usersList: ->
       controller = new AdminApp.Users.Controller
