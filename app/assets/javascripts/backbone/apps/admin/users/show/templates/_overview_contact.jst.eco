@@ -2,10 +2,12 @@
  	<div class="col-md-4 col-md-offset-4  admDash__col">
     	<div class="admDash__card">
       	<table class="admDash__cardData table">
-       		<%= @contactTypeText(@contact_type).text %>: <%= @info %>
+	       	<tr>
+	          <td><%= @contactTypeText(@contact_type).text %>:</td>
+	          <td><%= @info %></td>
+	        </tr>
       	</table>
       <!-- <a href="#">Show more &raquo;</a> -->
     	</div>
-    	<hr>
   	</div>
 </div>
