@@ -45,7 +45,7 @@
     _showModal: ()->
       modal = new Shared.ModalApply
       
-      modal.on "submit", @_apply2, @
+      modal.on "submit", @_apply, @
 
       $('#container-modal-apply').html(modal.render().el)
 
@@ -86,7 +86,6 @@
       if resp
         @model.destroy()
 
-    _apply2: (data)->  
 
     _apply: (data)->  
       view = @
