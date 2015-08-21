@@ -1,5 +1,154 @@
-<%= @contactTypeText(@contact_type).text %>: <%= @info %>
-<% if @userCanEdit: %>
-  <a href="#" id="js-delete-contact">x</a>
-  <a href="#" id="js-edit-contact">edit</a>
+<% if @contact_type== 0: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-mail"></span>
+        <%= @info %>     
+
+      </div>
+      <div>
+        
+      <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 1: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-phone"></span>
+        <%= @info %>     
+
+      </div>
+      <div>
+        
+      <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 2: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-skype"></span>
+        <%= @info %>     
+
+      </div>
+      <div>
+        
+      <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 3: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-link"></span>
+        <%= @info %>     
+
+      </div>
+      <div>
+        
+      <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 4: %>
+  <div class="contact_info">
+    <div id="js-link-fb" class="overfloadText" >
+      <span class="icon-entypo-facebook"></span>
+        <%= @info %>     
+
+      </div> 
+      <div>
+        
+      <% if @userCanEdit: %>
+          <a href="#" id="js-delete-contact">x</a>
+          <a href="#" id="js-edit-contact">edit</a>
+        <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type==5: %>
+  <div class="contact_info">
+    <div id="js-link-tw" class="overfloadText">
+      <span class="icon-entypo-twitter"></span>
+        <%= @info %>     
+
+    </div>
+    <div>
+      
+    <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+    </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 6: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-chat"></span>
+        <%= @info %>     
+
+      </div>
+      <div>
+        
+      <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+      </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 7: %>
+  <div class="contact_info">
+    <div id="js-link-web" class="overfloadText">
+      <span class="icon-entypo-link"></span>
+        <%= @info %>     
+
+    </div>
+    <div>
+      
+    <% if @userCanEdit: %>
+        <a href="#" id="js-delete-contact">x</a>
+        <a href="#" id="js-edit-contact">edit</a>
+      <% end %>
+    </div>
+    </div>
+
+<% end %>
+<% if @contact_type== 8: %>
+  <div class="contact_info">
+    <div class="overfloadText">
+      <span class="icon-entypo-link"></span>
+        <%= @info %>     
+
+    </div>
+      
+    <div>
+        <% if @userCanEdit: %>
+          <a href="#" id="js-edit-contact">edit</a>
+          <a href="#" id="js-delete-contact">x</a>
+      <% end %>
+    </div>
+        
+        
+  </div>
 <% end %>

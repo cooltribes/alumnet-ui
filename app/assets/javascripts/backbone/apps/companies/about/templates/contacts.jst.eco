@@ -12,7 +12,7 @@
 	<hr>
 		<div class="col-md-12">
 			<% if @userCanEdit: %>
-				<a href="#" id="js-add-contact" class="btn btn-default">Add Contact</a>
+				<a href="#" id="js-add-contact" class="btn btn-default btn-primary-noBackground"><span class="glyphicon glyphicon-plus"></span> Add Contact</a>
 			<% end %>
 		</div>
 		<div id="js-modal-contact-container"></div>

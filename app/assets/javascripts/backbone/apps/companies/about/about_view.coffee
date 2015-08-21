@@ -473,6 +473,7 @@
   class About.BranchView extends Marionette.ItemView
     template: 'companies/about/templates/_branch'
     tagName: 'li'
+    
 
     initialize: (options)->
       @company = options.company
@@ -636,6 +637,8 @@
         div: '#detail-map'
         lat: -27.116849
         lng: -109.364124
+        width: "100%"
+        height: "320px"
 
       GMaps.geocode
         address: @model.getLocation(true)
