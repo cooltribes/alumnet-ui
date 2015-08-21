@@ -16,7 +16,7 @@
         success: ->
           usersView = new Users.UsersTable
             collection: users
-            modals: @modals
+            modals: view.modals
           view.main.show(usersView)
 
   #----Modal para cambiar suscripcion
@@ -44,14 +44,11 @@
           console.log(data)
 
     onRender: ->
-      min_date = moment().format("YYYY-MM-DD")
-      max_date = moment().add(20, 'years').format("YYYY-MM-DD")
       @$(".js-date-start-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
         default_position: 'below'
-        direction: [min_date, max_date]
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
@@ -60,7 +57,7 @@
         show_select_today: false
         view: 'years'
         default_position: 'below'
-        direction: [min_date, max_date]
+        direction: 1
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
