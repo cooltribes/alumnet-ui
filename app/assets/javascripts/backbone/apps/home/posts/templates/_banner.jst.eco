@@ -1,9 +1,9 @@
-<a href="<%= @link %>"><img src="<%= @picture.main %>" alt="" class="homeSlideshow__banner" style="height:430px;">
+<a href="<%= @link %>"><img src="<%= @picture.main %>" alt="" class="homeSlideshow__banner" style="height: 430px">
 <div class="carousel-caption homeSlideshow__caption">
 	<p class="homeSlideshow__font">
 		<%= @title %>
 		<br><%= @description %>
 	</p>
-</a>	
 </div>
+</a>
 

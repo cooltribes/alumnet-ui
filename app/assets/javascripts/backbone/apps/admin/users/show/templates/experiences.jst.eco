@@ -5,11 +5,12 @@
     
     <div class="col-md-8">
       <div class="col-md-2">
-        <h3 class="admDashOverview__title">Skills</h3>
+        <h4 class="admDashOverview__title"><b>Skills</b></h4>
       </div> 
       <div class="col-md-10">
         <%= @showSkills %><br>
       </div> 
+      <hr>
     </div> 
     <hr>
   </div>

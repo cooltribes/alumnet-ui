@@ -1,7 +1,11 @@
-<div class="search-section">
-  <form>
-    <input type="text" id="groups-search" name="term">
-    <a href="#" id="js-search" class="btb btn-default">Search</a>
-  </form>
+<div class="container">
+	 <form id="search-form">
+		<div class="input-group search-section">
+		  <input type="text" id="groups-search" name="term" class="searchBar__searchInput form-control " placeholder="Search Groups">
+		  <span class="input-group-btn">
+		    <button id="js-search" class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+		  </span>
+		</div>
+	</form>
 </div>
 <div id="js-groups-container"></div>
