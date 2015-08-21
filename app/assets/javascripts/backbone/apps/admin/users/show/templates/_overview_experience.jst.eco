@@ -1,7 +1,7 @@
 <table class="admDash__cardData table">
 	<tr>
 	  	<td>
-	    	<small><%= @getStartDate %> - <%= @getEndDate %></small><br>
+	    	<%= @getStartDate %> - <%= @getEndDate %><br>
 	    	<strong> <%= @seniority.text %></strong>, <%= @company.text %>
 		</td>
 	</tr>                 
