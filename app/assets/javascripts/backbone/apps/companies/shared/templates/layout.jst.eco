@@ -14,7 +14,7 @@
 					<li>  <a href="#companies/<%= @id %>/employees" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
 						<span class="ico-company"></span>
 					Alumni</a></li>
-					<li>  <a href="#companies/<%= @id %>/jobpost" class="groupMenu__link<%= @classOf(2)%>">
+					<li>  <a href="#companies/<%= @id %>/job_posts" class="groupMenu__link<%= @classOf(2)%>">
 						<span class="glyphicon glyphicon-briefcase"></span>
 					Job Post</a></li>
 
