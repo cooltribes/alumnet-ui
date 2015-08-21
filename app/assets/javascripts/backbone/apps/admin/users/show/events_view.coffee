@@ -2,13 +2,15 @@
 
   class UserShow.Event extends Marionette.ItemView
     template: 'admin/users/show/templates/_overview_event'
+    className: 'container-fluid col-md-3'
+
     templateHelpers: ->
       location: @model.getLocation()
       date: moment(@model.get('start_date')).format('DD MMM YYYY')
 
   class UserShow.Events extends Marionette.CompositeView
     template: 'admin/users/show/templates/events'
-    className: 'container'
+    #className: 'container'
     childView: UserShow.Event
     childViewContainer: '#js-events-container'
     childViewOptions: ->

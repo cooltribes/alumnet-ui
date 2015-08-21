@@ -1,4 +1,4 @@
-<%= @is_admin %><br>
-<%= @approved_at %>
-<a href="#groups/<%= @id %>/about"><%= @name %></a><br>
-<hr>
+<div class="admDashGroups__item">
+  <small><%= @approved_at %></small>
+  <a href="#groups/<%= @id %>/about"><%= @name %></a><br>
+</div>

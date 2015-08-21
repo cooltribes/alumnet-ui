@@ -1,2 +1,2 @@
 <div id="js-overview-events-container"></div>
-<a href="#">Show more &raquo;</a>
+<a href="#" id="js-section-events">Show more &raquo;</a>

@@ -52,6 +52,9 @@
     <li role="presentation">
       <a role="menuitem" tabindex="-1" href="#" id="delete-user">Delete user</a>
     </li>
+     <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#admin/users/<%= @id %>">Admin user</a>
+    </li>
   </ul>
 </div>
 

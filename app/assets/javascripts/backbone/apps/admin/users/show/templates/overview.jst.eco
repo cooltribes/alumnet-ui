@@ -16,7 +16,7 @@
           <td><%= @aiesec_location %></td>
         </tr>
       </table>
-      <a href="#">Show more &raquo;</a>
+      <a href="#" id="js-section-personal">Show more &raquo;</a>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
 
   <div class="col-md-3 admDash__col">
     <div class="admDash__card">
-      <h2> <i class="glyphicon glyphicon-briefcase"></i> Professional</h2>
+      <h2> <i class="glyphicon glyphicon-briefcase"></i> Professional Experience</h2>
       <table class="admDash__cardData table">
         <div id="js-overview-experiences"></div>
       </table>
@@ -53,7 +53,7 @@
           <td><%- @showJoinGroups %></td>
         </tr>
       </table>
-      <a href="#">Show more &raquo;</a>
+      <a href="#" id="js-section-groups">Show more &raquo;</a>
     </div>
   </div>
 
@@ -67,3 +67,26 @@
       <!-- <a href="#">Show more &raquo;</a> -->
     </div>
   </div>
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-credit-card"></i> Purchases</h2>
+      <p>Not available information</p>
+      <!-- <a href="#" id="js-section-purchases">Show more &raquo;</a> -->
+    </div>
+  </div>
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="ico-points"></i> Points</h2>
+      <p>Not available information</p>
+      <!-- <a href="#" id="js-section-points">Show more &raquo;</a> -->
+    </div>
+  </div>
+
+  <div class="col-md-3 admDash__col">
+    <div class="admDash__card">
+      <h2> <i class="glyphicon glyphicon-asterisk"></i> Admin</h2>
+      <a href="#" id="js-section-admin">Show more &raquo;</a>
+    </div>
+  </div
