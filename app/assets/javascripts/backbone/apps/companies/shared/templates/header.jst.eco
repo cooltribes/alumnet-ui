@@ -6,7 +6,13 @@
 
   <div class="userCoverArea__avatar text-center">
     <img src="<%= @logo_url() %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-    <a id="js-edit-logo" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change Logo</a>
+    <% if @isCompanyAdmin: %>
+    
+      <a id="js-edit-logo" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change Logo</a>
+    <% end %>
+
+
+
   </div>
 
    <h1 class="userCoverArea__title " title="<%= @name %>">
@@ -18,10 +24,13 @@
     Subtitulo
   </p> -->
 
+    <% if @isCompanyAdmin: %>
     <a id="js-edit-cover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+    <% end %>
+
     <% unless @has_request_for_admin || @isCompanyAdmin: %>
       <a href="#" id="js-request-admin-company" title="Request admin" class="userCoverArea__btnMessage btn btn-lg"> Request Admin</a>
-
     <% end %>
+
 </div>
 <div id="js-modal-container"></div>

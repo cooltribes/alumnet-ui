@@ -8,7 +8,7 @@
 
           <div class="col-md-5">
             <div class="form-group has-feedback">
-              <label class="control-label">Company / Project Logo</label>
+              <label class="control-label">Company Logo</label>
               <div class="add-logo">
                 <label class="uploadFile uploadFile--cover">
                   <div class="uploadFile--img">
@@ -16,7 +16,7 @@
                   </div>
                   <div class="uploadFile--text">
                     <span class="glyphicon glyphicon-open"></span>
-                    <span>Upload cover photo</span>
+                    <span>Upload logo</span>
                     <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
                   </div>
                   <input type="file" name="logo" id="logo">
@@ -27,7 +27,7 @@
           
           <div class="col-md-7">
              <div class="form-group has-feedback">
-              <label class="control-label">Company / Project Name</label>
+              <label class="control-label">Company Name</label>
               <input type="text" name="name" id="name" class="form-control input-lg" value="<%= @name %>">
               <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
               <span class="help-block hidden"></span>

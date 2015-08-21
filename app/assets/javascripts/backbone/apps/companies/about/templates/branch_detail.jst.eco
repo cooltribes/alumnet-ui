@@ -7,7 +7,7 @@
     
     <div class="col-md-6">
       <div id="js-modal-branch-contact-container"></div>
-      <div id="js-branch-contacts-container"></div>
+      <div id="js-branch-contacts-container" class="margin_bottom_small companyContacts"></div>
       <% if @userCanEdit: %>
         <a href="#" id="js-add-branch-contact" class="btn btn-default btn-primary-noBackground"><span class="glyphicon glyphicon-plus"></span>Add Contact</a>
       <% end %>

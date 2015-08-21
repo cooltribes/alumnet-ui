@@ -597,6 +597,9 @@
     initialize: (options)->
       @layout = options.layout
 
+    templateHelpers: ->
+      userCanEdit: @model.userIsAdmin()  
+
     events:
       'click #js-add-branch': 'modalAddBranch'
 
