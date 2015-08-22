@@ -7,11 +7,11 @@
       <div class="row">
         <div class="col-md-3  col-md-offset-2">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alumNet-collapse-topBar" id="alumNet-collapse-topBar-toggle">
-            <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alumNet-collapse-topBar" id="alumNet-collapse-topBar-toggle">Login
+           <span class="sr-only">Toggle navigation</span>
+            <!--<span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> -->
             </button>
             <a class="navbar-brand" href="#"><%= image_tag('home/alumNetLogoHome.png', width: "230") %></a>
           </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="row text-center">
-      <%= link_to "Sign in with Facebook", "/auth/facebook" ,class: 'btn-loginFB' %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook" ,class: 'btn-loginFB hidden-xs' %>
       <%= link_to "Sign in with LinkedIn", "/auth/linkedin" ,class: 'btn-loginLIN' %>
 
       <div id="registerHomeForm" class="collapse in ">
