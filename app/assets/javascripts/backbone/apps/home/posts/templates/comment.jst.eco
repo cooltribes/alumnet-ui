@@ -13,8 +13,8 @@
 <% end %>
 (<span class="js-likes-counter"><%= @likes_count %></span> likes)
 <% if @canEdit: %>
-  <a href="#" id='js-edit-comment'>edit</a>
+  <a href="#" id='js-edit-comment'>Edit</a>
 <% end %>
 <% if @canDelete: %>
-  <a href="#" id='js-delete-comment'>delete</a>
+  <a href="#" id='js-delete-comment'>Delete</a>
 <% end %>
