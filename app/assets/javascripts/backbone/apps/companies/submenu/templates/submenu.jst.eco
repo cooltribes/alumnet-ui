@@ -17,12 +17,12 @@
         <li class="<%= @classOf(0)%>"><a href="#business-exchange/applied" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Business Exchange</a></li>
 
         <li class="<%= @classOf(1)%>"><a href="#business-exchange/your-tasks" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Your Tasks</a></li> -->
+        <li class="<%= @classOf(1)%>"><a href="#companies" class="navTopSubBar__link" title="Discover Companies"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
         <li class="<%= @classOf(0)%>"><a href="#my-companies" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> My Companies</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right no-margin">
-        <li class="<%= @classOf(1)%>"><a href="#companies" class="navTopSubBar__link" title="Discover Companies"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
-
+        
         
         <a href="#companies/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new company">+ Add new Company</a>
       </ul>
