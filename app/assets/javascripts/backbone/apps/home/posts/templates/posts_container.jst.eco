@@ -6,12 +6,12 @@
 					<!-- FORM ON -->
 					<div class="item col-md-12">
 						<div class="groupCreatePostForm clearfix">
-							<div class="col-xs-4 col-sm-2 col-md-2">
+							<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
 								<div class="groupCreatePostForm__avatar">
 									<img src="<%= @current_user_avatar %>" class="img-circle">
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-10 col-md-10">
+							<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
 								<div class="groupCreatePostForm__form">
 									<form class="form">
 										<div class="form-group groupCreatePostForm__textarea ">
