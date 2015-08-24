@@ -1,0 +1,117 @@
+<div class="job-post-detail container">
+  <div class="jobPostDetail__name"><h3>
+    
+      <%= @name %>
+    
+  </h3></div>
+  <% if @company.text == "": %>  
+  <% end %>
+  <% if @company.text != "": %>  
+    <div class="jobPostDetail__company">
+      <h3><span class="ico-company"></span><b><%= @company.text %></b></h3>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="jobPostDetail__description">
+        <h3><span class="ico-points"></span> About</h3>
+        <%- @formatted_description %></div>
+      <div class="jobPostDetail__description">
+        <h3><span class="ico-points"></span> Offer</h3>
+        <p><%- @offer %></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <% if @user: %>
+        <div class="row user">
+          <div class="col-md-3">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+          </div>
+          <div class="no-padding col-md-9 jobPostDetail__user">
+            <span>Posted by</span>
+            <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
+            <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
+            <span>
+              On <%= moment(@created_at).format('MMM Do YYYY') %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+      <div class="jobPost__details padding_top">
+        <% if @position.text == null: %>
+        <% end %>
+        <% if  @position.text != null: %>
+          <span class="ico-jobfunction"></span>
+          <span> <%= @position.text %> </span><br>
+        <% end %>
+
+        <span class="glyphicon glyphicon-time"></span>
+        <span> <%= @employment.text %> </span><br>
+
+        <span class="ico-location"></span>
+        <span><%= @location() %></span><br>
+
+        <span class="ico-skill"></span> 
+        <span> <%= @arraySkill.join(", ") %></span> 
+      </div>
+
+    </div>
+  </div>
+</div>
+<hr>
+<div class="jobPostDetail__buttons">
+  <% if @canDelete: %>
+    <a href="#" class="btn btn-danger js-job-delete" >DELETE <span class="glyphicon glyphicon-remove"></span></a>
+  <% end %>
+   <% if @canEdit: %>
+    <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT <span class="glyphicon glyphicon-pencil"></span></a>
+  <% end %>
+  <% if @canApply: %>
+    <a href="#" class="btn btn-primary js-job-apply" >APPLY FOR A JOB</a>
+  <% end %>
+</div>
+<% if @canInvite && @matches_count > 0: %>
+<hr>
+<div class="container-fluid padding_small">
+  <h2 class="text-center margin_bottom_small">Invite Alumni to Apply</h2>
+  <div class="row">
+  <% for match in @matches: %>
+  <div class="col-md-4">
+    <div class="userCard user-info">
+      <div class=" row">
+        <div class="userCard__avatar col-md-3">
+          <img src="<%=  match.user.avatar %>" alt="<%= match.user.name %>" class="img-circle">
+        </div>
+        <div class=" col-md-6">
+          <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= match.user.id %>/posts" title="<%= match.user.name %>"><%= match.user.name %></a></h4>
+          <p class="overfloadText member-position text-small"><%= match.user.last_experience %></p>
+        </div>
+        <div class=" col-md-3 ">
+          <% if match.user_has_invitation : %>
+            <div class="userCard__actions userCard__animation userCard__actions--Cancel">
+              <span class="invitation">
+                <span class="userCard__actions__text">INVITED</span>
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-ok"></span>
+              </span>
+            </div>
+          <% else: %>
+          <a href="#" class="js-job-invite" title="Send Invitation to Apply" data-user="<%= match.user.id %>" data-task="<%= @id %>">
+              <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
+                <span class="invitation">
+                  <span class="userCard__actions__text">INVITE</span>
+                  <span class="icon-entypo-user-add"></span>
+                </span>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  </div>
+</div>
+<% end %>
+<div id="container-modal-apply"></div>
