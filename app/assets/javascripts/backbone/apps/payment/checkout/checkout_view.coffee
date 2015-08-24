@@ -10,6 +10,8 @@
       @condition = options.condition
       console.log options.data
       @data = options.data
+      console.log @data.models
+      console.log @data.sku
 
     ui:
       'selectPaymentCountries': '#js-payment-countries'
