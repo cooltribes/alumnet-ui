@@ -1,0 +1,43 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Your application</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+   	 <div class="row user">
+        <div class="col-md-2 text-right">
+          <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle jobPost__avatarA">
+        </div>
+        <div class="col-md-10 jobPost__user">
+          <a href="#users/<%= @id %>/posts" title="<%= @name %>"><%= @name %></a>
+          <span>Your contact information and a link to your profile will be included with your application</span>
+
+          <ul style="list-style:none; padding:0">
+            <li>
+              <span class="metaInfoCard__concept">Position:</span> <%= @last_experience ? "---" %>
+            </li>
+
+            <li>
+              <span class="metaInfoCard__concept">Email:</span> <%= @email %>
+            </li>
+          </ul>                
+
+          <form>    
+            <div class="form-group">
+              <label class="control-label" for="whyme">Why me?</label>
+              <textarea class="form-control input-lg" name="whyme" placeholder="Enter text here" autofocus></textarea>
+              <span class="help-block overfloadText"></span>
+            </div>     
+
+          </form>
+  
+          
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-default" id="js-close">Cancel</a>
+  <a href="#" class="btn btn-primary" id="js-submit">Apply</a>
+</div>
