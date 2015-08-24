@@ -153,6 +153,10 @@ DESCRIPTION: styles for banners
   }
 }
 
+.paddingxs{
+  margin-top: -8em;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
     .createBanner{
@@ -172,4 +176,22 @@ DESCRIPTION: styles for banners
       }
 
     }
+
+    .paddingxs{
+      margin-top: 0;
+    }
  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+  .paddingxs{
+      margin-top: 0;
+  }
+}
+
+/*Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min){
+  .paddingxs{
+      margin-top: 0;
+  }
+}
