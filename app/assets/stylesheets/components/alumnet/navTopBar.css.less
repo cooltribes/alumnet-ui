@@ -25,6 +25,13 @@ DESCRIPTION: Top navigation bar with menus
             padding: 15px 0;
 
         }
+
+        &__brandMovil{
+            display: block;
+            height: auto;
+            padding: 10px 0;
+
+        }
         .nav .open > &__item:focus{ //hack for bootstrap menu
             color: @white ;
             background-color: @black ;
@@ -41,6 +48,27 @@ DESCRIPTION: Top navigation bar with menus
                 transition: all 300ms ease 0s;                
             &:hover{
                 color: @white;
+                background-color: @black;
+            }
+            &--active, &:focus{
+                background-color:@main-blue;
+                color: @white;
+            }
+
+
+        }
+
+         & &__itemMovil{
+                color: #FFF;
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: left;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;                
+            &:hover{
+                color: @gray;
                 background-color: @black;
             }
             &--active, &:focus{
@@ -342,6 +370,12 @@ DESCRIPTION: Top navigation bar with menus
         right: 0;
         text-align: center;
         top: 9px;
+        background-color: @orange;
+    }
+     &__badgeXs{
+        position: absolute;
+        text-align: center;
+        top: 5px;
         background-color: @orange;
     }
     &__mobileToggleBtn{
