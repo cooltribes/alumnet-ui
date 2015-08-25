@@ -1,17 +1,30 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
-  <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
-  <div class="navbar-header col-md-2">
+  <div class="navTopBar__container--top container-fluid">
+    <!-- Top Bar -->
+  <div class="navbar-header col-md-2 hidden-xs">
     <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="ico-menu"></span>
     </button>
     <a class="navTopBar__left__brand navbar-brand " href="/#posts">
      <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
-
     </a>
   </div>
   
-  <nav class="navTopBar__left collapse navbar-collapse ">
-    <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
+  <div class="navbar-header col-md-12 visible-xs">
+    <div class="col-xs-3">
+      <a class="navTopBar__left__brand navbar-brand " href="/#posts">
+      <%= image_tag("home/LogoMovilMenu.png", alt: "AlumNet") %>
+      </a>
+    </div>
+    <div class="col-xs-3 pull-right">
+      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="ico-menu"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="navTopBar__left collapse navbar-collapse">
+    <ul class="navTopBar__left__list nav navbar-nav js-left-menu hidden-xs">
       <!-- Left Menu top -->
       <li>
         <a class="navTopBar__left__item" href="#friends/find" id="alumniLayoutOption">
