@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Attributes desired (Nice to have)</label>
+              <label class="control-label">Attributes desired (Nice to have) - This will produce a match with people who has <strong>ANY</strong> of these attributes.</label>
               <input class="js-profinda-skills" type="hidden" name="nice_have_list" id="nice-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>
@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-job has-feedback">
-              <label class="control-label">Attributes required (Must have)</label>
+              <label class="control-label">Attributes required (Must have) - This will produce a match with people who has <strong>ALL</strong> of these attributes.</label>
               <input class="js-profinda-skills" type="hidden" name="must_have_list" id="must-have-list" style="width: 100%" value=",">
               <span class="help-block"></span>
             </div>

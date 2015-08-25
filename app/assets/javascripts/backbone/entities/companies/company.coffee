@@ -61,6 +61,7 @@
         required: true
       sector_id:
         required: true
+        msg: "Sector is required"
       size:
         required: true
 

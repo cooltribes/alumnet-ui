@@ -1,0 +1,200 @@
+@import 'conf/conf.css.less';
+
+.admDash
+{   
+    // this to make a row every 4 columns without using a div.row
+    &__col:nth-child(4n + 5){
+        //background-color: red;
+            clear: left;
+    }
+    &__header
+    {
+        margin-bottom: 2em;
+    }
+    &__title
+    {
+        font-size: 2em;
+
+        display: inline-block;
+        margin-right: 10px;
+    }
+    &__usermeta
+    {
+        float: left;
+
+        width: ~"calc(100% - 105px)";
+    }
+    &__mainButton{
+        background-color: @blue;
+        border-radius: 16px;
+        border: none;
+        
+        margin-top: -10px;
+        display: inline-block;
+    }
+    &__avatar
+    {
+        float: left;
+
+        width: 90px;
+        margin-right: 15px;
+    }
+    &__status
+    {
+        display: block;
+        &:before
+        {
+            display: inline-block;
+
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+
+            content: '';
+
+            border-radius: 10px;
+        }
+        &--offline:before
+        {
+            background-color: @red;
+        }
+        &--online:before
+        {
+            background-color: @green;
+        }
+    }
+    // Menu
+    &__menu, &__subMenu
+    {
+        border-bottom: 1px solid #c9c9c9;
+        .nav
+        {
+            display: block;
+            float: none;
+            overflow: hidden;
+
+            width: 90%;
+            margin: 0 auto;
+        }
+        a
+        {
+            font-weight: 300;
+            font-size: 16px;
+            color: lighten(@blue-gray, 10%);
+            &.active
+            {
+                font-weight: normal;
+                color: @black;
+                border-bottom: 2px solid @black;
+            }
+            &:hover, &:focus{
+                background: transparent;
+                border-bottom: 2px solid @black;
+                color: @black;
+            }
+        }
+    }
+     &__subMenu{
+        .nav{
+            width: 500px;
+        }
+     }
+    // Overview card
+    &__card
+    {
+        margin-bottom: 3em;
+        h2
+        {
+            font-size: 2em;
+            i
+            {
+                font-size: .75em;
+            }
+        }
+        &Data
+        {
+            color: @black;
+            tr td{
+                overflow: hidden;
+                text-overflow: elipsis;
+            }
+            
+            tr:first-child td
+            {
+                border-top: 0;
+
+            }
+
+            tr td:first-child
+                {
+                    font-size: 15px;
+                    font-weight: 300;
+                     padding-left: 0;
+
+                    color: lighten(@blue-gray, 10%);
+                }
+            td
+            {
+                border-bottom: 1px solid lighten(@error-gray-blue, 30%);
+            }
+        }
+          tr td:only-of-type 
+            {
+                border-top: 0;
+                font-size: 1em;
+                color: @black;
+                
+                small{
+                    color: lighten(@blue-gray, 10%);
+                }
+
+            }
+    }
+    // Overview
+    &Overview{
+        &__title{
+            small{
+                display: block;
+                font-size: 12px;
+                color: lighten(@blue-gray, 20%);
+                margin-top: 3px;
+            }
+            margin-bottom: 1em;
+        }
+        .btn-primary-noBackground{
+            margin-bottom: 1em;
+        }
+
+        ul{
+            list-style: none;
+        }
+    }
+    // Events, Groups
+    &Events, &Groups{
+        margin-top: 2em;
+       &__item{
+
+        padding: 20px 0  ;
+        border-bottom: 1px solid lighten(@error-gray-blue, 30%);
+
+        &__col:nth-child(4n + 5){
+            //background-color: red;
+                clear: left;
+        }
+
+        small{
+            color: lighten(@blue-gray, 20%);
+            display: block;
+        }
+        a{
+            display: block;
+            font-weight: bold;
+            color: @main-blue;
+        }
+
+       }
+        
+    }
+}
+
+

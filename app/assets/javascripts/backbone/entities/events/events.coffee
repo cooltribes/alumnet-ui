@@ -20,10 +20,11 @@
       start_date < today
 
     getLocation: ->
-      city = @get('city')
-      country = @get('country')
-      address = @get('address')
-      [address, country.text, city.text].join(', ')
+      location = []
+      location.push(@get('address')) if @get('address')
+      location.push(@get('city').text) if @get('city').text != ""
+      location.push(@get('country').text) if @get('country').text != ""
+      location.join(', ')
 
     isOpen: ->
       event_type = @get('event_type')

@@ -1,0 +1,16 @@
+  <div class="row admDashOverview row margin_top_medium">
+    <div class="col-md-4">
+   	 <div id="js-experiences-container"></div>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="col-md-2">
+        <h4 class="admDashOverview__title"><b>Skills</b></h4>
+      </div> 
+      <div class="col-md-10">
+        <%= @showSkills %><br>
+      </div> 
+      <hr>
+    </div> 
+    <hr>
+  </div>

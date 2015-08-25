@@ -13,8 +13,10 @@
       @posts.url = @urlRoot() + @id + '/posts'
 
       @on "change", ->
-        @profile.fetch({async:false})
+        @profile.fetch({async: false})
 
+    profile_fetch: ->
+      @profile.fetch({async: false})
 
     currentUserCanPost: ->
       friendship_status = @get('friendship_status')
@@ -150,6 +152,24 @@
     url: ->
       AlumNet.api_endpoint + '/me/contacts/in_alumnet'
 
+  class Entities.AdminUser extends Entities.User
+
+    contactsCollection: ->
+      collection = new AlumNet.Entities.ProfileContactsCollection @get('contacts')
+      collection.url = AlumNet.api_endpoint + "/profiles/#{@get('profile_id')}/contact_infos"
+      collection
+
+    experiencesCollection: ->
+      collection = new AlumNet.Entities.ExperienceCollection @get('experiences')
+      collection.url = AlumNet.api_endpoint + "/profiles/#{@get('profile_id')}/experiences"
+      collection
+
+    eventsCollection: ->
+      collection = new AlumNet.Entities.EventsCollection @get('events'),
+        eventable: 'users'
+        eventable_id: @id
+      collection
+
   ### Other functions and utils###
   initializeUsers = ->
     Entities.users = new Entities.UserCollection
@@ -194,12 +214,14 @@
 
     #List of all users for administration
     getUsersList: (querySearch)->
-      initializeUsersList() if Entities.allUsers == undefined
-      Entities.allUsers.url = AlumNet.api_endpoint + '/admin/users'
-      Entities.allUsers.comparator = "id"
-      Entities.allUsers.fetch
-        data: querySearch
-      Entities.allUsers
+      users = new Entities.UserCollection
+      users.url = AlumNet.api_endpoint + '/admin/users'
+      users
+      # initializeUsersList() if Entities.allUsers == undefined
+      # Entities.allUsers.comparator = "id"
+      # Entities.allUsers.fetch
+      #   data: querySearch
+      # Entities.allUsers
 
     getNewUser: ->
       Entities.user = new Entities.User

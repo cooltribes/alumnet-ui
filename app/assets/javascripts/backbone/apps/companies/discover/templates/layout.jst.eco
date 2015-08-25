@@ -12,12 +12,12 @@
         <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
-      <p class="help-block text-right searchBar__link" id="js-advanced"><a href="#" title="Advance search"> Advanced search</a></p>
+      <p class="help-block text-right searchBar__link" ><a href="#" id="js-advanced" title="Advance search"> Advanced search</a></p>
     </form>
 
 
     <div class="visibility" id="js-advanced-search">
-      <p class="help-block text-right searchBar__link" id="js-basic"><a href="#" title="Basic search"> Back to basic search</a></p>
+      <p class="help-block text-right searchBar__link" ><a href="#" id="js-basic" title="Basic search"> Back to basic search</a></p>
 
       <div class="row">
         <div class="col-md-3">

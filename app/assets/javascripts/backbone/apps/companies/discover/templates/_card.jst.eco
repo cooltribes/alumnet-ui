@@ -1,12 +1,17 @@
 <div class="businessCard companyCard">
   
   <div class="companyCard__logo">
-    <img src="<%= @logo.card %>">    
+    <a href="#companies/<%= @id %>/about">
+      <img src="<%= @logo.card %>">    
+    </a>
   </div>
 
   <div class="businessCard companyCard__description">
     <h3>
-      <%= @name %>
+      <a href="#companies/<%= @id %>/about">
+        <%= @name %>
+      </a>
+    
     </h3>
     <div class="programCardDescription">
       <%= @description %>

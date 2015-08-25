@@ -4,7 +4,7 @@
       company = new AlumNet.Entities.Company { id: id }
       company.fetch
         success: ->
-          layout = AlumNet.request('company:layout', company, 0)
+          layout = AlumNet.request('company:layout', company, 1)
           header = AlumNet.request('company:header', company)
 
           employees = AlumNet.request('get:employees', company.id)

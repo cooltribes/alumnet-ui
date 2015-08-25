@@ -38,6 +38,8 @@ DESCRIPTION: shared styles among group applications
 		}
 	}
 	&__textarea{
+		width: 140px;
+		margin-left: 10px;
 		textarea{
 			box-shadow: none;
 		}
@@ -48,8 +50,84 @@ DESCRIPTION: shared styles among group applications
 			height: 20px;
 			background: image-url('groups/triangleCreatePostForm.png') no-repeat;
 			position: absolute;
-			left: -17px;
+			left: -7px;
 			top: 0;
 		}
 	}	
 }
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.groupCreatePostForm{
+		
+		
+		&__textarea{
+			width: 100%;
+			margin-left: 0;
+			textarea{
+				box-shadow: none;
+			}
+			&:before{
+				display: block;
+				content: "";
+				width: 18px;
+				height: 20px;
+				background: image-url('groups/triangleCreatePostForm.png') no-repeat;
+				position: absolute;
+				left: -17px;
+				top: 0;
+			}
+		}	
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+	.groupCreatePostForm{
+		
+		&__textarea{
+			width: 100%;
+			margin-left: 0;
+			textarea{
+				box-shadow: none;
+			}
+			&:before{
+				display: block;
+				content: "";
+				width: 18px;
+				height: 20px;
+				background: image-url('groups/triangleCreatePostForm.png') no-repeat;
+				position: absolute;
+				left: -17px;
+				top: 0;
+			}
+		}	
+	}
+}
+
+/*Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min){
+	.groupCreatePostForm{
+		
+		&__textarea{
+			margin-left: 0;
+			width: 100%;
+			textarea{
+				box-shadow: none;
+			}
+			&:before{
+				display: block;
+				content: "";
+				width: 18px;
+				height: 20px;
+				background: image-url('groups/triangleCreatePostForm.png') no-repeat;
+				position: absolute;
+				left: -17px;
+				top: 0;
+			}
+		}	
+	}
+}
+
+
+

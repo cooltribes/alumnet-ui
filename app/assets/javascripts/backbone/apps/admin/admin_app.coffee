@@ -6,7 +6,6 @@
       "admin/users/deleted": "usersDeleted"
       "admin/groups/deleted": "groupsDeleted"
       "admin/users/create": "usersCreate"
-      "admin/users/:id": "usersList"
       "admin/users": "usersList"
       "admin/groups": "groupsList"
       "admin/regions": "regionsList"
@@ -16,13 +15,16 @@
       "admin/actions": "actionsList"
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
+      "admin/users/:id": "userShow"
       "dashboard/alumni": "dashboardUsers"
-      "admin/users/:id/personal": "showPersonal"
 
   API =
-    usersList: (id)->
+    usersList: ->
       controller = new AdminApp.Users.Controller
-      controller.usersList(id)
+      controller.usersList()
+    userShow: (id)->
+      controller = new AdminApp.UserShow.Controller
+      controller.userShow(id)
     usersDeleted: ->
       controller = new AdminApp.UsersDeleted.Controller
       controller.usersDeleted()
@@ -55,10 +57,6 @@
       controller.featuresList()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
-
-    showPersonal: (id)->
-      controller = new AdminApp.Edit.Controller
-      controller.showPersonal(id)  
 
 
   AlumNet.addInitializer ->

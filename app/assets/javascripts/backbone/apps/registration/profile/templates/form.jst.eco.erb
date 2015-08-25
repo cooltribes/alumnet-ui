@@ -92,7 +92,10 @@
   <hr>
   <!-- Buttons -->
   <div class="form-group text-right">
-    <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <%% if @isVisible: %>
+      <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <%% end %>
+  
     <!-- <button type="submit" class="btn btn-lg btn-default">Cancel</button> -->
     <button type="submit" class="btn btn-lg btn-primary js-submit">Next</button>
   </div>

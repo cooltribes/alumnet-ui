@@ -1,7 +1,18 @@
-<div class="userCoverArea" role="group">
+<% if @cover_url(): %>
+  <div class="userCoverArea" style="background-image: url('<%= @cover_url() %>'); background-color: gray">
+<% else: %>
+  <div class="userCoverArea" style="background-image: url('<%= @cover_url() %>');">
+<% end %>
+
   <div class="userCoverArea__avatar text-center">
-    <img src="<%= @logo.main %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
-    <a id="js-editPic" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change avatar</a>
+    <img src="<%= @logo_url() %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+    <% if @isCompanyAdmin: %>
+    
+      <a id="js-edit-logo" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change Logo</a>
+    <% end %>
+
+
+
   </div>
 
    <h1 class="userCoverArea__title " title="<%= @name %>">
@@ -13,7 +24,13 @@
     Subtitulo
   </p> -->
 
-    <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+    <% if @isCompanyAdmin: %>
+    <a id="js-edit-cover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+    <% end %>
+
+    <% unless @has_request_for_admin || @isCompanyAdmin: %>
+      <a href="#" id="js-request-admin-company" title="Request admin" class="userCoverArea__btnMessage btn btn-lg"> Request Admin</a>
+    <% end %>
 
 </div>
-<div id="js-picture-modal-container"></div>
+<div id="js-modal-container"></div>

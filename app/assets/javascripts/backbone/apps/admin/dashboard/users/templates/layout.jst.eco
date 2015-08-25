@@ -56,6 +56,17 @@
 
       </div>      
     </div>
+    
+    <h4>Status</h4>    
+    <hr>
+    <div class="row">
+      <div class="col-md-6 chart_status">
+
+      </div>      
+      <div class="col-md-6">
+
+      </div>      
+    </div>
 
     
   </div>

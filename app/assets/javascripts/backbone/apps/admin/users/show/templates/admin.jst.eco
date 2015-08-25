@@ -1,0 +1,19 @@
+<div class="row admDashOverview">
+  <div class="col-md-4">
+    <h3 class="admDashOverview__title"> Tags <small>Nobody will these but you</small></h3>
+    <div>
+      <input type="text" id="tags" value="<%= @tag_list.join(", ") %>"><br>
+      <a href="#" id="js-save-tags" class="btn btn-primary">Save</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3 class="admDashOverview__title"> Notes <small>Nobody will these but you</small></h3>
+    <div>
+      <textarea class="form-control" width="100%" rows="7"><%= @admin_note %></textarea><br>
+      <a href="#" id="js-save-note" class="btn btn-primary">Save</a>
+    </div>
+  </div>
+ <!--  <div class="col-md-3">
+    <h3 class="admDashOverview__title"> User</h3>
+  </div> -->
+</div>

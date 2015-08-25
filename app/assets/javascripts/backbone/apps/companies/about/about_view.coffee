@@ -208,6 +208,7 @@
   class About.ContactModal extends Backbone.Modal
     template: 'companies/about/templates/contact_modal'
     cancelEl: '#cancel'
+    keyControl: false    
 
     initialize: (options)->
       @parentView = options.parentView
@@ -265,6 +266,8 @@
   class About.AddressModal extends Backbone.Modal
     template: 'companies/about/templates/address_modal'
     cancelEl: '#cancel'
+    keyControl: false    
+
 
     initialize: (options)->
       @contactsView = options.contactsView
@@ -470,6 +473,7 @@
   class About.BranchView extends Marionette.ItemView
     template: 'companies/about/templates/_branch'
     tagName: 'li'
+    
 
     initialize: (options)->
       @company = options.company
@@ -510,6 +514,8 @@
   class About.BranchModal extends Backbone.Modal
     template: 'companies/about/templates/branch_modal'
     cancelEl: '#cancel'
+    keyControl: false    
+    
 
     initialize: (options)->
       @branchesView = options.branchesView
@@ -591,6 +597,9 @@
     initialize: (options)->
       @layout = options.layout
 
+    templateHelpers: ->
+      userCanEdit: @model.userIsAdmin()  
+
     events:
       'click #js-add-branch': 'modalAddBranch'
 
@@ -631,6 +640,8 @@
         div: '#detail-map'
         lat: -27.116849
         lng: -109.364124
+        width: "100%"
+        height: "320px"
 
       GMaps.geocode
         address: @model.getLocation(true)
