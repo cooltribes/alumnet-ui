@@ -1,5 +1,5 @@
 <td>
-  <a href="#companies/24/about"> 
+  <a href="#companies/<%= @id %>/about"> 
     <img src="<%= @logo.card %>">
   </a> 
 </td>
