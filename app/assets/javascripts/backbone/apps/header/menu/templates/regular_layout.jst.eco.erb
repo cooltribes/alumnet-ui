@@ -17,7 +17,7 @@
       </a>
     </div>
     <div class="col-xs-3 pull-right">
-      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse" id="menuButton">
       <span class="ico-menu"></span>
       </button>
     </div>
@@ -39,35 +39,81 @@
     </div>
   </div>
 
-  <nav class="navTopBar__left collapse navbar-collapse">
+  <nav class="navTopBar__left collapse navbar-collapse" id="menuMovilPrincipal" style="z-index: 1">
  <!--    Movil -->
     <ul class="navTopBar__left__list nav navbar-nav js-left-menu visible-xs">
       <!-- Left Menu top -->
-      <li>
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovil" href="#users/<%%= @id %>/posts" id="alumniLayoutOption">
+          <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar" style="width: 7%; margin-top: -5px;"> My Profile
+        </a>
+      </li>
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#privacy/settings" id="alumniLayoutOption">
+          <i class="icon-entypo-lock"></i>
+          Privacy Settings
+        </a>
+      </li>
+      <li id="menuMovil">
         <a class="navTopBar__left__itemMovil" href="#friends/find" id="alumniLayoutOption">
           <i class="icon-entypo-user"></i>
           Alumni
         </a>
       </li>
-      <li>
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#friends" id="alumniLayoutOption">
+          <i class="ico-user"></i>
+          My Friends
+        </a>
+      </li>
+       <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#friends/contacts" id="alumniLayoutOption">
+          <i class="ico-new-invite"></i>
+          Invite friends
+        </a>
+      </li>
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#approval-requests" id="alumniLayoutOption">
+          <i class="ico-yes"></i>
+          Approval Requests
+        </a>
+      </li>
+      <li id="menuMovil">
         <a class="navTopBar__left__itemMovil" href="#groups" id="groupsLayoutOption" >
-          <i class="icon-entypo-share"></i>
+          <i class="ico-globe"></i>
           Groups
         </a>
       </li>
-      <li>
+        <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#groups/manage"  id="groupsLayoutOption" >
+          <i class="ico-menu"></i>
+          My Groups
+        </a>
+      </li>
+      <li id="menuMovil">
         <a class="navTopBar__left__itemMovil" href="#events" id="eventsLayoutOption">
           <i class="ico-calendar"></i>
           Events
         </a>
       </li>
-      <li>
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#events/manage" id="eventsLayoutOption">
+          <i class="ico-menu"></i>
+          My Events
+        </a>
+      </li>
+      <li id="menuMovil">
         <a class="navTopBar__left__itemMovil" href="#companies">
           <i class="icon-entypo-suitcase"></i>
           Companies
         </a>
       </li>
-      
+      <li id="menuMovil">
+        <a class="navTopBar__left__itemMovil" href="sign_out">
+          <i class="ico-out"></i>
+          Logout
+        </a>
+      </li>
     </ul>
   <!-- End movil -->
 

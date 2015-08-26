@@ -31,6 +31,21 @@ DESCRIPTION: Top navigation bar with menus
         margin-top: 16px;
     }
 
+   &__item--li{
+      border-bottom-width: 1px !important;
+      border-bottom-style: solid !important;
+      &:hover{
+          color: @gray;
+          background-color: @black;
+          
+      }
+      &--active, &:focus{
+          background-color:@main-blue;
+          color: @white;
+          
+      }
+   }
+   
 
     &__left{
     
@@ -74,21 +89,51 @@ DESCRIPTION: Top navigation bar with menus
         }
 
          & &__itemMovil{
-                color: #FFF;
+                color: @gray;
+                background-color: #2B2B2B;
                 font-size: 14px;
                 font-weight: 300;
                 line-height: 20px;
                 padding: 20px 15px;
                 text-align: left;
                 text-transform: uppercase;
-                transition: all 300ms ease 0s;                
+                transition: all 300ms ease 0s; 
+
             &:hover{
-                color: @gray;
+                color: @white;
                 background-color: @black;
+
             }
             &--active, &:focus{
                 background-color:@main-blue;
                 color: @white;
+            }
+
+
+        }
+
+         & &__itemMovilSubmenu{
+                color: #FFF;
+                background-color: @black;
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: left;
+                transition: all 300ms ease 0s;  
+
+            i{
+               margin-left: 20px;
+            }             
+            &:hover{
+                color: @gray;
+                background-color: @black;
+                
+            }
+            &--active, &:focus{
+                background-color:@main-blue;
+                color: @white;
+                
             }
 
 

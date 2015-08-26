@@ -63,6 +63,8 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
+      'click #menuMovil' : 'hideMenu'
+      'click #menuButton' : 'showMenu'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -70,6 +72,12 @@
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
+
+    hideMenu:->
+      $("#menuMovilPrincipal").slideToggle();
+
+    showMenu:->
+      $("#menuMovilPrincipal").slideToggle();
 
     changePoints: ->
       $(".totalPoints").text(@model.profile.get("points"))
