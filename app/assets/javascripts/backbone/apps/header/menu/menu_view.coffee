@@ -63,6 +63,7 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
+     
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -70,6 +71,8 @@
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
+
+   
 
     changePoints: ->
       $(".totalPoints").text(@model.profile.get("points"))

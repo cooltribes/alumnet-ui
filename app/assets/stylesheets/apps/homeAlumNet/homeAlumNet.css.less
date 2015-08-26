@@ -16,7 +16,7 @@ DESCRIPTION: Styles for the home page of alumnet
 	font-family: 'roboto', san-serif;
 	&__alert{
 		padding: 5px 20px;
-		float: right;
+		//float: right;
 		margin-bottom: 10px;
 	}
 	&__logo{
@@ -34,7 +34,7 @@ DESCRIPTION: Styles for the home page of alumnet
 	    	margin-top: @space_medium;
 	    	display: inline-block;
 	    	background-color: rgba(76,102,114,.7);
-	    	width: 360px;
+	    	width: 280px;
 	    	.btn-lg{
 	    		padding:15px 21px
 	    	}
@@ -168,6 +168,27 @@ DESCRIPTION: Styles for the home page of alumnet
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
 	.homeAlumNet{
+		&__alert{
+			padding: 5px 20px;
+			float: right;
+			margin-bottom: 10px;
+		}	
+		&__registerForm{
+	    	border: 2px solid @white;
+	    	padding: @space_small;
+	    	margin-top: @space_medium;
+	    	display: inline-block;
+	    	background-color: rgba(76,102,114,.7);
+	    	width: 360px;
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
+	    	.form-control{
+	    		margin-bottom: 2px;
+	    		border-radius: 0;
+	    	}
+	    }
+
 		&__blog{
 			&__article{
 					margin-bottom: @space_medium;
@@ -187,25 +208,68 @@ DESCRIPTION: Styles for the home page of alumnet
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
 	.homeAlumNet{
-			&__blog{
-				&__article{
-						margin-bottom: 0;
+		&__alert{
+			padding: 5px 20px;
+			float: right;
+			margin-bottom: 10px;
+		}	
+		&__registerForm{
+	    	border: 2px solid @white;
+	    	padding: @space_small;
+	    	margin-top: @space_medium;
+	    	display: inline-block;
+	    	background-color: rgba(76,102,114,.7);
+	    	width: 360px;
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
+	    	.form-control{
+	    		margin-bottom: 2px;
+	    		border-radius: 0;
+	    	}
+	    }
+			
+		&__blog{
+			&__article{
+				margin-bottom: 0;
 
-					}
-			}
-			&__navigation{
-
-				.navbar-collapse{
-					padding-left: 0;
-					padding-right: 0;
-				}
 			}
 		}
- }
+
+		&__navigation{
+
+			.navbar-collapse{
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+}
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
 	.homeAlumNet{
+		&__alert{
+			padding: 5px 20px;
+			float: right;
+			margin-bottom: 10px;
+		}	
+
+		&__registerForm{
+	    	border: 2px solid @white;
+	    	padding: @space_small;
+	    	margin-top: @space_medium;
+	    	display: inline-block;
+	    	background-color: rgba(76,102,114,.7);
+	    	width: 360px;
+	    	.btn-lg{
+	    		padding:15px 21px
+	    	}
+	    	.form-control{
+	    		margin-bottom: 2px;
+	    		border-radius: 0;
+	    	}
+	    }
 			&__blog{
 				&__article{
 						margin-bottom: 0;
@@ -222,3 +286,5 @@ DESCRIPTION: Styles for the home page of alumnet
 		}	
 
  }
+
+ 
