@@ -31,6 +31,8 @@ class PaymentwallController < ApplicationController
           if(@pingback.getParameter('goodsid') == '222')
             @lifetime = true
             @member = 3
+          elsif(@pingback.getParameter('goodsid') == '333')
+            @end = DateTime.now + 1.month
           else
             @end = DateTime.now + 1.year
           end
