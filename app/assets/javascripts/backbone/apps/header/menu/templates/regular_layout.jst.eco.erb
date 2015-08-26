@@ -1,31 +1,62 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
-  <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
-  <div class="navbar-header col-md-2">
+  <div class="navTopBar__container--top container-fluid">
+    <!-- Top Bar -->
+  <div class="navbar-header col-md-2 hidden-xs">
     <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-    <span class="ico-menu"></span>
+      <span class="ico-menu"></span>
     </button>
     <a class="navTopBar__left__brand navbar-brand " href="/#posts">
      <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
-
     </a>
   </div>
-  <nav class="navTopBar__left collapse navbar-collapse ">
-    <ul class="navTopBar__left__list nav navbar-nav js-left-menu ">
+  
+  <div class="navbar-header col-md-12 visible-xs">
+    <div class="col-xs-3">
+      <a class="navTopBar__left__brand navbar-brand " href="/#posts">
+        <%= image_tag("home/LogoMovilMenu.png", alt: "AlumNet", style: "height: 30px") %>
+      </a>
+    </div>
+    <div class="col-xs-3 pull-right">
+      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="ico-menu"></span>
+      </button>
+    </div>
+    <div class="col-xs-2 pull-right navTopBar__item--top">
+      <a href="#conversations" class="navTopBar__right__item navTopBar__item--right" title="Messages" title="Messages">
+          <span class="ico-chat"></span>
+          <span class="navTopBar__badge badge" id="js-messages-badge" style="margin-top: -15px">
+          <%%= @unread_messages_count %>
+          </span>
+      </a>
+    </div>
+    <div class="col-xs-2 pull-right">
+      <a href="#notifications" class="navTopBar__right__item navTopBar__item--right" title="Notifications">
+          <span class="glyphicon glyphicon-bell navTopBar__item--top"></span>
+          <span class="navTopBar__badge badge" id="js-notifications-badge">
+          <%%= @unread_notifications_count  %>
+          </span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="navTopBar__left collapse navbar-collapse">
+ <!--    Movil -->
+    <ul class="navTopBar__left__list nav navbar-nav js-left-menu visible-xs">
       <!-- Left Menu top -->
       <li>
-        <a class="navTopBar__left__item" href="#friends/find" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovil" href="#friends/find" id="alumniLayoutOption">
           <i class="icon-entypo-user"></i>
           Alumni
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#groups" id="groupsLayoutOption" >
+        <a class="navTopBar__left__itemMovil" href="#groups" id="groupsLayoutOption" >
           <i class="icon-entypo-share"></i>
           Groups
         </a>
       </li>
       <li>
-        <a class="navTopBar__left__item" href="#events" id="eventsLayoutOption">
+        <a class="navTopBar__left__itemMovil" href="#events" id="eventsLayoutOption">
           <i class="ico-calendar"></i>
           Events
         </a>
@@ -53,7 +84,9 @@
         </ul>
       </li>
     </ul>
-    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+
+    
+    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu hidden-xs">
       <!-- Right menu top -->
       <li>
         <!-- CART ICON -->
@@ -159,7 +192,7 @@
     </ul>
   </nav>
 </div>
-<div id="submenu-region">
+<div id="submenu-region" class="hidden-xs">
 </div>
 </header>
 
