@@ -17,6 +17,11 @@
 										<div class="form-group groupCreatePostForm__textarea ">
 											<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
 										</div>
+										<!-- TAGGING -->
+										<div class="form-group groupCreatePostForm__textarea ">
+										  <input type="hidden" id="js-user-tags-list" name="user_tags_list" class="form-control">
+										</div>
+										<!--  -->
 										<a id="js-add-picture" class="groupPost__btn--comment hidden-xs" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Picture
