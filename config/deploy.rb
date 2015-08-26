@@ -40,7 +40,15 @@ namespace :deploy do
 #  task :reload_nginx do
 #    sudo "/etc/init.d/nginx reload"
 #  end
-
+  after :finished, :create_secrets do
+    on roles(:all) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "app:create_secret_file"
+        end
+      end
+    end
+  end
 #  after "deploy", "reload_nginx"
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do

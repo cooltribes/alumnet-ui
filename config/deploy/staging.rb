@@ -7,7 +7,7 @@ server 'alumnet-test.aiesec-alumni.org',
     auth_methods: %w(publickey)
   }
 set :deploy_to, '/home/ec2-user/alumnet/alumnet-ui'
-set :branch, 'dev'
+set :branch, 'staging'
 
 # Custom SSH Options
 # ==================
