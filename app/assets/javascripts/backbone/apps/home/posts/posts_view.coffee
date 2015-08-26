@@ -3,7 +3,7 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'home/posts/templates/comment'
     className: 'groupPost__comment'
-      
+
     initialize: (options)->
       @current_user = options.current_user
 
@@ -79,7 +79,7 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-xs-12 col-sm-6 col-md-6'
-    
+
     childViewOptions: ->
       current_user: @current_user
 
@@ -92,13 +92,13 @@
       self.collection.comparator = 'created_at'
       @model.comments.fetch
         success: (collection)->
-          start = 
+          start =
           #if collection.length > 0
           #  $(".groupPost__commentsContainer").addClass('groupPost__comment--scroll')
           if collection.length > 3
             self.collection.add(collection.slice((collection.length-3),collection.length))
             $(self.ui.moreComment).show()
-            
+
           else
             self.collection.add(collection.models)
             $(self.ui.moreComment).hide()
@@ -110,7 +110,7 @@
         @trigger 'comment:unlike', commentView
       @on 'childview:comment:edit', (commentView, newValue) ->
         @trigger 'comment:edit', commentView, newValue
-    
+
     templateHelpers: ->
       model = @model
       permissions = @model.get('permissions')
@@ -120,6 +120,7 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showMore: @mostrar
+      tagsLinks: @model.tagsLinks()
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -136,7 +137,7 @@
           container.masonry
             columnWidth: '.item'
             gutter: 1
-    
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -233,7 +234,7 @@
     #Init the render of a comment
     # TODO: try to put this code on onAddChild of CompositeView
     onBeforeRender: ->
-      
+
 
     loadMore: (e)->
       $(e.currentTarget).hide()
@@ -249,21 +250,21 @@
     template: 'home/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
-    
+
     initialize: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreBooks')
       document.title = " AlumNet - Home"
-      @picture_ids = []    
+      @picture_ids = []
       $(window).scroll(@loadMoreBooks)
 
     loadMoreBooks: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'post:reload'
-              
+
     childViewOptions: ->
       current_user: @model
-    
+
     templateHelpers: ->
       current_user_avatar: @model.get('avatar').large
 
@@ -273,16 +274,47 @@
       'fileList': '#js-filelist'
       'uploadLink': '#upload-picture'
       'postContainer': '#timeline'
+      'tagsInput': '#js-user-tags-list'
+      'tagging': '.tagging'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click a#js-post-test': 'submitTest'
-      
+      'click a#js-add-tags': 'showTagging'
+
 
     onShow: ->
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
+
+      @ui.tagsInput.select2
+        placeholder: "Tag a Friend"
+        multiple: true
+        minimumInputLength: 2
+        ajax:
+          url: AlumNet.api_endpoint + '/me/friendships/friends'
+          dataType: 'json'
+          data: (term)->
+            q:
+              m: 'or'
+              profile_first_name_cont: term
+              profile_last_name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
+        formatSelection: (data)->
+          data.name
+
+    showTagging: (e)->
+      e.preventDefault()
+      if @ui.tagging.is(":visible")
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
+      else
+        @ui.tagging.show()
 
     submitClicked: (e)->
       e.stopPropagation()
@@ -294,20 +326,21 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
-        console.log "submitClicked"
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
 
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
     regions:
       banners: '#banners-container'
-      posts: '#posts-container' 
+      posts: '#posts-container'
     initialize: ->
 
   class Posts.BannerView extends Marionette.ItemView
     template: 'home/posts/templates/_banner'
-    className: ->      
+    className: ->
       if @model.get ("activeSlide")
-        return 'item active'        
+        return 'item active'
       else
         return 'item'
       #console.log @model
@@ -318,10 +351,10 @@
 
     activate: ->
       $(@el).addClass("active")
-        
+
   class Posts.BannersView extends Marionette.CompositeView
     template: 'home/posts/templates/banners'
     childView: Posts.BannerView
     childViewContainer: '.carousel-inner'
     #childViewOptions: ->
-    #  banner: @banner     
+    #  banner: @banner
