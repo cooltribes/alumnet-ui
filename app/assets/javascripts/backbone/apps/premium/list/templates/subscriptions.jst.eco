@@ -16,44 +16,55 @@
   </div>
 </div>
 <hr>
-
-<div class="row main-events-area">
+<div class="row">
 	<div class="col-md-12">
     <p class="text-center">In order to generate payment options accordingly with your place of residence, please complete the following information:
     </p><br>
-      <form class="row formANet form ">
-        <div class="row js-birth-location">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label" for="inputName">Country of residence</label>
-              <input id="js-payment-countries" type="" name="country_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label" for="inputName">City of residence</label>
-              <input id="js-payment-cities" type="" name="city_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="form-group has-feedback">
-            <label class="control-label" for="inputName">Address</label>
-            <input type="text" value="" class="form-control input-lg" id="address" name="address" placeholder="Enter your address">
-            <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+  </div>
+</div>
+<div class="main-events-area">
+  <form class="formANet form ">
+    <div class="js-birth-location">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="inputName">Country of residence</label>
+            <input id="js-payment-countries" type="" name="country_id" style="width: 100%">
             <span class="help-block"></span>
           </div>
         </div>
-        <hr>
-        <!-- ACTIONS ON -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="inputName">City of residence</label>
+            <input id="js-payment-cities" type="" name="city_id" style="width: 100%">
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group has-feedback">
+          <label class="control-label" for="inputName">Address</label>
+          <input type="text" value="" class="form-control input-lg" id="address" name="address" placeholder="Enter your address">
+          <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- ACTIONS ON -->
+    <div class="row">
+      <div class="col-md-12">
         <div class="text-right">
           <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
           <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
         </div>
-        <!-- ACTIONS OFF -->
-      </form>
+      </div>
+    </div>
+    <!-- ACTIONS OFF -->
+  </form>
+  <div class="row">
     <div class="col-md-6">
   		<% if @condition && @condition == 'members_only': %>
   			<div class="form-group" id="condition-message">
@@ -63,7 +74,10 @@
       <div class="form-group" id="country">
       </div>
     </div>
-    <div id="paymentwall-content-2" style="height: 600px;">
-  	</div>
   </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="paymentwall-content-2" style="height: 800px;"></div>
+    </div>
+  </div>  
 </div>
