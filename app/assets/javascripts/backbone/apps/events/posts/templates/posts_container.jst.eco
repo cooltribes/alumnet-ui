@@ -14,8 +14,15 @@
 								<div class="form-group groupCreatePostForm__textarea ">
 									<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
 								</div>
+								<!-- TAGGING -->
+								<div class="form-group tagging" style="display:none">
+								  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
+								</div>
+								<!--  -->
 								<a id="js-add-picture" class="groupPost__btn--comment" href="javascript:;">
 								<i class="icon-entypo-picture"></i>Add Picture</a>
+								<a id="js-add-tags" class="groupPost__btn--comment" href="javascript:;">
+									<i class="icon-entypo-picture"></i>Add Tags</a>
 								<a href="#" class="groupPost__btn--comment" id="js-post-submit">Post</a>
 							</form>
 							<!-- Pictures -->
@@ -34,7 +41,7 @@
 							</div>
 							<div class="col-md-4 attendantsQuantity__boxNumber">
 								<span class="attendantsQuantity__number"><%="#{@even_maybe}" %></span>
-								<span class="attendantsQuantity__type">maybe</span>	
+								<span class="attendantsQuantity__type">maybe</span>
 							</div>
 							<div class="col-md-4 attendantsQuantity__boxNumber attendantsQuantity__bLeft">
 								<span class="attendantsQuantity__number">
