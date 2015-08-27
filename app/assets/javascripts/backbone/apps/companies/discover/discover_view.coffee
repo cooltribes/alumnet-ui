@@ -116,3 +116,22 @@
     initialize: ()->
       @type = "cards" #default view
     
+  
+  class Discover.MyCompaniesLayout extends Marionette.LayoutView
+    template: 'companies/discover/templates/my_companies_layout'    
+    className: 'container-fluid'
+
+    regions:
+      companies_region: '#companies-region'
+    
+    events:      
+      'click .js-changeGrid' : 'changeGridView'
+
+   
+    changeGridView: (e)->
+      e.preventDefault()
+      element = $(e.currentTarget)
+      element.siblings().removeClass("searchBar__renderOptions__iconActive")
+      element.addClass("searchBar__renderOptions__iconActive")
+      type = element.attr("data-grid")
+      @trigger "changeGrid", type

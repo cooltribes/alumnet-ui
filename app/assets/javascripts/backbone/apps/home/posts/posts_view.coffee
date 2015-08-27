@@ -120,6 +120,7 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showMore: @mostrar
+      tagsLinks: @model.tagsLinks()
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -230,11 +231,6 @@
       e.preventDefault()
       @ui.textareaComment.focus()
 
-    #Init the render of a comment
-    # TODO: try to put this code on onAddChild of CompositeView
-    onBeforeRender: ->
-
-
     loadMore: (e)->
       $(e.currentTarget).hide()
       e.stopPropagation()
@@ -274,11 +270,11 @@
       'uploadLink': '#upload-picture'
       'postContainer': '#timeline'
       'tagsInput': '#js-user-tags-list'
+      'tagging': '.tagging'
 
     events:
       'click a#js-post-submit': 'submitClicked'
-      'click a#js-post-test': 'submitTest'
-
+      'click a#js-add-tags': 'showTagging'
 
     onShow: ->
       view = @
@@ -286,7 +282,7 @@
       uploader.init()
 
       @ui.tagsInput.select2
-        placeholder: "Select a Friend"
+        placeholder: "Tag a Friend"
         multiple: true
         minimumInputLength: 2
         ajax:
@@ -301,9 +297,17 @@
             results:
               data
         formatResult: (data)->
-          data.name
+          "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
         formatSelection: (data)->
           data.name
+
+    showTagging: (e)->
+      e.preventDefault()
+      if @ui.tagging.is(":visible")
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
+      else
+        @ui.tagging.show()
 
     submitClicked: (e)->
       e.stopPropagation()
@@ -311,11 +315,12 @@
       data = Backbone.Syphon.serialize(this)
       data.picture_ids = @picture_ids
       if data.body != ''
-        console.log data
-        # @trigger 'post:submit', data
-        # @picture_ids = []
-        # @ui.bodyInput.val('')
-        # @ui.fileList.html('')
+        @trigger 'post:submit', data
+        @picture_ids = []
+        @ui.bodyInput.val('')
+        @ui.fileList.html('')
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
 
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
@@ -331,8 +336,6 @@
         return 'item active'
       else
         return 'item'
-      #console.log @model
-      #console.log @model.get ("activeSlide")
 
     modelEvents:
       "change:activeSlide": "activate"

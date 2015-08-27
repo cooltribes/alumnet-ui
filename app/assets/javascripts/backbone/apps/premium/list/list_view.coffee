@@ -2,7 +2,7 @@
 
   class List.SubscriptionsView extends Marionette.ItemView
     template: 'premium/list/templates/subscriptions'
-    className: 'col-md-8 col-md-offset-3'
+    className: 'container'
 
     initialize: (options)->
       document.title = 'AlumNet - Become a member'

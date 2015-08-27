@@ -37,6 +37,15 @@
       else
         ""
 
+    tagsLinks: ->
+      links = false
+      tags = @get('user_tags_list')
+      if tags.length > 0
+        links = ""
+        _.each tags, (user)->
+          links += "<a href='#users/#{user.id}/about'>#{user.name}</a>"
+      links
+
     sumLike: ->
       count = @get('likes_count')
       @set('likes_count', count + 1)

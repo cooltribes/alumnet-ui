@@ -82,10 +82,9 @@ DESCRIPTION: shared styles among group applications
     &__name {
       font-weight: bold;
       color: @black;
-      padding: 0 37px;
 
         &--align{
-          padding: 10px 37px;
+          padding: 10px 0px;
         } 
         &--alignTagline{
           padding: 0px 37px;
@@ -171,4 +170,117 @@ DESCRIPTION: shared styles among group applications
   overflow: hidden;
   margin-bottom: 1em;
   white-space: normal;
+}
+
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+  .businessProfileCard {
+    &__company {
+      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 0px;
+        } 
+        &--alignTagline{
+          padding: 0px 0px;
+        } 
+      }
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+  .businessProfileCard {
+    &__company {
+      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 10px;
+        } 
+        &--alignTagline{
+          padding: 0px 10px;
+        } 
+      }
+    }
+  }
+}
+    
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+    .businessProfileCard {
+    &__company {
+      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 20px;
+        } 
+        &--alignTagline{
+          padding: 0px 20px;
+        } 
+      }
+    }
+  }
+}
+
+@media (min-width: 1600px) { 
+    .businessProfileCard {
+    &__company {
+      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 30px;
+        } 
+        &--alignTagline{
+          padding: 0px 30px;
+        } 
+      }
+    }
+  }
+}
+
+@media (min-width: 1900px) { 
+    .businessProfileCard {
+    &__company {
+      
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 37px;
+        } 
+        &--alignTagline{
+          padding: 0px 37px;
+        } 
+      }
+    }
+  }
 }

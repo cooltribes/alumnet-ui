@@ -1,6 +1,8 @@
 @AlumNet.module 'GroupsApp.Invite', (Invite, @AlumNet, Backbone, Marionette, $, _) ->
   class Invite.Controller
     listUsers: (id)->
+      controller = @
+      controller.querySearch = ''
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
         if group.userCanInvite()
@@ -10,6 +12,22 @@
             collection: users
           AlumNet.mainRegion.show(usersView)
           AlumNet.execute('render:groups:submenu')
+          usersView.on "user:reload", ->
+            querySearch = controller.querySearch 
+            ++usersView.collection.page
+            newCollection = AlumNet.request("user:pagination")
+            newCollection.url = AlumNet.api_endpoint + '/users?page='+usersView.collection.page+'&per_page='+usersView.collection.rows
+            newCollection.fetch
+              data: querySearch
+              success: (collection)->
+                usersView.collection.add(collection.models)
+
+          usersView.on "add:child", (viewInstance)->
+            container = $('#friends_list')
+            container.imagesLoaded ->
+              container.masonry
+                itemSelector: '.col-md-4'
+              container.append( $(viewInstance.el) ).masonry 'reloadItems'          
 
           #When invite link is clicked
           usersView.on 'childview:invite', (childView) ->
@@ -22,6 +40,7 @@
 
           #When search button is clicked
           usersView.on 'users:search', (querySearch)->
+            controller.querySearch = querySearch
             AlumNet.request("user:entities", querySearch)
         else
           AlumNet.trigger('show:error', 403)
