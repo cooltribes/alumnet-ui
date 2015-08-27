@@ -28,11 +28,14 @@ class PaymentwallController < ApplicationController
          @response = payment.response
          #render json: @response
          render :text => "OK"
-      elsif(@pingback.getParameter('payment_type') == 'subscription') #membership
+      else
+      #elsif(@pingback.getParameter('payment_type') == 'subscription') #membership
         if(@pingback.getParameter('type') == '0') #assign membership
           if(@pingback.getParameter('goodsid') == '222')
             @lifetime = true
             @member = 3
+          elsif(@pingback.getParameter('goodsid') == '333')
+            @end = DateTime.now + 3.months
           else
             @end = DateTime.now + 1.year
           end
