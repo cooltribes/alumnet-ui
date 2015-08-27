@@ -297,9 +297,9 @@
             results:
               data
         formatResult: (data)->
-          data.name
-        formatSelection: (data)->
           "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
+        formatSelection: (data)->
+          data.name
 
     showTagging: (e)->
       e.preventDefault()
