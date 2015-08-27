@@ -98,7 +98,7 @@
         pk: view.model.id
         title: 'Enter the description of Company'
         toggle: 'manual'
-        emptytext: "There is no available information"
+        emptytext: "There is not available information"
         validate: (value)->
           if $.trim(value) == ''
             'Description is required, must be less than 2048 characters'

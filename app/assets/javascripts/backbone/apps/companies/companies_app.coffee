@@ -4,6 +4,7 @@
       appRoutes:
         # "companies": "about"
         "companies": "discover"
+        "my-companies": "myCompanies"
         "companies/new": "createCompany"
         "companies/:id/about": "about"
         "companies/:id/employees": "employees"
@@ -15,6 +16,11 @@
         document.title = 'AlumNet - Companies'
         controller = new CompaniesApp.Discover.Controller
         controller.discover()
+      
+      myCompanies: ->
+        document.title = 'AlumNet - My Companies'
+        controller = new CompaniesApp.Discover.Controller
+        controller.myCompanies()
 
       about: (id)->
         document.title = 'AlumNet - Companies'
