@@ -1,0 +1,26 @@
+<div class="info">
+  <div class="row">
+    <div class="col-md-6">
+      <span class="glyphicon glyphicon-map-marker"></span>
+      <%= @location %>
+    </div>
+    
+    <div class="col-md-6">
+      <div id="js-modal-branch-contact-container"></div>
+      <div id="js-branch-contacts-container" class="margin_bottom_small companyContacts"></div>
+      <% if @userCanEdit: %>
+        <a href="#" id="js-add-branch-contact" class="btn btn-default btn-primary-noBackground"><span class="glyphicon glyphicon-plus"></span>Add Contact</a>
+      <% end %>
+    </div>  
+
+  </div>  
+</div>
+<div class="text-center map">
+  <div id="detail-map" style="width: 450px; height: 200px"></div>
+  <!-- <div class="userBusiness__flechas--disable text-left">
+    <div class="userBusiness__flechas--in"><</div>
+  </div>
+  <div class="userBusiness__flechas--out text-right">
+    <div class="userBusiness__flechas--in">></div>
+  </div> -->
+</div>

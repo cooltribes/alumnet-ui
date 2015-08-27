@@ -1,0 +1,41 @@
+<div class="businessCard companyCard">
+  
+  <div class="companyCard__logo">
+    <a href="#companies/<%= @id %>/about">
+      <img src="<%= @logo.card %>">    
+    </a>
+  </div>
+
+  <div class="businessCard companyCard__description">
+    <h3>
+      <a href="#companies/<%= @id %>/about">
+        <%= @name %>
+      </a>
+    
+    </h3>
+    <div class="programCardDescription">
+      <%= @description %>
+    </div>
+
+    <div class="jobPost__details padding_top">
+      <p><span class="glyphicon glyphicon-map-marker"></span> 
+        <%= @location() %>
+      </p>
+
+      <p><span class="ico-sector"></span> 
+        <%= @sector.text %>        
+      </p>
+      <p><span class="ico-company"></span> 
+        Employees: <%= @employees_count %>
+         - 
+        Branches: <%= @branches_count %>
+         - 
+        Links: <%= @links_count %>
+      </p>
+
+
+    </div> 
+  </div>
+
+  
+</div>

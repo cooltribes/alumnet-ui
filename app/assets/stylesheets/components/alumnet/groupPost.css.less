@@ -9,8 +9,8 @@ DESCRIPTION: A card that contains a post in a group
 
 
 .groupPost {
-		background-color: #fff;
-		
+
+		background-color: #fff;	
 		margin-top: 15px;
 		margin-bottom: 15px;
 		border: 1px solid #c3c3c3;
@@ -50,6 +50,17 @@ DESCRIPTION: A card that contains a post in a group
 		display: inline-block;
 		text-transform: uppercase;
 	}
+	&__btn--addPicture{
+		border: 1px solid @blue;
+		padding: 5px 10px 5px 10px;
+		margin-right: 5px;
+		display: inline-block;
+		text-transform: uppercase;
+		margin-bottom: 5px;
+    	margin-left: 10px;
+    	font-size: 10px;
+	}
+
 	&__btn--like{
 		border: 1px solid @blue;
 		padding: 5px 15px 5px 10px;
@@ -125,6 +136,52 @@ DESCRIPTION: A card that contains a post in a group
 	.editable{
 		color: @black;
 	}
+}
 
-	
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.groupPost {
+		&__btn--addPicture{
+			border: 1px solid @blue;
+			padding: 5px 15px 5px 10px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			margin-bottom: 0;
+    		margin-left: 0;
+    		font-size: 14px;
+		}
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+	.groupPost {
+		&__btn--addPicture{
+			border: 1px solid @blue;
+			padding: 5px 15px 5px 10px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			margin-bottom: 0;
+    		margin-left: 0;
+    		font-size: 14px;
+		}
+	}
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+	.groupPost {
+		&__btn--addPicture{
+			border: 1px solid @blue;
+			padding: 5px 15px 5px 10px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			margin-bottom: 0;
+    		margin-left: 0;
+    		font-size: 14px;
+		}
+	}
 }

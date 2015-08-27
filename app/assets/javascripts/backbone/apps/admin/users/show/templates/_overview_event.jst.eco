@@ -1,0 +1,9 @@
+<table class="admDash__cardData table">
+	<tr>
+	  <td> <small>Going to</small> <br>
+	   <strong><%= @name %></strong><br>
+	  <%= @location %><br>
+	   <%= @date %>
+	  </td>
+	</tr>               
+</table>

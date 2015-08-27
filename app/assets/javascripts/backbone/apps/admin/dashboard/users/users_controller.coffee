@@ -28,6 +28,7 @@
         @showGraphMap()
         @showGraphGeneration()
         @showGraphSeniority()
+        @showGraphStatus()
 
       @show @layout
 
@@ -47,6 +48,7 @@
       @fetchDataMap()      
       @fetchDataGeneration()      
       @fetchDataSeniority()      
+      @fetchDataStatus()      
       
 
     fetchDataType1: ()->     
@@ -98,6 +100,7 @@
         success: (data)=>  
           @viewChartGeneration.drawGraph data      
 
+
     fetchDataSeniority: ()->
       # Backbone.ajax      
       #   url: AlumNet.api_endpoint + "/admin/stats/generation_and_gender"
@@ -116,6 +119,17 @@
         ['Entry Level',    7]
       ]
       @viewChartSeniority.drawGraph data          
+
+
+    fetchDataStatus: ()->
+      Backbone.ajax      
+        url: AlumNet.api_endpoint + "/admin/stats/status"
+        data:
+          init_date: @curDates.start
+          end_date: @curDates.end
+        dataType: 'json'
+        success: (data)=>  
+          @viewChartStatus.drawGraph data      
 
 
     # METHODS FOR SHOWING EACH CHART-----------------------------    
@@ -169,3 +183,12 @@
       @viewChartSeniority = view
 
       @fetchDataSeniority()
+
+    showGraphStatus: ->
+      view = new Users.ChartGeneral
+        type: "PieChart"
+
+      @layout.chart_status.show view
+      @viewChartStatus = view
+
+      @fetchDataStatus()

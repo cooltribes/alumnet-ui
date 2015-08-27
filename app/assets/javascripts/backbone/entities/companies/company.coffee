@@ -23,7 +23,7 @@
       options
 
     userIsAdmin: ->
-      true
+      @get('is_admin')
 
     employees_count: ->
       @get('employees').length
@@ -61,6 +61,7 @@
         required: true
       sector_id:
         required: true
+        msg: "Sector is required"
       size:
         required: true
 

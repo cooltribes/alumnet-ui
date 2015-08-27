@@ -1,0 +1,3 @@
+A ESTA VISTA LLEGAN LOS MISMO DATOS DE DISCOVER EN JOB POSTS
+  <%= @name %>
+  <%= @description %>

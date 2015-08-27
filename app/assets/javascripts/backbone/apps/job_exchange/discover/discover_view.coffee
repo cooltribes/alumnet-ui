@@ -59,7 +59,7 @@
     search: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
-      value = $('#search_term').val()      
+      value = $('#search_term').val()
       @collection.fetch
         #data: { q: query }
         data: { q: { name_cont: value } }
@@ -67,12 +67,11 @@
     searchadvance: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
-      value = $('#search_term').val()      
       @collection.fetch
         data: { q: query }
         #data: { q: { name_cont: value } }
-        
-        
+
+
 
     clear: (e)->
       e.preventDefault()

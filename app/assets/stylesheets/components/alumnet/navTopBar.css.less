@@ -15,7 +15,37 @@ DESCRIPTION: Top navigation bar with menus
     &__container--topAdmin{
         background-color: @blue-gray;
     }
+
+    &__mobileToggleBtn{
+        color: @blue;
+        margin-top: 5px;
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    &__item--right{
+        font-size: 20px;
+    }
     
+    &__item--top{
+        margin-top: 16px;
+    }
+
+   &__item--li{
+      border-bottom-width: 1px !important;
+      border-bottom-style: solid !important;
+      &:hover{
+          color: @gray;
+          background-color: @black;
+          
+      }
+      &--active, &:focus{
+          background-color:@main-blue;
+          color: @white;
+          
+      }
+   }
+   
 
     &__left{
     
@@ -23,6 +53,13 @@ DESCRIPTION: Top navigation bar with menus
             display: block;
             height: auto;
             padding: 15px 0;
+
+        }
+
+        &__brandMovil{
+            display: block;
+            height: auto;
+            padding: 10px 0;
 
         }
         .nav .open > &__item:focus{ //hack for bootstrap menu
@@ -46,6 +83,57 @@ DESCRIPTION: Top navigation bar with menus
             &--active, &:focus{
                 background-color:@main-blue;
                 color: @white;
+            }
+
+
+        }
+
+         & &__itemMovil{
+                color: @gray;
+                background-color: #2B2B2B;
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: left;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s; 
+
+            &:hover{
+                color: @blue;
+                background-color: @black;
+
+            }
+            &--active, &:focus{
+                background-color:@main-blue;
+                color: @white;
+            }
+
+
+        }
+
+         & &__itemMovilSubmenu{
+                color: #FFF;
+                background-color: @black;
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: left;
+                transition: all 300ms ease 0s;  
+
+            i{
+               margin-left: 20px;
+            }             
+            &:hover{
+                color: @blue;
+                background-color: @black;
+                
+            }
+            &--active, &:focus{
+                background-color:@main-blue;
+                color: @white;
+                
             }
 
 
@@ -344,12 +432,7 @@ DESCRIPTION: Top navigation bar with menus
         top: 9px;
         background-color: @orange;
     }
-    &__mobileToggleBtn{
-        background-color: rgba(255,255,255,.1);
-        font-size: 20px;
-        color: rgba(255, 255, 255, 0.3);
-        padding: 5px 16px;
-    }
+  
     &__text{
         border-left: 1px solid rgba(255, 255, 255, 0.2);
         color: rgba(255, 255, 255, 0.5);

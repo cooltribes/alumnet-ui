@@ -18,6 +18,8 @@
       classOf: (step) =>
         @class[step]
 
+      isVisible: !AlumNet.current_user.isExternal()    
+
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'registration/shared/templates/layout'

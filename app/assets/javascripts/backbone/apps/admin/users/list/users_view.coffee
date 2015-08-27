@@ -7,8 +7,17 @@
       modals:
         selector: '#modals-region'
         regionClass: Backbone.Marionette.Modals
-      filters: '#filters-region'
       main: '#table-region'
+
+    onShow: ->
+      view = @
+      users = AlumNet.request("admin:user:entities", {})
+      users.fetch
+        success: ->
+          usersView = new Users.UsersTable
+            collection: users
+            modals: view.modals
+          view.main.show(usersView)
 
   #----Modal para cambiar suscripcion
   class Users.ModalPremium extends Backbone.Modal
@@ -35,14 +44,11 @@
           console.log(data)
 
     onRender: ->
-      min_date = moment().format("YYYY-MM-DD")
-      max_date = moment().add(20, 'years').format("YYYY-MM-DD")
       @$(".js-date-start-date").Zebra_DatePicker
         show_icon: false
         show_select_today: false
         view: 'years'
         default_position: 'below'
-        direction: [min_date, max_date]
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
@@ -51,7 +57,7 @@
         show_select_today: false
         view: 'years'
         default_position: 'below'
-        direction: [min_date, max_date]
+        direction: 1
         onOpen: (e) ->
           $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
 
@@ -161,8 +167,6 @@
 
     templateHelpers: () ->
 
-      member= @model.member
-
       getRoleText: @model.getRole()
 
       getAge: ()->
@@ -195,6 +199,11 @@
         if @profileData.gender
           return @profileData.gender
         "No gender"
+        
+      getId: () ->
+        id = @model.id
+
+
 
     modelChange: ->
       @render()
@@ -238,208 +247,59 @@
     template: 'admin/users/list/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    childViewOptions: (model, index) ->
+      modals: @modals
 
     initialize: (options) ->
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
 
-    childViewOptions: (model, index) ->
-      modals: @modals
-
-
-
-  ###Filters views###
-  class Users.Filter extends Marionette.ItemView
-    template: 'admin/users/list/templates/filter'
-    tagName: "form"
-
-    ui:
-      'btnRmv': '.js-rmvRow'
-      'field': 'input[name=field]'
-      "selectType": ".filter_by"
-      'me': 'el'
-      "value": "[name=value]"
-      "comparator": "[name=comparator]"
+    onShow: ->
+      console.log "show"
+      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
+        { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
+        { attribute: "email", type: "string", values: "" },
+        { attribute: "profile_residence_country_name", type: "string", values: "" },
+        { attribute: "profile_birth_country_name", type: "string", values: "" }
+        { attribute: "profile_residence_city_name", type: "string", values: "" }
+        { attribute: "profile_birth_city_name", type: "string", values: "" }
+        { attribute: "profile_gender", type: "option", values: [{value: "M", text: "Male"}, {value: "F", text: "Famale"}] }
+        { attribute: "status", type: "option", values: [{value: 0, text: "Inactive"}, {value: 1, text: "Active"}, {value: 2, text: "Banned"}] }
+        { attribute: "member", type: "string", values: "" }
+        { attribute: "created_at", type: "date", values: "" }
+        { attribute: "profile_experience_local_committee_name", type: "string", values: "" }
+      ])
 
     events:
-      "click @ui.btnRmv": "removeRow"
-      "change .filter_by, click .filter_by" : "changeField"
-      "click .filter_by": "datePicker"
-      "sumbit me": "sumbitForm"
-      "keypress @ui.value": "checkInput"
+      'click .add-new-filter': 'addNewFilter'
+      'click .search': 'advancedSearch'
+      'click .clear': 'clear'
+      'click #search-tags': 'searchTags'
+      'change #filter-logic-operator': 'changeOperator'
 
-    initialize: ->
-      Backbone.Validation.bind this,
-        valid: (view, attr, selector) ->
-          $el = view.$("[name^=#{attr}]")
-          $group = $el.closest('.form-group')
-          $group.removeClass('has-error')
-          $group.find('.help-block').html('').addClass('hidden')
-        invalid: (view, attr, error, selector) ->
-          $el = view.$("[name^=#{attr}]")
-          $group = $el.closest('.form-group')
-          $group.addClass('has-error')
-          $group.find('.help-block').html(error).removeClass('hidden')
-
-    datePicker: ->
-      @$(".js-date").Zebra_DatePicker
-        show_icon: false
-        show_select_today: false
-        view: 'years'
-        default_position: 'below'
-        direction: ['2015-01-01', '2030-12-12']
-        onOpen: (e) ->
-          $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
-
-    checkInput: (e)->
-      if e.which == 13 then e.preventDefault()
-
-
-    #TO DO: refactor this
-    changeField: (e) ->
-      if @ui.selectType.val() =="profile_first_name_or_profile_last_name"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>")
-
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-      else if @ui.selectType.val() =="email"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-      else if @ui.selectType.val() =="profile_residence_country_name"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-
-        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-      else if @ui.selectType.val() =="profile_birth_country_name"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
-
-      else if @ui.selectType.val() =="profile_residence_city_name"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-      else if @ui.selectType.val() =="profile_birth_city_name"
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-      else if @ui.selectType.val() =="profile_gender"
-        @ui.value.empty().append( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
-          <option value='M'>Male</option>
-          <option value='F'>Female</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select> <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>")
-
-      else if @ui.selectType.val() =='status'
-        @ui.value.empty().append( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
-          <option value='0'>Inactive</option>
-          <option value='1'>Active</option>
-          <option value='2'>Banned</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select> <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>")
-
-      else if @ui.selectType.val() =='member'
-        @ui.value.html( "<select name='value' class='form-control input-lg value_by eventsTableView__status--white'>
-          <option value='0'>Registrant</option>
-          <option value='1'>Member</option>
-          <option value='2'>Lifetime Member</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-        @ui.comparator.empty().append("<select  name='comparator' class='form-control input-lg eventsTableView__status--white'><option value='in'> = </option><option value='not_in'> <> </option></select>  <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>")
-
-      else if @ui.selectType.val() =='created_at'
-          #@datePicker()
-          #@ui.value.empty().append("<input type='text' class='form-control input-lg js-date' name='value' id='start_date'>")
-        @ui.value.empty().html("<input type='text' name='value' id='value' class='form-control input-lg eventsTableView__status--white'>")
-        @ui.comparator.empty().append("<select name='comparator' class='form-control input-lg value_by eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='gt'>></option>
-          <option value='lt'><</option>
-          <option value='lteq'><=</option>
-          <option value='gteq'>>=</option>
-          <option value='eq'>=</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>")
-      else if @ui.selectType.val() == 'profile_experience_local_committee_name'
-        @ui.comparator.empty().append(" <select  name='comparator' class='form-control input-lg eventsTableView__status--white'>
-          <option value=''>Select comparator</option>
-          <option value='cont_any'>Contains</option>
-          <option value='in'>=</option>
-          </select>
-          <span class='ico-triangle-down margin_right_xsmall userBrowse__selectIcon userBrowse__selectIcon--grey' aria-hidden='true'></span>" )
-        @ui.value.empty().append("<input type='text' name='value' id='value' class='form-control input-lg'>")
-
-    sumbitForm: (e)->
+    addNewFilter: (e)->
       e.preventDefault()
-      @render()
+      @searcher.addNewFilter()
 
-    removeRow: (e)->
-      @model.destroy()
-
-
-  class Users.Filters extends Marionette.CompositeView
-    template: 'admin/users/list/templates/filters_container'
-
-    childView: Users.Filter
-    childViewContainer: "#js-filters"
-
-    ui:
-      'btnAdd': '.js-addRow'
-      'btnSearch': '.js-search'
-      'btnReset': '.js-reset'
-      'logicOp': '[name=logicOp]'
-
-    events:
-      "click @ui.btnAdd": "addRow"
-      "click @ui.btnSearch": "search"
-      "click @ui.btnReset": "reset"
-
-    addRow: (e)->
-      newFilter = new AlumNet.Entities.Filter
-      @collection.add(newFilter)
-
-
-    reset: (e)->
-      @collection.reset()
-      @trigger('filters:search')
-
-    search: (e)->
+    changeOperator: (e)->
       e.preventDefault()
-      @children.each (itemView)->
-        data = Backbone.Syphon.serialize itemView
-        itemView.model.set data
-      @trigger('filters:search')
+      if $(e.currentTarget).val() == "any"
+        @searcher.activateOr = false
+      else
+        @searcher.activateOr = true
 
+    searchTags: (e)->
+      e.preventDefault()
+      tags = @.$('#tags').val()
+      @collection.fetch
+        data: { tags: tags }
 
+    advancedSearch: (e)->
+      e.preventDefault()
+      query = @searcher.getQuery()
+      @collection.fetch
+        data: { q: query }
 
+    clear: (e)->
+      e.preventDefault()
+      @collection.fetch()

@@ -1,8 +1,77 @@
 @AlumNet.module 'CompaniesApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
 
+  class Discover.Layout extends Marionette.LayoutView
+    template: 'companies/discover/templates/layout'    
+    className: 'container-fluid'
+
+    regions:
+      companies_region: '#companies-region'
+    
+    events:
+      'click .add-new-filter': 'addNewFilter'
+      'submit #search-form': 'basicSearch'      
+      'click .search': 'advancedSearch'
+      'click .clear': 'clear'
+      'change #filter-logic-operator': 'changeOperator'
+      'click #js-advanced':'showAdvancedSearch'
+      'click #js-basic' : 'showBasicSearch'
+      'click .js-changeGrid' : 'changeGridView'
+
+    onShow: ->
+      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
+        { attribute: "name", type: "string", values: "" },
+      ])  
+
+    changeGridView: (e)->
+      e.preventDefault()
+      element = $(e.currentTarget)
+      element.siblings().removeClass("searchBar__renderOptions__iconActive")
+      element.addClass("searchBar__renderOptions__iconActive")
+      type = element.attr("data-grid")
+      @trigger "changeGrid", type
+
+
+    showAdvancedSearch: (e)->
+      e.preventDefault()
+      $("#search-form").fadeToggle "fast", "swing", ()->
+        $("#js-advanced-search").fadeToggle("fast")       
+
+    showBasicSearch: (e)->
+      e.preventDefault()
+      $("#js-advanced-search").fadeToggle "fast", "swing", ()->
+        $("#search-form").fadeToggle("fast")
+
+    changeOperator: (e)->
+      e.preventDefault()
+      if $(e.currentTarget).val() == "any"
+        @searcher.activateOr = false
+      else
+        @searcher.activateOr = true
+
+    addNewFilter: (e)->
+      e.preventDefault()
+      @searcher.addNewFilter()
+
+    basicSearch: (e)->
+      e.preventDefault()
+      value = $('#search_term').val()
+      query = 
+        q: { name_cont: value }
+      @trigger "search", query      
+
+    advancedSearch: (e)->
+      e.preventDefault()
+      query = @searcher.getQuery()
+      @trigger "search", query  
+      
+
+    clear: (e)->
+      e.preventDefault()
+      @collection.fetch()  
+
+
   class Discover.Company extends Marionette.ItemView
     template: 'companies/discover/templates/company'
-    className: 'col-md-4'
 
     templateHelpers: ->
       model = @model
@@ -16,42 +85,53 @@
         location.push(model.get("country").text) unless model.get("country").text == ""
         location.join(", ")
 
-  class Discover.List extends Marionette.CompositeView
-    template: 'companies/discover/templates/discover_container'
+
+  class Discover.List extends Marionette.CompositeView    
     childView: Discover.Company
-    childViewContainer: '.companies-container'
+    childViewContainer: '#companies-container'
+
+    getTemplate: ()-> #Get the template based on the "type" property of the view
+      if @type == "cards"
+        'companies/discover/templates/gridContainer'
+      else if @type == "list"
+        'companies/discover/templates/tableContainer'
+
+    childViewOptions: (model, index)->
+      #initially for cards view
+      tagName = 'div'
+      template = "companies/discover/templates/_card"
+      className = "col-md-4 margin_bottom_small"
+
+      if @type == "list"
+        tagName = 'tr'
+        template = "companies/discover/templates/_row"
+        className = ""
+
+
+      className: className
+      tagName: tagName
+      template: template
+    
+
+    initialize: ()->
+      @type = "cards" #default view
+    
+  
+  class Discover.MyCompaniesLayout extends Marionette.LayoutView
+    template: 'companies/discover/templates/my_companies_layout'    
     className: 'container-fluid'
 
-    onShow: ->
-      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
-        { attribute: "name", type: "string", values: "" },
-      ])
+    regions:
+      companies_region: '#companies-region'
+    
+    events:      
+      'click .js-changeGrid' : 'changeGridView'
 
-    events:
-      'click .add-new-filter': 'addNewFilter'
-      'click .search': 'search'
-      'click .clear': 'clear'
-      'change #filter-logic-operator': 'changeOperator'
-
-    changeOperator: (e)->
+   
+    changeGridView: (e)->
       e.preventDefault()
-      if $(e.currentTarget).val() == "any"
-        @searcher.activateOr = false
-      else
-        @searcher.activateOr = true
-
-    addNewFilter: (e)->
-      e.preventDefault()
-      @searcher.addNewFilter()
-
-    search: (e)->
-      e.preventDefault()
-      query = @searcher.getQuery()
-      value = $('#search_term').val()
-      @collection.fetch
-        data: { q: query }
-
-
-    clear: (e)->
-      e.preventDefault()
-      @collection.fetch()
+      element = $(e.currentTarget)
+      element.siblings().removeClass("searchBar__renderOptions__iconActive")
+      element.addClass("searchBar__renderOptions__iconActive")
+      type = element.attr("data-grid")
+      @trigger "changeGrid", type

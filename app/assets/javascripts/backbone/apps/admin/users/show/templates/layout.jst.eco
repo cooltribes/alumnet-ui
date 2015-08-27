@@ -1,0 +1,76 @@
+<div class="container-fluid">
+   <div class="admDash__header clearfix">
+      <img src="<%= @avatar.large %>" alt="<%= @name %>" width="90" class="admDash__avatar img-circle">
+      <div class="admDash__userMeta">
+         <h1 class="admDash__title"><%= @name %></h1>
+         <!-- <div class="btn-group">
+            <button type="button" class="admDash__mainButton btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="glyphicon glyphicon-asterisk"></i> Member <span class="caret"></span>
+            </button>
+           <ul class="dropdown-menu">
+             <li><a href="#">Action</a></li>
+             <li><a href="#">Another action</a></li>
+             <li><a href="#">Something else here</a></li>
+             <li role="separator" class="divider"></li>
+             <li><a href="#">Separated link</a></li>
+           </ul>
+         </div> -->
+      <!-- Use 'admDash__status--offline' for off line status and 'admDash__status--online' for online status  -->
+      <!-- <span class="admDash__status admDash__status--offline">Off line</span> -->
+    </div>
+  </div>
+
+   <div class="row margin_top_medium">
+      <div class="col-md-12 col-md-offset-1 col-lg-12 col-lg-offset-2">
+          <ul class="sortingMenuAdmin">
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-overview">
+                  <i class="glyphicon glyphicon-th-large"></i> Overview
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-personal">
+               <i class="ico-user"></i> Personal
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-contacts">
+               <i class="glyphicon glyphicon-earphone"></i> Contacts
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-professional">
+               <i class="glyphicon glyphicon-briefcase ico-position"></i> Professional
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-groups">
+               <i class="glyphicon glyphicon-globe"></i> Groups
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-events">
+               <i class="glyphicon glyphicon-calendar"></i> Events
+              </a>
+            </li>
+            <!-- <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
+               <i class="glyphicon glyphicon-credit-card"></i> Purcharses
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-points">
+               <i class="ico-points"></i> Points
+              </a>
+            </li> -->
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-admin">
+               <i class="glyphicon glyphicon-asterisk"></i> Admin
+              </a>
+            </li>
+          </ul>
+      </div>
+   </div>
+   <hr>
+</div>
+<div class="container-fluid" id="js-content"></div>

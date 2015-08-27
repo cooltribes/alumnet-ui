@@ -1,0 +1,6 @@
+<table class="admDash__cardData table" >
+ 	<tr>
+    <td><%= @contactTypeText(@contact_type).text %>:</td>
+    <td><%= @info %></td>
+  </tr>
+</table>

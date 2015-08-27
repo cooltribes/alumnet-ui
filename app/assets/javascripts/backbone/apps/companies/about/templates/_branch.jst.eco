@@ -1,0 +1,5 @@
+<a href="#" id="js-show-branch"><%= @location %></a>
+<% if @userCanEdit: %>
+  <a href="#" id="js-delete-branch" class="pull-right "><span class="glyphicon glyphicon-remove"></span></a>
+  <a href="#" id="js-edit-branch" class="pull-right margin_right_small"><span class="glyphicon glyphicon-pencil"></span></a>
+<% end %>

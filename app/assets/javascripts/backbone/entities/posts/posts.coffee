@@ -49,7 +49,7 @@
 
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
-    rows: 4
+    rows: 12
     page: 1
 
   API =

@@ -78,7 +78,7 @@
     template: 'home/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post item col-md-6'
+    className: 'post item col-xs-12 col-sm-6 col-md-6'
     
     childViewOptions: ->
       current_user: @current_user

@@ -10,14 +10,25 @@
     <!-- Desktop and mobile header OFF -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
-        <li class="<%= @classOf(3)%>"><a href="#job-exchange/applied" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> My Applications</a></li>
+        
+        <% if @optionIsVisible(): %>
+          <li class="<%= @classOf(2)%>"><a href="#job-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
+          <li class="<%= @classOf(3)%>"><a href="#job-exchange/applied" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> My Applications</a></li>
+        <% end %>
+
+
         <li class="<%= @classOf(0)%>"><a href="#job-exchange/my-posts" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> My Job Posts</a></li>
+        <% if @optionIsVisible(): %>
+          <li class="<%= @classOf(1)%>" id="automatches" style="display: none"><a href="#job-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches(<span id="js-automatches"></span>)</a></li>
+        <% end %>
+
       </ul>
-      <ul class="nav navbar-nav navbar-right no-margin">
-        <li class="<%= @classOf(1)%>"><a href="#job-exchange/automatches" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-th-list"></span> Automatches</a></li>
-        <li class="<%= @classOf(4)%>"><a href="#job-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> Invitations</a></li>
-        <li class="<%= @classOf(2)%>"><a href="#job-exchange" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-search"></span> Discover</a></li>
-        <a href="#job-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a Job</a>
+      <ul class="nav navbar-nav navbar-right no-margin"> 
+        <% if @optionIsVisible(): %>
+          <li class="<%= @classOf(4)%>" id="invitations" style="display: none"><a href="#job-exchange/invitations" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon ico-new-message"></span> Invitations(<span id="js-invitations"></span>)</a></li>
+        <% end %>
+          <a href="#job-exchange/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Post a Job</a>
+          
       </ul>
     </div>
 	</div>

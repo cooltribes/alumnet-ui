@@ -8,13 +8,13 @@
 		<div class="row">
 			<div class="col-md-9 col-md-offset-2">
 				<ul class="nav nav-pills">
-					<li>  <a href="#company/about" id="js-about" class="groupMenu__link<%= @classOf(0)%>">
+					<li>  <a href="#companies/<%= @id %>/about" id="js-about" class="groupMenu__link<%= @classOf(0)%>">
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
-					<li>  <a href="#users/alumni" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
+					<li>  <a href="#companies/<%= @id %>/employees" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
 						<span class="ico-company"></span>
 					Alumni</a></li>
-					<li>  <a href="#users/jobpost" class="groupMenu__link<%= @classOf(2)%>">
+					<li>  <a href="#companies/<%= @id %>/job_posts" class="groupMenu__link<%= @classOf(2)%>">
 						<span class="glyphicon glyphicon-briefcase"></span>
 					Job Post</a></li>
 
@@ -25,6 +25,6 @@
 </nav>
 
 <div id="company-body">
-	
-	
+
+
 </div>

@@ -4,19 +4,19 @@
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <ul class="nav nav-pills nav-stacked">
             <li>
-              <a id="toDetails" class="text-uppercase smoothClick">
+              <a id="todetails" class="text-uppercase smoothClick">
                 Details
               </a>
                <span class="glyphicon glyphicon-list-alt text-right"></span>
             </li>
             <li>
-              <a id="toContact-Web" class="text-uppercase smoothClick">
+              <a id="tocontacts" class="text-uppercase smoothClick">
                 Contact & Web
               </a>
               <span class="glyphicon glyphicon-envelope text-right"></span>
             </li>
             <li>
-              <a id="toBranches" class="text-uppercase smoothClick">
+              <a id="tobranches" class="text-uppercase smoothClick">
                 Branches
               </a>
                <span class="glyphicon glyphicon-map-marker text-right"></span>

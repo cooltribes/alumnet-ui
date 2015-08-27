@@ -17,16 +17,16 @@
 			<% end %>
 			<ul>
 				<li>Employees: <%= @employees_count %></li>
-				<li>Alumni</li>
+				<!-- <li>Alumni</li> -->
 			</ul>
 		</div>
-		<div class=" company__row company__cell">
+		<!-- <div class=" company__row company__cell">
 			<h3 class="no-margin">Friends</h3>
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
-		</div>
+		</div> -->
 		<div class=" company__row company__cell">
 			<h3 class="no-margin">Industry</h3>
 			<span id="sector"><%= @sector.text %></span>
