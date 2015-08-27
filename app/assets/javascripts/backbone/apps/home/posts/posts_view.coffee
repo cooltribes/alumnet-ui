@@ -279,7 +279,6 @@
 
     events:
       'click a#js-post-submit': 'submitClicked'
-      'click a#js-post-test': 'submitTest'
       'click a#js-add-tags': 'showTagging'
 
 

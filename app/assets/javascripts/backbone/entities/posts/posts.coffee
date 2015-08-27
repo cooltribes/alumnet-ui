@@ -43,7 +43,7 @@
       if tags.length > 0
         links = ""
         _.each tags, (user)->
-          links += "<a href='#users/#{user.id}'>#{user.name}</a>"
+          links += "<a href='#users/#{user.id}/about'>#{user.name}</a>"
       links
 
     sumLike: ->

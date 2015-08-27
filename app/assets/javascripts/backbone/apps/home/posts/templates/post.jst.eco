@@ -23,6 +23,7 @@
               with: <%- @tagsLinks %>
             </div>
           <% end %>
+          <!--  -->
          </div>
       </div>
 
