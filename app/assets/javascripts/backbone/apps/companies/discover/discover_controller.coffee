@@ -2,10 +2,19 @@
   class Discover.Controller
 
     discover: ->
-      AlumNet.execute('render:companies:submenu', undefined, 1)
+      AlumNet.execute('render:companies:submenu', undefined, 0)
 
       layout = @_getLayoutView()     
       @list_view = @_getListView()
+
+      AlumNet.mainRegion.show(layout)
+      layout.companies_region.show(@list_view)
+
+    myCompanies: ->
+      AlumNet.execute('render:companies:submenu', undefined, 1)
+
+      layout = @_getMyLayoutView()     
+      @list_view = @_getListView("my_companies")
 
       AlumNet.mainRegion.show(layout)
       layout.companies_region.show(@list_view)
@@ -19,10 +28,25 @@
       view.on "search", @_applySearch, @
       view.on "changeGrid", @_changeGrid, @
 
+    _getMyLayoutView: ->
+      view = new Discover.MyCompaniesLayout
 
-    _getListView: ->
+      view.on "changeGrid", @_changeGrid, @
+
+
+    _getListView: (layout = "")->
       companies = new AlumNet.Entities.CompaniesCollection
-      companies.fetch() 
+      if layout != "my_companies"
+        companies.fetch()         
+      else
+        # companies.fetch()         
+        companies.fetch
+          data: 
+            q:
+              m: "and"
+              company_admins_user_id_eq: AlumNet.current_user.id
+              status_eq: 1
+
 
       view = new Discover.List
         collection: companies
