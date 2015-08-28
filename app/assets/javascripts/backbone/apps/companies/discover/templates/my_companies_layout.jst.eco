@@ -4,7 +4,7 @@
 
   </div>
 
-  <div class="col-md-3 col-md-offset-6 hidden-sm hidden-xs searchBar__renderOptions">
+  <div class="col-md-3 hidden-sm hidden-xs searchBar__renderOptions">
     <div class="pull-right">
       <a class="searchBar__renderOptions__icon searchBar__renderOptions__iconActive searchBar__ViewCard js-changeGrid" data-grid="cards" href="#" title="View results in cards">
         <span class="glyphicon glyphicon-th-large"></span>
