@@ -53,11 +53,11 @@
             <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
               <span class="ico-company"></span>
             </div>
-            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--right">
+            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rightMyevents">
               <span class="glyphicon glyphicon-cog"></span>
               <span >EDIT</span>
             </div>
-            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm">CANCEL</a>
+            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmin--paddingCancel">CANCEL</a>
           </a>
         <% else: %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
