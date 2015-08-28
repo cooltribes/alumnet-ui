@@ -31,6 +31,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
+  gem 'capistrano3-nginx', '~> 2.0'
 end
 
 group :test, :development do

@@ -38,6 +38,15 @@
     childViewContainer: ".users-list"
     childViewOptions: ->
       parentModel: this.model
+    
+    initialize: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')
+      $(window).scroll(@loadMoreUsers)
+
+    loadMoreUsers: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'user:reload'
 
     events:
       'click .js-search': 'performSearch'

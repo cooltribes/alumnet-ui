@@ -101,6 +101,7 @@
       current_user_avatar: @current_user.get('avatar').medium
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      tagsLinks: @model.tagsLinks()
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -250,7 +251,7 @@
       @group = options.group
       @picture_ids = []
       $(window).scroll(@loadMorePosts);
-      
+
     templateHelpers: ->
       userCanPost: @group.userIsMember()
       groupJoinProccess: @group.get('join_proccess')
@@ -262,15 +263,46 @@
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
 
+      @ui.tagsInput.select2
+        placeholder: "Tag a Friend"
+        multiple: true
+        minimumInputLength: 2
+        ajax:
+          url: AlumNet.api_endpoint + '/me/friendships/friends'
+          dataType: 'json'
+          data: (term)->
+            q:
+              m: 'or'
+              profile_first_name_cont: term
+              profile_last_name_cont: term
+          results: (data, page) ->
+            results:
+              data
+        formatResult: (data)->
+          "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
+        formatSelection: (data)->
+          data.name
+
     ui:
       'bodyInput': '#body'
       'timeline': '#timeline'
       'fileList': '#js-filelist'
       'uploadLink': '#upload-picture'
+      'tagsInput': '#js-user-tags-list'
+      'tagging': '.tagging'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click .js-join':'sendJoin'
+      'click a#js-add-tags': 'showTagging'
+
+    showTagging: (e)->
+      e.preventDefault()
+      if @ui.tagging.is(":visible")
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
+      else
+        @ui.tagging.show()
 
     sendJoin:(e)->
       e.preventDefault()
@@ -293,10 +325,11 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
-
+        @ui.tagsInput.select2('val', '')
+        @ui.tagging.hide()
 
     loadMorePosts: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'post:reload' 
+        @trigger 'post:reload'
 
 

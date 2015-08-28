@@ -5,6 +5,8 @@ set :application, 'alumnet-ui'
 set :repo_url, 'https://ranpaco:Pal24Com210@github.com/cooltribes/alumnet-ui.git '#'git@github.com:cooltribes/alumnet-ui.git'
 set :scm, :git
 set :linked_files, %w{config/application.yml}
+set :nginx_sudo_tasks, ['nginx:restart', 'nginx:configtest']
+set :pty, true
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

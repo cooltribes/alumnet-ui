@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <%= image_tag('premium/AAI.jpg', alt: "AAI MEMBERSHIP", width:"auto", height: "400px") %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="text-center"><b>AAI MEMBERSHIP</b></h3><br>
+    <p>The AIESEC alumni community has for decades believed in the potential to harness its talent, scale and global reach—and especially its shared values and capital of trust—to provide alumni with a lifelong connection and exert a positive impact on the world. To address this goal, a group of former senior AIESEC leaders formed AAI in 1986 in Budapest with the aim of building a global alumni organization.</p>
+
+    <p>Following this spirit AAI has developed an ambitious vision and strategic plan for transforming itself into an active, global network. This plan will make it possible for as many as 1.000.000 alumni to connect and collaborate on programs that will provide lifelong value to alumni, support AIESEC and make a positive difference in the world.</p>
+
+    <p>According to nowadays times and in order to make this happen AAI have launched the AlumNet platform with the hope to bring alumni around the world together into a single online community, where they will find aggregated value through business, career and life connections.</p>
+
+    <p>Memberships will support viability and continuity of this dream and will get you access to "Only-Members" special programs and features.</p>
+  </div>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md-12">
+    <p class="text-center">In order to generate payment options accordingly with your place of residence, please complete the following information:
+    </p><br>
+  </div>
+</div>
+<div class="main-events-area">
+  <form class="formANet form ">
+    <div class="js-birth-location">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="inputName">Country of residence</label>
+            <input id="js-payment-countries" type="" name="country_id" style="width: 100%">
+            <span class="help-block"></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="inputName">City of residence</label>
+            <input id="js-payment-cities" type="" name="city_id" style="width: 100%">
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group has-feedback">
+          <label class="control-label" for="inputName">Address</label>
+          <input type="text" value="" class="form-control input-lg" id="address" name="address" placeholder="Enter your address">
+          <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- ACTIONS ON -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-right">
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
+        </div>
+      </div>
+    </div>
+    <!-- ACTIONS OFF -->
+  </form>
+  <div class="row">
+    <div class="col-md-6">
+  		<%% if @condition && @condition == 'members_only': %>
+  			<div class="form-group" id="condition-message">
+  				Members only feature
+  			</div>
+  		<%% end %>
+      <div class="form-group" id="country">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="paymentwall-content-2" style="height: 800px;"></div>
+    </div>
+  </div>  
+</div>
