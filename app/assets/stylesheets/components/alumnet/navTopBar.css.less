@@ -465,6 +465,7 @@ DESCRIPTION: Top navigation bar with menus
                     width: 80%;
                     margin: 0 auto;
                     height: auto;
+
                 }
             }
         }
@@ -492,14 +493,48 @@ DESCRIPTION: Top navigation bar with menus
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) { 
-.navTopBar{
+    .navTopBar{
+        &__left{
+        
+            & &__item{
+                color: @main-blue;
+                font-size: 15px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 10px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;                
+                &:hover{
+                    color: @white;
+                    background-color: @black;
+                }
+                &--active, &:focus{
+                    background-color:@main-blue;
+                    color: @white;
+                }
+            }
+        }
+
         &__notification{
             width: 350px;
         }
         &__right{
            &__list &__item{
+
+                &--points{
+                    padding-left:22px;
+                    span.corner-icon{
+                    font-size: 10px;
+                    margin-top: 6px;
+                    position: absolute;
+                    left:6px;
+                    }
+                }    
                 &--membershipExpires{
-                    width: auto;                   
+                    width: auto; 
+
+
                 }
 
                 
@@ -517,3 +552,87 @@ DESCRIPTION: Top navigation bar with menus
     }  
     
  }
+
+@media (min-width: @media-mlarge-min) {
+.navTopBar{
+        &__left{
+        
+            & &__item{
+                color: @main-blue;
+                font-size: 17px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 10px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;                
+                &:hover{
+                    color: @white;
+                    background-color: @black;
+                }
+                &--active, &:focus{
+                    background-color:@main-blue;
+                    color: @white;
+                }
+            }
+        }
+
+        &__right{
+           &__list &__item{
+
+                &--points{
+                    padding-left:22px;
+                    span.corner-icon{
+                    font-size: 10px;
+                    margin-top: 6px;
+                    position: absolute;
+                    left:6px;
+                    }
+                }    
+
+            }
+        }
+    }      
+}
+
+@media (min-width: @media-mmlarge-min) {
+.navTopBar{
+        &__left{
+        
+            & &__item{
+                color: @main-blue;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 20px;
+                padding: 20px 15px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: all 300ms ease 0s;                
+                &:hover{
+                    color: @white;
+                    background-color: @black;
+                }
+                &--active, &:focus{
+                    background-color:@main-blue;
+                    color: @white;
+                }
+            }
+        }
+
+        &__right{
+           &__list &__item{
+
+                &--points{
+                    padding-left:22px;
+                    span.corner-icon{
+                    font-size: 10px;
+                    margin-top: 6px;
+                    position: absolute;
+                    left:6px;
+                    }
+                }    
+
+            }
+        }
+    }      
+}
