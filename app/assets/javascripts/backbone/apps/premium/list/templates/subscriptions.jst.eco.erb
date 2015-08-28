@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12 text-center">
-    <img src="assets/premium/AAI.jpg" alt="AAI MEMBERSHIP" width="auto" height="400px">
+    <%= image_tag('premium/AAI.jpg', alt: "AAI MEMBERSHIP", width:"auto", height: "400px") %>
   </div>
 </div>
 <div class="row">
@@ -66,11 +66,11 @@
   </form>
   <div class="row">
     <div class="col-md-6">
-  		<% if @condition && @condition == 'members_only': %>
+  		<%% if @condition && @condition == 'members_only': %>
   			<div class="form-group" id="condition-message">
   				Members only feature
   			</div>
-  		<% end %>
+  		<%% end %>
       <div class="form-group" id="country">
       </div>
     </div>
