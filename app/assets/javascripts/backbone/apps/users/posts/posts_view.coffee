@@ -226,8 +226,6 @@
   class Posts.PostDetail extends Posts.PostView
     template: 'users/posts/templates/post_detail'
     className: 'container margin_top_small'
-    templateHelpers: ->
-      tagsLinks: @model.tagsLinks()
 
 
   #### POST COLLECTION

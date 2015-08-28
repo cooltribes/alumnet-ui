@@ -235,8 +235,7 @@
   class Posts.PostDetail extends Posts.PostView
     template: 'events/posts/templates/post_detail'
     className: 'container-fluid margin_top_small'
-    templateHelpers: ->
-      tagsLinks: @model.tagsLinks()
+
 
   ##### POSTS COLLECTION
   class Posts.PostsView extends Marionette.CompositeView
