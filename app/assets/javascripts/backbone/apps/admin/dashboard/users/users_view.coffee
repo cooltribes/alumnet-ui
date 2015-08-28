@@ -92,9 +92,12 @@
       values = dataTable.slice(1) #Get all but not the titles      
 
       if @getInterval() == "days"
+        console.log "days"
+        console.log values
         values = _.sortBy values, (el)-> #Sort the arrays
-          return (new Date(el[0]))
-        .reverse()
+          # return (new Date(el[0]))
+          return (new Date(moment(el[0], "DD-MM-YYYY").format("MM-DD-YYYY")))
+        # .reverse()
 
       else if @getInterval() == "months"  
         console.log values
