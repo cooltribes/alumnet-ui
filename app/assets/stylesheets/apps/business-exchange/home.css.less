@@ -38,7 +38,7 @@ DESCRIPTION: shared styles among group applications
 
   &__button {
     min-height: 55px;
-    
+
     span {
       font-size: 2.5em;
 
@@ -62,14 +62,14 @@ DESCRIPTION: shared styles among group applications
       a {
         color: @blue;
         font-size: 2em;
-      }  
+      }
     }
   }
 
 
 
   &__company {
-    
+
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -82,14 +82,13 @@ DESCRIPTION: shared styles among group applications
     &__name {
       font-weight: bold;
       color: @black;
-      padding: 0 37px;
 
         &--align{
-          padding: 10px 37px;
-        } 
+          padding: 10px 0px;
+        }
         &--alignTagline{
           padding: 0px 37px;
-        } 
+        }
 
     }
 
@@ -98,7 +97,7 @@ DESCRIPTION: shared styles among group applications
   &__keywords{
     padding: 10px 10px 0 10px;
     border-top: 1px solid @blue;
-    color: @blue;    
+    color: @blue;
 
     b {
       color: @black;
@@ -152,7 +151,7 @@ DESCRIPTION: shared styles among group applications
     background-color: @main-light-blue;
     -webkit-box-shadow: none;
     box-shadow: none;
-    margin-bottom: 0; 
+    margin-bottom: 0;
 
     & .progress-bar-grey{
       background-color: @blue-gray;
@@ -171,4 +170,117 @@ DESCRIPTION: shared styles among group applications
   overflow: hidden;
   margin-bottom: 1em;
   white-space: normal;
+}
+
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+  .businessProfileCard {
+    &__company {
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 0px;
+        }
+        &--alignTagline{
+          padding: 0px 0px;
+        }
+      }
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+  .businessProfileCard {
+    &__company {
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 10px;
+        }
+        &--alignTagline{
+          padding: 0px 10px;
+        }
+      }
+    }
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+    .businessProfileCard {
+    &__company {
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 20px;
+        }
+        &--alignTagline{
+          padding: 0px 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: @media-xlarge-min) {
+    .businessProfileCard {
+    &__company {
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 30px;
+        }
+        &--alignTagline{
+          padding: 0px 30px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: @media-xlarge-min) {
+    .businessProfileCard {
+    &__company {
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      &__name {
+        font-weight: bold;
+        color: @black;
+
+        &--align{
+          padding: 10px 37px;
+        }
+        &--alignTagline{
+          padding: 0px 37px;
+        }
+      }
+    }
+  }
 }

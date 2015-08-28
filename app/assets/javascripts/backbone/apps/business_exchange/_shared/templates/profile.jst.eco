@@ -7,19 +7,25 @@
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
           </a>
           </div>
-          <div class="no-padding col-md-9 businessProfileCard__user__name">
-            <a href="#users/<%= @user.id %>/business-exchange" title="<%= @user.name %>"><%= @user.name %></a>
-            <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
+          <div class="no-padding col-md-9 businessProfileCard__user__name" style="white-space: normal">
+            <div class="overfloadText" style="color: #2099d0">
+              <a href="#users/<%= @user.id %>/business-exchange" title="<%= @user.name %>" ><%= @user.name %>
+              </a>
+            </div>
+            <div class="overfloadText">
+              <span class="userCard__position member-position text-small"><%= @user.last_experience %>
+              </span>
+            </div>
           </div>
         </div>
       <% end %>
       <% if @company: %>
         <div class="row businessProfileCard__company">
-          <div class="col-md-2 text-right businessProfileCard__company__logo">
+          <div class="col-xs-2 col-md-2 text-right businessProfileCard__company__logo">
             <span class="ico-position"></span>
               <!-- <img src="<%= @company.logo %>" alt="<%= @company.name %>" class="img-circle"> -->
             </div>
-          <div class="col-md-10">
+          <div class="col-xs-10 col-md-10">
             <% if @tagline == null: %>
               <div class="businessProfileCard__company__name businessProfileCard__company__name--align">
                 <%= @company.name %>
