@@ -6,12 +6,11 @@
 
   API =
     checkout: (condition,data)->
-      console.log "entro aqui"
       controller = new PaymentApp.Checkout.Controller
       controller.checkout(condition,data)
 
   AlumNet.on "payment:checkout", (data)->
-    AlumNet.navigate("payment/checkout")
+    #AlumNet.navigate("payment/checkout")
     API.checkout('',data)
 
   AlumNet.addInitializer ->

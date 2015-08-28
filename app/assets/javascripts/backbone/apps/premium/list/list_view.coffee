@@ -17,12 +17,12 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       console.log data
-      console.log @collection.models
-      console.log data.subscription_id
-      resultado = @collection.findWhere({id:data.subscription_id})
-      console.log resultado
+      #console.log @collection.models
+      #console.log data.subscription_id
+      #resultado = @collection.findWhere({id:data.subscription_id})
+      #console.log resultado
       #collection.where()
-      AlumNet.trigger 'payment:checkout' , resultado
+      AlumNet.trigger 'payment:checkout' , data
 
   class List.PaymentView extends Marionette.ItemView
     template: 'premium/list/templates/payments'
