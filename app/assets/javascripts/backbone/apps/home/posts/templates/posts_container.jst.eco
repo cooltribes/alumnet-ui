@@ -22,26 +22,26 @@
 										  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
 										</div>
 										<!--  -->
-										<a id="js-add-picture" class="groupPost__btn--comment hidden-xs" href="javascript:;">
+										<a id="js-add-picture" class="groupPost__btn--addPicture" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Picture
 										</a>
-										<a id="js-add-tags" class="groupPost__btn--comment hidden-xs" href="javascript:;">
+										<a id="js-add-tags" class="groupPost__btn--addPicture" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Tags
 										</a>
-										<a href="#" class="groupPost__btn--comment hidden-xs" id="js-post-submit">
+										<a href="#" class="groupPost__btn--addPicture" id="js-post-submit">
 										Post</a>
-										<a id="js-add-picture" class="groupPost__btn--timeline visible-xs" href="javascript:;">
+										<!-- <a id="js-add-picture" class="groupPost__btn--addPicture visible-xs" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Picture
 										</a>
-										<a id="js-add-tags" class="groupPost__btn--timeline visible-xs" href="javascript:;">
+										<a id="js-add-tags" class="groupPost__btn--addPicture visible-xs" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Tags
 										</a>
-										<a href="#" class="groupPost__btn--timeline visible-xs" id="js-post-submit">
-										Post</a>
+										<a href="#" class="groupPost__btn--addPicture visible-xs" id="js-post-submit">
+										Post</a> -->
 									</form>
 									<!-- Pictures -->
 									<ul id="js-filelist"></ul>
