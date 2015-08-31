@@ -16,7 +16,6 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      console.log data
       #console.log @collection.models
       #console.log data.subscription_id
       #resultado = @collection.findWhere({id:data.subscription_id})
@@ -109,15 +108,11 @@
             subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription' }})
             subscriptions.on 'fetch:success', (collection)->
               subscriptions.each (subscription, index)->
-                console.log subscription
-                console.log index
                 parameters_string += 'external_ids['+index+']='+subscription.get('sku')
                 content_html += '&external_ids['+index+']='+subscription.get('sku')
 
               parameters_string +='key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
-              console.log parameters_string
               content_html += '&key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&widget=p1_1'+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
-              console.log content_html
               view.ui.paymentwallContent.html(content_html)
                 
 

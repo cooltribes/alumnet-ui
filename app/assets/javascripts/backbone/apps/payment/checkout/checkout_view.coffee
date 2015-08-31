@@ -66,6 +66,9 @@
       _.forEach data, (value, key, list)->
         if value == '' then valid_address = false
 
+      subscription = AlumNet.request('product:find', @data.subscription_id)
+      subscription.on('find:success')
+
       if valid_address
         country = new AlumNet.Entities.Country
           id: data.country_id
@@ -76,7 +79,6 @@
             paymentwall_secret_key = AlumNet.paymentwall_secret_key
             paymentwall_return_url = window.location.origin
             auth_token = AlumNet.current_token
-            subscription = AlumNet.request('product:find', @data.subscription_id)
             
             profile = view.current_user.profile
             birthday = profile.get('born')

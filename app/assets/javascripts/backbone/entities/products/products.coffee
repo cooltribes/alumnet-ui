@@ -41,7 +41,7 @@
       product = new Entities.Product
         id: id
       product.fetch
-        # async: false
+        async: false
         error: (model, response, options) ->
           model.trigger('find:error', response, options)
         success: (model, response, options) ->
