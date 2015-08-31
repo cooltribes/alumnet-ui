@@ -1,6 +1,6 @@
 @AlumNet.module 'JobExchangeApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Discover.Task extends AlumNet.JobExchangeApp.Shared.Task
+  class Discover.Task extends AlumNet.Shared.Views.Task
     template: 'job_exchange/_shared/templates/discover_task'
     className: 'col-md-4'
 
