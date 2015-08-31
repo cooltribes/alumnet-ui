@@ -1,0 +1,17 @@
+<td class="tableAdminGroups__colText js-sku" contenteditable="true"></td>
+<td class="tableAdminGroups__colText js-name" contenteditable="true"></td>
+<td class="tableAdminGroups__colText js-description" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-status" name="status">    
+  	</select>
+</td>
+<td class="tableAdminGroups__colText js-price" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-type" name="type">    
+  	</select>
+</td>
+<td class="tableAdminGroups__colText js-quantity" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-feature" name="feature">    
+  	</select>
+</td>

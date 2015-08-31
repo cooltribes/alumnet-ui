@@ -1,0 +1,85 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title">Product <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">SKU</label>
+          <input type="text" id="sku" name="sku" class="form-control input-lg" value="<%= @sku %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" id="name" name="name" class="form-control input-lg" value="<%= @name %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Description</label>
+          <input type="text" id="description" name="description" class="form-control input-lg" value="<%= @description %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Price</label>
+          <input type="text" id="price" name="price" class="form-control input-lg" value="<%= @price %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Type</label>
+          <select name="product_type" class="form-control input-lg ">
+            <option value="0">Time remaining</option>
+            <option value="1">Times used</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Quantity</label>
+          <input type="text" id="quantity" name="quantity" class="form-control input-lg" value="<%= @quantity %>">
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Feature</label>
+          <select name="feature" class="form-control input-lg ">
+            <option value="subscription">Subscription</option>
+            <option value="job_post">Job Post</option>
+          </select>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <% unless @productIsNew: %>
+    <a href="#" class="btn btn-danger pull-left" id="js-modal-delete">Delete</a>
+  <% end %>
+  <a href="#" class="btn btn-primary" id="js-modal-save">Save</a>
+  <a href="#" class="btn btn-default" id="js-modal-close">Cancel</a>
+</div>
