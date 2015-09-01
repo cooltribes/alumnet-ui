@@ -188,7 +188,6 @@
 
     commentSend: (e)->
       e.stopPropagation()
-      console.log "nose algo"
       if e.keyCode == 13
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
