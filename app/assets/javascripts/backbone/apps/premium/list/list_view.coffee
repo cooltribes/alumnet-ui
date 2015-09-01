@@ -16,11 +16,6 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      #console.log @collection.models
-      #console.log data.subscription_id
-      #resultado = @collection.findWhere({id:data.subscription_id})
-      #console.log resultado
-      #collection.where()
       AlumNet.trigger 'payment:checkout' , data
 
   class List.PaymentView extends Marionette.ItemView
@@ -40,7 +35,7 @@
 
     events:
       'change #js-payment-countries': 'loadCities'
-      'click button.js-submit': 'submitClicked'
+      #'click button.js-submit': 'submitClicked'
 
     templateHelpers: ->
       current_user: @current_user
@@ -77,49 +72,49 @@
         placeholder: "Select a City"
         data: []
 
-    submitClicked: (e)->
-      e.preventDefault()
-      view = this
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      valid_address = true
-      profile = view.current_user.profile
-      address = {}
-      _.forEach data, (value, key, list)->
-        if value == '' then valid_address = false
+    # submitClicked: (e)->
+    #   e.preventDefault()
+    #   view = this
+    #   formData = new FormData()
+    #   data = Backbone.Syphon.serialize(this)
+    #   valid_address = true
+    #   profile = view.current_user.profile
+    #   address = {}
+    #   _.forEach data, (value, key, list)->
+    #     if value == '' then valid_address = false
 
-      if valid_address
-        country = new AlumNet.Entities.Country
-          id: data.country_id
-        country.fetch
-          success: (model) ->
-            paymentwall_project_key = AlumNet.paymentwall_project_key
-            paymentwall_secret_key = AlumNet.paymentwall_secret_key
-            paymentwall_return_url = window.location.origin
-            auth_token = AlumNet.current_token
+    #   if valid_address
+    #     country = new AlumNet.Entities.Country
+    #       id: data.country_id
+    #     country.fetch
+    #       success: (model) ->
+    #         paymentwall_project_key = AlumNet.paymentwall_project_key
+    #         paymentwall_secret_key = AlumNet.paymentwall_secret_key
+    #         paymentwall_return_url = window.location.origin
+    #         auth_token = AlumNet.current_token
             
-            profile = view.current_user.profile
-            birthday = profile.get('born')
-            birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+    #         profile = view.current_user.profile
+    #         birthday = profile.get('born')
+    #         birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
 
-            parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")
-            content_html = '<iframe src="https://api.paymentwall.com/api/cart/?address='+data.address+'&auth_token='+auth_token+'&city_id='+data.city_id+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&customer[address]='+data.address+'&customer[birthday]='+birthday_object.getTime()+'&customer[country]='+model.get('name')+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&email='+view.current_user.get("email")
+    #         parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")
+    #         content_html = '<iframe src="https://api.paymentwall.com/api/cart/?address='+data.address+'&auth_token='+auth_token+'&city_id='+data.city_id+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&customer[address]='+data.address+'&customer[birthday]='+birthday_object.getTime()+'&customer[country]='+model.get('name')+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&email='+view.current_user.get("email")
 
-            subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription' }})
-            subscriptions.on 'fetch:success', (collection)->
-              subscriptions.each (subscription, index)->
-                parameters_string += 'external_ids['+index+']='+subscription.get('sku')
-                content_html += '&external_ids['+index+']='+subscription.get('sku')
+    #         subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription' }})
+    #         subscriptions.on 'fetch:success', (collection)->
+    #           subscriptions.each (subscription, index)->
+    #             parameters_string += 'external_ids['+index+']='+subscription.get('sku')
+    #             content_html += '&external_ids['+index+']='+subscription.get('sku')
 
-              parameters_string +='key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
-              content_html += '&key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&widget=p1_1'+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
-              view.ui.paymentwallContent.html(content_html)
+    #           parameters_string +='key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
+    #           content_html += '&key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&uid='+view.current_user.get("id")+'&widget=p1_1'+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+    #           view.ui.paymentwallContent.html(content_html)
                 
 
-            #parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
-            #content_html = '<iframe src="https://api.paymentwall.com/api/cart/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&customer[address]='+data.address+'&customer[country]='+model.get('name')+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+    #         #parameters_string = 'address='+data.address+'auth_token='+auth_token+'city_id='+data.city_id+'country_code='+model.get('cc_fips')+'country_id='+data.country_id+'customer[address]='+data.address+'customer[birthday]='+birthday_object.getTime()+'customer[country]='+model.get('name')+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'sign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p1_1'+paymentwall_secret_key
+    #         #content_html = '<iframe src="https://api.paymentwall.com/api/cart/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p1_1&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&customer[address]='+data.address+'&customer[country]='+model.get('name')+'&country_code='+model.get('cc_fips')+'&country_id='+data.country_id+'&city_id='+data.city_id+'&address='+data.address+'&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
             
 
             
-      else
-        $.growl.error({ message: "Please fill address fields" })
+    #   else
+    #     $.growl.error({ message: "Please fill address fields" })

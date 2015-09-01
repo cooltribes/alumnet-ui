@@ -90,3 +90,7 @@
   AlumNet.on "admin:features", ->
     AlumNet.navigate("admin/features")
     API.featuresList()
+
+  AlumNet.on "admin:products", ->
+    AlumNet.navigate("admin/products")
+    API.productsList()
