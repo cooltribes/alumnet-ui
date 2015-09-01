@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Discover</h1>
- 
+
   <form id="search-form">
     <div class="input-group">
       <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Jobs">
@@ -35,6 +35,8 @@
                   <option value="country_name">Country</option>
                   <option value="city_name">City</option>
                   <option value="task_attributes_value">Skills</option>
+                  <option value="employment_type">Employment Type</option>
+                  <option value="seniority_id">Seniority</option>
                 </select>
                 <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
                 <span class="help-block"></span>
@@ -56,12 +58,12 @@
                 <input class="filter-value filters__input filters__input--lg form-control input-lg">
               </div>
             </div>
-            
+
             <div class="col-md-5 close-filter">
                 <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
-            </div> 
+            </div>
         </div>
-      </div> 
+      </div>
     </div>
 
         <div class="row">

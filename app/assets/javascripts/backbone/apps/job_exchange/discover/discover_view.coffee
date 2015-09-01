@@ -20,12 +20,22 @@
         @trigger 'job:reload'
 
     onShow: ->
+      seniorities =  @fetch_and_format_seniorities()
+      employment_types =  AlumNet.Entities.Tasks.EMPLOYMENT_TYPES
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "name", type: "string", values: "" },
         { attribute: "city_name", type: "string", values: "" },
         { attribute: "country_name", type: "string", values: "" },
         { attribute: "task_attributes_value", type: "string", values: "" }
+        { attribute: "employment_type", type: "option", values: employment_types }
+        { attribute: "seniority_id", type: "option", values: seniorities }
       ])
+
+    fetch_and_format_seniorities: ->
+      seniorities = new AlumNet.Utilities.Seniorities
+      seniorities.fetch()
+      _.map seniorities.results, (senority)->
+        { value: senority.id,  text: senority.name }
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -70,8 +80,6 @@
       @collection.fetch
         data: { q: query }
         #data: { q: { name_cont: value } }
-
-
 
     clear: (e)->
       e.preventDefault()
