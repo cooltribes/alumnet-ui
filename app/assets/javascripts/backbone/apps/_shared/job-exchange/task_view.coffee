@@ -96,12 +96,8 @@
         type: "GET"
         data: { key_name: 'apply_for_a_job' }
         success: (data) =>
-          console.log "data"
-          console.log data
           if data.validation
             if current_user.get('is_premium')
-              console.log ("dataFromModal")
-              console.log (dataFromModal)
               Backbone.ajax
                 url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
                 method: 'PUT'
