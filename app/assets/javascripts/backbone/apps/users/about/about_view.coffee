@@ -212,7 +212,6 @@
         cropData: { "image": 'avatar' }
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
         onAfterImgCrop: ()->
-          # imgUrl = @croppedImg.attr('src')
           model.trigger('change:cover')
           if model.isCurrentUser()
             AlumNet.current_user.trigger('change:avatar')
@@ -369,7 +368,20 @@
             formData = new FormData()
             file = @$('#profile-avatar')
             formData.append('avatar', file[0].files[0])
-            @view.trigger "submit:avatar", formData
+            # @view.trigger "submit:avatar", formData
+            user = @model
+            user.profile.url = AlumNet.api_endpoint + '/profiles/' + user.profile.id
+            user.profile.save formData,
+              wait: true
+              data: formData
+              contentType: false
+              processData: false
+              success: (model, response, options)->
+                user.profile.url = user.urlRoot() + user.id + '/profile'
+                user.set("avatar", response.avatar)
+                user.trigger('change:avatar')
+                if user.isCurrentUser()
+                  AlumNet.current_user.trigger('change:avatar')
 
     optionsForSelectCities: (url)->
       placeholder: "Select a City"
@@ -593,7 +605,7 @@
       @userCanEdit = options.userCanEdit
       @showLevel = options.showLevel
 
-        
+
 
   #For contact info
   class About.Contact extends Marionette.ItemView
@@ -800,19 +812,18 @@
       experiences: "#experiences-list"
 
     events:
-      'click #js-message-send':'sendMensagge'      
+      'click #js-message-send':'sendMensagge'
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-   
+
     templateHelpers: ->
       userCanEdit: @userCanEdit
       add_timestamp: (file)->
-        date = new Date()        
+        date = new Date()
         "#{file}?#{date.getTime()}"
 
     sendMensagge: (e)->
       e.preventDefault()
-      AlumNet.trigger('conversation:recipient', null, @model)    
+      AlumNet.trigger('conversation:recipient', null, @model)
 
-   

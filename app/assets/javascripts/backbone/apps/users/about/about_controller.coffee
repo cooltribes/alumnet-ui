@@ -53,7 +53,7 @@
             collection.reset(newCollection)
 
         expCollection = new AlumNet.Entities.ExperienceCollection
-        
+
         expCollection.setOrder()
 
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
@@ -116,7 +116,7 @@
       user.on 'find:success', (response, options)=>
 
         # if user.isCurrentUser()
-        #   AlumNet.trigger('show:error', 404)    
+        #   AlumNet.trigger('show:error', 404)
         #   return
 
         profileId = user.profile.id
@@ -137,9 +137,9 @@
         languages.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/language_levels"
         languages.fetch()
 
-        
+
         expCollection = new AlumNet.Entities.ExperienceCollection
-        
+
         expCollection.setOrder()
 
         expCollection.url = AlumNet.api_endpoint + '/profiles/' + profileId + "/experiences"
@@ -183,7 +183,7 @@
         AlumNet.execute('render:users:submenu')
 
       user.on 'find:error', (response, options)->
-        AlumNet.trigger('show:error', response.status)    
+        AlumNet.trigger('show:error', response.status)
 
     #set the action when modal is submitted for each info
     #0-skills, 1-languages,
@@ -198,7 +198,7 @@
             _.each data, (el)->
               collection.create({name: el})
 
-        when 1, 2      #languages, contact infos
+        when 1, 2  #languages, contact infos
           view.on "submit", (data)->
             #Add the language and level to the collection
             view.collection.create(data, {wait: true})
@@ -244,31 +244,6 @@
               success: ()=>
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.trigger "change"
-
-        when 4  #avatar
-          view.on "submit:avatar", (data)->
-
-            @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-            @model.profile.save data,
-              wait: true
-              data: data
-              contentType: false
-              processData: false
-              success: (model, response, options)=>
-                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
-                @model.set("avatar", response.avatar)
-                @model.trigger('change:avatar')
-                if @model.isCurrentUser()
-                  AlumNet.current_user.trigger('change:avatar')
-
-                #change the avatar of the current user in the header
-                #if current user is who makes
-                #the changes. Not when admin changes another profile.
-                # if @model.isCurrentUser()
-                #   AlumNet.request 'get:current_user',
-                #     refresh: true
-                #     success: ->
-                #       AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
         when 5  #Experiences
           view.on "childview:save:experience", (childview)->
