@@ -165,6 +165,7 @@
       'picturesContainer': '.pictures-container'
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
+      'commentButton': '#commentB'
 
     events:
       'keypress .comment': 'commentSend'
@@ -175,6 +176,7 @@
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
+      'click @ui.commentButton': 'commentSendButton'
 
     clickedPicture: (e)->
       e.preventDefault()
@@ -186,12 +188,26 @@
 
     commentSend: (e)->
       e.stopPropagation()
+      console.log "nose algo"
       if e.keyCode == 13
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
         if data.body != ''
           @trigger 'comment:submit', data
           @ui.commentInput.val('')
+
+
+    commentSendButton: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      if data.comment != ''
+        view = @
+        comment = AlumNet.request('comment:post:new', @model.id)
+        comment.save data,
+          success: (model, response, options)->
+            view.ui.commentInput.val('')
+            view.collection.add(model, {at: view.collection.length}) 
+          
 
     clickedEdit: (e)->
       e.stopPropagation()

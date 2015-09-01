@@ -6,7 +6,11 @@ DESCRIPTION: A card that contains a post in a group
 ***/
 
 @import 'conf/conf.css.less';
-
+.post {
+	textarea{
+		width: 165px;
+	}
+}
 
 .groupPost {
 
@@ -141,6 +145,12 @@ DESCRIPTION: A card that contains a post in a group
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
+	.post {
+		textarea{
+			width: auto;
+		}
+	}
+
 	.groupPost {
 		&__btn--addPicture{
 			border: 1px solid @blue;
@@ -156,7 +166,14 @@ DESCRIPTION: A card that contains a post in a group
 }
 
 /* Medium devices (desktops, 992px and up) */
+
+
 @media (min-width: @media-medium-min) {
+	.post {
+		textarea{
+			width: auto;
+		}
+	}
 	.groupPost {
 		&__btn--addPicture{
 			border: 1px solid @blue;
@@ -172,6 +189,11 @@ DESCRIPTION: A card that contains a post in a group
 }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) { 
+	.post {
+		textarea{
+			width: auto;
+		}
+	}
 	.groupPost {
 		&__btn--addPicture{
 			border: 1px solid @blue;
