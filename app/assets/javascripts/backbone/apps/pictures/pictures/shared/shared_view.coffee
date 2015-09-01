@@ -91,7 +91,8 @@
       likeCounter = @$(".js-likes-counter")     
       val = parseInt(likeCounter.html()) + 1
       likeCounter.html(val)
-      likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      likeLink.removeClass('js-like').addClass('js-unlike').
+      html('<span class="glyphicon glyphicon-thumbs-down"></span> Unlike')
 
     remLike:()->
       # @model.remLike()

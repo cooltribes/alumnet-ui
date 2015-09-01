@@ -43,7 +43,7 @@
     className: 'conversations-container list-unstyled'
 
     initialize: ->
-      document.title='AlumNet - Messages'
+      document.title= "AlumNet - Messages"
 
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'
