@@ -2,6 +2,7 @@
   class ProductsList.Controller
     productsList: ->
       products = AlumNet.request('product:entities', {})
+      console.log products
       layoutView = new ProductsList.Layout
       productsTable = new ProductsList.ProductsTable
          collection: products

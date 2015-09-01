@@ -7,7 +7,7 @@
     initialize: (options)->
       document.title = 'AlumNet - Become a member'
       @current_user = options.current_user
-      @condition = options.condition
+      #@condition = options.condition
       
 
     events:
