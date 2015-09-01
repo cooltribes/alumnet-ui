@@ -60,11 +60,13 @@
             <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
         </div>
       <% end %>
+      
+      <% unless @currentUserIsAdmin: %>
+      <% end %>
 
+      <% if @currentUserIsAdmin: %>
       <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
-        <h3>Mailchimp mail list
-        </h3>
-
+        <h3>Mailchimp mail list</h3>
         <table>
           <tr>
             <td>
@@ -123,6 +125,7 @@
         <% end %>
         </div>
       </div>
+      <% end %>
     </div>
     <div class="col-md-4">
       <div class="groupAbout__box margin_bottom">
