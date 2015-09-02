@@ -255,7 +255,7 @@
                   if model.isEditing then model.isEditing = false
                   model.collection.trigger "reset"
 
-          view.on "childview:cancelEdit:experience", (childview)->
+          view.on "childview:cancelEdit", (childview)->
             model = childview.model
             model.isEditing = false
             model.fetch

@@ -713,18 +713,10 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
+      @model.decodeDates()      
 
     templateHelpers: ->
       model = @model
-
-      # diffType: ->
-      #   prev = model.collection.at(model.collection.indexOf(model) - 1)
-      #   hasTitle = true
-      #   if prev?
-      #     hasTitle = (prev.get("exp_type") != model.get("exp_type"))
-      #   # model.hasTitle = hasTitle
-
-      #   return hasTitle
 
       userCanEdit: @userCanEdit
 
@@ -758,7 +750,6 @@
       e.preventDefault()
       @model.isEditing = true
       @model.set "first", true
-      @model.decodeDates()
       @model.collection.trigger "reset" #For re-render the itemview
 
     removeItem: (e)->
