@@ -1,6 +1,6 @@
 @AlumNet.module 'CompaniesApp.JobPosts', (JobPosts, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class JobPosts.Task extends AlumNet.JobExchangeApp.Shared.Task
+  class JobPosts.Task extends AlumNet.Shared.Views.JobExchange.Task
     template: 'job_exchange/_shared/templates/discover_task'
     className: 'col-md-4'
 

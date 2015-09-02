@@ -1,5 +1,5 @@
-@AlumNet.module 'JobExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
-  class Shared.Task extends Marionette.CompositeView
+@AlumNet.module 'Shared.Views.JobExchange', (JobExchange, @AlumNet, Backbone, Marionette, $, _) ->
+  class JobExchange.Task extends Marionette.CompositeView
 
     initialize: (options)->
       @mode = options.mode
@@ -43,7 +43,7 @@
       'click @ui.inviteLink': 'inviteClicked'
 
     _showModal: ()->
-      modal = new Shared.ModalApply
+      modal = new JobExchange.ModalApply
       
       modal.on "submit", @_apply, @
 
@@ -87,7 +87,7 @@
         @model.destroy()
 
 
-    _apply: (data)->  
+    _apply: (dataFromModal)->  
       view = @
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
@@ -101,7 +101,7 @@
               Backbone.ajax
                 url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
                 method: 'PUT'
-                data: data
+                data: dataFromModal
                 success: ->
                   view.model.set('user_can_apply', false)
                   view.render()
@@ -113,7 +113,7 @@
             Backbone.ajax
               url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
               method: 'PUT'
-              data: data
+              data: dataFromModal
               success: ->
                 view.model.set('user_can_apply', false)
                 view.render()
@@ -123,7 +123,7 @@
           $.growl.error({ message: 'Unknow error, please try again' })  
 
 
-  class Shared.ModalApply extends Backbone.Modal
+  class JobExchange.ModalApply extends Backbone.Modal
     template: 'job_exchange/_shared/templates/modal_apply'
     
     cancelEl: '#js-close'

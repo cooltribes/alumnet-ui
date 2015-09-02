@@ -14,18 +14,22 @@ class LinkedinController < ApplicationController
 
   def callback
     init_client
-    if session[:atoken].nil?
-      pin = params[:oauth_verifier]
-      atoken, asecret =  @client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
-      session[:atoken] = atoken
-      session[:asecret] = asecret
+    if params[:oauth_problem].present?
+      check_problems(params[:oauth_problem])
     else
-      @client.authorize_from_access(session[:atoken], session[:asecret])
-    end
-    if params[:registration]
-      redirect_to root_path
-    else
-      init_session
+      if session[:atoken].nil?
+        pin = params[:oauth_verifier]
+        atoken, asecret =  @client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
+        session[:atoken] = atoken
+        session[:asecret] = asecret
+      else
+        @client.authorize_from_access(session[:atoken], session[:asecret])
+      end
+      if params[:registration]
+        redirect_to root_path
+      else
+        init_session
+      end
     end
   end
 
@@ -86,6 +90,12 @@ class LinkedinController < ApplicationController
         redirect_to root_path
       else
         redirect_to linkedin_registration_path
+      end
+    end
+
+    def check_problems(params)
+      if params == "user_refused"
+        redirect_to home_path
       end
     end
 

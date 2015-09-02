@@ -16,6 +16,7 @@
       "admin/prizes": "prizesList"
       "admin/features": "featuresList"
       "admin/users/:id": "userShow"
+      "admin/products": "productsList"
       "dashboard/alumni": "dashboardUsers"
 
   API =
@@ -55,6 +56,9 @@
     featuresList: ->
       controller = new AdminApp.FeaturesList.Controller
       controller.featuresList()
+    productsList: ->
+      controller = new AdminApp.ProductsList.Controller
+      controller.productsList()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
 

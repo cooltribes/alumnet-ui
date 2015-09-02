@@ -61,6 +61,7 @@
         m: 'or'
         profile_first_name_cont_any: searchTerm.split(" ")
         profile_last_name_cont_any: searchTerm.split(" ")
+        profile_residence_city_name_cont_any: searchTerm
         email_cont_any: searchTerm
 
     formatContact: (contacts)->
