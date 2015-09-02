@@ -38,7 +38,7 @@
         success: ->
           $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
               <span class="invitation">
-                <span class="userCard__actions__text">INVITED</span> 
+                <span class="userCard__actions__text">INVITED</span>
                 <span class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon glyphicon-ok"></span>
               </span>
@@ -49,34 +49,32 @@
     applyClicked: (e)->
       e.preventDefault()
       view = @
-
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
       Backbone.ajax
         url: url
         type: "GET"
         data: { key_name: 'give_help' }
-        success: (data) =>
+        success: (data) ->
           if data.validation
             if current_user.get('is_premium')
-              Backbone.ajax
-                url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
-                method: 'PUT'
-                success: ->
-                  view.model.set('user_can_apply', false)
-                  AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
+              view.sendApply()
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
-            Backbone.ajax
-              url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
-              method: 'PUT'
-              success: ->
-                view.model.set('user_can_apply', false)
-                AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
-
+            view.sendApply()
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
+
+    sendApply: ->
+      view = @
+      Backbone.ajax
+        url: AlumNet.api_endpoint + '/business_exchanges/' + @model.id + '/apply'
+        method: 'PUT'
+        success: ->
+          model = view.model
+          model.set('user_can_apply', false)
+          AlumNet.trigger('conversation:recipient', model.get('name'), model.getCreator())
 
     refreshClicked: (e)->
       e.preventDefault()

@@ -119,13 +119,12 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
-        direction: true
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
         onSelect: (date, standarDate, jsDate, input)->
           $("#event-end-date").val(date)
-          
+
       @ui.endDate.Zebra_DatePicker
         direction: true
         show_icon: false
@@ -205,11 +204,11 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       this.trigger('users:search', this.buildQuerySearch(data.search_term))
-     
+
     buildQuerySearch: (searchTerm) ->
       q:
         m: 'or'
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
-       
+
