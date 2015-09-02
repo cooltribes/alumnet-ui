@@ -25,10 +25,12 @@
       "selectCompany": "[name=company_id]"
       "inputCompany": "#organization_name"
 
+    triggers:
+      "click @ui.cancelEdit": "cancelEdit"
+
     events:
       "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"
-      "click @ui.cancelEdit": "cancelEdit"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
       "change @ui.selectType": "setCountries"

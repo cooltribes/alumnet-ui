@@ -79,15 +79,22 @@
 
     decodeDate: (attr)->
       date = @get "#{attr}_date"
-      date = moment(date, "YYYY-MM-DD")
-      day = date.date()
+      unless !date
+        date = moment(date, "YYYY-MM-DD")
+        day = date.date()
 
-      month = date.month() + 1
+        month = date.month() + 1
 
-      if month == 1 && day == 1
+        if month == 1 && day == 1
+          month = ""
+
+        year = date.year()  
+      else
+        year = "current"
         month = ""
+            
 
-      @set "#{attr}_year", date.year()
+      @set "#{attr}_year", year 
       @set "#{attr}_month", month
 
 
