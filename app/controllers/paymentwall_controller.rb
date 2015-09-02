@@ -1,6 +1,5 @@
 class PaymentwallController < ApplicationController
   skip_before_action :authenticate!
-  #layout "public"
 
   def callback
     require 'paymentwall'
@@ -14,7 +13,6 @@ class PaymentwallController < ApplicationController
     @session = session
     @pingback = Paymentwall::Pingback.new(request.GET, request.remote_ip)
     @auth_token = @pingback.getParameter('auth_token')
-    #render :text => @pingback.getParameter('payment_type')
     @user_id = @pingback.getParameter('uid')
     @reference = @pingback.getParameter('ref')
     @event_id = @pingback.getParameter('event_id')
@@ -28,16 +26,16 @@ class PaymentwallController < ApplicationController
          @response = payment.response
          #render json: @response
          render :text => "OK"
-      else
-      #elsif(@pingback.getParameter('payment_type') == 'subscription') #membership
+      #else
+      elsif(@pingback.getParameter('payment_type') == 'subscription') #membership
         if(@pingback.getParameter('type') == '0') #assign membership
-          if(@pingback.getParameter('goodsid') == '222')
+          product = Product.new
+          @response_product = product.get(@pingback.getParameter('goodsid'), @auth_token)
+          if(@response_product['quantity'])
+            @end = DateTime.now + @response_product['quantity'].months
+          else
             @lifetime = true
             @member = 3
-          elsif(@pingback.getParameter('goodsid') == '333')
-            @end = DateTime.now + 3.months
-          else
-            @end = DateTime.now + 1.year
           end
         
           subscription = Subscription.new
@@ -52,14 +50,15 @@ class PaymentwallController < ApplicationController
           payment.create(JSON.parse(@payment_text), session, @auth_token)
           @response_payment = payment.response
           render :text => "OK"
-          #render json: @response_payment
+          #render :text => @response_product['quantity']
+          #render json: @data_text
         elsif(@pingback.getParameter('type') == '2') #deactivate membership
           payment = Payment.new
           @payment_text = { :status => 2 }.to_json
           payment.update(@reference, JSON.parse(@payment_text), session, @auth_token)
           @response_payment = payment.response
           render :text => "OK"
-          #render json: @response_payment
+          #render json: @response
         end
       end
     else

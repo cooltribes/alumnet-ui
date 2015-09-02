@@ -96,9 +96,7 @@
       @model.save data,
         success: ->
           modal.destroy()
-          console.log model
           model.trigger('render:view')
-          console.log table
           if table
             table.collection.add(model)
 
