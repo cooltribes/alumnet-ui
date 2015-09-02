@@ -10,7 +10,6 @@
       controller.checkout(condition,data)
 
   AlumNet.on "payment:checkout", (data)->
-    #AlumNet.navigate("payment/checkout")
     API.checkout('',data)
 
   AlumNet.addInitializer ->

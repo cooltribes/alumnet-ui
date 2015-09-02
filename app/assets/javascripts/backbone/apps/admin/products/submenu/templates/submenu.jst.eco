@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(0)%>">
-          <a href="#admin/regions" class="navTopSubBarAdmin__link" title="Invites">
+          <a href="#admin/products" class="navTopSubBarAdmin__link" title="Invites">
             <span class="navTopSubBarAdmin__icon glyphicon"></span> Browse Products
           </a>
         </li>

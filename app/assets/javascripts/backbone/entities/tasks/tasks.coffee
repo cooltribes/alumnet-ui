@@ -3,6 +3,12 @@
   # EMPLOYMENT_TYPES = { 0 => "Full-time", 1 => "Part-time", 2 => "Internship", 3 => "Temporary"}
   # POSITION_TYPES = { 0 => "Top Management/Director", 1 => "Middle management", 2 => "Senior Specialist",
   #   3 => "Junior Specialist", 4 => "Entry job" }
+    @EMPLOYMENT_TYPES: [
+      { value: 0, text: "Full-time"  },
+      { value: 1, text: "Part-time"  },
+      { value: 2, text: "Internship" },
+      { value: 3, text: "Temporary"  },
+    ]
 
     validation:
       name:
@@ -144,7 +150,7 @@
       post_until:
         required: true
         msg: "Departure Date is required"
-        
+
   class Entities.MeetupExchangeCollection extends Backbone.Collection
     model:
       Entities.MeetupExchange

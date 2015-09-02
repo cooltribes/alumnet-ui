@@ -24,12 +24,12 @@
 
   API =
     getProductEntities: (querySearch)->
-      initializeProducts() if Entities.products == undefined
-      Entities.products.fetch
+      products = new Entities.ProductCollection
+      products.fetch
         data: querySearch
         success: (collection, response, options) ->
-          Entities.products.trigger('fetch:success', collection)
-      Entities.products
+          products.trigger('fetch:success', collection)
+      products
 
     getNewProduct: ->
       new Entities.Product

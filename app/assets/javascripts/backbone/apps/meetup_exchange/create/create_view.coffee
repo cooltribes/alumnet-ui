@@ -3,7 +3,7 @@
     template: 'meetup_exchange/create/templates/form'
 
     initialize: (options)->
-      document.title = 'AlumNet - Create a job'
+      document.title = 'AlumNet - Create a meetup'
       @current_user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
