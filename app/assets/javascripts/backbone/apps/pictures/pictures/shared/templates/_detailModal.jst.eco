@@ -2,7 +2,7 @@
 
 
     <div class="row-fluid" style="height:100%">
-      <div class="col-md-8 picture" style="height:100%" >
+      <div class="col-md-8 picture hidden-xs" style="height:100%" >
         <% if @horizontal: %>
           <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
         <% else: %>
@@ -24,6 +24,35 @@
           "><span class="glyphicon glyphicon-chevron-left"></span></a>
         <% end %>
       </div>
+
+
+      <div class="picture visible-xs" style="height:auto">
+        <div class="row">
+          <div class="col-xs-12">
+            <% if @horizontal: %>
+              <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
+            <% else: %>
+              <img height="auto" src="<%= @picture.original %>">
+            <% end %>
+            <% if @showMorePics: %>
+              <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+                  margin-right:3px;
+                  right: 0;
+                  position: absolute;
+                  top: 50%;
+              "><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+              <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+                  margin-left:3px;
+                  left: 0;
+                  position: absolute;
+                  top: 50%;
+              "><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
 
       <aside class="col-xs-12 col-md-4 ">
         <div class="row">
@@ -137,7 +166,7 @@
                 <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
               </div>
               <div class="col-xs-2 visible-xs">
-                <button id= "commentB" class="btn btn-default-blue"><span style="color: #2099D0" class="glyphicon glyphicon-comment"></span></button>
+                <button id= "commentB" class="btn btn-default-blue post__buttomComent"><span class="glyphicon glyphicon-comment"></span></button>
               </div>
             </div>
           </form>
