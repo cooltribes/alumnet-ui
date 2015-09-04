@@ -1,6 +1,5 @@
 <div class="bbm-modal__section clearfix">
 
-
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture hidden-xs" style="height:100%" >
         <% if @horizontal: %>
@@ -74,8 +73,8 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
-              <h3> 
-                <%= @uploader.name %>                 
+              <h3>
+                <%= @uploader.name %>
               </h3>
               <small class="margin_top_xsmall_minus">
                 <%= moment(@created_at).fromNow() %>
@@ -88,8 +87,8 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle" style="width: 60px;">
             </div>
             <div class="col-xs-8">
-              <h3> 
-                <%= @uploader.name %>                 
+              <h3>
+                <%= @uploader.name %>
               </h3>
               <small class="margin_top_xsmall_minus">
                 <%= moment(@created_at).fromNow() %>
@@ -119,15 +118,16 @@
                 </div>
               </div>
             <% end %>
+            <div class="js-tags"></div>
           </div>
 
           <form>
           <div class="row margin_top hidden-xs">
             <div class="col-md-12">
-
+              <a href="#" class="btn btn-lg btn-commentImage js-tag-friend">TAG A FRIEND</a>
               <a href="#" class="btn btn-lg btn-commentImage js-goto-comment">COMMENT <span class="icon-entypo-comment"></span></a>
               <div class="btn-lg groupPost__btn--like">
-                <% if @you_like: %>                
+                <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike">Unlike<span class="glyphicon glyphicon-thumbs-down"></span></a>
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
@@ -141,7 +141,7 @@
            <div class="row visible-xs">
             <div class="col-xs-12">
               <div class="like">
-                <% if @you_like: %>                
+                <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike"> Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like"> Like <span class="icon-entypo-thumbs-up"></span></a>
@@ -153,10 +153,10 @@
           <!-- End Mobile -->
 
         <div class="groupPost__commentsContainer comments-container margin_top hidden-xs">
-          
+
         </div>
 
-        <div class="row"> 
+        <div class="row">
           <form class="groupPost__commentForm clearfix form">
             <div class="groupPost__commentForm__avatar hidden-xs">
               <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
