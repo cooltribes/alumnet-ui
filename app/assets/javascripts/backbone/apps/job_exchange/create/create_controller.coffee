@@ -12,19 +12,34 @@
         success: (data) =>
           if data.validation
             if current_user.get('is_premium')
-              controller.showForm()
+              if current_user.get('remaining_job_posts') > 0
+                controller.showCreateForm()
+              else
+                controller.showBuyForm()
+                #AlumNet.navigate("job-exchange/buy", {trigger: true})
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
-            controller.showForm()
+            if current_user.get('remaining_job_posts') > 0
+              controller.showCreateForm()
+            else
+              controller.showBuyForm()
+              #AlumNet.navigate("job-exchange/buy", {trigger: true})
         error: (data) =>
           $.growl.error({ message: 'Unknow error, please try again' })
 
-    showForm: ->
+    showCreateForm: ->
       task = new AlumNet.Entities.JobExchange
       createForm = new Create.Form
         model: task
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute('render:job_exchange:submenu')
+
+    showBuyForm: ->
+      #task = new AlumNet.Entities.JobExchange
+      buyForm = new Create.JobPostsView
+        #model: task
+      AlumNet.mainRegion.show(buyForm)
       AlumNet.execute('render:job_exchange:submenu')
 
     update: (id)->
