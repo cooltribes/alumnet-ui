@@ -11,6 +11,9 @@ DESCRIPTION: message per se
 	background-color: @white;
 	padding:  20px;
 	
+	&__marginMessage{
+		margin-top: -60px;
+	}
 
 	&__metaContainer{
 		overflow: auto;
@@ -19,18 +22,20 @@ DESCRIPTION: message per se
 		width: 16%;
 		float: left;
 		img{
-			max-width: 100%;
+			width: 40px;
+			height: 40px;
 		}
 	}
 	&__meta{
 		width: 84%;
 		float: left;
-		margin-top: 10px;
+		margin-top: 0;
 	}
 	
 	&__name{
-		font-size: 26px;
+		font-size: 16px;
 		font-weight: 300;
+		margin-left: 0;
 	}
 	&__date{
 		color: @gray;
@@ -41,7 +46,110 @@ DESCRIPTION: message per se
 		margin-left: 16%;
 	}
 
-
+	&__mobileMensaje{
+		position: fixed;
+		top: 60px;
+		left: 0;
+		height: 90%;
+		width: 100%;
+		z-index: 1;
+		overflow: auto;
+	}
 
 }
 
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.message{
+		
+		&__marginMessage{
+			margin-top: 0;
+		}
+		&__name{
+			font-size: 26px;
+			font-weight: 300;
+			margin-left: 0;
+		}
+		&__meta{
+			width: 84%;
+			float: left;
+			margin-top: 10px;
+		}
+		&__mobileMensaje{
+			position: static;
+			top: 0;
+		}
+		&__avatar{
+			width: 16%;
+			float: left;
+			img{
+				width: 80px;
+				height: 80px;
+			}
+		}
+	}
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+	.message{
+		
+		&__marginMessage{
+			margin-top: 0;
+		}
+		&__name{
+			font-size: 26px;
+			font-weight: 300;
+			margin-left: 0;
+		}
+		&__meta{
+			width: 84%;
+			float: left;
+			margin-top: 10px;
+		}
+		&__mobileMensaje{
+			position: static;
+			top: 0;
+		}
+		&__avatar{
+			width: 16%;
+			float: left;
+			img{
+				width: 80px;
+				height: 80px;
+			}
+		}
+	}
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) { 
+	.message{
+		
+		&__marginMessage{
+			margin-top: 0;
+		}
+		&__name{
+			font-size: 26px;
+			font-weight: 300;
+			margin-left: 0;
+		}
+		&__meta{
+			width: 84%;
+			float: left;
+			margin-top: 10px;
+		}
+		&__mobileMensaje{
+			position: static;
+			top: 0;
+		}
+		&__avatar{
+			width: 16%;
+			float: left;
+			img{
+				width: 80px;
+				height: 80px;
+			}
+		}
+	}
+}
