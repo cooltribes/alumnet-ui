@@ -1,0 +1,9 @@
+<div>
+  <%= @title %>
+  <%= @description %>
+  <%= @url %>
+  <% if @userCanEdit: %>
+    <a href="#" id="js-edit-link">edit</a>
+    <a href="#" id="js-delete-link">x</a>
+  <% end %>
+</div>

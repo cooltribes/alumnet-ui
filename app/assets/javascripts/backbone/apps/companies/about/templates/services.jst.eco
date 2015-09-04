@@ -19,14 +19,4 @@
 			<% end %>
 		</div>
 	</div>
-
-	<!-- <div class="col-md-6">
-		<div class=" company__row company__cell">
-			<h3 class="no-margin">Services</h3>
-			<ul>
-				<li>Hosting</li>
-				<li>Desing</li>
-			</ul>
-		</div>
-	</div> -->
 </div>

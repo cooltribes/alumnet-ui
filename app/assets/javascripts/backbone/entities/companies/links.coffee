@@ -11,8 +11,3 @@
 
   class Entities.LinksCollection extends Backbone.Collection
     model: Entities.Link
-    # url: -> 
-    #   AlumNet.api_endpoint + "/keywords"
-
-
-  
