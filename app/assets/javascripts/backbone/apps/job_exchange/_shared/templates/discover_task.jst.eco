@@ -19,6 +19,9 @@
   <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
   </div>
+  <div class="description">
+    <p>Hola</p>
+  </div>
       <% if @user: %>
         <div class="row user">
           <div class="col-md-2 text-right">

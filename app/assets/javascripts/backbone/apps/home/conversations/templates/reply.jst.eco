@@ -1,4 +1,4 @@
-<div class="messageViewer">
+<div class="messageViewer message__mobileMensaje">
 	<h3 class="messageViewer__title">
 	<%= @subject %> <!--<span class="messageViewer__editIcon glyphicon glyphicon-edit"></span>-->
 	</h3>
@@ -35,6 +35,11 @@
 						<div class="pull-right">
 							<button class="btn btn-primary js-submit">SEND</button>
 						</div>
+						<div class="pull-left visible-xs">
+    						<a href="#conversations" class="btn btn-primary-noBackground">VOLVER</a>
+							
+						</div>
+						
 					</div>
 				</div>
 			</div>
