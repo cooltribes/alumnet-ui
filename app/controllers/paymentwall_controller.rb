@@ -60,6 +60,23 @@ class PaymentwallController < ApplicationController
           render :text => "OK"
           #render json: @response
         end
+      elsif @pingback.getParameter('payment_type') == 'job_post'
+        if(@pingback.getParameter('type') == '0') #assign job posts
+          product = Product.new
+          @response_product = product.get(@pingback.getParameter('goodsid'), @auth_token)
+
+          user_product = UserProduct.new
+          @data_text = { :user_id => @user_id, :start_date => DateTime.now, :quantity => @response_product['quantity'], :product_id => @response_product['id'], :transaction_type => 1, :creator_id => @user_id, :reference => @reference }.to_json
+          user_product.create(JSON.parse(@data_text), session, @user_id, @auth_token)
+          @response = JSON.parse(user_product.response.body)
+
+          payment = Payment.new
+          @payment_text = { :user_id => @user_id, :paymentable_id => @response_product['id'], :paymentable_type => "Product", :subtotal => @pingback.getParameter('amount'), :iva => 0, :total => @pingback.getParameter('amount'), :reference => @reference, :country_id => @pingback.getParameter('country_id'), :city_id => @pingback.getParameter('city_id'), :address => @pingback.getParameter('address') }.to_json
+          payment.create(JSON.parse(@payment_text), session, @auth_token)
+          @response_payment = payment.response
+          render :text => "OK"
+          #render json: @response_payment
+        end
       end
     else
       @response = @pingback.getErrorSummary()
