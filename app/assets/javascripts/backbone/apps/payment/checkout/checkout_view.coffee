@@ -2,7 +2,7 @@
 
   class Checkout.PaymentView extends Marionette.ItemView
     template: 'payment/checkout/templates/payments'
-    className: 'col-md-8 col-md-offset-3'
+    className: 'col-md-8 col-md-offset-2'
 
     initialize: (options)->
       document.title = 'AlumNet - Become a member'
