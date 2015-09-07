@@ -66,6 +66,9 @@ class PaymentwallController < ApplicationController
           @response_product = product.get(@pingback.getParameter('goodsid'), @auth_token)
 
           user_product = UserProduct.new
+          # transaction_type
+          # 1: add job posts
+          # 2: use job post
           @data_text = { :user_id => @user_id, :start_date => DateTime.now, :quantity => @response_product['quantity'], :product_id => @response_product['id'], :transaction_type => 1, :creator_id => @user_id, :reference => @reference }.to_json
           user_product.create(JSON.parse(@data_text), session, @user_id, @auth_token)
           @response = JSON.parse(user_product.response.body)

@@ -10,7 +10,6 @@
       controller.checkout(data, type)
 
   AlumNet.on "payment:checkout", (data, type)->
-    console.log type
     API.checkout(data, type)
 
   AlumNet.addInitializer ->

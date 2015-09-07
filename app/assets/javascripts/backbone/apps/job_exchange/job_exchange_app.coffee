@@ -9,7 +9,6 @@
       "job-exchange/new": "createJobExchange"
       "job-exchange/:id/edit": "updateJobExchange"
       "job-exchange/:id": "showJobExchange"
-      "job-exchange/buy": "buyJobExchange"
 
   API =
     discoverJobExchange: ->
@@ -33,7 +32,6 @@
       controller = new JobExchangeApp.Invitations.Controller
       controller.invitations()
     createJobExchange: ->
-      console.log 'create'
       document.title = 'AlumNet - Create a job'
       controller = new JobExchangeApp.Create.Controller
       controller.create()
@@ -43,11 +41,6 @@
     showJobExchange: (id)->
       controller = new JobExchangeApp.Show.Controller
       controller.show(id)
-    buyJobExchange: ->
-      console.log 'enters'
-      # document.title = 'AlumNet - Buy Job Posts'
-      # controller = new JobExchangeApp.Buy.Controller
-      # controller.list()
 
   AlumNet.on "program:job:my", ->
     AlumNet.navigate("job-exchange/my-posts")
@@ -56,11 +49,6 @@
   AlumNet.on "program:job:discover", ->
     AlumNet.navigate("job-exchange")
     API.discoverJobExchange()
-
-  AlumNet.on "program:job:buy", ->
-    console.log 'trigger buy'
-    #AlumNet.navigate("job-exchange")
-    #API.discoverJobExchange()
 
   AlumNet.addInitializer ->
     new JobExchangeApp.Router

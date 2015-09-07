@@ -38,7 +38,6 @@
     showBuyForm: ->
       job_posts = AlumNet.request('product:entities', {q: { feature_eq: 'job_post', status_eq: 1 }})
       job_posts.on 'fetch:success', (collection)->
-        console.log collection
         jobPostsView = new Create.JobPostsView
           current_user: AlumNet.current_user
           collection: collection

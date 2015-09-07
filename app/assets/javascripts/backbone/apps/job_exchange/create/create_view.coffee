@@ -255,7 +255,6 @@
 
     initialize: (options)->
       document.title = 'AlumNet - Buy Job Posts'
-      #@current_user = options.current_user
     
     events:
       'click button.js-submit': 'submitClicked'
