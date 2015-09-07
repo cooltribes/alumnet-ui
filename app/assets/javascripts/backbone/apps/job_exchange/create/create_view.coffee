@@ -250,7 +250,7 @@
       $('#js-modal-company-container').html(modal.render().el)
 
   class Create.JobPostsView extends Marionette.ItemView
-    template: 'job_exchange/buy/templates/job_posts'
+    template: 'job_exchange/create/templates/job_posts'
     className: 'container'
 
     initialize: (options)->
@@ -263,4 +263,4 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      AlumNet.trigger 'payment:checkout' , data
+      AlumNet.trigger 'payment:checkout' , data, 'job_post'

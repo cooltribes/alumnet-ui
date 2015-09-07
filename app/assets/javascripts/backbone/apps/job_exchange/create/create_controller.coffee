@@ -36,11 +36,15 @@
       AlumNet.execute('render:job_exchange:submenu')
 
     showBuyForm: ->
-      #task = new AlumNet.Entities.JobExchange
-      buyForm = new Create.JobPostsView
-        #model: task
-      AlumNet.mainRegion.show(buyForm)
-      AlumNet.execute('render:job_exchange:submenu')
+      job_posts = AlumNet.request('product:entities', {q: { feature_eq: 'job_post', status_eq: 1 }})
+      job_posts.on 'fetch:success', (collection)->
+        console.log collection
+        jobPostsView = new Create.JobPostsView
+          current_user: AlumNet.current_user
+          collection: collection
+        AlumNet.mainRegion.show(jobPostsView)
+        AlumNet.execute('render:job_exchange:submenu')
+      
 
     update: (id)->
       current_user = AlumNet.current_user

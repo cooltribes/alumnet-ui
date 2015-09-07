@@ -24,7 +24,10 @@
 </div>
 <div class="row main-events-area">
   <form class="row formANet form ">
-    
+    <%% for item in @items: %>
+      <input type="radio" name="subscription_id" value="<%%= item.id %>"> <%%= item.sku %> - <%%= item.name %> - <%%= item.price %>EUR
+      </br>
+    <%% end %>
     <!-- ACTIONS ON -->
     <div class="text-right">
       <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
