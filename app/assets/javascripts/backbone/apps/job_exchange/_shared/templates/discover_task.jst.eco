@@ -19,8 +19,12 @@
   <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
   </div>
+  <div class="jobPost__descriptionBackground">
+    <p>...</p>
+  </div>
+
       <% if @user: %>
-        <div class="row user">
+        <div class="row user" style="margin-top: -20px;">
           <div class="col-md-2 text-right">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
           </div>

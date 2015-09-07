@@ -15,6 +15,9 @@
   <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
   </div>
+  <div class="jobPost__descriptionBackground">
+    <p>...</p>
+  </div>
       <!--<div class="jobPostDetail__description overfloadText">
         <h3><span class="ico-points"></span> Offer</h3>
         <p><%- @offer %></p>
