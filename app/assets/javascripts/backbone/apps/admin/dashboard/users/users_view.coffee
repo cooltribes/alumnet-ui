@@ -89,18 +89,20 @@
 
 
     _sortTableForChart: (dataTable)->
-      values = dataTable.slice(1) #Get all but not the titles      
+      
+      values = dataTable.slice(1) #Get all but not the titles    
+
+      if values.length == 0
+        $.growl.warning {message: "There is not data for these dates, try another query."}
 
       if @getInterval() == "days"
-        console.log "days"
-        console.log values
+        
         values = _.sortBy values, (el)-> #Sort the arrays
           # return (new Date(el[0]))
           return (new Date(moment(el[0], "DD-MM-YYYY").format("MM-DD-YYYY")))
         # .reverse()
 
       else if @getInterval() == "months"  
-        console.log values
         values = _.sortBy values, (el)-> #Sort the arrays
           return (new Date("01-".concat(el[0])))        
 
@@ -125,7 +127,7 @@
             duration: 1000
             easing: 'out'
             startup: true
-          
+                  
           # 'titleTextStyle': { 'fontSize': 16 }
 
       @ui.graph_section.showAnimated(graph.render().el)
