@@ -14,7 +14,7 @@
 
           routeChanged = @changeRouteForExternal(route, args)
           if routeChanged
-            return false
+            false
 
           if _.contains(@externalRoutes(), route)
             true
@@ -67,7 +67,7 @@
         return true
 
       false
-    
+
 
     externalRoutes: ->
       [
@@ -84,8 +84,28 @@
   class Routers.Admin extends Marionette.AppRouter
     before: (route)->
       current_user = AlumNet.current_user
-      unless current_user.isAdmin()
-        return false
 
-      AlumNet.execute('header:show:admin')
-      true
+      if current_user.isAlumnetAdmin()
+        AlumNet.execute('header:show:admin')
+        true
+      else if current_user.isRegionalAdmin() || current_user.isNacionalAdmin()
+        if _.contains(@adminRoutes(), route)
+          AlumNet.execute('header:show:admin')
+          true
+        else
+          AlumNet.trigger 'show:error', 403
+          false
+
+    adminRoutes: ->
+      [
+        "admin/users/stats",
+        "admin/users/deleted",
+        "admin/groups/deleted",
+        "admin/users/create",
+        "admin/users",
+        "admin/groups",
+        "admin/users/deleted",
+        "admin/groups/deleted",
+        "admin/users/:id",
+        "dashboard/alumni",
+      ]

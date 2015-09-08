@@ -22,14 +22,19 @@
     </p><br>
   </div>
 </div>
-<div class="row main-events-area">
-  <form class="row formANet form ">
-    <%% for item in @items: %>
-      <input type="radio" name="subscription_id" value="<%%= item.id %>"> <%%= item.sku %> - <%%= item.name %> - <%%= item.price %>EUR
-      </br>
-    <%% end %>
+<div class="row main-events-area text-center">
+  <form class="formANet form">
+    
+      <%% for item in @items: %>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 products overfloadText">
+          <input type="radio" name="subscription_id" value="<%%= item.id %>"> <span class="icon-entypo-basket"><%%= item.name %> - <%%= item.price %>EUR</span>
+        </div>
+      </div>
+      <%% end %>
+      <hr>
     <!-- ACTIONS ON -->
-    <div class="text-right">
+    <div class="text-center">
       <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
       <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
     </div>
