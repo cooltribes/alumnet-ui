@@ -248,3 +248,18 @@
         model: new AlumNet.Entities.Company
         taskView: @
       $('#js-modal-company-container').html(modal.render().el)
+
+  class Create.JobPostsView extends Marionette.ItemView
+    template: 'job_exchange/create/templates/job_posts'
+    className: 'container'
+
+    initialize: (options)->
+      document.title = 'AlumNet - Buy Job Posts'
+    
+    events:
+      'click button.js-submit': 'submitClicked'
+
+    submitClicked: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      AlumNet.trigger 'payment:checkout' , data, 'job_post'

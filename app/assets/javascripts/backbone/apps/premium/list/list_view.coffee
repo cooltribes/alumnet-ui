@@ -14,4 +14,4 @@
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      AlumNet.trigger 'payment:checkout' , data
+      AlumNet.trigger 'payment:checkout' , data, 'subscription'
