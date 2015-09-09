@@ -1,3 +1,5 @@
+<%= console.log this %>
+
 <div class="userCoverArea" style="<%=@cover_style()%>" role="group">
   <div class="userCoverArea__avatar text-center">
     <% if @avatar.extralarge: %>
