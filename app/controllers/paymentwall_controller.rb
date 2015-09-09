@@ -45,15 +45,15 @@ class PaymentwallController < ApplicationController
           user_product.update_user(JSON.parse(@user_text), session, @user_id, @auth_token)
 
           @response = JSON.parse(user_product.response.body)
-          @response_user = user_product.response_user
+          @response_user = JSON.parse(user_product.response_user.body)
 
           payment = Payment.new
           @payment_text = { :user_id => @user_id, :paymentable_id => @response_product['id'], :paymentable_type => "Subscription", :subtotal => @pingback.getParameter('amount'), :iva => 0, :total => @pingback.getParameter('amount'), :reference => @reference, :country_id => @pingback.getParameter('country_id'), :city_id => @pingback.getParameter('city_id'), :address => @pingback.getParameter('address') }.to_json
           payment.create(JSON.parse(@payment_text), session, @auth_token)
           @response_payment = payment.response
-          #render :text => "OK"
+          render :text => "OK"
           #render :text => @response_product['quantity']
-          render json: @response_user
+          #render json: @response_user
         elsif(@pingback.getParameter('type') == '2') #deactivate membership
           payment = Payment.new
           @payment_text = { :status => 2 }.to_json
