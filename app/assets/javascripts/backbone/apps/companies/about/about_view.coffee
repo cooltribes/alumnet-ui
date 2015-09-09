@@ -85,6 +85,7 @@
         pk: view.model.id
         title: 'Enter the Industry of Company'
         toggle: 'manual'
+        emptytext: "There is not available information"        
         source: data
         validate: (value)->
           if $.trim(value) == ''
@@ -114,6 +115,7 @@
         pk: view.model.id
         title: 'Enter the size of Company'
         toggle: 'manual'
+        emptytext: "There is not available information"        
         source: view.model.sizes
         validate: (value)->
           if $.trim(value) == ''
