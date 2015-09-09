@@ -27,8 +27,7 @@
 											Add Picture
 										</a>
 										<a id="js-add-tags" class="groupPost__btn--addPicture" href="javascript:;">
-											<i class="icon-entypo-picture"></i>
-											Add Tags
+											<i class="icon-entypo-tag"></i>Tag Friends
 										</a>
 										<a href="#" class="groupPost__btn--addPicture" id="js-post-submit">
 										Post</a>
