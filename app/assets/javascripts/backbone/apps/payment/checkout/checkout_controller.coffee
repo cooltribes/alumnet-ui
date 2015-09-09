@@ -1,8 +1,8 @@
 @AlumNet.module 'PaymentApp.Checkout', (Checkout, @AlumNet, Backbone, Marionette, $, _) ->
   class Checkout.Controller
-    checkout: (condition,data)->
+    checkout: (data, type)->
       checkoutView = new Checkout.PaymentView
         current_user: AlumNet.current_user
-        condition: condition
         data: data
+        type: type
       AlumNet.mainRegion.show(checkoutView)

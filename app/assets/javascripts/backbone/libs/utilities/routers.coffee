@@ -77,6 +77,7 @@
         "job-exchange/automatches",
         "job-exchange/:id",
         "job-exchange/:id/edit",
+        "job-exchange/buy",
         "users/:id/profile",
       ]
 
