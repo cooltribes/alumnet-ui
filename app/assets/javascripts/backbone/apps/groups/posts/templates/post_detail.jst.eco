@@ -2,18 +2,24 @@
   <div class="groupPost__postBody">
     <div class="groupPost__metaData clearfix">
       <!-- Avatar ON -->
-      <div class="groupPost__avatar">
-        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
-      </div>
-      <!-- Avatar OFF -->
-      <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
-      <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
-      <!-- TAGS       -->
-      <% if @tagsLinks: %>
-        <div class="tags">
-          with: <%- @tagsLinks %>
+      <div class="row">
+        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
+          <div class="groupPost__avatar">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+          </div>
         </div>
-      <% end %>
+        <div class="col-xs-8 col-sm-10 col-md-10 col-lg-11">
+      <!-- Avatar OFF -->
+          <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+          <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
+          <!-- TAGS       -->
+          <% if @tagsLinks: %>
+            <div class="tags">
+              with: <%- @tagsLinks %>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <!--  -->
     </div>
     <p id="js-body-post"> <%= @body %></p>
