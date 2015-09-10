@@ -28,7 +28,6 @@
           _.each errors, (value, key, list)->
             view.showErrors(key, value[0])
 
-
     cancelClicked: (e)->
       e.preventDefault()
       AlumNet.trigger "admin:users"
