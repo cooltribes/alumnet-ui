@@ -1,11 +1,12 @@
-@AlumNet.module 'RegistrationApp.Profile', (Profile, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Profile.Form extends Marionette.ItemView
-    template: 'registration/profile/templates/form'
+  class Main.BasicInformation extends Marionette.ItemView
+    template: 'registration/basic_information/templates/form'
     className: 'container-fluid'
 
-    initialize: ->
-      document.title = " AlumNet - Registration"
+    initialize: (options)->
+      @step = options.step
+      @layout = options.layout
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -20,6 +21,9 @@
 
     templateHelpers: ->
       model = @model
+      birth_city_helper: @model.get('birth_city').id
+      residence_city_helper: @model.get('residence_city').id
+      date_born: @model.getDateBorn()
       avatar_picture: ->
         if model.get('avatar_url')
           model.get('avatar_url')
@@ -29,9 +33,9 @@
           null
       select_gender: (value)->
         if value == model.get('gender') then 'selected' else ''
-        
-      isVisible: !AlumNet.current_user.isExternal()    
-        
+
+      isVisible: !AlumNet.current_user.isExternal()
+
     ui:
       'selectBirthCountries': '#js-birth-countries'
       'selectBirthCities': '#js-birth-cities'
@@ -44,11 +48,9 @@
       'change #profile-avatar': 'previewImage'
       'change #js-birth-countries': 'setBirthCities'
       'change #js-residence-countries': 'setResidenceCities'
-      'click .js-linkedin-import': 'linkedinClicked'
 
-
-    submitClicked: (e)->
-      e.preventDefault()
+    saveData: ()->
+      layout = @layout
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
@@ -56,7 +58,14 @@
       file = @$('#profile-avatar')
       formData.append('avatar', file[0].files[0])
       @model.set(data)
-      @trigger 'form:submit', @model, formData
+      if @model.isValid(true)
+        @model.save data,
+          wait: true
+          contentType: false
+          processData: false
+          data: formData
+          success: ->
+            layout.goToNext()
 
     previewImage: (e)->
       input = @.$('#profile-avatar')
@@ -70,14 +79,14 @@
 
     setBirthCities: (e)->
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      @ui.selectBirthCities.select2(@optionsForSelectCities(url))
+      @ui.selectBirthCities.select2(@optionsForSelectCities(url, false))
 
     setResidenceCities: (e)->
       url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      @ui.selectResidenceCities.select2(@optionsForSelectCities(url))
+      @ui.selectResidenceCities.select2(@optionsForSelectCities(url, false))
 
 
-    optionsForSelectCities: (url)->
+    optionsForSelectCities: (url, initialValue)->
       placeholder: "Select a City"
       minimumInputLength: 2
       ajax:
@@ -93,6 +102,8 @@
         data.name
       formatSelection: (data)->
         data.name
+      initSelection: (element, callback)->
+        callback(initialValue) if initialValue
 
     onRender: ->
       limit_date = moment().subtract(20, 'years').format("YYYY-MM-DD")
@@ -121,12 +132,21 @@
         placeholder: "Select a Country"
         data: data
 
-      @ui.selectBirthCountries.select2('val', @model.get('birth_country_id'))
-      @ui.selectResidenceCountries.select2('val', @model.get('residence_country_id'))
+      birthCountry = @model.get('birth_country')
+      birthCity = @model.get('birth_city')
+      residenceCountry = @model.get('residence_country')
+      residenceCity = @model.get('residence_city')
 
-    linkedinClicked: (e)->
-      if gon.linkedin_profile && gon.linkedin_profile.profile
-        e.preventDefault()
-        @model.set(gon.linkedin_profile.profile)
-        @render()
+      ##Initial values for Countries
+      @ui.selectBirthCountries.select2('val', birthCountry.id)
+      @ui.selectResidenceCountries.select2('val', residenceCountry.id)
 
+      ##Initial values for Birth City
+      url_birth_city = AlumNet.api_endpoint + '/countries/' + birthCountry.id + '/cities'
+      initial_birth_city = { id: birthCity.id, name: birthCity.text }
+      @ui.selectBirthCities.select2(@optionsForSelectCities(url_birth_city, initial_birth_city))
+
+      ##Initial values for Residence City
+      url_residence_city = AlumNet.api_endpoint + '/countries/' + residenceCountry.id + '/cities'
+      initial_residence_city = { id: residenceCity.id, name: residenceCity.text }
+      @ui.selectResidenceCities.select2(@optionsForSelectCities(url_residence_city, initial_residence_city))
