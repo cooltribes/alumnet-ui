@@ -1,0 +1,162 @@
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
+
+  class Main.FormLanguage extends Marionette.ItemView
+    template: "registration/skills/templates/form"
+    tagName: 'form'
+
+    initialize: ->
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name^=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    ui:
+      'btnRmv': '.js-rmvRow'
+    events:
+      "click @ui.btnRmv": "removeItem"
+
+    removeItem: (e)->
+      @model.destroy()
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 20}, 600);
+      #Render the slider
+      slideItem = $("#slider", @el)
+      levelTextItem = slideItem.next("#level")
+
+      textLevel =
+            1: "Elementary"
+            2: "Limited working"
+            3: "Professional working"
+            4: "Full professional"
+            5: "Native or Bilingual"
+
+      levelTextItem.text(textLevel[@model.get("level")])
+
+      slideItem.slider
+        min: 1
+        max: 5
+        value: parseInt( @model.get("level"), 10 )
+        slide: (event, ui) ->
+          levelTextItem.text(textLevel[ui.value])
+
+      #Render the list of languages
+      dropdown = $("[name=language_id]", $(@el))
+      content = AlumNet.request("languages:html", @model.get("name"))
+      dropdown.html(content)
+
+  class Main.LanguageList extends Marionette.CompositeView
+    template: 'registration/skills/templates/skills'
+    childView: Main.FormLanguage
+    childViewContainer: '#lan-list'
+    className: 'row'
+
+    initialize: (options)->
+      document.title = " AlumNet - Registration"
+      @linkedin_skills = options.linkedin_skills
+      @layout = options.layout  
+      @skills_collection = new AlumNet.Entities.Skills
+        
+
+    templateHelpers: ->
+      linkedin_skills: @linkedin_skills.join(", ")
+
+    ui:
+      'btnAdd': '.js-addRow'
+      # 'btnSubmit': '.js-submit'
+      'skills': '#skills-input'
+
+    events:
+      'click @ui.btnAdd': 'addRow'
+      # 'click @ui.btnSubmit': 'submitClicked'
+      'click .js-linkedin-import': 'linkedinClicked'
+
+    onRender: ->
+      @skills_collection.fetch
+        wait: true
+        success: (collection)=>
+          @fillSkills(collection)        
+
+      $('body,html').animate({scrollTop: 20}, 600);
+
+
+    fillSkills: (collection)->
+      skills = _.pluck(collection.models, 'attributes')
+      listOfNames = _.pluck(skills, 'name')
+      @ui.skills.select2
+        tags: listOfNames
+        multiple: true
+        tokenSeparators: [',', ', ']
+        dropdownAutoWidth: true
+
+    addRow: (e)->
+      newRow = new AlumNet.Entities.ProfileLanguage
+      @collection.add(newRow)
+
+    saveData: ()->
+
+      @children.each (itemView)->
+        data = Backbone.Syphon.serialize itemView
+        itemView.model.set data
+
+      skillsData = Backbone.Syphon.serialize this #,
+        # include: "skills"
+      skillsData = skillsData.skills.split(',')
+
+      @skills_collection.reset(skillsData)
+      
+      console.log "skills"
+      console.log @skills_collection
+
+      #every model in the collection is valid
+      validColection = true
+
+      _.forEach @collection.models, (model, index, list)->
+        if !(validity = model.isValid(true))
+          validColection = validity
+
+      if validColection
+
+        languages = _.pluck(@collection.models, 'attributes');
+
+        @model.set "languages_attributes", languages
+
+        @model.set "skills_attributes", skillsData
+
+        console.log "yeah guardando profile"
+        console.log @model
+        console.log "languages"
+        console.log @collection
+        
+        # console.log "guardando"
+        # collection = view.collection
+
+        #     _.each data, (el)->
+        #       skills_collection.create({name: el})
+        # @skills_collection.save()
+        # profileModel.save {},
+        #   success: (model)->
+        #     if model.get('role') == 'Regular' && model.get('created_by_admin')
+        #       AlumNet.trigger "registration:activate"
+        #     else
+        #       AlumNet.trigger "registration:approval"  
+
+
+
+      #      layout.goToNext()
+            
+
+
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
+        e.preventDefault()
+        @render()
+
+

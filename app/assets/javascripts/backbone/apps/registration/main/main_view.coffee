@@ -32,11 +32,11 @@
       @currentView = @getCurrentView(@step)
       @side_region.empty()
       @form_region.empty()
-      @side_region.show(@getSidebarView(@indexStep + 1))
+      @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
       @form_region.show(@currentView) if @currentView
 
-    getSidebarView: (step)->
-      AlumNet.request('registration:shared:sidebar', step)
+    getSidebarView: (registration_steps, step)->
+      AlumNet.request('registration:shared:sidebar', registration_steps, step)
 
     isFirstStep: ->
       @indexStep == 0
@@ -69,6 +69,8 @@
       switch step
         when "basic_information"
           @basic_information(step)
+        when "languages_and_skills"
+          @languages_and_skills(step)
         else
           null
 
@@ -77,3 +79,30 @@
         model: AlumNet.current_user.profile
         layout: @
         step: step
+
+    languages_and_skills: ()->
+      
+      #Languages
+      collection = if gon.linkedin_profile && gon.linkedin_profile.languages.length > 0
+        languagesCollection = new AlumNet.Entities.ProfileLanguageCollection
+        _.forEach gon.linkedin_profile.languages, (elem, index, list)->
+          languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
+        languagesCollection
+      else
+        new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
+
+      #Skills
+      if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
+        linkedin_skills = _.pluck(gon.linkedin_profile.skills, 'name')
+      else
+        linkedin_skills = []
+      
+      languagesView = new Main.LanguageList
+        linkedin_skills: linkedin_skills
+        collection: collection
+        model: AlumNet.current_user.profile
+        layout: @
+        
+
+      languagesView                  
+
