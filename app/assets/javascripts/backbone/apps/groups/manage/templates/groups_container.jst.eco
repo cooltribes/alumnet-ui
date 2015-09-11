@@ -1,5 +1,5 @@
 <div class="container-fluid ">
-	<h1>Manage groups</h1>
+	<h1>My groups</h1>
 	<hr>
 	<div class="row groups-container margin_top">
 		<!-- Begin group container -->
