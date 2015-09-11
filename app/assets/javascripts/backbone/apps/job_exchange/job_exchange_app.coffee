@@ -32,7 +32,7 @@
       controller = new JobExchangeApp.Invitations.Controller
       controller.invitations()
     createJobExchange: ->
-      document.title = 'AlumNet - Create a job'
+      document.title = 'AlumNet - Post a job'
       controller = new JobExchangeApp.Create.Controller
       controller.create()
     updateJobExchange: (id)->

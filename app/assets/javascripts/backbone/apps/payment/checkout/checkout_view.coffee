@@ -5,7 +5,7 @@
     className: 'col-md-8 col-md-offset-2'
 
     initialize: (options)->
-      document.title = 'AlumNet - Become a member'
+      #document.title = 'AlumNet - Become a member'
       @current_user = options.current_user
       @data = options.data
       @type = options.type

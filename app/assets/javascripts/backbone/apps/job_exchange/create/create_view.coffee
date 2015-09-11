@@ -63,7 +63,7 @@
     template: 'job_exchange/create/templates/form'
 
     initialize: (options)->
-      document.title = 'AlumNet - Create a job'
+      document.title = 'AlumNet - Post a job'
       @current_user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -254,7 +254,7 @@
     className: 'container'
 
     initialize: (options)->
-      document.title = 'AlumNet - Buy Job Posts'
+      document.title = 'AlumNet - Post a job'
     
     events:
       'click button.js-submit': 'submitClicked'
