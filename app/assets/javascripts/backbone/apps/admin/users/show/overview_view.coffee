@@ -90,6 +90,18 @@
             collection: events
           view.content.show(eventsView)
 
+    purchasesClicked: (e)->
+      e.preventDefault()
+      view = @
+      payments = new AlumNet.Entities.PaymentsCollection
+      payments.url = AlumNet.api_endpoint + "/users/#{@model.id}/payments"
+      payments.fetch
+        success: ->
+          productsView = new UserShow.Payments
+            model: view.model
+            collection: payments
+          view.content.show(productsView)
+
     adminClicked: (e)->
       e.preventDefault()
       admin = new UserShow.Admin
