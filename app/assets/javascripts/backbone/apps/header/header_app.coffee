@@ -13,6 +13,10 @@
       controller = new HeaderApp.Menu.Controller
       controller.showExternal()
 
+    showOnboarding: ->
+      controller = new HeaderApp.Menu.Controller
+      controller.showOnboarding()
+
   AlumNet.addInitializer ->
     API.showHeader()
 
@@ -24,3 +28,6 @@
 
   AlumNet.commands.setHandler "header:show:external" , ->
     API.showExternal()
+
+  AlumNet.commands.setHandler "header:show:onboarding" , ->
+    API.showOnboarding()
