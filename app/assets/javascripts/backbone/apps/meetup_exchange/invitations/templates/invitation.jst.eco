@@ -3,7 +3,7 @@
 
   <a href="#" class="btn btn-default-gray js-invitation-decline pull-right" >Decline <span class="glyphicon glyphicon-remove"></span></a> 
   <div class="jobPost__name"><h3><%= @task.name %></h3></div>
-  <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @task.company.text %></b></h3></div>
+  <div class="jobPost__company"><p><span class="ico-company"></span><b><%= @task.company.text %></b></p></div>
   <div class="jobPost__description margin_top_xsmall overfloadText" style="
     margin-bottom: 10px;"><%= @task.description %></div>
 

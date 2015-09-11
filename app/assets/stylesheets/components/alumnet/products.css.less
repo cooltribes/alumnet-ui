@@ -1,22 +1,44 @@
 @import 'conf/conf.css.less';
 
 .products{
-	height: 50px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #C7C7C7;
-    color:  #818181;
+    
     background-color: #FFF;
-    text-align: left;
-    font-size: 15px;
-    font-weight: 100;
-    padding: 12px;
-    margin-bottom: 0.2em;
-	
-	&:hover{
-        color: #FFF;
-    	background-color: @blue;
+    border-right-style: solid;
+    border-right-color: #e6e6e8;
+    border-left-style: solid;
+    border-left-color: #e6e6e8;
+    border-bottom-style: solid;
+    border-bottom-color: #e6e6e8;
+    border-bottom-width: 10px;
+    
 
+    &__memberships{
+        background-color: #F38E00;
+        color: #FFF;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: 100;
+
+        &--price{
+            font-size: 30px;
+            color: @blue;
+        }
+
+        &--buy{
+            border-style: solid;
+            border-width: 1px;
+            border-color: @blue;
+            color: @blue;
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 5px;
+            margin-left: 28px;
+        
+            &:hover {
+                background-color: @blue;
+                color: #FFF;
+            }
+        }
     }	
 }
 

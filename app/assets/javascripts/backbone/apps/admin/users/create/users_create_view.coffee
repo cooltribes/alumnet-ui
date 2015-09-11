@@ -22,6 +22,7 @@
         method: "post"
         data: data
         sucess: (data)->
+          console.log "algo"
           console.log data
         error: (data)->
           errors = data.responseJSON.errors

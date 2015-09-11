@@ -4,10 +4,15 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <h3 class="text-center"><b>The AIESEC AlumNet Member Advantage</b></h3><br>
+  <div class="col-md-12 margin_bottom">
+    <h3 class="text-center"><b>The AIESEC AlumNet Member Advantage</b></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
     <p>If you're an alumni who wants access into the full breadth and depth of possibilities within the global AIESEC Network, then AlumNet membership is for you.  Only members can use exclusive features of AlumNet that have been carefully designed to serve the needs of AIESEC alumni who want more.  Do you wish to reconnect with old AIESEC friends and make new ones?  Do you want support from the AIESEC Alumni around the world in the pursuit of your goals and dreams, both personal and professional?  Or do you simply want to have more exciting AIESEC adventures? You can have all these and much more when you join AlumNet.</p>
-
+  </div>
+  <div class="col-md-6">
     <p>Find your dream job or build your dream team in Job Exchange.</p>
 
     <p>Get advice and investors for your venture in Business Exchange.</p>
@@ -19,24 +24,42 @@
     <p>Take the step to joining an official A-group, or lead one yourself.</p>
 
     <p>Create a request for a Meetup to gather with other members anywhere on earth.</p>
-
+  </div>
+</div>
+<div class="row margin_top margin_bottom">
+  <div class="col-md-6 col-md-offset-3 text-center">
     <p>As alumni, you know that that the global AIESEC community is like no other.  Finally through AlumNet, you can engage in the unique connections and interactions that help fulfill our potential as leaders, as global citizens, and as humans.  From the comfort of anywhere you happen to be in the world.  Dive into the new global AIESEC adventure.</p>
 
     <p>Join AlumNet today.</p>
   </div>
 </div>
-<hr>
 
-<div class="row main-events-area text-center">
+<div class="row main-events-area">
   <form class="formANet form">
-    
-      <%% for item in @items: %>
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4 products overfloadText">
-          <input type="radio" name="subscription_id" value="<%%= item.id %>"> <span class="icon-entypo-basket"><%%= item.name %> - <%%= item.price %>EUR</span>
-        </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%% for item in @items: %>
+          <div class="col-md-6 text-center products">
+            <div class="row">
+              <div class="col-md-12 text-center products__memberships overfloadText">
+                  <span class="glyphicon glyphicon-certificate"></span> <%%= item.quantity %> <span class="glyphicon glyphicon-certificate"></span><br>
+                  <%%= item.name %>   
+              </div>
+            </div>
+            <div class="row text-center margin_top_medium">
+              <div class="col-md-12 products__memberships--price">
+                  <%%= item.price %> EUR     
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-12 margin_top_small products__memberships--buy">
+                <input type="radio" name="subscription_id" value="<%%= item.id %>"> BUY MEMBERSHIP    
+              </div>
+            </div>
+          </div>
+        <%% end %>
       </div>
-      <%% end %>
+    </div>
       <hr>
     <!-- ACTIONS ON -->
     <div class="text-center">
