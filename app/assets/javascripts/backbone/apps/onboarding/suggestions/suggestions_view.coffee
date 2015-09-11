@@ -18,10 +18,12 @@
     ui:
       'prevLink': '.js-prev'
       'nextLink': '.js-next'
+      'finishLink': '.js-finish'
 
     events:
       'click @ui.prevLink': 'prevClicked'
       'click @ui.nextLink': 'nextClicked'
+      'click @ui.finishLink': 'finishClicked'
 
     onRender: ->
       @currentView = @getCurrentView(@step)
@@ -43,6 +45,13 @@
       e.preventDefault()
       unless @isLastStep()
         @goToNext()
+
+    finishClicked: (e)->
+      e.preventDefault()
+      AlumNet.current_user.save { show_onboarding: false },
+        success: ->
+          AlumNet.execute('header:show:regular')
+          AlumNet.trigger('home')
 
     goToPrev: ->
       @step -= 1

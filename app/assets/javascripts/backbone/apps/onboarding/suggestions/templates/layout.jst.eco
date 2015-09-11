@@ -3,11 +3,13 @@
   </div>
 </div>
 <div class="row-fluid margin_top_large_minus">
-  <div class="col-md-12 text-right">
+  <div class="col-md-12 text-center">
   <% unless @isFirstStep: %>
     <a href="#" class="btn btn-lg btn-primary js-prev">Prev</a>
   <% end %>
-  <% unless @isLastStep: %>
+  <% if @isLastStep: %>
+    <a href="#" class="btn btn-lg btn-primary js-finish">Start Exploring AlumNet >></a>
+  <% else: %>
     <a href="#" class="btn btn-lg btn-primary js-next">Next</a>
   <% end %>
   </div>

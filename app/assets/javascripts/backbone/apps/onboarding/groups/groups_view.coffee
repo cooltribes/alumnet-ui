@@ -28,3 +28,6 @@
       @collection = new AlumNet.Entities.SuggestedGroupsCollection
       @collection.fetch()
 
+    templateHelpers: ->
+      user_first_name: AlumNet.current_user.profile.get('first_name')
+

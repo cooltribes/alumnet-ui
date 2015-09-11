@@ -11,6 +11,9 @@
       @collection = new AlumNet.Entities.SuggestedUsersCollection
       @collection.fetch()
 
+    templateHelpers: ->
+      user_first_name: AlumNet.current_user.profile.get('first_name')
+
     onChildviewCatchUp: ->
       view = @
       @collection.fetch
