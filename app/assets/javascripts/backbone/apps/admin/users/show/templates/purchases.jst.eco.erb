@@ -1,0 +1,14 @@
+<div class="row margin_top_medium">
+  <div class="col-md-4 admDash__col">
+    <div class="admDash__card">
+      <table class="admDash__cardData table">
+        <%% for item in @items: %>
+          <tr>
+            <td>Full name:</td>
+            <td><%%= item.id %></td>
+          </tr>
+        <%% end %>
+      </table>
+    </div>
+  </div>
+</div>
