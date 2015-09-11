@@ -1,10 +1,10 @@
-@AlumNet.module 'OnboardingApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'OnboardingApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Main.Layout extends Marionette.LayoutView
-    template: 'onboarding/main/templates/layout'
+  class Suggestions.Layout extends Marionette.LayoutView
+    template: 'onboarding/suggestions/templates/layout'
     className: 'container-fluid'
     regions:
-      form_region: '#form-region'
+      suggestion_region: '#suggestion-region'
 
     initialize: ->
       @step = 1
@@ -25,8 +25,8 @@
 
     onRender: ->
       @currentView = @getCurrentView(@step)
-      @form_region.empty()
-      @form_region.show(@currentView) if @currentView
+      @suggestion_region.empty()
+      @suggestion_region.show(@currentView) if @currentView
 
     isFirstStep: ->
       @step == 1
@@ -55,9 +55,19 @@
     getCurrentView: (step)->
       switch step
         when 1
-          @basic_information(step)
+          @groups(step)
+        when 2
+          @alumni(step)
+        when 3
+          @member(step)
         else
           null
 
-    basic_information: (step)->
-      null
+    groups: (step)->
+      new Suggestions.Groups
+
+    alumni: (step)->
+      new Suggestions.Alumni
+
+    member: (step)->
+      new Suggestions.Member

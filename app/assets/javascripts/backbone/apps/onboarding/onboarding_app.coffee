@@ -3,7 +3,7 @@
 
   API =
     onboarding: ->
-      controller = new OnboardingApp.Main.Controller
+      controller = new OnboardingApp.Suggestions.Controller
       controller.onboarding()
 
   AlumNet.on "show:onboarding", ->
