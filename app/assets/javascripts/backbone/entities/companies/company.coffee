@@ -57,8 +57,8 @@
     getLocation: ->
       location = []
       location.push(@get('main_address')) unless @get('main_address') == ""
-      location.push(@get('city').text) unless @get('city').text == ""
-      location.push(@get('country').text) unless @get('country').text == ""
+      location.push(@get('city').name) unless @get('city').name == ""
+      location.push(@get('country').name) unless @get('country').name == ""
       location.join(", ")
 
     validation:
