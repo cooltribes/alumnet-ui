@@ -52,6 +52,9 @@
       status = @get "status"
       if status.value == 2 then true else false
 
+    showOnboarding: ->
+      @get "show_onboarding"
+
     getName: ()->
       if @get("name").trim()
         return @get("name")
