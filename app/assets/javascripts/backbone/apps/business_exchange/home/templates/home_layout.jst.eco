@@ -8,7 +8,7 @@
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
-            <span class="icon-entypo-user"></span>
+            <span class="icon-entypo-user-business"></span>
           </div>
 
           <div class="col-md-6 text-right">
@@ -28,7 +28,7 @@
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
-            <span class="icon-entypo-user"></span>
+            <span class="icon-entypo-search-user"></span>
           </div>
 
           <div class="col-md-6 text-right">
@@ -48,7 +48,7 @@
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
-            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="icon-entypo-tasks"></span>
           </div>
 
           <div class="col-md-6 text-right">
@@ -68,7 +68,7 @@
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
-            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="icon-entypo-search-tasks"></span>
           </div>
 
           <div class="col-md-6 text-right">

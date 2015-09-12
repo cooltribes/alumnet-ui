@@ -38,6 +38,12 @@
     isAlumnetAdmin: ->
       @get "is_alumnet_admin" || @get "is_system_admin"
 
+    isRegionalAdmin: ->
+      @get "is_regional_admin"
+
+    isNacionalAdmin: ->
+      @get "is_nacional_admin"
+
     isActive: ->
       status = @get "status"
       if status.value == 1 then true else false

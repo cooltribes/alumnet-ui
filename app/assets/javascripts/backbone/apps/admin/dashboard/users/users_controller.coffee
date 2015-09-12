@@ -143,6 +143,12 @@
       view.on "changeInterval", ()=>
         @fetchDataType1 @curDates
 
+      view.on "error", (g)=>
+        console.log "ERROR"
+        console.log g
+        
+
+
       @fetchDataType1 @curDates
     
 

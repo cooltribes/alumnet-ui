@@ -19,6 +19,10 @@
             collection: company.contactsCollection()
           branches = new About.BranchesLayout
             model: company
+          links = new About.LinksView
+            model: company
+            collection: company.linksCollection()
+
 
           #Vista principal del about
           body = new About.Layout
@@ -32,6 +36,7 @@
           body.services.show(services)
           body.contacts.show(contacts)
           body.branches.show(branches)
+          body.links.show(links)
 
           #Llamada al submenu de la compañia
           AlumNet.execute('render:companies:submenu',undefined, 1)

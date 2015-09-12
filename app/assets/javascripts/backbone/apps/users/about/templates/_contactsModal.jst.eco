@@ -17,6 +17,7 @@
         <div class="form-group">
           <select name="contact_type" class="form-control input-lg">
             <option value="">-Select-</option>            
+            <option value="1">Phone</option>
             <option value="2">Skype</option>
             <option value="3">Yahoo</option>
             <option value="4">Facebook</option>

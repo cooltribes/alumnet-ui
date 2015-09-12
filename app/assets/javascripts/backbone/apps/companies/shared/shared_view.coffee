@@ -128,11 +128,23 @@
       'requestLink':'#js-request-admin-company'
       'editLogo':'#js-edit-logo'
       'editCover':'#js-edit-cover'
+      'name':'#name'      
 
     events:
       'click @ui.requestLink': 'requestClicked'
       'click @ui.editLogo': 'editLogoClicked'
       'click @ui.editCover': 'editCoverClicked'
+
+    onRender: ->
+      model = @model
+      @ui.name.editable
+        type: "text"
+        title: "Enter the name of company"
+        validate: (value)->
+          if $.trim(value) == ""
+            "This field is required"
+        success: (response, newValue)->
+          model.save({'name': newValue})
 
     renderView: ->
       view = @
@@ -146,7 +158,8 @@
       company_admin = AlumNet.request('new:company_admin', @model.id, { user_id: AlumNet.current_user.id })
       company_admin.save {},
         success: (model)->
-          view.ui.requestLink.remove()
+          view._changeButton()
+          $.growl.notice(message: "Your request has been sent to admins.")
         error: (model, response)->
           message = AlumNet.formatErrorsFromApi(response.responseJSON)
           $.growl.error(message: message)
@@ -162,6 +175,10 @@
       modal = new Shared.CoverModal
         model: @model
       $('#js-modal-container').html(modal.render().el)
+    
+    _changeButton: ()->
+      @ui.requestLink.attr("disabled", true)
+      @ui.requestLink.text("Waiting for admins response")
 
   class Shared.Layout extends Marionette.LayoutView
     template: 'companies/shared/templates/layout'

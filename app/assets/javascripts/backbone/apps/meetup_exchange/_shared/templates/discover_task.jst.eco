@@ -6,14 +6,17 @@
   </h3></div>
 
     <% if @company.text == "": %> 
-      <div class="jobPost__company" style="visibility:hidden"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div> 
+      <div class="jobPost__company" style="visibility:hidden"><p><span class="ico-company"></span><b><%= @company.text %></b></p></div> 
     <% end %>
     <% if @company.text != "": %>  
-      <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+      <div class="jobPost__company"><p><span class="ico-company"></span><b><%= @company.text %></b></p></div>
     <% end %>
     
   <div class="programCardDescription jobPost__description">
     <%- @formatted_description %>
+  </div>
+  <div class="jobPost__descriptionBackground">
+    <p>...</p>
   </div>
       <!--<div class="jobPostDetail__description overfloadText">
         <h3><span class="ico-points"></span> Offer</h3>

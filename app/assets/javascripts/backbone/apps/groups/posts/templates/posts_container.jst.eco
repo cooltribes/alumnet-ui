@@ -21,7 +21,7 @@
 								<!--  -->
 								<a id="js-add-picture" class="groupPost__btn--comment" href="javascript:;"><i class="icon-entypo-picture"></i>Add Picture</a>
 								<a id="js-add-tags" class="groupPost__btn--comment" href="javascript:;">
-									<i class="icon-entypo-picture"></i>Add Tags</a>
+									<i class="icon-entypo-tag"></i>Tag Friends</a>
 								<a href="#" class="groupPost__btn--comment" id="js-post-submit">Post</a>
 							</form>
 							<!-- Pictures -->

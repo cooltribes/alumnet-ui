@@ -2,7 +2,7 @@
 <td><a href="#users/<%= @id %>/about"><%= @getName() %></a></td>
 <td><%= @getEmail() %></td>
 <td><%= @getJoinTime() %></td>
-<td class="tableAdmin__actions">
-  <a href="#" id="js-user-destroy">Destroy</a>
-  <a href="#" id="js-user-restore">Restore</a>
+<td class="tableAdmin__actions" style="background-color: #FFF">
+  <a href="#" id="js-user-destroy" class="btn btn-default btn-danger-noBackground">Destroy</a>
+  <a href="#" id="js-user-restore" class="btn btn-default btn-primary-noBackground">Restore</a>
 </td>

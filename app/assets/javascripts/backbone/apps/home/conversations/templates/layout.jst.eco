@@ -1,15 +1,15 @@
 <div class="container-fluid">
-	<div class="row">
+	<div class="row message__marginMessage">
 		<div class="col-md-10 text-right margin_bottom_small">
 			<a href="#" id="js-new-conversation" class="btn btn-danger">New Conversation</a>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-10-col-xs-offset-1 col-md-4">
 			<div id="conversations-region"></div>
 
 		</div>
-		<div class="col-md-6">
+		<div class="col-xs-12 col-md-6">
 			<div id="messages-region"></div>
 		</div>
 	</div>

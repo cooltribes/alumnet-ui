@@ -1,4 +1,4 @@
-<a href="<%= @link %>"><img src="<%= @picture.main %>" alt="" class="homeSlideshow__banner">
+<a href="<%= @link %>" target="_blank"><img src="<%= @picture.main %>" alt="" class="homeSlideshow__banner">
 <div class="carousel-caption homeSlideshow__caption">
 	<p class="homeSlideshow__font">
 		<%= @title %>
