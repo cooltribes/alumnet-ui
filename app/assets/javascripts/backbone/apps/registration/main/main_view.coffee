@@ -30,10 +30,12 @@
 
     onRender: ->
       @currentView = @getCurrentView(@step)
-      @side_region.empty()
-      @form_region.empty()
-      @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
-      @form_region.show(@currentView) if @currentView
+
+      if @currentView? #Solo si es un paso valido
+        @side_region.empty()
+        @form_region.empty()
+        @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
+        @form_region.show(@currentView) if @currentView
 
     getSidebarView: (registration_steps, step)->
       AlumNet.request('registration:shared:sidebar', registration_steps, step)
@@ -73,6 +75,8 @@
           @languages_and_skills()
         when "aiesec_experiences"
           @aiesec_experiences()
+        when "completed"
+          @approval_process()
         else
           null
 
@@ -81,6 +85,7 @@
         model: AlumNet.current_user.profile
         layout: @
         step: step
+
 
     languages_and_skills: ()->
       profile = AlumNet.current_user.profile
@@ -91,12 +96,6 @@
           languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
         languagesCollection
       else
-        # user_languages = new AlumNet.Entities.Languages
-        # user_languages.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/language_levels"
-        # user_languages.fetch
-        #   wait: true
-
-        # count = user_languages  
         user_languages = new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
         user_languages.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/language_levels"
         user_languages.fetch
@@ -115,18 +114,52 @@
       languagesView = new Main.LanguageList
         linkedin_skills: linkedin_skills
         collection: collection
-        model: AlumNet.current_user.profile
+        model: profile
         layout: @
-        
 
       languagesView   
 
+
     aiesec_experiences: ()->
       exp_type = 0 #AIESEC EXPERIENCE
+      profile = AlumNet.current_user.profile
 
       experiences = new AlumNet.Entities.ExperienceCollection [{first: true, exp_type: exp_type}]
+      experiences.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/experiences"
 
       new Main.ExperienceList
         collection: experiences
         model: AlumNet.current_user.profile
         exp_type: exp_type
+        layout: @
+
+
+    approval_process: ()->
+      users = AlumNet.request('user:entities', {}, {fetch: false})
+
+      approval_view = new Main.ApprovalView
+        model: AlumNet.current_user
+        layout: @
+
+      approval_view.on 'users:search', (querySearch)->
+        AlumNet.request('user:entities', querySearch)
+
+      approval_view.on 'contacts:search', (contacts)->
+        approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
+        approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
+        approval_view.render()
+
+      approval_view.on 'request:admin', ()->
+        url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
+        Backbone.ajax
+          url: url
+          type: "PUT"
+          
+
+      approval_view.on 'childview:request', (childView)->
+        childView.ui.actionsContainer.html('Sending request...')
+
+        userId = childView.model.id
+        approvalR = AlumNet.request("current_user:approval:request", userId)
+        approvalR.on "save:success", ()->
+          childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')  
