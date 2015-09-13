@@ -3,7 +3,8 @@
   class Routers.Base extends Marionette.AppRouter
     before: (route, args)->
       current_user = AlumNet.current_user
-      unless current_user.isApproved()
+      # unless current_user.isApproved()
+      unless current_user.isActive()
         ## TODO: for security fetch profile, to be sure that the data is trusted
         step = current_user.profile.get('register_step')
         @goToRegistration(step)

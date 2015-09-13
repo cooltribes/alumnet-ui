@@ -9,6 +9,7 @@
     validation:
       language_id:
         required: true
+        msg: "You have to select a language"
       level:
         required: true
         range: [1, 5]
@@ -34,10 +35,10 @@
     Entities.languages.fetch({async: false})
 
   API =
-    getLanguagesHtml: (collection, selected)  ->
+    getLanguagesHtml: (collection, selected, id_selected)  ->
       html = '<option value="">Select a language</option>'
       _.forEach collection.models, (item, index, list)->
-        if item.get("name") == selected
+        if item.get("name") == selected || item.id == id_selected
           html += '<option value="' + (item.get("id")) + '" selected >' + item.get("name") + '</option>'
         else
           html += '<option value="' + (item.get("id")) + '">' + item.get("name") + '</option>'
@@ -48,7 +49,7 @@
       Entities.languages
 
 
-  AlumNet.reqres.setHandler 'languages:html', (selected)->
+  AlumNet.reqres.setHandler 'languages:html', (selected, id_selected)->
     collection = API.getLanguages()
-    API.getLanguagesHtml(collection, selected)
+    API.getLanguagesHtml(collection, selected, id_selected)
 

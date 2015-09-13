@@ -4,8 +4,9 @@
 		<form>
 			<div class="form-group has-feedback">
 				<label class="control-label">Write your Skills separating with a comma</label>
-				<input style="padding:0" id="skills-input" name="skills" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management..." value="<%= @linkedin_skills %>">
+				<input style="padding:0" id="skills-input" name="skills" class="form-control input-lg" type="text" placeholder="E.g.: team motivation, project management..." value="<%= @linkedin_skills %>">
 				<span class="formANet__input__icon form-control-feedback glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        <span class="help-block"></span>				
 			</div>
 		</form>
 		<hr>

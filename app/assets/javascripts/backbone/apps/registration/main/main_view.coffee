@@ -70,7 +70,9 @@
         when "basic_information"
           @basic_information(step)
         when "languages_and_skills"
-          @languages_and_skills(step)
+          @languages_and_skills()
+        when "aiesec_experiences"
+          @aiesec_experiences()
         else
           null
 
@@ -81,7 +83,7 @@
         step: step
 
     languages_and_skills: ()->
-      
+      profile = AlumNet.current_user.profile
       #Languages
       collection = if gon.linkedin_profile && gon.linkedin_profile.languages.length > 0
         languagesCollection = new AlumNet.Entities.ProfileLanguageCollection
@@ -89,7 +91,20 @@
           languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
         languagesCollection
       else
-        new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
+        # user_languages = new AlumNet.Entities.Languages
+        # user_languages.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/language_levels"
+        # user_languages.fetch
+        #   wait: true
+
+        # count = user_languages  
+        user_languages = new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
+        user_languages.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/language_levels"
+        user_languages.fetch
+          wait: true
+          success: (collection)->
+            if collection.length == 0
+              collection.add({first: true, level: 3})
+        user_languages  
 
       #Skills
       if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
@@ -104,5 +119,14 @@
         layout: @
         
 
-      languagesView                  
+      languagesView   
 
+    aiesec_experiences: ()->
+      exp_type = 0 #AIESEC EXPERIENCE
+
+      experiences = new AlumNet.Entities.ExperienceCollection [{first: true, exp_type: exp_type}]
+
+      new Main.ExperienceList
+        collection: experiences
+        model: AlumNet.current_user.profile
+        exp_type: exp_type

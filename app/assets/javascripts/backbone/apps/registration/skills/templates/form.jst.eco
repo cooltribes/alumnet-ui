@@ -8,6 +8,8 @@
 					
 				</select>
 			</div>
+      <span class="help-block"></span>
+			
 		</div>
 	</div>
 	<div class="col-md-4 handles-container">
