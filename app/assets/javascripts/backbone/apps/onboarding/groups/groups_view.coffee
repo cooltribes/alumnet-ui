@@ -1,6 +1,7 @@
 @AlumNet.module 'OnboardingApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Group extends Marionette.ItemView
     template: 'onboarding/groups/templates/_group'
+    className: 'col-md-2'
 
     ui:
       'joinButton': '.js-join'

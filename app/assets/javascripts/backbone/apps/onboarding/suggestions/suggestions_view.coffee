@@ -2,7 +2,7 @@
 
   class Suggestions.Layout extends Marionette.LayoutView
     template: 'onboarding/suggestions/templates/layout'
-    className: 'container-fluid'
+    className: 'container'
     regions:
       suggestion_region: '#suggestion-region'
 
