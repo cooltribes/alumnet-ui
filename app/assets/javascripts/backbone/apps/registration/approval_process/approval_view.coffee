@@ -58,7 +58,7 @@
       @ui.selectResidenceCountries.select2
         placeholder: "Select a Country"
         data: data
-      @ui.selectResidenceCountries.select2('val', @model.profile.get('residence_country').id)
+      # @ui.selectResidenceCountries.select2('val', @model.profile.get('residence_country').id)
 
     clickedRequestAdmin: (e)->
       e.stopPropagation()
