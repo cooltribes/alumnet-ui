@@ -10,12 +10,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <p>+<%= @members %></p>
-    </div>
+    <div class="col-md-12 onboarding__members">
+      <% if @members > 0: %>
+        <% for member in @members_avatar: %>
+          <img src="<%= member.avatar %>" alt="<%= member.name %>" class= "img-circle">
+        <% end %>
+      <% end %>
+      +<%= @members %>
+    </div>  
   </div>
-   <div class="row">
-    <div class="col-md-12 text-center">
+  <div class="row">
+    <div class="col-md-12 text-center margin_top_xsmall">
       <div class="js-link">
         <% if @membership_status == "approved": %>
             <span class="onboarding__link">Already Joined</span>

@@ -1,0 +1,20 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title text-center">Only - Members features:</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+   	 <ul>
+   	 	<li>Find your dream job or build your dream team in Job Exchange.</li>
+   	 	<li>Get advice and investors for your venture in Business Exchange.</li>
+   	 	<li>Enjoy amazing vacations in every continent through Home Exchange.</li>
+   	 	<li>Enjoy discounts to AIESEC Alumni International global and regional tours and events.</li>
+   	 	<li>Take the step to joining an official A-group, or lead one yourself.</li>
+   	 	<li>Create a request for a Meetup to gather with other members anywhere on earth.</li>
+   	 </ul>
+
+  </div>
+</div>
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-default" id="js-close">Close</a>
+</div>
