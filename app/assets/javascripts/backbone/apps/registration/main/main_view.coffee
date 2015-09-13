@@ -140,7 +140,12 @@
       approval_view = new Main.ApprovalView
         model: AlumNet.current_user
         layout: @
+<<<<<<< Updated upstream
 
+=======
+        collection: users
+        
+>>>>>>> Stashed changes
       approval_view.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
 

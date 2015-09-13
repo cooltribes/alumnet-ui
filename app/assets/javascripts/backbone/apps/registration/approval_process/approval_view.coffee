@@ -1,5 +1,5 @@
-@AlumNet.module 'RegistrationApp.Approval', (Approval, @AlumNet, Backbone, Marionette, $, _) ->
-  class Approval.UserView extends Marionette.ItemView
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
+  class Main.UserView extends Marionette.ItemView
     template: 'registration/approval_process/templates/user'
 
     ui:
@@ -16,9 +16,9 @@
 
 
 
-  class Approval.Form extends Marionette.CompositeView
+  class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
-    childView: Approval.UserView
+    childView: Main.UserView
     childViewContainer: '.users-list'
 
     ui:
@@ -31,6 +31,7 @@
 
     initialize: ->
       document.title = " AlumNet - Registration"
+      @layout = options.layout  
 
     onShow: ->
       view = @

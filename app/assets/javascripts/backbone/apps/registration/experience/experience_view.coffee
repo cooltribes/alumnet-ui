@@ -182,6 +182,7 @@
 
     initialize: (options) ->
       @exp_type = options.exp_type
+      @layout = options.layout  
 
       @title = 'Experience in AIESEC'
 
@@ -218,17 +219,28 @@
       e.preventDefault()
       @trigger('form:skip', @model)
 
-    submitClicked: (e)->
-      e.preventDefault()
-      experiences = new Array()
-
+    saveData: ()->
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
-        console.log data
         itemView.model.set data
 
-      @trigger('form:submit', @model)
+      validCollection = true
+      experiencesAtributtes = []
+
+      @collection.each (model)->
+        if model.isValid(true)
+          model.formatDates()
+        else
+          validCollection = false
+
+      if validCollection
+        @collection.each (model)->
+          model.save
+            wait: true
+
+        @layout.goToNext()
+        
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && @exp_type == 3
