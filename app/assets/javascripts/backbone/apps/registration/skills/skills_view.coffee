@@ -1,6 +1,6 @@
-@AlumNet.module 'RegistrationApp.Skills', (Skills, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Skills.FormLanguage extends Marionette.ItemView
+  class Main.FormLanguage extends Marionette.ItemView
     template: "registration/skills/templates/form"
     tagName: 'form'
 
@@ -49,37 +49,51 @@
 
       #Render the list of languages
       dropdown = $("[name=language_id]", $(@el))
-      content = AlumNet.request("languages:html", @model.get("name"))
+      content = AlumNet.request("languages:html", @model.get("name"), @model.get("language_id") ? null)
       dropdown.html(content)
 
-  class Skills.LanguageList extends Marionette.CompositeView
+  class Main.LanguageList extends Marionette.CompositeView
     template: 'registration/skills/templates/skills'
-    childView: Skills.FormLanguage
+    childView: Main.FormLanguage
     childViewContainer: '#lan-list'
     className: 'row'
 
     initialize: (options)->
       document.title = " AlumNet - Registration"
       @linkedin_skills = options.linkedin_skills
+      @layout = options.layout  
+      @skills_collection = new AlumNet.Entities.Skills
+      @user_skills = new AlumNet.Entities.Skills
+      @user_skills.url = AlumNet.api_endpoint + '/profiles/' + @model.id + "/skills"
+        
 
     templateHelpers: ->
       linkedin_skills: @linkedin_skills.join(", ")
 
     ui:
       'btnAdd': '.js-addRow'
-      'btnSubmit': '.js-submit'
       'skills': '#skills-input'
 
     events:
       'click @ui.btnAdd': 'addRow'
-      'click @ui.btnSubmit': 'submitClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
     onRender: ->
-      skillsList = new AlumNet.Entities.Skills
-      skillsList.fetch
-        success: =>
-          @fillSkills(skillsList)
+      @skills_collection.fetch
+        wait: true
+        success: (collection)=>
+          @fillSkills(collection)
+          #Fetching the actually user skills for populating the field
+          @user_skills.fetch
+            wait: true
+            # success: (collection)=>
+              # console.log collection
+              # old_skills = collection.map (el)->
+              #   # id: el.id
+              #   text: el.get "name"
+              # @ui.skills.select2 "data", old_skills
+
+
       $('body,html').animate({scrollTop: 20}, 600);
 
 
@@ -96,19 +110,69 @@
       newRow = new AlumNet.Entities.ProfileLanguage
       @collection.add(newRow)
 
-    submitClicked: (e)->
-      e.preventDefault()
+    saveData: ()->
 
-      #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
 
-      skillsData = Backbone.Syphon.serialize this #,
-        # include: "skills"
+      skillsData = Backbone.Syphon.serialize this
       skillsData = skillsData.skills.split(',')
 
-      this.trigger("form:submit", @model, skillsData)
+      if skillsData.length > 2
+        $el = @$("[name^=skills]")
+        $group = $el.closest('.form-group')
+        $group.removeClass('has-error')
+        $group.find('.help-block').html("").addClass('hidden')
+        valid_skills = true
+
+      else
+        $el = @$("[name^=skills]")
+        $group = $el.closest('.form-group')
+        $group.addClass('has-error')
+        $group.find('.help-block').html("You have to set at least 3 skills").removeClass('hidden')
+        valid_skills = false
+      
+
+      #every model in the collection of languages is valid
+      valid_languages = true
+
+      _.forEach @collection.models, (model, index, list)->
+        if !(validity = model.isValid(true))
+          valid_languages = validity
+
+      # console.log valid_languages
+      # console.log valid_skills
+      if valid_languages && valid_skills
+        @saveSkillsAndLanguages(skillsData)
+
+
+            
+    saveSkillsAndLanguages: (skillsData)->
+      
+      #SKILLS------------
+      new_skills = skillsData.map (el)->
+        name: el
+     
+      @user_skills.at(0).destroy() while @user_skills.length > 0
+      
+
+      #Save new collection of skills
+      @user_skills.set(new_skills)
+      @user_skills.forEach (el, i, collection)->
+        el.save()
+
+
+      #LANGUAGES------------
+      console.log @collection
+      # @collection.at(0).destroy() while @collection.length > 0      
+      @collection.forEach (el, i, collection)->
+        el.save
+          wait: true
+
+      @layout.goToNext()
+
+    
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0

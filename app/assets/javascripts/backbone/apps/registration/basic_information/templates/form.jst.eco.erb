@@ -1,0 +1,92 @@
+<form class="formANet form" role="form">
+  <h1 class="h2">Profile</h1>
+  <!-- First row ON -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group text-center">
+        <%% if @avatar_picture(): %>
+        <img src="<%%= @avatar_picture() %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <%% else: %>
+
+                <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar",  width:"240px", height:"240px")  %>
+
+        <%% end %>
+        <label class="control-label" for="profilePicture">Choose your avatar</label>
+        <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
+        <span class="help-block"></span>
+        <input type="hidden" id="avatar-url" name="avatar_url" value="<%%= @avatar_url %>">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group has-feedback">
+        <label class="control-label" for="inputName">First name</label>
+        <input type="text" value="<%%= @first_name %>" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter your first name">
+        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="help-block"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <label class="control-label" for="inputLastName">Last name</label>
+        <input type="text" value="<%%= @last_name%>" class="form-control input-lg" name="last_name" id="last_name" placeholder="Enter your last name">
+        <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="help-block"></span>
+      </div>
+      <div class="row">
+        <div class="form-group  col-md-6">
+          <label class="control-label" for="inputBorn">Date of Birth</label>
+          <input type="text" value="<%%= @date_born %>" class="form-control input-lg js-date-born" name="born" id="born">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group has-feedback col-md-6">
+          <label class="control-label" for="inputBorn">Gender</label>
+          <div class="formANet__select">
+            <select name="gender" class="form-control input-lg ">
+              <option value="">Gender</option>
+              <option value="F" <%%= @select_gender("F") %>>Female</option>
+              <option value="M" <%%= @select_gender("M") %>>Male</option>
+            </select>
+          </div>
+          <span class="help-block"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- First row OFF -->
+  <hr>
+  <!-- Birth ON-->
+  <div class="row js-birth-location">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="inputName">Country of Origin</label>
+        <input id="js-birth-countries" type="hidden" name="birth_country_id" style="width: 100%">
+        <span class="help-block"></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="inputName">City of Origin</label>
+        <input id="js-birth-cities" type="hidden" name="birth_city_id" style="width: 100%" value="<%%= @birth_city_helper %>">
+        <span class="help-block"></span>
+      </div>
+    </div>
+  </div>
+  <!-- Birth OFF-->
+  <hr>
+  <!-- Residence ON-->
+  <div class="row js-residence-location">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="inputName">Country of Residence</label>
+        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
+        <span class="help-block"></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="inputName">City of Residence</label>
+        <input id="js-residence-cities" type="hidden" name="residence_city_id" style="width: 100%" value="<%%= @residence_city_helper %>">
+        <span class="help-block"></span>
+      </div>
+    </div>
+  </div>
+  <!-- Residence OFF-->
+</form>
