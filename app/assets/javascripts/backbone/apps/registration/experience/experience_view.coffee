@@ -1,15 +1,7 @@
-@AlumNet.module 'RegistrationApp.Experience', (Experience, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Experience.FormExperience extends Marionette.ItemView
-    getTemplate: ->
-      if @model.get('exp_type') == 0
-        "registration/experience/templates/aiesecExperience"
-      else if @model.get('exp_type') == 1
-        "registration/experience/templates/alumniExperience"
-      else if @model.get('exp_type') == 2
-        "registration/experience/templates/academicExperience"
-      else if @model.get('exp_type') == 3
-        "registration/experience/templates/professionalExperience"
+  class Main.FormExperience extends Marionette.ItemView
+    template: "registration/experience/templates/aiesecExperience"    
 
     tagName: 'form'
 
@@ -22,15 +14,13 @@
       "selectCountries": "[name=country_id]"
       "selectCities": "[name=city_id]"
       "selectComitees": "[name=committee_id]"
-      "selectCompany": "[name=company_id]"
-      "inputCompany": "#organization_name"
 
-    triggers:
-      "click @ui.cancelEdit": "cancelEdit"
+
 
     events:
       "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"
+      "click @ui.cancelEdit": "cancelEdit"
       "click @ui.btnSave": "saveExperience"
       "change @ui.selectCountries": "setCitiesAndCommittees"
       "change @ui.selectType": "setCountries"
@@ -75,24 +65,6 @@
         seniorities.results
 
     onRender: ->
-      view = @
-      companies = new Bloodhound
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-        prefetch: AlumNet.api_endpoint + '/companies/'
-        remote:
-          wildcard: '%query'
-          url: AlumNet.api_endpoint + '/companies/?q[name_cont]=%query'
-
-      @ui.inputCompany.typeahead null,
-        name: 'companies'
-        display: 'name'
-        source: companies
-
-      @ui.inputCompany.bind 'typeahead:select', (e, suggestion)->
-        view.model.set(company_id: suggestion.id)
-        console.log view.model.get("company_id")
-
       @cleanAllSelects()
 
       dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
@@ -153,6 +125,7 @@
       unless aiesecExp == "International"
         @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
+      console.log @optionsForSelect2(cities_url, 'City')
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
@@ -190,9 +163,9 @@
         @model.destroy()
 
 
-  class Experience.ExperienceList extends Marionette.CompositeView
+  class Main.ExperienceList extends Marionette.CompositeView
     template: 'registration/experience/templates/experienceList'
-    childView: Experience.FormExperience
+    childView: Main.FormExperience
     childViewContainer: '#exp-list'
     className: 'row'
 
@@ -209,6 +182,7 @@
 
     initialize: (options) ->
       @exp_type = options.exp_type
+      @layout = options.layout  
 
       @title = 'Experience in AIESEC'
 
@@ -245,16 +219,28 @@
       e.preventDefault()
       @trigger('form:skip', @model)
 
-    submitClicked: (e)->
-      e.preventDefault()
-      experiences = new Array()
-
+    saveData: ()->
       #retrieve each itemView data
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
 
-      @trigger('form:submit', @model)
+      validCollection = true
+      experiencesAtributtes = []
+
+      @collection.each (model)->
+        if model.isValid(true)
+          model.formatDates()
+        else
+          validCollection = false
+
+      if validCollection
+        @collection.each (model)->
+          model.save
+            wait: true
+
+        @layout.goToNext()
+        
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && @exp_type == 3
