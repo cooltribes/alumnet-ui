@@ -149,8 +149,14 @@
       exp_type = 0 #AIESEC EXPERIENCE
       profile = AlumNet.current_user.profile
 
-      experiences = new AlumNet.Entities.ExperienceCollection [{first: true, exp_type: exp_type}]
+      # experiences = new AlumNet.Entities.ExperienceCollection [{first: true, exp_type: exp_type}]
+      experiences = new AlumNet.Entities.ExperienceCollection
       experiences.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/experiences"
+      experiences.fetch
+        wait: true
+        success: (collection)->
+          if collection.length == 0
+            collection.add({first: true, exp_type: exp_type})
 
       new Main.ExperienceList
         collection: experiences
