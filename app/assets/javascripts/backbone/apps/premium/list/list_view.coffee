@@ -9,9 +9,9 @@
       @current_user = options.current_user
     
     events:
-      'click button.js-submit': 'submitClicked'
+      'click .js-item': 'startPayment'
 
-    submitClicked: (e)->
+    startPayment: (e)->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      AlumNet.trigger 'payment:checkout' , data, 'subscription'
+      data = {"subscription_id": e.target.id}
+      AlumNet.trigger 'payment:checkout', data, 'subscription'
