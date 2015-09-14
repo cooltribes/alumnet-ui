@@ -7,7 +7,7 @@
       unless current_user.isActive()
         ## TODO: for security fetch profile, to be sure that the data is trusted
         step = current_user.profile.get('register_step')
-        @goToRegistration(step)
+        @goToRegistration(step, args)
         false
       else
         if current_user.isExternal()
@@ -29,7 +29,7 @@
           AlumNet.execute('header:show:regular')
           true
 
-    goToRegistration: (step)->
+    goToRegistration: (step, args)->
       AlumNet.trigger 'registration:goto', step
 
       # switch step

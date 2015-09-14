@@ -16,7 +16,6 @@
       "selectComitees": "[name=committee_id]"
 
 
-
     events:
       "click .js-rmvRow": "removeItem"
       "click @ui.btnRmv": "removeExperience"

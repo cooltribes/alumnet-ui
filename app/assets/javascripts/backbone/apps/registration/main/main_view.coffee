@@ -32,6 +32,7 @@
       @currentView = @getCurrentView(@step)
 
       if @currentView? #Solo si es un paso valido
+        AlumNet.navigate("registration/#{@step}") #For url to be shown according to step        
         @side_region.empty()
         @form_region.empty()
         @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
@@ -62,8 +63,7 @@
       @render()
 
     goToNext: ->
-      @indexStep += 1
-      @step = @registration_steps[@indexStep]
+      @_moveToNextStep()      
       @render()
 
     getCurrentView: (step)->
@@ -80,6 +80,31 @@
         else
           null
 
+
+    _moveToNextStep: ()->
+      profile = AlumNet.current_user.profile
+      step = profile.get("register_step")   
+
+      #si el usuario avanza en el proceso o solo navega a traves
+      if step == @step
+        Backbone.ajax
+          url: AlumNet.api_endpoint + "/me/registration"
+          method: "put"
+          async: false
+          success: (data)->
+            step = data.current_step
+          error: (data)->
+            $.growl.error { message: data.status }
+
+        profile.set("register_step", step)   
+        
+        @step = step
+        @indexStep = _.indexOf(@registration_steps, @step)
+      else 
+        @indexStep += 1
+        @step = @registration_steps[@indexStep]  
+      
+          
     basic_information: (step)->
       new Main.BasicInformation
         model: AlumNet.current_user.profile

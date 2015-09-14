@@ -86,12 +86,15 @@
           #Fetching the actually user skills for populating the field
           @user_skills.fetch
             wait: true
-            # success: (collection)=>
-              # console.log collection
+            success: (collection)=>
+              console.log collection
+              skills = _.pluck(collection.models, 'attributes')
+              listOfNames = _.pluck(skills, 'name')
               # old_skills = collection.map (el)->
               #   # id: el.id
-              #   text: el.get "name"
+              #   name: el.get "name"
               # @ui.skills.select2 "data", old_skills
+              @ui.skills.select2 "val", listOfNames
 
 
       $('body,html').animate({scrollTop: 20}, 600);
@@ -109,6 +112,7 @@
     addRow: (e)->
       newRow = new AlumNet.Entities.ProfileLanguage
       @collection.add(newRow)
+
 
     saveData: ()->
 
@@ -131,8 +135,7 @@
         $group = $el.closest('.form-group')
         $group.addClass('has-error')
         $group.find('.help-block').html("You have to set at least 3 skills").removeClass('hidden')
-        valid_skills = false
-      
+        valid_skills = false      
 
       #every model in the collection of languages is valid
       valid_languages = true
@@ -140,12 +143,9 @@
       _.forEach @collection.models, (model, index, list)->
         if !(validity = model.isValid(true))
           valid_languages = validity
-
-      # console.log valid_languages
-      # console.log valid_skills
+      
       if valid_languages && valid_skills
         @saveSkillsAndLanguages(skillsData)
-
 
             
     saveSkillsAndLanguages: (skillsData)->
@@ -164,7 +164,6 @@
 
 
       #LANGUAGES------------
-      console.log @collection
       # @collection.at(0).destroy() while @collection.length > 0      
       @collection.forEach (el, i, collection)->
         el.save
