@@ -1,6 +1,6 @@
 <div class="searchBar row ">
   <div class="col-md-3 text-center">
-    <h2 class="searchBar__title margin_left_small">My events</h2>
+    <h1 class="searchBar__title margin_left_small">My events</h1>
   </div>
   <div class="col-md-6">
     <form id="js-search-form">
