@@ -9,7 +9,7 @@
         step = current_user.profile.get('register_step')
         @goToRegistration(step, args)
         false
-      else if current_user.showOnboarding() and current_user.isApproved()
+      else if current_user.showOnboarding() and current_user.isActive()
         AlumNet.execute('header:show:onboarding')
         AlumNet.trigger 'show:onboarding'
         false
