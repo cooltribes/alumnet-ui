@@ -41,6 +41,9 @@
           $el.focus()
 
       @inProfile = options.inProfile ? false
+      
+      @model.decodeDates()      
+
 
     templateHelpers: ->
       model = @model
@@ -124,7 +127,7 @@
       unless aiesecExp == "International"
         @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      console.log @optionsForSelect2(cities_url, 'City')
+      # console.log @optionsForSelect2(cities_url, 'City')
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
