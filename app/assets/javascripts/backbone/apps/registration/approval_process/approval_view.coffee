@@ -1,5 +1,5 @@
-@AlumNet.module 'RegistrationApp.Approval', (Approval, @AlumNet, Backbone, Marionette, $, _) ->
-  class Approval.UserView extends Marionette.ItemView
+@AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
+  class Main.UserView extends Marionette.ItemView
     template: 'registration/approval_process/templates/user'
 
     ui:
@@ -16,9 +16,9 @@
 
 
 
-  class Approval.Form extends Marionette.CompositeView
+  class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
-    childView: Approval.UserView
+    childView: Main.UserView
     childViewContainer: '.users-list'
 
     ui:
@@ -28,14 +28,10 @@
     events:
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
-      'click #showMore': 'showMore'
 
-    initialize: (options)->
-      @bandera = options.bandera
+    initialize: ->
       document.title = " AlumNet - Registration"
-
-    templateHelpers: ->
-      bandera: @bandera
+      @layout = options.layout  
 
     onShow: ->
       view = @
@@ -92,10 +88,3 @@
         data: { contacts: formatedContacts }
         success: (collection)->
           view.collection.set(collection.models)
-
-    showMore: (e)->
-      e.preventDefault()
-      @collection.fetch 
-        success: ->
-          $('#showMore').hide()
-          @bandera = false

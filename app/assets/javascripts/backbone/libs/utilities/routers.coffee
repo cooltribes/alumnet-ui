@@ -3,10 +3,11 @@
   class Routers.Base extends Marionette.AppRouter
     before: (route, args)->
       current_user = AlumNet.current_user
-      unless current_user.isApproved()
+      # unless current_user.isApproved()
+      unless current_user.isActive()
         ## TODO: for security fetch profile, to be sure that the data is trusted
         step = current_user.profile.get('register_step')
-        @goToRegistration(step)
+        @goToRegistration(step, args)
         false
       else
         if current_user.isExternal()
@@ -28,21 +29,22 @@
           AlumNet.execute('header:show:regular')
           true
 
-    goToRegistration: (step)->
+    goToRegistration: (step, args)->
+      AlumNet.trigger 'registration:goto', step
 
-      switch step
-        when 'initial'
-          AlumNet.trigger 'registration:profile'
-        when 'profile'
-          AlumNet.trigger 'registration:contact'
-        when 'contact', 'experience_a', 'experience_b', 'experience_c'
-          AlumNet.trigger 'registration:experience', step
-        when 'experience_d'
-          AlumNet.trigger 'registration:skills'
-        when 'skills'
-          AlumNet.trigger 'registration:approval'
-        else
-          false
+      # switch step
+      #   when 'initial'
+      #     AlumNet.trigger 'registration:profile'
+      #   when 'profile'
+      #     AlumNet.trigger 'registration:contact'
+      #   when 'contact', 'experience_a', 'experience_b', 'experience_c'
+      #     AlumNet.trigger 'registration:experience', step
+      #   when 'experience_d'
+      #     AlumNet.trigger 'registration:skills'
+      #   when 'skills'
+      #     AlumNet.trigger 'registration:approval'
+      #   else
+      #     false
 
     # This method checks the incoming url and change it
     # for the allowed url and then triggers the navigation again,
