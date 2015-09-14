@@ -2,8 +2,9 @@
 
   class Suggestions.Layout extends Marionette.LayoutView
     template: 'onboarding/suggestions/templates/layout'
-    className: 'container'
+    className: 'container-fluid'
     regions:
+      navbar_region: '#navbar-region'
       suggestion_region: '#suggestion-region'
 
     initialize: ->
@@ -26,6 +27,9 @@
       'click @ui.finishLink': 'finishClicked'
 
     onRender: ->
+      @Menu = @showNavbar(@step)
+      @navbar_region.empty()
+      @navbar_region.show(@Menu) if @Menu
       @currentView = @getCurrentView(@step)
       @suggestion_region.empty()
       @suggestion_region.show(@currentView) if @currentView
@@ -71,6 +75,10 @@
           @member(step)
         else
           null
+
+    showNavbar: (step)->
+      new Suggestions.Navbar
+        step: step
 
     groups: (step)->
       new Suggestions.Groups
