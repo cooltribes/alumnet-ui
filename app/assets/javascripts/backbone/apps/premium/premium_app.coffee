@@ -3,11 +3,13 @@
     appRoutes:
       "premium": "listPremium"
 
-
   API =
     listPremium: ()->
       controller = new PremiumApp.List.Controller
       controller.list()
+
+  AlumNet.on "premium", ->
+    API.listPremium()
 
   AlumNet.addInitializer ->
     new PremiumApp.Router

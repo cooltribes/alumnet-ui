@@ -215,3 +215,9 @@
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
+
+
+  class Menu.OnboardingBar extends Marionette.LayoutView
+    template: 'header/menu/templates/onboarding_layout'
+
+    className: 'ng-scope'
