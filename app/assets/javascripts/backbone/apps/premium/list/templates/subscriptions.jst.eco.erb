@@ -4,14 +4,19 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <h3 class="text-center"><b>The AIESEC AlumNet Member Advantage</b></h3><br>
+  <div class="col-md-12 margin_bottom">
+    <h3 class="text-center"><b>The AIESEC AlumNet Member Advantage</b></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
     <p>If you're an alumni who wants access into the full breadth and depth of possibilities within the global AIESEC Network, then AlumNet membership is for you.  Only members can use exclusive features of AlumNet that have been carefully designed to serve the needs of AIESEC alumni who want more.  Do you wish to reconnect with old AIESEC friends and make new ones?  Do you want support from the AIESEC Alumni around the world in the pursuit of your goals and dreams, both personal and professional?  Or do you simply want to have more exciting AIESEC adventures? You can have all these and much more when you join AlumNet.</p>
-
     <p>Find your dream job or build your dream team in Job Exchange.</p>
 
     <p>Get advice and investors for your venture in Business Exchange.</p>
 
+  </div>
+  <div class="col-md-6">
     <p>Enjoy amazing vacations in every continent through Home Exchange.</p>
 
     <p>Enjoy discounts to AIESEC Alumni International global and regional tours and events.</p>
@@ -25,24 +30,37 @@
     <p>Join AlumNet today.</p>
   </div>
 </div>
-<hr>
-
-<div class="row main-events-area text-center">
-  <form class="formANet form">
-    
-      <%% for item in @items: %>
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4 products overfloadText">
-          <input type="radio" name="subscription_id" value="<%%= item.id %>"> <span class="icon-entypo-basket"><%%= item.name %> - <%%= item.price %>EUR</span>
-        </div>
-      </div>
-      <%% end %>
-      <hr>
-    <!-- ACTIONS ON -->
-    <div class="text-center">
-      <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
-      <button class="btn btn-primary btn-lg js-submit">CONTINUE </button>
-    </div>
-    <!-- ACTIONS OFF -->
-  </form>
+<div class="row margin_top margin_bottom">
+  <div class="col-md-6 col-md-offset-3 text-center">
+    <p>Membership will support viability and continuity of this dream and will <b>get you access to <a href="#" id="js-modal">"Only-Members"</a> special programs and features.</b></p>
+  </div>
 </div>
+
+<div class="row main-events-area">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%% for item in @items: %>
+        <div class="col-md-6 text-center products">
+          <div class="row">
+            <div class="col-md-12 text-center products__memberships overfloadText">
+                <span class="glyphicon glyphicon-certificate"></span> <%%= item.quantity %> <span class="glyphicon glyphicon-certificate"></span><br>
+                <%%= item.name %>
+            </div>
+          </div>
+          <div class="row text-center margin_top_medium">
+            <div class="col-md-12 products__memberships--price">
+                <%%= item.price %> EUR     
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-md-12 margin_top_small">
+              <a class="btn btn-default-blue btn-lg js-item margin_bottom_xsmall" id="<%%= item.id %>">BUY MEMBERSHIP</a>
+            </div>
+          </div>
+        </div>
+      <%% end %>
+    </div>
+  </div>
+  <hr>
+</div>
+<div id="container-modal-members"></div>

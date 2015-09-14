@@ -9,6 +9,10 @@
         step = current_user.profile.get('register_step')
         @goToRegistration(step, args)
         false
+      else if current_user.showOnboarding() and current_user.isApproved()
+        AlumNet.execute('header:show:onboarding')
+        AlumNet.trigger 'show:onboarding'
+        false
       else
         if current_user.isExternal()
           AlumNet.execute('header:show:external')
@@ -16,7 +20,6 @@
           routeChanged = @changeRouteForExternal(route, args)
           if routeChanged
             false
-
           if _.contains(@externalRoutes(), route)
             true
           else

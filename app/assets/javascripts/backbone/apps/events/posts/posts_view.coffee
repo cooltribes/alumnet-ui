@@ -234,7 +234,7 @@
   ###### POST DETAIL
   class Posts.PostDetail extends Posts.PostView
     template: 'events/posts/templates/post_detail'
-    className: 'container-fluid margin_top_small'
+    className: 'container margin_top_small'
 
 
   ##### POSTS COLLECTION

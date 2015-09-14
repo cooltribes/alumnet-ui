@@ -14,6 +14,7 @@
       requestsCollection.on "sync:complete", (collection)->
         #Sync counter
         approvalCount = requestsCollection.length
+        #console.log approvalCount
         # layout.model.setCount("pending_approval_requests", approvalCount)
 
 

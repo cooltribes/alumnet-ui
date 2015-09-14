@@ -5,28 +5,28 @@
       #feature = new AlumNet.Entities.Feature { key_name: 'job_post' }
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
-      Backbone.ajax
-        url: url
-        type: "GET"
-        data: { key_name: 'job_post' }
-        success: (data) =>
-          if data.validation
-            if current_user.get('is_premium')
-              if current_user.get('remaining_job_posts') > 0
-                controller.showCreateForm()
-              else
-                controller.showBuyForm()
-                #AlumNet.navigate("job-exchange/buy", {trigger: true})
-            else
-              AlumNet.navigate("premium?members_only", {trigger: true})
-          else
-            if current_user.get('remaining_job_posts') > 0
-              controller.showCreateForm()
-            else
-              controller.showBuyForm()
-              #AlumNet.navigate("job-exchange/buy", {trigger: true})
-        error: (data) =>
-          $.growl.error({ message: 'Unknow error, please try again' })
+      controller.showCreateForm()
+      # uncomment this block to validate premium user and available job_posts before create
+      # Backbone.ajax
+      #   url: url
+      #   type: "GET"
+      #   data: { key_name: 'job_post' }
+      #   success: (data) =>
+      #     if data.validation
+      #       if current_user.get('is_premium')
+      #         if current_user.get('remaining_job_posts') > 0
+      #           controller.showCreateForm()
+      #         else
+      #           controller.showBuyForm()
+      #       else
+      #         AlumNet.navigate("premium?members_only", {trigger: true})
+      #     else
+      #       if current_user.get('remaining_job_posts') > 0
+      #         controller.showCreateForm()
+      #       else
+      #         controller.showBuyForm()
+      #   error: (data) =>
+      #     $.growl.error({ message: 'Unknow error, please try again' })
 
     showCreateForm: ->
       task = new AlumNet.Entities.JobExchange

@@ -6,10 +6,10 @@
   </h3></div>
 
     <% if @company.text == "": %> 
-      <div class="jobPost__company" style="visibility:hidden"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div> 
+      <div class="jobPost__company" style="visibility:hidden"><p><span class="ico-company"></span><b><%= @company.text %></b></p></div> 
     <% end %>
     <% if @company.text != "": %>  
-      <div class="jobPost__company"><h3><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+      <div class="jobPost__company"><p><span class="ico-company"></span><b><%= @company.text %></b></p></div>
     <% end %>
     
   <div class="programCardDescription jobPost__description">

@@ -24,33 +24,38 @@
       <div class="col-md-12 col-md-offset-1 col-lg-12 col-lg-offset-2">
           <ul class="sortingMenuAdmin">
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-overview">
+              <a href="#" title="Overview" class="sortingMenu__item__link" id="js-section-overview">
                   <i class="glyphicon glyphicon-th-large"></i> Overview
               </a>
             </li>
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-personal">
+              <a href="#" title="Personal" class="sortingMenu__item__link" id="js-section-personal">
                <i class="ico-user"></i> Personal
               </a>
             </li>
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-contacts">
+              <a href="#" title="Contacts" class="sortingMenu__item__link" id="js-section-contacts">
                <i class="glyphicon glyphicon-earphone"></i> Contacts
               </a>
             </li>
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-professional">
+              <a href="#" title="Professional" class="sortingMenu__item__link" id="js-section-professional">
                <i class="glyphicon glyphicon-briefcase ico-position"></i> Professional
               </a>
             </li>
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-groups">
+              <a href="#" title="Groups" class="sortingMenu__item__link" id="js-section-groups">
                <i class="glyphicon glyphicon-globe"></i> Groups
               </a>
             </li>
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-events">
+              <a href="#" title="Events" class="sortingMenu__item__link" id="js-section-events">
                <i class="glyphicon glyphicon-calendar"></i> Events
+              </a>
+            </li>
+            <li class="sortingMenu__item sortingMenu__item--md">
+              <a href="#" title="Purchases" class="sortingMenu__item__link" id="js-section-purchases">
+               <i class="glyphicon glyphicon-usd"></i> Purchases
               </a>
             </li>
             <!-- <li class="sortingMenu__item sortingMenu__item--md">
@@ -64,7 +69,7 @@
               </a>
             </li> -->
             <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-admin">
+              <a href="#" title="Admin" class="sortingMenu__item__link" id="js-section-admin">
                <i class="glyphicon glyphicon-asterisk"></i> Admin
               </a>
             </li>

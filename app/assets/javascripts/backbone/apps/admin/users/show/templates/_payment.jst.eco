@@ -1,0 +1,4 @@
+<td><%= @getCreatedDate() %></td>
+<td><%= @paymentable.name %></td>
+<td><%= @payment.reference %></td>
+<td><%= @payment.total %> EUR</td>
