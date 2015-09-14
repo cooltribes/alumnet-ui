@@ -45,7 +45,7 @@
         script.async = 1
         script.src = url
         m.parentNode.insertBefore(script, m)
-      )('//api.cloudsponge.com/widget/2b05ca85510fb736f4dac18a06b9b6a28004f5fa.js')
+      )('//api.cloudsponge.com/widget/df94a984c578bbfb7ec51eeca8557d2801d944b5.js')
       window.csPageOptions =
         skipSourceMenu: true
         afterInit: ()->
@@ -95,7 +95,7 @@
 
     showMore: (e)->
       e.preventDefault()
-      @collection.fetch 
+      @collection.fetch
         success: ->
           $('#showMore').hide()
           @bandera = false

@@ -3,7 +3,7 @@
   class Import.Contacts extends Marionette.ItemView
     template: 'friends/import/templates/import_contacts'
     className: 'container-fluid'
-      
+
     events:
       'click .importMenu>li': 'importOption'
       'click #js-submit-file': 'sendFile'
@@ -36,7 +36,7 @@
         script.async = 1
         script.src = url
         m.parentNode.insertBefore(script, m)
-      )('//api.cloudsponge.com/widget/2b05ca85510fb736f4dac18a06b9b6a28004f5fa.js')
+      )('//api.cloudsponge.com/widget/df94a984c578bbfb7ec51eeca8557d2801d944b5.js')
       window.csPageOptions =
         textarea_id: "contact_list"
         skipSourceMenu: true
