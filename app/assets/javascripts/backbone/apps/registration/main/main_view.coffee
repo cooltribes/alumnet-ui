@@ -32,7 +32,7 @@
       @currentView = @getCurrentView(@step)
 
       if @currentView? #Solo si es un paso valido
-        AlumNet.navigate("registration/#{@step}") #For url to be shown according to step        
+        AlumNet.navigate("registration/#{@step}") #For url to be shown according to step
         @side_region.empty()
         @form_region.empty()
         @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
@@ -63,7 +63,7 @@
       @render()
 
     goToNext: ->
-      @_moveToNextStep()      
+      @_moveToNextStep()
       @render()
 
     getCurrentView: (step)->
@@ -83,7 +83,7 @@
 
     _moveToNextStep: ()->
       profile = AlumNet.current_user.profile
-      step = profile.get("register_step")   
+      step = profile.get("register_step")
 
       #si el usuario avanza en el proceso o solo navega a traves
       if step == @step
@@ -96,15 +96,15 @@
           error: (data)->
             $.growl.error { message: data.status }
 
-        profile.set("register_step", step)   
-        
+        profile.set("register_step", step)
+
         @step = step
         @indexStep = _.indexOf(@registration_steps, @step)
-      else 
+      else
         @indexStep += 1
-        @step = @registration_steps[@indexStep]  
-      
-          
+        @step = @registration_steps[@indexStep]
+
+
     basic_information: (step)->
       new Main.BasicInformation
         model: AlumNet.current_user.profile
@@ -128,21 +128,21 @@
           success: (collection)->
             if collection.length == 0
               collection.add({first: true, level: 3})
-        user_languages  
+        user_languages
 
       #Skills
       if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
         linkedin_skills = _.pluck(gon.linkedin_profile.skills, 'name')
       else
         linkedin_skills = []
-      
+
       languagesView = new Main.LanguageList
         linkedin_skills: linkedin_skills
         collection: collection
         model: profile
         layout: @
 
-      languagesView   
+      languagesView
 
 
     aiesec_experiences: ()->
@@ -157,6 +157,8 @@
         success: (collection)->          
           if collection.length == 0
             collection.add({first: true, exp_type: exp_type})
+          else 
+            collection.at(0).set("first", true )
 
       new Main.ExperienceList
         collection: experiences
@@ -172,7 +174,7 @@
         model: AlumNet.current_user
         layout: @
         collection: users
-        
+
       approval_view.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
 
@@ -186,7 +188,7 @@
         Backbone.ajax
           url: url
           type: "PUT"
-          
+
 
       approval_view.on 'childview:request', (childView)->
         childView.ui.actionsContainer.html('Sending request...')
@@ -194,4 +196,4 @@
         userId = childView.model.id
         approvalR = AlumNet.request("current_user:approval:request", userId)
         approvalR.on "save:success", ()->
-          childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')  
+          childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
