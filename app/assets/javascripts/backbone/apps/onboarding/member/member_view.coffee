@@ -1,7 +1,7 @@
 @AlumNet.module 'OnboardingApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Subscription extends AlumNet.Shared.Views.UserView
     template: 'onboarding/member/templates/_subscription'
-    className: 'col-md-4'
+    className: 'col-md-6'
 
   class Suggestions.Member extends Marionette.CompositeView
     template: 'onboarding/member/templates/member'
