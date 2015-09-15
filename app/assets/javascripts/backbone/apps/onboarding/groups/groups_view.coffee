@@ -15,7 +15,7 @@
       attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
       request = AlumNet.request('membership:create', attrs)
       request.on 'save:success', (response, options)->
-        view.$('.js-link').html('</span>Resquest Send</span>')
+        view.$('.js-link').html('</span>Resquest Sent</span>')
 
       request.on 'save:error', (response, options)->
         console.log response.responseJSON
