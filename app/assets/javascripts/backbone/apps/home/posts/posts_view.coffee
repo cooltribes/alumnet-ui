@@ -150,7 +150,15 @@
             'this field is required'
         success: (response, newValue)->
           view.trigger 'post:edit', newValue
-      @ui.bodyPost.linkify()
+      
+      console.log $(@ui.bodyPost).html()
+
+      validation = @ytVidId(@ui.bodyPost.html())
+      if validation
+        @ui.bodyPost.html('<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>')
+      else
+        @ui.bodyPost.linkify()
+      #@ui.bodyPost.linkify()
 
     ui:
       'item': '.item'
@@ -177,6 +185,11 @@
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
       'click @ui.commentButton': 'commentSendButton'
+    
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
 
     clickedPicture: (e)->
       e.preventDefault()
@@ -286,10 +299,12 @@
       'postContainer': '#timeline'
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
+      'videoContainer': '#video_container'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click a#js-add-tags': 'showTagging'
+      'keyup @ui.bodyInput': 'checkInput'
 
     onShow: ->
       view = @
@@ -323,6 +338,28 @@
         @ui.tagging.hide()
       else
         @ui.tagging.show()
+    
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
+
+    checkInput: (e)->
+      #console.log @ui.bodyInput.val()
+      validation = @ytVidId(@ui.bodyInput.val())
+      if validation
+        console.log validation
+        #@ui.videoContainer.show(new Marionette.ItemView({template: '<iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>'}))
+        #@ui.videoContainer.show(new Marionette.ItemView({template: 'home/posts/templates/youtube_iframe'}))
+        #@ui.videoContainer.show(new Marionette.ItemView({template: '<h1>gach</h1>'}))
+        #@ui.videoContainer.html('<iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe>')
+        @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
+        #$.get(@ui.bodyInput.val()+" meta[property='og:title']", (response, status, xhr)-> 
+        #  $meta = $("meta", this)
+        #  console.log $meta.attr("content")
+        #)
+      else
+        console.log "no es url"
 
     submitClicked: (e)->
       e.stopPropagation()
@@ -334,6 +371,7 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 
