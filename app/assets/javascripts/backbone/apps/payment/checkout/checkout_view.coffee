@@ -46,6 +46,7 @@
       @$("#js-payment-cities").select2(@optionsForSelectCities(url))
 
     onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
       data = CountryList.toSelect2()
       @ui.selectPaymentCountries.select2
         placeholder: "Select a Country"

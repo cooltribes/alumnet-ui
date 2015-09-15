@@ -1,0 +1,18 @@
+<div class="col-md-12 text-center products">
+  <div class="row">
+    <div class="col-md-12 text-center products__memberships overfloadText">
+        <span class="glyphicon glyphicon-certificate"></span> <%= @quantity %> <span class="glyphicon glyphicon-certificate"></span><br>
+        <%= @name %>
+    </div>
+  </div>
+  <div class="row text-center margin_top_medium">
+    <div class="col-md-12 products__memberships--price">
+        <%= @price %> EUR     
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-md-12 margin_top_small">
+      <a class="btn btn-default-blue btn-lg js-item margin_bottom_xsmall" id="<%= @id %>">BUY MEMBERSHIP</a>
+    </div>
+  </div>
+</div>
