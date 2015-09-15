@@ -69,21 +69,23 @@
     onRender: ->
       @cleanAllSelects()
 
-      dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
-        CountryAiesecList.toSelect2()
-      else
-        CountryList.toSelect2()
+      # dataCountries = if @model.get('exp_type') == 0 || @model.get('exp_type') == 1
+      #   CountryAiesecList.toSelect2()
+      # else
+      #   CountryList.toSelect2()
 
-      # dataRegions = RegionList.toSelect2()
+      # # dataRegions = RegionList.toSelect2()
 
-      @ui.selectCountries.select2
-        placeholder: "Select a Country"
-        data: dataCountries
-        # initSelection: (element, callback)->
-        #   console.log element
-        #   callback(3)
+      # @ui.selectCountries.select2
+      #   placeholder: "Select a Country"
+      #   data: dataCountries
+      #   # initSelection: (element, callback)->
+      #   #   console.log element
+      #   #   callback(3)
 
-      @ui.selectCountries.select2('val', @model.get("country_id"), true)
+      # @ui.selectCountries.select2('val', @model.get("country_id"), true)
+      if @model.get('exp_type') == 0
+        @setAllCountries(@model.get "aiesec_experience")
 
 
     setCountries: (e)->
@@ -106,7 +108,11 @@
         data: dataCountries
 
       @ui.selectCountries.select2('val','')
+      @ui.selectCountries.select2('val', @model.get("country_id"), true)
+
       @ui.selectComitees.select2('val','')
+      @ui.selectComitees.select2('val', @model.get("committee_id"), true)
+
       @ui.selectCities.select2('val','')
 
     cleanAllSelects:(e)->

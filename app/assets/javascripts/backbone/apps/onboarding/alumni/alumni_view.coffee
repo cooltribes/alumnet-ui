@@ -15,6 +15,9 @@
     templateHelpers: ->
       user_first_name: AlumNet.current_user.profile.get('first_name')
 
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
+
     onChildviewCatchUp: ->
       view = @
       @collection.fetch
