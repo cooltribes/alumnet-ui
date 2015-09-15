@@ -1,6 +1,6 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   class Posts.Controller
-    
+
     showCurrentUserPosts: ->
       #1 crear layout view renderizar en mainRegion
       #2 banner composite
@@ -9,14 +9,14 @@
       checkNewPost = false
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts?page='+current_user.posts.page+'&per_page='+current_user.posts.rows
-      current_user.posts.fetch 
+      current_user.posts.fetch
         reset: true
       current_user.posts.page = 1
 
       posts = new Posts.PostsView
         model: current_user
         collection: current_user.posts
-               
+
       bannerCollection = new AlumNet.Entities.BannerCollection
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
       bannerCollection.fetch
@@ -29,7 +29,7 @@
       layout = new Posts.Layout
       AlumNet.mainRegion.show(layout)
       layout.posts.show(posts)
-      layout.banners.show(bannersView) 
+      layout.banners.show(bannersView)
 
       posts.on "post:reload", ->
         ++posts.collection.page
@@ -43,7 +43,7 @@
         container = $('#timeline')
         container.imagesLoaded ->
           container.masonry
-            itemSelector: '.post'        
+            itemSelector: '.post'
         if checkNewPost
           container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
           container.imagesLoaded ->
@@ -74,7 +74,7 @@
         comment = AlumNet.request("comment:post:new", post.id)
         comment.save data,
           success: (model, response, options) ->
-            postView.collection.add(model, {at: postView.collection.length})                      
+            postView.collection.add(model, {at: postView.collection.length})
 
       #Like in post
       posts.on "childview:post:like", (postView) ->
@@ -115,19 +115,17 @@
         comment = commentView.model
         comment.save { comment: value }
 
-      posts.on "childview:comment:collection", (collection)->
-        console.log "comment"
-        console.log collection
+      # posts.on "childview:comment:collection", (collection)->
+      #   console.log "comment"
+      #   console.log collection
 
     getData: (page)->
       rows = @collection.rows
       start = page * rows
       end = start + rows
-      console.log @collection
-      console.log start+" end "+end+" length "+@collection.length
       @collection.slice(start,end)
 
-    
+
 
 
 

@@ -27,7 +27,7 @@
 
     isApproved: ->
       step = @profile.get "register_step"
-      step == "approval"
+      step == "completed"
 
     isAdmin: ->
       @get "is_admin"
@@ -44,13 +44,17 @@
     isNacionalAdmin: ->
       @get "is_nacional_admin"
 
+    isInactive: ->
+      status = @get "status"
+      status.value == 0
+
     isActive: ->
       status = @get "status"
-      if status.value == 1 then true else false
+      status.value == 1
 
     isBanned: ->
       status = @get "status"
-      if status.value == 2 then true else false
+      status.value == 2
 
     showOnboarding: ->
       @get "show_onboarding"

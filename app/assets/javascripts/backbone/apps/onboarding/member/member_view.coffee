@@ -1,17 +1,32 @@
 @AlumNet.module 'OnboardingApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
-  class Suggestions.Member extends Marionette.ItemView
+  class Suggestions.Subscription extends AlumNet.Shared.Views.UserView
+    template: 'onboarding/member/templates/_subscription'
+    className: 'col-md-6'
+
+  class Suggestions.Member extends Marionette.CompositeView
     template: 'onboarding/member/templates/member'
+    childView: Suggestions.Subscription
+    childViewContainer: '.subscriptions-container'
+
+    initialize: ->
+      @collection = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
 
     ui:
-      'buyLink': '.js-buy'
+      'modalMembers':'#js-modal'
 
     events:
-      'click @ui.buyLink': 'buyClicked'
+      'click @ui.modalMembers': 'showModal'
+      'click .js-item': 'startPayment'
 
-    buyClicked: (e)->
+    templateHelpers: ->
+      user: AlumNet.current_user
+
+    startPayment: (e)->
       e.preventDefault()
-      console.log "Here"
-      AlumNet.current_user.save { show_onboarding: false },
-        success: ->
-          AlumNet.execute('header:show:regular')
-          AlumNet.trigger('premium')
+      data = {"subscription_id": e.target.id}
+      AlumNet.trigger 'payment:checkout', data, 'subscription'
+
+    showModal: (e)->
+      e.preventDefault()
+      modal = new List.ModalOnboarding
+      $('#container-modal-members').html(modal.render().el)

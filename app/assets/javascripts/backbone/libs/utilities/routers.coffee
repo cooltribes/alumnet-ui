@@ -3,51 +3,34 @@
   class Routers.Base extends Marionette.AppRouter
     before: (route, args)->
       current_user = AlumNet.current_user
-      # unless current_user.isApproved()
-      unless current_user.isActive()
-        ## TODO: for security fetch profile, to be sure that the data is trusted
+      if current_user.isInactive()
         step = current_user.profile.get('register_step')
-        @goToRegistration(step, args)
+        AlumNet.trigger 'registration:goto', step
         false
-      else if current_user.showOnboarding() and current_user.isApproved()
+      else if current_user.isBanned()
+        AlumNet.trigger 'show:banned'
+        false
+      else if current_user.isActive() && current_user.showOnboarding()
         AlumNet.execute('header:show:onboarding')
         AlumNet.trigger 'show:onboarding'
         false
-      else
-        if current_user.isExternal()
-          AlumNet.execute('header:show:external')
+      else if current_user.isActive()
+        @gotoApplication(current_user)
 
-          routeChanged = @changeRouteForExternal(route, args)
-          if routeChanged
-            false
-          if _.contains(@externalRoutes(), route)
-            true
-          else
-            AlumNet.trigger 'show:error', 403
-            false
-        else if current_user.isBanned()
-          AlumNet.trigger 'show:banned'
+    gotoApplication: (current_user)->
+      if current_user.isExternal()
+        AlumNet.execute('header:show:external')
+        routeChanged = @changeRouteForExternal(route, args)
+        if routeChanged
           false
-        else
-          AlumNet.execute('header:show:regular')
+        if _.contains(@externalRoutes(), route)
           true
-
-    goToRegistration: (step, args)->
-      AlumNet.trigger 'registration:goto', step
-
-      # switch step
-      #   when 'initial'
-      #     AlumNet.trigger 'registration:profile'
-      #   when 'profile'
-      #     AlumNet.trigger 'registration:contact'
-      #   when 'contact', 'experience_a', 'experience_b', 'experience_c'
-      #     AlumNet.trigger 'registration:experience', step
-      #   when 'experience_d'
-      #     AlumNet.trigger 'registration:skills'
-      #   when 'skills'
-      #     AlumNet.trigger 'registration:approval'
-      #   else
-      #     false
+        else
+          AlumNet.trigger 'show:error', 403
+          false
+      else
+        AlumNet.execute('header:show:regular')
+        true
 
     # This method checks the incoming url and change it
     # for the allowed url and then triggers the navigation again,
