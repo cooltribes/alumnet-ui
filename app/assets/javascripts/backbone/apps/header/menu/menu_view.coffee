@@ -63,7 +63,6 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
-     
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -71,8 +70,6 @@
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
-
-   
 
     changePoints: ->
       $(".totalPoints").text(@model.profile.get("points"))
@@ -128,6 +125,7 @@
       @model.set("unread_messages_count", 0)
 
     menuNotificationClicked: (e)->
+      AlumNet.current_user.notifications.markAllAsRead()
       @model.set("unread_notifications_count", 0)
 
     onRender: ->
@@ -217,3 +215,9 @@
     templateHelpers: ->
       first_name: @model.profile.get("first_name")
       isAlumnetAdmin: @model.isAlumnetAdmin()
+
+
+  class Menu.OnboardingBar extends Marionette.LayoutView
+    template: 'header/menu/templates/onboarding_layout'
+
+    className: 'ng-scope'

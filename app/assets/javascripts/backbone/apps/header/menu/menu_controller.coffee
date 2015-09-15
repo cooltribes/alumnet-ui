@@ -52,6 +52,17 @@
           model: current_user
         AlumNet.headerRegion.show(menuLayout)
 
+    showOnboarding: ->
+
+      if AlumNet.headerRegion.currentView instanceof Menu.ExternalBar
+        return
+
+      current_user = AlumNet.current_user
+      AlumNet.headerRegion.reset()
+      menuLayout = new Menu.OnboardingBar
+        model: current_user
+      AlumNet.headerRegion.show(menuLayout)
+
 
 
 

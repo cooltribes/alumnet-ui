@@ -16,7 +16,11 @@
   </div>
 
    <h1 class="userCoverArea__title " title="<%= @name %>">
-    <%= @name %>
+   <% if @isCompanyAdmin: %>
+      <a href="#" id="name"><%= @name %></a>
+    <% else: %>
+      <%= @name %>
+    <% end %>
     <br>
    </h1>
 

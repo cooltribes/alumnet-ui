@@ -1,0 +1,23 @@
+<header id="header" class="navTopBar navbar  navbar-fixed-top">
+  <div class="navTopBar__container--top container-fluid">  <!-- Top Bar -->
+    <div class="navbar-header col-md-2">
+      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="ico-menu"></span>
+      </button>
+      <a class="navTopBar__left__brand navbar-brand " href="#">
+        <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
+      </a>
+    </div>
+    <nav class="navTopBar__left collapse navbar-collapse ">
+      <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
+        <li>
+          <a class="RegistrationLogut" role="menuitem" tabindex="-1" href="sign_out">
+            <span>Logout</span>
+            <span class="glyphicon glyphicon-log-out"></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div id="submenu-region"></div>

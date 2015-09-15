@@ -1,8 +1,7 @@
 <div class="bbm-modal__section clearfix">
 
-
     <div class="row-fluid" style="height:100%">
-      <div class="col-md-8 picture" style="height:100%" >
+      <div class="col-md-8 picture hidden-xs" style="height:100%" >
         <% if @horizontal: %>
           <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
         <% else: %>
@@ -25,6 +24,35 @@
         <% end %>
       </div>
 
+
+      <div class="picture visible-xs" style="height:auto">
+        <div class="row">
+          <div class="col-xs-12">
+            <% if @horizontal: %>
+              <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
+            <% else: %>
+              <img height="auto" src="<%= @picture.original %>">
+            <% end %>
+            <% if @showMorePics: %>
+              <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+                  margin-right:3px;
+                  right: 0;
+                  position: absolute;
+                  top: 50%;
+              "><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+              <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+                  margin-left:3px;
+                  left: 0;
+                  position: absolute;
+                  top: 50%;
+              "><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
       <aside class="col-xs-12 col-md-4 ">
         <div class="row">
           <div class="col-md-12 toClose hidden-xs">
@@ -45,8 +73,8 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
-              <h3> 
-                <%= @uploader.name %>                 
+              <h3>
+                <%= @uploader.name %>
               </h3>
               <small class="margin_top_xsmall_minus">
                 <%= moment(@created_at).fromNow() %>
@@ -59,8 +87,8 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle" style="width: 60px;">
             </div>
             <div class="col-xs-8">
-              <h3> 
-                <%= @uploader.name %>                 
+              <h3>
+                <%= @uploader.name %>
               </h3>
               <small class="margin_top_xsmall_minus">
                 <%= moment(@created_at).fromNow() %>
@@ -90,15 +118,16 @@
                 </div>
               </div>
             <% end %>
+            <div class="js-tags"></div>
           </div>
 
           <form>
           <div class="row margin_top hidden-xs">
             <div class="col-md-12">
-
+              <a href="#" class="btn btn-lg btn-commentImage js-tag-friend">TAG A FRIEND</a>
               <a href="#" class="btn btn-lg btn-commentImage js-goto-comment">COMMENT <span class="icon-entypo-comment"></span></a>
               <div class="btn-lg groupPost__btn--like">
-                <% if @you_like: %>                
+                <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike">Unlike<span class="glyphicon glyphicon-thumbs-down"></span></a>
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
@@ -112,7 +141,7 @@
            <div class="row visible-xs">
             <div class="col-xs-12">
               <div class="like">
-                <% if @you_like: %>                
+                <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike"> Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like"> Like <span class="icon-entypo-thumbs-up"></span></a>
@@ -124,10 +153,10 @@
           <!-- End Mobile -->
 
         <div class="groupPost__commentsContainer comments-container margin_top hidden-xs">
-          
+
         </div>
 
-        <div class="row"> 
+        <div class="row">
           <form class="groupPost__commentForm clearfix form">
             <div class="groupPost__commentForm__avatar hidden-xs">
               <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
@@ -137,7 +166,7 @@
                 <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
               </div>
               <div class="col-xs-2 visible-xs">
-                <button id= "commentB" class="btn btn-default-blue"><span style="color: #2099D0" class="glyphicon glyphicon-comment"></span></button>
+                <button id= "commentB" class="btn btn-default-blue post__buttomComent"><span class="glyphicon glyphicon-comment"></span></button>
               </div>
             </div>
           </form>

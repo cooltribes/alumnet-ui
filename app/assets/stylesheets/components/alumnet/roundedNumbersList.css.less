@@ -37,6 +37,14 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
                 border-color: transparent;
                 background-color: @blue;
             }
+             .roundedNumbersList__numberOnboarding
+            {
+                color: #FFFFFF;
+                background-color: #2099D0;
+                border-radius: 1em;
+                border-style: solid;
+                padding: 2px;
+            }
         }
         &--inactive
         {
@@ -59,6 +67,43 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
         font-size: 1em;
         line-height: 1.7em;
 
+        display: inline-block;
+
+        width: 2em;
+        height: 2em;
+        margin-right: .2em;
+        margin-bottom: .2em;
+
+        text-align: center;
+
+        color: @dim-gray;
+        border: 2px solid @dim-gray;
+        border-radius: 2em;
+    }
+    &__numberOnboarding
+    {
+        font-size: 1em;
+        line-height: 1.7em;
+
+        display: inline-block;
+
+        width: 2em;
+        height: 2em;
+        margin-right: .2em;
+        margin-bottom: .2em;
+
+        text-align: center;
+        background-color: #FFF;
+        color: @blue;
+
+        border-radius: 2em;
+    }
+
+    &__subNumber
+    {
+        font-size: 0.7em;
+        line-height: 1.7em;
+        
         display: inline-block;
 
         width: 2em;
@@ -121,6 +166,35 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 
      
         }
+        &__numberOnboarding
+        {
+            font-size: 2em;
+            font-weight: 100;
+            line-height: 1.7em;
+
+            display: inline-block;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+            text-align: center;
+            background-color: #FFF;
+            color: @blue;
+            padding: 0px 10px;
+            border-radius: 2em;
+        }
+
+         &__subNumber
+        {
+            font-size: 1.5em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+        }
     }
 }
 
@@ -153,6 +227,25 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
                 height: auto;
             }
         }
+        &__numberOnboarding
+        {
+            font-size: 2em;
+            font-weight: 100;
+            line-height: 1.7em;
+
+            display: inline-block;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+            text-align: center;
+            background-color: #FFF;
+            color: @blue;
+            padding: 5px 10px;
+            border-radius: 2em;
+        }
         &__number
         {
             font-size: 2em;
@@ -163,6 +256,15 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             margin-bottom: .2em;
 
      
+        }
+        &__subNumber
+        {
+            font-size: 1.5em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
         }
     }
 }

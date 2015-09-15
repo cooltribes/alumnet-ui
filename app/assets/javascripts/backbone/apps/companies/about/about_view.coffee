@@ -9,6 +9,7 @@
        services: "#services"
        contacts: "#contacts"
        branches: "#branches"
+       links: "#links"
 
     events:
       'click .smoothClick':'smoothClick'
@@ -84,6 +85,7 @@
         pk: view.model.id
         title: 'Enter the Industry of Company'
         toggle: 'manual'
+        emptytext: "There is not available information"        
         source: data
         validate: (value)->
           if $.trim(value) == ''
@@ -113,6 +115,7 @@
         pk: view.model.id
         title: 'Enter the size of Company'
         toggle: 'manual'
+        emptytext: "There is not available information"        
         source: view.model.sizes
         validate: (value)->
           if $.trim(value) == ''
@@ -169,8 +172,6 @@
     events:
       'click @ui.saveLink': 'saveClicked'
 
-    initialize: ->
-
     templateHelpers: ->
       userCanEdit: @model.userIsAdmin()
 
@@ -209,7 +210,7 @@
   class About.ContactModal extends Backbone.Modal
     template: 'companies/about/templates/contact_modal'
     cancelEl: '#cancel'
-    keyControl: false    
+    keyControl: false
 
     initialize: (options)->
       @parentView = options.parentView
@@ -256,7 +257,7 @@
       if @model.isValid(true)
         view.parentView.collection.create @model,
           success: (model)->
-            view.model = null
+            view.model.clear({silent: true})
             view.destroy()
           error: (model, response)->
             errors = response.responseJSON
@@ -267,7 +268,7 @@
   class About.AddressModal extends Backbone.Modal
     template: 'companies/about/templates/address_modal'
     cancelEl: '#cancel'
-    keyControl: false    
+    keyControl: false
 
 
     initialize: (options)->
@@ -474,7 +475,7 @@
   class About.BranchView extends Marionette.ItemView
     template: 'companies/about/templates/_branch'
     tagName: 'li'
-    
+
 
     initialize: (options)->
       @company = options.company
@@ -515,8 +516,8 @@
   class About.BranchModal extends Backbone.Modal
     template: 'companies/about/templates/branch_modal'
     cancelEl: '#cancel'
-    keyControl: false    
-    
+    keyControl: false
+
 
     initialize: (options)->
       @branchesView = options.branchesView
@@ -599,7 +600,7 @@
       @layout = options.layout
 
     templateHelpers: ->
-      userCanEdit: @model.userIsAdmin()  
+      userCanEdit: @model.userIsAdmin()
 
     events:
       'click #js-add-branch': 'modalAddBranch'
@@ -664,3 +665,119 @@
         model: contact
         parentView: @
       $('#js-modal-branch-contact-container').html(modal.render().el)
+
+
+  #### LINKS
+
+
+  class About.LinkModal extends Backbone.Modal
+    template: 'companies/about/templates/link_modal'
+    cancelEl: '#cancel'
+    keyControl: false
+
+    initialize: (options)->
+      @parentView = options.parentView
+      Backbone.Validation.bind @,
+        valid: (view, attr, selector) ->
+          view.clearErrors(view, attr)
+        invalid: (view, attr, error, selector) ->
+          view.clearErrors(view, attr)
+          view.addErrors(view, attr, error)
+
+    events:
+      'click #save': 'saveClicked'
+
+    templateHelpers: ->
+      model = @model
+
+    clearErrors: (view, attr)->
+      $el = view.$("[name=#{attr}]")
+      $group = $el.closest('.form-link')
+      $group.removeClass('has-error')
+      $group.find('.help-block').html('').addClass('hidden')
+
+    addErrors: (view, attr, error)->
+      $el = view.$("[name=#{attr}]")
+      $group = $el.closest('.form-link')
+      $group.addClass('has-error')
+      $group.find('.help-block').html(error).removeClass('hidden')
+
+    saveClicked: (e)->
+      e.preventDefault()
+      view = @
+      data = Backbone.Syphon.serialize(this)
+      @model.set(data)
+      if @model.isValid(true)
+        @model.save {},
+          success: (model)->
+            view.parentView.collection.add(model)
+            view.model = null
+            view.destroy()
+          error: (model, response)->
+            errors = response.responseJSON
+            _.each errors, (value, key, list)->
+              view.clearErrors(view, key)
+              view.addErrors(view, key, value[0])
+
+  class About.LinkView extends Marionette.ItemView
+    template: 'companies/about/templates/_link'
+
+    initialize: (options)->
+      @company = options.company
+      @parentView = options.parentView
+      @listenTo(@model, 'change', @renderView)
+
+    templateHelpers: ->
+      model = @model
+      userCanEdit: @company.userIsAdmin()
+
+    ui:
+      'editLink':'#js-edit-link'
+      'deleteLink':'#js-delete-link'
+
+    events:
+      'click @ui.deleteLink': 'deleteClicked'
+      'click @ui.editLink': 'editClicked'
+
+    renderView: ->
+      @render()
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
+
+    editClicked: (e)->
+      e.preventDefault()
+      modal = new About.LinkModal
+        model: @model
+        parentView: @parentView
+      $('#js-modal-link-container').html(modal.render().el)
+
+  class About.LinksView extends Marionette.CompositeView
+    template: 'companies/about/templates/links'
+    className: 'container-fluid'
+    childView: About.LinkView
+    childViewContainer: '#js-links-list'
+    childViewOptions: ->
+      company: @model
+      parentView: @
+
+    ui:
+      'addLink': '#js-add-link'
+
+    events:
+      'click @ui.addLink': 'modalAddLink'
+
+    templateHelpers: ->
+      userCanEdit: @model.userIsAdmin()
+
+    modalAddLink: (e)->
+      e.preventDefault()
+      link = new AlumNet.Entities.Link
+      link.urlRoot = AlumNet.api_endpoint + "/companies/#{@model.id}/links"
+      modal = new About.LinkModal
+        model: link
+        parentView: @
+      $('#js-modal-link-container').html(modal.render().el)

@@ -7,7 +7,7 @@
         <%= @name %>
       </a>
   </h3></div>
-  <div class="jobPost__company"><h3 class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></h3></div>
+  <div class="jobPost__company"><p class="no-margin"><span class="ico-company"></span><b><%= @company.text %></b></p></div>
   <div class="programCardDescription jobPost__description"><%- @formatted_description %></div>
   <!-- Applied -->
   <% if @applied_count > 0: %>

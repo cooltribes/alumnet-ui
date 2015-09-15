@@ -234,7 +234,7 @@
   ###### POST DETAIL
   class Posts.PostDetail extends Posts.PostView
     template: 'groups/posts/templates/post_detail'
-    className: 'container-fluid margin_top_small'
+    className: 'container margin_top_small'
 
   ###### POSTS COLLECTION
   class Posts.PostsView extends Marionette.CompositeView
@@ -307,7 +307,7 @@
     sendJoin:(e)->
       e.preventDefault()
       group = @group
-      attrs = { group_id: group.id, user_id: current_user.id }
+      attrs = { group_id: group.id, user_id: AlumNet.current_user.id }
       request = AlumNet.request('membership:create', attrs)
       request.on 'save:success', (response, options)->
         AlumNet.trigger "groups:posts", group.id

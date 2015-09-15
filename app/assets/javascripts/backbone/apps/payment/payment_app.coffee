@@ -5,12 +5,12 @@
 
 
   API =
-    checkout: (condition,data)->
+    checkout: (data, type)->
       controller = new PaymentApp.Checkout.Controller
-      controller.checkout(condition,data)
+      controller.checkout(data, type)
 
-  AlumNet.on "payment:checkout", (data)->
-    API.checkout('',data)
+  AlumNet.on "payment:checkout", (data, type)->
+    API.checkout(data, type)
 
   AlumNet.addInitializer ->
     new PaymentApp.Router

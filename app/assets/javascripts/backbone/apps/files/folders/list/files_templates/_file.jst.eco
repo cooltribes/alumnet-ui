@@ -4,6 +4,8 @@
         <a href="<%= @url %>" download="<%= @url %>" class="js-detail"> 
           <span class="glyphicon glyphicon-file"></span>
         </a>
+      <% else: %>
+          <span class="glyphicon glyphicon-file"></span>
       <% end %>
     </div>
   <div class="col-md-10">
@@ -13,6 +15,8 @@
         <a href="<%= @url %>" download="<%= @url %>" class="js-detail"> 
           <span> <%= @name %> </span>
         </a>
+      <% else: %>
+        <span> <%= @name %> </span>
       <% end %>
     </div>
     <% if @user_can_edit: %>

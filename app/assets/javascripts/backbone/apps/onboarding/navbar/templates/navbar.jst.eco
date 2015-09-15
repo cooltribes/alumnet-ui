@@ -1,0 +1,12 @@
+
+  <ul class="onboarding__menuList" style="padding-left: 0;">
+    <li class="roundedNumbersList__item<%= @classOf(0)%>" style="margin: 0;"><span class="roundedNumbersList__numberOnboarding">1</span></li>
+    <li class="roundedNumbersList__item<%= @classOf(1)%>" style="margin: 0;"><span class="roundedNumbersList__numberOnboarding">2</span></li>
+    <li class="roundedNumbersList__item<%= @classOf(2)%>" style="margin: 0;"><span class="roundedNumbersList__numberOnboarding">3</span></li>
+  </ul>
+
+
+
+
+
+

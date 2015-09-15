@@ -22,12 +22,12 @@
         method: "post"
         data: data
         sucess: (data)->
+          console.log "algo"
           console.log data
         error: (data)->
           errors = data.responseJSON.errors
           _.each errors, (value, key, list)->
             view.showErrors(key, value[0])
-
 
     cancelClicked: (e)->
       e.preventDefault()

@@ -49,6 +49,11 @@
       collection.url = AlumNet.api_endpoint + "/companies/#{@id}/contact_infos"
       collection
 
+    linksCollection: ->
+      collection = new AlumNet.Entities.LinksCollection @get('links')
+      collection.url = AlumNet.api_endpoint + "/companies/#{@id}/links"
+      collection
+
     getLocation: ->
       location = []
       location.push(@get('main_address')) unless @get('main_address') == ""

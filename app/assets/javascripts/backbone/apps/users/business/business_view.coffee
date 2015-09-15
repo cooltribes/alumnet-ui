@@ -325,18 +325,7 @@
       data.business_me = $('#business-me').code()
       formData = new FormData()
       _.forEach data, (value, key, list)->
-
-        # if key == "keywords_offer"
-
-        #   _.forEach value, (value, key, list)->
-        #     formData.append("keywords_offer[#{key}]", value)
-        # else
           formData.append(key, value)
-
-      #Add the image to form submit
-      # file = @ui.logo
-      # formData.append('company_logo', file[0].files[0])
-
       @model.set(data)
 
       #submit the model if valid
