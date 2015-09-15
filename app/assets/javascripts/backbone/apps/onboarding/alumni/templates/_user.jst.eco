@@ -4,7 +4,15 @@
       <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
     </div>
     <div class=" col-md-6 ">
-      <h4 class="userCard__name margin_top_xsmall overfloadText"> <%= @name %> <span class="glyphicon glyphicon-certificate"></span></h4>
+      <% if @member==0 : %>
+        <h4 class="userCard__name margin_top_xsmall overfloadText"> <%= @name %> </h4>
+      <% end %>
+      <% if @member==1 || @member==2: %>
+         <h4 class="userCard__name margin_top_xsmall overfloadText"> <%= @name %> <span class="glyphicon glyphicon-certificate"></span></h4>
+      <% end %>
+      <% if @member==3: %>
+        <h4 class="userCard__name margin_top_xsmall overfloadText"> <%= @name %> <span class="glyphicon glyphicon-certificate" style="font-size: small;"></span><span class="glyphicon glyphicon-certificate"></span><span class="glyphicon glyphicon-certificate" style="font-size: small;"></span></h4>
+      <% end %>
       <p class="userCard__position member-position text-small"><%= @last_experience %></p>
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
     </div>

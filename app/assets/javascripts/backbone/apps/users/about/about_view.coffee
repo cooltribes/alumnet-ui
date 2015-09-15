@@ -606,7 +606,6 @@
       @showLevel = options.showLevel
 
 
-
   #For contact info
   class About.Contact extends Marionette.ItemView
     template: 'users/about/templates/_contact'
