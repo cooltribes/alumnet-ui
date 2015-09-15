@@ -149,16 +149,16 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
+          console.log $(this).html()
+          console.log "rafa"
+          console.log this
           view.trigger 'post:edit', newValue
-      
-      console.log $(@ui.bodyPost).html()
-
-      validation = @ytVidId(@ui.bodyPost.html())
+      validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation
-        @ui.bodyPost.html('<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>')
+        temp_string = @ui.bodyPost.html()
+        @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
       else
         @ui.bodyPost.linkify()
-      #@ui.bodyPost.linkify()
 
     ui:
       'item': '.item'
@@ -346,7 +346,7 @@
 
     checkInput: (e)->
       #console.log @ui.bodyInput.val()
-      validation = @ytVidId(@ui.bodyInput.val())
+      validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
       if validation
         console.log validation
         #@ui.videoContainer.show(new Marionette.ItemView({template: '<iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>'}))
