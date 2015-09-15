@@ -89,4 +89,9 @@
     </div>
   </div>
   <!-- Residence OFF-->
+  <div class="form-group text-right">
+    <%% if @isVisible: %>
+      <a href="/auth/linkedin?registration=1" class="btn btn-primary btn-lg js-linkedin-import">Import from LinkedIn</a>
+    <%% end %>
+  </div>
 </form>

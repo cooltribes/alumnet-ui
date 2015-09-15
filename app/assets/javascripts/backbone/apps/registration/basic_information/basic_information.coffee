@@ -42,12 +42,20 @@
       'selectResidenceCountries': '#js-residence-countries'
       'selectResidenceCities': '#js-residence-cities'
       'datePickerBorn': '.js-date-born'
+      'linkLinkedin': '.js-linkedin-import'
 
     events:
       'click button.js-submit': 'submitClicked'
       'change #profile-avatar': 'previewImage'
       'change #js-birth-countries': 'setBirthCities'
       'change #js-residence-countries': 'setResidenceCities'
+      'click @ui.linkLinkedin': 'linkedinClicked'
+
+    linkedinClicked: (e)->
+      if gon.linkedin_profile && gon.linkedin_profile.profile
+        e.preventDefault()
+        @model.set(gon.linkedin_profile.profile)
+        @render()
 
     saveData: ()->
       layout = @layout
