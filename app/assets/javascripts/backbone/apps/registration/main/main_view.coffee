@@ -157,6 +157,8 @@
         success: (collection)->          
           if collection.length == 0
             collection.add({first: true, exp_type: exp_type})
+          else 
+            collection.at(0).set("first", true )
 
       new Main.ExperienceList
         collection: experiences
