@@ -44,6 +44,10 @@
     isNacionalAdmin: ->
       @get "is_nacional_admin"
 
+    isInactive: ->
+      status = @get "status"
+      status.value == 0
+
     isActive: ->
       status = @get "status"
       status.value == 1
