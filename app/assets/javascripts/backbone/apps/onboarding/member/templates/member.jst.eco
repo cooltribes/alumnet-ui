@@ -1,12 +1,24 @@
-<div>
-   <div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center onboarding__groups margin_bottom">
-      <h2>Support Aiesec Alumni International</h2>
-    </div>
-    <div class="col-md-6 col-md-offset-3 links text-center">
-      
-    </div>
-  </div>
-  
- <div class="subscriptions-container"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 text-center onboarding__groups margin_bottom">
+		  	<h2>Support Aiesec Alumni International</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 onboarding__groups margin_bottom">
+		  	<p>Following this spirit AAI has developed an ambitious vision and strategic plan for transforming itself into and active, global network. This plan will make it possible for as many as 1.000.000 alumni to connect and collaborate on programs that will provide lifelong value to alumni, support AIESEC and make a positive difference in the world.</p>
+		</div>
+		<div class="col-md-6 onboarding__groups margin_bottom">
+		  	<p>According to nowadays times and in oder to make it happen AAI has launched AlumNet platform with the hope to bring alumni around the world together into a single online community, where they will find aggregated value through business, career and life connections.</p>
+		</div>
+	</div>
+	<div class="row margin_bottom">
+		<div class="col-md-4 col-md-offset-4 onboarding__groups text-center">
+			<p>Membership will support viability and continuity of this dream and will <b>get you access to <a href="#" id="js-modal">"Only-Members"</a> special programs and features.</b></p>
+		</div>
+	</div>
+
+	<div class="subscriptions-container"></div>
 </div>
+
+<div id="container-modal-members"></div>

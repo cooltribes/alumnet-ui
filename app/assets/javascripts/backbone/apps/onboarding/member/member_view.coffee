@@ -1,7 +1,7 @@
 @AlumNet.module 'OnboardingApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Subscription extends AlumNet.Shared.Views.UserView
     template: 'onboarding/member/templates/_subscription'
-    className: 'col-md-6'
+    className: 'col-md-4'
 
   class Suggestions.Member extends Marionette.CompositeView
     template: 'onboarding/member/templates/member'
@@ -31,5 +31,9 @@
 
     showModal: (e)->
       e.preventDefault()
-      modal = new List.ModalOnboarding
+      modal = new Suggestions.ModalOnboarding
       $('#container-modal-members').html(modal.render().el)
+
+  class Suggestions.ModalOnboarding extends Backbone.Modal
+    template: 'onboarding/member/templates/modal'
+    cancelEl: '#js-close'
