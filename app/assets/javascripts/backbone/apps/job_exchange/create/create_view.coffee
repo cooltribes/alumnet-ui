@@ -255,11 +255,24 @@
 
     initialize: (options)->
       document.title = 'AlumNet - Post a job'
-    
+
+    ui:
+      'modalMembers':'#js-modal'
+
     events:
+      'click @ui.modalMembers': 'showModal'
       'click button.js-submit': 'submitClicked'
 
+    showModal: (e)->
+      e.preventDefault()
+      modal = new Create.ModalOnboarding
+      $('#container-modal-members').html(modal.render().el)
+    
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       AlumNet.trigger 'payment:checkout' , data, 'job_post'
+
+  class Create.ModalOnboarding extends Backbone.Modal
+    template: 'job_exchange/create/templates/modal'
+    cancelEl: '#js-close'
