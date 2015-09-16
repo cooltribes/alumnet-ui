@@ -43,3 +43,20 @@ hr{
  src: asset-url("glyphicons-halflings-regular.eot");
  src: asset-url("glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'), asset-url("glyphicons-halflings-regular.woff") format('woff'), asset-url("glyphicons-halflings-regular.ttf") format('truetype'), asset-url("glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format('svg');
 }
+
+ /* ranpaco video-container */
+ .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
