@@ -256,10 +256,29 @@
     initialize: (options)->
       document.title = 'AlumNet - Post a job'
 
+    ui:
+      'modalMembers':'#js-modal'
+
     events:
+      'click @ui.modalMembers': 'showModal'
       'click button.js-submit': 'submitClicked'
+      'click .js-item': 'startPayment'
+
+    showModal: (e)->
+      e.preventDefault()
+      modal = new Create.ModalOnboarding
+      $('#container-modal-members').html(modal.render().el)
 
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       AlumNet.trigger 'payment:checkout' , data, 'job_post'
+
+    startPayment: (e)->
+      e.preventDefault()
+      data = {"subscription_id": e.target.id}
+      AlumNet.trigger 'payment:checkout', data, 'job_post'
+
+  class Create.ModalOnboarding extends Backbone.Modal
+    template: 'job_exchange/create/templates/modal'
+    cancelEl: '#js-close'
