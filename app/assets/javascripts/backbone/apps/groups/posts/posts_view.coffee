@@ -4,6 +4,7 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
+
     initialize: (options)->
       @post = options.post
       @group = options.group
@@ -28,6 +29,11 @@
         success: (response, newValue)->
           view.model.save { comment: newValue }
       @ui.commentText.linkify()
+
+    onShow: ->
+      container = $('#timeline')
+      container.masonry 'layout'
+
 
     ui:
       'likeLink': '.js-vote'
@@ -88,7 +94,7 @@
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post item col-md-6'
+    className: 'post item col-xs-12 col-sm-6 col-md-6'
 
     initialize: (options)->
       @group = options.group
