@@ -166,7 +166,7 @@
 
 
     templateHelpers: () ->
-
+      model = @model
       getRoleText: @model.getRole()
 
       getAge: ()->
@@ -199,10 +199,15 @@
         if @profileData.gender
           return @profileData.gender
         "No gender"
-        
+
       getId: () ->
         id = @model.id
 
+      getLastSignIn: ->
+        if model.get "last_sign_in_at"
+          moment(model.get("last_sign_in_at")).format("MMM DD YY, h:mm:ss a")
+        else
+          ""
 
 
     modelChange: ->
