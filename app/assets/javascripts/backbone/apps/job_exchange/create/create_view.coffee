@@ -79,7 +79,7 @@
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').value
+      city_helper: if @model.get('city') then @model.get('city').id
       company_helper: if @model.get('company') then @model.get('company').text
       seniorities:()->
         seniorities = new AlumNet.Utilities.Seniorities
@@ -147,8 +147,8 @@
 
       ## set initial value
       unless @model.isNew()
-        @ui.selectCountries.select2('val', @model.get('country').value)
-        @setSelectCities(@model.get('country').value)
+        @ui.selectCountries.select2('val', @model.get('country').id)
+        @setSelectCities(@model.get('country').id)
 
     submitClicked: (e)->
       e.preventDefault()
@@ -194,7 +194,7 @@
 
     setSelectCities: (val)->
       if @model.get('city')
-        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+        initialValue = { id: @model.get('city').id, name: @model.get('city').name }
       else
         initialValue = false
 
@@ -255,7 +255,7 @@
 
     initialize: (options)->
       document.title = 'AlumNet - Post a job'
-    
+
     events:
       'click button.js-submit': 'submitClicked'
 

@@ -1,15 +1,15 @@
 @AlumNet.module 'CompaniesApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Discover.Layout extends Marionette.LayoutView
-    template: 'companies/discover/templates/layout'    
+    template: 'companies/discover/templates/layout'
     className: 'container-fluid'
 
     regions:
       companies_region: '#companies-region'
-    
+
     events:
       'click .add-new-filter': 'addNewFilter'
-      'submit #search-form': 'basicSearch'      
+      'submit #search-form': 'basicSearch'
       'click .search': 'advancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
@@ -20,7 +20,7 @@
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "name", type: "string", values: "" },
-      ])  
+      ])
 
     changeGridView: (e)->
       e.preventDefault()
@@ -34,7 +34,7 @@
     showAdvancedSearch: (e)->
       e.preventDefault()
       $("#search-form").fadeToggle "fast", "swing", ()->
-        $("#js-advanced-search").fadeToggle("fast")       
+        $("#js-advanced-search").fadeToggle("fast")
 
     showBasicSearch: (e)->
       e.preventDefault()
@@ -55,19 +55,19 @@
     basicSearch: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      query = 
+      query =
         q: { name_cont: value }
-      @trigger "search", query      
+      @trigger "search", query
 
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
-      @trigger "search", query  
-      
+      @trigger "search", query
+
 
     clear: (e)->
       e.preventDefault()
-      @collection.fetch()  
+      @collection.fetch()
 
 
   class Discover.Company extends Marionette.ItemView
@@ -81,12 +81,12 @@
       location: ->
         location = []
         location.push(model.get("main_address")) unless model.get("main_address") == ""
-        location.push(model.get("city").text) unless model.get("city").text == ""
-        location.push(model.get("country").text) unless model.get("country").text == ""
+        location.push(model.get("city").name) unless model.get("city").name == ""
+        location.push(model.get("country").name) unless model.get("country").name == ""
         location.join(", ")
 
 
-  class Discover.List extends Marionette.CompositeView    
+  class Discover.List extends Marionette.CompositeView
     childView: Discover.Company
     childViewContainer: '#companies-container'
 
@@ -111,23 +111,23 @@
       className: className
       tagName: tagName
       template: template
-    
+
 
     initialize: ()->
       @type = "cards" #default view
-    
-  
+
+
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
-    template: 'companies/discover/templates/my_companies_layout'    
+    template: 'companies/discover/templates/my_companies_layout'
     className: 'container-fluid'
 
     regions:
       companies_region: '#companies-region'
-    
-    events:      
+
+    events:
       'click .js-changeGrid' : 'changeGridView'
 
-   
+
     changeGridView: (e)->
       e.preventDefault()
       element = $(e.currentTarget)

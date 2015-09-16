@@ -22,8 +22,8 @@
     getLocation: ->
       location = []
       location.push(@get('address')) if @get('address')
-      location.push(@get('city').text) if @get('city').text != ""
-      location.push(@get('country').text) if @get('country').text != ""
+      location.push(@get('city').name) if @get('city').name != ""
+      location.push(@get('country').name) if @get('country').name != ""
       location.join(', ')
 
     isOpen: ->
