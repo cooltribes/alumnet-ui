@@ -48,10 +48,12 @@
 
 
     showBoxAdvanceSearch: (e)->
+      e.preventDefault()
       $("#js-advance-search").slideToggle("slow")
       $("#search-form").slideToggle("hide");
 
     showBoxAdvanceBasic: (e)->
+      e.preventDefault()
       $("#search-form").slideToggle("slow");
       $("#js-advance-search").slideToggle("hide")
 
@@ -84,3 +86,4 @@
     clear: (e)->
       e.preventDefault()
       @collection.fetch()
+      @searcher.clearFilters()

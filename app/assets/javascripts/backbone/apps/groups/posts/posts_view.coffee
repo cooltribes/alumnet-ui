@@ -4,6 +4,7 @@
   class Posts.CommentView extends Marionette.ItemView
     template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
+
     initialize: (options)->
       @post = options.post
       @group = options.group
@@ -28,6 +29,11 @@
         success: (response, newValue)->
           view.model.save { comment: newValue }
       @ui.commentText.linkify()
+
+    onShow: ->
+      container = $('#timeline')
+      container.masonry 'layout'
+
 
     ui:
       'likeLink': '.js-vote'
@@ -88,7 +94,7 @@
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
-    className: 'post item col-md-6'
+    className: 'post item col-xs-12 col-sm-6 col-md-6'
 
     initialize: (options)->
       @group = options.group
@@ -140,7 +146,12 @@
             'this field is required'
         success: (response, newValue)->
           view.model.save { body: newValue }
-      @ui.bodyPost.linkify()
+      validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
+      if validation
+        temp_string = @ui.bodyPost.html()
+        @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
+      else
+        @ui.bodyPost.linkify() 
 
     ui:
       'item': '.item'
@@ -164,6 +175,11 @@
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
 
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
+      
     clickedPicture: (e)->
       e.preventDefault()
       element = $(e.currentTarget)
@@ -290,11 +306,13 @@
       'uploadLink': '#upload-picture'
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
+      'videoContainer': '#video_container'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click .js-join':'sendJoin'
       'click a#js-add-tags': 'showTagging'
+      'keyup @ui.bodyInput': 'checkInput'
 
     showTagging: (e)->
       e.preventDefault()
@@ -303,6 +321,16 @@
         @ui.tagging.hide()
       else
         @ui.tagging.show()
+
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
+
+    checkInput: (e)->
+      validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
+      if validation
+        @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
 
     sendJoin:(e)->
       e.preventDefault()

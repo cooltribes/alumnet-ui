@@ -6,12 +6,12 @@
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           view.clearErrors(attr)
-        invalid: (view, attr, error, selector) ->         
+        invalid: (view, attr, error, selector) ->
           view.addErrors(attr, error)
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').value
+      city_helper: if @model.get('city') then @model.get('city').id
       sizes_options: (item)->
         model.sizes_options(item)
 
@@ -42,8 +42,8 @@
 
       ## set initial value
       unless @model.isNew()
-        @ui.selectCountries.select2('val', @model.get('country').value)
-        @setSelectCities(@model.get('country').value)
+        @ui.selectCountries.select2('val', @model.get('country').id)
+        @setSelectCities(@model.get('country').id)
 
     fillSelectSectors: (initialValue)->
       $select = @ui.selectSectors
@@ -73,7 +73,7 @@
           processData: false
           data: dataForm
           success: (model)->
-            $.growl.notice({ message: "Company successfully created" })            
+            $.growl.notice({ message: "Company successfully created" })
             AlumNet.trigger "company:about", model.id
 
           error: (model, response)->
@@ -81,10 +81,10 @@
             _.each errors, (value, key, list)->
               view.clearErrors(key)
               view.addErrors(key, value[0])
-            # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")          
+            # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
 
 
-      # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")        
+      # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
 
     processData: (data)->
       formData = new FormData()
@@ -103,14 +103,14 @@
       $group = $el.closest('.form-group')
       $group.addClass('has-error')
       $group.find('.help-block').html(error).removeClass('hidden')
-      @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")          
+      @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
 
     setCities: (e)->
       @setSelectCities(e.val)
 
     setSelectCities: (country_id)->
       if @model.get('city')
-        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+        initialValue = { id: @model.get('city').id, name: @model.get('city').name }
       else
         initialValue = false
 

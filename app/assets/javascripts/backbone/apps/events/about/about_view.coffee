@@ -292,11 +292,11 @@
       data = CountryList.toSelect2()
       country = @model.get('country')
       city = @model.get('city')
-      initialCity = { id: city.value, name: city.text }
+      initialCity = { id: city.id, name: city.name }
 
       @.$('.js-countries').select2
         placeholder: "Select a Country"
         data: data
 
-      @.$('.js-countries').select2('val', country.value)
-      @setSelect2Cities(country.value, initialCity)
+      @.$('.js-countries').select2('val', country.id)
+      @setSelect2Cities(country.id, initialCity)

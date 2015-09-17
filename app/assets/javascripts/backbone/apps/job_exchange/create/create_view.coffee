@@ -79,7 +79,7 @@
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').value
+      city_helper: if @model.get('city') then @model.get('city').id
       company_helper: if @model.get('company') then @model.get('company').text
       seniorities:()->
         seniorities = new AlumNet.Utilities.Seniorities
@@ -147,8 +147,8 @@
 
       ## set initial value
       unless @model.isNew()
-        @ui.selectCountries.select2('val', @model.get('country').value)
-        @setSelectCities(@model.get('country').value)
+        @ui.selectCountries.select2('val', @model.get('country').id)
+        @setSelectCities(@model.get('country').id)
 
     submitClicked: (e)->
       e.preventDefault()
@@ -194,7 +194,7 @@
 
     setSelectCities: (val)->
       if @model.get('city')
-        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+        initialValue = { id: @model.get('city').id, name: @model.get('city').name }
       else
         initialValue = false
 
@@ -255,11 +255,30 @@
 
     initialize: (options)->
       document.title = 'AlumNet - Post a job'
-    
+
+    ui:
+      'modalMembers':'#js-modal'
+
     events:
+      'click @ui.modalMembers': 'showModal'
       'click button.js-submit': 'submitClicked'
+      'click .js-item': 'startPayment'
+
+    showModal: (e)->
+      e.preventDefault()
+      modal = new Create.ModalOnboarding
+      $('#container-modal-members').html(modal.render().el)
 
     submitClicked: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       AlumNet.trigger 'payment:checkout' , data, 'job_post'
+
+    startPayment: (e)->
+      e.preventDefault()
+      data = {"subscription_id": e.target.id}
+      AlumNet.trigger 'payment:checkout', data, 'job_post'
+
+  class Create.ModalOnboarding extends Backbone.Modal
+    template: 'job_exchange/create/templates/modal'
+    cancelEl: '#js-close'
