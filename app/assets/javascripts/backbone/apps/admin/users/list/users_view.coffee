@@ -82,9 +82,9 @@
         success: (data) =>
           @model.set(data)
           @model.trigger 'change:role'
-        error: (data) =>
-          text = data.responseJSON[0]
-          $.growl.error({ message: text })
+        error: (response) =>
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
 
   #----Modal para cambiar el rol
   class Users.ModalRole extends Backbone.Modal
@@ -133,9 +133,9 @@
         success: (data) =>
           @model.set(data)
           @model.trigger 'change:role'
-        error: (data) =>
-          text = data.responseJSON[0]
-          $.growl.error({ message: text })
+        error: (response) =>
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
 
 
   #----Modal para cambiarle el plan de membresia a un user----
@@ -166,7 +166,7 @@
 
 
     templateHelpers: () ->
-
+      model = @model
       getRoleText: @model.getRole()
 
       getAge: ()->
@@ -199,10 +199,15 @@
         if @profileData.gender
           return @profileData.gender
         "No gender"
-        
+
       getId: () ->
         id = @model.id
 
+      getLastSignIn: ->
+        if model.get "last_sign_in_at"
+          moment(model.get("last_sign_in_at")).format("MMM DD YY, h:mm:ss a")
+        else
+          ""
 
 
     modelChange: ->

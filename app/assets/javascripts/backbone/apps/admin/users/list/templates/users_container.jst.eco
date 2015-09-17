@@ -93,6 +93,7 @@
 		  <th>Age</th>
 		  <th>Status</th>
 		  <th>Role</th>
+      <th>Last login</th>
 		  <th>Edit</th>
 		</tr>
 	</thead>

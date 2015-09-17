@@ -11,22 +11,24 @@
       "users/:id/business-exchange": "userBusiness"
       "users/:id/profile": "publicProfile"
 
-
-
   API =
     userPost: (user_id, id)->
+      @registerVisit(user_id_id)
       controller = new UsersApp.Posts.Controller
       controller.showPost(user_id, id)
 
     userPosts: (id)->
+      @registerVisit(id)
       controller = new UsersApp.Posts.Controller
       controller.showPosts(id)
 
     userAbout: (id)->
+      @registerVisit(id)
       controller = new UsersApp.About.Controller
       controller.showAbout(id)
 
     publicProfile: (id)->
+      @registerVisit(id)
       controller = new UsersApp.About.Controller
       controller.showProfile(id)
 
@@ -36,19 +38,28 @@
       if AlumNet.current_user.get("id") == parseInt(id)
         controller.showMyLayout()
       else
+        @registerVisit(id)
         controller.showUserLayout(id)
 
     userPictures: (id)->
+      @registerVisit(id)
       controller = new UsersApp.Pictures.Controller
       controller.showAlbums(id)
 
     userEvents: (id)->
+      @registerVisit(id)
       controller = new UsersApp.Events.Controller
       controller.showEvents(id)
 
     userBusiness: (id)->
+      @registerVisit(id)
       controller = new UsersApp.Business.Controller
       controller.showBusiness(id)
+
+    registerVisit: (id)->
+      Backbone.ajax
+        method: 'POST'
+        url: AlumNet.api_endpoint + "/users/#{id}/register_visit"
 
 
   AlumNet.on "user:posts", (user_id) ->

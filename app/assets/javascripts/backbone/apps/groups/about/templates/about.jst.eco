@@ -60,7 +60,7 @@
             <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
         </div>
       <% end %>
-      
+
       <% unless @currentUserIsAdmin: %>
       <% end %>
 
@@ -136,9 +136,9 @@
         <% end %>
       </div>
       <div class="groupAbout__box margin_bottom">
-        <% if @city.text || @country.text: %>
+        <% if @city.name || @country.name: %>
           <h3>
-            <%= @city.text %><br/><%= @country.text %>
+            <%= @city.name %><br/><%= @country.name %>
           </h3>
         <% else: %>
             <h3>No Location</h3>

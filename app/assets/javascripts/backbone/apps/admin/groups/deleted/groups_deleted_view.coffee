@@ -16,8 +16,8 @@
     templateHelpers: ->
       model = @model
       getLocation: ->
-        country = model.get('country').text
-        city = model.get('city').text
+        country = model.get('country').name
+        city = model.get('city').name
         array = []
         array.push(country) unless country == ""
         array.push(city) unless city == ""

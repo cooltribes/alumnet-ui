@@ -85,7 +85,7 @@
         pk: view.model.id
         title: 'Enter the Industry of Company'
         toggle: 'manual'
-        emptytext: "There is not available information"        
+        emptytext: "There is not available information"
         source: data
         validate: (value)->
           if $.trim(value) == ''
@@ -115,7 +115,7 @@
         pk: view.model.id
         title: 'Enter the size of Company'
         toggle: 'manual'
-        emptytext: "There is not available information"        
+        emptytext: "There is not available information"
         source: view.model.sizes
         validate: (value)->
           if $.trim(value) == ''
@@ -280,7 +280,7 @@
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').value
+      city_helper: if @model.get('city') then @model.get('city').id
 
     onRender: ->
       @.$('#city_id').select2
@@ -292,8 +292,8 @@
 
       ## set initial value
       unless @model.isNew()
-        @.$('#country_id').select2('val', @model.get('country').value)
-        @setSelectCities(@model.get('country').value)
+        @.$('#country_id').select2('val', @model.get('country').id)
+        @setSelectCities(@model.get('country').id)
 
     setCities: (e)->
       @.$('#city_id').select2('val', {})
@@ -301,7 +301,7 @@
 
     setSelectCities: (country_id)->
       if @model.get('city')
-        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+        initialValue = { id: @model.get('city').id, name: @model.get('city').name }
       else
         initialValue = false
 
@@ -528,7 +528,7 @@
 
     templateHelpers: ->
       model = @model
-      city_helper: if @model.get('city') then @model.get('city').value
+      city_helper: if @model.get('city') then @model.get('city').id
 
     onRender: ->
       @.$('#city_id').select2
@@ -540,8 +540,8 @@
 
       ## set initial value
       unless @model.isNew()
-        @.$('#country_id').select2('val', @model.get('country').value)
-        @setSelectCities(@model.get('country').value)
+        @.$('#country_id').select2('val', @model.get('country').id)
+        @setSelectCities(@model.get('country').id)
 
     setCities: (e)->
       @.$('#city_id').select2('val', {})
@@ -549,7 +549,7 @@
 
     setSelectCities: (country_id)->
       if @model.get('city')
-        initialValue = { id: @model.get('city').value, name: @model.get('city').text }
+        initialValue = { id: @model.get('city').id, name: @model.get('city').name }
       else
         initialValue = false
 
