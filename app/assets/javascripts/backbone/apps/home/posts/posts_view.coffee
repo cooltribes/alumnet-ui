@@ -153,6 +153,11 @@
           console.log "rafa"
           console.log this
           view.trigger 'post:edit', newValue
+          validation = @ytVidId(newValue.split(" ").pop())
+          if validation
+            temp_string = newValue
+            $(this).html(temp_string.replace(newValue.split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
+
       validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation
         temp_string = @ui.bodyPost.html()
