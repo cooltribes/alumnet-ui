@@ -203,6 +203,11 @@
   class About.CropAvatarModal extends Backbone.Modal
     template: 'users/about/templates/_cropAvatarModal'
     cancelEl: '#js-close-btn'
+    events:
+      'click #js-crop-btn': 'clickCropAvatar'
+
+    clickCropAvatar: (e)->
+      @cropper.crop()
 
     onShow: ->
       model = @model
@@ -211,16 +216,23 @@
         loadPicture: image
         cropData: { "image": 'avatar' }
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        doubleZoomControls:false
+        rotateControls:false 
         onAfterImgCrop: ()->
           model.trigger('change:cover')
           if model.isCurrentUser()
             AlumNet.current_user.trigger('change:avatar')
+      @cropper = new Croppic('croppic', options)
 
-      cropper = new Croppic('croppic', options)
 
   class About.CropCoverModal extends Backbone.Modal
     template: 'users/about/templates/_cropCoverModal'
     cancelEl: '#js-close-btn'
+    events:
+      'click #js-crop-btn': 'clickCropAvatar'
+
+    clickCropAvatar: (e)->
+      @cropper.crop()
 
     onShow: ->
       model = @model
@@ -229,10 +241,12 @@
         loadPicture: image
         cropData: { "image": 'cover' }
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        doubleZoomControls:false
+        rotateControls:false 
         onAfterImgCrop: ->
           model.trigger('change:cover')
 
-      cropper = new Croppic('croppic', options)
+      @cropper = new Croppic('croppic', options)
 
   class About.CoverModal extends Backbone.Modal
     template: 'users/about/templates/_coverModal'
