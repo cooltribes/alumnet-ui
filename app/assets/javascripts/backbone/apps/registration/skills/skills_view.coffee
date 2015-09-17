@@ -26,7 +26,6 @@
       @model.destroy()
 
     onRender: ->
-      $('body,html').animate({scrollTop: 20}, 600);
       #Render the slider
       slideItem = $("#slider", @el)
       levelTextItem = slideItem.next("#level")
@@ -97,7 +96,7 @@
               @ui.skills.select2 "val", listOfNames
 
 
-      $('body,html').animate({scrollTop: 20}, 600);
+      $('body,html').animate({scrollTop: 0}, 600);
 
 
     fillSkills: (collection)->

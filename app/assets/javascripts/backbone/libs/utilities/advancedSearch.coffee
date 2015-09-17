@@ -20,6 +20,18 @@
     addNewFilter: ->
       @container.append @htmlFilter
 
+    clearFilters: ->
+      filters = @container.find('.filter')
+      first_filter = filters[0]
+      @_resetFilter($(first_filter))
+      return if filters.length == 1
+      filters.each (index)->
+        $(@).remove() unless index == 0
+
+    _resetFilter: ($filter)->
+      $filter.find('.filter-attribute-container select').val("")
+      $filter.find('.filter-value-container').html @_inputForFilter("")
+
     _getOptionsFor: (attribute)->
       _.where(@options, {attribute: attribute})[0]
 
@@ -43,9 +55,9 @@
       if Array.isArray(options.values) && options.type == "option"
         "<select class='filter-value filters__input filters__input--lg form-control input-lg'>" + @_generateHtmlOptionsForSelect(options.values, 'Select Value') + "</select>"
       else if options.type == "date"
-        "<input class='filter-value filters__input filters__input--lg form-control input-lg date-search' value='#{options.values}'>"
+        "<input class='filter-value filters__input filters__input--lg form-control input-lg date-search' value='#{options.values || ""}'>"
       else
-        "<input class='filter-value filters__input filters__input--lg form-control input-lg' value='#{options.values}'>"
+        "<input class='filter-value filters__input filters__input--lg form-control input-lg' value='#{options.values || ""}'>"
 
     _initializeDateInput: (valueContainer)->
       dateInput = valueContainer.find('.date-search').first()
@@ -55,9 +67,9 @@
         default_position: 'below'
 
     generateOptions: ($filterContainer, value)->
-      options = @_getOptionsFor(value)
       filterComparator = $filterContainer.find('.filter-comparator')
       valueContainer = $filterContainer.find('.filter-value-container')
+      options = @_getOptionsFor(value)
       if options
         filterComparator.html @_htmlForComparator(options.type)
         valueContainer.html @_inputForFilter(options)
