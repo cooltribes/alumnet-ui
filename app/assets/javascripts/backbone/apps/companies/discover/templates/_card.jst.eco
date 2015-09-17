@@ -1,8 +1,8 @@
 <div class="businessCard companyCard">
-  
+
   <div class="companyCard__logo">
     <a href="#companies/<%= @id %>/about">
-      <img src="<%= @logo.card %>">    
+      <img src="<%= @logo.card %>">
     </a>
   </div>
 
@@ -11,31 +11,32 @@
       <a href="#companies/<%= @id %>/about">
         <%= @name %>
       </a>
-    
+
     </h3>
     <div class="programCardDescription">
       <%= @description %>
     </div>
 
     <div class="jobPost__details padding_top">
-      <p><span class="glyphicon glyphicon-map-marker"></span> 
+      <p><span class="glyphicon glyphicon-map-marker"></span>
         <%= @location() %>
       </p>
 
-      <p><span class="ico-sector"></span> 
-        <%= @sector.text %>        
+      <p><span class="ico-sector"></span>
+        <%= @sector.text %>
       </p>
-      <p><span class="ico-company"></span> 
+      <p><span class="ico-company"></span>
         Employees: <%= @employees_count %>
-         - 
+         -
         Branches: <%= @branches_count %>
-         - 
+         -
         Links: <%= @links_count %>
       </p>
-
-
-    </div> 
+    </div>
+    <% if @userIsAdmin: %>
+      <a href="#" class="js-delete-company btn btn-danger">DELETE</a>
+    <% end %>
   </div>
 
-  
+
 </div>

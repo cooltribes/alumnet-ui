@@ -73,8 +73,24 @@
   class Discover.Company extends Marionette.ItemView
     template: 'companies/discover/templates/company'
 
+    ui:
+      'deleteLink': '.js-delete-company'
+
+    events:
+      'click @ui.deleteLink': 'deleteClicked'
+
+    deleteClicked: (e)->
+      e.preventDefault()
+      @model.destroy
+        wait: true
+        error: (model, response) ->
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
+
+
     templateHelpers: ->
       model = @model
+      userIsAdmin: @model.userIsAdmin()
       employees_count: @model.employees_count()
       branches_count: @model.branches_count()
       links_count: @model.links_count()
