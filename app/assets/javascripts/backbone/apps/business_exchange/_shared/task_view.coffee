@@ -14,8 +14,8 @@
 
       location: ->
         location = []
-        location.push model.get('country').text unless model.get('country').text == ""
-        location.push model.get('city').text unless model.get('city').text == ""
+        location.push model.get('country').name unless model.get('country').name == ""
+        location.push model.get('city').name unless model.get('city').name == ""
         location.join(',')
     ui:
       'deleteLink': '.js-job-delete'

@@ -88,23 +88,23 @@
         if month == 1 && day == 1
           month = ""
 
-        year = date.year()  
+        year = date.year()
       else
         year = "current"
         month = ""
-            
 
-      @set "#{attr}_year", year 
+
+      @set "#{attr}_year", year
       @set "#{attr}_month", month
 
 
     getLocation: ()->
       city = country = ""
       if @get("city")
-        city = "#{@get("city").text} - "
+        city = "#{@get("city").name} - "
 
       if @get("country")
-        country = "#{@get("country").text}"
+        country = "#{@get("country").name}"
 
       if (city? || country?) then return "#{city}#{country}"
 

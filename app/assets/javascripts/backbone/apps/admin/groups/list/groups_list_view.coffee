@@ -29,8 +29,8 @@
     templateHelpers: ->
       model = @model
       getLocation: ->
-        country = model.get('country').text
-        city = model.get('city').text
+        country = model.get('country').name
+        city = model.get('city').name
         array = []
         array.push(country) unless country == ""
         array.push(city) unless city == ""
@@ -57,7 +57,6 @@
       @render()
 
     editClicked: (e)->
-      console.log "algo"
       e.preventDefault()
       modal = new GroupsList.ModalEdit
         model: @model #group
@@ -226,13 +225,13 @@
       data = CountryList.toSelect2()
       country = @model.get('country')
       city = @model.get('city')
-      initialCity = { id: city.value, name: city.text }
+      initialCity = { id: city.id, name: city.name }
       parent = @model.get('parent')
 
       @.$('.js-countries').select2
         placeholder: "Select a Country"
         data: data
 
-      @.$('.js-countries').select2('val', country.value)
-      @setSelect2Cities(country.value, initialCity)
+      @.$('.js-countries').select2('val', country.name)
+      @setSelect2Cities(country.name, initialCity)
       @setSelect2Groups(parent)
