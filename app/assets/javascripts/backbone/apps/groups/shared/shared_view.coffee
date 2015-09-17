@@ -3,6 +3,11 @@
   class Shared.CropCoverModal extends Backbone.Modal
     template: 'groups/shared/templates/crop_modal'
     cancelEl: '#js-close-btn'
+    events:
+      'click #js-crop-btn': 'clickCropAvatar'
+
+    clickCropAvatar: (e)->
+      @cropper.crop()
 
     onShow: ->
       model = @model
@@ -10,10 +15,12 @@
       options =
         loadPicture: image
         cropUrl: AlumNet.api_endpoint + "/groups/#{@model.id}/cropping"
+        doubleZoomControls:false,
+        rotateControls:false 
         onAfterImgCrop: ->
           model.trigger('change:cover')
 
-      cropper = new Croppic('croppic', options)
+      @cropper = new Croppic('croppic', options)
 
   class Shared.Modal extends Backbone.Modal
     template: 'groups/shared/templates/upload_modal'
