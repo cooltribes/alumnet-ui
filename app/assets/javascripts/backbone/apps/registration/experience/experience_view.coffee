@@ -107,8 +107,8 @@
         placeholder: "Select a Country"
         data: dataCountries
 
-      if @model.get("country_id")
-        @ui.selectCountries.select2('val', @model.get("country_id"), true)
+      if @model.get("country")
+        @ui.selectCountries.select2('val', @model.get("country").id, true)
       else
         @ui.selectCountries.select2('val','')
 
@@ -117,7 +117,10 @@
       else
         @ui.selectComitees.select2('val','')
 
-      @ui.selectCities.select2('val','')
+      if @model.get("city")
+        # @ui.selectCities.select2('val', @model.get("city").id)
+      else
+        @ui.selectCities.select2('val','')
 
     cleanAllSelects:(e)->
       @ui.selectCities.select2
