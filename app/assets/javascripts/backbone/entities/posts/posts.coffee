@@ -38,13 +38,15 @@
         ""
 
     tagsLinks: ->
-      links = false
       tags = @get('user_tags_list')
+      array = []
       if tags.length > 0
-        links = ""
-        _.each tags, (user)->
-          links += "<a href='#users/#{user.id}/about'>#{user.name}</a>"
-      links
+        array = _.map tags, (user) ->
+          "<a href='#users/#{user.id}/about'>#{user.name}</a>"
+      array.join(', ')
+
+    getArrayTags: (user) ->
+      user.name
 
     sumLike: ->
       count = @get('likes_count')
