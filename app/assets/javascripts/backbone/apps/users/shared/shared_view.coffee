@@ -31,6 +31,7 @@
       model = @model
       date = new Date()
       userCanEdit: @userCanEdit
+      isActive: model.isActive()
       cover_style: ->
         cover = model.get('cover')
         if cover.main
@@ -42,6 +43,9 @@
 
       position: ->
         model.profile.get("last_experience") ? "No Position"
+
+    showButtonsProfile: ->
+      (@friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received" || @friendship_status == "none") && isActive
 
     renderView: ->
       view = @

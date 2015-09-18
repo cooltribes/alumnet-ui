@@ -35,20 +35,21 @@
     <%= @position() %>
   </p>
 
-  <% if @friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received" || @friendship_status == "none": %>
-
-    <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
-  <% end %>
-  <div id="js-request-sent">
-    <% if @friendship_status == "none": %>
-      <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>
+    <% if @showButtonsProfile: %>
+      <a href="#" id="js-message-send" title="Send a message" class="userCoverArea__btnMessage ico-chat btn btn-lg"> SEND A MESSAGE</a>
     <% end %>
-  </div>
-  <% if @friendship_status == "sent": %>
-    <a type="button" class="userCoverArea__btnInvite userCoverArea__btnInviteSent btn btn-lg" style="right: 280px;"> REQUEST SENT</a>
-  <% end %>
-   <% if @userCanEdit: %>
-    <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
-  <% end %>
+    <div id="js-request-sent">
+      <% if @friendship_status == "none": %>
+        <a href="#" id="js-request-send" type="button" title="Send friend request" class="userCoverArea__btnInvite btn btn-lg btn-group" style="right: 280px;">+ ADD FRIEND</a>
+      <% end %>
+    </div>
+    <% if @friendship_status == "sent": %>
+      <a type="button" class="userCoverArea__btnInvite userCoverArea__btnInviteSent btn btn-lg" style="right: 280px;"> REQUEST SENT</a>
+    <% end %>
+     <% if @userCanEdit: %>
+      <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+    <% end %>
+
+
 </div>
 <div id="js-picture-modal-container"></div>
