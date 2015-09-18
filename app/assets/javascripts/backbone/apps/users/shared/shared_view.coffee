@@ -31,6 +31,7 @@
       model = @model
       date = new Date()
       userCanEdit: @userCanEdit
+      isActive: model.isActive()
       cover_style: ->
         cover = model.get('cover')
         if cover.main
