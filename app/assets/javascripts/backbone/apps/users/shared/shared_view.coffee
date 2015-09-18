@@ -44,9 +44,6 @@
       position: ->
         model.profile.get("last_experience") ? "No Position"
 
-    showButtonsProfile: ->
-      (@friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received" || @friendship_status == "none") && isActive
-
     renderView: ->
       view = @
       @model.fetch
