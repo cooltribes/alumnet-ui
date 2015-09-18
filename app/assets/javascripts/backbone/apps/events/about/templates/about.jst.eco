@@ -83,9 +83,9 @@
           <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
         </div>
       <% end %>
-   
+
       <div class="groupAbout__box margin_bottom">
-        <h3><%= @country.text %>, <%= @city.text %></h3>
+        <h3><%= @country.name %>, <%= @city.name %></h3>
         <h3><span id="address"><%= @address %></span></h3>
         <% if @canEditInformation: %>
           <a href="#" id="js-edit-address">[edit]</a>
@@ -131,7 +131,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="row">
         <div class="col-md-12">
           <div class="groupAbout__box margin_bottom">
@@ -141,7 +141,7 @@
             <% end %>
           </div>
         </div>
-      </div> 
+      </div>
 
     </div>
   </div>

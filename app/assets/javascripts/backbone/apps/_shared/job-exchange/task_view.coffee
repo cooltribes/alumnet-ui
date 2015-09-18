@@ -4,14 +4,14 @@
     initialize: (options)->
       @mode = options.mode
 
-      
+
     templateHelpers: ->
       model = @model
 
       arraySkill = @model.get('nice_have_attributes')
       arraySkill = _.where(arraySkill, {custom_field: "alumnet_skills"});
       arraySkill = _.pluck(arraySkill,'value');
-      
+
       arraySkillRequired = @model.get('must_have_attributes')
       arraySkillRequired = _.where(arraySkillRequired, {custom_field: "alumnet_skills"});
       arraySkillRequired = _.pluck(arraySkillRequired,'value');
@@ -24,12 +24,12 @@
       canApply: @model.canApply()
       location: ->
         location = []
-        location.push model.get('country').text unless model.get('country').text == ""
-        location.push model.get('city').text unless model.get('city').text == ""
+        location.push model.get('country').name unless model.get('country').name == ""
+        location.push model.get('city').name unless model.get('city').name == ""
         location.join(', ')
-      arraySkill: skills  
+      arraySkill: skills
 
-        
+
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'
@@ -44,7 +44,7 @@
 
     _showModal: ()->
       modal = new JobExchange.ModalApply
-      
+
       modal.on "submit", @_apply, @
 
       $('#container-modal-apply').html(modal.render().el)
@@ -59,7 +59,7 @@
         success: ->
           $(e.currentTarget).parent().html('<div class="userCard__actions userCard__animation userCard__actions--Cancel">
               <span class="invitation">
-                <span class="userCard__actions__text">INVITED</span> 
+                <span class="userCard__actions__text">INVITED</span>
                 <span class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon glyphicon-ok"></span>
               </span>
@@ -68,9 +68,9 @@
 
     applyClicked: (e)->
       e.preventDefault()
-      # @ui.applyLink.attr("disabled", "disabled")            
+      # @ui.applyLink.attr("disabled", "disabled")
       @_showModal()
-      
+
 
     refreshClicked: (e)->
       e.preventDefault()
@@ -87,7 +87,7 @@
         @model.destroy()
 
 
-    _apply: (dataFromModal)->  
+    _apply: (dataFromModal)->
       view = @
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
@@ -98,15 +98,15 @@
         success: (data) =>
           if data.validation
             if current_user.get('is_premium')
-              Backbone.ajax
+              Backbone.ajax ##TODO: Refactor this :yondri (line 101 -> 113)
                 url: AlumNet.api_endpoint + '/job_exchanges/' + @model.id + '/apply'
                 method: 'PUT'
                 data: dataFromModal
                 success: ->
                   view.model.set('user_can_apply', false)
                   view.render()
-                  $.growl.notice({ message: 'Your application has been sent successfully' })  
-                  
+                  $.growl.notice({ message: 'Your application has been sent successfully' })
+
             else
               AlumNet.navigate("premium?members_only", {trigger: true})
           else
@@ -117,24 +117,24 @@
               success: ->
                 view.model.set('user_can_apply', false)
                 view.render()
-                $.growl.notice({ message: 'Your application has been sent successfully' })  
-                
+                $.growl.notice({ message: 'Your application has been sent successfully' })
+
         error: (data) =>
-          $.growl.error({ message: 'Unknow error, please try again' })  
+          $.growl.error({ message: 'Unknow error, please try again' })
 
 
   class JobExchange.ModalApply extends Backbone.Modal
     template: 'job_exchange/_shared/templates/modal_apply'
-    
+
     cancelEl: '#js-close'
     submitEl: '#js-submit'
-    keyControl: false 
+    keyControl: false
 
     initialize: ()->
       @model = AlumNet.current_user
 
     submit: ()->
-      data = Backbone.Syphon.serialize @      
+      data = Backbone.Syphon.serialize @
       @trigger "submit", data
 
-        
+

@@ -154,10 +154,12 @@
       experiences.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/experiences"
       experiences.fetch
         wait: true
-        success: (collection)->          
+        data:
+          q: { exp_type_eq: 0 }
+        success: (collection)->
           if collection.length == 0
             collection.add({first: true, exp_type: exp_type})
-          else 
+          else
             collection.at(0).set("first", true )
 
       new Main.ExperienceList

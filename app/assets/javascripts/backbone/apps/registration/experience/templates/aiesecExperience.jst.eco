@@ -1,4 +1,3 @@
-<%= console.log @ %>
 <div class="form-group has-feedback">
 	<label class="control-label" >Name of the position</label>
 	<input type="text" name="name" class="form-control input-lg" value="<%= @name %>" placeholder="Enter position">

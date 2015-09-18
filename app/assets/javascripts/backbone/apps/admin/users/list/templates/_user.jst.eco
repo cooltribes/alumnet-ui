@@ -33,10 +33,11 @@
 <td><%= @getAge() %></td>
 <td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
 <td><%= @getRoleText %></td>
+<td><%= @getLastSignIn() %></td>
 <td class="tableAdmin__actions">
   <div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    <span class="icon-entypo-cog"></span> 
+    <span class="icon-entypo-cog"></span>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu tableAdmin__dropdown" role="menu" aria-labelledby="dropdownMenu1">
@@ -58,8 +59,8 @@
   </ul>
 </div>
 
-<!--<button class="js-edit"> 
-  <span class="icon-entypo-cog"></span> 
+<!--<button class="js-edit">
+  <span class="icon-entypo-cog"></span>
 </button>-->
 
 </td>

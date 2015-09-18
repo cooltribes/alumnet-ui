@@ -15,6 +15,9 @@
       'click @ui.modalMembers': 'showModal'
       'click .js-item': 'startPayment'
 
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
+
     startPayment: (e)->
       e.preventDefault()
       data = {"subscription_id": e.target.id}

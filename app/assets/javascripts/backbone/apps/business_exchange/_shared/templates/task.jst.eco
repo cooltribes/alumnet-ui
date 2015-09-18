@@ -1,11 +1,12 @@
 <div class="yourTaskCard">
   <div>
-    <div class="jobPost__name"><h3>
+    <div class="jobPost__name">
+    <h3 class="no-margin overfloadText overfloadText--blue">
       <a href="#business-exchange/<%= @id %>">
         <%= @name %>
       </a>
-
-    </h3></div>
+    </h3>
+  </div>
     <div class="yourTaskCard__deadline">
       <b>14 days left</b>/ <span>deadline 21.06.2015</span>
       <div class="progress yourTaskCard__deadlineProgress">

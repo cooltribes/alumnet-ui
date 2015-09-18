@@ -4,7 +4,7 @@
     discover: ->
       AlumNet.execute('render:companies:submenu', undefined, 0)
 
-      layout = @_getLayoutView()     
+      layout = @_getLayoutView()
       @list_view = @_getListView()
 
       AlumNet.mainRegion.show(layout)
@@ -13,7 +13,7 @@
     myCompanies: ->
       AlumNet.execute('render:companies:submenu', undefined, 1)
 
-      layout = @_getMyLayoutView()     
+      layout = @_getMyLayoutView()
       @list_view = @_getListView("my_companies")
 
       AlumNet.mainRegion.show(layout)
@@ -37,11 +37,10 @@
     _getListView: (layout = "")->
       companies = new AlumNet.Entities.CompaniesCollection
       if layout != "my_companies"
-        companies.fetch()         
+        companies.fetch()
       else
-        # companies.fetch()         
         companies.fetch
-          data: 
+          data:
             q:
               m: "and"
               company_admins_user_id_eq: AlumNet.current_user.id
@@ -51,7 +50,7 @@
       view = new Discover.List
         collection: companies
       view
-    
+
 
     _changeGrid: (type)->
       @list_view.type = type
