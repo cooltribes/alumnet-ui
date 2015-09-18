@@ -11,13 +11,14 @@
         <div class="col-xs-8 col-sm-10 col-md-10 col-lg-11">
       <!-- Avatar OFF -->
           <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
-          <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
+          
           <!-- TAGS       -->
           <% if @tagsLinks: %>
             <div class="tags">
-              with: <%- @tagsLinks %>
+                with: <span style="color: #2099d0;"><%- @tagsLinks %></span>
             </div>
           <% end %>
+          <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
         </div>
       </div>
       <!--  -->
