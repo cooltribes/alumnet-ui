@@ -781,7 +781,7 @@
   class About.Experiences extends Marionette.CollectionView
     getChildView: (model)->
       if((model.isNew() && !model.get("asTitle")) || model.isEditing)
-        AlumNet.RegistrationApp.Experience.FormExperience
+        AlumNet.Shared.Views.Experiences.FormExperience
       else
         About.Experience
 

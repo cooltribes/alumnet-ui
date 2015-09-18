@@ -1,0 +1,107 @@
+<div class="form-group has-feedback">
+	<label class="control-label">Degree received/subject area</label>
+	<input type="text" name="name" class="form-control input-lg" value="<%= @name %>" placeholder="Enter degree received/subject area">
+	<span class="formANet__input__icon icon-entypo-graduation-cap form-control-feedback" aria-hidden="true"></span>
+	<span class="help-block"></span>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="start_year">Start Date</label>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="formANet__select">
+						<select name="start_year" class=" form-control input-lg ">
+							<option value="">Select Year</option>
+							<% for x in [@firstYear()..@currentYear] by 1 : %>
+
+								<option <%= if @start_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+
+							<% end %>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="formANet__select">
+						<select name="start_month" class=" form-control input-lg">
+							<option value="">Select Month</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+
+			</div><button class=" btn btn-lg btn-default btn-primary-noBackground js-addMonth hidden" type="button">+ Month</button>
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="end_year">End / Estimated Date</label>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="formANet__select">
+						<select name="end_year" class=" form-control input-lg ">
+							<option value="">Select Year</option>
+							<% for x in [@firstYear()..(@currentYear + 10)] by 1 : %>
+								<option <%= if @end_year == x then "selected='selected'" %> value="<%= x %>"><%= x %></option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="formANet__select">
+						<select name="end_month" class=" form-control input-lg ">
+							<option value="">Select Month</option>
+							<% for month in @months: %>
+								<option <%= if @start_month == month.pos then "selected='selected'" %> value="<%= month.pos %>"><%= month.name %></option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<span class="help-block"></span>
+		</div>
+	</div>
+</div>
+<div class="form-group has-feedback">
+	<label class="control-label" for="registerDescription">Name of the institution providing the education</label>
+	<input name="organization_name" type="text" value="<%= @organization_name %>" class="form-control input-lg " id="" placeholder="">
+	<span class="formANet__input__icon icon-entypo-graduation-cap form-control-feedback" aria-hidden="true"></span>
+	<span class="help-block"></span>
+</div>
+<div class="form-group has-feedback">
+	<label class="control-label" for="registerDescription">Description</label>
+	<textarea class="form-control input-lg " rows="3" name="description"><%= @description %></textarea>
+	<span class="help-block"></span>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCountry">Country</label>
+			<input type="hidden" name="country_id" id="country_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group has-feedback">
+			<label class="control-label" for="registerCity">City</label>
+			<input type="hidden" name="city_id" id="city_id" style="width: 100%">
+			<span class="help-block"></span>
+		</div>
+	</div>
+</div>
+<% if !@first: %>
+<button class="btn btn-danger btn-block text-uppercase btn-danger-noBackground js-rmvRow" type="button"> <span class="glyphicon glyphicon-remove"></span>Delete this experience</button>
+<% end %>
+
+<% if @inProfile: %>
+	<button class="btn btn-default text-uppercase btn-default-noBackground <%= if !@isEditing then 'js-rmvRow' else 'js-cancelEdit' %>" type="button"> Cancel</button>
+	<button class="btn btn-primary text-uppercase btn-primary-noBackground js-saveItem" type="button"> Save</button>
+<% end %>
+
+<hr>
+<!-- EXPERIENCE BOX OFF: Duplicate this box for adding another academic experience -->
+
