@@ -194,9 +194,16 @@
           view.on "submit", (data)->
             #Add each skill to the collection
             collection = view.collection
+            #new way of creating skills in bulk
+            collection.create
+              skill_names: data
+            ,
+              success: (model)->
+                model.collection.fetch()
 
-            _.each data, (el)->
-              collection.create({name: el})
+
+            # _.each data, (el)->
+            #   collection.create({name: el})
 
         when 1, 2  #languages, contact infos
           view.on "submit", (data)->
