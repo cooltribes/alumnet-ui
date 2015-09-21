@@ -13,6 +13,7 @@
       userCanComment: @event.userIsInvited()
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      comment: @model.commentWithLinks()
 
     onRender: ->
       view = this
@@ -25,7 +26,7 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          view.model.save { comment: newValue }
+          view.model.save { comment: newValue, markup_comment: newValue }
       @ui.commentText.linkify()
 
     ui:
@@ -124,6 +125,10 @@
             columnWidth: '.item'
             gutter: 1
 
+      # Mentions in comments
+      @ui.commentInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
@@ -180,10 +185,19 @@
         if data.body != ''
           view = @
           comment = AlumNet.request('comment:post:new', @model.id)
+          data.comment = @ui.commentInput.mentionsInput('getRawValue')
+          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
           comment.save data,
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
 
     clickedEdit: (e)->
       e.stopPropagation()

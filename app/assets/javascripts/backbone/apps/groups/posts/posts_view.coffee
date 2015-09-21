@@ -15,6 +15,7 @@
       userCanComment: @group.userIsMember()
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      comment: @model.commentWithLinks()
 
     onRender: ->
       view = this
@@ -27,7 +28,7 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          view.model.save { comment: newValue }
+          view.model.save { comment: newValue, markup_comment: newValue }
       @ui.commentText.linkify()
 
     onShow: ->
@@ -130,6 +131,10 @@
             columnWidth: '.item'
             gutter: 1
 
+      # Mentions in comments
+      @ui.commentInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
@@ -151,7 +156,7 @@
         temp_string = @ui.bodyPost.html()
         @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
       else
-        @ui.bodyPost.linkify() 
+        @ui.bodyPost.linkify()
 
     ui:
       'item': '.item'
@@ -179,7 +184,7 @@
       url = $.trim(url)
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
-      
+
     clickedPicture: (e)->
       e.preventDefault()
       element = $(e.currentTarget)
@@ -196,10 +201,19 @@
         if data.body != ''
           view = @
           comment = AlumNet.request('comment:post:new', @model.id)
+          data.comment = @ui.commentInput.mentionsInput('getRawValue')
+          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
           comment.save data,
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
 
     clickedEdit: (e)->
       e.stopPropagation()
