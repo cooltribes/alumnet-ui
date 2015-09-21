@@ -11,6 +11,7 @@
       permissions = @model.get('permissions')
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      comment: @model.commentWithLinks()
 
     onRender: ->
       view = this
@@ -23,7 +24,8 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          view.trigger 'comment:edit', newValue
+          view.model.save { comment: newValue, markup_comment: newValue }
+
       @ui.commentText.linkify()
 
     onShow: ->
@@ -138,6 +140,11 @@
             columnWidth: '.item'
             gutter: 1
 
+      # Mentions in comments
+      @ui.commentInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+
     onRender: ->
       view = this
       @ui.bodyPost.editable
@@ -149,9 +156,6 @@
           if $.trim(value) == ''
             'this field is required'
         success: (response, newValue)->
-          console.log $(this).html()
-          console.log "rafa"
-          console.log this
           view.trigger 'post:edit', newValue
           validation = @ytVidId(newValue.split(" ").pop())
           if validation
@@ -171,14 +175,12 @@
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'
       'gotoComment': '.js-goto-comment'
-      'textareaComment': 'textarea.comment'
       'editLink': '#js-edit-post'
       'deleteLink': '#js-delete-post'
       'bodyPost': '#js-body-post'
       'picturesContainer': '.pictures-container'
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
-      'commentButton': '#commentB'
 
     events:
       'keypress .comment': 'commentSend'
@@ -189,8 +191,7 @@
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
-      'click @ui.commentButton': 'commentSendButton'
-    
+
     ytVidId: (url)->
       url = $.trim(url)
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
@@ -210,21 +211,21 @@
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
         if data.body != ''
-          @trigger 'comment:submit', data
-          @ui.commentInput.val('')
+          view = @
+          comment = AlumNet.request('comment:post:new', @model.id)
+          data.comment = @ui.commentInput.mentionsInput('getRawValue')
+          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
+          comment.save data,
+            success: (model, response, options)->
+              view.ui.commentInput.val('')
+              view.collection.add(model, {at: view.collection.length})
 
-
-    commentSendButton: (e)->
-      e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      if data.comment != ''
-        view = @
-        comment = AlumNet.request('comment:post:new', @model.id)
-        comment.save data,
-          success: (model, response, options)->
-            view.ui.commentInput.val('')
-            view.collection.add(model, {at: view.collection.length}) 
-          
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
 
     clickedEdit: (e)->
       e.stopPropagation()
@@ -262,7 +263,7 @@
     clickedGotoComment: (e)->
       e.stopPropagation()
       e.preventDefault()
-      @ui.textareaComment.focus()
+      @ui.commentInput.focus()
 
     loadMore: (e)->
       $(e.currentTarget).hide()
@@ -343,7 +344,7 @@
         @ui.tagging.hide()
       else
         @ui.tagging.show()
-    
+
     ytVidId: (url)->
       url = $.trim(url)
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
@@ -359,7 +360,7 @@
         #@ui.videoContainer.show(new Marionette.ItemView({template: '<h1>gach</h1>'}))
         #@ui.videoContainer.html('<iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe>')
         @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
-        #$.get(@ui.bodyInput.val()+" meta[property='og:title']", (response, status, xhr)-> 
+        #$.get(@ui.bodyInput.val()+" meta[property='og:title']", (response, status, xhr)->
         #  $meta = $("meta", this)
         #  console.log $meta.attr("content")
         #)

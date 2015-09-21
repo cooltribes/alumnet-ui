@@ -13,7 +13,7 @@
 
   API =
     userPost: (user_id, id)->
-      @registerVisit(user_id_id)
+      @registerVisit(user_id)
       controller = new UsersApp.Posts.Controller
       controller.showPost(user_id, id)
 

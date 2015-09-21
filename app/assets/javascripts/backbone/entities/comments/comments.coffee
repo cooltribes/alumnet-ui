@@ -14,6 +14,16 @@
       @set('likes_count', count - 1)
       @set('you_like', false)
 
+    commentWithLinks: ()->
+      markup_comment = @get 'markup_comment'
+      if markup_comment
+        mentionRE = /@\[([^\]]+)\]\(([^ \)]+)\)/g
+        comment = markup_comment.replace mentionRE, (mention)->
+          match = mentionRE.exec(mention)
+          name = match[1]
+          id = match[2]
+          "<a href='#users/#{id}/posts'>#{name}</a>"
+
 
   class Entities.CommentsCollection extends Backbone.Collection
     model: Entities.Comment
