@@ -1,4 +1,54 @@
 @AlumNet.module 'PaymentApp.Checkout', (Checkout, @AlumNet, Backbone, Marionette, $, _) ->
+  class Checkout.CCPaymentView extends Marionette.ItemView
+    template: 'payment/checkout/templates/cc_payment'
+    className: 'container'
+
+    initialize: (options)->
+      #document.title = 'AlumNet - Become a member'
+      @current_user = options.current_user
+      @data = options.data
+      @type = options.type
+
+    ui:
+      'selectPaymentCountries': '#js-payment-countries'
+      'selectPaymentCities': '#js-payment-cities'
+      'divCountry': '#country'
+      'paymentwallContent': '#paymentwall-content'
+
+    events:
+      'click #js-alternative-options': 'alternativeCheckout'
+
+    templateHelpers: ->
+      current_user: @current_user
+      type: @type
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
+      view = this
+      console.log @current_user
+      
+      profile = view.current_user.profile
+
+      subscription = AlumNet.request('product:find', @data.subscription_id)
+      
+      paymentwall_project_key = AlumNet.paymentwall_project_key
+      paymentwall_secret_key = AlumNet.paymentwall_secret_key
+      paymentwall_return_url = window.location.origin
+      auth_token = AlumNet.current_token
+      
+      birthday = profile.get('born')
+      birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
+
+      
+      parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=testsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
+      content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=test&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+
+      view.ui.paymentwallContent.html(content_html)
+
+    alternativeCheckout: (e)->
+      e.preventDefault()
+      data = {"subscription_id": e.target.id}
+      AlumNet.trigger 'payment:checkout', @data, 'subscription'
 
   class Checkout.PaymentView extends Marionette.ItemView
     template: 'payment/checkout/templates/payments'
