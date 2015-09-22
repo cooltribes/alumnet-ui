@@ -15,6 +15,6 @@
 
 <div class=" modalBox__footer bbm-modal__bottombar">
   <a href="#" class="btn btn-primary js-modal-save" >Upload Logo</a>
-  <a href="#" class="btn btn-default js-modal-crop" >Crop Logo</a>
+  <a href="#" class="btn btn-default-blue js-modal-crop" >Crop Logo</a>
   <a href="#" class="btn btn-default js-modal-close" >Cancel</a>
 </div>

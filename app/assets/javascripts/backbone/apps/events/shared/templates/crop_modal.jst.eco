@@ -4,8 +4,7 @@
 
 <div class="bbm-modal__section">
   <div class="center-block">
-    <!-- TODO: MOVER ESTOS ESTILOS A CSS -->
-    <div id="croppic" ></div>
+    <div id="croppic" class="croppicModal"></div>
   </div>
 </div>
 

@@ -75,9 +75,9 @@
     getBornDate: ()->
       born = @profile.get('born')
       array = []
-      array.push(born.year) if born.year
-      array.push(born.month) if born.month
       array.push(born.day) if born.day
+      array.push(born.month) if born.month
+      array.push(born.year) if born.year
       array.join("/")
 
     getBornComplete: ()->
