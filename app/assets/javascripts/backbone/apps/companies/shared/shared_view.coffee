@@ -2,8 +2,13 @@
   ## MODALS
   class Shared.CropModal extends Backbone.Modal
     template: 'companies/shared/templates/crop_modal'
-    cancelEl: '#js-close-btn'
+    cancelEl: '#js-close-btn'    
+    events:
+      'click #js-crop-btn': 'clickCropAvatar'
 
+    clickCropAvatar: (e)->
+      @cropper.crop()
+   
     initialize: (options)->
       @uploader = options.uploader
 
@@ -17,6 +22,8 @@
         loadPicture: image
         cropData: { 'image': @uploader }
         cropUrl: AlumNet.api_endpoint + "/companies/#{@model.id}/cropping"
+        doubleZoomControls:false
+        rotateControls:false         
         onAfterImgCrop: ->
           model.trigger('change:logo')
       cropper = new Croppic('croppic', options)
