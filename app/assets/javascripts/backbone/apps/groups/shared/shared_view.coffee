@@ -15,7 +15,7 @@
       options =
         loadPicture: image
         cropUrl: AlumNet.api_endpoint + "/groups/#{@model.id}/cropping"
-        doubleZoomControls:false,
+        doubleZoomControls:false
         rotateControls:false 
         onAfterImgCrop: ->
           model.trigger('change:cover')

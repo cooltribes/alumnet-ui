@@ -21,7 +21,7 @@
     startPayment: (e)->
       e.preventDefault()
       data = {"subscription_id": e.target.id}
-      AlumNet.trigger 'payment:checkout', data, 'subscription'
+      AlumNet.trigger 'payment:cc_checkout', data, 'subscription'
 
     showModal: (e)->
       e.preventDefault()

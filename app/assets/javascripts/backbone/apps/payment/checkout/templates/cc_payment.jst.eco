@@ -1,0 +1,13 @@
+<div class="row">
+  <div class"col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="paymentwall-content" class="paymentwall">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <a id="js-alternative-options">Alternative payment options</a>
+  </div>
+</div>

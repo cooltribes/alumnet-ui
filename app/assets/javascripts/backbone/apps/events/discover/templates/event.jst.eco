@@ -35,7 +35,7 @@
     <div class="col-md-4 col-xs-12 col-sm-4 margin_top_xsmall">
       <div>
         <span class="glyphicon glyphicon-time"></span>
-        <%= moment(@start_date).format('MM/YYYY') %>, <%= @start_hour %>
+        <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
       </div>
       <div class="overfloadText">
         <span class="glyphicon glyphicon-map-marker"></span>
