@@ -29,7 +29,9 @@
 
     showMyFriends: (layout)->
       friendsCollection = AlumNet.request('current_user:friendships:friends')
-      friendsCollection.fetch()
+      friendsCollection.fetch
+        reset: true
+      friendsCollection.page = 1
       friendsView = new List.FriendsView
         collection: friendsCollection
 
