@@ -1,5 +1,11 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-md-12 text-right">
+      <a href="" id="js-modal-business"><span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span></a>
+    </div>
+  </div>
+  
+  <div class="row">
     <div class="col-md-3">
       <div class="businessCard actionCard">        
         <h2>
@@ -110,3 +116,5 @@
     </div>
   </div>
 </div>
+
+<div id="container-modal-business" class="modalMeetup"></div>

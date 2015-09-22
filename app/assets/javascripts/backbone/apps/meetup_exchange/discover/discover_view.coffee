@@ -16,6 +16,9 @@
         { attribute: "post_until", type: "numeric", values: "" },
         { attribute: "task_attributes_value", type: "string", values: "" }
       ])
+    
+    ui:
+      'modalMeetups':'#js-modal-meetups'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -23,6 +26,7 @@
       #'click .search': 'search'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
+      'click @ui.modalMeetups': 'showModal'
 
     changeOperator: (e)->
       e.preventDefault()
@@ -42,8 +46,16 @@
       @collection.fetch
         #data: { q: query }
         data: { q: { name_cont: value } }
-
-
+        
     clear: (e)->
       e.preventDefault()
       @collection.fetch()
+
+    showModal: (e)->
+      e.preventDefault()
+      modal = new Discover.ModalMeetups
+      $('#container-modal-meetup').html(modal.render().el)
+
+  class Discover.ModalMeetups extends Backbone.Modal
+    template: 'meetup_exchange/discover/templates/modal'
+    cancelEl: '#js-close'

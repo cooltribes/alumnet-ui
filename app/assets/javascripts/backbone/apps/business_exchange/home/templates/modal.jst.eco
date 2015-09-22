@@ -1,0 +1,39 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Global Business Exchange</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+	<p>Whether you’re a startup, a nonprofit or an established business, you can grow your venture through Global Business Exchange (GBE). Find new customers, suppliers and partners. Need advice? Get answers here.</p>
+
+	<p>
+		Make your business visible to the AlumNet community through GBE.
+		<ul>
+			<li>Post your company in the business directory</li>
+			<li>Give and receive recommendations</li>
+			<li>Explain what you have to offer as a company and/ what you are looking for</li>
+			<li>Ask unlimited questions</li>
+			<li>Make unlimited requests </li>
+		</ul> 
+	</p>
+
+	<p>
+		Global Business Exchange vastly enlarges the scope of possibilities for your venture: 
+		<ul>
+			<li>Increase your business exposure</li>
+			<li>Make high caliber business contacts</li>
+			<li>Receive better quality referrals</li>
+			<li>Learn about new business opportunities</li>
+			<li>Collaborate with partners worldwide</li>
+		</ul>
+	</p>
+
+	<p>If you’re an entrepreneur, you can’t afford not be part of Global Business Exchange.</p>
+	<p><b>Join today!</b></p>
+
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="js-close">Close</a>
+</div>

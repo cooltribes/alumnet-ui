@@ -1,0 +1,22 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Global Meet-ups</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+   	<p>Whenever AIESECers gather, there's always a reason to celebrate and collaborate. Meet-ups make it easy for AlumNet members to arrange gatherings with alumni anywhere in the world.</p>
+
+    <p>Let’s say you’re travelling to a country and would like to meet with alumni there. Log-in to Meet-ups and specify the date, time, and place of your desired gathering. Provide a list of criteria for people you wish to meet and Meet-up generates a list of suggested alumni you may invite. Members who are invited may then sign up and show up!</p>
+
+    <p>Meet-ups can be about projects, or they can simply be about having fun. Meet-ups can be reunions of all kinds. They can be about anything you can think of within the realm of AIESEC.</p>
+
+    <p>Experience AIESEC everywhere with Meet-ups.</p>
+
+    <p><b>Browse Meet-ups</b></p>
+
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-default" id="js-close">Close</a>
+</div>

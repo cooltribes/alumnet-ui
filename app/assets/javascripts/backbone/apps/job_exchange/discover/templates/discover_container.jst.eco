@@ -1,3 +1,9 @@
+<div class="row">
+  <div class="col-md-12 text-right">
+    <a href="" id="js-modal-job"><span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span></a>
+  </div>
+</div>
+
 <div class="container">
   <h1>Discover</h1>
 
@@ -83,5 +89,7 @@
 <div id="tasks-container" class="tasks-container">
   <hr>
 </div>
+
+<div id="container-modal-job" class="modalMeetup"></div>
 
 <!--  <span class="icon-entypo-dot-3"></span> -->
