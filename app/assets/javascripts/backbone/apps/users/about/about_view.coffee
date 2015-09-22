@@ -282,6 +282,9 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
+            #modalCrop = new About.CropCoverModal
+            #  model: model
+            #$('#js-picture-modal-container').html(modalCrop.render().el)
             modal.destroy()
 
 
