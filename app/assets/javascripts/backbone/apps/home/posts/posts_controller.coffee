@@ -68,14 +68,6 @@
         post = postView.model
         post.save { body: value }
 
-      #Listen each post
-      posts.on "childview:comment:submit", (postView, data) ->
-        post = postView.model
-        comment = AlumNet.request("comment:post:new", post.id)
-        comment.save data,
-          success: (model, response, options) ->
-            postView.collection.add(model, {at: postView.collection.length})
-
       #Like in post
       posts.on "childview:post:like", (postView) ->
         post =  postView.model
@@ -110,14 +102,6 @@
           success: (model)->
             comment.remLike()
             commentView.remLike()
-
-      posts.on "childview:comment:edit", (postView, commentView, value)->
-        comment = commentView.model
-        comment.save { comment: value }
-
-      # posts.on "childview:comment:collection", (collection)->
-      #   console.log "comment"
-      #   console.log collection
 
     getData: (page)->
       rows = @collection.rows
