@@ -19,16 +19,31 @@
 
     onRender: ->
       view = this
+
       @ui.commentText.editable
         type: 'textarea'
+        inputclass: 'comment-editable'
         pk: view.model.id
         title: 'Edit Posts'
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
+        display: (value, response)->
+          $(@).html view.model.commentWithLinks()
         success: (response, newValue)->
-          view.model.save { comment: newValue, markup_comment: newValue }
+          $textarea = view.$('.comment-editable')
+          newValues = {
+            comment: $textarea.mentionsInput('getRawValue')
+            markup_comment: $textarea.mentionsInput('getValue')
+            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
+          }
+          view.model.save(newValues)
+
+      @ui.commentText.on 'shown', (e, editable) ->
+        content = view.model.get('markup_comment') || view.model.get('comment')
+        editable.input.$input.val content
+
       @ui.commentText.linkify()
 
     onShow: ->
@@ -49,10 +64,18 @@
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
 
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
+
     clickedEdit: (e)->
       e.stopPropagation()
       e.preventDefault()
       @ui.commentText.editable('toggle')
+      @$('.comment-editable').mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
 
     clickedDelete: (e)->
       e.stopPropagation()
