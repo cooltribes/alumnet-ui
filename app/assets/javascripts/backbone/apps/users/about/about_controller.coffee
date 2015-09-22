@@ -201,10 +201,6 @@
               success: (model)->
                 model.collection.fetch()
 
-
-            # _.each data, (el)->
-            #   collection.create({name: el})
-
         when 1, 2  #languages, contact infos
           view.on "submit", (data)->
             #Add the language and level to the collection
