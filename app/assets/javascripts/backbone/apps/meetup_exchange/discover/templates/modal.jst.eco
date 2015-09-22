@@ -18,5 +18,5 @@
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-default" id="js-close">Close</a>
+  <a href="#" class="btn btn-primary" id="js-close">Close</a>
 </div>
