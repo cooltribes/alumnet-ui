@@ -119,6 +119,7 @@
     onRender: ->
       #Datepickers
       @ui.startDate.Zebra_DatePicker
+        format: 'd/m/Y'
         show_icon: false
         show_select_today: false
         pair: @ui.endDate
