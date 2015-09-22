@@ -43,6 +43,10 @@
 
       @ui.commentText.linkify()
 
+    onShow: ->
+      container = $('#timeline')
+      container.masonry 'layout'
+
     ui:
       'likeLink': '.js-vote'
       'likeCounter': '.js-likes-counter'

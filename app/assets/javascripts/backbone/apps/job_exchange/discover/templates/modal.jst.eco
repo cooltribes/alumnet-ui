@@ -1,0 +1,30 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Global Job Market</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+  <p>Global Job Market helps you find jobs in organizations that align with your career goals.</p>
+
+  <p>Whether your goal is to be part of a startup team, or to work as a C-level executive or to become a member of a Board of Directors, Job Market is for you.</p>
+
+  <p>If you’re a business or nonprofit looking to hire the best people for your team, Job Market offers a talent pool of leaders who share AIESEC values.</p>
+
+  <p>AlumNet Global Job Market is different because it leverages the nature of AIESEC.</p>
+
+	<ul>
+		<li>Multi-Generational</li>
+		<li>International</li>
+		<li>Flexible with Terms of Engagement</li>
+		<li>Cost effective</li>
+		<li>Exclusive</li>
+	</ul>
+
+	<p>Catapult your career with AlumNet Job Market.</p>
+	
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="js-close">Close</a>
+</div>
