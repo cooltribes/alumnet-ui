@@ -122,6 +122,9 @@
             columnWidth: '.item'
             gutter: 1
 
+      # Autosize
+      @ui.commentInput.autoResize()
+
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
