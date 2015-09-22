@@ -140,10 +140,10 @@
       unless aiesecExp == "International"
         @ui.selectComitees.select2(@optionsForCommittee(e.val, aiesecExp))
       cities_url = AlumNet.api_endpoint + '/countries/' + e.val + '/cities'
-      # console.log @optionsForSelect2(cities_url, 'City')
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
+      city = @model.get('city')      
       placeholder: "Select a #{placeholder}"
       minimumInputLength: 2
       ajax:
@@ -159,6 +159,8 @@
         data.name
       formatSelection: (data)->
         data.name
+      initSelection: (element, callback)->        
+        callback(city) if city
 
     optionsForCommittee: (country_id, aiesecExp)->
       query = { q: { committee_type_eq: aiesecExp } }
