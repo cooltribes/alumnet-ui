@@ -18,11 +18,16 @@
       markup_comment = @get 'markup_comment'
       if markup_comment
         mentionRE = /@\[([^\]]+)\]\(([^ \)]+)\)/g
-        comment = markup_comment.replace mentionRE, (mention)->
+        markup_comment.replace mentionRE, (mention)->
           match = mentionRE.exec(mention)
-          name = match[1]
-          id = match[2]
-          "<a href='#users/#{id}/posts'>#{name}</a>"
+          if match
+            link = "<a href='#users/#{match[2]}/posts'>#{match[1]}</a>"
+          else
+            link = mention
+          mentionRE.lastIndex = 0 #reset the regex because is global /g
+          link
+      else
+        @get 'comment'
 
 
   class Entities.CommentsCollection extends Backbone.Collection
