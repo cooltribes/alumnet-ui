@@ -4,6 +4,13 @@
     template: 'admin/users/show/templates/_product'
     tagName: 'tr'
 
+    initialize: (options) ->
+      console.log @model
+      console.log @model.get('user')
+      @user = AlumNet.request('user:find', @model.get('user').id)
+      console.log @user
+      @listenTo(@model, 'change:status', @modelChange)
+
     ui:
       'activate': '.js-activate'
       'deactivate': '.js-deactivate'
@@ -40,24 +47,37 @@
 
     deactivateClicked: (e)->
       e.preventDefault()
-      console.log e
-      user_product = new AlumNet.Entities.UserProduct
-        id: e.currentTarget.id
-        user_id: @model.get('user').id
-
-      console.log user_product
-
-
-      user_product.fetch
+      @model.set({status: 0, user_id: @model.get('user').id})
+      @model.save
         success: ->
-          console.log user_product
+          @model.trigger 'change:status'
 
+      data = {member: 0}
+      id = @model.get('user').id
+      url = AlumNet.api_endpoint + "/users/#{id}"
 
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        data: data
 
+    activateClicked: (e)->
+      e.preventDefault()
+      @model.set({status: 1, user_id: @model.get('user').id})
+      @model.save
+        success: ->
+          @model.trigger 'change:status'
+      data = {member: 1}
+      id = @model.get('user').id
+      url = AlumNet.api_endpoint + "/users/#{id}"
 
-      
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        data: data
 
-
+    modelChange: ->
+      @render()
 
   class UserShow.Products extends Marionette.CompositeView
     template: 'admin/users/show/templates/products'
