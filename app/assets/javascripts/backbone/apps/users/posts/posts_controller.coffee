@@ -11,7 +11,7 @@
         user.posts.url = AlumNet.api_endpoint + '/users/' + user_id + '/posts?page='+user.posts.page+'&per_page='+user.posts.rows
         user.posts.page = 1
         user.posts.fetch
-            reset: true  
+            reset: true
 
         posts = new Posts.PostsView
           current_user: current_user
@@ -21,7 +21,7 @@
         AlumNet.mainRegion.show(layout)
         layout.header.show(header)
         layout.body.show(posts)
-        
+
         posts.on "post:reload", ->
           ++posts.collection.page
           newCollection = AlumNet.request("post:current")
@@ -31,12 +31,12 @@
               posts.collection.add(collection.models)
 
         checkNewPost = false #flag for new posts
-        
+
         posts.on "add:child", (viewInstance)->
           container = $('#timeline')
           container.imagesLoaded ->
             container.masonry
-              itemSelector: '.post'        
+              itemSelector: '.post'
           if checkNewPost
             container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
             container.imagesLoaded ->
@@ -67,17 +67,17 @@
       current_user = AlumNet.current_user
       user.on 'find:success', (response, options)->
         post.fetch
-          success: ->
-              postView = new Posts.PostDetail
-                userModel: user
-                current_user: current_user
-                model: post
+          success: (model, response)->
+            postView = new Posts.PostDetail
+              userModel: user
+              current_user: current_user
+              model: post
 
-              AlumNet.mainRegion.show(postView)
-              AlumNet.execute('render:groups:submenu')
+            AlumNet.mainRegion.show(postView)
+            AlumNet.execute('render:groups:submenu')
             AlumNet.execute('render:users:submenu')
-          error: ->
-            AlumNet.trigger('show:error', 404)
+          error: (model, response)->
+            AlumNet.trigger('show:error', response.status)
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

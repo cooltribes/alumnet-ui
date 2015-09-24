@@ -15,19 +15,35 @@
       userCanComment: @group.userIsMember()
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      comment: @model.commentWithLinks()
 
     onRender: ->
       view = this
+
       @ui.commentText.editable
         type: 'textarea'
+        inputclass: 'comment-editable'
         pk: view.model.id
         title: 'Edit Posts'
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
+        display: (value, response)->
+          $(@).html view.model.commentWithLinks()
         success: (response, newValue)->
-          view.model.save { comment: newValue }
+          $textarea = view.$('.comment-editable')
+          newValues = {
+            comment: $textarea.mentionsInput('getRawValue')
+            markup_comment: $textarea.mentionsInput('getValue')
+            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
+          }
+          view.model.save(newValues)
+
+      @ui.commentText.on 'shown', (e, editable) ->
+        content = view.model.get('markup_comment') || view.model.get('comment')
+        editable.input.$input.val content
+
       @ui.commentText.linkify()
 
     onShow: ->
@@ -48,10 +64,18 @@
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
 
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
+
     clickedEdit: (e)->
       e.stopPropagation()
       e.preventDefault()
       @ui.commentText.editable('toggle')
+      @$('.comment-editable').mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
 
     clickedDelete: (e)->
       e.stopPropagation()
@@ -130,6 +154,13 @@
             columnWidth: '.item'
             gutter: 1
 
+      # Autosize
+      @ui.commentInput.autoResize()
+
+      # Mentions in comments
+      @ui.commentInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
@@ -151,7 +182,7 @@
         temp_string = @ui.bodyPost.html()
         @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
       else
-        @ui.bodyPost.linkify() 
+        @ui.bodyPost.linkify()
 
     ui:
       'item': '.item'
@@ -179,7 +210,7 @@
       url = $.trim(url)
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
-      
+
     clickedPicture: (e)->
       e.preventDefault()
       element = $(e.currentTarget)
@@ -196,10 +227,19 @@
         if data.body != ''
           view = @
           comment = AlumNet.request('comment:post:new', @model.id)
+          data.comment = @ui.commentInput.mentionsInput('getRawValue')
+          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
           comment.save data,
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
 
     clickedEdit: (e)->
       e.stopPropagation()

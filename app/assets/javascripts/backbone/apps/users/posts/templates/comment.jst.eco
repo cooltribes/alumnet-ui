@@ -4,7 +4,7 @@
 	</div>
 	<h5 class="postCard__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
 </div>
-<p id="js-comment-text"><%= @comment %></p>
+<p id="js-comment-text"><%- @comment %></p>
 <% if @you_like: %>
   <a href="#" class="js-unlike js-vote">Unlike</a>
 <% else: %>

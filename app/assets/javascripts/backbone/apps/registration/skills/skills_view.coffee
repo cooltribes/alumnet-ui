@@ -19,6 +19,7 @@
 
     ui:
       'btnRmv': '.js-rmvRow'
+      'btnRmv': '.js-rmvRow'
     events:
       "click @ui.btnRmv": "removeItem"
 
@@ -29,6 +30,7 @@
       #Render the slider
       slideItem = $("#slider", @el)
       levelTextItem = slideItem.next("#level")
+      model = @model
 
       textLevel =
             1: "Elementary"
@@ -45,6 +47,8 @@
         value: parseInt( @model.get("level"), 10 )
         slide: (event, ui) ->
           levelTextItem.text(textLevel[ui.value])
+          model.set("level", ui.value)
+
 
       #Render the list of languages
       dropdown = $("[name=language_id]", $(@el))
@@ -86,17 +90,12 @@
           @user_skills.fetch
             wait: true
             success: (collection)=>
-              console.log collection
               skills = _.pluck(collection.models, 'attributes')
-              listOfNames = _.pluck(skills, 'name')
-              # old_skills = collection.map (el)->
-              #   # id: el.id
-              #   name: el.get "name"
-              # @ui.skills.select2 "data", old_skills
+              listOfNames = _.pluck(skills, 'name')              
               @ui.skills.select2 "val", listOfNames
 
-
       $('body,html').animate({scrollTop: 0}, 600);
+
 
 
     fillSkills: (collection)->
@@ -108,13 +107,13 @@
         tokenSeparators: [',', ', ']
         dropdownAutoWidth: true
 
+
     addRow: (e)->
       newRow = new AlumNet.Entities.ProfileLanguage
       @collection.add(newRow)
 
 
     saveData: ()->
-
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
@@ -147,24 +146,15 @@
         @saveSkillsAndLanguages(skillsData)
 
             
-    saveSkillsAndLanguages: (skillsData)->
-      
-      #SKILLS------------
-      new_skills = skillsData.map (el)->
-        name: el
-     
-      @user_skills.at(0).destroy() while @user_skills.length > 0
-      
+    saveSkillsAndLanguages: (skillsData)->      
+      #SKILLS------------      
+      #Send a POST for creating skills in bulk way 
+      @user_skills.create
+        skill_names: skillsData            
 
-      #Save new collection of skills
-      @user_skills.set(new_skills)
-      @user_skills.forEach (el, i, collection)->
-        el.save()
-
-
-      #LANGUAGES------------
-      # @collection.at(0).destroy() while @collection.length > 0      
+      #LANGUAGES------------      
       @collection.forEach (el, i, collection)->
+        console.log el
         el.save
           wait: true
 

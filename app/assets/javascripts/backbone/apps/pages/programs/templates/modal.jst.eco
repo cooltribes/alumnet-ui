@@ -1,0 +1,28 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title text-center">Global Home Exchange</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+	<p><b>Hello AIESEC traveller!  How would you like to</b></p>
+	<ul>
+		<li>Live in a country like a local</li>
+		<li>Cook meals and dine in a home kitchen, gather around the fireplace in the living room or ride through the community on bicycles from the garage</li>
+		<li>Be part of a neighborhood, not a business district</li>
+		<li>Avoid hotels and tourist areas</li>
+		<li>Save thousands of dollars on your next vacation</li>
+		<li>Enjoy extended vacation time</li>
+	</ul>
+
+	<p><b>Home Exchange,</b> also known as house swapping, is an alternative means of travel accommodation, in which two parties agree to swap their homes for a set period, with no monetary exchange taking place. The definition of home can include houses, condominiums and apartments, as well as boats and recreational vehicles.</p>
+
+	<p>Swap your residence with confidence. Only verified AlumNet members may participate.</p>
+
+	<p>Learn More</p>
+
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="js-close">Close</a>
+</div>
