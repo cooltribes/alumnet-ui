@@ -5,10 +5,7 @@
     tagName: 'tr'
 
     initialize: (options) ->
-      console.log @model
-      console.log @model.get('user')
       @user = AlumNet.request('user:find', @model.get('user').id)
-      console.log @user
       @listenTo(@model, 'change:status', @modelChange)
 
     ui:
@@ -30,8 +27,11 @@
       date.toDateString()
 
     getEndtDate: ->
-      date = new Date(@model.get('end_date'))
-      date.toDateString()
+      if @model.get('end_date')
+        date = new Date(@model.get('end_date'))
+        date.toDateString()
+      else
+        'forever'
 
     getProductType: ->
       if @model.get('product').feature == 'subscription'
@@ -67,7 +67,13 @@
       @model.save
         success: ->
           @model.trigger 'change:status'
-      data = {member: 1}
+
+      @product = @model.get('product')
+      @member_value = 1
+      if @product.feature == 'subscription' and not @product.quantity?
+        @member_value = 3
+
+      data = {member: @member_value}
       id = @model.get('user').id
       url = AlumNet.api_endpoint + "/users/#{id}"
 
