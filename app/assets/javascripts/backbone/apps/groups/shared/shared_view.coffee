@@ -25,30 +25,14 @@
   class Shared.Modal extends Backbone.Modal
     template: 'groups/shared/templates/upload_modal'
     cancelEl: '.js-modal-close'
+    preview: ''
 
     events:
       'click .js-modal-save': 'saveClicked'
       'click .js-modal-crop': 'cropClicked'
       'change #group-cover': 'previewImage'
-
-    cropClicked: (e)->
-      e.preventDefault()
-      modal = new Shared.CropCoverModal
-        model: @model
-      @destroy()
-      $('#js-modal-cover-container').html(modal.render().el)
-
-    previewImage: (e)->
-      input = @.$('#group-cover')
-      preview = @.$('#preview-cover')
-      if input[0] && input[0].files[0]
-        reader = new FileReader()
-        reader.onload = (e)->
-          preview.attr("src", e.target.result)
-        reader.readAsDataURL(input[0].files[0])
-
-    saveClicked: (e)->
-      e.preventDefault()
+    
+    savePicture: ->
       modal = @
       model = @model
       formData = new FormData()
@@ -61,8 +45,38 @@
         data: formData
         success: ->
           modal.destroy()
+          modalCrop = new Shared.CropCoverModal
+            model: model
+          $('#js-modal-cover-container').html(modalCrop.render().el)
       @model.save {}, options
-      @model.trigger('change:cover')
+
+    cropClicked: (e)->
+      e.preventDefault()
+      console.log "cropClicked"
+      if @preview!=''
+        console.log "else"
+        @savePicture()
+      else        
+        console.log "entro"
+        modal = new Shared.CropCoverModal
+          model: @model
+        @destroy()
+        $('#js-modal-cover-container').html(modal.render().el)
+
+    previewImage: (e)->
+      input = @.$('#group-cover')
+      @preview = @.$('#preview-cover')
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])
+
+    saveClicked: (e)->
+      e.preventDefault()
+      console.log "saveClicked"
+      @savePicture()
+      #@model.trigger('change:cover')
 
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'

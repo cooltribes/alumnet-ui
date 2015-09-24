@@ -72,6 +72,8 @@
 
   class Entities.CompaniesCollection extends Backbone.Collection
     model: Entities.Company
+    rows: 3
+    page: 1
     url: ->
       AlumNet.api_endpoint + "/companies"
 
