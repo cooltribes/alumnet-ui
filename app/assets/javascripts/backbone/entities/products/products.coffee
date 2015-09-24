@@ -19,6 +19,9 @@
     url: ->
       AlumNet.api_endpoint + '/products'
 
+  class Entities.UserProductsCollection extends Backbone.Collection
+    model: Entities.Product
+
   initializeProducts = ->
     Entities.products = new Entities.ProductCollection
 
