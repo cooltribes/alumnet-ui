@@ -4,11 +4,14 @@
       <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="ico-menu"></span>
       </button>
-      <a class="navTopBar__left__brand navbar-brand " href="#">
+      <a class="navTopBar__left__brand navbar-brand hidden-xs" href="#">
         <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
       </a>
+      <a class="navTopBar__left__brand navbar-brand visible-xs" href="#">
+        <%= image_tag("home/LogoMovilMenu.png", alt: "AlumNet", style: "height: 30px") %>
+      </a>
     </div>
-    <p class="navTopBar__text">Register on AlumNet</p> 
+    <p class="navTopBar__text hidden-xs">Register on AlumNet</p> 
     <nav class="navTopBar__left collapse navbar-collapse ">
       <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
         <li>

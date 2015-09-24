@@ -9,13 +9,25 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 
 .roundedNumbersList
 {
-    margin-top: 20px;
-    margin-bottom: 50px;
-    padding: 0;
-    
+    margin-top: 0;
+    margin-bottom: 0; 
     list-style: none;
-
     color: @dim-gray;
+    
+    &__textProfile{
+        text-align: center;
+        font-size: 20px;
+        color: #111111;
+        font-weight: 300;
+    }
+
+    &__avatarProfile{
+        img{
+            width: 140px;
+            height: 140px;
+        }
+    }
+
     &__item
     {
         float: left;
@@ -23,13 +35,11 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 
         width: 30px;
         height: 30px;
-        margin: 0 10px 10px 0;
+        margin: 0px 1px;
         &--active
         {
             float: left;
-
-            margin: 0 10px 10px 0;
-
+            margin: 0px 1px;
             color: @blue;
             .roundedNumbersList__number
             {
@@ -77,7 +87,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
         text-align: center;
 
         color: @dim-gray;
-        border: 2px solid @dim-gray;
+        border: 1px solid @dim-gray;
         border-radius: 2em;
     }
     &__numberOnboarding
@@ -131,8 +141,26 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 {
 	.roundedNumbersList
     {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding: 0;
+
+        &__textProfile{
+            text-align: left;
+            font-size: 36px;
+            color: #111111;
+            font-weight: 300;
+        }
+        &__avatarProfile{
+            img{
+                width: 240px;
+                height: 240px;
+            }
+        }
+
         &__item
         {
+            margin: 0 10px 10px 0;
             float: none;
             overflow: auto;
 
@@ -140,6 +168,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             height: auto;
             &--active
             {
+                margin: 0 10px 10px 0;
                 float: none;
                 overflow: auto;
 
@@ -163,6 +192,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             height: 2em;
             margin-right: .2em;
             margin-bottom: .2em;
+            border: 2px solid @dim-gray;
 
      
         }
@@ -203,8 +233,26 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 {
     .roundedNumbersList
     {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding: 0;
+
+        &__textProfile{
+            text-align: left;
+            font-size: 36px;
+            color: #111111;
+            font-weight: 300;
+        }
+        &__avatarProfile{
+            img{
+                width: 240px;
+                height: 240px;
+            }
+        }
+
         &__item
         {
+            margin: 0 10px 10px 0;
             float: none;
             overflow: auto;
 
@@ -212,6 +260,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             height: auto;
             &--active
             {
+                margin: 0 10px 10px 0;
                 float: none;
                 overflow: auto;
 
@@ -254,6 +303,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             height: 2em;
             margin-right: .2em;
             margin-bottom: .2em;
+            border: 2px solid @dim-gray;
 
      
         }
