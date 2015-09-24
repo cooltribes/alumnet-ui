@@ -42,7 +42,7 @@
           <div class="groupCard__atribute">
             <div data-toggle="tooltip" data-placement="top" title="Start on" class="groupCard__atribute__container--odd">
               <span class="groupCard__icon ico-calendar"></span>
-              <%= moment(@start_date).format('MM/YYYY') %>
+              <%= moment(@start_date).format('DD/MM/YYYY') %>
             </div>
           </div>
           <div class="groupCard__atribute">

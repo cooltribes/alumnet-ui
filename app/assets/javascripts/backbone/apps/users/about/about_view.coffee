@@ -117,6 +117,15 @@
           skillsList.fetch
             success: =>
               @fillSkills(skillsList)
+              currentSkills = @view.collection
+              
+              skills = _.pluck(currentSkills.models, 'attributes')
+              listOfNames = _.pluck(skills, 'name')              
+              $("#skills-input",@$el).select2 "val", listOfNames 
+
+          # console.log @view.collection
+          # console.log $("#skills-input",@$el)   
+          # console.log listOfNames
 
         when 1
           slideItem = $("#slider", @el)
@@ -273,6 +282,9 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
+            #modalCrop = new About.CropCoverModal
+            #  model: model
+            #$('#js-picture-modal-container').html(modalCrop.render().el)
             modal.destroy()
 
 

@@ -1,5 +1,7 @@
-<h3>
-  You don't have links in your business profile
-  <br>
-  Please add your first link below  
-</h3>
+<% if @userCanEdit: %>
+	<h3>
+	  You don't have links in your business profile
+	  <br>
+	  Please add your first link below  
+	</h3>
+<% end %>

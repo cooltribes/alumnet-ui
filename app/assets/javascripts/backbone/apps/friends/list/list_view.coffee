@@ -13,7 +13,14 @@
     
     initialize: (options)->
       console.log @collection
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')
+      $(window).scroll(@loadMoreUsers)
 
+    loadMoreUsers: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'friends:reload'
+        
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)

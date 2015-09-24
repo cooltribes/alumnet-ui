@@ -32,6 +32,7 @@
 
     onRender: () ->
       @ui.start_date.Zebra_DatePicker
+        format: 'd-m-Y'
         show_icon: false
         view: 'years'
         default_position: 'below'
@@ -41,6 +42,7 @@
         pair: @ui.end_date
 
       @ui.end_date.Zebra_DatePicker
+        format: 'd-m-Y'
         show_icon: false
         view: 'years'
         default_position: 'below'

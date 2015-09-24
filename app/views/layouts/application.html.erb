@@ -27,7 +27,12 @@
 <meta name="msapplication-TileColor" content="#444444">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 <!-- <link rel="shortcut icon" href="assets/favicon/favicon.ico"> -->
-  <%= favicon_link_tag 'favicon/favicon.ico' %>
+  <% if Rails.env.production? %>
+    <%= favicon_link_tag 'favicon/favicon.ico' %>
+  <% else %>
+    <%= favicon_link_tag 'favicon/favicon-test.ico' %>
+  <% end %>
+
   <%= csrf_meta_tags %>
   <%= include_gon %>
   <script>

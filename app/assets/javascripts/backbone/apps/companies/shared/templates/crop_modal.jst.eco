@@ -4,11 +4,11 @@
 
 <div class="bbm-modal__section">
   <div class="center-block">
-    <!-- TODO: MOVER ESTOS ESTILOS A CSS -->
-    <div id="croppic" style="width: 450px; height: 150px; border: solid 1px"></div>
+    <div id="croppic" class="croppicModal" style="width: 450px; height: 150px; border: solid 1px; margin: 0 auto;"></div>
   </div>
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-default" id="js-close-btn">Close</a>
+  <a href="#" class="btn btn-primary" id="js-crop-btn">Crop</a>
+  <a href="#" class="btn btn-default-blue positionButtons" id="js-close-btn">Close</a>
 </div>
