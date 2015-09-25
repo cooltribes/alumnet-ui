@@ -10,7 +10,7 @@
 	</ul>
 </div>
 <!-- Duplicating the list for the mobile version without the affix-->
-<div class="visible-xs visible-sm" >
+<div class="visible-xs visible-sm col-xs-12 col-sm-12 text-center">
 	<ul class="roundedNumbersList clearfix" >
 		<li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span></li>		
 		<% if @isVisible: %>
