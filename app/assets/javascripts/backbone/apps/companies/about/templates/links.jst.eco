@@ -1,5 +1,5 @@
+<h3>Links</h3>
 <div class="company__row company__cell">
-	<h3 class="no-margin">Links</h3>
 	<% if @userCanEdit: %>
 		<a href="#" id="js-add-link" class="btn btn-default btn-primary-noBackground margin_top_small"><span class="glyphicon glyphicon-plus"></span> Add Link</a>
 	<% end %>
