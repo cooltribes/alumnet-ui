@@ -91,3 +91,68 @@
     childViewContainer: '#js-products-container'
     childViewOptions: ->
       user: @model
+
+    initialize: (options) ->
+      @modals = options.modals
+
+    ui:
+      'createMembership': '#js-create-membership'
+
+    events:
+      'click @ui.createMembership': 'createClicked'
+
+    createClicked: ->
+      modalView = new UserShow.ModalPremium
+        model: @model
+      @modals.show(modalView)
+
+  class UserShow.ModalPremium extends Backbone.Modal
+    template: 'admin/users/show/templates/modal_premium'
+    viewContainer: '.modal-container'
+    cancelEl: '#close-btn, #goBack'
+    submitEl: "#save-status"
+
+    initialize: (options) ->
+      console.log options
+      subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
+      subscriptions.on 'fetch:success', (collection)->
+        @subscriptions = collection
+        console.log @subscriptions
+
+    templateHelpers: () ->
+      subscriptions: @subscriptions
+
+    submit: () ->
+      data = Backbone.Syphon.serialize(this)
+      id = @model.id
+      url = AlumNet.api_endpoint + "/users/#{id}/subscriptions"
+      data.user_id = id
+
+      Backbone.ajax
+        url: url
+        type: "POST"
+        data: data
+        success: (data) =>
+          console.log("success")
+          console.log(data)
+        error: (data) =>
+          console.log("error")
+          console.log(data)
+
+    # onRender: ->
+    #   @$(".js-date-start-date").Zebra_DatePicker
+    #     show_icon: false
+    #     show_select_today: false
+    #     view: 'years'
+    #     default_position: 'below'
+    #     onOpen: (e) ->
+    #       $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
+
+    #   @$(".js-date-end-date").Zebra_DatePicker
+    #     show_icon: false
+    #     show_select_today: false
+    #     view: 'years'
+    #     default_position: 'below'
+    #     direction: 1
+    #     onOpen: (e) ->
+    #       $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)

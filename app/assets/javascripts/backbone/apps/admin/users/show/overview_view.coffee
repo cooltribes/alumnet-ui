@@ -5,6 +5,9 @@
     #className: 'container'
       
     regions:
+      modals:
+        selector: '#modals-region'
+        regionClass: Backbone.Marionette.Modals
       'content': '#js-content'
     ui:
       'overviewLink': '#js-section-overview'
@@ -114,6 +117,7 @@
           productsView = new UserShow.Products
             model: view.model
             collection: products
+            modals: view.modals
           view.content.show(productsView)
 
     adminClicked: (e)->
