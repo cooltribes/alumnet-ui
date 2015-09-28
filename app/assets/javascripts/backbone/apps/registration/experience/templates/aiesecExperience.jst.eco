@@ -98,14 +98,15 @@
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
-			<input type="hidden" name="city_id" id="city_id" style="width: 100%">
+			<input type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.id %>">
+			<!-- <input type="hidden" name="city_id" id="city_id" style="width: 100%"> -->
 			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerLocalcomitee">AIESEC Chapter</label>
-			<input type="hidden" name="committee_id" id="committee_id" style="width: 100%">
+			<input type="hidden" name="committee_id" id="committee_id" style="width: 100%" >
 			<span class="help-block"></span>
 		</div>
 	</div>
