@@ -68,10 +68,9 @@
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #fbcb09;
-	background: #fdf5ce url("images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
-	font-weight: bold;
-	color: #c77405;
+	border: 1px solid #cccccc;
+	background: #2099d0 url("images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
+	color: #ffffff;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -81,7 +80,7 @@
 .ui-state-focus a:hover,
 .ui-state-focus a:link,
 .ui-state-focus a:visited {
-	color: #c77405;
+	color: #ffffff;
 	text-decoration: none;
 }
 .ui-state-active,
