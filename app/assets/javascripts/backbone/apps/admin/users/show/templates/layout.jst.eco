@@ -58,11 +58,6 @@
                <i class="glyphicon glyphicon-usd"></i> Purchases
               </a>
             </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Products" class="sortingMenu__item__link" id="js-section-products">
-               <i class="glyphicon glyphicon-barcode"></i> Products
-              </a>
-            </li>
             <!-- <li class="sortingMenu__item sortingMenu__item--md">
               <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
                <i class="glyphicon glyphicon-credit-card"></i> Purcharses
