@@ -16,7 +16,6 @@
       'purchasesLink': '#js-section-purchases'
       'pointsLink': '#js-section-points'
       'adminLink': '#js-section-admin'
-      'productsLink': '#js-section-products'
 
     events:
       'click @ui.overviewLink': 'overviewClicked'
@@ -28,7 +27,6 @@
       'click @ui.purchasesLink': 'purchasesClicked'
       'click @ui.pointsLink': 'pointsClicked'
       'click @ui.adminLink': 'adminClicked'
-      'click @ui.productsLink': 'productsClicked'
 
     overviewClicked: (e)->
       e.preventDefault()
@@ -99,21 +97,9 @@
       payments.url = AlumNet.api_endpoint + "/users/#{@model.id}/payments"
       payments.fetch
         success: ->
-          paymentsView = new UserShow.Payments
+          productsView = new UserShow.Payments
             model: view.model
             collection: payments
-          view.content.show(paymentsView)
-
-    productsClicked: (e)->
-      e.preventDefault()
-      view = @
-      products = new AlumNet.Entities.UserProductsCollection
-      products.url = AlumNet.api_endpoint + "/users/#{@model.id}/products"
-      products.fetch
-        success: ->
-          productsView = new UserShow.Products
-            model: view.model
-            collection: products
           view.content.show(productsView)
 
     adminClicked: (e)->

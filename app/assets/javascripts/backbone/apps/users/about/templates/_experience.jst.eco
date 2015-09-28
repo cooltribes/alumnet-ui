@@ -43,7 +43,7 @@
 	</div>
 <% end %>
 
-	<div id="js-description" class="experienceCard__description" style="white-space: pre-line;"><br>
+	<div id="js-description" class="experienceCard__description"><br>
 	<%= @description %>
 	</div>
 </div>

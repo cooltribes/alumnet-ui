@@ -459,9 +459,6 @@
       if @model.branchesCollection().length > 0
         branch = @model.branchesCollection().at(0)
         @renderDetail(branch)
-      else
-        $("#js-branches").addClass('buttonAddBranches')
-        $("#js-branch-detail").hide();
 
     renderDetail: (model)->
       @details.empty()

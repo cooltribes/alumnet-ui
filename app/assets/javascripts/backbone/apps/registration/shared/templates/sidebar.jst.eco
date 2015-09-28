@@ -10,15 +10,18 @@
 	</ul>
 </div>
 <!-- Duplicating the list for the mobile version without the affix-->
-<div class="visible-xs visible-sm col-xs-12 col-sm-12 text-center">
+<div class="visible-xs visible-sm  " >
+	<h5>Registration progress</h5>
+	
 	<ul class="roundedNumbersList clearfix" >
-		<li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span></li>		
+		<li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span> Basic Information</li>		
 		<% if @isVisible: %>
-			<li class="roundedNumbersList__item<%= @classOf(1)%>"><span class="roundedNumbersList__number">2</span></li>
-			<li class="roundedNumbersList__item<%= @classOf(2)%>"><span class="roundedNumbersList__number">3</span></li>
+			<li class="roundedNumbersList__item<%= @classOf(1)%>"><span class="roundedNumbersList__number">2</span> Skills and Languages</li>
+			<li class="roundedNumbersList__item<%= @classOf(2)%>"><span class="roundedNumbersList__number">3</span> Experience in AIESEC</li>
 			<!-- <li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Skills & Languages</li> -->
-			<li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span></li>
+			<li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Approval process</li>
 		<% end %>
 	</ul>
+	<hr>
 </div>
 

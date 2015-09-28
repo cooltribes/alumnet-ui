@@ -131,14 +131,7 @@
 
     initialize: ()->
       @type = "cards" #default view
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMoreCompanies')
-      $(window).scroll(@loadMoreCompanies)
 
-    loadMoreCompanies: (e)->
-      console.log "Scroll"
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'companies:reload'
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
     template: 'companies/discover/templates/my_companies_layout'

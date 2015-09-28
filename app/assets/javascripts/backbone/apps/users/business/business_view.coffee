@@ -153,12 +153,6 @@
   class Business.EmptyLinkView extends Marionette.ItemView
     template: 'users/business/templates/_emptyLinks'
 
-    initialize: (options)->
-      @userCanEdit = options.userCanEdit
-
-    templateHelpers: ()->
-      userCanEdit: @userCanEdit
-
 
   class Business.LinkView extends Marionette.ItemView
     template: 'users/business/templates/_link'
@@ -224,8 +218,6 @@
     emptyView: Business.EmptyLinkView
     childViewContainer: ".js-links"
     childViewOptions: ()->
-      userCanEdit: @userCanEdit
-    emptyViewOptions: ()->
       userCanEdit: @userCanEdit
 
     initialize: (options)->

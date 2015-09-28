@@ -247,15 +247,11 @@
       model = @model
       image = @model.get('cover').original + "?#{ new Date().getTime() }"
       options =
-        #loadPicture: image
+        loadPicture: image
         cropData: { "image": 'cover' }
-        uploadUrl: AlumNet.api_endpoint + "/tempfile"
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
-        doubleZoomControls: false
-        rotateControls: false 
-        customUploadButtonId: 'js-upload-btn'
-        onAfterImgUpload: ->
-          console.log "imagen upload"
+        doubleZoomControls:false
+        rotateControls:false 
         onAfterImgCrop: ->
           model.trigger('change:cover')
 
