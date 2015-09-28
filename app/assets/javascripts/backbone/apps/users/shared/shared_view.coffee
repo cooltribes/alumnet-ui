@@ -9,12 +9,14 @@
       'requestLink': '#js-request-send'   #Id agregado
       'coverArea': 'userCoverArea'
       'imgAvatar': '#preview-avatar'
+      'profileCover': '#profile-cover'
 
     events:
       "click @ui.editPic": "editPic"
       "click @ui.editCover": "editCover"
-      'click #js-request-send':'sendRequest' #Evento agregado
-      'click #js-message-send':'sendMensagge'
+      'change @ui.profileCover': 'saveCover'
+      'click #js-request-send': 'sendRequest' #Evento agregado
+      'click #js-message-send': 'sendMensagge'
 
     initialize: (options)->
       @model = options.model
@@ -26,6 +28,7 @@
 
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
+
 
     templateHelpers: ->
       model = @model
@@ -46,9 +49,11 @@
 
     renderView: ->
       view = @
+      coverArea = @ui.coverArea
       @model.fetch
         success: ->
           view.render()
+          coverArea.backgroundDraggable()
 
     editPic: (e)->
       e.preventDefault()
@@ -60,9 +65,37 @@
 
     editCover: (e)->
       e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CoverModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
+      #modal = new AlumNet.UsersApp.About.CropCoverModal
+      #  model: @model
+      #@ui.modalCont.html(modal.render().el)
+      console.log  "editCover"
+      @.$('.userCoverArea').backgroundDraggable()
+      #@ui.coverArea.backgroundDraggable()
+
+    saveCover: (e)->
+      e.preventDefault()
+      console.log "saveCover"
+      data = Backbone.Syphon.serialize this
+      console.log data.cover
+      if data.cover != ""
+        console.log "entro"
+        model = @model
+        modal = @
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.profile.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()->
+            model.trigger('change:cover')
+            #modalCrop = new About.CropCoverModal
+            #  model: model
+            #$('#js-picture-modal-container').html(modalCrop.render().el)
+            #modal.destroy()
 
     sendRequest: (e)->
       attrs = { friend_id: @model.id }

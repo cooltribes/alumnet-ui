@@ -47,7 +47,14 @@
       <a type="button" class="userCoverArea__btnInvite userCoverArea__btnInviteSent btn btn-lg" style="right: 280px;"> REQUEST SENT</a>
     <% end %>
      <% if @userCanEdit: %>
-      <a id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" href="#" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover</a>
+     <form>
+      <span id="js-changeCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover
+      <input type="file" id="profile-cover" style="margin-top: 15px;" name="cover" accept="image/*">
+      </span>    
+      <span id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Edit cover
+      
+      </span> 
+      </form>
     <% end %>
 
 </div>
