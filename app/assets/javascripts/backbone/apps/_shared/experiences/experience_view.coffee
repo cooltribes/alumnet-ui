@@ -104,10 +104,13 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
-      @ui.selectCountries.select2('val', @model.get("country").id, true)
+        # initSelection: (element, callback)->
+        #   console.log element
+        #   callback(3)
+      # # dataRegions = RegionList.toSelect2()
 
-      if @model.get('exp_type') == 0 && @model.get("aiesec_experience")
-        @setAllCountries(@model.get("aiesec_experience"))
+
+      # @ui.selectCountries.select2('val', @model.get("country_id"), true)
 
 
     setCountries: (e)->
@@ -154,8 +157,6 @@
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
-      city = @model.get('city')     
-      console.log city       
       placeholder: "Select a #{placeholder}"
       minimumInputLength: 2
       ajax:
@@ -171,8 +172,6 @@
         data.name
       formatSelection: (data)->
         data.name
-      initSelection: (element, callback)->        
-        callback(city) if city
 
     optionsForCommittee: (country_id, aiesecExp)->
       query = { q: { committee_type_eq: aiesecExp } }
