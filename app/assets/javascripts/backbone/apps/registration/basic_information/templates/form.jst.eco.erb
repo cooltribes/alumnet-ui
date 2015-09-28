@@ -1,17 +1,17 @@
 <form class="formANet form" role="form">
-  <h1 class="h2">Profile</h1>
+  <h1 class="roundedNumbersList__textProfile">Profile</h1>
   <!-- First row ON -->
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group text-center">
+      <div class="form-group text-center roundedNumbersList__avatarProfile">
         <%% if @avatar_picture(): %>
-        <img src="<%%= @avatar_picture() %>" alt="upload avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
+        <img src="<%%= @avatar_picture() %>" alt="upload avatar" id="preview-avatar" class="img-circle">
         <%% else: %>
 
-                <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar",  width:"240px", height:"240px")  %>
+                <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar")  %>
 
         <%% end %>
-        <label class="control-label" for="profilePicture">Choose your profile picture</label>
+        <label class="control-label hidden-xs" for="profilePicture">Choose your profile picture</label>
         <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
         <span class="help-block"></span>
         <input type="hidden" id="avatar-url" name="avatar_url" value="<%%= @avatar_url %>">
