@@ -28,6 +28,7 @@
 
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
+      @listenTo(@model, 'edit:cover', @editCover)
 
 
     templateHelpers: ->
@@ -38,7 +39,7 @@
       cover_style: ->
         cover = model.get('cover')
         if cover.main
-          "background-image: url('#{cover.main}?#{date.getTime()}');"
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
         else
           "background-color: #2b2b2b;"
       add_timestamp: (file)->
@@ -62,14 +63,38 @@
         type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
-
+    
+    coverSaved: true
     editCover: (e)->
       e.preventDefault()
+      coverArea = @.$('.userCoverArea')
+      if (@coverSaved)
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+          coverArea.backgroundDraggable()
+      else
+          coverArea.off('mousedown.dbg touchstart.dbg')
+          $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+          console.log coverArea.css('background-position')
+          console.log @model
+          @model.profile.set "cover_position", coverArea.css('background-position')
+          console.log @model
+          @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+          @model.profile.save 
+            error: (model, response, options)->
+              console.log response
+
+
+      @coverSaved=!@coverSaved
+
       #modal = new AlumNet.UsersApp.About.CropCoverModal
       #  model: @model
       #@ui.modalCont.html(modal.render().el)
-      console.log  "editCover"
-      @.$('.userCoverArea').backgroundDraggable()
+
+  
+      #if(jQuery.fn.backgroundDraggable) 
+      #  console.log  "editCover"
+      #coverArea.backgroundDraggable()
       #@ui.coverArea.backgroundDraggable()
 
     saveCover: (e)->
@@ -84,6 +109,7 @@
         formData = new FormData()
         file = @$('#profile-cover')
         formData.append('cover', file[0].files[0])
+        formData.append('cover_position', "0px 0px")
         @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.profile.save formData,
           wait: true
@@ -92,6 +118,7 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
+            model.trigger('edit:cover')
             #modalCrop = new About.CropCoverModal
             #  model: model
             #$('#js-picture-modal-container').html(modalCrop.render().el)
