@@ -154,7 +154,6 @@
 
       #LANGUAGES------------      
       @collection.forEach (el, i, collection)->
-        console.log el
         el.save
           wait: true
 
