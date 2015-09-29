@@ -9,6 +9,7 @@
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-primary positionButtons" id="js-crop-btn">Crop</a>
+  <a href="#" class="btn btn-primary positionButtons" id="js-upload-btn">New Upload</a>
+  <a href="#" class="btn btn-primary positionButtons" id="js-crop-btn">Save</a>
   <a href="#" class="btn btn-default positionButtons" id="js-close-btn">Close</a>
 </div>
