@@ -1,5 +1,5 @@
-<div class="formANet form" role="form">
-	<h2><%= @title() %></h2>
+<div class="form" role="form">
+	<h1 class="roundedNumbersList__textProfile"><%= @title() %></h1>
 	<% if @exp_type == 0: %>
 		<small>You have to enter <strong>at least one AIESEC Experience</strong> (but the more the better!)</small>
 	<% end %>

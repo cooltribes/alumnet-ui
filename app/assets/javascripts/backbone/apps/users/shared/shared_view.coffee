@@ -10,6 +10,7 @@
       'coverArea': 'userCoverArea'
       'imgAvatar': '#preview-avatar'
       'profileCover': '#profile-cover'
+      'uploadCover': '#js-changeCover'
 
     events:
       "click @ui.editPic": "editPic"
@@ -17,6 +18,7 @@
       'change @ui.profileCover': 'saveCover'
       'click #js-request-send': 'sendRequest' #Evento agregado
       'click #js-message-send': 'sendMensagge'
+      'click @ui.uploadCover' : 'uploadCoverProfile'
 
     initialize: (options)->
       @model = options.model
@@ -136,6 +138,11 @@
     sendMensagge: (e)->
       e.preventDefault()
       AlumNet.trigger('conversation:recipient', null, @model)
+
+    uploadCoverProfile: (e)->
+      e.preventDefault()
+      @ui.profileCover.click()
+      
 
 
   class Shared.Layout extends Marionette.LayoutView
