@@ -28,6 +28,7 @@
 
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
+      @listenTo(@model, 'edit:cover', @editCover)
 
 
     templateHelpers: ->
@@ -62,14 +63,29 @@
         type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
-
+    coverSaved: true
     editCover: (e)->
       e.preventDefault()
+      coverArea = @.$('.userCoverArea')
+      if (@coverSaved)
+          console.log "segundo"
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+          coverArea.backgroundDraggable()
+      else
+          console.log "primero"
+          coverArea.off('mousedown.dbg touchstart.dbg')
+          $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+      @coverSaved=!@coverSaved
+
       #modal = new AlumNet.UsersApp.About.CropCoverModal
       #  model: @model
       #@ui.modalCont.html(modal.render().el)
-      console.log  "editCover"
-      @.$('.userCoverArea').backgroundDraggable()
+
+  
+      #if(jQuery.fn.backgroundDraggable) 
+      #  console.log  "editCover"
+      #coverArea.backgroundDraggable()
       #@ui.coverArea.backgroundDraggable()
 
     saveCover: (e)->
@@ -92,6 +108,7 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
+            model.trigger('edit:cover')
             #modalCrop = new About.CropCoverModal
             #  model: model
             #$('#js-picture-modal-container').html(modalCrop.render().el)
