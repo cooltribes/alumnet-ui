@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<div class="formANet form" role="form">
-		<h1>Skills</h1>
+		<h1 class="roundedNumbersList__textProfile">Skills</h1>
 		<form>
 			<div class="form-group has-feedback">
 				<label class="control-label">Write your Skills separating with a comma</label>
@@ -10,9 +10,11 @@
 			</div>
 		</form>
 		<hr>
-		<h2>Languages</h2>
+		<h1 class="roundedNumbersList__textProfile">Languages</h1>
 		<div id="lan-list"></div>
-		<button class="btn btn-default text-uppercase btn-primary-noBackground js-addRow" type="button">+ Add another language</button>
+		<div class="roundedNumbersList__addLanguages">
+			<button class="btn btn-default text-uppercase btn-primary-noBackground js-addRow" type="button">+ Add another language</button>
+		</div>
 		<hr>
 	</div>
 </div>

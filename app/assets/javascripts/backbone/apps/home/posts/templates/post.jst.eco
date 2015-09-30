@@ -92,7 +92,7 @@
       </div>
       <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
         <div class="groupPost__commentForm__form">
-          <div class="col-xs-9 form-group">
+          <div class="col-xs-9 form-group mentions">
             <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
           </div>
           <div class="col-xs-3 visible-xs">
