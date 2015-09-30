@@ -1,7 +1,7 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Product extends Backbone.Model
     urlRoot: ->
-      AlumNet.api_endpoint + '/products/'
+      AlumNet.api_endpoint + '/products/' + @get('id')
 
     validation:
       name:
