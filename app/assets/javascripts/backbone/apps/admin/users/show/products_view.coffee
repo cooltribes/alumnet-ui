@@ -111,6 +111,8 @@
         modalView = new UserShow.ModalPremium
           model: user
           collection: collection
+        modalView.on 'added', ->
+          view.collection.fetch()
         view.modals.show(modalView)
 
     change: ->
@@ -129,6 +131,7 @@
       subscriptions: @subscriptions
 
     submit: () ->
+      view = @
       data = Backbone.Syphon.serialize(this)
       id = data.product_id
       user_id = @model.id
@@ -142,27 +145,6 @@
         type: "POST"
         data: data
         success: (data) =>
-          console.log("success")
-          console.log(data)
-          user.trigger 'change'
+          view.trigger 'added'
         error: (data) =>
-          console.log("error")
           console.log(data)
-
-    # onRender: ->
-    #   @$(".js-date-start-date").Zebra_DatePicker
-    #     show_icon: false
-    #     show_select_today: false
-    #     view: 'years'
-    #     default_position: 'below'
-    #     onOpen: (e) ->
-    #       $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
-
-    #   @$(".js-date-end-date").Zebra_DatePicker
-    #     show_icon: false
-    #     show_select_today: false
-    #     view: 'years'
-    #     default_position: 'below'
-    #     direction: 1
-    #     onOpen: (e) ->
-    #       $('.Zebra_DatePicker.dp_visible').zIndex(99999999999)
