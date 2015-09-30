@@ -4,11 +4,20 @@
 
 <div class="bbm-modal__section">
   <div class="center-block">
-    <div id="croppic" class="croppicModal" style="width: 240px; height: 240px; position: relative; border: solid 1px; margin: 0 auto;"></div>
+    <div id="croppic" class="croppicModal" style="width: 100%; position: relative; border: solid 1px; margin: 0 auto;">
+    	<img src="<%= @avatar_url() %>" alt="Avatar" style="max=width: 100%">
+    </div>
   </div>
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-primary positionButtons" id="js-crop-btn">Crop</a>
-  <a href="#" class="btn btn-default positionButtons" id="js-close-btn">Close</a>
+  <form>
+  <label class="margin_top_small">
+    <span class="glyphicon glyphicon-open">
+    <span style="font-size: 14px;">Change Profile Picture</span>
+    <input type="file" id="profile-avatar" style="margin-top: 15px" name="avatar" accept="image/*">
+  </label>
+  </form>
+  <a href="#" class="btn btn-primary positionButtons" id="js-crop-btn">Save</a>
+  <a href="#" class="btn btn-default positionButtons" id="js-close-btn">Cancel</a>
 </div>

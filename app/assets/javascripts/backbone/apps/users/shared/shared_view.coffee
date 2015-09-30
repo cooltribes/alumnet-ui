@@ -60,9 +60,9 @@
 
     editPic: (e)->
       e.preventDefault()
-      modal = new AlumNet.UsersApp.About.ProfileModal
+      modal = new AlumNet.UsersApp.About.CropAvatarModal
         view: this
-        type: 3
+        #type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
     
