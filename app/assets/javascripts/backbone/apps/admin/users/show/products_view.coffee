@@ -94,6 +94,7 @@
 
     initialize: (options) ->
       @modals = options.modals
+      @listenTo(@model, 'change', @change)
 
     ui:
       'createMembership': '#js-create-membership'
@@ -102,9 +103,18 @@
       'click @ui.createMembership': 'createClicked'
 
     createClicked: ->
-      modalView = new UserShow.ModalPremium
-        model: @model
-      @modals.show(modalView)
+      view = @
+      user = @model
+      subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
+      subscriptions.on 'fetch:success', (collection)->
+        @subscriptions = collection
+        modalView = new UserShow.ModalPremium
+          model: user
+          collection: collection
+        view.modals.show(modalView)
+
+    change: ->
+      @render()
 
   class UserShow.ModalPremium extends Backbone.Modal
     template: 'admin/users/show/templates/modal_premium'
@@ -113,19 +123,18 @@
     submitEl: "#save-status"
 
     initialize: (options) ->
-      console.log options
-      subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
-      subscriptions.on 'fetch:success', (collection)->
-        @subscriptions = collection
-        console.log @subscriptions
+      @model = options.model
 
     templateHelpers: () ->
       subscriptions: @subscriptions
 
     submit: () ->
       data = Backbone.Syphon.serialize(this)
-      id = @model.id
-      url = AlumNet.api_endpoint + "/users/#{id}/subscriptions"
+      id = data.product_id
+      user_id = @model.id
+      user = @model
+      product = AlumNet.request 'product:find', id
+      url = AlumNet.api_endpoint + "/users/#{user_id}/products/#{id}/add_product"
       data.user_id = id
 
       Backbone.ajax
@@ -135,6 +144,7 @@
         success: (data) =>
           console.log("success")
           console.log(data)
+          user.trigger 'change'
         error: (data) =>
           console.log("error")
           console.log(data)
