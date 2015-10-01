@@ -42,9 +42,6 @@
   </button>
   <ul class="dropdown-menu tableAdmin__dropdown" role="menu" aria-labelledby="dropdownMenu1">
     <li role="presentation">
-      <a role="menuitem" tabindex="-1" href="#" id="editPremium" title="Edit premium access">Change user subscription</a>
-    </li>
-    <li role="presentation">
       <a role="menuitem" tabindex="-1" href="#" id="editStatus" title="Edit user status">Edit user access</a>
     </li>
     <li role="presentation">
