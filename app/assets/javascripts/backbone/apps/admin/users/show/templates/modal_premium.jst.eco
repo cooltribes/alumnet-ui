@@ -1,0 +1,19 @@
+<div class="bbm-modal__topbar">
+  <h3 class="bbm-modal__title"><img src="<%= @avatar.medium %>"> <%= @name %></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <h2>Create new subscription</h2>
+      <form class="clearfix">
+        <div class="col-md-6">
+          <% for item in @items: %>
+          	<input type="radio" name="product_id" value="<%= item.id %>"> <%= item.name %></br>
+	      <% end %>
+        </div>       
+      </form>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="save-status">Save</a>
+  <a href="#" class="btn btn-default" id="goBack">Go back</a>
+</div>

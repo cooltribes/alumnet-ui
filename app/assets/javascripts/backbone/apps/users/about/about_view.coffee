@@ -212,26 +212,118 @@
   class About.CropAvatarModal extends Backbone.Modal
     template: 'users/about/templates/_cropAvatarModal'
     cancelEl: '#js-close-btn'
+    ui:
+      'avatarImagen': "#croppic > img"
+    
     events:
-      'click #js-crop-btn': 'clickCropAvatar'
+      'click #js-crop-btn': 'saveImage'
+      'change #profile-avatar': 'previewImage'
+    @isPreview: false
+    previewImage: (e)->
+      input = @$('#profile-avatar')
+      @isPreview = true
+      #preview = @$('#preview-cover')
+      avatarImagen = $(@ui.avatarImagen)
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          avatarImagen.cropper('replace', e.target.result)
+          #preview.attr("src", e.target.result)
+        reader.readAsDataURL(input[0].files[0])
 
-    clickCropAvatar: (e)->
-      @cropper.crop()
+    saveImage: (e)->
+      e.preventDefault()
+      
+      data = Backbone.Syphon.serialize this
+      avatarImagen = $(@ui.avatarImagen)
+      if @isPreview
+        if data.avatar != ""
+          formData = new FormData()
+          file = @$('#profile-avatar')
+          formData.append('avatar', file[0].files[0])
+          # @view.trigger "submit:avatar", formData
+          user = @model
+          esto = @
+          user.profile.url = AlumNet.api_endpoint + '/profiles/' + user.profile.id
+          user.profile.save formData,
+            wait: true
+            data: formData
+            contentType: false
+            processData: false
+            success: (model, response, options)->
+              user.profile.url = user.urlRoot() + user.id + '/profile'
+              user.set("avatar", response.avatar)
+              esto.cropAvatar()
+      else
+        @cropAvatar()
+            
+            #console.log response.avatar.extralarge
+            #avatarImagen.cropper('replace', response.avatar.extralarge)
+            #user.trigger('change:avatar')
+            #if user.isCurrentUser()
+            #  AlumNet.current_user.trigger('change:avatar')
 
-    onShow: ->
+    cropAvatar: ->
+      #e.preventDefault()
+      #@cropper.crop()
       model = @model
-      image = @model.get('avatar').original + "?#{ new Date().getTime() }"
-      options =
-        loadPicture: image
-        cropData: { "image": 'avatar' }
-        cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
-        doubleZoomControls:false
-        rotateControls:false 
-        onAfterImgCrop: ()->
+      cropBoxData = $(@ui.avatarImagen).cropper('getData')
+      imageData = $(@ui.avatarImagen).cropper('getImageData')
+      data =
+        imgInitH: imageData.naturalHeight
+        imgInitW: imageData.naturalWidth
+        imgW: imageData.width
+        imgH: imageData.height
+        imgX1: cropBoxData.x
+        imgY1: cropBoxData.y
+        cropW: cropBoxData.width
+        cropH: cropBoxData.height
+        image: 'avatar'
+      console.log data
+      Backbone.ajax
+        url: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+        type: "POST"
+        data: data
+        success: (data) =>
+          console.log("success")
+          console.log(data)
           model.trigger('change:cover')
           if model.isCurrentUser()
             AlumNet.current_user.trigger('change:avatar')
-      @cropper = new Croppic('croppic', options)
+        error: (data) =>
+          console.log("error")
+          console.log(data)
+
+    templateHelpers: ->
+      model = @model
+      avatar_url: ->
+        model.get('avatar').original + "?#{ new Date().getTime() }"
+
+
+
+    onShow: ->
+      console.log @ui.avatarImagen
+      $(@ui.avatarImagen).cropper
+        aspectRatio: 1 / 1
+        movable: false
+        zoomable: false
+        rotatable: false
+        scalable: false
+      
+      #model = @model
+      #image = @model.get('avatar').original + "?#{ new Date().getTime() }"
+      #options =
+      #  loadPicture: image
+      #  cropData: { "image": 'avatar' }
+      #  cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
+      #  doubleZoomControls:false
+      #  rotateControls:false 
+      #  onAfterImgCrop: ()->
+      #    model.trigger('change:cover')
+      #    if model.isCurrentUser()
+      #      AlumNet.current_user.trigger('change:avatar')
+      #@cropper = new Croppic('croppic', options)
+
 
 
   class About.CropCoverModal extends Backbone.Modal
