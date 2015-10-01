@@ -5,7 +5,7 @@
 <div class="bbm-modal__section">
   <div class="center-block">
     <div id="croppic" class="croppicModal" style="width: 100%; position: relative; border: solid 1px; margin: 0 auto;">
-    	<img src="<%= @avatar_url() %>" alt="Avatar" style="max=width: 100%">
+    	<img src="<%= @avatar_url() %>" alt="Avatar" style="max-height:400px; max=width: 100%">
     </div>
   </div>
 </div>
