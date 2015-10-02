@@ -214,10 +214,17 @@
     cancelEl: '#js-close-btn'
     ui:
       'avatarImagen': "#croppic > img"
+      'changeProfilePicture': '#js-change-picture'
     
     events:
       'click #js-crop-btn': 'saveImage'
       'change #profile-avatar': 'previewImage'
+      'click @ui.changeProfilePicture': 'changePicture'
+
+    changePicture: (e)->
+      e.preventDefault()
+      $('#profile-avatar').click()
+
     @isPreview: false
     previewImage: (e)->
       input = @$('#profile-avatar')

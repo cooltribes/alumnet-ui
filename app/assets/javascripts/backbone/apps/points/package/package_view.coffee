@@ -17,12 +17,24 @@
 		templateHelpers: ->
       		points: @points
       		prizeImage: @prizeImage
-
+			
 	class Package.ListView extends Marionette.CompositeView
 		template: 'points/package/templates/packages_list'
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
+
+		events:
+			'click #js-modal-points':'showModal'
 		
 		initialize: (options) ->
 			console.log options.models
 			$('#pointsBar').hide();
+
+		showModal: (e)->
+	      e.preventDefault()
+	      modal = new Package.ModalPoints
+	      $('#container-modal-points').html(modal.render().el)
+
+	class Package.ModalPoints extends Backbone.Modal
+    	template: 'points/package/templates/modal'
+    	cancelEl: '#js-close'

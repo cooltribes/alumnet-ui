@@ -11,10 +11,12 @@
                 <%= image_tag("registration/uploadAvatar.png", alt: "upload avatar", class:"img-circle",id:"preview-avatar")  %>
 
         <%% end %>
-        <label class="control-label hidden-xs" for="profilePicture">Choose your profile picture</label>
-        <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*">
+    
+        <span id="js-changePicture"  class="btn btn-primary formANet__margin_top"><span class="glyphicon glyphicon-edit"></span> UPLOAD PICTURE</span>
+        <input type="file" id="profile-avatar" class="formANet__inputAvatar" name="avatar" accept="image/*" style="display:none;">
         <span class="help-block"></span>
         <input type="hidden" id="avatar-url" name="avatar_url" value="<%%= @avatar_url %>">
+
       </div>
     </div>
     <div class="col-md-6">
