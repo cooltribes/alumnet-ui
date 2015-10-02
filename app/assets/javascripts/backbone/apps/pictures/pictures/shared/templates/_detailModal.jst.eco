@@ -31,7 +31,7 @@
             <% if @horizontal: %>
               <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
             <% else: %>
-              <img height="auto" src="<%= @picture.original %>">
+              <img height="300px" src="<%= @picture.original %>">
             <% end %>
             <% if @showMorePics: %>
               <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
@@ -53,7 +53,7 @@
       </div>
 
 
-      <aside class="col-xs-12 col-md-4 ">
+      <aside class="col-md-4 col-xs-12">
         <div class="row">
           <div class="col-md-12 toClose hidden-xs">
             <button type="button" class="js-rmvRow pull-right js-close btn btn-lg btn-commentImage btn-commentImage--close">CLOSE <span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
