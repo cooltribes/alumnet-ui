@@ -6,11 +6,11 @@
 	<span class="help-block"></span>
 </div>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-12">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="start_year">Start Date</label>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-6">
 					<div class="formANet__select">
 						<select name="start_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
@@ -22,7 +22,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-6">
 					<div class="formANet__select">
 						<select name="start_month" class=" form-control input-lg">
 							<option value="">Select Month</option>
@@ -37,11 +37,11 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-12">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="end_year">End Date</label>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-6">
 					<div class="formANet__select">
 						<select name="end_year" class=" form-control input-lg ">
 							<option value="">Select Year</option>
@@ -51,7 +51,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-6">
 					<div class="formANet__select">
 						<select name="end_month" class=" form-control input-lg ">
 							<option value="">Select Month</option>
@@ -98,7 +98,7 @@
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
-			<input type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.id %>">
+			<input type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.id if @city %>">
 			<!-- <input type="hidden" name="city_id" id="city_id" style="width: 100%"> -->
 			<span class="help-block"></span>
 		</div>

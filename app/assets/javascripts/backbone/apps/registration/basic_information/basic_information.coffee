@@ -43,6 +43,7 @@
       'selectResidenceCities': '#js-residence-cities'
       'datePickerBorn': '.js-date-born'
       'linkLinkedin': '.js-linkedin-import'
+      'changeImageProfile' : '#js-changePicture'
 
     events:
       'click button.js-submit': 'submitClicked'
@@ -50,6 +51,13 @@
       'change #js-birth-countries': 'setBirthCities'
       'change #js-residence-countries': 'setResidenceCities'
       'click @ui.linkLinkedin': 'linkedinClicked'
+      'click @ui.changeImageProfile' : 'changePictureProfile'
+
+
+    changePictureProfile: (e)->
+      e.preventDefault()
+      $('#profile-avatar').click()
+      
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.profile

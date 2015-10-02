@@ -9,12 +9,16 @@
       'requestLink': '#js-request-send'   #Id agregado
       'coverArea': 'userCoverArea'
       'imgAvatar': '#preview-avatar'
+      'profileCover': '#profile-cover'
+      'uploadCover': '#js-changeCover'
 
     events:
       "click @ui.editPic": "editPic"
       "click @ui.editCover": "editCover"
-      'click #js-request-send':'sendRequest' #Evento agregado
-      'click #js-message-send':'sendMensagge'
+      'change @ui.profileCover': 'saveCover'
+      'click #js-request-send': 'sendRequest' #Evento agregado
+      'click #js-message-send': 'sendMensagge'
+      'click @ui.uploadCover' : 'uploadCoverProfile'
 
     initialize: (options)->
       @model = options.model
@@ -26,6 +30,8 @@
 
       @listenTo(@model, 'change:avatar', @renderView)
       @listenTo(@model, 'change:cover', @renderView)
+      @listenTo(@model, 'edit:cover', @editCover)
+
 
     templateHelpers: ->
       model = @model
@@ -35,7 +41,7 @@
       cover_style: ->
         cover = model.get('cover')
         if cover.main
-          "background-image: url('#{cover.main}?#{date.getTime()}');"
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
         else
           "background-color: #2b2b2b;"
       add_timestamp: (file)->
@@ -46,23 +52,58 @@
 
     renderView: ->
       view = @
+      coverArea = @ui.coverArea
       @model.fetch
         success: ->
           view.render()
+          coverArea.backgroundDraggable()
 
     editPic: (e)->
       e.preventDefault()
-      modal = new AlumNet.UsersApp.About.ProfileModal
+      modal = new AlumNet.UsersApp.About.CropAvatarModal
         view: this
-        type: 3
+        #type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
-
+    
+    coverSaved: true
     editCover: (e)->
       e.preventDefault()
-      modal = new AlumNet.UsersApp.About.CoverModal
-        model: @model
-      @ui.modalCont.html(modal.render().el)
+      coverArea = @.$('.userCoverArea')
+      if (@coverSaved)
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+          coverArea.backgroundDraggable()
+          coverArea.css('cursor', 'pointer')
+      else
+          coverArea.css('cursor', 'default')
+          coverArea.off('mousedown.dbg touchstart.dbg')
+          $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+          @model.profile.set "cover_position", coverArea.css('background-position')
+          @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+          @model.profile.save
+      @coverSaved=!@coverSaved
+
+    saveCover: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      console.log data.cover
+      if data.cover != ""
+        model = @model
+        modal = @
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        formData.append('cover_position', "0px 0px")
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.profile.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()->
+            model.trigger('change:cover')
+            #$('#js-picture-modal-container').html(modalCrop.render().el)
 
     sendRequest: (e)->
       attrs = { friend_id: @model.id }
@@ -76,6 +117,11 @@
     sendMensagge: (e)->
       e.preventDefault()
       AlumNet.trigger('conversation:recipient', null, @model)
+
+    uploadCoverProfile: (e)->
+      e.preventDefault()
+      @ui.profileCover.click()
+      
 
 
   class Shared.Layout extends Marionette.LayoutView

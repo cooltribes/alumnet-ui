@@ -91,3 +91,60 @@
     childViewContainer: '#js-products-container'
     childViewOptions: ->
       user: @model
+
+    initialize: (options) ->
+      @modals = options.modals
+      @listenTo(@model, 'change', @change)
+
+    ui:
+      'createMembership': '#js-create-membership'
+
+    events:
+      'click @ui.createMembership': 'createClicked'
+
+    createClicked: ->
+      view = @
+      user = @model
+      subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
+      subscriptions.on 'fetch:success', (collection)->
+        @subscriptions = collection
+        modalView = new UserShow.ModalPremium
+          model: user
+          collection: collection
+        modalView.on 'added', ->
+          view.collection.fetch()
+        view.modals.show(modalView)
+
+    change: ->
+      @render()
+
+  class UserShow.ModalPremium extends Backbone.Modal
+    template: 'admin/users/show/templates/modal_premium'
+    viewContainer: '.modal-container'
+    cancelEl: '#close-btn, #goBack'
+    submitEl: "#save-status"
+
+    initialize: (options) ->
+      @model = options.model
+
+    templateHelpers: () ->
+      subscriptions: @subscriptions
+
+    submit: () ->
+      view = @
+      data = Backbone.Syphon.serialize(this)
+      id = data.product_id
+      user_id = @model.id
+      user = @model
+      product = AlumNet.request 'product:find', id
+      url = AlumNet.api_endpoint + "/users/#{user_id}/products/#{id}/add_product"
+      data.user_id = id
+
+      Backbone.ajax
+        url: url
+        type: "POST"
+        data: data
+        success: (data) =>
+          view.trigger 'added'
+        error: (data) =>
+          console.log(data)

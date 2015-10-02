@@ -242,7 +242,7 @@
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
 
-      validCollection = true
+      validCollection = @collection.length > 0 #Is valid only when collection has items
       experiencesAtributtes = []
 
       @collection.each (model)->

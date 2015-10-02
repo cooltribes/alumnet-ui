@@ -7,6 +7,8 @@
 //= require backbone
 //= require backbone.marionette
 //= require backbone/libs/masonry.pkgd.min
+//= require backbone/libs/draggable_background.js
+//= require backbone/libs/cropper.min.js
 //= require backbone/alumnet
 //= require_tree ./backbone/libs
 //= require_tree ./backbone/concerns

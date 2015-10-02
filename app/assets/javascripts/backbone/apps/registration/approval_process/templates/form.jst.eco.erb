@@ -1,6 +1,6 @@
 <form class="formANet form" role="form">
-	<h2 class="h2">Aproval process
-	<small>
+	<h1 class="roundedNumbersList__textProfile">Aproval process
+	<small class="hidden-xs">
 		<%%= @approved_requests_count %>/3
 
 		<small>
@@ -8,16 +8,20 @@
 		</small>
 	</small>
 	</h2>
-	<p class="lead">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
-	<hr>
+	<p class="lead hidden-xs">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
+	<hr class="hidden-xs">
 	<div class="row">
-		<div class="col-md-2">
-			<%= image_tag("registration/searchIcon.png", alt: "question mark", width: 90, height: 90, class: "img-circle") %>
+		<div class="col-md-2 col-xs-3 formANet__find">
+			<%= image_tag("registration/searchIcon.png", alt: "question mark", class: "img-circle") %>
+		</div>
+		<div class="col-xs-9 visible-xs formANet__text margin_bottom">
+			<h4>Find 3 People</h4>
+			<small>Who can confirm that you are an AIESEC Alumni</small >
 		</div>
 		<div class="col-md-10">
-			<h3>Find 3 People</h3>
-			<p>Who can confirm that you are an AISEC Alumni</p >
-			<div id="byService" class="importContactForm margin_top text-center">
+			<h3 class="hidden-xs">Find 3 People</h3>
+			<p class="hidden-xs">Who can confirm that you are an AIESEC Alumni</p >
+			<div id="byService" class="importContactForm margin_top text-center hidden-xs">
 			  <p>Find your friends in ALUMNET with</p>
 			  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
 			    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
@@ -35,10 +39,10 @@
 			<div class="form-group has-feedback">
 				<label class="control-label">Search by name</label>
 				<input type="text" class="form-control input-lg" placeholder="Write a name or email" name="search_term" id="search_term">
-				<span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback">
+				<span class=" hidden-xs formANet__input__icon glyphicon glyphicon-user form-control-feedback">
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">Search by Country</label>
 						<div class="formANet__select">
@@ -47,7 +51,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 text-right">
+				<div class="col-md-6 col-xs-12 text-right">
 				  <div class="form-group padding_top_small">
 							<button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
 					</div>
@@ -70,14 +74,14 @@
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-2">
-			<%= image_tag("registration/questionIcon.png", alt: "question mark", width: 90, height: 90, class: "img-circle") %>
+		<div class="col-md-2 col-xs-12 formANet__find">
+			<%= image_tag("registration/questionIcon.png", alt: "question mark", class: "img-circle") %>
 			<!--<img src="assets/registration/questionIcon.png" alt="question mark"  width="90px" height="90px" class="img-circle">-->
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 col-xs-12 formANet__textHelp">
 			<h3 >Didnt find anyone?</h3>
 			<p class="lead" >Ask an administrator to approve you manually</p>
-			<div class="js-buttonContainer">
+			<div class="js-buttonContainer formANet__buttonSend">
 				<button class="btn btn-primary btn-lg text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
 			</div>
 		</div>
