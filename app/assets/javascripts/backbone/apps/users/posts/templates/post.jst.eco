@@ -18,6 +18,16 @@
       <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
     <p id="js-body-post"> <%= @body %></p>
+    <!-- PREVIEW -->
+    <%= @url %>
+    <% if @preview.url: %>
+      <div>
+      <h1><%= @preview.title %></h1>
+      <img src="<%= @preview.image %>">
+      <span><%= @preview.description %></span>
+      </div>
+    <% end %>
+    <!-- PREVIEW OFF -->
     <!-- PICTURES -->
     <% if @pictures: %>
       <div class="modal-container"></div>
@@ -34,6 +44,7 @@
       </div>
     <% end %>
     <hr>
+
     <!-- PICTURES OFF     -->
     <div class="postCard__btn--like">
     <% if @you_like: %>

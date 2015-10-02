@@ -20,6 +20,8 @@
       'pointsLink': '#js-section-points'
       'adminLink': '#js-section-admin'
       'productsLink': '#js-section-products'
+      'activateUser': '.js-activate-user'
+      'banUser': '.js-ban-user'
 
     events:
       'click @ui.overviewLink': 'overviewClicked'
@@ -32,6 +34,41 @@
       'click @ui.pointsLink': 'pointsClicked'
       'click @ui.adminLink': 'adminClicked'
       'click @ui.productsLink': 'productsClicked'
+      'click @ui.activateUser': 'activateClicked'
+      'click @ui.banUser': 'banClicked'
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
+
+    activateClicked: (e)->
+      view = @
+      id = @model.id
+      url = AlumNet.api_endpoint + "/admin/users/#{id}/activate"
+
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        success: (data) =>
+          @model.set(data)
+          view.ui.activateUser.removeClass('btn-primary js-activate-user').addClass('btn-danger js-ban-user').html('Ban user')
+        error: (response) =>
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
+
+    banClicked: (e)->
+      view = @
+      id = @model.id
+      url = AlumNet.api_endpoint + "/admin/users/#{id}/banned"
+
+      Backbone.ajax
+        url: url
+        type: "PUT"
+        success: (data) =>
+          @model.set(data)
+          view.ui.activateUser.removeClass('btn-danger js-ban-user').addClass('btn-primary js-activate-user').html('Activate user')
+        error: (response) =>
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
 
     overviewClicked: (e)->
       e.preventDefault()
