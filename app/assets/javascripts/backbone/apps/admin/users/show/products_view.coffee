@@ -7,10 +7,12 @@
     initialize: (options) ->
       @user = AlumNet.request('user:find', @model.get('user').id)
       @listenTo(@model, 'change:status', @modelChange)
+      @listenTo(@model, 'change:end_date', @modelChange)
 
     ui:
       'activate': '.js-activate'
       'deactivate': '.js-deactivate'
+      'endDate': '.js-end-date'
 
     events:
       'click @ui.activate': 'activateClicked'
@@ -21,6 +23,19 @@
       endDate: @getEndtDate()
       productType: @getProductType()
       status: @getStatus()
+
+    onRender: ->
+      #Datepickers
+      model = @model
+      @ui.endDate.Zebra_DatePicker
+        format: 'd/m/Y'
+        show_icon: false
+        show_select_today: false
+        onSelect: (date, standarDate, jsDate, input)->
+          model.set({end_date: jsDate, user_id: model.get('user').id})
+          model.save
+            success: ->
+              model.trigger 'change:end_date'
 
     getStartDate: ->
       date = new Date(@model.get('start_date'))
