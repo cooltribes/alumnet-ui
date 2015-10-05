@@ -8,7 +8,7 @@
 
           <div class="col-md-5">
             <div class="form-group has-feedback">
-              <label class="control-label">Company Logo
+              <label class="control-label">Company Logo</label>
               <div class="add-logo">
                 <label class="uploadFile uploadFile--cover">
                   <div class="uploadFile--img">
