@@ -140,8 +140,7 @@ DESCRIPTION: A card that contains a post in a group
 .post {
 	textarea{
 		width: 165px;
-		height: 35px;
-
+		height: auto;
 	}
 	&__buttomComent {
 		color: @blue;
@@ -161,9 +160,12 @@ DESCRIPTION: A card that contains a post in a group
 		    position: absolute;
 		    top: 0px;
 		    text-decoration: none;
+		    height: auto;
     	}
 	}
 }
+
+
 
 
 /* Small devices (tablets, 400px and up) */
@@ -245,7 +247,7 @@ DESCRIPTION: A card that contains a post in a group
 @media (min-width: @media-medium-min) {
 	.post {
 		textarea{
-			width: auto;
+			width: 100%;
 		}
 	}
 	.groupPost {
