@@ -11,16 +11,16 @@
               <label class="control-label">Company Logo</label>
               <div class="add-logo">
                 <label class="uploadFile uploadFile--cover">
+                  <input type="file" name="logo" id="logo">
                   <div class="uploadFile--img">
                     <img src="" alt="" width="100%" height="215px" id="preview-logo">
                   </div>
-                  <div class="uploadFile--text">
-                    <span class="glyphicon glyphicon-open"></span>
-                    <span>Upload logo</span>
-                    <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
-                  </div>
-                  <input type="file" name="logo" id="logo">
                 </label>
+                <div class="uploadFile--textCompanies" id="js-span-file">
+                  <span class="glyphicon glyphicon-open"></span>
+                  <span>Upload logo</span><br>
+                  <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+                </div>
               </div>
             </div>
           </div>
