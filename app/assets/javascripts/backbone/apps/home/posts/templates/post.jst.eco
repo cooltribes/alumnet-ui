@@ -34,13 +34,10 @@
       <div class="col-md-12">
         <p id="js-body-post"> <%= @body %></p>
             <!-- PREVIEW -->
-            <%= @url %>
-            <% if @preview.url: %>
-              <div>
-              <h1><%= @preview.title %></h1>
-              <img src="<%= @preview.image %>">
+            <% if @preview.url : %>
+              <h4 style="color:#111111"><%= @preview.title %></h4>
               <span><%= @preview.description %></span>
-              </div>
+              <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
             <% end %>
             <!-- PREVIEW OFF -->
       </div>
