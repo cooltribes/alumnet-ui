@@ -375,22 +375,29 @@
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
 
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
+
     checkInput: (e)->
-      #console.log @ui.bodyInput.val()
       validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
       if validation
-        console.log validation
-        #@ui.videoContainer.show(new Marionette.ItemView({template: '<iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>'}))
-        #@ui.videoContainer.show(new Marionette.ItemView({template: 'home/posts/templates/youtube_iframe'}))
-        #@ui.videoContainer.show(new Marionette.ItemView({template: '<h1>gach</h1>'}))
-        #@ui.videoContainer.html('<iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe>')
         @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
-        #$.get(@ui.bodyInput.val()+" meta[property='og:title']", (response, status, xhr)->
-        #  $meta = $("meta", this)
-        #  console.log $meta.attr("content")
-        #)
       else
-        console.log "no es url"
+        ui = @ui
+        if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
+          url = @ui.bodyInput.val().split(" ").pop()
+          Backbone.ajax
+            url: AlumNet.api_endpoint + '/metatags'
+            data: {url: url}
+            success: (data)->
+              ui.videoContainer.html('<div>'+data.title+'</div><img src="'+data.image+'" /><div>'+data.description+'</div>')
+              ui.preview_image.val(data.image)
+              ui.preview_description.val(data.description)
+              ui.preview_title.val(data.title)
+              ui.preview_url.val(url)
+
 
     submitClicked: (e)->
       e.stopPropagation()

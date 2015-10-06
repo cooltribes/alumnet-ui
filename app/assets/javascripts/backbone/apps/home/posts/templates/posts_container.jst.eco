@@ -22,6 +22,14 @@
 										  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
 										</div>
 										<!--  -->
+										<!-- PREVIEW -->
+										<div class="form-group preview" style="display:none">
+										  <input type="hidden" id="url" name="url" style="width:100%">
+										  <input type="hidden" id="url_title" name="url_title" style="width:100%">
+										  <input type="hidden" id="url_description" name="url_description" style="width:100%">
+										  <input type="hidden" id="url_image" name="url_image" style="width:100%">
+										</div>
+										<!--  -->											
 										<a id="js-add-picture" class="groupPost__btn--addPicture" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Picture
