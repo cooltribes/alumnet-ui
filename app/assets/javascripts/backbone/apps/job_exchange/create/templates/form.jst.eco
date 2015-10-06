@@ -60,6 +60,8 @@
                 <option value="1" <%= @select_employment_type(1) %>>Part-time</option>
                 <option value="2" <%= @select_employment_type(2) %>>Internship</option>
                 <option value="3" <%= @select_employment_type(3) %>>Temporary</option>
+                <option value="4" <%= @select_employment_type(4) %>>Special Assignment</option>
+                <option value="5" <%= @select_employment_type(5) %>>Specialized Group</option>
               </select>
               <span class="help-block"></span>
             </div>
