@@ -41,7 +41,6 @@
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
       'change #official': 'changedOfficial'
-      'change #admission-type': 'changedAdmissionType'
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
@@ -146,8 +145,6 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
-
-
 
   # INVITE
 
