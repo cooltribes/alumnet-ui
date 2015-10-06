@@ -16,7 +16,7 @@
 				<a href="#" id="js-edit-company-size">edit</a>
 			<% end %>
 			<ul>
-				<li>Employees: <%= @employees_count %></li>
+				<li>Alumni Employees: <%= @employees_count %></li>
 				<!-- <li>Alumni</li> -->
 			</ul>
 		</div>

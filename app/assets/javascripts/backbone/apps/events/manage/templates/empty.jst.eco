@@ -5,7 +5,7 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</div>
 			<div class="col-md-10">
-				<p class="lead">It seems like there's no events</p>
+				<p class="lead">You have no upcoming events.</p>
 			</div>
 		</div>
 	</div>

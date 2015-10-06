@@ -6,14 +6,6 @@ DESCRIPTION: A card that contains a post in a group
 ***/
 
 @import 'conf/conf.css.less';
-.post {
-	textarea{
-		width: 165px;
-	}
-	&__buttomComent {
-		color: @blue;
-	}
-}
 
 .groupPost {
 
@@ -145,11 +137,22 @@ DESCRIPTION: A card that contains a post in a group
 	}
 }
 
+.post {
+	textarea{
+		width: 165px;
+		height: auto;
+	}
+	&__buttomComent {
+		color: @blue;
+	}
+}
+
 .mentions{
 	.highlighter{
 		resize: none;
     	overflow-y: hidden;
-    	width: 100%;
+    	width: 165px;
+    	height: auto;
     	textarea{
     		letter-spacing: 0px;
 		    overflow-y: hidden;
@@ -157,9 +160,12 @@ DESCRIPTION: A card that contains a post in a group
 		    position: absolute;
 		    top: 0px;
 		    text-decoration: none;
+		    height: auto;
     	}
 	}
 }
+
+
 
 
 /* Small devices (tablets, 400px and up) */
@@ -241,7 +247,7 @@ DESCRIPTION: A card that contains a post in a group
 @media (min-width: @media-medium-min) {
 	.post {
 		textarea{
-			width: auto;
+			width: 100%;
 		}
 	}
 	.groupPost {

@@ -58,7 +58,7 @@
       </div>
       <div class="postCard__commentForm__form">
         <div class="form-group">
-          <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+          <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1"></textarea>
         </div>
       </div>
     </form>
