@@ -95,11 +95,15 @@
 
     ui:
       'groupName':'#name'
-      'uploadCover':'#js-upload-cover'
+      'uploadCover':'#js-changeCover'
       'coverArea':'.groupCoverArea'
+      'groupCover':'#group-cover'
+      'editCover': "#js-editCover"
 
     events:
       'click @ui.uploadCover': 'uploadClicked'
+      'change @ui.groupCover': 'saveCover'
+      "click @ui.editCover": "editCover"
 
     coverChanged: ->
       # cover = @model.get('cover')
@@ -111,9 +115,52 @@
 
     uploadClicked: (e)->
       e.preventDefault()
-      modal = new Shared.Modal
-        model: @model #group
-      $('#js-modal-cover-container').html(modal.render().el)
+      @ui.groupCover.click()
+      #modal = new Shared.Modal
+      #  model: @model #group
+      #$('#js-modal-cover-container').html(modal.render().el)
+
+    coverSaved: true
+    editCover: (e)->
+      e.preventDefault()
+      #coverArea = @.$('.groupCoverArea')
+      coverArea = $(@ui.groupCover)
+      console.log @coverSaved
+      if (@coverSaved)
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+        coverArea.backgroundDraggable()
+        coverArea.css('cursor', 'pointer')
+      else
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        @model.set "cover_position", coverArea.css('background-position')
+        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.save
+          error: (model, response)->
+            console.log response
+      @coverSaved=!@coverSaved
+
+    saveCover: (e)->
+      e.preventDefault()
+      modal = @
+      model = @model
+      formData = new FormData()
+      file = @$('#group-cover')
+      formData.append('cover', file[0].files[0])
+      options =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: ->
+          model.trigger('change:cover')
+          #modal.destroy()
+          #modalCrop = new Shared.CropCoverModal
+          #  model: model
+          #$('#js-modal-cover-container').html(modalCrop.render().el)
+      @model.save {}, options
 
     onRender: ->
       model = this.model

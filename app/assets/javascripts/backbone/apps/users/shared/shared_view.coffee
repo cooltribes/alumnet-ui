@@ -83,6 +83,8 @@
         @model.profile.set "cover_position", coverArea.css('background-position')
         @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.profile.save
+          error: (model, response)->
+            console.log response
       @coverSaved=!@coverSaved
 
     saveCover: (e)->

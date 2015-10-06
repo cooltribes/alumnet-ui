@@ -33,6 +33,16 @@
     <div class="row">
       <div class="col-md-12">
         <p id="js-body-post"> <%= @body %></p>
+            <!-- PREVIEW -->
+            <%= @url %>
+            <% if @preview.url: %>
+              <div>
+              <h1><%= @preview.title %></h1>
+              <img src="<%= @preview.image %>">
+              <span><%= @preview.description %></span>
+              </div>
+            <% end %>
+            <!-- PREVIEW OFF -->
       </div>
     </div>
 
