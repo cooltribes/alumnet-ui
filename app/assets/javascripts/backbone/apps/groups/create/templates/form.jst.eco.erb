@@ -10,16 +10,16 @@
               <label class="control-label">Group's cover</label>
               <div class="add-cover-photo">
                 <label class="uploadFile uploadFile--cover">
+                  <input type="file" name="cover" id="group-cover">
                   <div class="uploadFile--img">
                       <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
                   </div>
-                  <div class="uploadFile--text">
-                    <span class="glyphicon glyphicon-open"></span>
-                    <span>Upload cover photo</span>
-                    <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
-                  </div>
-                  <input type="file" name="cover" id="group-cover">
                 </label>
+                <div class="uploadFile--textCompanies" id="js-file-groups">
+                  <span class="glyphicon glyphicon-open"></span>
+                  <span>Upload cover photo</span><br>
+                  <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+                </div>
               </div>
             </div>
           </div>
