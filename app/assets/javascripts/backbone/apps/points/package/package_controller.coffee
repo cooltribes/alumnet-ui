@@ -3,7 +3,6 @@
     listPackages: ->
       prizes = AlumNet.request("prize:entities", {})
       points = AlumNet.current_user.profile.get('points')
-      console.log points
       if points > 0
         page = new Package.ListView
           collection: prizes
