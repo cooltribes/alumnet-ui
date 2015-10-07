@@ -131,7 +131,6 @@
     editCover: (e)->
       e.preventDefault()
       coverArea = @.$('.groupCoverArea')
-      console.log @coverSaved
       if (@coverSaved)
         $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
         coverArea.backgroundDraggable()
