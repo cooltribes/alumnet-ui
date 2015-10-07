@@ -86,9 +86,17 @@
       document.title = 'AlumNet - '+@model.get("name")
 
     templateHelpers: ->
+      model = @model
+      date = new Date()
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
+      cover_style: ->
+        cover = model.get('cover')
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
+        else
+          "background-color: #2b2b2b;"
 
     modelEvents:
       'change:cover': 'coverChanged'
@@ -123,8 +131,8 @@
     coverSaved: true
     editCover: (e)->
       e.preventDefault()
-      #coverArea = @.$('.groupCoverArea')
-      coverArea = $(@ui.groupCover)
+      coverArea = @.$('.groupCoverArea')
+      #coverArea = $(@ui.groupCover)
       console.log @coverSaved
       if (@coverSaved)
         $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
@@ -149,6 +157,7 @@
       formData = new FormData()
       file = @$('#group-cover')
       formData.append('cover', file[0].files[0])
+      formData.append('cover_position', "0px 0px")
       options =
         wait: true
         contentType: false

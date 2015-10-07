@@ -70,6 +70,7 @@
     templateHelpers: ->
       document.title = 'AlumNet - ' + @model.get('name')
       model = @model
+      date = new Date()      
       shortname: short_string(@model.get('name'),50)
       canEditInformation: @model.userIsAdmin()
       userCanAttend: @model.userCanAttend()
@@ -83,6 +84,12 @@
         if status
           if id == "js-att-" + status.replace('_','-')
             return 'groupCoverArea__attendanceOptions--option--active'
+      cover_style: ->
+        cover = model.get('cover')
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
+        else
+          "background-color: #2b2b2b;"            
 
     modelEvents:
       'change:cover': 'coverChanged'
@@ -94,10 +101,16 @@
       'going': '#js-att-going'
       'maybe': '#js-att-maybe'
       'notGoing': '#js-att-not-going'
+      "editCover": "#js-editCover"
+      'uploadCover': '#js-changeCover'
+      'eventCover': '#profile-cover'
 
     events:
-      'click @ui.uploadCover': 'uploadClicked'
+      #'click @ui.uploadCover': 'uploadClicked'
       'click @ui.going, @ui.maybe, @ui.notGoing': 'updateAttendance'
+      "click @ui.editCover": "editCover"
+      'change @ui.eventCover': 'saveCover'
+      'click @ui.uploadCover' : 'uploadClicked'
 
     coverChanged: ->
       #cover = @model.get('cover')
@@ -108,9 +121,54 @@
           view.render()
 
     uploadClicked: (e)->
-      modal = new Shared.Modal
-        model: @model
-      $('#js-modal-cover-container').html(modal.render().el)
+      #modal = new Shared.Modal
+      #  model: @model
+      #$('#js-modal-cover-container').html(modal.render().el)
+      e.preventDefault()
+      @ui.eventCover.click()
+
+    coverSaved: true
+    editCover: (e)->
+      e.preventDefault()
+      coverArea = @.$('.groupCoverArea')
+      console.log @coverSaved
+      if (@coverSaved)
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+        coverArea.backgroundDraggable()
+        coverArea.css('cursor', 'pointer')
+      else
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        @model.set "cover_position", coverArea.css('background-position')
+        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.save
+          error: (model, response)->
+            console.log response
+      @coverSaved=!@coverSaved
+
+    saveCover: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      console.log data.cover
+      if data.cover != ""
+        model = @model
+        modal = @
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        formData.append('cover_position', "0px 0px")
+        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()->
+            model.trigger('change:cover')
+            #$('#js-picture-modal-container').html(modalCrop.render().el)
+
 
     updateAttendance: (e)->
       $('.groupCoverArea__attendanceOptions--option').removeClass 'groupCoverArea__attendanceOptions--option--active'
