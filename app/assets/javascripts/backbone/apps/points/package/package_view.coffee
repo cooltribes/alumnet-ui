@@ -12,7 +12,6 @@
 		initialize: (options) ->
 			@prizeImage = options.model.get('image').image.card.url
 			@points = AlumNet.current_user.profile.get('points')
-			console.log @points
 
 		templateHelpers: ->
       		points: @points
@@ -27,13 +26,13 @@
 			'click #js-modal-points':'showModal'
 		
 		initialize: (options) ->
-			console.log options.models
-			$('#pointsBar').hide();
+			$('#pointsBar').hide()
+			document.title = 'AlumNet - Points'
 
 		showModal: (e)->
-	      e.preventDefault()
-	      modal = new Package.ModalPoints
-	      $('#container-modal-points').html(modal.render().el)
+			e.preventDefault()
+			modal = new Package.ModalPoints
+			$('#container-modal-points').html(modal.render().el)
 
 	class Package.ModalPoints extends Backbone.Modal
     	template: 'points/package/templates/modal'
