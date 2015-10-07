@@ -171,10 +171,17 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 .coverLabel{
     position: relative;
     text-align: center;
-    top: 200px;
-    width: 200px;
-    margin: 0 auto;
-  
+	width: 200px;
+	margin: 0 auto;
+    &--profile{
+    	top: 200px;
+    }
+    &--events{
+    	top: 0;
+    }
+    &--groups{
+    	top: 50px;
+    }
     .crop{
 	    background-color: rgba(0,0,0,0.3);
     	transition: 1s;
@@ -186,8 +193,6 @@ DESCRIPTION: Hero area of the user profile page. it includes the name of the use
 	    padding: 10px;
     }
 }
-
-
 
 
 /* Extra small devices (phones, less than 768px) */

@@ -13,6 +13,12 @@
       
       # AlumNet.mainRegion.show(discoverView)
 
+      # Check cookies for first visit
+      if not Cookies.get('business_exchange_visit')
+        modal = new Home.ModalBusiness
+        $('#container-modal-business').html(modal.render().el)
+        Cookies.set('business_exchange_visit', 'true')
+
     getLayoutView: ->
       view = new Home.Layout
         model: AlumNet.current_user

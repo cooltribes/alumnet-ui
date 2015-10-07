@@ -12,6 +12,9 @@
       canDelete: @model.canDelete()
       canApply: @model.canApply()
       location: @model.get_location()
+      arrivalDate: @model.get('arrival_date')
+      endDate: @model.get('post_until')
+
     ui:
       'deleteLink': '.js-job-delete'
       'refreshLink': '.js-job-refresh'

@@ -64,8 +64,12 @@
         $(e.target).removeClass('eventsTableView__status--else')
         $(e.target).removeClass('eventsTableView__status--going')
         $(e.target).addClass('eventsTableView__status--maybe')
+        
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'events/discover/templates/empty'
 
   class Discover.EventsView extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'events/discover/templates/events_container'
