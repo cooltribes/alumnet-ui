@@ -260,7 +260,6 @@
       document.title= 'AlumNet - Users Management'
 
     onShow: ->
-      console.log "show"
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
         { attribute: "email", type: "string", values: "" },
