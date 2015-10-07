@@ -17,6 +17,9 @@
 		templateHelpers: ->
       		points: @points
       		prizeImage: @prizeImage
+
+    class Package.EmptyView extends Marionette.ItemView
+    	template: 'points/package/templates/empty'
 			
 	class Package.ListView extends Marionette.CompositeView
 		template: 'points/package/templates/packages_list'

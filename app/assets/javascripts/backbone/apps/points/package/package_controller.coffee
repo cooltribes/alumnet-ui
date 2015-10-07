@@ -2,8 +2,14 @@
   class Package.Controller
     listPackages: ->
       prizes = AlumNet.request("prize:entities", {})
-      page = new Package.ListView
-        collection: prizes
+      points = AlumNet.current_user.profile.get('points')
+      console.log points
+      if points > 0
+        page = new Package.ListView
+          collection: prizes
+      else
+        page = new Package.EmptyView
+        
       AlumNet.mainRegion.show(page)
       AlumNet.execute('render:points:submenu',undefined,2,true)
 
