@@ -154,6 +154,7 @@
       messages_section: '#messages-region'
 
     initialize: (options)->
+      document.title = "AlumNet - Conversations"
       @conversation_id = options.conversation_id
       @subject = options.subject
       @user = options.user

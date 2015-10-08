@@ -94,6 +94,7 @@
 		  <th>Status</th>
 		  <th>Role</th>
       <th>Last login</th>
+      <th>Login count</th>
 		  <th>Edit</th>
 		</tr>
 	</thead>
