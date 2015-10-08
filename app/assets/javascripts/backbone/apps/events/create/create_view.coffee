@@ -201,7 +201,9 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      this.trigger('users:search', this.buildQuerySearch(data.search_term))
+      querySearch = @buildQuerySearch(data.search_term)
+      @collection.fetch
+        data: querySearch
 
     buildQuerySearch: (searchTerm) ->
       q:
