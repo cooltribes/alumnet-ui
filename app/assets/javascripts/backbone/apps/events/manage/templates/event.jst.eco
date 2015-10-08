@@ -77,6 +77,12 @@
           <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
           <span id="attendance-status" class="sr-only">(success)</span>
         <% end %>
+      <% else: %>
+        <% if @admin: %>
+          <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rigth">
+            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmin--paddingCancel">DELETE</a>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

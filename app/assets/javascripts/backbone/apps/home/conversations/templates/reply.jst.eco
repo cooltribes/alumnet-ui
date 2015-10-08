@@ -33,13 +33,11 @@
 							<a href="#" title="Add attachment">Add attachment</a>
 						</div>-->
 						<div class="pull-right">
-							<button class="btn btn-primary js-submit">SEND</button>
+							<a href="#" class="btn btn-primary js-submit">SEND</a>
 						</div>
 						<div class="pull-left visible-xs">
-    						<a href="#conversations" class="btn btn-primary-noBackground">VOLVER</a>
-							
+    					<a href="#conversations" class="btn btn-primary-noBackground">VOLVER</a>
 						</div>
-						
 					</div>
 				</div>
 			</div>
