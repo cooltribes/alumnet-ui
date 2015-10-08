@@ -271,7 +271,7 @@
         { attribute: "status", type: "option", values: [{value: 0, text: "Inactive"}, {value: 1, text: "Active"}, {value: 2, text: "Banned"}] }
         { attribute: "member", type: "string", values: "" }
         { attribute: "created_at", type: "date", values: "" }
-        { attribute: "profile_experience_local_committee_name", type: "string", values: "" }
+        { attribute: "profile_experiences_committee_name", type: "string", values: "" }
       ])
 
     events:
