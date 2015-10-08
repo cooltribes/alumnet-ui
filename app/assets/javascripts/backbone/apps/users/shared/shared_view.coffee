@@ -74,14 +74,18 @@
           $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
           coverArea.backgroundDraggable()
           coverArea.css('cursor', 'pointer')
+          $("#js-crop-label").show()
       else
-          coverArea.css('cursor', 'default')
-          coverArea.off('mousedown.dbg touchstart.dbg')
-          $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
-          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
-          @model.profile.set "cover_position", coverArea.css('background-position')
-          @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-          @model.profile.save
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        $("#js-crop-label").hide()
+        @model.profile.set "cover_position", coverArea.css('background-position')
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.profile.save
+          error: (model, response)->
+            console.log response
       @coverSaved=!@coverSaved
 
     saveCover: (e)->

@@ -19,6 +19,9 @@
 					moment(@history.user_prize.created_at).fromNow()
         		
 
+	class Earned.EmptyView extends Marionette.ItemView
+    	template: 'points/earned/templates/empty'
+    	
 	class Earned.ListView extends Marionette.CompositeView
 		template: 'points/earned/templates/earned_list'
 		childView: Earned.EarnedView

@@ -28,6 +28,16 @@
     <div class="row">
       <div class="col-md-12">
         <p id="js-body-post"> <%= @body %></p>
+        <!-- PREVIEW -->
+        <%= @url %>
+        <% if @preview.url: %>
+          <div>
+          <h1><%= @preview.title %></h1>
+          <img src="<%= @preview.image %>">
+          <span><%= @preview.description %></span>
+          </div>
+        <% end %>
+        <!-- PREVIEW OFF -->        
       </div>
     </div>
     <!-- PICTURES -->
@@ -40,7 +50,7 @@
             <% for picture in @picturesToShow(): %>
               <% counter = counter + 1 %>
               <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
-                <img src="<%= picture.picture.card %>" class="first-item picture-post" data-id="<%= picture.id %>">
+                <img src="<%= picture.picture.main %>" class="first-item picture-post" data-id="<%= picture.id %>">
               <% else: %>
                 <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
               <% end %>

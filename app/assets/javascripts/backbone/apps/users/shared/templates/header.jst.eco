@@ -52,11 +52,15 @@
       </span>    
       <input type="file" id="profile-cover" style="display:none;" name="cover" accept="image/*">
 
-      <span id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 160px; bottom: 0;"><span class="glyphicon glyphicon-edit"></span>  Edit cover
+      <span id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 170px; bottom: 0;"><span class="glyphicon glyphicon-edit"></span>  Reposition Cover
       
       </span> 
       </form>
     <% end %>
+
+    <div class="coverLabel coverLabel--profile" id="js-crop-label" style="display:none">
+      <span class="crop"><span class="glyphicon glyphicon-hand-up"></span> Drag to Reposition Cover</span>
+    </div>
 
 </div>
 <div id="js-picture-modal-container"></div>

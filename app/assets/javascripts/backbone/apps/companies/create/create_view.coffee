@@ -28,6 +28,7 @@
       'click @ui.submitLink': 'submitClicked'
       'change @ui.selectCountries': 'setCities'
       'change #logo': 'previewLogo'
+      'click #js-span-file' : 'inputFile'
 
     onRender: ->
       countries = CountryList.toSelect2()
@@ -142,3 +143,8 @@
         reader.onload = (e)->
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
+
+    inputFile: (e)->
+      e.preventDefault()
+      $('#logo').click()
+

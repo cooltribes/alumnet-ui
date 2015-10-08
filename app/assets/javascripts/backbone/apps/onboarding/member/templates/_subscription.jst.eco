@@ -1,13 +1,13 @@
 <div class="col-md-12 text-center products">
   <div class="row">
     <div class="col-md-12 text-center products__memberships overfloadText">
-        <span class="glyphicon glyphicon-certificate"></span> <%= @quantity %> <span class="glyphicon glyphicon-certificate"></span><br>
+        <span class="glyphicon glyphicon-certificate"></span><br>
         <%= @name %>
     </div>
   </div>
   <div class="row text-center margin_top_medium">
     <div class="col-md-12 products__memberships--price">
-        <%= @price %> EUR     
+        <%= Math.round(@price) %> EUR   
     </div>
   </div>
   <div class="row text-center">

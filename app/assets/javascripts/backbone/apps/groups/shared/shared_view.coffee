@@ -86,20 +86,32 @@
       document.title = 'AlumNet - '+@model.get("name")
 
     templateHelpers: ->
+      model = @model
+      date = new Date()
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
       cover_image: @model.get('cover').main + "?#{ new Date().getTime() }"
+      cover_style: ->
+        cover = model.get('cover')
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
+        else
+          "background-color: #2b2b2b;"
 
     modelEvents:
       'change:cover': 'coverChanged'
 
     ui:
       'groupName':'#name'
-      'uploadCover':'#js-upload-cover'
+      'uploadCover':'#js-changeCover'
       'coverArea':'.groupCoverArea'
+      'groupCover':'#group-cover'
+      'editCover': "#js-editCover"
 
     events:
       'click @ui.uploadCover': 'uploadClicked'
+      'change @ui.groupCover': 'saveCover'
+      "click @ui.editCover": "editCover"
 
     coverChanged: ->
       # cover = @model.get('cover')
@@ -111,9 +123,55 @@
 
     uploadClicked: (e)->
       e.preventDefault()
-      modal = new Shared.Modal
-        model: @model #group
-      $('#js-modal-cover-container').html(modal.render().el)
+      @ui.groupCover.click()
+      #modal = new Shared.Modal
+      #  model: @model #group
+      #$('#js-modal-cover-container').html(modal.render().el)
+
+    coverSaved: true
+    editCover: (e)->
+      e.preventDefault()
+      coverArea = @.$('.groupCoverArea')
+      #coverArea = $(@ui.groupCover)
+      console.log @coverSaved
+      if (@coverSaved)
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+        coverArea.backgroundDraggable()
+        coverArea.css('cursor', 'pointer')
+        $("#js-crop-label").show()
+      else
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        $("#js-crop-label").hide()
+        @model.set "cover_position", coverArea.css('background-position')
+        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.save
+          error: (model, response)->
+            console.log response
+      @coverSaved=!@coverSaved
+
+    saveCover: (e)->
+      e.preventDefault()
+      modal = @
+      model = @model
+      formData = new FormData()
+      file = @$('#group-cover')
+      formData.append('cover', file[0].files[0])
+      formData.append('cover_position', "0px 0px")
+      options =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: ->
+          model.trigger('change:cover')
+          #modal.destroy()
+          #modalCrop = new Shared.CropCoverModal
+          #  model: model
+          #$('#js-modal-cover-container').html(modalCrop.render().el)
+      @model.save {}, options
 
     onRender: ->
       model = this.model
