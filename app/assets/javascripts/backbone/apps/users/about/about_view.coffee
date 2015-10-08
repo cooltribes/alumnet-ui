@@ -229,18 +229,15 @@
     previewImage: (e)->
       input = @$('#profile-avatar')
       @isPreview = true
-      #preview = @$('#preview-cover')
       avatarImagen = $(@ui.avatarImagen)
       if input[0] && input[0].files[0]
         reader = new FileReader()
         reader.onload = (e)->
           avatarImagen.cropper('replace', e.target.result)
-          #preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
     saveImage: (e)->
       e.preventDefault()
-      
       data = Backbone.Syphon.serialize this
       avatarImagen = $(@ui.avatarImagen)
       if @isPreview
@@ -248,7 +245,6 @@
           formData = new FormData()
           file = @$('#profile-avatar')
           formData.append('avatar', file[0].files[0])
-          # @view.trigger "submit:avatar", formData
           user = @model
           esto = @
           user.profile.url = AlumNet.api_endpoint + '/profiles/' + user.profile.id
@@ -263,16 +259,8 @@
               esto.cropAvatar()
       else
         @cropAvatar()
-            
-            #console.log response.avatar.extralarge
-            #avatarImagen.cropper('replace', response.avatar.extralarge)
-            #user.trigger('change:avatar')
-            #if user.isCurrentUser()
-            #  AlumNet.current_user.trigger('change:avatar')
 
     cropAvatar: ->
-      #e.preventDefault()
-      #@cropper.crop()
       model = @model
       cropBoxData = $(@ui.avatarImagen).cropper('getData')
       imageData = $(@ui.avatarImagen).cropper('getImageData')
@@ -305,8 +293,6 @@
       model = @model
       avatar_url: ->
         model.get('avatar').original + "?#{ new Date().getTime() }"
-
-
 
     onShow: ->
       console.log @ui.avatarImagen

@@ -170,8 +170,17 @@
             'this field is required'
         success: (response, newValue)->
           view.model.save { body: newValue }
-      @ui.bodyPost.linkify()
+          validation = @ytVidId(newValue.split(" ").pop())
+          if validation
+            temp_string = newValue
+            $(this).html(temp_string.replace(newValue.split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
 
+      validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
+      if validation
+        temp_string = @ui.bodyPost.html()
+        @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
+      else
+        @ui.bodyPost.linkify()
     ui:
       'item': '.item'
       'gotoComment': '.js-goto-comment'
@@ -202,6 +211,11 @@
       modal = AlumNet.request "picture:modal", picture
       @ui.modalContainer.html(modal.render().el)
 
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
+      
     commentSend: (e)->
       e.stopPropagation()
       if e.keyCode == 13
@@ -331,11 +345,17 @@
       'uploadLink': '#upload-picture'
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
+      'videoContainer': '#video_container'
+      'preview_url': '#url'
+      'preview_title': '#url_title'
+      'preview_description': '#url_description'
+      'preview_image': '#url_image'       
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click .js-join':'sendJoin'
       'click a#js-add-tags': 'showTagging'
+      'keyup @ui.bodyInput': 'checkInput'
 
     showTagging: (e)->
       e.preventDefault()
@@ -355,6 +375,34 @@
       request.on 'save:error', (response, options)->
         console.log response.responseJSON
 
+    ytVidId: (url)->
+      url = $.trim(url)
+      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+      if (url.match(p)) then RegExp.$1 else false
+
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
+
+    checkInput: (e)->
+      validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
+      if validation
+        @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
+      else
+        ui = @ui
+        if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
+          url = @ui.bodyInput.val().split(" ").pop()
+          Backbone.ajax
+            url: AlumNet.api_endpoint + '/metatags'
+            data: {url: url}
+            success: (data)->
+              ui.videoContainer.html('<div class="row"><div class="col-md-3"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-md-9"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+              ui.preview_image.val(data.image)
+              ui.preview_description.val(data.description)
+              ui.preview_title.val(data.title)
+              ui.preview_url.val(url)
+
     submitClicked: (e)->
       e.stopPropagation()
       e.preventDefault()
@@ -366,6 +414,7 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 

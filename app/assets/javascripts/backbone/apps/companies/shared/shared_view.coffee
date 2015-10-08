@@ -2,6 +2,96 @@
   ## MODALS
   class Shared.CropModal extends Backbone.Modal
     template: 'companies/shared/templates/crop_modal'
+    cancelEl: '#js-close-btn'
+    ui:
+      'avatarImagen': "#croppic > img"
+      'changeProfilePicture': '#js-change-picture'
+    
+    events:
+      'click #js-crop-btn': 'saveImage'
+      'change #profile-avatar': 'previewImage'
+      'click @ui.changeProfilePicture': 'changePicture'
+
+    changePicture: (e)->
+      e.preventDefault()
+      $('#profile-avatar').click()
+
+    @isPreview: false
+    previewImage: (e)->
+      input = @$('#profile-avatar')
+      @isPreview = true
+      avatarImagen = $(@ui.avatarImagen)
+      if input[0] && input[0].files[0]
+        reader = new FileReader()
+        reader.onload = (e)->
+          avatarImagen.cropper('replace', e.target.result)
+        reader.readAsDataURL(input[0].files[0])
+
+    saveImage: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      avatarImagen = $(@ui.avatarImagen)
+      if @isPreview
+        if data.avatar != ""
+          formData = new FormData()
+          file = @$('#profile-avatar')
+          formData.append('logo', file[0].files[0])
+          company = @model
+          esto = @
+          #user.profile.url = AlumNet.api_endpoint + '/profiles/' + user.profile.id
+          company.save formData,
+            wait: true
+            data: formData
+            contentType: false
+            processData: false
+            success: (model, response, options)->
+              #user.profile.url = user.urlRoot() + user.id + '/profile'
+              company.set("logo", response.avatar)
+              esto.cropAvatar()
+      else
+        @cropAvatar()
+
+    cropAvatar: ->
+      model = @model
+      cropBoxData = $(@ui.avatarImagen).cropper('getData')
+      imageData = $(@ui.avatarImagen).cropper('getImageData')
+      data =
+        imgInitH: imageData.naturalHeight
+        imgInitW: imageData.naturalWidth
+        imgW: imageData.width
+        imgH: imageData.height
+        imgX1: cropBoxData.x
+        imgY1: cropBoxData.y
+        cropW: cropBoxData.width
+        cropH: cropBoxData.height
+        image: 'logo'
+      Backbone.ajax
+        url: AlumNet.api_endpoint + "/companies/#{@model.id}/cropping"
+        type: "POST"
+        data: data
+        success: (data) =>
+          model.trigger('change:logo')
+          #if model.isCurrentUser()
+          #  AlumNet.current_user.trigger('change:logo')
+        error: (data) =>
+          console.log(data)
+
+    templateHelpers: ->
+      model = @model
+      avatar_url: ->
+        model.get('logo').original + "?#{ new Date().getTime() }"
+
+    onShow: ->
+      console.log @ui.avatarImagen
+      $(@ui.avatarImagen).cropper
+        aspectRatio: 1 / 1
+        movable: false
+        zoomable: false
+        rotatable: false
+        scalable: false
+
+  class Shared.CropModalOLD extends Backbone.Modal
+    template: 'companies/shared/templates/crop_modal'
     cancelEl: '#js-close-btn'    
     events:
       'click #js-crop-btn': 'clickCropAvatar'
@@ -123,6 +213,7 @@
 
     templateHelpers: ->
       model = @model
+      date = new Date()
       isCompanyAdmin: @model.userIsAdmin()
       logo_url: ->
         if model.get('logo')
@@ -130,17 +221,28 @@
       cover_url: ->
         if model.get('cover')
           AlumNet.urlWithTimestamp(model.get('cover').main)
+      cover_style: ->
+        cover = model.get('cover')
+        if cover.main
+          "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
+        else
+          "background-color: #2b2b2b;"          
 
     ui:
       'requestLink':'#js-request-admin-company'
       'editLogo':'#js-edit-logo'
-      'editCover':'#js-edit-cover'
-      'name':'#name'      
+      'name':'#name'    
+      'coverArea':'.userCoverArea'  
+      'editCover': '#js-editCover'
+      'uploadCover': '#js-changeCover'
+      'eventCover': '#profile-cover'
 
     events:
       'click @ui.requestLink': 'requestClicked'
       'click @ui.editLogo': 'editLogoClicked'
-      'click @ui.editCover': 'editCoverClicked'
+      'click @ui.editCover': 'editCover'
+      'change @ui.eventCover': 'saveCover'
+      'click @ui.uploadCover' : 'uploadClicked'      
 
     onRender: ->
       model = @model
@@ -173,9 +275,52 @@
 
     editLogoClicked: (e)->
       e.preventDefault()
-      modal = new Shared.LogoModal
+      modal = new Shared.CropModal
         model: @model
       $('#js-modal-container').html(modal.render().el)
+
+    uploadClicked: (e)->
+      e.preventDefault()
+      @ui.eventCover.click()
+
+    coverSaved: true
+    editCover: (e)->
+      e.preventDefault()
+      coverArea = @.$('.userCoverArea')
+      if (@coverSaved)
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
+        coverArea.backgroundDraggable()
+        coverArea.css('cursor', 'pointer')
+      else
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Reposition cover')
+        @model.set "cover_position", coverArea.css('background-position')
+        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.save
+          error: (model, response)->
+            console.log response
+      @coverSaved=!@coverSaved
+
+    saveCover: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize this
+      console.log data.cover
+      if data.cover != ""
+        model = @model
+        modal = @
+        formData = new FormData()
+        file = @$('#profile-cover')
+        formData.append('cover', file[0].files[0])
+        formData.append('cover_position', "0px 0px")
+        @model.save formData,
+          wait: true
+          data: formData
+          contentType: false
+          processData: false
+          success: ()->
+            model.trigger('change:logo')
 
     editCoverClicked: (e)->
       e.preventDefault()

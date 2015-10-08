@@ -121,9 +121,6 @@
           view.render()
 
     uploadClicked: (e)->
-      #modal = new Shared.Modal
-      #  model: @model
-      #$('#js-modal-cover-container').html(modal.render().el)
       e.preventDefault()
       @ui.eventCover.click()
 
@@ -158,7 +155,6 @@
         file = @$('#profile-cover')
         formData.append('cover', file[0].files[0])
         formData.append('cover_position', "0px 0px")
-        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.save formData,
           wait: true
           data: formData
@@ -166,7 +162,7 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
-            #$('#js-picture-modal-container').html(modalCrop.render().el)
+
 
 
     updateAttendance: (e)->
