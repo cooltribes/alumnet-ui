@@ -3,8 +3,9 @@
     discover: ->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.page = 1
-      tasks.url = AlumNet.api_endpoint + '/job_exchanges?page='+tasks.page+'&per_page='+tasks.rows
+      tasks.url = AlumNet.api_endpoint + '/job_exchanges'
       tasks.fetch
+        data: { page: tasks.page, per_page: tasks.rows }
       	reset: true
 
       discoverView = new Discover.List
@@ -13,8 +14,9 @@
       discoverView.on "job:reload", ->
         ++discoverView.collection.page
         newCollection = new AlumNet.Entities.JobExchangeCollection
-        newCollection.url = AlumNet.api_endpoint + '/job_exchanges?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
+        newCollection.url = AlumNet.api_endpoint + '/job_exchanges'
         newCollection.fetch
+          data: { page: discoverView.collection.page, per_page: discoverView.collection.rows }
           success: (collection)->
             discoverView.collection.add(collection.models)
 
