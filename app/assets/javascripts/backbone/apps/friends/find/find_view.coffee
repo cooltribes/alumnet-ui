@@ -18,6 +18,8 @@
       'click .search': 'advancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
+      'click #js-advance':'showBoxAdvanceSearch'
+      'click #js-basic' : 'showBoxAdvanceBasic'
 
     initialize: ->
       $(window).unbind('scroll')
@@ -109,3 +111,13 @@
         data: { contacts: formatedContacts }
         success: (collection)->
           view.collection.set(collection.models)
+
+    showBoxAdvanceSearch: (e)->
+      e.preventDefault()
+      $("#js-advance-search").slideToggle("slow")
+      $("#search-form").slideToggle("hide");
+
+    showBoxAdvanceBasic: (e)->
+      e.preventDefault()
+      $("#search-form").slideToggle("slow");
+      $("#js-advance-search").slideToggle("hide")

@@ -39,6 +39,10 @@
                   <select class="filter-attribute filters__input filters__input--lg form-control input-lg">
                     <option value="">Find by</option>
                     <option value="name">Company Name</option>
+                    <option value="country_name">Country</option>
+                    <option value="sector_name">Sector / Industry</option>
+                    <option value="size">Company Size</option>
+                    <option value="product_services_name">Products and services</option>
                   </select>
                   <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
                   <span class="help-block"></span>

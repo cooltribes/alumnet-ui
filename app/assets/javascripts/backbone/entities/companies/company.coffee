@@ -15,6 +15,17 @@
       { value: 8, text: "+10.001" }
     ]
 
+    @sizes: [
+      { value: 1, text: "1 - 10" }
+      { value: 2, text: "11 - 50" }
+      { value: 3, text: "51 - 200" }
+      { value: 4, text: "201 - 500" }
+      { value: 5, text: "501 - 1.000" }
+      { value: 6, text: "1.001 - 5.000" }
+      { value: 7, text: "5.001 - 10.000" }
+      { value: 8, text: "+10.001" }
+    ]
+
     sizes_options: (select)->
       options = ""
       _.each @sizes, (element, list)->
