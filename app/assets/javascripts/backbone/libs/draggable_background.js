@@ -109,7 +109,6 @@
 
         var x = e.clientX,
             y = e.clientY;
-        console.log("2x:"+x+"/y:"+y);
         xPos = options.axis === 'y' ? xPos : limit($el.innerWidth()-imageDimensions.width, 0, xPos+x-x0, options.bound);
         yPos = options.axis === 'x' ? yPos : limit($el.innerHeight()-imageDimensions.height, 0, yPos+y-y0, options.bound);
         x0 = x;
@@ -128,7 +127,6 @@
 
         var x = e.clientX,
             y = e.clientY;
-        console.log("x:"+x+"/y:"+y);
         xPos = options.axis === 'y' ? xPos : limit($el.innerWidth()-imageDimensions.width, 0, xPos+x-x0, options.bound);
         yPos = options.axis === 'x' ? yPos : limit($el.innerHeight()-imageDimensions.height, 0, yPos+y-y0, options.bound);
         x0 = x;

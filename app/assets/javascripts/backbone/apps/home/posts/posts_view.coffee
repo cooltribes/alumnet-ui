@@ -331,6 +331,10 @@
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
       'videoContainer': '#video_container'
+      'preview_url': '#url'
+      'preview_title': '#url_title'
+      'preview_description': '#url_description'
+      'preview_image': '#url_image'      
 
     events:
       'click a#js-post-submit': 'submitClicked'

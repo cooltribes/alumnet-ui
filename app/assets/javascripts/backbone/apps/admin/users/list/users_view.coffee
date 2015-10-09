@@ -260,7 +260,6 @@
       document.title= 'AlumNet - Users Management'
 
     onShow: ->
-      console.log "show"
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
         { attribute: "email", type: "string", values: "" },
@@ -272,7 +271,7 @@
         { attribute: "status", type: "option", values: [{value: 0, text: "Inactive"}, {value: 1, text: "Active"}, {value: 2, text: "Banned"}] }
         { attribute: "member", type: "string", values: "" }
         { attribute: "created_at", type: "date", values: "" }
-        { attribute: "profile_experience_local_committee_name", type: "string", values: "" }
+        { attribute: "profile_experiences_committee_name", type: "string", values: "" }
       ])
 
     events:
