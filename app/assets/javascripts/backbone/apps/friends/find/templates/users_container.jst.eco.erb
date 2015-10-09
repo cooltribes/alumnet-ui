@@ -1,91 +1,92 @@
-
+<div class="container">
 <!-- ADvanced Search -->
-<div id="js-advance-search">
   <div class="row">
-    <div class="col-md-3">
-      <div class="filter-logic-operator-container">
-        <select id="filter-logic-operator" class="filters__input filters__input--lg form-control input-lg">
-          <option value="any">Any</option>
-          <option value="all">All</option>
-        </select>
-        <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
-      </div>
-    </div>
-  </div>
-  <div class="advanced-search margin_bottom filters__colorFilter filters__colorFilter--blue">
-    <div class="advanced-search-container jobPost__search" id="searcher">
-      <div class="filter row margin_top_medium">
-        <div class="col-md-3">
-          <div class="filter-attribute-container form-group">
-            <select class="filter-attribute filters__input filters__input--lg form-control input-lg">
-              <option value="">Find by</option>
-			        <option value="profile_first_name_or_profile_last_name">Fullname</option>
-			        <option value="profile_residence_country_name">Country of residence</option>
-			        <option value="profile_birth_country_name">Country of origin</option>
-			        <option value="profile_residence_city_name">City of residence</option>
-			        <option value="profile_birth_city_name">City of origin</option>
-			        <option value="profile_experiences_committee_name">Local Committee</option>
-			        <option value="profile_experiences_organization_name">Organization</option>
-            </select>
-            <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
-            <span class="help-block"></span>
+    <div class="col-md-12">
+      <div class="searchBar">
+        <form id="search-form">
+          <div class="input-group">
+            <input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
+            <span class="input-group-btn">
+            <button class="searchBar__searchBtn btn btn-default js-simple-search"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
           </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="filter-comparator-container form-group">
-            <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
-                <option value="">Select comparator</option>
-            </select>
-            <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
-            <span class="help-block"></span>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="filter-value-container form-group">
-            <input class="filter-value filters__input filters__input--lg form-control input-lg">
-          </div>
-        </div>
-
-        <div class="col-md-3 close-filter">
-            <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
-        </div>
+          <p class="help-block text-right glyphicon glyphicon-chevron-right searchBar__link" id="js-advance"><a href="#" title="Advance search"> Advanced search</a></p>
+        </form>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-7">
-      <button class="btn-addFilter add-new-filter" type="button">+ Add New filter</button>
+  <div class="visibility" id="js-advance-search">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="filter-logic-operator-container">
+          <select id="filter-logic-operator" class="filters__input filters__input--lg form-control input-lg">
+            <option value="any">Any</option>
+            <option value="all">All</option>
+          </select>
+          <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+        </div>
+      </div>
     </div>
-    <div class="col-md-5">
-      <div class="margin_bottom search-control pull-right">
-        <button class="glyphicon glyphicon-search btn btn-primary btn-lg search filters__btnSearch" type="button"> Search</button>
-        <button class="glyphicon glyphicon-refresh btn btn-primary btn-lg clear filters__btnClear" type="button"> Clear</button>
+    <p class="help-block text-right glyphicon glyphicon-chevron-left searchBar__link" id="js-basic"><a href="#" title="Basic search"> Back to Search</a></p>
+    <div class="advanced-search margin_bottom filters__colorFilter filters__colorFilter--blue">
+      <div class="advanced-search-container jobPost__search" id="searcher">
+        <div class="filter row margin_top_medium">
+          <div class="col-md-3">
+            <div class="filter-attribute-container form-group">
+              <select class="filter-attribute filters__input filters__input--lg form-control input-lg">
+                <option value="">Find by</option>
+  			        <option value="profile_first_name_or_profile_last_name">Fullname</option>
+  			        <option value="profile_residence_country_name">Country of residence</option>
+  			        <option value="profile_birth_country_name">Country of origin</option>
+  			        <option value="profile_residence_city_name">City of residence</option>
+  			        <option value="profile_birth_city_name">City of origin</option>
+  			        <option value="profile_experiences_committee_name">Local Committee</option>
+  			        <option value="profile_experiences_organization_name">Organization</option>
+              </select>
+              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="filter-comparator-container form-group">
+              <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
+                  <option value="">Select comparator</option>
+              </select>
+              <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="filter-value-container form-group">
+              <input class="filter-value filters__input filters__input--lg form-control input-lg">
+            </div>
+          </div>
+
+          <div class="col-md-3 close-filter">
+              <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <button class="btn-addFilter add-new-filter" type="button">+ Add New filter</button>
+      </div>
+      <div class="col-md-5">
+        <div class="margin_bottom search-control pull-right">
+          <button class="glyphicon glyphicon-search btn btn-primary btn-lg search filters__btnSearch" type="button"> Search</button>
+          <button class="glyphicon glyphicon-refresh btn btn-primary btn-lg clear filters__btnClear" type="button"> Clear</button>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3 margin_top">
-			<h2>Find new friends</h2>
-		</div>
-		<div class="col-md-6">
-			<div class="searchBar">
-				<form id="search-form">
-					<div class="input-group">
-						<input type="text" name="search_term" id="search_term" class="form-control searchBar__searchInput" placeholder="Write a name, email or city">
-						<span class="input-group-btn">
-						<button class="searchBar__searchBtn btn btn-default js-simple-search"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="container">
 	<div class="row">
 		<div class="col-md-3 margin_top"></div>
 		<div class="col-md-6">

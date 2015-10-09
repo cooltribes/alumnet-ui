@@ -23,3 +23,4 @@
 <div class="clearfix "></div>
 <div id="groups_container" class="row main-groups-area groupTableView__marginText"><!-- Begin group container -->
 </div>
+<div class="text-center"><span class="throbber-loader"></span></div>
