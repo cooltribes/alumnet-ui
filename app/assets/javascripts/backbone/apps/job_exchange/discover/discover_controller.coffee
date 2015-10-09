@@ -6,7 +6,7 @@
       tasks.url = AlumNet.api_endpoint + '/job_exchanges'
       tasks.fetch
         data: { page: tasks.page, per_page: tasks.rows }
-      	reset: true
+        reset: true
 
       discoverView = new Discover.List
         collection: tasks

@@ -145,6 +145,9 @@
       canDelete: permissions.canDelete
       showMore: @mostrar
       tagsLinks: @model.tagsLinks()
+      likesLinks: @model.firstLikeLinks()
+      restLikeLink: @model.restLikeLink()
+
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -206,6 +209,7 @@
       'picturesContainer': '.pictures-container'
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
+      'likesLinks':'.js-like-links'
 
     events:
       'keypress .comment': 'commentSend'
@@ -216,6 +220,11 @@
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
+      'click .js-show-likes': 'showLikes'
+
+    showLikes: (e)->
+      e.preventDefault()
+      console.log "Here show likes"
 
     ytVidId: (url)->
       url = $.trim(url)
@@ -274,16 +283,32 @@
       e.preventDefault()
       @trigger 'post:unlike'
 
-    sumLike:()->
+    sumLike: ->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @updateLikeText()
 
-    remLike:()->
+    remLike: ->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
+      @updateLikeText()
+
+    updateLikeText: (remove)->
+      html = @ui.likesLinks.html().trim()
+      if (/(You,)/i).test(html)
+        newText = html.replace('You,', '')
+      else
+        # TODO: revisar donde se agregar el espacio entre You y like :armando
+        if html == "You like this." || html == "You  like this."
+          newText = ""
+        else if html == ""
+          newText = "You like this."
+        else
+          newText = "You, #{html}"
+      @ui.likesLinks.html(newText)
 
     clickedGotoComment: (e)->
       e.stopPropagation()
@@ -334,7 +359,7 @@
       'preview_url': '#url'
       'preview_title': '#url_title'
       'preview_description': '#url_description'
-      'preview_image': '#url_image'      
+      'preview_image': '#url_image'
 
     events:
       'click a#js-post-submit': 'submitClicked'

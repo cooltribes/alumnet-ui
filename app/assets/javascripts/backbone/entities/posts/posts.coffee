@@ -4,6 +4,8 @@
       @comments = new Entities.CommentsCollection
       @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
 
+      @likes = @get 'likes'
+
       @on 'change', ->
         @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
         @setPictures()
@@ -14,6 +16,31 @@
     validation:
       body:
         required: true
+
+    firstLikeLinks: ->
+      links = []
+      if @get('likes_count') > 0
+        if @get('you_like')
+          links.push "You"
+        for x in [1..3]
+          like = @likes.shift()
+          if like
+            links.push "<a href='#users/#{like.user.id}/posts' title='#{like.user.name}'>#{like.user.name}</a>"
+      links.join(", ")
+
+    restLikeLink: ->
+      link = false
+      if @likes.length > 0
+        num = @likes.length
+        link = "<a href='#' class='js-show-likes' title='#{@restLikeList()}'>#{num} others</a>"
+      link
+
+    # TODO: hacer calculo de cuantos se van a mostrar y cuantos quedan :armando
+    restLikeList: ->
+      list = ""
+      _.each @likes, (like)->
+        list += "#{like.user.name}"
+      list
 
     setPictures: ->
       pictures = @get('pictures')
