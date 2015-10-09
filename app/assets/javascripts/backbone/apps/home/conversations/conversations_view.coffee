@@ -42,8 +42,13 @@
     tagName: 'ul'
     className: 'conversations-container list-unstyled'
 
-    initialize: ->
-      document.title= "AlumNet - Messages"
+    initialize: (options)->
+      @layout = options.layout
+      view = @
+      @on 'childview:conversation:clicked', (childView)->
+        conversation = childView.model
+        view.layout.renderReplyConversation(conversation)
+
 
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'
@@ -51,10 +56,12 @@
     initialize: (options) ->
       @recipient = options.recipient
       @subject = options.subject
+      @layout = options.layout
 
     templateHelpers: ->
       recipient: if @recipient then @recipient.id else ''
       subject: if @subject then @subject else ''
+
     ui:
       'inputBody': '#body'
       'inputSubject': '#subject'
@@ -64,15 +71,19 @@
       'click .js-submit':'clickedSubmit'
 
     clickedSubmit: (e)->
-      e.stopPropagation()
+      view = @
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       if data.body != '' && data.recipients != ''
         data.recipients = data.recipients.split(',')
-        @trigger 'conversation:submit', data
-        @ui.inputSubject.val('')
-        @ui.inputBody.val('')
-        @ui.selectRecipients.val('')
+        conversation = AlumNet.request('conversations:new')
+        conversation.save data,
+          success: (model, response, options) ->
+            view.layout.conversations.add(model, at: 0)
+            # messages = model.messages
+            view.ui.inputSubject.val('')
+            view.ui.inputBody.val('')
+            view.ui.selectRecipients.select2('val', '')
 
     onRender: ->
       if @recipient
@@ -103,6 +114,12 @@
     template: 'home/conversations/templates/reply'
     childView: Conversations.MessageView
     childViewContainer: '.messages-container'
+
+    initialize: (options)->
+      @layout = options.layout
+      @collection = @model.messages
+      @collection.fetch()
+
     ui:
       'inputBody': '#body'
 
@@ -110,12 +127,15 @@
       'click .js-submit':'clickedSubmit'
 
     clickedSubmit: (e)->
-      e.stopPropagation()
+      view = @
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       if data.body != ''
-        @trigger 'reply:submit', data
-        @ui.inputBody.val('')
+        message = AlumNet.request('messages:new', @model.id)
+        message.save data,
+          success: (model, response, options) ->
+            view.collection.add(model)
+            view.render()
 
     sumNewMessage: ->
       currentValue = @model.get('unread_messages_count')
@@ -130,8 +150,51 @@
   class Conversations.Layout extends Marionette.LayoutView
     template: 'home/conversations/templates/layout'
     regions:
-      conversations: '#conversations-region'
-      messages: '#messages-region'
-    triggers:
-      'click #js-new-conversation': 'new:conversation'
+      conversations_section: '#conversations-region'
+      messages_section: '#messages-region'
+
+    initialize: (options)->
+      document.title = "AlumNet - Conversations"
+      @conversation_id = options.conversation_id
+      @subject = options.subject
+      @user = options.user
+
+    events:
+      'click #js-new-conversation': 'newCoversation'
+
+    onShow: ->
+      layout = @
+      # Load and show conversations section
+      @conversations = AlumNet.request('conversations:get', {})
+      conversationsView = new Conversations.ConversationsView
+        collection: @conversations
+        layout: layout
+      @conversations_section.show(conversationsView)
+
+      # Set current_conversation
+      @conversations.on 'fetch:success', ->
+        current_conversation = layout.conversations.get(layout.conversation_id)
+        if current_conversation
+          layout.renderReplyConversation(current_conversation)
+        else
+          layout.renderNewConversation()
+
+    renderNewConversation: ->
+      newConversationView = new Conversations.NewConversationView
+        recipient: @user
+        subject: @subject
+        layout: @
+      @messages_section.show(newConversationView)
+
+    renderReplyConversation: (conversation)->
+      replyView = new Conversations.ReplyView
+        model: conversation
+        layout: @
+      @messages_section.show(replyView)
+
+    newCoversation: (e)->
+      e.preventDefault()
+      @user = null
+      @subject = null
+      @renderNewConversation()
 

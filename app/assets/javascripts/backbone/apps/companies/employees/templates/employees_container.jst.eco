@@ -19,7 +19,7 @@
 			<li class="sortingMenu__item sortingMenu__item--lg">
 				<!-- Tip: add the class 'sortingMenu__item-active' for highlighting the link when active -->
 				<a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-employees">
-					Current Employees(<%= @employees_count %>)
+					Current Employees(<%= @current_employees_count %>)
 				</a>
 			</li>
 			<li class="sortingMenu__item sortingMenu__item--lg">

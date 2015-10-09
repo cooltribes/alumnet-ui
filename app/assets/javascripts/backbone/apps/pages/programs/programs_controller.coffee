@@ -7,6 +7,13 @@
     showHome: ->
       page = new Programs.Home
       AlumNet.mainRegion.show(page)
+
+      # Check cookies for first visit
+      if not Cookies.get('home_exchange_visit')
+        modal = new Programs.ModalHome
+        $('#container-modal-home').html(modal.render().el)
+        Cookies.set('home_exchange_visit', 'true')
+
       AlumNet.execute('render:pages:submenu')
     showJob: ->
       page = new Programs.Job

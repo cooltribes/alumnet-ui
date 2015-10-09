@@ -33,10 +33,10 @@
       conversations = new Entities.ConversationsCollection
       conversations.fetch
         data: querySearch
-        success: (model, response, options)->
-          model.trigger 'fetch:success'
-        error: (model, response, options)->
-          model.trigger 'fetch:error'
+        success: (collection, response, options)->
+          collection.trigger 'fetch:success'
+        error: (collection, response, options)->
+          collection.trigger 'fetch:error'
       conversations
 
 
