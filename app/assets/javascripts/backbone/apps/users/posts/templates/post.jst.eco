@@ -19,7 +19,7 @@
     </div>
 
     
-    <p id="js-body-post"> <%= @body %></p>
+    <p id="js-body-post" class="overfloadText"> <%= @body %></p>
     <!-- PREVIEW -->
     <% if @preview.url : %>
       <h4 style="color:#111111"><%= @preview.title %></h4>

@@ -42,6 +42,7 @@
 				<!--  -->
 			</div>
 			<div id="timeline" class="row posts-container"></div>
+			<div class="text-center"><span class="throbber-loader"></span></div>
 		</div>
 	</div>
 </div>

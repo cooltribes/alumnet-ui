@@ -19,6 +19,14 @@
 								  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
 								</div>
 								<!--  -->
+								<!-- PREVIEW -->
+								<div class="form-group preview" style="display:none">
+								  <input type="hidden" id="url" name="url" style="width:100%">
+								  <input type="hidden" id="url_title" name="url_title" style="width:100%">
+								  <input type="hidden" id="url_description" name="url_description" style="width:100%">
+								  <input type="hidden" id="url_image" name="url_image" style="width:100%">
+								</div>
+								<!--  -->								
 								<a id="js-add-picture" class="groupPost__btn--comment" href="javascript:;">
 								<i class="icon-entypo-picture"></i>Add Picture</a>
 								<a id="js-add-tags" class="groupPost__btn--comment" href="javascript:;">
@@ -27,6 +35,7 @@
 							</form>
 							<!-- Pictures -->
 							<ul id="js-filelist"></ul>
+							<div id="video_container"></div>
 						</div>
 					</div>
 				</div>
@@ -57,6 +66,7 @@
 				</div>
 			</div>
 			<div id="timeline" class="row posts-container"></div>
+			<div class="text-center"><span class="throbber-loader"></span></div>
 		</div>
 	</div>
 </div>

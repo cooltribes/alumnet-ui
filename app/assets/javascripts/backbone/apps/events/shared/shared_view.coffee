@@ -121,9 +121,6 @@
           view.render()
 
     uploadClicked: (e)->
-      #modal = new Shared.Modal
-      #  model: @model
-      #$('#js-modal-cover-container').html(modal.render().el)
       e.preventDefault()
       @ui.eventCover.click()
 
@@ -131,17 +128,15 @@
     editCover: (e)->
       e.preventDefault()
       coverArea = @.$('.groupCoverArea')
-      console.log @coverSaved
       if (@coverSaved)
         $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
         coverArea.backgroundDraggable()
         coverArea.css('cursor', 'pointer')
-        $("#js-crop-label").show()
       else
         coverArea.css('cursor', 'default')
         coverArea.off('mousedown.dbg touchstart.dbg')
         $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
-        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span> Reposition cover')
         $("#js-crop-label").hide()
         @model.set "cover_position", coverArea.css('background-position')
         #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
@@ -161,7 +156,6 @@
         file = @$('#profile-cover')
         formData.append('cover', file[0].files[0])
         formData.append('cover_position', "0px 0px")
-        #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.save formData,
           wait: true
           data: formData
@@ -169,7 +163,7 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
-            #$('#js-picture-modal-container').html(modalCrop.render().el)
+
 
 
     updateAttendance: (e)->

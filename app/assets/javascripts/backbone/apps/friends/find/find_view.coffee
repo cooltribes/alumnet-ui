@@ -13,7 +13,13 @@
     emptyView: Find.EmptyView
     childViewContainer: '.users-list'
     events:
-      'click .js-search': 'performSearch'
+      'click .js-simple-search': 'performSearch'
+      'click .add-new-filter': 'addNewFilter'
+      'click .search': 'advancedSearch'
+      'click .clear': 'clear'
+      'change #filter-logic-operator': 'changeOperator'
+      'click #js-advance':'showBoxAdvanceSearch'
+      'click #js-basic' : 'showBoxAdvanceBasic'
 
     initialize: ->
       $(window).unbind('scroll')
@@ -43,13 +49,43 @@
         beforeDisplayContacts: (contacts, source, owner)->
           view.formatContact(contacts)
           false
+      # Advanced search
+      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
+        { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
+        { attribute: "profile_residence_country_name", type: "string", values: "" },
+        { attribute: "profile_birth_country_name", type: "string", values: "" }
+        { attribute: "profile_residence_city_name", type: "string", values: "" }
+        { attribute: "profile_birth_city_name", type: "string", values: "" }
+        { attribute: "profile_experiences_committee_name", type: "string", values: "" }
+        { attribute: "profile_experiences_organization_name", type: "string", values: "" }
+      ])
+
+    addNewFilter: (e)->
+      e.preventDefault()
+      @searcher.addNewFilter()
+
+    changeOperator: (e)->
+      e.preventDefault()
+      if $(e.currentTarget).val() == "any"
+        @searcher.activateOr = false
+      else
+        @searcher.activateOr = true
+
+    advancedSearch: (e)->
+      e.preventDefault()
+      query = @searcher.getQuery()
+      @collection.fetch
+        data: { q: query }
+
+    clear: (e)->
+      e.preventDefault()
+      @collection.fetch()
 
     onChildviewCatchUp: ->
       view = @
       @collection.fetch
         success: (model)->
           view.render()
-
 
     performSearch: (e) ->
       e.preventDefault()
@@ -75,3 +111,13 @@
         data: { contacts: formatedContacts }
         success: (collection)->
           view.collection.set(collection.models)
+
+    showBoxAdvanceSearch: (e)->
+      e.preventDefault()
+      $("#js-advance-search").slideToggle("slow")
+      $("#search-form").slideToggle("hide");
+
+    showBoxAdvanceBasic: (e)->
+      e.preventDefault()
+      $("#search-form").slideToggle("slow");
+      $("#js-advance-search").slideToggle("hide")

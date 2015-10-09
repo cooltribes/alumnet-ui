@@ -18,8 +18,13 @@
       'click .js-changeGrid' : 'changeGridView'
 
     onShow: ->
+      sizes =  AlumNet.Entities.Company.sizes
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "name", type: "string", values: "" },
+        { attribute: "country_name", type: "string", values: "" },
+        { attribute: "sector_name", type: "string", values: "" },
+        { attribute: "size", type: "option", values: sizes },
+        { attribute: "product_services_name", type: "string", values: "" },
       ])
 
     changeGridView: (e)->
