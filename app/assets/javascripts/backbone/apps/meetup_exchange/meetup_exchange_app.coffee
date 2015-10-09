@@ -16,7 +16,7 @@
       controller = new MeetupExchangeApp.Discover.Controller
       controller.discover()
     yourTasksMeetupExchange: ->
-      document.title = 'AlumNet - Your Meetups'
+      document.title = 'AlumNet - My Meetups'
       controller = new MeetupExchangeApp.YourTasks.Controller
       controller.your_tasks()
     appliedMeetupExchange: ->
@@ -24,7 +24,7 @@
       controller = new MeetupExchangeApp.Applied.Controller
       controller.applied()
     automatchesMeetupExchange: ->
-      document.title = 'AlumNet - Suggested Meetups'
+      document.title = 'AlumNet - Meetups Sugestions'
       controller = new MeetupExchangeApp.AutoMatches.Controller
       controller.automatches()
     invitationsMeetupExchange: ->
@@ -32,7 +32,7 @@
       controller = new MeetupExchangeApp.Invitations.Controller
       controller.invitations()
     createMeetupExchange: ->
-      document.title = 'AlumNet - Create a Meetup'
+      document.title = 'AlumNet - Create New Meetup'
       controller = new MeetupExchangeApp.Create.Controller
       controller.create()
     updateMeetupExchange: (id)->
