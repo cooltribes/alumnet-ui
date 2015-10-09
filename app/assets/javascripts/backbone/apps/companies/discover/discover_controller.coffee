@@ -84,7 +84,7 @@
     _applySearch: (query)->
       @querySearch = query
       @list_view.collection.fetch
-        data: query
+        data: { q: query }
         success: (collection)->
           container = $('#companies-container')
           container.masonry 'layout'
