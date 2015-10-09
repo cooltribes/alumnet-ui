@@ -17,7 +17,7 @@
       <!--  -->
       <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
-    <p id="js-body-post"> <%= @body %></p>
+    <p id="js-body-post" class="overfloadText"> <%= @body %></p>
     <!-- PICTURES -->
     <% if @pictures: %>
       <div class="modal-container"></div>
