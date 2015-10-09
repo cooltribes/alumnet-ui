@@ -8,8 +8,9 @@
       AlumNet.execute('render:home:submenu')
       checkNewPost = false
       current_user = AlumNet.current_user
-      current_user.posts.url = AlumNet.api_endpoint + '/me/posts?page='+current_user.posts.page+'&per_page='+current_user.posts.rows
+      current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch
+        data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
       current_user.posts.page = 1
 
@@ -34,8 +35,9 @@
       posts.on "post:reload", ->
         ++posts.collection.page
         newCollection = AlumNet.request("post:current")
-        newCollection.url = AlumNet.api_endpoint + '/me/posts?page='+posts.collection.page+'&per_page='+posts.collection.rows
+        newCollection.url = AlumNet.api_endpoint + '/me/posts'
         newCollection.fetch
+          data: { page: posts.collection.page, per_page: posts.collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
 

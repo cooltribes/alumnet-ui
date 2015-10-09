@@ -96,6 +96,7 @@
 
     getAllPostForCurrentUser: ->
       post = new Entities.PostCollection
+      # TODO: WHat is this!!! :rafael
       post.urlRoot = AlumNet.api_endpoint + '/me/posts?page=1$per_page=3'
       post
 
