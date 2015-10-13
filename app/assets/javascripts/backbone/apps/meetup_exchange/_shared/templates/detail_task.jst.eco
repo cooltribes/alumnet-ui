@@ -46,6 +46,8 @@
     <% end %>
     <% if @canApply: %>
       <a href="#" class="btn btn-default js-job-apply" >Meet</a>
+    <% else: %>
+      <a href="#" class="btn btn-default-gray">Applied</a>
     <% end %>
   </div>
 </div>
