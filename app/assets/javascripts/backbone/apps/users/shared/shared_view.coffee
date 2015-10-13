@@ -58,7 +58,6 @@
     onRender: ->
       model = @model
       profile = @model.profile
-      console.log profile
       @ui.professionalHeadline.editable
         type: "text"
         pk: profile.id
