@@ -50,7 +50,7 @@
         <h3>
           Create a Task
         </h3>
-        <p>Get Help</p>
+        <p>(Get Help)</p>
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
@@ -70,7 +70,7 @@
         <h3>
           Browse Tasks
         </h3>
-        <p>Give Help</p>
+        <p>(Give Help)</p>
 
         <div class="row actionCard__button">
           <div class="col-md-6 text-left">
@@ -87,7 +87,7 @@
     </div>
     
      </div>
-  
+  <hr>
   <h2 class="margin_top_medium margin_bottom_small">
     Business Exchange Profiles      
   </h2>
@@ -100,7 +100,7 @@
       <a href="#business-exchange/view-people" class="btn btn-lg btn-primary btn-primary-noBackground">Browse All</a>
     </div>
   </div>
-
+  <hr>
   <h2 class="margin_top_medium margin_bottom_small">
     Tasks
   </h2>

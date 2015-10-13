@@ -14,11 +14,11 @@
 
           <ul style="list-style:none; padding:0">
             <li>
-              <span class="metaInfoCard__concept">Position:</span> <%= @last_experience ? "---" %>
+              <span class="metaInfoCard__concept">Position: <%= @last_experience %></span> 
             </li>
 
             <li>
-              <span class="metaInfoCard__concept">Email:</span> <%= @email %>
+              <span class="metaInfoCard__concept">Email: <%= @email %></span>
             </li>
           </ul>                
 

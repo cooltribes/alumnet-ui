@@ -42,9 +42,11 @@
       controller = new BusinessExchangeApp.Create.Controller
       controller.create()
     updateBusinessExchange: (id)->
+      document.title = 'AlumNet - Update Task'
       controller = new BusinessExchangeApp.Create.Controller
       controller.update(id)
     showBusinessExchange: (id)->
+      document.title = 'AlumNet - Task'
       controller = new BusinessExchangeApp.Show.Controller
       controller.show(id)
 

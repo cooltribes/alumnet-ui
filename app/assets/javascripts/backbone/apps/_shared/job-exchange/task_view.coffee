@@ -130,6 +130,10 @@
     submitEl: '#js-submit'
     keyControl: false
 
+    templateHelpers: ()->
+      profile = @model.profile
+      last_experience: profile.get('last_experience')
+
     initialize: ()->
       @model = AlumNet.current_user
 
