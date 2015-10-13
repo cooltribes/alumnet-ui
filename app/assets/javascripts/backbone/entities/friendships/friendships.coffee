@@ -3,6 +3,8 @@
 
   class Entities.FriendshipCollection extends Backbone.Collection
     model: Entities.Friendship
+    rows: 6
+    page: 1
 
   API =
     destroyCurrentUserFriendship: (attrs)->
