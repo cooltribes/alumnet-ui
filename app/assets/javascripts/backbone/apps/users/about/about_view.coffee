@@ -274,7 +274,6 @@
         cropW: cropBoxData.width
         cropH: cropBoxData.height
         image: 'avatar'
-      console.log data
       Backbone.ajax
         url: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
         type: "POST"
@@ -295,7 +294,6 @@
         model.get('avatar').original + "?#{ new Date().getTime() }"
 
     onShow: ->
-      console.log @ui.avatarImagen
       $(@ui.avatarImagen).cropper
         aspectRatio: 1 / 1
         movable: false
