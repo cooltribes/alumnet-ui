@@ -1,6 +1,9 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Like extends Backbone.Model
 
+  class Entities.LikesCollection extends Backbone.Collection
+    model: Entities.Like
+
   class Entities.UnLike extends Backbone.Model
 
   API =

@@ -1,4 +1,7 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
+  # LIKE MODAL
+  class Posts.LikesModal extends AlumNet.Shared.Views.LikesModal
+
   # COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
     template: 'home/posts/templates/comment'
@@ -224,7 +227,14 @@
 
     showLikes: (e)->
       e.preventDefault()
-      console.log "Here show likes"
+      view = @
+      # fetch all likes
+      @model.likesCollection.fetch
+        success: (collection)->
+          modal = new Posts.LikesModal
+            model: view.model
+            likes: collection
+          $('#js-likes-modal-container').html(modal.render().el)
 
     ytVidId: (url)->
       url = $.trim(url)
