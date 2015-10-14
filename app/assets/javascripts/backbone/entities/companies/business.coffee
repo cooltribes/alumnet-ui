@@ -36,6 +36,8 @@
 
   class Entities.BusinessCollection extends Backbone.Collection
     model: Entities.Business
+    rows: 6
+    page: 1
     url: ->
       if @user_id
         AlumNet.api_endpoint + "/users/#{@user_id}/business"
