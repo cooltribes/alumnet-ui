@@ -50,6 +50,7 @@
         method: 'PUT'
         success: ->
           view.model.set('user_can_apply', false)
+          view.ui.applyLink.removeClass('btn-default js-job-apply').addClass('btn-default-gray').html('Applied')
           AlumNet.trigger('conversation:recipient', 'New Subject', view.model.getCreator())
 
     refreshClicked: (e)->

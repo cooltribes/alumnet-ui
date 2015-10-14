@@ -54,6 +54,10 @@
     <a href="#meetup-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
     <% if @canApply: %>
       <a href="#" class="btn btn-default js-job-apply" >Meet</a>
+    <% else: %>
+      <% unless @canDelete: %>
+        <a href="#" class="btn btn-default-gray">Applied</a>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -4,9 +4,9 @@
     initialize: (options)->
       @mode = options.mode
 
-
     templateHelpers: ->
       model = @model
+      console.log model
 
       arraySkill = @model.get('nice_have_attributes')
       arraySkill = _.where(arraySkill, {custom_field: "alumnet_skills"});
@@ -131,9 +131,13 @@
     submitEl: '#js-submit'
     keyControl: false
 
+    templateHelpers: ()->
+      profile = @model.profile
+      last_experience: profile.get('last_experience')
+
     initialize: ()->
       @model = AlumNet.current_user
-
+    
     submit: ()->
       data = Backbone.Syphon.serialize @
       @trigger "submit", data
