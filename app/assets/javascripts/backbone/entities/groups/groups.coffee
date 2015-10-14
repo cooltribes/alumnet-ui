@@ -100,7 +100,7 @@
 
   class Entities.GroupCollection extends Backbone.Collection
     model: Entities.Group
-    rows: 6
+    rows: 15
     page: 1
 
     url: ->
