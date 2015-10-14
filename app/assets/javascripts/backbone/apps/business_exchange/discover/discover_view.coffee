@@ -24,6 +24,16 @@
       'click .js-advancedSearch': 'toggleAdvancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
+    
+    initialize: (options)->
+      console.log @collection
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMore')
+      $(window).scroll(@loadMore)
+
+    loadMore: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'business:reload'
 
     changeOperator: (e)->
       e.preventDefault()
@@ -49,8 +59,11 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      @collection.fetch
-        data: { q: { name_cont: value } }
+      console.log value
+      @trigger('business:search', { q: { name_cont: value } } )
+      #@collection.fetch
+      #  data: { q: { name_cont: value } }
+
 
     clear: (e)->
       e.preventDefault()
@@ -71,12 +84,13 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      @collection.fetch
-        data:
-          q: 
-            m: 'or'
-            profile_first_name_cont_any: value.split(" ")
-            profile_last_name_cont_any: value.split(" ")
+      @trigger('business:search', { q: { m: 'or', profile_first_name_cont_any: value.split(" "), profile_last_name_cont_any: value.split(" ") } } )
+      #@collection.fetch
+      #  data:
+      #    q: 
+      #      m: 'or'
+      #      profile_first_name_cont_any: value.split(" ")
+      #      profile_last_name_cont_any: value.split(" ")
 
 
   class Discover.Layout extends  Marionette.LayoutView
