@@ -76,7 +76,10 @@
         when "aiesec_experiences"
           @aiesec_experiences()
         when "completed"
-          @approval_process()
+          if AlumNet.current_user.profile.get('created_by_admin')
+            AlumNet.trigger "registration:activate:user"
+          else
+            @approval_process()
         else
           null
 

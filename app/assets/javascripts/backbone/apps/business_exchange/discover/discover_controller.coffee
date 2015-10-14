@@ -1,7 +1,8 @@
 @AlumNet.module 'BusinessExchangeApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
   class Discover.Controller
     discover: (view = "people")->
-
+      controller = @
+      controller.querySearch = ''
       if view == "tasks"
         tasks = new AlumNet.Entities.BusinessExchangeCollection
         tasks.fetch()
@@ -35,6 +36,7 @@
           container.append( $(viewInstance.el) ).masonry 'reloadItems'
       
       discoverView.on 'business:search', (querySearch)->
+
         console.log "busquedas"
         controller.querySearch = querySearch
         discoverView.collection.fetch
@@ -43,6 +45,7 @@
             console.log collection
             container = $('.profiles-container')
             container.masonry 'reloadItems'
+
 
       console.log view    
       console.log discoverView    

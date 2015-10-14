@@ -136,7 +136,8 @@
         coverArea.css('cursor', 'default')
         coverArea.off('mousedown.dbg touchstart.dbg')
         $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
-        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Reposition cover')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span> Reposition cover')
+        $("#js-crop-label").hide()
         @model.set "cover_position", coverArea.css('background-position')
         #@model.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
         @model.save

@@ -5,14 +5,17 @@
       "registration/:step": "registration"
 
   API =
-    registration: (step)->      
+    registration: (step)->
       controller = new RegistrationApp.Main.Controller
       controller.registration(step)
+    activateUser: ->
+      controller = new RegistrationApp.Main.Controller
+      controller.activateUser()
 
   AlumNet.on "registration:goto", (step)->
     API.registration(step)
 
-  AlumNet.on "registration:activate:user",  ->
+  AlumNet.on "registration:activate:user", ->
     API.activateUser()
 
   AlumNet.addInitializer ->
