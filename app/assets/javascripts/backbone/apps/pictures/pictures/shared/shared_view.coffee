@@ -170,6 +170,9 @@
   class PictureShared.Comment extends Marionette.ItemView
     template: 'pictures/pictures/shared/templates/_comment'
 
+    initialize: (options)->
+      @picture = options.picture
+
     templateHelpers: ->
       permissions = @model.get('permissions')
       canEdit: permissions.canEdit
@@ -177,15 +180,15 @@
       comment: @model.commentWithLinks()
 
     ui:
-      # 'likeLink': '.js-vote'
-      # 'likeCounter': '.js-likes-counter'
+      'likeLink': '.js-comment-vote'
+      'likeCounter': '.js-comment-likes-counter'
       'editLink': '#js-edit-comment'
       'deleteLink': '#js-delete-comment'
       'commentText': '#js-comment-text'
 
     events:
-      # 'click .js-like': 'clickedLike'
-      # 'click .js-unlike': 'clickedUnLike'
+      'click .js-comment-like': 'clickedLike'
+      'click .js-comment-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
 
@@ -236,10 +239,43 @@
       if resp
         @model.destroy()
 
+    clickedLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      view = @
+      like = AlumNet.request("like:comment:new", @picture.id, @model.id, 'pictures')
+      like.save {},
+        success: (model)->
+          view.model.sumLike()
+          view.sumLike()
+
+    clickedUnLike: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      view = @
+      unlike = AlumNet.request("unlike:comment:new", @picture.id, @model.id, 'pictures')
+      unlike.save {},
+        success: (model)->
+          view.model.remLike()
+          view.remLike()
+
+    sumLike:()->
+      val = parseInt(@ui.likeCounter.html()) + 1
+      @ui.likeCounter.html(val)
+      @ui.likeLink.removeClass('js-comment-like').addClass('js-comment-unlike').html('unlike')
+
+    remLike:()->
+      val = parseInt(@ui.likeCounter.html()) - 1
+      @ui.likeCounter.html(val)
+      @ui.likeLink.removeClass('js-comment-unlike').addClass('js-comment-like').
+        html('<span class="icon-entypo-thumbs-up"></span> Like')
+
   class PictureShared.Comments extends Marionette.CompositeView
     template: 'pictures/pictures/shared/templates/comments'
     childView: PictureShared.Comment
     childViewContainer: '.comments-container'
+    childViewOptions: ->
+      picture: @model
 
     initialize: (options)->
       @collection.fetch()

@@ -6,11 +6,11 @@
 </div>
 <p id="js-comment-text" class="overfloadText"><%- @comment %></p>
 <% if @you_like: %>
-  <a href="#" class="js-unlike js-vote">Unlike</a>
+  <a href="#" class="js-comment-unlike js-comment-vote">Unlike</a>
 <% else: %>
-  <a href="#" class="js-like js-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
+  <a href="#" class="js-comment-like js-comment-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
 <% end %>
-(<span class="js-likes-counter"><%= @likes_count %></span> likes)
+(<span class="js-comment-likes-counter"><%= @likes_count %></span> likes)
 <% if @canEdit: %>
   <a href="#" id='js-edit-comment'>edit</a>
 <% end %>
