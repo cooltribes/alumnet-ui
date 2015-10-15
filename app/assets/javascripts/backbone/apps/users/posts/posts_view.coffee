@@ -115,6 +115,7 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
+    clientHeight: 60
 
     initialize: (options)->
       @userModel = options.userModel
@@ -191,7 +192,7 @@
       'modalContainer': '.modal-container'
 
     events:
-      'keypress .comment': 'commentSend'
+      'keyup .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
@@ -218,6 +219,12 @@
 
     commentSend: (e)->
       e.stopPropagation()
+      #console.log e.target.clientHeight
+      #console.log @ui.commentInput.height()
+      if @ui.commentInput.height() > @clientHeight 
+        @clientHeight = @ui.commentInput.height()
+        $('#timeline').masonry()
+      
       if e.keyCode == 13
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)

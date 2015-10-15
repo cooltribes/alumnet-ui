@@ -38,3 +38,5 @@
       usersView.on 'users:search', (querySearch)->
         controller.querySearch = querySearch
         searchedFriends = AlumNet.request('user:entities', querySearch)
+
+
