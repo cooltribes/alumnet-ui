@@ -1,3 +1,4 @@
+<div class="eventsTableView margin_bottom_xsmall">
   <div class="row no-margin">
     
     <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
@@ -84,3 +85,4 @@
       <% end %>
     </div>
   </div>
+</div>
