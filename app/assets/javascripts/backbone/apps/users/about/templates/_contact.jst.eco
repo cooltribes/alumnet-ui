@@ -25,8 +25,9 @@
 <% if @contact_type== 8: %>
     <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
-
-
+<% if @contact_type== 9: %>
+    <span class="icon-entypo-mail"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
+<% end %>
 
 <% if @userCanEdit: %>
   

@@ -6,7 +6,7 @@
         <ul class="nav nav-pills">
           <li class="<%= @classOf(0)%>">  <a href="#events/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
             <span class="glyphicon glyphicon-list-alt"></span>
-          Posts</a></li>
+          Activity</a></li>
           <li class="<%= @classOf(1)%>">  <a href="#events/<%= @id %>/about" id="js-about" class="groupMenu__link">
             <span class="icon-entypo-dot-3"></span>
           About</a></li>

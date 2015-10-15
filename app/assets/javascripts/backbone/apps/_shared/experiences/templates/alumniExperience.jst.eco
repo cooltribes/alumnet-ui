@@ -100,7 +100,7 @@
 	<div class="col-md-6 ">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="registerCity">City</label>
-			<input type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city.id %>">
+			<input type="hidden" name="city_id" id="city_id" style="width: 100%" value="<%= @city_id %>">
 			<span class="help-block"></span>
 		</div>
 	</div>

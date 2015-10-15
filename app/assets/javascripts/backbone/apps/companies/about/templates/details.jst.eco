@@ -18,6 +18,7 @@
 			<ul>
 				<li>Alumni Employees: <%= @employees_count %></li>
 				<!-- <li>Alumni</li> -->
+				<div id="avatar-employees"></div>
 			</ul>
 		</div>
 		<!-- <div class=" company__row company__cell">

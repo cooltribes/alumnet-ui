@@ -8,7 +8,12 @@
         headers:
           'Authorization': 'Token token="' + AlumNet.current_token + '"'
           'Accept': 'application/vnd.alumnet+json;version=1'
-
+        filters:
+          mime_types:[
+            title: "Images Files"
+            extensions: "jpg,png,gif"            
+          ]
+          
       uploader.bind 'FilesAdded',(up, files)->
         html = ''
         plupload.each files, (file)->

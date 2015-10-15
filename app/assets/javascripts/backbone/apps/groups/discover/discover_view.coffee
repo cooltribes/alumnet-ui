@@ -19,7 +19,6 @@
       #View for showing the groups (class Discover.GroupsView)
       @groupsView = options.groupsView
 
-
     ui:
       'viewCard':'.main-groups-area'
       'viewList':'.groupTableView'
@@ -33,7 +32,7 @@
       q:
         m: 'or'
         name_cont: searchTerm
-        description_cont: searchTerm   
+        description_cont: searchTerm
 
     ViewCard: (e)->
       $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
@@ -86,10 +85,10 @@
       model = @model
       @model.fetch
         success: ->
-          model.trigger('renderView')  
-      @render() 
+          model.trigger('renderView')
+      @render()
       @trigger 'Catch:Up'
-      
+
     onRender: ->
       @ui.groupCard.tooltip()
       @ui.groupCardOdd.tooltip()
@@ -98,9 +97,9 @@
     showSubgroups: (e)->
       id = $(e.currentTarget).attr("aria-controls")
       child = $(e.currentTarget).attr("data-child")
-      $('#'+id).on('hidden.bs.collapse', () -> 
+      $('#'+id).on('hidden.bs.collapse', () ->
         $('#js-subgroups').html("Show subgroups ("+child+")"))
-      $('#'+id).on('shown.bs.collapse', () -> 
+      $('#'+id).on('shown.bs.collapse', () ->
         $('#js-subgroups').html("Hide subgroups ("+child+")"))
 
 
@@ -142,41 +141,24 @@
         view.nonOfficial = @where({official: false})
         view.all = @slice()
       $(window).scroll(@loadMoreGroups)
-    
-    #remove: ->
-    #  $(window).unbind('scroll');
-    #  console.log "remove"
-    #  Backbone.View.prototype.remove.call(this)
 
     events:
       'click #js-filter-all': 'filterAll'
       'click #js-filter-official': 'filterOfficial'
       'click #js-filter-non-official': 'filterNonOfficial'
-    
-    onChildviewCatchUp: ->
-      view = @
-      @collection.fetch
-        success: (model)->
-          view.render()
-
 
     filterAll: (e)->
       e.preventDefault()
-      console.log 'here All', @all
       @collection.reset(@all)
 
     filterOfficial: (e)->
       e.preventDefault()
-      console.log 'here Off', @official
       @collection.reset(@official)
 
     filterNonOfficial: (e)->
       e.preventDefault()
-      console.log 'here nOff', @nonOfficial
       @collection.reset(@nonOfficial)
 
     loadMoreGroups: (e)->
-      console.log "loadMoreGroups S:"+$(window).scrollTop()+"H:"+($(document).height() - $(window).height())
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        console.log "Entro If"
         @trigger 'group:reload'

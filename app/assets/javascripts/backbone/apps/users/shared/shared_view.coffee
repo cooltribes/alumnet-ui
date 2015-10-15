@@ -11,6 +11,7 @@
       'imgAvatar': '#preview-avatar'
       'profileCover': '#profile-cover'
       'uploadCover': '#js-changeCover'
+      'professionalHeadline': '#professional_headline'
 
     events:
       "click @ui.editPic": "editPic"
@@ -32,7 +33,6 @@
       @listenTo(@model, 'change:cover', @renderView)
       @listenTo(@model, 'edit:cover', @editCover)
 
-
     templateHelpers: ->
       model = @model
       date = new Date()
@@ -48,7 +48,25 @@
         "#{file}?#{date.getTime()}"
 
       position: ->
-        model.profile.get("last_experience") ? "No Position"
+        if model.profile.get("professional_headline")
+          model.profile.get("professional_headline")
+        else if model.profile.get("last_experience")
+          model.profile.get("last_experience")
+        else
+          "No Position"
+
+    onRender: ->
+      model = @model
+      profile = @model.profile
+      @ui.professionalHeadline.editable
+        type: "text"
+        pk: profile.id
+        title: "Enter your Professional Header"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          profile.save({'professional_headline': newValue})
 
     renderView: ->
       view = @

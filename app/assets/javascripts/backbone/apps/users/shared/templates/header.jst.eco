@@ -32,7 +32,11 @@
     <br>
   </h1>
   <p class="userCoverArea__subTitle">
-    <%= @position() %>
+    <% if @userCanEdit: %>
+      <a href="#" id="professional_headline"><%= @position() %></a>
+    <% else: %>
+      <%= @position() %>
+    <% end %>
   </p>
 
     <% if (@friendship_status == "accepted" || @friendship_status == "sent" || @friendship_status == "received" || @friendship_status == "none") && @isActive: %>

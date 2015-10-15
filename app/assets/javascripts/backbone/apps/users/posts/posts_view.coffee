@@ -177,7 +177,7 @@
       if validation
         temp_string = @ui.bodyPost.html()
         @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
-      else 
+      else
         @ui.bodyPost.linkify()
 
     ui:
@@ -414,5 +414,4 @@
 
     loadMorePosts: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        console.log 'posts: '+@.cid
         @trigger 'post:reload'
