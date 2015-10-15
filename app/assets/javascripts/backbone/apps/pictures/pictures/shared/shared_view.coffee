@@ -20,6 +20,9 @@
       'mouseover .js-tags a': "showTag"
       'mouseout .js-tags a': "hideTag"
 
+    regions:
+      'comments': '#comments-region'
+
     initialize: (options)->
       @view = options.view
       @model.comments.fetch
@@ -36,6 +39,12 @@
             addCallback: modal.addLinkTag
             submitCallback: modal.submitTag
             inputCallback: modal.addSelect2toInput
+
+      @commentsView = new PictureShared.Comments
+        collection: @model.comments
+        model: @model
+
+      @comments.show @commentsView
 
     templateHelpers: ->
 
@@ -158,13 +167,129 @@
         formatSelection: (data)->
           data.name
 
+  class PictureShared.Comment extends Marionette.ItemView
+    template: 'pictures/pictures/shared/templates/_comment'
+
+    templateHelpers: ->
+      permissions = @model.get('permissions')
+      canEdit: permissions.canEdit
+      canDelete: permissions.canDelete
+      comment: @model.commentWithLinks()
+
+    ui:
+      # 'likeLink': '.js-vote'
+      # 'likeCounter': '.js-likes-counter'
+      'editLink': '#js-edit-comment'
+      'deleteLink': '#js-delete-comment'
+      'commentText': '#js-comment-text'
+
+    events:
+      # 'click .js-like': 'clickedLike'
+      # 'click .js-unlike': 'clickedUnLike'
+      'click @ui.editLink': 'clickedEdit'
+      'click @ui.deleteLink': 'clickedDelete'
+
+    onRender: ->
+      view = this
+
+      @ui.commentText.editable
+        type: 'textarea'
+        inputclass: 'comment-editable'
+        pk: view.model.id
+        title: 'Edit Posts'
+        toggle: 'manual'
+        validate: (value)->
+          if $.trim(value) == ''
+            'this field is required'
+        display: (value, response)->
+          $(@).html view.model.commentWithLinks()
+        success: (response, newValue)->
+          $textarea = view.$('.comment-editable')
+          newValues = {
+            comment: $textarea.mentionsInput('getRawValue')
+            markup_comment: $textarea.mentionsInput('getValue')
+            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
+          }
+          view.model.save(newValues)
+
+      @ui.commentText.on 'shown', (e, editable) ->
+        content = view.model.get('markup_comment') || view.model.get('comment')
+        editable.input.$input.val content
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
+
+    clickedEdit: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.commentText.editable('toggle')
+      @$('.comment-editable').mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+    clickedDelete: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      resp = confirm "Are you sure?"
+      if resp
+        @model.destroy()
+
+  class PictureShared.Comments extends Marionette.CompositeView
+    template: 'pictures/pictures/shared/templates/comments'
+    childView: PictureShared.Comment
+    childViewContainer: '.comments-container'
+
+    initialize: (options)->
+      @collection.fetch()
+
+    templateHelpers: ->
+      current_user_avatar: AlumNet.current_user.get('avatar').medium
+
+    ui:
+      'commentInput': '.comment'
+
+    events:
+      'keypress .comment': 'commentSend'
+
+    onShow: ->
+      # Autosize
+      @ui.commentInput.autoResize()
+
+      # Mentions in comments
+      @ui.commentInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+    commentSend: (e)->
+      e.stopPropagation()
+      if e.keyCode == 13
+        e.preventDefault()
+        data = Backbone.Syphon.serialize(this)
+        if data.body != ''
+          console.log data, @model
+          view = @
+          comment = AlumNet.request('comment:picture:new', @model.id)
+          data.comment = @ui.commentInput.mentionsInput('getRawValue')
+          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
+          console.log data, comment
+          comment.save data,
+            success: (model, response, options)->
+              view.ui.commentInput.val('')
+              view.collection.add(model, {at: view.collection.length})
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
+
 
   API =
     getPictureModal: (picture)->
       new PictureShared.PictureModal
         model: picture
-        # collection: picture.comments
-
 
   AlumNet.reqres.setHandler 'picture:modal', (picture) ->
     API.getPictureModal(picture)

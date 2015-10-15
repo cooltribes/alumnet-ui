@@ -1,0 +1,18 @@
+<div class="groupPost__commentsContainer comments-container margin_top hidden-xs"></div>
+
+<div class="row">
+<!-- Permiso para comentar aqui -->
+  <form class="groupPost__commentForm clearfix form">
+    <div class="groupPost__commentForm__avatar hidden-xs">
+      <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
+    </div>
+    <div class="groupPost__commentForm__form post">
+      <div class="col-xs-10 form-group">
+        <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+      </div>
+      <div class="col-xs-2 visible-xs">
+        <button id= "commentB" class="btn btn-default-blue post__buttomComent"><span class="glyphicon glyphicon-comment"></span></button>
+      </div>
+    </div>
+  </form>
+</div>
