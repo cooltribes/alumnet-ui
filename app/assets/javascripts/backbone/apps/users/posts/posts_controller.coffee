@@ -24,13 +24,15 @@
         layout.body.show(posts)
 
         posts.on "post:reload", ->
-          ++posts.collection.page
+          #++posts.collection.page
           # TODO: Preguntar por esto!! :rafael
           newCollection = AlumNet.request("post:current")
           newCollection.url = AlumNet.api_endpoint + '/users/'+ user_id + '/posts'
           newCollection.fetch
-            data: { page: posts.collection.page, per_page: posts.collection.rows }
+            data: { page: ++@collection.page, per_page: @collection.rows }
             success: (collection)->
+              if collection.length < collection.rows 
+                console.log "fin"
               posts.collection.add(collection.models)
 
         checkNewPost = false #flag for new posts
