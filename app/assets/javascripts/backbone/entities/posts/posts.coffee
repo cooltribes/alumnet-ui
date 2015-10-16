@@ -35,14 +35,14 @@
       link = false
       if @likes.length > 0
         num = @likes.length
-        link = "<a href='#' class='js-show-likes' title='#{@restLikeList()}'>#{num} others</a>"
+        link = "<a href='#' class='js-show-likes' data-toggle='tooltip' data-placement='bottom' title='#{@restLikeList()}'>#{num} others</a>"
       link
 
     # TODO: hacer calculo de cuantos se van a mostrar y cuantos quedan :armando
     restLikeList: ->
       list = ""
       _.each @likes, (like)->
-        list += "#{like.user.name}"
+        list += "#{like.user.name}<br>"
       list
 
     setPictures: ->

@@ -148,7 +148,8 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
@@ -157,6 +158,9 @@
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
+
+    reloadMasonry: ->
+      $('#timeline').masonry()
 
     onRender: ->
       view = this
@@ -397,7 +401,7 @@
             url: AlumNet.api_endpoint + '/metatags'
             data: {url: url}
             success: (data)->
-              ui.videoContainer.html('<div class="row"><div class="col-md-3"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-md-9"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+              ui.videoContainer.html('<div class="row"><div class="col-md-5"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-md-7"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
               ui.preview_image.val(data.image)
               ui.preview_description.val(data.description)
               ui.preview_title.val(data.title)
