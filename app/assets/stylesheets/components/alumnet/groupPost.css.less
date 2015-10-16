@@ -49,6 +49,14 @@ DESCRIPTION: A card that contains a post in a group
 		display: inline-block;
 		text-transform: uppercase;
 	}
+	&__btn--comment_event{
+		border: 1px solid @blue;
+		padding: 5px 15px 5px 10px;
+		margin-right: 5px;
+		display: inline-block;
+		text-transform: uppercase;
+	}
+
 	&__btn--addPicture{
 		border: 1px solid @blue;
 		padding: 5px 10px 5px 10px;
@@ -221,8 +229,10 @@ DESCRIPTION: A card that contains a post in a group
 			text-transform: uppercase;
 			margin-bottom: 0;
     		margin-left: 0;
-    		font-size: 14px;
+    		font-size: 12px;
 		}
+
+
 	}
 
 	.mentions{
@@ -260,7 +270,18 @@ DESCRIPTION: A card that contains a post in a group
 			margin-bottom: 0;
     		margin-left: 0;
     		font-size: 14px;
+
+    	}
+		&__btn--comment_event{
+			border: 1px solid @blue;
+			padding: 3px 8px 3px 7px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			font-size: 10px;
+			
 		}
+
 	}
 
 	.mentions{
@@ -296,6 +317,56 @@ DESCRIPTION: A card that contains a post in a group
 			margin-bottom: 0;
     		margin-left: 0;
     		font-size: 14px;
+		}
+
+		&__btn--comment_event{
+			border: 1px solid @blue;
+			padding: 5px 15px 5px 10px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			font-size: 12px;
+			
+		}
+
+	}
+	.mentions{
+		.highlighter{
+			resize: none;
+	    	overflow-y: hidden;
+	    	width: 100%;
+	    	textarea{
+	    		letter-spacing: 0px;
+			    overflow-y: hidden; 
+			    resize: none;
+			    position: absolute;
+			    top: 0px;
+			    text-decoration: none;
+	    	}
+		}
+	}
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-mlarge-min) { 
+	
+	.groupPost {
+
+		&__btn--comment_event{
+			border: 1px solid @blue;
+			padding: 5px 15px 5px 10px;
+			margin-right: 5px;
+			display: inline-block;
+			text-transform: uppercase;
+			font-size: 14px;
+			
+		}
+	}
+
+}
+@media (min-width: @media-xlarge-min) { 
+	.post {
+		textarea{
+			width: 100%;
 		}
 	}
 	.mentions{
@@ -337,3 +408,4 @@ DESCRIPTION: A card that contains a post in a group
 		}
 	}
 }
+
