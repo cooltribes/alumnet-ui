@@ -180,6 +180,7 @@
       $('#timeline').masonry() 
 
     onRender: ->
+      $('[data-toggle="tooltip"]').tooltip({html:true});
       view = this
       @ui.bodyPost.editable
         type: 'textarea'
