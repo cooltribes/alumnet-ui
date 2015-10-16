@@ -860,9 +860,12 @@
 
     editExp: (e)->
       e.preventDefault()
+      pos = $(e.target).position()
       @model.isEditing = true
       @model.set "first", true
       @model.collection.trigger "reset" #For re-render the itemview
+      $('body,html').animate({scrollTop: pos.top + 750}, 400);
+      
 
     removeItem: (e)->
       if @model.canBeDeleted()

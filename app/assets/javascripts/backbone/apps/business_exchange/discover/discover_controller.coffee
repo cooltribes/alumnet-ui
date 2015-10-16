@@ -5,7 +5,9 @@
       controller.querySearch = ''
       if view == "tasks"
         tasks = new AlumNet.Entities.BusinessExchangeCollection
-        tasks.fetch()
+        tasks.url = AlumNet.api_endpoint + "/business_exchanges?page="+tasks.page+"&per_page="+tasks.rows
+        tasks.fetch
+          reset: true
         discoverView = new Discover.TasksList
           collection: tasks
       
@@ -21,15 +23,19 @@
       discoverView.on "business:reload", ->
         querySearch = controller.querySearch 
         ++discoverView.collection.page
-        newCollection = new AlumNet.Entities.BusinessCollection
-        newCollection.url = AlumNet.api_endpoint + '/business?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
+        if view == "tasks"
+          newCollection = new AlumNet.Entities.BusinessExchangeCollection
+          newCollection.url = AlumNet.api_endpoint + '/business_exchanges?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
+        else
+          newCollection = new AlumNet.Entities.BusinessCollection
+          newCollection.url = AlumNet.api_endpoint + '/business?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
         newCollection.fetch
           data: querySearch
           success: (collection)->
             discoverView.collection.add(collection.models)
 
       discoverView.on "add:child", (viewInstance)->
-        container = $('.profiles-container')
+        container = $('#business-exchange-container')
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'

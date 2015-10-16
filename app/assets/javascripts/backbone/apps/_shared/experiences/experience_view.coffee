@@ -74,8 +74,6 @@
         seniorities.results
 
     onRender: ->
-      console.log 'render'
-      console.log @model
       view = @
       companies = new Bloodhound
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')

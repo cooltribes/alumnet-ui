@@ -11,6 +11,8 @@
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
     emptyView: Find.EmptyView
+    #childViewOptions: ->
+    #  parentCollection: @collection
     childViewContainer: '.users-list'
     events:
       'click .js-simple-search': 'performSearch'

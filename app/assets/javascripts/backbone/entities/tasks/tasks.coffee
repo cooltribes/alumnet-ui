@@ -105,6 +105,8 @@
   class Entities.BusinessExchangeCollection extends Backbone.Collection
     model:
       Entities.BusinessExchange
+    page: 1
+    rows: 6
     url: ->
       AlumNet.api_endpoint + '/business_exchanges'
 
