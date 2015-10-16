@@ -7,7 +7,7 @@
       @likesCollection = new Entities.LikesCollection
       @likesCollection.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/likes'
 
-      @likes = @get 'likes'
+      @likes = @get('likes') || []
 
       @on 'change', ->
         @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'

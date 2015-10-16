@@ -151,7 +151,7 @@
             </div>
           </div>
           <!-- End Mobile -->
-        <div id="comments-region" style="overflow: scroll;"></div>
+        <div id="comments-region" style="overflow: scroll; width:350px; height: 250px;"></div>
     </aside>
   </div>
 
