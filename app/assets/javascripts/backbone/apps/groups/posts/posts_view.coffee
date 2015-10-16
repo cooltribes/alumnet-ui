@@ -155,12 +155,16 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-
+    
+    reloadMasonry: ->
+      $('#timeline').masonry()
+      
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments

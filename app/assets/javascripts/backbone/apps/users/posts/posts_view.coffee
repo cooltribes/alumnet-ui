@@ -120,7 +120,7 @@
     initialize: (options)->
       @userModel = options.userModel
       @current_user = options.current_user
-
+      
     childViewOptions: ->
       post: @model
       userModel: @userModel
@@ -151,11 +151,16 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+
+    reloadMasonry: ->
+      $('#timeline').masonry()       
 
     onBeforeRender: ->
       @model.comments.fetch()
@@ -198,6 +203,7 @@
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
+  
 
     ytVidId: (url)->
       url = $.trim(url)
@@ -221,9 +227,9 @@
       e.stopPropagation()
       #console.log e.target.clientHeight
       #console.log @ui.commentInput.height()
-      if @ui.commentInput.height() > @clientHeight 
-        @clientHeight = @ui.commentInput.height()
-        $('#timeline').masonry()
+      #if @ui.commentInput.height() > @clientHeight 
+      #  @clientHeight = @ui.commentInput.height()
+      #  $('#timeline').masonry()
       
       if e.keyCode == 13
         e.preventDefault()
