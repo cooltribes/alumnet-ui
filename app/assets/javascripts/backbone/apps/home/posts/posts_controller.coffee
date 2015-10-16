@@ -78,6 +78,7 @@
           success: ->
             post.sumLike()
             postView.sumLike()
+            $('[data-toggle="tooltip"]').tooltip({html:true});
       posts.on "childview:post:unlike", (postView) ->
         post =  postView.model
         unlike = AlumNet.request("unlike:post:new", post.id)
@@ -85,6 +86,7 @@
           success: ->
             post.remLike()
             postView.remLike()
+            $('[data-toggle="tooltip"]').tooltip({html:true});
 
       #Like in comment
       posts.on "childview:comment:like", (postView, commentView) ->

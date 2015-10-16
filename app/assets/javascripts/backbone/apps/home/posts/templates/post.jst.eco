@@ -85,14 +85,17 @@
     <% if @canDelete: %>
         <a href="#" class="glyphicon glyphicon-remove" id='js-delete-post'>Delete</a>
     <% end %>
+
+    <div class="js-like-links link-text margin_top_small">
+      <% if @likes_count > 0: %>
+        <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
+      <% end %>
+    </div>
   </div>
 
   <!-- LiKE LINKS -->
-  <div class="js-like-links">
-    <% if @likes_count > 0: %>
-      <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
-    <% end %>
-  </div>
+
+  
 
 
   <a href="#" class="groupPost__btn--loadMore" id="js-load-more">Show previews comments</a>
@@ -117,4 +120,4 @@
     </div>
   </form>
 </div>
-<div id="js-likes-modal-container"></div>
+<div id="js-likes-modal-container" class="modalPrograms"></div>

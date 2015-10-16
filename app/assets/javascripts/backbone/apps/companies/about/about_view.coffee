@@ -136,9 +136,10 @@
       _.each array_employees, (elemento) ->
         user = AlumNet.request("user:find", elemento.id)
         user.on 'find:success', (response, options) ->
-          avatar_user = user.get('avatar').small
-          $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
-
+          if user.get('friendship_status') == "accepted"
+            avatar_user = user.get('avatar').small
+            $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
+  
   #### SERVICES ####
 
   class About.ServiceView extends Marionette.ItemView

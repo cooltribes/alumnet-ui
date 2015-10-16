@@ -18,7 +18,6 @@
 			<ul>
 				<li>Alumni Employees: <%= @employees_count %></li>
 				<!-- <li>Alumni</li> -->
-				<div id="avatar-employees"></div>
 			</ul>
 		</div>
 		<!-- <div class=" company__row company__cell">
@@ -28,6 +27,11 @@
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 		</div> -->
+		<div class=" company__row company__cell">
+			<h3 class="no-margin">Friends: </h3>
+			<div class="margin_top_xsmall" id="avatar-employees"></div>
+		</div>
+
 		<div class=" company__row company__cell">
 			<h3 class="no-margin">Industry</h3>
 			<span id="sector"><%= @sector.text %></span>
