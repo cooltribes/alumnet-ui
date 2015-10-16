@@ -148,7 +148,8 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
@@ -157,6 +158,9 @@
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
+
+    reloadMasonry: ->
+      $('#timeline').masonry()
 
     onRender: ->
       view = this
