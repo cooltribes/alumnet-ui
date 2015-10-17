@@ -32,7 +32,8 @@
             data: { page: ++@collection.page, per_page: @collection.rows }
             success: (collection)->
               if collection.length < collection.rows 
-                console.log "fin"
+                posts.endPagination()
+                posts.collection.page = 1
               posts.collection.add(collection.models)
 
         checkNewPost = false #flag for new posts

@@ -33,14 +33,15 @@
       layout.banners.show(bannersView)
 
       posts.on "post:reload", ->
-        ++posts.collection.page
         newCollection = AlumNet.request("post:current")
         newCollection.url = AlumNet.api_endpoint + '/me/posts'
         newCollection.fetch
-          data: { page: posts.collection.page, per_page: posts.collection.rows }
+          data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
-
+            if collection.length < collection.rows 
+              posts.collection.page = 1
+              posts.endPagination() 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
         container.imagesLoaded ->
