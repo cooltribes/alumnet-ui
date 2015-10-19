@@ -307,9 +307,14 @@
     childViewContainer: '.posts-container'
 
     initialize: (options)->
-      _.bindAll(this, 'loadMorePosts');
+      
       @current_user = options.current_user
       @picture_ids = []
+      
+
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMorePosts');
       $(window).scroll(@loadMorePosts);
 
     remove: ->
@@ -360,11 +365,17 @@
       'preview_title': '#url_title'
       'preview_description': '#url_description'
       'preview_image': '#url_image'
+      'loading': '.throbber-loader'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click a#js-add-tags': 'showTagging'
       'keyup @ui.bodyInput': 'checkInput'
+
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')
 
     showTagging: (e)->
       e.preventDefault()

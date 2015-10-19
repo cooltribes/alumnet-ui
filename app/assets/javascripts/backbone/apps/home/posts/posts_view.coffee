@@ -345,11 +345,21 @@
     childViewContainer: '.posts-container'
 
     initialize: ->
-      $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreBooks')
       document.title = " AlumNet - Home"
       @picture_ids = []
+      
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreBooks')      
       $(window).scroll(@loadMoreBooks)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')      
 
     loadMoreBooks: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
@@ -374,6 +384,7 @@
       'preview_title': '#url_title'
       'preview_description': '#url_description'
       'preview_image': '#url_image'
+      'loading': '.throbber-loader'
 
     events:
       'click a#js-post-submit': 'submitClicked'
