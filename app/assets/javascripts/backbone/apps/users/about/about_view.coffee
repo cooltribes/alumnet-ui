@@ -535,11 +535,13 @@
       "editName": "#js-editName"
       "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
+      "editPosition": "#js-editPosition"
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
+      #"click @ui.editPosition": "editPosition"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -575,6 +577,14 @@
       hasEmail: ->
         model.email_contact?
 
+      position: ->
+        if model.profile.get("professional_headline")
+          model.profile.get("professional_headline")
+        else if model.profile.get("last_experience")
+          model.profile.get("last_experience")
+        else
+          "No Position"
+
     modelEvents:
       "add:phone:email change": "modelChange"
 
@@ -597,6 +607,19 @@
 
         @listenTo(@model.email_contact, 'change', @changeEmail)
 
+      model = @model
+      profile = @model.profile
+      @ui.editPosition.editable
+        type: "text"
+        pk: profile.id
+        title: "Enter your Professional Header"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          profile.save({'professional_headline': newValue})
+          profile.trigger 'change:professional_headline'
+
     changePhone: ->
       @model.phone.save()
 
@@ -604,6 +627,7 @@
       @model.email_contact.save()
 
     modelChange: ->
+      console.log 'render'
       @render()
 
     editName: (e)->
