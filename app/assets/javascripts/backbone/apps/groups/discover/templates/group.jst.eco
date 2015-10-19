@@ -65,9 +65,14 @@
       <div class="groupCard__atributes">
         <div class="clearfix ">
           <div class="groupCard__atribute">
-            <div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCard__atribute__container--odd">
+            <div data-toggle="tooltip" data-placement="top" title="Date Last Activity" class="groupCard__atribute__container--odd">
               <span class="groupCard__icon ico-calendar"></span>
-              <%= moment(@created_at).format('MM/YYYY') %>
+              <% if @last_post_at: %>
+              <%= moment(@last_post_at).format('DD/MM/YYYY') %>
+              <% else: %>
+              <%= moment(@created_at).format('DD/MM/YYYY') %>
+              <% end %>
+
             </div>
           </div>
           <div class="groupCard__atribute">
