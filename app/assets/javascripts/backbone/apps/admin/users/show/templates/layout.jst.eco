@@ -3,13 +3,17 @@
       <img src="<%= @avatar.large %>" alt="<%= @name %>" width="90" class="admDash__avatar img-circle">
       <div class="admDash__userMeta">
         <h1 class="admDash__title"><%= @name %></h1>
-        <div class="btn-group">
+ 
+        <div class="btn-group margin_bottom_xsmall" >
+      
           <% if @status.value == 1: %>
-            <a id="js-ban-user" class="btn btn-danger js-ban-user">Ban user</a>
+            <a id="js-ban-user" class="btn btn-user__ban js-ban-user"><i class="icon-entypo-cancel"></i>Ban user</a>
           <% else: %>
-            <a id="js-activate-user" class="btn btn-primary js-activate-user">Activate user</a>
+            <a id="js-activate-user" class="btn btn-user__activate js-activate-user"><i class="icon-entypo-check"></i>Activate user</a>
           <% end %>
+      
         </div>
+        
          <!-- <div class="btn-group">
             <button type="button" class="admDash__mainButton btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <i class="glyphicon glyphicon-asterisk"></i> Member <span class="caret"></span>

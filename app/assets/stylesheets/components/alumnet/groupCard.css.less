@@ -150,10 +150,10 @@ DESCRIPTION: Displays a list of groups in the Groups
         font-size: 0.9em;
         min-height: 36px;
         &__container{
-            padding: 8px 10px;
+            padding: 8px 9px;
         }
         &__container--odd{
-            padding: 8px 10px;
+            padding: 8px 9px;
             border-right: 1px solid @white;
         }
 
@@ -279,6 +279,10 @@ DESCRIPTION: Displays a list of groups in the Groups
             height: auto;
             min-height: 37px;
             font-size: 0.8em;
+             &__container--odd{
+                padding: 8px 8px;
+            }
+
         }
     }
  }
@@ -302,6 +306,11 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
         &__atribute{
             height: auto;
+            font-size: 10px;
+            &__container--odd{
+                padding: 8px 8px;
+               
+            }
         }
         &__icon{
             
@@ -334,6 +343,12 @@ DESCRIPTION: Displays a list of groups in the Groups
         }
         &__atribute{
             height: 37px;
+            font-size: 11px;
+                &__container--odd{
+                    padding: 8px 5px;
+               
+            }
+
         }
         &__menu{
             &__list{
@@ -345,3 +360,33 @@ DESCRIPTION: Displays a list of groups in the Groups
     }    
     
  }
+ @media (min-width: @media-mlarge-min) {
+    .groupCard{
+     
+        &__atribute{
+            font-size: 12px;
+                &__container--odd{
+                padding: 8px 6px;
+                
+        }
+
+        }
+     
+    
+ }
+}
+ @media (min-width: @media-mmlarge-min) {
+    .groupCard{
+     
+        &__atribute{
+            font-size: 12px;
+                &__container--odd{
+                padding: 8px 9px;
+                
+        }
+
+        }
+     
+    
+ }
+}
