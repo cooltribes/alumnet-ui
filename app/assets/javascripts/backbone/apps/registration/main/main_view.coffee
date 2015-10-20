@@ -124,7 +124,7 @@
           languagesCollection.add(new AlumNet.Entities.ProfileLanguage {name: elem.name})
         languagesCollection
       else
-        user_languages = new AlumNet.Entities.ProfileLanguageCollection [{first: true, level: 3}]
+        user_languages = new AlumNet.Entities.ProfileLanguageCollection []
         user_languages.url = AlumNet.api_endpoint + '/profiles/' + profile.id + "/language_levels"
         user_languages.fetch
           wait: true

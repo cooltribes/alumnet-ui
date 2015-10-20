@@ -3,7 +3,8 @@
       <img src="<%= @avatar.large %>" alt="<%= @name %>" width="90" class="admDash__avatar img-circle">
       <div class="admDash__userMeta">
         <h1 class="admDash__title"><%= @name %></h1>
-        <div class="btn-group margin_bottom_xsmall">
+ 
+        <div class="btn-group margin_bottom_xsmall" >
       
           <% if @status.value == 1: %>
             <a id="js-ban-user" class="btn btn-user__ban js-ban-user"><i class="icon-entypo-cancel"></i>Ban user</a>
