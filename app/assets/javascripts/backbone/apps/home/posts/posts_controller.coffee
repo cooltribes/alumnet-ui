@@ -39,9 +39,9 @@
           data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
-            if collection.length < collection.rows 
+            if collection.length < collection.rows
               posts.collection.page = 1
-              posts.endPagination() 
+              posts.endPagination()
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
         container.imagesLoaded ->
@@ -66,47 +66,6 @@
             posts.collection.add(model, {at: 0})
             container = $('#timeline')
             container.masonry "reloadItems"
-
-      posts.on "childview:post:edit", (postView, value)->
-        post = postView.model
-        post.save { body: value }
-
-      #Like in post
-      posts.on "childview:post:like", (postView) ->
-        post =  postView.model
-        like = AlumNet.request("like:post:new", post.id)
-        like.save {},
-          success: ->
-            post.sumLike()
-            postView.sumLike()
-            $('[data-toggle="tooltip"]').tooltip({html:true});
-      posts.on "childview:post:unlike", (postView) ->
-        post =  postView.model
-        unlike = AlumNet.request("unlike:post:new", post.id)
-        unlike.save {},
-          success: ->
-            post.remLike()
-            postView.remLike()
-            $('[data-toggle="tooltip"]').tooltip({html:true});
-
-      #Like in comment
-      posts.on "childview:comment:like", (postView, commentView) ->
-        post = postView.model
-        comment = commentView.model
-        like = AlumNet.request("like:comment:new", post.id, comment.id)
-        like.save {},
-          success: (model)->
-            comment.sumLike()
-            commentView.sumLike()
-
-      posts.on "childview:comment:unlike", (postView, commentView) ->
-        post = postView.model
-        comment = commentView.model
-        unlike = AlumNet.request("unlike:comment:new", post.id, comment.id)
-        unlike.save {},
-          success: (model)->
-            comment.remLike()
-            commentView.remLike()
 
     getData: (page)->
       rows = @collection.rows
