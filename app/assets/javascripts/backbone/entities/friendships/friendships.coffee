@@ -5,6 +5,7 @@
     model: Entities.Friendship
     rows: 6
     page: 1
+    querySearch: {}
 
   API =
     destroyCurrentUserFriendship: (attrs)->
