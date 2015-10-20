@@ -79,8 +79,8 @@
         <% end %>
       <% else: %>
         <% if @admin: %>
-          <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rigth">
-            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmin--paddingCancel">DELETE</a>
+          <div class="eventsTableView__isAdmincancel eventsTableView__isAdmincancel--rigth">
+            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmincancel--paddingCancel">DELETE</a>
           </div>
         <% end %>
       <% end %>

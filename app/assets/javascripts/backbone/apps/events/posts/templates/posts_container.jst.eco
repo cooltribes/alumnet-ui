@@ -5,11 +5,16 @@
 				<% if @userCanPost: %>
 				<!-- FORM -->
 				<div class="item col-md-6 ">
-				<form class="form">
-					<div class="groupCreatePostForm clearfix center">
+					<div class="groupCreatePostForm clearfix">
+
+					<form class="form">
+					<div class="row">
+					<div class="col-md-3 ">
 						<div class="groupCreatePostForm__avatar--events">
 							<img src="<%= @avatar.large %>" class="img-circle" >
 						</div>
+					</div>
+						<div class="col-md-9">
 						<div class="groupCreatePostForm__form--events">
 							
 								<div class="form-group groupCreatePostForm__textarea ">
@@ -17,33 +22,38 @@
 								</div>
 								<!-- TAGGING -->
 								<div class="form-group tagging" style="display:none">
-								 <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
+								  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
 								</div>
 								<!--  -->
 								<!-- PREVIEW -->
 								<div class="form-group preview" style="display:none">
-								 <input type="hidden" id="url" name="url" style="width:100%">
-								 <input type="hidden" id="url_title" name="url_title" style="width:100%">
-								 <input type="hidden" id="url_description" name="url_description" style="width:100%">
-								 <input type="hidden" id="url_image" name="url_image" style="width:100%">
+								  <input type="hidden" id="url" name="url" style="width:100%">
+								  <input type="hidden" id="url_title" name="url_title" style="width:100%">
+								  <input type="hidden" id="url_description" name="url_description" style="width:100%">
+								  <input type="hidden" id="url_image" name="url_image" style="width:100%">
 								</div>
-								<!--  -->								
-	
-						
+								<!--  -->
+								<div style="  width: 100%; height: 20px;"></div>								
+				
+							
 							<!-- Pictures -->
 							<ul id="js-filelist"></ul>
 							<div id="video_container"></div>
 						</div>
-			
-						<a style="position: relative;" id="js-add-picture" class="groupPost__btn--comment" href="javascript:;">
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-md-12 center" >
+										<a id="js-add-picture" class="groupPost__btn--comment_event no_margin_right" href="javascript:;">
 								<i class="icon-entypo-picture"></i>Add Picture</a>
-						<a id="js-add-tags" class="groupPost__btn--comment" href="javascript:;">
+								<a id="js-add-tags" class="groupPost__btn--comment_event no_margin_right" href="javascript:;">
 									<i class="icon-entypo-tag"></i>Tag Friends</a>
-						<a href="#" class="groupPost__btn--comment" id="js-post-submit">Post</a>
-						
-						
-					</div>
+								<a href="#" class="groupPost__btn--comment_event no_margin_right" id="js-post-submit">Post</a>
+						</div>
+						</div>
 						</form>
+				
+					</div>
 				</div>
 				<!--  -->
 				<% end %>
