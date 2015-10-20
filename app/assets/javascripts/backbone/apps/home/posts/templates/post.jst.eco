@@ -1,19 +1,16 @@
 <div class="groupPost">
   <div class="groupPost__postBody">
     <div class="groupPost__metaData clearfix">
-
-      <!-- Avatar ON -->
       <div class="row">
+      <!-- Avatar ON -->
         <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3">
           <div class="groupPost__avatar">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
           </div>
         </div>
+        <!-- Avatar OFF -->
         <div class="col-xs-8 col-sm-9 col-md-8 col-lg-9">
-          <div class="postCard__info">
-          <%- @infoLink %>
-          </div>
-      <!-- Avatar OFF -->
+          <div class="postCard__info"><%- @infoLink %> </div>
 
           <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
 
@@ -24,7 +21,6 @@
             </div>
           <% end %>
           <!--  -->
-
           <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
          </div>
       </div>
@@ -81,7 +77,6 @@
       <a href="#" class="glyphicon glyphicon-pencil" id='js-edit-post'>Edit </a>
     <% end %>
 
-
     <% if @canDelete: %>
         <a href="#" class="glyphicon glyphicon-remove" id='js-delete-post'>Delete</a>
     <% end %>
@@ -92,10 +87,6 @@
       <% end %>
     </div>
   </div>
-
-  <!-- LiKE LINKS -->
-
-  
 
 
   <a href="#" class="groupPost__btn--loadMore" id="js-load-more">Show previews comments</a>
