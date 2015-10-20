@@ -15,7 +15,6 @@
           reset: true
 
         posts = new Posts.PostsView
-          current_user: current_user
           model: user
           collection: user.posts
 
@@ -31,7 +30,7 @@
           newCollection.fetch
             data: { page: ++@collection.page, per_page: @collection.rows }
             success: (collection)->
-              if collection.length < collection.rows 
+              if collection.length < collection.rows
                 posts.endPagination()
                 posts.collection.page = 1
               posts.collection.add(collection.models)

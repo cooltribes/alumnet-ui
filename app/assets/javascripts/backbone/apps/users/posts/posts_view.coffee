@@ -16,13 +16,6 @@
     className: 'post item col-md-6'
     clientHeight: 60
 
-    initialize: (options)->
-      # En el original no se hace nada especial.
-
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
-
 
   ###### POST DETAIL
   class Posts.PostDetail extends Posts.PostView

@@ -14,6 +14,25 @@
     childViewContainer: '.comments-container'
     className: 'post item col-xs-12 col-sm-6 col-md-6'
 
+    initialize: (options)->
+      super(options)
+      # TODO: Preguntar por esto :rafael
+      @model.url = AlumNet.api_endpoint + @model.get('resource_path')
+      self = @
+      self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
+      #
+      @model.comments.fetch
+        success: (collection)->
+          if collection.length > 3
+            self.collection.add(collection.slice((collection.length-3),collection.length))
+            $(self.ui.moreComment).show()
+          else
+            self.collection.add(collection.models)
+            $(self.ui.moreComment).hide()
+
+    onBeforeRender: ->
+
   # POSTS COLLECTION
   class Posts.PostsView extends AlumNet.Shared.Views.PostsView
     ##model is current user

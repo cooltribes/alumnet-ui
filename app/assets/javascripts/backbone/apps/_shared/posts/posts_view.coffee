@@ -8,6 +8,7 @@
 
     initialize: (options)->
       @postView = options.postView
+      @postable = options.postable
 
     templateHelpers: ->
       permissions = @model.get('permissions')
@@ -119,6 +120,7 @@
 
   #
   # POST VIEW
+  # @postable is the model of the parent view.
   #
 
   class Views.PostView extends Marionette.CompositeView
@@ -129,21 +131,11 @@
 
     childViewOptions: ->
       postView: @
+      postable: @postable
 
     initialize: (options)->
       @postsView = options.postsView
-      @model.url = AlumNet.api_endpoint + @model.get('resource_path')
-      self = @
-      self.collection = new AlumNet.Entities.CommentsCollection
-      self.collection.comparator = 'created_at'
-      @model.comments.fetch
-        success: (collection)->
-          if collection.length > 3
-            self.collection.add(collection.slice((collection.length-3),collection.length))
-            $(self.ui.moreComment).show()
-          else
-            self.collection.add(collection.models)
-            $(self.ui.moreComment).hide()
+      @postable = @postsView.model
 
     templateHelpers: ->
       model = @model
@@ -163,6 +155,10 @@
           _.first(model.get('pictures'), 5)
         else
           model.get('pictures')
+
+    onBeforeRender: ->
+      @model.comments.fetch()
+      @collection = @model.comments
 
     onShow: ->
       self = @
@@ -186,7 +182,7 @@
 
     onRender: ->
       $('[data-toggle="tooltip"]').tooltip({html:true});
-      view = this
+      view = @
       @ui.bodyPost.editable
         type: 'textarea'
         pk: view.model.id
@@ -360,6 +356,7 @@
 
   #
   # POSTS COLLECTION
+  # the model of this view is the postable entity :user, :current_user, :group, :event
   #
 
   class Views.PostsView extends Marionette.CompositeView
@@ -367,6 +364,8 @@
       throw 'You must define a template'
     childView: Views.PostView
     childViewContainer: '.posts-container'
+    childViewOptions: ->
+      postsView: @
 
     initialize: ->
       @picture_ids = []
@@ -387,9 +386,6 @@
     loadMorePost: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'post:reload'
-
-    childViewOptions: ->
-      postsView: @
 
     templateHelpers: ->
       current_user_avatar: AlumNet.current_user.get('avatar').large

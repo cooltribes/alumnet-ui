@@ -47,7 +47,6 @@
 
     <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
 
-
     <div class="postCard__btn--like">
       <% if @you_like: %>
         <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
