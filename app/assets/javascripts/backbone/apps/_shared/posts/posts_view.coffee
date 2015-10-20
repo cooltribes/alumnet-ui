@@ -237,7 +237,7 @@
       # fetch all likes
       @model.likesCollection.fetch
         success: (collection)->
-          modal = new Posts.LikesModal
+          modal = new AlumNet.Shared.Views.LikesModal
             model: view.model
             likes: collection
           $('#js-likes-modal-container').html(modal.render().el)

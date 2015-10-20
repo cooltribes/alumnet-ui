@@ -1,7 +1,4 @@
 @AlumNet.module 'EventsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
-  # LIKE MODAL
-  class Posts.LikesModal extends AlumNet.Shared.Views.LikesModal
-
   ##### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
     template: 'events/posts/templates/comment'
@@ -48,19 +45,6 @@
         eventIsClose: @model.isClose()
 
       _.extend helpers, super()
-
-    ui:
-      'bodyInput': '#body'
-      'timeline': '#timeline'
-      'fileList': '#js-filelist'
-      'uploadLink': '#upload-picture'
-      'tagsInput': '#js-user-tags-list'
-      'tagging': '.tagging'
-      'videoContainer': '#video_container'
-      'preview_url': '#url'
-      'preview_title': '#url_title'
-      'preview_description': '#url_description'
-      'preview_image': '#url_image'
 
     events: ->
       events =

@@ -62,6 +62,7 @@
     <% if @canEdit: %>
       <a href="#" id='js-edit-post'>edit</a>
     <% end %>
+
     <% if @canDelete: %>
       <a href="#" id='js-delete-post'>delete</a>
     <% end %>

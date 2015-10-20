@@ -1,11 +1,9 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
-  # LIKE MODAL
-  class Posts.LikesModal extends AlumNet.Shared.Views.LikesModal
-
   # COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
     template: 'home/posts/templates/comment'
     className: 'groupPost__comment'
+
 
   # POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
@@ -33,6 +31,7 @@
 
     onBeforeRender: ->
 
+
   # POSTS COLLECTION
   class Posts.PostsView extends AlumNet.Shared.Views.PostsView
     ##model is current user
@@ -54,12 +53,14 @@
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 
+
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
     regions:
       banners: '#banners-container'
       posts: '#posts-container'
     initialize: ->
+
 
   class Posts.BannerView extends Marionette.ItemView
     template: 'home/posts/templates/_banner'
@@ -75,9 +76,8 @@
     activate: ->
       $(@el).addClass("active")
 
+
   class Posts.BannersView extends Marionette.CompositeView
     template: 'home/posts/templates/banners'
     childView: Posts.BannerView
     childViewContainer: '.carousel-inner'
-    #childViewOptions: ->
-    #  banner: @banner

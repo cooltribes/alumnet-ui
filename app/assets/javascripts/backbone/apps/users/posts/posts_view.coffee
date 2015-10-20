@@ -1,7 +1,4 @@
 @AlumNet.module 'UsersApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
-  # LIKE MODAL
-  class Posts.LikesModal extends AlumNet.Shared.Views.LikesModal
-
   #### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
     template: 'users/posts/templates/comment'

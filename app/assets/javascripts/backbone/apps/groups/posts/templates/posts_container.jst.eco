@@ -7,7 +7,7 @@
 				<div class="item col-md-12">
 					<div class="groupCreatePostForm clearfix">
 						<div class="groupCreatePostForm__avatar">
-							<img src="<%= @avatar.large %>" class="img-circle" >
+							<img src="<%=  @current_user_avatar %>" class="img-circle" >
 						</div>
 						<div class="groupCreatePostForm__form">
 							<form class="form">
@@ -26,7 +26,7 @@
 								  <input type="hidden" id="url_description" name="url_description" style="width:100%">
 								  <input type="hidden" id="url_image" name="url_image" style="width:100%">
 								</div>
-								<!--  -->								
+								<!--  -->
 								<a id="js-add-picture" class="groupPost__btn--comment" href="javascript:;"><i class="icon-entypo-picture"></i>Add Picture</a>
 								<a id="js-add-tags" class="groupPost__btn--comment" href="javascript:;">
 									<i class="icon-entypo-tag"></i>Tag Friends</a>
