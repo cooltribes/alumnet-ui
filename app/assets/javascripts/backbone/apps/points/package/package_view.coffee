@@ -12,17 +12,31 @@
 		initialize: (options) ->
 			@prizeImage = options.model.get('image').image.card.url
 			@points = AlumNet.current_user.profile.get('points')
-			console.log @points
 
 		templateHelpers: ->
       		points: @points
       		prizeImage: @prizeImage
 
+    class Package.EmptyView extends Marionette.ItemView
+    	template: 'points/package/templates/empty'
+			
 	class Package.ListView extends Marionette.CompositeView
 		template: 'points/package/templates/packages_list'
 		childView: Package.PackageView
 		childViewContainer: '#packages_container'
+
+		events:
+			'click #js-modal-points':'showModal'
 		
 		initialize: (options) ->
-			console.log options.models
-			$('#pointsBar').hide();
+			$('#pointsBar').hide()
+			document.title = 'AlumNet - Points'
+
+		showModal: (e)->
+			e.preventDefault()
+			modal = new Package.ModalPoints
+			$('#container-modal-points').html(modal.render().el)
+
+	class Package.ModalPoints extends Backbone.Modal
+    	template: 'points/package/templates/modal'
+    	cancelEl: '#js-close'

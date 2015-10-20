@@ -2,9 +2,19 @@
   class Package.Controller
     listPackages: ->
       prizes = AlumNet.request("prize:entities", {})
-      page = new Package.ListView
-        collection: prizes
+      points = AlumNet.current_user.profile.get('points')
+      if points > 0
+        page = new Package.ListView
+          collection: prizes
+      else
+        page = new Package.EmptyView
+        
       AlumNet.mainRegion.show(page)
+      # Check cookies for first visit
+      if not Cookies.get('points_visit')
+        modal = new Package.ModalPoints
+        $('#container-modal-points').html(modal.render().el)
+        Cookies.set('points_visit', 'true')
       AlumNet.execute('render:points:submenu',undefined,2,true)
 
       page.on 'childview:buy', (childView) ->

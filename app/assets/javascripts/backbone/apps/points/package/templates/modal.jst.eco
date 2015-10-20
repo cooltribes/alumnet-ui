@@ -1,0 +1,28 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">EARN POINTS TO ENJOY REWARDS</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block">
+  	<div class="row">
+  		<div class="col-md-11">
+		  	<p>
+		  		<b>Collecting points</b> is a great way to make the most of your AlumNet experience. Every time you use the "Invite Friends" section to invite fellow alumni to join AlumNet, you earn points when someone accepts your invitation and registers with the system.  You can
+				also earn points by providing verification for registrants going through the approval process.
+			</p>
+			<p>
+				These points may be redeemed for premium features within AlumNet just as job posting privileges, or 1-month access to full member sections if you are not yet a member or entry tickets to special events.
+			</p>
+			<p>
+				The AlumNet team is working on new ways that points may be earned and redeemed in the future so that you can optimize your activities in this global community for the greatest possible value.
+			</p>
+
+			<p>Start collecting points and reap the rewards today!</p>
+		</div>
+	</div>
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar">
+  <a href="#" class="btn btn-primary" id="js-close">Close</a>
+</div>

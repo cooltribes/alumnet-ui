@@ -36,6 +36,7 @@
       'change #group-type': 'changedGroupType'
       'change #official': 'showMailchimpCheckbox'
       'change #mailchimp': 'showMailchimpParamaters'
+      'click #js-file-groups': 'uploadFile'
 
     showMailchimpCheckbox: (e)->
       select = $(e.currentTarget)
@@ -129,3 +130,6 @@
         placeholder: "Select a Country"
         data: data
 
+    uploadFile: (e)->
+      e.preventDefault()
+      $('#group-cover').click()

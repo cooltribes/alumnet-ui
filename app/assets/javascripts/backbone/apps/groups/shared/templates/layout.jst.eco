@@ -11,7 +11,7 @@
 				<% else : %>
 					<li>  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link<%= @classOf(0)%>">
 						<span class="glyphicon glyphicon-list-alt"></span>
-					Posts</a></li>
+					Activity</a></li>
 					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>

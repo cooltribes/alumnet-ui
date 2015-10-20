@@ -31,7 +31,8 @@
         <span>Posted by</span>
         <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
         <span class="userCard__position member-position text-small"><%= @user.last_experience %></span>
-        <span>On <%= moment(@created_at).format('MMM Do YYYY') %></span>
+        <span class="ico-calendar"> <%= moment(@arrivalDate).format('MMM Do YYYY') %> - <%= moment(@endDate).format('MMM Do YYYY') %> </span>
+        
       </div>
     </div>
   <% end %>
@@ -53,6 +54,10 @@
     <a href="#meetup-exchange/<%= @id %>" class="btn btn-primary js-job-details" >Details</a>
     <% if @canApply: %>
       <a href="#" class="btn btn-default js-job-apply" >Meet</a>
+    <% else: %>
+      <% unless @canDelete: %>
+        <a href="#" class="btn btn-default-gray">Applied</a>
+      <% end %>
     <% end %>
   </div>
 </div>

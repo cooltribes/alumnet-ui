@@ -76,8 +76,18 @@
 
       <% if @canEditInformation: %>
         <div class="groupAbout__box margin_bottom">
+          <h3>Type of Event</h3>
+          <span id="edit-type" class="js-attribute">
+            <%= @event_type.text %>
+          </span>
+          <a href="#" id="js-edit-type" class="editLink">[edit]</a>
+        </div>
+      <% end %>
+
+      <% if @canEditInformation: %>
+        <div class="groupAbout__box margin_bottom">
           <h3>Who can upload files</h3>
-          <span href="#" id="upload-files" class="js-attribute">
+          <span id="upload-files" class="js-attribute">
             <%= @uploadFilesText %>
           </span>
           <a href="#" id="js-edit-upload" class="editLink">[edit]</a>

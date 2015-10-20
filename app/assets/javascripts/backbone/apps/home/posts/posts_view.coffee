@@ -1,4 +1,7 @@
 @AlumNet.module 'HomeApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
+  # LIKE MODAL
+  class Posts.LikesModal extends AlumNet.Shared.Views.LikesModal
+
   # COMMENT VIEW
   class Posts.CommentView extends Marionette.ItemView
     template: 'home/posts/templates/comment'
@@ -145,6 +148,9 @@
       canDelete: permissions.canDelete
       showMore: @mostrar
       tagsLinks: @model.tagsLinks()
+      likesLinks: @model.firstLikeLinks()
+      restLikeLink: @model.restLikeLink()
+
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -163,14 +169,18 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-
+    
+    reloadMasonry: ->
+      $('#timeline').masonry() 
 
     onRender: ->
+      $('[data-toggle="tooltip"]').tooltip({html:true});
       view = this
       @ui.bodyPost.editable
         type: 'textarea'
@@ -206,6 +216,7 @@
       'picturesContainer': '.pictures-container'
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
+      'likesLinks':'.js-like-links'
 
     events:
       'keypress .comment': 'commentSend'
@@ -216,6 +227,18 @@
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
+      'click .js-show-likes': 'showLikes'
+
+    showLikes: (e)->
+      e.preventDefault()
+      view = @
+      # fetch all likes
+      @model.likesCollection.fetch
+        success: (collection)->
+          modal = new Posts.LikesModal
+            model: view.model
+            likes: collection
+          $('#js-likes-modal-container').html(modal.render().el)
 
     ytVidId: (url)->
       url = $.trim(url)
@@ -274,16 +297,32 @@
       e.preventDefault()
       @trigger 'post:unlike'
 
-    sumLike:()->
+    sumLike: ->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @updateLikeText()
 
-    remLike:()->
+    remLike: ->
       val = parseInt(@ui.likeCounter.html()) - 1
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
+      @updateLikeText()
+
+    updateLikeText: (remove)->
+      html = @ui.likesLinks.html().trim()
+      if (/(You,)/i).test(html)
+        newText = html.replace('You,', '')
+      else
+        # TODO: revisar donde se agregar el espacio entre You y like :armando
+        if html == "You like this." || html == "You  like this."
+          newText = ""
+        else if html == ""
+          newText = "You like this."
+        else
+          newText = "You, #{html}"
+      @ui.likesLinks.html(newText)
 
     clickedGotoComment: (e)->
       e.stopPropagation()
@@ -306,11 +345,21 @@
     childViewContainer: '.posts-container'
 
     initialize: ->
-      $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreBooks')
       document.title = " AlumNet - Home"
       @picture_ids = []
+      
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreBooks')      
       $(window).scroll(@loadMoreBooks)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')      
 
     loadMoreBooks: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
@@ -331,6 +380,11 @@
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
       'videoContainer': '#video_container'
+      'preview_url': '#url'
+      'preview_title': '#url_title'
+      'preview_description': '#url_description'
+      'preview_image': '#url_image'
+      'loading': '.throbber-loader'
 
     events:
       'click a#js-post-submit': 'submitClicked'
@@ -375,22 +429,29 @@
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
 
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
+
     checkInput: (e)->
-      #console.log @ui.bodyInput.val()
       validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
       if validation
-        console.log validation
-        #@ui.videoContainer.show(new Marionette.ItemView({template: '<iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>'}))
-        #@ui.videoContainer.show(new Marionette.ItemView({template: 'home/posts/templates/youtube_iframe'}))
-        #@ui.videoContainer.show(new Marionette.ItemView({template: '<h1>gach</h1>'}))
-        #@ui.videoContainer.html('<iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe>')
         @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
-        #$.get(@ui.bodyInput.val()+" meta[property='og:title']", (response, status, xhr)->
-        #  $meta = $("meta", this)
-        #  console.log $meta.attr("content")
-        #)
       else
-        console.log "no es url"
+        ui = @ui
+        if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
+          url = @ui.bodyInput.val().split(" ").pop()
+          Backbone.ajax
+            url: AlumNet.api_endpoint + '/metatags'
+            data: {url: url}
+            success: (data)->
+              ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-5 col-lg-4 text-center" style="padding: 13px;"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-sm-8 col-md-7 col-lg-8"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+              ui.preview_image.val(data.image)
+              ui.preview_description.val(data.description)
+              ui.preview_title.val(data.title)
+              ui.preview_url.val(url)
+
 
     submitClicked: (e)->
       e.stopPropagation()

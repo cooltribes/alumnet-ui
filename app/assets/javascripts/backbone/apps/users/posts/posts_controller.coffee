@@ -8,10 +8,11 @@
         layout = AlumNet.request("user:layout", user, 0)
         header = AlumNet.request("user:header", user)
 
-        user.posts.url = AlumNet.api_endpoint + '/users/' + user_id + '/posts?page='+user.posts.page+'&per_page='+user.posts.rows
+        user.posts.url = AlumNet.api_endpoint + '/users/' + user_id + '/posts'
         user.posts.page = 1
         user.posts.fetch
-            reset: true
+          data: { page: user.posts.page, per_page: user.posts.rows }
+          reset: true
 
         posts = new Posts.PostsView
           current_user: current_user
@@ -23,11 +24,16 @@
         layout.body.show(posts)
 
         posts.on "post:reload", ->
-          ++posts.collection.page
+          #++posts.collection.page
+          # TODO: Preguntar por esto!! :rafael
           newCollection = AlumNet.request("post:current")
-          newCollection.url = AlumNet.api_endpoint + '/users/'+ user_id + '/posts?page='+posts.collection.page+'&per_page='+posts.collection.rows
+          newCollection.url = AlumNet.api_endpoint + '/users/'+ user_id + '/posts'
           newCollection.fetch
+            data: { page: ++@collection.page, per_page: @collection.rows }
             success: (collection)->
+              if collection.length < collection.rows 
+                posts.endPagination()
+                posts.collection.page = 1
               posts.collection.add(collection.models)
 
         checkNewPost = false #flag for new posts

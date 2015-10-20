@@ -1,0 +1,93 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Alumni Who Like This</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <div class="center-block" style="text-align: -webkit-center;">
+    <% for like in @likes: %>
+      <div class="userCardLike" data-id="<%= like.id %>">
+        <div class="row">
+          <div class="col-md-2 padding_top_small">
+            <img src="<%= like.get('user').avatar %>" alt="<%= like.get('user').name %>" class="img-circle">
+          </div>
+          <div class=" col-md-7 padding_top">
+            <h3 class="userCard__name no_margin_top overfloadText"><a href="#users/<%= like.get('user').id %>/posts" title="<%= like.get('user').name %>"><%= like.get('user').name %></a></h3>
+          </div>
+          <% if like.get('user').friendship_status == "sent": %>
+            <div class=" col-md-3">
+              <a href="#" id="js-cancel-friendship" title="Cancel request">
+                <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel company_userCard__actions">
+                  <span class="invitation">
+                    <span class="userCard__actions__text">CANCEL</span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="glyphicon glyphicon-time"></span>
+                  </span>
+                </div>
+              </a>
+            </div>
+          <% else if like.get('user').friendship_status == "received": %>
+          <!-- Nothing to show here -->
+            <div class=" col-md-3 ">
+              <span class="invitation">
+                <a href="#" id="js-accept-friendship" title="Approve friend request">
+                  <div class="userCard__actions--Approve userCard__animation">
+                    <span class="userCard__actions__text">ACCEPT</span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </div>
+                </a>
+                <a href="#" id="js-reject-friendship" title="Decline friend request">
+                  <div class="userCard__actions--Decline userCard__animation">
+                    <span class="userCard__actions__text">REJECT</span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </div>
+                </a>
+              </span>
+            </div>
+          <!-- <div class="pull-left "> -->
+          <!-- </div> -->
+          <% else if like.get('user').friendship_status == "accepted": %>
+          <div class=" col-md-3 ">
+            <a href="#" id="js-delete-friendship"  class="" title="Unfriend">
+              <div id="link-container" class="userCard__actions userCard__animation userCard__actions--unFriend company_userCard__actions">
+                <span class="invitation">
+                  <span class="userCard__actions__text">UNFRIEND <!--<span class="glyphicon glyphicon-remove">--></span>
+                  <span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </span>
+                </span>
+              </div>
+            </a>
+          </div>
+        <% else if like.get('user').friendship_status == "current user": %>
+          <div class=" col-md-3 ">
+            <div id="link-container" class="userCard__actions userCard__actions--isFriend">
+              <span class="invitation">
+              </span>
+            </div>
+          </div>
+        <% else: %>
+        <div class=" col-md-3 ">
+          <a href="#" id="js-request-friendship" title="Send friend request">
+            <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation company_userCard__actions">
+              <span class="invitation">
+                <span class="userCard__actions__text">ADD FRIEND</span>
+                <span class="icon-entypo-user-add"></span>
+              </span>
+            </div>
+          </a>
+        </div>
+      <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar no_margin_top">
+  <a href="#" id="close" class="btn btn-primary">Close</a>
+</div>
+
+

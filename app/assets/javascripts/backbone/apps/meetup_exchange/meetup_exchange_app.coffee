@@ -12,27 +12,27 @@
 
   API =
     discoverMeetupExchange: ->
-      document.title = 'AlumNet - Discover Tasks'
+      document.title = 'AlumNet - Discover Meetups'
       controller = new MeetupExchangeApp.Discover.Controller
       controller.discover()
     yourTasksMeetupExchange: ->
-      document.title = 'AlumNet - Your Tasks'
+      document.title = 'AlumNet - My Meetups'
       controller = new MeetupExchangeApp.YourTasks.Controller
       controller.your_tasks()
     appliedMeetupExchange: ->
-      document.title = 'AlumNet - Applied Tasks'
+      document.title = 'AlumNet - Applied Meetups'
       controller = new MeetupExchangeApp.Applied.Controller
       controller.applied()
     automatchesMeetupExchange: ->
-      document.title = 'AlumNet - Tasks Automatches'
+      document.title = 'AlumNet - Meetups Sugestions'
       controller = new MeetupExchangeApp.AutoMatches.Controller
       controller.automatches()
     invitationsMeetupExchange: ->
-      document.title = 'AlumNet - Tasks Invitations'
+      document.title = 'AlumNet - Meetups Invitations'
       controller = new MeetupExchangeApp.Invitations.Controller
       controller.invitations()
     createMeetupExchange: ->
-      document.title = 'AlumNet - Create a Task'
+      document.title = 'AlumNet - Create New Meetup'
       controller = new MeetupExchangeApp.Create.Controller
       controller.create()
     updateMeetupExchange: (id)->

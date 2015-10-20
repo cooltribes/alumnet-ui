@@ -1,4 +1,4 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
+<div class="groupCoverArea" style="<%= @cover_style() %>">
     <% if @canEditInformation: %>
       <h1 class="groupCoverArea__title <% if @official: %>groupCoverArea__title--ribbon  <% end %>">
         <a href="#" id="name" class="clearfix">
@@ -14,10 +14,22 @@
     
     <% end %>
   <% if @canEditInformation: %>
-  <div class="groupCoverArea__editCover">
-    <a href="#" id="js-upload-cover" class="btn btn-lg btn-alert btn-alert--edit groupCoverArea__editCover"><span class="text">Upload new cover photo</span></a>
-    </div>
+   <form>
+     <span id="js-changeCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover
+     </span>    
+     <input type="file" id="profile-cover" style="display:none;" name="cover" accept="image/*">
+
+     <span id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 170px; bottom: 0;"><span class="glyphicon glyphicon-edit"></span>  Reposition Cover
+     
+     </span> 
+   </form>    
+    
   <% end %>
+
+  <div class="coverLabel coverLabel--events" id="js-crop-label" style="display:none">
+    <span class="crop"><span class="glyphicon glyphicon-hand-up"></span> Drag to Reposition Cover</span>
+  </div>
+
   <% if @userCanAttend  && not @isPast && (@capacity > @going_count || not @capacity) && @attendance().status != 'going' && !@payment_info: %>
     <div class="groupCoverArea__attendanceOptions">
       <a href="#" id="js-att-going" class="btn btn-lg btn-alert groupCoverArea__attendanceOptions--option <%= @buttonAttendance('js-att-going',@attendance().status) %>" data-value="going">

@@ -104,7 +104,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
-      @ui.selectCountries.select2('val', @model.get("country").id, true)
+      #@ui.selectCountries.select2('val', @model.get("country").id, true)
+      @ui.selectCountries.select2('val', @model.get("country_id"), true)
 
       if @model.get('exp_type') == 0 && @model.get("aiesec_experience")
         @setAllCountries(@model.get("aiesec_experience"))
@@ -154,6 +155,8 @@
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
+      console.log 'load'
+      console.log @model
       city = @model.get('city')     
       console.log city       
       placeholder: "Select a #{placeholder}"

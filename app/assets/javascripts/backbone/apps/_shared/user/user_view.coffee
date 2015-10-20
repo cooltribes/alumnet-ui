@@ -16,7 +16,9 @@
       'click #js-delete-friendship':'clickedDelete'
       'click #js-cancel-friendship':'clickedCancel'
 
-
+    modelEvents: ->
+      'change': 'render'
+    
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
@@ -24,10 +26,9 @@
       attrs = @model.get('friendship')
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       friendship.on 'save:success', (response, options) ->
+        self.addAcceptedLink()
         AlumNet.current_user.decrementCount('pending_received_friendships')
         AlumNet.current_user.incrementCount('friends')
-        self.render()
-        self.trigger 'Catch:Up'
       friendship.on 'save:error', (response, options)->
         console.log response.responseJSON
 
@@ -38,8 +39,8 @@
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       friendship.on 'save:success', (response, options) ->
+        self.addCancelLink()
         AlumNet.current_user.incrementCount('pending_sent_friendships')
-        self.trigger 'Catch:Up'
       friendship.on 'save:error', (response, options)->
         console.log response.responseJSON
 
@@ -75,4 +76,10 @@
 
     removeCancelLink: ->
       @model.set("friendship_status","none")
-      @trigger 'Catch:Up'
+      #@trigger 'Catch:Up'
+
+    addCancelLink: ->
+      @model.set("friendship_status","sent")
+
+    addAcceptedLink: ->
+      @model.set("friendship_status","accepted")

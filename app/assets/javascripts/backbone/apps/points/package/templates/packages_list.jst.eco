@@ -1,4 +1,10 @@
-<div class="container padding_top">
-	<div class="row-fluid" id="packages_container">
+<div class="container-fluid">
+	<div class="col-md-12 text-right margin_top_large">
+	   	<a href="" id="js-modal-points"><span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span></a>
 	</div>
 </div>
+
+<div class="container padding_top">
+	<div class="row-fluid" id="packages_container"></div>
+</div>
+<div id="container-modal-points" class="modalPrograms"></div>

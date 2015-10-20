@@ -1,22 +1,22 @@
 <div class=" row">
   <div class="col-md-12">
     <h4>
-      <%%= @title %> 
-      <%% if @userCanEdit: %>
+      <%%= @title %>
+      <%% if @userCanDelete: %>
         <button type="button" class="close js-rmvItem"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <%% end %>           
+      <%% end %>
     </h4>
 
   </div>
 </div>
-<a href="#" class="js-pic-detail">  
+<a href="#" class="js-pic-detail">
     <div class=" row">
       <div class="col-md-12 text-center">
 
         <%% if @picture: %>
           <img src="<%%= @picture.card %>" alt="<%%= @title %>" width="100%">
         <%% else: %>
-          <%= image_tag("general/326x346.png", width: "100%", class: "albums-list__upload__bordedBox") %> 
+          <%= image_tag("general/326x346.png", width: "100%", class: "albums-list__upload__bordedBox") %>
           <!-- TODO: Take this style to css files -->
           <div style="
               position: absolute;
@@ -30,8 +30,8 @@
 
       </div>
     </div>
-  
+
 </a>
 <div id="js-modal-container">
-        
+
 </div>

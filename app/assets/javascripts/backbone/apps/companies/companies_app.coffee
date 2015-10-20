@@ -38,7 +38,7 @@
         controller.employees(id)
 
       jobPosts: (id)->
-        document.title = 'AlumNet - Companies'
+        document.title = 'AlumNet - Create New Companies'
         controller = new CompaniesApp.JobPosts.Controller
         controller.job_posts(id)
 

@@ -16,7 +16,7 @@
       <!-- Avatar OFF -->
 
           <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
-          
+
           <!-- TAGS       -->
           <% if @tagsLinks: %>
             <div class="tags" >
@@ -32,7 +32,14 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <p id="js-body-post"> <%= @body %></p>
+        <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+            <!-- PREVIEW -->
+            <% if @preview.url : %>
+              <h4 style="color:#111111"><%= @preview.title %></h4>
+              <span><%= @preview.description %></span>
+              <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
+            <% end %>
+            <!-- PREVIEW OFF -->
       </div>
     </div>
 
@@ -78,7 +85,17 @@
     <% if @canDelete: %>
         <a href="#" class="glyphicon glyphicon-remove" id='js-delete-post'>Delete</a>
     <% end %>
+
+    <div class="js-like-links link-text margin_top_small">
+      <% if @likes_count > 0: %>
+        <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
+      <% end %>
+    </div>
   </div>
+
+  <!-- LiKE LINKS -->
+
+  
 
 
   <a href="#" class="groupPost__btn--loadMore" id="js-load-more">Show previews comments</a>
@@ -93,7 +110,7 @@
       <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
         <div class="groupPost__commentForm__form">
           <div class="col-xs-9 form-group mentions">
-            <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1" style="height: 35px"></textarea>
+            <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1"></textarea>
           </div>
           <div class="col-xs-3 visible-xs">
             <button style="margin-left: 28px; color: #2099D0" id= "commentB" class="btn btn-default-blue"><span class="glyphicon glyphicon-comment"></span></button>
@@ -103,3 +120,4 @@
     </div>
   </form>
 </div>
+<div id="js-likes-modal-container" class="modalPrograms"></div>

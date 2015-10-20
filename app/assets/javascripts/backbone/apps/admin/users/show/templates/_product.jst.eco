@@ -1,6 +1,7 @@
 <td><%= @productType %></td>
 <td><%= @product.name %></td>
-<td><%= @startDate + " - " + @endDate %></td>
+<td><%= @startDate %></td>
+<td class="js-end-date"><%= @endDate %></td>
 <td>
 	<%= @status %>
 	<% if @status == "Active": %>

@@ -17,7 +17,16 @@
       <!--  -->
       <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
     </div>
-    <p id="js-body-post"> <%= @body %></p>
+
+    
+    <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+    <!-- PREVIEW -->
+    <% if @preview.url : %>
+      <h4 style="color:#111111"><%= @preview.title %></h4>
+      <span><%= @preview.description %></span>
+      <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
+    <% end %>
+    <!-- PREVIEW OFF -->
     <!-- PICTURES -->
     <% if @pictures: %>
       <div class="modal-container"></div>
@@ -34,6 +43,7 @@
       </div>
     <% end %>
     <hr>
+
     <!-- PICTURES OFF     -->
     <div class="postCard__btn--like">
     <% if @you_like: %>

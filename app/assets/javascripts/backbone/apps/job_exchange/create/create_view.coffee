@@ -105,12 +105,15 @@
       'selectProfindaNiceHaveLanguages': '#languages-nice-have'
       'selectPosition': '#employment-type'
       'showModalLink': '#js-show-modal'
+      'applicationType': '.js-application-type'
+      'externalUrl': '#external_url'
 
     events:
       'click @ui.submitLink': 'submitClicked'
       'click @ui.cancelLink': 'cancelClicked'
       'change @ui.selectCountries': 'setCities'
       'click @ui.showModalLink': 'showCompanyModal'
+      'change @ui.applicationType': 'changeApplicationType'
 
     onShow: ->
       summernote_options =
@@ -248,6 +251,12 @@
         model: new AlumNet.Entities.Company
         taskView: @
       $('#js-modal-company-container').html(modal.render().el)
+
+    changeApplicationType: (e)->
+      if e.target.value == 'external'
+        $('#external_url').prop("disabled", false)
+      else
+        $('#external_url').prop("disabled", true)
 
   class Create.JobPostsView extends Marionette.ItemView
     template: 'job_exchange/create/templates/job_posts'

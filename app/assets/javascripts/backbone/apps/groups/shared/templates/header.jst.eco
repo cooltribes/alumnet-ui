@@ -1,4 +1,4 @@
-<div class="groupCoverArea" style="background-image: url('<%= @cover_image %>');">
+<div class="groupCoverArea" style="<%= @cover_style() %>">
 	<h1 class="groupCoverArea__title 
 .overfloadText  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
     <% if @canEditInformation: %>
@@ -8,8 +8,21 @@
     <% end %>
   </h1>
   <% if @canEditInformation: %>
-    <a href="#" id="js-upload-cover" class="groupCoverArea__btnUploadCover btn btn-lg">Upload new cover photo</a>
+     <form>
+      <span id="js-changeCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover
+      </span>    
+      <input type="file" id="group-cover" style="display:none;" name="cover" accept="image/*">
+
+      <span id="js-editCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 170px; bottom: 0;"><span class="glyphicon glyphicon-edit"></span>  Reposition Cover
+      
+      </span> 
+      </form>    
   <% end %>
+
+  <div class="coverLabel coverLabel--groups" id="js-crop-label" style="display:none">
+    <span class="crop"><span class="glyphicon glyphicon-hand-up"></span> Drag to Reposition Cover</span>
+  </div>
+  
   <% if @userCanInvite: %>
     <a href="#groups/<%= @id %>/invite" title="Invite people to group" class="groupCoverArea__btnInvite btn btn-lg">+ Invite people to group</a>
   <% end %>

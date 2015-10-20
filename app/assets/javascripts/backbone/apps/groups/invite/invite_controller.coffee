@@ -2,7 +2,7 @@
   class Invite.Controller
     listUsers: (id)->
       controller = @
-      controller.querySearch = ''
+      controller.querySearch = {}
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
         if group.userCanInvite()
@@ -13,12 +13,13 @@
           AlumNet.mainRegion.show(usersView)
           AlumNet.execute('render:groups:submenu')
           usersView.on "user:reload", ->
-            querySearch = controller.querySearch 
+            querySearch = controller.querySearch
             ++usersView.collection.page
             newCollection = AlumNet.request("user:pagination")
-            newCollection.url = AlumNet.api_endpoint + '/users?page='+usersView.collection.page+'&per_page='+usersView.collection.rows
+            newCollection.url = AlumNet.api_endpoint + '/users'
+            query = _.extend(querySearch, { page: usersView.collection.page, per_page: usersView.collection.rows })
             newCollection.fetch
-              data: querySearch
+              data: query
               success: (collection)->
                 usersView.collection.add(collection.models)
 
@@ -27,7 +28,7 @@
             container.imagesLoaded ->
               container.masonry
                 itemSelector: '.col-md-4'
-              container.append( $(viewInstance.el) ).masonry 'reloadItems'          
+              container.append( $(viewInstance.el) ).masonry 'reloadItems'
 
           #When invite link is clicked
           usersView.on 'childview:invite', (childView) ->

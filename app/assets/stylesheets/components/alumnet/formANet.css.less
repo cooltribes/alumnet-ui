@@ -49,6 +49,22 @@ DESCRIPTION: Specific style for the forms of AlumNet
   		position: relative;
   		z-index: 3;
   	}
+	
+	&--textCompanies{
+  		position: relative;
+  		z-index: 3;
+  		color: #fff;
+  		font-weight: 700;
+  		font-size: 1.7em;
+  		top: -150px;
+		text-align: center;
+		cursor: pointer;
+  		& small{
+	  		display: block;
+			font-size: 0.5em;
+			margin-top: 2px;
+	  	}
+  	}
 
 	& input{
 		z-index: 999;
@@ -141,5 +157,105 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	
 	&__close{
 		opacity: 0.9;
+	}
+
+	&__find{
+		text-align: center;
+		img{
+			width: 60px;
+			height: 60px;
+		}
+	}
+	&__text{
+		color: #111;
+	}
+
+	&__textHelp{
+		text-align: center;
+	}
+	&__buttonSend{
+		.btn-lg, .btn-group-lg > .btn{
+			font-size: 16px;
+		}
+	}
+
+	&__margin-top{
+		margin-top: 2.18em;
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+.formANet{
+	&__find{
+		text-align: left;
+		img{
+			width: 90px;
+			height: 90px;
+			}
+		}
+
+		&__textHelp{
+			text-align: left;
+		}
+
+		&__buttonSend{
+			.btn-lg, .btn-group-lg > .btn{
+				font-size: 18px;
+			}
+		}
+
+		&__margin-top{
+			margin-top: 0;
+		}
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+.formANet{
+	&__find{
+		text-align: left;
+		img{
+			width: 90px;
+			height: 90px;
+			}
+		}
+		&__textHelp{
+			text-align: left;
+		}
+		&__buttonSend{
+			.btn-lg, .btn-group-lg > .btn{
+				font-size: 18px;
+			}
+		}
+		&__margin-top{
+			margin-top: 0;
+		}
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @media-large-min) {
+.formANet{
+	&__find{
+		text-align: left;
+		img{
+			width: 90px;
+			height: 90px;
+			}
+		}
+		&__textHelp{
+			text-align: left;
+		}
+
+		&__buttonSend{
+			.btn-lg, .btn-group-lg > .btn{
+				font-size: 18px;
+			}
+		}
+		&__margin-top{
+			margin-top: 0;
+		}
 	}
 }

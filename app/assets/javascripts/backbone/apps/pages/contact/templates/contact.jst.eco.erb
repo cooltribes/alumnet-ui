@@ -31,5 +31,32 @@
 			<%= image_tag('static_pages/ImgContact.jpg', class: "img-responsive staticContentBox__Img", alt: "Contact
 		 us" ) %>
 		</div>
+		<hr>
+		<form class="row formANet form ">
+			<div class="col-md-7 margin_top_medium ">
+	            <div class="form-group">
+					<label class="control-label">Subject related to:</label>
+					<select class="form-control input-lg" id="email" name="email">
+						<option value="editor@aiesec-alumni.org">News for inclusion in the AAI newsletter</option>
+						<option value="membership@aiesec-alumni.org">Membership questions</option>
+						<option value="alumnet@aiesec-alumni.org">Technical questions</option>
+						<option value="info@aiesec-alumni.org">Any other questions</option>
+					</select>
+					<span class="help-block"></span>
+	            </div>
+	            <div class="form-group">
+					<label class="control-label">Message:</label>
+					<textarea class="form-control input-lg " rows="5" name="message" id="message"></textarea>
+					<span class="help-block"></span>
+	            </div>
+	        </div>
+	        <!-- ACTIONS ON -->
+	        <div class="col-md-7 margin_top_medium ">
+		        <div class="text-right">
+					<button class="btn btn-primary btn-lg js-submit">SEND</button>
+		        </div>
+	        </div>
+	        <!-- ACTIONS OFF -->
+		</form>
 	</section>
 </article>

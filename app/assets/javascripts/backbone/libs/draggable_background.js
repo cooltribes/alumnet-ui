@@ -96,8 +96,11 @@
           pos = $el.css('background-position').match(/(-?\d+).*?\s(-?\d+)/) || [],
           xPos = parseInt(pos[1]) || 0,
           yPos = parseInt(pos[2]) || 0;
+      console.log($el[0]);
+      
+      
+      $el.select('div').on('mousemove.dbg touchmove.dbg', function(e) {
 
-      $window.on('mousemove.dbg touchmove.dbg', function(e) {
         e.preventDefault();
 
         if (e.originalEvent.touches) {
@@ -106,13 +109,39 @@
 
         var x = e.clientX,
             y = e.clientY;
-
         xPos = options.axis === 'y' ? xPos : limit($el.innerWidth()-imageDimensions.width, 0, xPos+x-x0, options.bound);
         yPos = options.axis === 'x' ? yPos : limit($el.innerHeight()-imageDimensions.height, 0, yPos+y-y0, options.bound);
         x0 = x;
         y0 = y;
 
         $el.css('background-position', xPos + 'px ' + yPos + 'px');
+      });
+
+      $window.on('mousemove.dbg touchmove.dbg', function(e) {
+
+        e.preventDefault();
+
+        if (e.originalEvent.touches) {
+          modifyEventForTouch(e);
+        }
+
+        var x = e.clientX,
+            y = e.clientY;
+        xPos = options.axis === 'y' ? xPos : limit($el.innerWidth()-imageDimensions.width, 0, xPos+x-x0, options.bound);
+        yPos = options.axis === 'x' ? yPos : limit($el.innerHeight()-imageDimensions.height, 0, yPos+y-y0, options.bound);
+        x0 = x;
+        y0 = y;
+
+        $el.css('background-position', xPos + 'px ' + yPos + 'px');
+      });
+      
+      $el.select('div').on('mouseup.dbg touchend.dbg mouseleave.dbg', function() {
+        if (options.done) {
+          options.done();
+        }
+
+        $el.select('div').off('mousemove.dbg touchmove.dbg');
+        $el.select('div').off('mouseup.dbg touchend.dbg mouseleave.dbg');
       });
 
       $window.on('mouseup.dbg touchend.dbg mouseleave.dbg', function() {

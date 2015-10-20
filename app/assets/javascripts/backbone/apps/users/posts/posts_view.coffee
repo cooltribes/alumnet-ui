@@ -115,11 +115,12 @@
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
+    clientHeight: 60
 
     initialize: (options)->
       @userModel = options.userModel
       @current_user = options.current_user
-
+      
     childViewOptions: ->
       post: @model
       userModel: @userModel
@@ -150,11 +151,16 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+
+    reloadMasonry: ->
+      $('#timeline').masonry()       
 
     onBeforeRender: ->
       @model.comments.fetch()
@@ -191,17 +197,23 @@
       'modalContainer': '.modal-container'
 
     events:
-      'keypress .comment': 'commentSend'
+      'keyup .comment': 'commentSend'
       'click .js-like': 'clickedLike'
       'click .js-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
       'click .picture-post': 'clickedPicture'
+  
 
     ytVidId: (url)->
       url = $.trim(url)
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
+
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
 
     clickedPicture: (e)->
       e.preventDefault()
@@ -213,6 +225,12 @@
 
     commentSend: (e)->
       e.stopPropagation()
+      #console.log e.target.clientHeight
+      #console.log @ui.commentInput.height()
+      #if @ui.commentInput.height() > @clientHeight 
+      #  @clientHeight = @ui.commentInput.height()
+      #  $('#timeline').masonry()
+      
       if e.keyCode == 13
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
@@ -289,9 +307,14 @@
     childViewContainer: '.posts-container'
 
     initialize: (options)->
-      _.bindAll(this, 'loadMorePosts');
+      
       @current_user = options.current_user
       @picture_ids = []
+      
+
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMorePosts');
       $(window).scroll(@loadMorePosts);
 
     remove: ->
@@ -338,11 +361,21 @@
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
       'videoContainer': '#video_container'
+      'preview_url': '#url'
+      'preview_title': '#url_title'
+      'preview_description': '#url_description'
+      'preview_image': '#url_image'
+      'loading': '.throbber-loader'
 
     events:
       'click a#js-post-submit': 'submitClicked'
       'click a#js-add-tags': 'showTagging'
       'keyup @ui.bodyInput': 'checkInput'
+
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')
 
     showTagging: (e)->
       e.preventDefault()
@@ -357,10 +390,28 @@
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
 
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
+
     checkInput: (e)->
       validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
       if validation
         @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
+      ui = @ui
+      if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
+        url = @ui.bodyInput.val().split(" ").pop()
+        Backbone.ajax
+          url: AlumNet.api_endpoint + '/metatags'
+          data: {url: url}
+          success: (data)->
+            ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-5 col-lg-4 text-center" style="padding: 13px;"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-sm-8 col-md-7 col-lg-8"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+            ui.preview_image.val(data.image)
+            ui.preview_description.val(data.description)
+            ui.preview_title.val(data.title)
+            ui.preview_url.val(url)
+
 
 
     submitClicked: (e)->
@@ -374,10 +425,10 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 
     loadMorePosts: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        console.log 'posts: '+@.cid
         @trigger 'post:reload'

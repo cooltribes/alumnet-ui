@@ -2,7 +2,7 @@
   class Find.Controller
     findUsers: ->
       controller = @
-      controller.querySearch = ''
+      controller.querySearch = {}
       users = AlumNet.request('user:entities', {})
       users.page = 1
       usersView = new Find.UsersView
@@ -17,14 +17,15 @@
 
       AlumNet.mainRegion.show(usersView)
       AlumNet.execute('render:friends:submenu',undefined, 1)
-      
+
       usersView.on "user:reload", ->
-        querySearch = controller.querySearch 
+        querySearch = controller.querySearch
         ++usersView.collection.page
         newCollection = AlumNet.request("user:pagination")
-        newCollection.url = AlumNet.api_endpoint + '/users?page='+usersView.collection.page+'&per_page='+usersView.collection.rows
+        newCollection.url = AlumNet.api_endpoint + '/users'
+        query = _.extend(querySearch, { page: usersView.collection.page, per_page: usersView.collection.rows })
         newCollection.fetch
-          data: querySearch
+          data: query
           success: (collection)->
             usersView.collection.add(collection.models)
 
@@ -38,3 +39,5 @@
       usersView.on 'users:search', (querySearch)->
         controller.querySearch = querySearch
         searchedFriends = AlumNet.request('user:entities', querySearch)
+
+

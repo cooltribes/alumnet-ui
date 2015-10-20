@@ -4,7 +4,11 @@
     template: 'job_exchange/_shared/templates/discover_task'
     className: 'col-md-4'
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'job_exchange/discover/templates/empty'
+
   class Discover.List extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     template: 'job_exchange/discover/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'

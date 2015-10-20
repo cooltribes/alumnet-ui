@@ -40,7 +40,7 @@
     template: 'events/about/templates/about'
 
     initialize: (options)->
-      @listenTo(@model, 'change:start_date change:end_date change:location change:admission_type', @renderView)
+      @listenTo(@model, 'change:start_date change:end_date change:location change:admission_type change:event_type', @renderView)
       @current_user = options.current_user
 
     templateHelpers: ->
@@ -69,6 +69,7 @@
       'uploadFiles':'#upload-files'
       'Gmap': '#map'
       'linkSaveDescription': 'a#js-save-description'
+      'editTypeLink': '#edit-type'
 
     events:
       'click a#js-edit-description': 'toggleEditDescription'
@@ -81,6 +82,7 @@
       'click @ui.linkSaveDescription': 'saveDescription'
       'click #js-edit-start-hour': 'editStartHour'
       'click #js-edit-end-hour': 'editEndHour'
+      'click #js-edit-type': 'toggleEditType'
 
     onRender: ->
       view = this
@@ -93,6 +95,21 @@
         success: (response, newValue)->
           view.model.save
             "upload_files": newValue
+
+      @ui.editTypeLink.editable
+        type:'select'
+        value: view.model.get('event_type').text
+        source: [
+              {value: 'open', text: 'Open'},
+              {value: 'closed', text: 'Closed'}
+              {value: 'secret', text: 'Secret'}
+           ]
+        pk: view.model.id
+        title: 'Enter the type of Event'
+        toggle: 'manual'
+        success: (response, newValue)->
+          view.model.save({event_type: newValue})
+          view.model.trigger('change:event_type')
 
       @ui.admisionType.editable
         type:'select'
@@ -236,6 +253,11 @@
       e.stopPropagation()
       e.preventDefault()
       @ui.uploadFiles.editable('toggle')
+
+    toggleEditType: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.editTypeLink.editable('toggle')
 
     renderView: ->
       @model.save()

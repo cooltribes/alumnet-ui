@@ -155,12 +155,16 @@
             gutter: 1
 
       # Autosize
-      @ui.commentInput.autoResize()
+      self = @
+      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-
+    
+    reloadMasonry: ->
+      $('#timeline').masonry()
+      
     onBeforeRender: ->
       @model.comments.fetch()
       @collection = @model.comments
@@ -347,6 +351,10 @@
       'tagsInput': '#js-user-tags-list'
       'tagging': '.tagging'
       'videoContainer': '#video_container'
+      'preview_url': '#url'
+      'preview_title': '#url_title'
+      'preview_description': '#url_description'
+      'preview_image': '#url_image'      
 
     events:
       'click a#js-post-submit': 'submitClicked'
@@ -367,10 +375,28 @@
       p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
       if (url.match(p)) then RegExp.$1 else false
 
+    ifUrl: (url)->
+      url = $.trim(url)
+      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+      url.match(p)
+
     checkInput: (e)->
       validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
       if validation
         @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
+      else
+        ui = @ui
+        if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
+          url = @ui.bodyInput.val().split(" ").pop()
+          Backbone.ajax
+            url: AlumNet.api_endpoint + '/metatags'
+            data: {url: url}
+            success: (data)->
+              ui.videoContainer.html('<div class="row"><div class="col-md-3"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-md-9"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+              ui.preview_image.val(data.image)
+              ui.preview_description.val(data.description)
+              ui.preview_title.val(data.title)
+              ui.preview_url.val(url)
 
     sendJoin:(e)->
       e.preventDefault()
@@ -393,6 +419,7 @@
         @picture_ids = []
         @ui.bodyInput.val('')
         @ui.fileList.html('')
+        @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 

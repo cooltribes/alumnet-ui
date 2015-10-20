@@ -41,7 +41,6 @@
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
       'change #official': 'changedOfficial'
-      'change #admission-type': 'changedAdmissionType'
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
@@ -147,8 +146,6 @@
         placeholder: "Select a Country"
         data: data
 
-
-
   # INVITE
 
   class Create.UserView extends Marionette.ItemView
@@ -204,7 +201,9 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      this.trigger('users:search', this.buildQuerySearch(data.search_term))
+      querySearch = @buildQuerySearch(data.search_term)
+      @collection.fetch
+        data: querySearch
 
     buildQuerySearch: (searchTerm) ->
       q:

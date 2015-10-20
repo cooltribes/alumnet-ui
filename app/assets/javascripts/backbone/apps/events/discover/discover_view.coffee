@@ -2,7 +2,7 @@
 
   class Discover.EventView extends Marionette.ItemView
     template: 'events/discover/templates/event'
-    className: 'eventsTableView margin_bottom_xsmall'
+    className: 'container'
 
     templateHelpers: ->
       model = @model
@@ -64,8 +64,12 @@
         $(e.target).removeClass('eventsTableView__status--else')
         $(e.target).removeClass('eventsTableView__status--going')
         $(e.target).addClass('eventsTableView__status--maybe')
+        
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'events/discover/templates/empty'
 
   class Discover.EventsView extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     className: 'ng-scope'
     idName: 'wrapper'
     template: 'events/discover/templates/events_container'
@@ -75,12 +79,16 @@
     ui:
       'searchInput': '#js-search-input'
       'calendario': '#calendar'
+      'upcomingEvents':'#js-upcoming-events'
+      'pastEvents':'#js-past-events'
 
     events:
       'submit #js-search-form': 'searchEvents'
       #'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
+      'click @ui.upcomingEvents': 'clickUpcoming'
+      'click @ui.pastEvents': 'clickPast'
       #'click .js-search-input': 'searchCliked'
       #'click .js-search': 'searchEvents'
 
@@ -96,10 +104,15 @@
       $.each eventsArray, (id,content)->
         if content["duracion"]> 0
           content["datetime"] = content["startime"]
-      console.log eventsArray
 
       $(@ui.calendario).eCalendar
         events: eventsArray
+
+    clickUpcoming: (e)->
+      e.preventDefault()
+      @searchUpcomingEvents({})
+      @clearClass()
+      @setActiveClass($(e.currentTarget))
 
     searchUpcomingEvents: (query)->
       seft = this
@@ -111,6 +124,12 @@
 
       @collection.getUpcoming(query, options)
       @flag = "upcoming"
+
+    clickPast: (e)->
+      e.preventDefault()
+      @searchPastEvents({})
+      @clearClass()
+      @setActiveClass($(e.currentTarget))
 
     eventsMap: (seft,collection)->
       eventsArray = collection.models.map (model) ->
@@ -169,3 +188,18 @@
       else
         query = {}
       @searchUpcomingEvents(query)
+
+    searchPastEvents: (query)->
+      @collection.getPast(query)
+      @flag = "past"
+
+    setActiveClass: (target)->
+      console.log target
+      console.log target.attr('class')
+      target.addClass("sortingMenu__item__link sortingMenu__item__link--active")
+      console.log target.attr('class')
+
+    clearClass: ()->
+      $('#js-upcoming-events, #js-past-events')
+      .removeClass("sortingMenu__item__link sortingMenu__item__link--active")
+      .addClass("sortingMenu__item__link sortingMenu__item__link")

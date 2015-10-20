@@ -8,8 +8,9 @@
       AlumNet.execute('render:home:submenu')
       checkNewPost = false
       current_user = AlumNet.current_user
-      current_user.posts.url = AlumNet.api_endpoint + '/me/posts?page='+current_user.posts.page+'&per_page='+current_user.posts.rows
+      current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
       current_user.posts.fetch
+        data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
       current_user.posts.page = 1
 
@@ -32,13 +33,15 @@
       layout.banners.show(bannersView)
 
       posts.on "post:reload", ->
-        ++posts.collection.page
         newCollection = AlumNet.request("post:current")
-        newCollection.url = AlumNet.api_endpoint + '/me/posts?page='+posts.collection.page+'&per_page='+posts.collection.rows
+        newCollection.url = AlumNet.api_endpoint + '/me/posts'
         newCollection.fetch
+          data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
-
+            if collection.length < collection.rows 
+              posts.collection.page = 1
+              posts.endPagination() 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
         container.imagesLoaded ->
@@ -76,6 +79,7 @@
           success: ->
             post.sumLike()
             postView.sumLike()
+            $('[data-toggle="tooltip"]').tooltip({html:true});
       posts.on "childview:post:unlike", (postView) ->
         post =  postView.model
         unlike = AlumNet.request("unlike:post:new", post.id)
@@ -83,6 +87,7 @@
           success: ->
             post.remLike()
             postView.remLike()
+            $('[data-toggle="tooltip"]').tooltip({html:true});
 
       #Like in comment
       posts.on "childview:comment:like", (postView, commentView) ->

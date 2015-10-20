@@ -11,6 +11,7 @@
       'imgAvatar': '#preview-avatar'
       'profileCover': '#profile-cover'
       'uploadCover': '#js-changeCover'
+      'professionalHeadline': '#professional_headline'
 
     events:
       "click @ui.editPic": "editPic"
@@ -32,7 +33,6 @@
       @listenTo(@model, 'change:cover', @renderView)
       @listenTo(@model, 'edit:cover', @editCover)
 
-
     templateHelpers: ->
       model = @model
       date = new Date()
@@ -48,7 +48,25 @@
         "#{file}?#{date.getTime()}"
 
       position: ->
-        model.profile.get("last_experience") ? "No Position"
+        if model.profile.get("professional_headline")
+          model.profile.get("professional_headline")
+        else if model.profile.get("last_experience")
+          model.profile.get("last_experience")
+        else
+          "No Position"
+
+    onRender: ->
+      model = @model
+      profile = @model.profile
+      @ui.professionalHeadline.editable
+        type: "text"
+        pk: profile.id
+        title: "Enter your Professional Header"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          profile.save({'professional_headline': newValue})
 
     renderView: ->
       view = @
@@ -60,9 +78,9 @@
 
     editPic: (e)->
       e.preventDefault()
-      modal = new AlumNet.UsersApp.About.ProfileModal
+      modal = new AlumNet.UsersApp.About.CropAvatarModal
         view: this
-        type: 3
+        #type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
     
@@ -73,39 +91,26 @@
       if (@coverSaved)
           $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
           coverArea.backgroundDraggable()
+          coverArea.css('cursor', 'pointer')
+          $("#js-crop-label").show()
       else
-          coverArea.off('mousedown.dbg touchstart.dbg')
-          $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
-          $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
-          console.log coverArea.css('background-position')
-          console.log @model
-          @model.profile.set "cover_position", coverArea.css('background-position')
-          console.log @model
-          @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
-          @model.profile.save 
-            error: (model, response, options)->
-              console.log response
-
-
+        coverArea.css('cursor', 'default')
+        coverArea.off('mousedown.dbg touchstart.dbg')
+        $(window).off('mousemove.dbg touchmove.dbg mouseup.dbg touchend.dbg mouseleave.dbg')
+        $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Edit cover')
+        $("#js-crop-label").hide()
+        @model.profile.set "cover_position", coverArea.css('background-position')
+        @model.profile.url = AlumNet.api_endpoint + '/profiles/' + @model.profile.id
+        @model.profile.save
+          error: (model, response)->
+            console.log response
       @coverSaved=!@coverSaved
-
-      #modal = new AlumNet.UsersApp.About.CropCoverModal
-      #  model: @model
-      #@ui.modalCont.html(modal.render().el)
-
-  
-      #if(jQuery.fn.backgroundDraggable) 
-      #  console.log  "editCover"
-      #coverArea.backgroundDraggable()
-      #@ui.coverArea.backgroundDraggable()
 
     saveCover: (e)->
       e.preventDefault()
-      console.log "saveCover"
       data = Backbone.Syphon.serialize this
       console.log data.cover
       if data.cover != ""
-        console.log "entro"
         model = @model
         modal = @
         formData = new FormData()
@@ -120,11 +125,7 @@
           processData: false
           success: ()->
             model.trigger('change:cover')
-            model.trigger('edit:cover')
-            #modalCrop = new About.CropCoverModal
-            #  model: model
             #$('#js-picture-modal-container').html(modalCrop.render().el)
-            #modal.destroy()
 
     sendRequest: (e)->
       attrs = { friend_id: @model.id }
