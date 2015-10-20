@@ -4,29 +4,32 @@
       @userCanEdit = folderable.get "user_can_upload_files"
       folderable_route = "" #groups/ or events/
 
-      if folderable instanceof AlumNet.Entities.Group #If is group
+      if folderable instanceof AlumNet.Entities.Group #If it's a group
         folderable_route = "groups"
-      else if folderable instanceof AlumNet.Entities.Event #If is group
+      else if folderable instanceof AlumNet.Entities.Event #If it's an event
         folderable_route = "events"
       else
         return  
 
       @folders_collection = new AlumNet.Entities.FoldersCollection
-      @folders_collection.url = AlumNet.api_endpoint + "/#{folderable_route}/" + folderable.id + "/folders"
+      @folders_collection.url = AlumNet.api_endpoint + "/#{folderable_route}/" + folderable.id + "/folders"      
             
       @layout = layout
       
-      @showAllFolders()
+      @_showAllFolders()
         
 
-    showAllFolders: ()->
+    _showAllFolders: ()->
+      self = @  
+      
       @albumsView = new Folders.FoldersView
         collection: @folders_collection
         userCanEdit: @userCanEdit
         
-      @folders_collection.fetch()
+      @folders_collection.fetch
+        success: ()->
+          self.albumsView.render()
       
-      self = @  
       #each folder events
       @albumsView.on "childview:show:detail", (childview)->          
         self.showFiles childview.model
@@ -77,7 +80,7 @@
       self = @
       
       files_view.on "return", ()->        
-        self.showAllFolders()
+        self._showAllFolders()
 
       files_view.on "childview:move:file", (childview)->        
         self.showMoveFileModal(@, childview.model)  

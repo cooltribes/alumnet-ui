@@ -8,16 +8,29 @@
       'click .js-detail': "show:detail"
     
     events:
-      'click .js-rmvItem': "removeItem"
-      # event: 'view:detail'
-      # preventDefault: true
+      'click .js-remove': "removeItem"
+      'click .js-edit': "editAlbum"
       
+    ui:
+      "modalCont": "#js-modal-container"
+
     initialize: (options)->
       @userCanEdit = options.userCanEdit
 
     templateHelpers: ->
       userCanEdit: @userCanEdit  
 
+
+
+    editAlbum: (e)->
+      e.preventDefault()
+
+      modal = new AlbumList.AlbumModalForm
+        model: @model
+        view: @
+
+      @ui.modalCont.html(modal.render().el)
+ 
     removeItem: (e)->
       e.preventDefault()
       if confirm("Are you sure you want to delete this album and all its photos?")
@@ -90,8 +103,7 @@
       isNew: @model.isNew()
 
     onRender: ->
-      #For date taken
-     
+      #For date taken     
 
       @$(".js-date-taken").Zebra_DatePicker
         show_icon: false
