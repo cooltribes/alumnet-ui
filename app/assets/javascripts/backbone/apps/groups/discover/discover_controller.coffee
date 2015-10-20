@@ -18,14 +18,16 @@
       # events for paginate
       groupsView.on "group:reload", ->
         querySearch = controller.querySearch
-        ++groupsView.collection.page
         newCollection = AlumNet.request("group:pagination")
         newCollection.url = AlumNet.api_endpoint + '/groups'
-        query = _.extend(querySearch, { page: groupsView.collection.page, per_page: groupsView.collection.rows })
+        query = _.extend(querySearch, { page: ++groupsView.collection.page, per_page: groupsView.collection.rows })
         newCollection.fetch
           data: query
           success: (collection)->
             groupsView.collection.add(collection.models)
+            if collection.length < collection.rows 
+              groupsView.collection.page = 1
+              groupsView.endPagination()             
 
 
       checkNewPost = false #flag for new posts

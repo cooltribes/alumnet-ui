@@ -42,6 +42,7 @@
             if collection.length < collection.rows 
               posts.collection.page = 1
               posts.endPagination() 
+      
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
         container.imagesLoaded ->
