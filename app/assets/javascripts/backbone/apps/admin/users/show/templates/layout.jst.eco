@@ -30,69 +30,70 @@
       <!-- <span class="admDash__status admDash__status--offline">Off line</span> -->
     </div>
   </div>
-
-   <div class="row margin_top_medium">
-      <div class="col-md-12 col-md-offset-1 col-lg-12 col-lg-offset-2">
-          <ul class="sortingMenuAdmin">
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Overview" class="sortingMenu__item__link" id="js-section-overview">
-                  <i class="glyphicon glyphicon-th-large"></i> Overview
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Personal" class="sortingMenu__item__link" id="js-section-personal">
-               <i class="ico-user"></i> Personal
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Contacts" class="sortingMenu__item__link" id="js-section-contacts">
-               <i class="glyphicon glyphicon-earphone"></i> Contacts
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Professional" class="sortingMenu__item__link" id="js-section-professional">
-               <i class="glyphicon glyphicon-briefcase ico-position"></i> Professional
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Groups" class="sortingMenu__item__link" id="js-section-groups">
-               <i class="glyphicon glyphicon-globe"></i> Groups
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Events" class="sortingMenu__item__link" id="js-section-events">
-               <i class="glyphicon glyphicon-calendar"></i> Events
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Purchases" class="sortingMenu__item__link" id="js-section-purchases">
-               <i class="glyphicon glyphicon-usd"></i> Purchases
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Products" class="sortingMenu__item__link" id="js-section-products">
-               <i class="glyphicon glyphicon-barcode"></i> Products
-              </a>
-            </li>
-            <!-- <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
-               <i class="glyphicon glyphicon-credit-card"></i> Purcharses
-              </a>
-            </li>
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-points">
-               <i class="ico-points"></i> Points
-              </a>
-            </li> -->
-            <li class="sortingMenu__item sortingMenu__item--md">
-              <a href="#" title="Admin" class="sortingMenu__item__link" id="js-section-admin">
-               <i class="glyphicon glyphicon-asterisk"></i> Admin
-              </a>
-            </li>
-          </ul>
-      </div>
-   </div>
-   <hr>
+  <div class="container">
+     <div class="row margin_top_medium">
+        <div class="col-md-12 col-lg-12">
+            <ul class="sortingMenuAdmin">
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Overview" class="sortingMenu__item__link" id="js-section-overview">
+                    <i class="glyphicon glyphicon-th-large"></i> Overview
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Personal" class="sortingMenu__item__link" id="js-section-personal">
+                 <i class="ico-user"></i> Personal
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Contacts" class="sortingMenu__item__link" id="js-section-contacts">
+                 <i class="glyphicon glyphicon-earphone"></i> Contacts
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Professional" class="sortingMenu__item__link" id="js-section-professional">
+                 <i class="glyphicon glyphicon-briefcase ico-position"></i> Professional
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Groups" class="sortingMenu__item__link" id="js-section-groups">
+                 <i class="glyphicon glyphicon-globe"></i> Groups
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Events" class="sortingMenu__item__link" id="js-section-events">
+                 <i class="glyphicon glyphicon-calendar"></i> Events
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Purchases" class="sortingMenu__item__link" id="js-section-purchases">
+                 <i class="glyphicon glyphicon-usd"></i> Purchases
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Products" class="sortingMenu__item__link" id="js-section-products">
+                 <i class="glyphicon glyphicon-barcode"></i> Products
+                </a>
+              </li>
+              <!-- <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Current Employees" class="sortingMenu__item__link" id="js-section-purchases">
+                 <i class="glyphicon glyphicon-credit-card"></i> Purcharses
+                </a>
+              </li>
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Past Employees" class="sortingMenu__item__link" id="js-section-points">
+                 <i class="ico-points"></i> Points
+                </a>
+              </li> -->
+              <li class="sortingMenu__item sortingMenu__item--md">
+                <a href="#" title="Admin" class="sortingMenu__item__link" id="js-section-admin">
+                 <i class="glyphicon glyphicon-asterisk"></i> Admin
+                </a>
+              </li>
+            </ul>
+            <hr>
+        </div>
+     </div> 
+</div>
 </div>
 <div class="container-fluid" id="js-content"></div>
 <div id="modals-region"></div>
