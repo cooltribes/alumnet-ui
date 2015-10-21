@@ -14,10 +14,20 @@
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
 
-    initialize: ->
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMoreJobs')
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreJobs')      
       $(window).scroll(@loadMoreJobs)
+      
+    remove: ->
+      @collection.page = 1
+      $(window).unbind('scroll')
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @collection.page = 1
+      @ui.loading.hide()
+      $(window).unbind('scroll') 
 
     loadMoreJobs: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
@@ -43,6 +53,7 @@
 
     ui:
       'modalJobExchange':'#js-modal-job'
+      'loading': '.throbber-loader'
 
     events:
       'click .add-new-filter': 'addNewFilter'

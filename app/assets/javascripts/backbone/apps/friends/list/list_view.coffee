@@ -13,6 +13,7 @@
       
     ui:
       'loading': '.throbber-loader'
+      
     onRender: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreUsers')      

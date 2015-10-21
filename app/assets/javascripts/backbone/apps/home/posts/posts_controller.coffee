@@ -39,9 +39,8 @@
           data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
-            if collection.length < collection.rows
-              posts.collection.page = 1
-              posts.endPagination()
+            if collection.length < collection.rows 
+              posts.endPagination() 
 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
