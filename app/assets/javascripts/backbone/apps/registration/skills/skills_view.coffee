@@ -133,7 +133,7 @@
         $group = $el.closest('.form-group')
         $group.addClass('has-error')
         $group.find('.help-block').html("You have to set at least 3 skills").removeClass('hidden')
-        valid_skills = false      
+        valid_skills = false
 
       #every model in the collection of languages is valid
       valid_languages = true
@@ -146,24 +146,20 @@
         @saveSkillsAndLanguages(skillsData)
 
             
-    saveSkillsAndLanguages: (skillsData)->      
+    saveSkillsAndLanguages: (skillsData)->
       #SKILLS------------      
       #Send a POST for creating skills in bulk way 
       @user_skills.create
-        skill_names: skillsData            
+        skill_names: skillsData
 
-      #LANGUAGES------------      
+      #LANGUAGES------------
       @collection.forEach (el, i, collection)->
         el.save
           wait: true
 
       @layout.goToNext()
 
-    
-
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
         e.preventDefault()
         @render()
-
-

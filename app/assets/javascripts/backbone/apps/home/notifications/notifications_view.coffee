@@ -15,7 +15,7 @@
 
     markDelete: (e)->
       e.preventDefault()
-      resp = confirm("Are you Sure?")
+      resp = true;
       if resp
         @model.destroy()
 

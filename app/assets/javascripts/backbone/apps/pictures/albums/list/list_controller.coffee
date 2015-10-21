@@ -25,6 +25,13 @@
           success:->
             AlumNet.trigger "albums:show:detail", layout, model        
 
+      albumsView.on "childview:submit:album", (childview)-> 
+        childview.model.save {},
+          success: ()->
+            childview.render()
+            $.growl.notice({ message: 'Album has been updated successfully' })
+        
+
       
       layout.body.show(albumsView)
 

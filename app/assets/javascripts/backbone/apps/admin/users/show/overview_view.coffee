@@ -50,7 +50,7 @@
         type: "PUT"
         success: (data) =>
           @model.set(data)
-          view.ui.activateUser.removeClass('btn-primary js-activate-user').addClass('btn-danger js-ban-user').html('Ban user')
+          view.ui.activateUser.removeClass('btn-user__activate js-activate-user').addClass('btn-user__ban js-ban-user').html('<i class="icon-entypo-cancel"></i>Ban user')
         error: (response) =>
           message = AlumNet.formatErrorsFromApi(response.responseJSON)
           $.growl.error(message: message)
@@ -65,7 +65,7 @@
         type: "PUT"
         success: (data) =>
           @model.set(data)
-          view.ui.activateUser.removeClass('btn-danger js-ban-user').addClass('btn-primary js-activate-user').html('Activate user')
+          view.ui.activateUser.removeClass('btn-user__ban js-ban-user').addClass('btn-user__activate js-activate-user').html('<i class="icon-entypo-check"></i>Activate user')
         error: (response) =>
           message = AlumNet.formatErrorsFromApi(response.responseJSON)
           $.growl.error(message: message)

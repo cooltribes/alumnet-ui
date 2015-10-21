@@ -7,7 +7,7 @@
   <form>    
     <div class="form-group has-feedback">
       <label class="control-label">Write your skills separating with a comma</label>
-      <input style="padding:0" id="skills-input" name="skills" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management...">
+      <input style="padding:0; height: auto" id="skills-input" name="skills" class="form-control input-lg " type="text" placeholder="E.g.: team motivation, project management...">
       <span class="formANet__input__icon form-control-feedback glyphicon glyphicon-info-sign" aria-hidden="true"></span>
     </div>
   </form>
