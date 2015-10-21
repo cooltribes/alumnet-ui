@@ -14,7 +14,7 @@
             <h3 class="userCard__name no_margin_top overfloadText"><a href="#users/<%= like.get('user').id %>/posts" title="<%= like.get('user').name %>"><%= like.get('user').name %></a></h3>
           </div>
           <% if like.get('user').friendship_status == "sent": %>
-            <div class=" col-md-3">
+            <div class=" col-md-3 userCardLike--paddingbutton">
               <a href="#" id="js-cancel-friendship" title="Cancel request">
                 <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel company_userCard__actions">
                   <span class="invitation">
@@ -27,7 +27,7 @@
             </div>
           <% else if like.get('user').friendship_status == "received": %>
           <!-- Nothing to show here -->
-            <div class=" col-md-3 ">
+            <div class=" col-md-3 userCardLike--paddingbutton">
               <span class="invitation">
                 <a href="#" id="js-accept-friendship" title="Approve friend request">
                   <div class="userCard__actions--Approve userCard__animation">
@@ -48,7 +48,7 @@
           <!-- <div class="pull-left "> -->
           <!-- </div> -->
           <% else if like.get('user').friendship_status == "accepted": %>
-          <div class=" col-md-3 ">
+          <div class=" col-md-3 userCardLike--paddingbutton">
             <a href="#" id="js-delete-friendship"  class="" title="Unfriend">
               <div id="link-container" class="userCard__actions userCard__animation userCard__actions--unFriend company_userCard__actions">
                 <span class="invitation">
@@ -62,14 +62,14 @@
             </a>
           </div>
         <% else if like.get('user').friendship_status == "current user": %>
-          <div class=" col-md-3 ">
+          <div class=" col-md-3 userCardLike--paddingbutton">
             <div id="link-container" class="userCard__actions userCard__actions--isFriend">
               <span class="invitation">
               </span>
             </div>
           </div>
         <% else: %>
-        <div class=" col-md-3 ">
+        <div class=" col-md-3 userCardLike--paddingbutton">
           <a href="#" id="js-request-friendship" title="Send friend request">
             <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation company_userCard__actions">
               <span class="invitation">

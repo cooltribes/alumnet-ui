@@ -8,7 +8,7 @@
     <span class="icon-entypo-skype"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type== 3: %>
-    <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
+    <span class="icon-entypo-yahoo"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type== 4: %>
   <span class="icon-entypo-facebook"></span><div id="js-link-fb" class="metaInfoCard__contact overfloadText"><%= @info %></div> 
@@ -23,7 +23,7 @@
   <span class="icon-entypo-link"></span> <div id="js-link-web" class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type== 8: %>
-    <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
+    <span class="icon-entypo-linkedin"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type== 9: %>
     <span class="icon-entypo-mail"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
