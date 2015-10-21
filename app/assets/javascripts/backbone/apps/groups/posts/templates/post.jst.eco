@@ -12,14 +12,14 @@
       <!-- Avatar OFF -->
         <div class="col-xs-8 col-sm-9 col-md-8 col-lg-9">
           <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
-          
+
       <!-- TAGS       -->
           <% if @tagsLinks: %>
             <div class="tags">
               with: <span style="color: #2099d0;"><%- @tagsLinks %></span>
             </div>
           <% end %>
-          
+
           <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
         </div>
       </div>
@@ -34,7 +34,7 @@
               <span><%= @preview.description %></span>
               <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
             <% end %>
-            <!-- PREVIEW OFF -->      
+            <!-- PREVIEW OFF -->
       </div>
     </div>
     <!-- PICTURES -->
@@ -60,7 +60,7 @@
     <!-- PICTURES OFF     -->
     <% if @userCanComment: %>
       <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
-      
+
       <div class="groupPost__btn--like">
         <% if @you_like: %>
           <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
@@ -81,7 +81,13 @@
       <a href="#" id='js-delete-post'>delete</a>
     <% end %>
 
+    <div class="js-like-links link-text margin_top_small">
+      <% if @likes_count > 0: %>
+        <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
+      <% end %>
+    </div>
   </div>
+
   <div class="groupPost__commentsContainer comments-container"></div>
   <% if @userCanComment: %>
     <form class="groupPost__commentForm clearfix form">
@@ -91,7 +97,7 @@
             <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">
           </div>
         </div>
-      
+
         <div class="col-sm-10 col-md-10 col-lg-10">
           <div class="groupPost__commentForm__form">
             <div class="form-group">
@@ -103,3 +109,4 @@
     </form>
   <% end %>
 </div>
+<div id="js-likes-modal-container" class="modalPrograms"></div>

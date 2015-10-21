@@ -27,14 +27,16 @@
       unlike.urlRoot = AlumNet.api_endpoint + '/pictures/' + picture_id + "/unlike"
       unlike
 
-    createLikeToComment: (post_id, comment_id)->
+    createLikeToComment: (commentable_id, comment_id, commentable)->
       like = new Entities.Like
-      like.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + "/comments/" + comment_id + "/like"
+      commentable = "posts" if commentable == undefined
+      like.urlRoot = AlumNet.api_endpoint + "/#{commentable}/" + commentable_id + "/comments/" + comment_id + "/like"
       like
 
-    createUnLikeToComment: (post_id, comment_id)->
+    createUnLikeToComment: (commentable_id, comment_id, commentable)->
       unlike = new Entities.UnLike
-      unlike.urlRoot = AlumNet.api_endpoint + '/posts/' + post_id + "/comments/" + comment_id + "/unlike"
+      commentable = "posts" if commentable == undefined
+      unlike.urlRoot = AlumNet.api_endpoint + "/#{commentable}/" + commentable_id + "/comments/" + comment_id + "/unlike"
       unlike
 
 
@@ -50,8 +52,8 @@
   AlumNet.reqres.setHandler 'unlike:picture:new', (picture_id) ->
     API.createUnLikeToPicture(picture_id)
 
-  AlumNet.reqres.setHandler 'like:comment:new', (post_id, comment_id) ->
-    API.createLikeToComment(post_id, comment_id)
+  AlumNet.reqres.setHandler 'like:comment:new', (commentable_id, comment_id, commentable) ->
+    API.createLikeToComment(commentable_id, comment_id, commentable)
 
-  AlumNet.reqres.setHandler 'unlike:comment:new', (post_id, comment_id) ->
-    API.createUnLikeToComment(post_id, comment_id)
+  AlumNet.reqres.setHandler 'unlike:comment:new', (commentable_id, comment_id, commentable) ->
+    API.createUnLikeToComment(commentable_id, comment_id, commentable)

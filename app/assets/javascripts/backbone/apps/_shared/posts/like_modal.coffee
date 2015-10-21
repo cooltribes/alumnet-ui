@@ -25,7 +25,7 @@
 
     currentModel: (e)->
       link = $(e.currentTarget)
-      id = link.closest('div.user-info').data('id')
+      id = link.closest('div.userCardLike').data('id')
       @likes.get(id)
 
     clickedRequest: (e)->

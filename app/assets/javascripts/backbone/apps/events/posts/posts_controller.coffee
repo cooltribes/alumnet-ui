@@ -13,15 +13,14 @@
           header = AlumNet.request('event:header', event)
 
           #configure the composite view of posts
-         
+
           event.posts.url = AlumNet.api_endpoint + '/events/' + event_id + '/posts?page='+event.posts.page+'&per_page='+event.posts.rows
           event.posts.page = 1 #initialize page number on first load
           event.posts.fetch
-            reset: true          
-          
+            reset: true
+
           posts = new Posts.PostsView
-            event: event
-            model: current_user
+            model: event
             collection: event.posts
 
           #render each view on your own region
@@ -29,7 +28,7 @@
           layout.header.show(header)
           layout.body.show(posts)
           AlumNet.execute('render:events:submenu')
-          
+
           posts.on "post:reload", ->
             ++posts.collection.page
             newCollection = AlumNet.request("post:current")
@@ -39,28 +38,28 @@
                 posts.collection.add(collection.models)
 
           checkNewPost = false #flag for new posts
-          
+
           posts.on "add:child", (viewInstance)->
             container = $('#timeline')
             container.imagesLoaded ->
               container.masonry
-                itemSelector: '.post'        
+                itemSelector: '.post'
             if checkNewPost
               container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
               container.imagesLoaded ->
                 container.masonry 'layout'
             else
               container.append( $(viewInstance.el) ).masonry 'reloadItems'
-            checkNewPost = false  
-          
-          posts.on "post:submit", (data)-> 
-            post = AlumNet.request('post:event:new', @event.id)
+            checkNewPost = false
+
+          posts.on "post:submit", (data)->
+            post = AlumNet.request('post:event:new', @model.id)
             post.save data,
             success: (model, response, options)->
               checkNewPost = true
               posts.collection.add(model, {at: 0})
               container = $('#timeline')
-              container.masonry "reloadItems" 
+              container.masonry "reloadItems"
 
       event.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

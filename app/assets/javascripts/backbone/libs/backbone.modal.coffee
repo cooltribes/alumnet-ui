@@ -17,9 +17,9 @@
 ) (_, Backbone, Marionette, Modal) ->
 
   # class Modal extends Backbone.View
-  # console.log Marionette  
-  # console.log Modal  
-  class Modal extends Marionette.CompositeView
+  # console.log Marionette
+  # console.log Modal
+  class Modal extends Marionette.LayoutView
   # class Modal extends Modal
     prefix: 'bbm'
     animate: true
@@ -31,16 +31,16 @@
 
     constructor: ->
       @args = Array::slice.apply(arguments)
-      Marionette.CompositeView::constructor.apply(this, @args)
+      Marionette.LayoutView::constructor.apply(this, @args)
       # Backbone.View::constructor.apply(this, @args)
 
-      
+
       # get all options
       @setUIElements()
 
     render: (options) ->
       # use openAt or overwrite this with your own functionality
-      
+
       return if @template is false
       path = @getTemplateFile(@template)
       throw "Template #{template} not found!" unless path
@@ -51,7 +51,7 @@
 
       @$el.addClass("#{@prefix}-wrapper")
       @modalEl = Backbone.$('<div />').addClass("#{@prefix}-modal")
-      
+
       # @modalEl.html @template(data) if @template
       @modalEl.html path(data) if path
 
@@ -65,7 +65,7 @@
 
       # blur links to prevent double keystroke events
       $(':focus').blur()
-      
+
       @openAt(options) if @views?.length > 0 and @showViewOnRender
       @onRender?()
 
@@ -86,7 +86,7 @@
       # global events for key and click outside the modal
       if @keyControl
         Backbone.$('body').on('keyup', @checkKey)
-      
+
       if @clickOut
         Backbone.$('body').on('click', @clickOutside)
 
@@ -96,20 +96,20 @@
 
     getTemplate: =>
       @getOption('template')
-     
+
     mixinTemplateHelpers: (target)->
       target = target || {}
       templateHelpers = @getOption('templateHelpers');
       if _.isFunction(templateHelpers)
         templateHelpers = templateHelpers.call this;
-      
+
       return _.extend target, templateHelpers
-    
+
 
     setUIElements: ->
       # get modal options
       functionTemplate    = @getOption('getTemplate')
-      
+
       @template       = functionTemplate()
       @views          = @getOption('views')
       @views?.length  = _.size(@views)
@@ -121,7 +121,7 @@
       throw new Error('No viewContainer defined for Backbone.Modal') if @template and @views and _.isUndefined(@viewContainer)
 
     getOption: (option) ->
-      # get class instance property      
+      # get class instance property
       return unless option
       if @options and option in @options and @options[option]?
         return @options[option]
@@ -196,7 +196,7 @@
       options = options() if options and _.isFunction(options)
 
       if _.isFunction(viewType)
-        
+
         view = new viewType(options or @args[0])
 
         # if view instanceof Backbone.View
@@ -204,7 +204,7 @@
           return {el: view.render().$el, view: view}
         else
           return {el: viewType(options or @args[0])}
-         
+
       return {view: viewType, el: viewType.$el}
 
     triggerView: (e) =>
@@ -362,7 +362,7 @@
     withTemplate: (string) ->
       array = string.split('/')
       array.splice(-1, 0, 'templates')
-      array.join('/')  
+      array.join('/')
 
 
   Backbone.Modal = Modal

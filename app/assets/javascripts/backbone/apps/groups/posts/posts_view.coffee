@@ -1,406 +1,57 @@
 @AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
-
   ###### COMMENT VIEW
-  class Posts.CommentView extends Marionette.ItemView
+  class Posts.CommentView extends AlumNet.Shared.Views.CommentView
     template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
 
-    initialize: (options)->
-      @post = options.post
-      @group = options.group
-      @current_user = options.current_user
-
     templateHelpers: ->
-      permissions = @model.get('permissions')
-      userCanComment: @group.userIsMember()
-      canEdit: permissions.canEdit
-      canDelete: permissions.canDelete
-      comment: @model.commentWithLinks()
+      helpers =
+        userCanComment: @postable.userIsMember()
+      _.extend helpers, super()
 
-    onRender: ->
-      view = this
-
-      @ui.commentText.editable
-        type: 'textarea'
-        inputclass: 'comment-editable'
-        pk: view.model.id
-        title: 'Edit Posts'
-        toggle: 'manual'
-        validate: (value)->
-          if $.trim(value) == ''
-            'this field is required'
-        display: (value, response)->
-          $(@).html view.model.commentWithLinks()
-        success: (response, newValue)->
-          $textarea = view.$('.comment-editable')
-          newValues = {
-            comment: $textarea.mentionsInput('getRawValue')
-            markup_comment: $textarea.mentionsInput('getValue')
-            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
-          }
-          view.model.save(newValues)
-
-      @ui.commentText.on 'shown', (e, editable) ->
-        content = view.model.get('markup_comment') || view.model.get('comment')
-        editable.input.$input.val content
-
-      @ui.commentText.linkify()
-
-    onShow: ->
-      container = $('#timeline')
-      container.masonry 'layout'
-
-
-    ui:
-      'likeLink': '.js-vote'
-      'likeCounter': '.js-likes-counter'
-      'editLink': '#js-edit-comment'
-      'deleteLink': '#js-delete-comment'
-      'commentText': '#js-comment-text'
-
-    events:
-      'click .js-like': 'clickedLike'
-      'click .js-unlike': 'clickedUnLike'
-      'click @ui.editLink': 'clickedEdit'
-      'click @ui.deleteLink': 'clickedDelete'
-
-    extractMentions: (mentions)->
-      array = []
-      _.each mentions, (mention)->
-        array.push mention.uid
-      array.join(",")
-
-    clickedEdit: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      @ui.commentText.editable('toggle')
-      @$('.comment-editable').mentionsInput
-        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-
-    clickedDelete: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      resp = confirm "Are you sure?"
-      if resp
-        @model.destroy()
-
-    clickedLike: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      view = @
-      like = AlumNet.request('like:comment:new', @post.id, @model.id)
-      like.save {},
-        success: ->
-          view.sumLike()
-
-    clickedUnLike: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      view = @
-      unlike = AlumNet.request('unlike:comment:new', @post.id, @model.id)
-      unlike.save {},
-        success: ->
-          view.remLike()
-
-    sumLike:()->
-      val = parseInt(@ui.likeCounter.html()) + 1
-      @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
-
-    remLike:()->
-      val = parseInt(@ui.likeCounter.html()) - 1
-      @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
-        html('<span class="icon-entypo-thumbs-up"></span> Like')
 
   ###### POST VIEW
-  class Posts.PostView extends Marionette.CompositeView
+  class Posts.PostView extends AlumNet.Shared.Views.PostView
     template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-xs-12 col-sm-6 col-md-6'
 
-    initialize: (options)->
-      @group = options.group
-      @current_user = options.current_user
-
     templateHelpers: ->
-      model = @model
-      permissions = @model.get('permissions')
-      userCanComment: @group.userIsMember()
-      current_user_avatar: @current_user.get('avatar').medium
-      canEdit: permissions.canEdit
-      canDelete: permissions.canDelete
-      tagsLinks: @model.tagsLinks()
-      pictures_is_odd: (pictures)->
-        pictures.length % 2 != 0
-      picturesToShow: ->
-        if model.get('pictures').length > 5
-          _.first(model.get('pictures'), 5)
-        else
-          model.get('pictures')
+      helpers =
+        userCanComment: @postable.userIsMember()
+      _.extend helpers, super()
 
-    childViewOptions: ->
-      group: @group
-      post: @model
-      current_user: @current_user
-
-    onShow: ->
-      pictures = @model.get('pictures')
-      if pictures && pictures.length > 1
-        container = @ui.picturesContainer
-        container.imagesLoaded ->
-          container.masonry
-            columnWidth: '.item'
-            gutter: 1
-
-      # Autosize
-      self = @
-      @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
-
-      # Mentions in comments
-      @ui.commentInput.mentionsInput
-        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-    
-    reloadMasonry: ->
-      $('#timeline').masonry()
-      
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
-
-    onRender: ->
-      view = this
-      @ui.bodyPost.editable
-        type: 'textarea'
-        pk: view.model.id
-        title: 'Edit Posts'
-        toggle: 'manual'
-        validate: (value)->
-          if $.trim(value) == ''
-            'this field is required'
-        success: (response, newValue)->
-          view.model.save { body: newValue }
-      validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
-      if validation
-        temp_string = @ui.bodyPost.html()
-        @ui.bodyPost.html(temp_string.replace(@ui.bodyPost.html().split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
-      else
-        @ui.bodyPost.linkify()
-
-    ui:
-      'item': '.item'
-      'gotoComment': '.js-goto-comment'
-      'commentInput': '.comment'
-      'likeLink': '.js-vote'
-      'likeCounter': '.js-likes-counter'
-      'textareaComment': 'textarea.comment'
-      'editLink': '#js-edit-post'
-      'deleteLink': '#js-delete-post'
-      'bodyPost': '#js-body-post'
-      'picturesContainer': '.pictures-container'
-      'modalContainer': '.modal-container'
-
-    events:
-      'keypress .comment': 'commentSend'
-      'click .js-like': 'clickedLike'
-      'click .js-unlike': 'clickedUnLike'
-      'click .js-goto-comment': 'clickedGotoComment'
-      'click @ui.editLink': 'clickedEdit'
-      'click @ui.deleteLink': 'clickedDelete'
-      'click .picture-post': 'clickedPicture'
-
-    ytVidId: (url)->
-      url = $.trim(url)
-      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
-      if (url.match(p)) then RegExp.$1 else false
-
-    clickedPicture: (e)->
-      e.preventDefault()
-      element = $(e.currentTarget)
-      id = element.data('id')
-      picture = @model.picture_collection.get(id)
-      modal = AlumNet.request "picture:modal", picture
-      @ui.modalContainer.html(modal.render().el)
-
-    commentSend: (e)->
-      e.stopPropagation()
-      if e.keyCode == 13
-        e.preventDefault()
-        data = Backbone.Syphon.serialize(this)
-        if data.body != ''
-          view = @
-          comment = AlumNet.request('comment:post:new', @model.id)
-          data.comment = @ui.commentInput.mentionsInput('getRawValue')
-          data.markup_comment = @ui.commentInput.mentionsInput('getValue')
-          data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
-          comment.save data,
-            success: (model, response, options)->
-              view.ui.commentInput.val('')
-              view.collection.add(model, {at: view.collection.length})
-
-    extractMentions: (mentions)->
-      array = []
-      _.each mentions, (mention)->
-        array.push mention.uid
-      array.join(",")
-
-    clickedEdit: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      @ui.bodyPost.editable('toggle')
-
-    clickedDelete: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      resp = confirm "Are you sure?"
-      if resp
-        @model.destroy()
-
-    clickedLike: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      view = @
-      like = AlumNet.request('like:post:new', @model.id)
-      like.save {},
-        success: ->
-          view.sumLike()
-
-    clickedUnLike: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      view = @
-      unlike = AlumNet.request('unlike:post:new', @model.id)
-      unlike.save {},
-        success: ->
-          view.remLike()
-
-    clickedGotoComment: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      @ui.textareaComment.focus()
-
-    sumLike:()->
-      val = parseInt(@ui.likeCounter.html()) + 1
-      @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
-
-    remLike:()->
-      val = parseInt(@ui.likeCounter.html()) - 1
-      @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-unlike').addClass('js-like').
-        html('<span class="icon-entypo-thumbs-up"></span> Like')
 
   ###### POST DETAIL
   class Posts.PostDetail extends Posts.PostView
     template: 'groups/posts/templates/post_detail'
     className: 'container margin_top_small'
 
+
   ###### POSTS COLLECTION
-  class Posts.PostsView extends Marionette.CompositeView
+  class Posts.PostsView extends AlumNet.Shared.Views.PostsView
     template: 'groups/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
-    childViewOptions: ->
-      group: @group
-      current_user: @model
-
-    initialize:(options)->
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMorePosts');
-      @group = options.group
-      @picture_ids = []
-      $(window).scroll(@loadMorePosts);
 
     templateHelpers: ->
-      userCanPost: @group.userIsMember()
-      groupJoinProccess: @group.get('join_proccess')
-      userHasMembership: @group.userHasMembership(@model.id)
-      groupIsClose: @group.isClose()
+      helpers =
+        userCanPost: @model.userIsMember()
+        groupJoinProccess: @model.get('join_proccess')
+        userHasMembership: @model.userHasMembership(AlumNet.current_user.id)
+        groupIsClose: @model.isClose()
 
-    onShow: ->
-      view = @
-      uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
-      uploader.init()
+      _.extend helpers, super()
 
-      @ui.tagsInput.select2
-        placeholder: "Tag a Friend"
-        multiple: true
-        minimumInputLength: 2
-        ajax:
-          url: AlumNet.api_endpoint + '/me/friendships/friends'
-          dataType: 'json'
-          data: (term)->
-            q:
-              m: 'or'
-              profile_first_name_cont: term
-              profile_last_name_cont: term
-          results: (data, page) ->
-            results:
-              data
-        formatResult: (data)->
-          "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
-        formatSelection: (data)->
-          data.name
-
-    ui:
-      'bodyInput': '#body'
-      'timeline': '#timeline'
-      'fileList': '#js-filelist'
-      'uploadLink': '#upload-picture'
-      'tagsInput': '#js-user-tags-list'
-      'tagging': '.tagging'
-      'videoContainer': '#video_container'
-      'preview_url': '#url'
-      'preview_title': '#url_title'
-      'preview_description': '#url_description'
-      'preview_image': '#url_image'      
-
-    events:
-      'click a#js-post-submit': 'submitClicked'
-      'click .js-join':'sendJoin'
-      'click a#js-add-tags': 'showTagging'
-      'keyup @ui.bodyInput': 'checkInput'
-
-    showTagging: (e)->
-      e.preventDefault()
-      if @ui.tagging.is(":visible")
-        @ui.tagsInput.select2('val', '')
-        @ui.tagging.hide()
-      else
-        @ui.tagging.show()
-
-    ytVidId: (url)->
-      url = $.trim(url)
-      p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
-      if (url.match(p)) then RegExp.$1 else false
-
-    ifUrl: (url)->
-      url = $.trim(url)
-      p = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
-      url.match(p)
-
-    checkInput: (e)->
-      validation = @ytVidId( @ui.bodyInput.val().split(" ").pop() )
-      if validation
-        @ui.videoContainer.html('<img src="https://i.ytimg.com/vi/'+validation+'/hqdefault.jpg" />')
-      else
-        ui = @ui
-        if ( @ifUrl(@ui.bodyInput.val().split(" ").pop()) )
-          url = @ui.bodyInput.val().split(" ").pop()
-          Backbone.ajax
-            url: AlumNet.api_endpoint + '/metatags'
-            data: {url: url}
-            success: (data)->
-              ui.videoContainer.html('<div class="row"><div class="col-md-3"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-md-9"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
-              ui.preview_image.val(data.image)
-              ui.preview_description.val(data.description)
-              ui.preview_title.val(data.title)
-              ui.preview_url.val(url)
+    events: ->
+      events =
+        'click .js-join': 'sendJoin'
+      _.extend events, super()
 
     sendJoin:(e)->
       e.preventDefault()
-      group = @group
+      group = @model
       attrs = { group_id: group.id, user_id: AlumNet.current_user.id }
       request = AlumNet.request('membership:create', attrs)
       request.on 'save:success', (response, options)->
@@ -422,9 +73,3 @@
         @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
-
-    loadMorePosts: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'post:reload'
-
-

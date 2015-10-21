@@ -21,8 +21,7 @@
             reset: true
 
           posts = new Posts.PostsView
-            group: group
-            model: current_user
+            model: group
             collection: group.posts
 
           #render each view on your own region
@@ -54,7 +53,7 @@
             checkNewPost = false
 
           posts.on "post:submit", (data)->
-            post = AlumNet.request('post:group:new', @group.id)
+            post = AlumNet.request('post:group:new', @model.id)
             post.save data,
             success: (model, response, options)->
               checkNewPost = true
