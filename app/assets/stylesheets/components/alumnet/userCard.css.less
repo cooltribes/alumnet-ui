@@ -8,15 +8,17 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 @import 'conf/conf.css.less';
 
 .userCardLike{
-   height: 100px;
-   width: 500px;
-   margin-bottom: 0.5em;
-   padding: 0 0 0 30px;
-   background-color: #FFFFFF;
+  margin-bottom: 0.5em;
+  padding: 0 0 0 30px;
+  background-color: #FFFFFF;
 
-   img{
-      height: 70px;
-   }
+  img{
+    height: 70px;
+  }
+
+  &--paddingbutton{
+
+  }
 }
 
 .userCard{
@@ -246,6 +248,21 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
+
+  .userCardLike{
+    margin-bottom: 0.5em;
+    padding: 0 0 0 30px;
+    background-color: #FFFFFF;
+
+    img{
+      height: 70px;
+    }
+
+    &--paddingbutton{
+      padding-top: 10px;  
+    }
+  }
+
     .userCard{
         height: auto;
     }
@@ -254,6 +271,23 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
+
+
+  .userCardLike{
+    height: 100px;
+    width: 500px;
+    margin-bottom: 0.5em;
+    padding: 0 0 0 30px;
+    background-color: #FFFFFF;
+
+    img{
+      height: 70px;
+    }
+
+    &--paddingbutton{
+      padding-top: 0;  
+    }
+  }
     .userCard{
         
         height: 100px;
@@ -303,6 +337,21 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
+  .userCardLike{
+    height: 100px;
+    width: 500px;
+    margin-bottom: 0.5em;
+    padding: 0 0 0 30px;
+    background-color: #FFFFFF;
+
+    img{
+      height: 70px;
+    }
+    
+    &--paddingbutton{
+      padding-top: 10px;  
+    }
+  }
     .userCard{
 
         height: 100px;

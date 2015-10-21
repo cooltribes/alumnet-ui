@@ -15,10 +15,10 @@
 			<% if @userCanEdit: %>
 				<a href="#" id="js-edit-company-size">edit</a>
 			<% end %>
-			<ul>
-				<li>Alumni Employees: <%= @employees_count %></li>
+			
+			<br><span>Alumni Employees: <%= @employees_count %></span>
 				<!-- <li>Alumni</li> -->
-			</ul>
+			
 		</div>
 		<!-- <div class=" company__row company__cell">
 			<h3 class="no-margin">Friends</h3>
@@ -27,7 +27,7 @@
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 			<img src="http://lorempixel.com/g/100/100/" class="company__imgFriends img-circle">
 		</div> -->
-		<div class=" company__row company__cell">
+		<div class="company__row company__cell" id="friends">
 			<h3 class="no-margin">Friends: </h3>
 			<div class="margin_top_xsmall" id="avatar-employees"></div>
 		</div>

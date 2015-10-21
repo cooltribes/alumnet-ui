@@ -51,11 +51,12 @@
     templateHelpers: ->
       userCanEdit: @model.userIsAdmin()
       employees_count: @model.employees_count()
-
+      
     ui:
       'companyDescription': '#description'
       'companySize': '#size'
       'companySector': '#sector'
+      'friendsEmployees': '#friends'
 
     events:
       'click #js-edit-company-description': 'toggleEditDescription'
@@ -95,6 +96,25 @@
 
     onRender: ->
       view = @
+      companies_id = view.model.get('id')
+      employees_count = view.model.employees_count()
+      if employees_count == 0
+        view.ui.friendsEmployees.hide()
+      else
+        cont = 0
+        array_employees = view.model.get('employees')
+        _.each array_employees, (elemento) ->
+          user = AlumNet.request("user:find", elemento.id)
+          user.on 'find:success', (response, options) ->
+            if user.get('friendship_status') == "accepted"
+              cont++;
+              console.log user
+              avatar_user = user.get('avatar').small
+              if cont > 6
+                $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle"> <a href="#companies/'+companies_id+'/employees" style="text-decoration: underline">more...</a>')
+              else
+                $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
+
       @ui.companyDescription.editable
         type: 'textarea'
         pk: view.model.id
@@ -131,15 +151,7 @@
             _.each data, (element, list)->
               values.push { value: element.id, text: element.name }
             view.fillEditableSectors(values)
-
-      array_employees = @model.get('employees')
-      _.each array_employees, (elemento) ->
-        user = AlumNet.request("user:find", elemento.id)
-        user.on 'find:success', (response, options) ->
-          if user.get('friendship_status') == "accepted"
-            avatar_user = user.get('avatar').small
-            $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
-  
+         
   #### SERVICES ####
 
   class About.ServiceView extends Marionette.ItemView
