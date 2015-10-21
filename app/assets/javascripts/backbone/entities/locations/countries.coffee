@@ -40,6 +40,9 @@
         id: model.id
         text: model.get('name')
 
+    findCountryByISO: (iso_code)->
+      countries = @getCountries()
+      countries.where(cc_iso: iso_code.toUpperCase())[0]
 
   AlumNet.reqres.setHandler 'countries:html', (collection) ->
     API.getCountriesHtml(collection)
@@ -55,6 +58,10 @@
 
   AlumNet.reqres.setHandler 'get:availables:countries', ->
     API.getAvailableCountries()
+
+  AlumNet.reqres.setHandler 'find:country:iso', (iso_code)->
+    API.findCountryByISO(iso_code)
+
 
   class CountryList
     window.CountryList =

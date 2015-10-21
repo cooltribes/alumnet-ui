@@ -12,7 +12,7 @@ class AlumnetLinkedin
 
   FIELDS = ["phone-numbers", "im-accounts", "primary-twitter-account", "languages", "positions",
     "date-of-birth", "first-name", "last-name", "picture-url", "skills", "email-address", "id",
-    "educations"]
+    "educations", "location"]
 
   def initialize
     @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
@@ -47,7 +47,7 @@ class AlumnetLinkedin
   def profile_for_alumnet
     if linkedin
       { first_name: linkedin['first_name'], last_name: linkedin['last_name'], born: format_date_of_birth(linkedin['date-of-birth']),
-        avatar_url: linkedin['picture_url'] }
+        avatar_url: linkedin['picture_url'], country_code: linkedin['location']['country']['code'] }
     else
       nil
     end

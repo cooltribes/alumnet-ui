@@ -57,13 +57,21 @@
     changePictureProfile: (e)->
       e.preventDefault()
       $('#profile-avatar').click()
-      
+
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.profile
         e.preventDefault()
         @model.set(gon.linkedin_profile.profile)
+        ## find and set residence city by iso_code
+        country_code = gon.linkedin_profile.profile.country_code
+        country = AlumNet.request 'find:country:iso', country_code
+        if country
+          @model.set('residence_country', { id: country.id, name: country.get('name') })
         @render()
+
+    getCountryOfResidence: (country_code)->
+
 
     saveData: ()->
       layout = @layout
