@@ -224,13 +224,7 @@
       @ui.modalContainer.html(modal.render().el)
 
     commentSend: (e)->
-      e.stopPropagation()
-      #console.log e.target.clientHeight
-      #console.log @ui.commentInput.height()
-      #if @ui.commentInput.height() > @clientHeight 
-      #  @clientHeight = @ui.commentInput.height()
-      #  $('#timeline').masonry()
-      
+      e.stopPropagation()      
       if e.keyCode == 13
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
@@ -306,20 +300,24 @@
     childView: Posts.PostView
     childViewContainer: '.posts-container'
 
-    initialize: (options)->
-      
+    initialize: (options)->     
       @current_user = options.current_user
-      @picture_ids = []
-      
+      @picture_ids = []      
 
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMorePosts');
-      $(window).scroll(@loadMorePosts);
+      _.bindAll(this, 'loadMorePosts')
+      $(window).scroll(@loadMorePosts)
 
     remove: ->
-      $(window).unbind('scroll');
+      $(window).unbind('scroll')
+      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')
 
     childViewOptions: ->
       userModel: @model
@@ -371,11 +369,6 @@
       'click a#js-post-submit': 'submitClicked'
       'click a#js-add-tags': 'showTagging'
       'keyup @ui.bodyInput': 'checkInput'
-
-
-    endPagination: ->
-      @ui.loading.hide()
-      $(window).unbind('scroll')
 
     showTagging: (e)->
       e.preventDefault()

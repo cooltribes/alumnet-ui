@@ -33,7 +33,6 @@
             success: (collection)->
               if collection.length < collection.rows 
                 posts.endPagination()
-                posts.collection.page = 1
               posts.collection.add(collection.models)
 
         checkNewPost = false #flag for new posts

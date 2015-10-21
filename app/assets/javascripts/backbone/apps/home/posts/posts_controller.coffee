@@ -40,7 +40,6 @@
           success: (collection)->
             posts.collection.add(collection.models)
             if collection.length < collection.rows 
-              posts.collection.page = 1
               posts.endPagination() 
       
       posts.on "add:child", (viewInstance)->

@@ -352,12 +352,15 @@
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreBooks')      
       $(window).scroll(@loadMoreBooks)
+      
 
     remove: ->
-      $(window).unbind('scroll');
+      @collection.page = 1
+      $(window).unbind('scroll')
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
+      @collection.page = 1
       @ui.loading.hide()
       $(window).unbind('scroll')      
 

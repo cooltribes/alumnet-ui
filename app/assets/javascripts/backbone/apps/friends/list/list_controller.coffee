@@ -48,7 +48,6 @@
           success: (collection)->
             friendsView.collection.add(collection.models)
             if collection.length < collection.rows 
-              friendsView.collection.page = 1
               friendsView.endPagination()             
 
       friendsView.on "add:child", (viewInstance)->

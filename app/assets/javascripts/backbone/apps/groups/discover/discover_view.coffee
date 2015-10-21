@@ -145,11 +145,13 @@
       $(window).scroll(@loadMoreGroups)
 
     remove: ->
-      $(window).unbind('scroll');
+      $(window).unbind('scroll')
+      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
+      @collection.page = 1
       $(window).unbind('scroll') 
 
     events:

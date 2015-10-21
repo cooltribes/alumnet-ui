@@ -26,7 +26,6 @@
           success: (collection)->
             groupsView.collection.add(collection.models)
             if collection.length < collection.rows 
-              groupsView.collection.page = 1
               groupsView.endPagination()             
 
 

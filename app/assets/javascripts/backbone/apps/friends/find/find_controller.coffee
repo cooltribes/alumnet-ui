@@ -20,14 +20,15 @@
 
       usersView.on "user:reload", ->
         querySearch = controller.querySearch
-        ++usersView.collection.page
         newCollection = AlumNet.request("user:pagination")
         newCollection.url = AlumNet.api_endpoint + '/users'
-        query = _.extend(querySearch, { page: usersView.collection.page, per_page: usersView.collection.rows })
+        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
         newCollection.fetch
           data: query
           success: (collection)->
             usersView.collection.add(collection.models)
+            if collection.length < collection.rows 
+              usersView.endPagination()             
 
       usersView.on "add:child", (viewInstance)->
         container = $('#friends_list')
