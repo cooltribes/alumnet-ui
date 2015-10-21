@@ -1,7 +1,11 @@
-<button id="js-create-membership">Assign Membership</button>
-
-<table id="js-products-container" class="admDash__cardData table">
-
-</table>
-
+<div class="container">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="text-right">
+			<button id="js-create-membership" class="btn btn-primary">Assign Membership</button>
+		</div>
+		<p></p>
+		<table id="js-products-container" class="admDash__cardData table">
+		</table>
+	</div>
+</div>
 <div class="modal-container"></div>

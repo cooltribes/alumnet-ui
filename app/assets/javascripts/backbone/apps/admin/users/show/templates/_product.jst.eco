@@ -5,8 +5,8 @@
 <td>
 	<%= @status %>
 	<% if @status == "Active": %>
-		<a class="js-deactivate" id="<%= @id %>">Deactivate</a>
+		<a class="btn btn-user__ban btn-user__ban--product js-deactivate" id="<%= @id %>">Deactivate</a>
 	<% else: %>
-		<a class="js-activate" id="<%= @id %>">Activate</a>
+		<a class="btn btn-user__activate btn-user__activate--product js-activate" id="<%= @id %>">Activate</a>
 	<% end %>
 </td>
