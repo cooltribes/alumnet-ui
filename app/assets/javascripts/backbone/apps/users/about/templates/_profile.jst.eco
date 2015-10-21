@@ -43,7 +43,7 @@
 		<li>
 			<span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> Lives in:</span> <%= @getLocation() %>
 			<% if @userCanEdit: %>
-			  <a href="#" id="js-editResidence">[Edit]</a>  	
+			  <a href="#" id="js-editResidence">[Edit]</a>
 			<% end %>
 		</li>
 	<% end %>
@@ -83,6 +83,13 @@
 			<% end %>
 		  
 
+		</li>
+	<% end %>
+
+	<% if @userCanEdit: %>
+		<li>
+		  <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-cog"></span> Password: </span>
+			<a href="#" id="js-changePassword">[Change]</a>  	
 		</li>
 	<% end %>
 

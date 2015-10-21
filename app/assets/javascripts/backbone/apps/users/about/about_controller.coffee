@@ -249,6 +249,29 @@
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.trigger "change"
 
+
+          view.on "submit:password", ()->
+            console.log 'submit password'
+            @model.url = AlumNet.api_endpoint + '/users/' + @model.id + '/change_password'
+            console.log @model
+            console.log @model.url
+
+            @model.save
+              "password": @model.profile.get "password"
+              "password_confirmation": @model.profile.get "password_confirmation",
+            ,
+              wait: true
+              success: (response)=>
+                console.log response
+                @model.profile.url = @model.urlRoot() + @model.id + '/profile'
+                @model.fetch()
+                #Update current user
+                if @model.isCurrentUser()
+                  AlumNet.request 'get:current_user',
+                    refresh: true
+                    success: ->
+                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+
         when 5  #Experiences
           view.on "childview:save:experience", (childview)->
             model = childview.model

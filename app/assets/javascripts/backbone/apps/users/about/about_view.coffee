@@ -451,6 +451,7 @@
 
     beforeSubmit: ()->
       data = Backbone.Syphon.serialize this
+      console.log data
       if @type != 3
         @model.set(data)
         @model.validate()
@@ -459,13 +460,10 @@
       switch @type
         when 0
           @model.isValid(["first_name", "last_name"])
-
         when 1
           @model.isValid(["birth_country_id", "birth_city_id"])
-
         when 2
           @model.isValid(["residence_country_id", "residence_city_id"])
-
 
     submit: ()->
       switch @type
@@ -527,6 +525,54 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
+  class About.PasswordModal extends Backbone.Modal
+    template: 'users/about/templates/_passwordModal'
+
+    cancelEl: '#js-close-btn'
+    submitEl: '#js-save'
+    keyControl: false
+
+    initialize: (options)->
+      @view = options.view
+
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    beforeSubmit: ()->
+      data = Backbone.Syphon.serialize this
+      if data.password != data.password_confirmation
+        $.growl.error({ message: 'Password confirmation does not match' })
+        return false
+
+    submit: ()->
+      url = AlumNet.api_endpoint + "/users/#{@model.id}/change_password"
+      data = Backbone.Syphon.serialize this
+      data.user_id = @model.id
+
+      Backbone.ajax
+        url: url
+        type: "POST"
+        data: data
+        success: (data) =>
+          if data.message
+            $.growl.notice({ message: data.message })
+          else
+            $.growl.notice({ message: 'Password changed successfully' })
+        error: (data) =>
+          if data.responseJSON.error
+            $.growl.error({ message: data.responseJSON.error })
+          else
+            $.growl.error({ message: 'Unknown error, please contact an admin' })
+
   class About.Profile extends Marionette.ItemView
     template: 'users/about/templates/_profile'
 
@@ -536,12 +582,13 @@
       "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
       "editPosition": "#js-editPosition"
+      "changePassword": "#js-changePassword"
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
-      #"click @ui.editPosition": "editPosition"
+      "click @ui.changePassword": "changePassword"
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
@@ -627,7 +674,6 @@
       @model.email_contact.save()
 
     modelChange: ->
-      console.log 'render'
       @render()
 
     editName: (e)->
@@ -656,6 +702,14 @@
         view: this
         type: 2
         model: @model.profile
+
+      @ui.modalCont.html(modal.render().el)
+
+    changePassword: (e)->
+      e.preventDefault()
+      modal = new About.PasswordModal
+        view: this
+        model: @model
 
       @ui.modalCont.html(modal.render().el)
 
@@ -751,7 +805,7 @@
     ui:
       "facebook":"#js-link-fb"
       "twitter":"#js-link-tw"
-      "web":"#js-link-web"
+      "web":".js-link-web"
 
     events:
       "click .js-rmvRow": "removeItem"
@@ -776,6 +830,7 @@
           ]
 
     initialize: (options)->
+      console.log @model
       @userCanEdit = options.userCanEdit
 
     templateHelpers: ->

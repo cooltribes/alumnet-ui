@@ -20,7 +20,7 @@
     <span class="icon-entypo-chat"></span> <div class="metaInfoCard__contact overfloadText" ><%= @info %></div>
 <% end %>
 <% if @contact_type== 7: %>
-  <span class="icon-entypo-link"></span> <div id="js-link-web" class="metaInfoCard__contact overfloadText"><%= @info %></div>
+  <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText js-link-web"><%= @info %></div>
 <% end %>
 <% if @contact_type== 8: %>
     <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText"><%= @info %></div>
