@@ -70,9 +70,6 @@
           @model.set('residence_country', { id: country.id, name: country.get('name') })
         @render()
 
-    getCountryOfResidence: (country_code)->
-
-
     saveData: ()->
       layout = @layout
       formData = new FormData()
