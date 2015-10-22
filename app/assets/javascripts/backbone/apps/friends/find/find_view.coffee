@@ -7,6 +7,16 @@
     tagName: 'div'
     className: 'col-md-4 col-sm-6'
 
+    templateHelpers: ->
+      model = @model
+      position: ->
+        if model.get("professional_headline")
+          model.get("professional_headline")
+        else if model.get("last_experience")
+          model.get("last_experience")
+        else
+          "No Position"
+
   class Find.UsersView extends Marionette.CompositeView
     template: 'friends/find/templates/users_container'
     childView: Find.UserView

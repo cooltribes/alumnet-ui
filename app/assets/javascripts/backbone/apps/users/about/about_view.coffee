@@ -451,7 +451,6 @@
 
     beforeSubmit: ()->
       data = Backbone.Syphon.serialize this
-      console.log data
       if @type != 3
         @model.set(data)
         @model.validate()
@@ -830,7 +829,6 @@
           ]
 
     initialize: (options)->
-      console.log @model
       @userCanEdit = options.userCanEdit
 
     templateHelpers: ->
