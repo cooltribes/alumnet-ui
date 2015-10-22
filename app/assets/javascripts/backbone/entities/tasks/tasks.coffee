@@ -34,6 +34,20 @@
     canDelete: ->
       @get('user').id == AlumNet.current_user.id
 
+    daysRemaining: ->
+      post_untilFormat = moment(@get('post_until'))
+      today = moment()
+      days_Remaining = post_untilFormat.diff(today,'days')
+      if days_Remaining <= 0
+        days_Remaining = 0
+      else
+        days_Remaining
+
+    totalDays: ->
+      createFormat = moment(@get('created_at'))
+      post_untilFormat = moment(@get('post_until'))
+      daysTotal = post_untilFormat.diff(createFormat,'days')
+    
     get_nice_have_attributes_by: (custom_field)->
       if @get('nice_have_attributes')
         _.where(@get('nice_have_attributes'), { custom_field: custom_field })

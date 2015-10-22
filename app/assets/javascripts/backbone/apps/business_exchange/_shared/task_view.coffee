@@ -11,8 +11,10 @@
       canEdit: @model.canEdit()
       canDelete: @model.canDelete()
       canApply: @model.canApply()
-      dayRemaining: @daysPassed()
-      
+      daysRemaining: @model.daysRemaining()
+      daysTotal: @model.totalDays()
+      porcentdays: @progressbarPorcentaje()
+
       location: ->
         location = []
         location.push model.get('country').name unless model.get('country').name == ""
@@ -91,18 +93,11 @@
       if resp
         @model.destroy()
 
-    daysPassed: ->
-      post_until = @model.get('post_until')
-      todayDate = new Date();
-      todayFormat = moment(todayDate).format('DD/MM/YYYY')
-      deadlineFormat = moment(post_until).format('DD/MM/YYYY')
-      arrayDateToday = todayFormat.split('/')
-      arraydeadline = deadlineFormat.split('/')
-      dateTodayUTC = Date.UTC(arrayDateToday[2],arrayDateToday[1]-1,arrayDateToday[0]);
-      deadlineUTC = Date.UTC(arraydeadline[2],arraydeadline[1]-1,arraydeadline[0]); 
-      daysPassedRest = deadlineUTC - dateTodayUTC
-      daysPassed = Math.floor(daysPassedRest / (1000 * 60 * 60 * 24));
-
-
-
-
+    progressbarPorcentaje: ->
+      daysRemaining = @model.daysRemaining()
+      daysTotal = @model.totalDays()
+      daysPassed = daysTotal - daysRemaining
+      if daysRemaining <= 0
+        porcentdays = 100
+      else
+        porcentdays = (daysPassed / daysTotal) * 100
