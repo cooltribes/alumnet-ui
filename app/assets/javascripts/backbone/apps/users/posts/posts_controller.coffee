@@ -74,8 +74,7 @@
         post.fetch
           success: (model, response)->
             postView = new Posts.PostDetail
-              userModel: user
-              current_user: current_user
+              postable: user
               model: post
 
             AlumNet.mainRegion.show(postView)
