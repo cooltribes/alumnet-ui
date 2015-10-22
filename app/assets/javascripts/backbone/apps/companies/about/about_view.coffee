@@ -106,15 +106,18 @@
         _.each array_employees, (elemento) ->
           user = AlumNet.request("user:find", elemento.id)
           user.on 'find:success', (response, options) ->
-            if user.get('friendship_status') == "accepted"
+            if user.get('friendship_status') == "current user"
+              view.ui.friendsEmployees.hide()
+            else if user.get('friendship_status') == "accepted"
               cont++;
-              console.log user
               avatar_user = user.get('avatar').small
-              if cont > 6
+              if cont == 0
+                view.ui.friendsEmployees.hide()
+              else if cont > 6
                 $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle"> <a href="#companies/'+companies_id+'/employees" style="text-decoration: underline">more...</a>')
               else
                 $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
-
+            
       @ui.companyDescription.editable
         type: 'textarea'
         pk: view.model.id
