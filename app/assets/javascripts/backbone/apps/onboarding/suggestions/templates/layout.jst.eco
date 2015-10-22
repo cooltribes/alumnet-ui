@@ -15,7 +15,7 @@
   <% if @isLastStep: %>
     <a href="#" class="btn btn-lg btn-primary margin_top js-finish">Start Exploring AlumNet >></a>
   <% else: %>
-    <a href="#" class="btn btn-lg btn-primary margin_top js-next">Next</a>
+    <a href="#" class="btn btn-onboarding js-next ">Next</a>
   <% end %>
   </div>
 </div>
