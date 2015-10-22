@@ -32,16 +32,18 @@
 								  <input type="hidden" id="url_description" name="url_description" style="width:100%">
 								  <input type="hidden" id="url_image" name="url_image" style="width:100%">
 								</div>
-								<!--  -->
-								<div style="  width: 100%; height: 20px;"></div>
 
-
-							<!-- Pictures -->
+						</div>
+						</div>
+						</div>
+						<!-- Pictures -->
+						<div class="row">
 							<ul id="js-filelist"></ul>
-							<div id="video_container"></div>
+							<div class="col-md-12 text-center">
+								<div id="video_container" class="previewEvents margin_bottom_small"></div>
+							</div>
 						</div>
-						</div>
-						</div>
+
 						<div class="row">
 						<div class="col-md-12 center" >
 										<a id="js-add-picture" class="groupPost__btn--comment_event no_margin_right" href="javascript:;">
