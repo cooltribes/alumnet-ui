@@ -1,22 +1,16 @@
 @AlumNet.module 'FriendsApp.List', (List, @AlumNet, Backbone, Marionette, $, _) ->
-  # class List.FriendView extends Marionette.ItemView
-  #   template: 'friends/find/templates/user'
-  #   tagName: 'div'
-  #   className: 'col-md-4 col-sm-6'
-
   class List.FriendsView extends Marionette.CompositeView
     template: 'friends/list/templates/friends_container'
     childView: AlumNet.FriendsApp.Find.UserView
-    # childViewContainer: '.friends-list'
     events:
       'click .js-search': 'performSearch'
-      
+
     ui:
       'loading': '.throbber-loader'
-      
+
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreUsers')      
+      _.bindAll(this, 'loadMoreUsers')
       $(window).scroll(@loadMoreUsers)
 
     remove: ->
@@ -30,7 +24,7 @@
     loadMoreUsers: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'friends:reload'
-        
+
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
@@ -48,4 +42,3 @@
       @collection.fetch
         success: (model)->
           view.render()
-          console.log "success"

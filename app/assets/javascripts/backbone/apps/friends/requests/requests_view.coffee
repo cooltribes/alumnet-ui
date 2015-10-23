@@ -11,14 +11,12 @@
       e.preventDefault()
       e.stopPropagation()
       @trigger 'delete'
-      #layout.model.decrementCount('pending_received_friendships')
 
     clickedAccept: (e)->
       e.preventDefault()
       e.stopPropagation()
       @trigger 'accept'
-      #layout.model.decrementCount('pending_received_friendships')
-      
+
 
   class Requests.RequestsView extends Marionette.CompositeView
     template: 'friends/requests/templates/requests_container'
@@ -39,12 +37,12 @@
       else
         filter = 'received'
       @trigger 'get:requests', filter
-                 
+
     toggleLink: (filter)->
       if filter == 'sent'
         @ui.filterLinkContainer.html("<li role='presentation' class='sortingMenu__item sortingMenu__item--lg'>
-        <a href='#' class='sortingMenu__item__link' id='js-requests-received'>Resquests received</a></li>")         
+        <a href='#' class='sortingMenu__item__link' id='js-requests-received'>Resquests received</a></li>")
       else
         @ui.filterLinkContainer.html("<li role='presentation' class='sortingMenu__item sortingMenu__item--lg'>
         <a href='#' class='sortingMenu__item__link' id='js-requests-sent'>Resquests sent</a></li>")
-        
+

@@ -20,7 +20,7 @@
         friendships.remove(friendship)
         layout.model.decrementCount('pending_received_friendships')
         $.growl.notice({ message: "Declined invitation" })
-        
+
       layout.body.show(requestsView)
 
     showMySent: (layout)->
@@ -34,8 +34,8 @@
         friendship.destroy()
         friendships.remove(friendship)
         layout.model.decrementCount('pending_sent_friendships')
-      layout.body.show(requestsView)
 
+      layout.body.show(requestsView)
 
     showReceived: ->
       current_user = AlumNet.current_user
@@ -49,6 +49,7 @@
       layout = AlumNet.request("my:friends:layout", current_user, 2)
 
       AlumNet.mainRegion.show(layout)
+
       layout.body.show(requestsView)
 
       AlumNet.execute('render:friends:submenu')
@@ -83,6 +84,7 @@
       layout = AlumNet.request("my:friends:layout", current_user, 1)
 
       AlumNet.mainRegion.show(layout)
+
       layout.body.show(requestsView)
 
       AlumNet.execute('render:friends:submenu')

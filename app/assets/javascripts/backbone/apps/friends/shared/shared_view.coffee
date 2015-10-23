@@ -1,10 +1,5 @@
 @AlumNet.module 'FriendsApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
-  # class Shared.Header extends Marionette.ItemView
-  #   template: 'friends/shared/templates/header'
-
-
   class Shared.Layout extends Marionette.LayoutView
-    # template: 'friends/shared/templates/layout'
 
     getTemplate: ()->
       #whether to show layout for my friends or someones friends
@@ -15,13 +10,6 @@
 
     regions:
       body: '.friends-list'
-
-    #for Stickit
-    # bindings:
-    #   "#js-approvalCount":
-    #     observe: "pending_approval_requests_count"
-    #     onGet: (value, options)->
-    #       "Approval Requests (#{value})"
 
 
     initialize: (options) ->
@@ -46,33 +34,39 @@
     events:
       'click .js-search': 'performSearch'
       'click #js-friends, #js-mutual, #js-myfriends, #js-sent, #js-received': 'showList'
-      # 'click #js-approval': 'showApprovalList'
 
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      @trigger 'friends:search', @buildQuerySearch(data.search_term), @body.currentView.collection
+      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @body.currentView.collection, @filter
 
     showList: (e)->
       e.stopPropagation()
       e.preventDefault()
       actionId = $(e.currentTarget).attr('id').substring(3)
+      @filter = actionId
       @trigger "friends:show:#{actionId}", this
       @toggleLink(actionId)
 
-    # showApprovalList: (e)->
-    #   e.stopPropagation()
-    #   e.preventDefault()
-    #   id = $(e.currentTarget).attr('id').substring(3)
-    #   @trigger "show:approval:requests", this
-    #   @toggleLink(id)
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        m: 'or'
-        profile_first_name_cont: searchTerm
-        profile_last_name_cont: searchTerm
-        email_cont: searchTerm
+    buildQuerySearch: (searchTerm, filter) ->
+      if filter == "sent"
+        q:
+          m: 'or'
+          friend_profile_first_name_cont: searchTerm
+          friend_profile_last_name_cont: searchTerm
+          friend_email_cont: searchTerm
+      else if filter == "received"
+        q:
+          m: 'or'
+          user_profile_first_name_cont: searchTerm
+          user_profile_last_name_cont: searchTerm
+          user_email_cont: searchTerm
+      else
+        q:
+          m: 'or'
+          profile_first_name_cont: searchTerm
+          profile_last_name_cont: searchTerm
+          email_cont: searchTerm
 
     toggleLink: (id)->
       link = $("#js-#{id}")
@@ -96,7 +90,7 @@
       @stickit()
 
     bindings:
-      "#js-receivedCount": "pending_received_friendships_count"  
+      "#js-receivedCount": "pending_received_friendships_count"
       "#js-myFriendsCount":"friends_count"
 
   API =
@@ -104,14 +98,6 @@
       new Shared.Layout
         model: model
         tab: tab
-
-    # getUserHeader: (model)->
-    #   new Shared.Header
-    #     model: model
-
-  # AlumNet.reqres.setHandler 'user:header', (model)->
-  #   API.getUserHeader(model)
-
 
   AlumNet.reqres.setHandler 'users:friends:layout', (model, tab) ->
     API.getFriendsLayout(model, tab)
