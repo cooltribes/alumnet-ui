@@ -141,10 +141,133 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
     position: absolute;
 }
 
-
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min)
 {
+
+    .roundedNumbersList
+    {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding: 0;
+
+
+        &__item
+        {
+            margin: 0 10px 10px 0;
+            float: none;
+            overflow: auto;
+
+            width: auto;
+            height: auto;
+            &--active
+            {
+                margin: 0 10px 10px 0;
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+       
+        }
+        &__number
+        {
+            font-size: 2em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+            border: 2px solid @dim-gray;
+
+     
+        }
+        &__numberOnboarding
+        {
+            font-size: 1.5em;
+            font-weight: 100;
+            line-height: 1.7em;
+
+            display: inline-block;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+            text-align: center;
+            background-color: #FFF;
+            color: @blue;
+            padding: 5px 10px;
+            border-radius: 2em;
+        }
+
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min)
+{
+
+    .roundedNumbersList
+    {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding: 0;
+
+
+        &__item
+        {
+            margin: 0 10px 10px 0;
+            float: none;
+            overflow: auto;
+
+            width: auto;
+            height: auto;
+            &--active
+            {
+                margin: 0 10px 10px 0;
+                float: none;
+                overflow: auto;
+
+                width: auto;
+                height: auto;
+            }
+       
+        }
+        &__number
+        {
+            font-size: 2em;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+            border: 2px solid @dim-gray;
+
+     
+        }
+        &__numberOnboarding
+        {
+            font-size: 1.5em;
+            font-weight: 100;
+            line-height: 1.7em;
+
+            display: inline-block;
+
+            width: 2em;
+            height: 2em;
+            margin-right: .2em;
+            margin-bottom: .2em;
+
+            text-align: center;
+            background-color: #FFF;
+            color: @blue;
+            padding: 5px 10px;
+            border-radius: 2em;
+        }
+
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -230,7 +353,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             text-align: center;
             background-color: #FFF;
             color: @blue;
-            padding: 0px 10px;
+            padding: 5px 10px;
             border-radius: 2em;
         }
 
