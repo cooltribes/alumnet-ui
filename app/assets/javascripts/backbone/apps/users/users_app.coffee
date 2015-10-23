@@ -2,6 +2,7 @@
 
   class UsersApp.Router extends AlumNet.Routers.Base
     appRoutes:
+      "profile": "userProfile"
       "users/:user_id/posts/:id": "userPost"
       "users/:id/posts": "userPosts"
       "users/:id/about": "userAbout"
@@ -21,6 +22,10 @@
       @registerVisit(id)
       controller = new UsersApp.Posts.Controller
       controller.showPosts(id)
+
+    userProfile: ->
+      controller = new UsersApp.About.Controller
+      controller.showAbout(AlumNet.current_user.id)
 
     userAbout: (id)->
       @registerVisit(id)

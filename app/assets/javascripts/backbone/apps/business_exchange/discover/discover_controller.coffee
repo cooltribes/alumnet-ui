@@ -10,7 +10,7 @@
           reset: true
         discoverView = new Discover.TasksList
           collection: tasks
-      
+
       else if view == "people"
         profiles = new AlumNet.Entities.BusinessCollection
         profiles.page = 1
@@ -18,10 +18,10 @@
         profiles.fetch
           reset: true
         discoverView = new Discover.ProfilesList
-          collection: profiles 
-      
+          collection: profiles
+
       discoverView.on "business:reload", ->
-        querySearch = controller.querySearch 
+        querySearch = controller.querySearch
         ++discoverView.collection.page
         if view == "tasks"
           newCollection = new AlumNet.Entities.BusinessExchangeCollection
@@ -40,22 +40,16 @@
           container.masonry
             itemSelector: '.col-md-4'
           container.append( $(viewInstance.el) ).masonry 'reloadItems'
-      
+
       discoverView.on 'business:search', (querySearch)->
 
-        console.log "busquedas"
         controller.querySearch = querySearch
         discoverView.collection.fetch
           data: querySearch
           success: (collection)->
-            console.log collection
             container = $('.profiles-container')
             container.masonry 'reloadItems'
 
-
-      console.log view    
-      console.log discoverView    
-      
       discoverLayout = new Discover.Layout
         view: view
 

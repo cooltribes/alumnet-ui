@@ -1,21 +1,27 @@
 <div class="message">
 	<div class="message__metaContainer">
 		<div class="message__avatar sender">
-			<img src="<%= @sender.avatar.avatar.large.url %>" alt="<%= @sender.name %>" class="img-circle">
-			
+		<% if @sender: %>
+			<img src="<%= @sender.avatar.large %>" alt="<%= @sender.name %>" class="img-circle">
+		<% else: %>
+			<img src="images/avatar/large_default_avatar.png" alt="Delete User" class="img-circle">
+		<% end %>
 		</div>
 		<div class="message__meta">
-			<span class="message__name"><a href="#users/<%= @sender.id %>/posts"><%= @sender.name %></a></span>
+			<% if @sender: %>
+				<span class="message__name"><a href="#users/<%= @sender.id %>/posts"><%= @sender.name %></a></span>
+			<% else: %>
+				<span class="message__name">Deleted User</a></span>
+			<% end %>
 			<span class="message__date"><%= moment(@created_at).fromNow() %></span>
 			<% if @is_read: %>
-			<a href="#" class="js-mark unread">Mark as Unread</a>
+				<a href="#" class="js-mark unread">Mark as Unread</a>
 			<% else: %>
-			<a href="#" class="js-mark read">Mark as Read</a>
+				<a href="#" class="js-mark read">Mark as Read</a>
 			<% end %>
 		</div>
-		
 	</div>
-	
+
 	<div class="message__content">
 		<p id="js-mensaje"><%= @body %></p>
 	</div>

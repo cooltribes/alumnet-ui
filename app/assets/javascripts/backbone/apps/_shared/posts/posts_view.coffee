@@ -135,7 +135,13 @@
 
     initialize: (options)->
       @postsView = options.postsView
-      @postable = @postsView.model
+      if @postsView
+        @postable = @postsView.model
+      else if options.postable
+        @postable = options.postable
+      else
+        @postable = null
+
 
     templateHelpers: ->
       model = @model
