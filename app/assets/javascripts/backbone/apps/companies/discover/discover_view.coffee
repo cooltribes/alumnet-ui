@@ -141,7 +141,6 @@
       $(window).scroll(@loadMoreCompanies)
 
     loadMoreCompanies: (e)->
-      console.log "Scroll"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'companies:reload'
 

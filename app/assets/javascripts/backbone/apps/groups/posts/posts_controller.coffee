@@ -77,8 +77,7 @@
           post.fetch
             success: ->
               postView = new Posts.PostDetail
-                group: group
-                current_user: current_user
+                postable: group
                 model: post
 
               AlumNet.mainRegion.show(postView)
