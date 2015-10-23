@@ -1,28 +1,30 @@
 <div class="container">
-  <table class="table companiesTable">    
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>
-          <span class="glyphicon glyphicon-map-marker"> </span>
-        </th>
-        <th>
-          <span class="ico-sector"></span>
-        </th>
-        <th>
-          <span class="icon-entypo-suitcase"></span>
-        </th>
-        <th>
-          <span class="ico ico-company"></span> 
-        </th>
+  <div class= "col-md-12">
+    <table class="table companiesTable">    
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>
+            <span class="glyphicon glyphicon-map-marker"> </span>
+          </th>
+          <th>
+            <span class="ico-sector"></span>
+          </th>
+          <th>
+            <span class="icon-entypo-suitcase"></span>
+          </th>
+          <th>
+            <span class="ico ico-company"></span> 
+          </th>
 
-      </tr>
-    </thead>
-    <tbody id="companies-container">
+        </tr>
+      </thead>
+      <tbody id="companies-container">
 
-    </tbody>
-    <div class="text-center"><span class="throbber-loader"></span></div>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center"><span class="throbber-loader"></span></div>
 
-  </table>
 </div>

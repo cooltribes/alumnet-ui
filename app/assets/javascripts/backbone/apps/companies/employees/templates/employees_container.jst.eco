@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-6 col-md-offset-3 hidden-xs">
 		<div class="searchBar">
 			<h2>Search for Alumni </h2>
 			<form id="search-form">
