@@ -24,9 +24,8 @@
       'click .js-advancedSearch': 'toggleAdvancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
-    
+
     initialize: (options)->
-      console.log @collection
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMore')
       $(window).scroll(@loadMore)
@@ -59,7 +58,6 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      console.log value
       @trigger('business:search', { q: { name_cont: value } } )
       #@collection.fetch
       #  data: { q: { name_cont: value } }
@@ -87,7 +85,7 @@
       @trigger('business:search', { q: { m: 'or', profile_first_name_cont_any: value.split(" "), profile_last_name_cont_any: value.split(" ") } } )
       #@collection.fetch
       #  data:
-      #    q: 
+      #    q:
       #      m: 'or'
       #      profile_first_name_cont_any: value.split(" ")
       #      profile_last_name_cont_any: value.split(" ")
@@ -108,16 +106,16 @@
 
     initialize: (options)->
       @classes = {
-        "people": ""       
-        "tasks": ""       
+        "people": ""
+        "tasks": ""
       }
 
       @classes[options.view] = " sortingMenu__item__link--active "
-    
+
     templateHelpers: ->
-      active: (value)=>        
+      active: (value)=>
         @classes[value]
-          
+
 
     discoverTasks: (e)->
       e.preventDefault()

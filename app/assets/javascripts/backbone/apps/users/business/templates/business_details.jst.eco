@@ -19,7 +19,11 @@
           </div> -->
           <div class="userBusiness__company">
             <p class="js-company-name userBusiness__companyN">
-              <%= @company.name %>
+              <% if @company: %>
+                <%= @company.name %>
+              <% else: %>
+                No Company
+              <% end %>
             </p>
             <% if @userCanEdit: %>
               <a href="#" data-target="company-name" class="editLink userBusiness__companyE js-edit">
