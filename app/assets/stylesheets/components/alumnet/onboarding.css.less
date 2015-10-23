@@ -47,44 +47,25 @@
   	
 
 }
+/* (Phone, 360px and up) */
 @media (min-width: @media-smallphone) { 
 	
-.onboarding{
-	&__groups{
-		color: @black;
-	}
-	
-	&__link{
-		color: @blue;
-	}
+	.onboarding{
 
-	&__members{
-		img:first-child{
-			margin-left: 0;
+		&__menu {
+	   
+	  		margin-top: -103px;
+
 		}
-		img{
-			margin-left: -10px;
-		}
-	}
+	  	
+	  	&__menuList{
 
-	&__menu {
-      	width: 100%;
-      	background-color: @blue;
-  		margin-top: -93px;
-  		padding: 10px 0 0;
+	        	height: 40px;
 	}
-  	
-  	&__menuList{
-  			list-style: none;
-        	color: #FFF;
-        	li {
-			    display: inline;
-			}
-  	}
-  
-  	
+	  
+	  	
 
-}
+	}
 	.orbordigResponsive{
 		h2{
 
@@ -97,44 +78,22 @@
 	}
 }
 
+/* ( 480px and up) */
 @media (min-width: @media-xsmall-max) { 
+
 	.onboarding{
-	&__groups{
-		color: @black;
-	}
-	
-	&__link{
-		color: @blue;
-	}
+	  	
+		&__menu {
+	   
+	  		margin-top: -103px;
 
-	&__members{
-		img:first-child{
-			margin-left: 0;
 		}
-		img{
-			margin-left: -10px;
-		}
-	}
+	  	
+	  	&__menuList{
 
-	&__menu {
-      	width: 100%;
-      	background-color: @blue;
-  		margin-top: -93px;
-  		padding: 10px 0 0;
-	}
-  	
-  	&__menuList{
-  			list-style: none;
-        	color: #FFF;
-        	li {
-			    display: inline;
-			}
-  	}
-  
-  	
-
-}
-
+	        	height: 50px;
+		}	
+ }
 
 	.orbordigResponsive{
 		h2{
@@ -147,55 +106,51 @@
 
 	}
 }
-@media (min-width: @media-large-min) { 
+
+/* ( 768px and up) */
+@media (min-width: @media-small-min) { 
+
 	.onboarding{
-	&__groups{
-		color: @black;
-	}
-	
-	&__link{
-		color: @blue;
-	}
+	  	
+		&__menu {
+	   
+	  		margin-top: -93px;
 
-	&__members{
-		img:first-child{
-			margin-left: 0;
 		}
-		img{
-			margin-left: -10px;
-		}
-	}
+	  	
+	  	&__menuList{
 
-	&__menu {
-      	width: 100%;
-      	background-color: @blue;
-  		margin-top: -93px;
-  		padding: 10px 0 0;
-	}
-  	
-  	&__menuList{
-  			list-style: none;
-        	color: #FFF;
-        	li {
-			    display: inline;
-			}
-  	}
-  
-  	
+	        height: 50px;
+	  	}
+	 }
 
 }
+
+/* ( 979px and up) */
+@media (min-width: @media-medium-max) { 
+	.onboarding{
+	  	
+		&__menu {
+	   
+	  		margin-top: -93px;
+
+		}
+	  	
+	  	&__menuList{
+
+	        	height: 60px;
+	  	}
+	 }
 
 	.orbordigResponsive{
 		h2{
 
 			font-size: 36px;	
 		}
-	.btn-onboarding{
-  		padding: 10px 16px;
-  		font-size: 18px;
-  		line-height: 1.33;
-  		border-radius: 3px
-	}
 
 	}
 }
+
+
+
+

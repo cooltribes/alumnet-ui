@@ -3,7 +3,7 @@
     <div class="col-md-12 text-center onboarding__groups margin_top_xsmall">
       <p>Use AlumNet to connect with fellow alumni from around the world. You may now start adding connections to your AlumNet. Below are suggestions of alumni you might know.</p>
     </div>
-    <div class="col-md-6 col-md-offset-3 text-center onboarding__groups margin_bottom">
+    <div class="col-md-6 col-md-offset-3 text-center onboarding__groups margin_bottom orbordigResponsive">
       <h2>Connect with suggested Alumni</h2>
     </div>
   </div>
