@@ -47,6 +47,7 @@
       view = new Discover.Layout
 
       view.on "search", @_applySearch, @
+      view.on "advancedSearch", @_applyAdvancedSearch, @
       view.on "changeGrid", @_changeGrid, @
 
     _getMyLayoutView: ->
@@ -86,9 +87,15 @@
     _applySearch: (query)->
       @querySearch = query
       @list_view.collection.fetch
-        data: { q: query }
+        data: query
         success: (collection)->
           container = $('#companies-container')
           container.masonry 'layout'
 
-
+    _applyAdvancedSearch: (query)->
+      @querySearch = query
+      @list_view.collection.fetch
+        data: { q: query }
+        success: (collection)->
+          container = $('#companies-container')
+          container.masonry 'layout'
