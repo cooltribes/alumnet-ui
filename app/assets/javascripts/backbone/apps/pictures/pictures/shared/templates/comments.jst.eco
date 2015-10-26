@@ -2,7 +2,7 @@
 
 <div class="row">
 <!-- Permiso para comentar aqui -->
-  <form class="groupPost__commentForm clearfix form">
+  <form class="groupPost__commentForm clearfix form" style="border-bottom: 1px solid #c3c3c3; background-color: #FFFBFB;">
     <div class="groupPost__commentForm__avatar hidden-xs">
       <img src="<%= @current_user_avatar %>" alt="Avatar" class="img-circle">
     </div>
