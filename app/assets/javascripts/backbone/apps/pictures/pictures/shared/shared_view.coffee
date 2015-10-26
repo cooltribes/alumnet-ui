@@ -49,6 +49,9 @@
     templateHelpers: ->
 
       model = @model
+      console.log model
+      commentCount = @model.comments.length
+      console.log commentCount 
       img = $("<img>").attr("src", @model.attributes.picture.original).load()
       proportion = parseFloat(parseInt(img[0].width,10) / parseInt(img[0].height,10))*5
       h= parseInt(img[0].width,10) > parseInt(img[0].height,10)  && proportion > 8

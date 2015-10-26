@@ -88,8 +88,33 @@ DESCRIPTION:diferents styles for events
   		text-align: center;
   	}
 }
+.previewEvents > img{
+  width: 300px;
+  height: 240px;
+
+}
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+  .previewEvents > img{
+    width: 300px;
+    height: 240px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @media-medium-min) {
+  .previewEvents > img{    
+    width: 250px;
+    height: 200px;
+  }
+}
+
 
 @media (min-width: @media-large-min){
+  .previewEvents > img{
+    width: 300px;
+    height: 240px;
+  }
   .titleEvents{
     h1{
     font-size: 50px;
@@ -98,6 +123,11 @@ DESCRIPTION:diferents styles for events
 }
 
 @media (min-width: @media-mmlarge-min) {
+  .previewEvents > img{
+    width: 300px;
+    height: 240px;
+  }
+  
   .titleEvents{
     h1{
       font-size: 60px;

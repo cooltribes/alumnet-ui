@@ -124,16 +124,16 @@
           <form>
           <div class="row margin_top hidden-xs">
             <div class="col-md-12">
-              <a href="#" class="btn btn-lg btn-commentImage js-tag-friend">TAG A FRIEND</a>
-              <a href="#" class="btn btn-lg btn-commentImage js-goto-comment">COMMENT <span class="icon-entypo-comment"></span></a>
-              <div class="btn-lg groupPost__btn--like">
+              <a href="#" class="btn btn-commentImage js-tag-friend">TAG A FRIEND</a>
+              <a href="#" class="btn btn-commentImage js-goto-comment">COMMENT <span class="icon-entypo-comment"></span></a>
+              <div class="groupPost__btn--like">
                 <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike">Unlike<span class="glyphicon glyphicon-thumbs-down"></span></a>
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
                 <% end %>
               </div>
-              (<span class="js-likes-counter"><%= @likes_count %></span> likes)
+              <span class="fontsize">(<span class="js-likes-counter"><%= @likes_count %></span> likes)</span>
             </div>
           </div>
 
@@ -146,12 +146,13 @@
                 <% else: %>
                   <a href="#" class="js-like js-vote" title="Like"> Like <span class="icon-entypo-thumbs-up"></span></a>
                 <% end %>
-                 (<span class="js-likes-counter"><%= @likes_count %></span> likes)
+                (<span class="js-likes-counter"><%= @likes_count %></span> likes)
               </div>
             </div>
           </div>
+        
           <!-- End Mobile -->
-        <div id="comments-region" style="overflow: scroll; width:350px; height: 250px;"></div>
+        <div id="comments-region"></div>
     </aside>
   </div>
 
