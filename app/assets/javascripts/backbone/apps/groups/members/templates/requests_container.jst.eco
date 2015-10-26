@@ -2,7 +2,7 @@
 El siguiente bloque de cards está estático y será usado para la siguiente pantalla: https://drive.google.com/file/d/0B3ykC7Qev1XrSEJ4VWY2NE9xRkE/view?usp=sharing
 Desde aqui
 -->
-<h2 class="margin_top">
+<h2 class="margin_top margin_left_xsmall">
   Members waiting for being accepted (<span id="js-requests-count">0</span>)
 </h2>
 <hr class="no_margin_top">

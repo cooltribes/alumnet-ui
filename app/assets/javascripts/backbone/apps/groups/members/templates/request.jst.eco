@@ -1,14 +1,14 @@
-<div class="col-md-4 col-sm-6">
+<div class="col-md-4 col-sm-6 col-xs-12">
   <div class="userCard userCard--diffHeight user-info">
     <div class=" row">
-      <div class="userCard__avatar  col-md-3 ">
+      <div class="userCard__avatar  col-md-3 col-xs-3">
         <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
-      <div class="col-md-6 ">
+      <div class="col-md-6 col-xs-6">
         <h4 class="userCard__name overfloadText"><%= @user.name %></h4>
         <p class="member-position text-small"><% @user.last_experience %></p>
       </div>
-      <div class=" col-md-3">
+      <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-accept-membership" title="Approve request">
         <div class="userCard__actions--Approve userCard__animation">
             <span class="userCard__actions__text">APPROVE</span>
