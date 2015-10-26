@@ -122,7 +122,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       height: 50px;
       margin-top: -10px;
       text-align: center;
-      padding-top: 20%;
+      padding-top: 15px;
       &:hover{
         background-color: @light-green;
       }
@@ -133,7 +133,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       color: @white;
       height: 50px;
       text-align: center;
-      padding-top: 20%;
+      padding-top: 15px;
       &:hover{
         background-color: @red;
       }
@@ -247,6 +247,106 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
+
+
+ /* ( 360px and up) */
+@media (min-width: @media-smallphone) {
+.userCardLike{
+    height: 100px;
+    width: 500px;
+    margin-bottom: 0.5em;
+    padding: 0 0 0 30px;
+    background-color: #FFFFFF;
+
+    img{
+      height: 70px;
+    }
+
+    &--paddingbutton{
+      padding-top: 0;  
+    }
+  }
+    .userCard{
+        
+        height: 100px;
+        overflow: hidden;
+        text-align: left;
+        padding: 10px 0px 10px 10px;
+
+        &--diffHeight{
+            height: 100px;
+            padding-bottom: 20px;
+        }
+
+        &__avatar{
+            text-align: right;
+         }
+        &__actions{
+            height: 100px;
+            padding: 40px 0 0;
+            margin-top: -10px
+         }
+        &__GroupAdminActions{
+        position: relative;
+          a{
+            width: 20px;
+            height: 26px;
+            padding: 3px;
+            position: absolute;
+            overflow: hidden;
+            text-align: center;
+            right: 30px;
+            &:hover{
+              width: 120px;
+              background-color: @blue;
+              color: @white;
+            }
+          }
+          &__text{
+            display: none;
+          }
+
+        &__actions{
+
+          &--Approve{
+            padding: 15px;
+          }
+          &--Decline{
+            margin-left: 50px;
+            padding: 15px;
+         
+        }
+
+        }
+          a:hover &__text{
+            display: inline;
+          
+          }
+       }
+    }
+
+
+}
+@media (min-width: @media-msmall-min) {
+
+  .userCard{
+
+        &__actions{
+
+          &--Approve{
+            padding: 15px;
+          }
+          &--Decline{
+            margin-left: 50px;
+            padding: 15px;
+         
+        }
+
+        }
+  }
+
+
+ }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
 
@@ -264,9 +364,6 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     }
   }
 
-    .userCard{
-        height: auto;
-    }
 
  }
 

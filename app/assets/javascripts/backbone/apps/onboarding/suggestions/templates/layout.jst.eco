@@ -1,4 +1,4 @@
-<div class="row margin_bottom_large hidden-xs">
+<div class="row margin_bottom_large">
   <div class="col-md-12 margin_bottom_large onboarding__menu text-center" id="navbar-region"></div>
 </div>
 <div class="container-fluid">
@@ -10,10 +10,10 @@
 <div class="row-fluid margin_top_large_minus">
   <div class="col-md-12 text-center">
   <% unless @isFirstStep: %>
-    <a href="#" class="btn btn-lg btn-primary margin_top js-prev">Prev</a>
+    <a href="#" class="btn btn-onboarding js-prev">Prev</a>
   <% end %>
   <% if @isLastStep: %>
-    <a href="#" class="btn btn-lg btn-primary margin_top js-finish">Start Exploring AlumNet >></a>
+    <a href="#" class="btn btn-onboarding js-finish">Start Exploring AlumNet >></a>
   <% else: %>
     <a href="#" class="btn btn-onboarding js-next ">Next</a>
   <% end %>

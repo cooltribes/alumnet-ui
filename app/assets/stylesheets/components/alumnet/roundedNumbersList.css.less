@@ -141,15 +141,13 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
     position: absolute;
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @media-small-min)
+/* (Phone, 360px and up) */
+@media (min-width: @media-smallphone)
 {
 
     .roundedNumbersList
     {
-        margin-top: 20px;
-        margin-bottom: 50px;
-        padding: 0;
+
 
 
         &__item
@@ -157,7 +155,7 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
             margin: 0 10px 10px 0;
             float: none;
             overflow: auto;
-
+            font-size:10px;
             width: auto;
             height: auto;
             &--active
@@ -165,24 +163,13 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
                 margin: 0 10px 10px 0;
                 float: none;
                 overflow: auto;
-
                 width: auto;
                 height: auto;
+                font-size:10px;
             }
        
         }
-        &__number
-        {
-            font-size: 2em;
 
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-            border: 2px solid @dim-gray;
-
-     
-        }
         &__numberOnboarding
         {
             font-size: 1.5em;
@@ -205,264 +192,67 @@ DESCRIPTION: Creates a vertical list of numbers where the numbers are within cir
 
     }
 }
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @media-small-min)
+
+
+/* (Phone, 480px and up) */
+@media (min-width: @media-xsmall-max)
 {
 
     .roundedNumbersList
     {
-        margin-top: 20px;
-        margin-bottom: 50px;
-        padding: 0;
+
 
 
         &__item
         {
-            margin: 0 10px 10px 0;
-            float: none;
-            overflow: auto;
-
-            width: auto;
-            height: auto;
+       
+            font-size:12px;
+          
             &--active
             {
-                margin: 0 10px 10px 0;
-                float: none;
-                overflow: auto;
-
-                width: auto;
-                height: auto;
+    
+                font-size:12px;
             }
        
         }
-        &__number
-        {
-            font-size: 2em;
 
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-            border: 2px solid @dim-gray;
-
-     
-        }
         &__numberOnboarding
         {
             font-size: 1.5em;
-            font-weight: 100;
-            line-height: 1.7em;
 
-            display: inline-block;
-
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-
-            text-align: center;
-            background-color: #FFF;
-            color: @blue;
-            padding: 5px 10px;
-            border-radius: 2em;
         }
 
     }
 }
+
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: @media-medium-min)
+@media (min-width: @media-medium-max)
 {
 	.roundedNumbersList
     {
-        margin-top: 20px;
-        margin-bottom: 50px;
-        padding: 0;
-
-        &__addLanguages{
-            text-align: left;
-            margin-top: 0;
-        }
-
-        &__textProfile{
-            text-align: left;
-            font-size: 36px;
-            color: #111111;
-            font-weight: 300;
-            margin-bottom: 0.2em;
-        }
-        &__avatarProfile{
-            img{
-                width: 240px;
-                height: 240px;
-                border-style: none;
-            }
-        }
 
         &__item
         {
-            margin: 0 10px 10px 0;
-            float: none;
-            overflow: auto;
+            font-size: 13px;
 
-            width: auto;
-            height: auto;
             &--active
             {
-                margin: 0 10px 10px 0;
-                float: none;
-                overflow: auto;
-
-                width: auto;
-                height: auto;
+        
+                font-size: 13px;
+   
             }
-            &--inactive
-            {
-                float: none;
-                overflow: auto;
 
-                width: auto;
-                height: auto;
-            }
         }
-        &__number
-        {
-            font-size: 2em;
 
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-            border: 2px solid @dim-gray;
-
-     
-        }
         &__numberOnboarding
         {
             font-size: 2em;
-            font-weight: 100;
-            line-height: 1.7em;
 
-            display: inline-block;
-
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-
-            text-align: center;
-            background-color: #FFF;
-            color: @blue;
-            padding: 5px 10px;
-            border-radius: 2em;
         }
 
-         &__subNumber
-        {
-            font-size: 1.5em;
 
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-        }
     }
 }
 
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: @media-large-min)
-{
-    .roundedNumbersList
-    {
-        margin-top: 20px;
-        margin-bottom: 50px;
-        padding: 0;
 
-        &__addLanguages{
-            margin-top: 0;
-            text-align: left;
-        }
-
-        &__textProfile{
-            text-align: left;
-            font-size: 36px;
-            color: #111111;
-            font-weight: 300;
-            margin-bottom: 0.2em;
-        }
-        &__avatarProfile{
-            img{
-                width: 240px;
-                height: 240px;
-                border-style: none;
-            }
-        }
-
-        &__item
-        {
-            margin: 0 10px 10px 0;
-            float: none;
-            overflow: auto;
-
-            width: auto;
-            height: auto;
-            &--active
-            {
-                margin: 0 10px 10px 0;
-                float: none;
-                overflow: auto;
-
-                width: auto;
-                height: auto;
-            }
-            &--inactive
-            {
-                float: none;
-                overflow: auto;
-
-                width: auto;
-                height: auto;
-            }
-        }
-        &__numberOnboarding
-        {
-            font-size: 2em;
-            font-weight: 100;
-            line-height: 1.7em;
-
-            display: inline-block;
-
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-
-            text-align: center;
-            background-color: #FFF;
-            color: @blue;
-            padding: 5px 10px;
-            border-radius: 2em;
-        }
-        &__number
-        {
-            font-size: 2em;
-            text-align: center;
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-            border: 2px solid @dim-gray;
-
-     
-        }
-        &__subNumber
-        {
-            font-size: 1.5em;
-
-            width: 2em;
-            height: 2em;
-            margin-right: .2em;
-            margin-bottom: .2em;
-        }
-    }
-}

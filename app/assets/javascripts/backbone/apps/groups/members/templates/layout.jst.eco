@@ -1,7 +1,7 @@
-<div id="js-requests-container">
+<div id="js-requests-container" class="onboardingResponsive ">
 
 </div>
 
-<div id="js-alumni-container">
+<div id="js-alumni-container" class="onboardingResponsive ">
 
 </div>

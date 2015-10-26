@@ -1,13 +1,13 @@
 <div class="userCard">
 	<div class=" row">
-		<div class="userCard__avatar col-md-3 ">
+		<div class="userCard__avatar col-md-3 col-xs-3">
 		<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
 
 		</div>
 		<div id="js-info-user" class="<% if @wasInvited(): %>
-			col-md-6
+			col-md-6 col-xs-6
 			<% else: %>
-			col-md-7
+			col-md-7 col-xs-6
 			<% end %>">
 			<h4 class="userCard__name"><%= @name %></h4>
 			<p class="member-position text-small"><%= @last_experience %></p>
@@ -15,9 +15,9 @@
 		</div>
 		<div id="js-invitation-box" class="
 			<% if @wasInvited(): %>
-			col-md-3
+			col-md-3 col-xs-3
 			<% else: %>
-			col-md-2
+			col-md-2 col-xs-3
 			<% end %>">
 			<div class="userCard__actions">
 				<span class="invitation">

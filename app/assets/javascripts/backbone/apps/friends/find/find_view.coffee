@@ -5,7 +5,7 @@
   class Find.UserView extends AlumNet.Shared.Views.UserView
     template: 'friends/find/templates/user'
     tagName: 'div'
-    className: 'col-md-4 col-sm-6'
+    className: 'col-md-4 col-sm-6 col-xs-12'
 
     templateHelpers: ->
       model = @model
