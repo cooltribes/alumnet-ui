@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2 text-center onboarding__groups margin_bottom">
+		<div class="col-md-8 col-md-offset-2 text-center onboarding__groups margin_bottom onboardingResponsive">
 		  	<h2>Support AIESEC Alumni International</h2>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 onboarding__groups margin_bottom">
+		<div class="col-md-6 onboarding__groups margin_bottom text-justify">
 		  	<p>AAI has crafted an ambitious vision and strategic plan to transform itself into an active, global network.  This plan will make it possible for up to a million alumni to connect and collaborate on programs that will provide lifelong value to alumni, support AIESEC and make a positive difference in the world.</p>
 
 		  	<p>In no other time in history can such a vision be made a reality.  The AlumNet platform was built in the hope of bringing alumni around the world into a single online community.  Within this extraordinary community, alumni may enjoy rich aggregated value through business, career and life connections.
 		</div>
-		<div class="col-md-6 onboarding__groups margin_bottom">
+		<div class="col-md-6 onboarding__groups margin_bottom text-justify">
 
 		  	<p>Alumni who upgrade to paid AlumNet memberships not only support the development and continuity of the grand AAI vision, they also enjoy exclusive access to premium features of the platform that provide even greater benefits of participation and deep collaboration.</p>
 

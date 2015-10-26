@@ -3,7 +3,7 @@
 </div>
 
 <div class="bbm-modal__section">
-  <div class="center-block" style="text-align: -webkit-center;">
+  <div class="center-block userCardLike--centerUserModal">
     <% for like in @likes: %>
       <div class="userCardLike" data-id="<%= like.id %>">
         <div class="row">

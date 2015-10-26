@@ -67,7 +67,7 @@
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
-      @trigger "search", query
+      @trigger "advancedSearch", query
 
 
     clear: (e)->
