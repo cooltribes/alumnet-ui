@@ -2,15 +2,15 @@
 <!-- requests that i received from a user-->
 <div class="userCard requester-info">
   <div class=" row">
-    <div class="userCard__avatar col-md-3 ">
+    <div class="userCard__avatar col-md-3 col-xs-3">
       <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle" width="80" height="80">
     </div>
-    <div class=" col-md-6 ">
+    <div class=" col-md-6 col-xs-6">
       <h4 class="userCard__name"><a href="#users/<%= @requester.id %>/posts"><%= @requester.name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @requester.last_experience %></p>
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @requester.first_committee %></p>
     </div>
-    <div class=" col-md-3">
+    <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-accept-friendship" title="Approve friend request">
         <div class="userCard__actions--Approve userCard__animation">
             <span class="userCard__actions__text">ACCEPT</span>
@@ -32,15 +32,15 @@
 
 <div class="userCard friend-info">
   <div class=" row">
-    <div class="userCard__avatar col-md-3 ">
+    <div class="userCard__avatar col-md-3 col-xs-3">
       <img src="<%= @friend.avatar %>" alt="<%= @friend.name %>" class="img-circle" width="80" height="80">
     </div>
-    <div class=" col-md-6 ">
+    <div class=" col-md-6 col-xs-6">
       <h4 class="userCard__name"><a href="#users/<%= @friend.id %>/posts"><%= @friend.name %></a></h4>
       <p class="userCard__position member-position text-small"><%= @friend.last_experience %></p>  
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @friend.first_committee %></p>         
     </div>
-    <div class=" col-md-3 ">
+    <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-delete-friendship" title="Cancel request">
         <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
           <span class="invitation">
