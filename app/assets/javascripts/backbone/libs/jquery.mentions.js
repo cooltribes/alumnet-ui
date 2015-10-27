@@ -191,7 +191,7 @@
 
     __extends(MentionsInput, _super);
 
-    mimicProperties = ['backgroundColor', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderTopWidth', 'borderLeftWidth', 'borderBottomWidth', 'borderRightWidth', 'fontSize', 'fontStyle', 'fontFamily', 'fontWeight', 'lineHeight', 'height', 'boxSizing'];
+    mimicProperties = ['marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderTopWidth', 'borderLeftWidth', 'borderBottomWidth', 'borderRightWidth', 'fontSize', 'fontStyle', 'fontFamily', 'fontWeight', 'lineHeight', 'height', 'boxSizing'];
 
     function MentionsInput(input, options) {
       var container,
@@ -318,7 +318,7 @@
         property = mimicProperties[_i];
         highlighter.css(property, this.input.css(property));
       }
-      this.input.css('backgroundColor', 'transparent');
+      // this.input.css('backgroundColor', 'transparent');
       return highlighter;
     };
 
