@@ -6,16 +6,16 @@
           <th></th>
           <th></th>
           <th>
-            <span class="glyphicon glyphicon-map-marker"> </span>
+            <span class="glyphicon glyphicon-map-marker hidden-xs"> </span>
           </th>
           <th>
-            <span class="ico-sector"></span>
+            <span class="ico-sector hidden-xs"></span>
           </th>
           <th>
-            <span class="icon-entypo-suitcase"></span>
+            <span class="icon-entypo-suitcase hidden-xs"></span>
           </th>
           <th>
-            <span class="ico ico-company"></span> 
+            <span class="ico ico-company hidden-xs"></span> 
           </th>
 
         </tr>
