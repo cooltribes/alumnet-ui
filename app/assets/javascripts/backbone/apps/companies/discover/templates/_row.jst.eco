@@ -1,10 +1,10 @@
-<td>
+<td class="hidden-xs">
   <a href="#companies/<%= @id %>/about"> 
     <img src="<%= @logo.card %>">
   </a> 
 </td>
 
-<td>
+<td class="hidden-xs">
   <div class="companiesTable__description">
     <h4>
       <a href="#companies/<%= @id %>/about">
@@ -15,20 +15,50 @@
   </div>
 </td>
 
-<td>
+<td class="hidden-xs">
   <%= @location() %>  
 </td>
 
-<td>
+<td class="hidden-xs">
   <%= @sector.text %>  
 </td>
 
-<td>
+<td class="hidden-xs">
   <%= @branches_count %>
 </td>
 
-<td>
+<td class="hidden-xs">
   <%= @employees_count %>
   <!-- links: <%= @links_count %> -->
 </td>
+
+
+<!-- Web Mobile -->
+<td class="visible-xs tableList">
+  <a href="#companies/<%= @id %>/about"> 
+    <img src="<%= @logo.card %>">
+  </a> 
+</td>
+
+<td class="visible-xs tableList">
+  <span class="ico-sector"></span><br>
+  <h5>
+    <a href="#companies/<%= @id %>/about" style="color:#000">
+      <%= @name %>
+    </a>
+  </h5>
+</td>
+
+<td class="visible-xs tableList">
+  <span class="icon-entypo-suitcase"> <%= @branches_count %> </span>
+   <br>
+  <span class="ico ico-company"> <%= @employees_count %> </span> 
+   <br>
+</td>
+
+
+
+
+
+
 
