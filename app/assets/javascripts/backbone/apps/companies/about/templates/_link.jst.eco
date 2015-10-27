@@ -6,7 +6,7 @@
 	</div>
 <% end %>
 <div class="paddingLinks">
-  <b><%= @title %></b>
+  <b><%= @title %></b> <br>
   <%= @description %>
 </div>
 </div>
