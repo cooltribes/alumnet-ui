@@ -20,7 +20,7 @@
     </div>  
   </div>
   <div class="row">
-    <div class="col-md-12 text-center margin_top_xsmall">
+    <div class="col-md-12 text-center margin_top_xsmall margin_bottom_small">
       <div class="js-link">
         <% if @membership_status == "approved": %>
             <span class="onboarding__link">Already Joined</span>

@@ -5,7 +5,7 @@
 
   class Manage.GroupView extends Marionette.ItemView
     template: 'groups/manage/templates/group'
-    className: 'col-md-6 col-sm-6'
+    className: 'col-md-6 col-sm-6 col-xs-12'
     ui:
       'leaveGroupLink': '#js-leave-group'
       'description':'#js-description'
