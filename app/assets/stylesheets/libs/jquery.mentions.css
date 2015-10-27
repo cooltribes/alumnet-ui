@@ -25,12 +25,10 @@
   font-weight: inherit;
   background-color: #7BB9E4;
   display: inline;
-  z-index: 5;
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 }
 
 [data-mention] {
   background-color: #7BB9E4;
-  z-index: 5;
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 }
