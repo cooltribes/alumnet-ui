@@ -1,4 +1,4 @@
-<div class="groupPost__commentsContainer comments-container margin_top hidden-xs commentsModal"></div>
+<div class="groupPost__commentsContainer comments-container margin_top hidden-xs"></div>
 
 <div class="row">
 <!-- Permiso para comentar aqui -->

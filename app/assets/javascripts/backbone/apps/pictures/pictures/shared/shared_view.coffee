@@ -235,9 +235,7 @@
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
-      resp = confirm "Are you sure?"
-      if resp
-        @model.destroy()
+      @model.destroy()
 
     clickedLike: (e)->
       e.stopPropagation()
