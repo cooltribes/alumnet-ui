@@ -35,19 +35,23 @@
 		<div class="groupCardManage__atributes">
 			<div class="clearfix ">
 				<div class="groupCardManage__atribute">
-					<div data-toggle="tooltip" data-placement="top" title="Created on" class="groupCardManage__atribute__container--odd">
+					<div data-toggle="tooltip" data-placement="top" title="Date Last Activity" class="groupCardManage__atribute__container--odd">
 						<span class="groupCardManage__icon ico-calendar"></span>
-						<%= moment(@group.created_at).format('MM/YYYY') %>
+						    <% if @first_post_at: %>
+              				<%= moment(@first_post_at).format('DD/MM/YYYY') %>
+              				<% else: %>
+              				<%= moment(@created_at).format('DD/MM/YYYY') %>
+              				<% end %>
 					</div>
 				</div>
 				<div class="groupCardManage__atribute">
 					<div data-toggle="tooltip" data-placement="top" title="Last Activity" class="groupCardManage__atribute__container">
 						<span class="groupCardManage__icon ico-timebank"></span>
-						<% if @group.updated_at: %>
-							<%= moment(@group.updated_at).format('h:mm a') %>	
-						<% else: %>
-							<%= moment(@group.created_at).format('h:mm a') %>	
-						<% end %>
+					        <% if @first_post_at: %>
+				            <%= moment(@first_post_at).format('h:mm a') %>
+				            <% else: %>
+				            <%= moment(@created_at).format('h:mm a') %>
+				            <% end %>
 					</div>	
 				</div>
 			</div>
