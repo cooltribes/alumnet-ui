@@ -1,7 +1,7 @@
 @AlumNet.module 'EventsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   ##### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
-    template: 'events/posts/templates/comment'
+    # template: 'events/posts/templates/comment'
     className: 'groupPost__comment'
 
     templateHelpers: ->
@@ -12,7 +12,6 @@
 
   #### POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
-    template: 'events/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'

@@ -3,9 +3,7 @@
   # COMMENT VIEW
   #
   class Views.CommentView extends Marionette.ItemView
-    template: ->
-      throw 'You must define a template'
-
+    template: '_shared/posts/templates/comment'
     initialize: (options)->
       @postView = options.postView
       @postable = options.postable
@@ -124,8 +122,7 @@
   #
 
   class Views.PostView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
+    template: '_shared/posts/templates/post'
     childView: Views.CommentView
     childViewContainer: '.comments-container'
 
@@ -366,8 +363,7 @@
   #
 
   class Views.PostsView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
+    template: '_shared/posts/templates/posts_container'
     childView: Views.PostView
     childViewContainer: '.posts-container'
     childViewOptions: ->

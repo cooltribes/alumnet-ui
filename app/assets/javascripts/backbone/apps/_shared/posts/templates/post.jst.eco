@@ -1,18 +1,20 @@
-<div class="groupPost">
-  <div class="groupPost__postBody">
-    <div class="groupPost__metaData clearfix">
+<div class="postCard">
+  <div class="postCard__postBody">
+    <div class="postCard__metaData clearfix">
       <div class="row">
       <!-- Avatar ON -->
-        <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3">
-          <div class="groupPost__avatar">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div class="postCard__avatar">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
           </div>
         </div>
         <!-- Avatar OFF -->
-        <div class="col-xs-8 col-sm-9 col-md-8 col-lg-9">
-          <div class="postCard__info"><%- @infoLink %> </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 no-padding">          
 
-          <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+          <h4 class="postCard__userName">
+          <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
+          <span class="postCard__info">posted <%- @infoLink %> </span>
+          </h4>
 
           <!-- TAGS       -->
           <% if @tagsLinks: %>
@@ -21,7 +23,7 @@
             </div>
           <% end %>
           <!--  -->
-          <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
+          <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
          </div>
       </div>
 
@@ -61,9 +63,9 @@
     <hr>
     <!-- PICTURES OFF     -->
 
-    <a href="#" class="groupPost__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
+    <a href="#" class="postCard__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
 
-    <div class="groupPost__btn--like">
+    <div class="postCard__btn--like">
       <% if @you_like: %>
         <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
       <% else: %>
@@ -89,22 +91,19 @@
   </div>
 
 
-  <a href="#" class="groupPost__btn--loadMore" id="js-load-more">Show previews comments</a>
-  <div class="groupPost__commentsContainer comments-container"></div>
-  <form class="groupPost__commentForm clearfix form">
+  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previews comments</a>
+  <div class="postCard__commentsContainer comments-container"></div>
+  <form class="postCard__commentForm clearfix form">
     <div class="row">
       <div class="col-sm-2 col-md-2 col-lg-2 hidden-xs">
-        <div class="groupPost__commentForm__avatar">
+        <div class="postCard__commentForm__avatar">
           <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">
         </div>
       </div>
       <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-        <div class="groupPost__commentForm__form">
-          <div class="col-xs-9 form-group mentions">
+        <div class="postCard__commentForm__form">
+          <div class="form-group mentions">
             <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1"></textarea>
-          </div>
-          <div class="col-xs-3 visible-xs">
-            <button style="margin-left: 28px; color: #2099D0" id= "commentB" class="btn btn-default-blue"><span class="glyphicon glyphicon-comment"></span></button>
           </div>
         </div>
       </div>
