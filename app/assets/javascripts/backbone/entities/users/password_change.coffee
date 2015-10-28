@@ -14,9 +14,5 @@
       valid_current_password: 'validateCurrentPassword'
 
     validateCurrentPassword: (value, attr, computedState) ->
-        console.log value
         if value != "true"
           return 'Incorrect current password'
-
-
-    
