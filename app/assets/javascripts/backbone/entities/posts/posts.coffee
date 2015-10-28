@@ -16,9 +16,9 @@
       unless @isNew()
         @setPictures()
 
-    validation:
-      body:
-        required: true
+    # validation:
+    #   body:
+    #     required: true
 
     firstLikeLinks: ->
       links = []

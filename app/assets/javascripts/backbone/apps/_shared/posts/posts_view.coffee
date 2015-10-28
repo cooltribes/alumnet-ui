@@ -193,6 +193,7 @@
         type: 'textarea'
         pk: view.model.id
         title: 'Edit Posts'
+        emptytext: ''
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
@@ -236,6 +237,14 @@
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
       'click .js-show-likes': 'showLikes'
+      'click .js-share-post': 'showShare'
+
+    showShare: (e)->
+      e.preventDefault()
+      view = @
+      modal = new AlumNet.Shared.Views.ShareModal
+        model: view.model
+      $('#js-likes-modal-container').html(modal.render().el)
 
     showLikes: (e)->
       e.preventDefault()

@@ -1,0 +1,97 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Share</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="form-group">
+      <select name="postable_type" id="postable_type" class="form-control">
+        <option value="users">Timelime friend</option>
+        <option value="groups">Group</option>
+        <option value="events">Event</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="hidden" name="postable_id" id="postable_id" style="width: 100%">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" name="body" id="body" rows="2"></textarea>
+    </div>
+  </form>
+
+  <div class="preview-post">
+  <!-- AQUI DEBE IR LO QUE SE QUIERE MOSTRAR DEL POST, ESTA SECCION DEBERIA USARSE TAMBIEN EN TEMPLATE DE LA VISTA DE UN POST TIPO SHARE  -->
+    <div class="groupPost">
+      <div class="groupPost__postBody">
+        <div class="groupPost__metaData clearfix">
+          <div class="row">
+          <!-- Avatar ON -->
+            <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3">
+              <div class="groupPost__avatar">
+                <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+              </div>
+            </div>
+            <!-- Avatar OFF -->
+            <div class="col-xs-8 col-sm-9 col-md-8 col-lg-9">
+              <div class="postCard__info"><%- @infoLink %> </div>
+
+              <h4 class="groupPost__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+
+              <!-- TAGS       -->
+              <% if @tagsLinks: %>
+                <div class="tags" >
+                  with: <span style="color: #2099d0;"><%- @tagsLinks %></span>
+                </div>
+              <% end %>
+              <!--  -->
+              <small class="groupPost__date"> <%= moment(@created_at).fromNow() %></small>
+             </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+                <!-- PREVIEW -->
+                <% if @preview.url : %>
+                  <h4 style="color:#111111"><%= @preview.title %></h4>
+                  <span><%= @preview.description %></span>
+                  <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
+                <% end %>
+                <!-- PREVIEW OFF -->
+          </div>
+        </div>
+
+        <!-- PICTURES -->
+        <div class="row">
+          <div class="col-md-12">
+            <% if @pictures: %>
+              <div class="modal-container"></div>
+              <div class="pictures-container">
+                <% counter = 0 %>
+                <% for picture in @picturesToShow(): %>
+                  <% counter = counter + 1 %>
+                  <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
+                    <img src="<%= picture.picture.main %>" class="first-item picture-post" data-id="<%= picture.id %>">
+                  <% else: %>
+                    <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <hr>
+        <!-- PICTURES OFF     -->
+      </div>
+    </div>
+  <!--  -->
+  </div>
+</div>
+
+<div class="bbm-modal__bottombar no_margin_top">
+  <a href="#" id="share" class="btn btn-primary">Share</a>
+  <a href="#" id="close" class="btn btn-primary">Close</a>
+</div>
+
+
