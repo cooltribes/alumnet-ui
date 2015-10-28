@@ -471,7 +471,7 @@
             url: AlumNet.api_endpoint + '/metatags'
             data: {url: url}
             success: (data)->
-              ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-5 col-lg-4 text-center" style="padding: 13px;"><img src="'+data.image+'" height="100px" width="165px"/></div><div class="col-sm-8 col-md-7 col-lg-8"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
+              ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-6 col-lg-5 text-center" style="padding: 13px;"><img src="'+data.image+'" class="imageEvents"></div><div class="col-sm-8 col-md-6 col-lg-7"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
               ui.preview_image.val(data.image)
               ui.preview_description.val(data.description)
               ui.preview_title.val(data.title)
