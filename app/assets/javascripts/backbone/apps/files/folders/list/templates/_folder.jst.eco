@@ -1,5 +1,5 @@
 <div class="file__background file__background--white">
-  <div class="col-md-2 file__iconFileC text-center">
+  <div class="col-md-2 file__iconFileC">
     <% if @files_count == 0: %>
       <a href="#" class="js-detail">  
         <span class="glyphicon glyphicon-folder-close"></span>

@@ -50,3 +50,42 @@ DESCRIPTION: Style to folder and files in groups.
       text-align: center;
     }
 }
+
+/*  (319px and up) */
+@media (min-width: @media-smallest) { 
+.file{
+
+    &__iconFileC{
+      font-size: 20px;
+      padding: inherit;
+        
+    }
+
+    &__nameFolder{
+      color: @blue;
+      font-size: 17px;
+      margin: -38px 50px 0px 30px;
+
+    }
+
+    &__positionDropdown{
+      margin-top: -20px;
+    }
+
+}
+}
+/*  (992px and up) */
+@media (min-width: @media-smedium-min) { 
+.file{
+
+    &__nameFolder{
+
+      margin-top: 0px;
+      margin-left: 0px;
+
+    }
+
+
+
+}
+}
