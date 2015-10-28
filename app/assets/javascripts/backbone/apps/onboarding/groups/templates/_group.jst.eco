@@ -1,16 +1,16 @@
-<div>
+<div class="white-bg">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <img src="<%= @cover %>" width="100%">
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 text-center onboarding__groups margin_top_small">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center onboarding__groups margin_top_small">
       <p><%= @name %></p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 onboarding__members">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 onboarding__members">
       <% if @members > 0: %>
         <% for member in @members_avatar: %>
           <img src="<%= member.avatar %>" alt="<%= member.name %>" class= "img-circle">
@@ -20,7 +20,7 @@
     </div>  
   </div>
   <div class="row">
-    <div class="col-md-12 text-center margin_top_xsmall margin_bottom_small">
+    <div class="ccol-lg-12 col-md-12 col-sm-12 col-xs-12 text-center margin_top_xsmall">
       <div class="js-link">
         <% if @membership_status == "approved": %>
             <span class="onboarding__link">Already Joined</span>
@@ -37,3 +37,6 @@
     </div>
   </div>
 </div>
+<p></p>
+
+
