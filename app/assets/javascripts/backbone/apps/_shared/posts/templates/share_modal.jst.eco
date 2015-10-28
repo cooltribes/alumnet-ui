@@ -6,7 +6,8 @@
   <form>
     <div class="form-group">
       <select name="postable_type" id="postable_type" class="form-control">
-        <option value="users">Timelime friend</option>
+        <option value="me">Timelime</option>
+        <option value="users">Friend</option>
         <option value="groups">Group</option>
         <option value="events">Event</option>
       </select>

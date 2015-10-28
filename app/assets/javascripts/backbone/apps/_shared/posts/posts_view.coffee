@@ -142,8 +142,10 @@
       else
         @postable = null
 
+      @postPictures = @model.get('pictures')
 
     templateHelpers: ->
+      view = @
       model = @model
       permissions = @model.get('permissions')
 
@@ -154,13 +156,15 @@
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
+
       picturesToShow: ->
-        if model.get('pictures').length > 5
-          _.first(model.get('pictures'), 5)
+        if view.postPictures.length > 5
+          _.first(view.postPictures, 5)
         else
-          model.get('pictures')
+          view.postPictures
 
     onBeforeRender: ->
       @model.comments.fetch()
@@ -168,8 +172,7 @@
 
     onShow: ->
       self = @
-      pictures = @model.get('pictures')
-      if pictures && pictures.length > 1
+      if @postPictures && @postPictures.length > 1
         container = @ui.picturesContainer
         container.imagesLoaded ->
           container.masonry
@@ -182,6 +185,13 @@
       # Mentions in comments
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
+      if @model.get('post_type') == 'share'
+        content = @model.getModelContent()
+        contentView = new AlumNet.Shared.Views.ContentView
+          model: content
+        @$('.content-container').html(contentView.render().el)
+
 
     reloadMasonry: ->
       $('#timeline').masonry()
@@ -244,6 +254,7 @@
       view = @
       modal = new AlumNet.Shared.Views.ShareModal
         model: view.model
+        postsView: @postsView
       $('#js-likes-modal-container').html(modal.render().el)
 
     showLikes: (e)->

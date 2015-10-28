@@ -4,7 +4,8 @@
     cancelEl: '#close'
 
     initialize: (options)->
-      @postable_type = "User"
+      @postsView = options.postsView
+      @postable_type = "me"
 
     events:
       'change #postable_type': 'changePostable'
@@ -29,9 +30,6 @@
         else
           model.get('pictures')
 
-    onShow: ->
-      @usersSelect()
-
     changePostable: (e)->
       @postable_type = $(e.currentTarget).val()
       if @postable_type == "users"
@@ -40,16 +38,27 @@
         @eventsSelect()
       else if @postable_type == "groups"
         @groupsSelect()
+      else if @postable_type == "me"
+        @$('#postable_id').select2('destroy')
 
     clickedShare: (e)->
       e.preventDefault()
-      @postable_id = @$('#postable_id').select2('val')
+      view = @
+      if @postable_type == "me"
+        @postable_id = AlumNet.current_user.id
+        post = AlumNet.request('post:new', 'users', @postable_id)
+      else
+        @postable_id = @$('#postable_id').select2('val')
+        post = AlumNet.request('post:new', @postable_type, @postable_id)
+
       body = @$('textarea#body').val()
       data = { body: body, content_id: @model.id, content_type: 'Post' }
-      post = AlumNet.request('post:new', @postable_type, @postable_id)
       post.save data,
         success: (model)->
-          console.log model
+          if view.postsView
+            view.postsView.collection.add(model, {at: 0})
+            # view.postsView.collection.add(model, {at: view.postsView.collection.length})
+          view.destroy()
 
     eventsSelect: ->
       @$('#postable_id').select2

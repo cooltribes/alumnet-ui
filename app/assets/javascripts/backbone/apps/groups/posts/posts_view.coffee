@@ -12,10 +12,16 @@
 
   ###### POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
-    template: 'groups/posts/templates/post'
+    # template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-xs-12 col-sm-6 col-md-6'
+
+    getTemplate: ->
+      if @model.get('post_type') == 'share'
+        '_shared/posts/templates/share'
+      else
+        'groups/posts/templates/post'
 
     templateHelpers: ->
       helpers =

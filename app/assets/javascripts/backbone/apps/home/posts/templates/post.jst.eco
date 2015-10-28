@@ -82,7 +82,7 @@
     <% end %>
 
     <!-- SHARE LINK -->
-    <a href="#" class="glyphicon glyphicon-remove js-share-post">Share</a>
+    <a href="#" class="glyphicon glyphicon-share js-share-post">Share</a>
     <!--  -->
 
     <div class="js-like-links link-text margin_top_small">

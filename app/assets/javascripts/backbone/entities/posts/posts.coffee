@@ -20,6 +20,10 @@
     #   body:
     #     required: true
 
+    getModelContent: ->
+      if @get('post_type') == 'share'
+        new Entities.Post @get('content')
+
     firstLikeLinks: ->
       links = []
       if @get('likes_count') > 0
