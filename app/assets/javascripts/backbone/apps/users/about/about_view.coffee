@@ -812,6 +812,9 @@
       "facebook":"#js-link-fb"
       "twitter":"#js-link-tw"
       "web":".js-link-web"
+      "yahoo":"js-link-yahoo"
+      "email":"js-link-email"
+      "mail":"js-link-mail"
 
     events:
       "click .js-rmvRow": "removeItem"
@@ -854,6 +857,10 @@
       @ui.facebook.linkify()
       @ui.twitter.linkify()
       @ui.web.linkify()
+      @ui.yahoo.linkify()
+      @ui.email.linkify()
+      @ui.mail.linkify()
+
 
   class About.ContactsView extends Marionette.CollectionView
     childView: About.Contact

@@ -283,9 +283,11 @@
 
     ui:
       'commentInput': '.comment'
+      'commentButton': '#commentB'
 
     events:
       'keypress .comment': 'commentSend'
+      'click @ui.commentButton': 'commentSendButtons'
 
     onShow: ->
       # Autosize
@@ -312,6 +314,23 @@
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+
+    commentSendButtons: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      if data.body != ''
+        console.log data, @model
+        view = @
+        comment = AlumNet.request('comment:picture:new', @model.id)
+        data.comment = @ui.commentInput.mentionsInput('getRawValue')
+        data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+        data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
+        console.log data, comment
+        comment.save data,
+          success: (model, response, options)->
+            view.ui.commentInput.val('')
+            view.collection.add(model, {at: view.collection.length})
 
     extractMentions: (mentions)->
       array = []
