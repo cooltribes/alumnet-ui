@@ -3,6 +3,8 @@
     template: '_shared/posts/templates/content'
 
     initialize: (options)->
+      @previewMode = if options.previewMode == undefined then false else options.previewMode
+      @postsView = options.postsView
       @postPictures = @model.get('pictures')
 
     templateHelpers: ->
@@ -10,6 +12,8 @@
       model = @model
 
       infoLink: @model.infoLink()
+      postUrl: @model.postUrl()
+      previewMode: @previewMode
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -28,6 +32,7 @@
 
     events: ->
       'click .picture-post': 'clickedPicture'
+      'click .js-share-post': 'showShare'
 
     onRender: ->
       if @postPictures && @postPictures.length > 1
@@ -51,8 +56,17 @@
 
     clickedPicture: (e)->
       e.preventDefault()
+      return if @previewMode
       element = $(e.currentTarget)
       id = element.data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture
       @ui.modalContainer.html(modal.render().el)
+
+    # showShare: (e)->
+    #   e.preventDefault()
+    #   return if @previewMode
+    #   modal = new AlumNet.Shared.Views.ShareModal
+    #     model: @model
+    #     postsView: @postsView
+    #   $('#js-likes-modal-container').html(modal.render().el)

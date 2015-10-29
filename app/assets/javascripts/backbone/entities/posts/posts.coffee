@@ -21,8 +21,9 @@
     #     required: true
 
     getModelContent: ->
-      if @get('post_type') == 'share'
-        new Entities.Post @get('content')
+      if @get('content')
+        @modelContent = new Entities.Post @get('content') if @modelContent == undefined
+        @modelContent
 
     firstLikeLinks: ->
       links = []
@@ -68,6 +69,18 @@
       else if info.type == "Event"
         url = "#events/#{info.id}/posts"
         "in Event <a href='#{url}' title='#{info.name}'>#{info.name}</a>"
+      else
+        ""
+
+    postUrl: ->
+      info = @get('postable_info')
+
+      if info.type == "Group"
+        "#groups/#{info.id}/posts/#{@id}"
+      else if info.type == "User"
+        "#users/#{info.id}/posts/#{@id}"
+      else if info.type == "Event"
+        "#events/#{info.id}/posts/#{@id}"
       else
         ""
 

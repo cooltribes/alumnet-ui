@@ -34,5 +34,12 @@
         <!-- PREVIEW OFF -->
       </div>
     </div>
+    <!-- BUTTONS -->
+    <% unless @previewMode : %>
+      <div>
+        <a href="<%= @postUrl %>">Ir a Post</a>
+        <!-- <a href="#" class="js-share-post">Share</a> -->
+      </div>
+    <% end %>
   </div>
 </div>

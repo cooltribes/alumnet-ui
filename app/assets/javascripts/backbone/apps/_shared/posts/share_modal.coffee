@@ -3,13 +3,26 @@
     template: '_shared/posts/templates/share_modal'
     cancelEl: '#close'
 
+    regions:
+      'contentRegion': '.content-container'
+
     initialize: (options)->
       @postsView = options.postsView
       @postable_type = "me"
+      if @model.get('post_type') == 'share'
+        @content = @model.getModelContent()
+      else
+        @content = @model
 
     events:
       'change #postable_type': 'changePostable'
       'click #share': 'clickedShare'
+
+    onShow: ->
+      contentView = new AlumNet.Shared.Views.ContentView
+        model: @content
+        previewMode: true
+      @contentRegion.show(contentView)
 
     templateHelpers: ->
       model = @model
@@ -22,6 +35,7 @@
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
       picturesToShow: ->
@@ -52,13 +66,14 @@
         post = AlumNet.request('post:new', @postable_type, @postable_id)
 
       body = @$('textarea#body').val()
-      data = { body: body, content_id: @model.id, content_type: 'Post' }
+      data = { body: body, content_id: @content.id, content_type: 'Post' }
       post.save data,
         success: (model)->
-          if view.postsView
-            view.postsView.collection.add(model, {at: 0})
-            # view.postsView.collection.add(model, {at: view.postsView.collection.length})
           view.destroy()
+          $.growl.notice({ message: 'The post has been shared successfully' })
+        error: (model, response)->
+          message = AlumNet.formatErrorsFromApi(response.responseJSON)
+          $.growl.error(message: message)
 
     eventsSelect: ->
       @$('#postable_id').select2

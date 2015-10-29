@@ -153,8 +153,8 @@
       permissions = @model.get('permissions')
 
       userCanComment: true
-      canShare: true
       showInfoLink: false
+      canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       current_user_avatar: AlumNet.current_user.get('avatar').medium
@@ -196,6 +196,7 @@
         content = @model.getModelContent()
         contentView = new AlumNet.Shared.Views.ContentView
           model: content
+          postsView: @postsView
         @$('.content-container').html(contentView.render().el)
 
 
@@ -257,9 +258,8 @@
 
     showShare: (e)->
       e.preventDefault()
-      view = @
       modal = new AlumNet.Shared.Views.ShareModal
-        model: view.model
+        model: @model
         postsView: @postsView
       $('#js-likes-modal-container').html(modal.render().el)
 
