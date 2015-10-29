@@ -1,18 +1,16 @@
 @AlumNet.module 'EventsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   ##### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
-    template: 'events/posts/templates/comment'
     className: 'groupPost__comment'
 
     templateHelpers: ->
       helpers =
         userCanComment: @postable.userIsInvited()
-      _.extend helpers, super()
+      _.extend super(), helpers
 
 
   #### POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
-    template: 'events/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
@@ -20,7 +18,7 @@
     templateHelpers: ->
       helpers =
         userCanComment: @postable.userIsInvited()
-      _.extend helpers, super()
+      _.extend super(), helpers
 
 
   ###### POST DETAIL
@@ -44,12 +42,12 @@
         userCanPost: @model.userIsInvited()
         eventIsClose: @model.isClose()
 
-      _.extend helpers, super()
+      _.extend super(), helpers
 
     events: ->
       events =
         'click .js-join': 'sendJoin'
-      _.extend events, super()
+      _.extend super(), events
 
     sendJoin:(e)->
       e.preventDefault()

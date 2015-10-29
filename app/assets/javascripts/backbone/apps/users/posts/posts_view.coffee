@@ -1,13 +1,11 @@
 @AlumNet.module 'UsersApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   #### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
-    template: 'users/posts/templates/comment'
     className: 'groupPost__comment'
 
 
   #### POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
-    template: 'users/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-md-6'
@@ -22,7 +20,6 @@
 
   #### POST COLLECTION
   class Posts.PostsView extends AlumNet.Shared.Views.PostsView
-    template: 'users/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
 

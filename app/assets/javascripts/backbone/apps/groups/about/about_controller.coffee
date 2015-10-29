@@ -4,9 +4,10 @@
       group = AlumNet.request("group:find", id)
       current_user = AlumNet.current_user
       group.on 'find:success', (response, options)->
-        if group.isClose() && not group.userIsMember()
-          $.growl.error({ message: "You cannot see information on this Group. This is a Closed Group" })
-        else if group.isSecret() && not group.userIsMember()
+        # Mantener esto por si acaso cambian de opinion
+        # if group.isClose() && not group.userIsMember()
+        # $.growl.error({ message: "You cannot see information on this Group. This is a Closed Group" })
+        if group.isSecret() && not group.userIsMember()
           AlumNet.trigger('show:error', 404)
         else
           layout = AlumNet.request("group:layout", group, 1)

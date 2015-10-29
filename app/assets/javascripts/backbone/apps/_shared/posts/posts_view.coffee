@@ -3,15 +3,14 @@
   # COMMENT VIEW
   #
   class Views.CommentView extends Marionette.ItemView
-    template: ->
-      throw 'You must define a template'
-
+    template: '_shared/posts/templates/comment'
     initialize: (options)->
       @postView = options.postView
       @postable = options.postable
 
     templateHelpers: ->
       permissions = @model.get('permissions')
+      userCanComment: true
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       comment: @model.commentWithLinks()
@@ -124,10 +123,14 @@
   #
 
   class Views.PostView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
     childView: Views.CommentView
     childViewContainer: '.comments-container'
+
+    getTemplate: ->
+      if @model.get('post_type') == 'share'
+        '_shared/posts/templates/share'
+      else
+        '_shared/posts/templates/post'
 
     childViewOptions: ->
       postView: @
@@ -142,11 +145,16 @@
       else
         @postable = null
 
+      @postPictures = @model.get('pictures')
 
     templateHelpers: ->
+      view = @
       model = @model
       permissions = @model.get('permissions')
 
+      userCanComment: true
+      showInfoLink: false
+      canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       current_user_avatar: AlumNet.current_user.get('avatar').medium
@@ -154,13 +162,15 @@
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
+
       picturesToShow: ->
-        if model.get('pictures').length > 5
-          _.first(model.get('pictures'), 5)
+        if view.postPictures.length > 5
+          _.first(view.postPictures, 5)
         else
-          model.get('pictures')
+          view.postPictures
 
     onBeforeRender: ->
       @model.comments.fetch()
@@ -168,8 +178,7 @@
 
     onShow: ->
       self = @
-      pictures = @model.get('pictures')
-      if pictures && pictures.length > 1
+      if @postPictures && @postPictures.length > 1
         container = @ui.picturesContainer
         container.imagesLoaded ->
           container.masonry
@@ -183,6 +192,14 @@
       @ui.commentInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
 
+      if @model.get('post_type') == 'share'
+        content = @model.getModelContent()
+        contentView = new AlumNet.Shared.Views.ContentView
+          model: content
+          postsView: @postsView
+        @$('.content-container').html(contentView.render().el)
+
+
     reloadMasonry: ->
       $('#timeline').masonry()
 
@@ -193,6 +210,7 @@
         type: 'textarea'
         pk: view.model.id
         title: 'Edit Posts'
+        emptytext: ''
         toggle: 'manual'
         validate: (value)->
           if $.trim(value) == ''
@@ -236,6 +254,14 @@
       'click .picture-post': 'clickedPicture'
       'click @ui.moreComment': 'loadMore'
       'click .js-show-likes': 'showLikes'
+      'click .js-share-post': 'showShare'
+
+    showShare: (e)->
+      e.preventDefault()
+      modal = new AlumNet.Shared.Views.ShareModal
+        model: @model
+        postsView: @postsView
+      $('#js-likes-modal-container').html(modal.render().el)
 
     showLikes: (e)->
       e.preventDefault()
@@ -366,8 +392,7 @@
   #
 
   class Views.PostsView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
+    template: '_shared/posts/templates/posts_container'
     childView: Views.PostView
     childViewContainer: '.posts-container'
     childViewOptions: ->
@@ -394,6 +419,7 @@
         @trigger 'post:reload'
 
     templateHelpers: ->
+      userCanPost: true
       current_user_avatar: AlumNet.current_user.get('avatar').large
 
     ui: ->

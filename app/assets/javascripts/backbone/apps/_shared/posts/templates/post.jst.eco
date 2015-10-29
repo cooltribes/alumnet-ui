@@ -1,0 +1,133 @@
+<div class="postCard">
+  <div class="postCard__postBody">
+    <div class="postCard__metaData clearfix">
+
+      <div class="row">
+        <!-- Avatar ON -->
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div class="postCard__avatar">
+            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+          </div>
+        </div>
+        <!-- Avatar OFF -->
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 no-padding">
+          <h4 class="postCard__userName">
+            <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
+            <% if @showInfoLink: %>
+              <span class="postCard__info">posted <%- @infoLink %> </span>
+            <% end %>
+          </h4>
+          <!-- TAGS       -->
+          <% if @tagsLinks: %>
+            <div class="tags" >
+              with: <span style="color: #2099d0;"><%- @tagsLinks %></span>
+            </div>
+          <% end %>
+          <!--  -->
+          <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
+         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- BODY -->
+        <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+        <!-- BODY OFF -->
+        <!-- PREVIEW -->
+        <% if @preview.url : %>
+          <h4 style="color:#111111"><%= @preview.title %></h4>
+          <span><%= @preview.description %></span>
+          <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
+        <% end %>
+        <!-- PREVIEW OFF -->
+      </div>
+    </div>
+
+    <!-- PICTURES -->
+    <% if @pictures: %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pictures-container">
+            <% counter = 0 %>
+            <% for picture in @picturesToShow(): %>
+              <% counter = counter + 1 %>
+              <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
+                <img src="<%= picture.picture.main %>" class="first-item picture-post" data-id="<%= picture.id %>">
+              <% else: %>
+                <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- PICTURES OFF -->
+
+    <hr>
+
+    <!-- BUTTONS -->
+    <% if @userCanComment: %>
+      <a href="#" class="postCard__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
+
+      <div class="postCard__btn--like">
+        <% if @you_like: %>
+          <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
+        <% else: %>
+          <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+        <% end %>
+      </div>
+    <% end %>
+
+    (<span class="js-likes-counter"><%= @likes_count %></span> likes)
+
+    <% if @canEdit: %>
+      <a href="#" class="glyphicon glyphicon-pencil" id='js-edit-post'>Edit </a>
+    <% end %>
+
+    <% if @canDelete: %>
+        <a href="#" class="glyphicon glyphicon-remove" id='js-delete-post'>Delete</a>
+    <% end %>
+
+    <% if @canShare: %>
+      <a href="#" class="glyphicon glyphicon-share js-share-post">Share</a>
+    <% end %>
+
+    <div class="js-like-links link-text margin_top_small">
+      <% if @likes_count > 0: %>
+        <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
+      <% end %>
+    </div>
+    <!-- BUTTONS OFF -->
+  </div>
+
+  <!-- COMMENT CONTAINER -->
+  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previews comments</a>
+  <div class="postCard__commentsContainer comments-container"></div>
+  <!-- COMMENT CONTAINER OFF -->
+
+  <!-- COMMENT FORM -->
+  <% if @userCanComment: %>
+    <form class="postCard__commentForm clearfix form">
+      <div class="row">
+        <div class="col-sm-2 col-md-2 col-lg-2 hidden-xs">
+          <div class="postCard__commentForm__avatar">
+            <img src="<%= @current_user_avatar %>" alt="your avatar" class="img-circle">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+          <div class="postCard__commentForm__form">
+            <div class="form-group mentions">
+              <textarea class="form-control comment" name="comment" placeholder="Add your comment" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  <% end %>
+  <!-- COMMENT FORM OFF-->
+</div>
+
+<!-- MODALS CONTAINERS -->
+<div class="modal-container"></div>
+<div id="js-likes-modal-container" class="modalPrograms"></div>
