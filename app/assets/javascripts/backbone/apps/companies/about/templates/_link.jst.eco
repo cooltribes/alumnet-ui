@@ -1,9 +1,12 @@
-<div>
-  <%= @title %>
+<div class="col-md-3 links no-padding">
+<% if @userCanEdit: %>
+	<div class="text-right">
+	    <a href="#" id="js-edit-link" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+	    <a href="#" id="js-delete-link" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+	</div>
+<% end %>
+<div class="paddingLinks">
+  <b><%= @title %></b> <br>
   <%= @description %>
-  <%= @url %>
-  <% if @userCanEdit: %>
-    <a href="#" id="js-edit-link">edit</a>
-    <a href="#" id="js-delete-link">x</a>
-  <% end %>
+</div>
 </div>

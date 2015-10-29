@@ -2,26 +2,31 @@
 	<div class="container-fluid margin_top_small">
 		<div class="row">
 			<div  class="col-md-8 col-md-offset-2">
+				<% if @userCanPost: %>
 				<div class="row" >
-					<!-- FORM ON -->
 					<div class="item col-md-12">
 						<div class="groupCreatePostForm clearfix">
 							<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+								<!-- AVATAR -->
 								<div class="groupCreatePostForm__avatar">
 									<img src="<%= @current_user_avatar %>" class="img-circle">
 								</div>
+								<!-- AVATAR OFF-->
 							</div>
 							<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+								<!-- FORM ON -->
 								<div class="groupCreatePostForm__form">
 									<form class="form">
 										<div class="form-group groupCreatePostForm__textarea ">
 											<textarea class=" form-control" name="body" id="body" placeholder="Write a new post"></textarea>
 										</div>
+
 										<!-- TAGGING -->
 										<div class="form-group tagging" style="display:none">
 										  <input type="hidden" id="js-user-tags-list" name="user_tags_list" style="width:100%">
 										</div>
-										<!--  -->
+										<!-- TAGGING OFF -->
+
 										<!-- PREVIEW -->
 										<div class="form-group preview" style="display:none">
 										  <input type="hidden" id="url" name="url" style="width:100%">
@@ -29,7 +34,8 @@
 										  <input type="hidden" id="url_description" name="url_description" style="width:100%">
 										  <input type="hidden" id="url_image" name="url_image" style="width:100%">
 										</div>
-										<!--  -->											
+										<!-- PREVIEW OFF-->
+
 										<a id="js-add-picture" class="groupPost__btn--addPicture" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
 											Add Picture
@@ -39,28 +45,42 @@
 										</a>
 										<a href="#" class="groupPost__btn--addPicture" id="js-post-submit">
 										Post</a>
-										<!-- <a id="js-add-picture" class="groupPost__btn--addPicture visible-xs" href="javascript:;">
-											<i class="icon-entypo-picture"></i>
-											Add Picture
-										</a>
-										<a id="js-add-tags" class="groupPost__btn--addPicture visible-xs" href="javascript:;">
-											<i class="icon-entypo-picture"></i>
-											Add Tags
-										</a>
-										<a href="#" class="groupPost__btn--addPicture visible-xs" id="js-post-submit">
-										Post</a> -->
 									</form>
-									<!-- Pictures -->
+
+									<!-- PICTURES -->
 									<ul id="js-filelist"></ul>
+									<!-- PICTURES OFF -->
+
+									<!-- VIDEO  -->
 									<div id="video_container"></div>
+									<!-- VIDEO OFF -->
 								</div>
+								<!-- FORM OFF -->
 							</div>
 						</div>
 					</div>
-					<!-- FORM OFF -->
 				</div>
+				<% end %>
+
+				<!-- THIS IS ONLY FOR GROUPS -->
+				<% if not @userCanPost && not @userHasMembership : %>
+				<div class="row">
+					<div id="js-join-div" class="col-md-6 col-md-offset-3 margin_top">
+						<div class="panel panel-default text-center">
+					  	<div class="panel-heading">Join this group to post and comment</div>
+							<div class="panel-body">
+								<button class="btn btn-lg btn-primary js-join">+ join group</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<% end %>
+				<!-- THIS IS ONLY FOR GROUPS OFF-->
+
+				<!-- POSTS CONTAINER -->
 				<div id="timeline" class="row posts-container"></div>
 				<div class="text-center"><span class="throbber-loader"></span></div>
+				<!-- POSTS CONTAINER OFF -->
 			</div>
 		</div>
 	</div>

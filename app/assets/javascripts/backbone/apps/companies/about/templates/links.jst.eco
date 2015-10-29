@@ -1,8 +1,11 @@
 <h3>Links</h3>
-<div class="company__row company__cell">
+<div>
+	<div id="js-links-list"></div>
 	<% if @userCanEdit: %>
-		<a href="#" id="js-add-link" class="btn btn-default btn-primary-noBackground margin_top_small"><span class="glyphicon glyphicon-plus"></span> Add Link</a>
+		<div class="col-md-3 btn btn-default btn-primary-noBackground" id="js-add-link">
+			<span class="glyphicon glyphicon-plus"></span> Add Link</a>
+		</div>
 	<% end %>
 	<div id="js-modal-link-container"></div>
-	<div id="js-links-list"></div>
+	
 </div>

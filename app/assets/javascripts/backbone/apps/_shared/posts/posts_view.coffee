@@ -3,15 +3,14 @@
   # COMMENT VIEW
   #
   class Views.CommentView extends Marionette.ItemView
-    template: ->
-      throw 'You must define a template'
-
+    template: '_shared/posts/templates/comment'
     initialize: (options)->
       @postView = options.postView
       @postable = options.postable
 
     templateHelpers: ->
       permissions = @model.get('permissions')
+      userCanComment: true
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       comment: @model.commentWithLinks()
@@ -124,10 +123,14 @@
   #
 
   class Views.PostView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
     childView: Views.CommentView
     childViewContainer: '.comments-container'
+
+    getTemplate: ->
+      if @model.get('post_type') == 'share'
+        '_shared/posts/templates/share'
+      else
+        '_shared/posts/templates/post'
 
     childViewOptions: ->
       postView: @
@@ -149,6 +152,9 @@
       model = @model
       permissions = @model.get('permissions')
 
+      userCanComment: true
+      canShare: true
+      showInfoLink: false
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       current_user_avatar: AlumNet.current_user.get('avatar').medium
@@ -386,8 +392,7 @@
   #
 
   class Views.PostsView extends Marionette.CompositeView
-    template: ->
-      throw 'You must define a template'
+    template: '_shared/posts/templates/posts_container'
     childView: Views.PostView
     childViewContainer: '.posts-container'
     childViewOptions: ->
@@ -414,6 +419,7 @@
         @trigger 'post:reload'
 
     templateHelpers: ->
+      userCanPost: true
       current_user_avatar: AlumNet.current_user.get('avatar').large
 
     ui: ->

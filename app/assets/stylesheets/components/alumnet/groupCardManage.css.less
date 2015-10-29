@@ -206,6 +206,29 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
     }
 }
 
+ /*  (319px and up) */
+@media (min-width: @media-smallest) {
+    .groupCardManage{
+
+        &__atribute{
+
+        font-size: 1em;
+        &__container{
+            padding: 10px 10px;
+
+
+        }
+        &__container--odd{
+            padding: 12px 10px;
+        }
+
+
+    }
+
+    
+    }    
+    
+ }
 
 
 /* Small devices (tablets, 768px and up) */
@@ -306,6 +329,71 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             width: 40%;
             float: left;
         }
+
+        &__atribute{
+
+        font-size: 1em;
+        &__container{
+            padding: 10px 5px;
+
+
+        }
+        &__container--odd{
+            padding: 10px 5px;
+        }
+
+
+    }
+
+        &__ribbon{
+            height: 80px;
+        }
+    }    
+    
+ }
+ /* Large devices (large desktops, 1400px and up) */
+@media (min-width: @media-mmlarge-min) {
+    .groupCardManage{
+
+        &__atribute{
+
+        font-size: 1.1em;
+        &__container{
+            padding: 10px 10px;
+
+
+        }
+        &__container--odd{
+            padding: 10px 10px;
+        }
+
+
+    }
+
+        &__ribbon{
+            height: 80px;
+        }
+    }    
+    
+ }
+ /* Large devices (large desktops, 1600px and up) */
+@media (min-width: @media-xlarge-min) {
+    .groupCardManage{
+
+        &__atribute{
+
+        font-size: 1.2em;
+        &__container{
+            padding: 10px 13px;
+
+
+        }
+        &__container--odd{
+            padding: 10px 13px;
+        }
+
+
+    }
 
         &__ribbon{
             height: 80px;

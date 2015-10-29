@@ -1,32 +1,24 @@
 @AlumNet.module 'GroupsApp.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
   ###### COMMENT VIEW
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
-    template: 'groups/posts/templates/comment'
     className: 'groupPost__comment'
 
     templateHelpers: ->
       helpers =
         userCanComment: @postable.userIsMember()
-      _.extend helpers, super()
+      _.extend super(), helpers
 
 
   ###### POST VIEW
   class Posts.PostView extends AlumNet.Shared.Views.PostView
-    # template: 'groups/posts/templates/post'
     childView: Posts.CommentView
     childViewContainer: '.comments-container'
     className: 'post item col-xs-12 col-sm-6 col-md-6'
 
-    getTemplate: ->
-      if @model.get('post_type') == 'share'
-        '_shared/posts/templates/share'
-      else
-        'groups/posts/templates/post'
-
     templateHelpers: ->
       helpers =
         userCanComment: @postable.userIsMember()
-      _.extend helpers, super()
+      _.extend super(), helpers
 
 
   ###### POST DETAIL
@@ -37,7 +29,6 @@
 
   ###### POSTS COLLECTION
   class Posts.PostsView extends AlumNet.Shared.Views.PostsView
-    template: 'groups/posts/templates/posts_container'
     childView: Posts.PostView
     childViewContainer: '.posts-container'
 
@@ -48,12 +39,12 @@
         userHasMembership: @model.userHasMembership(AlumNet.current_user.id)
         groupIsClose: @model.isClose()
 
-      _.extend helpers, super()
+      _.extend super(), helpers
 
     events: ->
       events =
         'click .js-join': 'sendJoin'
-      _.extend events, super()
+      _.extend super(), events
 
     sendJoin:(e)->
       e.preventDefault()
