@@ -157,6 +157,8 @@
       canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      showDropdownOptions: ->
+        permissions.canDelete || permissions.canEdit || permissions.canShare
       current_user_avatar: AlumNet.current_user.get('avatar').medium
       infoLink: @model.infoLink()
       tagsLinks: @model.tagsLinks()
@@ -243,6 +245,7 @@
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
       'likesLinks':'.js-like-links'
+      'options':'.js-options'
 
     events: ->
       'keypress .comment': 'commentSend'
@@ -312,11 +315,13 @@
     clickedEdit: (e)->
       e.stopPropagation()
       e.preventDefault()
+      @ui.options.dropdown("toggle")
       @ui.bodyPost.editable('toggle')
 
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
+      @ui.options.dropdown("toggle")
       resp = confirm "Are you sure?"
       if resp
         @model.destroy()
