@@ -21,11 +21,13 @@
       <p><span class="glyphicon glyphicon-map-marker"></span>
         <%= @location() %>
       </p>
-      <p><span class="glyphicon glyphicon-globe"></span>
-        <% for link in @linksCollection: %>
-          <a href=""><%= link.url %></a><br>
-        <% end %>
-      </p>
+      <% if @linksCollectionCount != 0: %>
+        <p><span class="glyphicon glyphicon-globe"></span>
+          <% for link in @linksCollection: %>
+            <a href=""><%= link.url %></a><br>
+          <% end %>
+        </p>
+      <% end %>
       <p><span class="ico-sector"></span>
         <%= @sector.text %>
       </p>

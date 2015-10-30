@@ -5,7 +5,7 @@
     <img src="<%= @logo_url() %>" alt="avatar" id="preview-avatar" width="240px" height="240px" class="img-circle">
     <% if @isCompanyAdmin: %>
     
-      <a id="js-edit-logo" class="btn btn-alert btn-alert--edit" href="#" style="position: absolute; left: 55px; bottom: -40px;"><span class="glyphicon glyphicon-edit"></span>  Change Logo</a>
+      <a id="js-edit-logo" class="btn btn-alert btn-alert--edit ChangeLogo" href="#"><span class="glyphicon glyphicon-edit"></span>  Change Logo</a>
     <% end %>
 
 
