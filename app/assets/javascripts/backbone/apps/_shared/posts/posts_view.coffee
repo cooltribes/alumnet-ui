@@ -14,7 +14,9 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       comment: @model.commentWithLinks()
-
+      showDropdownOptions: ->
+        permissions.canDelete || permissions.canEdit
+     
     onRender: ->
       view = @
 
