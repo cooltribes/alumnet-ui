@@ -305,6 +305,8 @@
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+              $('.ui-autocomplete-input').css('height','34px');
+              $('.ui-autocomplete-input').css('background-color','white');
 
     extractMentions: (mentions)->
       array = []

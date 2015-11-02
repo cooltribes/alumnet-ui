@@ -100,6 +100,7 @@
       branches_count: @model.branches_count()
       links_count: @model.links_count()
       linksCollection: @model.get('links')
+      linksCollectionCount: @model.get('links').length
       location: ->
         location = []
         location.push(model.get("main_address")) unless model.get("main_address") == ""
