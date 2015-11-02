@@ -273,6 +273,7 @@
         { attribute: "created_at", type: "date", values: "" }
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
       ])
+ 
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -280,6 +281,32 @@
       'click .clear': 'clear'
       'click #search-tags': 'searchTags'
       'change #filter-logic-operator': 'changeOperator'
+      'click #nextButton': 'nextButton'
+      'click #prevButton': 'prevButton'
+      'click #sortAge': 'sortAge'
+      'click #sortJoined': 'sortJoined'
+
+    sortJoined: (e)->
+      @collection.queryParams.sort_by = "created_at"
+      if @collection.queryParams.order_by =='desc' 
+        @collection.queryParams.order_by = 'asc' 
+      else 
+        @collection.queryParams.order_by = 'desc'
+      @collection.fetch()
+
+    sortAge: (e)->
+      @collection.queryParams.sort_by = "profiles.born"
+      if @collection.queryParams.order_by =='desc' 
+        @collection.queryParams.order_by = 'asc' 
+      else 
+        @collection.queryParams.order_by = 'desc'
+      @collection.fetch()
+
+    prevButton: (e)->
+      @collection.getPrevPage()
+
+    nextButton: (e)->
+      @collection.getNextPage()
 
     addNewFilter: (e)->
       e.preventDefault()

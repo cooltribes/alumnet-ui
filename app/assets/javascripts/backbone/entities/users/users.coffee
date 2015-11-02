@@ -148,6 +148,22 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/admin/deleted/users/'
 
+  class Entities.AdminUserCollection extends Backbone.PageableCollection
+    model: Entities.User
+    url: ->
+      AlumNet.api_endpoint + '/admin/users'
+    #comparator: (item) ->
+    #  item.get("email")
+    state: 
+      pageSize: 10
+      sortKey: 'id'
+      #order: 1
+    queryParams:
+      order: "order_by"
+
+    parse: (response,options)->
+      response.users
+
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
     rows: 15
@@ -227,8 +243,8 @@
 
     #List of all users for administration
     getUsersList: (querySearch)->
-      users = new Entities.UserCollection
-      users.url = AlumNet.api_endpoint + '/admin/users'
+      users = new Entities.AdminUserCollection
+      #users.url = AlumNet.api_endpoint + '/admin/users'
       users
       # initializeUsersList() if Entities.allUsers == undefined
       # Entities.allUsers.comparator = "id"
