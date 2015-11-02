@@ -1,10 +1,10 @@
-<div class="col-md-6">
+<div class="col-md-6 col-sm-6 col-xs-12 no-padding">
   <div class="userCard user-info">
   <div class=" row">
-    <div class="userCard__avatar col-md-3 ">
-      <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+    <div class="userCard__avatar col-md-3 col-sm-3 col-xs-3 ">
+      <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle avatarsize">
     </div>
-    <div class=" col-md-6 ">
+    <div class=" col-md-6 col-sm-6 col-xs-6 ">
       <% if @member==0 : %>
         <h4 class="userCard__name margin_top_xsmall overfloadText"> <%= @name %> </h4>
       <% end %>
@@ -18,11 +18,11 @@
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
     </div>
     <% if @friendship_status == "sent": %>
-    <div class=" col-md-3 ">
+    <div class=" col-md-3 col-sm-3 col-xs-3 ">
       <a href="#" id="js-cancel-friendship" title="Cancel request">
-        <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
+        <div id="link-container" class="userCard__actionsUser userCard__animation userCard__actionsUser--Cancel">
           <span class="invitation">
-            <span class="userCard__actions__text">CANCEL</span>
+            <span class="userCard__actionsUser__text">CANCEL</span>
             <span class="glyphicon glyphicon-user"></span>
             <span class="glyphicon glyphicon-time"></span>
           </span>
@@ -31,18 +31,18 @@
     </div>
     <% else if @friendship_status == "received": %>
     <!-- Nothing to show here -->
-    <div class=" col-md-3 ">
+    <div class=" col-md-3 col-sm-3 col-xs-3 ">
       <span class="invitation">
         <a href="#" id="js-accept-friendship" title="Approve friend request">
-          <div class="userCard__actions--Approve userCard__animation">
-            <span class="userCard__actions__text">ACCEPT</span>
+          <div class="userCard__actionsUser--Approve userCard__animation">
+            <span class="userCard__actionsUser__text">ACCEPT</span>
             <span class="glyphicon glyphicon-user"></span>
             <span class="glyphicon glyphicon-ok"></span>
           </div>
         </a>
         <a href="#" id="js-reject-friendship" title="Decline friend request">
-          <div class="userCard__actions--Decline userCard__animation">
-            <span class="userCard__actions__text">REJECT</span>
+          <div class="userCard__actionsUser--Decline userCard__animation">
+            <span class="userCard__actionsUser__text">REJECT</span>
             <span class="glyphicon glyphicon-user"></span>
             <span class="glyphicon glyphicon-remove"></span>
           </div>
@@ -52,11 +52,11 @@
     <!-- <div class="pull-left "> -->
     <!-- </div> -->
     <% else if @friendship_status == "accepted": %>
-    <div class=" col-md-3 ">
+    <div class=" col-md-3 col-sm-3 col-xs-3">
       <a href="#" id="js-delete-friendship"  class="" title="Unfriend">
-        <div id="link-container" class="userCard__actions userCard__animation userCard__actions--unFriend">
+        <div id="link-container" class="userCard__actionsUser userCard__animation userCard__actionsUser--unFriend">
           <span class="invitation">
-            <span class="userCard__actions__text">UNFRIEND <!--<span class="glyphicon glyphicon-remove">--></span>
+            <span class="userCard__actionsUser__text">UNFRIEND <!--<span class="glyphicon glyphicon-remove">--></span>
             <span>
               <span class="glyphicon glyphicon-user"></span>
               <span class="glyphicon glyphicon-ok"></span>
@@ -66,18 +66,18 @@
       </a>
     </div>
     <% else if @friendship_status == "current user": %>
-      <div class=" col-md-3 ">
-        <div id="link-container" class="userCard__actions userCard__actions--isFriend">
+      <div class=" col-md-3 col-sm-3 col-xs-3 ">
+        <div id="link-container" class="userCard__actionsUser userCard__actionsUser--isFriend">
           <span class="invitation">
           </span>
         </div>
       </div>
     <% else: %>
-    <div class=" col-md-3 ">
+    <div class=" col-md-3 col-sm-3 col-xs-3">
       <a href="#" id="js-request-friendship" title="Send friend request">
-        <div id="link-container" class="userCard__actions userCard__actions--isFriend userCard__animation">
+        <div id="link-container" class="userCard__actionsUser userCard__actionsUser--isFriend userCard__animation">
           <span class="invitation">
-            <span class="userCard__actions__text">ADD FRIEND</span>
+            <span class="userCard__actionsUser__text">ADD FRIEND</span>
             <span class="icon-entypo-user-add"></span>
           </span>
         </div>

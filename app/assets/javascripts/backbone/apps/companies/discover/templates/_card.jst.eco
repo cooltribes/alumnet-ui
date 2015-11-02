@@ -21,11 +21,20 @@
       <p><span class="glyphicon glyphicon-map-marker"></span>
         <%= @location() %>
       </p>
-
+      <% if @linksCollectionCount != 0: %>
+        <p><span class="glyphicon glyphicon-globe"></span>
+          <% for link in @linksCollection: %>
+            <a href=""><%= link.url %></a><br>
+          <% end %>
+        </p>
+      <% end %>
       <p><span class="ico-sector"></span>
         <%= @sector.text %>
       </p>
-      <p><span class="ico-company"></span>
+      <p class="visible-xs"><span class="ico-company"></span>
+        Alumni: <%= @employees_count %>
+      </p>
+      <p class="hidden-xs"><span class="ico-company"></span>
         Alumni Employees: <%= @employees_count %>
          -
         Branches: <%= @branches_count %>

@@ -1,4 +1,6 @@
 @AlumNet.module 'CompaniesApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'companies/discover/templates/empty'
 
   class Discover.Layout extends Marionette.LayoutView
     template: 'companies/discover/templates/layout'
@@ -99,13 +101,14 @@
       employees_count: @model.employees_count()
       branches_count: @model.branches_count()
       links_count: @model.links_count()
+      linksCollection: @model.get('links')
+      linksCollectionCount: @model.get('links').length
       location: ->
         location = []
         location.push(model.get("main_address")) unless model.get("main_address") == ""
         location.push(model.get("city").name) unless model.get("city").name == ""
         location.push(model.get("country").name) unless model.get("country").name == ""
         location.join(", ")
-
 
   class Discover.List extends Marionette.CompositeView
     childView: Discover.Company
@@ -119,9 +122,10 @@
 
     childViewOptions: (model, index)->
       #initially for cards view
+      emptyView: Manage.EmptyView
       tagName = 'div'
       template = "companies/discover/templates/_card"
-      className = "col-md-4 margin_bottom_small"
+      className = "col-xs-12 col-md-4 margin_bottom_small"
 
       if @type == "list"
         tagName = 'tr'

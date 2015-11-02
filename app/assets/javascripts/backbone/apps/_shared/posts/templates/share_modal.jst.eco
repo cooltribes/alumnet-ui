@@ -1,0 +1,32 @@
+<div class="bbm-modal__topbar modalMeetup">
+  <h3 class="bbm-modal__title text-center">Share</h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>
+    <div class="form-group">
+      <select name="postable_type" id="postable_type" class="form-control">
+        <option value="me">Timelime</option>
+        <option value="users">Friend</option>
+        <option value="groups">Group</option>
+        <option value="events">Event</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="hidden" name="postable_id" id="postable_id" style="width: 100%">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" name="body" id="body" rows="2"></textarea>
+    </div>
+  </form>
+  <hr>
+    <div class="content-container"></div>
+  <hr>
+</div>
+
+<div class="bbm-modal__bottombar no_margin_top">
+  <a href="#" id="share" class="btn btn-primary">Share</a>
+  <a href="#" id="close" class="btn btn-primary">Close</a>
+</div>
+
+

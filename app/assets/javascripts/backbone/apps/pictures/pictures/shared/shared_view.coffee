@@ -49,9 +49,6 @@
     templateHelpers: ->
 
       model = @model
-      console.log model
-      commentCount = @model.comments.length
-      console.log commentCount 
       img = $("<img>").attr("src", @model.attributes.picture.original).load()
       proportion = parseFloat(parseInt(img[0].width,10) / parseInt(img[0].height,10))*5
       h= parseInt(img[0].width,10) > parseInt(img[0].height,10)  && proportion > 8
@@ -238,9 +235,7 @@
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
-      resp = confirm "Are you sure?"
-      if resp
-        @model.destroy()
+      @model.destroy()
 
     clickedLike: (e)->
       e.stopPropagation()
@@ -288,9 +283,11 @@
 
     ui:
       'commentInput': '.comment'
+      'commentButton': '#commentB'
 
     events:
       'keypress .comment': 'commentSend'
+      'click @ui.commentButton': 'commentSendButtons'
 
     onShow: ->
       # Autosize
@@ -317,6 +314,23 @@
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+
+    commentSendButtons: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      if data.body != ''
+        console.log data, @model
+        view = @
+        comment = AlumNet.request('comment:picture:new', @model.id)
+        data.comment = @ui.commentInput.mentionsInput('getRawValue')
+        data.markup_comment = @ui.commentInput.mentionsInput('getValue')
+        data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
+        console.log data, comment
+        comment.save data,
+          success: (model, response, options)->
+            view.ui.commentInput.val('')
+            view.collection.add(model, {at: view.collection.length})
 
     extractMentions: (mentions)->
       array = []

@@ -1,5 +1,5 @@
 <div class="row margin_top_medium">
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs">
     <div id="companyBusinessAffix">
         <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
           <ul class="nav nav-pills nav-stacked">

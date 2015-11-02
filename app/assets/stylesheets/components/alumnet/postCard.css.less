@@ -16,33 +16,46 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 	&__info{
 		white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: @info-gray;
+    a {
+    	color: @blue;
+    }
 	}
 
 	&__userName{
 		color: @black;
-		font-size: 30px;
-		margin-bottom: 5px;	
-		white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
+		font-size: 19px;
+	  margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 		max-width: 85%;	 
 		a{
 			color: @black;			
 		}
+
+		.postCard__info a {
+    	color: @blue;
+    }
 	}
 	&__date{
 		color: #677f8a;
-		font-size: 14px;
+		font-size: 12px;
+	}
+	&__options{
+		color: @gray;
+		
 	}
 	&__postBody{
-		padding: 10px 20px 20px;
+		padding: 10px;
 
 	}
 	&__avatar{
-		width: 24%;
-		float: left;
+		img {
+			width: 100%;
+		}
 	}
 	&__metaData{
 		margin-bottom: 15px;
@@ -88,8 +101,12 @@ DESCRIPTION: A card that contains a post (content plus comments)
 		background-color: #F4F4F4;
 		padding: 10px 20px 10px;
 		border-top: 1px solid #c3c3c3;
+		height: 100%;
 		.form-group{
 			margin-bottom: 0;
+			textarea{
+				height: 100%;
+			} 	
 		}
 		&__avatar{
 		
@@ -109,6 +126,7 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 	.mentions{
 		.highlighter{
+			height: 100%;
 			resize: none;
 	    	overflow-y: hidden;
 	    	width: 100%;
@@ -146,6 +164,7 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 	.mentions{
 		.highlighter{
+			height: 100%;
 			resize: none;
 	    	overflow-y: hidden;
 	    	width: 100%;

@@ -299,3 +299,56 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     width: 25%;
   }
 }
+
+.tableList{
+  width: 100px;
+  img{
+    height:50px;
+    width:70px;
+  }
+}
+
+.links{
+  background-color: #FFF;
+  border: 1px solid #d3d3d3;
+  color: #000;
+  height: auto;
+}
+
+.paddingLinks{
+  color: @blue;
+  padding: 0 0 0 15px;
+}
+.ChangeLogo{
+  position: absolute;
+  left: 0;
+  top: -10px;
+}
+@media (min-width: @media-xsmall-max) {
+  .tableList{
+    width: 200px;
+    img{
+      height: 65px;
+      width: 100px;
+    }
+  }
+}
+
+@media (min-width: @media-msmall-min) {
+  .tableList{
+    width: 200px;
+    img{
+      height: 65px;
+      width: 100px;
+    }
+  }
+}
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+  .ChangeLogo{
+    position: absolute;
+    left: 55px;
+    bottom: -40px;
+    top: auto;
+  } 
+}

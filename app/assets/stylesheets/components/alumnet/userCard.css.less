@@ -21,7 +21,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     text-align: -webkit-center;
   }
 }
-
+.avatarsize{
+  width: 66px;
+}
 .userCard{
    background: #fbfbfb;
    margin-bottom: 2em;
@@ -77,6 +79,67 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
           text-decoration: none;
         }
       }
+   }
+   &__actionsUser{
+    background-color: @light-blue;
+    text-align: center;
+    padding: 10px;
+    color: @white;
+
+    &__text{
+      display: none;
+
+    }
+
+    &--isFriend{
+      background-color: @light-blue;
+      &:hover{
+        background-color: @blue;
+      }
+
+      & span{
+        text-transform: uppercase;
+      }
+    }
+    
+    &--unFriend{
+      background-color: @lighter-gray;
+      &:hover{
+        background-color: @light-gray;
+      }
+    }
+
+    &--Cancel{
+      background-color: @light-orange;
+      &:hover{
+        background-color: @orange;
+      }
+    }
+
+    &--Approve{
+      position: relative;
+      background-color:@lighter-green;
+      color: @white;
+      height: 50px;
+      margin-top: -10px;
+      text-align: center;
+      padding-top: 15px;
+      &:hover{
+        background-color: @light-green;
+      }
+    }
+    &--Decline{
+      position: relative;
+      background-color:@light-red;
+      color: @white;
+      height: 50px;
+      text-align: center;
+      padding-top: 15px;
+      &:hover{
+        background-color: @red;
+      }
+    }
+
    }
 
    &__actions{
@@ -249,8 +312,12 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 
 
- /* ( 360px and up) */
-@media (min-width: @media-smallphone) {
+ /* ( 319px and up) */
+@media (min-width: @media-smallest) {
+.avatarsize{
+width:66px;
+
+}
 .userCardLike{
     height: 100px;
     width: 500px;
@@ -281,7 +348,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         &__avatar{
             text-align: right;
          }
-        &__actions{
+        &__actionsUser{
             height: 100px;
             padding: 40px 0 0;
             margin-top: -10px
@@ -327,11 +394,17 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 
 }
+@media (min-width: @media-smallphone) {
+.avatarsize{
+width:76px;
+
+}
+}
 @media (min-width: @media-msmall-min) {
 
   .userCard{
 
-        &__actions{
+        &__actionsUser{
 
           &--Approve{
             padding: 15px;
@@ -401,7 +474,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         &__avatar{
             text-align: right;
          }
-        &__actions{
+        &__actionsUser{
             height: 100px;
             padding: 40px 0 0;
          }
@@ -465,7 +538,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         &__avatar{
             text-align: right;
         }
-        &__actions{
+        &__actionsUser{
               height: 100px;
               margin-top: -10px;
               padding: 40px 0 0;
