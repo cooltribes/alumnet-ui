@@ -1,18 +1,18 @@
 <div class="row">
-	<div class="groupPost__comment__metaData clearfix">
+	<div class="postCard__comment__metaData clearfix">
 		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
 		  <div class="groupPost__comment__avatar">
 		    <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
 		  </div>
 		</div>
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 no-padding">
-		  <h5 class="postCard__userName">
+		  <h5 class="postCard__userNameComment">
 		  	<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
-			<span id="js-comment-text" class="overfloadText postCard__info" style="color: #818181"><%- @comment %></span><br>
-			<small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>	
+			<small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>	<br>
+			<span id="js-comment-text" class="overfloadText postCard__info"><%- @comment %></span>
 		  </h5>
 		</div>
-		<% if @showDropdownOptions: %>
+		<% if @showDropdownOptions(): %>
 			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
 			  	<a href="#" class="dropdown-toggle postCard__options js-options" role="menu" aria-labelledby="options" data-toggle="dropdown" aria-expanded="false">
 			    <!-- <span class="icon-entypo-down-open-mini"></span> -->

@@ -16,30 +16,43 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 	&__info{
 		white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    color: @info-gray;
-    a {
-    	color: @blue;
-    }
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    font-size: 14px;
+	    color: @info-gray;
+	    a {
+	    	color: @blue;
+	    }
 	}
 
 	&__userName{
 		color: @black;
 		font-size: 19px;
-	  margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+		margin: 0;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
 		max-width: 85%;	 
 		a{
 			color: @black;			
 		}
 
 		.postCard__info a {
-    	color: @blue;
-    }
+    		color: @blue;
+    	}
 	}
+	&__userNameComment{
+		color: @black;
+		font-size: 15px;
+		margin: 0;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+		max-width: 85%;	 
+		a{
+			color: @black;
+			font-weight: 400;			
+		}
+	}
+
 	&__date{
 		color: #677f8a;
 		font-size: 12px;
@@ -73,7 +86,7 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 	&__comment{
 		background-color: #F4F4F4;
-		padding: 10px 20px 20px;
+		padding: 10px 20px 5px;
 		border-top: 1px solid #c3c3c3;
 
 		&__avatar{

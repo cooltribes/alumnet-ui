@@ -300,10 +300,7 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
       }
     } 
 
-  }
-  
-            
-      
+  }    
 }
 
 
@@ -319,8 +316,6 @@ width:66px;
 
 }
 .userCardLike{
-    height: 100px;
-    width: 500px;
     margin-bottom: 0.5em;
     padding: 0 0 0 30px;
     background-color: #FFFFFF;
@@ -352,7 +347,7 @@ width:66px;
             height: 100px;
             padding: 40px 0 0;
             margin-top: -10px
-         }
+        }
         &__GroupAdminActions{
         position: relative;
           a{
@@ -396,9 +391,8 @@ width:66px;
 }
 @media (min-width: @media-smallphone) {
 .avatarsize{
-width:76px;
-
-}
+    width:76px;
+  } 
 }
 @media (min-width: @media-msmall-min) {
 
@@ -412,8 +406,8 @@ width:76px;
           &--Decline{
             margin-left: 50px;
             padding: 15px;
-         
-        }
+          }
+
 
         }
   }
@@ -437,6 +431,13 @@ width:76px;
     }
   }
 
+  .userCard{
+    &__actions{
+      height: 100px;
+      padding: 40px 0 0;
+      margin-top: -10px
+    }
+  }
 
  }
 
@@ -456,7 +457,7 @@ width:76px;
     }
 
     &--paddingbutton{
-      padding-top: 0;  
+      padding-top: 10px;  
     }
   }
     .userCard{

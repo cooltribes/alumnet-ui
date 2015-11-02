@@ -161,7 +161,7 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showDropdownOptions: ->
-        permissions.canDelete || permissions.canEdit || permissions.canShare
+        permissions.canDelete || permissions.canEdit
       current_user_avatar: AlumNet.current_user.get('avatar').medium
       infoLink: @model.infoLink()
       tagsLinks: @model.tagsLinks()
