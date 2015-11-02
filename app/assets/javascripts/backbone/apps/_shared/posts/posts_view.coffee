@@ -108,7 +108,8 @@
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @ui.likeLink.removeClass('js-like').addClass('js-unlike').
+        html('<span class="glyphicon glyphicon-thumbs-down"></span> Unlike')
 
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
@@ -355,7 +356,8 @@
     sumLike: ->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @ui.likeLink.removeClass('js-like').addClass('js-unlike').
+        html('<span class="glyphicon glyphicon-thumbs-down"></span> Unlike')
       @updateLikeText()
 
     remLike: ->

@@ -91,37 +91,43 @@
     <% end %>
     <!-- PICTURES OFF -->
 
-    <hr>
+    <hr class="margin_top_xsmall margin_bottom_xsmall">
 
     <!-- BUTTONS -->
-    <% if @userCanComment: %>
-      <a href="#" class="postCard__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
-
-      <div class="postCard__btn--like">
-        <% if @you_like: %>
-          <a href="#" class=" js-unlike js-vote" title="Unlike">Unlike</a>
-        <% else: %>
-          <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+    <div class="row">
+      <div class="col-md-12">
+        <% if @userCanComment: %>
+          <div class="postCard__btn--like">
+            <% if @you_like: %>
+              <a href="#" class=" js-unlike js-vote" title="Unlike"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>
+            <% else: %>
+              <a href="#" class=" js-like js-vote" title="Like"><span class="icon-entypo-thumbs-up"></span> Like</a>
+            <% end %>
+          </div>
+          <a href="#" class="postCard__btn--comment js-goto-comment"><span class="icon-entypo-comment"></span> Comment</a>
         <% end %>
-      </div>
-    <% end %>
 
-    (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-   
+        <% if @canShare: %>
+          <a href="#" class="glyphicon glyphicon-share-alt js-share-post"> Share</a>
+        <% end %>
 
-
-    <% if @canShare: %>
-      <a href="#" class="glyphicon glyphicon-share js-share-post">Share</a>
-    <% end %>
-
-    <div class="js-like-links link-text margin_top_small">
-      <% if @likes_count > 0: %>
-        <%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.
-      <% end %>
-    </div>
     <!-- BUTTONS OFF -->
-  </div>
+      </div>
+    </div>
+    <hr class="margin_top_xsmall margin_bottom_xsmall">
 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="link-text margin_top_xsmall">
+          <% if @likes_count > 0: %>
+            <span class="js-likes-counter icon-entypo-thumbs-up"><%= @likes_count %></span> - 
+            <span class="js-like-links"><%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- COMMENT CONTAINER -->
   <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previews comments</a>
   <div class="postCard__commentsContainer comments-container"></div>
