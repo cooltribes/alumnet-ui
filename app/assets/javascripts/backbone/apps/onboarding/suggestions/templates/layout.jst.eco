@@ -1,12 +1,12 @@
 <div class="row margin_bottom_large">
   <div class="col-md-12 margin_bottom_large onboarding__menu text-center" id="navbar-region"></div>
 </div>
-<div class="container-fluid">
+
   <div class="row-fluid margin_top_large_minus">
     <div class="col-md-12" id="suggestion-region">
     </div>
   </div>
-</div>
+
 <div class="row-fluid">
   <div class="col-md-12 text-center">
   <% unless @isFirstStep: %>

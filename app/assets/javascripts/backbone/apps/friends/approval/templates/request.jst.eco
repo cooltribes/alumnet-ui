@@ -2,7 +2,7 @@
 <div class="userCard requester-info">
   <div class=" row">
     <div class="userCard__avatar col-md-3 col-xs-3">
-      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle" width="80" height="80">
+      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle avatarsize" width="80" height="80">
     </div>
     <div class=" col-md-6 col-xs-6 ">
       <h4 class="userCard__name"><a href="#users/<%= @user_id %>/posts"><%= @requester.name %></a></h4>
@@ -11,14 +11,14 @@
     </div>
     <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-accept" title="Approve request">
-        <div class="userCard__actions--Approve userCard__animation">
-            <span class="userCard__actions__text">ACCEPT</span>
+        <div class="userCard__actionsUser--Approve userCard__animation">
+            <span class="userCard__actionsUser__text">ACCEPT</span>
             <span class="glyphicon glyphicon-ok"></span>
         </div>
       </a>
       <a href="#" id="js-delete" title="Decline request">
-        <div class="userCard__actions--Decline userCard__animation">
-          <span class="userCard__actions__text">DECLINE</span>
+        <div class="userCard__actionsUser--Decline userCard__animation">
+          <span class="userCard__actionsUser__text">DECLINE</span>
           <span class="glyphicon glyphicon-user"></span> 
           <span class="glyphicon glyphicon-remove"></span>
         </div>
