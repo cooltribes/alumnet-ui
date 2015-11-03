@@ -28,6 +28,7 @@
 
     onRender: ->
       @ui.description.linkify()
+      console.log @model
 
   class Manage.GroupsView extends Marionette.CompositeView
     template: 'groups/manage/templates/groups_container'
