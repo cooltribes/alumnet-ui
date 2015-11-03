@@ -122,7 +122,7 @@
 
     childViewOptions: (model, index)->
       #initially for cards view
-      emptyView: Manage.EmptyView
+
       tagName = 'div'
       template = "companies/discover/templates/_card"
       className = "col-xs-12 col-md-4 margin_bottom_small"
