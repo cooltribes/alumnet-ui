@@ -14,7 +14,9 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       comment: @model.commentWithLinks()
-
+      showDropdownOptions: ->
+        permissions.canDelete || permissions.canEdit
+     
     onRender: ->
       view = @
 
@@ -108,7 +110,8 @@
     sumLike:()->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @ui.likeLink.removeClass('js-like').addClass('js-unlike').
+        html('<span class="glyphicon glyphicon-thumbs-down"></span> Unlike')
 
     remLike:()->
       val = parseInt(@ui.likeCounter.html()) - 1
@@ -147,9 +150,24 @@
 
       @postPictures = @model.get('pictures')
 
+      self = @
+      self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
+
+      @model.comments.fetch
+        success: (collection)->
+          if collection.length > 3
+            self.collection.add(collection.slice((collection.length-3),collection.length))
+            $(self.ui.moreComment).show()
+          else
+            self.collection.add(collection.models)
+            $(self.ui.moreComment).hide()
+
     templateHelpers: ->
       view = @
       model = @model
+      # console.log "modelo"
+      # console.log model
       permissions = @model.get('permissions')
 
       userCanComment: true
@@ -157,11 +175,14 @@
       canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      showDropdownOptions: ->
+        permissions.canDelete || permissions.canEdit
       current_user_avatar: AlumNet.current_user.get('avatar').medium
       infoLink: @model.infoLink()
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+      commentsCount: @model.comments.length
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -171,10 +192,6 @@
           _.first(view.postPictures, 5)
         else
           view.postPictures
-
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
 
     onShow: ->
       self = @
@@ -243,6 +260,7 @@
       'modalContainer': '.modal-container'
       'moreComment':'#js-load-more'
       'likesLinks':'.js-like-links'
+      'options':'.js-options'
 
     events: ->
       'keypress .comment': 'commentSend'
@@ -302,6 +320,8 @@
             success: (model, response, options)->
               view.ui.commentInput.val('')
               view.collection.add(model, {at: view.collection.length})
+              $('.ui-autocomplete-input').css('height','34px');
+              $('.ui-autocomplete-input').css('background-color','white');
 
     extractMentions: (mentions)->
       array = []
@@ -312,11 +332,13 @@
     clickedEdit: (e)->
       e.stopPropagation()
       e.preventDefault()
+      @ui.options.dropdown("toggle")
       @ui.bodyPost.editable('toggle')
 
     clickedDelete: (e)->
       e.stopPropagation()
       e.preventDefault()
+      @ui.options.dropdown("toggle")
       resp = confirm "Are you sure?"
       if resp
         @model.destroy()
@@ -348,7 +370,8 @@
     sumLike: ->
       val = parseInt(@ui.likeCounter.html()) + 1
       @ui.likeCounter.html(val)
-      @ui.likeLink.removeClass('js-like').addClass('js-unlike').html('unlike')
+      @ui.likeLink.removeClass('js-like').addClass('js-unlike').
+        html('<span class="glyphicon glyphicon-thumbs-down"></span> Unlike')
       @updateLikeText()
 
     remLike: ->

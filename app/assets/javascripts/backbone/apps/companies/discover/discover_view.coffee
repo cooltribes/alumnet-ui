@@ -1,4 +1,6 @@
 @AlumNet.module 'CompaniesApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'companies/discover/templates/empty'
 
   class Discover.Layout extends Marionette.LayoutView
     template: 'companies/discover/templates/layout'
@@ -100,6 +102,7 @@
       branches_count: @model.branches_count()
       links_count: @model.links_count()
       linksCollection: @model.get('links')
+      linksCollectionCount: @model.get('links').length
       location: ->
         location = []
         location.push(model.get("main_address")) unless model.get("main_address") == ""
@@ -119,6 +122,7 @@
 
     childViewOptions: (model, index)->
       #initially for cards view
+
       tagName = 'div'
       template = "companies/discover/templates/_card"
       className = "col-xs-12 col-md-4 margin_bottom_small"
@@ -133,12 +137,27 @@
       tagName: tagName
       template: template
 
+    ui:
+      'loading': '.throbber-loader'
 
     initialize: ()->
       @type = "cards" #default view
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMoreCompanies')
+    
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreCompanies')      
       $(window).scroll(@loadMoreCompanies)
+
+    remove: ->
+      $(window).unbind('scroll')
+      @collection.page = 1
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      console.log "endPagination"
+      @ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')       
 
     loadMoreCompanies: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()

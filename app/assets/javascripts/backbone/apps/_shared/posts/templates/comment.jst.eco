@@ -1,19 +1,45 @@
-<div class="groupPost__comment__metaData clearfix">
-  <div class="groupPost__comment__avatar">
-    <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
-  </div>
-  <h5 class="groupPost__comment__userName"><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h5>
+<div class="row">
+	<div class="postCard__comment__metaData clearfix">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+		  <div class="groupPost__comment__avatar">
+		    <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+		  </div>
+		</div>
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 no-padding">
+		  <h5 class="postCard__userNameComment">
+		  	<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
+			<small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>	<br>
+			<span id="js-comment-text" class="overfloadText postCard__info"><%- @comment %></span>
+		  </h5>
+		</div>
+		<% if @showDropdownOptions(): %>
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
+			  	<a href="#" class="dropdown-toggle postCard__options js-options" role="menu" aria-labelledby="options" data-toggle="dropdown" aria-expanded="false">
+			    <!-- <span class="icon-entypo-down-open-mini"></span> -->
+			    	<span class="glyphicon glyphicon-chevron-down"></span>
+			  	</a>
+			  	<ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="options" aria-expanded="false">
+				    <% if @canEdit: %>
+				      	<li role="presentation">
+				        	<a href="#" class="glyphicon glyphicon-pencil" id='js-edit-comment'> Edit</a>
+				      	</li>
+				    <% end %>
+			    <% if @canDelete: %>
+			      	<li role="presentation">
+			       	 	<a href="#" class="glyphicon glyphicon-remove" id='js-delete-comment'> Delete</a>
+			      	</li>
+			    <% end %>              
+			  	</ul>
+			</div> 
+		<% end %>
+	</div>
 </div>
-<p id="js-comment-text" class="overfloadText"><%- @comment %></p>
+
+<% if @likes_count > 0: %>
+   <span class="js-likes-counter icon-entypo-thumbs-up" style="color: #2099d0;"><%= @likes_count %> - </span>
+<% end %>
 <% if @you_like: %>
-  <a href="#" class="js-unlike js-vote">Unlike</a>
+  <a href="#" class="js-unlike js-vote padding_right_small"><span class="icon-entypo-thumbs-down"></span> Unlike</a>
 <% else: %>
-  <a href="#" class="js-like js-vote"><span class="icon-entypo-thumbs-up"></span> Like</a>
-<% end %>
-(<span class="js-likes-counter"><%= @likes_count %></span> likes)
-<% if @canEdit: %>
-  <a href="#" id='js-edit-comment'>edit</a>
-<% end %>
-<% if @canDelete: %>
-  <a href="#" id='js-delete-comment'>delete</a>
+  <a href="#" class="js-like js-vote padding_right_small"><span class="icon-entypo-thumbs-up"></span> Like</a>
 <% end %>

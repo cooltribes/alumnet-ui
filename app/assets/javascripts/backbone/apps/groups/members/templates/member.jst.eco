@@ -1,9 +1,9 @@
 <div class="userCard">
 	<div class="row">
-		<div class="userCard__avatar col-md-3 ">
-			<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+		<div class="userCard__avatar col-md-3 col-xs-3">
+			<img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle avatarsizeAlumniGroup">
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-7 col-sm-6 col-xs-6">
 			<h4 class="userCard__name overfloadText">
 			<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
 			<p class="member-position text-small"><%= @user.last_experience %></p>
@@ -12,7 +12,7 @@
 
 		<!-- Actions -->
 		<% if @userCanMakeAdmin and @userIsNotCurrentUser: %>
-		<div class="col-md-2 userCard__GroupAdminActions js-admin-icons">
+		<div class="col-md-2 col-sm-3 col-xs-3 userCard__GroupAdminActions js-admin-icons">
 			<ul class="list-unstyled">
 				<li>
 					<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole" class="js-change-type userCard__GroupAdminActions--changeRole">

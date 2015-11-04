@@ -89,7 +89,7 @@
 
   PhotoTagging.prototype = {
     tagger: function(){
-      return '<div id="tag-target"></div><div id="tag-input"><input type="hidden" id="tag-name" style="width:100%;"><a href="#" id="tag-submit" class="btn btn-sm btn-default">Submit</a><a href="#" id="tag-cancel" class="btn btn-sm btn-default">Cancel</a></div>'
+      return '<div id="tag-target"></div><div id="tag-input"><input type="hidden" id="tag-name" style="width:100%;"><a href="#" id="tag-submit" class="btn btn-sm btn-default-blue">Submit</a><a href="#" id="tag-cancel" class="btn btn-sm btn-danger-noBackground" style="color: #d9534f">Cancel</a></div>'
     },
 
     hideTagger: function(){

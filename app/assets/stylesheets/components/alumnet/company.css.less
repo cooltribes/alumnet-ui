@@ -319,6 +319,11 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   color: @blue;
   padding: 0 0 0 15px;
 }
+.ChangeLogo{
+  position: absolute;
+  left: 0;
+  top: -10px;
+}
 @media (min-width: @media-xsmall-max) {
   .tableList{
     width: 200px;
@@ -338,4 +343,12 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     }
   }
 }
-
+ /* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+  .ChangeLogo{
+    position: absolute;
+    left: 55px;
+    bottom: -40px;
+    top: auto;
+  } 
+}

@@ -3,7 +3,7 @@
 <div class="userCard requester-info">
   <div class=" row">
     <div class="userCard__avatar col-md-3 col-xs-3">
-      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle" width="80" height="80">
+      <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle avatarsize" width="80" height="80">
     </div>
     <div class=" col-md-6 col-xs-6">
       <h4 class="userCard__name"><a href="#users/<%= @requester.id %>/posts"><%= @requester.name %></a></h4>
@@ -12,14 +12,14 @@
     </div>
     <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-accept-friendship" title="Approve friend request">
-        <div class="userCard__actions--Approve userCard__animation">
-            <span class="userCard__actions__text">ACCEPT</span>
+        <div class="userCard__actionsUser--Approve userCard__animation">
+            <span class="userCard__actionsUser__text">ACCEPT</span>
             <span class="glyphicon glyphicon-ok"></span>
         </div>
       </a>
       <a href="#" id="js-delete-friendship" title="Decline friend request">
-        <div class="userCard__actions--Decline userCard__animation">
-          <span class="userCard__actions__text">REJECT</span>
+        <div class="userCard__actionsUser--Decline userCard__animation">
+          <span class="userCard__actionsUser__text">REJECT</span>
           <span class="glyphicon glyphicon-user"></span> 
           <span class="glyphicon glyphicon-remove"></span>
         </div>
@@ -42,9 +42,9 @@
     </div>
     <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-delete-friendship" title="Cancel request">
-        <div id="link-container" class="userCard__actions userCard__animation userCard__actions--Cancel">
+        <div id="link-container" class="userCard__actionsUser userCard__animation userCard__actionsUser--Cancel">
           <span class="invitation">
-            <span class="userCard__actions__text">CANCEL</span> 
+            <span class="userCard__actionsUser__text">CANCEL</span> 
             <span class="glyphicon glyphicon-user"></span>
             <span class="glyphicon glyphicon-time"></span> 
           </span>

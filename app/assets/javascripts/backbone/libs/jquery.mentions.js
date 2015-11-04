@@ -191,7 +191,7 @@
 
     __extends(MentionsInput, _super);
 
-    mimicProperties = ['marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderTopWidth', 'borderLeftWidth', 'borderBottomWidth', 'borderRightWidth', 'fontSize', 'fontStyle', 'fontFamily', 'fontWeight', 'lineHeight', 'height', 'boxSizing'];
+    mimicProperties = ['backgroundColor','marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderTopWidth', 'borderLeftWidth', 'borderBottomWidth', 'borderRightWidth', 'fontSize', 'fontStyle', 'fontFamily', 'fontWeight', 'lineHeight', 'boxSizing'];
 
     function MentionsInput(input, options) {
       var container,
@@ -306,9 +306,14 @@
       });
       if (this.input.prop("tagName") === "INPUT") {
         highlighter.css('whiteSpace', 'pre');
+        highlighter.css('height', '100%');
       } else {
         highlighter.css('whiteSpace', 'pre-wrap');
         highlighter.css('wordWrap', 'break-word');
+        highlighter.css('height', '100%');
+        highlighter.css('overflow-y', 'hidden');
+        highlighter.css('resize', 'none');
+
       }
       content = $('<div>', {
         'class': 'highlighter-content'
@@ -318,7 +323,7 @@
         property = mimicProperties[_i];
         highlighter.css(property, this.input.css(property));
       }
-      // this.input.css('backgroundColor', 'transparent');
+      this.input.css('backgroundColor', 'transparent');
       return highlighter;
     };
 
@@ -413,7 +418,7 @@
       this.highlighterContent.css({
         top: "-" + scrollTop + "px"
       });
-      return this.highlighter.height(this.input.height());
+      //return this.highlighter.height(this.input.height());
     };
 
     MentionsInput.prototype._updateHScroll = function() {

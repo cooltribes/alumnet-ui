@@ -31,6 +31,7 @@
           <span><%= @preview.description %></span>
           <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
         <% end %>
+        
         <!-- PREVIEW OFF -->
       </div>
     </div>
@@ -39,6 +40,7 @@
       <div>
         <a href="<%= @postUrl %>">Ir a Post</a>
         <!-- <a href="#" class="js-share-post">Share</a> -->
+
       </div>
     <% end %>
   </div>
