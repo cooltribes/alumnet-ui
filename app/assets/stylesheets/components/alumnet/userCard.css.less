@@ -22,7 +22,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   }
 }
 .avatarsize{
-  width: 66px;
+    width: 66px;
+}
+.avatarsizeAlumniGroup{
+    width: 71px;
 }
 .userCard{
    background: #fbfbfb;
@@ -209,14 +212,14 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
     
     li a&--changeRole{
-        top: 5px;
+        top: -15px;
       }
     li a&--upgradeMember{
         top: 30px;
         &:hover{ background-color: @orange;}
       }
      li a&--removeMember{
-        top: 55px;
+        top: 23px;
         &:hover{ background-color: @danger-color;}
       }
     a{
@@ -315,8 +318,11 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
  /* ( 319px and up) */
 @media (min-width: @media-smallest) {
 .avatarsize{
-  width:60px;
+    width:60px;
 
+}
+.avatarsizeAlumniGroup{
+    width: 71px;
 }
 .userCardLike{
     height: 100px;
@@ -396,8 +402,11 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 }
 @media (min-width: @media-smallphone) {
   .avatarsize{
-    width:69px;
+      width:69px;
 
+  }
+  .avatarsizeAlumniGroup{
+      width: 80px;
   }
 }
 @media (min-width: @media-xsmall-max) {
@@ -405,6 +414,9 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     width:76px;
 
   }
+  .avatarsizeAlumniGroup{
+    width: 84px;
+}
 }
 @media (min-width: @media-msmall-min) {
 

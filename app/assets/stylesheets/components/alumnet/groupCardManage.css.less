@@ -7,7 +7,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 
 @import 'conf/conf.css.less';
 
-
 .groupCardManage{
     background-color: @white;
     margin-bottom: 2em;
@@ -209,40 +208,18 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
  /*  (319px and up) */
 @media (min-width: @media-smallest) {
     .groupCardManage{
-
         &__atribute{
 
             font-size: 1em;
             &__container{
                 padding: 10px 10px;
-                border-right: 2px solid #ffffff;
-
-
             }
             &__container--odd{
                 padding: 12px 10px;
-                border-left: 2px solid #ffffff;
             }
-
-        }
-        &__content{
-            border-right: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            background-color: @white;
-        }
-        &__cover{
-            border: 2px solid #ffffff;
-        }
-        &__actions{
-            border: 2px solid #ffffff;
-            &__wrapper{
-             border: none;
-             height: 86px;  
-            }           
-        }     
-    }   
- }
-
+        }   
+    }     
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
@@ -260,9 +237,9 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         }
         &__content{
             width: 50%;
-            padding-bottom: 0;
-            height: 150px;
-            background-color: @white;
+            border-bottom:none;
+              padding-bottom: 0;
+            height: 80px;
         }
         &__atribute{
             height: auto;
@@ -279,14 +256,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__cover{
             width:  100%;
             float: left;
-            height: 200px;
-            
+            height: 200px;       
             img{
                 width: 100%;
             }
         }
         &__content{
-            width: 100%;
+            width: auto;
+            border-bottom:none;
             padding-bottom: 20px;
             height: 100px;
         }
@@ -302,8 +279,7 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__actions{
             width: 100%;
         }
-    }
-     
+    }   
  }
 
 /* Large devices (large desktops, 1200px and up) */
@@ -328,12 +304,9 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             width: 15%;
             float: left;
             margin-top: 0;
-            &__wrapper
-            {   
-                &--admin{
-                height: 86px;
+            &__wrapper--admin{
+                height: 90px;
             }
-        }
         }
         &__atributes{
             width: 40%;
@@ -344,61 +317,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 
         font-size: 1em;
         &__container{
-           
+            padding: 11px 5px;
         }
         &__container--odd{
             padding: 12px 5px;
         }
     }
-
         &__ribbon{
             height: 80px;
         }
     }    
-    
- }
- /* Large devices (large desktops, 1400px and up) */
-@media (min-width: @media-mmlarge-min) {
-    .groupCardManage{
-        &__atribute{
-        font-size: 1.1em;
-            &__container{
-                padding: 12x 10px;
-            }
-            &__container--odd{
-                padding: 12px 10px;
-            }
-        }   
-        &__actions{
-            &__wrapper{
-             height: 10px;  
-            }           
-        }  
-        &__ribbon{
-            height: 80px;
-        }
-    }       
- }
- /* Large devices (large desktops, 1600px and up) */
-@media (min-width: @media-mxlarge-min) {
-    .groupCardManage{
-        &__atribute{
-
-            font-size: 1.2em;
-            &__container{
-                padding: 10px 13px;
-            }
-            &__container--odd{
-                padding: 10px 13px;
-            }
-        }
-        &__actions{
-            &__wrapper{
-             height: 86px;  
-            }           
-        }  
-        &__ribbon{
-            height: 80px;
-        }
-    }        
  }
