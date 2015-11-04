@@ -150,6 +150,19 @@
 
       @postPictures = @model.get('pictures')
 
+      self = @
+      self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
+            
+      @model.comments.fetch
+        success: (collection)->
+          if collection.length > 3
+            self.collection.add(collection.slice((collection.length-3),collection.length))
+            $(self.ui.moreComment).show()
+          else
+            self.collection.add(collection.models)
+            $(self.ui.moreComment).hide()
+
     templateHelpers: ->
       view = @
       model = @model
@@ -157,7 +170,6 @@
 
       userCanComment: true
       showInfoLink: false
-      canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showDropdownOptions: ->
@@ -167,6 +179,7 @@
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+      commentsCount: @model.comments.length
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -176,10 +189,6 @@
           _.first(view.postPictures, 5)
         else
           view.postPictures
-
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
 
     onShow: ->
       self = @

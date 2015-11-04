@@ -129,7 +129,7 @@
   </div>
   
   <!-- COMMENT CONTAINER -->
-  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previews comments</a>
+  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previous comments</a>
   <div class="postCard__commentsContainer comments-container"></div>
   <!-- COMMENT CONTAINER OFF -->
 
