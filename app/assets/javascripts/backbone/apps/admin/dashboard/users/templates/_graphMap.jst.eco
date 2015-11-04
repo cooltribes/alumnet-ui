@@ -15,8 +15,8 @@
           </label>          
         </div>
 
-
-        <table class="table table-striped margin_top">
+         <div id="divTableDashboard">
+        <table class="table table-striped margin_top" >
         <thead>
           <tr>
             <th></th>
@@ -37,8 +37,9 @@
         <tbody>
           <% _.all @dataTable, (country, i, dataTable)->: %>
 
-            <% return if i > 10 %>
+            <% return if i > 10000 %>
             <% if i > 0: %>
+
                 <tr>
                   <th scope="row"><%= country[0] %></th>
                   <td><%= country[1] %></td>
@@ -49,7 +50,8 @@
             <% end %>
           <% end %>
         </tbody>
-      </table>      
+      </table>
+      </div>      
     <% else: %>
       <label class="control-label">Loading table...</label>        
     <% end %>
