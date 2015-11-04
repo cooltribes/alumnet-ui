@@ -153,7 +153,7 @@
       self = @
       self.collection = new AlumNet.Entities.CommentsCollection
       self.collection.comparator = 'created_at'
-            
+
       @model.comments.fetch
         success: (collection)->
           if collection.length > 3
@@ -166,10 +166,13 @@
     templateHelpers: ->
       view = @
       model = @model
+      console.log "modelo"
+      console.log model
       permissions = @model.get('permissions')
 
       userCanComment: true
       showInfoLink: false
+      canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showDropdownOptions: ->
