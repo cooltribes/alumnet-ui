@@ -14,15 +14,18 @@
       list_view = @list_view
 
       list_view.on "companies:reload", ->
+        that = @
         querySearch = controller.querySearch
-        ++list_view.collection.page
         newCollection = new AlumNet.Entities.CompaniesCollection
         newCollection.url = AlumNet.api_endpoint + '/companies'
-        query = _.extend(querySearch, { page: list_view.collection.page, per_page: list_view.collection.rows })
+        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
         newCollection.fetch
           data: query
           success: (collection)->
-            list_view.collection.add(collection.models)
+            that.collection.add(collection.models)
+            if collection.length < collection.rows
+              console.log "companies" 
+              that.endPagination()             
 
       list_view.on "add:child", (viewInstance)->
         container = $('#companies-container')

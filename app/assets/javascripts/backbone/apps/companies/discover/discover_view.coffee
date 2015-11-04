@@ -137,12 +137,27 @@
       tagName: tagName
       template: template
 
+    ui:
+      'loading': '.throbber-loader'
 
     initialize: ()->
       @type = "cards" #default view
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMoreCompanies')
+    
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreCompanies')      
       $(window).scroll(@loadMoreCompanies)
+
+    remove: ->
+      $(window).unbind('scroll')
+      @collection.page = 1
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      console.log "endPagination"
+      @ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')       
 
     loadMoreCompanies: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
