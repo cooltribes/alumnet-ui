@@ -150,9 +150,24 @@
 
       @postPictures = @model.get('pictures')
 
+      self = @
+      self.collection = new AlumNet.Entities.CommentsCollection
+      self.collection.comparator = 'created_at'
+
+      @model.comments.fetch
+        success: (collection)->
+          if collection.length > 3
+            self.collection.add(collection.slice((collection.length-3),collection.length))
+            $(self.ui.moreComment).show()
+          else
+            self.collection.add(collection.models)
+            $(self.ui.moreComment).hide()
+
     templateHelpers: ->
       view = @
       model = @model
+      console.log "modelo"
+      console.log model
       permissions = @model.get('permissions')
 
       userCanComment: true
@@ -161,12 +176,13 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       showDropdownOptions: ->
-        permissions.canDelete || permissions.canEdit || permissions.canShare
+        permissions.canDelete || permissions.canEdit
       current_user_avatar: AlumNet.current_user.get('avatar').medium
       infoLink: @model.infoLink()
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
+      commentsCount: @model.comments.length
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -176,10 +192,6 @@
           _.first(view.postPictures, 5)
         else
           view.postPictures
-
-    onBeforeRender: ->
-      @model.comments.fetch()
-      @collection = @model.comments
 
     onShow: ->
       self = @

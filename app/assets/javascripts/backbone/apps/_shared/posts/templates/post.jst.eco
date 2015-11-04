@@ -27,7 +27,7 @@
           <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
          </div>
   
-        <% if @showDropdownOptions: %>
+        <% if @showDropdownOptions(): %>
 
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
           <a href="#" class="dropdown-toggle postCard__options js-options" role="menu" aria-labelledby="options" data-toggle="dropdown" aria-expanded="false">
@@ -108,28 +108,28 @@
         <% end %>
 
         <% if @canShare: %>
-          <a href="#" class="glyphicon glyphicon-share-alt js-share-post"> Share</a>
+          <a href="#" class="js-share-post"><span class="glyphicon glyphicon-share-alt"></span> Share</a>
         <% end %>
 
     <!-- BUTTONS OFF -->
       </div>
     </div>
     <hr class="margin_top_xsmall margin_bottom_xsmall">
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="link-text margin_top_xsmall">
-          <% if @likes_count > 0: %>
-            <span class="js-likes-counter icon-entypo-thumbs-up"><%= @likes_count %></span> - 
-            <span class="js-like-links"><%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.</span>
-          <% end %>
+    
+    <% if @likes_count > 0: %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="link-text margin_top_xsmall">
+              <span class="js-likes-counter icon-entypo-thumbs-up"><%= @likes_count %></span> - 
+              <span class="js-like-links"><%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.</span> 
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
   
   <!-- COMMENT CONTAINER -->
-  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previews comments</a>
+  <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previous comments</a>
   <div class="postCard__commentsContainer comments-container"></div>
   <!-- COMMENT CONTAINER OFF -->
 
