@@ -137,7 +137,11 @@
       @tagger.hideTag(link.data('tag'))
 
     addLinkTag: (id, user_id, user_name, posX, posY)->
-      $('.js-tags').append("<a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
+      childrenDiv = $('.js-tags').children().length
+      if childrenDiv == 0
+        $('.js-tags').append("<a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
+      else
+        $('.js-tags').append(", <a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
 
     submitTag: (plugin, user_id, user_name, posX, posY)->
       Backbone.ajax

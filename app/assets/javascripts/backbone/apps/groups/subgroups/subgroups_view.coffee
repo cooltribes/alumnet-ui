@@ -36,6 +36,7 @@
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
+      'click #js-file-groups': 'uploadFile'
 
     changedGroupType: (e)->
       select = $(e.currentTarget)
@@ -103,6 +104,10 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+
+    uploadFile: (e)->
+      e.preventDefault()
+      $('#group-cover').click()
 
   class SubGroups.GroupView extends Marionette.ItemView
     template: 'groups/subgroups/templates/group'
