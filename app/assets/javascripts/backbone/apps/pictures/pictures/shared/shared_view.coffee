@@ -139,7 +139,7 @@
     addLinkTag: (id, user_id, user_name, posX, posY)->
       childrenDiv = $('.js-tags').children().length
       if childrenDiv == 0
-        $('.js-tags').append("<a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
+        $('.js-tags').append("With <a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
       else
         $('.js-tags').append(", <a href='#users/#{user_id}/posts' data-tag=#{id}>#{user_name}</a>")
 

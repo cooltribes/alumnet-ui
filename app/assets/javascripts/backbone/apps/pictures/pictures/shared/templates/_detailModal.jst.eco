@@ -118,7 +118,7 @@
                 </div>
               </div>
             <% end %>
-            <div class="js-tags tagFriends"></div>
+            <div class="js-tags"></div>
           </div>
 
           <form>
