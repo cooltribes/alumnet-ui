@@ -44,7 +44,7 @@
         else ""
 
     _generateHtmlOptionsForSelect: (options, placeholder)->
-      if placeholder == undefined then placeholder = "Select Comparator"
+      if placeholder == undefined then placeholder = "Search field"
       htmlOptions = "<option value=''>#{placeholder}</option>"
       _.each options, (option, index, list)->
         selected = if option.selected then "selected" else ""
