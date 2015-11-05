@@ -11,7 +11,7 @@
         filters:
           mime_types:[
             title: "Images Files"
-            extensions: "jpg,png,gif"            
+            extensions: "jpg,png,gif,jpeg"            
           ]
           
       uploader.bind 'FilesAdded',(up, files)->

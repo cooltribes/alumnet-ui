@@ -73,11 +73,17 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
-              <h3>
-                <%= @uploader.name %>
-              </h3>
+              <div class="row">
+                  <h3>
+                    <%= @uploader.name %>
+                  </h3>
+              </div>
+            </div>
+          </div>
+         <div class="row">
+            <div class="col-md-12">
               <small class="margin_top_xsmall_minus">
-                <%= moment(@created_at).fromNow() %>
+                <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
               </small>
             </div>
           </div>

@@ -25,6 +25,12 @@
     <div class="row">
       <div class="col-md-12">
         <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+        <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a><br>
+        <% if @previewMode : %>
+          <small class="postCard__date"><%= moment(@created_at).fromNow() %></small>
+        <% else: %> 
+          <a href="<%= @postUrl %>" class="postCard__date"><%= moment(@created_at).fromNow() %></a>
+        <% end %>
         <!-- PREVIEW -->
         <% if @preview.url : %>
           <h4 style="color:#111111"><%= @preview.title %></h4>
@@ -36,12 +42,5 @@
       </div>
     </div>
     <!-- BUTTONS -->
-    <% unless @previewMode : %>
-      <div>
-        <a href="<%= @postUrl %>">Ir a Post</a>
-        <!-- <a href="#" class="js-share-post">Share</a> -->
-
-      </div>
-    <% end %>
   </div>
 </div>

@@ -166,8 +166,6 @@
     templateHelpers: ->
       view = @
       model = @model
-      # console.log "modelo"
-      # console.log model
       permissions = @model.get('permissions')
 
       userCanComment: true
