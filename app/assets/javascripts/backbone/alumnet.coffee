@@ -33,6 +33,14 @@
         else
           App.navigate('#posts', {trigger: true})
 
+    ## Get profinda api token
+    Backbone.ajax
+      url: AlumNet.api_endpoint + '/me/profinda_token'
+      success: (data)->
+        AlumNet.current_user.set('profinda_api_token', data.profinda_api_token)
+      error: (response)->
+        message = AlumNet.formatErrorsFromApi(response.responseJSON)
+        $.growl.error(message: message)
 
   App.addRegions
     headerRegion: "#header-region"
