@@ -14,6 +14,8 @@
         current_user.messages.fetch()
         current_user.notifications.fetch
           data: { limit: 6 }
+        current_user.friendship_notifications.fetch
+          data: { limit: 6 }
         messagesList = new Menu.MessagesView
           collection: current_user.messages
         notificationsList = new Menu.NotificationsView

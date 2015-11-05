@@ -6,6 +6,7 @@
     initialize: ->
       @messages = new Entities.MessagesCollection
       @notifications = new Entities.NotificationsCollection
+      @friendship_notifications = new Entities.FriendshipNotificationsCollection
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
@@ -222,6 +223,7 @@
       user.profile.url = AlumNet.api_endpoint + '/me/profile'
       user.messages.url = AlumNet.api_endpoint + '/me/messages'
       user.notifications.url = AlumNet.api_endpoint + '/me/notifications'
+      user.friendship_notifications.url = AlumNet.api_endpoint + '/me/notifications/friendship'
 
       user.fetch({async:false})
       user
