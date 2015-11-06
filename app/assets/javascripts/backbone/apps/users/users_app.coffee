@@ -11,6 +11,7 @@
       "users/:id/events": "userEvents"
       "users/:id/business-exchange": "userBusiness"
       "users/:id/profile": "publicProfile"
+      "users/:id/notifications": "userNotifications"
 
   API =
     userPost: (user_id, id)->
@@ -65,7 +66,10 @@
       Backbone.ajax
         method: 'POST'
         url: AlumNet.api_endpoint + "/users/#{id}/register_visit"
-
+    
+    userNotifications: (id)->
+      controller = new UsersApp.Notifications.Controller
+      controller.showNotifications(id)
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")
