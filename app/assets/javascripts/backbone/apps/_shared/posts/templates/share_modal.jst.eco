@@ -1,22 +1,39 @@
-<div class="bbm-modal__topbar modalMeetup">
-  <h3 class="bbm-modal__title text-center">Share</h3>
-</div>
+<div class="modalShare">
+  <h4 class="text-left">Share...</h4>
+</div class="modalShare">
 
-<div class="bbm-modal__section">
+<div class="modalShare">
   <form>
-    <div class="form-group">
-      <select name="postable_type" id="postable_type" class="form-control">
-        <option value="me">Timelime</option>
-        <option value="users">Friend</option>
-        <option value="groups">Group</option>
-        <option value="events">Event</option>
-      </select>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <select name="postable_type" id="postable_type" class="filters__input filters__input--lg form-control input-lg">
+            <option value="me">Timelime</option>
+            <option value="users">Friend</option>
+            <option value="groups">Group</option>
+            <option value="events">Event</option>
+          </select>
+          <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
+    <div class="form-group no-margin">
       <input type="hidden" name="postable_id" id="postable_id" style="width: 100%">
     </div>
-    <div class="form-group">
-      <textarea class="form-control" name="body" id="body" rows="2"></textarea>
+
+    <div class="row no-margin">
+      <div class="col-md-12 modalShare__user">
+        <div class="row">
+          <div class="col-md-2 text-center">
+            <img src="<%= @current_user_avatar %>" alt="<%= @current_user_name %>" class="img-circle">
+          </div>
+          <div class="col-md-10 padding_top_xsmall">
+            <div class="form-group no-margin">
+              <textarea class="form-control" name="body" id="body" rows="2" style="height:40px"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </form>
   <hr>
@@ -24,9 +41,7 @@
   <hr>
 </div>
 
-<div class="bbm-modal__bottombar no_margin_top">
-  <a href="#" id="share" class="btn btn-primary">Share</a>
-  <a href="#" id="close" class="btn btn-primary">Close</a>
+<div class="modalShare no_margin_top text-right">
+  <a href="#" id="share" class="btn btn-lg btn-primary">Share</a>
+  <a href="#" id="close" class="btn btn-default-gray btn-lg">Close</a>
 </div>
-
-
