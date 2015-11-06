@@ -65,7 +65,7 @@
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
 						<% aux = 0 %>
               			<% for friends in @friends_in: %>  
-                			<img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+                			<img class="img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
               			  <% aux=aux+1 %>
               			  <% if aux==3: %>
               			    <% break %>
