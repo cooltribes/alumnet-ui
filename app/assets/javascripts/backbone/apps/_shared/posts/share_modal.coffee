@@ -26,7 +26,6 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
       permissions = @model.get('permissions')
 
       canEdit: permissions.canEdit
