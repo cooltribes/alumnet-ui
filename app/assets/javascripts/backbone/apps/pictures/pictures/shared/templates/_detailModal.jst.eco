@@ -73,11 +73,17 @@
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
-              <h3>
-                <%= @uploader.name %>
-              </h3>
+              <div class="row">
+                  <h3>
+                    <%= @uploader.name %>
+                  </h3>
+              </div>
+            </div>
+          </div>
+         <div class="row">
+            <div class="col-md-12">
               <small class="margin_top_xsmall_minus">
-                <%= moment(@created_at).fromNow() %>
+                <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
               </small>
             </div>
           </div>
@@ -123,8 +129,8 @@
 
           <form>
           <div class="row margin_top hidden-xs">
-            <div class="col-md-12">
-              <a href="#" class="btn btn-commentImage js-tag-friend">TAG A FRIEND</a>
+            <div class="col-md-12 no-padding">
+              <a href="#" class="btn-tagFriends js-tag-friend" style="color: #f38e00;">TAG A FRIEND</a>
               <div class="groupPost__btn--like">
                 <% if @you_like: %>
                   <a href="#" class="js-unlike js-vote" title="Unlike">Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
@@ -132,8 +138,9 @@
                   <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
                 <% end %>
               </div>
-              <span class="fontsize">(<span class="js-likes-counter"><%= @likes_count %></span> likes)</span>
-            
+              <% if @likes_count > 0 : %>
+                <span class="fontsize">(<span class="js-likes-counter"><%= @likes_count %></span> likes)</span>
+              <% else: %>
             </div>
           </div>
 
