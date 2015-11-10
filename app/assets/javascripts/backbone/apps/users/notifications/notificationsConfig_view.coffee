@@ -34,15 +34,17 @@
               'width':'100%'
 
     smoothClick: (e)->
+
       if $(e.target).prop("tagName")!='a'
         element = $(e.target).closest 'a'
       else
         element = e.target
-        String id = $(element).attr("id")
-        id = '#'+id.replace('to','')
-        $('html,body').animate({
-          scrollTop: $(id).offset().top-120
-        }, 1000);
+        
+      String id = $(element).attr("id")
+      id = '#'+id.replace('to','')
+      $('html,body').animate({
+        scrollTop: $(id).offset().top-120
+      }, 1000);
 
 
   class Notifications.messagesMembers extends Marionette.CompositeView
