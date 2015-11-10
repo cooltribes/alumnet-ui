@@ -8,26 +8,26 @@
   <div class="col-md-10 col-md-offset-1 col-sm-12 ">
     <div class="row margin_top_medium">
       <div class="col-md-3 col-sm-4 hidden-xs">
-        <div id="notificationsAffix">
+        <div class="notificationsAffix">
           <div class="metaInfoCard metaInfoCard--menu userBusiness__menu">
             <ul class="nav nav-pills nav-stacked">
               <li>
-                <a id="tomessagesmembers" class="text-uppercase smoothClick">
+                <a id="tomessages_members" class="text-uppercase smoothClick">
                   Messages Members
                 </a>
               </li>
               <li>
-                <a id="tomessagesalumnet" class="text-uppercase smoothClick">
+                <a id="tomessages_alumnet" class="text-uppercase smoothClick">
                   Messages AlumNet
                 </a>
               </li>
               <li>
-                <a id="toeventsdigest" class="text-uppercase smoothClick">
+                <a id="toevents_digest" class="text-uppercase smoothClick">
                   Events Digest 
                 </a>
               </li>
               <li>
-                <a id="togroupsdigest" class="text-uppercase smoothClick">
+                <a id="togroups_digest" class="text-uppercase smoothClick">
                   Groups Digest
                 </a>
               </li>

@@ -6,7 +6,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 ***/
 
 @import 'conf/conf.css.less';
-
 .groupCardManage{
     background-color: @white;
     margin-bottom: 2em;
@@ -43,8 +42,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
     &__text{
         height: 60px;
         overflow: hidden;
-        
-
     }
     
     &__linkSubgroups{
@@ -69,6 +66,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
          font-size: 13px;
          padding: 0.5*@space_small;
          padding: 0 15px 10px;
+         p{
+            span{
+            font-size: 12px;
+            font-family: sans-serif;
+            color:@gray;
+        }
+
+         }
     }
     &__atributes{
         background: none repeat scroll 0 0 #e1ecf1;
@@ -92,8 +97,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             padding: 10px 13px;
             border-right: 1px solid @white;
         }
-
-
     }
     &__icon{
         
@@ -285,6 +288,10 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
     .groupCardManage{
+
+        &__title{
+            font-size: 17px;
+        }
         &__cover{
             width: 12%;
             float: left;
