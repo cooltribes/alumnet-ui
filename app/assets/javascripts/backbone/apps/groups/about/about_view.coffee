@@ -29,6 +29,7 @@
       'groupApiKey': '#api_key'
       'groupListId': '#list_id'
       'linkSaveDescription': 'a#js-save-description'
+      'shortDescription': 'a#short-description'
 
     events:
       'click a#js-edit-upload': 'toggleEditUploadFiles'
@@ -194,19 +195,13 @@
           view.model.save
             "upload_files": newValue
 
-      # @ui.groupDescription.editable
-      #   type: 'textarea'
-      #   pk: view.model.id
-      #   title: 'Enter the description of Group'
-      #   toggle: 'manual'
-      #   validate: (value)->
-      #     if $.trim(value) == ''
-      #       'Group description is required, must be less than 2048 characters'
-      #     if $.trim(value).length >= 2048
-      #       'Group description is too large! Must be less than 2048 characters'
-      #   success: (response, newValue)->
-      #     view.trigger 'group:edit:description', view.model, newValue
-      # @ui.groupDescription.linkify()
+      @ui.shortDescription.editable
+        type: 'text'
+        pk: view.model.id
+        title: 'Enter the Short description of Group'
+        emptytext: "Short description"
+        success: (response, newValue)->
+          view.model.save { short_description: newValue }
 
       @ui.uploadFiles.editable
         type: 'select'

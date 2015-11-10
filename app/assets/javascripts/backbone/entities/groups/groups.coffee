@@ -78,17 +78,20 @@
         {value: 1, text: 'All members'}
       ]
       if value
-        values[ @get("upload_files").text ]          
+        values[ @get("upload_files").text ]
       else
         values
 
 
-      
+
     validation:
       name:
         required: true
         maxLength: 250
         msg: "Group name is required, must be less than 250 characters long."
+      short_description:
+        maxLength: 250
+        msg: "The short description must be less than 250 characters long."
       description:
         required: true
         maxLength: 2048
