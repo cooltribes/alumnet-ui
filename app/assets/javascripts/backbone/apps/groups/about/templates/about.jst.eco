@@ -17,8 +17,10 @@
       <div class="groupAbout__box margin_bottom margin_top">
         <% if @canEditInformation: %>
         <h2 class="groupAbout__title"><a href="#" id="name"><%= @name %></a></h2>
+        <a href="#" id="short-description"><%= @short_description %></a>
         <% else: %>
         <h2><%= @name %></h2>
+        <%= @short_description %>
         <% end %>
       </div>
 
