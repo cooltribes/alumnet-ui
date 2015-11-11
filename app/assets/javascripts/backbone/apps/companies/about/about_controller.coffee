@@ -19,6 +19,7 @@
             collection: company.contactsCollection()
           branches = new About.BranchesLayout
             model: company
+            collection: company.branchesCollection()
           links = new About.LinksView
             model: company
             collection: company.linksCollection()
@@ -35,7 +36,10 @@
           body.details.show(details)
           body.services.show(services)
           body.contacts.show(contacts)
-          body.branches.show(branches)
+
+          if branches.collection.length > 0 || company.userIsAdmin()
+            body.branches.show(branches)
+
           body.links.show(links)
 
           #Llamada al submenu de la compañia

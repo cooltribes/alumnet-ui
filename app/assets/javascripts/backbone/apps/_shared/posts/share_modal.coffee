@@ -31,6 +31,7 @@
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
       current_user_avatar: AlumNet.current_user.get('avatar').medium
+      current_user_name: AlumNet.current_user.get('name')
       infoLink: @model.infoLink()
       tagsLinks: @model.tagsLinks()
       likesLinks: @model.firstLikeLinks()

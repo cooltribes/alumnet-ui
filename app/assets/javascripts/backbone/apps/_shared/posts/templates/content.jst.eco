@@ -2,6 +2,23 @@
   <div class="groupPost__postBody">
     <!-- PICTURES -->
     <% if @pictures: %>
+
+      <% if @previewMode : %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row margin_bottom_small">
+              <div class="col-md-2 text-center">
+                <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+              </div>
+              <div class="col-md-10 color">
+                <h3><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h3>
+                <small class="postCard__date"><%= moment(@created_at).fromNow() %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col-md-12">
           <div class="modal-container"></div>
@@ -24,22 +41,41 @@
 
     <div class="row">
       <div class="col-md-12">
-        <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+        <% unless @pictures: %>
+          <% if @previewMode : %>
+            <div class="row margin_bottom_small">
+              <div class="col-md-2 text-center">
+                <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+              </div>
+              <div class="col-md-10 color">
+                <h3><a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h3>
+                <small class="postCard__date"><%= moment(@created_at).fromNow() %></small>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+          </div>
+        </div>
+        
         <!-- PREVIEW -->
         <% if @preview.url : %>
           <h4 style="color:#111111"><%= @preview.title %></h4>
           <span><%= @preview.description %></span>
-          <img src="<%= @preview.image %>" width="99.8%" class="margin_top_small">
+          <a href="<%= @preview.url %>" target="_blank"><img src="<%= @preview.image %>" width="99.8%" class="margin_top_small"></a>
         <% end %>
+
+        <% unless @previewMode : %> 
+          <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a><br>
+          <a href="<%= @postUrl %>" class="postCard__date"><%= moment(@created_at).fromNow() %></a>
+        <% end %>
+        
         <!-- PREVIEW OFF -->
       </div>
     </div>
     <!-- BUTTONS -->
-    <% unless @previewMode : %>
-      <div>
-        <a href="<%= @postUrl %>">Ir a Post</a>
-        <!-- <a href="#" class="js-share-post">Share</a> -->
-      </div>
-    <% end %>
   </div>
 </div>

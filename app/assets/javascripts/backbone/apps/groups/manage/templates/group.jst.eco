@@ -12,7 +12,7 @@
 				<h3 class="groupCardManage__title">
 				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
 				</h3>
-				<p id="js-description" class="groupCardManage__description overfloadText"><%= @group.description %></p>
+				<p id="js-description" class="groupCardManage__description overfloadText"><%= @group.short_description %></p>
 			</div>
 			<% if _.size(@children) > 0: %>
 			<a id="js-subgroups" class="groupCardManage__linkSubgroups" data-toggle="collapse" data-target="#<%= @id %>" data-child="<%= _.size(@children) %>" aria-expanded="false" aria-controls="<%= @id %>">Show subgroups (<%= _.size(@children) %>) </a>
@@ -65,7 +65,7 @@
 					<div data-toggle="tooltip" data-placement="top" title="Friends" class="groupCardManage__atribute__container">
 						<% aux = 0 %>
               			<% for friends in @friends_in: %>  
-                			<img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
+                			<img class="img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
               			  <% aux=aux+1 %>
               			  <% if aux==3: %>
               			    <% break %>

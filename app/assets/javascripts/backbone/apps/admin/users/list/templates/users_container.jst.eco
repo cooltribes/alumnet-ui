@@ -37,7 +37,7 @@
             <div class="col-md-3">
               <div class="filter-comparator-container form-group">
                 <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
-                    <option value="">Select comparator</option>
+                    <option value="">Search field</option>
                 </select>
                 <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
                 <span class="help-block"></span>

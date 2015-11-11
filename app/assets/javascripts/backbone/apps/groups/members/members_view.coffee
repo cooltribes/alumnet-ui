@@ -125,7 +125,7 @@
   class Members.Member extends Marionette.ItemView
     template: 'groups/members/templates/member'
     tagName: 'div'
-    className: 'col-md-4 col-sm-6'
+    className: 'col-md-4 col-sm-6 col-xs-12'
 
     initialize: (options)->
       @group = options.group

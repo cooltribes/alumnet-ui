@@ -806,3 +806,5 @@
         model: link
         parentView: @
       $('#js-modal-link-container').html(modal.render().el)
+
+      

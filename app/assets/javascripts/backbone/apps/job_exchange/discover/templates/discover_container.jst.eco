@@ -5,17 +5,21 @@
 </div>
 
 <div class="container">
-  <h1>Discover</h1>
-
-  <form id="search-form">
-    <div class="input-group">
-      <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Jobs">
-      <span class="input-group-btn">
-      <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
-      </span>
-    </div>
+  <div class="searchBar row ">
+    <div class="col-md-3">
+      <h1 class="searchBar__title">Discover</h1>
+  </div>
+  <div class="col-md-6">
+    <form id="search-form">
+      <div class="input-group">
+        <input type="text" name="search_term" id="search_term" class="searchBar__searchInput form-control " placeholder="Search Jobs">
+        <span class="input-group-btn">
+        <button class="searchBar__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
     <p class="help-block text-right glyphicon glyphicon-chevron-right searchBar__link" id="js-advance"><a href="#" title="Advance search"> Advanced search</a></p>
-  </form>
+    </form>
+  </div>
 
   <div class="visibility" id="js-advance-search">
     <div class="row">
@@ -52,7 +56,7 @@
             <div class="filters__hidden">
               <div class="filter-comparator-container form-group">
                 <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
-                    <option value="">Select comparator</option>
+                    <option value="">Search field</option>
                 </select>
                 <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
                 <span class="help-block"></span>

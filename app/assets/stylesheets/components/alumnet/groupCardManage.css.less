@@ -6,8 +6,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 ***/
 
 @import 'conf/conf.css.less';
-
-
 .groupCardManage{
     background-color: @white;
     margin-bottom: 2em;
@@ -44,8 +42,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
     &__text{
         height: 60px;
         overflow: hidden;
-        
-
     }
     
     &__linkSubgroups{
@@ -70,6 +66,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
          font-size: 13px;
          padding: 0.5*@space_small;
          padding: 0 15px 10px;
+         p{
+            span{
+            font-size: 12px;
+            font-family: sans-serif;
+            color:@gray;
+        }
+
+         }
     }
     &__atributes{
         background: none repeat scroll 0 0 #e1ecf1;
@@ -93,8 +97,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
             padding: 10px 13px;
             border-right: 1px solid @white;
         }
-
-
     }
     &__icon{
         
@@ -209,27 +211,18 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
  /*  (319px and up) */
 @media (min-width: @media-smallest) {
     .groupCardManage{
-
         &__atribute{
 
-        font-size: 1em;
-        &__container{
-            padding: 10px 10px;
-
-
-        }
-        &__container--odd{
-            padding: 12px 10px;
-        }
-
-
-    }
-
-    
-    }    
-    
- }
-
+            font-size: 1em;
+            &__container{
+                padding: 10px 10px;
+            }
+            &__container--odd{
+                padding: 12px 10px;
+            }
+        }   
+    }     
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
@@ -256,9 +249,6 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         }
         &__actions{
             width: 100%;
-            
-            
-
         }
     }
  }
@@ -269,8 +259,7 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         &__cover{
             width:  100%;
             float: left;
-            height: 200px;
-            
+            height: 200px;       
             img{
                 width: 100%;
             }
@@ -292,16 +281,17 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
         }
         &__actions{
             width: 100%;
-            
-
         }
-    }
-     
+    }   
  }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
     .groupCardManage{
+
+        &__title{
+            font-size: 17px;
+        }
         &__cover{
             width: 12%;
             float: left;
@@ -334,70 +324,14 @@ DESCRIPTION: A card with the group information on the managing groups page #grou
 
         font-size: 1em;
         &__container{
-            padding: 10px 5px;
-
-
+            padding: 11px 5px;
         }
         &__container--odd{
-            padding: 10px 5px;
+            padding: 12px 5px;
         }
-
-
     }
-
         &__ribbon{
             height: 80px;
         }
     }    
-    
- }
- /* Large devices (large desktops, 1400px and up) */
-@media (min-width: @media-mmlarge-min) {
-    .groupCardManage{
-
-        &__atribute{
-
-        font-size: 1.1em;
-        &__container{
-            padding: 10px 10px;
-
-
-        }
-        &__container--odd{
-            padding: 10px 10px;
-        }
-
-
-    }
-
-        &__ribbon{
-            height: 80px;
-        }
-    }    
-    
- }
- /* Large devices (large desktops, 1600px and up) */
-@media (min-width: @media-xlarge-min) {
-    .groupCardManage{
-
-        &__atribute{
-
-        font-size: 1.2em;
-        &__container{
-            padding: 10px 13px;
-
-
-        }
-        &__container--odd{
-            padding: 10px 13px;
-        }
-
-
-    }
-
-        &__ribbon{
-            height: 80px;
-        }
-    }    
-    
  }
