@@ -9,7 +9,7 @@
 			<% else: %>
 			col-md-7 col-xs-6
 			<% end %>">
-			<h4 class="userCard__name"><%= @name %></h4>
+			<h4 class="userCard__name overfloadText"><%= @name %></h4>
 			<p class="member-position text-small"><%= @last_experience %></p>
 			<p class="member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
 		</div>

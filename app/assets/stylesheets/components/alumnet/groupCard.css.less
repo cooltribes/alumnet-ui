@@ -13,8 +13,6 @@ DESCRIPTION: Displays a list of groups in the Groups
     position: relative;
     box-shadow: 1px 1px 5px #666;
     
-
-
     &__subGroupShadow{
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
         content: "";
@@ -261,6 +259,9 @@ DESCRIPTION: Displays a list of groups in the Groups
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
     .groupCard{
+        &__title{
+            height: 77px;
+        }
         &__cover{
             width: 50%;
             float: left;
@@ -344,11 +345,9 @@ DESCRIPTION: Displays a list of groups in the Groups
         &__atribute{
             height: 37px;
             font-size: 10px;
-                &__container--odd{
-                    padding: 8px 4px;
-               
+            &__container--odd{
+                padding: 8px 4px;        
             }
-
         }
         &__menu{
             &__list{
@@ -361,32 +360,23 @@ DESCRIPTION: Displays a list of groups in the Groups
     
  }
  @media (min-width: @media-mlarge-min) {
-    .groupCard{
-     
+    .groupCard{    
         &__atribute{
             font-size: 11px;
-                &__container--odd{
-                padding: 8px 6px;
-                
-        }
-
-        }
-     
-    
- }
+            &__container--odd{
+                padding: 8px 6px;           
+            }
+        }       
+    }
 }
  @media (min-width: @media-mmlarge-min) {
-    .groupCard{
-     
+    .groupCard{   
         &__atribute{
             font-size: 12px;
                 &__container--odd{
-                padding: 8px 9px;
-                
+                padding: 8px 9px;               
         }
 
-        }
-     
-    
+    }    
  }
 }
