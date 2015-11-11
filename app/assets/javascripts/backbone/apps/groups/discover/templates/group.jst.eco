@@ -60,7 +60,7 @@
           Open
         <% end %>
         </span>
-        <p id="js-description" class="groupCard__description"><%= @description %></p>
+        <p id="js-description" class="groupCard__description"><%= @short_description %></p>
       </div>
       <div class="groupCard__atributes">
         <div class="clearfix ">
