@@ -111,6 +111,7 @@
         location.join(", ")
 
   class Discover.List extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     childView: Discover.Company
     childViewContainer: '#companies-container'
 
@@ -119,6 +120,8 @@
         'companies/discover/templates/gridContainer'
       else if @type == "list"
         'companies/discover/templates/tableContainer'
+    emptyViewOptions:
+      template: 'companies/discover/templates/empty'
 
     childViewOptions: (model, index)->
       #initially for cards view
