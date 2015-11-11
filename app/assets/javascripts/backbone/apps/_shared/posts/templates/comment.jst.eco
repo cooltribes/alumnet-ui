@@ -8,8 +8,12 @@
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 no-padding">
 		  <h5 class="postCard__userNameComment">
 		  	<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
-			<small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>	<br>
-			<span id="js-comment-text" class="overfloadText postCard__info"><%- @comment %></span>
+				<% if @dayPassed > 3 :  %>
+          <small class="postCard__date"> <%= moment(@created_at).format('MMM Do YYYY') %></small><br>
+        <% else: %>
+          <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small><br>
+        <% end %>
+				<span id="js-comment-text" class="overfloadText postCard__info"><%- @comment %></span>
 		  </h5>
 		</div>
 		<% if @showDropdownOptions(): %>
