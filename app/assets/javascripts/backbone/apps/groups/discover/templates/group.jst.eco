@@ -38,11 +38,11 @@
       <div class="groupCard__text">
         <h3 class="groupCard__title">
         <% if @group_type.value == 1 && not @userIsMember : %>
-        <a href="#groups/<%= @id %>/about" class="js-group"> <%= @name %> </a>
+        <a href="#groups/<%= @id %>/about" class="js-group" title="<%= @name %>"> <%= @name %> </a>
         <% else if @group_type.value == 1 && @userIsMember : %>
-        <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <a href="#groups/<%= @id %>/posts" class="js-group" title="<%= @name %>"> <%= @name %> </a>
         <% else: %>
-        <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
+        <a href="#groups/<%= @id %>/posts" class="js-group" title="<%= @name %>"> <%= @name %> </a>
         <% end %>
         </h3>
         <span class="groupCard__status pull-right
