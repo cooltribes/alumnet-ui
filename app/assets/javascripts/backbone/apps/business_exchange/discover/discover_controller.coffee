@@ -2,7 +2,7 @@
   class Discover.Controller
     discover: (view = "people")->
       controller = @
-      controller.querySearch = ''
+      controller.querySearch = {}
       if view == "tasks"
         tasks = new AlumNet.Entities.BusinessExchangeCollection
         tasks.url = AlumNet.api_endpoint + "/business_exchanges?page="+tasks.page+"&per_page="+tasks.rows
@@ -22,17 +22,22 @@
 
       discoverView.on "business:reload", ->
         querySearch = controller.querySearch
-        ++discoverView.collection.page
         if view == "tasks"
-          newCollection = new AlumNet.Entities.BusinessExchangeCollection
-          newCollection.url = AlumNet.api_endpoint + '/business_exchanges?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
+          newCollection = new AlumNet.Entities.BusinessExchangeCollection          
+          newCollection.url = AlumNet.api_endpoint + '/business_exchanges'
+          query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
         else
           newCollection = new AlumNet.Entities.BusinessCollection
-          newCollection.url = AlumNet.api_endpoint + '/business?page='+discoverView.collection.page+'&per_page='+discoverView.collection.rows
+          newCollection.url = AlumNet.api_endpoint + '/business'
+          query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
+          console.log query
+        console.log query
         newCollection.fetch
-          data: querySearch
+          data: query
           success: (collection)->
             discoverView.collection.add(collection.models)
+            if collection.length < collection.rows 
+              discoverView.endPagination()               
 
       discoverView.on "add:child", (viewInstance)->
         container = $('#business-exchange-container')

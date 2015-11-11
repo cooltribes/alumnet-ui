@@ -259,6 +259,16 @@
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
 
+    templateHelpers: () ->
+      model = @model
+      that = @
+      pagination_buttons: ->
+          console.log "entro"
+          console.log model
+          console.log that.collection
+          html = '<span id="prevButton" style="display:none">Prev</span> | <span class="page_button">1</span> | <span id="nextButton">Next</span>'
+          html
+
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
