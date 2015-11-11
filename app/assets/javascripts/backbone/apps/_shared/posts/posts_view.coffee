@@ -9,7 +9,10 @@
       @postable = options.postable
 
     templateHelpers: ->
+      today = moment()
+      createFormat = moment(@model.get('created_at'))
       permissions = @model.get('permissions')
+      dayPassed: today.diff(createFormat,'days')
       userCanComment: true
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
@@ -167,7 +170,9 @@
       view = @
       model = @model
       permissions = @model.get('permissions')
-
+      today = moment()
+      createFormat = moment(@model.get('created_at'))
+      dayPassed: today.diff(createFormat,'days')
       userCanComment: true
       showInfoLink: false
       canShare: permissions.canShare
