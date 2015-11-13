@@ -23,6 +23,13 @@
     onRender: ->
       view = @
 
+      $('[rel="popover"]').popover
+        container: 'body'
+        html: true
+        placement: 'bottom'
+        trigger: 'hover'
+        content: $("#contentPopoverComments").removeClass('hide')
+
       @ui.commentText.editable
         type: 'textarea'
         inputclass: 'comment-editable'
@@ -224,7 +231,16 @@
       $('#timeline').masonry()
 
     onRender: ->
-      $('[data-toggle="tooltip"]').tooltip({html:true});
+      $('[data-toggle="tooltip"]').tooltip
+        html:true
+
+      $('[rel="popover"]').popover
+        #container: 'body'
+        html: true
+        placement: 'bottom'
+        trigger: 'hover'
+        content: $("#contentPopover").removeClass('hide')
+
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
