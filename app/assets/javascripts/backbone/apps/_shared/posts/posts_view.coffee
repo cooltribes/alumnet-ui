@@ -235,7 +235,7 @@
         html:true
 
       $('[rel="popover"]').popover
-        #container: 'body'
+        container: 'body'
         html: true
         placement: 'bottom'
         trigger: 'hover'
