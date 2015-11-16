@@ -22,13 +22,14 @@
      
     onRender: ->
       view = @
-
+      
       # $('[rel="popover"]').popover
       #   container: 'body'
       #   html: true
       #   placement: 'bottom'
       #   trigger: 'hover'
       #   content: $("#contentPopoverComments").removeClass('hide')
+
 
       @ui.commentText.editable
         type: 'textarea'
@@ -176,6 +177,7 @@
     templateHelpers: ->
       view = @
       model = @model
+      console.log model
       permissions = @model.get('permissions')
       today = moment()
       createFormat = moment(@model.get('created_at'))

@@ -20,7 +20,7 @@
               <span class="glyphicon glyphicon-map-marker"> Location</span>
             </div>
             <div class="coverPreview no_padding">
-              <img src="http://lorempixel.com/400/200/" alt="">
+              <img src="<%= @user.cover %>" alt="">
             </div>
           </div>
         </div>
@@ -29,9 +29,9 @@
   <!-- End popover-content -->
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 no-padding">
 		  <h5 class="postCard__userNameComment">
-		  	<a href="#users/<%= @user.id %>/posts" rel="popover" data-popover-content="#contentPopoverComments"><%= @user.name %></a>
+		  	<a href="#users/<%= @user.id %>/posts"><%= @user.name %></a>
 				<% if @dayPassed > 3 :  %>
-          <small class="postCard__date"> <%= moment(@created_at).format('MMM Do YYYY') %></small><br>
+          <a href="" rel="popover" data-popover-content="#contentPopoverComments"><small class="postCard__date"> <%= moment(@created_at).format('MMM Do YYYY') %></small></a><br>
         <% else: %>
           <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small><br>
         <% end %>
