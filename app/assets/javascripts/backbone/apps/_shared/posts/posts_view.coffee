@@ -23,12 +23,12 @@
     onRender: ->
       view = @
 
-      $('[rel="popover"]').popover
-        container: 'body'
-        html: true
-        placement: 'bottom'
-        trigger: 'hover'
-        content: $("#contentPopoverComments").removeClass('hide')
+      # $('[rel="popover"]').popover
+      #   container: 'body'
+      #   html: true
+      #   placement: 'bottom'
+      #   trigger: 'hover'
+      #   content: $("#contentPopoverComments").removeClass('hide')
 
       @ui.commentText.editable
         type: 'textarea'
@@ -234,12 +234,12 @@
       $('[data-toggle="tooltip"]').tooltip
         html:true
 
-      $('[rel="popover"]').popover
-        container: 'body'
-        html: true
-        placement: 'bottom'
-        trigger: 'hover'
-        content: $("#contentPopover").removeClass('hide')
+      # $('[rel="popover"]').popover
+      #   container: 'body'
+      #   html: true
+      #   placement: 'bottom'
+      #   trigger: 'hover'
+      #   content: $("#contentPopover").removeClass('hide')
 
       view = @
       @ui.bodyPost.editable
