@@ -36,6 +36,7 @@
       @points = @model.profile.get("points")
       @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
       @listenTo(@model, 'change:unread_notifications_count', @updateNotificationsCountBadge)
+      @listenTo(@model, 'change:unread_friendshipNotifications_count', @updateFriendshipNotificationsCountBadge)
       @listenTo(@model, 'change:avatar', @changeAvatar)
       @listenTo(@model, 'change:member', @changeMembresia)
       @listenTo(@model, 'render:points', @changePoints)
@@ -54,6 +55,7 @@
     regions:
       messagesBox: '#js-menu-messages-box'
       notificationsBox: '#js-menu-notifications-box'
+      friendshipNotificationsBox: '#js-menu-friendship-notifications-box'
 
     events:
       'click #js-menu-messages': 'menuMessageClicked'
@@ -67,6 +69,7 @@
     ui:
       'messagesBadge': '#js-messages-badge'
       'notificationsBadge': '#js-notifications-badge'
+      'friendshipNotificationsBadge': '#js-friendship-notifications-badge'
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
@@ -121,6 +124,14 @@
       else
         @ui.notificationsBadge.hide()
 
+    updateFriendshipNotificationsCountBadge: ->
+      value = @model.get('unread_friendship_notifications_count')
+      @ui.friendshipNotificationsBadge.html(value)
+      if value > 0
+        @ui.friendshipNotificationsBadge.show()
+      else
+        @ui.friendshipNotificationsBadge.hide()
+
     menuMessageClicked: (e)->
       @model.set("unread_messages_count", 0)
 
@@ -138,6 +149,11 @@
         @ui.notificationsBadge.show()
       else
         @ui.notificationsBadge.hide()
+
+      if @model.get("unread_friendship_notifications_count") > 0
+        @ui.friendshipNotificationsBadge.show()
+      else
+        @ui.friendshipNotificationsBadge.hide()
 
     changeHeader: (e)->
       # e.preventDefault()

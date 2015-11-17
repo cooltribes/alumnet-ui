@@ -99,6 +99,7 @@
       query = @searcher.getQuery()
       @collection.fetch
         data: { q: query }
+        console.log data
 
     clear: (e)->
       e.preventDefault()

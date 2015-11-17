@@ -76,7 +76,7 @@
               status_eq: 1
             page: companies.page
             per_page: companies.rows
-
+ 
       view = new Discover.List
         collection: companies
       view

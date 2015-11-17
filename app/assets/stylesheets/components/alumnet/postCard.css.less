@@ -12,7 +12,7 @@ DESCRIPTION: A card that contains a post (content plus comments)
 		background-color: #fff;
 		border: 1px solid #c3c3c3;
 		max-width: 600px;
-  		margin: 15px auto;
+  	margin: 15px auto;
 
 	&__info{
 		white-space: nowrap;
@@ -181,26 +181,39 @@ DESCRIPTION: A card that contains a post (content plus comments)
 	}
 }
 
-.popoverPreview{
-	img{
-		border: 3px solid #333;
-	}
-	h3{
-		font-weight: 300
-	}
-}
-
-.popover {
+.popover{
   background-color: rgba(0, 0, 0, 0.75);
-  width: 1000px;
-}
-.popover-content {
-  color: #FFFFFF;
-  width: 500px;
-}
-.arrow {
-	border-right-color: rgba(0, 0, 0, 0.75) !important;
-  color: rgba(0, 0, 0, 0.75);
+  max-width: 100%;
+  width: 450px;
+  padding: 15px 0 0 0;
+
+  .popover-content {
+    padding: 0;
+	}
+
+  .previewProfileImg{
+		img{
+			border: 2px solid #333;
+			width: 100px;
+		}
+  }
+
+  .previewProfileText{
+		p{
+			color: @white;
+			font-size: 20px;
+			font-family: sans-serif;
+    	font-weight: 100;
+		}
+	}
+	.coverPreview{
+		height: 170px;
+		img{
+			width: 100%;
+			height: 100%;
+			margin-top: -10px;
+		}
+	}
 }
 
 /* Small devices (tablets, 400px and up) */
@@ -222,4 +235,10 @@ DESCRIPTION: A card that contains a post (content plus comments)
 
 		}
 	}
+}
+
+@media (min-width: @media-xxlarge-min) {
+	.postCard {
+  	max-width: 100%;
+  }
 }

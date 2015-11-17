@@ -22,7 +22,11 @@
             </div>
           <% end %>
           <!--  -->
-          <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
+          <% if @dayPassed > 3 :  %>
+            <small class="postCard__date"> <%= moment(@created_at).format('MMM Do YYYY') %></small>
+          <% else: %>
+            <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
+          <% end %>
          </div>
 
         <% if @showDropdownOptions(): %>
