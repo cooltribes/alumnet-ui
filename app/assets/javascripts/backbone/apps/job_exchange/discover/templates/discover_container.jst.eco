@@ -89,9 +89,10 @@
         </div>
   </div>
 </div>
+</div>
 <div class="clearfix "></div>
 <div id="tasks-container" class="tasks-container">
-  <hr>
+
 </div>
 <div class="text-center"><span class="throbber-loader"></span></div>
 
