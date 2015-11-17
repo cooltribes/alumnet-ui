@@ -70,6 +70,7 @@
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
       'avatarImg': '#header-avatar'
+      'searchInput': '#js-search-input'
 
     changePoints: ->
       $(".totalPoints").text(@model.profile.get("points"))
@@ -103,6 +104,11 @@
         if(model.get('member')==3)
           return "Lifetime member"
         return "Not a member"
+
+    search: (e)->
+      if e.keyCode == 13
+        console.log "Go to search page"
+
 
 
     updateMessagesCountBadge: ->
@@ -138,6 +144,15 @@
         @ui.notificationsBadge.show()
       else
         @ui.notificationsBadge.hide()
+
+      @ui.searchInput.autocomplete(
+        source: AlumNet.api_endpoint + "/suggestions"
+        minLength: 2
+        select: (event, ui)->
+          $(@).val(ui.item.name)
+          false
+      ).autocomplete("instance")._renderItem = (ul, item)->
+        $("<li>").data("item.autocomplete", item).append("#{item.name}").appendTo(ul);
 
     changeHeader: (e)->
       # e.preventDefault()
