@@ -161,9 +161,20 @@
       #order: 1
     queryParams:
       order: "order_by"
+    parseState: (resp, queryParams, state, options)->
+      console.log resp
+      {totalRecords: resp.totalRecords};
 
-    parse: (response,options)->
-      response.users
+    parseRecords: (resp, options)->
+      console.log resp
+      resp.users
+           
+    #parseState: (resp, queryParams, state, options) ->
+    #  console.log response.totalRecords
+    #  {totalRecords: response.totalRecords}
+      
+    #parse: (response,options)->
+    #  response.users
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User

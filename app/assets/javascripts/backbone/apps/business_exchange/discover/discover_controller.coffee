@@ -17,6 +17,7 @@
         profiles.url = AlumNet.api_endpoint + "/business?page="+profiles.page+"&per_page="+profiles.rows
         profiles.fetch
           reset: true
+
         discoverView = new Discover.ProfilesList
           collection: profiles
 
@@ -44,7 +45,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry 'reloadItems'
 
       discoverView.on 'business:search', (querySearch)->
 

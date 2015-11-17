@@ -13,13 +13,17 @@
               <span class="help-block"></span>
             </div>
           </div>
-          <div class="col-md-6">
-            <a href="#" id="js-show-modal" style="display:none">Create a Company</a>
+          <div class="col-md-4">
+           
             <div class="form-job has-feedback">
               <label class="control-label">Name of the Company</label>
               <input class="js-companies" type="hidden" name="company_id" id="task-company" style="width: 100%">
               <span class="help-block"></span>
             </div>
+   
+          </div>
+          <div class="col-md-2 postJobCompany">
+            <a href="#" id="js-show-modal" class="btn btn-primary padding_smsmall" style="display:none">Create a Company</a>
           </div>
         </div>
         <div class="row">

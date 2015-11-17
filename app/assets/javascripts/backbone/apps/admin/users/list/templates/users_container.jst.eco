@@ -86,7 +86,7 @@
 	<thead>
 		<tr>
 		  <th colspan="2">Name</th>
-		  <th>Location of Origin</th>
+		  <th id="birth_city">Location of Origin</th>
 		  <th>LC</th>
 		  <th id="sortJoined">Joined</th>
 		  <th>Gender</th>
@@ -102,8 +102,7 @@
 	</tbody>
 </table>
 <div>
-<span id="prevButton">Prev</span> | <span class="page_button">1</span> | <span id="nextButton">Next</span>
-
+<%- @pagination_buttons() %>
 </div>
 
 
