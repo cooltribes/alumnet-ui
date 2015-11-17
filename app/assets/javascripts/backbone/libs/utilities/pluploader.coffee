@@ -17,6 +17,8 @@
       uploader.bind 'FilesAdded',(up, files)->
         html = ''
         lengthFile = files.length 
+        view.$el.find("div#js-filelist").after("<hr>")
+
         plupload.each files, (file, i)->
           #html = html + "<div class='col-md-4' id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </div>"
           if i == lengthFile - 1
@@ -24,7 +26,7 @@
               <div class='previewImage'>
                 <span class='throbber-loader'></span><br><b></b> 
               </div>
-            </div> <hr>"
+            </div>"
           else
             html = html + "<div class='col-md-3 text-center' id=#{file.id}>
               <div class='previewImage'>
@@ -39,6 +41,7 @@
         if response.status == 201
           picture = JSON.parse(response.response)
           view.picture_ids.push picture.id
+          view.$el.find("div##{file.id}").find('.previewImage').empty().html("<img src='#{picture.picture.main}'>")
 
       uploader.bind 'UploadProgress', (up, file) ->
         view.$el.find("div##{file.id}").find('b').html('<span>' + file.percent + "%</span>")
