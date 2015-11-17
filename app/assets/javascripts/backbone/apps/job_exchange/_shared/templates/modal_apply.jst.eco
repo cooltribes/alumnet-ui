@@ -40,7 +40,7 @@
 <div class="bbm-modal__bottombar">
   <div class="row">
     <div class="col-md-6 text-left">
-      <% if @application_type == "external": %>
+      <% if @application_type == "external" && @urlType != "" : %>
         <a href="<%= @urlType %>" target="_blank" class="btn btn-default-blue">Apply in "Website"</a>
       <% end %>
     </div>
