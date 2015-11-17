@@ -28,10 +28,7 @@
     childView: Find.UserView
     emptyView: Find.EmptyView
     search_term: ""
-    initialize: ->
-      @search_term = options.search_term
-
-    
+        
     emptyViewOptions: ->
       search_term: @search_term
     #childViewOptions: ->
