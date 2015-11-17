@@ -92,28 +92,47 @@
         <hr>
         <!-- ROW EXTERNAL ON -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-10">
             <div class="form-job has-feedback">
               <div class="row">
                 <div class="col-md-4">
                   <label class="control-label">Application type</label>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12 margin_bottom_small">
-                  <input type="radio" class="js-application-type" name="application_type" value="alumnet" checked>
-                  <span>  Get applications on Alumnet and receive notifications on your email</span>
+              <% if @applicationType == "alumnet" : %>
+                <div class="row">
+                  <div class="col-md-12 margin_bottom_small">
+                    <input type="radio" class="js-application-type" name="application_type" value="alumnet" checked>
+                    <span>  Get applications on Alumnet and receive notifications on your email</span>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-5" style="padding: 10px 0 0 16px;">
-                  <input type="radio" class="js-application-type" name="application_type" value="external">
-                  <span>Get applications on an external site</span>
+                <div class="row">
+                  <div class="col-md-6" style="padding: 10px 0 0 16px;">
+                    <input type="radio" class="js-application-type" name="application_type" value="external">
+                    <span>Direct applicants to an external site to apply</span>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control input-lg" name="external_url" id="external_url" style="width: 100%" disabled>
+                  </div>
                 </div>
-                <div class="col-md-7">
-                  <input type="text" class="form-control input-lg" name="external_url" id="external_url" style="width: 100%" disabled>
+              <% else: %>
+                <div class="row">
+                  <div class="col-md-12 margin_bottom_small">
+                    <input type="radio" class="js-application-type" name="application_type" value="alumnet">
+                    <span> Get applications on Alumnet and receive notifications on your email</span>
+                  </div>
                 </div>
-              </div>
+                <div class="row">
+                  <div class="col-md-6" style="padding: 10px 0 0 16px;">
+                    <input type="radio" class="js-application-type" name="application_type" value="external" checked>
+                    <span>Direct applicants to an external site to apply</span>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control input-lg" name="external_url" id="external_url" style="width: 100%" value="<%= @urlType %>">
+                  </div>
+                </div>
+              <% end %>
+
         
             <span class="help-block"></span>
             </div>
