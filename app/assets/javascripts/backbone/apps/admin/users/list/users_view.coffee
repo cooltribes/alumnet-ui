@@ -260,14 +260,15 @@
       document.title= 'AlumNet - Users Management'
 
     templateHelpers: () ->
-      model = @model
       that = @
       pagination_buttons: ->
-          console.log "entro"
-          console.log model
           console.log that.collection
-          html = '<span id="prevButton" style="display:none">Prev</span> | <span class="page_button">1</span> | <span id="nextButton">Next</span>'
+          html = '<span id="prevButton">Prev</span> | '
+          for page in [1..that.collection.state.totalRecords]
+            html += '<span class="page_button">'+page+'</span> | ' 
+          html += '<span id="nextButton">Next</span>'
           html
+          
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -295,6 +296,15 @@
       'click #prevButton': 'prevButton'
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
+      'click #birth_city': 'sortBirtCity'
+
+    sortBirtCity: (e)->
+      @collection.queryParams.sort_by = "profiles.birth_city.name"
+      if @collection.queryParams.order_by =='desc' 
+        @collection.queryParams.order_by = 'asc' 
+      else 
+        @collection.queryParams.order_by = 'desc'
+      @collection.fetch()      
 
     sortJoined: (e)->
       @collection.queryParams.sort_by = "created_at"
