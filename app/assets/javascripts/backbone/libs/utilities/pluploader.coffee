@@ -16,8 +16,22 @@
           
       uploader.bind 'FilesAdded',(up, files)->
         html = ''
-        plupload.each files, (file)->
-          html = html + "<li id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </li>"
+        lengthFile = files.length 
+        plupload.each files, (file, i)->
+          #html = html + "<div class='col-md-4' id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </div>"
+          if i == lengthFile - 1
+            html = html + "<div class='col-md-3 text-center' id=#{file.id}>
+              <div class='previewImage'>
+                <span class='throbber-loader'></span><br><b></b> 
+              </div>
+            </div> <hr>"
+          else
+            html = html + "<div class='col-md-3 text-center' id=#{file.id}>
+              <div class='previewImage'>
+                <span class='throbber-loader'></span><br><b></b> 
+              </div>
+            </div>"
+          
         view.ui.fileList.html(html)
         uploader.start()
 
@@ -27,7 +41,7 @@
           view.picture_ids.push picture.id
 
       uploader.bind 'UploadProgress', (up, file) ->
-        view.$el.find("li##{file.id}").find('b').html('<span>' + file.percent + "%</span>")
+        view.$el.find("div##{file.id}").find('b').html('<span>' + file.percent + "%</span>")
 
       @uploader = uploader
 
