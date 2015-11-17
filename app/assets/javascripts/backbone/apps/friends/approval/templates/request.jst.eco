@@ -5,8 +5,8 @@
       <img src="<%= @requester.avatar %>" alt="<%= @requester.name %>" class="img-circle avatarsize" width="80" height="80">
     </div>
     <div class=" col-md-6 col-xs-6 ">
-      <h4 class="userCard__name"><a href="#users/<%= @user_id %>/posts"><%= @requester.name %></a></h4>
-      <p class="userCard__position member-position text-small"><%= @requester.last_experience %></p>
+      <h4 class="userCard__name overfloadText"><a href="#users/<%= @user_id %>/posts"><%= @requester.name %></a></h4>
+      <p title="<%= @requester.last_experience %>" class="userCard__position overfloadText member-position text-small"><%= @requester.last_experience %></p>
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @requester.first_committee %></p>
     </div>
     <div class=" col-md-3 col-xs-3">

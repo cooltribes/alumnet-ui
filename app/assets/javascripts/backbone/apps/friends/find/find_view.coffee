@@ -1,6 +1,12 @@
 @AlumNet.module 'FriendsApp.Find', (Find, @AlumNet, Backbone, Marionette, $, _) ->
   class Find.EmptyView extends Marionette.ItemView
     template: 'friends/find/templates/empty'
+    initialize: (options)->
+      @search_term = options.search_term
+
+    templateHelpers: ->
+      search_term: @search_term
+
 
   class Find.UserView extends AlumNet.Shared.Views.UserView
     template: 'friends/find/templates/user'
@@ -21,6 +27,10 @@
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
     emptyView: Find.EmptyView
+    search_term: ""
+        
+    emptyViewOptions: ->
+      search_term: @search_term
     #childViewOptions: ->
     #  parentCollection: @collection
     childViewContainer: '.users-list'
@@ -97,6 +107,7 @@
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
+      @search_term = query.profile_first_name_or_profile_last_name_cont
       @collection.fetch
         data: { q: query }
 
@@ -105,6 +116,8 @@
       @collection.fetch()
 
     onChildviewCatchUp: ->
+      search_term: @search_term
+      console.log "onChildviewCatchUp"+ @search_term
       view = @
       @collection.fetch
         success: (model)->
@@ -113,6 +126,8 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
+      @search_term = data.search_term
+      @render()
       @trigger('users:search', @buildQuerySearch(data.search_term))
 
     buildQuerySearch: (searchTerm) ->

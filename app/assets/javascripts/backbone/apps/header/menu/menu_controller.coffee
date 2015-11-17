@@ -14,14 +14,19 @@
         current_user.messages.fetch()
         current_user.notifications.fetch
           data: { limit: 6 }
+        current_user.friendship_notifications.fetch
+          data: { limit: 6 }
         messagesList = new Menu.MessagesView
           collection: current_user.messages
         notificationsList = new Menu.NotificationsView
           collection: current_user.notifications
+        friendshipNotificationsList = new Menu.NotificationsView
+          collection: current_user.friendship_notifications
 
         AlumNet.headerRegion.show(menuLayout)
         menuLayout.messagesBox.show(messagesList)
         menuLayout.notificationsBox.show(notificationsList)
+        menuLayout.friendshipNotificationsBox.show(friendshipNotificationsList)
       else
         menuLayout = new Menu.MenuBar
           model: current_user

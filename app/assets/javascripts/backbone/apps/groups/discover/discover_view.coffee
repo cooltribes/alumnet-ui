@@ -85,7 +85,9 @@
       model = @model
       @model.fetch
         success: ->
-          model.trigger('renderView')
+          if model.get('group_type').text == "open"
+            console.log "Entro"
+            model.trigger('renderView')
       @render()
       @trigger 'Catch:Up'
 

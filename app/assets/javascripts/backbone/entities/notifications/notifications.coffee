@@ -63,6 +63,41 @@
           date = moment(self.at(notificaciones).get("created_at")).fromNow()
         else
           self.at(notificaciones).set({principio: false})
+
+  class Entities.FriendshipNotificationsCollection extends Backbone.Collection
+    url: ->
+      AlumNet.api_endpoint + '/me/notifications/friendship'
+    model: Entities.Notification
+
+    markAllAsRead: ->
+      self = @
+      opts =
+        success: ->
+          self.markAllReadInCollection()
+      @markAllReadInApi(opts)
+
+    markAllReadInCollection: ->
+      @invoke('set', { is_read: true })
+      @trigger 'reset'
+
+    markAllReadInApi: (opts)->
+      url = AlumNet.api_endpoint + '/me/notifications/friendship/mark_all_read'
+      options =
+        url: url
+        type: 'PUT'
+      _.extend(options, opts)
+      (@sync || Backbone.sync).call(@, null, @, options)
+
+    firstNotification: (e)->
+      self = @
+      date = "fecha"
+      for notificaciones in [0 .. (self.length-1)]
+        if date != moment(self.at(notificaciones).get("created_at")).fromNow()
+          self.at(notificaciones).set({principio: true}) 
+          date = moment(self.at(notificaciones).get("created_at")).fromNow()
+        else
+          self.at(notificaciones).set({principio: false})
+
   API =
     getNotifications: (querySearch)->
       notifications = new Entities.NotificationsCollection
