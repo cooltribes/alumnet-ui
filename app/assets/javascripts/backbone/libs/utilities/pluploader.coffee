@@ -17,16 +17,16 @@
       uploader.bind 'FilesAdded',(up, files)->
         html = ''
         lengthFile = files.length 
-        view.$el.find("div#js-filelist").after("<hr>")
+        
 
         plupload.each files, (file, i)->
-          #html = html + "<div class='col-md-4' id=#{file.id}> #{file.name} (#{plupload.formatSize(file.size)}) <b></b> </div>"
           if i == lengthFile - 1
             html = html + "<div class='col-md-3 text-center' id=#{file.id}>
               <div class='previewImage'>
                 <span class='throbber-loader'></span><br><b></b> 
               </div>
             </div>"
+            view.$el.find("div#js-filelist").after("<hr>")
           else
             html = html + "<div class='col-md-3 text-center' id=#{file.id}>
               <div class='previewImage'>
