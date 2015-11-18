@@ -35,6 +35,10 @@
 										  <input type="hidden" id="url_image" name="url_image" style="width:100%">
 										</div>
 										<!-- PREVIEW OFF-->
+										<!-- PICTURES -->
+										<div class="row" id="js-filelist"></div>
+										<!-- PICTURES OFF -->
+
 
 										<a id="js-add-picture" class="groupPost__btn--addPicture" href="javascript:;">
 											<i class="icon-entypo-picture"></i>
@@ -47,9 +51,7 @@
 										Post</a>
 									</form>
 
-									<!-- PICTURES -->
-									<ul id="js-filelist"></ul>
-									<!-- PICTURES OFF -->
+									
 
 									<!-- VIDEO  -->
 									<div id="video_container"></div>
