@@ -1,0 +1,13 @@
+<div class="row margin_top_xsmall margin_bottom_xsmall">
+	<div class="col-md-8 col-sm-8 padding_top_xsmall">
+		<p><%= @getTitle() %></p>
+	</div>
+	<div class="col-md-4 col-sm-4">
+		<select class="filter-comparator filters__input filters__input--sm form-control" name="<%= @name %>">
+			<option value="0">Individual Email</option>
+			<option value="1">No Email</option>
+		</select>
+		<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey paddingIconSelect" aria-hidden="true" ></span>
+	</div>
+</div>
+<hr class="no-margin">

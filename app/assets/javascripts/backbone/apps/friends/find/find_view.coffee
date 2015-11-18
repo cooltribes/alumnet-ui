@@ -97,6 +97,7 @@
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
+      console.log query
       @collection.fetch
         data: { q: query }
 
