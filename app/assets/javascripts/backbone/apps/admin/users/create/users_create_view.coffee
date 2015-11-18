@@ -21,10 +21,10 @@
         url: AlumNet.api_endpoint + "/admin/users/register"
         method: "post"
         data: data
-        sucess: (data)->
-          console.log "algo"
-          console.log data
+        success: (data)->
+          $.growl.notice({ message: 'User Created' })
         error: (data)->
+          $.growl.error({ message: 'Unknow error, please try again' })
           errors = data.responseJSON.errors
           _.each errors, (value, key, list)->
             view.showErrors(key, value[0])
