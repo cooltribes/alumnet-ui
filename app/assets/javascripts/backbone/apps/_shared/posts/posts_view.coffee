@@ -177,6 +177,7 @@
     templateHelpers: ->
       view = @
       model = @model
+      console.log model
       permissions = @model.get('permissions')
       today = moment()
       createFormat = moment(@model.get('created_at'))
@@ -234,13 +235,15 @@
     onRender: ->
       $('[data-toggle="tooltip"]').tooltip
         html:true
-
-      # $('[rel="popover"]').popover
-      #   container: 'body'
-      #   html: true
-      #   placement: 'bottom'
-      #   trigger: 'hover'
-      #   content: $("#contentPopover").removeClass('hide')
+        
+      self = @
+      @$('#userPopover'+@model.id).popover
+        container: 'body'
+        html: true
+        placement: 'bottom'
+        trigger: 'hover'
+        content: ->
+          self.$("#contentPopover"+self.model.id).removeClass("hide")
 
       view = @
       @ui.bodyPost.editable
