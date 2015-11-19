@@ -95,6 +95,7 @@
 		  <th>Role</th>
       <th>Last login</th>
       <th>Login count</th>
+      <th>Register Step</th>
 		  <th>Edit</th>
 		</tr>
 	</thead>
