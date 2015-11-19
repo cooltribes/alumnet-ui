@@ -109,5 +109,18 @@
           model.trigger 'fetch:error'
       notifications
 
+    getRequests: (querySearch)->
+      notifications = new Entities.FriendshipNotificationsCollection
+      notifications.fetch
+        data: querySearch
+        success: (model, response, options)->
+          model.trigger 'fetch:success'
+        error: (model, response, options)->
+          model.trigger 'fetch:error'
+      notifications
+
   AlumNet.reqres.setHandler 'notifications:get', (querySearch)->
     API.getNotifications(querySearch)
+
+  AlumNet.reqres.setHandler 'requests:get', (querySearch)->
+    API.getRequests(querySearch)

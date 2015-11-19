@@ -6,8 +6,7 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
-
+      
       arraySkill = @model.get('nice_have_attributes')
       arraySkill = _.where(arraySkill, {custom_field: "alumnet_skills"});
       arraySkill = _.pluck(arraySkill,'value');
@@ -44,6 +43,7 @@
 
     _showModal: ()->
       modal = new Shared.ModalApply
+        jobPost: @model
 
       modal.on "submit", @_apply, @
 
@@ -133,11 +133,14 @@
 
     templateHelpers: ()->
       profile = @model.profile
+      application_type: @jobPost.get('application_type')
+      urlType: @jobPost.get('external_url')
       last_experience: profile.get('last_experience')
 
-    initialize: ()->
+    initialize: (options)->
+      @jobPost = options.jobPost
       @model = AlumNet.current_user
-    
+
     submit: ()->
       data = Backbone.Syphon.serialize @
       @trigger "submit", data

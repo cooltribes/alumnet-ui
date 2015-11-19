@@ -124,8 +124,10 @@
         pair: @ui.endDate
         onSelect: (date, standarDate, jsDate, input)->
           $("#event-end-date").val(date)
+          @start_date = date
 
       @ui.endDate.Zebra_DatePicker
+        direction: [@start_date, false]
         direction: true
         show_icon: false
         show_select_today: false

@@ -127,7 +127,6 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       @search_term = data.search_term
-      @render()
       @trigger('users:search', @buildQuerySearch(data.search_term))
 
     buildQuerySearch: (searchTerm) ->

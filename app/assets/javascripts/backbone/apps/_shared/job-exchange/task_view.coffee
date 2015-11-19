@@ -44,7 +44,7 @@
 
     _showModal: ()->
       modal = new JobExchange.ModalApply
-
+        jobPost: @model
       modal.on "submit", @_apply, @
 
       $('#container-modal-apply').html(modal.render().el)
@@ -132,9 +132,12 @@
 
     templateHelpers: ()->
       profile = @model.profile
+      application_type: @jobPost.get('application_type')
+      urlType: @jobPost.get('external_url')
       last_experience: profile.get('last_experience')
 
-    initialize: ()->
+    initialize: (options)->
+      @jobPost = options.jobPost
       @model = AlumNet.current_user
 
     submit: ()->
