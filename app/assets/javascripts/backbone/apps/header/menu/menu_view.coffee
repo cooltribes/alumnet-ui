@@ -32,6 +32,7 @@
     emptyView: Menu.NotificationViewEmpty
 
   class Menu.MenuBar extends Marionette.LayoutView
+
     initialize: ->
       @points = @model.profile.get("points")
       @listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
