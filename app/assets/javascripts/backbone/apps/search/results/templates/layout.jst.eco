@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="searchBar__title">Results for "Lorem"</h1>
+
+  </div>
+</div>
+<div class="row margin_bottom_small businessDiscoverMenu">
+  <div class="col-md-12 text-center">
+    <ul class="sortingMenu">
+      <li class="sortingMenu__item sortingMenu__item--lg">
+        <a href="" title="All" class="js-typefilter sortingMenu__item__link <%= @active('all') %>">All
+        </a>
+      </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Alumni
+        </a>
+      </li>
+    </ul>
+  </div>    
+</div>
+
+<div class="row">
+  <div class="col-md-3" id="filters-section">
+    Filters
+  </div>
+  <div class="col-md-9" id="results-section">
+    <div class="text-center"><span class="throbber-loader"></span></div>
+  </div>
+  
+</div>
+
