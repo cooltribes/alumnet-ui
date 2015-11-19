@@ -210,6 +210,8 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
+      model = @model
+      console.log  model
       admissionType: @model.get('admission_type')
       classOf: (step) =>
         @class[step]
@@ -217,6 +219,17 @@
     regions:
       header: '#event-header'
       body: '#event-body'
+
+    ui:->
+      'googleCalendar': '#js-googleCalendar'
+
+    events: ->
+      'click @ui.googleCalendar': 'DownloadFileICS'
+
+    DownloadFileICS:->
+      calendar = ics();
+      calendar.addEvent(@model.get("name"), @model.get("description"), @model.get("address"), @model.get("start_date"), @model.get("end_date"));
+      calendar.download('Events');
 
   API =
     getEventLayout: (model,tab)->

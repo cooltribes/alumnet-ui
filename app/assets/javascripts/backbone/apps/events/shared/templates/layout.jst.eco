@@ -27,7 +27,18 @@
               Files
             </a>
           </li>
+          <li class="dropdown calendarEvents">
+            <a href="#" class="groupMenu__link" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-calendar"></span> 
+              Add to my calendar
+              <span class="icon-entypo-down-open"></span>
+              <ul class="dropdown-menu">
+                <li><a href="#" id="js-googleCalendar"><span class="icon-entypo-gplus"></span> Google Calendar</a></li>
+              </ul>
+            </a>
+          </li>
         </ul>
+        
       </div>
     </div>
   </div>
