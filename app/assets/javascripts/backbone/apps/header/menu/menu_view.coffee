@@ -135,6 +135,7 @@
       @model.set("unread_notifications_count", 0)
 
     onRender: ->
+      view = @
       if @model.get("unread_messages_count") > 0
         @ui.messagesBadge.show()
       else
@@ -152,7 +153,21 @@
           $(@).val(ui.item.name)
           false
       ).autocomplete("instance")._renderItem = (ul, item)->
-        $("<li>").data("item.autocomplete", item).append("#{item.name}").appendTo(ul);
+        link = view.autocompleteLink(item)
+        $("<li>").data("item.autocomplete", item)
+        .append(link)
+        .appendTo(ul)
+
+    autocompleteLink: (item)->
+      if item.type == "profile"
+        url = "#users/#{item.id}/posts"
+      else
+        url = "##{item.type}s/#{item.id}/posts"
+      #TEMPORAL MIENTRAS SE DECIDE QUE IMAGEN PONER POR DEFECTO
+      if item.image
+        "<img src='#{item.image}'> - <a href='#{url}'>#{item.name}</a> - #{item.type}"
+      else
+        "<a href='#{url}'>#{item.name}</a> - #{item.type}"
 
     changeHeader: (e)->
       # e.preventDefault()
