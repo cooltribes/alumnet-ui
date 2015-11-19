@@ -177,10 +177,10 @@
     templateHelpers: ->
       view = @
       model = @model
-      console.log model
       permissions = @model.get('permissions')
       today = moment()
       createFormat = moment(@model.get('created_at'))
+      getLocationUser: @model.getLocation()
       dayPassed: today.diff(createFormat,'days')
       userCanComment: true
       showInfoLink: false
@@ -235,15 +235,15 @@
     onRender: ->
       $('[data-toggle="tooltip"]').tooltip
         html:true
-        
-      self = @
-      @$('#userPopover'+@model.id).popover
-        container: 'body'
-        html: true
-        placement: 'bottom'
-        trigger: 'hover'
-        content: ->
-          self.$("#contentPopover"+self.model.id).removeClass("hide")
+
+      # self = @
+      # @$('#userPopover'+@model.id).popover
+      #   container: 'body'
+      #   html: true
+      #   placement: 'bottom'
+      #   trigger: 'hover'
+      #   content: ->
+      #     self.$("#contentPopover"+self.model.id).removeClass("hide")
 
       view = @
       @ui.bodyPost.editable
