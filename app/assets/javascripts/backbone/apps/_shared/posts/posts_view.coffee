@@ -236,14 +236,14 @@
       $('[data-toggle="tooltip"]').tooltip
         html:true
 
-      # self = @
-      # @$('#userPopover'+@model.id).popover
-      #   container: 'body'
-      #   html: true
-      #   placement: 'bottom'
-      #   trigger: 'hover'
-      #   content: ->
-      #     self.$("#contentPopover"+self.model.id).removeClass("hide")
+      self = @
+      @$('#userPopover'+@model.id).popover
+        container: 'body'
+        html: true
+        placement: 'bottom'
+        trigger: 'hover'
+        content: ->
+          self.$("#contentPopover"+self.model.id).removeClass("hide")
 
       view = @
       @ui.bodyPost.editable

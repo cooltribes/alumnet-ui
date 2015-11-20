@@ -221,15 +221,27 @@
       body: '#event-body'
 
     ui:->
-      'googleCalendar': '#js-googleCalendar'
+      'fileICSCalendar': '#js-fileCalendar'
+      'calendarGoogle':'#js-googleCalendar'
 
     events: ->
-      'click @ui.googleCalendar': 'DownloadFileICS'
+      'click @ui.fileICSCalendar': 'downloadFileICS'
+      'click @ui.calendarGoogle': 'googleCalendarEvents'
 
-    DownloadFileICS:->
+    downloadFileICS:->
       calendar = ics();
-      calendar.addEvent(@model.get("name"), @model.get("description"), @model.get("address"), @model.get("start_date"), @model.get("end_date"));
+      calendar.addEvent(@model.get("name"), @model.get("description"), @model.get("address"), @model.get("start_date")+' '+@model.get("start_hour"), @model.get("end_date")+' '+@model.get("end_hour"));
       calendar.download('Events');
+
+    googleCalendarEvents:->
+      console.log "entro"
+      text = encodeURIComponent(@model.get("name")) 
+      startDate = moment(@model.get("start_date")).format('YYYYMMDD')
+      endDate = moment(@model.get("end_date")).add('days',1).format('YYYYMMDD')
+      details = encodeURIComponent(@model.get("description"))
+      location = encodeURIComponent(@model.get("address")) 
+      googleCalendarUrl = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + text + '&dates=' + startDate + '/' + endDate + '&details=' + details + '&location=' + location
+      window.open(googleCalendarUrl, '_blank')
 
   API =
     getEventLayout: (model,tab)->
