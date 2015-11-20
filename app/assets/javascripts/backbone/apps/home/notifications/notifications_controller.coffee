@@ -15,8 +15,8 @@
       notifications.markAllAsRead() #costoso
       notifications.on "fetch:success", ->
         notifications.firstNotification()
-      notificationsView = new Notifications.NotificationsView
-        collection: notifications
-      AlumNet.mainRegion.show(notificationsView)
+        notificationsView = new Notifications.NotificationsView
+          collection: notifications
+        AlumNet.mainRegion.show(notificationsView)
       AlumNet.execute('render:home:submenu')
 

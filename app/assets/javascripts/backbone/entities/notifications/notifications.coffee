@@ -81,7 +81,7 @@
       @trigger 'reset'
 
     markAllReadInApi: (opts)->
-      url = AlumNet.api_endpoint + '/me/notifications/friendship/mark_all_read'
+      url = AlumNet.api_endpoint + '/me/notifications/mark_requests_all_read'
       options =
         url: url
         type: 'PUT'

@@ -63,6 +63,7 @@
       'click #js-menu-notifications': 'menuNotificationClicked'
       'click @ui.changeHeader': 'changeHeader'
       'click @ui.notificationsMarkAll': 'markAllNotifications'
+      'click @ui.requestsMarkAll': 'markAllRequests'
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
@@ -73,6 +74,7 @@
       'friendshipNotificationsBadge': '#js-friendship-notifications-badge'
       'changeHeader': '#js-changeHeader'
       'notificationsMarkAll': '#js-notifications-mark-all'
+      'requestsMarkAll': '#js-friendship-notifications-mark-all'
       'avatarImg': '#header-avatar'
 
     changePoints: ->
@@ -91,6 +93,10 @@
     markAllNotifications: (e)->
       e.preventDefault()
       AlumNet.current_user.notifications.markAllAsRead()
+
+    markAllRequests: (e)->
+      e.preventDefault()
+      AlumNet.current_user.friendship_notifications.markAllAsRead()
 
     templateHelpers: ->
       model = @model
