@@ -48,7 +48,7 @@
           data: { page: companies.page, per_page: companies.rows }
           reset: true
       else
-        @querySearch = {company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1}
+        @querySearch = { q: { company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } }
         companies.fetch
           reset: true
           data:
@@ -57,7 +57,7 @@
               status_eq: 1
             page: companies.page
             per_page: companies.rows
- 
+
       view = new Discover.List
         collection: companies
 
@@ -72,7 +72,7 @@
           success: (collection)->
             that.collection.add(collection.models)
             if collection.length < collection.rows
-              that.endPagination()             
+              that.endPagination()
 
       view.on "add:child", (viewInstance)->
         container = $('#companies-container')
