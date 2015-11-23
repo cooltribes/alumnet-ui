@@ -208,7 +208,8 @@
           moment(model.get("last_sign_in_at")).format("MMM DD YY, h:mm:ss a")
         else
           ""
-
+      getRegisterStep: ->
+        @profileData.register_step
 
     modelChange: ->
       @render()
@@ -252,6 +253,8 @@
     template: 'admin/users/list/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    queryParams: {}
+    tagsParams: ''
     childViewOptions: (model, index) ->
       modals: @modals
 
@@ -262,7 +265,6 @@
     templateHelpers: () ->
       that = @
       pagination_buttons: ->
-          console.log that.collection.state
           html = ''
           if (that.collection.state.totalPages > 1)
             html = '<span id="prevButton" style="display:none">Prev</span> | '
@@ -329,18 +331,22 @@
       @collection.fetch()
 
     prevButton: (e)->
+      @collection.queryParams.q = @queryParams
       @ui.nextButton.show()
       if @collection.state.currentPage == 2
         @ui.prevButton.hide()
       @collection.getPrevPage()
 
     nextButton: (e)->
+      @collection.queryParams.q = @queryParams
+      if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
       @ui.prevButton.show()
       if (@collection.state.currentPage == (@collection.state.totalPages-1))
         @ui.nextButton.hide()
       @collection.getNextPage()
 
     toPageButton: (e)->
+      @collection.queryParams.q = @queryParams
       topage = parseInt(e.currentTarget.innerText)
       if topage == 1
         @ui.prevButton.hide()
@@ -366,12 +372,14 @@
     searchTags: (e)->
       e.preventDefault()
       tags = @.$('#tags').val()
+      @tagsParams = tags
       @collection.fetch
         data: { tags: tags }
 
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
+      @queryParams = query
       @collection.fetch
         data: { q: query }
 
