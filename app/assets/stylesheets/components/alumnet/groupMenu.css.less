@@ -116,7 +116,7 @@ DESCRIPTION: Menu below the hero area of a group
 		.nav-pills > li > &__link, .nav-pills > li > &__link--active{
 			.transition (@transition:.5s);
 			padding:  15px;
-			font-size: 20px;
+			font-size: 18px;
 			color: #677f8a;
 			font-weight: 300;
 			&:hover{
@@ -127,6 +127,30 @@ DESCRIPTION: Menu below the hero area of a group
 		.nav-pills > li > &__link--active{
 			background-color: @blue;
 			color: @white;	
+		}
+	}
+
+	.calendarEvents{
+		.dropdown-menu{
+			width: 236px;
+		}
+	}
+}
+
+@media (min-width: @media-mmlarge-min) {
+	.groupMenu{
+		.nav-pills > li > &__link, .nav-pills > li > &__link--active{
+			.transition (@transition:.5s);
+			font-size: 20px;
+			&:hover{
+				background-color: @blue;
+				color: @white;
+			}
+		}
+	}
+	.calendarEvents{
+		.dropdown-menu{
+			width: 258px;
 		}
 	}
 }

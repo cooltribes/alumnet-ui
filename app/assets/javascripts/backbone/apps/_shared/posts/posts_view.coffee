@@ -177,6 +177,7 @@
     templateHelpers: ->
       view = @
       model = @model
+      console.log model
       permissions = @model.get('permissions')
       today = moment()
       createFormat = moment(@model.get('created_at'))

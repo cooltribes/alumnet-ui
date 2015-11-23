@@ -6,7 +6,7 @@
         <!-- Avatar ON -->
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
           <div class="postCard__avatar">
-            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+            <img src="<%= @user.avatar_large %>" alt="<%= @user.name %>" class="img-circle">
           </div>
         </div>
         <!-- Avatar OFF -->
@@ -17,7 +17,7 @@
                 <div class="col-md-12 no-padding">
                   <div class="row no-margin">
                     <div class="col-md-4 padding_left_medium previewProfileImg">
-                      <img src="<%= @user.avatar %>" class="img-circle"/>
+                      <img src="<%= @user.avatar_large %>" class="img-circle"/>
                     </div>
                     <div class="col-md-8 previewProfileText no-padding no_padding_left">
                       <p class="overfloadText no-margin"><%= @user.name %></p>

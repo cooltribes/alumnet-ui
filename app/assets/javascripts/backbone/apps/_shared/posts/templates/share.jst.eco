@@ -6,7 +6,7 @@
         <!-- Avatar ON -->
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
           <div class="postCard__avatar">
-            <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
+            <img src="<%= @user.avatar_large %>" alt="<%= @user.name %>" class="img-circle">
           </div>
         </div>
         <!-- Avatar OFF -->

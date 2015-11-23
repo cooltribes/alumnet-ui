@@ -127,6 +127,7 @@
           @start_date = date
 
       @ui.endDate.Zebra_DatePicker
+        format: 'd/m/Y'
         direction: [@start_date, false]
         direction: true
         show_icon: false
