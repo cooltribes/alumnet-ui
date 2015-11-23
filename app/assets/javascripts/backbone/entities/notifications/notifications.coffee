@@ -81,7 +81,7 @@
       @trigger 'reset'
 
     markAllReadInApi: (opts)->
-      url = AlumNet.api_endpoint + '/me/notifications/friendship/mark_all_read'
+      url = AlumNet.api_endpoint + '/me/notifications/mark_requests_all_read'
       options =
         url: url
         type: 'PUT'
@@ -109,5 +109,18 @@
           model.trigger 'fetch:error'
       notifications
 
+    getRequests: (querySearch)->
+      notifications = new Entities.FriendshipNotificationsCollection
+      notifications.fetch
+        data: querySearch
+        success: (model, response, options)->
+          model.trigger 'fetch:success'
+        error: (model, response, options)->
+          model.trigger 'fetch:error'
+      notifications
+
   AlumNet.reqres.setHandler 'notifications:get', (querySearch)->
     API.getNotifications(querySearch)
+
+  AlumNet.reqres.setHandler 'requests:get', (querySearch)->
+    API.getRequests(querySearch)

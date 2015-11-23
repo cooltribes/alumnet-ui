@@ -35,6 +35,7 @@
 <td><%= @getRoleText %></td>
 <td><%= @getLastSignIn() %></td>
 <td><%= @sign_in_count %></td>
+<td><%= @getRegisterStep() %></td>
 <td class="tableAdmin__actions">
   <div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
