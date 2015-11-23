@@ -9,10 +9,13 @@
       @postable = options.postable
 
     templateHelpers: ->
+      model = @model
+      console.log model
       today = moment()
       createFormat = moment(@model.get('created_at'))
       permissions = @model.get('permissions')
       dayPassed: today.diff(createFormat,'days')
+      getLocationUser: @model.getLocation()
       userCanComment: true
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
@@ -21,16 +24,17 @@
         permissions.canDelete || permissions.canEdit
      
     onRender: ->
+     
+      self = @
+      @$('#userPopover'+@model.id).popover
+        container: 'body'
+        html: true
+        placement: 'bottom'
+        trigger: 'hover'
+        content: ->
+          self.$("#contentPopover"+self.model.id).removeClass("hide")
+
       view = @
-      
-      # $('[rel="popover"]').popover
-      #   container: 'body'
-      #   html: true
-      #   placement: 'bottom'
-      #   trigger: 'hover'
-      #   content: $("#contentPopoverComments").removeClass('hide')
-
-
       @ui.commentText.editable
         type: 'textarea'
         inputclass: 'comment-editable'

@@ -186,6 +186,9 @@ DESCRIPTION: A card that contains a post (content plus comments)
   max-width: 100%;
   width: 450px;
   padding: 15px 0 0 0;
+  display: block;
+  position:absolute;
+  display:none;
 
   .popover-content {
     padding: 0;
@@ -204,6 +207,11 @@ DESCRIPTION: A card that contains a post (content plus comments)
 			font-size: 20px;
 			font-family: sans-serif;
     	font-weight: 100;
+		}
+		span , a{
+			font-size: 14px;
+			color: @gray;
+			font-weight: 100;
 		}
 	}
 	.coverPreview{

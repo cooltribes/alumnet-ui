@@ -29,6 +29,11 @@
       else
         @get 'comment'
 
+    getLocation:->
+      if @get("user").residence_city
+        return "#{@get("user").residence_city.text} - #{@get("user").residence_country.text}"
+      null
+
 
   class Entities.CommentsCollection extends Backbone.Collection
     model: Entities.Comment
