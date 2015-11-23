@@ -39,8 +39,9 @@
       success: (data)->
         AlumNet.current_user.set('profinda_api_token', data.profinda_api_token)
       error: (response)->
-        message = AlumNet.formatErrorsFromApi(response.responseJSON)
-        $.growl.error(message: message)
+        console.log response.responseJSON
+        # message = AlumNet.formatErrorsFromApi(response.responseJSON)
+        # $.growl.error(message: message)
 
   App.addRegions
     headerRegion: "#header-region"
