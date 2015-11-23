@@ -12,13 +12,15 @@
         collection: tasks
 
       discoverView.on "job:reload", ->
-        ++discoverView.collection.page
+        that = @
         newCollection = new AlumNet.Entities.JobExchangeCollection
         newCollection.url = AlumNet.api_endpoint + '/job_exchanges'
         newCollection.fetch
-          data: { page: discoverView.collection.page, per_page: discoverView.collection.rows }
+          data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
-            discoverView.collection.add(collection.models)
+            that.collection.add(collection.models)
+            if collection.length < collection.rows 
+              that.endPagination()
 
       checkNewPost = false #flag for new posts
 

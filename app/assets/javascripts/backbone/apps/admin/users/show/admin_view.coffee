@@ -40,6 +40,7 @@
         data: { note: note }
         success: (data)->
           model.set('admin_note', note)
+          $.growl.notice({ message: 'Note Created Successfully' })
         error: (response)->
           message = AlumNet.formatErrorsFromApi(response.responseJSON)
           $.growl.error(message: message)
@@ -48,6 +49,8 @@
       e.preventDefault()
       tags = @ui.tags.val()
       @model.save { tag_list: tags },
+        success: (data)->
+          $.growl.notice({ message: 'Tag Created Successfully' })
         error: (model, response)->
           message = AlumNet.formatErrorsFromApi(response.responseJSON)
           $.growl.error(message: message)

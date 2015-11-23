@@ -105,6 +105,11 @@
       @set('likes_count', count - 1)
       @set('you_like', false)
 
+    getLocation:->
+      if @get("user").residence_city
+        return "#{@get("user").residence_city.text} - #{@get("user").residence_country.text}"
+      null
+
   class Entities.PostCollection extends Backbone.Collection
     model: Entities.Post
     rows: 12

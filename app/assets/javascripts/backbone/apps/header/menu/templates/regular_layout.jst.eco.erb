@@ -144,7 +144,7 @@
           Companies
         </a>
       </li>
-      <li class="hidden-xs">
+      <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" data-toggle="dropdown" id="programsLayoutOption">
           <i class="ico-give-help"></i>
           Programs  <span class="icon-entypo-down-open"></span>
@@ -165,15 +165,37 @@
     
     <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu hidden-xs">
       <!-- Right menu top -->
-      <li>
+      <!-- <li> -->
         <!-- CART ICON -->
        <!--<a href="#" class="navTopBar__left__item" title="Points earned" data-toggle="modal" data-target="#devAlertModal">-->
-        <a href="#points" class="navTopBar__left__item navTopBar__right__item--points" title="Points earned">
+       <!--  <a href="#points" class="navTopBar__left__item navTopBar__right__item--points" title="Points earned">
           <span class="icon-entypo-trophy corner-icon"></span>
           <span class="totalPoints"><%%= @points %></span>
         </a>
+      </li> -->
+      <li class="drophover">
+        <!-- BELL ICON -->
+        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Friend Requests" data-toggle="dropdown" id="js-menu-friendship-notifications" style="padding: 19px 3px;">
+          <span class="iconNotification icon-entypo-users"></span>
+          <span class="navTopBar__badge badge" id="js-friendship-notifications-badge">
+          <%%= @unread_friendship_notifications_count  %>
+          </span>
+        </a>
+        <!-- NOTIFICATIONS ON -->
+        <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="friendship-notifications">
+          <!-- NOTIFICATIONS LIST -->
+          <div id="js-menu-friendship-notifications-box" class="notification__boxMenu"></div>
+          <!-- SHOW ALL NOTIFICATIONS LINK -->
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#requests" >Show all</a>
+          </div>
+          <div role="presentation">
+            <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#requests" id="js-friendship-notifications-mark-all">Mark all as read</a>
+          </div>
+        </div>
+        <!-- NOTIFICATIONS OFF -->
       </li>
-      <li>
+      <li class="drophover">
         <!-- BELL ICON -->
         <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown" id="js-menu-notifications">
           <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell navTopBar__left__item"></span>
@@ -195,7 +217,7 @@
         </div>
         <!-- NOTIFICATIONS OFF -->
       </li>
-      <li>
+       <li class="drophover">
         <!-- CHAT ICON -->
         <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages" id="js-menu-messages">
           <span class="navTopBar__right__item__icon ico-chat "></span>
@@ -206,7 +228,7 @@
         <!-- MESSAGES ON -->
         <div class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="messages">
           <!-- MESSAGES LIST -->
-          <div id="js-menu-messages-box"></div>
+          <div id="js-menu-messages-box" class="notification__boxMenu"></div>
           <!-- SHOW ALL MESSAGES LINK -->
           <div role="presentation">
             <a class="navTopBar__notification__showAll" role="menuitem" tabindex="-1" href="#conversations" >Show all</a>
@@ -245,7 +267,7 @@
         <%% end %>
       <%% end %>
       </li>
-      <li>
+      <li class="drophover">
         <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
           <span class="icon-entypo-down-open"></span>
         </a>
@@ -253,7 +275,7 @@
 
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/posts">My Profile</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#privacy/settings">Privacy Settings</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/notifications">Notification Management</a></li>
+          <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#users/<%%= @id %>/notifications">Notification Management</a></li> -->
           <li role="presentation">
             <a href="#" onclick="receptivePublicLib.loginAndRedirect()">Suggest Features</a>
           </li>

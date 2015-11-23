@@ -9,7 +9,10 @@
       @postable = options.postable
 
     templateHelpers: ->
+      today = moment()
+      createFormat = moment(@model.get('created_at'))
       permissions = @model.get('permissions')
+      dayPassed: today.diff(createFormat,'days')
       userCanComment: true
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
@@ -19,6 +22,14 @@
      
     onRender: ->
       view = @
+      
+      # $('[rel="popover"]').popover
+      #   container: 'body'
+      #   html: true
+      #   placement: 'bottom'
+      #   trigger: 'hover'
+      #   content: $("#contentPopoverComments").removeClass('hide')
+
 
       @ui.commentText.editable
         type: 'textarea'
@@ -167,7 +178,10 @@
       view = @
       model = @model
       permissions = @model.get('permissions')
-
+      today = moment()
+      createFormat = moment(@model.get('created_at'))
+      getLocationUser: @model.getLocation()
+      dayPassed: today.diff(createFormat,'days')
       userCanComment: true
       showInfoLink: false
       canShare: permissions.canShare
@@ -219,7 +233,18 @@
       $('#timeline').masonry()
 
     onRender: ->
-      $('[data-toggle="tooltip"]').tooltip({html:true});
+      $('[data-toggle="tooltip"]').tooltip
+        html:true
+
+      # self = @
+      # @$('#userPopover'+@model.id).popover
+      #   container: 'body'
+      #   html: true
+      #   placement: 'bottom'
+      #   trigger: 'hover'
+      #   content: ->
+      #     self.$("#contentPopover"+self.model.id).removeClass("hide")
+
       view = @
       @ui.bodyPost.editable
         type: 'textarea'

@@ -37,7 +37,7 @@
           <% end %>
         ">
         </span>
-        <p class="groupCard__description"><%= @description %></p>
+        <p class="groupCard__description"><%= @short_description %></p>
       </div>
       <div class="groupCard__atributes">
         <div class="clearfix ">

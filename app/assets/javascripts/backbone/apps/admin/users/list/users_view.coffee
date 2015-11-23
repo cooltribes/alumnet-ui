@@ -208,7 +208,8 @@
           moment(model.get("last_sign_in_at")).format("MMM DD YY, h:mm:ss a")
         else
           ""
-
+      getRegisterStep: ->
+        @profileData.register_step
 
     modelChange: ->
       @render()
@@ -252,12 +253,26 @@
     template: 'admin/users/list/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    queryParams: {}
+    tagsParams: ''
     childViewOptions: (model, index) ->
       modals: @modals
 
     initialize: (options) ->
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
+
+    templateHelpers: () ->
+      that = @
+      pagination_buttons: ->
+          html = ''
+          if (that.collection.state.totalPages > 1)
+            html = '<span id="prevButton" style="display:none">Prev</span> | '
+            for page in [1..that.collection.state.totalPages]
+              html += '<span class="page_button">'+page+'</span> | ' 
+            html += '<span id="nextButton">Next</span>'
+          html
+          
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -274,6 +289,9 @@
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
       ])
  
+    ui:
+      'prevButton': '#prevButton'
+      'nextButton': '#nextButton'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -285,6 +303,16 @@
       'click #prevButton': 'prevButton'
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
+      'click #birth_city': 'sortBirtCity'
+      'click .page_button': 'toPageButton'
+
+    sortBirtCity: (e)->
+      @collection.queryParams.sort_by = "profiles.birth_city.name"
+      if @collection.queryParams.order_by =='desc' 
+        @collection.queryParams.order_by = 'asc' 
+      else 
+        @collection.queryParams.order_by = 'desc'
+      @collection.fetch()      
 
     sortJoined: (e)->
       @collection.queryParams.sort_by = "created_at"
@@ -303,10 +331,32 @@
       @collection.fetch()
 
     prevButton: (e)->
+      @collection.queryParams.q = @queryParams
+      @ui.nextButton.show()
+      if @collection.state.currentPage == 2
+        @ui.prevButton.hide()
       @collection.getPrevPage()
 
     nextButton: (e)->
+      @collection.queryParams.q = @queryParams
+      if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
+      @ui.prevButton.show()
+      if (@collection.state.currentPage == (@collection.state.totalPages-1))
+        @ui.nextButton.hide()
       @collection.getNextPage()
+
+    toPageButton: (e)->
+      @collection.queryParams.q = @queryParams
+      topage = parseInt(e.currentTarget.innerText)
+      if topage == 1
+        @ui.prevButton.hide()
+      else 
+        @ui.prevButton.show()
+      if topage == @collection.state.totalPages
+        @ui.nextButton.hide()
+      else
+        @ui.nextButton.show()
+      @collection.getPage(topage)
 
     addNewFilter: (e)->
       e.preventDefault()
@@ -322,12 +372,14 @@
     searchTags: (e)->
       e.preventDefault()
       tags = @.$('#tags').val()
+      @tagsParams = tags
       @collection.fetch
         data: { tags: tags }
 
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
+      @queryParams = query
       @collection.fetch
         data: { q: query }
 

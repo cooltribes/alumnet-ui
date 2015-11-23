@@ -25,10 +25,10 @@
 
       <% if @user: %>
         <div class="row user" style="margin-top: -20px;">
-          <div class="col-md-2 text-right">
+          <div class="col-md-3 col-sm-3 col-xs-3 text-right">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPost__avatarA">
           </div>
-          <div class="col-md-10 jobPost__user">
+          <div class="col-md-7 col-sm-7 col-xs-9 jobPost__user">
             <span>Posted by</span>
             <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a>
             <span class="userCard__position member-position text-small"><%= @uselast_experience %></span>
@@ -55,7 +55,7 @@
     
   <div class="text-right">   
     <% if @canEdit: %>
-      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >Edit</a>
+      <a href="#job-exchange/<%= @id %>/edit" class="btn btn-primary js-job-edit" >EDIT</a>
     <% end %>
     <a href="#job-exchange/<%= @id %>" class="btn btn-primary-noBackground js-job-details" >LEARN MORE >> </a>
     <% if @canApply: %>

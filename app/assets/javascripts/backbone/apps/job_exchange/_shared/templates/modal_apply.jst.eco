@@ -38,6 +38,16 @@
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-default" id="js-close">Cancel</a>
-  <a href="#" class="btn btn-primary" id="js-submit">Apply</a>
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <% if @application_type == "external" && @urlType != "" : %>
+        <a href="<%= @urlType %>" target="_blank" class="btn btn-default-blue">Apply in "Website"</a>
+      <% end %>
+    </div>
+    
+    <div class="col-md-6">
+      <a href="#" class="btn btn-default" id="js-close">Cancel</a>
+      <a href="#" class="btn btn-primary" id="js-submit">Apply</a>
+    </div>
+  </div>
 </div>
