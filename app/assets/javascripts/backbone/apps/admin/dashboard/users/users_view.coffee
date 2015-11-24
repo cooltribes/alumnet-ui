@@ -240,7 +240,9 @@
         dataTable: dataTable
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270   
+          'height': 270
+          'hAxis': {'title':'Years'} 
+          'vAxis': {'title':'Alumnis'}   
           animation:
             duration: 1000
             easing: 'out'
