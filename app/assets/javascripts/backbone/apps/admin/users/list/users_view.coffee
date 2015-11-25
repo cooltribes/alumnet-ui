@@ -278,7 +278,7 @@
                 class_li = ""
                 class_link = ""
 
-              html += '<li class= "'+class_li+'" id='+page+'><span class="page_buttom"  ><a class= "'+class_link+'" href="#admin/users" id="link_'+page+'">'+page+'</a><span class="sr-only"></span></span></li>  ' 
+              html += '<li class= "'+class_li+'" id='+page+'><span class="page_button"  ><a class= "'+class_link+'" href="#admin/users" id="link_'+page+'">'+page+'</a><span class="sr-only"></span></span></li>  ' 
 
             html += '<li><span id="nextButton"><a href="#admin/users">Next</a><span  class="sr-only"></span></span></li></ul></nav>'
           html
@@ -314,7 +314,7 @@
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
       'click #birth_city': 'sortBirtCity'
-      'click .page_buttom': 'toPageButton'
+      'click .page_button': 'toPageButton'
 
     removeClass: ->
       that = @
