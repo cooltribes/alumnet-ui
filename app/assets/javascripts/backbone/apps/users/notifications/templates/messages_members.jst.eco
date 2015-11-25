@@ -1,44 +1,12 @@
 <div class="notificationConf__notificationCard margin_bottom_small">
 	<h3 class="no-margin">Messages from other members</h3>
-	<div class="row margin_top_xsmall margin_bottom_xsmall">
-		<div class="col-md-8 col-sm-8 padding_top_xsmall">
-			<p>Invitations to connect (recommended)</p>
-		</div>
-		<div class="col-md-4 col-sm-4">
-			<select class="filter-comparator filters__input filters__input--sm form-control">
-				<option>Seleccione</option>
-			</select>
-			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey paddingIconSelect" aria-hidden="true" ></span>
-		</div>
-	</div>
-	<hr class="no-margin">
-	<div class="row margin_top_xsmall margin_bottom_xsmall">
-		<div class="col-md-8 col-sm-8 padding_top_xsmall">
-			<p>Invitations to join groups (recommended)</p>
-		</div>
-		<div class="col-md-4 col-sm-4">
-			<select class="filter-comparator filters__input filters__input--sm form-control">
-				<option>Seleccione</option>
-			</select>
-			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey paddingIconSelect" aria-hidden="true" ></span>
-		</div>
-	</div>
-	<hr class="no-margin">
-	<div class="row margin_top_xsmall margin_bottom_xsmall">
-		<div class="col-md-8 col-sm-8 padding_top_xsmall">
-			<p>Messages from connections (recommended)</p>
-		</div>
-		<div class="col-md-4 col-sm-4">
-			<select class="filter-comparator filters__input filters__input--sm form-control">
-				<option>Seleccione</option>
-			</select>
-			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey paddingIconSelect" aria-hidden="true" ></span>
-		</div>
-	</div>
-	<hr class="no-margin">
-	<div class="row margin_top_xsmall">
-		<div class="col-md-12 col-sm-12 ">
-			<a href="#">Show 5 more</a>
-		</div>
-	</div>
+	<form>
+		<div class="js-list"></div>
+		<!-- ACTIONS ON -->
+    <div class="text-right margin_top_xsmall">
+      <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+      <button class="btn btn-primary btn-lg js-submit">SAVE</button>
+    </div>
+    <!-- ACTIONS OFF -->
+	</form>
 </div>
