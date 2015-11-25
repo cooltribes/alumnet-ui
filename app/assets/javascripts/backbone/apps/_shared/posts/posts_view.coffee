@@ -76,6 +76,7 @@
       'click .js-unlike': 'clickedUnLike'
       'click @ui.editLink': 'clickedEdit'
       'click @ui.deleteLink': 'clickedDelete'
+      'click .js-popover': 'hidePopover'
 
     extractMentions: (mentions)->
       array = []
@@ -132,6 +133,9 @@
       @ui.likeCounter.html(val)
       @ui.likeLink.removeClass('js-unlike').addClass('js-like').
         html('<span class="icon-entypo-thumbs-up"></span> Like')
+
+    hidePopover: ->
+      @$("#userPopover"+@model.id).popover('hide');
 
 
   #
@@ -300,6 +304,7 @@
       'click @ui.moreComment': 'loadMore'
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
+      'click .js-popover': 'hidePopover'
 
     showShare: (e)->
       e.preventDefault()
@@ -435,6 +440,9 @@
       @model.comments.fetch
         success: (collection)->
           self.collection.add(collection.models)
+
+    hidePopover: ->
+      @$("#userPopover"+@model.id).popover('hide');
 
   #
   # POSTS COLLECTION

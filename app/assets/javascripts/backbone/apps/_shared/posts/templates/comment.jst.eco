@@ -28,7 +28,7 @@
     <!-- End popover-content -->
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 no-padding">
 		  <h5 class="postCard__userNameComment">
-		  	<a href="#users/<%= @user.id %>/posts" id="userPopover<%= @id %>"><%= @user.name %></a>
+		  	<a href="#users/<%= @user.id %>/posts" id="userPopover<%= @id %>" class="js-popover"><%= @user.name %></a>
 				<% if @dayPassed > 3 :  %>
           <a href=""><small class="postCard__date"> <%= moment(@created_at).format('MMM Do YYYY') %></small></a><br>
         <% else: %>
