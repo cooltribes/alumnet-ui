@@ -145,7 +145,7 @@
         </a>
       </li>
       <li class="hidden-xs drophover">
-        <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" data-toggle="dropdown" id="programsLayoutOption">
+        <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" id="programsLayoutOption">
           <i class="ico-give-help"></i>
           Programs  <span class="icon-entypo-down-open"></span>
         </a>
@@ -175,7 +175,7 @@
       </li> -->
       <li class="drophover">
         <!-- BELL ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Friend Requests" data-toggle="dropdown" id="js-menu-friendship-notifications" style="padding: 19px 3px;">
+        <a href="#requests" class="navTopBar__right__item dropdown-toggle" title="Friend Requests" id="js-menu-friendship-notifications" style="padding: 19px 3px;">
           <span class="iconNotification icon-entypo-users"></span>
           <span class="navTopBar__badge badge" id="js-friendship-notifications-badge">
           <%%= @unread_friendship_notifications_count  %>
@@ -197,7 +197,7 @@
       </li>
       <li class="drophover">
         <!-- BELL ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle " title="Notifications" data-toggle="dropdown" id="js-menu-notifications">
+        <a href="#notifications" class="navTopBar__right__item dropdown-toggle " title="Notifications" id="js-menu-notifications">
           <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell navTopBar__left__item"></span>
           <span class="navTopBar__badge badge" id="js-notifications-badge">
           <%%= @unread_notifications_count  %>
@@ -219,7 +219,7 @@
       </li>
        <li class="drophover">
         <!-- CHAT ICON -->
-        <a href="#" class="navTopBar__right__item dropdown-toggle" title="Messages" data-toggle="dropdown" title="Messages" id="js-menu-messages">
+        <a href="#conversations" class="navTopBar__right__item dropdown-toggle" title="Messages" title="Messages" id="js-menu-messages">
           <span class="navTopBar__right__item__icon ico-chat "></span>
           <span class="navTopBar__badge badge" id="js-messages-badge">
           <%%= @unread_messages_count %>
@@ -268,7 +268,7 @@
       <%% end %>
       </li>
       <li class="drophover">
-        <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" data-toggle="dropdown" title="Profile settings">
+        <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" title="Profile settings">
           <span class="icon-entypo-down-open"></span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions" id="accountList">
