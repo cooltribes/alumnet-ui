@@ -16,7 +16,7 @@
                   Messages Members
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a id="tomessages_alumnet" class="text-uppercase smoothClick">
                   Messages AlumNet
                 </a>
@@ -40,7 +40,7 @@
                 <a id="toupdate" class="text-uppercase smoothClick">
                   Update and News
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

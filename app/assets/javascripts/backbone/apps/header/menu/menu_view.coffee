@@ -93,10 +93,18 @@
     markAllNotifications: (e)->
       e.preventDefault()
       AlumNet.current_user.notifications.markAllAsRead()
+      view = @
+      @model.fetch
+        success: ->
+          view.updateNotificationsCountBadge()
 
     markAllRequests: (e)->
       e.preventDefault()
       AlumNet.current_user.friendship_notifications.markAllAsRead()
+      view = @
+      @model.fetch
+        success: ->
+          view.updateFriendshipNotificationsCountBadge()
 
     templateHelpers: ->
       model = @model
