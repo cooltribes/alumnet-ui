@@ -151,6 +151,15 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     padding: 10px;
     color: @white;
 
+    &--invited{
+      margin-top: -15px;
+      height: 105px;
+      padding-top: 43px;
+    }
+     &--textSpan{
+      margin-left: -8px;     
+    }
+
     &__text{
       display: none;
 
@@ -375,6 +384,12 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
           }
 
         &__actions{
+          &--invited{
+            margin-top: -15px;
+          }
+          &--textSpan{
+            margin-left: -8px;     
+          }
 
           &--Approve{
             padding: 15px;
@@ -403,6 +418,13 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   .avatarsizeAlumniGroup{
       width: 80px;
   }
+  .userCard{
+    &__actions{
+      &--textSpan{
+         margin-left: -4px;     
+      }
+    }
+  }
 }
 @media (min-width: @media-xsmall-max) {
   .avatarsize{
@@ -411,7 +433,15 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
   }
   .avatarsizeAlumniGroup{
     width: 84px;
-}
+  }
+  .userCard{
+    &__actions{
+      &--textSpan{
+         margin-left: none;
+         text-align: center;     
+      }
+    }
+  }
 }
 @media (min-width: @media-msmall-min) {
 
@@ -454,7 +484,14 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     &__actions{
       height: 100px;
       padding: 40px 0 0;
-      margin-top: -10px
+      margin-top: -10px;
+        &--invited{
+          margin-top: none;
+        }
+        &--textSpan{
+          margin-left: -1px;
+          text-align: center;     
+        }
     }
   }
 
