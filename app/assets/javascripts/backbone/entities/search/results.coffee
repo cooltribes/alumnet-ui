@@ -1,6 +1,15 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Entities.SearchResult extends Backbone.Model
+    initialize: ->
+      @source = @get "_source"
+
+    getImage: ->
+      @source.avatar.medium.url
+
+    getTitle: ->
+      @source.name
+  
   # defaults:
   #   first: false,
   #   language_id: "",
@@ -18,7 +27,7 @@
     model: Entities.SearchResult
     search_term: ""
     url: ->
-      AlumNet.api_endpoint + '/search/' + @search_term
+      AlumNet.api_endpoint + '/search?term=' + @search_term
 
     initialize: (models, options)->      
       @changeSearchTerm(options.search_term)

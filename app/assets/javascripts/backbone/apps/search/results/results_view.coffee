@@ -5,10 +5,9 @@
     className: 'container'
 
     regions:
-      results_region: '#results-region'
+      results: '#results-region'
 
     initialize: (options)->
-      console.log @collection
       @classes = {
         "all": " sortingMenu__item__link--active"
         "alumni": ""
@@ -25,7 +24,11 @@
 
   class Results.ResultView extends Marionette.CompositeView
     template: 'search/results/templates/_result'
-  
+
+    templateHelpers: ->
+      console.log @model
+      
+      image: @model.getImage()
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'

@@ -15,15 +15,27 @@
         <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Alumni
         </a>
       </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Groups
+        </a>
+      </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Events
+        </a>
+      </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Companies
+        </a>
+      </li>
     </ul>
   </div>    
 </div>
 
 <div class="row">
-  <div class="col-md-3" id="filters-section">
+  <!-- <div class="col-md-3" id="filters-section">
     Filters
-  </div>
-  <div class="col-md-9" id="results-section">
+  </div> -->
+  <div class="col-md-12" id="results-region">
     <div class="text-center"><span class="throbber-loader"></span></div>
   </div>
   

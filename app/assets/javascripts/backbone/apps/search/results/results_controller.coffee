@@ -5,29 +5,27 @@
       controller = @
       controller.search_term = search_term ? {}
       
-      layoutView = @_getLayoutView()
-      
-      AlumNet.mainRegion.show(layoutView)
-
       @results_collection = new AlumNet.Entities.SearchResultCollection null,
         search_term: search_term
-      
+      @results_collection.fetch()
 
-      ###layoutView.header_region.show(searchView)
+      layoutView = @_getLayoutView()
+      results_view = @_getResultsView()
 
-      layoutView.list_region.show(groupsView)###
+      AlumNet.mainRegion.show(layoutView)
 
+      layoutView.results.show(results_view)
       
     #For internal use
     _getLayoutView: ->
       view = new Results.Layout
         search_term: @search_term
 
-     ### view.on "search", @_applySearch, @
-      view.on "advancedSearch", @_applyAdvancedSearch, @
-      view.on "changeGrid", @_changeGrid, @
-###
-    
+      ### view.on "search", @_applySearch, @
+            view.on "advancedSearch", @_applyAdvancedSearch, @
+            view.on "changeGrid", @_changeGrid, @
+      ###
+          
     _getResultsView: ->
       view = new Results.ResultsListView
         collection: @results_collection

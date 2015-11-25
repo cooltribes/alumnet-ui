@@ -63,7 +63,7 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
-      'click @ui.searchBtn' : 'clickGlobalSearch'
+      'click @ui.searchBtn' : 'searchInAlumNet'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -160,13 +160,13 @@
         .append(link)
         .appendTo(ul)
 
-    clickGlobalSearch: ()->
+    searchInAlumNet: ()->
       search_term = @ui.searchInput.val().trim()
 
       if search_term != ""
         AlumNet.execute("search:show:results", search_term)  
       
-      console.log "No escribe nada"  
+      
 
     autocompleteLink: (item)->
       if item.type == "profile"
