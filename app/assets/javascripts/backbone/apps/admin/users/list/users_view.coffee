@@ -316,6 +316,17 @@
       'click #birth_city': 'sortBirtCity'
       'click .page_buttom': 'toPageButton'
 
+    removeClass: ->
+      that = @
+      if (that.collection.state.totalPages > 1)
+        for page in [1..that.collection.state.totalPages]
+          $("#"+page).removeClass('active')
+          $("#link_"+page).removeClass('paginationUsers')
+
+    addClass: (topage)->
+      $("#"+topage).addClass('active')
+      $("#link_"+topage).addClass('paginationUsers')
+
     sortBirtCity: (e)->
       @collection.queryParams.sort_by = "profiles.birth_city.name"
       if @collection.queryParams.order_by =='desc' 
@@ -342,65 +353,45 @@
 
     prevButton: (e)->
       @collection.queryParams.q = @queryParams
-      that = @
-      if (that.collection.state.totalPages > 1)
-        for page in [1..that.collection.state.totalPages]
-          $("#"+page).removeClass('active')
-          $("#link_"+page).removeClass('paginationUsers')
-      @ui.nextButton.show()
-      
+      @removeClass()
+      @ui.nextButton.show()  
+
       topage = parseInt(@collection.state.currentPage)-1
-      $("#"+topage).addClass('active')
-      $("#link_"+topage).addClass('paginationUsers')
+      @addClass(topage)
+
       if @collection.state.currentPage == 2
         @ui.prevButton.hide()
       @collection.getPreviousPage()
 
     nextButton: (e)->
       @collection.queryParams.q = @queryParams
-      that = @
-      if (that.collection.state.totalPages > 1)
-        for page in [1..that.collection.state.totalPages]
-          $("#"+page).removeClass('active')
-          $("#link_"+page).removeClass('paginationUsers')
+      @removeClass()
       topage = parseInt(@collection.state.currentPage)+1
 
       if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
       @ui.prevButton.show()
-      $("#"+topage).addClass('active')
-      $("#link_"+topage).addClass('paginationUsers')
+      @addClass(topage)
       if (@collection.state.currentPage == (@collection.state.totalPages-1))
-        
-        $("#"+topage).addClass('active')
-        $("#link_"+topage).addClass('paginationUsers')
+        @addClass(topage)
         @ui.nextButton.hide()
       @collection.getNextPage()
 
     toPageButton: (e)->
       @collection.queryParams.q = @queryParams
       topage = parseInt(e.currentTarget.innerText)
-      that = @
-      if (that.collection.state.totalPages > 1)
-        for page in [1..that.collection.state.totalPages]
-          $("#"+page).removeClass('active')
-          $("#link_"+page).removeClass('paginationUsers')
+      @removeClass()
 
       if topage == 1
         @ui.prevButton.hide()
-        $("#1").addClass('active')
-        $("#link_1").addClass('paginationUsers')
-
+        @addClass(topage)
       else 
         @ui.prevButton.show()
       if topage == @collection.state.totalPages
-        $("#"+topage).addClass('active')
-        $("#link_"+topage).addClass('paginationUsers')
-
+        @addClass(topage)
         @ui.nextButton.hide()
       else
         @ui.nextButton.show()
-        $("#"+topage).addClass('active')
-        $("#link_"+topage).addClass('paginationUsers')
+        @addClass(topage)
 
       @collection.getPage(topage)
 
