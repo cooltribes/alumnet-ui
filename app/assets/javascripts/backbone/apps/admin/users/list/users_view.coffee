@@ -335,7 +335,7 @@
       @ui.nextButton.show()
       if @collection.state.currentPage == 2
         @ui.prevButton.hide()
-      @collection.getPrevPage()
+      @collection.getPreviousPage()
 
     nextButton: (e)->
       @collection.queryParams.q = @queryParams
