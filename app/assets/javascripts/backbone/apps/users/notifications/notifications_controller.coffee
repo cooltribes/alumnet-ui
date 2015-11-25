@@ -11,6 +11,7 @@
 					collection.add([
 						{name: 'approval', value: 0, user_id: AlumNet.current_user.id},
 						{name: 'friendship', value: 0, user_id: AlumNet.current_user.id}
+						{name: 'friendship_accepted', value: 0, user_id: AlumNet.current_user.id}
 						{name: 'join_group_invitation', value: 0, user_id: AlumNet.current_user.id}
 						{name: 'message', value: 0, user_id: AlumNet.current_user.id}
 						{name: 'join_event', value: 0, user_id: AlumNet.current_user.id}

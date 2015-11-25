@@ -76,6 +76,17 @@
             label: "No Email"
           ,
           ]
+      "[name=friendship_accepted]": 
+        observe: "value"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Individual email"
+          ,
+            value: 1
+            label: "No Email"
+          ,
+          ]
       "[name=join_group_invitation]": 
         observe: "value"
         selectOptions:
@@ -127,6 +138,7 @@
         switch model.get('name')
           when 'approval' then 'Approval requests'
           when 'friendship' then 'Friendship invitations'
+          when 'friendship_accepted' then 'User accepts friendship invitation'
           when 'join_group_invitation' then 'Join group invitations'
           when 'message' then 'Messages'
           when 'join_event' then 'Event invitations'
