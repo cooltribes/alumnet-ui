@@ -33,7 +33,7 @@
             </div>
           <!-- End popover-content -->
           <h4 class="postCard__userName">
-            <a href="#users/<%= @user.id %>/posts" id="userPopover<%= @id %>" ><%= @user.name %></a>
+            <a href="#users/<%= @user.id %>/posts" id="userPopover<%= @id %>"><%= @user.name %></a>
             <% if @showInfoLink: %>
               <span class="postCard__info">posted <%- @infoLink %> </span>
             <% end %>
