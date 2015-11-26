@@ -16,15 +16,19 @@
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Groups
+        <a href="" title="Group" data-res-type="group" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Groups
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Events
+        <a href="" title="Event" data-res-type="event" class="js-typefilter sortingMenu__item__link <%= @active('event') %>">Events
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Companies
+        <a href="" title="Company" data-res-type="company" class="js-typefilter sortingMenu__item__link <%= @active('company') %>">Companies
+        </a>
+      </li>
+      <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
+        <a href="" title="Task" data-res-type="task" class="js-typefilter sortingMenu__item__link <%= @active('task') %>">Tasks
         </a>
       </li>
     </ul>

@@ -1,13 +1,13 @@
 <div class="col-lg-12">
   <div class="userCard user-info">
    <div class=" row">
-      <div class="userCard__avatar col-md-3 col-xs-3">
+      <div class="userCard__avatar col-md-2 col-xs-3">
 
         <img src="<%= @image %>" alt="<%= @title %>" class="img-circle avatarsize">
 
       </div>
       <div class=" col-md-6 col-xs-6">
-        <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#" title="<%= @name %>"><%= @title %></a></h4>        
+        <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#" title="<%= @title %>"><%= @title %></a> <small><%= @type %></small></h4>        
         
       </div>
     </div>  

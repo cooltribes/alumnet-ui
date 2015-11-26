@@ -2,13 +2,21 @@
 
   class Entities.SearchResult extends Backbone.Model
     initialize: ->
-      @source = @get "_source"
+      @source = @get "_source"      
 
     getImage: ->
-      @source.avatar.medium.url
+      switch @get "_type"
+        when "profile"
+          @source.avatar.medium.url
+        when "group"
+          @source.cover.main.url
 
     getTitle: ->
       @source.name
+
+    getType: ->
+      # _.capitalize(@get("_type"))
+      @get("_type")
   
   # defaults:
   #   first: false,

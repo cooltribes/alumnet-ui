@@ -29,6 +29,8 @@
       console.log @model
       
       image: @model.getImage()
+      title: @model.getTitle()
+      type: @model.getType()
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'
