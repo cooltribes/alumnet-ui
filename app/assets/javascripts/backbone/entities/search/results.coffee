@@ -8,15 +8,49 @@
       switch @get "_type"
         when "profile"
           @source.avatar.medium.url
-        when "group"
+        when "group", "event"
           @source.cover.main.url
+        when "company"
+          @source.logo.main.url
+          ###when "event"
+          @source.logo.main.url
+          ### 
+        when "task"
+          null
 
     getTitle: ->
-      @source.name
+      @source.name    
 
     getType: ->
       # _.capitalize(@get("_type"))
       @get("_type")
+
+    getLocation: ->
+      switch @get "_type"
+        when "profile"
+          AlumNet.stringLocation("user", @source, true) #method implemented in libs/helpers          
+        when "group", "event", "task"
+          AlumNet.stringLocation("group", @source, true) #method implemented in libs/helpers                    
+        when "company"
+          AlumNet.stringLocation("company", @source, true) #method implemented in libs/helpers                              
+          ###when "event"
+          @source.logo.main.url
+          ### 
+        
+
+    ## ------- Functions only for profiles
+    isUser: ->
+      @getType() == "profile"
+
+    getPosition: ->
+      return null if !@isUser()
+      
+      if @source.professional_headline
+        @source.professional_headline
+      else if @source.current_experience
+        @source.current_experience.name
+      else
+        "No Position"
   
   # defaults:
   #   first: false,

@@ -26,11 +26,15 @@
     template: 'search/results/templates/_result'
 
     templateHelpers: ->
-      console.log @model
+      console.log @model.source
+      
+      isUser: @model.isUser()
       
       image: @model.getImage()
       title: @model.getTitle()
       type: @model.getType()
+      position: @model.getPosition()
+      location: @model.getLocation()
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'

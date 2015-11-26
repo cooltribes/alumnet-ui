@@ -50,3 +50,42 @@
           self.results = response
           if callback
             callback(response)
+
+  ###
+  This function is intended to be the general function
+  for showing the location of any model in AlumNet,
+  therefore it will passed two parameters, the type of model (user, group, event, etc)
+  and the model itself.
+  It returns the location formatted as a string containing country and city,
+  computed from the locations objects
+
+   @params from_elasticsearch Indicates if the model is returned from API as a source
+   of elasticsearch. if false then the model is a backbone model (using "get" for attributes)
+  ###
+
+  AlumNet.stringLocation = (type = "", model = {}, from_elasticsearch = false)->
+    return null if type == "" or model == {}
+    location = "No Location"
+    city = ""
+
+    if from_elasticsearch
+      switch type
+        when "user" #location for users
+          city = model.residence_city.name
+          country = model.residence_country.name
+                    
+        when "task", "group" #location for groups and tasks
+            city = model.city_info.name
+            country = model.country_info.name          
+
+
+    if city != ""
+     location = "#{city} - #{country}"
+    else
+      if country != ""
+        location = "#{country}"
+      else  
+        location = "No Location"              
+      
+    return location
+
