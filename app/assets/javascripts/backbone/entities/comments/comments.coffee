@@ -33,7 +33,7 @@
       if @get("user").residence_city.text != ""
         return "#{@get("user").residence_city.text} - #{@get("user").residence_country.text}"
       else
-        return "No Location"
+        return "#{@get("user").residence_country.text}"
     
 
 
