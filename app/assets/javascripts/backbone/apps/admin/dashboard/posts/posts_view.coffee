@@ -1,18 +1,21 @@
-@AlumNet.module 'AdminApp.UserShow', (UserShow, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'AdminApp.Dashboard.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class UserShow.StatisticsGraph extends Marionette.ItemView
-    template: 'admin/users/show/templates/_statistics_graph'
+  class Posts.BarGraph extends Marionette.ItemView
+    template: 'admin/dashboard/posts/templates/_graph'
     className: 'container'
 
     ui:
-      bar_graph_container: '.js-bar-graph'
-      column_graph_container: '.js-column-graph'
+      graph: '.js-graph'
 
     initialize: (options)->
       @statistics = options.statistics
+      @layout = options.layout
+
+    templateHelpers: ->
+      interval: false
 
     onRender: ->
-      bar_graph = new AlumNet.Utilities.GoogleChart
+      graph = new AlumNet.Utilities.GoogleChart
         chartType: 'BarChart',
         dataTable: @statistics.bar_data
         options:
@@ -22,7 +25,29 @@
             duration: 1000
             easing: 'out'
             startup: true
-      column_graph = new AlumNet.Utilities.GoogleChart
+
+      @ui.graph.showAnimated(graph.render().el)
+
+  class Posts.ColumnGraph extends Marionette.ItemView
+    template: 'admin/dashboard/posts/templates/_graph'
+    className: 'container'
+
+    ui:
+      graph: '.js-graph'
+
+    events:
+      'change [name=group_by]': 'changeGroupBy'
+
+    initialize: (options)->
+      @statistics = options.statistics
+      @layout = options.layout
+
+    templateHelpers: ->
+      interval: true
+      group_by: @layout.group_by
+
+    onRender: ->
+      graph = new AlumNet.Utilities.GoogleChart
         chartType: 'ColumnChart',
         dataTable: @statistics.column_data
         options:
@@ -33,27 +58,18 @@
             easing: 'out'
             startup: true
 
+      @ui.graph.showAnimated(graph.render().el)
 
-      @ui.bar_graph_container.showAnimated(bar_graph.render().el)
-      @ui.column_graph_container.showAnimated(column_graph.render().el)
+    changeGroupBy: (e)->
+      new_interval = $(e.currentTarget).val()
+      @trigger 'change:interval', new_interval
 
-  class UserShow.StatisticsData extends Marionette.ItemView
-    template: 'admin/users/show/templates/_statistics_data'
-    className: 'container'
-
-    initialize: (options)->
-      @statistics = options.statistics.bar_data
-
-    templateHelpers: ->
-      statistics: @statistics
-
-
-  class UserShow.Statistics extends Marionette.LayoutView
-    template: 'admin/users/show/templates/statistics'
+  class Posts.Layout extends Marionette.LayoutView
+    template: 'admin/dashboard/posts/templates/layout'
     className: 'container'
     regions:
-      statsGraph: '#graph'
-      statsData: '#data'
+      barGraph: '#bar-graph'
+      columnGraph: '#column-graph'
 
     initialize: ->
       @init_date = moment().subtract(7, 'days').format("DD-MM-YYYY")
@@ -95,22 +111,37 @@
 
     loadStatistics: (data)->
       view = @
+      view.stopListening()
       Backbone.ajax
-        url: AlumNet.api_endpoint + "/admin/users/#{@model.id}/statistics"
+        url: AlumNet.api_endpoint + "/admin/stats/posts"
         data: data
         success: (data, response)->
-          dataView = new UserShow.StatisticsData
-            statistics: data
-          graphView = new UserShow.StatisticsGraph
-            statistics: data
-          view.statsData.show(dataView)
-          view.statsGraph.show(graphView)
+          view.loadBarView(data)
+          view.loadColumnView(data)
 
     reloadStatistics: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize(@)
       @init_date = data.init_date
       @end_date = data.end_date
-      @group_by = data.group_by
+      data.group_by = @group_by
       return unless @init_date != "" && @end_date != ""
+      @loadStatistics(data)
+
+    loadBarView: (data)->
+      barView = new Posts.BarGraph
+        statistics: data
+        layout: @
+      @barGraph.show(barView)
+
+    loadColumnView: (data)->
+      columnView = new Posts.ColumnGraph
+        statistics: data
+        layout: @
+      @listenTo(columnView, 'change:interval', @changeGroupBy)
+      @columnGraph.show(columnView)
+
+    changeGroupBy: (new_interval)->
+      @group_by = new_interval
+      data = { init_date: @init_date, end_date: @end_date, group_by: @group_by }
       @loadStatistics(data)
