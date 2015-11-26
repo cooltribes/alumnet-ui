@@ -26,8 +26,8 @@
 
 
     templateHelpers: ()->
-      start_date: @dates.start  
-      end_date: @dates.end  
+      start_date: @dates.start
+      end_date: @dates.end
 
 
     onRender: () ->
@@ -48,7 +48,7 @@
         default_position: 'below'
         show_clear_date: false
         direction: [true, @dates.end]
-        
+
 
     sendDates: (e)->
       e.preventDefault()
@@ -60,14 +60,14 @@
       @dates.end = b
 
       @trigger "submit"
-        
-  
+
+
   class Users.ChartType1 extends Marionette.ItemView
     template: 'admin/dashboard/users/templates/_graph'
 
     ui:
       graph_section: ".js-graph"
-    
+
     modelEvents:
       "change:interval": "changeInterval"
 
@@ -87,38 +87,38 @@
       @model.get "interval"
 
     onRender: ->
-      @stickit()    
+      @stickit()
 
 
     _sortTableForChart: (dataTable)->
-      
-      values = dataTable.slice(1) #Get all but not the titles    
+
+      values = dataTable.slice(1) #Get all but not the titles
 
       if values.length == 0
         $.growl.warning {message: "There is not data for these dates, try another query."}
 
       if @getInterval() == "days"
-        
+
         values = _.sortBy values, (el)-> #Sort the arrays
           # return (new Date(el[0]))
           return (new Date(moment(el[0], "DD-MM-YYYY").format("MM-DD-YYYY")))
         # .reverse()
 
-      else if @getInterval() == "months"  
+      else if @getInterval() == "months"
         values = _.sortBy values, (el)-> #Sort the arrays
-          return (new Date("01-".concat(el[0])))        
+          return (new Date("01-".concat(el[0])))
 
-      else if @getInterval() == "years"  
+      else if @getInterval() == "years"
         values = _.sortBy values, (el)-> #Sort the arrays
-          return (new Date(el[0])).getFullYear()        
+          return (new Date(el[0])).getFullYear()
 
       [dataTable[0]].concat values #Build dataTable again with sorted values
-      
+
 
     drawGraph: (dataTable)->
 
-      dataTable = @_sortTableForChart(dataTable)      
-      
+      dataTable = @_sortTableForChart(dataTable)
+
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'AreaChart',
         dataTable: dataTable
@@ -129,7 +129,7 @@
             duration: 1000
             easing: 'out'
             startup: true
-                  
+
           # 'titleTextStyle': { 'fontSize': 16 }
 
       @ui.graph_section.showAnimated(graph.render().el)
@@ -147,12 +147,12 @@
         dataTable: dataTable
         options:
           is3D: true
-          # 'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270          
+          # 'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
           animation:
             duration: 1000
             easing: 'out'
-            startup: true      
+            startup: true
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -163,21 +163,21 @@
     ui:
       graph_section: ".js-graph"
       changeTypeBtn: ".js-changeType"
-    
+
     modelEvents:
       "change:geo": "changeGeo"
 
     events:
       "click @ui.changeTypeBtn": "changeType"
-    
+
     bindings:
       "[name=geo]": "geo"
 
-    initialize:(options)->      
+    initialize:(options)->
       @model = new Backbone.Model
-        geo: options.geo        
-        type: options.type #type 1:regist, 2:memb, 3:ltmemb, 4:total   
-        dataTable: []   
+        geo: options.geo
+        type: options.type #type 1:regist, 2:memb, 3:ltmemb, 4:total
+        dataTable: []
 
     changeType: (e)->
       e.preventDefault()
@@ -193,12 +193,12 @@
 
     getGeo: ->
       @model.get "geo"
-    
+
     getType: ->
       @model.get "type"
 
     onRender: ->
-      @stickit()    
+      @stickit()
 
     drawAll: (dataTable)->
       @model.set "dataTable", dataTable
@@ -236,15 +236,15 @@
 
     drawGraph: (dataTable)->
       graph = new AlumNet.Utilities.GoogleChart
-        chartType: 'ColumnChart',
+        chartType: 'BarChart',
         dataTable: dataTable
         options:
-          'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270   
+          'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
           animation:
             duration: 1000
             easing: 'out'
-            startup: true             
+            startup: true
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -261,12 +261,12 @@
         dataTable: dataTable
         options:
           is3D: true
-          # 'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270  
+          # 'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
           animation:
             duration: 1000
             easing: 'out'
-            startup: true              
+            startup: true
 
       @ui.graph_section.showAnimated(graph.render().el)
 
@@ -277,7 +277,7 @@
       graph_section: ".js-graph"
 
     initialize: (options)->
-      @typeOfChart = options.type  
+      @typeOfChart = options.type
 
     drawGraph: (dataTable)->
       graph = new AlumNet.Utilities.GoogleChart
@@ -285,11 +285,11 @@
         dataTable: dataTable
         options:
           is3D: true
-          # 'legend': {'position': 'bottom', 'alignment':'center'}    
-          'height': 270  
+          # 'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
           animation:
             duration: 1000
             easing: 'out'
-            startup: true              
+            startup: true
 
       @ui.graph_section.showAnimated(graph.render().el)
