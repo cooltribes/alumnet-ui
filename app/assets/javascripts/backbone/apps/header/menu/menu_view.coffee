@@ -68,6 +68,7 @@
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
       'click @ui.searchBtn' : 'searchInAlumNet'
+      'keypress @ui.searchInput' : 'keypressSearch'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -125,11 +126,10 @@
           return "Lifetime member"
         return "Not a member"
 
-    search: (e)->
+    keypressSearch: (e)->
       if e.keyCode == 13
-        console.log "Go to search page"
-
-
+        e.currentTarget.blur()
+        @searchInAlumNet()
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')
@@ -185,12 +185,14 @@
         select: (event, ui)->
           $(@).val(ui.item.name)
           false
+
       ).autocomplete("instance")._renderItem = (ul, item)->
         link = view.autocompleteLink(item)
         $("<li>").data("item.autocomplete", item)
         .append(link)
         .appendTo(ul)
 
+      
     searchInAlumNet: ()->
       search_term = @ui.searchInput.val().trim()
 

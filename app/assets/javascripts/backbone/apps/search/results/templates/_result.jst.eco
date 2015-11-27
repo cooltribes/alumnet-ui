@@ -8,10 +8,20 @@
       </div>
       <div class=" col-md-6 col-xs-6">
         <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#" title="<%= @title %>"><%= @title %></a> <small><%= @type %></small></h4>        
-        <% if @isUser: %>
+        <% if @position: %>
           <p class="userCard__position member-position text-small"><%= @position %></p>
         <% end %>
         <span class="metaInfoCard__concept"> <span class="glyphicon glyphicon-map-marker"></span> <%= @location %></span> 
+        <% if @industry: %>
+          <p><span class="ico-sector"></span>
+            <%= @industry %>
+          </p>
+        <% end %>
+        <% if @description: %>
+          <p>
+            <%= @description %>
+          </p>
+        <% end %>
       </div>
     </div>  
   </div>

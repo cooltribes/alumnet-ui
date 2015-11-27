@@ -28,15 +28,22 @@
     getLocation: ->
       switch @get "_type"
         when "profile"
-          AlumNet.stringLocation("user", @source, true) #method implemented in libs/helpers          
+          AlumNet.parseLocation("user", @source, true) #method implemented in libs/helpers          
         when "group", "event", "task"
-          AlumNet.stringLocation("group", @source, true) #method implemented in libs/helpers                    
+          AlumNet.parseLocation("group", @source, true) #method implemented in libs/helpers                    
         when "company"
-          AlumNet.stringLocation("company", @source, true) #method implemented in libs/helpers                              
+          AlumNet.parseLocation("company", @source, true) #method implemented in libs/helpers                              
           ###when "event"
           @source.logo.main.url
           ### 
         
+    getDescription: ->
+      description = null
+      switch @get "_type"
+        when "group", "event", "task", "company"
+          description = @source.description        
+
+      description    
 
     ## ------- Functions only for profiles
     isUser: ->
@@ -52,19 +59,19 @@
       else
         "No Position"
   
-  # defaults:
-  #   first: false,
-  #   language_id: "",
-  #   level: 3,
+    ## ------- Functions only for companies
+    isCompany: ->
+      @getType() == "company"
+         
+    getIndustry: ->
+      return null if !@isCompany()
 
-  # validation:
-  #   language_id:
-  #     required: true
-  #     msg: "You have to select a language"
-  #   level:
-  #     required: true
-  #     range: [1, 5]
+      @source.sector.name
 
+
+
+
+  
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
     search_term: ""

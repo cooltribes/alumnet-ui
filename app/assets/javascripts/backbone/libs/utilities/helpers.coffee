@@ -63,7 +63,7 @@
    of elasticsearch. if false then the model is a backbone model (using "get" for attributes)
   ###
 
-  AlumNet.stringLocation = (type = "", model = {}, from_elasticsearch = false)->
+  AlumNet.parseLocation = (type = "", model = {}, from_elasticsearch = false)->
     return null if type == "" or model == {}
     location = "No Location"
     city = ""
@@ -74,9 +74,12 @@
           city = model.residence_city.name
           country = model.residence_country.name
                     
-        when "task", "group" #location for groups and tasks
-            city = model.city_info.name
-            country = model.country_info.name          
+        when "task", "group", "company", "event"
+          city = model.city_info.name
+          country = model.country_info.name      
+        
+        else
+          country = ""      
 
 
     if city != ""
