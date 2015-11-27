@@ -27,7 +27,21 @@
               Files
             </a>
           </li>
+          <li class="dropdown calendarEvents">
+            <a href="#" class="groupMenu__link" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-calendar"></span> 
+              Add to my calendar
+              <span class="icon-entypo-down-open"></span>
+              <ul class="dropdown-menu">
+                <li><a href="#" id="js-fileCalendar"><span class="icon-entypo-outlook"></span> Outlook Calendar</a></li>
+                <li><a href="#" id="js-googleCalendar"><span class="icon-entypo-google"></span> Google Calendar</a></li>
+                <li><a href="#" id="js-yahooCalendar"><span class="icon-entypo-yahoo"></span> Yahoo! Calendar</a></li>
+                <li><a href="#" id="js-fileCalendar"><span class="ico-calendar"></span> iCal Calendar</a></li>
+              </ul>
+            </a>
+          </li>
         </ul>
+        
       </div>
     </div>
   </div>

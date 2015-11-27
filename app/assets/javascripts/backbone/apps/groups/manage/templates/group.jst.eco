@@ -9,8 +9,8 @@
 		<!-- CONTENT ON -->
 		<div class=" groupCardManage__content">
 			<div class="groupCardManage__text">
-				<h3 class="groupCardManage__title">
-				<a href="#groups/<%= @group.id %>/posts" class="js-group"> <%= @group.name %> </a>
+				<h3 class="groupCardManage__title overfloadText">
+				<a href="#groups/<%= @group.id %>/posts" class="js-group" title="<%= @group.name %>"> <%= @group.name %> </a>
 				</h3>
 				<p id="js-description" class="groupCardManage__description overfloadText"><%= @group.short_description %></p>
 			</div>

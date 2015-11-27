@@ -210,6 +210,7 @@
       @class[parseInt(@tab)] = "active"
 
     templateHelpers: ->
+      model = @model
       admissionType: @model.get('admission_type')
       classOf: (step) =>
         @class[step]
@@ -217,6 +218,39 @@
     regions:
       header: '#event-header'
       body: '#event-body'
+
+    ui:->
+      'fileICSCalendar': '#js-fileCalendar'
+      'calendarGoogle': '#js-googleCalendar'
+      'calendarYahoo': '#js-yahooCalendar'
+
+    events: ->
+      'click @ui.fileICSCalendar': 'downloadFileICS'
+      'click @ui.calendarGoogle': 'googleCalendarEvents'
+      'click @ui.calendarYahoo': 'yahooCalendarEvents'
+
+    downloadFileICS:->
+      calendar = ics();
+      calendar.addEvent(@model.get("name"), @model.get("description"), @model.get("address"), @model.get("start_date")+' '+@model.get("start_hour"), @model.get("end_date")+' '+@model.get("end_hour"));
+      calendar.download('Events');
+
+    googleCalendarEvents:->
+      text = encodeURIComponent(@model.get("name")) 
+      startDate = moment(@model.get("start_date")).format('YYYYMMDD')
+      endDate = moment(@model.get("end_date")).add('days',1).format('YYYYMMDD')
+      details = encodeURIComponent(@model.get("description"))
+      location = encodeURIComponent(@model.get("address")) 
+      googleCalendarUrl = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + text + '&dates=' + startDate + '/' + endDate + '&details=' + details + '&location=' + location
+      window.open(googleCalendarUrl, '_blank')
+
+    yahooCalendarEvents:->
+      text = encodeURIComponent(@model.get("name")) 
+      startDate = moment(@model.get("start_date")).format('YYYYMMDD')
+      endDate = moment(@model.get("end_date")).format('YYYYMMDD')
+      location = encodeURIComponent(@model.get("address"))
+      details = encodeURIComponent(@model.get("description"))
+      yahooCalendarUrl = 'http://calendar.yahoo.com/?v=60&TITLE=' + text + '&ST=' + startDate + '&ET=' + endDate + '&in_loc=' + location + '&DESC=' + details
+      window.open(yahooCalendarUrl, '_blank')
 
   API =
     getEventLayout: (model,tab)->

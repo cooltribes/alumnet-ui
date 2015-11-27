@@ -6,6 +6,7 @@
     initialize: ->
       @messages = new Entities.MessagesCollection
       @notifications = new Entities.NotificationsCollection
+      @friendship_notifications = new Entities.FriendshipNotificationsCollection
 
       @profile = new Entities.Profile
       @profile.url = @urlRoot() + @id + '/profile'
@@ -160,9 +161,20 @@
       #order: 1
     queryParams:
       order: "order_by"
+    parseState: (resp, queryParams, state, options)->
+      console.log resp
+      {totalRecords: resp.totalRecords};
 
-    parse: (response,options)->
-      response.users
+    parseRecords: (resp, options)->
+      console.log resp
+      resp.users
+           
+    #parseState: (resp, queryParams, state, options) ->
+    #  console.log response.totalRecords
+    #  {totalRecords: response.totalRecords}
+      
+    #parse: (response,options)->
+    #  response.users
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
@@ -222,6 +234,7 @@
       user.profile.url = AlumNet.api_endpoint + '/me/profile'
       user.messages.url = AlumNet.api_endpoint + '/me/messages'
       user.notifications.url = AlumNet.api_endpoint + '/me/notifications'
+      user.friendship_notifications.url = AlumNet.api_endpoint + '/me/notifications/friendship'
 
       user.fetch({async:false})
       user

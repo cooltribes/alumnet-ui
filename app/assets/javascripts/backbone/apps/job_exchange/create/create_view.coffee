@@ -79,6 +79,8 @@
 
     templateHelpers: ->
       model = @model
+      applicationType: @model.get('application_type')
+      urlType: @model.get('external_url')
       city_helper: if @model.get('city') then @model.get('city').id
       company_helper: if @model.get('company') then @model.get('company').text
       seniorities:()->

@@ -1,28 +1,19 @@
 <div class="userCard">
-	<div class=" row">
-		<div class="userCard__avatar col-md-3 ">
-		<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+	<div class=" row ">
+		<div class="userCard__avatar col-md-3 col-xs-3">
+		<img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle avatarsize">
 
 		</div>
-		<div id="js-info-user" class="<% if @wasInvited(): %>
-			col-md-6
-			<% else: %>
-			col-md-7
-			<% end %>">
+		<div id="js-info-user" class="col-md-6 col-xs-6">
 			<h4 class="userCard__name overfloadText"><%= @name %></h4>
-			<p class="userCard__position member-position text-small"><%= @last_experience %></p>
+			<p tittle ="<%= @last_experience %>"class="userCard__position overfloadText member-position text-small"><%= @last_experience %></p>
 			<p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
 		</div>
-		<div id="js-invitation-box" class="
-			<% if @wasInvited(): %>
-			col-md-3
-			<% else: %>
-			col-md-2
-			<% end %>">
-			<div class="userCard__actions">
+		<div id="js-invitation-box" class="col-md-3 col-xs-3">
+			<div class="userCard__actions userCard__actions--invited">
 				<span class="invitation">
 				<% if @wasInvited(): %>
-				<span>Invited <span class="glyphicon glyphicon-ok"></span> </span>
+				<span class="userCard__actions--textSpan" >Invited </span><span class="glyphicon glyphicon-ok"></span>
 				<% else: %>
 				<a href="#" class="js-invite" title="Invite"><span class="glyphicon glyphicon-ok"></span></a>
 				<% end %>

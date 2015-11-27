@@ -5,7 +5,7 @@
     </div>
     <div class=" col-md-6 col-xs-6">
       <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#users/<%= @id %>/posts" title="<%= @name %>"><%= @name %></a></h4>
-      <p class="userCard__position member-position text-small"><%= @position() %></p>
+      <p title="<%= @position() %>" class="userCard__position overfloadText member-position text-small"><%= @position() %></p>
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
     </div>
     <% if @friendship_status == "sent": %>

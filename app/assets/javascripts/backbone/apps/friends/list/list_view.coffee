@@ -4,7 +4,6 @@
     childView: AlumNet.FriendsApp.Find.UserView
     events:
       'click .js-search': 'performSearch'
-
     ui:
       'loading': '.throbber-loader'
 
@@ -18,7 +17,9 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      @ui.loading.hide()
+      #console.log @ui.loading
+      #@ui.loading.hide()
+      $('.throbber-loader').hide()
       $(window).unbind('scroll')
 
     loadMoreUsers: (e)->

@@ -111,6 +111,7 @@
         location.join(", ")
 
   class Discover.List extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     childView: Discover.Company
     childViewContainer: '#companies-container'
 
@@ -119,6 +120,8 @@
         'companies/discover/templates/gridContainer'
       else if @type == "list"
         'companies/discover/templates/tableContainer'
+    emptyViewOptions:
+      template: 'companies/discover/templates/empty'
 
     childViewOptions: (model, index)->
       #initially for cards view
@@ -160,7 +163,9 @@
       $(window).unbind('scroll')       
 
     loadMoreCompanies: (e)->
+      console.log "load"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        console.log "entro load"
         @trigger 'companies:reload'
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView

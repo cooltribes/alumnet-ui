@@ -208,7 +208,8 @@
           moment(model.get("last_sign_in_at")).format("MMM DD YY, h:mm:ss a")
         else
           ""
-
+      getRegisterStep: ->
+        @profileData.register_step
 
     modelChange: ->
       @render()
@@ -252,12 +253,36 @@
     template: 'admin/users/list/templates/users_container'
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
+    queryParams: {}
+    tagsParams: ''
     childViewOptions: (model, index) ->
       modals: @modals
 
     initialize: (options) ->
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
+
+    templateHelpers: () ->
+      that = @
+      pagination_buttons: ->
+          class_li = ''
+          class_link = ''
+          html = ""
+          if (that.collection.state.totalPages > 1)
+            html = '<nav><ul class="pagination"><li><span id="prevButton" style="display:none"><a href="#admin/users">Prev</a><span class="sr-only"></span></span></li>'
+            for page in [1..that.collection.state.totalPages]
+              if (page == 1)
+                class_li = "active"
+                class_link = "paginationUsers"
+              else
+                class_li = ""
+                class_link = ""
+
+              html += '<li class= "'+class_li+'" id='+page+'><span class="page_button"  ><a class= "'+class_link+'" href="#admin/users" id="link_'+page+'">'+page+'</a><span class="sr-only"></span></span></li>  ' 
+
+            html += '<li><span id="nextButton"><a href="#admin/users">Next</a><span  class="sr-only"></span></span></li></ul></nav>'
+          html
+          
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -274,6 +299,9 @@
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
       ])
  
+    ui:
+      'prevButton': '#prevButton'
+      'nextButton': '#nextButton'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -285,6 +313,27 @@
       'click #prevButton': 'prevButton'
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
+      'click #birth_city': 'sortBirtCity'
+      'click .page_button': 'toPageButton'
+
+    removeClass: ->
+      that = @
+      if (that.collection.state.totalPages > 1)
+        for page in [1..that.collection.state.totalPages]
+          $("#"+page).removeClass('active')
+          $("#link_"+page).removeClass('paginationUsers')
+
+    addClass: (topage)->
+      $("#"+topage).addClass('active')
+      $("#link_"+topage).addClass('paginationUsers')
+
+    sortBirtCity: (e)->
+      @collection.queryParams.sort_by = "profiles.birth_city.name"
+      if @collection.queryParams.order_by =='desc' 
+        @collection.queryParams.order_by = 'asc' 
+      else 
+        @collection.queryParams.order_by = 'desc'
+      @collection.fetch()      
 
     sortJoined: (e)->
       @collection.queryParams.sort_by = "created_at"
@@ -303,10 +352,48 @@
       @collection.fetch()
 
     prevButton: (e)->
-      @collection.getPrevPage()
+      @collection.queryParams.q = @queryParams
+      @removeClass()
+      @ui.nextButton.show()  
+
+      topage = parseInt(@collection.state.currentPage)-1
+      @addClass(topage)
+
+      if @collection.state.currentPage == 2
+        @ui.prevButton.hide()
+      @collection.getPreviousPage()
 
     nextButton: (e)->
+      @collection.queryParams.q = @queryParams
+      @removeClass()
+      topage = parseInt(@collection.state.currentPage)+1
+
+      if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
+      @ui.prevButton.show()
+      @addClass(topage)
+      if (@collection.state.currentPage == (@collection.state.totalPages-1))
+        @addClass(topage)
+        @ui.nextButton.hide()
       @collection.getNextPage()
+
+    toPageButton: (e)->
+      @collection.queryParams.q = @queryParams
+      topage = parseInt(e.currentTarget.innerText)
+      @removeClass()
+
+      if topage == 1
+        @ui.prevButton.hide()
+        @addClass(topage)
+      else 
+        @ui.prevButton.show()
+      if topage == @collection.state.totalPages
+        @addClass(topage)
+        @ui.nextButton.hide()
+      else
+        @ui.nextButton.show()
+        @addClass(topage)
+
+      @collection.getPage(topage)
 
     addNewFilter: (e)->
       e.preventDefault()
@@ -322,12 +409,14 @@
     searchTags: (e)->
       e.preventDefault()
       tags = @.$('#tags').val()
+      @tagsParams = tags
       @collection.fetch
         data: { tags: tags }
 
     advancedSearch: (e)->
       e.preventDefault()
       query = @searcher.getQuery()
+      @queryParams = query
       @collection.fetch
         data: { q: query }
 
