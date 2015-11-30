@@ -1,0 +1,7 @@
+<div class="col-md-12 js-bar-graph">
+  <label class="control-label">Loading chart...</label>
+</div>
+
+<div class="col-md-12 js-column-graph">
+  <label class="control-label">Loading chart...</label>
+</div>
