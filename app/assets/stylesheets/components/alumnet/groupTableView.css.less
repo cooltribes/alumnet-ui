@@ -16,6 +16,8 @@ DESCRIPTION: CSS for styling a list of groups
     width: 90px;
   }
 
+ &__
+
   tr{
     border: none;
     margin-top: 5px;
@@ -39,20 +41,53 @@ DESCRIPTION: CSS for styling a list of groups
     text-align: center;
 
     &:nth-child(1){
-      min-width:700px;
+      min-width:60px;
+    }
+    &:nth-child(2){
+      min-width:400px;
+    }
+    &:nth-child(3){
+      min-width:100px;
+    }
+    &:nth-child(4){
+      min-width:100px;
+    }
+    &:nth-child(5){
+      min-width:100px;
     }
     &:nth-child(6){
-      min-width:130px;
+      min-width:100px;
+    }
+    &:nth-child(7){
+      min-width:100px;
     }
   }
   
   table& > tbody > tr > td:nth-child(1){
-       min-width: 700px;
-    }
+       max-width: 60px;
+  }
+  table& > tbody > tr > td:nth-child(2){
+       max-width: 400px;
+  }
 
-    table& > tbody > tr > td:nth-child(6){
-       min-width: 130px;
-    }
+  table& > tbody > tr > td:nth-child(3){
+       max-width: 100px;
+  }
+
+  table& > tbody > tr > td:nth-child(4){
+       max-width: 100px;
+  }
+  table& > tbody > tr > td:nth-child(5){
+       max-width: 100px;
+  }
+
+  table& > tbody > tr > td:nth-child(6){
+       max-width: 100px;
+  }
+
+  table& > tbody > tr > td:nth-child(7){
+       max-width: 100px;
+  }
 
   table > tbody > tr > td&__col{
        vertical-align: middle;
@@ -155,4 +190,206 @@ DESCRIPTION: CSS for styling a list of groups
     
  
 }
+
+ @media (min-width: @media-smallest) {
+
+  .groupTableView{
+
+    &__actions{
+
+      &--enter{
+        font-size: 12px;
+      }
+    }
+    &__cover{
+      height: 60px; 
+      width: 60px;
+    }
+    &__description{
+      width: 100px;
+    }
+    
+      & > tbody > tr{
+
+      }   
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 68px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+           max-width: 121px;
+      }
+
+      table& > tbody > tr > td:nth-child(7){
+           max-width: 60px;
+      }
+  }
+}
+
+ @media (min-width: @media-smallphone) {
+
+  .groupTableView{
+
+    &__actions{
+
+      &--enter{
+        font-size: 13px;
+      }
+    }
+    &__description{
+      width: 140px;
+    }
+      & > tbody > tr{
+
+      }   
+      table& > tbody > tr > td:nth-child(2){
+           max-width: 150px;
+      }
+
+  }
+}
+/*400px and up*/
+ @media (min-width: @media-smallweb) {
+
+  .groupTableView{
+
+    &__cover{
+      background-size:cover; 
+      height: 90px; 
+      width: 90px;
+    }
+    &__description{
+      width: 70px;
+    }
+      & > tbody > tr{
+
+      }   
+      table& > tbody > tr > td:nth-child(2){
+           max-width: 75px;
+      }
+
+  }
+}
+
+/*480px and up*/
+ @media (min-width: @media-xsmall-max) {
+
+  .groupTableView{
+
+    &__description{
+      width: 175px;
+    }
+      & > tbody > tr{
+
+      }
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 65px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 124px;
+      }
+
+  }
+}
+
+/*677px and up*/
+ @media (min-width: @media-msmall-min) {
+
+  .groupTableView{
+
+    &__description{
+      width: 317px;
+    }
+      & > tbody > tr{
+
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 204px;
+      }
+
+  }
+}
+/*768px and up*/
+ @media (min-width: @media-small-min) {
+
+  .groupTableView{
+
+    &__description{
+      width: 175px;
+    }
+      & > tbody > tr{
+      }
+
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 86px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 166px;
+      }
+
+  }
+}
+
+/*980px and up*/
+ @media (min-width: @media-medium-min) {
+
+  .groupTableView{
+
+    &__description{
+      width: 220px;
+    }
+      & > tbody > tr{
+
+      }
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 106px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 238px;
+      }
+
+  }
+}
+/*1200px and up*/
+ @media (min-width: @media-large-min) {
+
+  .groupTableView{
+
+    &__description{
+      width: 357px;
+    }
+      & > tbody > tr{
+
+      }
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 68px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 238px;
+      }
+
+  }
+}
+/*1400px and up*/
+ @media (min-width: @media-mmlarge-min) {
+
+  .groupTableView{
+
+    &__description{
+      width: 406px;
+    }
+      & > tbody > tr{
+
+      }
+      table& > tbody > tr > td:nth-child(1){
+           max-width: 68px;
+      }
+      table& > tbody > tr > td:nth-child(2){
+         max-width: 288px;
+      }
+
+  }
+}
+
+
+
 

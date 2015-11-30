@@ -1,72 +1,80 @@
-	<td>
-		<div class="col-lg-2 col-md-2 groupTableView__cover" style="background: url('<%= @cover.card %>') no-repeat top center;">
-        <% if @official: %>
-				  <span class="groupTableView__ribbon"></span>
-        <% end %>
-		</div>
-		
-		<div class="col-lg-10 col-md-10">
-			<h4>
-        	<% if @group_type.value == 1 && not @userIsMember : %>
-        	  <a href="#groups/<%= @id %>/about" class="js-group"> <%= @name %> </a>
-        	<% else if @group_type.value == 1 && @userIsMember : %>
-        	  <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
-        	<% else: %>
-        	  <a href="#groups/<%= @id %>/posts" class="js-group"> <%= @name %> </a>
-        	<% end %>
-        	<span class="groupTableView__label label
-         	 <% if @group_type.value== 1: %>
-        	    label-warning
-        	  <% end %>
-        	  <% if @group_type.value== 0: %>
-        	    label-success
-        	  <% end %>
-        	">
-        		<% if @group_type.value== 1: %>
-            	CLOSED
-          		<% end %>
-          		<% if @group_type.value== 0: %>
-            	OPEN
-          		<% end %>
-        	</span>
 
-        	</h4>
-        	<p id="js-description" class="groupTableView__description">
-        		<%= @description %> 
-        	</p>
+  <td>
+
+    <div class=" groupTableView__cover" style="background: url('<%= @cover.card %>') no-repeat top center;">
+        <% if @official: %>
+          <span class="groupTableView__ribbon"></span>
+        <% end %>
+        <span class=" groupTableView__label label
+           <% if @group_type.value== 1: %>
+              label-warning
+            <% end %>
+            <% if @group_type.value== 0: %>
+              label-success
+            <% end %>
+          ">
+            <span class="hidden-xs">
+              <% if @group_type.value== 1: %>
+                CLOSED
+                <% end %>
+                <% if @group_type.value== 0: %>
+                OPEN
+                <% end %>
+            </span>
+          </span>
+    </div>
+  </td>
+  <td>
+    <div class="">
+      <h4 class="overfloadText">
+
+          <% if @group_type.value == 1 && not @userIsMember : %>
+            <a title="<%= @name %>"> href="#groups/<%= @id %>/about" class="js-group overfloadText"> <%= @name %> </a>
+          <% else if @group_type.value == 1 && @userIsMember : %>
+            <a title="<%= @name %>" href="#groups/<%= @id %>/posts" class="js-group overfloadText"> <%= @name %> </a>
+          <% else: %>
+            <a title="<%= @name %>" href="#groups/<%= @id %>/posts" class="js-group overfloadText"> <%= @name %> </a>
+          <% end %>
+        
+          </h4>
+   <p id="js-description" class="groupTableView__description">
+            <%= @short_description %> 
+  </p>
+
       <% if _.size(@children)>0: %>
-			<a id="js-subgroups" class="groupTableView__SubGroup" data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" data-child="<%= _.size(@children) %>" aria-controls="<%= @id %>"> Show subgroups (<%= _.size(@children) %>) <span class="caret"></span></a>
+      <a id="js-subgroups" class="groupTableView__SubGroup" data-toggle="collapse" data-target="#<%= @id %>" aria-expanded="false" data-child="<%= _.size(@children) %>" aria-controls="<%= @id %>"> Show subgroups (<%= _.size(@children) %>) <span class="caret"></span></a>
       
-			<div class="collapse" id="<%= @id %>">
-				<ul class="groupTableView__SubGroupList">
-        			<% _.each @children, (child)->: %>
-          			<li >
-            			<a href="#groups/<%= child.id %>/posts" title="<%= child.name %>" ><%= child.name %></a>
-            			<span class="icon-entypo-list pull-right"></span>
-          			</li>
-        			<% end %>
-          			<li class="text-center">
-          			  <a href="#" title="Subgroup name" > </span> </a>
-          			</li>
-        	</ul>
-			</div>
+      <div class="collapse" id="<%= @id %>">
+        <ul class="groupTableView__SubGroupList">
+              <% _.each @children, (child)->: %>
+                <li >
+                  <a href="#groups/<%= child.id %>/posts" title="<%= child.name %>" ><%= child.name %></a>
+                  <span class="icon-entypo-list pull-right"></span>
+                </li>
+              <% end %>
+                <li class="text-center">
+                  <a href="#" title="Subgroup name" > </span> </a>
+                </li>
+          </ul>
+      </div>
       <% end %>
-		</div>
-	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> 
+    </div>
+  </td>
+  <td class=" hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Created on"> 
+
     <div class="groupTableView__colText"><%= moment(@created_at).format('MM/YYYY') %>  </div>  
   </td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last Activity" >
-		<% if @last_post_at: %>
+  <td class="hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Last Activity" >
+    <% if @last_post_at: %>
             <div class="groupTableView__colText"><%= moment(@last_post_at).format('h:mm a') %> </div>
         <% else: %>
             <div class="groupTableView__colText"><%= moment(@created_at).format('h:mm a') %> </div>
-        <% end %>		
-	</td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Alumni in Group"> 
+        <% end %>   
+  </td>
+  <td class="hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Alumni in Group"> 
     <div class="groupTableView__colText"><%= @membership_users.length %> </div>
   </td>
-	<td class="groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
+  <td class=" hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
     <% aux = 0 %>
       <% for friends in @friends_in: %>  
         <img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">
@@ -78,9 +86,9 @@
       <% if @friends_in.length>2: %>
         +<%= @friends_in.length-2 %>
       <% end %>
-	</td>
-	<td class="groupTableView__col">
-		<% if @membership_status == "approved": %>
+  </td>
+  <td class=" groupTableView__col">
+    <% if @membership_status == "approved": %>
        <div class="groupTableView__button groupTableView__actions--enter" ><a  href="#groups/<%= @id %>/posts"> ENTER </a></div>
     <% end %>   
     <% if @membership_status == "pending": %>
@@ -89,4 +97,4 @@
     <% if @membership_status == "none": %>
       <div class="groupTableView__actions groupTableView__actions--join js-join">+ JOIN GROUP</div>
     <% end %>  
-	</td>
+  </td>

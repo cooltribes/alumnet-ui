@@ -6,7 +6,7 @@
 		</div>
 		<div id="js-info-user" class="col-md-6 col-xs-6">
 			<h4 class="userCard__name overfloadText"><%= @name %></h4>
-			<p tittle ="<%= @last_experience %>"class="userCard__position overfloadText member-position text-small"><%= @last_experience %></p>
+			<p title ="<%= @last_experience %>"class="userCard__position overfloadText member-position text-small"><%= @last_experience %></p>
 			<p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
 		</div>
 		<div id="js-invitation-box" class="col-md-3 col-xs-3">
