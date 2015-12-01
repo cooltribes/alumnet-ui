@@ -85,6 +85,7 @@
       'click #js-edit-type': 'toggleEditType'
 
     onRender: ->
+      @starDate = @model.get('start_date')
       view = this
 
       @ui.uploadFiles.editable
@@ -167,15 +168,16 @@
         default_position: 'below'
         onSelect: (dateFormated, dateRegular, dateJavaScript, element )->
           view.model.set('start_date', dateFormated)
+          view.starDate = dateFormated
 
       @ui.endDate.Zebra_DatePicker
-        direction: 1
+        direction: [view.starDate, false]
         show_icon: false
         show_select_today: false
         show_clear_date: false
         default_position: 'below'
         onSelect: (dateFormated, dateRegular, dateJavaScript, element )->
-         view.model.set('end_date', dateFormated)
+          view.model.set('end_date', dateFormated)
 
       @cp_startHour = @ui.startHour.clockpicker
         donetext: 'Select'

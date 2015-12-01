@@ -1,164 +1,118 @@
 <div class="groupAbout container-fluid">
   <div class="row">
-    <% if not @userHasMembership && not @userIsApproved : %>
-        <div id="js-join-div" class="col-md-4 margin_top col-md-offset-4">
-          <div class="panel panel-default text-center">
-            <div class="panel-heading">
-                Join this group to post and comment
-            </div>
-            <div class="panel-body">
-              <button class="btn btn-lg btn-primary js-join">+ join group</button>
-            </div>
-          </div>
-        </div>
-    <% end %>
-
-    <div class="col-md-8 col-md-offset-2">
-      <div class="groupAbout__box margin_bottom margin_top">
-        <% if @canEditInformation: %>
-        <h2 class="groupAbout__title"><a href="#" id="name"><%= @name %></a></h2>
-        <a href="#" id="short-description"><%= @short_description %></a>
-        <% else: %>
-        <h2><%= @name %></h2>
-        <%= @short_description %>
-        <% end %>
+    <div class="col-md-8">
+      <div class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
+          <p><%= @name %></p>
+          <%= @description %>
       </div>
-
-      <div class="groupAbout__box margin_bottom">
-        <h3>Description</h3>
-        <div id="description" class="js-attribute"><%- @description %></div>
-        <% if @canEditInformation: %>
-          <a href="#" id="js-edit-description" class="editLink">[edit]</a>
-          <a href="#" id="js-save-description" class="editLink" style="display:none">[save]</a>
-         <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-2">
-      <div class="groupAbout__box margin_bottom">
-        <h3>Join Process</h3>
-        <a href="#" id="join_process" class="js-attribute"><%= @joinProcessText %></a>
-        <% if @canChangeJoinProcess: %>
-          <a href="#" id="js-edit-join-process" class="editLink">[edit]</a>
-        <% end %>
-      </div>
-      <div class="groupAbout__box margin_bottom">
-        <h3>Official Group</h3>
-          <a href="#" id="official" class="js-attribute">
-          <% if @official: %>it's an official group<% else: %>it's not an official group<% end %>
-          </a>
-        <% if @currentUserIsAdmin: %>
-          <a href="#" id="js-edit-official" class="editLink">[edit]</a>
-        <% end %>
-      </div>
-
-      <% if @canEditInformation: %>
-        <div class="groupAbout__box margin_bottom">
-          <h3>Who can upload files</h3>
-            <span href="#" id="upload-files" class="js-attribute">
-              <%= @uploadFilesText %>
-            </span>
-            <a href="#" id="js-edit-upload" class="editLink">[edit]</a>
-        </div>
-      <% end %>
-
-      <% unless @currentUserIsAdmin: %>
-      <% end %>
-
-      <% if @currentUserIsAdmin: %>
-      <div class="groupAbout__box margin_bottom <% if not @official: %>hide<% end %>" id="mailchimpContainer">
-        <h3>Mailchimp mail list</h3>
-        <table>
-          <tr>
-            <td>
-              <h5><b>Active:</b></h5>
-            </td>
-            <td class="padding_left_xsmall">
-              <h4><small><a href="#" id="mailchimp" class="js-attribute">
-                <% if @mailchimp: %>Yes<% else: %>No<% end %>
-              </a>
-              <% if @currentUserIsAdmin: %>
-                <a href="#" id="js-edit-mailchimp" class="editLink">[edit]</a>
-              <% end %></small></h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h5><b>API Key:</b></h5>
-            </td>
-            <td class="padding_left_xsmall">
-              <h4><small>
-                <a href="#" id="api_key" class="js-attribute">
-                  <%= @model.get('api_key') %>
-                </a>
-                <% if @currentUserIsAdmin: %>
-                  <a href="#" id="js-edit-api-key" class="editLink">[edit]</a>
-                <% end %>
-              </small></h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h5><b>List ID:</b></h5>
-            </td>
-            <td class="padding_left_xsmall">
-              <h4><small>
-                <a href="#" id="list_id" class="js-attribute">
-                  <%= @model.get('list_id') %>
-                </a>
-                <% if @currentUserIsAdmin: %>
-                  <a href="#" id="js-edit-list-id" class="editLink">[edit]</a>
-                <% end %>
-
-              </small></h4>
-            </td>
-          </tr>
-        </table>
-
-
-        <div class="text-right">
-          <div id="contenedor" class="loadingAnimation__migrateUsers">
-            <div class="loader" id="loader"></div>
-          </div>
-        <% if @currentUserIsAdmin: %>
-          <a href="#" class="btn btn-info" id="js-validate-mailchimp">Validate Mailchimp Parameters</a>
-          <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
-        <% end %>
-        </div>
-      </div>
-      <% end %>
     </div>
     <div class="col-md-4">
-      <div class="groupAbout__box margin_bottom">
-        <h3>Type</h3>
-        <a href="#" id="group_type" class="js-attribute"><%= @group_type.text %></a>
-        <% if @canEditInformation: %>
-          <a href="#" id="js-edit-group-type" class="editLink">[edit]</a>
-        <% end %>
+      <% if @admins.length > 0 : %>
+        <div class="groupAbout__box margin_bottom margin_top">
+          <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+            <p>Admins(<%= @admins.length %>)</p>
+          </div>
+          <div class="row">
+            <% for admin in @admins: %>
+              <div class="col-md-3 text-center">
+                <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle"><br>
+                <a href="#users/<%= admin.id %>/posts"><%=  admin.name %></a>
+              </div> 
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @friends_in.length > 0 : %>
+        <div class="groupAbout__box margin_bottom margin_top">
+          <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+            <p>Friends(<%= @friends_in.length %>)</p>
+          </div>
+          <div class="row">
+            <% for friend in @friends_in: %>
+              <div class="col-md-3 text-center">
+                <img src="<%= friend.avatar.avatar.medium.url %>" alt="<%= friend.first_name %>" class="img-circle"><br>
+                <a href="#users/<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a>
+              </div> 
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @otherMembers > 0 : %>
+        <div class="groupAbout__box margin_bottom margin_top">
+          <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+            <p> Other members (<%= @otherMembers %>)</p>
+          </div>
+          <div class="row">
+            <% for member in @members: %>
+              <% if member.id == @otherMembersNotFriends && member.id == @otherMembersNotAdmins: %>
+                <div class="col-md-3 text-center">
+                  <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle"><br>
+                  <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
+                </div> 
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    
+      <div class="groupAbout__box margin_bottom groupAbout__titleSection">
+        <p>Description</p>
+        <div id="description"><%= @short_description %></div>
       </div>
-      <div class="groupAbout__box margin_bottom">
-        <% if @city.name || @country.name: %>
-          <h3>
-            <%= @city.name %><br/><%= @country.name %>
+
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <% if @city.name || @country.name : %>
+          <h3><span class="glyphicon glyphicon-map-marker"></span>
+            <%= @city.name %>, <%= @country.name %>
           </h3>
         <% else: %>
-            <h3>No Location</h3>
+          <h3><span class="glyphicon glyphicon-map-marker"></span>
+            No Location
+          </h3>
         <% end %>
       </div>
-      <div class="groupAbout__box margin_bottom">
-        <h3>
+
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <h3><span class="glyphicon glyphicon-time"></span>
         Created: <%= moment(@created_at).format('D MMM YYYY') %> <br/>
         <% if @creator: %>
-          by <%= @creator.name %>
+          by <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
         <% end %>
         </h3>
-        <% if @canEditInformation: %>
-          <div class="text-right">
-          <a href="#" class="btn btn-danger" id="js-delete-group">Delete group</a>
-          </div>
-        <% end %>
       </div>
+
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <h3>
+          <span class="groupCard__statusGroup pull-right
+            <% if @group_type.value== 1:  %>
+            groupCard__statusGroup--closed
+            <% end %>
+            <% if @group_type.value== 0: %>
+            groupCard__statusGroup--public
+            <% end %>
+            " style="position: inherit;">
+            <% if @group_type.value== 1: %>
+              Closed
+            <% end %>
+            <% if @group_type.value== 0: %>
+              Open
+            <% end %>
+          </span>
+          <p><%= @group_type.text %> group</p>
+          <% if @group_type.value== 0: %>
+            <small>All content in this group can be seen freely to anyone even if they are not part of the group. But only people who joined the group can add content in it.</small>
+          <% end %>
+          <% if @group_type.value== 1: %>
+            <small>The content of this group is visible only to those who have joined the group. Join requests will be moderated by the administrator of the group.</small>
+          <% else : %> 
+            <small>The content in this group is visible only to those who were added to the group. Only the administrator can add people into this group.</small>
+          <% end %>
+        </h3>
+        
+      </div>
+
     </div>
   </div>
 </div>

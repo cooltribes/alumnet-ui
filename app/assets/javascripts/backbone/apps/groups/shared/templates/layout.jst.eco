@@ -2,7 +2,7 @@
 <nav class="groupMenu navbar group-menu navbar-default" role="navigation">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-12">
 				<ul class="nav nav-pills" id="groupMenuList">
 				<% if @groupIsClose && not @userIsMember: %>
 					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
@@ -33,7 +33,13 @@
 						<span class="glyphicon glyphicon-file"></span>
 						Files</a>
 					</li>
-
+					<% if @isAdmin: %>
+						<li>
+							<a href="#groups/<%= @id %>/settings" class="groupMenu__link<%= @classOf(7)%>">
+							<span class="glyphicon glyphicon-cog"></span>
+							Settings</a>
+						</li>
+					<% end  %>
 				<% end  %>
 				</ul>
 			</div>
