@@ -29,12 +29,13 @@
     <h4>Posts statistics</h4>
     <hr>
     <div class="row">
-      <div id="bar-graph">
-
+      <div id="total-graph">
       </div>
 
-      <div id="column-graph">
+      <div id="by-users-graph">
+      </div>
 
+      <div id="by-date-graph">
       </div>
     </div>
   </div>

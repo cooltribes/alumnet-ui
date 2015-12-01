@@ -1,6 +1,6 @@
 @AlumNet.module 'AdminApp.Dashboard.Posts', (Posts, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Posts.BarGraph extends Marionette.ItemView
+  class Posts.TotalGraph extends Marionette.ItemView
     template: 'admin/dashboard/posts/templates/_graph'
     className: 'container'
 
@@ -17,7 +17,7 @@
     onRender: ->
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'BarChart',
-        dataTable: @statistics.bar_data
+        dataTable: @statistics.total
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 270
@@ -28,7 +28,7 @@
 
       @ui.graph.showAnimated(graph.render().el)
 
-  class Posts.ColumnGraph extends Marionette.ItemView
+  class Posts.ByDateGraph extends Marionette.ItemView
     template: 'admin/dashboard/posts/templates/_graph'
     className: 'container'
 
@@ -49,7 +49,7 @@
     onRender: ->
       graph = new AlumNet.Utilities.GoogleChart
         chartType: 'ColumnChart',
-        dataTable: @statistics.column_data
+        dataTable: @statistics.data_by_date
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 270
@@ -64,12 +64,41 @@
       new_interval = $(e.currentTarget).val()
       @trigger 'change:interval', new_interval
 
+  class Posts.ByUsersGraph extends Marionette.ItemView
+    template: 'admin/dashboard/posts/templates/_graph'
+    className: 'container'
+
+    ui:
+      graph: '.js-graph'
+
+    initialize: (options)->
+      @statistics = options.statistics
+      @layout = options.layout
+
+    templateHelpers: ->
+      interval: false
+
+    onRender: ->
+      graph = new AlumNet.Utilities.GoogleChart
+        chartType: 'BarChart',
+        dataTable: @statistics.data_by_users
+        options:
+          'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true
+
+      @ui.graph.showAnimated(graph.render().el)
+
   class Posts.Layout extends Marionette.LayoutView
     template: 'admin/dashboard/posts/templates/layout'
     className: 'container'
     regions:
-      barGraph: '#bar-graph'
-      columnGraph: '#column-graph'
+      totalGraph: '#total-graph'
+      byDateGraph: '#by-date-graph'
+      byUsersGraph: '#by-users-graph'
 
     initialize: ->
       @init_date = moment().subtract(7, 'days').format("DD-MM-YYYY")
@@ -116,8 +145,9 @@
         url: AlumNet.api_endpoint + "/admin/stats/posts"
         data: data
         success: (data, response)->
-          view.loadBarView(data)
-          view.loadColumnView(data)
+          view.loadTotalView(data)
+          view.loadByDateView(data)
+          view.loadByUsersView(data)
 
     reloadStatistics: (e)->
       e.preventDefault()
@@ -128,18 +158,24 @@
       return unless @init_date != "" && @end_date != ""
       @loadStatistics(data)
 
-    loadBarView: (data)->
-      barView = new Posts.BarGraph
+    loadTotalView: (data)->
+      view = new Posts.TotalGraph
         statistics: data
         layout: @
-      @barGraph.show(barView)
+      @totalGraph.show(view)
 
-    loadColumnView: (data)->
-      columnView = new Posts.ColumnGraph
+    loadByUsersView: (data)->
+      view = new Posts.ByUsersGraph
         statistics: data
         layout: @
-      @listenTo(columnView, 'change:interval', @changeGroupBy)
-      @columnGraph.show(columnView)
+      @byUsersGraph.show(view)
+
+    loadByDateView: (data)->
+      view = new Posts.ByDateGraph
+        statistics: data
+        layout: @
+      @listenTo(view, 'change:interval', @changeGroupBy)
+      @byDateGraph.show(view)
 
     changeGroupBy: (new_interval)->
       @group_by = new_interval
