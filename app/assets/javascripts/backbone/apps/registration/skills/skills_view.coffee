@@ -28,6 +28,7 @@
 
     onRender: ->
       #Render the slider
+      view = @
       slideItem = $("#slider", @el)
       levelTextItem = slideItem.next("#level")
       model = @model
@@ -48,8 +49,23 @@
         slide: (event, ui) ->
           levelTextItem.text(textLevel[ui.value])
           model.set("level", ui.value)
-
-
+          if ui.value == 1
+            view.width = 0
+          if ui.value == 2
+            view.width = 25
+          if ui.value == 3
+            view.width = 50
+          if ui.value == 4
+            view.width = 75
+          if ui.value == 5
+            view.width = 100
+          $(this).find('#bar').removeClass("bar__1")
+          $(this).find('#bar').removeClass("bar__2")
+          $(this).find('#bar').removeClass("bar__3")
+          $(this).find('#bar').removeClass("bar__4")
+          $(this).find('#bar').removeClass("bar__5")
+          $(this).find('#bar').addClass("bar__"+ui.value)
+          
       #Render the list of languages
       dropdown = $("[name=language_id]", $(@el))
       content = AlumNet.request("languages:html", @model.get("name"), @model.get("language_id") ? null)
@@ -95,8 +111,6 @@
               @ui.skills.select2 "val", listOfNames
 
       $('body,html').animate({scrollTop: 0}, 600);
-
-
 
     fillSkills: (collection)->
       skills = _.pluck(collection.models, 'attributes')
