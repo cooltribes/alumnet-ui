@@ -1,3 +1,4 @@
+
 <div id="js-advance-search">
     <div class="row">
       <div class="col-md-3">
@@ -69,7 +70,7 @@
           </div>
         </div>
   </div>
-</div>
+
 <hr>
   <div class="row">
     <div class="col-md-9">
@@ -85,18 +86,18 @@
 <table class="table tableAdmin" id="users-table">
   <thead>
     <tr>
-      <th colspan="2">Name</th>
-      <th id="birth_city">Location of Origin</th>
-      <th>LC</th>
-      <th id="sortJoined">Joined</th>
-      <th>Gender</th>
-      <th id="sortAge">Age</th>
-      <th>Status</th>
-      <th>Role</th>
-      <th>Last login</th>
-      <th>Login count</th>
-      <th>Register Step</th>
-      <th>Edit</th>
+      <th class="hidden-xs"colspan="2">Name</th>
+      <th class="hidden-xs hidden-sm"id="birth_city">Location of Origin</th>
+      <th class="hidden-xs">LC</th>
+      <th class="hidden-xs hidden-sm" id="sortJoined">Joined</th>
+      <th class="hidden-xs hidden-sm">Gender</th>
+      <th class="hidden-xs hidden-sm"id="sortAge">Age</th>
+      <th class="hidden-xs">Status</th>
+      <th class="hidden-xs">Role</th>
+      <th class="hidden-xs hidden-sm">Last login</th>
+      <th class="hidden-xs hidden-sm">Login count</th>
+      <th class="hidden-xs">Register Step</th>
+      <th class="hidden-xs">Edit</th>
     </tr>
   </thead>
   <tbody>
