@@ -14,11 +14,7 @@
 				<span class="message__name">Deleted User</a></span>
 			<% end %>
 			<span class="message__date"><%= moment(@created_at).fromNow() %></span>
-			<% if @is_read: %>
-				<a href="#" class="js-mark unread">Mark as Unread</a>
-			<% else: %>
-				<a href="#" class="js-mark read">Mark as Read</a>
-			<% end %>
+			<a href="#" class="js-mark unread">Mark as Unread</a>
 		</div>
 	</div>
 
