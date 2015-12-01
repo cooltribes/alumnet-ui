@@ -14,7 +14,7 @@
 		</form>
 		<!-- /input-group -->
 	</div>
-	<div class="col-md-3 hidden-sm hidden-xs searchBar__renderOptions">
+	<div class="col-md-3 searchBar__renderOptions">
 		<div class="pull-right">
 			<a class="searchBar__renderOptions__icon searchBar__renderOptions__iconActive searchBar__ViewCard js-viewCard" title="View results in cards">
 				<span class="glyphicon glyphicon-th-large"></span>

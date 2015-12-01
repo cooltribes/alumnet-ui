@@ -18,6 +18,7 @@
       "admin/users/:id": "userShow"
       "admin/products": "productsList"
       "dashboard/alumni": "dashboardUsers"
+      "dashboard/posts": "dashboardPosts"
 
   API =
     usersList: ->
@@ -61,7 +62,8 @@
       controller.productsList()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
-
+    dashboardPosts: ->
+      new AdminApp.Dashboard.Posts.Controller
 
   AlumNet.addInitializer ->
     new AdminApp.Router

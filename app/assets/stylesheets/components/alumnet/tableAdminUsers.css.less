@@ -22,14 +22,34 @@ DESCRIPTION: CSS for styling the admin table users
 		text-transform: uppercase;
 		color: @blue-gray;
 	}
+	table& > tbody > tr > td{
+		padding: 5px;
+	}
 
 	table& > thead > tr > th&__SubGruopHeader{
 		background-color: @blue-gray;
 		color: @white;
+
 	}
 
 	td{
 		border:1px solid #dddddd;
+		padding: 5px;
+
+		&:nth-child(1){
+			text-align: center;
+	      	min-width:58px;
+	    }
+	    &:nth-child(2){
+	      	min-width:149px;
+	    }
+	     &:nth-child(8){
+	      	min-width:59px;
+	    }
+	   	&:nth-child(13){
+	      	min-width:30px;
+	    }
+
 
 	}
 
@@ -71,4 +91,86 @@ DESCRIPTION: CSS for styling the admin table users
 	
 
 }
+@media (min-width: @media-smallest) {
+	.tableAdmin{
+		td{
+			font-size: 12px; 
 
+		}
+	}
+}
+@media (min-width: @media-smallphone) {
+	.tableAdmin{
+		td{
+			font-size: 13px; 
+
+		}
+	}
+}
+
+ @media (min-width: @media-small-min) {
+.tableAdmin{
+	th{
+		font-size: 12px;
+	}
+	
+	td{
+		font-size: 13px; 
+
+		&:nth-child(1){
+	      min-width:57px;
+	    }
+	    &:nth-child(2){
+	      min-width:143px;
+	    }
+	     &:nth-child(3){
+	      min-width:87px;
+	    }
+	   	&:nth-child(4){
+	      min-width:92px;
+	    }
+
+		&:nth-child(5){
+	      min-width:57px;
+	    }
+	    &:nth-child(6){
+	      min-width:70px;
+	    }
+	     &:nth-child(7){
+	      min-width:42px;
+	    }
+	   	&:nth-child(8){
+	      min-width:30px;
+	    }
+
+		&:nth-child(9){
+	      min-width:64px;
+	    }
+	    &:nth-child(10){
+	      min-width:54px;
+	    }
+	   	&:nth-child(11){
+	      min-width:54px;
+	    }
+	     &:nth-child(12){
+	      min-width:94px;
+	    }
+	   	&:nth-child(13){
+	      min-width:30px;
+	    }
+
+	}
+ }
+
+}
+
+ @media (min-width: @media-mlarge-min) {
+	.tableAdmin{
+		th{
+			font-size: 14px;
+		}	
+		td{
+			font-size: 14px;
+		}
+	}
+}

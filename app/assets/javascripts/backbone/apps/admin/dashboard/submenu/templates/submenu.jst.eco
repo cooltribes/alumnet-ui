@@ -15,6 +15,11 @@
             <span class="navTopSubBarAdmin__icon glyphicon"></span> Alumni
           </a>
         </li>
+        <li class="<%= @classOf(1)%>">
+          <a href="#dashboard/posts" class="navTopSubBarAdmin__link" title="Posts">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Posts
+          </a>
+        </li>
       </ul>
     </div>
   </div>

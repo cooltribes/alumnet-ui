@@ -3,7 +3,7 @@
   class UserShow.Layout extends Marionette.LayoutView
     template: 'admin/users/show/templates/layout'
     #className: 'container'
-      
+
     regions:
       modals:
         selector: '#modals-region'
@@ -20,6 +20,7 @@
       'pointsLink': '#js-section-points'
       'adminLink': '#js-section-admin'
       'productsLink': '#js-section-products'
+      'statisticsLink': '#js-section-statistics'
       'activateUser': '.js-activate-user'
       'banUser': '.js-ban-user'
 
@@ -36,6 +37,7 @@
       'click @ui.productsLink': 'productsClicked'
       'click @ui.activateUser': 'activateClicked'
       'click @ui.banUser': 'banClicked'
+      'click @ui.statisticsLink': 'statisticsClicked'
 
     onRender: ->
       $('body,html').animate({scrollTop: 0}, 600);
@@ -156,6 +158,12 @@
             collection: products
             modals: view.modals
           view.content.show(productsView)
+
+    statisticsClicked: (e)->
+      e.preventDefault()
+      statistics = new UserShow.Statistics
+        model: @model
+      @content.show(statistics)
 
     adminClicked: (e)->
       e.preventDefault()

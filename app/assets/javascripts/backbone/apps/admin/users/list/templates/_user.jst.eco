@@ -1,4 +1,4 @@
-<td><img src="<%= @avatar.medium %>">	</td>
+<td ><img class="img-circle" src="<%= @avatar.medium %>">	</td>
 <td>
   <a href="#admin/users/<%= @id %>">
     <%= @getName() %>
@@ -26,16 +26,30 @@
   <% end %>
   </small>
 </td>
-<td><%= @getOriginLocation() %></td>
-<td><%= @getLC() %></td>
-<td><%= @getJoinTime() %></td>
-<td><%= @getGender() %></td>
-<td><%= @getAge() %></td>
-<td><%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
-<td><%= @getRoleText %></td>
-<td><%= @getLastSignIn() %></td>
-<td><%= @sign_in_count %></td>
-<td><%= @getRegisterStep() %></td>
+<td class="hidden-xs hidden-sm"><%= @getOriginLocation() %></td>
+<td class="hidden-xs "><%= @getLC() %></td>
+<td class="hidden-xs hidden-sm"><%= @getJoinTime() %></td>
+<td class="hidden-xs hidden-sm"><%= @getGender() %></td>
+<td class="hidden-xs hidden-sm"><%= @getAge() %></td>
+<td class="" > 
+<%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
+<td class="hidden-xs" ><%= @getRoleText %></td>
+<td class="hidden-xs hidden-sm"><%= @getLastSignIn() %></td>
+<td class="hidden-xs hidden-sm"><%= @sign_in_count %></td>
+<td class="hidden-xs">
+  <% if @getRegisterStep() == "basic_information": %>
+    (1) Basic Information
+  <% end %>
+  <% if @getRegisterStep() == "languages_and_skills": %>
+    (2) Languajes and Skills
+  <% end %>
+  <% if @getRegisterStep() == "aiesec_experiences": %>
+    (3) Aiesec Experiences
+  <% end %>
+  <% if @getRegisterStep() == "completed": %>
+    (4) Completed
+  <% end %>
+</td>
 <td class="tableAdmin__actions">
   <div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

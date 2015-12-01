@@ -124,6 +124,7 @@
 
       if @type == "list"
         tagName = 'tr'
+        className = 'col-lg-12 col-md-12 col-xs-12'
         childViewContainer: ".main-groups-area"
 
       type: @type
