@@ -9,13 +9,11 @@
       'messagesBadge': '.messageCard__badge'
 
     initialize: ->
-      #console.log @model
-      #@listenTo(AlumNet.current_user, 'change:unread_messages_count', @updateMessagesCountBadge)
-      #@listenTo(@model, 'change:unread_messages_count', @updateMessagesCountBadge)
+      @listenTo(AlumNet.current_user, 'change:unread_messages_count', @updateMessagesCountBadge)
 
     updateMessagesCountBadge: ->
       view = @
-      AlumNet.current_user.fetch
+      @model.fetch
         success: (model)->
           value = model.get('unread_messages_count')
           view.ui.messagesBadge.html(value)
@@ -34,7 +32,6 @@
           url: AlumNet.api_endpoint + '/me/conversations/' + @model.get('conversation_id') + '/receipts/' + @model.id + '/unread'
           method: 'PUT'
           success: ->
-            #$.growl.notice({ message: 'Marked unread' })
             view.toggleLink()
             AlumNet.current_user.trigger 'change:unread_messages_count'
 
@@ -43,7 +40,6 @@
           url: AlumNet.api_endpoint + '/me/conversations/' + @model.get('conversation_id') + '/receipts/' + @model.id + '/read'
           method: 'PUT'
           success: ->
-            #$.growl.notice({ message: 'Marked read' })
             view.toggleLink()
             AlumNet.current_user.trigger 'change:unread_messages_count'
 
