@@ -9,10 +9,10 @@
     getLocation: ->
       city = country = ""
       if @get("city")
-        city = "#{@get("city").name} - "
+        city = "#{@get("city").text} - "
 
       if @get("country")
-        country = "#{@get("country").name}"
+        country = "#{@get("country").text}"
 
       if (city? || country?) then return "#{city}#{country}"
 

@@ -40,7 +40,7 @@
     <div class="row padding_top_small">
       <%% if @getLocation() || @date_taken: %>
 
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-4">
           <%% if @getLocation(): %>
           <div class="row-fluid clearfix albumInfo">
             <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
@@ -69,7 +69,7 @@
         </div>
         
         <%% else: %>
-        <div class="col-md-4 col-md-offset-4 albumInfo__description">
+        <div class="col-md-4 albumInfo__description">
           <%% if @description: %>
             <%%= @description %>
           <%% end %> 
