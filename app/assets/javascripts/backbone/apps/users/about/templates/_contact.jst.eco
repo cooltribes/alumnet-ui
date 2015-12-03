@@ -11,7 +11,7 @@
     <span class="icon-entypo-yahoo"></span> <div id="js-link-yahoo" class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type== 4: %>
-  <span class="icon-entypo-facebook"></span><div id="js-link-fb" class="metaInfoCard__contact overfloadText"><%= @info %></div> 
+  <span class="icon-entypo-facebook"></span><div id="js-link-fb" class="metaInfoCard__contact overfloadText"><%= @info %></div>
 <% end %>
 <% if @contact_type==5: %>
   <span class="icon-entypo-twitter"></span><div id="js-link-tw" class="metaInfoCard__contact overfloadText"><%= @info %></div>
@@ -36,3 +36,4 @@
   <select class="pull-right metaInfoCard__contact__select" name="privacy"></select>
 
 <% end %>
+
