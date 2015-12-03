@@ -180,7 +180,7 @@
     selectCompany: (element, initialValue)->
       view = @
       Backbone.ajax
-        url: AlumNet.api_endpoint + "/companies"
+        url: AlumNet.api_endpoint + "/companies/all"
         success: (data)->
           element.select2
             placeholder: "Select a Company"
