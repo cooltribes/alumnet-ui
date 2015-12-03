@@ -1,7 +1,7 @@
 @AlumNet.module 'AdminApp.UserShow', (UserShow, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class UserShow.StatisticsGraph extends Marionette.ItemView
-    template: 'admin/users/show/templates/_statistics_graph'
+  class UserShow.UserGraphs extends Marionette.ItemView
+    template: 'admin/users/show/templates/_influence_graph'
     className: 'container'
 
     ui:
@@ -14,17 +14,7 @@
     onRender: ->
       bar_graph = new AlumNet.Utilities.GoogleChart
         chartType: 'BarChart',
-        dataTable: @statistics.bar_data
-        options:
-          'legend': {'position': 'bottom', 'alignment':'center'}
-          'height': 270
-          animation:
-            duration: 1000
-            easing: 'out'
-            startup: true
-      column_graph = new AlumNet.Utilities.GoogleChart
-        chartType: 'ColumnChart',
-        dataTable: @statistics.column_data
+        dataTable: @total
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 270
@@ -33,27 +23,38 @@
             easing: 'out'
             startup: true
 
+      column_graph = new AlumNet.Utilities.GoogleChart
+        chartType: 'ColumnChart',
+        dataTable: @detail
+        options:
+          'legend': {'position': 'bottom', 'alignment':'center'}
+          'height': 270
+          animation:
+            duration: 1000
+            easing: 'out'
+            startup: true
 
       @ui.bar_graph_container.showAnimated(bar_graph.render().el)
       @ui.column_graph_container.showAnimated(column_graph.render().el)
 
-  class UserShow.StatisticsData extends Marionette.ItemView
-    template: 'admin/users/show/templates/_statistics_data'
-    className: 'container'
-
+  class UserShow.InfluenceGraph extends UserShow.UserGraphs
     initialize: (options)->
-      @statistics = options.statistics.bar_data
+      @statistics = options.statistics
+      @total = @statistics.influence_total
+      @detail = @statistics.influence_detail
 
-    templateHelpers: ->
-      statistics: @statistics
-
+  class UserShow.ActivityGraph extends UserShow.UserGraphs
+    initialize: (options)->
+      @statistics = options.statistics
+      @total = @statistics.activity_total
+      @detail = @statistics.activity_detail
 
   class UserShow.Statistics extends Marionette.LayoutView
     template: 'admin/users/show/templates/statistics'
     className: 'container'
     regions:
-      statsGraph: '#graph'
-      statsData: '#data'
+      influenceGraph: '#influence-graph'
+      activityGraph: '#activity-graph'
 
     initialize: ->
       @init_date = moment().subtract(7, 'days').format("DD-MM-YYYY")
@@ -99,12 +100,12 @@
         url: AlumNet.api_endpoint + "/admin/users/#{@model.id}/statistics"
         data: data
         success: (data, response)->
-          dataView = new UserShow.StatisticsData
+          influenceView = new UserShow.InfluenceGraph
             statistics: data
-          graphView = new UserShow.StatisticsGraph
+          activityView = new UserShow.ActivityGraph
             statistics: data
-          view.statsData.show(dataView)
-          view.statsGraph.show(graphView)
+          view.influenceGraph.show(influenceView)
+          view.activityGraph.show(activityView)
 
     reloadStatistics: (e)->
       e.preventDefault()
