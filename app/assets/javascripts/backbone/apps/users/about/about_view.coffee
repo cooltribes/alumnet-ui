@@ -148,6 +148,12 @@
             slide: (event, ui) ->
               levelTextItem.text(textLevel[ui.value])
               levelValue.val(ui.value)
+              $(this).find('#bar').removeClass("bar__1")
+              $(this).find('#bar').removeClass("bar__2")
+              $(this).find('#bar').removeClass("bar__3")
+              $(this).find('#bar').removeClass("bar__4")
+              $(this).find('#bar').removeClass("bar__5")
+              $(this).find('#bar').addClass("bar__"+ui.value)
 
           #Render the list of languages
           dropdown = $("[name=language_id]", $(@el))
