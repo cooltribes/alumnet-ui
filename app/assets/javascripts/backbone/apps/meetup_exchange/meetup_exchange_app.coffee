@@ -33,8 +33,11 @@
       controller.invitations()
     createMeetupExchange: ->
       document.title = 'AlumNet - Create New Meetup'
-      controller = new MeetupExchangeApp.Create.Controller
-      controller.create()
+      if AlumNet.current_user.get("profinda_api_token")
+        controller = new MeetupExchangeApp.Create.Controller
+        controller.create()
+      else
+        AlumNet.getProfindaApiToken()
     updateMeetupExchange: (id)->
       controller = new MeetupExchangeApp.Create.Controller
       controller.update(id)
