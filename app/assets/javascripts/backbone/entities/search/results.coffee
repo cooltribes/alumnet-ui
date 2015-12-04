@@ -11,12 +11,13 @@
         when "group", "event"
           @source.cover.main.url
         when "company"
-          @source.logo.main.url
-          ###when "event"
-          @source.logo.main.url
-          ### 
+          @source.logo.main.url          
         when "task"
           null
+
+    getUrl: ->
+      null
+      
 
     getTitle: ->
       @source.name    
@@ -62,12 +63,19 @@
     ## ------- Functions only for companies
     isCompany: ->
       @getType() == "company"
-         
     getIndustry: ->
       return null if !@isCompany()
 
       @source.sector.name
 
+    ## ------- Functions only for events
+    isEvent: ->
+      @getType() == "event"
+         
+    getEventStart: ->
+      return null if !@isEvent()
+      
+      moment(@source.start_date).format('DD/MM/YYYY') + ", " + @source.start_hour
 
 
 
