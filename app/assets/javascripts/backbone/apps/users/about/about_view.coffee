@@ -110,6 +110,35 @@
       #Types of modal (0-Skill, 1-Lang, 2-contc)
       @type = options.type
 
+    events:
+      'click #js-contact-type': 'contactClicked'
+
+    contactClicked: (e)->
+      console.log "Presiono select"
+      value = $("#js-contact-type").val()
+      $("#info").attr("placeholder", "")
+      if value == "2"
+        $("#info").attr("placeholder", "Skype user")
+        $("#info").attr("title", "Skype user")
+      if value == "3"
+        $("#info").attr("placeholder", "For example example@yahoo.com")
+        $("#info").attr("title", "example@yahoo.com")
+      if value == "4"
+        $("#info").attr("placeholder", "For example AIESEC.Alumni.International")
+        $("#info").attr("title", "For example AIESEC.Alumni.International")
+      if value == "5"
+        $("#info").attr("placeholder", "For example @AIESECAlumniInt")
+        $("#info").attr("title", "For example @AIESECAlumniInt")
+      if value == "7"
+        $("#info").attr("placeholder", "For example http://alumnet.aiesec-alumni.org/")
+        $("#info").attr("title", "For example http://alumnet.aiesec-alumni.org/")
+      if value == "8"
+        $("#info").attr("placeholder", "For example https://www.linkedin.com/company/aiesec")
+        $("#info").attr("title", "For example https://www.linkedin.com/company/aiesec")
+      if value == "9"
+        $("#info").attr("placeholder", "user@example.com")
+        $("#info").attr("title", "user@example.com")
+
     onRender: ->
       switch @type
         when 0
@@ -148,6 +177,12 @@
             slide: (event, ui) ->
               levelTextItem.text(textLevel[ui.value])
               levelValue.val(ui.value)
+              $(this).find('#bar').removeClass("bar__1")
+              $(this).find('#bar').removeClass("bar__2")
+              $(this).find('#bar').removeClass("bar__3")
+              $(this).find('#bar').removeClass("bar__4")
+              $(this).find('#bar').removeClass("bar__5")
+              $(this).find('#bar').addClass("bar__"+ui.value)
 
           #Render the list of languages
           dropdown = $("[name=language_id]", $(@el))
@@ -810,11 +845,12 @@
 
     ui:
       "facebook":"#js-link-fb"
-      "twitter":"#js-link-tw"
+      "twitter":".js-link-tw"
       "web":".js-link-web"
       "yahoo":"js-link-yahoo"
       "email":"js-link-email"
       "mail":"js-link-mail"
+      "linkedin":".js-link-linkedin"
 
     events:
       "click .js-rmvRow": "removeItem"
@@ -860,6 +896,7 @@
       @ui.yahoo.linkify()
       @ui.email.linkify()
       @ui.mail.linkify()
+      @ui.linkedin.linkify()
 
 
   class About.ContactsView extends Marionette.CollectionView

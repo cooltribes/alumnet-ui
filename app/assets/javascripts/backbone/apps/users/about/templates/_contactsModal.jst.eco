@@ -5,17 +5,17 @@
 <div class="bbm-modal__section">
   <form>    
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-9">
         <label for="inputName">Contact</label>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <label for="inputName">Privacy Settings</label>
       </div>
     </div>
     <div class="row formANet__removableRow">
       <div class="col-md-3">
         <div class="form-group">
-          <select name="contact_type" class="form-control input-lg">
+          <select name="contact_type" class="form-control input-lg" id="js-contact-type">
             <option value="">-Select-</option>
             <option value="9">Email</option>
             <option value="1">Phone</option>
@@ -31,14 +31,14 @@
         </div>
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div class="form-group">
-          <input type="text" class="form-control input-lg" name="info" placeholder="">
+          <input type="text" class="form-control input-lg" name="info" id="info" style="font-size:13px;">
           <span class="help-block"></span>
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="form-group">
           <select name="privacy" class="form-control input-lg">
             <option value="0">Only me</option>

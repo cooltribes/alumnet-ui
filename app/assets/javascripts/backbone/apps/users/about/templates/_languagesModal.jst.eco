@@ -18,7 +18,9 @@
       <div class="col-md-4 handles-container">
         <!--  The div that is used as the slider container  -->
         <label class="control-label margin_bottom_small" for="slider">Level</label>
-        <div id="slider" style="margin-top:0;"></div>
+        <div id="slider" style="margin-top:0;">
+          <div id ="bar" class="bar__3 ui-slider-range ui-widget-header ui-slider-range-min" style="height: 100%;"></div>
+        </div>
         
         <!--  The div that is used to display the slider value  -->
         <div id="level" style="color:#777;font-size:15px;text-align:center;"></div>
