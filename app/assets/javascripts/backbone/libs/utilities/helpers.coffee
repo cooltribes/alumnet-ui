@@ -50,3 +50,11 @@
           self.results = response
           if callback
             callback(response)
+
+  AlumNet.getProfindaApiToken = ->
+    Backbone.ajax
+      url: AlumNet.api_endpoint + '/me/profinda_token'
+      success: (data)->
+        AlumNet.current_user.set('profinda_api_token', data.profinda_api_token)
+      error: (response)->
+        $.growl.error(message: "Matching Conection Error")

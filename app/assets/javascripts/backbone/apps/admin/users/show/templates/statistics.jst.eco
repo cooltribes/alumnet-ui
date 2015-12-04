@@ -27,5 +27,10 @@
 
   </div>
 </div>
-<div id="graph"></div>
-<div id="data"></div>
+<div class="row">
+<h3>Influence</h3>
+<div id="influence-graph"></div>
+
+<h3>Activity</h3>
+<div id="activity-graph"></div>
+</div>
