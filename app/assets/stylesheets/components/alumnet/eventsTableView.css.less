@@ -148,7 +148,7 @@ DESCRIPTION: CSS for styling a list of events
 
   &__isAdmin{
     background: #777;
-    font-size: 1.3em;
+    font-size: 12px;
     color: #fff;
     display: inline;
 
@@ -157,18 +157,20 @@ DESCRIPTION: CSS for styling a list of events
       border-right: 3px solid #fff;
     }
     &--right{
-      padding: 10px 70px;
+      padding: 10px 25px;
     }
 
     &--rightMyevents{
-      padding: 10px 30px;
+      padding: 10px 25px;
     }
 
     &--paddingCancel{
-      padding: 11px;
+      padding: 10px;
       margin-top: -5px;
       border-left: 3px solid;
-
+      background-color: #C9302C;
+      border-color: #AC2925;
+      color: @white;
     }
 
     &:hover,&:focus{
@@ -176,7 +178,45 @@ DESCRIPTION: CSS for styling a list of events
     }
   }
 
-  &__isAdmincancel{
+    &__isAdminCancel{
+    
+    font-size: 12px;
+    color: #fff;
+    display: inline;
+
+    &--right{
+      padding: 10px 25px;
+
+    }
+
+    &--rightMyevents{
+      padding: 10px 25px;
+    }
+
+    &--paddingCancel{
+      padding: 10px;
+      margin-top: -5px;
+      background-color: #d9534f;
+      border-color: #AC2925;
+      color: @white;
+      margin-left: 3px;
+    }
+
+
+    &--paddingCancel:hover{
+
+      background-color: #C9302C;
+      border-color: #AC2925;
+      color: @white;
+    }
+    
+
+    &:hover,&:focus{
+      text-decoration: none;
+    }
+  }
+
+  &__isAdminDelete{
 
     font-size: 1.3em;
     color: #fff;
@@ -212,41 +252,30 @@ DESCRIPTION: CSS for styling a list of events
   font-size: 2.2em;
 }
 
-@media (min-width: @media-xsmall-max) {
+
+@media (min-width: @media-smallest) {
+  .eventsTableView{
+    padding-bottom:0.5em;
+  }
+}
+@media (min-width: @media-smallweb) {
 
 .eventsTableView{
 
-  &__isAdmincancel{
+  &__isAdmin{
 
-    margin-left: -4px;
+    font-size: 14px;
   }
-}
+  &__isAdminCancel{
 
-}
-
-
-
-@media (min-width: @media-medium-max) {
-
-.eventsTableView{
-
-  &__isAdmincancel{
-
-    margin-left: 124px;
+    font-size: 14px;
   }
-}
-
 
 }
 
-
-
-@media (min-width: @media-large-min){
-.eventsTableView{
-
-  &__isAdmincancel{
-
-    margin-left: 174px;
+}
+@media (min-width: @media-smedium-min) {
+  .eventsTableView{
+    padding-bottom:0px;
   }
-}
 }
