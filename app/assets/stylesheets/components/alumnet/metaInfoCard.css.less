@@ -174,7 +174,13 @@ DESCRIPTION: this cards group information about the user and will mainly appear 
               top:0px;
             }
           }
+      &__contact{
+
+        &__select{
+          width: 63px;
+        }
       }
+  }
 }
 
 /* Large devices (large desktops, 1200px and up) */
@@ -194,6 +200,23 @@ DESCRIPTION: this cards group information about the user and will mainly appear 
               width: 100%;
             }
           }
+        &__contact{
+
+          &__select{
+            width: 95px;
+          }
+        }
       }
 }
+@media (min-width: @media-mlarge-min) {
+  
+.metaInfoCard {
 
+        &__contact{
+
+          &__select{
+            width: 100px;
+          }
+        }
+      }
+}

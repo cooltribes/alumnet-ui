@@ -129,6 +129,9 @@
       if value == "5"
         $("#info").attr("placeholder", "For example @AIESECAlumniInt")
         $("#info").attr("title", "For example @AIESECAlumniInt")
+      if value == "6"
+        $("#info").attr("placeholder", "IRC user")
+        $("#info").attr("title", "IRC user")
       if value == "7"
         $("#info").attr("placeholder", "For example http://alumnet.aiesec-alumni.org/")
         $("#info").attr("title", "For example http://alumnet.aiesec-alumni.org/")
@@ -138,6 +141,10 @@
       if value == "9"
         $("#info").attr("placeholder", "user@example.com")
         $("#info").attr("title", "user@example.com")
+        $("#info").attr("type", "email")
+
+      console.log value
+
 
     onRender: ->
       switch @type
@@ -885,6 +892,9 @@
         @model.destroy()
 
     modelChange: (e)->
+      @model.save()
+
+    email: (e)->
       @model.save()
 
     onRender: ->
