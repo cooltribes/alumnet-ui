@@ -8,6 +8,7 @@
       @results_collection = new AlumNet.Entities.SearchResultCollection null,
         search_term: search_term
       @results_collection.fetch()
+      console.log @results_collection
 
       layoutView = @_getLayoutView()
       results_view = @_getResultsView()
@@ -21,10 +22,9 @@
       view = new Results.Layout
         search_term: @search_term
 
-      ### view.on "search", @_applySearch, @
-            view.on "advancedSearch", @_applyAdvancedSearch, @
-            view.on "changeGrid", @_changeGrid, @
-      ###
+      view.on "filter_type", (type)->
+        @results_collection.filter_type(type)
+      , @  
           
     _getResultsView: ->
       view = new Results.ResultsListView

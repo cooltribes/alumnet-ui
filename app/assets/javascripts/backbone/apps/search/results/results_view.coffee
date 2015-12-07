@@ -7,6 +7,9 @@
     regions:
       results: '#results-region'
 
+    events:
+      "click .js-typefilter": "filter_type"
+
     initialize: (options)->
       @classes = {
         "all": " sortingMenu__item__link--active"
@@ -18,8 +21,21 @@
         
     templateHelpers: ->
       active: (value)=>
-        @classes[value]  
-      search_term: @search_term    
+        @classes[value]
+
+      search_term: @search_term
+
+    filter_type: (e)->
+      e.preventDefault()
+      target = $(e.currentTarget)
+      
+      @activateOption(target)
+
+      @trigger "filter_type", target.attr("data-result-type")  
+
+    activateOption: (element)->
+      @$(".js-typefilter").removeClass("sortingMenu__item__link--active")
+      element.addClass("sortingMenu__item__link--active")
 
 
   class Results.ResultView extends Marionette.CompositeView
@@ -37,6 +53,8 @@
       description: @model.getDescription()
       eventStart: @model.getEventStart()
       url: @model.getUrl()
+
+
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'
@@ -45,5 +63,3 @@
     emptyViewOptions: 
       message: "There is no results for your search"
     childViewContainer: '.results-list'
-
-    

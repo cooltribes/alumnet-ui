@@ -63,10 +63,11 @@
     ## ------- Functions only for companies
     isCompany: ->
       @getType() == "company"
+
     getIndustry: ->
       return null if !@isCompany()
 
-      @source.sector.name
+      if @source.sector then @source.sector.name else null
 
     ## ------- Functions only for events
     isEvent: ->
@@ -83,6 +84,7 @@
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
     search_term: ""
+    type: "all"
     url: ->
       AlumNet.api_endpoint + '/search?term=' + @search_term
 
@@ -91,3 +93,12 @@
 
     changeSearchTerm: (search_term)->
       @search_term = search_term
+
+    filter_type: (type)->
+      @type = type
+
+      @fetch(
+        data: 
+          type: @type
+      )
+
