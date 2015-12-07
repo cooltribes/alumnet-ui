@@ -269,18 +269,18 @@
           class_link = ''
           html = ""
           if (that.collection.state.totalPages > 1)
-            html = '<nav><ul class="pagination"><li><span id="prevButton" style="display:none"><a href="#admin/users">Prev</a><span class="sr-only"></span></span></li>'
+            html = '<nav><ul class="pagination"><li><a href="#admin/users" id="prevButton" >Prev</a></li>'
             for page in [1..that.collection.state.totalPages]
               if (page == 1)
                 class_li = "active"
-                class_link = "paginationUsers"
+                class_link = "paginationUsers "
               else
                 class_li = ""
                 class_link = ""
 
-              html += '<li class= "'+class_li+'" id='+page+'><span class="page_button"  ><a class= "'+class_link+'" href="#admin/users" id="link_'+page+'">'+page+'</a><span class="sr-only"></span></span></li>  '
+              html += '<li class= "'+class_li+'" id='+page+'><a class= "page_button" href="#admin/users" id="link_'+page+'">'+page+'</a></li>  '
 
-            html += '<li><span id="nextButton"><a href="#admin/users">Next</a><span  class="sr-only"></span></span></li></ul></nav>'
+            html += '<li><a href="#admin/users" id="nextButton">Next</a></li></ul></nav>'
           html
 
 
