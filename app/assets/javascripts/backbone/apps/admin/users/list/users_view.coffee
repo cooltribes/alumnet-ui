@@ -297,6 +297,8 @@
         { attribute: "member", type: "option", values: [{value: 0, text: "Regular"}, {value: 1, text: "Member (1 year)"}, {value: 2, text: "Member(<= 30 days)"}, {value: 3, text: "Lifetime"}] }
         { attribute: "created_at", type: "date", values: "" }
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
+        { attribute: "profile_register_step", type: "option", values: [{value: 0, text: "Basic Information"}, {value: 1, text: "Languajes and Skills"}, {value: 2, text: "Aiesec Experiences"}, {value: 3, text: "Completed"}] }
+        { attribute: "sign_in_count", type: "numeric", values: "" }
       ])
 
     ui:
