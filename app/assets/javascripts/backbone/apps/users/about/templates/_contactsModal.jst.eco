@@ -28,14 +28,14 @@
             <option value="7">Web Site</option>
             <option value="8">LinkedIn</option>
           </select>
-          <span class="help-block"></span>
+          <span class="help-block" id="js-help-select"></span>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
           <input type="text" class="form-control input-lg" name="info" id="info" style="font-size:13px;">
-          <span class="help-block"></span>
+          <span class="help-block" id="js-help-info"></span>
         </div>
       </div>
 

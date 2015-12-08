@@ -110,12 +110,41 @@
       #Types of modal (0-Skill, 1-Lang, 2-contc)
       @type = options.type
 
+    IsEmail: (email)->
+      emailReg = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+      return emailReg.test(email)
+
+    IsYahoo: (email)->
+      emailReg = /^([a-zA-Z0-9_.+-])+\@((yahoo)+\.)+([a-zA-Z0-9]{2,4})+(\.([a-zA-Z0-9]{1,2}))?$/
+      return emailReg.test(email)
+
+    IsLink: (link)->
+      linkReg = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/  
+      return linkReg.test(link)
+
+    IsLinkedIn: (link)->
+    
+      linkedInReg = /^(https?:\/\/)+((www.)|([a-z\.]{2,6}))?(linkedin\.com)+([\/\w \?=.-]*)*\/?$/
+      return linkedInReg.test(link)      
+
     events:
       'click #js-contact-type': 'contactClicked'
 
     contactClicked: (e)->
-      console.log "Presiono select"
+
       value = $("#js-contact-type").val()
+      elementContacType = this.$("[name=contact_type]")
+      group = elementContacType.closest('.form-group')
+      group.removeClass('has-error')
+
+      elementInfo = this.$("[name=info]")
+      group = elementInfo.closest('.form-group')
+      group.removeClass('has-error')
+      elementInfo.val("")
+      
+      $("#js-help-select").html("")
+      $("#js-help-info").html("")
+
       $("#info").attr("placeholder", "")
       if value == "2"
         $("#info").attr("placeholder", "Skype user")
@@ -141,11 +170,7 @@
       if value == "9"
         $("#info").attr("placeholder", "user@example.com")
         $("#info").attr("title", "user@example.com")
-        $("#info").attr("type", "email")
-
-      console.log value
-
-
+  
     onRender: ->
       switch @type
         when 0
@@ -196,6 +221,8 @@
           content = AlumNet.request("languages:html")
           dropdown.html(content)
 
+    
+
     beforeSubmit: ()->
       #Validations
       switch @type
@@ -216,18 +243,57 @@
             false
 
         when 2
+
           data = Backbone.Syphon.serialize this
+          type = $("#js-contact-type").val()
+          info = $("#info").val()
+          element = this.$("[name=info]")
+          group = element.closest('.form-group')
+          $("#js-help-select").html("")
+          $("#js-help-info").html("")
+
           if !data.contact_type
             element = this.$("[name=contact_type]")
             group = element.closest('.form-group')
             group.addClass('has-error')
+            $("#js-help-select").html("Select an option")
             return false
 
           if !data.info
             element = this.$("[name=info]")
             group = element.closest('.form-group')
             group.addClass('has-error')
+            $("#js-help-info").html("Field is empty")
             return false
+
+          if type == "3"
+            if !(@IsYahoo(info))              
+              group.addClass('has-error')
+              $("#js-help-info").html("Yahoo email is incorrect")
+              return false
+          if type == "5"
+            if info.charAt(0) !="@"
+              group.addClass('has-error')
+              $("#js-help-info").html("Twitter username is incorrect")
+              return false 
+          if type == "7"
+            if !(@IsLink(info))
+              group.addClass('has-error')
+              $("#js-help-info").html("Web site is incorrect")
+              return false
+
+          if type == "8"
+            if !(@IsLinkedIn(info))
+              group.addClass('has-error')
+              $("#js-help-info").html("Linkedin link is incorrect")
+              return false
+
+          if type == "9"
+            if !(@IsEmail(info))
+              group.addClass('has-error')
+              $("#js-help-info").html("Email is incorrect")
+              return false
+
 
     submit: ()->
       switch @type
@@ -238,6 +304,7 @@
             @view.trigger "submit", data
 
         when 1, 2
+          console.log "aqui 2"
           data = Backbone.Syphon.serialize this
           @view.trigger "submit", data
 
@@ -738,8 +805,6 @@
         view: this
         type: 1
         model: @model.profile
-
-
 
       @ui.modalCont.html(modal.render().el)
 
