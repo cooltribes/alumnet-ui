@@ -31,7 +31,7 @@
 
     initialize: ->
       document.title = " AlumNet - Registration"
-      @layout = options.layout  
+      @layout = options.layout
 
     onShow: ->
       view = @
@@ -73,9 +73,9 @@
 
     buildQuerySearch: (data) ->
       q:
-        m: 'and'
-        profile_residence_country_id_eq: data.residence_country_id
-        profile_first_name_or_profile_last_name_or_email_cont: data.search_term
+        m: 'or'
+        profile_first_name_or_profile_last_name_or_email_cont_any: data.search_term.split(" ")
+        # profile_residence_country_id_eq: data.residence_country_id
 
     formatContact: (contacts)->
       view = @
