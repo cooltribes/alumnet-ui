@@ -269,7 +269,7 @@
           class_link = ''
           html = ""
           if (that.collection.state.totalPages > 1)
-            html = '<nav><ul class="pagination"><li><a href="#admin/users" id="prevButton" >Prev</a></li>'
+            html = '<nav><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
             for page in [1..that.collection.state.totalPages]
               if (page == 1)
                 class_li = "active"
