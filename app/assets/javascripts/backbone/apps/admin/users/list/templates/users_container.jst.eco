@@ -29,6 +29,8 @@
                   <option value="member">Membership</option>
                   <option value="created_at">Joining date</option>
                   <option value="profile_experiences_committee_name">Local Committee</option>
+                  <option value="profile_register_step">Register step</option>
+                  <option value="sign_in_count">Login count</option>
                 </select>
                 <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
                 <span class="help-block"></span>

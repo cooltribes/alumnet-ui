@@ -31,12 +31,13 @@
 <td class="hidden-xs hidden-sm"><%= @getJoinTime() %></td>
 <td class="hidden-xs hidden-sm"><%= @getGender() %></td>
 <td class="hidden-xs hidden-sm"><%= @getAge() %></td>
-<td class="" > 
+<td class="" >
 <%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
 <td class="hidden-xs" ><%= @getRoleText %></td>
 <td class="hidden-xs hidden-sm"><%= @getLastSignIn() %></td>
 <td class="hidden-xs hidden-sm"><%= @sign_in_count %></td>
 <td class="hidden-xs">
+<!-- TODO: review this code :dani :diana -->
   <% if @getRegisterStep() == "basic_information": %>
     (1) Basic Information
   <% end %>
