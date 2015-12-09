@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <div id="companies-container" class="row">
+  <div id="companies-container" class="row company__containerMin">
 
     
   </div>
-  <div class="text-center"><span class="throbber-loader"></span></div>
+  <div class="col-md-12 col-sm-12 col-xs-12 text-center"><span class="throbber-loader"></span></div>
 </div>
 
