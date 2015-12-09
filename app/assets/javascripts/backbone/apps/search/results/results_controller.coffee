@@ -8,7 +8,6 @@
       @results_collection = new AlumNet.Entities.SearchResultCollection null,
         search_term: search_term
       @results_collection.fetch()
-      console.log @results_collection
 
       layoutView = @_getLayoutView()
       results_view = @_getResultsView()

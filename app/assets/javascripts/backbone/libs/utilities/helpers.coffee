@@ -61,6 +61,8 @@
 
    @params from_elasticsearch Indicates if the model is returned from API as a source
    of elasticsearch. if false then the model is a backbone model (using "get" for attributes)
+
+   nramirez!
   ###
 
   AlumNet.parseLocation = (type = "", model = {}, from_elasticsearch = false)->
@@ -91,4 +93,49 @@
         location = "No Location"              
       
     return location
+
+
+  ###
+  This function is responsible for building the respective url of each model 
+  to be used as the path in the application UI
+   
+  nramirez!
+  ###
+
+  AlumNet.buildUrlFromModel = (model = {})->
+  # AlumNet.buildUrlFromModel = (type = "", id = null, model = {})->
+    # return null if type == "" or !id or model == {}
+    return null if model == {}
+    
+    url = ""
+    page = "posts"
+    location = model.get('_index')
+    id = model.get("_id")
+    
+    switch location
+      when "profiles"
+        location = "users"
+
+      when "tasks"
+        location = "business-exchange"
+        page = ""                
+      
+      when "companies"
+        page = "about"                      
+      
+      when null
+        page = null     
+      
+      else
+
+
+    if page == null
+      url = null
+    else
+      if page == ""
+        url = "#{location}/#{id}"
+      else
+        url = "#{location}/#{id}/#{page}"
+
+    return url
 

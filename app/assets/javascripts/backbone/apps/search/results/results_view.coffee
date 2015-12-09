@@ -42,7 +42,7 @@
     template: 'search/results/templates/_result'
 
     templateHelpers: ->
-      console.log @model.source
+      console.log @model
       
       industry: @model.getIndustry()
       image: @model.getImage()
@@ -54,12 +54,20 @@
       eventStart: @model.getEventStart()
       url: @model.getUrl()
 
+  class Results.EmptyView extends Marionette.ItemView
+    template: 'search/results/templates/_empty'  
 
+    initialize: (options)->
+      @message = options.message
+
+    templateHelpers: ->
+      message: @message   
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'
     childView: Results.ResultView
-    emptyView: AlumNet.Utilities.EmptyView
-    emptyViewOptions: 
-      message: "There is no results for your search"
     childViewContainer: '.results-list'
+
+    emptyView: Results.EmptyView
+    emptyViewOptions: ->
+      message: "There are no results for your search"

@@ -16,8 +16,7 @@
           null
 
     getUrl: ->
-      null
-      
+      AlumNet.buildUrlFromModel(@) #method implemented in libs/helpers                
 
     getTitle: ->
       @source.name    
