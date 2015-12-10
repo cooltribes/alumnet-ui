@@ -19,7 +19,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(receiptView)
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
         else
           layout = AlumNet.request('event:layout', event)
           header = AlumNet.request('event:header', event)
@@ -31,7 +31,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(paymentView)
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
 
       event.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

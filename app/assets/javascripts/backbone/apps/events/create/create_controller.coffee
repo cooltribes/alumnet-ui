@@ -7,7 +7,7 @@
         model: event
         user: user
       AlumNet.mainRegion.show(createForm)
-      AlumNet.execute('render:events:submenu')
+      #AlumNet.execute('render:events:submenu')
 
       createForm.on 'form:submit', (model, data)->
         if model.isValid(true)
@@ -30,4 +30,4 @@
         collection: users
         model: event
       AlumNet.mainRegion.show(usersView)
-      AlumNet.execute('render:events:submenu')
+      #AlumNet.execute('render:events:submenu')

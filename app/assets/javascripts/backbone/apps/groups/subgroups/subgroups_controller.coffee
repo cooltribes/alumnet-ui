@@ -11,7 +11,7 @@
             model: subgroup
             user: current_user
           AlumNet.mainRegion.show(createForm)
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
 
           createForm.on 'form:submit', (model, data)->
             if model.isValid(true)
@@ -43,7 +43,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(subgroupsView)
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
 
           #When join link is clicked
           subgroupsView.on 'childview:join', (childView) ->

@@ -1,44 +1,52 @@
 <header id="header" class="navTopBar navbar  navbar-fixed-top">
   <div class="navTopBar__container--top container-fluid">
     <!-- Top Bar -->
-  <div class="navbar-header col-md-2 hidden-xs">
+  <div class="navbar-header col-md-2 hidden-xs hidden-sm">
     <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="ico-menu"></span>
     </button>
-    <a class="navTopBar__left__brand navbar-brand " href="/#posts">
+    <a class="navTopBar__left__brand navbar-brand" href="/#posts">
      <%= image_tag("general/alumnet_logo.png", alt: "AlumNet") %>
     </a>
   </div>
 
-  <div class="navbar-header col-md-12 visible-xs">
-    <div class="col-xs-3">
+  <div class="navbar-header col-md-12 visible-xs visible-sm">
+    <div class="text-left">
       <a class="navTopBar__left__brand navbar-brand " href="/#posts">
         <%= image_tag("home/LogoMovilMenu.png", alt: "AlumNet", style: "height: 30px") %>
       </a>
     </div>
-    <div class="col-xs-3 pull-right">
-      <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse" id="menuButton">
-      <span class="ico-menu"></span>
-      </button>
-    </div>
-    <div class="col-xs-2 pull-right navTopBar__item--top">
-      <a href="#conversations" class="navTopBar__right__item navTopBar__item--right" title="Messages" title="Messages">
-          <span class="ico-chat"></span>
-          <span class="navTopBar__badge badge" id="js-messages-badge" style="margin-top: -15px">
-          <%%= @unread_messages_count %>
-          </span>
-      </a>
-    </div>
-    <div class="col-xs-2 pull-right">
-      <a href="#notifications" class="navTopBar__right__item navTopBar__item--right" title="Notifications">
-          <span class="glyphicon glyphicon-bell navTopBar__item--top"></span>
-          <span class="navTopBar__badge badge" id="js-notifications-badge">
+
+    <div class="text-right visible-xs">
+      <div class="menuNav">
+        <button class="navTopBar__mobileToggleBtn navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse" id="menuButton">
+        <span class="ico-menu"></span>
+        </button>
+      </div>
+
+      <div class="navTopBarMobile__item menuNavRight">
+        <!-- <a href="#" title="Search for..." id="searchIcon">
+          <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
+        </a> -->
+
+        <a href="#notifications" title="Notifications">
+          <span class="glyphicon glyphicon-bell" style="font-size: 20px;"></span>
+          <span class="navTopBarMobile__badge badge" id="js-notifications-badge">
           <%%= @unread_notifications_count  %>
           </span>
-      </a>
+        </a>
+
+        <a href="#conversations" title="Messages" title="Messages">
+          <span class="ico-chat"></span>
+          <span class="navTopBarMobile__badge badge" id="js-messages-badge">
+          <%%= @unread_messages_count %>
+          </span>
+        </a>
+
+      </div>
     </div>
   </div>
-
+   
   <nav class="navTopBar__left collapse navbar-collapse">
  <!--    Movil -->
     <ul class="navTopBar__left__list nav navbar-nav js-left-menu visible-xs">
@@ -84,7 +92,7 @@
           Groups
         </a>
       </li>
-        <li id="menuMovil">
+      <li id="menuMovil">
         <a class="navTopBar__left__itemMovilSubmenu" href="#groups/manage"  id="groupsLayoutOption" >
           <i class="ico-menu"></i>
           My Groups
@@ -95,7 +103,6 @@
           <i class="ico-calendar"></i>
           Events
         </a>
-      </li>
       </li>
       <li id="menuMovil">
         <a class="navTopBar__left__itemMovilSubmenu" href="#events/manage" id="eventsLayoutOption">
@@ -118,36 +125,57 @@
     </ul>
   <!-- End movil -->
 
-    <ul class="navTopBar__left__list nav navbar-nav js-left-menu hidden-xs">
+    <ul class="navTopBar__left__list nav navbar-nav js-left-menu leftNav">
       <!-- Left Menu top -->
-      <li>
-        <a class="navTopBar__left__item" href="#friends/find" id="alumniLayoutOption">
+      <li class="hidden-xs drophover">
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#friends/find" id="alumniLayoutOption">
           <i class="icon-entypo-user"></i>
-          Alumni
+          <span class="nameItemMenu">Alumni</span>
         </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#friends"><span class="ico-user"></span> My Friends</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#friends/find"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#approval-requests"><span class="ico-yes"></span> Approval Requests</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#friends/contacts"><span class="ico-new-invite"></span> Invite friends</a></li>
+        </ul>
       </li>
-      <li>
-        <a class="navTopBar__left__item" href="#groups" id="groupsLayoutOption" >
+      <li class="hidden-xs drophover">
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#groups" id="groupsLayoutOption" >
           <i class="icon-entypo-share"></i>
-          Groups
+          <span class="nameItemMenu">Groups</span>   
         </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/manage"><span class="icon-entypo-share"></span> My Groups</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/new"><span class="icon-entypo-plus"></span> Create a new group</a></li>
+        </ul>
       </li>
-      <li>
-        <a class="navTopBar__left__item" href="#events" id="eventsLayoutOption">
+      <li class="hidden-xs drophover">
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#events" id="eventsLayoutOption">
           <i class="ico-calendar"></i>
-          Events
+          <span class="nameItemMenu">Events</span>           
         </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#events/manage"><span class="ico-calendar"></span> My Events</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#events"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#events/new"><span class="icon-entypo-plus"></span> Create a event</a></li>
+        </ul>
       </li>
-      <li>
-        <a class="navTopBar__left__item" href="#companies">
+      <li class="hidden-xs drophover">
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#companies">
           <i class="icon-entypo-suitcase"></i>
-          Companies
+          <span class="nameItemMenu">Companies</span>           
         </a>
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#my-companies"><span class="icon-entypo-suitcase"></span> My Companies</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/new"><span class="icon-entypo-plus"></span> Add new Company</a></li>
+        </ul>
       </li>
       <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" id="programsLayoutOption">
           <i class="ico-give-help"></i>
-          Programs  <span class="icon-entypo-down-open"></span>
+          <span class="nameItemMenu">Programs</span>             
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="/#business-exchange/home"><span class="icon-entypo-bookmark"></span> Global Business Exchange </a></li>
@@ -156,24 +184,14 @@
           <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/home-exchange"><span class="icon-entypo-home"></span> Global Home Exchange</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/alumnite"><span class="icon-entypo-moon"></span>
           ALUMnite</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/a-groups"><span class="icon-entypo-users"></span>A-Groups</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/a-groups"><span class="icon-entypo-users"></span> A-Groups</a></li>
           <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/#companies"><span class="icon-entypo-users"></span>Business Directory</a></li>-->
         </ul>
       </li>
-      <!-- SEARCH INPUT -->
-      <div class="ui-widget">          
-          <input type="text" id="js-search-input" placeholder="Search for...">
-          
-            <button class="btn btn-primary js-globalsearch-btn" type="button">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </button>
-          
-      </div>
-      <!--  -->
     </ul>
 
 
-    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu hidden-xs">
+    <ul class="navTopBar__right__list nav navbar-nav  navbar-right js-right-menu">
       <!-- Right menu top -->
       <!-- <li> -->
         <!-- CART ICON -->
@@ -183,10 +201,21 @@
           <span class="totalPoints"><%%= @points %></span>
         </a>
       </li> -->
-      <li class="drophover">
+      <li class="visible-xs">
+      <!-- SEARCH INPUT -->
+        <div class="ui-widget searchMenu" id="js-searchBar">          
+          <input type="text" id="js-search-input" placeholder="Search for...">
+          <button class="btn btn-primary js-globalsearch-btn" type="button">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </div>
+      <!--  -->  
+      </li>
+
+      <li class="drophover hidden-xs">
         <!-- BELL ICON -->
-        <a href="#requests" class="navTopBar__right__item dropdown-toggle" title="Friend Requests" id="js-menu-friendship-notifications" style="padding: 19px 3px;">
-          <span class="iconNotification icon-entypo-users"></span>
+        <a href="#requests" class="navTopBar__right__item dropdown-toggle" title="Friend Requests" id="js-menu-friendship-notifications">
+          <span class="iconNotification  navTopBar__right__item__icon icon-entypo-users"></span>
           <span class="navTopBar__badge badge" id="js-friendship-notifications-badge">
           <%%= @unread_friendship_notifications_count  %>
           </span>
@@ -205,10 +234,10 @@
         </div>
         <!-- NOTIFICATIONS OFF -->
       </li>
-      <li class="drophover">
+      <li class="drophover hidden-xs">
         <!-- BELL ICON -->
         <a href="#notifications" class="navTopBar__right__item dropdown-toggle " title="Notifications" id="js-menu-notifications">
-          <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell navTopBar__left__item"></span>
+          <span class="navTopBar__right__item__icon--notificationsIcon glyphicon glyphicon-bell"></span>
           <span class="navTopBar__badge badge" id="js-notifications-badge">
           <%%= @unread_notifications_count  %>
           </span>
@@ -227,10 +256,10 @@
         </div>
         <!-- NOTIFICATIONS OFF -->
       </li>
-       <li class="drophover">
+      <li class="drophover hidden-xs">
         <!-- CHAT ICON -->
         <a href="#conversations" class="navTopBar__right__item dropdown-toggle" title="Messages" title="Messages" id="js-menu-messages">
-          <span class="navTopBar__right__item__icon ico-chat "></span>
+          <span class="navTopBar__right__item__icon ico-chat navTopBar__right__item__icon--iconChatSize"></span>
           <span class="navTopBar__badge badge" id="js-messages-badge">
           <%%= @unread_messages_count %>
           </span>
@@ -246,19 +275,21 @@
         </div>
         <!-- MESSAGES OFF -->
       </li>
-      <li>
+      <li class="visible-lg">
       <%% if @member==0: %>
-        <a href="#premium" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>">
+        <a href="#premium" class="navTopBar__right__item--membershipWrapper member " title="<%%= @memberTitle()%>">
           <span class=" navTopBar__right__item--becomeAMember">
-            Become a member
-            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
+            <div class="row">
+              <div class="col-md-6 text-center">Become a member</div>
+              <div class="col-md-6"><img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar"></div>
+            </div>
           </span>
         </a>
       <%% else: %>
         <%% if @member==2: %>
-          <a href="#premium" class="navTopBar__right__item navTopBar__right__item--membershipWrapper" title="<%%= @memberTitle()%>" style="padding-left: 60px;">
+          <a href="#premium" class="navTopBar__right__item--membershipWrapper member" title="<%%= @memberTitle()%>" style="padding-left: 60px;">
             <span class=" navTopBar__right__item--renew">
-               Renew membership
+               Renew
               <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
             </span>
             <span class=" navTopBar__right__item--counter">
@@ -268,7 +299,7 @@
             </span>
           </a>
         <%% else: %>
-          <a href="" class="navTopBar__right__item navTopBar__right__item--membershipWrapper " title="<%%= @memberTitle()%>">
+          <a href="" class="navTopBar__right__item--membershipWrapper member " title="<%%= @memberTitle()%>">
           <span class=" navTopBar__right__item--member">
           <span class="glyphicon glyphicon-certificate"></span>
           <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
@@ -277,9 +308,10 @@
         <%% end %>
       <%% end %>
       </li>
-      <li class="drophover">
+      <li class="drophover hidden-xs">
         <a class="navTopBar__right__item--arrow dropdown-toggle" href="#" title="Profile settings">
-          <span class="icon-entypo-down-open"></span>
+          <span class="icon-entypo-down-open visible-lg"></span>
+          <span class="ico-menu hidden-lg"></span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="profileoptions" id="accountList">
 

@@ -25,5 +25,5 @@
           layout.body.show(body)
           body.table.show(bannerTable)
           body.create.show(createBanner)
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
            

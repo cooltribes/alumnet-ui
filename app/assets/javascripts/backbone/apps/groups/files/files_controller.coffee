@@ -12,7 +12,7 @@
           layout = AlumNet.request "group:layout", group, 6 #Show "Files" tab active
           header = AlumNet.request "group:header", group
           
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
 
           # render the layouts first
           AlumNet.mainRegion.show(layout)

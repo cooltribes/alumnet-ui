@@ -69,6 +69,8 @@
       'click #accountList li' : 'accountDropdownClicked'
       'click @ui.searchBtn' : 'searchInAlumNet'
       'keypress @ui.searchInput' : 'keypressSearch'
+      'focus @ui.searchInput' : 'focusSearchBar'
+      'blur @ui.searchInput' : 'blurSearchBar'
 
     ui:
       'messagesBadge': '#js-messages-badge'
@@ -79,6 +81,7 @@
       'requestsMarkAll': '#js-friendship-notifications-mark-all'
       'avatarImg': '#header-avatar'
       'searchInput': '#js-search-input'
+      'searchBar': '#js-searchBar'
       'searchBtn': '.js-globalsearch-btn'
 
     changePoints: ->
@@ -125,6 +128,12 @@
         if(model.get('member')==3)
           return "Lifetime member"
         return "Not a member"
+
+    focusSearchBar: (e)-> 
+      @ui.searchBar.addClass("wideBar")
+
+    blurSearchBar: (e)-> 
+      @ui.searchBar.removeClass("wideBar")
 
     keypressSearch: (e)->
       if e.keyCode == 13

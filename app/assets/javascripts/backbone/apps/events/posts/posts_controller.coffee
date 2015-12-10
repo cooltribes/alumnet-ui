@@ -27,7 +27,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(posts)
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
 
           posts.on "post:reload", ->
             ++posts.collection.page
@@ -81,7 +81,7 @@
                 model: post
 
               AlumNet.mainRegion.show(postView)
-              AlumNet.execute('render:events:submenu')
+              #AlumNet.execute('render:events:submenu')
             error: ->
               AlumNet.trigger('show:error', 404)
 

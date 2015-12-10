@@ -11,7 +11,7 @@
           layout = AlumNet.request("group:layout", group,2)
           header = AlumNet.request("group:header", group)
           membersLayout = new Members.MembersLayout
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
 
           # render the layouts firsts
           AlumNet.mainRegion.show(layout)

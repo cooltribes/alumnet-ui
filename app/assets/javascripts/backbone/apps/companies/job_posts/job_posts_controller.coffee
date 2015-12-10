@@ -18,7 +18,7 @@
           layout.header.show(header)
           layout.body.show(tasksView)
 
-          AlumNet.execute('render:companies:submenu',undefined, 1)
+          #AlumNet.execute('render:companies:submenu',undefined, 1)
 
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)

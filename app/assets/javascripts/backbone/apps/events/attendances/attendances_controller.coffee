@@ -20,7 +20,7 @@
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
           layout.body.show(attendancesView)
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
 
 
       event.on 'find:error', (response, options)->

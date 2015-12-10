@@ -11,7 +11,7 @@
             model: group
             collection: users
           AlumNet.mainRegion.show(usersView)
-          AlumNet.execute('render:groups:submenu')
+          #AlumNet.execute('render:groups:submenu')
           usersView.on "user:reload", ->
             querySearch = controller.querySearch
             ++usersView.collection.page

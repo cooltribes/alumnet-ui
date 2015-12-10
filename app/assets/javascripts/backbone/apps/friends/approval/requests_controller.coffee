@@ -4,7 +4,7 @@
 
       current_user = AlumNet.current_user
 
-      AlumNet.execute('render:friends:submenu',undefined, 3)
+      #AlumNet.execute('render:friends:submenu',undefined, 3)
 
       requestsCollection = AlumNet.request('current_user:approval:received')
 

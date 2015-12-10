@@ -52,7 +52,7 @@
 
       layout.body.show(requestsView)
 
-      AlumNet.execute('render:friends:submenu')
+      #AlumNet.execute('render:friends:submenu')
 
       requestsView.on 'childview:accept', (childView)->
         friendship = childView.model

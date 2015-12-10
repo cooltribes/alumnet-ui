@@ -16,7 +16,7 @@
         this.reset(models)
 
       AlumNet.mainRegion.show(usersView)
-      AlumNet.execute('render:friends:submenu',undefined, 1)
+      #AlumNet.execute('render:friends:submenu',undefined, 1)
 
       usersView.on "user:reload", ->
         querySearch = controller.querySearch

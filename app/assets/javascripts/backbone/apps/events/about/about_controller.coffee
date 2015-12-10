@@ -24,7 +24,7 @@
           layoutAbout.info.show(info)
           layoutAbout.map.show(map)
 
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
 
       event.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

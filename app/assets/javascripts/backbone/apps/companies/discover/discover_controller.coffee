@@ -2,7 +2,7 @@
   class Discover.Controller
 
     discover: ->
-      AlumNet.execute('render:companies:submenu', undefined, 0)
+      #AlumNet.execute('render:companies:submenu', undefined, 0)
 
       layout = @_getLayoutView()
       @list_view = @_getListView()
@@ -13,7 +13,7 @@
 
 
     myCompanies: ->
-      AlumNet.execute('render:companies:submenu', undefined, 1)
+      #AlumNet.execute('render:companies:submenu', undefined, 1)
 
       layout = @_getMyLayoutView()
       @list_view = @_getListView("my_companies")

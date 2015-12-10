@@ -1,7 +1,7 @@
 @AlumNet.module 'CompaniesApp.Create', (Create, @AlumNet, Backbone, Marionette, $, _) ->
   class Create.Controller
     create: ->
-      AlumNet.execute('render:companies:submenu', undefined)        
+      #AlumNet.execute('render:companies:submenu', undefined)        
       company = new AlumNet.Entities.Company
       createForm = new Create.Form
         model: company

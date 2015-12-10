@@ -9,7 +9,7 @@
         else if event.isSecret() && not event.userIsInvited()
           AlumNet.trigger('show:error', 404)
         else
-          AlumNet.execute('render:events:submenu')
+          #AlumNet.execute('render:events:submenu')
           
           layout = AlumNet.request("event:layout", event, 3)
           header = AlumNet.request("event:header", event)
