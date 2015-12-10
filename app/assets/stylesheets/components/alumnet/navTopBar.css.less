@@ -583,7 +583,23 @@ DESCRIPTION: Top navigation bar with menus
   font-size: 24px;
 }
 
+/*850px*/
+@media (min-width: @media-smmall-min) {
+  .wideBar{
+    input{
+      width: 280px;
+    }
+  }     
+}
 
+/*900px*/
+@media (min-width: @media-mediumm-min) {
+  .wideBar{
+    input{
+      width: 330px;
+    }
+  }     
+}
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
   .navTopBar{
@@ -598,7 +614,12 @@ DESCRIPTION: Top navigation bar with menus
           }
         }
       }
-  } 
+  }
+  .wideBar{
+    input{
+      width: 315px;
+    }
+  }  
 }
 
 /*1024px*/
@@ -675,7 +696,7 @@ DESCRIPTION: Top navigation bar with menus
     } 
   .wideBar{
     input{
-      width: 375px;
+      width: 350px;
     }
   }   
     
@@ -697,6 +718,24 @@ DESCRIPTION: Top navigation bar with menus
   }     
 }
 
+/*1400px*/
+@media (min-width: @media-mmlarge-min) {
+  .wideBar{
+    input{
+      width: 210px;
+    }
+  }     
+}
+
+/*1500px*/
+@media (min-width: @media-mxlarge-min) {
+  .wideBar{
+    input{
+      width: 295px;
+    }
+  }     
+}
+
 /*1600px*/
 @media (min-width: @media-xlarge-min) {
   .wideBar{
@@ -704,6 +743,16 @@ DESCRIPTION: Top navigation bar with menus
       width: 380px;
     }
   }     
+}
+
+
+/*1800px*/
+@media (min-width: @media-mxlarge-max) {
+  .wideBar{
+    input{
+      width: 540px;
+    }
+  }
 }
 
 /*1920*/
