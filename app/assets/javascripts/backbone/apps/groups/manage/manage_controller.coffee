@@ -6,7 +6,7 @@
       groupsView = new Manage.GroupsView
         collection: groups
       AlumNet.mainRegion.show(groupsView)
-      AlumNet.execute('render:groups:submenu',undefined, 0)
+      #AlumNet.execute('render:groups:submenu',undefined, 0)
 
       groupsView.on 'childview:click:leave', (childView)->
         membership = AlumNet.request("membership:destroy", childView.model)

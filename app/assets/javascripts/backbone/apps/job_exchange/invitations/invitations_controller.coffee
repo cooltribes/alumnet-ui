@@ -7,4 +7,4 @@
         collection: invitations
 
       AlumNet.mainRegion.show(invitationsView)
-      AlumNet.execute('render:job_exchange:submenu', undefined, 4)
+      #AlumNet.execute('render:job_exchange:submenu', undefined, 4)

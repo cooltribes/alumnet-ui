@@ -5,4 +5,4 @@
       eventsView = new Discover.EventsView
         collection: events
       AlumNet.mainRegion.show(eventsView)
-      AlumNet.execute('render:events:submenu', undefined, 1)
+      #AlumNet.execute('render:events:submenu', undefined, 1)

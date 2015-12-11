@@ -6,7 +6,7 @@
         model: task
 
       AlumNet.mainRegion.show(createForm)
-      AlumNet.execute('render:meetup_exchange:submenu')
+      #AlumNet.execute('render:meetup_exchange:submenu')
 
     update: (id)->
       current_user = AlumNet.current_user
@@ -19,7 +19,7 @@
               user: current_user
 
             AlumNet.mainRegion.show(createForm)
-            AlumNet.execute('render:meetup_exchange:submenu')
+            #AlumNet.execute('render:meetup_exchange:submenu')
           else
             AlumNet.trigger('show:error', 403)
 

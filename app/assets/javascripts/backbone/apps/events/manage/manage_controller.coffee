@@ -7,5 +7,5 @@
       eventsView = new Manage.EventsView
         collection: events
       AlumNet.mainRegion.show(eventsView)
-      AlumNet.execute('render:events:submenu', undefined, 0)
+      #AlumNet.execute('render:events:submenu', undefined, 0)
 

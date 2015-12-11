@@ -8,4 +8,4 @@
         collection: tasks
 
       AlumNet.mainRegion.show(appliedView)
-      AlumNet.execute('render:meetup_exchange:submenu', undefined, 0)
+      #AlumNet.execute('render:meetup_exchange:submenu', undefined, 0)

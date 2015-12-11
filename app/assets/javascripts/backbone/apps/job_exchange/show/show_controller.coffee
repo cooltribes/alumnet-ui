@@ -7,7 +7,7 @@
           detailView = new Show.Task
             model: task
           AlumNet.mainRegion.show(detailView)
-          AlumNet.execute('render:job_exchange:submenu')
+          #AlumNet.execute('render:job_exchange:submenu')
 
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)

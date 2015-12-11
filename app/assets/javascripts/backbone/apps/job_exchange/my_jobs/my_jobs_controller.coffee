@@ -28,4 +28,4 @@
 
       # attach events
       AlumNet.mainRegion.show(myJobsView)
-      AlumNet.execute('render:job_exchange:submenu', undefined, 0)
+      #AlumNet.execute('render:job_exchange:submenu', undefined, 0)

@@ -14,4 +14,4 @@
         $('#container-modal-meetup').html(modal.render().el)
         Cookies.set('meetup_exchange_visit', 'true')
 
-      AlumNet.execute('render:meetup_exchange:submenu', undefined, 3)
+      #AlumNet.execute('render:meetup_exchange:submenu', undefined, 3)

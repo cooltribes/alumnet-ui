@@ -14,7 +14,7 @@
 
       layoutView.list_region.show(groupsView)
 
-      AlumNet.execute('render:groups:submenu',undefined, 1)
+      #AlumNet.execute('render:groups:submenu',undefined, 1)
       # events for paginate
       groupsView.on "group:reload", ->
         querySearch = controller.querySearch

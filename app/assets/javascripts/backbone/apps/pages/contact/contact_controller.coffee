@@ -3,4 +3,4 @@
     showContact: ->
       page = new Contact.View
       AlumNet.mainRegion.show(page)
-      AlumNet.execute('render:pages:submenu')
+      #AlumNet.execute('render:pages:submenu')

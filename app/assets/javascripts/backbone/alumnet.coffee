@@ -45,7 +45,7 @@
 
   App.addRegions
     headerRegion: "#header-region"
-    #submenuRegion: "#submenu-region"
+    submenuRegion: "#submenu-region"
     mainRegion:
       selector: "#main-region"
       # regionClass: AnimatedRegion

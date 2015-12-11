@@ -61,4 +61,4 @@
 
       AlumNet.mainRegion.show(discoverLayout)
       discoverLayout.content.show(discoverView)
-      AlumNet.execute('render:business_exchange:submenu', undefined, 3)
+      #AlumNet.execute('render:business_exchange:submenu', undefined, 3)
