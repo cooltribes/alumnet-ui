@@ -5,8 +5,44 @@
     triggers:
       'click .js-conversation': 'conversation:clicked'
 
+    ui:
+      'messagesBadge': '.messageCard__badge'
+
+    initialize: ->
+      @listenTo(AlumNet.current_user, 'change:unread_messages_count', @updateMessagesCountBadge)
+
+    updateMessagesCountBadge: ->
+      view = @
+      @model.fetch
+        success: (model)->
+          value = model.get('unread_messages_count')
+          view.ui.messagesBadge.html(value)
+          if value > 0
+            view.ui.messagesBadge.show()
+          else
+            view.ui.messagesBadge.hide()
+
   class Conversations.MessageView extends Marionette.ItemView
     template: 'home/conversations/templates/message'
+    
+    initialize: (options)->
+      view = @
+      @on 'click:unread': ->
+        Backbone.ajax
+          url: AlumNet.api_endpoint + '/me/conversations/' + @model.get('conversation_id') + '/receipts/' + @model.id + '/unread'
+          method: 'PUT'
+          success: ->
+            view.toggleLink()
+            AlumNet.current_user.trigger 'change:unread_messages_count'
+
+      @on 'click:read': ->
+        Backbone.ajax
+          url: AlumNet.api_endpoint + '/me/conversations/' + @model.get('conversation_id') + '/receipts/' + @model.id + '/read'
+          method: 'PUT'
+          success: ->
+            view.toggleLink()
+            AlumNet.current_user.trigger 'change:unread_messages_count'
+
     ui:
       'markLink': '.js-mark'
       'mensaje':'#js-mensaje'
@@ -118,7 +154,14 @@
     initialize: (options)->
       @layout = options.layout
       @collection = @model.messages
-      @collection.fetch()
+      @collection.fetch
+        success: (collection)->
+          collection.each (message)->
+            if not message.get('is_read')
+              Backbone.ajax
+                url: AlumNet.api_endpoint + '/me/conversations/' + message.get('conversation_id') + '/receipts/' + message.id + '/read'
+                method: 'PUT'
+          AlumNet.current_user.trigger 'change:unread_messages_count'
 
     ui:
       'inputBody': '#body'

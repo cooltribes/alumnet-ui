@@ -18,8 +18,8 @@
       <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @first_committee %></p>
     </div>
     <% if @friendship_status == "sent": %>
-    <div class=" col-md-3 col-sm-3 col-xs-3 ">
-      <a href="#" id="js-cancel-friendship" title="Cancel request">
+    <div class=" col-md-3 col-sm-3 col-xs-3 " id="js-cancel-friendship">
+      <a href="#"  title="Cancel request">
         <div id="link-container" class="userCard__actionsUser userCard__animation userCard__actionsUser--Cancel">
           <span class="invitation">
             <span class="userCard__actionsUser__text">CANCEL</span>
@@ -31,9 +31,9 @@
     </div>
     <% else if @friendship_status == "received": %>
     <!-- Nothing to show here -->
-    <div class=" col-md-3 col-sm-3 col-xs-3 ">
+    <div class=" col-md-3 col-sm-3 col-xs-3 " id="js-accept-friendship">
       <span class="invitation">
-        <a href="#" id="js-accept-friendship" title="Approve friend request">
+        <a href="#"  title="Approve friend request">
           <div class="userCard__actionsUser--Approve userCard__animation">
             <span class="userCard__actionsUser__text">ACCEPT</span>
             <span class="glyphicon glyphicon-user"></span>
@@ -52,8 +52,8 @@
     <!-- <div class="pull-left "> -->
     <!-- </div> -->
     <% else if @friendship_status == "accepted": %>
-    <div class=" col-md-3 col-sm-3 col-xs-3">
-      <a href="#" id="js-delete-friendship"  class="" title="Unfriend">
+    <div class=" col-md-3 col-sm-3 col-xs-3" id="js-delete-friendship"  >
+      <a href="#" class="" title="Unfriend">
         <div id="link-container" class="userCard__actionsUser userCard__animation userCard__actionsUser--unFriend">
           <span class="invitation">
             <span class="userCard__actionsUser__text">UNFRIEND <!--<span class="glyphicon glyphicon-remove">--></span>
@@ -73,8 +73,8 @@
         </div>
       </div>
     <% else: %>
-    <div class=" col-md-3 col-sm-3 col-xs-3">
-      <a href="#" id="js-request-friendship" title="Send friend request">
+    <div class=" col-md-3 col-sm-3 col-xs-3" id="js-request-friendship">
+      <a href="#"  title="Send friend request">
         <div id="link-container" class="userCard__actionsUser userCard__actionsUser--isFriend userCard__animation">
           <span class="invitation">
             <span class="userCard__actionsUser__text">ADD FRIEND</span>

@@ -30,6 +30,7 @@
           html: true
           placement: 'bottom'
           trigger: 'hover'
+          template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
 
@@ -250,6 +251,7 @@
           html: true
           placement: 'bottom'
           trigger: 'hover'
+          template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
 

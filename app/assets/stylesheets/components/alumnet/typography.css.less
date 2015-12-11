@@ -6,6 +6,9 @@ DESCRIPTION: Titles
 ***/
 
 @import 'conf/conf.css.less';
+.fontResponsive >h1{
+	font-size: 39px;
+}
 
 h1,h2,h3,h4,h5{ 
 	font-weight: 300;
@@ -73,4 +76,16 @@ h2, .h2{
 
 .uppercase {
 	text-transform: uppercase;
+}
+ /* ( 319px and up) */
+@media (min-width: @media-smallest) {
+	.fontResponsive >h1{
+		font-size: 39px;
+	}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @media-small-min) {
+	.fontResponsive >h1{
+		font-size: 60px;
+	}
 }

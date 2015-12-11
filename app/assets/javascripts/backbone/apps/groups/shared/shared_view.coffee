@@ -191,12 +191,15 @@
     initialize: ->
       @current_user = AlumNet.current_user
 
-
     templateHelpers: ->
+      classOf: (step) =>
+        @class[step]
+
       canEditInformation: @model.canDo('edit_group')
       userCanInvite: @model.userCanInvite()
       userIsMember: @model.userIsMember()
       groupIsClose: @model.isClose()
+      isAdmin: @model.userIsAdmin()
 
     events:
       "click #groupMenuList li":"menuClicked"
@@ -215,10 +218,6 @@
         "", ""
       ]
       @class[parseInt(@tab)] = "--active"
-
-    templateHelpers: ->
-      classOf: (step) =>
-        @class[step]
 
   API =
     getGroupLayout: (model, tab)->

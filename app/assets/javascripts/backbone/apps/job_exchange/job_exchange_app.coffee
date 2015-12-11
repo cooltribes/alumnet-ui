@@ -33,8 +33,11 @@
       controller.invitations()
     createJobExchange: ->
       document.title = 'AlumNet - Post a job'
-      controller = new JobExchangeApp.Create.Controller
-      controller.create()
+      if AlumNet.current_user.get("profinda_api_token")
+        controller = new JobExchangeApp.Create.Controller
+        controller.create()
+      else
+        AlumNet.getProfindaApiToken()
     updateJobExchange: (id)->
       controller = new JobExchangeApp.Create.Controller
       controller.update(id)

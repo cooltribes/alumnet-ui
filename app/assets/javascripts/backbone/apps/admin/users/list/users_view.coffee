@@ -269,20 +269,20 @@
           class_link = ''
           html = ""
           if (that.collection.state.totalPages > 1)
-            html = '<nav><ul class="pagination"><li><span id="prevButton" style="display:none"><a href="#admin/users">Prev</a><span class="sr-only"></span></span></li>'
+            html = '<nav><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
             for page in [1..that.collection.state.totalPages]
               if (page == 1)
                 class_li = "active"
-                class_link = "paginationUsers"
+                class_link = "paginationUsers "
               else
                 class_li = ""
                 class_link = ""
 
-              html += '<li class= "'+class_li+'" id='+page+'><span class="page_button"  ><a class= "'+class_link+'" href="#admin/users" id="link_'+page+'">'+page+'</a><span class="sr-only"></span></span></li>  ' 
+              html += '<li class= "'+class_li+'" id='+page+'><a class= "page_button" href="#admin/users" id="link_'+page+'">'+page+'</a></li>  '
 
-            html += '<li><span id="nextButton"><a href="#admin/users">Next</a><span  class="sr-only"></span></span></li></ul></nav>'
+            html += '<li><a href="#admin/users" id="nextButton">Next</a></li></ul></nav>'
           html
-          
+
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -294,11 +294,13 @@
         { attribute: "profile_birth_city_name", type: "string", values: "" }
         { attribute: "profile_gender", type: "option", values: [{value: "M", text: "Male"}, {value: "F", text: "Famale"}] }
         { attribute: "status", type: "option", values: [{value: 0, text: "Inactive"}, {value: 1, text: "Active"}, {value: 2, text: "Banned"}] }
-        { attribute: "member", type: "string", values: "" }
+        { attribute: "member", type: "option", values: [{value: 0, text: "Regular"}, {value: 1, text: "Member (1 year)"}, {value: 2, text: "Member(<= 30 days)"}, {value: 3, text: "Lifetime"}] }
         { attribute: "created_at", type: "date", values: "" }
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
+        { attribute: "profile_register_step", type: "option", values: [{value: 0, text: "Basic Information"}, {value: 1, text: "Languajes and Skills"}, {value: 2, text: "Aiesec Experiences"}, {value: 3, text: "Completed"}] }
+        { attribute: "sign_in_count", type: "numeric", values: "" }
       ])
- 
+
     ui:
       'prevButton': '#prevButton'
       'nextButton': '#nextButton'
@@ -329,32 +331,32 @@
 
     sortBirtCity: (e)->
       @collection.queryParams.sort_by = "profiles.birth_city.name"
-      if @collection.queryParams.order_by =='desc' 
-        @collection.queryParams.order_by = 'asc' 
-      else 
+      if @collection.queryParams.order_by =='desc'
+        @collection.queryParams.order_by = 'asc'
+      else
         @collection.queryParams.order_by = 'desc'
-      @collection.fetch()      
+      @collection.fetch()
 
     sortJoined: (e)->
       @collection.queryParams.sort_by = "created_at"
-      if @collection.queryParams.order_by =='desc' 
-        @collection.queryParams.order_by = 'asc' 
-      else 
+      if @collection.queryParams.order_by =='desc'
+        @collection.queryParams.order_by = 'asc'
+      else
         @collection.queryParams.order_by = 'desc'
       @collection.fetch()
 
     sortAge: (e)->
       @collection.queryParams.sort_by = "profiles.born"
-      if @collection.queryParams.order_by =='desc' 
-        @collection.queryParams.order_by = 'asc' 
-      else 
+      if @collection.queryParams.order_by =='desc'
+        @collection.queryParams.order_by = 'asc'
+      else
         @collection.queryParams.order_by = 'desc'
       @collection.fetch()
 
     prevButton: (e)->
       @collection.queryParams.q = @queryParams
       @removeClass()
-      @ui.nextButton.show()  
+      @ui.nextButton.show()
 
       topage = parseInt(@collection.state.currentPage)-1
       @addClass(topage)
@@ -384,7 +386,7 @@
       if topage == 1
         @ui.prevButton.hide()
         @addClass(topage)
-      else 
+      else
         @ui.prevButton.show()
       if topage == @collection.state.totalPages
         @addClass(topage)

@@ -49,6 +49,7 @@
     templateHelpers: ->
 
       model = @model
+      console.log model
       img = $("<img>").attr("src", @model.attributes.picture.original).load()
       proportion = parseFloat(parseInt(img[0].width,10) / parseInt(img[0].height,10))*5
       h= parseInt(img[0].width,10) > parseInt(img[0].height,10)  && proportion > 8
@@ -56,10 +57,7 @@
       horizontal: h
       top : proportion
       showMorePics: @model.collection.length > 1
-
-      getLocation: ->
-        model.getLocation()
-
+      getLocation: @model.getLocation()
       current_user_avatar: AlumNet.current_user.get('avatar').medium
 
     nextPicture: (e)->

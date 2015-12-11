@@ -1,3 +1,3 @@
 web: rails s
 api: subcontract --rvm ruby-2.1.2@alumnet --chdir ../alumnet-api -- bundle exec rails s -p 4000
-worker: subcontract --rvm ruby-2.1.2@alumnet --chdir ../alumnet-api -- bundle exec sidekiq -q default -q mailers -q pusher
+worker: subcontract --rvm ruby-2.1.2@alumnet --chdir ../alumnet-api -- bundle exec sidekiq -q default -q mailers -q pusher -q rollbar

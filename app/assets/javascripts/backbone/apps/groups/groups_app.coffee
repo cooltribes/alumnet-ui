@@ -15,6 +15,7 @@
       "groups/:id/photos": "listAlbums"
       "groups/:id/files": "listFiles"
       "groups/:id/banner": "bannersList"
+      "groups/:id/settings": "settingsEdit"
       "groups/manage": "manageGroups"
       "groups": "discoverGroups"
 
@@ -70,6 +71,9 @@
     bannersList: (id)->
       controller = new GroupsApp.BannerList.Controller
       controller.bannerList(id)
+    settingsEdit: (id)->
+      controller = new GroupsApp.Settings.Controller
+      controller.showSettings(id)
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

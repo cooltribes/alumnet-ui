@@ -1,9 +1,12 @@
+
 <div class="row">
-    <div id="modals-region">
+	<div class="container">
+	    <div id="modals-region">
 
-    </div>
+	    </div>
 
-    <div id="table-region">
+	    <div id="table-region">
 
-    </div>
+	    </div>
+	</div>
 </div>

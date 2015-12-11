@@ -16,7 +16,7 @@
     homeBusinessExchange: ->
       document.title = 'AlumNet - Business Exchange Program'
       new BusinessExchangeApp.Home.Controller
-      
+
     discoverBusinessExchange: (view)->
       document.title = 'AlumNet - Discover Tasks'
       controller = new BusinessExchangeApp.Discover.Controller
@@ -39,8 +39,11 @@
       controller.invitations()
     createBusinessExchange: ->
       document.title = 'AlumNet - Create a Task'
-      controller = new BusinessExchangeApp.Create.Controller
-      controller.create()
+      if AlumNet.current_user.get("profinda_api_token")
+        controller = new BusinessExchangeApp.Create.Controller
+        controller.create()
+      else
+        AlumNet.getProfindaApiToken()
     updateBusinessExchange: (id)->
       document.title = 'AlumNet - Update Task'
       controller = new BusinessExchangeApp.Create.Controller

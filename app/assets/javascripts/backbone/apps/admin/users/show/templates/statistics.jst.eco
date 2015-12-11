@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <form action="" class="form-inline">
+      <div class="form-group">
+        <label class="control-label">From:</label>
+        <input type="text" value="<%= @init_date %>" class="form-control input-lg js-init-date" name="init_date">
+      </div>
+
+
+      <div class="form-group">
+        <label class="control-label">To:</label>
+        <input type="text" value="<%= @end_date %>" class="form-control input-lg js-end-date" name="end_date">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Group by:</label>
+        <select name="group_by">
+          <option value="days">Days</option>
+          <option value="months" selected>Months</option>
+          <option value="years">Years</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg js-submit">Submit</button>
+    </form>
+
+  </div>
+</div>
+<div class="row">
+<h3>Influence</h3>
+<div id="influence-graph"></div>
+
+<h3>Activity</h3>
+<div id="activity-graph"></div>
+</div>

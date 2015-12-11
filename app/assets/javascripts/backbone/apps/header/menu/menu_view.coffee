@@ -115,7 +115,6 @@
 
     templateHelpers: ->
       model = @model
-      #console.log @model
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
       points: @points
@@ -154,12 +153,15 @@
 
 
     updateMessagesCountBadge: ->
-      value = @model.get('unread_messages_count')
-      @ui.messagesBadge.html(value)
-      if value > 0
-        @ui.messagesBadge.show()
-      else
-        @ui.messagesBadge.hide()
+      view = @
+      @model.fetch
+        success: (model)->
+          value = model.get('unread_messages_count')
+          view.ui.messagesBadge.html(value)
+          if value > 0
+            view.ui.messagesBadge.show()
+          else
+            view.ui.messagesBadge.hide()
 
     updateNotificationsCountBadge: ->
       value = @model.get('unread_notifications_count')

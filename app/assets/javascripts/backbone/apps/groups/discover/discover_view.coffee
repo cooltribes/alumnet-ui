@@ -85,9 +85,7 @@
       model = @model
       @model.fetch
         success: ->
-          if model.get('group_type').text == "open"
-            console.log "Entro"
-            model.trigger('renderView')
+          model.trigger('renderView')
       @render()
       @trigger 'Catch:Up'
 
@@ -126,6 +124,7 @@
 
       if @type == "list"
         tagName = 'tr'
+        className = 'col-lg-12 col-md-12 col-xs-12'
         childViewContainer: ".main-groups-area"
 
       type: @type

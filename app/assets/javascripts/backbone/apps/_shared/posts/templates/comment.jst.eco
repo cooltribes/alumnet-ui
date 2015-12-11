@@ -18,9 +18,11 @@
                 <!--<span class="ico-chat"> Send a private messages </span><br>-->
                 <span class="glyphicon glyphicon-map-marker"> <%= @getLocationUser %></span><br>
               </div>
-              <div class="coverPreview no_padding">
-                <img src="<%= @user.cover %>" alt="">
-              </div>
+              <% if @user.cover != null : %>
+	              <div class="coverPreview no_padding">
+	                <img src="<%= @user.cover %>" alt="">
+	              </div>
+              <% end %>
             </div>
           </div>
         </div>

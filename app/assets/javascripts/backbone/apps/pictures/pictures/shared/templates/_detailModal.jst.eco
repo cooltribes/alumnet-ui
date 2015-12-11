@@ -77,14 +77,8 @@
                   <h3>
                     <%= @uploader.name %>
                   </h3>
+                  <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
               </div>
-            </div>
-          </div>
-         <div class="row">
-            <div class="col-md-12">
-              <small class="margin_top_xsmall_minus">
-                <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
-              </small>
             </div>
           </div>
           <!-- Mobile -->
@@ -104,13 +98,13 @@
           <!-- End Mobile -->
 
           <div class="row margin_top_small">
-            <% if @getLocation(): %>
+            <% if @getLocation: %>
               <div class="row-fluid clearfix albumInfo">
                 <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
                   <span class="icon-entypo-location"></span>
                 </div>
                 <div class="col-md-10 no_margin_left albumInfo__value">
-                   <%= @getLocation() %>
+                   <%= @getLocation %>
                 </div>
               </div>
             <% end %>

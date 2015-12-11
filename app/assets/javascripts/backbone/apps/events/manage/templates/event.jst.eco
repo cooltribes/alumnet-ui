@@ -46,7 +46,7 @@
       Attending:<%= @attendances_count %>
     </div>
 
-    <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall">
+    <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
       <% unless @isPast: %>
         <% if @admin: %>
         <a href="#events/<%= @id %>/about">
@@ -58,8 +58,8 @@
               <span >EDIT</span>
             </div>
         </a>
-        <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rigth">
-              <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmin--paddingCancel">CANCEL</a>
+        <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
+              <a href="#" id="js-attendance-cancel" class=" eventsTableView__isAdminCancel--paddingCancel">CANCEL</a>
         </div>
         <% else: %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
@@ -79,8 +79,8 @@
         <% end %>
       <% else: %>
         <% if @admin: %>
-          <div class="eventsTableView__isAdmincancel eventsTableView__isAdmincancel--rigth">
-            <a href="#" id="js-attendance-cancel" class="btn btn-danger bt-sm eventsTableView__isAdmincancel--paddingCancel">DELETE</a>
+          <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
+            <a href="#" id="js-attendance-cancel" class="eventsTableView__isAdminCancel--paddingCancel">DELETE</a>
           </div>
         <% end %>
       <% end %>

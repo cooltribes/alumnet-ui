@@ -1,0 +1,30 @@
+<div class="margin_bottom">
+  <div class="row">
+    <div class="col-md-12 js-graph">
+      <label class="control-label">Loading chart...</label>
+    </div>
+  </div>
+  <% if @interval: %>
+    <div class="row margin_top_small">
+      <div class="col-md-2 col-md-offset-3">
+        <label class="control-label">Interval</label>
+      </div>
+      <div class="col-md-6 text-rigth">
+
+
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default <%= 'active' if @group_by == 'years' %>">
+            <input type="radio" name="group_by" id="option1" value="years" autocomplete="off" <%= "checked" if @group_by == "years" %>> Years
+          </label>
+          <label class="btn btn-default <%= 'active' if @group_by == 'months' %>">
+            <input type="radio" name="group_by" id="option2" value="months" autocomplete="off" <%= "checked" if @group_by == "months" %>> Months
+          </label>
+          <label class="btn btn-default <%= 'active' if @group_by == 'days' %>">
+            <input type="radio" name="group_by" id="option2" value="days" autocomplete="off" <%= "checked" if @group_by == "days" %>> Days
+          </label>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

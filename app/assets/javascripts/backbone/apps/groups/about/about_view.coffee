@@ -3,10 +3,19 @@
   class About.View extends Marionette.ItemView
     template: 'groups/about/templates/about'
 
+    getTemplate: ->
+      if not @model.userHasMembership() && not @model.userIsMember()
+        'groups/about/templates/about_group_closed'
+      else
+        'groups/about/templates/about'
+
     initialize: (options)->
       @current_user = options.current_user
 
     templateHelpers: ->
+      model = @model
+      otherMembersNotFriends: @otherMembersNotFriends(@model.get('members'),@model.get('friends_in'))
+      otherMembersNotAdmins: @otherMembersNotAdmins(@model.get('members'),@model.get('admins'))
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.canDo('edit_group')
       canChangeJoinProcess: @model.canDo('change_join_process')
@@ -16,6 +25,7 @@
       model: @model
       mailchimp: @model.hasMailchimp()
       uploadFilesText: @model.uploadFilesText(true)
+      otherMembers: @totalMembers()
 
     ui:
       'uploadFiles': '#upload-files'
@@ -182,7 +192,25 @@
     editAttribute: (e)->
       $(e.target).addClass "hide"
 
+    otherMembersNotFriends: (members,friends)->
+      _.each members, (member)->
+        for friend in friends
+          if member.id != friend.id
+            memberOther = member.id
 
+    otherMembersNotAdmins: (members,admins)->
+      _.each members, (member)->
+        for admin in admins
+          if member.id != admin.id
+            memberOther = member.id
+
+    totalMembers: ->
+      otherMembers = (@model.get("members").length - @model.get("friends_in").length) - @model.get("admins").length
+      if otherMembers < 0
+        otherMembers = 0
+      else
+        otherMembers
+  
     onRender: ->
       view = this
 

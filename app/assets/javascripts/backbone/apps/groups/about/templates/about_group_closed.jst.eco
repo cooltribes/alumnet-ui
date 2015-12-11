@@ -1,0 +1,121 @@
+<div class="groupAbout container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+    	<% if @admins.length > 0 : %>
+	      <div class="groupAbout__box margin_bottom margin_top">
+	        <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+	          <p>Admins(<%= @admins.length %>)</p>
+	        </div>
+	        <div class="row">
+	          <% for admin in @admins: %>
+	            <div class="col-md-3 text-center">
+	              <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle"><br>
+	              <a href="#users/<%= admin.id %>/posts"><%=  admin.name %></a>
+	            </div> 
+	          <% end %>
+	        </div>
+	      </div>
+      <% end %>
+
+			<% if @friends_in.length > 0 : %>
+	      <div class="groupAbout__box margin_bottom margin_top">
+	        <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+	          <p>Friends(<%= @friends_in.length %>)</p>
+	        </div>
+	        <div class="row">
+	          <% for friend in @friends_in: %>
+	            <div class="col-md-3 text-center">
+	              <img src="<%= friend.avatar.avatar.medium.url %>" alt="<%= friend.first_name %>" class="img-circle"><br>
+	              <a href="#users/<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a>
+	            </div> 
+	          <% end %>
+	        </div>
+	      </div>
+	     <% end %>
+
+			<% if @otherMembers > 0 : %>
+	      <div class="groupAbout__box margin_bottom margin_top">
+	        <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+	          <p> Other members (<%= @otherMembers %>)</p>
+	        </div>
+	        <div class="row">
+	          <% for member in @members: %>
+	            <% if member.id == @otherMembersNotFriends && member.id == @otherMembersNotAdmins: %>
+	              <div class="col-md-3 text-center">
+	                <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle"><br>
+	                <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
+	              </div> 
+	            <% end %>
+	          <% end %>
+	        </div>
+	      </div>
+	    <% end %>
+		</div>
+		
+		<div class="col-md-4 margin_bottom">
+			<% if not @userHasMembership && not @userIsApproved && @membership_status == "none": %>
+	      <div id="js-join-div" class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
+	        <p class="margin_bottom_small">Join this group to post and comment</p>
+	        <div class="text-center">
+	     			<button class="btn btn-lg btn-primary js-join">+ join group</button>
+	      	</div>
+	      </div>
+	    <% end %>
+	
+	    <div class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
+	      <p>Description</p>
+	      <div id="description"><%= @description %></div>
+	    </div>
+
+	    <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+	      <% if @city.name || @country.name : %>
+	        <h3><span class="glyphicon glyphicon-map-marker"></span>
+	          <%= @city.name %>, <%= @country.name %>
+	        </h3>
+	      <% else: %>
+	        <h3><span class="glyphicon glyphicon-map-marker"></span>
+	          No Location
+	        </h3>
+	      <% end %>
+	    </div>
+
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <h3><span class="glyphicon glyphicon-time"></span>
+        Created: <%= moment(@created_at).format('D MMM YYYY') %> <br/>
+        <% if @creator: %>
+          by <a href="#users/<%= @creator.id %>/posts"><%= @creator.name %></a>
+        <% end %>
+        </h3>
+      </div>
+
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <h3>
+          <span class="groupCard__statusGroup pull-right
+            <% if @group_type.value== 1:  %>
+            groupCard__statusGroup--closed
+            <% end %>
+            <% if @group_type.value== 0: %>
+            groupCard__statusGroup--public
+            <% end %>
+            " style="position: inherit;">
+            <% if @group_type.value== 1: %>
+              Closed
+            <% end %>
+            <% if @group_type.value== 0: %>
+              Open
+            <% end %>
+          </span>
+          <p><%= @group_type.text %> group</p>
+          <% if @group_type.value== 0: %>
+            <small>All content in this group can be seen freely to anyone even if they are not part of the group. But only people who joined the group can add content in it.</small>
+          <% end %>
+          <% if @group_type.value== 1: %>
+            <small>The content of this group is visible only to those who have joined the group. Join requests will be moderated by the administrator of the group.</small>
+          <% else : %> 
+            <small>The content in this group is visible only to those who were added to the group. Only the administrator can add people into this group.</small>
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
