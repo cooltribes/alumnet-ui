@@ -2,12 +2,13 @@
   <div class="userCard resultCard">
    <div class=" row">
       <div class="userCard__avatar col-md-2 col-xs-3">
-
-        <img src="<%= @image %>" alt="<%= @title %>" class="img-circle avatarsize">
+        <% if @image: %>
+          <img src="<%= @image %>" alt="<%= @title %>" class="img-circle avatarsize">        
+        <% end %>
 
       </div>
       <div class=" col-md-6 col-xs-6">
-        <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#" title="<%= @title %>"><%= @title %></a> <small><%= @type %></small></h4>        
+        <h4 class="userCard__name margin_top_xsmall overfloadText"><a href="#<%= @url %>" title="<%= @title %>"><%= @title %></a> <small>(<%= @type %>)</small></h4>        
         <% if @position: %>
           <p class="userCard__position member-position text-small"><%= @position %></p>
         <% end %>
@@ -15,6 +16,11 @@
         <% if @industry: %>
           <p><span class="ico-sector"></span>
             <%= @industry %>
+          </p>
+        <% end %>
+        <% if @eventStart: %>
+          <p><span class="glyphicon glyphicon-time"></span>
+            <%= @eventStart %>
           </p>
         <% end %>
         <% if @description: %>

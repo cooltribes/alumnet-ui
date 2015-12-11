@@ -8,27 +8,27 @@
   <div class="col-md-12 text-center">
     <ul class="sortingMenu">
       <li class="sortingMenu__item sortingMenu__item--lg">
-        <a href="" title="All" class="js-typefilter sortingMenu__item__link <%= @active('all') %>">All
+        <a href="" title="All" data-result-type="all" class="js-typefilter sortingMenu__item__link <%= @active('all') %>">All
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Alumni" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Alumni
+        <a href="" title="Alumni" data-result-type="profile" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Alumni
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Group" data-res-type="group" class="js-typefilter sortingMenu__item__link <%= @active('alumni') %>">Groups
+        <a href="" title="Group" data-result-type="group" class="js-typefilter sortingMenu__item__link <%= @active('group') %>">Groups
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Event" data-res-type="event" class="js-typefilter sortingMenu__item__link <%= @active('event') %>">Events
+        <a href="" title="Event" data-result-type="event" class="js-typefilter sortingMenu__item__link <%= @active('event') %>">Events
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Company" data-res-type="company" class="js-typefilter sortingMenu__item__link <%= @active('company') %>">Companies
+        <a href="" title="Company" data-result-type="company" class="js-typefilter sortingMenu__item__link <%= @active('company') %>">Companies
         </a>
       </li>
       <li role="presentation" class="sortingMenu__item sortingMenu__item--lg ">
-        <a href="" title="Task" data-res-type="task" class="js-typefilter sortingMenu__item__link <%= @active('task') %>">Tasks
+        <a href="" title="Task" data-result-type="task" class="js-typefilter sortingMenu__item__link <%= @active('task') %>">Tasks
         </a>
       </li>
     </ul>

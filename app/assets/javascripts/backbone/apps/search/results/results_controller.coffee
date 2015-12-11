@@ -21,10 +21,9 @@
       view = new Results.Layout
         search_term: @search_term
 
-      ### view.on "search", @_applySearch, @
-            view.on "advancedSearch", @_applyAdvancedSearch, @
-            view.on "changeGrid", @_changeGrid, @
-      ###
+      view.on "filter_type", (type)->
+        @results_collection.filter_type(type)
+      , @  
           
     _getResultsView: ->
       view = new Results.ResultsListView

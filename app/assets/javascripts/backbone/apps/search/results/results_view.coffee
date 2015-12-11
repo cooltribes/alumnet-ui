@@ -7,6 +7,9 @@
     regions:
       results: '#results-region'
 
+    events:
+      "click .js-typefilter": "filter_type"
+
     initialize: (options)->
       @classes = {
         "all": " sortingMenu__item__link--active"
@@ -18,32 +21,53 @@
         
     templateHelpers: ->
       active: (value)=>
-        @classes[value]  
-      search_term: @search_term    
+        @classes[value]
+
+      search_term: @search_term
+
+    filter_type: (e)->
+      e.preventDefault()
+      target = $(e.currentTarget)
+      
+      @activateOption(target)
+
+      @trigger "filter_type", target.attr("data-result-type")  
+
+    activateOption: (element)->
+      @$(".js-typefilter").removeClass("sortingMenu__item__link--active")
+      element.addClass("sortingMenu__item__link--active")
 
 
   class Results.ResultView extends Marionette.CompositeView
     template: 'search/results/templates/_result'
 
     templateHelpers: ->
-      console.log @model.source
+      console.log @model
       
-      ###isUser: @model.isUser()###
       industry: @model.getIndustry()
-
       image: @model.getImage()
       title: @model.getTitle()
       type: @model.getType()
       position: @model.getPosition()
       location: @model.getLocation()
       description: @model.getDescription()
+      eventStart: @model.getEventStart()
+      url: @model.getUrl()
+
+  class Results.EmptyView extends Marionette.ItemView
+    template: 'search/results/templates/_empty'  
+
+    initialize: (options)->
+      @message = options.message
+
+    templateHelpers: ->
+      message: @message   
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'
     childView: Results.ResultView
-    emptyView: AlumNet.Utilities.EmptyView
-    emptyViewOptions: 
-      message: "There is no results for your search"
     childViewContainer: '.results-list'
 
-    
+    emptyView: Results.EmptyView
+    emptyViewOptions: ->
+      message: "There are no results for your search"
