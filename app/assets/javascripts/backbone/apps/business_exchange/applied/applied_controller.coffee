@@ -10,4 +10,4 @@
         collection: tasks
 
       AlumNet.mainRegion.show(appliedView)
-      AlumNet.execute('render:business_exchange:submenu', undefined, 0)
+      #AlumNet.execute('render:business_exchange:submenu', undefined, 0)

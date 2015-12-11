@@ -29,4 +29,4 @@
         container.append( $(viewInstance.el) ).masonry 'reloadItems'
 
       AlumNet.mainRegion.show(appliedJobsView)
-      AlumNet.execute('render:job_exchange:submenu', undefined, 3)
+      #AlumNet.execute('render:job_exchange:submenu', undefined, 3)

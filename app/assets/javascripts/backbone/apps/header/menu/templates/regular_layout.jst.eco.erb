@@ -177,15 +177,50 @@
           <i class="ico-give-help"></i>
           <span class="nameItemMenu">Programs</span>             
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#business-exchange/home"><span class="icon-entypo-bookmark"></span> Global Business Exchange </a>
-            
+        <ul class="navTopBar__dropdownMenu dropdown-menu multi-level" role="menu" aria-labelledby="programs" id="programsList">
+          
+          <li role="presentation" class="dropdown-submenu"><a role="menuitem" tabindex="-1" href="/#business-exchange/home"><span class="icon-entypo-bookmark"></span> Global Business Exchange </a>
+            <ul class="dropdown-menu navTopBar__dropdownMenu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/home"> <span class="glyphicon glyphicon-home"></span> Global Business Exchange</a></li>
+              <li role="presentation" class="dropdown-submenu drophover"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-th-list"></span> Your tasks</a>
+                <ul class="dropdown-menu navTopBar__dropdownMenu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/your-tasks"><span class="glyphicon glyphicon-th-list"></span> Your tasks</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/applied"><span class="glyphicon glyphicon-th-list"></span> Applied</a></li>
+                </ul>
+              </li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/automatches"> <span class="glyphicon glyphicon-star"></span> Automatches</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/invitations"> <span class="ico-new-message"></span> Invites</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/new"> <span class="icon-entypo-plus"></span> Post a new Task</a></li>
+            </ul>
           </li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#job-exchange"><span class="icon-entypo-briefcase"></span> Global Job Market</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#meetup-exchange"><span class="icon-entypo-chat"></span> Global Meet-Ups</a></li>
+
+          <li role="presentation" class="dropdown-submenu"><a role="menuitem" tabindex="-1" href="/#job-exchange"><span class="icon-entypo-briefcase"></span> Global Job Market</a>
+            <ul class="dropdown-menu navTopBar__dropdownMenu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange/applied"><span class="glyphicon glyphicon-th-list"></span> My Applications</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange/my-posts"><span class="glyphicon glyphicon-th-list"></span> My Job Posts</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange/automatches"><span class="glyphicon glyphicon-star"></span> Automatches</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange/invitations"><span class="ico-new-message"></span> Invitations</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#job-exchange/new"> <span class="icon-entypo-plus"></span> Post a Job</a></li>        
+            </ul>
+          </li>
+
+          <li role="presentation" class="dropdown-submenu"><a role="menuitem" tabindex="-1" href="/#meetup-exchange"><span class="icon-entypo-chat"></span> Global Meet-Ups</a>
+            <ul class="dropdown-menu navTopBar__dropdownMenu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange/applied"><span class="glyphicon glyphicon-th-list"></span> Meetup Exchange</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange/your-tasks"><span class="glyphicon glyphicon-th-list"></span> My Meetups</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange/automatches"><span class="glyphicon glyphicon-star"></span> Automatches</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange/invitations"><span class="ico-new-message"></span> Invitations</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#meetup-exchange/new"> <span class="icon-entypo-plus"></span> Create a new meet up</a></li>        
+            </ul>
+          </li>
+
           <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/home-exchange"><span class="icon-entypo-home"></span> Global Home Exchange</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/alumnite"><span class="icon-entypo-moon"></span>
-          ALUMnite</a></li>
+
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/alumnite"><span class="icon-entypo-moon"></span> ALUMnite</a></li>
+
           <li role="presentation"><a role="menuitem" tabindex="-1" href="/#programs/a-groups"><span class="icon-entypo-users"></span> A-Groups</a></li>
           <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/#companies"><span class="icon-entypo-users"></span>Business Directory</a></li>-->
         </ul>

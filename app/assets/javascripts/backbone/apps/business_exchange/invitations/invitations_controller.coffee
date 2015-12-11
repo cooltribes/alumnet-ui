@@ -8,4 +8,4 @@
       console.log invitations
 
       AlumNet.mainRegion.show(invitationsView)
-      AlumNet.execute('render:business_exchange:submenu', undefined, 2)
+      #AlumNet.execute('render:business_exchange:submenu', undefined, 2)

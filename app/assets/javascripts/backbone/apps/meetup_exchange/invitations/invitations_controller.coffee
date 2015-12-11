@@ -7,4 +7,4 @@
         collection: invitations
 
       AlumNet.mainRegion.show(invitationsView)
-      AlumNet.execute('render:meetup_exchange:submenu', undefined, 2)
+      #AlumNet.execute('render:meetup_exchange:submenu', undefined, 2)

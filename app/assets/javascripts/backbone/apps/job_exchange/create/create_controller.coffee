@@ -33,7 +33,7 @@
       createForm = new Create.Form
         model: task
       AlumNet.mainRegion.show(createForm)
-      AlumNet.execute('render:job_exchange:submenu')
+      #AlumNet.execute('render:job_exchange:submenu')
 
     showBuyForm: ->
       job_posts = AlumNet.request('product:entities', {q: { feature_eq: 'job_post', status_eq: 1 }})
@@ -42,7 +42,7 @@
           current_user: AlumNet.current_user
           collection: collection
         AlumNet.mainRegion.show(jobPostsView)
-        AlumNet.execute('render:job_exchange:submenu')
+        #AlumNet.execute('render:job_exchange:submenu')
       
 
     update: (id)->
@@ -56,7 +56,7 @@
               user: current_user
 
             AlumNet.mainRegion.show(createForm)
-            AlumNet.execute('render:job_exchange:submenu')
+            #AlumNet.execute('render:job_exchange:submenu')
           else
             AlumNet.trigger('show:error', 403)
 

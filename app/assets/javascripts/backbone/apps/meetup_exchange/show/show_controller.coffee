@@ -8,7 +8,7 @@
             model: task
 
           AlumNet.mainRegion.show(showView)
-          AlumNet.execute('render:meetup_exchange:submenu')
+          #AlumNet.execute('render:meetup_exchange:submenu')
 
         error: (model, response, options)->
           AlumNet.trigger('show:error', response.status)

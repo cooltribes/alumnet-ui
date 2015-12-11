@@ -46,4 +46,4 @@
         $('#container-modal-job').html(modal.render().el)
         Cookies.set('job_exchange_visit', 'true')
 
-      AlumNet.execute('render:job_exchange:submenu', undefined, 2)
+      #AlumNet.execute('render:job_exchange:submenu', undefined, 2)

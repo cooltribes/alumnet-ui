@@ -59,6 +59,6 @@
         collection: users
         model: event
       AlumNet.mainRegion.show(usersView)
-      AlumNet.execute('render:groups:submenu', null)
+      #AlumNet.execute('render:groups:submenu', null)
 
 
