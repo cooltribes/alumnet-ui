@@ -36,6 +36,7 @@
 
     onShow: ->
       summernote_options =
+        disableDragAndDrop: true
         height: 100
         toolbar: [
           ['style', ['bold', 'italic', 'underline', 'clear']]

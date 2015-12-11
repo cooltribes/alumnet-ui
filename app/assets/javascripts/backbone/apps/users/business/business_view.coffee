@@ -315,6 +315,7 @@
 
     onShow: ->
       summernote_options =
+        disableDragAndDrop: true
         height: 100
       $('#business-me').summernote(summernote_options)
       $('#business-offer').summernote(summernote_options)
