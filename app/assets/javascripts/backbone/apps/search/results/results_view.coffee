@@ -42,7 +42,7 @@
     template: 'search/results/templates/_result'
 
     templateHelpers: ->
-      console.log @model
+      # console.log @model
       
       industry: @model.getIndustry()
       image: @model.getImage()

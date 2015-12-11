@@ -67,7 +67,7 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
-      'click @ui.searchBtn' : 'searchInAlumNet'
+      'click @ui.searchBtn' : 'clickSearchBtn'
       'keypress @ui.searchInput' : 'keypressSearch'
       'focus @ui.searchInput' : 'focusSearchBar'
       'blur @ui.searchInput' : 'blurSearchBar'
@@ -80,8 +80,8 @@
       'notificationsMarkAll': '#js-notifications-mark-all'
       'requestsMarkAll': '#js-friendship-notifications-mark-all'
       'avatarImg': '#header-avatar'
-      'searchInput': '#js-search-input'
-      'searchBar': '#js-searchBar'
+      'searchInput': '.js-search-input'
+      'searchBar': '.js-searchBar'
       'searchBtn': '.js-globalsearch-btn'
 
     changePoints: ->
@@ -130,15 +130,28 @@
         return "Not a member"
 
     focusSearchBar: (e)-> 
-      @ui.searchBar.addClass("wideBar")
+      input = e.currentTarget
+      $(input).closest(".js-searchBar").addClass("wideBar")
+
 
     blurSearchBar: (e)-> 
-      @ui.searchBar.removeClass("wideBar")
+      input = e.currentTarget
+      $(input).closest(".js-searchBar").removeClass("wideBar")
 
     keypressSearch: (e)->
       if e.keyCode == 13
-        e.currentTarget.blur()
-        @searchInAlumNet()
+        input = $(e.currentTarget)
+        input.blur()
+        #capture the value of the current target
+        search_term = input.val().trim()
+        @searchInAlumNet(search_term)
+
+    clickSearchBtn: (e)->
+      btn = e.currentTarget
+      input = $(btn).siblings(".js-search-input")
+      search_term = input.val().trim()
+      @searchInAlumNet(search_term)
+
 
     updateMessagesCountBadge: ->
       value = @model.get('unread_messages_count')
@@ -202,9 +215,7 @@
         .appendTo(ul)
 
       
-    searchInAlumNet: ()->
-      search_term = @ui.searchInput.val().trim()
-
+    searchInAlumNet: (search_term)->
       if search_term != ""
         AlumNet.execute("search:show:results", search_term)  
       

@@ -510,10 +510,12 @@ DESCRIPTION: Top navigation bar with menus
   input{
     padding: 5px;
     width: 170px;
+    -webkit-transition: width .3s;
+    transition: width .3s
   }
   button{
     margin-left: -7px;
-    margin-top: -2px;
+    margin-top: -4px;
     background-color: @white;
     color: #818181;
     border-color: #CCCCCC;
@@ -526,6 +528,13 @@ DESCRIPTION: Top navigation bar with menus
     }
   }
 }   
+.navTopBarMobile__item {
+  .searchMenu{
+    display: inline-block;
+    padding: 0;
+    margin-right: 10px;
+  }
+}
 
 .nameItemMenu{
   display: none;
@@ -539,6 +548,41 @@ DESCRIPTION: Top navigation bar with menus
   }
 }
 
+/*menores a 400*/
+@media (max-width: @media-smallweb) {
+  .navTopBarMobile__item {
+    .searchMenu{
+      display: none;      
+    }   
+  } 
+}
+/*menores a 480*/
+@media (max-width: @media-xsmall-max) {
+  .navTopBarMobile__item {
+    .searchMenu{      
+      input {
+        width: 140px;
+      }
+    }   
+  } 
+}
+
+
+@media (min-width: @media-530) {
+  .wideBar{
+    input{
+      width: 238px;
+    }
+  } 
+}
+
+@media (min-width: @media-600) {
+  .wideBar{
+    input{
+      width: 300px;
+    }
+  } 
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
@@ -572,6 +616,11 @@ DESCRIPTION: Top navigation bar with menus
             }
         }
     }
+  .wideBar{
+    input{
+      width: 170px;
+    }
+  } 
  }
 
 .drophover:hover .dropdown-menu {

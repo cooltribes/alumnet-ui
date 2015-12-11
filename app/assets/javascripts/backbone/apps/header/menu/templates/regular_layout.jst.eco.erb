@@ -28,7 +28,12 @@
         <!-- <a href="#" title="Search for..." id="searchIcon">
           <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
         </a> -->
-
+        <div class="ui-widget searchMenu js-searchBar">          
+          <input type="text" class="js-search-input" placeholder="Search for...">
+          <button class="btn btn-primary js-globalsearch-btn" type="button">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </div>
         <a href="#notifications" title="Notifications">
           <span class="glyphicon glyphicon-bell" style="font-size: 20px;"></span>
           <span class="navTopBarMobile__badge badge" id="js-notifications-badge">
@@ -205,8 +210,8 @@
       </li> -->
       <li>
       <!-- SEARCH INPUT -->
-        <div class="ui-widget searchMenu" id="js-searchBar">          
-          <input type="text" id="js-search-input" placeholder="Search for...">
+        <div class="ui-widget searchMenu hidden-xs js-searchBar">          
+          <input type="text" class="js-search-input" placeholder="Search for...">
           <button class="btn btn-primary js-globalsearch-btn" type="button">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button>
