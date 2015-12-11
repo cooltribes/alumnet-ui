@@ -3,7 +3,7 @@
     <div class="col-md-8">
       <div class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
           <p><%= @name %></p>
-          <%= @description %>
+          <%- @description %>
       </div>
     </div>
     <div class="col-md-4">
@@ -17,7 +17,7 @@
               <div class="col-md-3 text-center">
                 <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle"><br>
                 <a href="#users/<%= admin.id %>/posts"><%=  admin.name %></a>
-              </div> 
+              </div>
             <% end %>
           </div>
         </div>
@@ -33,7 +33,7 @@
               <div class="col-md-3 text-center">
                 <img src="<%= friend.avatar.avatar.medium.url %>" alt="<%= friend.first_name %>" class="img-circle"><br>
                 <a href="#users/<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a>
-              </div> 
+              </div>
             <% end %>
           </div>
         </div>
@@ -50,13 +50,13 @@
                 <div class="col-md-3 text-center">
                   <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle"><br>
                   <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
-                </div> 
+                </div>
               <% end %>
             <% end %>
           </div>
         </div>
       <% end %>
-    
+
       <div class="groupAbout__box margin_bottom groupAbout__titleSection">
         <p>Description</p>
         <div id="description"><%= @short_description %></div>
@@ -106,11 +106,11 @@
           <% end %>
           <% if @group_type.value== 1: %>
             <small>The content of this group is visible only to those who have joined the group. Join requests will be moderated by the administrator of the group.</small>
-          <% else : %> 
+          <% else : %>
             <small>The content in this group is visible only to those who were added to the group. Only the administrator can add people into this group.</small>
           <% end %>
         </h3>
-        
+
       </div>
 
     </div>
