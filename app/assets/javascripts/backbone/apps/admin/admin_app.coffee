@@ -19,6 +19,8 @@
       "admin/products": "productsList"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
+      "admin/emails":"emailsNew"
+      "admin/emails-sent":"emailsSent"
 
   API =
     usersList: ->
@@ -64,6 +66,12 @@
       new AdminApp.Dashboard.Users.Controller
     dashboardPosts: ->
       new AdminApp.Dashboard.Posts.Controller
+    emailsNew: ->
+      controller = new AdminApp.EmailsNew.Controller
+      controller.emailsNew()
+    emailsSent: ->
+      controller = new AdminApp.EmailsSent.Controller
+      controller.emailsSent()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
