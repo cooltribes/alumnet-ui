@@ -6,5 +6,5 @@
         subject: subject
         user: user
       AlumNet.mainRegion.show(layout)
-      AlumNet.execute('render:home:submenu')
+      #AlumNet.execute('render:home:submenu')
 

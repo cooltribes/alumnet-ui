@@ -1,7 +1,7 @@
 @AlumNet.module 'UsersApp.Business', (Business, @AlumNet, Backbone, Marionette, $, _) ->
   class Business.Controller
     showBusiness: (id)->
-      AlumNet.execute('render:users:submenu')
+      #AlumNet.execute('render:users:submenu')
 
       user = AlumNet.request("user:find", id)
 

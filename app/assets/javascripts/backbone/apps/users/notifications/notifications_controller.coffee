@@ -1,7 +1,7 @@
 @AlumNet.module 'UsersApp.Notifications', (Notifications, @AlumNet, Backbone, Marionette, $, _) ->
 	class Notifications.Controller
 		showNotifications: (id)->
-			AlumNet.execute('render:users:submenu')
+			#AlumNet.execute('render:users:submenu')
 			layout = new Notifications.Layout
 			AlumNet.mainRegion.show(layout)
 

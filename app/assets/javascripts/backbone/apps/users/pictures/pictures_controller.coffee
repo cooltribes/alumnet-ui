@@ -5,7 +5,7 @@
       user = AlumNet.request("user:find", id)
       user.on 'find:success', (response, options)->
 
-        AlumNet.execute('render:users:submenu')  
+        #AlumNet.execute('render:users:submenu')  
 
         #Layouts for the profile page - last parameter (3) is for marking "Pictures" as active tab
         layout = AlumNet.request("user:layout", user, 3)

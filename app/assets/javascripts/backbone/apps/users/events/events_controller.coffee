@@ -14,7 +14,7 @@
         layout.header.show(header)
         layout.body.show(eventsView)
 
-        AlumNet.execute('render:users:submenu')
+        #AlumNet.execute('render:users:submenu')
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

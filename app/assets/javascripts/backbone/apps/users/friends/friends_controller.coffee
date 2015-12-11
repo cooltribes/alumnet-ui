@@ -33,7 +33,7 @@
       #Activate the friends list by default      
       @showMyFriends friendsLayout
 
-      AlumNet.execute('render:users:submenu')
+      #AlumNet.execute('render:users:submenu')
     
 
     showUserLayout: (id)->
@@ -64,7 +64,7 @@
         #Activate the friends list by default      
         AlumNet.trigger "user:friends:get", friendsLayout, id    
 
-        AlumNet.execute('render:users:submenu')  
+        #AlumNet.execute('render:users:submenu')  
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status) 

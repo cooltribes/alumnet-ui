@@ -106,7 +106,7 @@
         body.contacts.show(contactsView)
         body.experiences.show(experiencesView)
 
-        AlumNet.execute('render:users:submenu')
+        #AlumNet.execute('render:users:submenu')
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)
@@ -180,7 +180,7 @@
         body.languages.show(languagesView)
         body.experiences.show(experiencesView)
 
-        AlumNet.execute('render:users:submenu')
+        #AlumNet.execute('render:users:submenu')
 
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status)

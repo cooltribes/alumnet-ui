@@ -5,7 +5,7 @@
       #1 crear layout view renderizar en mainRegion
       #2 banner composite
       #3
-      AlumNet.execute('render:home:submenu')
+      #AlumNet.execute('render:home:submenu')
       checkNewPost = false
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
