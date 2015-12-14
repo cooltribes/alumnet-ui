@@ -6,7 +6,7 @@
       @current_user = options.current_user
 
     templateHelpers: ->
-      model = @model  
+      model = @model
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.canDo('edit_group')
       canChangeJoinProcess: @model.canDo('change_join_process')
@@ -16,7 +16,7 @@
       model: @model
       mailchimp: @model.hasMailchimp()
       uploadFilesText: @model.uploadFilesText(true)
-  
+
 
     ui:
       'uploadFiles': '#upload-files'
@@ -133,20 +133,20 @@
       e.preventDefault()
       link = $(e.currentTarget)
       if link.html() == '[edit]'
-        @ui.groupDescription.summernote({height: 100})
+        @ui.groupDescription.summernote({height: 100, focus: true})
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
 
     saveDescription: (e)->
       e.preventDefault()
-      value = @ui.groupDescription.code()
+      value = @ui.groupDescription.summernote('code')
       unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
         @trigger 'group:edit:description', @model, value
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         $('a#js-edit-description').html('[edit]')
         $(e.currentTarget).hide()
 
@@ -182,7 +182,7 @@
 
     editAttribute: (e)->
       $(e.target).addClass "hide"
-  
+
     onRender: ->
       view = this
 

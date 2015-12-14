@@ -329,9 +329,9 @@
       data = Backbone.Syphon.serialize @
       data.offer_keywords = data.offer_keywords.split(',')
       data.search_keywords = data.search_keywords.split(',')
-      data.offer = $('#business-offer').code()
-      data.search = $('#business-search').code()
-      data.business_me = $('#business-me').code()
+      data.offer = $('#business-offer').summernote('code')
+      data.search = $('#business-search').summernote('code')
+      data.business_me = $('#business-me').summernote('code')
       formData = new FormData()
       _.forEach data, (value, key, list)->
           formData.append(key, value)
