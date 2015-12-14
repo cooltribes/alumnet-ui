@@ -16,9 +16,6 @@
         layout.body.show(body)
         AlumNet.execute('render:groups:submenu')
 
-        body.on 'group:edit:description', (model, newValue) ->
-            model.save({description: newValue})
-
         body.on 'group:edit:group_type', (model, newValue) ->
           model.save({group_type: parseInt(newValue)})
         body.on 'group:edit:join_process', (model, newValue) ->

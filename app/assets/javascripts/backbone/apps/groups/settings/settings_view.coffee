@@ -17,7 +17,6 @@
       mailchimp: @model.hasMailchimp()
       uploadFilesText: @model.uploadFilesText(true)
 
-
     ui:
       'uploadFiles': '#upload-files'
       'groupOfficial': '#official'
@@ -131,9 +130,15 @@
 
     toggleEditGroupDescription: (e)->
       e.preventDefault()
+      view = @
       link = $(e.currentTarget)
       if link.html() == '[edit]'
-        @ui.groupDescription.summernote({height: 100, focus: true})
+        @ui.groupDescription.summernote
+          height: 100
+          focus: true
+          callbacks:
+            onImageUpload: (files)->
+              view.sendImage(files[0])
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
@@ -141,11 +146,25 @@
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
 
+    sendImage: (file)->
+      view = @
+      data = new FormData();
+      data.append("file", file);
+      Backbone.ajax
+        data: data
+        type: "POST"
+        url: AlumNet.api_endpoint + "/groups/#{@model.id}/picture"
+        cache: false
+        contentType: false
+        processData: false
+        success: (data) ->
+          view.ui.groupDescription.summernote('insertImage', data.picture.original)
+
     saveDescription: (e)->
       e.preventDefault()
       value = @ui.groupDescription.summernote('code')
       unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
-        @trigger 'group:edit:description', @model, value
+        @model.save({description: value})
         @ui.groupDescription.summernote('destroy')
         $('a#js-edit-description').html('[edit]')
         $(e.currentTarget).hide()

@@ -206,15 +206,35 @@
 
     toggleEditDescription: (e)->
       e.preventDefault()
+      view = @
       link = $(e.currentTarget)
       if link.html() == '[edit]'
-        @ui.eventDescription.summernote({height: 100, focus: true})
+        @ui.eventDescription.summernote
+          height: 100
+          focus: true
+          callbacks:
+            onImageUpload: (files)->
+              view.sendImage(files[0])
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
         @ui.eventDescription.summernote('destroy')
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
+
+    sendImage: (file)->
+      view = @
+      data = new FormData();
+      data.append("file", file);
+      Backbone.ajax
+        data: data
+        type: "POST"
+        url: AlumNet.api_endpoint + "/events/#{@model.id}/picture"
+        cache: false
+        contentType: false
+        processData: false
+        success: (data) ->
+          view.ui.eventDescription.summernote('insertImage', data.picture.original)
 
     saveDescription: (e)->
       e.preventDefault()

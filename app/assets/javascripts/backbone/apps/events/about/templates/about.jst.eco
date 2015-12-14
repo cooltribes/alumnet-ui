@@ -14,7 +14,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="groupAbout__box margin_bottom">
         <h3>Description</h3>
-        <p href="#" id="description" class="js-attribute"><%- @description %></p>
+        <div id="description" class="js-attribute"><%- @description %></div>
         <% if @canEditInformation: %>
           <a href="#" id="js-edit-description">[edit]</a>
           <a href="#" id="js-save-description" style="display:none">[save]</a>
