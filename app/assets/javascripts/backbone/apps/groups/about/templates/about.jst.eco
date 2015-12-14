@@ -7,6 +7,12 @@
       </div>
     </div>
     <div class="col-md-4">
+
+      <div class="groupAbout__box margin_bottom groupAbout__titleSection margin_top">
+        <p>Description</p>
+        <div id="description"><%= @short_description %></div>
+      </div>
+
       <% if @admins.length > 0 : %>
         <div class="groupAbout__box margin_bottom margin_top">
           <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
@@ -56,11 +62,6 @@
           </div>
         </div>
       <% end %>
-
-      <div class="groupAbout__box margin_bottom groupAbout__titleSection">
-        <p>Description</p>
-        <div id="description"><%= @short_description %></div>
-      </div>
 
       <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
         <% if @city.name || @country.name : %>
