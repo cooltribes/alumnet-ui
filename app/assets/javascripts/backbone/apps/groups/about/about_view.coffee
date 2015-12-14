@@ -14,6 +14,12 @@
 
     templateHelpers: ->
       model = @model
+      console.log model
+      otherMembersNotFriends = @otherMembersNotFriends(@model.get('members'),@model.get('friends_in'))
+      otherMembersNotAdmins = @otherMembersNotAdmins(@model.get('members'),@model.get('admins'))
+      console.log otherMembersNotFriends
+      console.log otherMembersNotAdmins
+      members: @model.get('members')
       otherMembersNotFriends: @otherMembersNotFriends(@model.get('members'),@model.get('friends_in'))
       otherMembersNotAdmins: @otherMembersNotAdmins(@model.get('members'),@model.get('admins'))
       currentUserIsAdmin: @current_user.isAlumnetAdmin()

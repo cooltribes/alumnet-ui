@@ -8,8 +8,8 @@
 	        </div>
 	        <div class="row">
 	          <% for admin in @admins: %>
-	            <div class="col-md-3 text-center">
-	              <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle"><br>
+	            <div class="col-md-4 text-center overfloadText boxUser">
+	              <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle" title="<%= admin.name %>"><br>
 	              <a href="#users/<%= admin.id %>/posts"><%=  admin.name %></a>
 	            </div> 
 	          <% end %>
@@ -24,8 +24,8 @@
 	        </div>
 	        <div class="row">
 	          <% for friend in @friends_in: %>
-	            <div class="col-md-3 text-center">
-	              <img src="<%= friend.avatar.avatar.medium.url %>" alt="<%= friend.first_name %>" class="img-circle"><br>
+	            <div class="col-md-4 text-center overfloadText boxUser">
+	              <img src="<%= friend.avatar.avatar.medium.url %>" alt="<%= friend.first_name %>" class="img-circle" title="<%= friend.name %> <%= friend.last_name %>"><br>
 	              <a href="#users/<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a>
 	            </div> 
 	          <% end %>
@@ -40,9 +40,9 @@
 	        </div>
 	        <div class="row">
 	          <% for member in @members: %>
-	            <% if member.id == @otherMembersNotFriends && member.id == @otherMembersNotAdmins: %>
-	              <div class="col-md-3 text-center">
-	                <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle"><br>
+	            <% if member.id == @otherMembersNotFriends || member.id == @otherMembersNotAdmins: %>
+	              <div class="col-md-4 text-center overfloadText boxUser">
+	                <img src="<%= member.avatar %>" alt="<%= member.name %>" class="img-circle" title="<%= member.name %>"><br>
 	                <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
 	              </div> 
 	            <% end %>
