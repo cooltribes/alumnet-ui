@@ -7,9 +7,10 @@
     regions:
       groups_users: "#groups_users"
       create_email: "#create_email"
+      users: "#users"
 
   class EmailsNew.User extends Marionette.ItemView
-    template: 'admin/emails/new/templates/user'
+    template: 'admin/emails/new/templates/_user'
 
     ui:
       'select_user': '#js-select-user'
@@ -28,16 +29,28 @@
       $("#js-deselect-user").removeClass("emails__user--active").addClass("emails__user")
       $("#js-deselect-user").attr("id","js-select-user")
 
+  class EmailsNew.AddFilter extends Marionette.LayoutView
+    template: 'admin/emails/new/templates/_add_filter'
+
   class EmailsNew.GroupsUsers extends Marionette.CompositeView
     template: 'admin/emails/new/templates/groups_users'
-    childViewContainer: '#list-users'
-    childView: EmailsNew.User
+    childViewContainer: '#add-filter'
+    childView: EmailsNew.AddFilter
 
     events:
       'click #js-remove-associated-span': 'removeAsocciatedMailChimp'
+      'click #js-add-filter': 'addFilter'
 
     removeAsocciatedMailChimp: (e)->
-  
+
+    addFilter: (e)->
+      console.log "PRESIONO AGREGAR FILTRO"
+
+  class EmailsNew.Users extends Marionette.CompositeView
+    template: 'admin/emails/new/templates/users'
+    childViewContainer: '#list-users'
+    childView: EmailsNew.User
+
   class EmailsNew.CreateEmail extends Marionette.CompositeView
     template: 'admin/emails/new/templates/create_email'
 

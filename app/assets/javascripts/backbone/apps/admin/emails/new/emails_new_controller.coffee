@@ -12,12 +12,16 @@
       groups_users =  new EmailsNew.GroupsUsers
         collection: collection
 
+      users =  new EmailsNew.Users
+        collection: collection
+
 
       create_email = new EmailsNew.CreateEmail
 
 
       AlumNet.mainRegion.show(layout)
       layout.groups_users.show(groups_users)
+      layout.users.show(users)
       layout.create_email.show(create_email)
 
 
