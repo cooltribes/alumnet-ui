@@ -119,6 +119,7 @@
 
     onShow: ->
       summernote_options =
+        disableDragAndDrop: true
         height: 100
         toolbar: [
           ['style', ['bold', 'italic', 'underline', 'clear']]
@@ -126,6 +127,7 @@
         ]
 
       summernote_options_description =
+        disableDragAndDrop: true
         height: 200
         toolbar: [
           ['style', ['bold', 'italic', 'underline', 'clear']]
@@ -160,9 +162,9 @@
       data = Backbone.Syphon.serialize(this)
       data.must_have_list = [data.skills_must_have, data.languages_must_have].join(",").replace(/(^\s*,)|(,\s*$)/g, '')
       data.nice_have_list = [data.skills_nice_have, data.languages_nice_have].join(",").replace(/(^\s*,)|(,\s*$)/g, '')
-      data.description = $('#task-description').code().replace(/<\/?[^>]+(>|$)/g, "")
-      data.formatted_description = $('#task-description').code()
-      data.offer = $('#task-offer').code()
+      data.description = $('#task-description').summernote('code').replace(/<\/?[^>]+(>|$)/g, "")
+      data.formatted_description = $('#task-description').summernote('code')
+      data.offer = $('#task-offer').summernote('code')
       @model.save data,
         success: ->
           ##TODO Match

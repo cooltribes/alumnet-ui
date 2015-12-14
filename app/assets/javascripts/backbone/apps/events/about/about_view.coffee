@@ -206,22 +206,42 @@
 
     toggleEditDescription: (e)->
       e.preventDefault()
+      view = @
       link = $(e.currentTarget)
       if link.html() == '[edit]'
-        @ui.eventDescription.summernote({height: 100})
+        @ui.eventDescription.summernote
+          height: 100
+          focus: true
+          callbacks:
+            onImageUpload: (files)->
+              view.sendImage(files[0])
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
-        @ui.eventDescription.destroy()
+        @ui.eventDescription.summernote('destroy')
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
 
+    sendImage: (file)->
+      view = @
+      data = new FormData();
+      data.append("file", file);
+      Backbone.ajax
+        data: data
+        type: "POST"
+        url: AlumNet.api_endpoint + "/events/#{@model.id}/picture"
+        cache: false
+        contentType: false
+        processData: false
+        success: (data) ->
+          view.ui.eventDescription.summernote('insertImage', data.picture.original)
+
     saveDescription: (e)->
       e.preventDefault()
-      value = @ui.eventDescription.code()
+      value = @ui.eventDescription.summernote('code')
       unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
         @model.save({description: value})
-        @ui.eventDescription.destroy()
+        @ui.eventDescription.summernote('destroy')
         $('a#js-edit-description').html('[edit]')
         $(e.currentTarget).hide()
 

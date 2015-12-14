@@ -146,16 +146,16 @@
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
 
     saveDescription: (e)->
       e.preventDefault()
-      value = @ui.groupDescription.code()
+      value = @ui.groupDescription.summernote('code')
       unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
         @trigger 'group:edit:description', @model, value
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         $('a#js-edit-description').html('[edit]')
         $(e.currentTarget).hide()
 
@@ -210,7 +210,7 @@
         otherMembers = 0
       else
         otherMembers
-  
+
     onRender: ->
       view = this
 
