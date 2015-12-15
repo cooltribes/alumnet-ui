@@ -18,6 +18,7 @@
             processData: false
             data: data
             success: (model, response, options)->
+              createForm.picture_ids = []
               AlumNet.trigger "groups:invite", model.id
             error: (model, response, options)->
               $.growl.error({ message: response.responseJSON.message })

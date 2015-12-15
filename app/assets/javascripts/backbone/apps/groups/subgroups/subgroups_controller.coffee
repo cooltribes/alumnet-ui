@@ -21,6 +21,7 @@
                 processData: false
                 data: data
                 success: (model, response, options)->
+                  createForm.picture_ids = []
                   AlumNet.trigger 'groups:invite', model.id
               model.save(data, options_for_save)
         else
