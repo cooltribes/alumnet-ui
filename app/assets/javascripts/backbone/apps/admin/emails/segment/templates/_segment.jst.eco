@@ -1,0 +1,26 @@
+<td >
+
+	<span class="segmentTableView__title">
+	Segment name, 328 users
+	</span>
+
+	<br>
+	<span class="segmentTableView__info">
+	in <b>Group Name</b>
+	<br>
+	filters: Gender: Female, Age: 25-30, Age 30-35
+	<br>
+	manually chosen:29
+	</span>
+
+
+
+</td>
+
+<td >
+<button class="btn btn-primary-noBackground segmentTableView__button">EDIT</button>
+</td>
+
+<td >
+<button class="btn btn-danger-noBackground segmentTableView__button"><i class="fa fa-times"></i>DELETE</button>
+</td>

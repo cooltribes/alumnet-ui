@@ -21,6 +21,7 @@
       "dashboard/posts": "dashboardPosts"
       "admin/emails":"emailsNew"
       "admin/emails-sent":"emailsSent"
+      "admin/emails-segment":"emailsSegment"
 
   API =
     usersList: ->
@@ -72,6 +73,9 @@
     emailsSent: ->
       controller = new AdminApp.EmailsSent.Controller
       controller.emailsSent()
+    emailsSegment: ->
+      controller = new AdminApp.EmailsSegment.Controller
+      controller.emailsSegment()
 
   AlumNet.addInitializer ->
     new AdminApp.Router

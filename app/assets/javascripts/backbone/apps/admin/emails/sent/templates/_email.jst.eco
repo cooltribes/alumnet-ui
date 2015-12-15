@@ -1,0 +1,39 @@
+<td >
+
+	<span class="emailsTableView__title">
+	Emails title goes here
+	</span>
+
+	<br>
+	<span class="emailsTableView__preview">
+	Show preview >>
+	</span>
+	<br>
+	<span class="emailsTableView__info">
+	12.12.2015,<b>Group Name</b>
+	</span>
+
+
+
+</td>
+
+<td class="emailsTableView__numbers">
+629
+</td>
+
+<td class="emailsTableView__numbers" >
+502
+</td >
+
+<td class="emailsTableView__numbers" >
+142
+</td>
+
+<td class="emailsTableView__numbers">
+0,78 %
+</td>
+
+<td class="emailsTableView__numbers">
+0,28 %
+</td>
+

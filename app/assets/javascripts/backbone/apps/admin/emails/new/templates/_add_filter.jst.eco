@@ -1,19 +1,44 @@
 	<div class="row">
 		<div class="col-md-2 emails__space"></div>
-		<div class="col-md-5">
-	
-			<select class="filter-comparator filters__input filters__input--sm form-control input-lg">
-				<option>Gender</option>
-			</select>
-			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
-	
-		</div>
-	<div class="col-md-5">
-	
-			<select class="filter-comparator filters__input filters__input--sm form-control input-lg">
-				<option>Male</option>
-			</select>
-			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
-	
-		</div>	
-	</div>
+		<div class="col-md-3">
+     
+      <div class="filter-attribute-container form-group">
+       <select class="filter-comparator filters__input filters__input--sm form-control input-lg">
+        <option value="profile_first_name_or_profile_last_name">Fullname</option>
+        <option value="email">Email</option>
+        <option value="profile_residence_country_name">Country of residence</option>
+        <option value="profile_birth_country_name">Country of origin</option>
+        <option value="profile_residence_city_name">City of residence</option>
+        <option value="profile_birth_city_name">City of origin</option>
+        <option value="profile_gender">Gender</option>
+        <option value="status">Status</option>
+        <option value="member">Membership</option>
+        <option value="created_at">Joining date</option>
+        <option value="profile_experiences_committee_name">Local Committee</option>
+        <option value="profile_register_step">Register step</option>
+        <option value="sign_in_count">Login count</option>
+      </select>
+      <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+      
+    </div>
+  </div>
+  <div class="col-md-3">
+   <div class="filter-comparator-container form-group">
+    <select class="filter-comparator filters__input filters__input--lg form-control input-lg">
+      <option value="">Search field</option>
+    </select>
+    <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+    <span class="help-block"></span>
+  </div>
+</div>
+
+
+  <div class="col-md-3">
+    <div class="filter-value-container form-group">
+      <input class="filter-value filters__input filters__input--lg form-control input-lg">
+    </div>
+  </div>
+  <div class="col-md-1 close-filter">
+    <button type="button" class="pull-right close-filter btn btn-default filters__iconDelete"><span class="glyphicon glyphicon-trash"></span></button>
+  </div>
+</div>

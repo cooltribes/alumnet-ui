@@ -2,14 +2,23 @@
   class EmailsSent.Controller
     emailsSent: ->
 
+
+      collection = new Backbone.Collection [
+        name: "Diana"
+        ,
+        name: "Nelson"
+      ]
+
+
       layout = new EmailsSent.Layout
-      search =  new EmailsSent.Search
+      
       sent_table = new EmailsSent.Table
+      	collection: collection
 
 
       AlumNet.mainRegion.show(layout)
-      layout.search.show(search)
-      layout.table.show(sent_table)
+     
+      layout.tableSentEmails.show(sent_table)
 
 
-      AlumNet.execute('render:admin:emails:submenu', undefined, 0)
+      AlumNet.execute('render:admin:emails:submenu', undefined, 1)
