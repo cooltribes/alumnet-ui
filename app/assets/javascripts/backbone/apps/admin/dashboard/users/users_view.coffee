@@ -98,10 +98,11 @@
         $.growl.warning {message: "There is not data for these dates, try another query."}
 
       if @getInterval() == "days"
-
+        console.log values
         values = _.sortBy values, (el)-> #Sort the arrays
           # return (new Date(el[0]))
-          return (new Date(moment(el[0], "DD-MM-YYYY").format("MM-DD-YYYY")))
+          # return (new Date(moment(el[0], "DD-MM-YYYY").format("MM-DD-YYYY")))
+          moment(el[0], "DD-MM-YYYY").format("X")
         # .reverse()
 
       else if @getInterval() == "months"
