@@ -31,6 +31,7 @@
           placement: 'bottom'
           trigger: 'hover'
           template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+          delay: { "show": 100, "hide": 200 }
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
 
@@ -137,7 +138,6 @@
 
     hidePopover: ->
       @$("#userPopover"+@model.id).popover('hide');
-
 
   #
   # POST VIEW
@@ -251,9 +251,11 @@
           html: true
           placement: 'bottom'
           trigger: 'hover'
+          delay: { "show": 100, "hide": 200 }
           template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
+          animation: false
 
       view = @
       @ui.bodyPost.editable
@@ -307,6 +309,7 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
+ 
 
     showShare: (e)->
       e.preventDefault()

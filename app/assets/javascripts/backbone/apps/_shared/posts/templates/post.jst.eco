@@ -23,6 +23,7 @@
                       <p class="overfloadText no-margin"><%= @user.name %></p>
                       <!--<span class="ico-chat"> Send a private messages </span><br>-->
                       <span class="glyphicon glyphicon-map-marker"> <%= @getLocationUser %></span><br>
+                      <span class="ico-chat"><a href="#conversations/user/<%= @user.id %>"> Send a Message</a></span>
                     </div>
                     <% if @user.cover != null : %>
                       <div class="coverPreview no_padding">

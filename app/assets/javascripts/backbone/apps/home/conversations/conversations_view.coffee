@@ -85,6 +85,9 @@
         conversation = childView.model
         view.layout.renderReplyConversation(conversation)
 
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
+
 
   class Conversations.NewConversationView extends Marionette.CompositeView
     template: 'home/conversations/templates/new_conversation'

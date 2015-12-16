@@ -33,23 +33,21 @@
 	      </div>
 	     <% end %>
 
-			<% if @otherMembers > 0 : %>
-	      <div class="groupAbout__box margin_bottom margin_top">
-	        <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
-	          <p> Other members (<%= @otherMembers %>)</p>
-	        </div>
-	        <div class="row">
-	          <% for member in @members: %>
-	            <% if member.id == @otherMembersNotFriends || member.id == @otherMembersNotAdmins: %>
-	              <div class="col-md-3 text-center overfloadText boxUser">
-	                <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle" title="<%= member.name %>"><br>
-	                <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
-	              </div> 
-	            <% end %>
-	          <% end %>
-	        </div>
-	      </div>
-	    <% end %>
+			 <% if @otherMembers > 0 : %>
+        <div class="groupAbout__box margin_bottom margin_top">
+          <div class="text-left margin_bottom_xsmall groupAbout__titleSection">
+            <p> Other members (<%= @otherMembers %>)</p>
+          </div>
+          <div class="row">
+            <% for member in @other_members: %>
+              <div class="col-md-3 text-center overfloadText boxUser">
+                <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle" title="<%= member.name %>"><br>
+                <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 		</div>
 		
 		<div class="col-md-4 margin_bottom">

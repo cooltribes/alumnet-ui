@@ -38,8 +38,8 @@
 										<!-- PICTURES -->
 										<div class="row" id="js-filelist"></div>
 										<!-- PICTURES OFF -->
-										<div>
-											<div class="text-left">
+										<div class="row">
+											<div class="col-md-8 col-xs-8 col-sm-8 paddingLink text-left">
 												<a id="js-add-picture" class="groupPost__btn--addPicture groupPost__btn--addPicture--paddingLink" href="javascript:;">
 													<i class="icon-entypo-picture"></i> Add Picture
 												</a>
@@ -47,7 +47,7 @@
 													<i class="icon-entypo-tag"></i> Tag Friends
 												</a>
 											</div>
-											<div class="groupPost__btn--addPicture--postButton">
+											<div class="col-md-4 col-xs-4 col-sm-4 text-right">
 												<a href="#" class="btn btn-primary" id="js-post-submit"> POST</a>
 											</div>
 										</div>

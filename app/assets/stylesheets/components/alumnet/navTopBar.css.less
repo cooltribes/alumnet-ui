@@ -515,9 +515,9 @@ DESCRIPTION: Top navigation bar with menus
   }
   button{
     margin-left: -7px;
-    margin-top: -4px;
+    margin-top: -2px;
     background-color: @white;
-    color: #818181;
+    color: @light-gray;
     border-color: #CCCCCC;
     span{
       font-size: 12px;
@@ -526,6 +526,33 @@ DESCRIPTION: Top navigation bar with menus
       background-color: #0886BF;
       border-color: #0886BF;
     }
+  }
+  ::-webkit-input-placeholder {
+    color: @light-gray;
+    font-family: sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: @light-gray;
+    font-family: sans-serif;
+    font-weight: 300; 
+    font-style: italic; 
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: @light-gray;
+    font-family: sans-serif;
+    font-weight: 300;
+    font-style: italic;  
+  }
+
+  :-ms-input-placeholder {  
+    color: @light-gray;
+    font-family: sans-serif;
+    font-weight: 300;
+    font-style: italic;  
   }
 }   
 .navTopBarMobile__item {
@@ -548,6 +575,9 @@ DESCRIPTION: Top navigation bar with menus
   }
 }
 
+.member{
+  line-height: 1.5;
+}
 /*menores a 400*/
 @media (max-width: @media-smallweb) {
   .navTopBarMobile__item {
