@@ -184,11 +184,30 @@
     ui:
       'membersCount': '#js-members-count'
       'friendsCount': '#js-friends-count'
+      'loading': '.throbber-loader'
 
     events:
       'click .js-search': 'performSearch'
       'click #js-members-count': 'allMembers'
       'click #js-friends-count': 'filterFriends'
+
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMore')      
+      $(window).scroll(@loadMore)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')
+
+    loadMore: (e)->
+      console.log "entro"
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'members:reload'
 
     filterFriends: (e)->
       e.preventDefault()
