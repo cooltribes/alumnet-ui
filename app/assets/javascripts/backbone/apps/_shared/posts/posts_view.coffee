@@ -34,7 +34,8 @@
           delay: { "show": 100, "hide": 200 }
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
-
+          animation: false
+          
       view = @
       @ui.commentText.editable
         type: 'textarea'
