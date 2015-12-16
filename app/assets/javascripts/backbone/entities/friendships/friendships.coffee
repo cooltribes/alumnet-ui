@@ -3,7 +3,7 @@
 
   class Entities.FriendshipCollection extends Backbone.Collection
     model: Entities.Friendship
-    rows: 6
+    rows: 15
     page: 1
     querySearch: {}
 
@@ -31,7 +31,7 @@
     getCurrentUserFriendship: (filter)->
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + '/me/friendships'
-      friendships.fetch(data: { filter: filter })
+      friendships.fetch(data: { filter: filter,page: friendships.page,per_page: friendships.rows })
       friendships
 
     friendsCurrentUserFriendship: ->

@@ -38,19 +38,30 @@
     childViewContainer: ".users-list"
     childViewOptions: ->
       parentModel: this.model
-    
-    initialize: ->
-      $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreUsers')
-      $(window).scroll(@loadMoreUsers)
 
-    loadMoreUsers: (e)->
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMore')      
+      $(window).scroll(@loadMore)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      $(window).unbind('scroll')
+
+    loadMore: (e)->
+      console.log "entro"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'user:reload'
 
     events:
       'click .js-search': 'performSearch'
-
+    ui:
+      'loading': '.throbber-loader'
+      
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)

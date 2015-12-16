@@ -14,7 +14,16 @@
       requestsCollection.on "sync:complete", (collection)->
         approvalCount = requestsCollection.length
 
-
+      requestsCollection.on "friends:reload", ->
+        newCollection = AlumNet.request('current_user:approval:received')
+        newCollection.url = requestsCollection.collection.url
+        newCollection.fetch
+          data: {page: ++@collection.page, per_page: @collection.rows}
+          success: (collection)->
+            requestsCollection.collection.add(collection.models)
+            if collection.length < collection.rows
+              requestsCollection.endPagination()
+      
       requestsView.on 'childview:accept', (childView)->
         request = childView.model
         request.save {},
