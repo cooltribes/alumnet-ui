@@ -66,7 +66,6 @@
       contentView = new EmailsSegment.Users
         collection: collection
         
-
       @users.show(contentView)
 
 

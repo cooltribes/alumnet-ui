@@ -1,7 +1,6 @@
 	<div class="row">
 		<div class="col-md-2 emails__space"></div>
 		<div class="col-md-3">
-     
       <div class="filter-attribute-container form-group">
        <select class="filter-comparator filters__input filters__input--sm form-control input-lg">
         <option value="profile_first_name_or_profile_last_name">Fullname</option>
@@ -18,8 +17,7 @@
         <option value="profile_register_step">Register step</option>
         <option value="sign_in_count">Login count</option>
       </select>
-      <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
-      
+      <span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>   
     </div>
   </div>
   <div class="col-md-3">
@@ -31,8 +29,6 @@
     <span class="help-block"></span>
   </div>
 </div>
-
-
   <div class="col-md-3">
     <div class="filter-value-container form-group">
       <input class="filter-value filters__input filters__input--lg form-control input-lg">
