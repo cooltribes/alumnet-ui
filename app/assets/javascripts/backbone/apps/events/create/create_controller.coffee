@@ -17,6 +17,7 @@
             processData: false
             data: data
             success: (model, response, options)->
+              createForm.picture_ids = []
               contacts = AlumNet.request('event:contacts', model.id)
               AlumNet.trigger('user:event:invite', model, contacts)
 
