@@ -236,8 +236,8 @@
 
     googleCalendarEvents:->
       text = encodeURIComponent(@model.get("name")) 
-      startDate = moment(@model.get("start_date")).format('YYYYMMDD')
-      endDate = moment(@model.get("end_date")).add('days',1).format('YYYYMMDD')
+      startDate = moment(@model.get("start_date")+" "+@model.get("start_hour")).format('YYYYMMDDTHHmmSS')
+      endDate = moment(@model.get("end_date")+" "+@model.get("end_hour")).add('days',1).format('YYYYMMDDTHHmmSS')
       details = encodeURIComponent(@model.get("description"))
       location = encodeURIComponent(@model.get("address")) 
       googleCalendarUrl = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + text + '&dates=' + startDate + '/' + endDate + '&details=' + details + '&location=' + location
@@ -245,8 +245,9 @@
 
     yahooCalendarEvents:->
       text = encodeURIComponent(@model.get("name")) 
-      startDate = moment(@model.get("start_date")).format('YYYYMMDD')
-      endDate = moment(@model.get("end_date")).format('YYYYMMDD')
+      startDate = moment(@model.get("start_date")+" "+@model.get("start_hour")).format('YYYYMMDDTHHmmSS')      
+      endDate = moment(@model.get("end_date")+" "+@model.get("end_hour")).add('days',1).format('YYYYMMDDTHHmmSS')      
+      ###endDate = moment(@model.get("end_date")).format('YYYYMMDD')###
       location = encodeURIComponent(@model.get("address"))
       details = encodeURIComponent(@model.get("description"))
       yahooCalendarUrl = 'http://calendar.yahoo.com/?v=60&TITLE=' + text + '&ST=' + startDate + '&ET=' + endDate + '&in_loc=' + location + '&DESC=' + details
