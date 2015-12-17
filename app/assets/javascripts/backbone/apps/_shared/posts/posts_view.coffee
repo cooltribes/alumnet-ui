@@ -21,7 +21,7 @@
       comment: @model.commentWithLinks()
       showDropdownOptions: ->
         permissions.canDelete || permissions.canEdit
-     
+
     onRender: ->
       if AlumNet.current_user.id != @model.get('user').id
         self = @
@@ -309,7 +309,7 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
- 
+
 
     showShare: (e)->
       e.preventDefault()
@@ -530,6 +530,9 @@
         formatSelection: (data)->
           data.name
 
+      @ui.bodyInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
     showTagging: (e)->
       e.preventDefault()
       if @ui.tagging.is(":visible")
@@ -568,3 +571,14 @@
 
     submitClicked: (e)->
       throw 'Implement this function'
+
+    joinMentionsWithTags: (mentions, tags)->
+      tagsArray = if tags == "" then [] else tags.split(",")
+      mentionsArray = if mentions == "" then [] else mentions.split(",")
+      _.union(mentionsArray, tagsArray).join(",")
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")
