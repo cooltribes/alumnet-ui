@@ -108,4 +108,7 @@
 <div class="text-right">
 
 <%- @pagination_buttons() %>
+<ul id="pagination" class="pagination-md"></ul>
 </div>
+
+    
