@@ -22,6 +22,8 @@
               data: query
               success: (collection)->
                 usersView.collection.add(collection.models)
+                if collection.length < collection.rows 
+                  usersView.endPagination() 
 
           usersView.on "add:child", (viewInstance)->
             container = $('#friends_list')

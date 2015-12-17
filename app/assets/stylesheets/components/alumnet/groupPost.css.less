@@ -58,14 +58,13 @@ DESCRIPTION: A card that contains a post in a group
 	}
 
 	&__btn--addPicture{
-		border: 1px solid @blue;
-		padding: 5px 10px 5px 10px;
-		margin-right: 5px;
-		display: inline-block;
+		padding: 5px 15px 5px 0px;
 		text-transform: uppercase;
-		margin-bottom: 5px;
-    	margin-left: 10px;
-    	font-size: 10px;
+    font-size: 13px;
+   
+    &--paddingLink{
+			padding: 5px 60px 20px 10px;
+    }
 	}
 
 	&__btn--like{
@@ -144,23 +143,12 @@ DESCRIPTION: A card that contains a post in a group
 		color: @black;
 	}
 }
+.paddingLink{
+	padding: 0 0 0 10px;
+}
 
 /* Small devices (tablets, 400px and up) */
 @media (min-width: @media-xsmall-max) {
-
-	.groupPost {
-		&__btn--addPicture{
-			border: 1px solid @blue;
-			padding: 5px 15px 5px 10px;
-			margin-right: 5px;
-			display: inline-block;
-			text-transform: uppercase;
-			margin-bottom: 0;
-    		margin-left: 0;
-    		font-size: 14px;
-		}
-	}
-
 	.link-text{
 		.tooltip-inner {
 	    	text-align:left;
@@ -170,20 +158,19 @@ DESCRIPTION: A card that contains a post in a group
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
-
 	.groupPost {
 		&__btn--addPicture{
-			border: 1px solid @blue;
-			padding: 5px 15px 5px 10px;
-			margin-right: 5px;
-			display: inline-block;
+			padding: 5px 15px 5px 0px;
 			text-transform: uppercase;
-			margin-bottom: 0;
-    		margin-left: 0;
-    		font-size: 12px;
+	    font-size: 16px;
+
+	    &--paddingLink{
+				padding: 5px 20px 0 0;
+	    }
 		}
-
-
+	}
+	.paddingLink{
+		padding: 7px 0 0 10px;
 	}
 }
 
@@ -193,17 +180,7 @@ DESCRIPTION: A card that contains a post in a group
 @media (min-width: @media-medium-min) {
 
 	.groupPost {
-		&__btn--addPicture{
-			border: 1px solid @blue;
-			padding: 5px 15px 5px 10px;
-			margin-right: 5px;
-			display: inline-block;
-			text-transform: uppercase;
-			margin-bottom: 0;
-    		margin-left: 0;
-    		font-size: 14px;
 
-    	}
 		&__btn--comment_event{
 			border: 1px solid @blue;
 			padding: 3px 8px 3px 7px;
@@ -225,16 +202,6 @@ DESCRIPTION: A card that contains a post in a group
 @media (min-width: @media-large-min) { 
 
 	.groupPost {
-		&__btn--addPicture{
-			border: 1px solid @blue;
-			padding: 5px 15px 5px 10px;
-			margin-right: 5px;
-			display: inline-block;
-			text-transform: uppercase;
-			margin-bottom: 0;
-    		margin-left: 0;
-    		font-size: 14px;
-		}
 
 		&__btn--comment_event{
 			border: 1px solid @blue;

@@ -1,6 +1,8 @@
 @AlumNet.module 'GroupsApp.Members', (Members, @AlumNet, Backbone, Marionette, $, _) ->
   class Members.Controller
     listMembers: (id)->
+      controller = @
+      controller.querySearch = {}
       group = AlumNet.request("group:find", id)
       group.on 'find:success', (response, options)->
         if group.isClose() && not group.userIsMember()
@@ -24,9 +26,22 @@
             model: group
             collection: members
           membersLayout.alumni.show(membersView)
-          membersView.on 'members:search', (querySeach)->
+          membersView.on 'members:search', (querySearch)->
+            controller.querySearch = querySearch
             members.fetch
-              data: querySeach
+              data: querySearch
+          group_id = group.id
+          membersView.on "members:reload", ->
+            querySearch = controller.querySearch
+            newCollection = new AlumNet.Entities.MembershipsCollection       
+            newCollection.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships/members'
+            query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
+            newCollection.fetch
+              data: query
+              success: (collection)->
+                membersView.collection.add(collection.models)
+                if collection.length < collection.rows 
+                  membersView.endPagination() 
 
           # Requests View -- Only for admins
           if group.userIsAdmin()

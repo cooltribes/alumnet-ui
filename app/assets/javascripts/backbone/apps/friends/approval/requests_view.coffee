@@ -25,3 +25,24 @@
     template: 'friends/approval/templates/requests_container'
     childView: Approval.RequestView
     emptyView: Approval.EmptyView
+
+    ui:
+      'loading': '.throbber-loader'
+
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')
+      $(window).scroll(@loadMoreUsers)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      #$('.throbber-loader').hide()
+      $(window).unbind('scroll')
+
+    loadMoreUsers: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'friends:reload'
