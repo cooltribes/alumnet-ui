@@ -23,7 +23,7 @@
   <span class="icon-entypo-link"></span> <div class="metaInfoCard__contact overfloadText js-link-web" title="Go to <%= @info %>"><%= @info %></div>
 <% end %>
 <% if @contact_type== 8: %>
-    <span class="icon-entypo-linkedin"></span> <div class="metaInfoCard__contact overfloadText js-link-linkedin" title="Go to profile"><%= @info %></div>
+    <span class="ico-alumnet-linkedin"></span> <div class="metaInfoCard__contact overfloadText js-link-linkedin" title="Go to profile"><%= @info %></div>
 <% end %>
 <% if @contact_type== 9: %>
     <span class="icon-entypo-mail"></span> <div id="js-link-mail" class="metaInfoCard__contact overfloadText"><a href="mailto:<%= @info %>" target="_blank" title="Send email to <%= @info %> " ><%= @info %></a></div>
