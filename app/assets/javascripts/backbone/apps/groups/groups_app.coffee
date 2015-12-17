@@ -83,6 +83,10 @@
     AlumNet.navigate("groups/#{id}/posts")
     API.postsGroup(id)
 
+  AlumNet.on "groups:about", (id)->
+    AlumNet.navigate("groups/#{id}/about")
+    API.aboutGroup(id)
+
   AlumNet.on "groups:invite", (id)->
     AlumNet.navigate("groups/#{id}/invite")
     API.inviteGroup(id)

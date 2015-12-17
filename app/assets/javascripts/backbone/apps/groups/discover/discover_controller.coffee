@@ -58,7 +58,10 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
-          AlumNet.trigger "groups:posts", group.get('id')
+          if group.isClose()  
+            AlumNet.trigger "groups:about", group.get('id')
+          else  
+            AlumNet.trigger "groups:posts", group.get('id')
 
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
