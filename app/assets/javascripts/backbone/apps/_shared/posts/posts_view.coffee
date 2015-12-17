@@ -23,6 +23,8 @@
         permissions.canDelete || permissions.canEdit
 
     onRender: ->
+      view = @
+
       if AlumNet.current_user.id != @model.get('user').id
         self = @
         @$('#userPopover'+@model.id).popover
@@ -35,7 +37,6 @@
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
 
-      view = @
       @ui.commentText.editable
         type: 'textarea'
         inputclass: 'comment-editable'
@@ -261,6 +262,7 @@
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
+        inputclass: 'post-editable'
         pk: view.model.id
         title: 'Edit Posts'
         emptytext: ''
@@ -268,13 +270,25 @@
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
+        display: (value, response)->
+          $(@).html view.model.bodyWithLinks()
         success: (response, newValue)->
-          post = view.model
-          post.save { body: newValue }
-          validation = view.ytVidId(newValue.split(" ").pop())
+          $textarea = view.$('.post-editable')
+          newValues = {
+            body: $textarea.mentionsInput('getRawValue')
+            markup_body: $textarea.mentionsInput('getValue')
+            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
+          }
+          view.model.save(newValues)
+          validation = view.ytVidId(newValues.body.split(" ").pop())
           if validation
             temp_string = newValue
             $(this).html(temp_string.replace(newValue.split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
+
+      @ui.bodyPost.on 'shown', (e, editable) ->
+        body = view.model.get('markup_body') || view.model.get('body')
+        editable.input.$input.val body
+
 
       validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation
@@ -372,6 +386,8 @@
       e.preventDefault()
       @ui.options.dropdown("toggle")
       @ui.bodyPost.editable('toggle')
+      @$('.post-editable').mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
 
     clickedDelete: (e)->
       e.stopPropagation()
