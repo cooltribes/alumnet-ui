@@ -195,6 +195,7 @@
       canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      body: @model.bodyWithLinks()
       showDropdownOptions: ->
         permissions.canDelete || permissions.canEdit
       current_user_avatar: AlumNet.current_user.get('avatar').medium

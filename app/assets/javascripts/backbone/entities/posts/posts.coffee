@@ -20,6 +20,21 @@
     #   body:
     #     required: true
 
+    bodyWithLinks: ->
+      markup_body = @get 'markup_body'
+      if markup_body
+        mentionRE = /@\[([^\]]+)\]\(([^ \)]+)\)/g
+        markup_body.replace mentionRE, (mention)->
+          match = mentionRE.exec(mention)
+          if match
+            link = "<a href='#users/#{match[2]}/posts'>#{match[1]}</a>"
+          else
+            link = mention
+          mentionRE.lastIndex = 0 #reset the regex because is global /g
+          link
+      else
+        @get 'body'
+
     getModelContent: ->
       if @get('content')
         @modelContent = new Entities.Post @get('content') if @modelContent == undefined
