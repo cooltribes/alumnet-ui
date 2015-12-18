@@ -1,34 +1,10 @@
 <div class="row">
 	<div class="container">
 		<h1 class="text-center">New Email</h1>
-		  <div id="groups_users"></div>
-		  <div id="users"></div>
-		  <div id="create_email"></div>
+	  <div id="groups_users"></div>
 
-		  <div class="col-md-6 col-xs-12 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">
-			<div class="row">
-				<div class="col-md-2 col-xs-2 emails__space"></div>
-				<div class="col-md-5 col-xs-5">
-			
-					<a href="#" class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--buttons "><i class="glyphicon glyphicon-eye-open emails__icon"></i>SHOW PREVIEW
-					</a>
-			
-				</div>
-				<div class="col-md-5 col-xs-5">
-				
-						<a href="#" class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--buttons "><i class="glyphicon glyphicon-envelope emails__icon"></i>SENT TO ME
-						</a>
-				
-				</div>	
-			</div>
+	
 
-			<div class="row">
-				<div class="col-md-2 col-xs-2 emails__space"></div>
-				<div class="col-md-10 col-xs-10">
-					<a href="#" class="btn btn-primary emails__associateGroup emails__associateGroup--buttons "><i class="emails__icon glyphicon glyphicon-envelope "></i>SENT TO SELECTED USERS
-					</a>
-				</div>
-			</div>
-		</div>
+	  
 	</div>
 </div>

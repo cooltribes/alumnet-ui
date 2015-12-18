@@ -157,6 +157,8 @@
       groups.url = AlumNet.api_endpoint + '/admin/groups'
       groups.fetch
         data: querySearch
+        success: (model, response, options) ->
+          groups.trigger('fetch:success')
       groups
 
     getGroupsDeleted: (querySearch)->
