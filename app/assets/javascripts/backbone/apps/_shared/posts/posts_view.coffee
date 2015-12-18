@@ -21,8 +21,10 @@
       comment: @model.commentWithLinks()
       showDropdownOptions: ->
         permissions.canDelete || permissions.canEdit
-     
+
     onRender: ->
+      view = @
+
       if AlumNet.current_user.id != @model.get('user').id
         self = @
         @$('#userPopover'+@model.id).popover
@@ -31,9 +33,11 @@
           placement: 'bottom'
           trigger: 'hover'
           template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+          delay: { "show": 100, "hide": 200 }
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
-
+          animation: false
+          
       view = @
       @ui.commentText.editable
         type: 'textarea'
@@ -138,7 +142,6 @@
     hidePopover: ->
       @$("#userPopover"+@model.id).popover('hide');
 
-
   #
   # POST VIEW
   # @postable is the model of the parent view.
@@ -195,6 +198,7 @@
       canShare: permissions.canShare
       canEdit: permissions.canEdit
       canDelete: permissions.canDelete
+      body: @model.bodyWithLinks()
       showDropdownOptions: ->
         permissions.canDelete || permissions.canEdit
       current_user_avatar: AlumNet.current_user.get('avatar').medium
@@ -251,13 +255,16 @@
           html: true
           placement: 'bottom'
           trigger: 'hover'
+          delay: { "show": 100, "hide": 200 }
           template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
+          animation: false
 
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
+        inputclass: 'post-editable'
         pk: view.model.id
         title: 'Edit Posts'
         emptytext: ''
@@ -265,13 +272,25 @@
         validate: (value)->
           if $.trim(value) == ''
             'this field is required'
+        display: (value, response)->
+          $(@).html view.model.bodyWithLinks()
         success: (response, newValue)->
-          post = view.model
-          post.save { body: newValue }
-          validation = view.ytVidId(newValue.split(" ").pop())
+          $textarea = view.$('.post-editable')
+          newValues = {
+            body: $textarea.mentionsInput('getRawValue')
+            markup_body: $textarea.mentionsInput('getValue')
+            user_tags_list: view.extractMentions($textarea.mentionsInput('getMentions'))
+          }
+          view.model.save(newValues)
+          validation = view.ytVidId(newValues.body.split(" ").pop())
           if validation
             temp_string = newValue
             $(this).html(temp_string.replace(newValue.split(" ").pop(),'<div class="video-container"><iframe width="420" height="315" src="http://www.youtube.com/embed/'+validation+'"></iframe></div>'))
+
+      @ui.bodyPost.on 'shown', (e, editable) ->
+        body = view.model.get('markup_body') || view.model.get('body')
+        editable.input.$input.val body
+
 
       validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation
@@ -307,6 +326,7 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
+
 
     showShare: (e)->
       e.preventDefault()
@@ -368,6 +388,8 @@
       e.preventDefault()
       @ui.options.dropdown("toggle")
       @ui.bodyPost.editable('toggle')
+      @$('.post-editable').mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
 
     clickedDelete: (e)->
       e.stopPropagation()
@@ -527,6 +549,9 @@
         formatSelection: (data)->
           data.name
 
+      @ui.bodyInput.mentionsInput
+        source: AlumNet.api_endpoint + '/me/friendships/suggestions'
+
     showTagging: (e)->
       e.preventDefault()
       if @ui.tagging.is(":visible")
@@ -565,3 +590,14 @@
 
     submitClicked: (e)->
       throw 'Implement this function'
+
+    joinMentionsWithTags: (mentions, tags)->
+      tagsArray = if tags == "" then [] else tags.split(",")
+      mentionsArray = if mentions == "" then [] else mentions.split(",")
+      _.union(mentionsArray, tagsArray).join(",")
+
+    extractMentions: (mentions)->
+      array = []
+      _.each mentions, (mention)->
+        array.push mention.uid
+      array.join(",")

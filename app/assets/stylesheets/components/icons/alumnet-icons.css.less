@@ -1,0 +1,40 @@
+@import 'conf/conf.css.less';
+
+@font-face {
+	font-family: 'alumnet-ico';
+	src: asset-url('alumnet-ico.eot?vj366k');
+	src: asset-url('alumnet-ico.eot?vj366k#iefix') format('embedded-opentype'),
+		asset-url('alumnet-ico.ttf?vj366k') format('truetype'),
+		asset-url('alumnet-ico.woff?vj366k') format('woff'),
+		asset-url('alumnet-ico.svg?vj366k#alumnet-ico') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="ico-alumnet-"], [class*=" ico-alumnet-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'alumnet-ico' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ico-alumnet-nav_groups:before {
+	content: "\e1001";
+}
+.ico-alumnet-privacy_everyone:before {
+	content: "\e1002";
+}
+.ico-alumnet-privacy_friends-of-friends:before {
+	content: "\e1003";
+}
+.ico-alumnet-linkedin:before {
+	content: "\e1004";
+}

@@ -5,6 +5,7 @@
 
     initialize: (options)->
       @user = options.user
+      @picture_ids = []
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -27,10 +28,11 @@
       'mailchimpCheckbox': '#mailchimp'
       'mailchimpCheckboxContainer': '#mailchimp-check-container'
       'mailchimpParameters': '#mailchimp-parameters-container'
+      'groupDescription': '#group-description'
 
     events:
-      'click button.js-submit': 'submitClicked'
-      'click button.js-cancel': 'cancelClicked'
+      'click a.js-submit': 'submitClicked'
+      'click a.js-cancel': 'cancelClicked'
       'change #group-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #group-type': 'changedGroupType'
@@ -57,7 +59,7 @@
       select = $(e.currentTarget)
       @ui.selectJoinProcess.html(@joinOptionsString(select.val()))
       $("#js-message-group").html(@changeMessage(select.val()))
-      
+
 
     changeMessage: (option)->
       if option=="closed"
@@ -78,14 +80,19 @@
         <option value="2">Only the admins can invite</option>'
 
     submitClicked: (e)->
+      e.stopPropagation()
       e.preventDefault()
       $(e.currentTarget).removeClass('js-submit')
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
       _.forEach data, (value, key, list)->
         formData.append(key, value)
+      data.description = @ui.groupDescription.summernote('code')
       file = @$('#group-cover')
       formData.append('cover', file[0].files[0])
+      ##send pictures id as array. This is formData way
+      _.forEach @picture_ids, (value)->
+        formData.append('picture_ids[]', value)
       @model.set(data)
       @trigger 'form:submit', @model, formData
 
@@ -122,6 +129,7 @@
           data.name
 
     onRender: ->
+      view = @
       @ui.selectCities.select2
         placeholder: "Select a City"
         data: []
@@ -129,6 +137,25 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+      @ui.groupDescription.summernote
+        callbacks:
+          onImageUpload: (files)->
+            view.sendDescriptionImage(files[0])
+
+    sendDescriptionImage: (file)->
+      view = @
+      data = new FormData();
+      data.append("file", file);
+      Backbone.ajax
+        data: data
+        type: "POST"
+        url: AlumNet.api_endpoint + "/pictures"
+        cache: false
+        contentType: false
+        processData: false
+        success: (data) ->
+          view.picture_ids.push(data.id)
+          view.ui.groupDescription.summernote('insertImage', data.picture.original)
 
     uploadFile: (e)->
       e.preventDefault()

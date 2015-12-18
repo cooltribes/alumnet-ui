@@ -21,14 +21,13 @@
     showSubgroups: (e)->
       id = $(e.currentTarget).attr("aria-controls")
       child = $(e.currentTarget).attr("data-child")
-      $('#'+id).on('hidden.bs.collapse', () -> 
+      $('#'+id).on('hidden.bs.collapse', () ->
         $('#js-subgroups').html("Show subgroups ("+child+")"))
-      $('#'+id).on('shown.bs.collapse', () -> 
+      $('#'+id).on('shown.bs.collapse', () ->
         $('#js-subgroups').html("Hide subgroups ("+child+")"))
 
     onRender: ->
       @ui.description.linkify()
-      console.log @model
 
   class Manage.GroupsView extends Marionette.CompositeView
     template: 'groups/manage/templates/groups_container'

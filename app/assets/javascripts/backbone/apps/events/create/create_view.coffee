@@ -4,6 +4,7 @@
     template: 'events/create/templates/form'
 
     initialize:(options)->
+      @picture_ids = []
       @user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -33,10 +34,11 @@
       'admissionTypeContainer': '#admission-type-container'
       'admissionType': '#admission-type'
       'pricesContainer': '#prices-container'
+      'eventDescription': '#event-description'
 
     events:
-      'click button.js-submit': 'submitClicked'
-      'click button.js-cancel': 'cancelClicked'
+      'click a.js-submit': 'submitClicked'
+      'click a.js-cancel': 'cancelClicked'
       'change #event-cover': 'previewImage'
       'change .js-countries': 'setCities'
       'change #event-type': 'changedGroupType'
@@ -99,6 +101,9 @@
         formData.append(key, value)
       file = @$('#event-cover')
       formData.append('cover', file[0].files[0])
+      ##send pictures id as array. This is formData way
+      _.forEach @picture_ids, (value)->
+        formData.append('picture_ids[]', value)
       @model.set(data)
       @trigger 'form:submit', @model, formData
 
@@ -116,6 +121,7 @@
         reader.readAsDataURL(input[0].files[0])
 
     onRender: ->
+      view = @
       #Datepickers
       @ui.startDate.Zebra_DatePicker
         format: 'd/m/Y'
@@ -148,6 +154,27 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+
+      #SummerNote
+      @ui.eventDescription.summernote
+        callbacks:
+          onImageUpload: (files)->
+            view.sendDescriptionImage(files[0])
+
+    sendDescriptionImage: (file)->
+      view = @
+      data = new FormData();
+      data.append("file", file);
+      Backbone.ajax
+        data: data
+        type: "POST"
+        url: AlumNet.api_endpoint + "/pictures"
+        cache: false
+        contentType: false
+        processData: false
+        success: (data) ->
+          view.picture_ids.push(data.id)
+          view.ui.eventDescription.summernote('insertImage', data.picture.original)
 
   # INVITE
 

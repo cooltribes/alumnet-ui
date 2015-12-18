@@ -5,6 +5,8 @@
 
   class Entities.MembershipsCollection extends Backbone.Collection
     model: Entities.Membership
+    rows: 15
+    page: 1
 
   API =
     pendingMemberships: (group_id)->
@@ -29,7 +31,8 @@
 
     getGroupMembers: (group_id, querySearch)->
       members = new Entities.MembershipsCollection
-      members.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships/members'
+      members.page = 1
+      members.url = AlumNet.api_endpoint + '/groups/' + group_id + '/memberships/members?page='+members.page+'&per_page='+members.rows
       members.fetch
         error: (collection, response, options)->
           collection.trigger('fetch:error')

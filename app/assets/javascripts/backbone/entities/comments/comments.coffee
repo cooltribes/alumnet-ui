@@ -14,7 +14,7 @@
       @set('likes_count', count - 1)
       @set('you_like', false)
 
-    commentWithLinks: ()->
+    commentWithLinks: ->
       markup_comment = @get 'markup_comment'
       if markup_comment
         mentionRE = /@\[([^\]]+)\]\(([^ \)]+)\)/g
@@ -37,7 +37,7 @@
           return "No Location"
         else
           return "#{@get("user").residence_country.text}"
-    
+
   class Entities.CommentsCollection extends Backbone.Collection
     model: Entities.Comment
 

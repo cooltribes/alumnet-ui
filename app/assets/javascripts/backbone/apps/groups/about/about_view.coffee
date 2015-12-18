@@ -14,8 +14,7 @@
 
     templateHelpers: ->
       model = @model
-      otherMembersNotFriends: @otherMembersNotFriends(@model.get('members'),@model.get('friends_in'))
-      otherMembersNotAdmins: @otherMembersNotAdmins(@model.get('members'),@model.get('admins'))
+      other_members: @other_members()
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.canDo('edit_group')
       canChangeJoinProcess: @model.canDo('change_join_process')
@@ -146,16 +145,16 @@
         link.html('[close]')
         @ui.linkSaveDescription.show()
       else
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         link.html('[edit]')
         @ui.linkSaveDescription.hide()
 
     saveDescription: (e)->
       e.preventDefault()
-      value = @ui.groupDescription.code()
+      value = @ui.groupDescription.summernote('code')
       unless value.replace(/<\/?[^>]+(>|$)/g, "").replace(/\s|&nbsp;/g, "") == ""
         @trigger 'group:edit:description', @model, value
-        @ui.groupDescription.destroy()
+        @ui.groupDescription.summernote('destroy')
         $('a#js-edit-description').html('[edit]')
         $(e.currentTarget).hide()
 
@@ -192,25 +191,25 @@
     editAttribute: (e)->
       $(e.target).addClass "hide"
 
-    otherMembersNotFriends: (members,friends)->
-      _.each members, (member)->
-        for friend in friends
-          if member.id != friend.id
-            memberOther = member.id
-
-    otherMembersNotAdmins: (members,admins)->
-      _.each members, (member)->
-        for admin in admins
-          if member.id != admin.id
-            memberOther = member.id
-
     totalMembers: ->
       otherMembers = (@model.get("members").length - @model.get("friends_in").length) - @model.get("admins").length
       if otherMembers < 0
         otherMembers = 0
       else
         otherMembers
-  
+
+    other_members: ->
+      members = []
+      arrayFriendsAdmins = _.union(@model.get('admins'),@model.get('friends_in'))
+      for member in @model.get("members")
+        exist = false
+        for friendAdmins in arrayFriendsAdmins
+          if member.id == friendAdmins.id
+            exist = true
+        unless exist
+          members.push member
+      members
+
     onRender: ->
       view = this
 

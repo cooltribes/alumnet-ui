@@ -4,6 +4,7 @@
       "posts": "currentUserPosts"
       "conversations": "currentUserConversations"
       "conversations/:id": "currentUserConversation"
+      "conversations/user/:id": "showUserConversation"
       "notifications": "currentUserNotifications"
       "banner": "currentUserPosts"
       "requests": "currentUserRequests"
@@ -24,6 +25,10 @@
     conversationWithRecipient: (subject, user)->
       controller = new HomeApp.Conversations.Controller
       controller.showCurrentUserConversations(undefined, subject, user)
+    showUserConversation: (id)->
+      user = AlumNet.request("user:find", id)
+      controller = new HomeApp.Conversations.Controller
+      controller.showCurrentUserConversations(undefined, undefined, user)
     currentBanners: ->
       controller = new HomeApp.Posts.Controller
       controller.showCurrentUserPosts(undefined, user)

@@ -23,6 +23,7 @@
                       <p class="overfloadText no-margin"><%= @user.name %></p>
                       <!--<span class="ico-chat"> Send a private messages </span><br>-->
                       <span class="glyphicon glyphicon-map-marker"> <%= @getLocationUser %></span><br>
+                      <span class="ico-chat"><a href="#conversations/user/<%= @user.id %>"> Send a Message</a></span>
                     </div>
                     <% if @user.cover != null : %>
                       <div class="coverPreview no_padding">
@@ -53,7 +54,7 @@
             <small class="postCard__date"> <%= moment(@created_at).fromNow() %></small>
           <% end %>
          </div>
-  
+
         <% if @showDropdownOptions(): %>
 
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
@@ -61,7 +62,7 @@
             <!-- <span class="icon-entypo-down-open-mini"></span> -->
             <span class="glyphicon glyphicon-chevron-down"></span>
           </a>
-          
+
           <ul class="dropdown-menu dropdown-menu-right albums-list__editMenu" role="menu" aria-labelledby="options" aria-expanded="false">
             <% if @canEdit: %>
               <li role="presentation">
@@ -72,10 +73,10 @@
               <li role="presentation">
                 <a href="#" class="glyphicon glyphicon-remove" id='js-delete-post'> Delete</a>
               </li>
-            <% end %>            
-               
+            <% end %>
+
           </ul>
-        </div> 
+        </div>
         <% end %>
 
 
@@ -86,7 +87,7 @@
     <div class="row">
       <div class="col-md-12">
         <!-- BODY -->
-        <p id="js-body-post" class="overfloadText"> <%= @body %></p>
+        <p id="js-body-post" class="overfloadText"> <%- @body %></p>
         <!-- BODY OFF -->
         <!-- PREVIEW -->
         <% if @preview.url : %>
@@ -142,19 +143,19 @@
       </div>
     </div>
     <hr class="margin_top_xsmall margin_bottom_xsmall">
-    
+
     <% if @likes_count > 0: %>
       <div class="row">
         <div class="col-md-12">
           <div class="link-text margin_top_xsmall">
-              <span class="js-likes-counter icon-entypo-thumbs-up"><%= @likes_count %></span> - 
-              <span class="js-like-links"><%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.</span> 
+              <span class="js-likes-counter icon-entypo-thumbs-up"><%= @likes_count %></span> -
+              <span class="js-like-links"><%- @likesLinks %> <% if @restLikeLink: %> and <%- @restLikeLink %><% end %> like this.</span>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  
+
   <!-- COMMENT CONTAINER -->
   <a href="#" class="postCard__btn--loadMore" id="js-load-more">Show previous comments</a>
   <div class="postCard__commentsContainer comments-container"></div>

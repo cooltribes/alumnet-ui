@@ -26,8 +26,28 @@
       'filterLinkContainer': '#filter-link-container'
       'requestsSentLink':'#js-requests-sent'
       'requestsReceivedLink':'#js-requests-received'
+      'loading': '.throbber-loader'
     events:
       'click #js-requests-sent, #js-requests-received':'getRequests'
+
+    onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')
+      $(window).scroll(@loadMoreUsers)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      #console.log @ui.loading
+      #@ui.loading.hide()
+      $('.throbber-loader').hide()
+      $(window).unbind('scroll')
+
+    loadMoreUsers: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'requests:reload'
 
     getRequests: (e)->
       e.stopPropagation()

@@ -54,6 +54,18 @@
 
       #AlumNet.execute('render:friends:submenu')
 
+      requestsView.on "friends:reload", ->
+        newCollection = AlumNet.request('current_user:friendships:get', 'sent')
+        newCollection.url = requestsView.collection.url
+        @collection.querySearch.page = ++@collection.page
+        @collection.querySearch.per_page = @collection.rows
+        newCollection.fetch
+          data: @collection.querySearch
+          success: (collection)->
+            requestsView.collection.add(collection.models)
+            if collection.length < collection.rows
+              requestsView.endPagination()
+              
       requestsView.on 'childview:accept', (childView)->
         friendship = childView.model
         friendship.save()
@@ -78,6 +90,18 @@
 
       requestsView = new Requests.RequestsView
         collection: friendships
+
+      requestsView.on "friends:reload", ->
+        newCollection = AlumNet.request('current_user:friendships:get', 'sent')
+        newCollection.url = requestsView.collection.url
+        @collection.querySearch.page = ++@collection.page
+        @collection.querySearch.per_page = @collection.rows
+        newCollection.fetch
+          data: @collection.querySearch
+          success: (collection)->
+            requestsView.collection.add(collection.models)
+            if collection.length < collection.rows
+              requestsView.endPagination()
 
       current_user = AlumNet.current_user
 
