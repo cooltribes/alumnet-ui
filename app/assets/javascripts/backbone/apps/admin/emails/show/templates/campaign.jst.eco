@@ -1,0 +1,4 @@
+<div>
+	Campaign details</br>
+	Subject: <%= @subject %></br>
+</div>

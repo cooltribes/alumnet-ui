@@ -1,0 +1,142 @@
+<div class="row emails">
+<form>
+	<div class="col-md-6  col-md-offset-3 col-xs-12 col-sm-8 col-sm-offset-2 no-padding">	
+		<div class="row">
+			<div class="col-md-2 col-xs-2 emails__number">1</div>
+			<div class="col-md-10 col-xs-10">
+				<h2>Choose group</h2>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2 emails__space"></div>
+			<div class="col-md-10 col-xs-10">
+				<select class="filter-comparator filters__input filters__input--sm form-control input-lg js-select-groups" name="group_id">
+					<option value="-1">Select group...</option>
+					<%% for group in @groups: %>
+				  	<option value="<%%= group.id %>"><%%= group.get('name') %></option>
+				  <%% end %>
+				</select>
+				<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+			</div>	
+		</div>
+
+		<div class="row" id="js-mailchimp-account-details" style="display:none">
+			<div class="col-md-2 col-xs-2 emails__space"></div>
+			<div class="col-md-10 col-xs-10">
+				<div class="row">
+					<div class="col-md-2 col-xs-2 emails__imageMailchimp">
+						<%= image_tag('emails/mailchimp.png', width:"30px", height: "30px") %>
+					</div>
+					<div class="col-md-10 col-xs-10 no-padding" class="js-remove-associated">
+						<p>Group associated mailchimp account<br>
+							<b>[api_key]: <span id="js-api-key"></span></b><a href="#" class="js-remove-associated-span"><span class="glyphicon glyphicon-remove emails__iconDelete" ></span></a><br>
+							<b>[list_id]: <span id="js-list-id"></span></b><a href="#" class="js-remove-associated-span"><span class="glyphicon glyphicon-remove emails__iconDelete" ></span></a> 
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" id="js-mailchimp-associate" style="display:none">
+			<div class="col-md-2 col-xs-2 emails__space"></div>
+			<div class="col-md-10 col-xs-10">
+				<a href="#" class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--mailchimp">
+					<span class="text-left"><%= image_tag('emails/mailchimp.png', width:"30px", height: "30px") %>
+					</span>
+					<span class="text-center">ASSOCIATE GROUP WITH MAILCHIMP</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6 col-xs-12 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">
+		<div class="row">
+			<div class="col-md-2 col-xs-2 emails__number">2</div>
+			<div class="col-md-10 col-xs-10">
+				<h2>Choose users</h2>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-md-2 emails__space"></div>
+			<div class="col-md-10">		
+				<select class="filter-comparator filters__input filters__input--sm form-control input-lg">
+					<option>Select a segment</option>
+				</select>
+				<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+		
+			</div>	
+		</div>
+		<div id="add-filter"></div>
+		<div class="row">
+			<div class="col-md-2 emails__space"></div>
+
+			<div class="col-md-10">
+			    <button class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--buttons" id="js-add-filter">
+			    	<i class="fa fa-plus emails__icon"></i>ADD FILTER
+			    </button>
+			</div>
+		</div> -->
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+			<div class="container-fluid">
+				<hr>
+				<div id="list-users"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-xs-12 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-2 emails__number">3</div>
+			<div class="col-md-10 col-sm-10 col-xs-10">
+				<h2>Create Email content</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-2 emails__space"></div>
+			<div class="col-md-10 col-sm-10 col-xs-10">
+				<div class="form-job has-feedback emails__textArea">
+					<label class="control-label">Subject</label>
+					<input name="subject" id="subject" class="form-control input-lg" >
+
+					<span class="help-block"></span>
+				</div>
+				<div class="form-job has-feedback emails__textArea">
+
+					<textarea name="body" id="email-body" class="form-control input-lg" rows="5" style="resize:none"></textarea>
+					<span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
+					<span class="help-block"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6 col-xs-12 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">
+		<div class="row">
+			<div class="col-md-2 col-xs-2 emails__space"></div>
+			<div class="col-md-5 col-xs-5">
+
+				<a href="#" class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--buttons "><i class="glyphicon glyphicon-eye-open emails__icon"></i>SHOW PREVIEW
+				</a>
+
+			</div>
+			<div class="col-md-5 col-xs-5">
+				
+				<a href="#" class="btn btn-primary btn-primary-noBackground emails__associateGroup emails__associateGroup--buttons "><i class="glyphicon glyphicon-envelope emails__icon"></i>SEND TO ME
+				</a>
+				
+			</div>	
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2 emails__space"></div>
+			<div class="col-md-10 col-xs-10">
+				<a href="#" class="btn btn-primary emails__associateGroup emails__associateGroup--buttons" id="js-submit"><i class="emails__icon glyphicon glyphicon-envelope "></i>SEND TO SELECTED USERS
+				</a>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>

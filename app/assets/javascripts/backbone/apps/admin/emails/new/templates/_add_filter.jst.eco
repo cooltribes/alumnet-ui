@@ -1,0 +1,19 @@
+	<div class="row">
+		<div class="col-md-2 emails__space"></div>
+		<div class="col-md-5">
+	
+			<select class="filter-comparator filters__input filters__input--sm form-control input-lg">
+				<option>Gender</option>
+			</select>
+			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+	
+		</div>
+	<div class="col-md-5">
+	
+			<select class="filter-comparator filters__input filters__input--sm form-control input-lg">
+				<option>Male</option>
+			</select>
+			<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+	
+		</div>	
+	</div>

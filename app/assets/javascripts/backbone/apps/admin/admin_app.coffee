@@ -19,6 +19,9 @@
       "admin/products": "productsList"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
+      "admin/emails":"emailsNew"
+      "admin/emails-sent":"emailsSent"
+      "admin/groups/:group_id/campaigns/:id":"showCampaign"
 
   API =
     usersList: ->
@@ -64,6 +67,15 @@
       new AdminApp.Dashboard.Users.Controller
     dashboardPosts: ->
       new AdminApp.Dashboard.Posts.Controller
+    emailsNew: ->
+      controller = new AdminApp.EmailsNew.Controller
+      controller.emailsNew()
+    emailsSent: ->
+      controller = new AdminApp.EmailsSent.Controller
+      controller.emailsSent()
+    showCampaign: (group_id, id)->
+      controller = new AdminApp.EmailsShow.Controller
+      controller.show(group_id, id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -96,3 +108,7 @@
   AlumNet.on "admin:products", ->
     AlumNet.navigate("admin/products")
     API.productsList()
+
+  AlumNet.on "campaign:sent", (group_id, id)->
+    #AlumNet.navigate("admin/emails/#{id}")
+    API.showCampaign(group_id, id)
