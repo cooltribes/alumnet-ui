@@ -187,9 +187,38 @@ DESCRIPTION: Specific style for the forms of AlumNet
 			height: 60px;
 		}
 	}
-	&__text{
-		color: #111;
+	&__findUser{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: #869DA8;
+		font-size: 19px;
+		color: @white;
+		text-align: center;
+		line-height: 20px;
+		i{
+			font-size: 25px;
+			margin-left: -3px;
+		}
+
+		&--iconSuggests{
+			padding-top: 7px;
+			i{
+				font-size: 37px;
+				margin-left: -7px;
+			}
+
+		}
+
 	}
+	&__text{
+		
+		p{
+			font-size: 15px;
+  		font-weight: 300;
+		}
+		}
+	
 
 	&__textHelp{
 		text-align: center;
@@ -203,25 +232,109 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	&__margin-top{
 		margin-top: 2.18em;
 	}
-	&__linkedin{
-		background: #0274B3;
-		border-color: #0274B3;
+
+	&__button{
 		color: @white;
 		border-radius: 0px;
 		text-transform: uppercase;
 		font-weight: 500;
-		&:hover{
-			border-color: darken(@blue, 10%);
-			color: darken(@blue, 10%);
-			background-color: @white;
+		font-size: 13px;
+		width: 100%;
+		i{
+			padding-left: 10px;
+		}
+
+		&--google{
+			background: #E04A39;
+			border-color: #E04A39;
+			
+			&:hover{
+				border-color: #C85649;
+				color: @white;
+				background-color: #C85649;
+			}
+			&--bar{
+				margin-left: 10px;
+				border-left: 1px solid @white;
+			}
+		}
+		&--yahoo{
+			background: #7B0099;
+			border-color: #7B0099;
+			
+			&:hover{
+				border-color: #7B0099;
+				color: @white;
+				background-color: #7B0099;
+			}
+			&--bar{
+				margin-left: 10px;
+				border-left: 1px solid @white;
+			}
+		}
+		&--outlook_linkedin{
+			background: #0073C5;
+			border-color: #0073C5;
+			
+			&:hover{
+				border-color: #0073C5;
+				color: @white;
+				background-color: #0073C5;
+			}
+			&--bar{
+				margin-left: 10px;
+				border-left: 1px solid @white;
+			}
 		}
 
 	}
+	&__search
+	{
+		margin-top: 36px;
+		i{
+			color:@blue;
+		}
+	}
+
+	&__finAnyone{
+		width: 100%
+		height:200px;
+		border: 1px solid #95A6B1;
+		background: #D9F4FF;
+		&--sentRequestAdmin{
+			padding-top: 18px;
+		}
+	}
+
+	&__request{
+		min-height: 100px;
+		background: @white;
+		padding: 1px;
+		span{
+			padding-left: 8px;
+		}
+		&--sent{
+
+
+		}
+		&--approved{
+
+		}
+
+	}
+
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
 .formANet{
+	&__finAnyone{
+
+		&--sentRequestAdmin{
+			padding-top: 18px;
+		}
+	}
+
 	&__find{
 		text-align: left;
 		img{
