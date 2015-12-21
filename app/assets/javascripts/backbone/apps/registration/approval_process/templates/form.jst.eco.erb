@@ -1,5 +1,5 @@
 <form class="formANet form" role="form">
-	<h1 class="roundedNumbersList__textProfile">Aproval process
+	<h2 >Aproval process
 	<small class="hidden-xs">
 		<%%= @approved_requests_count %>/3
 
@@ -8,65 +8,129 @@
 		</small>
 	</small>
 	</h2>
-	<p class="lead hidden-xs">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
+	<p class="hidden-xs">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
 	<hr class="hidden-xs">
 	<div class="row">
-		<div class="col-md-2 col-xs-3 formANet__find">
-			<%= image_tag("registration/searchIcon.png", alt: "question mark", class: "img-circle") %>
-		</div>
-		<div class="col-xs-9 visible-xs formANet__text margin_bottom">
-			<h4>Find 3 People</h4>
-			<small>Who can confirm that you are an AIESEC Alumni</small >
-		</div>
-		<div class="col-md-10">
-			<h3 class="hidden-xs">Find 3 People</h3>
-			<p class="hidden-xs">Who can confirm that you are an AIESEC Alumni</p >
-			<div id="byService" class="importContactForm margin_top text-center hidden-xs">
-			  <p>Find your friends in ALUMNET with</p>
-			  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
-			    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
-			  </a>
-			  <a class="deep-link delayed" onclick="return cloudsponge.launch('yahoo');">
-			    <%= image_tag("social_contacts/yahoo.png", alt: "Yahoo") %>
-			  </a>
-			  <a class="deep-link delayed" onclick="return cloudsponge.launch('windowslive');">
-			    <%= image_tag("social_contacts/outlook.com.png", alt: "Windows Live") %>
-			  </a>
-			  <a class="deep-link delayed" onclick="return cloudsponge.launch('gmail');">
-			    <%= image_tag("social_contacts/gmail.png", alt: "Gmail") %>
-			  </a>
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label">Search by name</label>
-				<input type="text" class="form-control input-lg" placeholder="Write a name or email" name="search_term" id="search_term">
-				<span class=" hidden-xs formANet__input__icon glyphicon glyphicon-user form-control-feedback">
-			</div>
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="row">
-				<!-- <div class="col-md-6 col-xs-12">
-					<div class="form-group">
-						<label class="control-label">Search by Country</label>
-						<div class="formANet__select">
-			        <input id="js-residence-countries" type="hidden" name="residence_country_id" style="width: 100%">
+				<div class="col-md-2 col-sm-2 col-xs-9 formANet__findUser">
+				<span>?</span>
+					<i class="ico-user"></i>
+				</div>
+				<div class="col-xs-9  visible-xs formANet__text margin_bottom">
+					<h4>Find 3 People</h4>
+					<small>Who can confirm that you are an AIESEC Alumni</small >
+				</div>
+				<div class="col-md-10 col-sm-10 hidden-xs formANet__text margin_bottom_small margin_top_xsmall">
+					<h3 class="hidden-xs no-margin">Find 3 People</h3>
+					<p class="hidden-xs">Who can confirm that you are an AIESEC Alumni</p >
+				</div>
+				
+			</div>
+		</div>
+	</div>
+<div class="row" style="display:none;">
+		<div class="col-md-12 col-sm-12 col-xs-12 ">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12  ">
+					<div class="formANet__request">
+					<h3><span class="icon-entypo-paper-plane"></span>Sent Request</h3>
+					<span>1/10</span>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="formANet__request">
+					<h3><span class="icon-entypo-paper-plane"></span>Approved requests</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+</div> 
+<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12 ">
+
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12 ">
+					<p>Find your friends in ALUMNET with</p>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							 <a onclick="return cloudsponge.launch('linkedin');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+							 <span>linkedin</span>
+		<!-- 					 <span class="formANet__button formANet__button--outlook_linkedin formANet__button--outlook_linkedin--bar"></span> -->
+							 <i class="ico-alumnet-linkedin"></i>
+			    			
+			  				</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall">
+							 <a onclick="return cloudsponge.launch('gmail');" class="btn formANet__button formANet__button--google deep-link delayed">
+							 <span>google+</span>
+	<!-- 						 <span class="formANet__button formANet__button--google formANet__button--google--bar"></span> -->
+							 <i class="icon-entypo-gplus"></i>
+			    			
+			  				</a>
 						</div>
 					</div>
-				</div> -->
-
-				<div class="col-md-6 col-md-offset-6 col-xs-12 text-right">
-				  <div class="form-group padding_top_small">
-							<button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button>
+					<div class="row ">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							 <a onclick="return cloudsponge.launch('yahoo');" class="btn formANet__button formANet__button--yahoo deep-link delayed">
+							 <span>yahoo!</span>
+				<!-- 			 <span class="formANet__button formANet__button--yahoo formANet__button--yahoo--bar"></span> -->
+							 <i class="icon-entypo-yahoo"></i>
+			    			
+			  				</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							 <a onclick="return cloudsponge.launch('windowslive');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+							 <span>outlook</span>
+			<!-- 				 <span class="formANet__button formANet__button--outlook_linkedin formANet__button--outlook_linkedin--bar"></span> -->
+							 <i class="icon-entypo-outlook"></i>
+			    			
+			  				</a>
+						</div>
 					</div>
-			  </div>
 
+					
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 formANet__search">
+				<p>Or Search by name</p>
+				<div class="input-group "> 
+				<input type="text" class="form-control" placeholder="Write name or email" name="search_term" id="search_term"> <span class="input-group-btn"> <button class="btn btn-default js-search" type="button"><i class="fa fa-search"></i></button> </span> </div>
 
+					
+				</div>
+				
 			</div>
+					<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 ">
+				<div class="users-list-search"></div>
+			</div>
+		</div>
+
 			<div class="text-right">
 			<!-- <button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button> -->
 			</div>
 			<hr>
-			<h3>Results</h3>
-			<div class="users-list">
-
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 margin_bottom_small">
+				<div class="row">
+					<div class="col-md-2 col-xs-2 col-sm-2 formANet__findUser formANet__findUser--iconSuggests">
+			
+						<i class="ico-alumnet-privacy_friends-of-friends"></i>
+					</div>
+					<div class="col-xs-10 col-md-10 col-sm-10 hidden-xs formANet__text margin_bottom_small margin_top_small">
+						<h3 class="hidden-xs no-margin">Suggested Profiles</h3>
+			
+					</div>
+					
+				</div>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 ">
+				<div class="users-list"></div>
+			</div>
+		</div>
 
 
 			<!-- <button class="btn btn-default text-uppercase btn-primary-noBackground " type="submit"><span class=" icon-entypo-down-open "> SHOW MORE (3)</button> -->
@@ -74,16 +138,25 @@
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-2 col-xs-12 formANet__find">
-			<%= image_tag("registration/questionIcon.png", alt: "question mark", class: "img-circle") %>
-			<!--<img src="assets/registration/questionIcon.png" alt="question mark"  width="90px" height="90px" class="img-circle">-->
-		</div>
-		<div class="col-md-10 col-xs-12 formANet__textHelp">
-			<h3 >Didnt find anyone?</h3>
-			<p class="lead" >Ask an administrator to approve you manually</p>
-			<div class="js-buttonContainer formANet__buttonSend">
-				<button class="btn btn-primary btn-lg text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
+	<div class="col-md-12 col-sm-12 col-xs-12 formANet__finAnyone">
+	
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<h4>Didnt find anyone?</h4>
+					<p>Ask an administrator to approve you manually</p>
+				</div>
+		
+			<div class="col-md-6 col-sm-6 col-xs-12 text-right formANet__finAnyone--sentRequestAdmin hidden-xs ">
+				  <button class="btn btn-primary text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
+			
+			</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 visible-xs margin_bottom_xsmall text-center">
+				  <button class="btn btn-primary text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
+			
 			</div>
 		</div>
+		
+	</div>
+
 	</div>
 </form>
