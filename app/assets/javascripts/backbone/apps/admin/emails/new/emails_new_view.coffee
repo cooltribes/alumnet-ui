@@ -7,6 +7,9 @@
     regions:
       groups_users: "#groups_users"
 
+    initialize: ->
+      document.title = 'AlumNet - Send Campaign'
+
   class EmailsNew.User extends Marionette.ItemView
     template: 'admin/emails/new/templates/_user'
 

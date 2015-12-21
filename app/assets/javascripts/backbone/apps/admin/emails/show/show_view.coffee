@@ -6,6 +6,7 @@
 
     initialize: (options)->
     	@group = options.group
+    	document.title = 'AlumNet - Campaign Details'
 
     templateHelpers: ->
-    	membersCount: @group.get('members').lenght
+    	membersCount: @group.get('members').length

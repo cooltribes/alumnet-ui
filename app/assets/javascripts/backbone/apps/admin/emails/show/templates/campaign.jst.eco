@@ -1,4 +1,5 @@
 <div>
 	Campaign details</br>
 	Subject: <%= @subject %></br>
+	Sent to: <%= @membersCount %> users</br>
 </div>
