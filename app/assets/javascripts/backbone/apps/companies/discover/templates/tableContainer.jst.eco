@@ -4,9 +4,9 @@
       <thead>
         <tr>
           <th></th>
-          <th></th>
+          <th><span class="glyphicon glyphicon-envelope hidden-xs"> </span></th>
           <th>
-            <span class="glyphicon glyphicon-map-marker hidden-xs"> </span>
+            
           </th>
           <th>
             <span class="ico-sector hidden-xs"></span>

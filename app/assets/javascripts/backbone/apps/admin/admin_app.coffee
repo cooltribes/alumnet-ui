@@ -22,6 +22,7 @@
       "admin/emails":"emailsNew"
       "admin/emails-sent":"emailsSent"
       "admin/groups/:group_id/campaigns/:id":"showCampaign"
+      "admin/emails-segment":"emailsSegment"
 
   API =
     usersList: ->
@@ -76,6 +77,9 @@
     showCampaign: (group_id, id)->
       controller = new AdminApp.EmailsShow.Controller
       controller.show(group_id, id)
+    emailsSegment: ->
+      controller = new AdminApp.EmailsSegment.Controller
+      controller.emailsSegment()
 
   AlumNet.addInitializer ->
     new AdminApp.Router

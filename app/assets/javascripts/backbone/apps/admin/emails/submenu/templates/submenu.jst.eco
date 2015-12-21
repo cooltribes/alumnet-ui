@@ -20,8 +20,8 @@
             <span class="navTopSubBarAdmin__icon glyphicon"></span> Sent Email
           </a>
         </li>
-        <li class="<%= @classOf(1)%>">
-          <a href="#admin/regions" class="navTopSubBarAdmin__link" title="Segments">
+        <li class="<%= @classOf(2)%>">
+          <a href="#admin/emails-segment" class="navTopSubBarAdmin__link" title="Segments">
             <span class="navTopSubBarAdmin__icon glyphicon"></span> Segments
           </a>
         </li>
