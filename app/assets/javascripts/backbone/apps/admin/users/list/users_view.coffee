@@ -262,18 +262,22 @@
     initialize: (options) ->
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
-      
+      @listenTo this, 'change:total', @updateTotal
 
-    templateHelpers: () ->
-      that = @
+    updateTotal: ->
+      @ui.totalRecords.html(@collection.totalRecords)
+
+    templateHelpers: ->
+      view = @
+      totalRecords: @collection.totalRecords
       pagination_buttons: ->
           class_li = ''
           class_link = ''
           html = ""
-          if (that.collection.state.totalPages > 1)
-            console.log "Páginas sin filtros: "+that.collection.state.totalPages 
+          if (view.collection.state.totalPages > 1)
+            console.log "Páginas sin filtros: "+view.collection.state.totalPages
             html = '<nav id="pag"><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
-            for page in [1..that.collection.state.totalPages]
+            for page in [1..view.collection.state.totalPages]
               if (page == 1)
                 class_li = "active"
                 class_link = "paginationUsers "
@@ -310,6 +314,7 @@
       'nextButton': '#nextButton'
       'prevFilterButton': '#prevFilterButton'
       'nextFilterButton': '#nextFilterButton'
+      'totalRecords': '.js-total-records'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -331,20 +336,20 @@
       $('#pagination').twbsPagination
           totalPages: 35
           visiblePages: 7
-          onPageClick: (event, page) -> 
+          onPageClick: (event, page) ->
               $('#page-content').text('Page ' + page)
 
     removeClass: ->
-      that = @
-      if (that.collection.state.totalPages > 1)
-        for page in [1..that.collection.state.totalPages]
+      view = @
+      if (view.collection.state.totalPages > 1)
+        for page in [1..view.collection.state.totalPages]
           $("#"+page).removeClass('active')
           $("#link_"+page).removeClass('paginationUsers')
 
     removeFilterClass: ->
-      that = @
-      if (that.collectionFilter.state.totalPages > 1)
-        for page in [1..that.collectionFilter.state.totalPages]
+      view = @
+      if (view.collectionFilter.state.totalPages > 1)
+        for page in [1..view.collectionFilter.state.totalPages]
           $("#"+page).removeClass('active')
           $("#link_"+page).removeClass('paginationUsers')
 
@@ -467,14 +472,14 @@
       @collectionFilter.getPage(topage)
 
     pagination_filters: (collection) ->
-   
+
       console.log "aqui"
       $("#pag-filter").remove()
       class_li = ''
       class_link = ''
       html = ""
       if (collection.state.totalPages > 1)
-        console.log "Páginas con filtros: "+collection.state.totalPages 
+        console.log "Páginas con filtros: "+collection.state.totalPages
         html = '<nav id="pag-filter"><ul class="pagination"><li><a href="#admin/users" id="prevFilterButton" style="display:none">Prev</a></li>'
         for page in [1..collection.state.totalPages]
           if (page == 1)
@@ -489,7 +494,7 @@
         html += '<li><a href="#admin/users" id="nextFilterButton">Next</a></li></ul></nav>'
       $("#pagination-filter").append(html)
 
- 
+
     addNewFilter: (e)->
       e.preventDefault()
       @searcher.addNewFilter()
@@ -517,6 +522,7 @@
       view.collection.fetch
         data: { q: query }
         success: (collection) ->
+          view.trigger 'change:total'
           console.log 'success'
           console.log collection
           console.log "Cantidad: "+collection.state.totalPages
@@ -533,5 +539,8 @@
 
     clear: (e)->
       e.preventDefault()
-      @collection.fetch()
+      view = @
+      @collection.fetch
+        success: ->
+          view.trigger 'change:total'
 
