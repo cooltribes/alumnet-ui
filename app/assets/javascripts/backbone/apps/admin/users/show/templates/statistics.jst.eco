@@ -27,10 +27,13 @@
 
   </div>
 </div>
-<div class="row">
-<h3>Influence</h3>
-<div id="influence-graph"></div>
 
-<h3>Activity</h3>
-<div id="activity-graph"></div>
+<div class="row">
+  <h3>Logins of User: <%= @sign_in_count %></h3>
+
+  <h3>Influence</h3>
+  <div id="influence-graph"></div>
+
+  <h3>Activity</h3>
+  <div id="activity-graph"></div>
 </div>
