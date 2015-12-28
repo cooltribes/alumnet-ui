@@ -189,9 +189,12 @@
             data: { results: data, text: "name" }
             formatNoMatches: ->
               view.ui.showModalLink.show()
-              "No matches"
+              $(".select2-input").addClass("formANet__postJobNew--error")
+              "Your search did not match any Company in AlumNet, please try again by changing your search criteria or Create a new company by clicking on the right button"
+
             formatSearching: ->
               view.ui.showModalLink.hide()
+              $(".select2-input").removeClass("formANet__postJobNew--error")
               "Searching..."
           if initialValue
             element.select2('data', initialValue)
