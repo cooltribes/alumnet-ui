@@ -1,0 +1,59 @@
+<form class="formANet form" role="form">
+	<h2 >Aproval process</h2>
+	<p class="hidden-xs">Before you can enter the AlumNet platform you have to pass through an approval process where other AIESEC Alumni will certify that you are another AIESEC Alumni fellow.</p>
+	<hr class="hidden-xs">
+	<div class="row"  id="js-request">
+		<div class="col-md-12 col-sm-12 col-xs-12 ">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall ">
+					<div class="formANet__request">
+					<h3><span class="icon-entypo-paper-plane"></span><span class="formANet__request--title" >Sent Request</span></h3>
+					<div id="sent-request-region"></div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall ">
+					<div class="formANet__request">
+					<h3><span class="glyphicon glyphicon-ok"></span><span class="formANet__request--title">Approved requests</span></h3>
+					<div id="approved-request-region"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div> 
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-md-2 col-sm-2 col-xs-9 formANet__findUser">
+				<span>?</span>
+					<i class="ico-user"></i>
+				</div>
+				<div class="col-xs-9  visible-xs formANet__text margin_bottom">
+					<h4>Find 3 People</h4>
+					<small>Who can confirm that you are an AIESEC Alumni</small >
+				</div>
+				<div class="col-md-10 col-sm-10 hidden-xs formANet__text margin_bottom_small margin_top_xsmall">
+					<h3 class="hidden-xs no-margin">Find 3 People</h3>
+					<p class="hidden-xs">Who can confirm that you are an AIESEC Alumni</p >
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div id="requests-region"></div>
+	<div id="find-people-region"></div>
+	<hr>
+	<div class="row" >
+		<div class="col-md-12 col-sm-12 col-xs-12 margin_bottom_small">
+			<div class="row">
+				<div class="col-md-2 col-xs-2 col-sm-2 formANet__findUser formANet__findUser--iconSuggests">
+					<i class="ico-alumnet-privacy_friends-of-friends"></i>
+				</div>
+				<div class="col-xs-10 col-md-10 col-sm-10 hidden-xs formANet__text margin_bottom_small margin_top_small">
+					<h3 class="hidden-xs no-margin">Suggested Profiles</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="suggested-region"></div>
+
+</form>

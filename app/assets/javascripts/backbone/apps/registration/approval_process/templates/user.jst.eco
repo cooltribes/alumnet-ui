@@ -4,7 +4,7 @@
       <img src="<%= @avatar.large %>" class="img-circle" alt="User's name">
     </div>
     <div class="col-md-6">
-      <h4 class="userCardAproval__name"><%= @name %></h4>
+      <h4 class="userCardAproval__name"><%= @name %> <%= @id %></h4>
       <p><strong><%= @last_experience %></strong> <br>
       
       </p>

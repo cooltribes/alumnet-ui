@@ -38,6 +38,7 @@
         @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
         @form_region.show(@currentView) if @currentView
 
+
     getSidebarView: (registration_steps, step)->
       AlumNet.request('registration:shared:sidebar', registration_steps, step)
 
@@ -80,6 +81,9 @@
             AlumNet.trigger "registration:activate:user"
           else
             @approval_process()
+       
+            #@approval_process_regionForm()
+            #@approval_process_region()
         else
           null
 
@@ -175,30 +179,79 @@
     approval_process: ()->
       users = AlumNet.request('user:entities', {}, {fetch: false})
 
-      approval_view = new Main.ApprovalView
-        model: AlumNet.current_user
-        layout: @
-        collection: users
+      layout_view = new Main.LayoutView
+     
+      layout_view
 
-      approval_view.on 'users:search', (querySearch)->
-        AlumNet.request('user:entities', querySearch)
+    # approval_process_regionForm: ()->
 
-      approval_view.on 'contacts:search', (contacts)->
-        approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
-        approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
-        approval_view.render()
-
-      approval_view.on 'request:admin', ()->
-        url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
-        Backbone.ajax
-          url: url
-          type: "PUT"
+    #   form = new Main.FormBasic
+    #   console.log "Imprimiendo"
+    #   @approval_process().requests_region.show(form)
 
 
-      approval_view.on 'childview:request', (childView)->
-        childView.ui.actionsContainer.html('Sending request...')
 
-        userId = childView.model.id
-        approvalR = AlumNet.request("current_user:approval:request", userId)
-        approvalR.on "save:success", ()->
-          childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
+    # approval_process_region: ()->
+
+    #   users = AlumNet.request('user:entities', {}, {fetch: false})
+    #   approval_view = new Main.ApprovalView
+    #     model: AlumNet.current_user
+    #     layout: @approval_process()
+    #     collection: users
+
+    #   layout.requests_region.show(approval_view)
+
+    #   approval_view.on 'users:search', (querySearch)->
+    #     AlumNet.request('user:entities', querySearch)
+
+    #   approval_view.on 'contacts:search', (contacts)->
+    #     approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
+    #     approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
+    #     approval_view.render()
+
+    #   approval_view.on 'request:admin', ()->
+    #     url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
+    #     Backbone.ajax
+    #       url: url
+    #       type: "PUT"
+
+
+    #   approval_view.on 'childview:request', (childView)->
+    #     childView.ui.actionsContainer.html('Sending request...')
+
+    #     userId = childView.model.id
+    #     approvalR = AlumNet.request("current_user:approval:request", userId)
+    #     approvalR.on "save:success", ()->
+    #       childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
+
+
+    # approval_process: ()->
+
+      # users = AlumNet.request('user:entities', {}, {fetch: false})
+      # approval_view = new Main.ApprovalView
+      #   model: AlumNet.current_user
+      #   layout: @
+      #   collection: users
+
+      # approval_view.on 'users:search', (querySearch)->
+      #   AlumNet.request('user:entities', querySearch)
+
+      # approval_view.on 'contacts:search', (contacts)->
+      #   approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
+      #   approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
+      #   approval_view.render()
+
+      # approval_view.on 'request:admin', ()->
+      #   url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
+      #   Backbone.ajax
+      #     url: url
+      #     type: "PUT"
+
+
+      # approval_view.on 'childview:request', (childView)->
+      #   childView.ui.actionsContainer.html('Sending request...')
+
+      #   userId = childView.model.id
+      #   approvalR = AlumNet.request("current_user:approval:request", userId)
+      #   approvalR.on "save:success", ()->
+      #     childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')

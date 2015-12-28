@@ -29,18 +29,21 @@
 			</div>
 		</div>
 	</div>
-<div class="row" style="display:none;">
+<div class="row"  id="js-request">
 		<div class="col-md-12 col-sm-12 col-xs-12 ">
 			<div class="row">
-				<div class="col-md-6 col-sm-6 col-xs-12  ">
+				<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall ">
 					<div class="formANet__request">
-					<h3><span class="icon-entypo-paper-plane"></span>Sent Request</h3>
+					<h3><span class="icon-entypo-paper-plane"></span><span class="formANet__request--title" >Sent Request</span></h3>
 					<span>1/10</span>
+					<div class="users-list"></div>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall ">
 					<div class="formANet__request">
-					<h3><span class="icon-entypo-paper-plane"></span>Approved requests</h3>
+					<h3><span class="glyphicon glyphicon-ok"></span><span class="formANet__request--title">Approved requests</span></h3>
+					<span><%%= @approved_requests_count %>/3</span>
+					<div class="users-list"></div>
 					</div>
 				</div>
 			</div>
@@ -111,7 +114,7 @@
 			<!-- <button class="btn btn-primary btn-lg text-uppercase js-search" type="submit"> <span class="glyphicon glyphicon-search"></span> Search</button> -->
 			</div>
 			<hr>
-		<div class="row">
+		<div class="row" >
 			<div class="col-md-12 col-sm-12 col-xs-12 margin_bottom_small">
 				<div class="row">
 					<div class="col-md-2 col-xs-2 col-sm-2 formANet__findUser formANet__findUser--iconSuggests">
@@ -128,7 +131,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 ">
-				<div class="users-list"></div>
+			<div class="users-list"></div>
+				
 			</div>
 		</div>
 
