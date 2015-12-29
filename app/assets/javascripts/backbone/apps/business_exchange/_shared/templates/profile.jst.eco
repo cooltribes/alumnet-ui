@@ -2,12 +2,12 @@
   <div class="businessCard businessProfileCard">
       <% if @user: %>
         <div class="row businessProfileCard__user">
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-3 col-xs-3">
           <a href="#users/<%= @user.id %>/business-exchange">
             <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
           </a>
           </div>
-          <div class="no-padding col-md-9 businessProfileCard__user__name" style="white-space: normal">
+          <div class="no-padding col-md-9 col-sm-9 col-xs-9 businessProfileCard__user__name" style="white-space: normal">
             <div class="overfloadText" style="color: #2099d0">
               <a href="#users/<%= @user.id %>/business-exchange" title="<%= @user.name %>" ><%= @user.name %>
               </a>
