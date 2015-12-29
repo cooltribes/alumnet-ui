@@ -73,8 +73,8 @@
     if from_elasticsearch
       switch type
         when "user" #location for users
-          city = model.residence_city.name
-          country = model.residence_country.name
+          city = model.residence_city.name ? ""
+          country = model.residence_country.name ? ""
                     
         when "task", "group", "company", "event"
           city = model.city_info.name
