@@ -7,6 +7,7 @@
 				<h2>Choose group</h2>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-md-2 col-xs-2 emails__space"></div>
 			<div class="col-md-10 col-xs-10">
@@ -22,19 +23,28 @@
 
 		<div class="row" id="js-mailchimp-account-details" style="display:none">
 			<div class="col-md-2 col-xs-2 emails__space"></div>
-			<div class="col-md-10 col-xs-10">
-				<div class="row">
-					<div class="col-md-2 col-xs-2 emails__imageMailchimp">
-						<%= image_tag('emails/mailchimp.png', width:"30px", height: "30px") %>
+				<div class="col-md-10 col-xs-10">
+					<div class="row">
+						<div class="col-md-2 col-xs-2 emails__imageMailchimp">
+							<%= image_tag('emails/mailchimp.png', width:"30px", height: "30px") %>
+						</div>
+						<div class="col-md-10 col-xs-10 no-padding" class="js-remove-associated">
+							<p>Group associated mailchimp account<br>
+								<b>[api_key]: <span id="js-api-key"></span></b> <a href="#" id="js-edit-api-key">Edit</a><br>
+								<b>[list_id]: <span id="js-list-id"></span></b> <a href="#" class="js-remove-associated-span"><span class="glyphicon glyphicon-remove emails__iconDelete" ></span></a> 
+							</p>
+						</div>
 					</div>
-					<div class="col-md-10 col-xs-10 no-padding" class="js-remove-associated">
-						<p>Group associated mailchimp account<br>
-							<b>[api_key]: <span id="js-api-key"></span></b><a href="#" class="js-remove-associated-span"><span class="glyphicon glyphicon-remove emails__iconDelete" ></span></a><br>
-							<b>[list_id]: <span id="js-list-id"></span></b><a href="#" class="js-remove-associated-span"><span class="glyphicon glyphicon-remove emails__iconDelete" ></span></a> 
-						</p>
-					</div>
-				</div>
 			</div>
+
+      <div class="text-right">
+        <div id="contenedor" class="loadingAnimation__migrateUsers">
+          <div class="loader" id="loader"></div>
+        </div>
+        <a href="#" class="btn btn-info" id="js-validate-mailchimp">Validate Mailchimp Parameters</a>
+        <a href="#" class="btn btn-warning" id="js-migrate-users">Migrate users</a>
+      </div>
+      
 		</div>
 
 		<div class="row" id="js-mailchimp-associate" style="display:none">
@@ -64,6 +74,7 @@
 					<option>Select a segment</option>
 				</select>
 				<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey emails__select_icon" aria-hidden="true" ></span>
+		
 			</div>	
 		</div>
 		<div id="add-filter"></div>

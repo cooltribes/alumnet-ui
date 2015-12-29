@@ -52,12 +52,15 @@
       'click #js-add-filter': 'addFilter'
       'change @ui.selectGroups': 'changeSelectGroups'
       'click @ui.submit': 'sendCampaign'
+      'click a#js-edit-api-key': 'toggleEditApiKey'
 
     initialize: (options)->
       @groups = options.groups
+      @current_user = options.current_user
 
     templateHelpers: ->
       groups: @groups.models
+      currentUserIsAdmin: @current_user.isAlumnetAdmin()
 
     changeSelectGroups: ->
       view = @
@@ -71,6 +74,18 @@
         if group.get('mailchimp')
           @ui.apiKey.html(group.get('api_key'))
           @ui.listId.html(group.get('list_id'))
+
+          @ui.apiKey.editable
+            type: 'text'
+            value: group.get('api_key')
+            pk: group.id
+            title: 'API Key'
+            toggle: 'manual'
+            success: (response, newValue)->
+              view.trigger 'group:edit:api_key', group, newValue
+
+          console.log 'editable added'
+
           @ui.mailchimpDetails.show()
           @ui.mailchimpAssociate.hide()
         else
@@ -109,6 +124,12 @@
 
     addFilter: (e)->
       console.log "PRESIONO AGREGAR FILTRO"
+
+    toggleEditApiKey: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      console.log 'toggle edit api key'
+      @ui.apiKey.editable('toggle')
 
     onShow: ->
       summernote_options_description =
