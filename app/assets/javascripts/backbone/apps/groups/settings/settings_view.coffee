@@ -42,6 +42,7 @@
       'click a#js-edit-mailchimp': 'toggleEditMailchimp'
       'click a#js-edit-api-key': 'toggleEditApiKey'
       'click a#js-edit-list-id': 'toggleEditListId'
+      'click #js-validate-mailchimp': 'validateMailchimp'
       'click a#js-migrate-users': 'migrateUsers'
       'click @ui.linkSaveDescription': 'saveDescription'
 
