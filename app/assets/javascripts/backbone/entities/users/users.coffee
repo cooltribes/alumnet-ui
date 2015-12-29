@@ -153,28 +153,21 @@
     model: Entities.User
     url: ->
       AlumNet.api_endpoint + '/admin/users'
-    #comparator: (item) ->
-    #  item.get("email")
-    state: 
+
+    state:
       pageSize: 10
       sortKey: 'id'
-      #order: 1
+
     queryParams:
       order: "order_by"
-    parseState: (resp, queryParams, state, options)->
-      console.log resp
-      {totalRecords: resp.totalRecords};
 
-    parseRecords: (resp, options)->
-      console.log resp
-      resp.users
-           
-    #parseState: (resp, queryParams, state, options) ->
-    #  console.log response.totalRecords
-    #  {totalRecords: response.totalRecords}
-      
-    #parse: (response,options)->
-    #  response.users
+    parseState: (response, queryParams, state, options)->
+      { totalRecords: response.totalRecords }
+
+    parseRecords: (response, options)->
+      @totalRecords = response.totalRecords
+      response.users
+
 
   class Entities.UserCollection extends Backbone.Collection
     model: Entities.User
