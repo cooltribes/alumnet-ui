@@ -283,7 +283,7 @@
 
               html += '<li class= "'+class_li+'" id='+page+'><a class= "page_button" href="#admin/users" id="link_'+page+'">'+page+'</a></li>  '
 
-            html += '<li><a href="#admin/users" id="nextButton">Next</a></li></ul></nav>'
+            html += '<li class="next"><a href="#admin/users" id="nextButton">Next</a></li></ul></nav>'
           html
 
 
@@ -306,8 +306,8 @@
       ])
 
     ui:
-      'prevButton': '#prevButton'
-      'nextButton': '#nextButton'
+      #'prevButton': '#prevButton'
+      #'nextButton': '#nextButton'
       'prevFilterButton': '#prevFilterButton'
       'nextFilterButton': '#nextFilterButton'
 
@@ -317,22 +317,25 @@
       'click .clear': 'clear'
       'click #search-tags': 'searchTags'
       'change #filter-logic-operator': 'changeOperator'
-      'click #nextButton': 'nextButton'
-      'click #prevButton': 'prevButton'
+      #'click .next > a': 'nextButton'
+      #'click .prev > a': 'prevButton'
       'click #nextFilterButton': 'nextFilterButton'
       'click #prevFilterButton': 'prevFilterButton'
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
       'click #birth_city': 'sortBirtCity'
-      'click .page_button': 'toPageButton'
+      #'click .page > a': 'toPageButton'
       'click .page_filter_button': 'toPageFilterButton'
 
     pagination: ->
+      that = @
       $('#pagination').twbsPagination
           totalPages: 35
           visiblePages: 7
-          onPageClick: (event, page) -> 
-              $('#page-content').text('Page ' + page)
+          onPageClick: (event, page) ->
+            that.collection.queryParams.q = that.queryParams
+            that.collection.getPage(page) 
+              #$('#page-content').text('Page ' + page)
 
     removeClass: ->
       that = @
@@ -376,17 +379,17 @@
         @collection.queryParams.order_by = 'desc'
       @collection.fetch()
 
-    prevButton: (e)->
-      @collection.queryParams.q = @queryParams
-      @removeClass()
-      @ui.nextButton.show()
+    #prevButton: (e)->
+    #  @collection.queryParams.q = @queryParams
+    #  @removeClass()
+    #  @ui.nextButton.show()
 
-      topage = parseInt(@collection.state.currentPage)-1
-      @addClass(topage)
+    #  topage = parseInt(@collection.state.currentPage)-1
+    #  @addClass(topage)
 
-      if @collection.state.currentPage == 2
-        @ui.prevButton.hide()
-      @collection.getPreviousPage()
+    #  if @collection.state.currentPage == 2
+    #    @ui.prevButton.hide()
+    #  @collection.getPreviousPage()
 
     prevFilterButton: (e)->
       #@collectionFilter.queryParams.q = @queryParams
@@ -400,18 +403,19 @@
         @ui.prevFilterButton.hide()
       @collectionFilter.getPreviousPage()
 
-    nextButton: (e)->
-      @collection.queryParams.q = @queryParams
-      @removeClass()
-      topage = parseInt(@collection.state.currentPage)+1
+    #nextButton: (e)->
+    #  console.log "entro"
+    #  @collection.queryParams.q = @queryParams
+    #  @removeClass()
+    #  topage = parseInt(@collection.state.currentPage)+1
 
-      if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
-      @ui.prevButton.show()
-      @addClass(topage)
-      if (@collection.state.currentPage == (@collection.state.totalPages-1))
-        @addClass(topage)
-        @ui.nextButton.hide()
-      @collection.getNextPage()
+    #  if @tagsParams != '' then @collection.queryParams.tags = @tagsParams
+    #  @ui.prevButton.show()
+    #  @addClass(topage)
+    #  if (@collection.state.currentPage == (@collection.state.totalPages-1))
+    #    @addClass(topage)
+    #    @ui.nextButton.hide()
+    #  @collection.getNextPage()
 
     nextFilterButton: (e)->
       #@collectionFilter.queryParams.q = @queryParams
@@ -426,22 +430,22 @@
         @ui.nextFilterButton.hide()
       @collectionFilter.getNextPage()
 
-    toPageButton: (e)->
-      @collection.queryParams.q = @queryParams
-      topage = parseInt(e.currentTarget.innerText)
-      @removeClass()
+    #toPageButton: (e)->
+    #  @collection.queryParams.q = @queryParams
+    #  topage = parseInt(e.currentTarget.innerText)
+    #  @removeClass()
 
-      if topage == 1
-        @ui.prevButton.hide()
-        @addClass(topage)
-      else
-        @ui.prevButton.show()
-      if topage == @collection.state.totalPages
-        @addClass(topage)
-        @ui.nextButton.hide()
-      else
-        @ui.nextButton.show()
-        @addClass(topage)
+    #  if topage == 1
+    #    @ui.prevButton.hide()
+    #    @addClass(topage)
+    #  else
+    #    @ui.prevButton.show()
+    #  if topage == @collection.state.totalPages
+    #    @addClass(topage)
+    #    @ui.nextButton.hide()
+    #  else
+    #    @ui.nextButton.show()
+    #    @addClass(topage)
 
       @collection.getPage(topage)
 
