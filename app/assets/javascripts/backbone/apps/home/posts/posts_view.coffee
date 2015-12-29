@@ -19,7 +19,7 @@
       super(options)
       # TODO: Preguntar por esto :rafael
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
-      
+
 
 
   # POSTS COLLECTION
@@ -32,6 +32,10 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       data.picture_ids = @picture_ids
+      data.body = @ui.bodyInput.mentionsInput('getRawValue')
+      data.markup_body = @ui.bodyInput.mentionsInput('getValue')
+      mentions = @extractMentions @ui.bodyInput.mentionsInput('getMentions')
+      data.user_tags_list = @joinMentionsWithTags(mentions, data.user_tags_list)
       if data.body != ''
         @trigger 'post:submit', data
         @picture_ids = []

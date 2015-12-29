@@ -14,8 +14,6 @@
       e.preventDefault()
       @trigger("request")
 
-
-
   class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
     childView: Main.UserView
@@ -30,6 +28,7 @@
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
     initialize: ->
+
       document.title = " AlumNet - Registration"
       @layout = options.layout
 

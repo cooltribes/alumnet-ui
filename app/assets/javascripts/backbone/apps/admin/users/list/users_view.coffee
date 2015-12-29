@@ -255,22 +255,29 @@
     childViewContainer: "#users-table tbody"
     queryParams: {}
     tagsParams: ''
+    collectionFilter: ''
     childViewOptions: (model, index) ->
       modals: @modals
 
     initialize: (options) ->
       @modals = options.modals
       document.title= 'AlumNet - Users Management'
+      @listenTo this, 'change:total', @updateTotal
 
-    templateHelpers: () ->
-      that = @
+    updateTotal: ->
+      @ui.totalRecords.html(@collection.totalRecords)
+
+    templateHelpers: ->
+      view = @
+      totalRecords: @collection.totalRecords
       pagination_buttons: ->
           class_li = ''
           class_link = ''
           html = ""
-          if (that.collection.state.totalPages > 1)
-            html = '<nav><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
-            for page in [1..that.collection.state.totalPages]
+          if (view.collection.state.totalPages > 1)
+            console.log "Páginas sin filtros: "+view.collection.state.totalPages
+            html = '<nav id="pag"><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
+            for page in [1..view.collection.state.totalPages]
               if (page == 1)
                 class_li = "active"
                 class_link = "paginationUsers "
@@ -285,6 +292,7 @@
 
 
     onShow: ->
+      @pagination()
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
         { attribute: "email", type: "string", values: "" },
@@ -304,6 +312,9 @@
     ui:
       'prevButton': '#prevButton'
       'nextButton': '#nextButton'
+      'prevFilterButton': '#prevFilterButton'
+      'nextFilterButton': '#nextFilterButton'
+      'totalRecords': '.js-total-records'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -313,15 +324,32 @@
       'change #filter-logic-operator': 'changeOperator'
       'click #nextButton': 'nextButton'
       'click #prevButton': 'prevButton'
+      'click #nextFilterButton': 'nextFilterButton'
+      'click #prevFilterButton': 'prevFilterButton'
       'click #sortAge': 'sortAge'
       'click #sortJoined': 'sortJoined'
       'click #birth_city': 'sortBirtCity'
       'click .page_button': 'toPageButton'
+      'click .page_filter_button': 'toPageFilterButton'
+
+    pagination: ->
+      $('#pagination').twbsPagination
+          totalPages: 35
+          visiblePages: 7
+          onPageClick: (event, page) ->
+              $('#page-content').text('Page ' + page)
 
     removeClass: ->
-      that = @
-      if (that.collection.state.totalPages > 1)
-        for page in [1..that.collection.state.totalPages]
+      view = @
+      if (view.collection.state.totalPages > 1)
+        for page in [1..view.collection.state.totalPages]
+          $("#"+page).removeClass('active')
+          $("#link_"+page).removeClass('paginationUsers')
+
+    removeFilterClass: ->
+      view = @
+      if (view.collectionFilter.state.totalPages > 1)
+        for page in [1..view.collectionFilter.state.totalPages]
           $("#"+page).removeClass('active')
           $("#link_"+page).removeClass('paginationUsers')
 
@@ -365,6 +393,18 @@
         @ui.prevButton.hide()
       @collection.getPreviousPage()
 
+    prevFilterButton: (e)->
+      #@collectionFilter.queryParams.q = @queryParams
+      @removeFilterClass()
+      @ui.nextFilterButton.show()
+
+      topage = parseInt(@collectionFilter.state.currentPage)-1
+      @addClass(topage)
+
+      if @collectionFilter.state.currentPage == 2
+        @ui.prevFilterButton.hide()
+      @collectionFilter.getPreviousPage()
+
     nextButton: (e)->
       @collection.queryParams.q = @queryParams
       @removeClass()
@@ -377,6 +417,19 @@
         @addClass(topage)
         @ui.nextButton.hide()
       @collection.getNextPage()
+
+    nextFilterButton: (e)->
+      #@collectionFilter.queryParams.q = @queryParams
+      @removeFilterClass()
+      topage = parseInt(@collectionFilter.state.currentPage)+1
+
+      if @tagsParams != '' then @collectionFilter.queryParams.tags = @tagsParams
+      @ui.prevFilterButton.show()
+      @addClass(topage)
+      if (@collectionFilter.state.currentPage == (@collectionFilter.state.totalPages-1))
+        @addClass(topage)
+        @ui.nextFilterButton.hide()
+      @collectionFilter.getNextPage()
 
     toPageButton: (e)->
       @collection.queryParams.q = @queryParams
@@ -396,6 +449,51 @@
         @addClass(topage)
 
       @collection.getPage(topage)
+
+    toPageFilterButton: (e)->
+      console.log "toPageFilterButton"
+      console.log @collectionFilter
+      #@collectionFilter.queryParams.q = @queryParams
+      topage = parseInt(e.currentTarget.innerText)
+      @removeFilterClass()
+
+      if topage == 1
+        @ui.prevFilterButton.hide()
+        @addClass(topage)
+      else
+        @ui.prevFilterButton.show()
+      if topage == @collectionFilter.state.totalPages
+        @addClass(topage)
+        @ui.nextFilterButton.hide()
+      else
+        @ui.nextFilterButton.show()
+        @addClass(topage)
+
+      @collectionFilter.getPage(topage)
+
+    pagination_filters: (collection) ->
+
+      console.log "aqui"
+      $("#pag-filter").remove()
+      class_li = ''
+      class_link = ''
+      html = ""
+      if (collection.state.totalPages > 1)
+        console.log "Páginas con filtros: "+collection.state.totalPages
+        html = '<nav id="pag-filter"><ul class="pagination"><li><a href="#admin/users" id="prevFilterButton" style="display:none">Prev</a></li>'
+        for page in [1..collection.state.totalPages]
+          if (page == 1)
+            class_li = "active"
+            class_link = "paginationUsers "
+          else
+            class_li = ""
+            class_link = ""
+
+          html += '<li class= "'+class_li+'" id='+page+'><a class= "page_filter_button" href="#admin/users" id="link_'+page+'">'+page+'</a></li>  '
+
+        html += '<li><a href="#admin/users" id="nextFilterButton">Next</a></li></ul></nav>'
+      $("#pagination-filter").append(html)
+
 
     addNewFilter: (e)->
       e.preventDefault()
@@ -419,9 +517,30 @@
       e.preventDefault()
       query = @searcher.getQuery()
       @queryParams = query
-      @collection.fetch
+      view = @
+
+      view.collection.fetch
         data: { q: query }
+        success: (collection) ->
+          view.trigger 'change:total'
+          console.log 'success'
+          console.log collection
+          console.log "Cantidad: "+collection.state.totalPages
+          @collectionFilter = collection
+          console.log "success filter"
+          console.log @collectionFilter
+          if collection.state.totalPages >= 0
+            console.log "Cantidad mayor a 0: "+collection.state.totalPages
+            $("#pag").hide()
+            $("#pag-filter").remove()
+            if collection.state.totalPages > 1
+              console.log "Es mayor a 1 y es "+ collection.state.totalPages
+              view.pagination_filters(collection)
 
     clear: (e)->
       e.preventDefault()
-      @collection.fetch()
+      view = @
+      @collection.fetch
+        success: ->
+          view.trigger 'change:total'
+

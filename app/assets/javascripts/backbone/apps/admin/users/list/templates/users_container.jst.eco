@@ -84,7 +84,7 @@
     <br>
   </div>
 <hr>
-
+<div>Results: <span class="js-total-records"><%= @totalRecords %></span></div>
 <table class="table tableAdmin" id="users-table">
   <thead>
     <tr>
@@ -108,4 +108,6 @@
 <div class="text-right">
 
 <%- @pagination_buttons() %>
+<ul id="pagination" class="pagination-md"  style="display: none"></ul>
 </div>
+
