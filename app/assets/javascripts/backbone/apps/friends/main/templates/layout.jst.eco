@@ -1,0 +1,99 @@
+
+<div class="container-fluid marginBody">
+	<div class="row">
+		<div class="col-xs-8 col-sm-7 col-md-8 col-sm-8 text-left">
+			<ul class="submenu" id="filter-link-container">
+
+				<li class="submenu__item">
+					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#" title="All" class="optionMenuLeft submenu__item__link" id="js-myfriends" data-menu="myFriends">
+						<i class="ico-alumnet-privacy_everyone"></i>
+						<span class="submenu__item__link--text"> Friends (100)</span>
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link optionMenuLeft" id="js-sent" data-menu="FriendsSent">
+						<i class="ico-alumnet-friend"></i>
+						<span class="submenu__item__link--text"> Friendships <span>Sent</span> (100)</span>	
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#"  class="submenu__item__link optionMenuLeft" title="Friends Received" id="js-received" data-menu="friendsReceived">
+						<i class="ico-new-invite"></i>
+						<span class="submenu__item__link--text"> Friendships <span>Received</span> (100)</span>	
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link" title="Approval Requests" data-menu="friendsApproval">
+						<i class="ico-yes"></i>
+						<span class="submenu__item__link--text"> Approval <span>Requests</span> (100)</span>		
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#friends/contacts" class="submenu__item__link" title="Invite friends">
+						<i class="ico-manage-users"></i>
+						<span class="submenu__item__link--text"> Invite friends</span>	
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link" title="All Alumni" data-menu="friendsDiscover">
+						<i class="glyphicon glyphicon-search"></i>
+						<span class="submenu__item__link--text"> All Alumni</span>		
+					</a>
+				</li>						
+
+			</ul>
+		</div>
+		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
+			<ul class="submenu" id="filter-link-container">
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
+						<i class="ico-alumnet-privacy_friends-of-friends"></i>
+						<span class="submenu__item__link--text"> Suggestions</span>		
+					</a>
+				</li>		
+
+				<!-- <li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
+						<i class="ico-user"></i>
+						<span class="submenu__item__link--text"> Filters</span>	
+					</a>
+				</li>	 -->
+
+				<li class="hidden-xs">
+		      <div class="searchBarSubMenu">
+		        <form id="search-form">
+		          <div class="input-group">
+		            <input type="text" name="search_term" id="search_term" class="form-control searchBarSubMenu__searchInput" placeholder="Write a name or email">
+		            <span class="input-group-btn">
+		            <button class="searchBarSubMenu__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+		            </span>
+		          </div>
+        		</form>
+      		</div>
+  			</li>
+			</ul>
+		</div>
+	</div>
+	<hr class="no_margin_top">
+	<div class="row">
+		<div class="col-md-8">
+			<div id="users-region"></div>
+			<!-- <div class="row">
+				<div class="col-md-12 text-center">
+					<span class="throbber-loader"></span>
+				</div>
+			</div> -->
+		</div>
+
+		<div class="col-md-4">
+			<div id="filters-region"></div>
+		</div>
+	</div>
+</div>

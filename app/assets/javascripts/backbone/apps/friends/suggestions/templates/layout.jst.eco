@@ -1,0 +1,23 @@
+<div class="suggestions__content">
+	<div class="suggestions__content--title">
+		<h3>You might know</h3>
+	</div>
+	<hr class="no_margin_bottom">
+	<div class="suggestions__content--user userCardSuggestions">
+		<div class="users-container">
+		
+		</div>
+	</div>
+</div>
+<div class="col-md-12 no-padding margin_top margin_bottom">
+	<div class="col-md-6 no-padding-left text-left">
+		<div class="buttonSuggestions">
+			<a class="btn btn-primary btn-lg" href="#">DISCOVER MORE ALUMNI</a>
+		</div>
+	</div>
+	<div class="col-md-6 no-padding-right text-right">
+		<div class="buttonSuggestions">
+			<a class="btn btn-primary btn-lg" href="#friends/contacts">INVITE YOUR FRIENDS</a>
+		</div>
+	</div>
+</div> 

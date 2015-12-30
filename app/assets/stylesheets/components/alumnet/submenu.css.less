@@ -1,0 +1,210 @@
+/***
+
+COMPONENT NAME: Submenu New
+DESCRIPTION: New styles submenu
+
+***/
+
+@import 'conf/conf.css.less';
+
+.marginBody{
+	margin-top: -75px;
+}
+
+.submenu
+{
+  position: relative;
+  padding: 5px 0 0 0;
+  list-style: outside none none;
+  margin-bottom: 0px;
+  &__item
+  {
+    position: relative;
+    display: block;
+    float: left;
+    list-style: none;
+    &__link
+    {
+      font-size: 18px;
+      padding: 0 9px 0px 9px;
+		  // padding: 0 10px 10px 10px;
+     	color: @black;
+      &--active
+      {
+        background-color: transparent;
+        -webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        -moz-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        text-decoration: none;
+      }
+      &:hover,&:focus{
+        text-decoration: none;
+      }
+      &--text
+      {
+        display: none;
+      }
+  	}
+  }
+}
+
+.searchBarSubMenu{
+	&__searchInput{
+    height: 42px;
+    padding: 0;
+    margin-top: -10px;
+    padding: 10px;
+  }
+  &__searchBtn{
+    padding: 10px 12px;
+    color: @blue;
+    margin-top: -10px;
+  }
+}
+
+.buttonSuggestions{
+  padding: 0 !important;
+  a{
+    width: 100%;
+    border-radius: 0;
+  }
+}
+/*768px*/
+@media (min-width: @media-small-min) {
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        padding: 0 20px 0px 10px;
+      }
+    }
+  }  
+}
+
+
+/*992px*/
+@media (min-width: @media-smedium-min) {
+  .buttonSuggestions{
+    padding: 0 !important;
+    a{
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+  .buttonSuggestions{
+    a{
+      padding: 10px 0px;
+      font-size: 12px;
+    }
+  }
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        &--text{
+          display: inline;
+        }
+      }
+    }
+  }   
+}
+
+/*1300px*/
+@media (min-width: @media-mlarge-min) {
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+      font-size: 15px;
+      padding: 0 7px 10px 7px;
+      }
+    }
+  } 
+  .buttonSuggestions{
+    a{
+      padding: 10px 0px;
+      font-size: 15px;
+    }
+  } 
+}
+
+/*1400px*/
+@media (min-width: @media-mxlarge-min) {
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        font-size: 15px;
+        padding: 0 10px 10px 10px;
+      }
+    }
+  }  
+}
+
+/*1500px*/
+@media (min-width: @media-mxlarge-min) {
+  .searchBarSubMenu{
+    &__searchInput
+    {
+      height: 50px;
+      margin-top: -22px;
+    }
+
+    &__searchBtn
+    {
+      padding: 14px 12px;
+      margin-top: -22px;
+    }
+  }
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        font-size: 15px;
+        padding: 0 8px 10px 8px;
+      }
+    }
+  }  
+}
+
+/*1680px*/
+@media (min-width: @media-xlarge-max) {
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        font-size: 16px;
+        padding: 0 10px 10px 10px;
+      }
+    }
+  }  
+}
+
+/*1800px*/
+@media (min-width: @media-mxlarge-max) {
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      {
+        font-size: 17px;
+        padding: 0 15px 10px 15px;
+      }
+    }
+  }  
+}
+
+  
