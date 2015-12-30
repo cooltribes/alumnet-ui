@@ -14,6 +14,7 @@
 				<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall ">
 					<div class="formANet__request">
 					<h3><span class="glyphicon glyphicon-ok"></span><span class="formANet__request--title">Approved requests</span></h3>
+					
 					<div id="approved-request-region"></div>
 					</div>
 				</div>

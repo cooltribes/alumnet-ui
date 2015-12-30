@@ -10,27 +10,39 @@
       find_people_region: '#find-people-region'
       suggested_region : '#suggested-region'
 
-    initialize: ->
-    
+    views:
+      sent_request_view: ""
+
     onRender:->
+      @sentRequest()
+      @approvedRequest()
+      @findUsers()
+      @suggestedProfiles()
 
-      usersSentRequest = AlumNet.request('user:entities', {}, {fetch: false})    
-      console.log usersSentRequest
-      sent_request = new Main.SentRequest
-        model: AlumNet.current_user
-        layout: @
-        collection: usersSentRequest
-      @sent_request_region.show(sent_request)
+    sentRequest: ->  
+      layout = @
+      users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
+      users.on 'sync:complete':->
+        layout.views.sent_request_view = new Main.SentRequest    
+          collection: users
+        layout.sent_request_region.show(layout.views.sent_request_view)
+  
 
-      usersApprovedRequest = AlumNet.request('user:entities', {}, {fetch: false})    
-      approved_request = new Main.ApprovedRequest
-        model: AlumNet.current_user
+    approvedRequest: ->
+      layout = @
+
+      friendsCollection = AlumNet.request('current_user:friendships:friends')
+      friendsCollection.fetch()
+        
+      approved_request_view = new  Main.ApprovedRequest      
         layout: @
-        collection: usersApprovedRequest
-      @approved_request_region.show(approved_request)
+        collection: friendsCollection
+       
+      @approved_request_region.show(approved_request_view)
+
+    findUsers: ->
 
       users = AlumNet.request('user:entities', {}, {fetch: false})
-
 
       find_users = new Main.FindUsers
         model: AlumNet.current_user
@@ -61,21 +73,18 @@
         approvalR.on "save:success", ()->
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
     
-      usersSuggested = AlumNet.request('user:entities', {}, {fetch: false})
+    suggestedProfiles: ->
+      layout = @
+      usersSuggested = new AlumNet.Entities.SuggestedUsersCollection
+      usersSuggested.fetch()
+
       suggested_profiles = new Main.SuggestedProfiles
         model: AlumNet.current_user
         layout: @
-        collection: usersSuggested
+        collection: usersSuggested   
 
-      @suggested_region.show(suggested_profiles)
+      layout.suggested_region.show(suggested_profiles)
 
-      suggested_profiles.on 'users:search', (querySearch)->
-        AlumNet.request('user:entities', querySearch)
-
-      suggested_profiles.on 'contacts:search', (contacts)->
-        suggested_profiles.collection = new AlumNet.Entities.ContactsInAlumnet
-        suggested_profiles.collection.fetch({ method: 'POST', data: { contacts: contacts }})
-        suggested_profiles.render()
 
       suggested_profiles.on 'request:admin', ()->
         url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
@@ -88,9 +97,12 @@
 
         userId = childView.model.id
         approvalR = AlumNet.request("current_user:approval:request", userId)
-        approvalR.on "save:success", ()->
+        approvalR.on "save:success", ()->    
+      
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
-  
+          layout.views.sent_request_view.collection.fetch()
+
+   
   class Main.SentRequestUserView extends Marionette.ItemView
     template: 'registration/approval_process/templates/user_sent_request'
 
@@ -101,7 +113,6 @@
     template: 'registration/approval_process/templates/user'
 
     initialize: ->
-      console.log @model
 
     ui:
       'requestBtn': '.js-ask'
@@ -125,6 +136,26 @@
     childView: Main.ApprovedRequestUserView
     childViewContainer: '.users-list'
 
+  
+  
+    templateHelpers: ->
+      approved_requests_count: @approvedRequestsCount()
+
+    approvedRequestsCount: ()->
+
+      approved_requests_count = 0;
+
+      friendsCollection = AlumNet.request('current_user:friendships:friends')
+      friendsCollection.fetch
+        success:->
+          approved_requests_count = friendsCollection.length
+          console.log "Cantidad: "+approved_requests_count
+          $("#approved_requests_count").html(approved_requests_count)
+          
+  
+
+      approved_requests_count
+ 
   class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
     childView: Main.UserView
