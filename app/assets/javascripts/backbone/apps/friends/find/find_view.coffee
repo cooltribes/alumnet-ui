@@ -11,7 +11,7 @@
   class Find.UserView extends AlumNet.Shared.Views.UserView
     template: 'friends/find/templates/user'
     tagName: 'div'
-    className: 'col-md-4 col-sm-6 col-xs-12'
+    className: 'col-md-6 col-sm-6 col-xs-12'
 
     templateHelpers: ->
       model = @model
@@ -40,8 +40,8 @@
       'click .search': 'advancedSearch'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
-      'click #js-advance':'showBoxAdvanceSearch'
-      'click #js-basic' : 'showBoxAdvanceBasic'
+      # 'click #js-advance':'showBoxAdvanceSearch'
+      # 'click #js-basic' : 'showBoxAdvanceBasic'
 
     ui:
       'loading': '.throbber-loader'
@@ -149,12 +149,12 @@
         success: (collection)->
           view.collection.set(collection.models)
 
-    showBoxAdvanceSearch: (e)->
-      e.preventDefault()
-      $("#js-advance-search").slideToggle("slow")
-      $("#search-form").slideToggle("hide");
+    # showBoxAdvanceSearch: (e)->
+    #   e.preventDefault()
+    #   $("#js-advance-search").slideToggle("slow")
+    #   $("#search-form").slideToggle("hide");
 
-    showBoxAdvanceBasic: (e)->
-      e.preventDefault()
-      $("#search-form").slideToggle("slow");
-      $("#js-advance-search").slideToggle("hide")
+    # showBoxAdvanceBasic: (e)->
+    #   e.preventDefault()
+    #   $("#search-form").slideToggle("slow");
+    #   $("#js-advance-search").slideToggle("hide")

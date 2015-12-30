@@ -6,6 +6,10 @@
       "friends/networks": "importNetworks"
       "friends": "listFriends"
       "approval-requests": "myApproval"
+      "alumni": "mainAlumni"
+      "alumni/friends": "friends"
+      "alumni/approval": "friendsApproval"
+      "alumni/discover": "friendsDiscover"
 
   API =
     findFriends: ->
@@ -43,6 +47,19 @@
       document.title = 'AlumNet - Invite Friends'
       controller = new FriendsApp.Import.Controller
       controller.importNetworks()
+    friends: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("myFriends")
+    friendsApproval: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsApproval")
+    friendsDiscover: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsDiscover")
+    mainAlumni:->
+      document.title = 'AlumNet - Alumni'
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni()
 
   AlumNet.on "friends:received", ->
     AlumNet.navigate("friends/received")
