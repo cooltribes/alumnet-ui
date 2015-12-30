@@ -16,4 +16,7 @@
         groups_users.on 'group:edit:api_key', (model, newValue) ->
           model.save({api_key: newValue})
 
+        groups_users.on 'group:edit:list_id', (model, newValue) ->
+          model.save({list_id: newValue})
+
       AlumNet.execute('render:admin:emails:submenu', undefined, 0)
