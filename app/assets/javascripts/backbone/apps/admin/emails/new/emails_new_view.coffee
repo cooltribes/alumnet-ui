@@ -52,25 +52,48 @@
       'click #js-add-filter': 'addFilter'
       'change @ui.selectGroups': 'changeSelectGroups'
       'click @ui.submit': 'sendCampaign'
+      'click a#js-edit-api-key': 'toggleEditApiKey'
+      'click a#js-edit-list-id': 'toggleEditListId'
+      'click #js-validate-mailchimp': 'validateMailchimp'
+      'click a#js-migrate-users': 'migrateUsers'
 
     initialize: (options)->
       @groups = options.groups
+      @current_user = options.current_user
 
     templateHelpers: ->
       groups: @groups.models
+      currentUserIsAdmin: @current_user.isAlumnetAdmin()
 
     changeSelectGroups: ->
       view = @
       if @ui.selectGroups.val() != "-1"
         group = @groups.get(@ui.selectGroups.val())
-        console.log 'got group'
-        console.log group
         members = group.get('members')
         view.collection.set members
 
         if group.get('mailchimp')
           @ui.apiKey.html(group.get('api_key'))
           @ui.listId.html(group.get('list_id'))
+
+          @ui.apiKey.editable
+            type: 'text'
+            value: group.get('api_key')
+            pk: group.id
+            title: 'API Key'
+            toggle: 'manual'
+            success: (response, newValue)->
+              view.trigger 'group:edit:api_key', group, newValue
+
+          @ui.listId.editable
+            type: 'text'
+            value: group.get('list_id')
+            pk: group.id
+            title: 'List ID'
+            toggle: 'manual'
+            success: (response, newValue)->
+              view.trigger 'group:edit:list_id', group, newValue
+
           @ui.mailchimpDetails.show()
           @ui.mailchimpAssociate.hide()
         else
@@ -87,7 +110,6 @@
       #data.body = $('#email-body').code().replace(/<\/?[^>]+(>|$)/g, "")
       data.body = $('#email-body').code()
       data.user_id = AlumNet.current_user.id
-      console.log data
 
       group_id = data.group_id
       url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns"
@@ -97,18 +119,63 @@
         type: "POST"
         data: data
         success: (data) =>
-          console.log 'success'
-          console.log data
           AlumNet.trigger "campaign:sent", group_id, data.id
         error: (response) =>
           console.log 'error'
           console.log response
 
-    removeAsocciatedMailChimp: (e)->
-      console.log 'remove'
-
     addFilter: (e)->
-      console.log "PRESIONO AGREGAR FILTRO"
+      #console.log "PRESIONO AGREGAR FILTRO"
+
+    toggleEditApiKey: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.apiKey.editable('toggle')
+
+    toggleEditListId: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      @ui.listId.editable('toggle')
+
+    validateMailchimp:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        data = Backbone.Syphon.serialize(this)
+        id = data.group_id
+        url = AlumNet.api_endpoint + "/groups/#{id}/validate_mailchimp"
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            if(data.success)
+              $.growl.notice({ message: 'Valid parameters' })
+            else
+              $.growl.error({ message: data.message })
+          error: (data) =>
+            $.growl.error({ message: 'Unknow error, please try again' })
+
+    migrateUsers:(e)->
+      e.preventDefault()
+      resp = confirm('API Key and List ID must exist and be valid, do you want to continue?')
+      if resp
+        $(".loadingAnimation__migrateUsers").css('display','inline-block')
+        data = Backbone.Syphon.serialize(this)
+        id = data.group_id
+        url = AlumNet.api_endpoint + "/groups/#{id}/migrate_users"
+        Backbone.ajax
+          url: url
+          type: "GET"
+          data: { id: id }
+          success: (data) =>
+            if(not data.success)
+              $.growl.error({ message: data.message })
+            else
+              $(".loadingAnimation__migrateUsers").css('display','none')
+              $.growl.notice({ message: "Successful migration" })
+          error: (data) =>
+            $.growl.error({ message: 'Unknow error, please try again' })
 
     onShow: ->
       summernote_options_description =

@@ -2,9 +2,5 @@
 	<div class="container">
 		<h1 class="text-center">New Email</h1>
 	  <div id="groups_users"></div>
-
-	
-
-	  
 	</div>
 </div>

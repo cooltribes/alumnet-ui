@@ -26,6 +26,7 @@ DESCRIPTION: styles for emails admin
     font-size: 14px;
     height: 80px;
     padding: 0px 12px;
+    margin-bottom: 10px;
     a{
       color: @black;
     }
@@ -111,4 +112,235 @@ DESCRIPTION: styles for emails admin
       margin-top: 5px;
     }
   }  
+}
+
+.emailsTableView{
+  background-color: transparent;
+  i{
+   color: #1192CC;
+  }
+  &__search
+  {
+    width: 200px;
+  }
+  &__title{
+   color :#1191CF;
+   font-size: 24px;
+   font-weight: 100;
+  }
+  &__preview{
+   color :#1191CF;
+   font-size: 12px;
+   font-weight: 400;
+  }
+  &__info{
+   color : @black;
+   font-size: 12px;
+   
+  }
+
+  &__numbers{
+    color: #778C96;
+    font-size: 24px;
+    font-weight: 100;
+    padding-top: 15px;
+  }
+
+ &__
+
+  tr{
+    border: none;
+    margin-top: 5px;
+    display: block;
+  }
+
+  & > tbody > tr{
+    border-bottom: 1px solid #D7D9DB;
+  }
+
+
+  table& > thead > tr> th{
+    background-color: @main-bg;
+    border: none;
+    text-transform: uppercase;
+    color: @blue-gray;
+    min-width: 79px;
+    text-align: center;
+
+    &:nth-child(1){
+      min-width:200px;
+    }
+
+
+  }
+    table& > tbody > tr> td{
+    
+    text-align: center;
+    padding-top: 20px;
+
+    &:nth-child(1){
+      min-width:200px;
+      padding-top:0px;
+      text-align: left;
+    }
+
+
+  }
+
+
+
+}
+.segmentTableView{
+  background-color: transparent;
+  h2
+  {
+    text-transform: capitalize;
+    font-size: 41px;
+  }
+
+  &__search
+  {
+    width: 200px;
+    i{
+      color: #1192CC;
+    }
+  }
+  &__title{
+   color :#677B84:;
+   font-size: 24px;
+   font-weight: 100;
+  }
+
+  &__info{
+   color : @black;
+   font-size: 12px;
+   
+  }
+
+  &__button{
+    width: 90px;
+    i{
+      color: #d9534f;
+      margin-right: 3px;
+    }
+
+  }
+
+ &__
+
+  tr{
+    border: none;
+    margin-top: 5px;
+    display: block;
+  }
+
+  & > tbody > tr{
+    border-bottom: 1px solid #D7D9DB;
+  }
+  table& > thead > tr> th{
+    background-color: @main-bg;
+    border: none;
+    text-transform: uppercase;
+    color: @blue-gray;
+    min-width: 79px;
+
+
+    &:nth-child(1){
+      min-width:200px;
+    }
+  }
+    table& > tbody > tr> td{
+    padding-top: 20px;
+
+    &:nth-child(1){
+      min-width:200px;
+     }
+    &:nth-child(2){
+      min-width:90px;
+      padding-top: 75px;
+    }
+    &:nth-child(3){
+      min-width:90px;
+      padding-top: 75px;
+    }
+  }
+}
+
+
+.modalNewSegment{
+  h3{
+    color: @black;
+  }
+
+  .bbm-modal{
+    width: 100%;
+      max-width: 100%;
+      background-color: #E6E6E8;
+
+      .bbm-modal__topbar{
+        a{
+          color: #A5B5BC;
+          font-size: 13px;
+          text-transform: uppercase;
+          padding-right: 10px;
+          padding-top: 10px;
+        }
+  
+
+      }
+
+      &__button{
+        height: 40px;
+      }
+
+  }
+
+  .bbm-modal__title{
+    font-size: 22px;
+    font-family: sans-serif;
+    color: @white;
+  }
+
+  .bbm-modal__section{
+    p, ul, li{
+      font-family: sans-serif;
+    }
+  }
+
+  
+}
+
+
+@media (min-width: @media-smedium-min) {
+  .segmentTableView{
+
+    table& > tbody > tr> td{
+      &:nth-child(2){
+
+        padding-top: 127px;
+      }
+      &:nth-child(3){
+
+        padding-top: 127px;
+      }
+    }
+  }
+
+}
+
+@media (min-width: @media-large-min) {
+  .segmentTableView{
+
+    table& > tbody > tr> td{
+      &:nth-child(2){
+
+        padding-top: 75px;
+      }
+      &:nth-child(3){
+
+        padding-top: 75px;
+      }
+    }
+  }
+
 }
