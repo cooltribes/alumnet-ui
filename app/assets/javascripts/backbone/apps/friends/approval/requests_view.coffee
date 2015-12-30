@@ -6,7 +6,7 @@
   class Approval.RequestView extends Marionette.ItemView
     template: 'friends/approval/templates/request'
     tagName: 'div'
-    className: 'col-md-4 col-sm-6'
+    className: 'col-md-6 col-sm-6'
     events:
       'click #js-accept':'clickedAccept'
       'click #js-delete':'clickedDelete'

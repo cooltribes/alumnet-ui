@@ -1,0 +1,14 @@
+<div class="col-md-6 ">
+	<div class="well">
+		<div class="row">
+		<div class="col-md-2 lead fontSize--xl text-center">
+			<span class="glyphicon glyphicon-info-sign"></span>
+		</div>
+		<div class="col-md-10">
+			<p class="lead"> You don't have updates on your friendships yet.</p>
+			<p class="lead"> Now is the perfect moment to take action!</p>
+			<p class="lead"> Search among Alumni and invite them to reconnect with you and start your AlumNet friendship.</p>
+		</div>
+		</div>
+	</div>
+</div>

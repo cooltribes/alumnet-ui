@@ -1,0 +1,22 @@
+<div class="userCardSuggestions row no-margin">
+  <div class="userCardSuggestions__avatar col-md-9 col-xs-9 text-left">
+    <div class="row">
+      <div class="col-md-2">
+        <img src="<%= @avatar.large %>" alt="<%= @name %>" class="img-circle">
+      </div>
+      <div class="col-md-10 overfloadText no-padding">
+        <span class="userCardSuggestions__name overfloadText padding_left_xsmall"><%= @name %></span>   
+      </div>
+    </div> 
+  </div>
+    <div class=" col-md-3 col-xs-3 no-padding">
+      <a href="#" id="js-request-friendship" title="Send friend request">
+        <div id="link-container" class="userCardSuggestions__actions userCardSuggestions__actions--isFriend userCard__animation">
+          <span class="invitation">
+            <span class="userCard__actionsUser__text">ADD FRIEND</span>
+            <span class="icon-entypo-user-add"></span> 
+          </span>
+        </div>
+      </a>
+    </div>
+</div>
