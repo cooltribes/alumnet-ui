@@ -8,28 +8,28 @@
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
 					<a href="#" title="All" class="optionMenuLeft submenu__item__link" id="js-myfriends" data-menu="myFriends">
 						<i class="ico-alumnet-privacy_everyone"></i>
-						<span class="submenu__item__link--text"> Friends (100)</span>
+						<span class="submenu__item__link--text"> Friends </span>
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
 					<a href="#" class="submenu__item__link optionMenuLeft" id="js-sent" data-menu="FriendsSent">
 						<i class="ico-alumnet-friend"></i>
-						<span class="submenu__item__link--text"> Friendships <span>Sent</span> (100)</span>	
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span><span> (0)</span></span>	
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
 					<a href="#"  class="submenu__item__link optionMenuLeft" title="Friends Received" id="js-received" data-menu="friendsReceived">
 						<i class="ico-new-invite"></i>
-						<span class="submenu__item__link--text"> Friendships <span>Received</span> (100)</span>	
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Received</span><span> (0)</span></span>	
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
 					<a href="#" class="optionMenuLeft submenu__item__link" title="Approval Requests" data-menu="friendsApproval">
 						<i class="ico-yes"></i>
-						<span class="submenu__item__link--text"> Approval <span>Requests</span> (100)</span>		
+						<span class="submenu__item__link--text"> Approval Requests <span>(0)</span></span>		
 					</a>
 				</li>
 
