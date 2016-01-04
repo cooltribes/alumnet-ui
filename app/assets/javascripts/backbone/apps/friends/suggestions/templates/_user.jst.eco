@@ -9,14 +9,28 @@
       </div>
     </div> 
   </div>
+  <% if @friendship_status == "none": %>
     <div class="col-xs-3 col-md-3 col-lg-3 no-padding">
       <a href="#" id="js-request-friendship" title="Send friend request">
         <div id="link-container" class="userCardSuggestions__actions userCardSuggestions__actions--isFriend userCard__animation">
           <span class="invitation">
-            <span class="userCard__actionsUser__text">ADD FRIEND</span>
+            <!-- <span class="userCard__actionsUser__text">ADD FRIEND</span> -->
             <span class="icon-entypo-user-add"></span> 
           </span>
         </div>
       </a>
     </div>
+  <% else if @friendship_status == "sent": %>
+    <div class="col-xs-3 col-md-3 col-lg-3 no-padding">
+      <a href="#" id="js-cancel-friendship" title="Cancel request">
+        <div id="link-container" class="userCardSuggestions__actions--cancel userCardSuggestions__actions userCard__animation">
+          <span class="invitation">
+            <!-- <span class="userCard__actionsUser__text">ADD FRIEND</span> -->
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-time"></span> 
+          </span>
+        </div>
+      </a>
+    </div>
+    <% end %>
 </div>

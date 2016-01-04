@@ -13,7 +13,7 @@
 				</li>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuLeft" id="js-sent" data-menu="FriendsSent">
+					<a href="#" class="submenu__item__link optionMenuLeft" id="js-sent" data-menu="friendsSent">
 						<i class="ico-alumnet-friend"></i>
 						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span><span> (0)</span></span>	
 					</a>

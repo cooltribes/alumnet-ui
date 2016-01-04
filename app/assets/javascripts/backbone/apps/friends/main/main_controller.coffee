@@ -5,6 +5,7 @@
       @layoutAlumni = new Main.FriendsView
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
+      @showSuggestions()
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->    
         self.showMenuUrl(valueClick)
@@ -46,7 +47,7 @@
 
       @layoutAlumni.users_region.show(friendsView)
 
-    showMyReceived: (layout)->
+    showMyReceived: ->
       friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
@@ -69,9 +70,7 @@
 
       @layoutAlumni.users_region.show(requestsView)
 
-    showMySent: (layout)->
-      console.log "entro sent"
-
+    showMySent: ->
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
@@ -80,7 +79,7 @@
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
-        layout.model.decrementCount('pending_sent_friendships')
+        #layout.model.decrementCount('pending_sent_friendships')
 
       @layoutAlumni.users_region.show(requestsView)
 
@@ -158,7 +157,6 @@
       @layoutAlumni.users_region.show(usersView)
 
     showSuggestions:->
-      console.log "Entro"
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
       collection = new AlumNet.Entities.SuggestedUsersCollection
       collection.fetch
