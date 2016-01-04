@@ -114,6 +114,18 @@
           <% end %>
         </h3>
       </div>
+      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+        <h3>
+    
+          <p>Status</p>
+
+          <% if @group_type.value== 1: %>
+            <small>Waiting for Approval.</small>
+            <br>
+           <!--  <small>You requested to join this group.</small> -->
+          <% end %>
+        </h3>
+      </div>
     </div>
   </div>
 </div>
