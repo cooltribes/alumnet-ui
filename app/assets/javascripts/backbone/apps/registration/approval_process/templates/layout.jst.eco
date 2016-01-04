@@ -6,22 +6,15 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 ">
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall ">
-					<div class="formANet__request">
-					<h3><span class="icon-entypo-paper-plane"></span><span class="formANet__request--title" >Sent Request</span></h3>
 					<div id="sent-request-region"></div>
-					</div>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall ">
-					<div class="formANet__request">
-					<h3><span class="glyphicon glyphicon-ok"></span><span class="formANet__request--title">Approved requests</span></h3>
-					
 					<div id="approved-request-region"></div>
-					</div>
 				</div>
 			</div>
 		</div>
 </div> 
-<hr>
+
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="row">

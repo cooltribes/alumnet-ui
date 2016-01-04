@@ -12,6 +12,7 @@
 
     views:
       sent_request_view: ""
+      approved_request_view: ""
 
     onRender:->
       @sentRequest()
@@ -34,22 +35,21 @@
       friendsCollection = AlumNet.request('current_user:friendships:friends')
       friendsCollection.fetch()
         
-      approved_request_view = new  Main.ApprovedRequest      
-        layout: @
+      layout.views.approved_request_view = new  Main.ApprovedRequest      
         collection: friendsCollection
        
-      @approved_request_region.show(approved_request_view)
+      layout.approved_request_region.show(layout.views.approved_request_view)
 
     findUsers: ->
+      layout = @
 
       users = AlumNet.request('user:entities', {}, {fetch: false})
 
       find_users = new Main.FindUsers
         model: AlumNet.current_user
-        layout: @
         collection: users
 
-      @find_people_region.show(find_users)
+      layout.find_people_region.show(find_users)
 
       find_users.on 'users:search', (querySearch)->
         AlumNet.request('user:entities', querySearch)
@@ -72,6 +72,9 @@
         approvalR = AlumNet.request("current_user:approval:request", userId)
         approvalR.on "save:success", ()->
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
+          layout.views.sent_request_view.collection.fetch()
+          $("#sent").show()
+          $("#approved").show()
     
     suggestedProfiles: ->
       layout = @
@@ -101,6 +104,8 @@
       
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
           layout.views.sent_request_view.collection.fetch()
+          $("#sent").show()
+          $("#approved").show()
 
    
   class Main.SentRequestUserView extends Marionette.ItemView
@@ -130,31 +135,66 @@
     template: 'registration/approval_process/templates/sent_request'
     childView: Main.SentRequestUserView
     childViewContainer: '.users-list'
+    templateHelpers: ->
+      @showSentRequest()
 
+    showSentRequest: ()->
+  
+      countSentRequest = 0
+      users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
+      users.on 'sync:complete':->
+        countSentRequest = users.length
+        if countSentRequest > 0
+          $("#sent").show()
+          
   class Main.ApprovedRequest extends Marionette.CompositeView
     template: 'registration/approval_process/templates/approved_request'
     childView: Main.ApprovedRequestUserView
     childViewContainer: '.users-list'
-
-  
   
     templateHelpers: ->
-      approved_requests_count: @approvedRequestsCount()
+      @approvedRequestsCount()
+      @showApprovedRequest()
 
     approvedRequestsCount: ()->
 
-      approved_requests_count = 0;
+      approved_requests_count = 0
+      i = 0
 
       friendsCollection = AlumNet.request('current_user:friendships:friends')
       friendsCollection.fetch
         success:->
           approved_requests_count = friendsCollection.length
-          console.log "Cantidad: "+approved_requests_count
           $("#approved_requests_count").html(approved_requests_count)
+          html= ''
+          for i in [approved_requests_count..2] 
+            html = html + '<div class="userCardSentApproved">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3 userCardSentApproved__avatar">
+                          <img src="/images/avatar/large_default_avatar.png" class="img-circle">
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-9 col-xs-9 userCardSentApproved__name--waiting">
+                          <h4 class="overfloadText no-margin"><i>waiting... </i></h4>       
+                          </p>
+                        </div>
+                      </div>
+                    </div>'
+          $("#waiting").html(html)
+
+            
           
-  
+
 
       approved_requests_count
+
+    showApprovedRequest: ()->
+  
+      countSentRequest = 0;
+      users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
+      users.on 'sync:complete':->
+        countSentRequest = users.length
+        if countSentRequest > 0
+          $("#approved").show()
  
   class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
