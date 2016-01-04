@@ -1,0 +1,30 @@
+<form class="formANet form" role="form">
+	<div class="row ">
+		<div class="col-md-12 col-sm-12 col-xs-12 ">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 ">
+					<div class="users-list"></div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 formANet__finAnyone">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<h4>Didnt find anyone?</h4>
+							<p>Ask an administrator to approve you manually</p>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 text-right formANet__finAnyone--sentRequestAdmin hidden-xs ">
+					  <button class="btn btn-primary text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 visible-xs margin_bottom_xsmall text-center">
+					  	<button class="btn btn-primary text-uppercase js-askAdmin" type="button">SEND YOUR REQUEST TO ADMIN</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+

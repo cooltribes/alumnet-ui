@@ -309,18 +309,35 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	&__request{
 		min-height: 100px;
 		background: @white;
-		padding: 1px;
-		span{
-			padding-left: 8px;
+		padding: 10px;
+
+		&--title{
+			padding-left: 10px;
 		}
+
 		&--sent{
-
-
+			&---waiting{
+				font-size: 11px;
+			}
 		}
 		&--approved{
+			color: green;
+			font-size: 11px;
+			i{
+				padding-right: 10px;
+			}
+			&---date{
+			  font-size: 11px;
+  			padding-left: 22px;
+  		}
 
 		}
 
+	}
+	&__postJobNew{
+		&--error{
+			color: @red;
+		}
 	}
 
 }
