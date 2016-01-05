@@ -2,7 +2,7 @@
 
   class Main.LayoutView extends Marionette.LayoutView
     template: 'registration/approval_process/templates/layout'
-    className: 'container-fluid'
+
    
     regions:
       sent_request_region: '#sent-request-region'

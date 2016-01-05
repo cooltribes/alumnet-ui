@@ -302,6 +302,19 @@ input.uploadBox::before {
     padding: 10px;
 }
 
+.btn-default-gray-noBackground{
+	background: transparent;
+	border: 2px solid @gray-medium;
+	color: @gray-medium;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 12px;
+	&:hover{
+		background-color: darken(@gray-medium, 10%);
+		color: @white;
+	}
+}
+
 @media (min-width: @media-smallest) {
 	.btn-onboarding
 	{
