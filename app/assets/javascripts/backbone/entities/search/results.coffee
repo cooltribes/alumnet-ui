@@ -83,6 +83,7 @@
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
     search_term: ""
+    q: ""
     type: "all"
     url: ->
       AlumNet.api_endpoint + '/search?term=' + @search_term

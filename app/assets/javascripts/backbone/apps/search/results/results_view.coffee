@@ -6,6 +6,7 @@
 
     regions:
       results: '#results-region'
+      filters: '#filters-region'
 
     events:
       "click .js-typefilter": "filter_type"

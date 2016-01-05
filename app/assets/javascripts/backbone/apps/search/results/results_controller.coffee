@@ -11,10 +11,12 @@
 
       layoutView = @_getLayoutView()
       results_view = @_getResultsView()
+      filters_view = @_getFiltersView()
 
       AlumNet.mainRegion.show(layoutView)
 
       layoutView.results.show(results_view)
+      layoutView.filters.show(filters_view)
       
     #For internal use
     _getLayoutView: ->
@@ -28,3 +30,7 @@
     _getResultsView: ->
       view = new Results.ResultsListView
         collection: @results_collection
+    
+
+    _getFiltersView: ->
+      view = new AlumNet.Shared.Views.Filters.Layout        
