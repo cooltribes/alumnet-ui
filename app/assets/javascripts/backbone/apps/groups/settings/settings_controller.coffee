@@ -22,6 +22,7 @@
           model.save({join_process: parseInt(newValue)})
         body.on 'group:edit:official', (model, newValue) ->
           model.save({official: parseInt(newValue)})
+          
         body.on 'group:edit:mailchimp', (model, newValue) ->
           model.save({mailchimp: parseInt(newValue)})
         body.on 'group:edit:api_key', (model, newValue) ->
