@@ -82,8 +82,7 @@
   
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
-    search_term: ""
-    q: ""
+    search_term: ""    
     type: "all"
     url: ->
       AlumNet.api_endpoint + '/search?term=' + @search_term
@@ -102,3 +101,42 @@
           type: @type
       )
 
+    search_by_filters: (q)->
+      ###query = 
+            type: @type
+            q:
+              query:
+                filtered:
+                  filter:
+                    terms:
+
+
+
+
+         {
+          "type": "profile",
+          "q": {
+              "query": {
+                  "filtered":{
+                      "filter": {
+                          "bool": {
+                              "should" : [
+                                  {
+                                      "terms": {
+                                          "residence_city_id": [7273]
+                                      }
+                                  },
+                                  {
+                                      "terms": {
+                                          "origin_city_id": [7273]
+                                      }
+                                  }
+                              ]
+                          }
+                      }
+                  }
+              }
+          }
+      }
+
+      ###
