@@ -34,14 +34,19 @@ DESCRIPTION: shared styles among registration module
     text-align: center;
     margin-top: 2em;
    }
+   &__button{
+      font-size: 12px;
+
+   }
+
 
 }
 
-.userCardSent{
+.userCardSentApproved{
 
    background: #fff;
    padding: 5px;
-   text-align: center;
+   text-align: left;
 
    
    &__avatar{
@@ -54,8 +59,22 @@ DESCRIPTION: shared styles among registration module
 
    &__name{
     color:@black;
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 19px;
+    text-align: left;
+    padding-top: 5px;
+
+    &--approved{
+
+    }
+    &--waiting{
+      color: #5A747F;
+      h4
+      {
+        padding-top: 22px;
+        font-weight: 400;
+        font-size: 16px;
+      } 
+    }
 
    }
    &__actions{
@@ -101,6 +120,21 @@ DESCRIPTION: shared styles among registration module
         &__actions{
            
        }
+        &__button{
+          font-size: 11px;
+        }
+       
+    }
+
+ }
+
+/* Medium devices (desktops, 1024px and up) */
+@media (min-width: @media-smedium-max) {
+    .userCardAproval{
+        &__button{
+          font-size: 11px;
+        }
+       
     }
 
  }
@@ -119,5 +153,9 @@ DESCRIPTION: shared styles among registration module
        &__actions{
            
        }
+        &__button{
+          font-size: 12px;
+        }
+       
    }
  }

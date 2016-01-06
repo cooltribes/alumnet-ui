@@ -46,6 +46,8 @@
       'apiKey': '#js-api-key'
       'listId': '#js-list-id'
       'submit': '#js-submit'
+      'emailSubject': '#subject'
+      'emailBody': '#email-body'
 
     events:
       'click #js-remove-associated-span': 'removeAsocciatedMailChimp'
@@ -56,6 +58,7 @@
       'click a#js-edit-list-id': 'toggleEditListId'
       'click #js-validate-mailchimp': 'validateMailchimp'
       'click a#js-migrate-users': 'migrateUsers'
+      'click #js-mailchimp-associate': 'mailchimpAssociateClicked'
 
     initialize: (options)->
       @groups = options.groups
@@ -72,31 +75,34 @@
         members = group.get('members')
         view.collection.set members
 
+        @ui.apiKey.editable
+          type: 'text'
+          value: group.get('api_key')
+          pk: group.id
+          title: 'API Key'
+          toggle: 'manual'
+          success: (response, newValue)->
+            view.trigger 'group:edit:api_key', group, newValue
+
+        @ui.listId.editable
+          type: 'text'
+          value: group.get('list_id')
+          pk: group.id
+          title: 'List ID'
+          toggle: 'manual'
+          success: (response, newValue)->
+            view.trigger 'group:edit:list_id', group, newValue
+
         if group.get('mailchimp')
           @ui.apiKey.html(group.get('api_key'))
           @ui.listId.html(group.get('list_id'))
 
-          @ui.apiKey.editable
-            type: 'text'
-            value: group.get('api_key')
-            pk: group.id
-            title: 'API Key'
-            toggle: 'manual'
-            success: (response, newValue)->
-              view.trigger 'group:edit:api_key', group, newValue
-
-          @ui.listId.editable
-            type: 'text'
-            value: group.get('list_id')
-            pk: group.id
-            title: 'List ID'
-            toggle: 'manual'
-            success: (response, newValue)->
-              view.trigger 'group:edit:list_id', group, newValue
-
           @ui.mailchimpDetails.show()
           @ui.mailchimpAssociate.hide()
         else
+          @ui.apiKey.html('')
+          @ui.listId.html('')
+
           @ui.mailchimpAssociate.show()
           @ui.mailchimpDetails.hide()
       else
@@ -106,23 +112,40 @@
       
     sendCampaign: (e)->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      #data.body = $('#email-body').code().replace(/<\/?[^>]+(>|$)/g, "")
-      data.body = $('#email-body').code()
-      data.user_id = AlumNet.current_user.id
+      valid = true
 
-      group_id = data.group_id
-      url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns"
+      if @ui.selectGroups.val() == "-1"
+        valid = false
+        $.growl.error({ message: 'Please select a group' })
 
-      Backbone.ajax
-        url: url
-        type: "POST"
-        data: data
-        success: (data) =>
-          AlumNet.trigger "campaign:sent", group_id, data.id
-        error: (response) =>
-          console.log 'error'
-          console.log response
+      if @ui.emailSubject.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please insert campaign subject' })
+
+      if @ui.emailBody.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please add campaign content' })
+
+      if valid
+        resp = confirm('You are about to send a campaign to selected users. Are you sure it\'s done?')
+        if resp
+          data = Backbone.Syphon.serialize(this)
+          #data.body = $('#email-body').code().replace(/<\/?[^>]+(>|$)/g, "")
+          data.body = $('#email-body').code()
+          data.user_id = AlumNet.current_user.id
+
+          group_id = data.group_id
+          url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns"
+
+          Backbone.ajax
+            url: url
+            type: "POST"
+            data: data
+            success: (data) =>
+              AlumNet.trigger "campaign:sent", group_id, data.id
+            error: (response) =>
+              console.log 'error'
+              console.log response
 
     addFilter: (e)->
       #console.log "PRESIONO AGREGAR FILTRO"
@@ -176,6 +199,11 @@
               $.growl.notice({ message: "Successful migration" })
           error: (data) =>
             $.growl.error({ message: 'Unknow error, please try again' })
+
+    mailchimpAssociateClicked:(e)->
+      e.preventDefault()
+      @ui.mailchimpDetails.show()
+      @ui.mailchimpAssociate.hide()
 
     onShow: ->
       summernote_options_description =

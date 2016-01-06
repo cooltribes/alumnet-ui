@@ -163,6 +163,7 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	}
 	&:hover{
 		color: @white !important;
+		background-color: @blue;
 	}
 	span.icon-char{
 		font-size: 26px;
@@ -300,6 +301,19 @@ input.uploadBox::before {
 	color: #f38e00;
     border: solid 1px #f38e00;
     padding: 10px;
+}
+
+.btn-default-gray-noBackground{
+	background: transparent;
+	border: 2px solid @gray-medium;
+	color: @gray-medium;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 12px;
+	&:hover{
+		background-color: darken(@gray-medium, 10%);
+		color: @white;
+	}
 }
 
 @media (min-width: @media-smallest) {

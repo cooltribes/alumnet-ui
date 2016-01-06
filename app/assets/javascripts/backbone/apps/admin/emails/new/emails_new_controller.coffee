@@ -3,7 +3,7 @@
     emailsNew: ->
       layout = new EmailsNew.Layout
       current_user = AlumNet.current_user
-      groups = AlumNet.request('group:entities:admin', {})
+      groups = AlumNet.request('group:entities:admin', {official: true})
       groups.on 'fetch:success': ->
         groups_users =  new EmailsNew.GroupsUsers
           groups: groups
@@ -14,9 +14,9 @@
         layout.groups_users.show(groups_users)
 
         groups_users.on 'group:edit:api_key', (model, newValue) ->
-          model.save({api_key: newValue})
+          model.save({api_key: newValue, mailchimp: true})
 
         groups_users.on 'group:edit:list_id', (model, newValue) ->
-          model.save({list_id: newValue})
+          model.save({list_id: newValue, mailchimp: true})
 
       AlumNet.execute('render:admin:emails:submenu', undefined, 0)

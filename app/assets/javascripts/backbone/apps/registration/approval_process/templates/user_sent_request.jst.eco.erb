@@ -1,0 +1,20 @@
+<%% unless @accepted  : %>
+<div class="userCardSentApproved">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3 userCardSentApproved__avatar">
+      <img src="<%%= @approver.avatar %>" class="img-circle" alt="User's name">
+    </div>
+    <div class="col-lg-9 col-md-8 col-sm-9 col-xs-9">
+      <h4 class="userCardSentApproved__name overfloadText no-margin"><%%= @approver.name %> </h4>
+
+      <span><%= image_tag('vendors/select2-spinner.gif') %></span>
+         <span class="formANet__request--sent---waiting">waiting</span>         
+      </p>
+    </div>
+  </div>
+  </div>
+</div>
+<%% end %>
+
+
+  

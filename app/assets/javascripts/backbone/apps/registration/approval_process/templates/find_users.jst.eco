@@ -1,0 +1,51 @@
+<form class="formANet form" role="form">
+	<div class="row ">
+	
+		<div class="col-md-12 col-sm-12 col-xs-12 ">
+			<div class="row margin_bottom_small">
+				<div class="col-md-6 col-sm-6 col-xs-12 ">
+					<p>Find your friends in ALUMNET with</p>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('linkedin');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+								<span>linkedin</span><i class="ico-alumnet-linkedin"></i>
+							</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('gmail');" class="btn formANet__button formANet__button--google deep-link delayed">
+								<span>google+</span><i class="icon-entypo-gplus"></i>
+							</a>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('yahoo');" class="btn formANet__button formANet__button--yahoo deep-link delayed">
+								<span>yahoo!</span><i class="icon-entypo-yahoo"></i>
+							</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('windowslive');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+								<span>outlook</span><i class="icon-entypo-outlook"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 formANet__search">
+					<p>Or Search by name</p>
+					<div class="input-group "> 
+						<input type="text" class="form-control" placeholder="Write name or email" name="search_term" id="search_term"> <span class="input-group-btn"> <button class="btn btn-default js-search" type="button"><i class="fa fa-search"></i></button> </span> </div>
+				</div>
+			</div>
+			<div id="search" style="display:none">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12 ">
+						<div class="users-list-search" style=""></div>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</form>
+
+
