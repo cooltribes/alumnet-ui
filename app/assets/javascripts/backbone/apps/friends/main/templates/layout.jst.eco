@@ -4,56 +4,61 @@
 		<div class="col-xs-8 col-sm-7 col-md-8 col-sm-8 text-left">
 			<ul class="submenu" id="filter-link-container">
 
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="All Alumni" data-menu="friendsDiscover" id="discoverAlumni">
+						<i class="glyphicon glyphicon-search"></i>
+						<span class="submenu__item__link--text"> Discover Alumni</span>		
+					</a>
+				</li>
+
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="optionMenuLeft submenu__item__link" id="js-myfriends" data-menu="myFriends">
+					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link" id="js-myfriends" data-menu="myFriends">
 						<i class="ico-alumnet-privacy_everyone"></i>
 						<span class="submenu__item__link--text"> Friends </span>
 					</a>
 				</li>
 
-				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuLeft" id="js-sent" data-menu="friendsSent">
-						<i class="ico-alumnet-friend"></i>
-						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span><span> (0)</span></span>	
-					</a>
-				</li>
+				<% if @pending_sent_friendships_count > 0 : %>
+					<li role="presentation" class="submenu__item">
+						<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link" id="js-sent" data-menu="friendsSent">
+							<i class="ico-alumnet-friend"></i>
+							<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span> (<span id="countSent"></span>)</span>	
+						</a>
+					</li>
+				<% end %>
+
+				<% if @pending_received_friendships_count > 0 : %>
+					<li role="presentation" class="submenu__item">
+						<a href="#"  class="submenu__item__link optionMenuLeft submenu__item__link" title="Friends Received" id="js-received" data-menu="friendsReceived">
+							<i class="ico-new-invite"></i>
+							<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Received</span> (<span id="countReceived"></span>)</span>	
+						</a>
+					</li>
+				<% end %>
+
+				<% if @pending_approval_requests_count > 0 : %>
+					<li role="presentation" class="submenu__item">
+						<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="Approval Requests" data-menu="friendsApproval">
+							<i class="ico-yes"></i>
+							<span class="submenu__item__link--text"> Approval Requests (<span id="countApproval"></span>)</span>		
+						</a>
+					</li>
+				<% end %>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#"  class="submenu__item__link optionMenuLeft" title="Friends Received" id="js-received" data-menu="friendsReceived">
-						<i class="ico-new-invite"></i>
-						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Received</span><span> (0)</span></span>	
-					</a>
-				</li>
-
-				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link" title="Approval Requests" data-menu="friendsApproval">
-						<i class="ico-yes"></i>
-						<span class="submenu__item__link--text"> Approval Requests <span>(0)</span></span>		
-					</a>
-				</li>
-
-				<li role="presentation" class="submenu__item">
-					<a href="#friends/contacts" class="submenu__item__link" title="Invite friends">
+					<a href="#friends/contacts" class="submenu__item__link submenu__item__link" title="Invite friends">
 						<i class="ico-manage-users"></i>
 						<span class="submenu__item__link--text"> Invite friends</span>	
 					</a>
-				</li>
-
-				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link" title="All Alumni" data-menu="friendsDiscover">
-						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> All Alumni</span>		
-					</a>
 				</li>						
-
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
+					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
 						<i class="ico-alumnet-privacy_friends-of-friends"></i>
 						<span class="submenu__item__link--text"> Suggestions</span>		
 					</a>
@@ -85,11 +90,11 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div id="users-region"></div>
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-12 text-center">
 					<span class="throbber-loader"></span>
 				</div>
-			</div> -->
+			</div>
 		</div>
 
 		<div class="col-md-4">
