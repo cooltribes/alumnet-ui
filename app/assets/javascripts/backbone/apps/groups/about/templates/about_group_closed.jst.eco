@@ -122,7 +122,7 @@
           <% if @group_type.value== 1: %>
             <small>Waiting for Approval.</small>
             <br>
-           <!--  <small>You requested to join this group.</small> -->
+            <small>You requested to join this group on <%= moment(@membership_created).format(' D MMM YYYY') %> </small>
           <% end %>
         </h3>
       </div>

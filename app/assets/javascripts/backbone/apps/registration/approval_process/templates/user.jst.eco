@@ -1,15 +1,15 @@
 <div class="userCardAproval">
   <div class="row">
-    <div class="col-md-2 userCardAproval__avatar">
+    <div class="col-md-3 col-sm-3 col-lg-2 userCardAproval__avatar">
       <img src="<%= @avatar.large %>" class="img-circle" alt="User's name">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5 col-sm-5 col-lg-6 ">
       <h4 class="userCardAproval__name"><%= @name %> </h4>
       <p><strong><%= @last_experience %></strong> <br>
       
       </p>
     </div>
-    <div class="col-md-4 userCardAproval__actions text-right js-actions-container">
+    <div class="col-md-4 col-sm-4 col-lg-4 userCardAproval__actions text-right js-actions-container">
       <% if @approval_status == "sent": %>
 
         Your request has been sent <span class="icon-entypo-paper-plane"></span>
@@ -20,7 +20,7 @@
       
       <% else if @approval_status == "none": %>
       
-        <button class="btn  btn-primary btn-sm btn-block text-uppercase js-ask" type="button">ASK FOR ACCEPTANCE</button>
+        <button class="userCardAproval__button btn  btn-primary btn-sm btn-block text-uppercase js-ask" type="button">ASK FOR ACCEPTANCE</button>
       
       <% end %>
       

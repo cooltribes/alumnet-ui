@@ -10,6 +10,7 @@
       "alumni/friends": "friends"
       "alumni/approval": "friendsApproval"
       "alumni/discover": "friendsDiscover"
+      "alumni/received": "friendsReceived"
 
   API =
     findFriends: ->
@@ -60,6 +61,9 @@
       document.title = 'AlumNet - Alumni'
       controller = new FriendsApp.Main.Controller
       controller.showMainAlumni()
+    friendsReceived: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsReceived")
 
   AlumNet.on "friends:received", ->
     AlumNet.navigate("friends/received")
