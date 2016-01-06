@@ -67,6 +67,7 @@
       'click .navTopBar__left__item' : 'menuOptionClicked'
       'click #programsList li' : 'dropdownClicked'
       'click #accountList li' : 'accountDropdownClicked'
+      'click .alumniDiscover' : 'activeMenuOption'
       'click @ui.searchBtn' : 'clickSearchBtn'
       'keypress @ui.searchInput' : 'keypressSearch'
       'focus @ui.searchInput' : 'focusSearchBar'
@@ -253,6 +254,10 @@
 
     accountDropdownClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+
+    activeMenuOption: ->
+      $(".optionMenuLeft").removeClass("submenu__item__link--active")
+      $("#discoverAlumni").addClass("submenu__item__link--active")
 
   class Menu.AdminBar extends Marionette.LayoutView
     template: 'header/menu/templates/admin_layout'

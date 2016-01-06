@@ -70,8 +70,8 @@
 
     toggleLink: (id)->
       link = $("#js-#{id}")
-      this.$("[id^=js-]").removeClass("submenu__item__link--active")
-      link.addClass("submenu__item__link--active")
+      this.$("[id^=js-]").removeClass("sortingMenu__item__link--active")
+      link.addClass("sortingMenu__item__link--active")
 
     changedCountSent: ->
       messageSent = "Sent (#{@model.get('pending_sent_friendships_count')})"
@@ -82,7 +82,6 @@
       @ui.receivedCount.html(messageReceived)
 
     changedCount: ->
-      console.log "here"
       message = "Friends (#{@model.get('friends_count')})"
       $(@ui.changedCount).html(message)
 

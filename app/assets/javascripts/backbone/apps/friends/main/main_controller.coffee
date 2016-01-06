@@ -3,8 +3,10 @@
 
     showMainAlumni: (optionMenu)->
       @layoutAlumni = new Main.FriendsView
+        model: AlumNet.current_user
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
+      @showSuggestions()
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->    
         self.showMenuUrl(valueClick)
@@ -14,6 +16,14 @@
             self.showSuggestions()
           when "filters"
             self.showFilters()
+
+      @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
+        collection.querySearch = querySearch
+        collection.page = 1
+        if filter == "sent" or filter == "received"
+          querySearch = _.extend querySearch, { filter: filter }
+        collection.fetch
+          data: querySearch
 
     showFriends: ->
       friendsCollection = AlumNet.request('current_user:friendships:friends')
@@ -46,41 +56,41 @@
 
       @layoutAlumni.users_region.show(friendsView)
 
-    showMyReceived: (layout)->
+    showMyReceived: ->
       friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
 
+      #self = @
       requestsView.on 'childview:accept', (childView)->
         friendship = childView.model
         friendship.save()
         friendships.remove(friendship)
-        #layout.model.decrementCount('pending_received_friendships')
-        #layout.model.incrementCount('friends')
+        self.layoutAlumni.model.decrementCount('pending_received_friendships')
+        self.layoutAlumni.model.incrementCount('friends')
         $.growl.notice({ message: "Invitation accepted" })
 
       requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
-        #layout.model.decrementCount('pending_received_friendships')
+        self.layoutAlumni.model.decrementCount('pending_received_friendships')
         $.growl.notice({ message: "Declined invitation" })
 
       @layoutAlumni.users_region.show(requestsView)
 
-    showMySent: (layout)->
-      console.log "entro sent"
-
+    showMySent: ->
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
 
+      self = @
       requestsView.on 'childview:delete', (childView)->
         friendship = childView.model
         friendship.destroy()
         friendships.remove(friendship)
-        layout.model.decrementCount('pending_sent_friendships')
+        self.layoutAlumni.model.decrementCount('pending_sent_friendships')
 
       @layoutAlumni.users_region.show(requestsView)
 
@@ -158,11 +168,9 @@
       @layoutAlumni.users_region.show(usersView)
 
     showSuggestions:->
-      console.log "Entro"
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
       collection = new AlumNet.Entities.SuggestedUsersCollection
       collection.fetch
-        #data: {limit: 10}
         success: (collection)->
           array_friends = collection.where(friendship_status: "none")
           collection_friends = new AlumNet.Entities.SuggestedUsersCollection(array_friends)
