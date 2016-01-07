@@ -101,17 +101,39 @@
           type: @type
       )
 
+    ###fetch: (options) ->
+      console.log "yey"###
+
     search_by_filters: (q)->
-      ###query = 
-            type: @type
-            q:
-              query:
-                filtered:
-                  filter:
-                    terms:
+      city_ids = [7273, 7489, 2565, 15, 11 ]
+      
+      query =         
+        query:
+          filtered:
+            filter:
+              bool:
+                should: [
+                  terms:
+                    "residence_city_id": city_ids
+                ,
+                  terms:
+                    "birth_city_id": city_ids
+                ]
+
+
+      
+      @url = AlumNet.api_endpoint + '/search'
+
+      @fetch(
+        data: 
+          type: "profile"          
+          q: query       
+        type: "POST"     
+      )                  
 
 
 
+      ###
 
          {
           "type": "profile",
