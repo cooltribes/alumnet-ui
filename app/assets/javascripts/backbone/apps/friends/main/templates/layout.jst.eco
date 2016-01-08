@@ -7,51 +7,46 @@
 				<li role="presentation" class="submenu__item">
 					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="All Alumni" data-menu="friendsDiscover" id="discoverAlumni">
 						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Alumni</span>		
+						<span class="submenu__item__link--text"><span> Discover</span><span class="submenu__item__link--text--friendships"> Alumni</span></span>		
 					</a>
 				</li>
 
-				<li class="submenu__item">
+				<li class="submenu__item" id="countFriends">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
 					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link" id="js-myfriends" data-menu="myFriends">
 						<i class="ico-alumnet-privacy_everyone"></i>
-						<span class="submenu__item__link--text"> Friends </span>
+						<span class="submenu__item__link--text"> Friends (<span id="countFriendsShow"></span>) </span>
 					</a>
 				</li>
 
-				<% if @pending_sent_friendships_count > 0 : %>
-					<li role="presentation" class="submenu__item">
-						<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link" id="js-sent" data-menu="friendsSent">
-							<i class="ico-alumnet-friend"></i>
-							<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span> (<span id="countSent"></span>)</span>	
-						</a>
-					</li>
-				<% end %>
+				<li role="presentation" class="submenu__item" id="countSent">
+					<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link" id="js-sent" data-menu="friendsSent">
+						<i class="ico-alumnet-friend"></i>
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Sent</span> (<span id="countSentShow"></span>)</span>	
+					</a>
+				</li>
+	
+				<li role="presentation" class="submenu__item" id="countReceived">
+					<a href="#"  class="submenu__item__link optionMenuLeft submenu__item__link" title="Friends Received" id="js-received" data-menu="friendsReceived">
+						<i class="ico-new-invite"></i>
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Received</span> (<span id="countReceivedShow"></span>)</span>	
+					</a>
+				</li>
 
-				<% if @pending_received_friendships_count > 0 : %>
-					<li role="presentation" class="submenu__item">
-						<a href="#"  class="submenu__item__link optionMenuLeft submenu__item__link" title="Friends Received" id="js-received" data-menu="friendsReceived">
-							<i class="ico-new-invite"></i>
-							<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Friendships</span><span> Received</span> (<span id="countReceived"></span>)</span>	
-						</a>
-					</li>
-				<% end %>
-
-				<% if @pending_approval_requests_count > 0 : %>
-					<li role="presentation" class="submenu__item">
-						<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="Approval Requests" data-menu="friendsApproval">
-							<i class="ico-yes"></i>
-							<span class="submenu__item__link--text"> Approval Requests (<span id="countApproval"></span>)</span>		
-						</a>
-					</li>
-				<% end %>
+				<li role="presentation" class="submenu__item" id="countApproval">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="Approval Requests" data-menu="friendsApproval" id="js-approval">
+						<i class="ico-yes"></i>
+						<span class="submenu__item__link--text"> Approval Requests (<span id="countApprovalShow"></span>)</span>		
+					</a>
+				</li>
 
 				<li role="presentation" class="submenu__item">
 					<a href="#friends/contacts" class="submenu__item__link submenu__item__link" title="Invite friends">
 						<i class="ico-manage-users"></i>
 						<span class="submenu__item__link--text"> Invite friends</span>	
 					</a>
-				</li>						
+				</li>		
+
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">

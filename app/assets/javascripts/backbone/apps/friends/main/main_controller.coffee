@@ -62,7 +62,7 @@
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
 
-      #self = @
+      self = @
       requestsView.on 'childview:accept', (childView)->
         friendship = childView.model
         friendship.save()
@@ -168,14 +168,12 @@
       @layoutAlumni.users_region.show(usersView)
 
     showSuggestions:->
-      suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
       collection = new AlumNet.Entities.SuggestedUsersCollection
-      collection.fetch
-        success: (collection)->
-          array_friends = collection.where(friendship_status: "none")
-          collection_friends = new AlumNet.Entities.SuggestedUsersCollection(array_friends)
-          suggestions.collection = collection_friends
-          suggestions.render()
+      collection.fetch()
+
+      suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
+        collection: collection   
+        
       @layoutAlumni.filters_region.show(suggestions)
 
     showFilters:->
