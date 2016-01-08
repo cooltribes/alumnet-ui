@@ -12,12 +12,44 @@
       'click .js-search': 'performSearch'
 
     bindings:
-      '#countApproval' : 'pending_approval_requests_count'
-      '#countSent' : 'pending_sent_friendships_count'
-      '#countReceived' : 'pending_received_friendships_count'
-          
+      '#countFriends':
+        observe: 'friends_count'
+        update: ($el, val)->
+          if val > 0
+            $el.show()
+            $el.find("#countFriendsShow").html(val)
+          else
+            $el.hide()
+            
+      '#countApproval':
+        observe: 'pending_approval_requests_count'
+        update: ($el, val)->
+          if val > 0
+            $el.show()
+            $el.find("#countApprovalShow").html(val)
+          else
+            $el.hide()
+
+      '#countSent':
+        observe: 'pending_sent_friendships_count'
+        update: ($el, val)->
+          if val > 0
+            $el.show()
+            $el.find("#countSentShow").html(val)
+          else
+            $el.hide()
+
+      '#countReceived':
+        observe: 'pending_received_friendships_count'
+        update: ($el, val)->
+          if val > 0
+            $el.show()
+            $el.find("#countReceivedShow").html(val)
+          else
+            $el.hide()
+    
     templateHelpers: ->
-      current_user = AlumNet.current_user
+      @current_user = AlumNet.current_user
     
     onRender: ->
       @stickit()
@@ -54,16 +86,15 @@
           friend_profile_first_name_cont: searchTerm
           friend_profile_last_name_cont: searchTerm
           friend_email_cont: searchTerm
-      else if filter == "received"
+      else if filter == "received" || filter == "approval"
         q:
           m: 'or'
           user_profile_first_name_cont: searchTerm
           user_profile_last_name_cont: searchTerm
           user_email_cont: searchTerm
       else
-        q:
+         q:
           m: 'or'
           profile_first_name_cont: searchTerm
           profile_last_name_cont: searchTerm
           email_cont: searchTerm
-
