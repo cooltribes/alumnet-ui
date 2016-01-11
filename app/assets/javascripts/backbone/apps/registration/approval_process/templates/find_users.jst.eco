@@ -32,9 +32,11 @@
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 formANet__search">
 					<p>Or Search by name</p>
+					
 					<div class="input-group "> 
 						<input type="text" class="form-control" placeholder="Write name or email" name="search_term" id="search_term"> <span class="input-group-btn"> <button class="btn btn-default js-search" type="button"><i class="fa fa-search"></i></button> </span> </div>
-				</div>
+					</div>
+				
 			</div>
 			<div id="search" style="display:none">
 				<div class="row">
