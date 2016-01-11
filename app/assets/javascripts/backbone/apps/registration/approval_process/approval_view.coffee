@@ -291,7 +291,7 @@
     events:
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
-      'keypress #search_term': 'performSearchKeyPress'
+      'submit #search-form': 'performSearchKeyPress'
 
     initialize: ->
        
@@ -339,15 +339,13 @@
       @trigger('users:search', @buildQuerySearch(data))
 
     performSearchKeyPress: (e) ->
+      e.preventDefault()
+      $("#search").show()
       
-      if e.keyCode == 13       
-        console.log "Entro con tecla"
-        $("#search").show()
-        
-        data = Backbone.Syphon.serialize(this)
-        console.log data
-        @trigger('users:search', @buildQuerySearch(data))
-        console.log "despues de trigger"
+      data = Backbone.Syphon.serialize(this)
+      console.log data
+      @trigger('users:search', @buildQuerySearch(data))
+    
         
 
     buildQuerySearch: (data) ->
