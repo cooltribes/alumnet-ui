@@ -156,7 +156,11 @@
       groups = new Entities.GroupCollection
       groups.url = AlumNet.api_endpoint + '/admin/groups'
       groups.fetch
-        data: querySearch
+        #data: querySearch
+        data: {q: {
+          'official_eq': true,
+          'm': 'or'
+          }}
         success: (model, response, options) ->
           groups.trigger('fetch:success')
       groups

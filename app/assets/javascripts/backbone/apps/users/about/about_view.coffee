@@ -110,22 +110,32 @@
       #Types of modal (0-Skill, 1-Lang, 2-contc)
       @type = options.type
 
-    IsEmail: (email)->
+    isEmail: (email)->
       emailReg = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
       return emailReg.test(email)
 
-    IsYahoo: (email)->
+    isYahoo: (email)->
       emailReg = /^([a-zA-Z0-9_.+-])+\@((yahoo)+\.)+([a-zA-Z0-9]{2,4})+(\.([a-zA-Z0-9]{1,2}))?$/
       return emailReg.test(email)
 
-    IsLink: (link)->
+    isLink: (link)->
       linkReg = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/  
       return linkReg.test(link)
 
-    IsLinkedIn: (link)->
+    isLinkedIn: (link)->
     
       linkedInReg = /^(https?:\/\/)+((www.)|([a-z\.]{2,6}))?(linkedin\.com)+([\/\w \?=.-]*)*\/?$/
-      return linkedInReg.test(link)      
+      return linkedInReg.test(link)
+
+    isPhoneNumber: (phoneNumber)->
+      phoneNumberReg = /^\+\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
+      return phoneNumberReg.test(phoneNumber)
+
+    isTwitter: (username)->
+  
+      userNameReg = /^\@[a-z0-9_-]{3,16}$/
+
+      return userNameReg.test(username)
 
     events:
       'click #js-contact-type': 'contactClicked'
@@ -146,6 +156,9 @@
       $("#js-help-info").html("")
 
       $("#info").attr("placeholder", "")
+      if value == "1"
+        $("#info").attr("placeholder", "+PhoneNumber")
+        $("#info").attr("title", "+PhoneNumber")
       if value == "2"
         $("#info").attr("placeholder", "Skype user")
         $("#info").attr("title", "Skype user")
@@ -266,30 +279,36 @@
             $("#js-help-info").html("Field is empty")
             return false
 
+          if type == "1"
+            if !(@isPhoneNumber(info))              
+              group.addClass('has-error')
+              $("#js-help-info").html("PhoneNumber is incorrect")
+              return false
+
           if type == "3"
-            if !(@IsYahoo(info))              
+            if !(@isYahoo(info))              
               group.addClass('has-error')
               $("#js-help-info").html("Yahoo email is incorrect")
               return false
           if type == "5"
-            if info.charAt(0) !="@"
+            if !(@isTwitter(info))   
               group.addClass('has-error')
               $("#js-help-info").html("Twitter username is incorrect")
               return false 
           if type == "7"
-            if !(@IsLink(info))
+            if !(@isLink(info))
               group.addClass('has-error')
               $("#js-help-info").html("Web site is incorrect")
               return false
 
           if type == "8"
-            if !(@IsLinkedIn(info))
+            if !(@isLinkedIn(info))
               group.addClass('has-error')
               $("#js-help-info").html("Linkedin link is incorrect")
               return false
 
           if type == "9"
-            if !(@IsEmail(info))
+            if !(@isEmail(info))
               group.addClass('has-error')
               $("#js-help-info").html("Email is incorrect")
               return false

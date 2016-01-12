@@ -35,18 +35,30 @@
 				</div>
 				<!-- *************** FORM to import contacts from social network ************ -->
 				<div id="byService" class="importContactForm margin_top text-center">
-				  <a class="deep-link delayed" onclick="return cloudsponge.launch('linkedin');">
-				    <%= image_tag("social_contacts/linkedin.png", alt: "linkedIn") %>
-				  </a>
-				  <a class="deep-link delayed" onclick="return cloudsponge.launch('yahoo');">
-				    <%= image_tag("social_contacts/yahoo.png", alt: "Yahoo") %>
-				  </a>
-				  <a class="deep-link delayed" onclick="return cloudsponge.launch('windowslive');">
-				    <%= image_tag("social_contacts/outlook.com.png", alt: "Windows Live") %>
-				  </a>
-				  <a class="deep-link delayed" onclick="return cloudsponge.launch('gmail');">
-				    <%= image_tag("social_contacts/gmail.png", alt: "Gmail") %>
-				  </a>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('linkedin');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+								<span>linkedin</span><i class="ico-alumnet-linkedin"></i>
+							</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12  margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('gmail');" class="btn formANet__button formANet__button--google deep-link delayed">
+								<span>google+</span><i class="icon-entypo-gplus"></i>
+							</a>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('yahoo');" class="btn formANet__button formANet__button--yahoo deep-link delayed">
+								<span>yahoo!</span><i class="icon-entypo-yahoo"></i>
+							</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 margin_bottom_xsmall">
+							<a onclick="return cloudsponge.launch('windowslive');" class="btn formANet__button formANet__button--outlook_linkedin deep-link delayed">
+								<span>outlook</span><i class="icon-entypo-outlook"></i>
+							</a>
+						</div>
+					</div>
 				</div>
 				<!-- *************** FORM to import contacts from a contacts file ************ -->
 				<form id="byUpload" class="importContactForm margin_top" style="display:none">
