@@ -8,7 +8,7 @@
       @showMenuUrl(optionMenu)
       @showSuggestions()
       self = @
-      @layoutAlumni.on "navigate:menu", (valueClick)->    
+      @layoutAlumni.on "navigate:menu", (valueClick)->
         self.showMenuUrl(valueClick)
       @layoutAlumni.on "navigate:menuRight", (valueClick)->
         switch valueClick
@@ -112,7 +112,7 @@
             requestsCollection.collection.add(collection.models)
             if collection.length < collection.rows
               requestsCollection.endPagination()
-      
+
       approvalView.on 'childview:accept', (childView)->
         request = childView.model
         request.save {},
@@ -151,8 +151,8 @@
           data: query
           success: (collection)->
             usersView.collection.add(collection.models)
-            if collection.length < collection.rows 
-              usersView.endPagination()             
+            if collection.length < collection.rows
+              usersView.endPagination()
 
       usersView.on "add:child", (viewInstance)->
         container = $('#friends_list')
@@ -169,11 +169,12 @@
 
     showSuggestions:->
       collection = new AlumNet.Entities.SuggestedUsersCollection
-      collection.fetch()
+      collection.fetch
+        data: { limit: 10 }
 
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
-        collection: collection   
-        
+        collection: collection
+
       @layoutAlumni.filters_region.show(suggestions)
 
     showFilters:->
