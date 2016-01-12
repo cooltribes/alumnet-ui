@@ -118,13 +118,13 @@
         request.save {},
           success: ()->
             requestsCollection.remove(request)
-
+            AlumNet.current_user.decrementCount('pending_approval_requests')
 
       approvalView.on 'childview:decline', (childView)->
         request = childView.model
         request.destroy
           success: ()->
-
+            AlumNet.current_user.decrementCount('pending_approval_requests')
       @layoutAlumni.users_region.show(approvalView)
 
     findUsers: ->
