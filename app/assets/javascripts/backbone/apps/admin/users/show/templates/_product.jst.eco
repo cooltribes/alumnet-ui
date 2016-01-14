@@ -3,10 +3,14 @@
 <td><%= @startDate %></td>
 <td class="js-end-date"><%= @endDate %></td>
 <td>
-	<%= @status %>
-	<% if @status == "Active": %>
-		<a class="btn btn-user__ban btn-user__ban--product js-deactivate" id="<%= @id %>">Deactivate</a>
+	<% if @dateIsPast: %>
+		Expired
 	<% else: %>
-		<a class="btn btn-user__activate btn-user__activate--product js-activate" id="<%= @id %>">Activate</a>
+		<%= @status %>
+		<% if @status == "Active": %>
+			<a class="btn btn-user__ban btn-user__ban--product js-deactivate" id="<%= @id %>">Deactivate</a>
+		<% else: %>
+			<a class="btn btn-user__activate btn-user__activate--product js-activate" id="<%= @id %>">Activate</a>
+		<% end %>
 	<% end %>
 </td>
