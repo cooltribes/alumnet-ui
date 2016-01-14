@@ -72,8 +72,9 @@
         processData: false
         data: formData
         error: (xhr)->
-          errors = xhr.responseJSON.errors.join(', ')
+          errors = AlumNet.formatErrorsFromApi(xhr.responseJSON.errors)
           view.showMessage('alert', errors)
+          # $.growl.error(message: errors )
         success: (data)->
           view.contactsFromFile = data.contacts
           view.showContactsInForm(data.contacts)
