@@ -172,7 +172,7 @@
     template: 'admin/users/stats/view/templates/graphics'
 
     initialize: (options) ->
-      document.title = 'AlumNet - Users Statistics'
+      AlumNet.setTitle('Users Statistics')
 
     getChildView: (item)->
       type = item.get("graphType")

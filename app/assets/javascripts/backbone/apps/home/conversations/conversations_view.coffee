@@ -10,6 +10,7 @@
 
     initialize: ->
       @listenTo(AlumNet.current_user, 'change:unread_messages_count', @updateMessagesCountBadge)
+      AlumNet.setTitle('Conversations')
 
     updateMessagesCountBadge: ->
       view = @
@@ -21,6 +22,8 @@
             view.ui.messagesBadge.show()
           else
             view.ui.messagesBadge.hide()
+          AlumNet.setTitle('Conversations')
+
 
   class Conversations.MessageView extends Marionette.ItemView
     template: 'home/conversations/templates/message'
@@ -84,6 +87,7 @@
       @on 'childview:conversation:clicked', (childView)->
         conversation = childView.model
         view.layout.renderReplyConversation(conversation)
+
 
     onRender: ->
       $('body,html').animate({scrollTop: 0}, 600);
@@ -200,7 +204,7 @@
       messages_section: '#messages-region'
 
     initialize: (options)->
-      document.title = "AlumNet - Conversations"
+      AlumNet.setTitle('Conversations')
       @conversation_id = options.conversation_id
       @subject = options.subject
       @user = options.user

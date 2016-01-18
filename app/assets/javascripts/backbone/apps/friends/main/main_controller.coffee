@@ -185,14 +185,19 @@
       self = @
       switch optionMenu
         when "myFriends"
+          AlumNet.setTitle('My Friends')
           self.showFriends()
         when "friendsApproval"
+          AlumNet.setTitle('Approval Requests')
           self.showApproval()
         when "friendsDiscover"
+          AlumNet.setTitle('Discover Alumni')
           self.findUsers()
         when "friendsSent"
+          AlumNet.setTitle('Friendships Sent')
           self.showMySent()
         when "friendsReceived"
+          AlumNet.setTitle('Friendships Received')
           self.showMyReceived()
 
 

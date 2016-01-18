@@ -2,15 +2,15 @@
 
   API =
     errorNotFound: ->
-      document.title = 'AlumNet - Page not found'
+      AlumNet.setTitle('Page not found')
       controller = new ErrorsApp.NotFound.Controller
       controller.show()
     errorForbidden: ->
-      document.title = 'AlumNet - Forbidden access'
+      AlumNet.setTitle('Forbidden accesst')
       controller = new ErrorsApp.Forbidden.Controller
       controller.show()
     showBanned: ->
-      document.title = 'AlumNet - Banned'
+      AlumNet.setTitle('Banned')
       controller = new ErrorsApp.Banned.Controller
       controller.show()
     serverError: ->

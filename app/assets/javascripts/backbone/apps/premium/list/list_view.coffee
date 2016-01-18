@@ -5,7 +5,7 @@
     className: 'container'
 
     initialize: (options)->
-      document.title = 'AlumNet - Become a member'
+      AlumNet.setTitle('Become a member')
       @current_user = options.current_user
 
     ui:

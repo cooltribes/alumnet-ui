@@ -195,7 +195,7 @@
 
       
     initialize: (options)->
-      document.title= 'AlumNet - Banners Management'      
+      AlumNet.setTitle('Banners Management')  
       @collection.each (model)->     
         attrs = { order: model.get('order')}   
          

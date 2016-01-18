@@ -5,8 +5,8 @@
     className: 'container'
 
     initialize: (options)->
-    	@group = options.group
-    	document.title = 'AlumNet - Campaign Details'
+        @group = options.group
+        AlumNet.setTitle('Campaign Details')
 
     templateHelpers: ->
-    	membersCount: @group.get('members').length
+        membersCount: @group.get('members').length

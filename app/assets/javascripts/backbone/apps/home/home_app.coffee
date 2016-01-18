@@ -11,6 +11,7 @@
 
   API =
     currentUserPosts: ->
+      AlumNet.setTitle('Home')
       controller = new HomeApp.Posts.Controller
       controller.showCurrentUserPosts()
     currentUserConversations: ->
