@@ -105,6 +105,8 @@
       @model.fetch
         success: ->
           view.updateNotificationsCountBadge()
+          title = document.title.split('-')
+          AlumNet.setTitle(title[1])
 
     markAllRequests: (e)->
       e.preventDefault()
@@ -113,6 +115,8 @@
       @model.fetch
         success: ->
           view.updateFriendshipNotificationsCountBadge()
+          title = document.title.split('-')
+          AlumNet.setTitle(title[1])
 
     templateHelpers: ->
       model = @model

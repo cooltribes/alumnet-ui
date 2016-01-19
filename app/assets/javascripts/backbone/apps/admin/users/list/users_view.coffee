@@ -254,6 +254,7 @@
     childView: Users.UserView
     childViewContainer: "#users-table tbody"
     queryParams: {}
+    currentQuery: {}
     tagsParams: ''
     collectionFilter: ''
     childViewOptions: (model, index) ->
@@ -261,7 +262,7 @@
 
     initialize: (options) ->
       @modals = options.modals
-      document.title= 'AlumNet - Users Management'
+      AlumNet.setTitle('Users Management')
       @listenTo this, 'change:total', @updateTotal
 
     updateTotal: ->
@@ -331,6 +332,7 @@
       'click #birth_city': 'sortBirtCity'
       #'click .page > a': 'toPageButton'
       'click .page_filter_button': 'toPageFilterButton'
+      'click .js-export-csv': 'exportCSV'
 
     pagination: ->
       that = @
@@ -339,7 +341,7 @@
           visiblePages: 7
           onPageClick: (event, page) ->
             that.collection.queryParams.q = that.queryParams
-            that.collection.getPage(page) 
+            that.collection.getPage(page)
 
 
     removeClass: ->
@@ -521,29 +523,34 @@
       e.preventDefault()
       query = @searcher.getQuery()
       @queryParams = query
+      @currentQuery = query
+      @collection.queryParams.q = query #TODO: este es un parche. todo esto esta muy enredado.
       view = @
-
       view.collection.fetch
         data: { q: query }
         success: (collection) ->
           view.trigger 'change:total'
-          console.log 'success'
-          console.log collection
-          console.log "Cantidad: "+collection.state.totalPages
           @collectionFilter = collection
-          console.log "success filter"
-          console.log @collectionFilter
           if collection.state.totalPages >= 0
-            console.log "Cantidad mayor a 0: "+collection.state.totalPages
             $("#pag").hide()
             $("#pag-filter").remove()
             if collection.state.totalPages > 1
-              console.log "Es mayor a 1 y es "+ collection.state.totalPages
               view.pagination_filters(collection)
 
+    exportCSV: (e)->
+      e.preventDefault()
+      Backbone.ajax
+        method: 'POST'
+        url: AlumNet.api_endpoint + "/admin/users/csv",
+        data: { q: @currentQuery }
+        success: (data)->
+          file = 'data:attachment/csv,' + encodeURI(data)
+          window.open(file)
     clear: (e)->
       e.preventDefault()
       view = @
+      @collection.queryParams.q = {}
+      @currentQuery = {}
       @collection.fetch
         success: ->
           view.trigger 'change:total'

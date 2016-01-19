@@ -12,27 +12,27 @@
 
   API =
     discoverJobExchange: ->
-      document.title = 'AlumNet - Discover jobs'
+      AlumNet.setTitle('Discover jobs')
       controller = new JobExchangeApp.Discover.Controller
       controller.discover()
     myJobExchange: ->
-      document.title = 'AlumNet - My jobs'
+      AlumNet.setTitle('My jobs')
       controller = new JobExchangeApp.MyJobs.Controller
       controller.myJobs()
     appliedJobExchange: ->
-      document.title = 'AlumNet - Applied jobs'
+      AlumNet.setTitle('Applied jobs')
       controller = new JobExchangeApp.Applied.Controller
       controller.applied()
     automatchesJobExchange: ->
-      document.title = 'AlumNet - Automatches'
+      AlumNet.setTitle('Automatches')
       controller = new JobExchangeApp.AutoMatches.Controller
       controller.automatches()
     invitationsJobExchange: ->
-      document.title = 'AlumNet - Job invitations'
+      AlumNet.setTitle('Job invitations')
       controller = new JobExchangeApp.Invitations.Controller
       controller.invitations()
     createJobExchange: ->
-      document.title = 'AlumNet - Post a job'
+      AlumNet.setTitle('Post a job')
       if AlumNet.current_user.get("profinda_api_token")
         controller = new JobExchangeApp.Create.Controller
         controller.create()

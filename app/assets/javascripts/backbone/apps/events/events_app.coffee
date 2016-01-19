@@ -31,12 +31,12 @@
       controller.showAttendances(id)
 
     manageEvents: (id)->
-      document.title = 'AlumNet - Manage Events'
+      AlumNet.setTitle('Manage Events')
       controller = new EventsApp.Manage.Controller
       controller.manage(AlumNet.current_user.id)
 
     createEvent: ->
-      document.title = 'AlumNet - Create Event'
+      AlumNet.setTitle('Create Event')
       controller = new EventsApp.Create.Controller
       controller.createEvent(AlumNet.current_user.id)
 
@@ -49,7 +49,7 @@
       controller.showFiles(id)
 
     discoverEvents: ->
-      document.title = 'AlumNet - Discover Events'
+      AlumNet.setTitle('Discover Events')
       controller = new EventsApp.Discover.Controller
       controller.discover()
 

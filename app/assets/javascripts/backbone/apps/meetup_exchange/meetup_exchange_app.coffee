@@ -12,27 +12,27 @@
 
   API =
     discoverMeetupExchange: ->
-      document.title = 'AlumNet - Discover Meetups'
+      AlumNet.setTitle('Discover Meetups')
       controller = new MeetupExchangeApp.Discover.Controller
       controller.discover()
     yourTasksMeetupExchange: ->
-      document.title = 'AlumNet - My Meetups'
+      AlumNet.setTitle('My Meetups')
       controller = new MeetupExchangeApp.YourTasks.Controller
       controller.your_tasks()
     appliedMeetupExchange: ->
-      document.title = 'AlumNet - Applied Meetups'
+      AlumNet.setTitle('Applied Meetups')
       controller = new MeetupExchangeApp.Applied.Controller
       controller.applied()
     automatchesMeetupExchange: ->
-      document.title = 'AlumNet - Meetups Sugestions'
+      AlumNet.setTitle('Meetups Sugestions')
       controller = new MeetupExchangeApp.AutoMatches.Controller
       controller.automatches()
     invitationsMeetupExchange: ->
-      document.title = 'AlumNet - Meetups Invitations'
+      AlumNet.setTitle('Meetups Invitations')
       controller = new MeetupExchangeApp.Invitations.Controller
       controller.invitations()
     createMeetupExchange: ->
-      document.title = 'AlumNet - Create New Meetup'
+      AlumNet.setTitle('Create New Meetup')
       if AlumNet.current_user.get("profinda_api_token")
         controller = new MeetupExchangeApp.Create.Controller
         controller.create()

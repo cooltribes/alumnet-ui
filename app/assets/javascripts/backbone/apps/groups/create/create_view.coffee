@@ -138,6 +138,7 @@
         placeholder: "Select a Country"
         data: data
       @ui.groupDescription.summernote
+        height: 200
         callbacks:
           onImageUpload: (files)->
             view.sendDescriptionImage(files[0])

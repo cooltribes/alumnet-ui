@@ -36,7 +36,7 @@
       'click #js-mark-all-read': "markAllAsRead"
 
     initialize: (options)->
-      document.title = 'AlumNet - Notifications'   
+      AlumNet.setTitle('Notifications')  
 
     markAllAsRead: (e)->
       e.preventDefault()

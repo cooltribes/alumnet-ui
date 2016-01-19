@@ -8,7 +8,7 @@
       groups_users: "#groups_users"
 
     initialize: ->
-      document.title = 'AlumNet - Send Campaign'
+      AlumNet.setTitle('Send Campaign')
 
   class EmailsNew.User extends Marionette.ItemView
     template: 'admin/emails/new/templates/_user'
@@ -59,6 +59,8 @@
       'click #js-validate-mailchimp': 'validateMailchimp'
       'click a#js-migrate-users': 'migrateUsers'
       'click #js-mailchimp-associate': 'mailchimpAssociateClicked'
+      'click #send-campaign-to-me': 'sendToMe'
+      'click #show-campaign-preview': 'showPreview'
 
     initialize: (options)->
       @groups = options.groups
@@ -113,6 +115,7 @@
     sendCampaign: (e)->
       e.preventDefault()
       valid = true
+      view = @
 
       if @ui.selectGroups.val() == "-1"
         valid = false
@@ -131,8 +134,10 @@
         if resp
           data = Backbone.Syphon.serialize(this)
           #data.body = $('#email-body').code().replace(/<\/?[^>]+(>|$)/g, "")
-          data.body = $('#email-body').code()
+          data.body = $('#email-body').summernote('code')
           data.user_id = AlumNet.current_user.id
+          if view.provider_id
+            data.provider_id = view.provider_id
 
           group_id = data.group_id
           url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns"
@@ -144,8 +149,84 @@
             success: (data) =>
               AlumNet.trigger "campaign:sent", group_id, data.id
             error: (response) =>
-              console.log 'error'
-              console.log response
+              $.growl.error({ message: 'Error sending campaign' })
+
+    sendToMe: (e)->
+      e.preventDefault()
+      valid = true
+      view = @
+
+      if @ui.selectGroups.val() == "-1"
+        valid = false
+        $.growl.error({ message: 'Please select a group' })
+
+      if @ui.emailSubject.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please insert campaign subject' })
+
+      if @ui.emailBody.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please add campaign content' })
+
+      if valid
+        resp = confirm('You are about to send a campaign to selected users. Are you sure it\'s done?')
+        if resp
+          data = Backbone.Syphon.serialize(this)
+          data.body = $('#email-body').summernote('code')
+          data.user_id = AlumNet.current_user.id
+          if view.provider_id
+            data.provider_id = view.provider_id
+
+          group_id = data.group_id
+          url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns/send_test"
+
+          Backbone.ajax
+            url: url
+            type: "POST"
+            data: data
+            success: (data) =>
+              view.provider_id = data.provider_id
+              $.growl.notice({ message: 'Campaing preview sent' })
+            error: (response) =>
+              $.growl.error({ message: 'Error sending preview' })
+
+    showPreview: (e)->
+      e.preventDefault()
+      valid = true
+      view = @
+
+      if @ui.selectGroups.val() == "-1"
+        valid = false
+        $.growl.error({ message: 'Please select a group' })
+
+      if @ui.emailSubject.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please insert campaign subject' })
+
+      if @ui.emailBody.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please add campaign content' })
+
+      if valid
+        data = Backbone.Syphon.serialize(this)
+        data.body = $('#email-body').summernote('code')
+        data.user_id = AlumNet.current_user.id
+        if view.provider_id
+          data.provider_id = view.provider_id
+
+        group_id = data.group_id
+        url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns/preview"
+
+        Backbone.ajax
+          url: url
+          type: "POST"
+          data: data
+          success: (data) =>
+            modal = new EmailsNew.Preview
+              data: data
+            $('#container-modal-preview').html(modal.render().el)
+          error: (response) =>
+            $.growl.error({ message: 'Error getting preview' })
 
     addFilter: (e)->
       #console.log "PRESIONO AGREGAR FILTRO"
@@ -214,3 +295,13 @@
         ]
 
       $('#email-body').summernote(summernote_options_description)
+
+  class EmailsNew.Preview extends Backbone.Modal
+    template: 'admin/emails/new/templates/preview'
+    cancelEl: '#js-close'
+
+    initialize: (options) ->
+      @html = options.data.html
+
+    onShow: ->
+      $('#preview-body').html(@html)

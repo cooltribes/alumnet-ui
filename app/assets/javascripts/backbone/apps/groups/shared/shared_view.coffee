@@ -83,7 +83,7 @@
 
     initialize: (options)->
       @model = options.model
-      document.title = 'AlumNet - '+@model.get("name")
+      AlumNet.setTitle(@model.get("name"))
 
     templateHelpers: ->
       model = @model
