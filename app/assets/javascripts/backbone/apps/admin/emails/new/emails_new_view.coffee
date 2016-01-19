@@ -60,6 +60,7 @@
       'click a#js-migrate-users': 'migrateUsers'
       'click #js-mailchimp-associate': 'mailchimpAssociateClicked'
       'click #send-campaign-to-me': 'sendToMe'
+      'click #show-campaign-preview': 'showPreview'
 
     initialize: (options)->
       @groups = options.groups
@@ -189,6 +190,44 @@
             error: (response) =>
               $.growl.error({ message: 'Error sending preview' })
 
+    showPreview: (e)->
+      e.preventDefault()
+      valid = true
+      view = @
+
+      if @ui.selectGroups.val() == "-1"
+        valid = false
+        $.growl.error({ message: 'Please select a group' })
+
+      if @ui.emailSubject.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please insert campaign subject' })
+
+      if @ui.emailBody.val() == ""
+        valid = false
+        $.growl.error({ message: 'Please add campaign content' })
+
+      if valid
+        data = Backbone.Syphon.serialize(this)
+        data.body = $('#email-body').summernote('code')
+        data.user_id = AlumNet.current_user.id
+        if view.provider_id
+          data.provider_id = view.provider_id
+
+        group_id = data.group_id
+        url = AlumNet.api_endpoint + "/groups/#{group_id}/campaigns/preview"
+
+        Backbone.ajax
+          url: url
+          type: "POST"
+          data: data
+          success: (data) =>
+            modal = new EmailsNew.Preview
+              data: data
+            $('#container-modal-preview').html(modal.render().el)
+          error: (response) =>
+            $.growl.error({ message: 'Error getting preview' })
+
     addFilter: (e)->
       #console.log "PRESIONO AGREGAR FILTRO"
 
@@ -256,3 +295,13 @@
         ]
 
       $('#email-body').summernote(summernote_options_description)
+
+  class EmailsNew.Preview extends Backbone.Modal
+    template: 'admin/emails/new/templates/preview'
+    cancelEl: '#js-close'
+
+    initialize: (options) ->
+      @html = options.data.html
+
+    onShow: ->
+      $('#preview-body').html(@html)
