@@ -59,4 +59,4 @@
     childViewContainer: "#groups-deleted-table tbody"
 
     initialize: ()->
-      document.title='AlumNet - Groups Management'
+      AlumNet.setTitle('Groups Management')

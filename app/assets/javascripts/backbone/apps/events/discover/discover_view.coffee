@@ -94,7 +94,7 @@
 
     initialize: ->
       @searchUpcomingEvents({})
-      document.title = 'AlumNet - Discover Events'
+      AlumNet.setTitle('Discover Events')
 
     onRender: ->
       seft = this

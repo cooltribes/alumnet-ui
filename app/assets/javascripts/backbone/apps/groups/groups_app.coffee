@@ -21,15 +21,15 @@
 
   API =
     manageGroups: ->
-      document.title = 'AlumNet - My groups'
+      AlumNet.setTitle('My groups')
       controller = new GroupsApp.Manage.Controller
       controller.manageGroups()
     discoverGroups: ->
-      document.title = 'AlumNet - Discover groups'
+      AlumNet.setTitle('Discover groups')
       controller = new GroupsApp.Discover.Controller
       controller.discoverGroups()
     createGroup: ->
-      document.title = 'AlumNet - Create groups'
+      AlumNet.setTitle('Create groups')
       controller = new GroupsApp.Create.Controller
       controller.createGroup()
     postGroup: (group_id, id)->

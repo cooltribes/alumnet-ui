@@ -262,7 +262,7 @@
 
     initialize: (options) ->
       @modals = options.modals
-      document.title= 'AlumNet - Users Management'
+      AlumNet.setTitle('Users Management')
       @listenTo this, 'change:total', @updateTotal
 
     updateTotal: ->

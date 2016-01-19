@@ -57,4 +57,4 @@
     childViewContainer: "#users-deleted-table tbody"
 
     initialize: (options) ->
-      document.title='AlumNet - Users Management'
+      AlumNet.setTitle('Users Management')
