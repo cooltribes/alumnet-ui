@@ -23,6 +23,7 @@
       endDate: @getEndtDate()
       productType: @getProductType()
       status: @getStatus()
+      dateIsPast: @dateIsPast()
 
     onRender: ->
       #Datepickers
@@ -47,6 +48,17 @@
         date.toDateString()
       else
         'forever'
+
+    dateIsPast: ->
+      if @model.get('end_date')
+        date = new Date(@model.get('end_date'))
+        now = new Date()
+        if(date < now)
+          return true
+        else
+          return false
+      else
+        return false
 
     getProductType: ->
       if @model.get('product').feature == 'subscription'

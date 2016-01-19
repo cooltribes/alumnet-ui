@@ -1,7 +1,7 @@
 @AlumNet.module 'HomeApp.Notifications', (Notifications, @AlumNet, Backbone, Marionette, $, _) ->
   class Notifications.Controller
     showCurrentUserNotifications: ->
-      notifications = AlumNet.request('notifications:get', {})
+      notifications = AlumNet.request('notifications:get', { page: 1, per_page: 30 })
       notifications.markAllAsRead() #costoso
       notifications.on "fetch:success", ->
       	notifications.firstNotification()
@@ -11,7 +11,7 @@
       #AlumNet.execute('render:home:submenu')
 
     showCurrentUserRequests: ->
-      notifications = AlumNet.request('requests:get', {})
+      notifications = AlumNet.request('requests:get', { page: 1, per_page: 30 })
       notifications.markAllAsRead() #costoso
       notifications.on "fetch:success", ->
         notifications.firstNotification()

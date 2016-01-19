@@ -27,7 +27,6 @@ DESCRIPTION: New styles submenu
     {
       font-size: 18px;
       padding: 0 9px 0px 9px;
-		  // padding: 0 10px 10px 10px;
      	color: @black;
       &--active
       {
@@ -69,6 +68,16 @@ DESCRIPTION: New styles submenu
     border-radius: 0;
   }
 }
+
+.buttonSuggestionsPadding{
+  &--left{
+    padding: 0;
+  }
+  &--right{
+    padding: 0;
+  }
+}
+
 /*768px*/
 @media (min-width: @media-small-min) {
   .submenu
@@ -77,7 +86,8 @@ DESCRIPTION: New styles submenu
     {
       &__link
       {
-        padding: 0 20px 0px 10px;
+        font-size: 18px;
+        padding: 0px 24px 7px 24px;
       }
     }
   }  
@@ -95,22 +105,63 @@ DESCRIPTION: New styles submenu
   }
   .buttonSuggestions{
     a{
-      padding: 10px 0px;
-      font-size: 12px;
+      padding: 12px 0px;
+      font-size: 10px;
     }
   }
-  .submenu
+
+  .buttonSuggestionsPadding{
+    &--left{
+      padding: 0 15px 0 0;
+    }
+    &--right{
+      padding: 0 0 0 15px;
+    }
+  }
+   .submenu
   {
     &__item
     {
       &__link
       {
+        font-size: 14px;
+        padding: 0px 4px 11px 5px;
         &--text{
           display: inline;
+          &--friendships{
+            display: none;
+          }     
         }
       }
     }
-  }   
+  }  
+}   
+
+
+/*1200px*/
+@media (min-width: @media-large-min) {
+  .buttonSuggestions{
+    a{
+      font-size: 13px;
+    }
+  } 
+  .submenu
+  {
+    &__item
+    {
+      &__link
+      { 
+        font-size: 15px;
+        padding: 0 9px 11px 9px;
+        &--text{
+          display: inline;
+          &--friendships{
+            display: none;
+          }     
+        }
+      }
+    }
+  } 
 }
 
 /*1300px*/
@@ -121,21 +172,20 @@ DESCRIPTION: New styles submenu
     {
       &__link
       {
-      font-size: 15px;
-      padding: 0 7px 10px 7px;
+        font-size: 15px;
+        padding: 0 9px 11px 9px;
       }
     }
   } 
   .buttonSuggestions{
     a{
-      padding: 10px 0px;
       font-size: 15px;
     }
   } 
 }
 
 /*1400px*/
-@media (min-width: @media-mxlarge-min) {
+@media (min-width: @media-mmlarge-min) {
   .submenu
   {
     &__item
@@ -143,7 +193,12 @@ DESCRIPTION: New styles submenu
       &__link
       {
         font-size: 15px;
-        padding: 0 10px 10px 10px;
+        padding: 0 7px 11px 7px;
+        &--text{
+          &--friendships{
+            display: inline;
+          }     
+        }
       }
     }
   }  
@@ -171,7 +226,7 @@ DESCRIPTION: New styles submenu
       &__link
       {
         font-size: 15px;
-        padding: 0 8px 10px 8px;
+        padding: 0 8px 7px 8px;
       }
     }
   }  
@@ -186,7 +241,7 @@ DESCRIPTION: New styles submenu
       &__link
       {
         font-size: 16px;
-        padding: 0 10px 10px 10px;
+        padding: 0 10px 5px 10px;
       }
     }
   }  
@@ -201,7 +256,7 @@ DESCRIPTION: New styles submenu
       &__link
       {
         font-size: 17px;
-        padding: 0 15px 10px 15px;
+        padding: 0 15px 4px 15px;
       }
     }
   }  

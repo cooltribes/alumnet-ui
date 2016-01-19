@@ -27,8 +27,13 @@
     events:
       'click @ui.prevLink': 'prevClicked'
       'click @ui.nextLink': 'nextClicked'
+      'click #basic_information': 'basicInformation'
+      'click #languages_and_skills': 'languagesAndSkills'
+      'click #aiesec_experiences': 'aiesecExperiences'
+      'click #completed': 'completed'
 
     onRender: ->
+   
       @currentView = @getCurrentView(@step)
 
       if @currentView? #Solo si es un paso valido
@@ -36,7 +41,64 @@
         @side_region.empty()
         @form_region.empty()
         @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
+        
         @form_region.show(@currentView) if @currentView
+
+    basicInformation: (e) ->
+      e.preventDefault()
+      console.log "Informacion basica"
+      @currentView = @getCurrentView('basic_information')
+
+      if @currentView? #Solo si es un paso valido
+        AlumNet.navigate("registration/basic_information") #For url to be shown according to step
+        @side_region.empty()
+        @form_region.empty()
+        @side_region.show(@getSidebarView(@registration_steps, 1))
+        @form_region.show(@currentView) if @currentView
+
+
+    languagesAndSkills: (e) ->
+      e.preventDefault()
+      @currentView = @getCurrentView('languages_and_skills')
+
+      if ( @currentView? && ((@indexStep + 1) >= 2) ) #Solo si es un paso valido
+        AlumNet.navigate("registration/languages_and_skills") #For url to be shown according to step
+        @side_region.empty()
+        @form_region.empty()
+        @side_region.show(@getSidebarView(@registration_steps, 2))
+        @form_region.show(@currentView) if @currentView
+      else
+        @onRender()
+
+    aiesecExperiences: (e) ->
+      e.preventDefault()
+      @currentView = @getCurrentView('aiesec_experiences')
+
+      if ( @currentView? && ((@indexStep + 1) >= 3) ) #Solo si es un paso valido
+        AlumNet.navigate("registration/aiesec_experiences") #For url to be shown according to step
+        @side_region.empty()
+        @form_region.empty()
+        @side_region.show(@getSidebarView(@registration_steps, 3))
+        @form_region.show(@currentView) if @currentView
+      else
+        @onRender()
+
+        
+
+    completed: (e) ->
+      e.preventDefault()
+      @currentView = @getCurrentView('completed')
+
+      if ( @currentView? && ((@indexStep + 1) >= 4) ) #Solo si es un paso valido
+        AlumNet.navigate("registration/completed") #For url to be shown according to step
+        @side_region.empty()
+        @form_region.empty()
+        @side_region.show(@getSidebarView(@registration_steps, 4))
+        @form_region.show(@currentView) if @currentView
+      else
+        @onRender()
+
+
 
 
     getSidebarView: (registration_steps, step)->

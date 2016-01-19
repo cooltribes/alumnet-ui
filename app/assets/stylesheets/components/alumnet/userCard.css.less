@@ -317,7 +317,10 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 .userCardSuggestions{
   &__avatar{
-    padding: 5px 5px 5px 20px;
+    padding: 4px 20px;
+    .divPadding{
+      padding: 7px 0 0 0;
+    }
     img{
       width: 40px;
     }
@@ -343,6 +346,16 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
         }
         &:hover{
           background-color: @blue;
+        }
+      }
+      &--cancel{
+        background-color: @light-orange;
+        height: 48px;
+        span{
+          font-size: 15px;
+        }
+        &:hover{
+          background-color: @orange;
         }
       }
     }
@@ -461,7 +474,26 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
     }
   }
 }
+/*400px*/
+@media (min-width: @media-smallweb) {
+  .userCardSuggestions{
+    &__avatar{
+      .divPadding{
+        padding: 7px 0 0 10px;
+      }
+    }
+  }
+}
+
 @media (min-width: @media-xsmall-max) {
+  .userCardSuggestions{
+    &__avatar{
+      .divPadding{
+        padding: 7px 0 0 10px;
+      }
+    }
+  }
+
   .avatarsize{
     width:76px;
 
@@ -600,6 +632,14 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
+  .userCardSuggestions{
+    &__avatar{
+      .divPadding{
+        padding: 7px 0 0 10px;
+      }
+    }
+  }
+
   .userCardLike{
     height: 100px;
     width: 500px;
@@ -662,3 +702,14 @@ DESCRIPTION: the card where the user atributes are loaded within a list of users
        }
    }
  }
+
+/*1400px*/
+@media (min-width: @media-mmlarge-min) {
+  .userCardSuggestions{
+    &__avatar{
+      .divPadding{
+        padding: 7px 0 0 0;
+      }
+    }
+  }
+}

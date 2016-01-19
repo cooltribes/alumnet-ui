@@ -2,7 +2,7 @@
 
   class Main.LayoutView extends Marionette.LayoutView
     template: 'registration/approval_process/templates/layout'
-    className: 'container-fluid'
+
    
     regions:
       sent_request_region: '#sent-request-region'
@@ -26,6 +26,7 @@
       users.on 'sync:complete':->
         layout.views.sent_request_view = new Main.SentRequest    
           collection: users
+          console.log users
         layout.sent_request_region.show(layout.views.sent_request_view)
   
 
@@ -144,6 +145,7 @@
       users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
       users.on 'sync:complete':->
         countSentRequest = users.length
+        console.log countSentRequest
         if countSentRequest > 0
           $("#sent").show()
           
@@ -289,6 +291,7 @@
     events:
       'click .js-search': 'performSearch'
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
+      'submit #search-form': 'performSearchKeyPress'
 
     initialize: ->
        
@@ -334,6 +337,16 @@
       $("#search").show()
       data = Backbone.Syphon.serialize(this)
       @trigger('users:search', @buildQuerySearch(data))
+
+    performSearchKeyPress: (e) ->
+      e.preventDefault()
+      $("#search").show()
+      
+      data = Backbone.Syphon.serialize(this)
+      console.log data
+      @trigger('users:search', @buildQuerySearch(data))
+    
+        
 
     buildQuerySearch: (data) ->
       q:
