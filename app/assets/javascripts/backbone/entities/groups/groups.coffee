@@ -90,16 +90,16 @@
         maxLength: 250
         msg: "Group name is required, must be less than 250 characters long."
       short_description:
+        required: true
         maxLength: 250
         msg: "The short description must be less than 250 characters long."
-      description:
-        required: true
-        maxLength: 2048
-        msg: "Group description is required, must be less than 2048 characters"
       cover:
         required: true
       join_process:
         required: true
+      # description:
+      #   maxLength: 2048
+      #   msg: "Group description is required, must be less than 2048 characters"
 
   class Entities.GroupCollection extends Backbone.Collection
     model: Entities.Group
