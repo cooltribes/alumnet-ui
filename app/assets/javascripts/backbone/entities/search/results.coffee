@@ -123,12 +123,15 @@
 
       
       @url = AlumNet.api_endpoint + '/search'
-
+      querytojson = JSON.stringify
+        type: "profile"          
+        q: query
+        
       @fetch(
-        data: 
-          type: "profile"          
-          q: query       
-        type: "POST"     
+        data: querytojson
+        type: "POST"   
+        ###contentType: "text/plain"  ###
+        contentType: "application/json"  
       )                  
 
 
