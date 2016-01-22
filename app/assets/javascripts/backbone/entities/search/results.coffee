@@ -101,67 +101,11 @@
           type: @type
       )
 
-    ###fetch: (options) ->
-      console.log "yey"###
-
-    search_by_filters: (q)->
-      city_ids = [7273, 7489, 2565, 15, 11 ]
-      
-      query =         
-        query:
-          filtered:
-            filter:
-              bool:
-                should: [
-                  terms:
-                    "residence_city_id": city_ids
-                ,
-                  terms:
-                    "birth_city_id": city_ids
-                ]
-
-
-      
+    
+    search_by_filters: (query)->
       @url = AlumNet.api_endpoint + '/search'
-      querytojson = JSON.stringify
-        type: "profile"          
-        q: query
-        
       @fetch(
-        data: querytojson
-        type: "POST"   
-        ###contentType: "text/plain"  ###
+        data: JSON.stringify(query)
+        type: "POST"           
         contentType: "application/json"  
-      )                  
-
-
-
-      ###
-
-         {
-          "type": "profile",
-          "q": {
-              "query": {
-                  "filtered":{
-                      "filter": {
-                          "bool": {
-                              "should" : [
-                                  {
-                                      "terms": {
-                                          "residence_city_id": [7273]
-                                      }
-                                  },
-                                  {
-                                      "terms": {
-                                          "origin_city_id": [7273]
-                                      }
-                                  }
-                              ]
-                          }
-                      }
-                  }
-              }
-          }
-      }
-
-      ###
+      )       
