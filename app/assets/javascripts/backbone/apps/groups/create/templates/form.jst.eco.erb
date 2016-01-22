@@ -1,106 +1,148 @@
 <div id="" class="ng-scope">
   <div class="container-fluid">
-    <form class="row formANet form ">
-      <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create a new Group</h1>
-        <!-- ROW 1 ON -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label">Group's cover</label>
-              <div class="add-cover-photo">
-                <label class="uploadFile uploadFile--cover">
-                  <input type="file" name="cover" id="group-cover">
-                  <div class="uploadFile--img">
-                      <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
-                  </div>
-                </label>
-                <div class="uploadFile--textCompanies" id="js-file-groups">
-                  <span class="glyphicon glyphicon-open"></span>
-                  <span>Upload cover photo</span><br>
-                  <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+    <form class="row form no-margin">
+      <div class="col-md-12">
+        <h2 class="textColor--blue margin_bottom_small text-left">Create a new group</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 formANet">
+          <div class="form-group">
+            <div class="add-cover-photo">
+              <label class="uploadFile uploadFile--cover">
+                <input type="file" name="cover" id="group-cover">
+                <div class="uploadFile--img">
+                    <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
                 </div>
+              </label>
+              <div class="uploadFile--textCompanies" id="js-file-groups">
+                <span class="glyphicon glyphicon-open"></span>
+                <span>Upload cover photo</span><br>
+                <small><i>Restrictions, e.g. jpg, gif, max 2000px wide.</i></small>
               </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group has-feedback">
-              <label class="control-label">Name of the group</label>
-              <input type="text" name="name"  id="group-name"  class="form-control input-lg">
-              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-
-              <span class="help-block"></span>
-            </div>
-
-            <div class="form-group has-feedback">
-              <label class="control-label">Short Description</label>
-              <input type="text" name="short_description"  id="group-short-description"  class="form-control input-lg">
-              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-
-              <span class="help-block"></span>
-            </div>
-
-            <div class="form-group has-feedback">
-              <label class="control-label">Group's Description</label>
-
-              <textarea name="description" id="group-description"
-              class="form-control input-lg" rows="5" style="resize:none"></textarea>
-              <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
-              <span class="help-block"></span>
             </div>
           </div>
         </div>
-        <!-- ROW 1 OFF -->
-        <hr>
-        <!-- ROW 2 ON -->
+        <div class="col-md-6 formANet">
+          <div class="form-group has-feedback">
+            <label class="control-label">Name of the group</label>
+            <input type="text" name="name"  id="group-name"  class="form-control input-lg">
+            <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
 
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Attributes</h2>
+            <span class="help-block"></span>
           </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Type of Group</label>
-              <select class="form-control input-lg" id="group-type" name="group_type">
-                <option value="open">Open</option>
-                <option value="closed">Closed</option>
-                <option value="secret">Secret</option>
+          <div class="form-group has-feedback">
+            <label class="control-label">Short Description</label>
+            <input type="text" name="short_description"  id="group-short-description" class="form-control input-lg" style="height: 85px">
+            <span class="formANet__input__icon icon-entypo-doc-text form-control-feedback"></span>
+            <span class="help-block"></span>
+          </div>
+        </div>
+      </div> 
+      <hr class="no-margin-top">
+      <div class="row formANet"> 
+        <div class="col-md-6 textStyle">
+          <div class="form-group has-feedback">
+            <div class="margin_bottom_medium">
+              <i class="fontSize--md icon-entypo-doc-text textColor--gray"></i>
+              <h3 class="margin_top_xsmall textColor--black textStyle__label"> Full Description </h3> <br>
+            </div>
+            
+            <textarea name="description" id="group-description"
+            class="form-control input-lg" rows="5" style="resize:none"></textarea>
+            <!-- <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span> -->
+            <span class="help-block"></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12 textStyle margin_bottom_medium">
+            <i class="fontSize--md glyphicon glyphicon-th-list textColor--gray"></i>
+            <h3 class="textColor--black margin_top_xsmall textStyle__label">  Attributes & Permissions </h3>
+          </div>
+          <div class="form-group margin_top_small">
+            <label class="control-label">Type of Group</label>
+            <select class="form-control input-lg" id="group-type" name="group_type">
+              <option value="open">Open</option>
+              <option value="closed">Closed</option>
+              <option value="secret">Secret</option>
+            </select>
+            <p id="js-message-group"class="text-small"><i>Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</i></p>
+            <span class="help-block"></span>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Join Process</label>
+                <select class="form-control input-lg" id="join-process" name="join_process">
+                  <option value="0">All Members can invite</option>
+                  <option value="1">All Members can invite, but the admins approved</option>
+                  <option value="2">Only the admins can invite</option>
+                </select>
+                <span class="help-block"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+              <label class="control-label">Who can upload files</label>
+              <select class="form-control input-lg" id="upload-files" name="upload_files">
+                <option value="0">Only administrators</option>
+                <option value="1">All members</option>
               </select>
-              <p id="js-message-group"class="text-small">Any member can join and watch the published messages even if the user is not part of the group. The group can be found in group searches.</p>
               <span class="help-block"></span>
+              </div>
             </div>
           </div>
-          <div class="col-md-4 margin_top_medium">
-            <%% if @userIsAdmin : %>
+          <hr class="no-margin-top">
+          <div class="row formANet">
+            <div class="textStyle col-md-12">
+              <i class="fontSize--md glyphicon glyphicon-map-marker textColor--gray"></i>
+              <h3 class="textColor--black margin_top_xsmall textStyle__label"> Location (Optional)</h3>
+            </div>
+            <div class="col-md-6 margin_top_medium ">
               <div class="form-group">
-                <label class="control-label">Official Group</label>
-                <select class="form-control input-lg" name="official" id="official">
-                  <option value="0">it's not an official group</option>
-                  <option value="1">it's an official group</option>
-                </select>
+                <label class="control-label">Country</label>
+                <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+                <span class="help-block"></span>
               </div>
-            <%% end %>
+            </div>
+            <div class="col-md-6 margin_top_medium">
+              <div class="form-group">
+                <label class="control-label">City</label>
+                <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
+                <span class="help-block"></span>
+              </div>
+            </div>
           </div>
-
+          <div class="row formANet">
+            <div class="col-md-6 margin_top_medium">
+              <%% if @userIsAdmin : %>
+                <div class="form-group">
+                  <label class="control-label">Official Group</label>
+                  <select class="form-control input-lg" name="official" id="official">
+                    <option value="0">it's not an official group</option>
+                    <option value="1">it's an official group</option>
+                  </select>
+                </div>
+              <%% end %>
+            </div>
+          </div>
           <%% if @userIsAdmin: %>
           <div class="row hide" id="mailchimp-check-container">
-            <div class="col-md-4 col-md-offset-4 margin_top_medium">
+            <div class="col-md-6 margin_top_medium">
               <div class="form-group">
                 <input type="checkbox" name="mailchimp" id="mailchimp" value="0"> Mailchimp account<br>
               </div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-6 margin_top_medium"></div>
           </div>
           <div class="row hide" id="mailchimp-parameters-container">
-            <div class="col-md-4 col-md-offset-4 margin_top_medium">
+            <div class="col-md-6 margin_top_medium">
               <div class="form-group">
                 <label class="control-label">API Key</label>
                 <input type="text" name="api_key"  id="api-key"  class="form-control input-lg" placeholder="From Mailchimp account">
                 <span class="help-block"></span>
               </div>
             </div>
-            <div class="col-md-4 margin_top_medium">
+            <div class="col-md-6 margin_top_medium">
               <div class="form-group">
                 <label class="control-label">List ID</label>
                 <input type="text" name="list_id"  id="list-id" class="form-control input-lg" placeholder="From list settings">
@@ -110,76 +152,14 @@
           </div>
           <%% end %>
         </div>
-        <!-- ROW 2 OFF -->
-        <hr>
-        <!-- ROW 3 ON -->
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Location (Optional)</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Country</label>
-              <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4 margin_top_medium">
-            <div class="form-group">
-              <label class="control-label">City</label>
-              <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 3 OFF -->
-        <hr>
-        <!-- ROW 4 ON -->
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Join Process</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Join Process</label>
-              <select class="form-control input-lg" id="join-process" name="join_process">
-                <option value="0">All Members can invite</option>
-                <option value="1">All Members can invite, but the admins approved</option>
-                <option value="2">Only the admins can invite</option>
-              </select>
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 4 OFF -->
-        <hr>
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-file textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Files Section</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Who can upload files</label>
-              <select class="form-control input-lg" id="upload-files" name="upload_files">
-                <option value="0">Only administrators</option>
-                <option value="1">All members</option>
-              </select>
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ACTIONS ON -->
-        <div class="text-right">
-          <a href="#" class="btn btn-default btn-lg js-cancel">CANCEL</a>
-          <a href="#" class="btn btn-primary btn-lg js-submit">SAVE & ADD MEMBERS</a>
-        </div>
-        <!-- ACTIONS OFF -->
       </div>
+      <hr>
+      <!-- ACTIONS ON -->
+      <div class="text-right margin_top_small margin_bottom_small">
+        <a href="#" class="btn btn-default btn-lg js-cancel">CANCEL</a>
+        <a href="#" class="btn btn-primary btn-lg js-submit">SAVE & ADD MEMBERS</a>
+      </div>
+      <!-- ACTIONS OFF -->
     </form>
   </div>
 </div>

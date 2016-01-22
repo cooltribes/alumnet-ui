@@ -197,6 +197,7 @@
       'click @ui.btnSkip': 'skipClicked'
       'click .js-linkedin-import': 'linkedinClicked'
 
+
     initialize: (options) ->
       @exp_type = options.exp_type
       @layout = options.layout  
@@ -257,6 +258,41 @@
             wait: true
 
         @layout.goToNext()
+
+    saveStepData: (step, indexStep)->
+      #retrieve each itemView data
+     
+      @children.each (itemView)->
+        data = Backbone.Syphon.serialize itemView
+        itemView.model.set data
+
+      validCollection = @collection.length > 0 #Is valid only when collection has items
+      experiencesAtributtes = []
+
+      @collection.each (model)->
+        if model.isValid(true)
+          model.formatDates()
+        else
+          validCollection = false
+
+      if validCollection
+        @collection.each (model)->
+          model.save
+            wait: true
+
+        profile = AlumNet.current_user.profile
+        stepActual = profile.get("register_step")
+        if stepActual == "aiesec_experiences"
+          Backbone.ajax
+            url: AlumNet.api_endpoint + "/me/registration"
+            method: "put"
+            async: false
+            success: (data)->
+              stepActual = data.current_step
+            error: (data)->
+              $.growl.error { message: data.status }
+          profile.set("register_step", stepActual)
+        @layout.navigateStep(step, indexStep)
         
 
     linkedinClicked: (e)->

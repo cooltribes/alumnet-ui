@@ -541,11 +541,18 @@
       e.preventDefault()
       Backbone.ajax
         method: 'POST'
-        url: AlumNet.api_endpoint + "/admin/users/csv",
+        url: AlumNet.api_endpoint + "/admin/users/csv"
         data: { q: @currentQuery }
-        success: (data)->
-          file = 'data:attachment/csv,' + encodeURI(data)
-          window.open(file)
+        success: (csvData)->
+          blob = new Blob([csvData], { type: 'text/csv' })
+          saveAs(blob, "alumnet_users_#{moment().format('DDMMYYYYHHmm')}.csv")
+          # uri = 'data:text/csv,' + encodeURI(data)
+          # a = document.createElement("a")
+          # a.href = uri
+          # a.download = "alumnet_users_#{moment().format('DDMMYYYYHHmm')}.csv"
+          # document.body.appendChild(a)
+          # a.click()
+
     clear: (e)->
       e.preventDefault()
       view = @

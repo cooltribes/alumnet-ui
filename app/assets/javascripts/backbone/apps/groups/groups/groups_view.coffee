@@ -1,10 +1,10 @@
-@AlumNet.module 'GroupsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'GroupsApp.Groups', (Groups, @AlumNet, Backbone, Marionette, $, _) ->
 
-  class Manage.EmptyView extends Marionette.ItemView
-    template: 'groups/manage/templates/empty'
+  class Groups.EmptyView extends Marionette.ItemView
+    template: 'groups/groups/templates/empty'
 
-  class Manage.GroupView extends Marionette.ItemView
-    template: 'groups/manage/templates/group'
+  class Groups.GroupView extends Marionette.ItemView
+    template: 'groups/groups/templates/group'
     className: 'col-lg-6 col-md-12 col-sm-6 col-xs-12 margin_bottom_xsmall'
     ui:
       'leaveGroupLink': '#js-leave-group'
@@ -29,8 +29,8 @@
     onRender: ->
       @ui.description.linkify()
 
-  class Manage.GroupsView extends Marionette.CompositeView
-    template: 'groups/manage/templates/groups_container'
-    childView: Manage.GroupView
+  class Groups.GroupsView extends Marionette.CompositeView
+    template: 'groups/groups/templates/groups_container'
+    childView: Groups.GroupView
     childViewContainer: ".groups-container"
-    emptyView: Manage.EmptyView
+    emptyView: Groups.EmptyView
