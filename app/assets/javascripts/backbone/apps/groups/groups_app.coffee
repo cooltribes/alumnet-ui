@@ -27,8 +27,8 @@
       controller.manageGroups()
     discoverGroups: ->
       AlumNet.setTitle('Discover groups')
-      controller = new GroupsApp.Discover.Controller
-      controller.discoverGroups()
+      controller = new GroupsApp.Main.Controller
+      controller.showMainGroups("groupsDiscover")
     createGroup: ->
       AlumNet.setTitle('Create groups')
       controller = new GroupsApp.Main.Controller

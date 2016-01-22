@@ -30,6 +30,63 @@
 
       @layoutGroups.filters_region.show(suggestions)
 
+    discoverGroups: ->
+      controller = @
+      controller.querySearch = {}
+      groups = AlumNet.request("group:entities", {})
+      groupsView = @getContainerView(groups)
+
+      @layoutGroups.groups_region.show(groupsView)
+
+      # events for paginate
+      groupsView.on "group:reload", ->
+        querySearch = controller.querySearch
+        newCollection = AlumNet.request("group:pagination")
+        newCollection.url = AlumNet.api_endpoint + '/groups'
+        query = _.extend(querySearch, { page: ++groupsView.collection.page, per_page: groupsView.collection.rows })
+        newCollection.fetch
+          data: query
+          success: (collection)->
+            groupsView.collection.add(collection.models)
+            if collection.length < collection.rows 
+              groupsView.endPagination()             
+
+      checkNewPost = false #flag for new posts
+      groupsView.on "add:child", (viewInstance)->
+        container = $('#groups_container')
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.group_children'
+        if checkNewPost
+          container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+          container.imagesLoaded ->
+            container.masonry 'layout'
+        else
+          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        checkNewPost = false
+
+      groupsView.on 'childview:group:show', (childView)->
+        id = childView.model.id
+        AlumNet.trigger "groups:posts", id
+
+      #When join link is clicked
+      groupsView.on 'childview:join', (childView) ->
+        group = childView.model
+        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
+        request = AlumNet.request('membership:create', attrs)
+        request.on 'save:success', (response, options)->
+          if group.isClose()  
+            AlumNet.trigger "groups:about", group.get('id')
+          else  
+            AlumNet.trigger "groups:posts", group.get('id')
+
+        request.on 'save:error', (response, options)->
+          console.log response.responseJSON
+
+    getContainerView: (groups) ->
+      new AlumNet.GroupsApp.Discover.GroupsView
+        collection: groups
+
     showcreateGroup: ->
       AlumNet.navigate("groups/new")
       current_user = AlumNet.current_user
@@ -60,8 +117,8 @@
           self.showcreateGroup()
       #   when "myGroups"
       #     self.showMyGroups()
-      #   when "groupsDiscover"
-      #     self.discoverGroups()
+        when "groupsDiscover"
+          self.discoverGroups()
 
     
         
