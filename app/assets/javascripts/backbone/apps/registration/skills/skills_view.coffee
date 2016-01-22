@@ -163,6 +163,67 @@
 
       @layout.goToNext()
 
+    saveStepData: (step, indexStep)->
+
+      @children.each (itemView)->
+        data = Backbone.Syphon.serialize itemView
+        itemView.model.set data
+
+      skillsData = Backbone.Syphon.serialize this
+      skillsData = skillsData.skills.split(',')
+
+      if skillsData.length > 2
+        $el = @$("[name^=skills]")
+        $group = $el.closest('.form-group')
+        $group.removeClass('has-error')
+        $group.find('.help-block').html("").addClass('hidden')
+        valid_skills = true
+
+      else
+        $el = @$("[name^=skills]")
+        $group = $el.closest('.form-group')
+        $group.addClass('has-error')
+        $group.find('.help-block').html("You have to set at least 3 skills").removeClass('hidden')
+        valid_skills = false
+
+      #every model in the collection of languages is valid
+      valid_languages = true
+
+      _.forEach @collection.models, (model, index, list)->
+        if !(validity = model.isValid(true))
+          valid_languages = validity
+      
+      if valid_languages && valid_skills
+
+        @saveSkillsAndLanguagesStep(skillsData, step, indexStep)
+
+            
+    saveSkillsAndLanguagesStep: (skillsData, step, indexStep)->
+   
+      #SKILLS------------      
+      #Send a POST for creating skills in bulk way 
+      @user_skills.create
+        skill_names: skillsData
+
+      #LANGUAGES------------
+      @collection.forEach (el, i, collection)->
+        el.save
+          wait: true
+      
+      profile = AlumNet.current_user.profile
+      stepActual = profile.get("register_step")
+      if stepActual == "languages_and_skills"
+        Backbone.ajax
+          url: AlumNet.api_endpoint + "/me/registration"
+          method: "put"
+          async: false
+          success: (data)->
+            stepActual = data.current_step
+          error: (data)->
+            $.growl.error { message: data.status }
+        profile.set("register_step", stepActual)
+      @layout.navigateStep(step, indexStep)
+
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.skills.length > 0
         e.preventDefault()

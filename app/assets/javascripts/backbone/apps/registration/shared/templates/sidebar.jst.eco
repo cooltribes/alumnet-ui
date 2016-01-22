@@ -1,23 +1,23 @@
 <div class="hidden-xs hidden-sm affix" id="myAffix" data-spy="affix" data-offset-top="100" data-offset-bottom="200">
 	<ul class="roundedNumbersList" >
-		<li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span> Basic Information</li>
+		<li class="roundedNumbersList__item<%= @classOf(0)%>"><a href="#registration/basic_information"  class= "js-links" data-step="basic_information" data="0" ><span class="roundedNumbersList__number">1</span>Basic Information</a></li>
 		<% if @isVisible: %>
-			<li class="roundedNumbersList__item<%= @classOf(1)%>"><span class="roundedNumbersList__number">2</span> Skills and Languages</li>
-			<li class="roundedNumbersList__item<%= @classOf(2)%>"><span class="roundedNumbersList__number">3</span> Experience in AIESEC</li>
+			<li class="roundedNumbersList__item<%= @classOf(1)%>"><a href="#registration/languages_and_skills" class= "js-links" data-step="languages_and_skills" data="1"><span class="roundedNumbersList__number">2</span> Skills and Languages</a></li>
+			<li class="roundedNumbersList__item<%= @classOf(2)%>"><a href="#registration/aiesec_experiences" class= "js-links" data-step="aiesec_experiences" data="2"><span class="roundedNumbersList__number">3</span>Experience in AIESEC</a></li>
 			<!-- <li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Skills & Languages</li> -->
-			<li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Approval process</li>
+			<li class="roundedNumbersList__item<%= @classOf(3)%>"><a href="#registration/completed" class= "js-links" data-step="completed" data="3"><span class="roundedNumbersList__number">4</span> Approval process</a></li>
 		<% end %>
 	</ul>
 </div>
 <!-- Duplicating the list for the mobile version without the affix-->
 <div class="visible-xs visible-sm text-center">
 	<ul class="roundedNumbersList clearfix" >
-		<li class="roundedNumbersList__item<%= @classOf(0)%>"><span class="roundedNumbersList__number">1</span></li>		
+		<li class="roundedNumbersList__item<%= @classOf(0)%>"><a href="#registration/basic_information"  class= "js-links" data-step="basic_information" data="0" ><span class="roundedNumbersList__number">1</span></a></li>		
 		<% if @isVisible: %>
-			<li class="roundedNumbersList__item<%= @classOf(1)%>"><span class="roundedNumbersList__number">2</span></li>
-			<li class="roundedNumbersList__item<%= @classOf(2)%>"><span class="roundedNumbersList__number">3</span></li>
+			<li class="roundedNumbersList__item<%= @classOf(1)%>"><a href="#registration/languages_and_skills" class= "js-links" data-step="languages_and_skills" data="1"><span class="roundedNumbersList__number">2</span></a></li>
+			<li class="roundedNumbersList__item<%= @classOf(2)%>"><a href="#registration/aiesec_experiences" class= "js-links" data-step="aiesec_experiences" data="2"><span class="roundedNumbersList__number">3</span></a></li>
 			<!-- <li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span> Skills & Languages</li> -->
-			<li class="roundedNumbersList__item<%= @classOf(3)%>"><span class="roundedNumbersList__number">4</span></li>
+			<li class="roundedNumbersList__item<%= @classOf(3)%>"><a href="#registration/completed" class= "js-links" data-step="completed" data="3"><span class="roundedNumbersList__number">4</span></a></li>
 		<% end %>
 	</ul>
 </div>

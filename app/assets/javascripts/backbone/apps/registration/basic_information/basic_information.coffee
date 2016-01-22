@@ -88,6 +88,40 @@
           success: ->
             layout.goToNext()
 
+    saveStepData: (step, indexStep)->
+      layout = @layout
+      view = @
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = @$('#profile-avatar')
+      formData.append('avatar', file[0].files[0])
+      @model.set(data)
+      if @model.isValid(true)
+
+        @model.save data,
+          wait: true
+          contentType: false
+          processData: false
+          data: formData
+          success: ->
+            profile = AlumNet.current_user.profile
+            stepActual = profile.get("register_step")
+            
+            if stepActual == "basic_information"
+              Backbone.ajax
+                url: AlumNet.api_endpoint + "/me/registration"
+                method: "put"
+                async: false
+                success: (data)->
+                  stepActual = data.current_step
+                error: (data)->
+                  $.growl.error { message: data.status }
+              profile.set("register_step", stepActual)
+
+            layout.navigateStep(step, indexStep)
+
     previewImage: (e)->
       input = @.$('#profile-avatar')
       preview = @.$('#preview-avatar')
