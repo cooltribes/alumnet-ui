@@ -1,0 +1,18 @@
+<div class="suggestions__content">
+	<div class="suggestions__content--user userCardSuggestions">
+		<div class="groups-container">
+		</div>
+	</div>
+</div>
+<div class="col-md-12 no-padding margin_top margin_bottom">
+	<div class="col-md-6 buttonSuggestionsPadding--left text-left">
+		<div class="buttonSuggestions">
+			<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
+		</div>
+	</div>
+	<div class="col-md-6 buttonSuggestionsPadding--right text-right">
+		<div class="buttonSuggestions">
+			<a class="btn btn-primary btn-lg" href="#groups/new">CREATE A GROUP</a>
+		</div>
+	</div>
+</div> 

@@ -17,8 +17,9 @@
       "groups/:id/banner": "bannersList"
       "groups/:id/settings": "settingsEdit"
       "groups/manage": "manageGroups"
-      "groups": "discoverGroups"
-
+      "groups/discover": "discoverGroups"
+      "groups/my_groups": "myGroups"
+    
   API =
     manageGroups: ->
       AlumNet.setTitle('My groups')
@@ -74,6 +75,9 @@
     settingsEdit: (id)->
       controller = new GroupsApp.Settings.Controller
       controller.showSettings(id)
+    myGroups: ->
+      controller = new GroupsApp.Main.Controller
+      controller.showMainGroups("myGroups")
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

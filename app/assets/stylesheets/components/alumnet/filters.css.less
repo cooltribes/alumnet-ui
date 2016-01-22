@@ -1,8 +1,6 @@
 /***
-
 COMPONENT NAME: Filters
 DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
-
 ***/
 
 @import 'conf/conf.css.less';
@@ -95,6 +93,52 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	}
 }
 
+.suggestionsGroups{
+
+	&__cover{
+		padding: 5px 0 5px 5px;
+		img{
+			height: 58px;
+			width: 58px;
+		}
+	}
+	&__title{
+	    padding: 5px 0 0 0;
+	    color: @blue;
+	    &--description{
+	    	color: @mid-gray;
+	    }
+	}
+	&__buttons{
+		background-color: @blue-gray;
+        border:none;
+        text-align: center;
+        button{
+	        border:none;
+	        padding:10px 5px;
+	        background-color: @blue-gray;
+	        color: @white;
+	        width: 100%;
+      	}
+		&--join{
+            background-color: @lighter-gray;
+            color: darken(#e1ecf1, 50%);
+            background-color: darken(#e1ecf1, 10%);
+            text-align: center;
+            padding: 5px;
+            display: block;
+        }
+        &--paddingButtons{
+            padding: 10px 5px 10px 0;
+        }
+	}
+}
+
+.groupCardSuggestions{
+	height: 70px;
+    border-bottom: 1px solid @lighter-gray;
+}
+
 .filterFriends{
 	&__content{
 		margin: 0 auto;
@@ -104,4 +148,45 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 		width: 300px;
 	}
 
+}
+
+@media (min-width: @media-small-min){
+	
+	.suggestionsGroups{
+		&__buttons{
+	        &--paddingButtons{
+	            padding: 10px 5px 10px 0;
+	        }
+		}
+	}
+}
+
+
+@media (min-width: @media-mmlarge-min){
+	
+	.suggestionsGroups{
+		&__buttons{
+	        &--paddingButtons{
+	                padding: 20px 5px 10px 0;
+	        }
+		}
+	}
+}
+
+
+@media (min-width: @media-xxlarge-min){
+	
+	.suggestionsGroups{
+		&__cover{
+			padding: 5px 0 5px 8px;
+			img{
+				width: 75px;
+			}
+		}
+		&__buttons{
+	        &--join{
+           		padding: 5px 20px 5px 25px;
+        	}
+		}
+	}
 }
