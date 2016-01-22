@@ -39,7 +39,8 @@
 
       @layoutGroups.filters_region.show(suggestions)
 
-    discoverGroups: ->
+    showDiscoverGroups: ->
+      AlumNet.navigate("groups/discover")
       controller = @
       controller.querySearch = {}
       groups = AlumNet.request("group:entities", {})
@@ -97,6 +98,7 @@
         collection: groups
 
     showMyGroups: ->
+      AlumNet.navigate("groups/my_groups")
       current_user = AlumNet.current_user
       groups = AlumNet.request("membership:groups", current_user.id, {})
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView
@@ -131,15 +133,30 @@
               $.growl.error({ message: response.responseJSON.message })
           model.save(data, options_for_save)
 
+    showManageGroups:->
+      AlumNet.navigate("groups/manage")
+      current_user = AlumNet.current_user
+      groups = AlumNet.request("membership:groups", current_user.id, {})
+      groupsView = new AlumNet.GroupsApp.Groups.GroupsView
+        collection: groups
+      @layoutGroups.groups_region.show(groupsView)
+
+      groupsView.on 'childview:click:leave', (childView)->
+        membership = AlumNet.request("membership:destroy", childView.model)
+        membership.on 'destroy:success', ->
+          console.log "Destroy Ok"
+
     showMenuUrl: (optionMenu)->
       self = @
       switch optionMenu
-        when "newGroup"
-          self.showcreateGroup()
+        when "groupsDiscover"
+          self.showDiscoverGroups()
         when "myGroups"
           self.showMyGroups()
-        when "groupsDiscover"
-          self.discoverGroups()
+        when "groupsManage"
+          self.showManageGroups()
+        when "newGroup"
+          self.showcreateGroup()
 
     
         

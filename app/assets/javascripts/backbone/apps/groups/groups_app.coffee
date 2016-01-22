@@ -22,9 +22,9 @@
     
   API =
     manageGroups: ->
-      AlumNet.setTitle('My groups')
+      AlumNet.setTitle('Manage groups')
       controller = new GroupsApp.Main.Controller
-      controller.showMainGroups("myGroups")
+      controller.showMainGroups("groupsManage")
     discoverGroups: ->
       AlumNet.setTitle('Discover groups')
       controller = new GroupsApp.Main.Controller
@@ -76,6 +76,7 @@
       controller = new GroupsApp.Settings.Controller
       controller.showSettings(id)
     myGroups: ->
+      AlumNet.setTitle('My groups')
       controller = new GroupsApp.Main.Controller
       controller.showMainGroups("myGroups")
 

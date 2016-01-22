@@ -117,10 +117,6 @@
     urlRoot: ->
       AlumNet.api_endpoint + '/admin/deleted/groups/'
 
-  class Entities.CreatedGroupCollection extends Backbone.Collection
-    url: ->
-      AlumNet.api_endpoint + '/me/groups/'
-
   class Entities.DeletedGroupCollection extends Backbone.Collection
     model: Entities.DeletedGroup
 
