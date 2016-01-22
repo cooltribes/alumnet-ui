@@ -30,11 +30,34 @@
 
       @layoutGroups.filters_region.show(suggestions)
 
+    showcreateGroup: ->
+      AlumNet.navigate("groups/new")
+      current_user = AlumNet.current_user
+      group = AlumNet.request("group:new")
+      createForm = new AlumNet.GroupsApp.Create.GroupForm
+        model: group
+        user: current_user
+
+      @layoutGroups.groups_region.show(createForm)
+      createForm.on "form:submit", (model, data)->
+        if model.isValid(true)
+          options_for_save =
+            wait: true
+            contentType: false
+            processData: false
+            data: data
+            success: (model, response, options)->
+              createForm.picture_ids = []
+              AlumNet.trigger "groups:invite", model.id
+            error: (model, response, options)->
+              $.growl.error({ message: response.responseJSON.message })
+          model.save(data, options_for_save)
+
     showMenuUrl: (optionMenu)->
       self = @
-      # switch optionMenu
-      #   when "newGroup"
-      #     self.showcreateGroup()
+      switch optionMenu
+        when "newGroup"
+          self.showcreateGroup()
       #   when "myGroups"
       #     self.showMyGroups()
       #   when "groupsDiscover"
