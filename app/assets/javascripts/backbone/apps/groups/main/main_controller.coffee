@@ -39,6 +39,19 @@
 
       @layoutGroups.filters_region.show(suggestions)
 
+      suggestions.on 'childview:join', (childView) ->
+        group = childView.model
+        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
+        request = AlumNet.request('membership:create', attrs)
+        request.on 'save:success', (response, options)->
+          if group.isClose()  
+            AlumNet.trigger "groups:about", group.get('id')
+          else  
+            AlumNet.trigger "groups:posts", group.get('id')
+
+        request.on 'save:error', (response, options)->
+          console.log response.responseJSON
+
     showDiscoverGroups: ->
       AlumNet.navigate("groups/discover")
       controller = @
