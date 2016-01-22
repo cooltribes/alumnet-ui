@@ -136,7 +136,7 @@
     showManageGroups:->
       AlumNet.navigate("groups/manage")
       current_user = AlumNet.current_user
-      groups = AlumNet.request("membership:groups", current_user.id, {})
+      groups = AlumNet.request("membership:created_groups", current_user.id, {})
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView
         collection: groups
       @layoutGroups.groups_region.show(groupsView)

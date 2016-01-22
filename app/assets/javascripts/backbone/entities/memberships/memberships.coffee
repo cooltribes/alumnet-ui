@@ -48,6 +48,13 @@
         data: querySearch
       members
 
+    getCreatedGroups: (user_id, querySearch)->
+      members = new Entities.MembershipsCollection
+      members.url = AlumNet.api_endpoint + '/users/' + user_id + '/memberships/created_groups'
+      members.fetch
+        data: querySearch
+      members
+
     sendMembershipRequest: (attrs)->
       current_user = AlumNet.request('get:current_user')
       membership = new Entities.Membership(attrs)
@@ -72,10 +79,16 @@
 
   AlumNet.reqres.setHandler 'membership:request', (attrs) ->
     API.sendMembershipRequest(attrs)
+
   AlumNet.reqres.setHandler 'membership:members', (group_id, querySearch) ->
     API.getGroupMembers(group_id, querySearch)
+
   AlumNet.reqres.setHandler 'membership:groups', (user_id, querySearch) ->
     API.getUserGroups(user_id, querySearch)
+
+  AlumNet.reqres.setHandler 'membership:created_groups', (user_id, querySearch) ->
+    API.getCreatedGroups(user_id, querySearch)
+
   AlumNet.reqres.setHandler 'membership:destroy', (membership) ->
     API.destroyMembership(membership)
 
