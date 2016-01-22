@@ -18,6 +18,15 @@
           # when "filters"
           #   self.showFilters()
 
+      @layoutGroups.on 'groups:search', (querySearch)->
+        # if self.selectedMenu == "groupsDiscover"
+          self.querySearch = querySearch
+          searchedGroups = AlumNet.request("group:entities", querySearch)
+        # else if self.selectedMenu == "myGroups"
+        #   self.querySearch = querySearch
+        #   searchedGroups = AlumNet.request("membership:groups", current_user.id, querySearch)
+
+
     showSuggestionsGroups: ->
       suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
       collection = new AlumNet.Entities.SuggestedGroupsCollection
@@ -87,6 +96,18 @@
       new AlumNet.GroupsApp.Discover.GroupsView
         collection: groups
 
+    showMyGroups: ->
+      current_user = AlumNet.current_user
+      groups = AlumNet.request("membership:groups", current_user.id, {})
+      groupsView = new AlumNet.GroupsApp.Groups.GroupsView
+        collection: groups
+      @layoutGroups.groups_region.show(groupsView)
+
+      groupsView.on 'childview:click:leave', (childView)->
+        membership = AlumNet.request("membership:destroy", childView.model)
+        membership.on 'destroy:success', ->
+          console.log "Destroy Ok"
+
     showcreateGroup: ->
       AlumNet.navigate("groups/new")
       current_user = AlumNet.current_user
@@ -115,8 +136,8 @@
       switch optionMenu
         when "newGroup"
           self.showcreateGroup()
-      #   when "myGroups"
-      #     self.showMyGroups()
+        when "myGroups"
+          self.showMyGroups()
         when "groupsDiscover"
           self.discoverGroups()
 
