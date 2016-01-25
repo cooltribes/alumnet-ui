@@ -10,8 +10,9 @@
       "#text": "text"
       "#active": "active"
 
-    changeActive: (e)->      
-      @trigger("change")  
+    changeActive: (m, v, options)->      
+      if options.stickitChange      
+        m.collection.trigger "checkStatus"
 
     onRender: ->
       @stickit()        
@@ -24,13 +25,19 @@
     bindings:
       "#all_selected": 
         observe: "all_selected"
-        updateModel: (val, event, options)->
-          console.log "value"
-          console.log val
-          val
+        getVal: ($el, event, options)->
+          $el.val()
+
+    ui:
+      'selectCountries':'.js-countries'       
 
     modelEvents: 
-      "change:all_selected": "changeActive"
+      "change:all_selected": "changeAll"
+
+    events:
+      "click #all_selected": "clickAll"
+      "select2-selecting @ui.selectCountries": "addCountry"
+
 
     initialize: (options)->    
       @results_collection = options.results_collection  
@@ -50,43 +57,89 @@
 
       @collection = new AlumNet.Entities.SearchFiltersCollection locations
 
+      #When a new location is added, trigger the search as if it was clicked
+      @collection.on "add", (model) ->        
+        @trigger("checkStatus")
+
+      @collection.on "checkStatus", @checkStatus, @
+
+
+    clickAll: (e)->
+      checkbox = $(e.currentTarget)
+      if !checkbox.is(":checked")
+        e.preventDefault()
+        return false
+
       
     onRender: ->
+      data = CountryList.toSelect2()      
+      @ui.selectCountries.select2
+        placeholder: "Select a Country"
+        data: data
+
       @stickit()  
+
    
-
-    changeActive: (e)->      
-      console.log e
-      ###@collection.forEach (element, index)->
-        element.set("active", false)
-      ###
-
-    onChildviewChange: (child_view) ->
-      
-      active_locations = @collection.where
+    addCountry: (e)->
+      country = _.extend
         active: true
+        type: "country"
+      ,
+        e.choice        
+      @collection.add country
 
-      console.log active_locations        
 
-      locationTerms = []
+    changeAll: (m, v, options)->     
+      if options.stickitChange #if the change was triggered by clicking checkbox
+        @collection.forEach (element, index)->
+          element.set "active", false,
       
-      if active_locations.length > 0 #If there are at least one city/country selected
+        @buildQuery() 
+        
 
-        #Uncheck "all"
-        @model.set("all_selected", false)
+    checkStatus: () ->      
+      console.log this
+      active_locations = @collection.where
+        active: true      
+      
+      # check/uncheck "All Locations"
+      @model.set("all_selected", !(active_locations.length > 0)) #If there are at least one city/country selected
+      @buildQuery(active_locations)
+       
+       
 
-        city_ids = _.pluck(active_locations, "id")
-        locationTerms = [
+    buildQuery: (active_locations = [])->
+      
+      locationTerms = []
+
+      cities_array = _.filter active_locations, (el)->
+        el.get("type") == "city"
+
+      countries_array = _.filter active_locations, (el)->
+        el.get("type") == "country"
+
+      if cities_array.length > 0        
+        city_ids = _.pluck(cities_array, "id")                       
+
+        locationTerms.push [
           terms:
             "residence_city_id": city_ids
         ,
           terms:
             "birth_city_id": city_ids
         ]
-      else
-        #Check "all"
-        @model.set("all_selected", true)
+      
+      if countries_array.length > 0        
+        countries_ids = _.pluck(countries_array, "id")                       
 
+        locationTerms.push [
+          terms:
+            "residence_country_id": countries_ids
+        ,
+          terms:
+            "birth_country_id": countries_ids
+        ]
+      
 
       query =         
         query:
@@ -101,5 +154,4 @@
 
         
       @results_collection.search_by_filters(querySearch)  
-                       
-
+        
