@@ -359,6 +359,9 @@ DESCRIPTION: CSS for styling a list of groups
       }
 
   }
+   .listGroupsTable{
+    width: 65%;
+  }
 }
 /*1200px and up*/
  @media (min-width: @media-large-min) {
@@ -379,9 +382,20 @@ DESCRIPTION: CSS for styling a list of groups
       }
 
   }
+  .listGroupsTable{
+    width: 50%;
+    padding: 0 0 0 20px;
+  }
+}
+
+/*1366px*/
+@media (min-width: @media-mlarge-max) {
+  .listGroupsTable{
+    padding: 0 0 0 70px;
+  }
 }
 /*1400px and up*/
- @media (min-width: @media-mmlarge-min) {
+@media (min-width: @media-mmlarge-min) {
 
   .groupTableView{
 
@@ -398,6 +412,29 @@ DESCRIPTION: CSS for styling a list of groups
          max-width: 288px;
       }
 
+  }
+  .listGroupsTable{
+    width: 75%;
+  }
+}
+/*1700px*/
+@media (min-width: @media-largemm-min) {
+  .listGroupsTable{
+    width: 85%;
+  }
+}
+
+/*1700px*/
+@media (min-width: @media-largemm-max) {
+  .listGroupsTable{
+    width: 90%;
+  }
+}
+
+/*1800px*/
+@media (min-width: @media-mxlarge-max) {
+  .listGroupsTable{
+    width: 100%;
   }
 }
 

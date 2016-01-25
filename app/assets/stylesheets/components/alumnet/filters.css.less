@@ -94,7 +94,6 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 }
 
 .suggestionsGroups{
-	margin-top: 10px;
 	&__cover{
 		padding: 5px 0 5px 5px;
 		img{
@@ -128,7 +127,8 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
             padding: 5px;
             display: block;
 			&:hover{
-				background-color: @white;
+				background-color: @blue;
+				color: @white;
 			}
         }
         &--paddingButtons{
@@ -153,6 +153,7 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 
 }
 
+/*768px*/
 @media (min-width: @media-small-min){
 	
 	.suggestionsGroups{
@@ -164,7 +165,17 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	}
 }
 
+/*1200px*/
+@media (min-width: @media-large-min){
+	
+	.suggestionsGroups{
+		&__title{
+	    	padding: 5px 0 0 5px;	
+		}
+	}
+}
 
+/*1400px*/
 @media (min-width: @media-mmlarge-min){
 	
 	.suggestionsGroups{
@@ -176,7 +187,7 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	}
 }
 
-
+/*1900px*/
 @media (min-width: @media-xxlarge-min){
 	
 	.suggestionsGroups{

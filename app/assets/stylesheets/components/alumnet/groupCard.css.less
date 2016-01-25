@@ -345,6 +345,15 @@ DESCRIPTION: Displays a list of groups in the Groups
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
+    .listGroups{
+        width: 100%;
+        float: left;
+    }
+
+    .listGroupsAlign{
+        padding: 0px 0px 0 50px;
+    }
+
     .groupCard{
         &__cover{
             width: 50%;
@@ -374,9 +383,9 @@ DESCRIPTION: Displays a list of groups in the Groups
                 overflow-y: auto; 
             }
         }
-    }    
-    
- }
+    }      
+}
+/*1300px*/
  @media (min-width: @media-mlarge-min) {
     .groupCard{    
         &__atribute{
@@ -387,14 +396,29 @@ DESCRIPTION: Displays a list of groups in the Groups
         }       
     }
 }
+
+/*1400px*/
  @media (min-width: @media-mmlarge-min) {
     .groupCard{   
         &__atribute{
             font-size: 12px;
                 &__container--odd{
                 padding: 8px 9px;               
-        }
+            }
 
-    }    
- }
+        }    
+    }
+    .listGroups{
+        width: 90%;
+        float: left;
+    }
+}
+ @media (min-width: @media-mxlarge-max) { 
+    .listGroups{
+        width: 50%;
+        float: left;
+    }
+    .listGroupsAlign{
+        padding: 0;
+    }
 }
