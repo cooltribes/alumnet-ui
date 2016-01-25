@@ -4,7 +4,7 @@
 	</span>
 	<br>
 	<span class="emailsTableView__preview">
-		Show preview >>
+		<a href="#"> Show preview >></a>
 	</span>
 	<br>
 	<span class="emailsTableView__info">

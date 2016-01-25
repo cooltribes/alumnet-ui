@@ -222,7 +222,6 @@
           type: "POST"
           data: data
           success: (data) =>
-            console.log data
             view.provider_id = data.campaign.provider_id
             modal = new EmailsNew.Preview
               data: data
