@@ -110,9 +110,7 @@
       @stickit()  
 
    
-    addLocationFromSelect: (e)->
-      console.log "choice"
-      console.log e.choice
+    addLocationFromSelect: (e)->      
       location = 
         id: e.choice.id
         name: e.choice.name
@@ -190,7 +188,7 @@
     optionsForSelect2: ()->  
       url = AlumNet.api_endpoint + '/countries/locations'      
 
-      placeholder: "Select a Country"      
+      placeholder: "Select City or Country"      
       formatResult: @formatSelect2
       formatSelection: @formatSelect2
       minimumInputLength: 2
@@ -204,8 +202,6 @@
             data
 
     formatSelect2: (data)->
-      console.log data     
-      
       country = ""
       
       if data.country

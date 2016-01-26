@@ -14,8 +14,7 @@
       ###
       results_view = @_getResultsView()
       filters_view = @_getFiltersView()
-      ###
-      
+      ###      
 
       AlumNet.mainRegion.show(layoutView)
 

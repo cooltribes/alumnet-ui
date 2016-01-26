@@ -18,11 +18,12 @@
   <div id="rows-region">
     
   </div>
+  <hr class="no_margin_top margin_bottom_small">
   <div class="row">
     
     <div class="col-md-12">
       <div class="form-group">
-        <label class="control-label">Country</label>
+        <span>Add new location</span>
         <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
         <span class="help-block"></span>
       </div>
