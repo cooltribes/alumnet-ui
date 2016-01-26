@@ -3,10 +3,9 @@
   class Entities.SearchFilter extends Backbone.Model
     defaults:
       active: false
-      text: ""
+      name: ""
       type: null
       id: null
-
        
   
   class Entities.SearchFiltersCollection extends Backbone.Collection

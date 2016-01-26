@@ -7,7 +7,7 @@
       "change:active": "changeActive"
     
     bindings:
-      "#text": "text"
+      "#name": "name"
       "#active": "active"
 
     changeActive: (m, v, options)->      
@@ -36,7 +36,7 @@
 
     events:
       "click #all_selected": "clickAll"
-      "select2-selecting @ui.selectCountries": "addCountry"
+      "select2-selecting @ui.selectCountries": "addLocationFromSelect"
 
 
     initialize: (options)->    
@@ -56,7 +56,7 @@
       ]###
       locations = []
 
-      current_user = AlumNet.current_user       
+      current_user = AlumNet.current_user     
 
       res_country = _.extend
         type: "country"
@@ -105,25 +105,24 @@
       
     onRender: ->
       data = CountryList.toSelect2()      
-      @ui.selectCountries.select2
-        placeholder: "Select a Country"
-        data: data
-        formatResult: @formatSelect2
-        formatSelection: @formatSelect2
+      @ui.selectCountries.select2 @optionsForSelect2()       
 
       @stickit()  
 
    
-    addCountry: (e)->
-      country = _.extend
+    addLocationFromSelect: (e)->
+      console.log "choice"
+      console.log e.choice
+      location = 
+        id: e.choice.id
+        name: e.choice.name
         active: true
-        type: "country"
-      ,
-        e.choice        
-      @collection.add country
+        type: if e.choice.country then "city" else "country"
+
+      @collection.add location
 
 
-    changeAll: (m, v, options)->     
+    changeAll: (m, v, options)->
       if options.stickitChange #if the change was triggered by clicking checkbox
         @collection.forEach (element, index)->
           element.set "active", false,
@@ -131,7 +130,7 @@
         @buildQuery() 
         
 
-    checkStatus: () ->      
+    checkStatus: () -> 
       active_locations = @collection.where
         active: true      
       
@@ -188,5 +187,28 @@
       @results_collection.search_by_filters(querySearch)  
         
 
-    formatSelect2: (state)->
-      return state.text + "nelson";
+    optionsForSelect2: ()->  
+      url = AlumNet.api_endpoint + '/countries/locations'      
+
+      placeholder: "Select a Country"      
+      formatResult: @formatSelect2
+      formatSelection: @formatSelect2
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q: term
+        results: (data, page) ->
+          results:
+            data
+
+    formatSelect2: (data)->
+      console.log data     
+      
+      country = ""
+      
+      if data.country
+        country = " <span class='country-select'> (" + data.country + ")</span>"
+      
+      return data.name + country
