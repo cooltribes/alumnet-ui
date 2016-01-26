@@ -37,3 +37,6 @@
     template: 'admin/emails/sent/templates/tableContainer'
     childView: EmailsSent.Emails
     childViewContainer: '#emails-container'
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600)

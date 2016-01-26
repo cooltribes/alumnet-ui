@@ -115,4 +115,5 @@
 
   AlumNet.on "campaign:sent", (group_id, id)->
     #AlumNet.navigate("admin/emails/#{id}")
-    API.showCampaign(group_id, id)
+    #API.showCampaign(group_id, id)
+    API.emailsSent()

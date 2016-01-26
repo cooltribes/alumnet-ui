@@ -70,6 +70,9 @@
       groups: @groups.models
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
 
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600)
+
     changeSelectGroups: ->
       view = @
       if @ui.selectGroups.val() != "-1"
@@ -114,6 +117,7 @@
       
     sendCampaign: (e)->
       e.preventDefault()
+      @disableButtons()
       valid = true
       view = @
 
@@ -150,9 +154,11 @@
               AlumNet.trigger "campaign:sent", group_id, data.id
             error: (response) =>
               $.growl.error({ message: 'Error sending campaign' })
+              @enableButtons()
 
     sendToMe: (e)->
       e.preventDefault()
+      @disableButtons()
       valid = true
       view = @
 
@@ -187,11 +193,14 @@
             success: (data) =>
               view.provider_id = data.provider_id
               $.growl.notice({ message: 'Campaing preview sent' })
+              @enableButtons()
             error: (response) =>
               $.growl.error({ message: 'Error sending preview' })
+              @enableButtons()
 
     showPreview: (e)->
       e.preventDefault()
+      @disableButtons()
       valid = true
       view = @
 
@@ -226,11 +235,23 @@
             modal = new EmailsNew.Preview
               data: data
             $('#container-modal-preview').html(modal.render().el)
+            @enableButtons()
           error: (response) =>
             $.growl.error({ message: 'Error getting preview' })
+            @enableButtons()
 
     addFilter: (e)->
       #console.log "PRESIONO AGREGAR FILTRO"
+
+    disableButtons: ->
+      $('#js-submit').prop('disabled', true)
+      $('#show-campaign-preview').prop('disabled', true)
+      $('#send-campaign-to-me').prop('disabled', true)
+
+    enableButtons: ->
+      $('#js-submit').prop('disabled', false)
+      $('#show-campaign-preview').prop('disabled', false)
+      $('#send-campaign-to-me').prop('disabled', false)
 
     toggleEditApiKey: (e)->
       e.stopPropagation()
