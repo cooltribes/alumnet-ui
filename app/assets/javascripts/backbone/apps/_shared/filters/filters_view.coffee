@@ -43,9 +43,9 @@
       @results_collection = options.results_collection  
       @model = new Backbone.Model
         all_selected: true
-
-      #Search for the initial cities
-      locations = [
+      
+      #Search for the initial cities and countries
+      ###locations = [
         text: "Andorra la Vella"
         id: 1
         type: "city"
@@ -53,7 +53,39 @@
         text: "Balkh"
         id: 22
         type: "city"
-      ]
+      ]###
+      locations = []
+
+      current_user = AlumNet.current_user       
+
+      res_country = _.extend
+        type: "country"
+      ,  
+        current_user.profile.get "residence_country"
+      
+      res_city = _.extend
+        type: "city"
+      ,  
+        current_user.profile.get "residence_city"
+
+      locations.push(res_country, res_city)
+
+      birth_country = _.extend
+        type: "country"
+      ,  
+        current_user.profile.get "birth_country"
+      
+      birth_city = _.extend
+        type: "city"
+      ,  
+        current_user.profile.get "birth_city"
+
+      if birth_city.id != res_city.id  
+        locations.push(birth_city)
+      
+      if birth_country.id != res_country.id  
+        locations.push(birth_country)
+
 
       @collection = new AlumNet.Entities.SearchFiltersCollection locations
 
@@ -76,6 +108,8 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: data
+        formatResult: @formatSelect2
+        formatSelection: @formatSelect2
 
       @stickit()  
 
@@ -98,16 +132,14 @@
         
 
     checkStatus: () ->      
-      console.log this
       active_locations = @collection.where
         active: true      
       
       # check/uncheck "All Locations"
       @model.set("all_selected", !(active_locations.length > 0)) #If there are at least one city/country selected
       @buildQuery(active_locations)
+      
        
-       
-
     buildQuery: (active_locations = [])->
       
       locationTerms = []
@@ -155,3 +187,6 @@
         
       @results_collection.search_by_filters(querySearch)  
         
+
+    formatSelect2: (state)->
+      return state.text + "nelson";
