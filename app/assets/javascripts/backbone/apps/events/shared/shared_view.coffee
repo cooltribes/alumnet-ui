@@ -68,7 +68,7 @@
     template: 'events/shared/templates/header'
 
     templateHelpers: ->
-      document.title = 'AlumNet - ' + @model.get('name')
+      AlumNet.setTitle(@model.get('name'))
       model = @model
       date = new Date()      
       shortname: short_string(@model.get('name'),50)

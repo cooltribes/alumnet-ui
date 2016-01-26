@@ -150,3 +150,13 @@
         AlumNet.current_user.set('profinda_api_token', data.profinda_api_token)
       error: (response)->
         $.growl.error(message: "Matching Conection Error")
+
+  AlumNet.setTitle = (title)->
+    current_user = AlumNet.current_user
+    sum = parseInt(current_user.get("unread_notifications_count"))+  parseInt(current_user.get("unread_friendship_notifications_count"))+  parseInt(current_user.get("unread_messages_count"))
+    if sum == 0
+      document.title = 'AlumNet - '+ title
+    else
+      document.title = '('+ sum+')'+ ' AlumNet - '+ title
+
+    

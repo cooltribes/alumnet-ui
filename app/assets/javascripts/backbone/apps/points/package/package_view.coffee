@@ -1,42 +1,42 @@
 @AlumNet.module 'PointsApp.Package', (Package, @AlumNet, Backbone, Marionette, $, _) ->
-	class Package.PackageView extends Marionette.ItemView
-		template: 'points/package/templates/_package'
-		
-		events:
-			'click .js-buy':'sendBuy'
+    class Package.PackageView extends Marionette.ItemView
+        template: 'points/package/templates/_package'
+        
+        events:
+            'click .js-buy':'sendBuy'
 
-		sendBuy: (e)->
-			e.preventDefault()
-			@trigger 'buy'
+        sendBuy: (e)->
+            e.preventDefault()
+            @trigger 'buy'
 
-		initialize: (options) ->
-			@prizeImage = options.model.get('image').image.card.url
-			@points = AlumNet.current_user.profile.get('points')
+        initialize: (options) ->
+            @prizeImage = options.model.get('image').image.card.url
+            @points = AlumNet.current_user.profile.get('points')
 
-		templateHelpers: ->
-      		points: @points
-      		prizeImage: @prizeImage
+        templateHelpers: ->
+            points: @points
+            prizeImage: @prizeImage
 
     class Package.EmptyView extends Marionette.ItemView
-    	template: 'points/package/templates/empty'
-			
-	class Package.ListView extends Marionette.CompositeView
-		template: 'points/package/templates/packages_list'
-		childView: Package.PackageView
-		childViewContainer: '#packages_container'
+        template: 'points/package/templates/empty'
+            
+    class Package.ListView extends Marionette.CompositeView
+        template: 'points/package/templates/packages_list'
+        childView: Package.PackageView
+        childViewContainer: '#packages_container'
 
-		events:
-			'click #js-modal-points':'showModal'
-		
-		initialize: (options) ->
-			$('#pointsBar').hide()
-			document.title = 'AlumNet - Points'
+        events:
+            'click #js-modal-points':'showModal'
+        
+        initialize: (options) ->
+            $('#pointsBar').hide()
+            AlumNet.setTitle('Points')
 
-		showModal: (e)->
-			e.preventDefault()
-			modal = new Package.ModalPoints
-			$('#container-modal-points').html(modal.render().el)
+        showModal: (e)->
+            e.preventDefault()
+            modal = new Package.ModalPoints
+            $('#container-modal-points').html(modal.render().el)
 
-	class Package.ModalPoints extends Backbone.Modal
-    	template: 'points/package/templates/modal'
-    	cancelEl: '#js-close'
+    class Package.ModalPoints extends Backbone.Modal
+        template: 'points/package/templates/modal'
+        cancelEl: '#js-close'

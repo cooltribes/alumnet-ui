@@ -63,7 +63,7 @@
     template: 'job_exchange/create/templates/form'
 
     initialize: (options)->
-      document.title = 'AlumNet - Post a job'
+      AlumNet.setTitle('Post a job')
       @current_user = options.user
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
@@ -270,7 +270,7 @@
     className: 'container'
 
     initialize: (options)->
-      document.title = 'AlumNet - Post a job'
+      AlumNet.setTitle('Post a job')
 
     ui:
       'modalMembers':'#js-modal'

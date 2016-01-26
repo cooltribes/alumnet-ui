@@ -46,7 +46,7 @@
     childViewContainer: "#regions-table tbody"
 
     initialize: (options) ->
-      document.title = 'AlumNet - Regions Management'
+      AlumNet.setTitle('Regions Management')
 
   class Regions.ModalRegion extends Backbone.Modal
     template: 'admin/regions/list/templates/modal_form'

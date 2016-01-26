@@ -14,42 +14,42 @@
 
   API =
     homeBusinessExchange: ->
-      document.title = 'AlumNet - Business Exchange Program'
+      AlumNet.setTitle('Business Exchange Program')
       new BusinessExchangeApp.Home.Controller
 
     discoverBusinessExchange: (view)->
-      document.title = 'AlumNet - Discover Tasks'
+      AlumNet.setTitle('Discover Tasks')
       controller = new BusinessExchangeApp.Discover.Controller
       controller.discover(view)
     yourTasksBusinessExchange: ->
-      document.title = 'AlumNet - Your Tasks'
+      AlumNet.setTitle('Your Tasks')
       controller = new BusinessExchangeApp.YourTasks.Controller
       controller.your_tasks()
     appliedBusinessExchange: ->
-      document.title = 'AlumNet - Applied Tasks'
+      AlumNet.setTitle('Applied Tasks')
       controller = new BusinessExchangeApp.Applied.Controller
       controller.applied()
     automatchesBusinessExchange: ->
-      document.title = 'AlumNet - Tasks Automatches'
+      AlumNet.setTitle('Tasks Automatches')
       controller = new BusinessExchangeApp.AutoMatches.Controller
       controller.automatches()
     invitationsBusinessExchange: ->
-      document.title = 'AlumNet - Tasks Invitations'
+      AlumNet.setTitle('Tasks Invitations')
       controller = new BusinessExchangeApp.Invitations.Controller
       controller.invitations()
     createBusinessExchange: ->
-      document.title = 'AlumNet - Create a Task'
+      AlumNet.setTitle('Create a Task')
       if AlumNet.current_user.get("profinda_api_token")
         controller = new BusinessExchangeApp.Create.Controller
         controller.create()
       else
         AlumNet.getProfindaApiToken()
     updateBusinessExchange: (id)->
-      document.title = 'AlumNet - Update Task'
+      AlumNet.setTitle('Update Task')
       controller = new BusinessExchangeApp.Create.Controller
       controller.update(id)
     showBusinessExchange: (id)->
-      document.title = 'AlumNet - Task'
+      AlumNet.setTitle('Task')
       controller = new BusinessExchangeApp.Show.Controller
       controller.show(id)
 
