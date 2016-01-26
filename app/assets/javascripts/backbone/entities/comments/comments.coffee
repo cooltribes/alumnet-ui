@@ -30,13 +30,15 @@
         @get 'comment'
 
     getUserLocation:->
-      if @get("user").residence_city.text != ""
-        return "#{@get("user").residence_city.text} - #{@get("user").residence_country.text}"
+      if @get("user").residence_city.name != "" && @get("user").residence_country.name != ""
+        return "#{@get("user").residence_city.name} - #{@get("user").residence_country.name}"
       else
-        if @get("user").residence_country.text == ""
+        if @get("user").residence_city.name == ""
+          return "#{@get("user").residence_country.name}"
+        else if @get("user").residence_country.name == ""
           return "No Location"
         else
-          return "#{@get("user").residence_country.text}"
+          return "#{@get("user").residence_country.name}"
 
   class Entities.CommentsCollection extends Backbone.Collection
     model: Entities.Comment
