@@ -11,6 +11,28 @@
       'click .optionMenuRight' : 'goOptionMenuRight'
       'click .js-search': 'performSearch'
 
+    initialize: (options)->
+      @opcionInteger(options.option)
+      @tab = @opcionInteger(options.option)
+      @class = [
+        "", "", ""
+      ]
+      @class[parseInt(@tab)] = "--active"
+
+    opcionInteger: (optionMenu)->
+      switch optionMenu
+        when "myGroups"
+          return 1
+        when "groupsManage"
+          return 2
+        when "groupsDiscover"
+          return 0
+
+    templateHelpers: ->
+      @current_user = AlumNet.current_user
+      classOf: (step) =>
+        @class[step]
+
     goOptionMenuLeft: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
