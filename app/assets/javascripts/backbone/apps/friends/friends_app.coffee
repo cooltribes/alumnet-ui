@@ -33,8 +33,9 @@
       controller.showMyReceived(layout)
     myApproval: ()->
       AlumNet.setTitle('Approval requests')
-      controller = new FriendsApp.Approval.Controller
-      controller.showReceived()
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsApproval")
+      #controller.showApproval()
     userFriends: (layout, id)->
       controller = new FriendsApp.List.Controller
       controller.showSomeonesFriends(layout, id)
