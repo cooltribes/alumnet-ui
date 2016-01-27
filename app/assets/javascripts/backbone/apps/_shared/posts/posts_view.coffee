@@ -260,7 +260,7 @@
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
           animation: false
-
+        
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
@@ -326,7 +326,6 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
-
 
     showShare: (e)->
       e.preventDefault()

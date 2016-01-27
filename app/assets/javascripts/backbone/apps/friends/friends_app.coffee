@@ -11,6 +11,7 @@
       "alumni/approval": "friendsApproval"
       "alumni/discover": "friendsDiscover"
       "alumni/received": "friendsReceived"
+      "alumni/sent": "friendsSent"
 
   API =
     findFriends: ->
@@ -64,6 +65,9 @@
     friendsReceived: ->
       controller = new FriendsApp.Main.Controller
       controller.showMainAlumni("friendsReceived")
+    friendsSent: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsSent")
 
   AlumNet.on "friends:received", ->
     AlumNet.navigate("friends/received")

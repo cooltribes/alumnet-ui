@@ -65,7 +65,11 @@
       'click @ui.notificationsMarkAll': 'markAllNotifications'
       'click @ui.requestsMarkAll': 'markAllRequests'
       'click .navTopBar__left__item' : 'menuOptionClicked'
+      'click #alumniList li' : 'dropdownClickedAlumni'
+      'click #groupsList li' : 'dropdownClickedGroups'
+      'click #eventsList li' : 'dropdownClickedEvents'
       'click #programsList li' : 'dropdownClicked'
+      'click #companiesList li' : 'dropdownClickedCompanies'
       'click #accountList li' : 'accountDropdownClicked'
       'click .alumniDiscover' : 'activeMenuOption'
       'click @ui.searchBtn' : 'clickSearchBtn'
@@ -252,9 +256,30 @@
         if ! $(e.target).hasClass 'dropdown-toggle'
           $(e.target).addClass "navTopBar__left__item--active"
 
+    dropdownClickedAlumni: (e)->
+      e.preventDefault()
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      $('#alumniLayoutOption').addClass "navTopBar__left__item--active"
+      
+    dropdownClickedGroups: (e)->
+      e.preventDefault()
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      $('#groupsLayoutOption').addClass "navTopBar__left__item--active"
+
+    dropdownClickedEvents: (e)->
+      e.preventDefault()
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      $('#eventsLayoutOption').addClass "navTopBar__left__item--active"
 
     dropdownClicked: (e)->
+      e.preventDefault()
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
       $('#programsLayoutOption').addClass "navTopBar__left__item--active"
+
+    dropdownClickedCompanies: (e)->
+      e.preventDefault()
+      $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
+      $('#companiesLayoutOption').addClass "navTopBar__left__item--active"
 
     accountDropdownClicked: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
