@@ -58,60 +58,60 @@
     <ul class="navTopBar__left__list nav navbar-nav js-left-menu visible-xs">
       <!-- Left Menu top -->
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovil" href="#users/<%%= @id %>/posts" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovil" href="#users/<%%= @id %>/posts">
           <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar" style="width: 7%; margin-top: -5px;"> My Profile
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#privacy/settings" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#privacy/settings">
           <i class="icon-entypo-lock"></i>
           Privacy Settings
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovil" href="#friends/find" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovil" href="#friends/find">
           <i class="icon-entypo-user"></i>
           Alumni
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#alumni/friends" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#alumni/friends">
           <i class="ico-user"></i>
           My Friends
         </a>
       </li>
        <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#friends/contacts" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#friends/contacts">
           <i class="ico-new-invite"></i>
           Invite friends
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#alumni/approval" id="alumniLayoutOption">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#alumni/approval">
           <i class="ico-yes"></i>
           Approval Requests
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovil" href="#groups" id="groupsLayoutOption" >
+        <a class="navTopBar__left__itemMovil" href="#groups">
           <i class="ico-globe"></i>
           Groups
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#groups/manage"  id="groupsLayoutOption" >
+        <a class="navTopBar__left__itemMovilSubmenu" href="#groups/manage">
           <i class="ico-menu"></i>
           My Groups
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovil" href="#events" id="eventsLayoutOption">
+        <a class="navTopBar__left__itemMovil" href="#events">
           <i class="ico-calendar"></i>
           Events
         </a>
       </li>
       <li id="menuMovil">
-        <a class="navTopBar__left__itemMovilSubmenu" href="#events/manage" id="eventsLayoutOption">
+        <a class="navTopBar__left__itemMovilSubmenu" href="#events/manage">
           <i class="ico-menu"></i>
           My Events
         </a>
@@ -138,7 +138,7 @@
           <i class="icon-entypo-user"></i>
           <span class="nameItemMenu">Alumni</span>
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="alumniList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#alumni/discover" class="alumniDiscover"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#alumni/friends"><span class="ico-user"></span> My Friends</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#alumni/approval"><span class="ico-yes"></span> Approval Requests</a></li>
@@ -146,11 +146,11 @@
         </ul>
       </li>
       <li class="hidden-xs drophover">
-        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#groups/discover" id="groupsLayoutOption" >
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#groups/discover" id="groupsLayoutOption">
           <i class="ico-alumnet-nav_groups groupsSize"></i>
           <span class="nameItemMenu">Groups</span>   
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="groupsList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/discover"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/my_groups"><span class="ico-alumnet-nav_groups"></span> My Groups</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/new"><span class="icon-entypo-plus"></span> Create a new group</a></li>
@@ -161,18 +161,18 @@
           <i class="ico-calendar"></i>
           <span class="nameItemMenu">Events</span>           
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="eventsList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#events/manage"><span class="ico-calendar"></span> My Events</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#events"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#events/new"><span class="icon-entypo-plus"></span> Create a event</a></li>
         </ul>
       </li>
       <li class="hidden-xs drophover">
-        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#companies">
+        <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#companies" id="companiesLayoutOption">
           <i class="icon-entypo-suitcase"></i>
           <span class="nameItemMenu">Companies</span>           
         </a>
-        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="programsList">
+        <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="companiesList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#my-companies"><span class="icon-entypo-suitcase"></span> My Companies</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/new"><span class="icon-entypo-plus"></span> Add new Company</a></li>

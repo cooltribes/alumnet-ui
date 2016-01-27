@@ -1,4 +1,5 @@
-<div class="groupCardManage">
+<div class="col-md-12 col-sm-6 col-xs-12 margin_bottom_xsmall">
+	<div class="groupCardManage">
 	<div class="clearfix">
 		<!-- COVER ON -->
 		<div class="groupCardManage__cover overhidden" style="background: url('<%= @group.cover.card %>') no-repeat top center; background-size:cover; " >
@@ -96,6 +97,7 @@
 			<% end %>
 		</div>
 		<!-- ACTIONS ON -->
+	</div>
 	</div>
 </div>
 <!-- Please place the next script to the apropiate folder -->

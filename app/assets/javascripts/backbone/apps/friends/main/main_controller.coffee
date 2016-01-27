@@ -26,6 +26,7 @@
           data: querySearch
 
     showFriends: ->
+      AlumNet.navigate("alumni/friends")
       friendsCollection = AlumNet.request('current_user:friendships:friends')
       friendsCollection.page = 1
       friendsCollection.url = AlumNet.api_endpoint + '/me/friendships/friends'
@@ -57,6 +58,7 @@
       @layoutAlumni.users_region.show(friendsView)
 
     showMyReceived: ->
+      AlumNet.navigate("alumni/received")
       friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
@@ -81,6 +83,7 @@
       @layoutAlumni.users_region.show(requestsView)
 
     showMySent: ->
+      AlumNet.navigate("alumni/sent")
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
@@ -95,6 +98,7 @@
       @layoutAlumni.users_region.show(requestsView)
 
     showApproval: ->
+      AlumNet.navigate("alumni/approval")
       current_user = AlumNet.current_user
       requestsCollection = AlumNet.request('current_user:approval:received')
       approvalView = new AlumNet.FriendsApp.Approval.RequestsView
@@ -128,6 +132,7 @@
       @layoutAlumni.users_region.show(approvalView)
 
     findUsers: ->
+      AlumNet.navigate("alumni/discover")
       controller = @
       controller.querySearch = {}
       users = AlumNet.request('user:entities', {})

@@ -223,7 +223,7 @@
                   AlumNet.request 'get:current_user',
                     refresh: true
                     success: ->
-                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+                      #AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
 
           view.on "submit:born", ()->
@@ -270,7 +270,7 @@
                   AlumNet.request 'get:current_user',
                     refresh: true
                     success: ->
-                      AlumNet.execute('render:users:submenu', undefined, {reset: true})
+                      #AlumNet.execute('render:users:submenu', undefined, {reset: true})
 
         when 5  #Experiences
           view.on "childview:save:experience", (childview)->

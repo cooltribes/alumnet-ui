@@ -77,7 +77,7 @@
               model: post
 
             AlumNet.mainRegion.show(postView)
-            AlumNet.execute('render:groups:submenu')
+            #AlumNet.execute('render:groups:submenu')
             #AlumNet.execute('render:users:submenu')
           error: (model, response)->
             AlumNet.trigger('show:error', response.status)
