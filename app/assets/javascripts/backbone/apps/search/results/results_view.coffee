@@ -6,6 +6,7 @@
 
     regions:
       results: '#results-region'
+      filters: '#filters-region'
 
     events:
       "click .js-typefilter": "filter_type"
@@ -59,9 +60,12 @@
 
     initialize: (options)->
       @message = options.message
+      @for_filters = options.for_filters
 
     templateHelpers: ->
       message: @message   
+      for_filters: @for_filters
+      
       
   class Results.ResultsListView extends Marionette.CompositeView
     template: 'search/results/templates/results_list'
@@ -71,3 +75,4 @@
     emptyView: Results.EmptyView
     emptyViewOptions: ->
       message: "There are no results for your search"
+      for_filters: false

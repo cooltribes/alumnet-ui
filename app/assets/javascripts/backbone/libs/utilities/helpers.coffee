@@ -109,24 +109,28 @@
     
     url = ""
     page = "posts"
-    location = model.get('_index')
+    location = model.get('_type')
     id = model.get("_id")
     
     switch location
-      when "profiles"
+      when "profile"
         location = "users"
 
-      when "tasks"
+      when "task"
         location = "business-exchange"
         page = ""                
       
-      when "companies"
+      when "companie"
         page = "about"                      
       
+      when "event", "group"
+        location = location + "s"
+
       when null
         page = null     
       
       else
+
 
 
     if page == null

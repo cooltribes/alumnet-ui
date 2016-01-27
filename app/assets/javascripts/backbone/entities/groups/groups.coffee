@@ -93,8 +93,8 @@
         required: true
         maxLength: 250
         msg: "The short description must be less than 250 characters long."
-      cover:
-        required: true
+      # cover:
+      #   required: true
       join_process:
         required: true
       # description:

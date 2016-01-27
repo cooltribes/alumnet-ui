@@ -3,6 +3,7 @@
     showMainGroups: (optionMenu)->
       @selectedMenu = optionMenu
       @layoutGroups = new Main.GroupsView
+        option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
       @showMenuUrl(optionMenu)
       @showSuggestionsGroups()

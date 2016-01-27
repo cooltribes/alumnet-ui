@@ -77,15 +77,13 @@
       
       moment(@source.start_date).format('DD/MM/YYYY') + ", " + @source.start_hour
 
-
-
   
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
-    search_term: ""
+    search_term: ""    
     type: "all"
     url: ->
-      AlumNet.api_endpoint + '/search?term=' + @search_term
+      AlumNet.api_endpoint + '/search'
 
     initialize: (models, options)->      
       @changeSearchTerm(options.search_term)
@@ -93,11 +91,20 @@
     changeSearchTerm: (search_term)->
       @search_term = search_term
 
-    filter_type: (type)->
+    search: (type)->
+      
       @type = type
 
       @fetch(
         data: 
+          term: @search_term
           type: @type
       )
 
+    
+    search_by_filters: (query)->
+      @fetch(
+        data: JSON.stringify(query)
+        type: "POST"           
+        contentType: "application/json"  
+      )       

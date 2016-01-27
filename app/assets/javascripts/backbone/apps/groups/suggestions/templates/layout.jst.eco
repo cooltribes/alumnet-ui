@@ -1,4 +1,4 @@
-<div class="suggestions__content suggestionsGroups">
+<div class="suggestions__content margin_top_small">
 	<div class="suggestions__content--user userCardSuggestions">
 		<div class="groups-container">
 		</div>

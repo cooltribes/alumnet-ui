@@ -5,7 +5,7 @@
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="All Alumni" data-menu="groupsDiscover">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="All Alumni" data-menu="groupsDiscover">
 						<i class="glyphicon glyphicon-search"></i>
 						<span class="submenu__item__link--text"> Discover Groups </span>
 					</a>
@@ -13,14 +13,14 @@
 
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link" id="js-groups" data-menu="myGroups">
+					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="myGroups">
 						<i class="ico-alumnet-nav_groups"></i>
 						<span class="submenu__item__link--text"> My Groups </span>
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link" id="js-manage" data-menu="groupsManage">
+					<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link<%= @classOf(2)%>" id="js-manage" data-menu="groupsManage">
 						<i class="icon-entypo-layout"></i>
 						<span class="submenu__item__link--text"> Manage Groups </span>	
 					</a>

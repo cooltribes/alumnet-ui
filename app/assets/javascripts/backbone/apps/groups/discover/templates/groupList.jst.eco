@@ -72,7 +72,7 @@
 <td class="hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Alumni in Group"> 
   <div class="groupTableView__colText"><%= @membership_users.length %> </div>
 </td>
-<td class=" hidden-xs groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
+<td class=" hidden-xs hidden-md groupTableView__col" data-toggle="tooltip" data-placement="top" title="Friends">
   <% aux = 0 %>
     <% for friends in @friends_in: %>  
       <img class="margin_left_small_minus img-circle" src="<%= friends.avatar.avatar.small.url %>" width="20px" height="20px">

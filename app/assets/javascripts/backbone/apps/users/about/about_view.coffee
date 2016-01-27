@@ -138,10 +138,10 @@
       return userNameReg.test(username)
 
     events:
-      'click #js-contact-type': 'contactClicked'
+      'change #js-contact-type': 'contactClicked'
 
     contactClicked: (e)->
-
+    
       value = $("#js-contact-type").val()
       elementContacType = this.$("[name=contact_type]")
       group = elementContacType.closest('.form-group')

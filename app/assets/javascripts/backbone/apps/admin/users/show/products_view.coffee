@@ -32,6 +32,7 @@
         format: 'd/m/Y'
         show_icon: false
         show_select_today: false
+        direction: true
         onSelect: (date, standarDate, jsDate, input)->
           model.set({end_date: jsDate, user_id: model.get('user').id})
           model.save
