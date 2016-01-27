@@ -4,6 +4,7 @@
     showMainAlumni: (optionMenu)->
       @layoutAlumni = new Main.FriendsView
         model: AlumNet.current_user
+        option: optionMenu
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
       @showSuggestions()
