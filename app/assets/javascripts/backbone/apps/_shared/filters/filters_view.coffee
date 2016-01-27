@@ -169,10 +169,16 @@
             "birth_country_id": countries_ids
         ]
       
-
+      term = @results_collection.search_term
+      fields_for_search =  ["name"]
+      
       query =         
         query:
           filtered:
+            query:
+              multi_match:
+                query: term
+                fields: fields_for_search
             filter:
               bool:
                 should: locationTerms
