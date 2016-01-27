@@ -31,13 +31,21 @@
           container: 'body'
           html: true
           placement: 'bottom'
-          trigger: 'hover'
-          template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+          trigger: 'manual'
+          template: '<div id="previewPopoverWindow" class="popover previewPopover" onmouseover="$(this).mouseleave(function() {$(this).hide(); });" role="tooltip"><div style="width: 100%"><div class="arrow" style="display:initial"></div></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           delay: { "show": 100, "hide": 200 }
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
           animation: false
-          
+        .mouseenter (e)->
+          $(this).popover 'show'
+        .mouseleave (e)->
+          console.log 'salió'
+          console.log e
+          console.log e.toElement.className
+          if e.toElement.className != "arrow"
+            $(this).popover 'hide'
+       
       view = @
       @ui.commentText.editable
         type: 'textarea'
