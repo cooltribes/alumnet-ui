@@ -76,6 +76,7 @@
           layout.views.sent_request_view.collection.fetch()
           $("#sent").show()
           $("#approved").show()
+          $("#js-hr-requests").show()
     
     suggestedProfiles: ->
       layout = @
@@ -107,6 +108,8 @@
           layout.views.sent_request_view.collection.fetch()
           $("#sent").show()
           $("#approved").show()
+          $("#js-hr-requests").show()
+
 
    
   class Main.SentRequestUserView extends Marionette.ItemView
@@ -148,6 +151,7 @@
         console.log countSentRequest
         if countSentRequest > 0
           $("#sent").show()
+          $("#js-hr-requests").show()
           
   class Main.ApprovedRequest extends Marionette.CompositeView
     template: 'registration/approval_process/templates/approved_request'
@@ -197,6 +201,7 @@
         countSentRequest = users.length
         if countSentRequest > 0
           $("#approved").show()
+          $("#js-hr-requests").show()
  
   class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
