@@ -131,29 +131,6 @@
         membership.on 'destroy:success', ->
           console.log "Destroy Ok"
 
-    showcreateGroup: ->
-      AlumNet.navigate("groups/new")
-      current_user = AlumNet.current_user
-      group = AlumNet.request("group:new")
-      createForm = new AlumNet.GroupsApp.Create.GroupForm
-        model: group
-        user: current_user
-
-      @layoutGroups.groups_region.show(createForm)
-      createForm.on "form:submit", (model, data)->
-        if model.isValid(true)
-          options_for_save =
-            wait: true
-            contentType: false
-            processData: false
-            data: data
-            success: (model, response, options)->
-              createForm.picture_ids = []
-              AlumNet.trigger "groups:invite", model.id
-            error: (model, response, options)->
-              $.growl.error({ message: response.responseJSON.message })
-          model.save(data, options_for_save)
-
     showManageGroups:->
       AlumNet.navigate("groups/manage")
       current_user = AlumNet.current_user
@@ -176,8 +153,6 @@
           self.showMyGroups()
         when "groupsManage"
           self.showManageGroups()
-        when "newGroup"
-          self.showcreateGroup()
       @showSuggestionsGroups(optionMenu)
       
 

@@ -31,8 +31,8 @@
       controller.showMainGroups("groupsDiscover")
     createGroup: ->
       AlumNet.setTitle('Create groups')
-      controller = new GroupsApp.Main.Controller
-      controller.showMainGroups("newGroup")
+      controller = new GroupsApp.Create.Controller
+      controller.createGroup()
     postGroup: (group_id, id)->
       controller = new GroupsApp.Posts.Controller
       controller.showPost(group_id, id)

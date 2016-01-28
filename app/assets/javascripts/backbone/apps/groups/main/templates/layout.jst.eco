@@ -26,8 +26,8 @@
 					</a>
 				</li>
 	
-				<li role="presentation" class="submenu__item" id="countReceived">
-					<a href="#"  class="submenu__item__link optionMenuLeft submenu__item__link" title="Create Groups" data-menu="newGroup">
+				<li role="presentation" class="submenu__item">
+					<a href="#groups/new" class="submenu__item__link submenu__item__link" title="Create Groups">
 						<i class="icon-entypo-plus"></i>
 						<span class="submenu__item__link--text"> Create Group </span>
 					</a>
