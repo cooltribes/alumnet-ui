@@ -6,7 +6,7 @@
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
       @showMenuUrl(optionMenu)
-      @showSuggestionsGroups()
+      @showSuggestionsGroups(optionMenu)
       current_user = AlumNet.current_user
       self = @
       @layoutGroups.on "navigate:menu:groups", (valueClick)-> 
@@ -28,8 +28,15 @@
         #   searchedGroups = AlumNet.request("membership:groups", current_user.id, querySearch)
 
 
-    showSuggestionsGroups: ->
+    showSuggestionsGroups: (optionMenu) ->
+      model = new Backbone.Model
+      if optionMenu != "groupsDiscover"
+        model.set "showDiscover", true
+      else 
+        model.set "showDiscover", false
+
       suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
+        model: model
       collection = new AlumNet.Entities.SuggestedGroupsCollection
       collection.fetch
         success: (collection)->
@@ -171,6 +178,8 @@
           self.showManageGroups()
         when "newGroup"
           self.showcreateGroup()
+      @showSuggestionsGroups(optionMenu)
+      
 
     
         

@@ -7,7 +7,7 @@
         option: optionMenu
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
-      @showSuggestions()
+      @showSuggestions(optionMenu)
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->
         self.showMenuUrl(valueClick)
@@ -173,13 +173,20 @@
 
       @layoutAlumni.users_region.show(usersView)
 
-    showSuggestions:->
+    showSuggestions:(optionMenu)->
       collection = new AlumNet.Entities.SuggestedUsersCollection
       collection.fetch
         data: { limit: 10 }
 
+      model = new Backbone.Model
+      if optionMenu != "friendsDiscover"
+        model.set "showDiscover", true
+      else 
+        model.set "showDiscover", false
+
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
         collection: collection
+        model: model
 
       @layoutAlumni.filters_region.show(suggestions)
 
@@ -205,5 +212,6 @@
         when "friendsReceived"
           AlumNet.setTitle('Friendships Received')
           self.showMyReceived()
+      @showSuggestions(optionMenu)
 
 

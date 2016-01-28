@@ -7,7 +7,11 @@
 <div class="col-md-12 no-padding margin_top margin_bottom">
 	<div class="col-md-6 buttonSuggestionsPadding--left text-left">
 		<div class="buttonSuggestions">
-			<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
+			<% if @showDiscover: %>
+				<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
+			<% else: %>
+				<a class="btn btn-primary btn-lg" href="#groups/my_groups">SEARCH AMONG YOUR GROUPS</a>
+			<% end %>
 		</div>
 	</div>
 	<div class="col-md-6 buttonSuggestionsPadding--right text-right">
