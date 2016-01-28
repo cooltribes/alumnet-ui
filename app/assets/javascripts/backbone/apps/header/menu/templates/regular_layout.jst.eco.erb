@@ -343,12 +343,23 @@
             </span>
           </a>
         <%% else: %>
+         <%% if @member==3: %>
           <a href="" class="navTopBar__right__item--membershipWrapper member " title="<%%= @memberTitle()%>">
-          <span class=" navTopBar__right__item--member">
+          <span class=" navTopBar__right__item--memberlifetime">
           <span class="glyphicon glyphicon-certificate"></span>
+          <span class="glyphicon glyphicon-certificate big"></span>
+          <span class="glyphicon glyphicon-certificate "></span>
           <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
           </span>
           </a>
+           <%% else: %>
+            <a href="" class="navTopBar__right__item--membershipWrapper member " title="<%%= @memberTitle()%>">
+            <span class=" navTopBar__right__item--member">
+            <span class="glyphicon glyphicon-certificate"></span>
+            <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
+            </span>
+            </a>
+          <%% end %>
         <%% end %>
       <%% end %>
       </li>
