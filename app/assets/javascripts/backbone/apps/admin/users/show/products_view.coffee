@@ -24,6 +24,7 @@
       productType: @getProductType()
       status: @getStatus()
       dateIsPast: @dateIsPast()
+      isLifetime: @isLifetime()
 
     onRender: ->
       #Datepickers
@@ -60,6 +61,12 @@
           return false
       else
         return false
+
+    isLifetime: ->
+      if @model.get('end_date')
+        return false
+      else
+        return true
 
     getProductType: ->
       if @model.get('product').feature == 'subscription'
