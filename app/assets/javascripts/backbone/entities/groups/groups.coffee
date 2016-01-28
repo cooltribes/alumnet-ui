@@ -32,14 +32,14 @@
         false
 
     canDo: (permission) ->
-      permissions = @get('permissions')
+      permissions = @get('membership').permissions
       if permissions and permissions[permission] > 0
         true
       else
         false
 
     userCanInvite: ->
-      status = @get('membership_status')
+      status = @get('membership').membership_status
       if status == "approved"
         join_process = @get('join_process')
         admin = @get('admin')
