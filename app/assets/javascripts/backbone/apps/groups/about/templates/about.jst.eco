@@ -22,7 +22,7 @@
             <% for admin in @admins: %>
               <div class="col-md-3 text-center overfloadText boxUser">
                 <img src="<%= admin.avatar_medium %>" alt="<%= admin.name %>" class="img-circle" title="<%= admin.name %>"><br>
-                <a href="#users/<%= admin.id %>/posts"><%=  admin.name %></a>
+                <a href="#users/<%= admin.id %>/posts"><%= admin.name %></a>
               </div>
             <% end %>
           </div>
@@ -54,7 +54,7 @@
             <% for member in @other_members: %>
               <div class="col-md-3 text-center overfloadText boxUser">
                 <img src="<%= member.avatar_medium %>" alt="<%= member.name %>" class="img-circle" title="<%= member.name %>"><br>
-                <a href="#users/<%= member.id %>/posts"><%=  member.name %></a>
+                <a href="#users/<%= member.id %>/posts"><%= member.name %></a>
               </div>
             <% end %>
           </div>
