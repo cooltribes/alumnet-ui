@@ -91,8 +91,7 @@
     changeSearchTerm: (search_term)->
       @search_term = search_term
 
-    search: (type)->
-      
+    search: (type)->      
       @type = type
 
       @fetch(
