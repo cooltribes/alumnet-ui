@@ -10,6 +10,8 @@
       'click .optionMenuLeft': 'goOptionMenuLeft'
       'click .optionMenuRight' : 'goOptionMenuRight'
       'click .js-search': 'performSearch'
+      'click .js-viewCard': 'viewCard'
+      'click .js-viewList': 'viewList'
 
     initialize: (options)->
       @opcionInteger(options.option)
@@ -30,6 +32,7 @@
 
     templateHelpers: ->
       @current_user = AlumNet.current_user
+
       classOf: (step) =>
         @class[step]
 
@@ -47,6 +50,7 @@
       @trigger "navigate:menuRight",valueClick
       @toggleLink(click)
 
+
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
@@ -61,3 +65,15 @@
         m: 'or'
         name_cont: searchTerm
         description_cont: searchTerm
+
+    viewCard: (e)->
+      #$("#iconList").removeClass("iconTypeGroup--active iconTypeGroup")
+      #$("#iconCards").addClass("iconTypeGroup--active")
+      @type = "cards"
+      @trigger "click:type", @type
+
+    viewList: (e)->
+      #$("#iconCards").removeClass("iconTypeGroup--active iconTypeGroup")
+      #$("#iconList").addClass("iconTypeGroup--active")
+      @type = "list"
+      @trigger "click:type", @type

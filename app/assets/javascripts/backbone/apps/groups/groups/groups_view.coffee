@@ -35,3 +35,6 @@
     childView: Groups.GroupView
     childViewContainer: ".groups-container"
     emptyView: Groups.EmptyView
+    
+    onRender: ->
+      $("#iconsTypeGroups").addClass("hide");
