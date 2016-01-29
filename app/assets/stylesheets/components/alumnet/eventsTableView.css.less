@@ -261,21 +261,35 @@ DESCRIPTION: CSS for styling a list of events
 @media (min-width: @media-smallweb) {
 
 .eventsTableView{
-
   &__isAdmin{
-
     font-size: 14px;
   }
   &__isAdminCancel{
 
     font-size: 14px;
   }
-
 }
 
 }
 @media (min-width: @media-smedium-min) {
   .eventsTableView{
     padding-bottom:0px;
+    &__isAdmin{
+      font-size: 12px;
+    }
+    &__isAdminCancel{
+      font-size: 12px;
+    }
+  }
+}
+@media (min-width: @media-large-min) {
+  .eventsTableView{
+    padding-bottom:0px;
+    &__isAdmin{
+      font-size: 14px;
+    }
+    &__isAdminCancel{
+      font-size: 14px;
+    }
   }
 }
