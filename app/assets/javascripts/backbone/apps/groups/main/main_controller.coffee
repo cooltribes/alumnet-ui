@@ -1,17 +1,20 @@
 @AlumNet.module 'GroupsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
     showMainGroups: (optionMenu)->
-      @selectedMenu = optionMenu
       @layoutGroups = new Main.GroupsView
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
       @showMenuUrl(optionMenu)
-      @showSuggestionsGroups()
+      @showSuggestionsGroups(optionMenu)
       current_user = AlumNet.current_user
       self = @
+
+      @layoutGroups.on "click:type", (typeGroups)->
+        self.showDiscoverGroups(typeGroups)
+
       @layoutGroups.on "navigate:menu:groups", (valueClick)-> 
-        self.selectedMenu = valueClick 
         self.showMenuUrl(valueClick)
+
       @layoutGroups.on "navigate:menuRight", (valueClick)->
         switch valueClick
           when "suggestions"
@@ -20,16 +23,18 @@
           #   self.showFilters()
 
       @layoutGroups.on 'groups:search', (querySearch)->
-        # if self.selectedMenu == "groupsDiscover"
           self.querySearch = querySearch
           searchedGroups = AlumNet.request("group:entities", querySearch)
-        # else if self.selectedMenu == "myGroups"
-        #   self.querySearch = querySearch
-        #   searchedGroups = AlumNet.request("membership:groups", current_user.id, querySearch)
 
+    showSuggestionsGroups: (optionMenu) ->
+      model = new Backbone.Model
+      if optionMenu != "groupsDiscover"
+        model.set "showDiscover", true
+      else 
+        model.set "showDiscover", false
 
-    showSuggestionsGroups: ->
       suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
+        model: model
       collection = new AlumNet.Entities.SuggestedGroupsCollection
       collection.fetch
         success: (collection)->
@@ -45,7 +50,10 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
-          if group.isClose()  
+          console.log "funcion"
+          console.log group.isClose()
+          if group.isClose() 
+            console.log "entro close"
             AlumNet.trigger "groups:about", group.get('id')
           else  
             AlumNet.trigger "groups:posts", group.get('id')
@@ -53,12 +61,12 @@
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-    showDiscoverGroups: ->
+    showDiscoverGroups: (type) ->
       AlumNet.navigate("groups/discover")
       controller = @
       controller.querySearch = {}
       groups = AlumNet.request("group:entities", {})
-      groupsView = @getContainerView(groups)
+      groupsView = @getContainerView(groups, type)
 
       @layoutGroups.groups_region.show(groupsView)
 
@@ -107,9 +115,10 @@
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-    getContainerView: (groups) ->
+    getContainerView: (groups, type) ->
       new AlumNet.GroupsApp.Discover.GroupsView
         collection: groups
+        typeGroup: type
 
     showMyGroups: ->
       AlumNet.navigate("groups/my_groups")
@@ -123,29 +132,6 @@
         membership = AlumNet.request("membership:destroy", childView.model)
         membership.on 'destroy:success', ->
           console.log "Destroy Ok"
-
-    showcreateGroup: ->
-      AlumNet.navigate("groups/new")
-      current_user = AlumNet.current_user
-      group = AlumNet.request("group:new")
-      createForm = new AlumNet.GroupsApp.Create.GroupForm
-        model: group
-        user: current_user
-
-      @layoutGroups.groups_region.show(createForm)
-      createForm.on "form:submit", (model, data)->
-        if model.isValid(true)
-          options_for_save =
-            wait: true
-            contentType: false
-            processData: false
-            data: data
-            success: (model, response, options)->
-              createForm.picture_ids = []
-              AlumNet.trigger "groups:invite", model.id
-            error: (model, response, options)->
-              $.growl.error({ message: response.responseJSON.message })
-          model.save(data, options_for_save)
 
     showManageGroups:->
       AlumNet.navigate("groups/manage")
@@ -164,13 +150,13 @@
       self = @
       switch optionMenu
         when "groupsDiscover"
-          self.showDiscoverGroups()
+          self.showDiscoverGroups("cards")
         when "myGroups"
           self.showMyGroups()
         when "groupsManage"
           self.showManageGroups()
-        when "newGroup"
-          self.showcreateGroup()
+      @showSuggestionsGroups(optionMenu)
+      
 
     
         

@@ -86,7 +86,7 @@
     initialize: (options) ->
       console.log options
       # Initialize the type of grid to use (cards or list)
-      @type = "cards"
+      @type = options.typeGroup
       view = @
       @collection.on 'fetch:success', ->
         view.official = @where({official: true})
@@ -97,6 +97,7 @@
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreGroups')      
       $(window).scroll(@loadMoreGroups)
+      $("#iconsTypeGroups").removeClass("hide");
 
     remove: ->
       $(window).unbind('scroll')
@@ -108,10 +109,6 @@
       @collection.page = 1
       $(window).unbind('scroll') 
 
-    events:
-      'click .js-viewCard': 'viewCard'
-      'click .js-viewList': 'viewList'
-      
     ui:
       'loading': '.throbber-loader'
 
@@ -130,15 +127,3 @@
     loadMoreGroups: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'group:reload'
-
-    viewCard: (e)->
-      $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
-      $(e.currentTarget).siblings().removeClass("searchBar__renderOptions__iconActive")
-      @type = "cards"
-      @render()
-
-    viewList: (e)->
-      $(e.currentTarget).addClass("searchBar__renderOptions__iconActive")
-      $(e.currentTarget).siblings().removeClass("searchBar__renderOptions__iconActive")
-      @type = "list"
-      @render()
