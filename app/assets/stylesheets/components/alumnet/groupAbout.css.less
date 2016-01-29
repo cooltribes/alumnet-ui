@@ -64,10 +64,28 @@ DESCRIPTION: shared styles among group applications
 }
 
 .iconTypeGroup{
- 	font-size: 35px;
- 	color: @blue;
- 
- 	&:hover{
+	float: right;
+	list-style: none;
+
+	span{
+		font-size: 25px;
  		color: @black;
- 	}
+ 		float: right;
+ 		&:hover{
+ 			color: @blue;
+ 		}
+	}
+
+	/*&--active{
+		float: right;
+		list-style: none;
+		span{
+			font-size: 25px;
+ 			float: right;
+			color: @blue;
+			&:hover{
+ 				color: @black;
+ 			}	
+		}
+	}*/
 }

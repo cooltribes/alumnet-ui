@@ -1,7 +1,6 @@
 @AlumNet.module 'GroupsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
     showMainGroups: (optionMenu)->
-      @selectedMenu = optionMenu
       @layoutGroups = new Main.GroupsView
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
@@ -9,9 +8,13 @@
       @showSuggestionsGroups(optionMenu)
       current_user = AlumNet.current_user
       self = @
+
+      @layoutGroups.on "click:type", (typeGroups)->
+        self.showDiscoverGroups(typeGroups)
+
       @layoutGroups.on "navigate:menu:groups", (valueClick)-> 
-        self.selectedMenu = valueClick 
         self.showMenuUrl(valueClick)
+
       @layoutGroups.on "navigate:menuRight", (valueClick)->
         switch valueClick
           when "suggestions"
@@ -20,13 +23,8 @@
           #   self.showFilters()
 
       @layoutGroups.on 'groups:search', (querySearch)->
-        # if self.selectedMenu == "groupsDiscover"
           self.querySearch = querySearch
           searchedGroups = AlumNet.request("group:entities", querySearch)
-        # else if self.selectedMenu == "myGroups"
-        #   self.querySearch = querySearch
-        #   searchedGroups = AlumNet.request("membership:groups", current_user.id, querySearch)
-
 
     showSuggestionsGroups: (optionMenu) ->
       model = new Backbone.Model
@@ -52,6 +50,8 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
+          console.log response 
+          console.log options
           if group.isClose()  
             AlumNet.trigger "groups:about", group.get('id')
           else  
@@ -60,12 +60,12 @@
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-    showDiscoverGroups: ->
+    showDiscoverGroups: (type) ->
       AlumNet.navigate("groups/discover")
       controller = @
       controller.querySearch = {}
       groups = AlumNet.request("group:entities", {})
-      groupsView = @getContainerView(groups)
+      groupsView = @getContainerView(groups, type)
 
       @layoutGroups.groups_region.show(groupsView)
 
@@ -114,9 +114,10 @@
         request.on 'save:error', (response, options)->
           console.log response.responseJSON
 
-    getContainerView: (groups) ->
+    getContainerView: (groups, type) ->
       new AlumNet.GroupsApp.Discover.GroupsView
         collection: groups
+        typeGroup: type
 
     showMyGroups: ->
       AlumNet.navigate("groups/my_groups")
@@ -148,7 +149,7 @@
       self = @
       switch optionMenu
         when "groupsDiscover"
-          self.showDiscoverGroups()
+          self.showDiscoverGroups("cards")
         when "myGroups"
           self.showMyGroups()
         when "groupsManage"

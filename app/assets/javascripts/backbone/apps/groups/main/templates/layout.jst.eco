@@ -34,6 +34,20 @@
 				</li>	
 
 			</ul>
+			
+			<ul class="text-right" id="iconsTypeGroups">
+				<li role="presentation" class="iconTypeGroup" id="iconCards">
+					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-menu="cards">
+						<span class="glyphicon glyphicon-th-large padding_left_xsmall"></span>
+					</a>
+				</li>
+				<li role="presentation" class="iconTypeGroup" id="iconList">
+					<a class="searchBar__ViewList js-viewList" title="View results in list" data-menu="list">
+						<span class="glyphicon glyphicon-align-justify"></span>
+					</a>
+				</li>
+			</ul>
+		
 		</div>
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
 			<ul class="submenu" id="filter-link-container">
