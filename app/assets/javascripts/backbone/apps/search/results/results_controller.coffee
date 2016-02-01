@@ -44,7 +44,7 @@
     
 
     _getFiltersView: ->
-      view = new AlumNet.Shared.Views.Filters.Layout   
+      view = new AlumNet.Shared.Views.Filters.General   
         results_collection: @results_collection     
     
     _getEmptyFiltersView: ->    

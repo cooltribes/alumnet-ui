@@ -6,6 +6,7 @@
       name: ""
       type: null
       id: null
+      value: ""
        
   
   class Entities.SearchFiltersCollection extends Backbone.Collection
