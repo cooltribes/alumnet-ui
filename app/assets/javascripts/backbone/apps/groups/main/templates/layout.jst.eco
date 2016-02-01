@@ -35,7 +35,7 @@
 
 			</ul>
 			
-			<ul class="text-right" id="iconsTypeGroups">
+			<ul class="text-right visible-md visible-lg" id="iconsTypeGroups">
 				<li role="presentation" class="iconTypeGroup" id="iconCards">
 					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-menu="cards">
 						<span class="glyphicon glyphicon-th-large padding_left_xsmall"></span>
