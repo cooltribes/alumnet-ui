@@ -41,6 +41,7 @@
           ['para', ['ul', 'ol']]
         ]
       $('#task-description').summernote(summernote_options)
+      $('#task-description').summernote('code', @model.get('formatted_description'))
 
     onRender: ->
       @ui.datePickerDeadline.Zebra_DatePicker
