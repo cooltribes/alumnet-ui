@@ -366,6 +366,10 @@
       query =         
         query:
           filtered:
+            query:
+              multi_match:
+                query: @results_collection.search_term
+                fields: ["name", "email"]
             filter:
               bool:
                 must: @child_queries                
