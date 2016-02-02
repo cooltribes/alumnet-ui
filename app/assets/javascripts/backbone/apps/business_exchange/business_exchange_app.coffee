@@ -3,6 +3,8 @@
     appRoutes:
       "business-exchange": "discoverBusinessExchange"
       "business-exchange/view-:view": "discoverBusinessExchange"
+      "business-exchange/profiles": "profileBusinessExchange"
+      "business-exchange/view-:view": "discoverBusinessExchange"
       "business-exchange/home": "homeBusinessExchange"
       "business-exchange/your-tasks": "yourTasksBusinessExchange"
       "business-exchange/applied": "appliedBusinessExchange"
@@ -23,8 +25,8 @@
       controller.discover(view)
     yourTasksBusinessExchange: ->
       AlumNet.setTitle('Your Tasks')
-      controller = new BusinessExchangeApp.YourTasks.Controller
-      controller.your_tasks()
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("yourTasks")
     appliedBusinessExchange: ->
       AlumNet.setTitle('Applied Tasks')
       controller = new BusinessExchangeApp.Applied.Controller
@@ -52,6 +54,13 @@
       AlumNet.setTitle('Task')
       controller = new BusinessExchangeApp.Show.Controller
       controller.show(id)
+    todosBusinessExchange: ()->
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange()
+    profileBusinessExchange: ()->
+      AlumNet.setTitle('Business Exchange Profiles')
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("businessProfiles")
 
   AlumNet.on "program:business:my", ->
     AlumNet.navigate("business-exchange/your-tasks")
