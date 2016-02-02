@@ -220,6 +220,8 @@ DESCRIPTION: Top navigation bar with menus
                 z-index: 3000; 
                 font-weight:bold; 
                 font-size:15px;
+                margin-left: 1px;
+                width: 178px;
                 &:hover{
                     background-color: darken(@orange, 10%)
                 }
@@ -272,6 +274,30 @@ DESCRIPTION: Top navigation bar with menus
                 span{
                     top:3px;
                 }    
+            }
+
+            &--memberlifetime{
+              background-color: @main-blue;
+              border-radius: 50px;
+              color: #ffffff;                
+              font-size: 13px;
+              margin-top: -6px;
+              height: 45px;
+              line-height: 1em;                
+              display: inline-block;
+              padding: 3px 2px 2px 12px;
+              &:hover{
+                  background-color: darken(@main-blue, 10%)
+              }
+
+              .big{
+                top:4px;
+                font-size: 16px;
+              }
+              span{
+                  top:3px;
+                  font-size: 11px;
+              }    
             }
 
             &--membershipWrappe{
@@ -578,6 +604,9 @@ DESCRIPTION: Top navigation bar with menus
 .member{
   line-height: 1.5;
 }
+.renewMembership{
+  line-height: 1.2;
+}
 
 .groupsSize{
   font-size: 20px;
@@ -834,6 +863,14 @@ DESCRIPTION: Top navigation bar with menus
 
 /*1360px*/
 @media (min-width: @media-mlarge-max) {
+
+  .searchMenu{
+
+    input{
+      width: 141px;
+
+    }
+  }
   .leftNav{
     margin-left: -50px;
   }
@@ -849,6 +886,13 @@ DESCRIPTION: Top navigation bar with menus
 
 /*1400px*/
 @media (min-width: @media-mmlarge-min) {
+  .searchMenu{
+
+    input{
+      width: 170px;
+
+    }
+  }
   .wideBar{
     input{
       width: 210px;

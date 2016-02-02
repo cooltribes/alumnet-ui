@@ -5,7 +5,7 @@
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="All Alumni" data-menu="friendsDiscover" id="discoverAlumni">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="All Alumni" data-menu="friendsDiscover" id="discoverAlumni">
 						<i class="glyphicon glyphicon-search"></i>
 						<span class="submenu__item__link--text"><span> Discover</span><span class="submenu__item__link--text--friendships"> Alumni</span></span>		
 					</a>
@@ -13,7 +13,7 @@
 
 				<li class="submenu__item" id="countFriends">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link" id="js-myfriends" data-menu="myFriends">
+					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-myfriends" data-menu="myFriends">
 						<i class="ico-alumnet-privacy_everyone"></i>
 						<span class="submenu__item__link--text"> Friends (<span id="countFriendsShow"></span>) </span>
 					</a>
@@ -34,7 +34,7 @@
 				</li>
 
 				<li role="presentation" class="submenu__item" id="countApproval">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link" title="Approval Requests" data-menu="friendsApproval" id="js-approval">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(2)%>" title="Approval Requests" data-menu="friendsApproval" id="js-approval">
 						<i class="ico-yes"></i>
 						<span class="submenu__item__link--text"> Approval Requests (<span id="countApprovalShow"></span>)</span>		
 					</a>

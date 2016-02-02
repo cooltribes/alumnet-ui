@@ -12,7 +12,11 @@
 <div class="col-md-12 no-padding margin_top margin_bottom">
 	<div class="col-md-6 buttonSuggestionsPadding--left text-left">
 		<div class="buttonSuggestions">
-			<a class="btn btn-primary btn-lg" href="#alumni/discover">DISCOVER MORE ALUMNI</a>
+			<% if @showDiscover: %>
+				<a class="btn btn-primary btn-lg" href="#alumni/discover">DISCOVER MORE ALUMNI</a>
+			<% else: %>
+				<a class="btn btn-primary btn-lg" href="#alumni/friends">SEARCH AMONG YOUR FRIENDS</a>
+			<% end %>
 		</div>
 	</div>
 	<div class="col-md-6 buttonSuggestionsPadding--right text-right">

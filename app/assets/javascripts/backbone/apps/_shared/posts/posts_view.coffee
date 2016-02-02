@@ -31,13 +31,18 @@
           container: 'body'
           html: true
           placement: 'bottom'
-          trigger: 'hover'
-          template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-          delay: { "show": 100, "hide": 200 }
+          trigger: 'manual'
+          template: '<div id="previewPopoverWindow" class="popover previewPopover" onmouseover="$(this).mouseleave(function() {$(this).hide(); });" role="tooltip" style="margin-top:-3px;"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+          delay: { "show": 100, "hide": 100 }
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
           animation: false
-          
+        .mouseenter (e)->
+          $(this).popover 'show'
+        .mouseleave (e)->
+          if e.toElement.className != "popover previewPopover bottom in"
+            $(this).popover 'hide'
+       
       view = @
       @ui.commentText.editable
         type: 'textarea'
@@ -254,13 +259,18 @@
           container: 'body'
           html: true
           placement: 'bottom'
-          trigger: 'hover'
-          delay: { "show": 100, "hide": 200 }
-          template: '<div class="popover previewPopover" role="tooltip"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+          trigger: 'manual'
+          delay: { "show": 100, "hide": 100 }
+          template: '<div id="previewPopoverWindow" class="popover previewPopover" onmouseover="$(this).mouseleave(function() {$(this).hide(); });" role="tooltip" style="margin-top:-3px;"><div class="arrow" style="display:none"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
           content: ->
             self.$("#contentPopover"+self.model.id).removeClass("hide")
           animation: false
-
+        .mouseenter (e)->
+          $(this).popover 'show'
+        .mouseleave (e)->
+          if e.toElement.className != "popover previewPopover bottom in"
+            $(this).popover 'hide'
+        
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
@@ -326,7 +336,6 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
-
 
     showShare: (e)->
       e.preventDefault()

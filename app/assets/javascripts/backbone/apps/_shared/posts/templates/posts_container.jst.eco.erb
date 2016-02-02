@@ -2,14 +2,14 @@
 	<div class="container-fluid margin_top_small">
 		<div class="row">
 			<div  class="col-md-8 col-md-offset-2">
-				<% if @userCanPost: %>
+				<%% if @userCanPost: %>
 				<div class="row" >
 					<div class="item col-md-12">
 						<div class="groupCreatePostForm clearfix">
 							<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
 								<!-- AVATAR -->
 								<div class="groupCreatePostForm__avatar">
-									<img src="<%= @current_user_avatar %>" class="img-circle">
+									<img src="<%%= @current_user_avatar %>" class="img-circle">
 								</div>
 								<!-- AVATAR OFF-->
 							</div>
@@ -36,7 +36,9 @@
 										</div>
 										<!-- PREVIEW OFF-->
 										<!-- PICTURES -->
-										<div class="row" id="js-filelist"></div>
+								
+										<div class="row" id="js-filelist" ></div>
+										
 										<!-- PICTURES OFF -->
 										<div class="row">
 											<div class="col-md-8 col-xs-8 col-sm-8 paddingLink text-left">
@@ -66,10 +68,10 @@
 						</div>
 					</div>
 				</div>
-				<% end %>
+				<%% end %>
 
 				<!-- THIS IS ONLY FOR GROUPS -->
-				<% if not @userCanPost && not @userHasMembership : %>
+				<%% if not @userCanPost && not @userHasMembership : %>
 				<div class="row">
 					<div id="js-join-div" class="col-md-6 col-md-offset-3 margin_top">
 						<div class="panel panel-default text-center">
@@ -80,12 +82,14 @@
 						</div>
 					</div>
 				</div>
-				<% end %>
+				<%% end %>
 				<!-- THIS IS ONLY FOR GROUPS OFF-->
 
 				<!-- POSTS CONTAINER -->
 				<div id="timeline" class="row posts-container minHeight"></div>
-				<div class="text-center"><span class="throbber-loader"></span></div>
+				<div class="text-center">
+					<span class="throbber-loader"><%= image_tag('vendors/select2-spinner.gif') %> Loading...</span>
+				</div>
 				<!-- POSTS CONTAINER OFF -->
 			</div>
 		</div>

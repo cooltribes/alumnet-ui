@@ -17,19 +17,20 @@
       "groups/:id/banner": "bannersList"
       "groups/:id/settings": "settingsEdit"
       "groups/manage": "manageGroups"
-      "groups": "discoverGroups"
-
+      "groups/discover": "discoverGroups"
+      "groups/my_groups": "myGroups"
+    
   API =
     manageGroups: ->
-      document.title = 'AlumNet - My groups'
-      controller = new GroupsApp.Manage.Controller
-      controller.manageGroups()
+      AlumNet.setTitle('Manage groups')
+      controller = new GroupsApp.Main.Controller
+      controller.showMainGroups("groupsManage")
     discoverGroups: ->
-      document.title = 'AlumNet - Discover groups'
-      controller = new GroupsApp.Discover.Controller
-      controller.discoverGroups()
+      AlumNet.setTitle('Discover groups')
+      controller = new GroupsApp.Main.Controller
+      controller.showMainGroups("groupsDiscover")
     createGroup: ->
-      document.title = 'AlumNet - Create groups'
+      AlumNet.setTitle('Create groups')
       controller = new GroupsApp.Create.Controller
       controller.createGroup()
     postGroup: (group_id, id)->
@@ -74,6 +75,10 @@
     settingsEdit: (id)->
       controller = new GroupsApp.Settings.Controller
       controller.showSettings(id)
+    myGroups: ->
+      AlumNet.setTitle('My groups')
+      controller = new GroupsApp.Main.Controller
+      controller.showMainGroups("myGroups")
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

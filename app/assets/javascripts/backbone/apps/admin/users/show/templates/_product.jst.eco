@@ -1,7 +1,7 @@
 <td><%= @productType %></td>
 <td><%= @product.name %></td>
 <td><%= @startDate %></td>
-<td class="js-end-date"><%= @endDate %></td>
+<td <% if not @dateIsPast and not @isLifetime: %>class="js-end-date" <% end %>><%= @endDate %></td>
 <td>
 	<% if @dateIsPast: %>
 		Expired

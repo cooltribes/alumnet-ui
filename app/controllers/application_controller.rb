@@ -15,7 +15,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user
-    session[:auth_token] if session[:auth_token].present?
+    #session[:auth_token] if session[:auth_token].present?
+    unless session[:auth_token].present?
+      cookies.signed[:user_id] if cookies.signed[:user_id].present?
+    else
+      session[:auth_token]
+    end
   end
   helper_method :current_user
 

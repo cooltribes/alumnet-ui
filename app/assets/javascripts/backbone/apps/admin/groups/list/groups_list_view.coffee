@@ -82,7 +82,7 @@
 
     initialize: (options)->
       @linksGroups = options.linksGroups
-      document.title = 'AlumNet - Groups Management'
+      AlumNet.setTitle('Groups Management')
 
     templateHelpers: ->
       links: @linksGroups

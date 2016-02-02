@@ -11,14 +11,15 @@
       "alumni/approval": "friendsApproval"
       "alumni/discover": "friendsDiscover"
       "alumni/received": "friendsReceived"
+      "alumni/sent": "friendsSent"
 
   API =
     findFriends: ->
-      document.title = 'AlumNet - Discover Friends'
+      AlumNet.setTitle('Discover Friends')
       controller = new FriendsApp.Find.Controller
       controller.findUsers()
     listFriends: ->
-      document.title = 'AlumNet - My Friends'
+      AlumNet.setTitle('My Friends')
       controller = new FriendsApp.List.Controller
       controller.showFriends()
     myFriends: (layout)->
@@ -31,9 +32,10 @@
       controller = new FriendsApp.Requests.Controller
       controller.showMyReceived(layout)
     myApproval: ()->
-      document.title = 'AlumNet - Approval requests'
-      controller = new FriendsApp.Approval.Controller
-      controller.showReceived()
+      AlumNet.setTitle('Approval requests')
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsApproval")
+      #controller.showApproval()
     userFriends: (layout, id)->
       controller = new FriendsApp.List.Controller
       controller.showSomeonesFriends(layout, id)
@@ -41,11 +43,11 @@
       controller = new FriendsApp.List.Controller
       controller.showMyMutual(layout, id)
     importContacts: ->
-      document.title = 'AlumNet - Invite Friends'
+      AlumNet.setTitle('Invite Friends')
       controller = new FriendsApp.Import.Controller
       controller.importContacts()
     importNetworks: ->
-      document.title = 'AlumNet - Invite Friends'
+      AlumNet.setTitle('Invite Friends')
       controller = new FriendsApp.Import.Controller
       controller.importNetworks()
     friends: ->
@@ -58,12 +60,15 @@
       controller = new FriendsApp.Main.Controller
       controller.showMainAlumni("friendsDiscover")
     mainAlumni:->
-      document.title = 'AlumNet - Alumni'
+      AlumNet.setTitle('Alumni')
       controller = new FriendsApp.Main.Controller
       controller.showMainAlumni()
     friendsReceived: ->
       controller = new FriendsApp.Main.Controller
       controller.showMainAlumni("friendsReceived")
+    friendsSent: ->
+      controller = new FriendsApp.Main.Controller
+      controller.showMainAlumni("friendsSent")
 
   AlumNet.on "friends:received", ->
     AlumNet.navigate("friends/received")

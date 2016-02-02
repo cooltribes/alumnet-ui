@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 groupTableView__marginText group_children">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin_top_xsmall group_children">
   <% if _.size(@children) > 0: %>
   <div class="stacked stacked--356deg">
   </div>

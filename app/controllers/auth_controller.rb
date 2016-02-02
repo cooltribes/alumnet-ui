@@ -12,6 +12,9 @@ class AuthController < ApplicationController
     user_session.auth(signin_params)
     if user_session.valid?
       session[:auth_token] = user_session.user.auth_token
+      if params[:remember] == "on"
+        cookies.signed[:user_id] = { value: user_session.user.auth_token, expires: 2.weeks.from_now }
+      end
       redirect_to root_path
     else
       @email = signin_params[:email]
@@ -35,6 +38,7 @@ class AuthController < ApplicationController
 
   def sign_out
     reset_session
+    cookies.delete :user_id
     redirect_to home_path
   end
 

@@ -15,32 +15,45 @@
           ]
           
       uploader.bind 'FilesAdded',(up, files)->
-        html = ''
+        html = $( "div#js-filelist" ).html()
+        addAnotherPhoto = "
+          <div class='col-md-3 col-sm-3' id='js-another-photo'>
+            <div class='anotherPhoto'>
+              <div class='anotherPhoto__text '>
+              <a id='js-add-picture'><span><i class='fa fa-plus'></i><br>ADD ANOTHER PHOTO </span></a><br><b></b> 
+              </div>
+            </div>
+          </div>"
+  
         lengthFile = files.length 
-        
-
-        plupload.each files, (file, i)->
-          if i == lengthFile - 1
-            html = html + "<div class='col-md-3 text-center' id=#{file.id}>
-              <div class='previewImage'>
-                <span class='throbber-loader'></span><br><b></b> 
-              </div>
-            </div>"
-            view.$el.find("div#js-filelist").after("<hr>")
-          else
-            html = html + "<div class='col-md-3 text-center' id=#{file.id}>
-              <div class='previewImage'>
-                <span class='throbber-loader'></span><br><b></b> 
-              </div>
-            </div>"
+      
+        plupload.each files, (file, i)-> 
           
+          if i == lengthFile - 1
+            html = html + "<div class='col-md-3 col-sm-3 text-center' id=#{file.id}>
+              <div class='previewImage'>
+                <span> </span><br><b></b> 
+              </div>
+            </div>
+            "      
+            view.$el.find("div#js-filelist")
+          else
+            html = html + "<div class='col-md-3 col-sm-3 text-center' id=#{file.id}>
+              <div class='previewImage'>
+                <span></span><br><b></b> 
+              </div>
+            </div>"
+           
+        
         view.ui.fileList.html(html)
+
         uploader.start()
 
       uploader.bind 'fileUploaded', (up, file, response)->
         if response.status == 201
           picture = JSON.parse(response.response)
           view.picture_ids.push picture.id
+          
           view.$el.find("div##{file.id}").find('.previewImage').empty().html("<img src='#{picture.picture.main}'>")
 
       uploader.bind 'UploadProgress', (up, file) ->

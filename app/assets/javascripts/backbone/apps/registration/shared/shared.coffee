@@ -2,6 +2,9 @@
 
   class Shared.Sidebar extends Marionette.ItemView
     template: 'registration/shared/templates/sidebar'
+    
+    events:
+      'click .js-links': 'stepMenu'
 
     initialize: (options) ->
       document.title = " AlumNet - Registration"
@@ -21,6 +24,13 @@
       isVisible: !AlumNet.current_user.isExternal()
 
       registration_steps: @registration_steps
+
+    stepMenu: (e) ->
+      e.preventDefault()
+      click =  $(e.currentTarget)
+      valueStep = click.attr("data-step")
+      valueIndexStep = click.attr("data")
+      @trigger "navigate:registration", valueStep , valueIndexStep
 
 
   API =

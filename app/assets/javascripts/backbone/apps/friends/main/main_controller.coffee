@@ -4,9 +4,10 @@
     showMainAlumni: (optionMenu)->
       @layoutAlumni = new Main.FriendsView
         model: AlumNet.current_user
+        option: optionMenu
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
-      @showSuggestions()
+      @showSuggestions(optionMenu)
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->
         self.showMenuUrl(valueClick)
@@ -26,6 +27,7 @@
           data: querySearch
 
     showFriends: ->
+      AlumNet.navigate("alumni/friends")
       friendsCollection = AlumNet.request('current_user:friendships:friends')
       friendsCollection.page = 1
       friendsCollection.url = AlumNet.api_endpoint + '/me/friendships/friends'
@@ -57,6 +59,7 @@
       @layoutAlumni.users_region.show(friendsView)
 
     showMyReceived: ->
+      AlumNet.navigate("alumni/received")
       friendships = AlumNet.request('current_user:friendships:get', 'received')
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
@@ -81,6 +84,7 @@
       @layoutAlumni.users_region.show(requestsView)
 
     showMySent: ->
+      AlumNet.navigate("alumni/sent")
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
@@ -95,6 +99,7 @@
       @layoutAlumni.users_region.show(requestsView)
 
     showApproval: ->
+      AlumNet.navigate("alumni/approval")
       current_user = AlumNet.current_user
       requestsCollection = AlumNet.request('current_user:approval:received')
       approvalView = new AlumNet.FriendsApp.Approval.RequestsView
@@ -128,6 +133,7 @@
       @layoutAlumni.users_region.show(approvalView)
 
     findUsers: ->
+      AlumNet.navigate("alumni/discover")
       controller = @
       controller.querySearch = {}
       users = AlumNet.request('user:entities', {})
@@ -167,13 +173,20 @@
 
       @layoutAlumni.users_region.show(usersView)
 
-    showSuggestions:->
+    showSuggestions:(optionMenu)->
       collection = new AlumNet.Entities.SuggestedUsersCollection
       collection.fetch
         data: { limit: 10 }
 
+      model = new Backbone.Model
+      if optionMenu != "friendsDiscover"
+        model.set "showDiscover", true
+      else 
+        model.set "showDiscover", false
+
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView
         collection: collection
+        model: model
 
       @layoutAlumni.filters_region.show(suggestions)
 
@@ -185,14 +198,20 @@
       self = @
       switch optionMenu
         when "myFriends"
+          AlumNet.setTitle('My Friends')
           self.showFriends()
         when "friendsApproval"
+          AlumNet.setTitle('Approval Requests')
           self.showApproval()
         when "friendsDiscover"
+          AlumNet.setTitle('Discover Alumni')
           self.findUsers()
         when "friendsSent"
+          AlumNet.setTitle('Friendships Sent')
           self.showMySent()
         when "friendsReceived"
+          AlumNet.setTitle('Friendships Received')
           self.showMyReceived()
+      @showSuggestions(optionMenu)
 
 

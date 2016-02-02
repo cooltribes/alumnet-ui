@@ -24,6 +24,7 @@
       productType: @getProductType()
       status: @getStatus()
       dateIsPast: @dateIsPast()
+      isLifetime: @isLifetime()
 
     onRender: ->
       #Datepickers
@@ -32,6 +33,7 @@
         format: 'd/m/Y'
         show_icon: false
         show_select_today: false
+        direction: true
         onSelect: (date, standarDate, jsDate, input)->
           model.set({end_date: jsDate, user_id: model.get('user').id})
           model.save
@@ -59,6 +61,12 @@
           return false
       else
         return false
+
+    isLifetime: ->
+      if @model.get('end_date')
+        return false
+      else
+        return true
 
     getProductType: ->
       if @model.get('product').feature == 'subscription'

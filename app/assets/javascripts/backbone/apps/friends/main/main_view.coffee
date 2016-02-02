@@ -47,9 +47,28 @@
             $el.find("#countReceivedShow").html(val)
           else
             $el.hide()
-    
+
+    initialize: (options)->
+      @opcionInteger(options.option)
+      @tab = @opcionInteger(options.option)
+      @class = [
+        "", "", ""
+      ]
+      @class[parseInt(@tab)] = "--active"
+
+    opcionInteger: (optionMenu)->
+      switch optionMenu
+        when "myFriends"
+          return 1
+        when "friendsApproval"
+          return 2
+        when "friendsDiscover"
+          return 0
+
     templateHelpers: ->
       @current_user = AlumNet.current_user
+      classOf: (step) =>
+        @class[step]
     
     onRender: ->
       @stickit()
