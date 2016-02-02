@@ -332,10 +332,15 @@
       <%% else: %>
         <%% if @member==2: %>
           <a href="#premium" class="navTopBar__right__item--membershipWrapper member" title="<%%= @memberTitle()%>" style="padding-left: 60px;">
-            <span class=" navTopBar__right__item--renew">
-               Renew
-              <img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle" id="header-avatar">
-            </span>
+          <div class="row navTopBar__right__item--renew " >
+            
+            <div class=" col-md-8" >
+               <span class="renewMembership">Renew Membership</span>
+            </div>
+            <div class="col-md-4">
+              <span><img src="<%%= @avatar.medium%>" alt="<%%=@name%>" class= "img-circle " id="header-avatar"></span>
+            </div>
+          </div>
             <span class=" navTopBar__right__item--counter">
               <span><%%= @daysLeft%></span>
               <span class="upline">days</span>
