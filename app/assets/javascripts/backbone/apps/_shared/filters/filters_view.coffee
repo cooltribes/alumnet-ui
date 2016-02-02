@@ -17,8 +17,7 @@
     onRender: ->
       @stickit()        
 
-
-  class Filters.LocationContainer extends Marionette.CompositeView
+  class Filters.FilterGroup extends Marionette.CompositeView
     template: '_shared/filters/templates/locations'
     childView: Filters.Row
     childViewContainer: '#rows-region'
@@ -28,11 +27,38 @@
         getVal: ($el, event, options)->
           $el.val()
 
-    ui:
-      'selectCountries':'.js-countries'       
-
     modelEvents: 
       "change:all_selected": "changeAll"
+
+    
+    clickAll: (e)->
+      checkbox = $(e.currentTarget)
+      if !checkbox.is(":checked")
+        e.preventDefault()
+        return false
+
+    
+    changeAll: (m, v, options)->
+      if options.stickitChange #if the change was triggered by clicking checkbox
+        @collection.forEach (element, index)->
+          element.set "active", false,
+      
+        @buildQuery() 
+
+
+    checkStatus: () -> 
+      active_locations = @collection.where
+        active: true      
+      
+      # check/uncheck "All Locations"
+      @model.set("all_selected", !(active_locations.length > 0)) #If there are at least one city/country selected
+      @buildQuery(active_locations)
+        
+
+
+  class Filters.LocationContainer extends Filters.FilterGroup   
+    ui:
+      'selectCountries':'.js-countries'       
 
     events:
       "click #all_selected": "clickAll"
@@ -85,13 +111,6 @@
 
       @collection.on "checkStatus", @checkStatus, @
 
-
-    clickAll: (e)->
-      checkbox = $(e.currentTarget)
-      if !checkbox.is(":checked")
-        e.preventDefault()
-        return false
-
       
     onRender: ->
       data = CountryList.toSelect2()      
@@ -108,24 +127,7 @@
         type: if e.choice.country then "city" else "country"
 
       @collection.add location
-
-
-    changeAll: (m, v, options)->
-      if options.stickitChange #if the change was triggered by clicking checkbox
-        @collection.forEach (element, index)->
-          element.set "active", false,
-      
-        @buildQuery() 
-        
-
-    checkStatus: () -> 
-      active_locations = @collection.where
-        active: true      
-      
-      # check/uncheck "All Locations"
-      @model.set("all_selected", !(active_locations.length > 0)) #If there are at least one city/country selected
-      @buildQuery(active_locations)
-      
+  
        
     buildQuery: (active_locations = [])->
       
@@ -182,6 +184,7 @@
           results:
             data
 
+    
     formatSelect2: (data)->
       country = ""
       
@@ -356,6 +359,7 @@
     regions:
       locations: "#locations"
       personal: "#personal"
+    className: "advancedFilters"
 
     child_queries: [
       {}, {}
@@ -374,6 +378,7 @@
         type: "profile"          
         q: query                
         
+      console.log AlumNet.current_user  
 
     onRender: ->
       @locations_view = new Filters.LocationContainer
@@ -396,7 +401,5 @@
       @search()
 
 
-    search: ->      
-      console.log @querySearch
-        
+    search: ->              
       @results_collection.search_by_filters(@querySearch)
