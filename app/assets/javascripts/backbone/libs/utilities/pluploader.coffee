@@ -16,7 +16,7 @@
           
       uploader.bind 'FilesAdded',(up, files)->
         html = $( "div#js-filelist" ).html()
-        addAnotherPhoto = "<div style='display:none'></div>
+        addAnotherPhoto = "
           <div class='col-md-3 col-sm-3' id='js-another-photo'>
             <div class='anotherPhoto'>
               <div class='anotherPhoto__text '>
@@ -27,14 +27,15 @@
   
         lengthFile = files.length 
       
-        plupload.each files, (file, i)->      
+        plupload.each files, (file, i)-> 
+          
           if i == lengthFile - 1
             html = html + "<div class='col-md-3 col-sm-3 text-center' id=#{file.id}>
               <div class='previewImage'>
                 <span> </span><br><b></b> 
               </div>
             </div>
-            "        
+            "      
             view.$el.find("div#js-filelist")
           else
             html = html + "<div class='col-md-3 col-sm-3 text-center' id=#{file.id}>
@@ -42,6 +43,7 @@
                 <span></span><br><b></b> 
               </div>
             </div>"
+           
         
         view.ui.fileList.html(html)
 
@@ -49,10 +51,9 @@
 
       uploader.bind 'fileUploaded', (up, file, response)->
         if response.status == 201
-          console.log "entra 3"
-
           picture = JSON.parse(response.response)
           view.picture_ids.push picture.id
+          
           view.$el.find("div##{file.id}").find('.previewImage').empty().html("<img src='#{picture.picture.main}'>")
 
       uploader.bind 'UploadProgress', (up, file) ->
