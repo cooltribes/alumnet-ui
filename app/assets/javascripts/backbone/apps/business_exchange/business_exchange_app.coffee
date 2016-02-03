@@ -5,8 +5,8 @@
       "business-exchange/view-:view": "discoverBusinessExchange"
       "business-exchange/profiles": "profilesBusinessExchange"
       "business-exchange/view-:view": "discoverBusinessExchange"
-      "business-exchange/home": "homeBusinessExchange"
-      "business-exchange/your-tasks": "yourTasksBusinessExchange"
+      "business-exchange/tasks": "businessExchangeTasks"
+      #"business-exchange/your-tasks": "yourTasksBusinessExchange"
       "business-exchange/applied": "appliedBusinessExchange"
       "business-exchange/automatches": "automatchesBusinessExchange"
       "business-exchange/invitations": "invitationsBusinessExchange"
@@ -15,18 +15,18 @@
       "business-exchange/:id": "showBusinessExchange"
 
   API =
-    homeBusinessExchange: ->
-      AlumNet.setTitle('Business Exchange Program')
-      new BusinessExchangeApp.Home.Controller
-
+    businessExchangeTasks: ->
+      AlumNet.setTitle('Business Exchange Tasks')
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("yourTasks")
     discoverBusinessExchange: (view)->
       AlumNet.setTitle('Discover Tasks')
       controller = new BusinessExchangeApp.Discover.Controller
       controller.discover(view)
-    yourTasksBusinessExchange: ->
-      AlumNet.setTitle('Your Tasks')
-      controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange("yourTasks")
+    # yourTasksBusinessExchange: ->
+    #   AlumNet.setTitle('Your Tasks')
+    #   controller = new BusinessExchangeApp.Main.Controller
+    #   controller.showMainBusinessExchange("yourTasks")
     appliedBusinessExchange: ->
       AlumNet.setTitle('Applied Tasks')
       controller = new BusinessExchangeApp.Applied.Controller

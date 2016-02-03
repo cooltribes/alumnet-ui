@@ -17,7 +17,7 @@
       business.fetch
         url: AlumNet.api_endpoint + "/business"        
         data: 
-          limit: 3      
+          limit: 9      
 
       view = new AlumNet.BusinessExchangeApp.Profile.BusinessProfiles
         collection: business
@@ -25,14 +25,16 @@
       @layoutBusiness.cards_region.show(view) 
 
     showYourTasks: ->
-      AlumNet.navigate("business-exchange/your-tasks")
+      AlumNet.navigate("business-exchange/tasks")
       tasks = new AlumNet.Entities.BusinessExchangeCollection
       tasks.fetch
-        url: AlumNet.api_endpoint + '/business_exchanges/my'
-      myTasksView = new AlumNet.BusinessExchangeApp.YourTasks.List
+        data: 
+          limit: 9      
+
+      view = new AlumNet.BusinessExchangeApp.Home.Tasks
         collection: tasks
 
-      @layoutBusiness.cards_region.show(myTasksView)
+      @layoutBusiness.cards_region.show(view) 
 
     showMenuUrl: (optionMenu)->
       self = @
