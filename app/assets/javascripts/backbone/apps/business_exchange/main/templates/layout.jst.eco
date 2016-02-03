@@ -5,7 +5,7 @@
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="All Alumni" data-menu="businessProfiles">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Business Profiles" data-menu="businessProfiles">
 						<i class="glyphicon glyphicon-search"></i>
 						<span class="submenu__item__link--text"> Discover Business Profiles </span>
 					</a>
@@ -13,21 +13,21 @@
 
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="yourTasks">
+					<a href="#" title="Discover Tasks" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="yourTasks">
 						<i class="glyphicon glyphicon-search"></i>
 						<span class="submenu__item__link--text"> Discover Tasks </span>
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link" id="js-manage" data-menu="groupsManage">
+					<a href="#users/<%= @current_user_id %>/business-exchange" class="submenu__item__link submenu__item__link">
 						<i class="icon-entypo-plus"></i>
 						<span class="submenu__item__link--text"> Create your Business Profile </span>	
 					</a>
 				</li>
 	
 				<li role="presentation" class="submenu__item">
-					<a href="#groups/new" class="submenu__item__link submenu__item__link" title="Create Groups">
+					<a href="#business-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups">
 						<i class="icon-entypo-plus"></i>
 						<span class="submenu__item__link--text"> Create a Task </span>
 					</a>

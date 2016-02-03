@@ -1,14 +1,15 @@
 @AlumNet.module 'BusinessExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
     showMainBusinessExchange: (optionMenu)->
+      current_user = AlumNet.current_user
       @layoutBusiness = new Main.BusinessExchange
         option: optionMenu
+        current_user: current_user
       AlumNet.mainRegion.show(@layoutBusiness)
       @showMenuUrl(optionMenu)
       self = @
       @layoutBusiness.on "navigate:menu:programs", (valueClick)-> 
         self.showMenuUrl(valueClick)
-        console.log valueClick
 
     showBusinessProfile: ()->
       AlumNet.navigate("business-exchange/profiles")
@@ -40,4 +41,3 @@
           self.showBusinessProfile()
         when "yourTasks"
           self.showYourTasks()
-      

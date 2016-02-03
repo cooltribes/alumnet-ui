@@ -3,7 +3,7 @@
     appRoutes:
       "business-exchange": "discoverBusinessExchange"
       "business-exchange/view-:view": "discoverBusinessExchange"
-      "business-exchange/profiles": "profileBusinessExchange"
+      "business-exchange/profiles": "profilesBusinessExchange"
       "business-exchange/view-:view": "discoverBusinessExchange"
       "business-exchange/home": "homeBusinessExchange"
       "business-exchange/your-tasks": "yourTasksBusinessExchange"
@@ -54,10 +54,7 @@
       AlumNet.setTitle('Task')
       controller = new BusinessExchangeApp.Show.Controller
       controller.show(id)
-    todosBusinessExchange: ()->
-      controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange()
-    profileBusinessExchange: ()->
+    profilesBusinessExchange: ()->
       AlumNet.setTitle('Business Exchange Profiles')
       controller = new BusinessExchangeApp.Main.Controller
       controller.showMainBusinessExchange("businessProfiles")

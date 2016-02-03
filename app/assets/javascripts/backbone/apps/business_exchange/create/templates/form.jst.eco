@@ -1,8 +1,15 @@
-<div id="" class="ng-scope">
+<div id="" class="ng-scope marginCreate">
   <div class="container-fluid">
+    <div class="row">
+      <div class="text-left col-md-2">
+        <a href="#business-exchange/profiles" class="btn btn-lg btn-import margin_left_small paddingButton">
+          <span class="icon-char">‹</span>Go Back to Bussiness Exchange
+        </a>
+      </div>
+    </div>
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue "><%= if @is_new then "Create a new " else "Update a " %>Task</h1>
+        <h1 class="textColor--blue margin_top_small"><%= if @is_new then "Create a new " else "Update a " %>Task</h1>
         <!-- ROW 1 ON -->
         <div class="row">
           <div class="col-md-8">
