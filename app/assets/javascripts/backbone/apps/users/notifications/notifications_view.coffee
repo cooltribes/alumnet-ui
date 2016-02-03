@@ -131,6 +131,17 @@
             label: "No Email"
           ,
           ]
+      "[name=apply_job_post]": 
+        observe: "value"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Individual email"
+          ,
+            value: 1
+            label: "No Email"
+          ,
+          ]
 
     templateHelpers: ->
       model = @model
@@ -143,6 +154,7 @@
           when 'message' then 'Messages'
           when 'join_event' then 'Event invitations'
           when 'join_group_request' then 'Join your group requests'
+          when 'apply_job_post' then 'Applies to your Job Post'
 
     onRender: ->
       @stickit()
