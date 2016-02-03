@@ -29,7 +29,14 @@
     modelEvents: 
       "change:all_selected": "changeAll"
 
-    
+    events: ->
+      "click #all_selected": "clickAll"
+
+
+    onRender: ->
+      @stickit()  
+      
+       
     clickAll: (e)->
       checkbox = $(e.currentTarget)
       if !checkbox.is(":checked")
@@ -57,12 +64,13 @@
   class Filters.LocationContainer extends Filters.FilterGroup   
     template: '_shared/filters/templates/locations'    
     ui:
-      'selectCountries':'.js-countries'       
-
-    events:
-      "click #all_selected": "clickAll"
-      "select2-selecting @ui.selectCountries": "addLocationFromSelect"
-
+      'selectCountries':'.js-countries' 
+    
+    events: ->
+      events =
+        "select2-selecting @ui.selectCountries": "addLocationFromSelect"        
+      _.extend super(), events      
+    
 
     initialize: (options)->    
       @model = new Backbone.Model
@@ -112,10 +120,9 @@
 
       
     onRender: ->
-      data = CountryList.toSelect2()      
       @ui.selectCountries.select2 @optionsForSelect2()       
 
-      @stickit()  
+      super()  
 
    
     addLocationFromSelect: (e)->      
@@ -194,10 +201,7 @@
 
 
   class Filters.PersonalContainer extends Filters.FilterGroup 
-    template: '_shared/filters/templates/personal'    
-    events:
-      "click #all_selected": "clickAll"     
-
+    template: '_shared/filters/templates/personal'        
 
     initialize: (options)->          
       @model = new Backbone.Model
@@ -241,19 +245,15 @@
       @collection = new AlumNet.Entities.SearchFiltersCollection filters     
 
       @collection.on "checkStatus", @checkStatus, @
-
       
-    onRender: ->
-      @stickit()  
-      
-       
-    buildQuery: (active_locations = [])->
+    
+    buildQuery: (active_rows = [])->
       personalFilters = []
 
-      gender = _.filter active_locations, (el)->
+      gender = _.filter active_rows, (el)->
         el.get("type") == "gender"
       
-      age_ranges = _.filter active_locations, (el)->
+      age_ranges = _.filter active_rows, (el)->
         el.get("type") == "age"
       
       if gender.length == 1 #because only one gender will affect the response, both is the same as no gender filter
@@ -283,35 +283,47 @@
 
 
   class Filters.SkillsContainer extends Filters.FilterGroup
-    template: '_shared/filters/templates/skills'    
-    events:
-      "click #all_selected": "clickAll"
-
+    template: '_shared/filters/templates/skills'       
 
     initialize: (options)->    
       @model = new Backbone.Model
         all_selected: true  
 
       @collection = new AlumNet.Entities.SearchFiltersCollection
-
-      #When a new location is added, trigger the search as if it was clicked
+      
       @collection.on "add", (model) ->        
         @trigger("checkStatus")
 
       @collection.on "checkStatus", @checkStatus, @
-      collection = @collection
+      filterCollection = @collection
       @skills = new AlumNet.Entities.Skills
       @skills.url = AlumNet.api_endpoint + '/profiles/' + AlumNet.current_user.profile.id + "/skills"  
       @skills.fetch
-        success: (collection)->
-          #slice this collection
+        success: (collection)->          
+          #get only the first 4 elements
+          elements = collection.slice 0, 4
+          filterCollection.reset(elements.map (item)->
+            value: item.id
+            name: item.get("name")
+            type:"skill"
+          )
+    
 
-
-
-
-
-
+    buildQuery: (active_rows = [])->
+      skills_for_search = []
+      query = {}
       
+      if active_rows.length
+        
+        skills_for_search = active_rows.map (item)->
+          item.get "value"
+
+        query =         
+          terms:
+            my_skills: skills_for_search    
+
+      @trigger "search", query     
+
 
 
   class Filters.General extends Marionette.LayoutView
