@@ -1,4 +1,4 @@
-<div class="col-md-4 margin_bottom_small">
+<div class="col-md-6 margin_bottom_small">
   <div class="businessCard businessProfileCard">
       <% if @user: %>
         <div class="row businessProfileCard__user">
