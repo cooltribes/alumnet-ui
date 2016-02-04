@@ -284,7 +284,15 @@
 
   class Filters.SkillsContainer extends Filters.FilterGroup
     template: '_shared/filters/templates/skills'       
-
+    ui:
+      'select2':'#js-skills' 
+    
+    events: ->
+      events =
+        "select2-selecting @ui.select2": "addLocationFromSelect"        
+      _.extend super(), events      
+    
+      
     initialize: (options)->    
       @model = new Backbone.Model
         all_selected: true  
@@ -323,6 +331,43 @@
             my_skills: skills_for_search    
 
       @trigger "search", query     
+
+
+    onRender: ->
+      @ui.select2.select2 @optionsForSelect2()       
+
+      super()  
+
+
+    optionsForSelect2: ()->  
+      url = AlumNet.api_endpoint + '/skills'      
+
+      placeholder: "Select Skill"            
+      minimumInputLength: 2
+      ajax:
+        url: url
+        dataType: 'json'
+        data: (term)->
+          q: 
+            name_cont: term
+        results: (data, page) ->
+          results: data.map (item) ->
+            id: item.id
+            text: item.name
+
+      ###formatResult: (data) ->    
+        data.name
+      formatSelection: (data) ->    
+        data.name###
+        
+    addLocationFromSelect: (e)->      
+      location =         
+        value: e.choice.id
+        name: e.choice.text
+        active: true
+        type: "skill"
+
+      @collection.add location
 
 
 
