@@ -27,11 +27,13 @@
     # App.loadReceptiveWidget()
     if Backbone.history
       Backbone.history.start()
+      href = Cookies.get('original_href')
       if App.getCurrentRoute() == ""
         if App.current_user.isExternal()
           App.navigate('#job-exchange', {trigger: true})
         else
-          App.navigate('#posts', {trigger: true})
+          App.navigate(href, {trigger: true})
+          # App.navigate('#posts', {trigger: true})
 
     ## Get profinda api token
     Backbone.ajax
