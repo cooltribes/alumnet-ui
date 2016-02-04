@@ -282,18 +282,29 @@
       @trigger "search", query     
 
 
-  class Filters.SkillsContainer extends Filters.FilterGroup
-    template: '_shared/filters/templates/skills'       
+  class Filters.SkillLanguageContainer extends Filters.FilterGroup
+    template: '_shared/filters/templates/skills_languages'       
     ui:
-      'select2':'#js-skills' 
+      'select2':'#js-select' 
     
     events: ->
       events =
-        "select2-selecting @ui.select2": "addLocationFromSelect"        
-      _.extend super(), events      
+        "select2-selecting @ui.select2": "addRowFromSelect2"        
+      _.extend super(), events         
     
-      
-    initialize: (options)->    
+    
+    templateHelpers: ->
+      text: @settings.text
+      title: @settings.title
+
+    initialize: (options)->   
+      @type = options.type
+
+      @settings = 
+        endpoint_for_profile: "skills"
+        title: "Skills"
+        text: "skills"
+
       @model = new Backbone.Model
         all_selected: true  
 
@@ -304,45 +315,64 @@
 
       @collection.on "checkStatus", @checkStatus, @
       filterCollection = @collection
-      @skills = new AlumNet.Entities.Skills
-      @skills.url = AlumNet.api_endpoint + '/profiles/' + AlumNet.current_user.profile.id + "/skills"  
-      @skills.fetch
+      
+      #build the settings depending on what type of elements are being used [skills, lanaguages]
+      if @type == "languages"        
+        @settings.endpoint_for_profile = "language_levels" 
+        @settings.title = "Languages"
+        @settings.text = "language"
+
+      @preloaded_rows = new Backbone.Collection
+      @preloaded_rows.url = AlumNet.api_endpoint + '/profiles/' + AlumNet.current_user.profile.id + "/#{@settings.endpoint_for_profile}"  
+      @preloaded_rows.fetch
         success: (collection)->          
-          #get only the first 4 elements
+          #get only the first 4 elements          
           elements = collection.slice 0, 4
           filterCollection.reset(elements.map (item)->
-            value: item.id
-            name: item.get("name")
-            type:"skill"
+            object = 
+              value: item.id
+              name: item.get("name")            
+
+            if item.get("language_name")?
+              object = 
+                value: item.get "language_id"
+                name: item.get("language_name")            
+
+            object
           )
     
 
     buildQuery: (active_rows = [])->
-      skills_for_search = []
+      ids_for_search = []
       query = {}
       
       if active_rows.length
         
-        skills_for_search = active_rows.map (item)->
+        ids_for_search = active_rows.map (item)->
           item.get "value"
 
+        search_term =   
+          my_skills: ids_for_search 
+
+        if @type == "languages"     
+          search_term =   
+            my_languages: ids_for_search 
+
         query =         
-          terms:
-            my_skills: skills_for_search    
+          terms: search_term
 
       @trigger "search", query     
 
 
     onRender: ->
       @ui.select2.select2 @optionsForSelect2()       
-
       super()  
 
 
-    optionsForSelect2: ()->  
-      url = AlumNet.api_endpoint + '/skills'      
+    optionsForSelect2: ()->        
+      url = AlumNet.api_endpoint + "/#{@type}"      
 
-      placeholder: "Select Skill"            
+      placeholder: "Select #{@settings.title}"            
       minimumInputLength: 2
       ajax:
         url: url
@@ -351,24 +381,18 @@
           q: 
             name_cont: term
         results: (data, page) ->
-          results: data.map (item) ->
+          results: data.map (item) ->            
             id: item.id
             text: item.name
 
-      ###formatResult: (data) ->    
-        data.name
-      formatSelection: (data) ->    
-        data.name###
         
-    addLocationFromSelect: (e)->      
-      location =         
+    addRowFromSelect2: (e)->      
+      new_row =         
         value: e.choice.id
         name: e.choice.text
         active: true
-        type: "skill"
 
-      @collection.add location
-
+      @collection.add new_row
 
 
   class Filters.General extends Marionette.LayoutView
@@ -377,10 +401,11 @@
       locations: "#locations"
       personal: "#personal"
       skills: "#skills"
+      languages: "#languages"
     className: "advancedFilters"
 
     child_queries: [
-      {}, {}, {}
+      {}, {}, {}, {}
       ]  
 
     initialize: (options)->      
@@ -388,6 +413,10 @@
       query =         
         query:
           filtered:
+            query: #the part with the search term to be combined with filters
+              multi_match:
+                query: @results_collection.search_term
+                fields: ["name", "email"]
             filter:
               bool:
                 must: @child_queries                
@@ -405,7 +434,11 @@
     onRender: ->
       @locations_view = new Filters.LocationContainer
       @personal_view = new Filters.PersonalContainer
-      @skills_view = new Filters.SkillsContainer
+      @skills_view = new Filters.SkillLanguageContainer
+        type: "skills"
+
+      @languages_view = new Filters.SkillLanguageContainer
+        type: "languages"
 
       @locations_view.on "search", (filter)->
         @updateChildQueries(filter, 0)
@@ -417,11 +450,16 @@
 
       @skills_view.on "search", (filter)->
         @updateChildQueries(filter, 3)
+      , @ 
+
+      @languages_view.on "search", (filter)->
+        @updateChildQueries(filter, 4)
       , @  
 
       @locations.show(@locations_view)
       @personal.show(@personal_view)
       @skills.show(@skills_view)
+      @languages.show(@languages_view)
 
 
     updateChildQueries: (query, index)->
