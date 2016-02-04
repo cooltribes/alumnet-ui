@@ -153,6 +153,17 @@
             label: "No Email"
           ,
           ]
+      "[name=commented_or_liked_post_comment]": 
+        observe: "value"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Individual email"
+          ,
+            value: 1
+            label: "No Email"
+          ,
+          ]
 
     templateHelpers: ->
       model = @model
@@ -167,6 +178,7 @@
           when 'join_group_request' then 'Join your group requests'
           when 'apply_job_post' then 'Applies to your Job Post'
           when 'commented_post_edit' then 'User edits post you have commented'
+          when 'commented_or_liked_post_comment' then 'User comments post you have commented or liked'
 
     onRender: ->
       @stickit()

@@ -18,6 +18,7 @@
 						{name: 'join_group_request', value: 0, user_id: AlumNet.current_user.id}
 						{name: 'apply_job_post', value: 0, user_id: AlumNet.current_user.id}
 						{name: 'commented_post_edit', value: 0, user_id: AlumNet.current_user.id}
+						{name: 'commented_or_liked_post_comment', value: 0, user_id: AlumNet.current_user.id}
 					])
 				else
 					if not collection.findWhere(name: 'approval')
@@ -38,6 +39,8 @@
 						collection.add({name: 'apply_job_post', value: 0, user_id: AlumNet.current_user.id})
 					if not collection.findWhere(name: 'commented_post_edit')
 						collection.add({name: 'commented_post_edit', value: 0, user_id: AlumNet.current_user.id})
+					if not collection.findWhere(name: 'commented_or_liked_post_comment')
+						collection.add({name: 'commented_or_liked_post_comment', value: 0, user_id: AlumNet.current_user.id})
 
 				messages_members = new Notifications.MessagesMembers
 					collection: collection
