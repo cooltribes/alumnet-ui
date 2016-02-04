@@ -1,45 +1,63 @@
 @AlumNet.module 'BusinessExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
+    businessProfiles: null
+    businessTasks: null
+    activeTab: "businessProfiles"
+
     showMainBusinessExchange: (optionMenu)->
+      @activeTab = optionMenu
       current_user = AlumNet.current_user
       @layoutBusiness = new Main.BusinessExchange
-        option: optionMenu
+        option: @activeTab
         current_user: current_user
       AlumNet.mainRegion.show(@layoutBusiness)
-      @showMenuUrl(optionMenu)
+      @showMenuUrl()
       self = @
-      @layoutBusiness.on "navigate:menu:programs", (valueClick)-> 
-        self.showMenuUrl(valueClick)
 
+      @layoutBusiness.on "navigate:menu:programs", (valueClick)-> 
+        self.activeTab = valueClick
+        self.showMenuUrl()
+
+      @layoutBusiness.on 'business:search', (querySearch)->
+        self.querySearch = querySearch
+        if self.activeTab == "businessProfiles"
+          self.businessProfiles.fetch
+            url: AlumNet.api_endpoint + "/business"
+            data: querySearch  
+        else if self.activeTab == "yourTasks"
+          self.businessTasks.fetch
+            data: querySearch
+  
     showBusinessProfile: ()->
       AlumNet.navigate("business-exchange/profiles")
-      business = new AlumNet.Entities.BusinessCollection
-      business.fetch
+      @businessProfiles = new AlumNet.Entities.BusinessCollection
+      @businessProfiles.fetch
         url: AlumNet.api_endpoint + "/business"        
         data: 
           limit: 9      
 
       view = new AlumNet.BusinessExchangeApp.Profile.BusinessProfiles
-        collection: business
+        collection: @businessProfiles
 
-      @layoutBusiness.cards_region.show(view) 
+      @layoutBusiness.cards_region.show(view)
 
     showYourTasks: ->
       AlumNet.navigate("business-exchange/tasks")
-      tasks = new AlumNet.Entities.BusinessExchangeCollection
-      tasks.fetch
+      @businessTasks = new AlumNet.Entities.BusinessExchangeCollection
+      @businessTasks.fetch
         data: 
           limit: 9      
 
       view = new AlumNet.BusinessExchangeApp.Home.Tasks
-        collection: tasks
+        collection: @businessTasks
 
       @layoutBusiness.cards_region.show(view) 
 
-    showMenuUrl: (optionMenu)->
+    showMenuUrl: ()->
       self = @
-      switch optionMenu
+      switch @activeTab
         when "businessProfiles"
           self.showBusinessProfile()
         when "yourTasks"
           self.showYourTasks()
+
