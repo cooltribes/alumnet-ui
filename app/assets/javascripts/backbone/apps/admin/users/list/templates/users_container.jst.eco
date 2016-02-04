@@ -100,6 +100,7 @@
       <th class="hidden-xs hidden-sm">Last login</th>
       <th class="hidden-xs hidden-sm">Login count</th>
       <th class="hidden-xs">Register Step</th>
+      <th class="hidden-xs">Approvals</th>
       <th class="hidden-xs">Edit</th>
     </tr>
   </thead>
