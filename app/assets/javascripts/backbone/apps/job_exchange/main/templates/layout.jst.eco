@@ -1,47 +1,46 @@
-
 <div class="container-fluid marginBody">
 	<div class="row">
 		<div class="col-xs-8 col-sm-7 col-md-8 col-sm-8 text-left">
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Business Profiles" data-menu="businessProfiles">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Jobs" data-menu="discoverJobExchange">
 						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Business Profiles </span>
+						<span class="submenu__item__link--text"> Discover Jobs </span>
 					</a>
 				</li>
 
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="Discover Tasks" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="yourTasks">
-						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Tasks </span>
+					<a href="#" title="Discover Tasks" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>>" id="js-groups" data-menu="myApplications">
+						<i class="icon-entypo-briefcase"></i>
+						<span class="submenu__item__link--text"> My Applications </span>
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#users/<%= @current_user_id %>/business-exchange" class="submenu__item__link submenu__item__link">
-						<i class="icon-entypo-plus"></i>
-						<span class="submenu__item__link--text"> Create your Business Profile </span>	
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(2)%>" data-menu="manageJobExchange">
+						<i class="icon-entypo-layout"></i>
+						<span class="submenu__item__link--text"> Manage Job Posts </span>	
 					</a>
 				</li>
 	
 				<li role="presentation" class="submenu__item">
-					<a href="#business-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups">
+					<a href="#job-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups" data-menu="createJobExchange">
 						<i class="icon-entypo-plus"></i>
-						<span class="submenu__item__link--text"> Create a Task </span>
+						<span class="submenu__item__link--text"> Post a Job </span>
 					</a>
 				</li>	
 
-			</ul>	
-			
-			<ul class="text-right" id="iconModalBusiness">
-				<li role="presentation" class="iconTypeGroup visible-md visible-lg marginBusinessIconModal">
-    				<a href="#" id="js-modal-business">
+			</ul>
+
+			<ul class="text-right " id="iconModalJob">
+				<li role="presentation" class="iconTypeGroup visible-md visible-lg marginJobIconModal">
+    				<a href="#" id="js-modal-job">
     					<span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span>
     				</a>
 				</li>
-			</ul>
+			</ul>	
 		
 		</div>
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
@@ -79,7 +78,7 @@
 	<hr class="no_margin_top">
 	<div class="row">
 		<div class="col-md-8">
-			<div id="groups-region"></div>
+			<div id="jobs-region"></div>
 			<div class="row">
 				<div class="col-md-12 text-center">
 				
@@ -92,5 +91,3 @@
 		</div>
 	</div>
 </div>
-
-<div id="container-modal-business" class="modalPrograms"></div>
