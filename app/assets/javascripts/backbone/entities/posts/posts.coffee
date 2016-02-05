@@ -159,7 +159,8 @@
 
     findPost: (postable, postable_id, post_id)->
       post = new Entities.Post
-      post.urlRoot = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts/' + post_id
+      post.urlRoot = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts'
+      post.url = AlumNet.api_endpoint + "/#{postable}/" + postable_id + '/posts/' + post_id
       post
 
     getNewPostForCurrentUser: ->
