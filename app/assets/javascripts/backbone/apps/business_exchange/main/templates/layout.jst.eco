@@ -5,66 +5,53 @@
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="All Alumni" data-menu="groupsDiscover">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Business Profiles" data-menu="businessProfiles">
 						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Groups </span>
+						<span class="submenu__item__link--text"> Discover Business Profiles </span>
 					</a>
 				</li>
 
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="All" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="myGroups">
-						<i class="ico-alumnet-nav_groups"></i>
-						<span class="submenu__item__link--text"> My Groups </span>
+					<a href="#" title="Discover Tasks" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="yourTasks">
+						<i class="glyphicon glyphicon-search"></i>
+						<span class="submenu__item__link--text"> Discover Tasks </span>
 					</a>
 				</li>
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link optionMenuLeft submenu__item__link<%= @classOf(2)%>" id="js-manage" data-menu="groupsManage">
-						<i class="icon-entypo-layout"></i>
-						<span class="submenu__item__link--text"> Manage Groups </span>	
+					<a href="#users/<%= @current_user_id %>/business-exchange" class="submenu__item__link submenu__item__link">
+						<i class="icon-entypo-plus"></i>
+						<span class="submenu__item__link--text"> Create your Business Profile </span>	
 					</a>
 				</li>
 	
 				<li role="presentation" class="submenu__item">
-					<a href="#groups/new" class="submenu__item__link submenu__item__link" title="Create Groups">
+					<a href="#business-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups">
 						<i class="icon-entypo-plus"></i>
-						<span class="submenu__item__link--text"> Create Group </span>
+						<span class="submenu__item__link--text"> Create a Task </span>
 					</a>
 				</li>	
 
-			</ul>
-			
-			<ul class="text-right visible-md visible-lg" id="iconsTypeGroups">
-				<li role="presentation" class="iconTypeGroup" id="iconCards">
-					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-menu="cards">
-						<span class="glyphicon glyphicon-th-large padding_left_xsmall"></span>
-					</a>
-				</li>
-				<li role="presentation" class="iconTypeGroup" id="iconList">
-					<a class="searchBar__ViewList js-viewList" title="View results in list" data-menu="list">
-						<span class="glyphicon glyphicon-align-justify"></span>
-					</a>
-				</li>
-			</ul>
+			</ul>	
 		
 		</div>
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
 			<ul class="submenu" id="filter-link-container">
 
-				<li role="presentation" class="submenu__item">
+				<!-- <li role="presentation" class="submenu__item">
 					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
 						<i class="icon-entypo-search-tasks"></i>
 						<span class="submenu__item__link--text"> Suggestions</span>		
 					</a>
-				</li>		
+				</li> -->		
 
-				<!-- <li role="presentation" class="submenu__item">
+				<li role="presentation" class="submenu__item">
 					<a href="#" class="submenu__item__link optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
 						<i class="ico-user"></i>
 						<span class="submenu__item__link--text"> Filters</span>	
 					</a>
-				</li>	 -->
+				</li>	
 
 				<li class="hidden-xs">
 		      <div class="searchBarSubMenu">

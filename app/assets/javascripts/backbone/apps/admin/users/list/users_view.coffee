@@ -168,6 +168,7 @@
     templateHelpers: () ->
       model = @model
       getRoleText: @model.getRole()
+      approvals: @model.getApprovalStatus()
 
       getAge: ()->
         if @profileData.born

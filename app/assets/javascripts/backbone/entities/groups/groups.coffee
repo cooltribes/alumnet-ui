@@ -22,7 +22,7 @@
       group_type.value == 2
 
     userIsAdmin: ->
-      @get('admin')
+      @get('membership').admin
 
     hasMailchimp: ->
       mailchimp = @get('mailchimp')

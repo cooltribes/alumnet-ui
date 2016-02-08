@@ -1,5 +1,13 @@
 <!-- HERO AREA ON -->
-
+<script type="text/javascript">
+  var query = location.href.split('#');
+  if(query[1]){
+    Cookies.set('original_href', "#" + query[1]);
+  }
+  else{
+    Cookies.set('original_href', "#posts");
+  }
+</script>
 
 <div class="homeAlumNet__heroArea">
   <nav class="homeAlumNet__navigation navbar navbar-default" role="navigation">
@@ -59,7 +67,7 @@
         <p class="lead">and help transform our global network of AIESEC alumni into a powerful force for positive change</p>
       </div>
     </div>
-    <div class="row text-center"> 
+    <div class="row text-center">
         <%= link_to "Sign in with LinkedIn", "/auth/linkedin" ,class: 'btn-loginLIN' %>
     </div>
 

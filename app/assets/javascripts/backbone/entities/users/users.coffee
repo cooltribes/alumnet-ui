@@ -16,6 +16,9 @@
       @on "change", ->
         @profile.fetch({async: false})
 
+    getApprovalStatus: ->
+      @get('approval_status')
+
     profile_fetch: ->
       @profile.fetch({async: false})
 

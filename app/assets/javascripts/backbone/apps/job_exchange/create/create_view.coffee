@@ -135,7 +135,10 @@
         ]
 
       $('#task-description').summernote(summernote_options_description)
+      $('#task-description').summernote('code', @model.get('formatted_description'))
+
       $('#task-offer').summernote(summernote_options)
+      $('#task-offer').summernote('code', @model.get('offer'))
 
     onRender: ->
       @selectCompany(@ui.selectCompany)

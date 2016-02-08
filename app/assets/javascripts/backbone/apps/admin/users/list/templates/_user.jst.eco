@@ -51,6 +51,8 @@
     (4) Completed
   <% end %>
 </td>
+<td class="hidden-xs"><%= @approvals %></td>
+
 <td class="tableAdmin__actions">
   <div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

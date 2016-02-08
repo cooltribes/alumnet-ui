@@ -3,8 +3,10 @@
     appRoutes:
       "business-exchange": "discoverBusinessExchange"
       "business-exchange/view-:view": "discoverBusinessExchange"
-      "business-exchange/home": "homeBusinessExchange"
-      "business-exchange/your-tasks": "yourTasksBusinessExchange"
+      "business-exchange/profiles": "profilesBusinessExchange"
+      "business-exchange/view-:view": "discoverBusinessExchange"
+      "business-exchange/tasks": "businessExchangeTasks"
+      #"business-exchange/your-tasks": "yourTasksBusinessExchange"
       "business-exchange/applied": "appliedBusinessExchange"
       "business-exchange/automatches": "automatchesBusinessExchange"
       "business-exchange/invitations": "invitationsBusinessExchange"
@@ -13,18 +15,18 @@
       "business-exchange/:id": "showBusinessExchange"
 
   API =
-    homeBusinessExchange: ->
-      AlumNet.setTitle('Business Exchange Program')
-      new BusinessExchangeApp.Home.Controller
-
+    businessExchangeTasks: ->
+      AlumNet.setTitle('Business Exchange Tasks')
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("yourTasks")
     discoverBusinessExchange: (view)->
       AlumNet.setTitle('Discover Tasks')
       controller = new BusinessExchangeApp.Discover.Controller
       controller.discover(view)
-    yourTasksBusinessExchange: ->
-      AlumNet.setTitle('Your Tasks')
-      controller = new BusinessExchangeApp.YourTasks.Controller
-      controller.your_tasks()
+    # yourTasksBusinessExchange: ->
+    #   AlumNet.setTitle('Your Tasks')
+    #   controller = new BusinessExchangeApp.Main.Controller
+    #   controller.showMainBusinessExchange("yourTasks")
     appliedBusinessExchange: ->
       AlumNet.setTitle('Applied Tasks')
       controller = new BusinessExchangeApp.Applied.Controller
@@ -52,6 +54,10 @@
       AlumNet.setTitle('Task')
       controller = new BusinessExchangeApp.Show.Controller
       controller.show(id)
+    profilesBusinessExchange: ()->
+      AlumNet.setTitle('Business Exchange Profiles')
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("businessProfiles")
 
   AlumNet.on "program:business:my", ->
     AlumNet.navigate("business-exchange/your-tasks")
