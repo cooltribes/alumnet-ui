@@ -53,7 +53,6 @@
         { value: senority.id,  text: senority.name }
 
     ui:
-      'modalJobExchange':'#js-modal-job'
       'loading': '.throbber-loader'
 
     events:
@@ -64,8 +63,6 @@
       'change #filter-logic-operator': 'changeOperator'
       'click #js-advance':'showBoxAdvanceSearch'
       'click #js-basic' : 'showBoxAdvanceBasic'
-      'click @ui.modalJobExchange': 'showModal'
-
 
     showBoxAdvanceSearch: (e)->
       e.preventDefault()
@@ -107,12 +104,3 @@
       e.preventDefault()
       @collection.fetch()
       @searcher.clearFilters()
-
-    showModal: (e)->
-      e.preventDefault()
-      modal = new Discover.ModalJob
-      $('#container-modal-job').html(modal.render().el)
-
-  class Discover.ModalJob extends Backbone.Modal
-    template: 'job_exchange/discover/templates/modal'
-    cancelEl: '#js-close'

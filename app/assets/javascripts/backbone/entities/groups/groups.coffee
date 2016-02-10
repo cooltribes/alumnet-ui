@@ -59,7 +59,7 @@
       _.contains(groupMemberships, user_id)
 
     userIsMember: ->
-      status = @get('membership_status')
+      status = @get('membership').membership_status
       status == "approved"
 
     canBeOfficial: ->
