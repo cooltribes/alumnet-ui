@@ -1,3 +1,1 @@
-<h1>Applied</h1>
-<div class="tasks-container container-fluid"></div>
-<div class="text-center"><span class="throbber-loader"></span></div>
+<div class="tasks-container"></div>

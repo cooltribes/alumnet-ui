@@ -1,4 +1,11 @@
-<div id="" class="ng-scope">
+<div id="" class="ng-scope marginCreate">
+  <div class="row">
+    <div class="text-left col-md-2">
+      <a href="#job-exchange/discover" class="btn btn-lg btn-import margin_left_small paddingButton">
+        <span class="icon-char">‹</span>Go back to Jobs
+      </a>
+    </div>
+  </div>
   <div class="container-fluid">
     <form class="row formANet form ">
       <div class="col-md-10 col-md-offset-1">

@@ -17,7 +17,7 @@
 
     templateHelpers: ->
       helpers =
-        userCanComment: @postable.userIsMember()
+        userCanComment: @model.get("postable").userIsMember
       _.extend super(), helpers
 
 
