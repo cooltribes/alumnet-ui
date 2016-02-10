@@ -108,15 +108,15 @@
             </div>
           </div>
         </div>
-        <% if @membership_status == "approved": %>
+        <% if @membership.membership_status == "approved": %>
           <a href="#groups/<%= @id %>/posts" class="js-group groupCard__btn btn btn-sm btn-primary btn-block">
           </span>ENTER</span></a>
-        <% else if @membership_status == "pending": %>
+        <% else if @membership.membership_status == "pending": %>
           <span class="groupCard__btn btn btn-sm btn-primary btn-block">
           <span class="icon-entypo-hourglass">
             </span> Waiting for approval</span>
           </span>
-        <% else if @membership_status == "none": %>
+        <% else if @membership.membership_status == "none": %>
           <button class="groupCard__btn btn btn-sm btn-primary btn-block js-join">
             </span>+ Join group</span>
           </button>

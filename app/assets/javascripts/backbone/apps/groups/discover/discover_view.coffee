@@ -82,7 +82,6 @@
       #className: "group_children"
 
     initialize: (options) ->
-      console.log options
       # Initialize the type of grid to use (cards or list)
       @type = options.typeGroup
       view = @
