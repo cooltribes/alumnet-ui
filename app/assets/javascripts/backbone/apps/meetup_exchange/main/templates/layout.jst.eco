@@ -1,0 +1,95 @@
+<div class="container-fluid marginBody">
+	<div class="row">
+		<div class="col-xs-8 col-sm-7 col-md-8 col-sm-8 text-left">
+			<ul class="submenu" id="filter-link-container">
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Meetups" data-menu="discoverMeetups">
+						<i class="glyphicon glyphicon-search"></i>
+						<span class="submenu__item__link--text"> Discover Meetups </span>
+					</a>
+				</li>
+
+				<li class="submenu__item">
+					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#" title="My Applications" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>>" id="js-groups" data-menu="myApplications">
+						<i class="icon-entypo-chat"></i>
+						<span class="submenu__item__link--text"> My Applications </span>
+					</a>
+				</li>
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(2)%>" data-menu="manageMeetups">
+						<i class="icon-entypo-layout"></i>
+						<span class="submenu__item__link--text"> Manage Meetups </span>	
+					</a>
+				</li>
+	
+				<li role="presentation" class="submenu__item">
+					<a href="#job-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups" data-menu="createMeetups">
+						<i class="icon-entypo-plus"></i>
+						<span class="submenu__item__link--text"> Create a Meetup </span>
+					</a>
+				</li>	
+
+			</ul>
+
+			<ul class="text-right " id="iconModalJob">
+				<li role="presentation" class="iconTypeGroup visible-md visible-lg marginJobIconModal">
+    				<a href="#" id="js-modal-job">
+    					<span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span>
+    				</a>
+				</li>
+			</ul>	
+		
+		</div>
+		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
+			<ul class="submenu" id="filter-link-container">
+
+				<!-- <li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
+						<i class="icon-entypo-search-tasks"></i>
+						<span class="submenu__item__link--text"> Suggestions</span>		
+					</a>
+				</li> -->		
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
+						<i class="ico-user"></i>
+						<span class="submenu__item__link--text"> Filters</span>	
+					</a>
+				</li>	
+
+				<li class="hidden-xs">
+		      <div class="searchBarSubMenu">
+		        <form id="search-form">
+		          <div class="input-group">
+		            <input type="text" name="search_term" id="search_term" class="form-control searchBarSubMenu__searchInput" placeholder="Write a name or email">
+		            <span class="input-group-btn">
+		            <button class="searchBarSubMenu__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+		            </span>
+		          </div>
+        		</form>
+      		</div>
+  			</li>
+			</ul>
+		</div>
+	</div>
+	<hr class="no_margin_top">
+	<div class="row">
+		<div class="col-md-8">
+			<div id="jobs-region"></div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+				
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div id="filters-region"></div>
+		</div>
+	</div>
+</div>
+
+<div id="container-modal-job" class="modalPrograms"></div>

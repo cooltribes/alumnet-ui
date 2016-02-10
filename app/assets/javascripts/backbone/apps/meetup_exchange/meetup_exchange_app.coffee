@@ -2,6 +2,7 @@
   class MeetupExchangeApp.Router extends AlumNet.Routers.Base
     appRoutes:
       "meetup-exchange": "discoverMeetupExchange"
+      "meetup-exchange/prueba": "layoutMeetupExchange"
       "meetup-exchange/your-tasks": "yourTasksMeetupExchange"
       "meetup-exchange/applied": "appliedMeetupExchange"
       "meetup-exchange/automatches": "automatchesMeetupExchange"
@@ -44,6 +45,9 @@
     showMeetupExchange: (id)->
       controller = new MeetupExchangeApp.Show.Controller
       controller.show(id)
+    layoutMeetupExchange:() ->
+      controller = new MeetupExchangeApp.Main.Controller
+      controller.showMainMeetupExchange("hola")
 
   AlumNet.on "program:meetup:my", ->
     AlumNet.navigate("meetup-exchange/your-tasks")
