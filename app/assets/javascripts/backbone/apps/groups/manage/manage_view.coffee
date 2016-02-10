@@ -37,4 +37,4 @@
     emptyView: Manage.EmptyView
 
     onRender: ->
-      $("#iconsTypeGroups").addClass("hide");
+      $("#iconsTypeGroups").addClass("hide")

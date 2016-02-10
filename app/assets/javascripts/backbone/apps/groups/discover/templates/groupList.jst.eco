@@ -10,7 +10,7 @@
     <h4 class="overfloadText">
 
         <% if @group_type.value == 1 && not @userIsMember : %>
-          <a title="<%= @name %>"> href="#groups/<%= @id %>/about" class="js-group overfloadText"> <%= @name %> </a>
+          <a title="<%= @name %>" href="#groups/<%= @id %>/about" class="js-group overfloadText"> <%= @name %> </a>
         <% else if @group_type.value == 1 && @userIsMember : %>
           <a title="<%= @name %>" href="#groups/<%= @id %>/posts" class="js-group overfloadText"> <%= @name %> </a>
         <% else: %>

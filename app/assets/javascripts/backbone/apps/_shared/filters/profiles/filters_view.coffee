@@ -1,140 +1,7 @@
-@AlumNet.module 'Shared.Views.Filters', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'Shared.Views.Filters.Profiles', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Filters.Row extends Marionette.ItemView
-    template: '_shared/filters/templates/_row'
-
-    modelEvents: 
-      "change:active": "changeActive"
-    
-    bindings:
-      "#name": "name"
-      "#active": "active"
-
-    changeActive: (m, v, options)->      
-      if options.stickitChange      
-        m.collection.trigger "checkStatus"
-
-    onRender: ->
-      @stickit()        
-
-  class Filters.FilterGroup extends Marionette.CompositeView
-    childView: Filters.Row
-    childViewContainer: '#rows-region'
-    bindings:
-      "#all_selected": 
-        observe: "all_selected"
-        getVal: ($el, event, options)->
-          $el.val()
-
-    modelEvents: 
-      "change:all_selected": "changeAll"
-
-    events: ->
-      "click #all_selected": "clickAll"
-
-
-    onRender: ->
-      @stickit()  
-      
-       
-    clickAll: (e)->
-      checkbox = $(e.currentTarget)
-      if !checkbox.is(":checked")
-        e.preventDefault()
-        return false
-
-    
-    changeAll: (m, v, options)->
-      if options.stickitChange #if the change was triggered by clicking checkbox
-        @collection.forEach (element, index)->
-          element.set "active", false,
-      
-        @buildQuery() 
-
-
-    checkStatus: () -> 
-      active_locations = @collection.where
-        active: true      
-      
-      # check/uncheck "All Locations"
-      @model.set("all_selected", !(active_locations.length > 0)) #If there are at least one city/country selected
-      @buildQuery(active_locations)
-        
-
-  class Filters.LocationContainer extends Filters.FilterGroup   
-    template: '_shared/filters/templates/locations'    
-    ui:
-      'selectCountries':'.js-countries' 
-    
-    events: ->
-      events =
-        "select2-selecting @ui.selectCountries": "addLocationFromSelect"        
-      _.extend super(), events      
-    
-
-    initialize: (options)->    
-      @model = new Backbone.Model
-        all_selected: true
-      
-      #Search for the initial cities and countries     
-      locations = []
-
-      current_user = AlumNet.current_user     
-
-      res_country = _.extend
-        type: "country"
-      ,  
-        current_user.profile.get "residence_country"
-      
-      res_city = _.extend
-        type: "city"
-      ,  
-        current_user.profile.get "residence_city"
-
-      locations.push(res_country, res_city)
-
-      birth_country = _.extend
-        type: "country"
-      ,  
-        current_user.profile.get "birth_country"
-      
-      birth_city = _.extend
-        type: "city"
-      ,  
-        current_user.profile.get "birth_city"
-
-      if birth_city.id != res_city.id  
-        locations.push(birth_city)
-      
-      if birth_country.id != res_country.id  
-        locations.push(birth_country)
-
-
-      @collection = new AlumNet.Entities.SearchFiltersCollection locations
-
-      #When a new location is added, trigger the search as if it was clicked
-      @collection.on "add", (model) ->        
-        @trigger("checkStatus")
-
-      @collection.on "checkStatus", @checkStatus, @
-
-      
-    onRender: ->
-      @ui.selectCountries.select2 @optionsForSelect2()       
-
-      super()  
-
-   
-    addLocationFromSelect: (e)->      
-      location = 
-        id: e.choice.id
-        name: e.choice.name
-        active: true
-        type: if e.choice.country then "city" else "country"
-
-      @collection.add location
   
-       
+  class Filters.LocationContainer extends AlumNet.Shared.Views.Filters.Shared.LocationContainer   
     buildQuery: (active_locations = [])->
       
       locationTerms = []
@@ -171,37 +38,11 @@
         bool:
           should: locationTerms 
 
-      @trigger "search", query     
-       
-
-    optionsForSelect2: ()->  
-      url = AlumNet.api_endpoint + '/countries/locations'      
-
-      placeholder: "Select City or Country"      
-      formatResult: @formatSelect2
-      formatSelection: @formatSelect2
-      minimumInputLength: 2
-      ajax:
-        url: url
-        dataType: 'json'
-        data: (term)->
-          q: term
-        results: (data, page) ->
-          results:
-            data
-
-    
-    formatSelect2: (data)->
-      country = ""
-      
-      if data.country
-        country = " <span class='country-select'> (" + data.country + ")</span>"
-      
-      return data.name + country
+      @trigger "search", query       
 
 
-  class Filters.PersonalContainer extends Filters.FilterGroup 
-    template: '_shared/filters/templates/personal'        
+  class Filters.PersonalContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
+    template: '_shared/filters/profiles/templates/personal'        
 
     initialize: (options)->          
       @model = new Backbone.Model
@@ -282,8 +123,8 @@
       @trigger "search", query     
 
 
-  class Filters.SkillLanguageContainer extends Filters.FilterGroup
-    template: '_shared/filters/templates/skills_languages'       
+  class Filters.SkillLanguageContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup
+    template: '_shared/filters/profiles/templates/skills_languages'       
     ui:
       'select2':'#js-select' 
     
@@ -395,42 +236,28 @@
       @collection.add new_row
 
 
-  class Filters.General extends Marionette.LayoutView
-    template: '_shared/filters/templates/layout'
+  class Filters.General extends AlumNet.Shared.Views.Filters.Shared.General
+    template: '_shared/filters/profiles/templates/layout'
     regions:
       locations: "#locations"
       personal: "#personal"
       skills: "#skills"
       languages: "#languages"
-    className: "advancedFilters"
 
     child_queries: [
       {}, {}, {}, {}
       ]  
 
     initialize: (options)->      
-      @results_collection = options.results_collection  
-      query =         
-        query:
-          filtered:
-            query: #the part with the search term to be combined with filters
-              multi_match:
-                query: @results_collection.search_term
-                fields: ["name", "email"]
-            filter:
-              bool:
-                must: @child_queries                
-      
-      ###query: #the part with the search term to be combined with filters
-        multi_match:
-          query: @results_collection.search_term
-          fields: ["name", "email"]###
 
-      @querySearch = 
-        type: "profile"          
-        q: query                        
+      searchable_fields = ["name", "email"]
+      type = "profile"
+       
+      super _.extend options,
+        searchable_fields: searchable_fields
+        type: type                                        
       
-
+      
     onRender: ->
       @locations_view = new Filters.LocationContainer
       @personal_view = new Filters.PersonalContainer
@@ -460,12 +287,3 @@
       @personal.show(@personal_view)
       @skills.show(@skills_view)
       @languages.show(@languages_view)
-
-
-    updateChildQueries: (query, index)->
-      @child_queries[index] = query
-      @search()
-
-
-    search: ->              
-      @results_collection.search_by_filters(@querySearch)

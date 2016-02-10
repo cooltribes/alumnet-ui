@@ -41,9 +41,9 @@
       AlumNet.mainRegion.show(discoverView)
 
       # Check cookies for first visit
-      if not Cookies.get('job_exchange_visit')
-        modal = new Discover.ModalJob
-        $('#container-modal-job').html(modal.render().el)
-        Cookies.set('job_exchange_visit', 'true')
+      # if not Cookies.get('job_exchange_visit')
+      #   modal = new Discover.ModalJob
+      #   $('#container-modal-job').html(modal.render().el)
+      #   Cookies.set('job_exchange_visit', 'true')
 
       #AlumNet.execute('render:job_exchange:submenu', undefined, 2)

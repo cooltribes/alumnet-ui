@@ -1,7 +1,8 @@
 @AlumNet.module 'JobExchangeApp', (JobExchangeApp, @AlumNet, Backbone, Marionette, $, _) ->
   class JobExchangeApp.Router extends AlumNet.Routers.Base
     appRoutes:
-      "job-exchange": "discoverJobExchange"
+      "job-exchange": "showJobExchangeHome"
+      "job-exchange/discover": "discoverJobExchange"
       "job-exchange/my-posts": "myJobExchange"
       "job-exchange/applied": "appliedJobExchange"
       "job-exchange/automatches": "automatchesJobExchange"
@@ -13,16 +14,16 @@
   API =
     discoverJobExchange: ->
       AlumNet.setTitle('Discover jobs')
-      controller = new JobExchangeApp.Discover.Controller
-      controller.discover()
+      controller = new JobExchangeApp.Main.Controller
+      controller.showMainJobExchange("discoverJobExchange")
     myJobExchange: ->
       AlumNet.setTitle('My jobs')
-      controller = new JobExchangeApp.MyJobs.Controller
-      controller.myJobs()
+      controller = new JobExchangeApp.Main.Controller
+      controller.showMainJobExchange("manageJobExchange")
     appliedJobExchange: ->
       AlumNet.setTitle('Applied jobs')
-      controller = new JobExchangeApp.Applied.Controller
-      controller.applied()
+      controller = new JobExchangeApp.Main.Controller
+      controller.showMainJobExchange("myApplications")
     automatchesJobExchange: ->
       AlumNet.setTitle('Automatches')
       controller = new JobExchangeApp.AutoMatches.Controller
@@ -44,6 +45,9 @@
     showJobExchange: (id)->
       controller = new JobExchangeApp.Show.Controller
       controller.show(id)
+    showJobExchangeHome: (id)->
+      controller = new JobExchangeApp.Main.Controller
+      controller.showMainJobExchange()
 
   AlumNet.on "program:job:my", ->
     AlumNet.navigate("job-exchange/my-posts")

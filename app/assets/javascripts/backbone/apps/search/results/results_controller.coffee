@@ -19,8 +19,9 @@
       AlumNet.mainRegion.show(layoutView)
 
       layoutView.results.show(@_getResultsView())
-      layoutView.filters.show(@_getEmptyFiltersView())
+      layoutView.filters.show(@_getFiltersView())
       
+
     #For internal use
     _getLayoutView: ->
       view = new Results.Layout
@@ -29,24 +30,28 @@
       #when type of result has changed by user
       view.on "filter_type", (type)->
         @results_collection.search(type)
-        
-        # only show filters when "Alumni" selected
-        if type == "profile"          
-          view.filters.show(@_getFiltersView())
-        else  
-          view.filters.show(@_getEmptyFiltersView())
+        view.filters.show(@_getFiltersView(type))
 
       , @  
           
+
     _getResultsView: ->
       view = new Results.ResultsListView
         collection: @results_collection
     
 
-    _getFiltersView: ->
-      view = new AlumNet.Shared.Views.Filters.General   
-        results_collection: @results_collection     
+    _getFiltersView: (type = "all")->
+      view = @_getEmptyFiltersView()            
+      if type == "profile"
+        view = new AlumNet.Shared.Views.Filters.Profiles.General   
+          results_collection: @results_collection     
+      if type == "group"
+        view = new AlumNet.Shared.Views.Filters.Groups.General   
+          results_collection: @results_collection     
+
+      view    
     
+
     _getEmptyFiltersView: ->    
       view = new Results.EmptyView
         for_filters: true

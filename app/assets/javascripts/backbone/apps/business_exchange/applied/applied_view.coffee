@@ -7,4 +7,3 @@
     childView: Applied.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
-

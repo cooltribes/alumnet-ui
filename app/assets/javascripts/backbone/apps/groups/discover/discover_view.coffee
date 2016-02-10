@@ -22,8 +22,6 @@
 
     initialize: (options)-> #get the options from the parent to select the template
       @type = options.type
-      console.log 'model'
-      console.log options
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()
@@ -84,7 +82,6 @@
       #className: "group_children"
 
     initialize: (options) ->
-      console.log options
       # Initialize the type of grid to use (cards or list)
       @type = options.typeGroup
       view = @
