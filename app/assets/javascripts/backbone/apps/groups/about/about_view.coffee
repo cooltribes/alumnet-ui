@@ -14,6 +14,7 @@
 
     templateHelpers: ->
       model = @model
+      console.log model
       other_members: @other_members()
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.canDo('edit_group')
