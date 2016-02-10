@@ -34,7 +34,7 @@
       @trigger "search", query       
 
   class Filters.General extends AlumNet.Shared.Views.Filters.Shared.General
-    template: '_shared/filters/profiles/templates/layout'
+    template: '_shared/filters/groups/templates/layout'
     regions:
       locations: "#locations"
       personal: "#personal"
@@ -47,8 +47,8 @@
 
     initialize: (options)->      
 
-      searchable_fields = ["name", "email"]
-      type = "profile"
+      searchable_fields = ["name", "description", "short_description"]
+      type = "group"
       
       super _.extend options,
         searchable_fields: searchable_fields
