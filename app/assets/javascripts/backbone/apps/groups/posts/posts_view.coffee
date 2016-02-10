@@ -3,9 +3,6 @@
   class Posts.CommentView extends AlumNet.Shared.Views.CommentView
     className: 'groupPost__comment'
 
-    initialize: (options)->
-      console.log options
-
     templateHelpers: ->
       helpers =
         userCanComment: @postable.userIsMember()
@@ -36,8 +33,6 @@
     childViewContainer: '.posts-container'
 
     templateHelpers: ->
-      console.log "model"
-      console.log @model.userIsMember()
       helpers =
         userCanPost: @model.userIsMember()
         groupJoinProccess: @model.get('join_proccess')

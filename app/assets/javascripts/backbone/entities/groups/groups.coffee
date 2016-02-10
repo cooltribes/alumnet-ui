@@ -55,7 +55,6 @@
 
     userHasMembership: (user_id)->
       groupMemberships = @get('membership_users')
-      console.log groupMemberships
       _.contains(groupMemberships, user_id)
 
     userIsMember: ->
