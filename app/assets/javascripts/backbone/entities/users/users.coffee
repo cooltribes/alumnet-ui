@@ -101,12 +101,12 @@
 
     getOriginLocation: ()->
       if @profile.get("birth_city")
-        return "#{@profile.get("birth_city").text} - #{@profile.get("birth_country").text}"
+        return "#{@profile.get("birth_city").name} - #{@profile.get("birth_country").name}"
       null
 
     getCurrentLocation: ()->
       if @profile.get("residence_city")
-        return "#{@profile.get("residence_city").text} - #{@profile.get("residence_country").text}"
+        return "#{@profile.get("residence_city").name} - #{@profile.get("residence_country").name}"
       null
 
     getLC: ()->
