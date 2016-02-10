@@ -3,12 +3,6 @@
   class About.View extends Marionette.ItemView
     template: 'groups/about/templates/about'
 
-    getTemplate: ->
-      if not @model.userHasMembership() && not @model.userIsMember()
-        'groups/about/templates/about_group_closed'
-      else
-        'groups/about/templates/about'
-
     initialize: (options)->
       @current_user = options.current_user
 
