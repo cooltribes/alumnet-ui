@@ -22,8 +22,6 @@
 
     initialize: (options)-> #get the options from the parent to select the template
       @type = options.type
-      console.log 'model'
-      console.log options
 
     templateHelpers: ->
       userIsMember: @model.userIsMember()
