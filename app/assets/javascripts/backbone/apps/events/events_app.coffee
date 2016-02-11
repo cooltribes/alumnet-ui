@@ -11,7 +11,7 @@
       "events/manage": "manageEvents"
       "events/new": "createEvent"
       "events": "discoverEvents"
-
+      "events/prueba": "showEvents"
 
   API =
     aboutEvent: (id)->
@@ -60,6 +60,10 @@
     listAlbums: (id)->
       controller = new EventsApp.Pictures.Controller
       controller.showAlbums(id)
+
+    showEvents: ()->
+      controller = new EventsApp.Main.Controller
+      controller.showMainEvents("prueba")
 
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)
