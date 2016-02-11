@@ -90,9 +90,13 @@
         <p id="js-body-post" class="overfloadText"> <%- @body %></p>
         <!-- BODY OFF -->
         <!-- PREVIEW -->
-        <% if @preview.url : %>
+        <% if @preview.title : %>
           <h4 style="color:#111111"><%= @preview.title %></h4>
+        <% end %>
+        <% if @preview.description : %>
           <span><%= @preview.description %></span>
+        <% end %>
+        <% if @preview.image : %>
           <a href="<%= @preview.url %>" target="_blank"><img src="<%= @preview.image %>" width="99.8%" class="margin_top_small"></a>
         <% end %>
         <!-- PREVIEW OFF -->
