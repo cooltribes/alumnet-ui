@@ -3,7 +3,11 @@
     className: 'col-md-6'
     template: 'meetup_exchange/_shared/templates/discover_task'
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'meetup_exchange/discover/templates/empty'
+
   class Discover.List extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     template: 'meetup_exchange/discover/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
