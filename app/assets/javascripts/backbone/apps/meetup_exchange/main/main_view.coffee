@@ -11,6 +11,7 @@
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
       'click @ui.modalMeetups': 'showModal'
+      'click .js-search': 'search'
 
     initialize: (options)->
       @optionMain = options.option
@@ -50,6 +51,11 @@
       e.preventDefault()
       modal = new Main.ModalMeetups
       $('#container-modal-meetup').html(modal.render().el)
+
+    search: (e)->
+      e.preventDefault()
+      value = $('#search_term').val()
+      @trigger('meetups:search', { q: { name_cont: value } } )
 
   class Main.ModalMeetups extends Backbone.Modal
     template: 'meetup_exchange/main/templates/modal'

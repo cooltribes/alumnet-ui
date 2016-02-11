@@ -2,6 +2,8 @@
   class Main.Controller
     activeTab: "discoverMeetups"
     discoverCollection: null
+    myApplications: null
+    manageMeetups: null
 
     showMainMeetupExchange: (optionMenu)->
       @activeTab = optionMenu
@@ -21,6 +23,21 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutMeetupExchange.on 'meetups:search', (querySearch)->
+        self.querySearch = querySearch
+        if self.activeTab == "discoverMeetups"
+          self.discoverCollection.fetch
+            data: querySearch  
+        else if self.activeTab == "myApplications"
+          self.myApplications.fetch
+            data: querySearch
+            url: AlumNet.api_endpoint + '/meetup_exchanges/applied'
+
+        else if self.activeTab == "manageMeetups"
+          self.manageMeetups.fetch
+            data: querySearch 
+            url: AlumNet.api_endpoint + '/meetup_exchanges/my'
+
     showDiscoverMeetup: ()->
       AlumNet.navigate("meetup-exchange/discover")
       @discoverCollection = new AlumNet.Entities.MeetupExchangeCollection
@@ -32,21 +49,21 @@
 
     showMyApplications: ()->
       AlumNet.navigate("meetup-exchange/applied")
-      tasks = new AlumNet.Entities.MeetupExchangeCollection
-      tasks.fetch
+      @myApplications = new AlumNet.Entities.MeetupExchangeCollection
+      @myApplications.fetch
         url: AlumNet.api_endpoint + '/meetup_exchanges/applied'
       appliedView = new AlumNet.MeetupExchangeApp.Applied.List
-        collection: tasks
+        collection: @myApplications
 
       @layoutMeetupExchange.meetup_region.show(appliedView)
 
     showManageMeetups: ()->
       AlumNet.navigate("meetup-exchange/your-tasks")
-      tasks = new AlumNet.Entities.MeetupExchangeCollection
-      tasks.fetch
+      @manageMeetups = new AlumNet.Entities.MeetupExchangeCollection
+      @manageMeetups.fetch
         url: AlumNet.api_endpoint + '/meetup_exchanges/my'
       myTasksView = new AlumNet.MeetupExchangeApp.YourTasks.List
-        collection: tasks
+        collection: @manageMeetups
 
       @layoutMeetupExchange.meetup_region.show(myTasksView)
 
