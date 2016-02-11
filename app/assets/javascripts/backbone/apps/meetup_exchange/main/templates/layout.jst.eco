@@ -34,9 +34,9 @@
 
 			</ul>
 
-			<ul class="text-right " id="iconModalJob">
+			<ul class="text-right " id="iconModalMeetup">
 				<li role="presentation" class="iconTypeGroup visible-md visible-lg marginJobIconModal">
-    				<a href="#" id="js-modal-job">
+    				<a href="#" id="js-modal-meetups">
     					<span class="glyphicon glyphicon-question-sign" style="font-size: x-large;"></span>
     				</a>
 				</li>
@@ -92,4 +92,4 @@
 	</div>
 </div>
 
-<div id="container-modal-job" class="modalPrograms"></div>
+<div id="container-modal-meetup" class="modalPrograms"></div>

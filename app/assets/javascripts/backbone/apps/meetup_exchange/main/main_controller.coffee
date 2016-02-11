@@ -12,7 +12,7 @@
 
       # Check cookies for first visit
       if not Cookies.get('meetup_exchange_visit')
-        modal = new Discover.ModalMeetups
+        modal = new Main.ModalMeetups
         $('#container-modal-meetup').html(modal.render().el)
         Cookies.set('meetup_exchange_visit', 'true')
 

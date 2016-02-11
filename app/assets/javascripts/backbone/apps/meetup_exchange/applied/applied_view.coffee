@@ -9,3 +9,7 @@
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
 
+    onRender: ->
+      $("#iconModalMeetup").addClass("hide")
+      
+

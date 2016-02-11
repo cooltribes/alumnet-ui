@@ -5,8 +5,12 @@
     regions:
       meetup_region: '#meetup-region'
 
+    ui:
+      'modalMeetups':'#js-modal-meetups'
+    
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
+      'click @ui.modalMeetups': 'showModal'
 
     initialize: (options)->
       @optionMain = options.option
@@ -41,6 +45,11 @@
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
+
+    showModal: (e)->
+      e.preventDefault()
+      modal = new Main.ModalMeetups
+      $('#container-modal-meetup').html(modal.render().el)
 
   class Main.ModalMeetups extends Backbone.Modal
     template: 'meetup_exchange/main/templates/modal'

@@ -12,3 +12,6 @@
       AlumNet.Utilities.GeneralEmptyView
     emptyViewOptions: 
       message: "You don't have any active Meetup."
+
+    onRender: ->
+      $("#iconModalMeetup").addClass("hide")
