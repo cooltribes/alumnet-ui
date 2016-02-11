@@ -80,8 +80,7 @@
   
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
-    search_term: ""    
-    type: "all"
+    search_term: ""        
     url: ->
       AlumNet.api_endpoint + '/search'
 
@@ -91,14 +90,23 @@
     changeSearchTerm: (search_term)->
       @search_term = search_term
 
-    search: (type)->      
-      @type = type
-
-      @fetch(
+    search: (type = "all")->      
+      ###@fetch(
         data: 
           term: @search_term
           type: @type
-      )
+      )###
+      
+      fields_for_search = ["name", "description", "short_description", "email"]
+      query = 
+        type: type
+        q:
+          query:
+            multi_match:
+              query: @search_term
+              fields: fields_for_search
+
+      @search_by_filters(query)
 
     
     search_by_filters: (query)->
