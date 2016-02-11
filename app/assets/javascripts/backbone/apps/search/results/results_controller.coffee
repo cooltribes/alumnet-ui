@@ -48,6 +48,9 @@
       if type == "group"
         view = new AlumNet.Shared.Views.Filters.Groups.General   
           results_collection: @results_collection     
+      if type == "event"
+        view = new AlumNet.Shared.Views.Filters.Events.General   
+          results_collection: @results_collection     
 
       view    
     
