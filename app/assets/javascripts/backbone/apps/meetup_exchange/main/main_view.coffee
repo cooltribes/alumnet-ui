@@ -5,6 +5,9 @@
     regions:
       meetup_region: '#meetup-region'
 
+    events:
+      'click .optionMenuLeft': 'goOptionMenuLeft'
+
     initialize: (options)->
       @optionMain = options.option
       @opcionInteger(options.option)
@@ -16,13 +19,29 @@
 
     opcionInteger: (optionMenu)->
       switch optionMenu
-        when "discoverJobExchange"
+        when "discoverMeetups"
           return 0
+        when "myApplications"
+          return 1
+        when "manageMeetups"
+          return 2
         
     templateHelpers: ->
       classOf: (step) =>
         @class[step]
 
-  class Main.ModalMeetup extends Backbone.Modal
+    goOptionMenuLeft: (e)->
+      e.preventDefault()
+      click = $(e.currentTarget)
+      @valueClick = click.attr("data-menu")
+      @optionMain = @valueClick
+      @trigger "navigate:menu:meetup",@valueClick
+      @toggleLink(click)
+
+    toggleLink: (element)->
+      $(".optionMenuLeft").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
+
+  class Main.ModalMeetups extends Backbone.Modal
     template: 'meetup_exchange/main/templates/modal'
     cancelEl: '#js-close'

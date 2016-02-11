@@ -26,7 +26,7 @@
 				</li>
 	
 				<li role="presentation" class="submenu__item">
-					<a href="#job-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups" data-menu="createMeetups">
+					<a href="#meetup-exchange/new" class="submenu__item__link submenu__item__link" title="Create Groups" data-menu="createMeetups">
 						<i class="icon-entypo-plus"></i>
 						<span class="submenu__item__link--text"> Create a Meetup </span>
 					</a>
@@ -78,7 +78,7 @@
 	<hr class="no_margin_top">
 	<div class="row">
 		<div class="col-md-8">
-			<div id="jobs-region"></div>
+			<div id="meetup-region"></div>
 			<div class="row">
 				<div class="col-md-12 text-center">
 				
