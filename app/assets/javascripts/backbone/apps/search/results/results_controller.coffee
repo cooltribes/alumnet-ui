@@ -51,6 +51,12 @@
       if type == "event"
         view = new AlumNet.Shared.Views.Filters.Events.General   
           results_collection: @results_collection     
+      if type == "company"
+        view = new AlumNet.Shared.Views.Filters.Companies.General   
+          results_collection: @results_collection     
+      if type == "task"
+        view = new AlumNet.Shared.Views.Filters.Tasks.General   
+          results_collection: @results_collection     
 
       view    
     
@@ -58,6 +64,6 @@
     _getEmptyFiltersView: ->    
       view = new Results.EmptyView
         for_filters: true
-        message: "Filters only available for Alumni and Groups"
+        message: "Filter only specific type of result"
     
   

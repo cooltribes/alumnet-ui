@@ -95,8 +95,7 @@
         data: 
           term: @search_term
           type: @type
-      )###
-      console.log type
+      )###      
       fields_for_search = ["name", "description", "short_description", "email"]
       query = 
         type: type

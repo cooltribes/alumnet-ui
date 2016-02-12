@@ -120,7 +120,8 @@
         location = "business-exchange"
         page = ""                
       
-      when "companie"
+      when "company"
+        location = "companies"
         page = "about"                      
       
       when "event", "group"

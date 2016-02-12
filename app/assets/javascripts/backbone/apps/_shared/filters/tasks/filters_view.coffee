@@ -1,7 +1,7 @@
-@AlumNet.module 'Shared.Views.Filters.Events', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'Shared.Views.Filters.Tasks', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
  
   class Filters.General extends AlumNet.Shared.Views.Filters.Shared.General
-    template: '_shared/filters/events/templates/layout'
+    template: '_shared/filters/tasks/templates/layout'
     regions:
       locations: "#locations"
 
@@ -12,7 +12,7 @@
     initialize: (options)->      
 
       searchable_fields = ["name", "description"]
-      type = "events"
+      type = "task"
       
       super _.extend options,
         searchable_fields: searchable_fields

@@ -1,46 +1,5 @@
 @AlumNet.module 'Shared.Views.Filters.Profiles', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
-  
-  
-  class Filters.LocationContainer extends AlumNet.Shared.Views.Filters.Shared.LocationContainer   
-    buildQuery: (active_locations = [])->
-      
-      locationTerms = []
-
-      cities_array = _.filter active_locations, (el)->
-        el.get("type") == "city"
-
-      countries_array = _.filter active_locations, (el)->
-        el.get("type") == "country"
-
-      if cities_array.length > 0        
-        city_ids = _.pluck(cities_array, "id")                       
-
-        locationTerms.push [
-          terms:
-            "residence_city_id": city_ids
-        ,
-          terms:
-            "birth_city_id": city_ids
-        ]
-      
-      if countries_array.length > 0        
-        countries_ids = _.pluck(countries_array, "id")                       
-
-        locationTerms.push [
-          terms:
-            "residence_country_id": countries_ids
-        ,
-          terms:
-            "birth_country_id": countries_ids
-        ]
-      
-      query =         
-        bool:
-          should: locationTerms 
-
-      @trigger "search", query       
-
-
+    
   class Filters.PersonalContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
     template: '_shared/filters/profiles/templates/personal'        
 
@@ -259,7 +218,9 @@
       
       
     onRender: ->
-      @locations_view = new Filters.LocationContainer
+      @locations_view = new AlumNet.Shared.Views.Filters.Shared.LocationContainer
+        type: "other"
+        
       @personal_view = new Filters.PersonalContainer
       @skills_view = new Filters.SkillLanguageContainer
         type: "skills"

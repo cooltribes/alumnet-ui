@@ -82,6 +82,8 @@
     initialize: (options)->    
       @model = new Backbone.Model
         all_selected: true
+
+      @type = options.type  #[profile, other] because the query is built in a different way for each type of model
       
       #Search for the initial cities and countries     
       locations = []
@@ -125,6 +127,61 @@
 
       @collection.on "checkStatus", @checkStatus, @
 
+
+    buildQuery: (active_locations = [])->
+      
+      locationTerms = []
+
+      cities_array = _.filter active_locations, (el)->
+        el.get("type") == "city"
+
+      countries_array = _.filter active_locations, (el)->
+        el.get("type") == "country"
+
+      if cities_array.length > 0        
+        city_ids = _.pluck(cities_array, "id")                       
+
+        if @type == "profile"
+          terms = [
+            terms:
+              "residence_city_id": city_ids
+          ,
+            terms:
+              "birth_city_id": city_ids
+          ]
+        else
+          terms = [
+            terms:
+              "city_id": city_ids        
+          ]
+
+        locationTerms.push terms
+      
+      if countries_array.length > 0        
+        countries_ids = _.pluck(countries_array, "id")                       
+
+        if @type == "profile"
+          terms = [
+            terms:
+              "residence_country_id": countries_ids
+          ,
+            terms:
+              "birth_country_id": countries_ids
+          ]
+        else
+          terms = [
+            terms:
+              "country_id": city_ids        
+          ]
+
+        locationTerms.push 
+      
+      query =         
+        bool:
+          should: locationTerms 
+
+      @trigger "search", query       
+        
 
     addLocationFromSelect: (e)->      
       location = 
