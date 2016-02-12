@@ -174,7 +174,7 @@
               "country_id": city_ids        
           ]
 
-        locationTerms.push 
+        locationTerms.push terms
       
       query =         
         bool:
