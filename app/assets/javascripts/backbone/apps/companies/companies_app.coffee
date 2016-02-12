@@ -2,7 +2,8 @@
 
   class CompaniesApp.Router extends AlumNet.Routers.Base
       appRoutes:
-        # "companies": "about"
+        # "companies": "about
+        "companies/prueba": "showCompanies"
         "companies": "discover"
         "my-companies": "myCompanies"
         "companies/new": "createCompany"
@@ -41,6 +42,10 @@
         AlumNet.setTitle('Create New Companies')
         controller = new CompaniesApp.JobPosts.Controller
         controller.job_posts(id)
+
+      showCompanies: (id)->
+        controller = new CompaniesApp.Main.Controller
+        controller.showMainCompanies("discoverCompanies")
 
     AlumNet.on "company:about", (id) ->
       AlumNet.navigate "companies/#{id}/about",
