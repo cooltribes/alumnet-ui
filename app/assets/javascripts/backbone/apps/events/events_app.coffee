@@ -10,8 +10,7 @@
       "events/:id/files": "showFiles"
       "events/manage": "manageEvents"
       "events/new": "createEvent"
-      "events": "discoverEvents"
-      "events/prueba": "showEvents"
+      "events/discover": "discoverEvents"
 
   API =
     aboutEvent: (id)->
@@ -32,8 +31,8 @@
 
     manageEvents: (id)->
       AlumNet.setTitle('Manage Events')
-      controller = new EventsApp.Manage.Controller
-      controller.manage(AlumNet.current_user.id)
+      controller = new EventsApp.Main.Controller
+      controller.showMainEvents("myEvents", AlumNet.current_user.id)
 
     createEvent: ->
       AlumNet.setTitle('Create Event')
@@ -50,8 +49,8 @@
 
     discoverEvents: ->
       AlumNet.setTitle('Discover Events')
-      controller = new EventsApp.Discover.Controller
-      controller.discover()
+      controller = new EventsApp.Main.Controller
+      controller.showMainEvents("discoverEvents")
 
     inviteEvent: (event, users)->
       controller = new EventsApp.Create.Controller
@@ -60,10 +59,6 @@
     listAlbums: (id)->
       controller = new EventsApp.Pictures.Controller
       controller.showAlbums(id)
-
-    showEvents: ()->
-      controller = new EventsApp.Main.Controller
-      controller.showMainEvents("prueba")
 
   AlumNet.on "user:event:invite", (event, users)->
     API.inviteEvent(event, users)

@@ -19,9 +19,9 @@
 
     opcionInteger: (optionMenu)->
       switch optionMenu
-        when "upcomingEvents"
+        when "discoverEvents"
           return 0
-        when "pastEvents"
+        when "myEvents"
           return 1
 
     templateHelpers: ->
@@ -33,7 +33,6 @@
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
       @optionMain = @valueClick
-      console.log @valueClick
       @trigger "navigate:menu:events",@valueClick
       @toggleLink(click)
 

@@ -8,59 +8,60 @@
       </div>
     </div>
 
-    <div class="col-md-11 col-xs-8 col-sm-10">
-      <h3 class="margin_top_xsmall overfloadText">
-        <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
-      </h2>
-    </div>
-
-    <div class="col-md-2 col-xs-8 col-sm-3">
-      <div class="row-fluid">
-        <div class="col-md-2 no-padding">
-          <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+    <div class="col-md-8 col-xs-8 col-sm-10">
+      <div class="row">
+        <div  class="col-md-12" >
+          <h3 class="margin_top_xsmall overfloadText">
+            <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
+          </h3>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-xs-8 col-sm-3">
+          <div class="row-fluid">
+            <div class="col-md-2 no-padding">
+              <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+            </div>
+            <div class="col-md-10">
+              <div>Invited by:</div>
+              <a href="#users/<%= @creator.id %>/posts">
+                <div class="creatorName overfloadText">
+                  <%= @creator.name %>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-10">
-          <div>Invited by:</div>
-          <a href="#users/<%= @creator.id %>/posts">
-            <div class="creatorName overfloadText">
-              <%= @creator.name %>
-            </div>
-          </a>
+        <div class="col-md-4 col-xs-12 col-sm-4 margin_top_xsmall">
+          <div>
+            <span class="glyphicon glyphicon-time"></span>
+            <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
+          </div>
+          <div class="overfloadText">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <%= @location %>
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-2 col-xs-12 col-sm-3">
+          <span class="ico-company"></span>
+          Attending:<%= @attendances_count %>
+        </div>
 
-    <div class="col-md-4 col-xs-12 col-sm-4 margin_top_xsmall">
-      <div>
-        <span class="glyphicon glyphicon-time"></span>
-        <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
-      </div>
-      <div class="overfloadText">
-        <span class="glyphicon glyphicon-map-marker"></span>
-        <%= @location %>
-      </div>
-    </div>
-
-    <div class="col-md-2 col-xs-12 col-sm-3">
-      <span class="ico-company"></span>
-      Attending:<%= @attendances_count %>
-    </div>
-
-    <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
-      <% unless @isPast: %>
-        <% if @admin: %>
-        <a href="#events/<%= @id %>/about">
-            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
-              <span class="ico-company"></span>
-            </div>
-            <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rightMyevents">
-              <span class="glyphicon glyphicon-cog"></span>
-              <span >EDIT</span>
-            </div>
-        </a>
-        <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
+        <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
+        <% unless @isPast: %>
+          <% if @admin: %>
+            <a href="#events/<%= @id %>/about">
+              <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
+                <span class="ico-company"></span>
+              </div>
+              <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rightMyevents">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span >EDIT</span>
+              </div>
+            </a>
+            <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
               <a href="#" id="js-attendance-cancel" class=" eventsTableView__isAdminCancel--paddingCancel">CANCEL</a>
-        </div>
+            </div>
         <% else: %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
             <option value="invited">RSVP</option>
@@ -83,7 +84,9 @@
             <a href="#" id="js-attendance-cancel" class="eventsTableView__isAdminCancel--paddingCancel">DELETE</a>
           </div>
         <% end %>
-      <% end %>
+    <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
