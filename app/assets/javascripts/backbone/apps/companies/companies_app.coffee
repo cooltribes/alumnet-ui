@@ -15,8 +15,8 @@
     API =
       discover: ->
         AlumNet.setTitle('Companies')
-        controller = new CompaniesApp.Discover.Controller
-        controller.discover()
+        controller = new CompaniesApp.Main.Controller
+        controller.showMainCompanies("discoverCompanies")
       
       myCompanies: ->
         AlumNet.setTitle('My Companies')

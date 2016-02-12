@@ -1,0 +1,92 @@
+
+<div class="container-fluid marginBody">
+	<div class="row">
+		<div class="col-xs-8 col-sm-7 col-md-8 col-sm-8 text-left">
+			<ul class="submenu" id="filter-link-container">
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Companies" data-menu="discoverCompanies">
+						<i class="glyphicon glyphicon-search"></i>
+						<span class="submenu__item__link--text"> Discover Companies </span>
+					</a>
+				</li>
+
+				<li class="submenu__item">
+					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#" title="My Companies" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="myEvents">
+						<i class="icon-entypo-suitcase"></i>
+						<span class="submenu__item__link--text"> My Companies </span>
+					</a>
+				</li>
+	
+				<li role="presentation" class="submenu__item">
+					<a href="#events/new" class="submenu__item__link submenu__item__link" title="Create a Company">
+						<i class="icon-entypo-plus"></i>
+						<span class="submenu__item__link--text"> Create a Company </span>
+					</a>
+				</li>	
+
+			</ul>
+
+			<ul class="text-right" id="iconsTypeCompanies">
+				<li role="presentation" class="iconTypeGroup visible-md visible-lg" id="iconCards">
+					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-menu="cards">
+						<span class="glyphicon glyphicon-th-large padding_left_xsmall"></span>
+					</a>
+				</li>
+				<li role="presentation" class="iconTypeGroup visible-md visible-lg" id="iconList">
+					<a class="searchBar__ViewList js-viewList" title="View results in list" data-menu="list">
+						<span class="glyphicon glyphicon-align-justify"></span>
+					</a>
+				</li>
+			</ul>
+		
+		</div>
+		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
+			<ul class="submenu" id="filter-link-container">
+
+				<!-- <li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
+						<i class="icon-entypo-search-tasks"></i>
+						<span class="submenu__item__link--text"> Suggestions</span>		
+					</a>
+				</li> -->		
+
+				<li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
+						<i class="ico-user"></i>
+						<span class="submenu__item__link--text"> Filters</span>	
+					</a>
+				</li>	
+
+				<li class="hidden-xs">
+		      <div class="searchBarSubMenu">
+		        <form id="search-form">
+		          <div class="input-group">
+		            <input type="text" name="search_term" id="search_term" class="form-control searchBarSubMenu__searchInput" placeholder="Write a name or email">
+		            <span class="input-group-btn">
+		            <button class="searchBarSubMenu__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+		            </span>
+		          </div>
+        		</form>
+      		</div>
+  			</li>
+			</ul>
+		</div>
+	</div>
+	<hr class="no_margin_top">
+	<div class="row">
+		<div class="col-md-8">
+			<div id="companies-region"></div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+				
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div id="filters-region"></div>
+		</div>
+	</div>
+</div>
