@@ -42,7 +42,7 @@
         .mouseleave (e)->
           if e.toElement.className != "popover previewPopover bottom in"
             $(this).popover 'hide'
-       
+
       view = @
       @ui.commentText.editable
         type: 'textarea'
@@ -270,7 +270,7 @@
         .mouseleave (e)->
           if e.toElement.className != "popover previewPopover bottom in"
             $(this).popover 'hide'
-        
+
       view = @
       @ui.bodyPost.editable
         type: 'textarea'
@@ -591,10 +591,20 @@
             url: AlumNet.api_endpoint + '/metatags'
             data: {url: url}
             success: (data)->
-              ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-6 col-lg-5 text-center" style="padding: 13px;"><img src="'+data.image+'" class="imageEvents"></div><div class="col-sm-8 col-md-6 col-lg-7"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
-              ui.preview_image.val(data.image)
-              ui.preview_description.val(data.description)
-              ui.preview_title.val(data.title)
+              image_tag = ""
+              description_tag = ""
+              title_tag = ""
+              if data.image
+                ui.preview_image.val(data.image)
+                image_tag = "<img src='#{data.image}' class='imageEvents'>"
+              if data.description
+                ui.preview_description.val(data.description)
+                description_tag = "<div class='col-md-12'>#{data.description}</div>"
+              if data.title
+                ui.preview_title.val(data.title) unless data.title == null
+                title_tag = "<h4>#{data.title}</h4>"
+              ui.videoContainer.html("<div class='row'><div class='col-sm-4 col-md-6 col-lg-5 text-center' style='padding: 13px;'>#{image_tag}</div><div class='col-sm-8 col-md-6 col-lg-7'><div class='row'><div class='col-md-12'>#{title_tag}</div></div><div class='row'><div class='col-md-12'>#{description_tag}</div></div></div></div>")
+              # ui.videoContainer.html('<div class="row"><div class="col-sm-4 col-md-6 col-lg-5 text-center" style="padding: 13px;"><img src="'+data.image+'" class="imageEvents"></div><div class="col-sm-8 col-md-6 col-lg-7"><div class="row"><div class="col-md-12"><h4>'+data.title+'</h4></div></div><div class="row"><div class="col-md-12">'+data.description+'</div></div></div></div>')
               ui.preview_url.val(url)
 
     submitClicked: (e)->

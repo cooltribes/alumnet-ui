@@ -7,20 +7,16 @@
 
     showMainJobExchange: (optionMenu)->
       @activeTab = optionMenu
-
-      # Check cookies for first visit
-      console.log "antes"
-      if not Cookies.get('job_exchange_visit')
-        console.log "adentro"
-        modal = new Main.ModalJob
-        console.log modal
-        $('#container-modal-job').html(modal.render().el)
-        Cookies.set('job_exchange_visit', 'true')
-
       @layoutJobExchange = new Main.JobExchange
         option: @activeTab
       AlumNet.mainRegion.show(@layoutJobExchange)
       @showMenuUrl()
+
+      # Check cookies for first visit
+      if not Cookies.get('job_exchange_visit')
+        modal = new Main.ModalJob
+        $('#container-modal-job').html(modal.render().el)
+        Cookies.set('job_exchange_visit', 'true')
 
       self = @
       @layoutJobExchange.on "navigate:menu:job", (valueClick)->

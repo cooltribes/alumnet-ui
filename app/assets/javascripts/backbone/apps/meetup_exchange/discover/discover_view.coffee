@@ -1,13 +1,20 @@
 @AlumNet.module 'MeetupExchangeApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
   class Discover.Task extends AlumNet.MeetupExchangeApp.Shared.Task
-    className: 'col-md-4'
+    className: 'col-md-6'
     template: 'meetup_exchange/_shared/templates/discover_task'
 
+  class Discover.EmptyView extends Marionette.ItemView
+    template: 'meetup_exchange/discover/templates/empty'
+
   class Discover.List extends Marionette.CompositeView
+    emptyView: Discover.EmptyView
     template: 'meetup_exchange/discover/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
+
+    onRender: ->
+      $("#iconModalMeetup").removeClass("hide")
 
     onShow: ->
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
@@ -16,9 +23,6 @@
         { attribute: "post_until", type: "numeric", values: "" },
         { attribute: "task_attributes_value", type: "string", values: "" }
       ])
-    
-    ui:
-      'modalMeetups':'#js-modal-meetups'
 
     events:
       'click .add-new-filter': 'addNewFilter'
@@ -26,7 +30,6 @@
       #'click .search': 'search'
       'click .clear': 'clear'
       'change #filter-logic-operator': 'changeOperator'
-      'click @ui.modalMeetups': 'showModal'
 
     changeOperator: (e)->
       e.preventDefault()
@@ -50,12 +53,3 @@
     clear: (e)->
       e.preventDefault()
       @collection.fetch()
-
-    showModal: (e)->
-      e.preventDefault()
-      modal = new Discover.ModalMeetups
-      $('#container-modal-meetup').html(modal.render().el)
-
-  class Discover.ModalMeetups extends Backbone.Modal
-    template: 'meetup_exchange/discover/templates/modal'
-    cancelEl: '#js-close'

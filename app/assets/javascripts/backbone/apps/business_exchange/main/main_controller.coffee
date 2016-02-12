@@ -8,19 +8,19 @@
       @activeTab = optionMenu
       current_user = AlumNet.current_user
       
+      @layoutBusiness = new Main.BusinessExchange
+        option: @activeTab
+        current_user: current_user
+      AlumNet.mainRegion.show(@layoutBusiness)
+      @showMenuUrl()
+
       # Check cookies for first visit
       if not Cookies.get('business_exchange_visit')
         modal = new Main.ModalBusiness
         $('#container-modal-business').html(modal.render().el)
         Cookies.set('business_exchange_visit', 'true')
 
-      @layoutBusiness = new Main.BusinessExchange
-        option: @activeTab
-        current_user: current_user
-      AlumNet.mainRegion.show(@layoutBusiness)
-      @showMenuUrl()
       self = @
-
       @layoutBusiness.on "navigate:menu:programs", (valueClick)-> 
         self.activeTab = valueClick
         self.showMenuUrl()

@@ -1,7 +1,7 @@
 @AlumNet.module 'MeetupExchangeApp', (MeetupExchangeApp, @AlumNet, Backbone, Marionette, $, _) ->
   class MeetupExchangeApp.Router extends AlumNet.Routers.Base
     appRoutes:
-      "meetup-exchange": "discoverMeetupExchange"
+      "meetup-exchange/discover": "discoverMeetupExchange"
       "meetup-exchange/your-tasks": "yourTasksMeetupExchange"
       "meetup-exchange/applied": "appliedMeetupExchange"
       "meetup-exchange/automatches": "automatchesMeetupExchange"
@@ -13,16 +13,16 @@
   API =
     discoverMeetupExchange: ->
       AlumNet.setTitle('Discover Meetups')
-      controller = new MeetupExchangeApp.Discover.Controller
-      controller.discover()
+      controller = new MeetupExchangeApp.Main.Controller
+      controller.showMainMeetupExchange("discoverMeetups")
     yourTasksMeetupExchange: ->
       AlumNet.setTitle('My Meetups')
-      controller = new MeetupExchangeApp.YourTasks.Controller
-      controller.your_tasks()
+      controller = new MeetupExchangeApp.Main.Controller
+      controller.showMainMeetupExchange("manageMeetups")
     appliedMeetupExchange: ->
       AlumNet.setTitle('Applied Meetups')
-      controller = new MeetupExchangeApp.Applied.Controller
-      controller.applied()
+      controller = new MeetupExchangeApp.Main.Controller
+      controller.showMainMeetupExchange("myApplications")
     automatchesMeetupExchange: ->
       AlumNet.setTitle('Meetups Sugestions')
       controller = new MeetupExchangeApp.AutoMatches.Controller

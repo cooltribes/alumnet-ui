@@ -51,7 +51,7 @@
 		</div>
 
 		<div class="col-md-4 margin_bottom">
-			<% if not @userHasMembership && not @userIsApproved && @membership_status == "none": %>
+			<% if not @userHasMembership && not @userIsApproved && @membership.membership_status == "none": %>
 	      <div id="js-join-div" class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
 	        <p class="margin_bottom_small">Join this group to post and comment</p>
 	        <div class="text-center">
@@ -114,18 +114,20 @@
           <% end %>
         </h3>
       </div>
-      <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
-        <h3>
+      <% if @userHasMembership && not @userIsApproved: %>
+        <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
+          <h3>
 
-          <p>Status</p>
+            <p>Status</p>
 
-          <% if @group_type.value== 1: %>
-            <small>Waiting for Approval.</small>
-            <br>
-            <small>You requested to join this group on <%= moment(@membership_created).format(' D MMM YYYY') %> </small>
-          <% end %>
-        </h3>
-      </div>
+            <% if @group_type.value== 1: %>
+              <small>Waiting for Approval.</small>
+              <br>
+              <small>You requested to join this group on <%= moment(@membership_created).format(' D MMM YYYY') %> </small>
+            <% end %>
+          </h3>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

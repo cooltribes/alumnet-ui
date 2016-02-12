@@ -12,7 +12,7 @@
       currentUserIsAdmin: @current_user.isAlumnetAdmin()
       canEditInformation: @model.canDo('edit_group')
       canChangeJoinProcess: @model.canDo('change_join_process')
-      userHasMembership: @model.userHasMembership()
+      userHasMembership: @model.userHasMembership(@current_user.id)
       userIsApproved:  @model.userIsMember()
       joinProcessText: @joinProcessText()
       model: @model
