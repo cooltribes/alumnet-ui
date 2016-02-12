@@ -79,21 +79,13 @@
     ui:
       'searchInput': '#js-search-input'
       'calendario': '#calendar'
-      'upcomingEvents':'#js-upcoming-events'
-      'pastEvents':'#js-past-events'
 
     events:
       'submit #js-search-form': 'searchEvents'
-      #'keypress @ui.searchInput': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
-      'click @ui.upcomingEvents': 'clickUpcoming'
-      'click @ui.pastEvents': 'clickPast'
-      #'click .js-search-input': 'searchCliked'
-      #'click .js-search': 'searchEvents'
 
     initialize: ->
-      @searchUpcomingEvents({})
       AlumNet.setTitle('Discover Events')
 
     onRender: ->
@@ -108,28 +100,8 @@
       $(@ui.calendario).eCalendar
         events: eventsArray
 
-    clickUpcoming: (e)->
-      e.preventDefault()
-      @searchUpcomingEvents({})
-      @clearClass()
-      @setActiveClass($(e.currentTarget))
+      $("#iconsTypeEvents").removeClass("hide")
 
-    searchUpcomingEvents: (query)->
-      seft = this
-      ui = @ui
-      @collection.comparator = 'start_date'
-      options =
-        success: (collection)->
-          seft.render()
-
-      @collection.getUpcoming(query, options)
-      @flag = "upcoming"
-
-    clickPast: (e)->
-      e.preventDefault()
-      @searchPastEvents({})
-      @clearClass()
-      @setActiveClass($(e.currentTarget))
 
     eventsMap: (seft,collection)->
       eventsArray = collection.models.map (model) ->
@@ -188,18 +160,3 @@
       else
         query = {}
       @searchUpcomingEvents(query)
-
-    searchPastEvents: (query)->
-      @collection.getPast(query)
-      @flag = "past"
-
-    setActiveClass: (target)->
-      console.log target
-      console.log target.attr('class')
-      target.addClass("sortingMenu__item__link sortingMenu__item__link--active")
-      console.log target.attr('class')
-
-    clearClass: ()->
-      $('#js-upcoming-events, #js-past-events')
-      .removeClass("sortingMenu__item__link sortingMenu__item__link--active")
-      .addClass("sortingMenu__item__link sortingMenu__item__link")

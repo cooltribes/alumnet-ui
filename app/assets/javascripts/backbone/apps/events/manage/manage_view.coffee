@@ -74,42 +74,18 @@
     childViewContainer: ".main-events-area"
     emptyView: Manage.Empty
 
-    initialize: ->
-      @searchUpcomingEvents({})
-
     childViewOptions: ->
       collection: @collection
 
     ui:
-      'upcomingEvents':'#js-upcoming-events'
-      'pastEvents':'#js-past-events'
       'searchInput': '#js-search-input'
 
     events:
-      'click @ui.upcomingEvents': 'clickUpcoming'
-      'click @ui.pastEvents': 'clickPast'
       'submit #js-search-form': 'searchEvents'
       #'keypress @ui.searchInput': 'searchEvents'
 
-    clickUpcoming: (e)->
-      e.preventDefault()
-      @searchUpcomingEvents({})
-      @clearClass()
-      @setActiveClass($(e.currentTarget))
-
-    clickPast: (e)->
-      e.preventDefault()
-      @searchPastEvents({})
-      @clearClass()
-      @setActiveClass($(e.currentTarget))
-
-    searchUpcomingEvents: (query)->
-      @collection.getUpcoming(query)
-      @flag = "upcoming"
-
-    searchPastEvents: (query)->
-      @collection.getPast(query)
-      @flag = "past"
+    onRender: ->
+      $("#iconsTypeEvents").addClass("hide")
 
     searchEvents: (e)->
       e.preventDefault()
@@ -117,23 +93,3 @@
         query = { name_cont: @ui.searchInput.val() }
       else
         query = {}
-      @searchUpcomingEvents(query)
-
-    #searchEvents: (e)->
-      #if e.which == 13
-        #unless @ui.searchInput.val() == ""
-          #query = { name_cont: @ui.searchInput.val() }
-        #else
-          #query = {}
-        #if @flag == "upcoming"
-          #@searchUpcomingEvents(query)
-        #else
-          #@searchPastEvents(query)
-
-    setActiveClass: (target)->
-      target.addClass("sortingMenu__item__link sortingMenu__item__link--active")
-
-    clearClass: ()->
-      $('#js-upcoming-events, #js-past-events')
-      .removeClass("sortingMenu__item__link sortingMenu__item__link--active")
-      .addClass("sortingMenu__item__link sortingMenu__item__link")
