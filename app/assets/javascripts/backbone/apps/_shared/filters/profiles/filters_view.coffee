@@ -48,7 +48,7 @@
       
     
     buildQuery: (active_rows = [])->
-      personalFilters = []
+      personalFilters = [{}]
 
       gender = _.filter active_rows, (el)->
         el.get("type") == "gender"
@@ -56,11 +56,12 @@
       age_ranges = _.filter active_rows, (el)->
         el.get("type") == "age"
       
-      if gender.length == 1 #because only one gender will affect the response, both is the same as no gender filter
+      if gender.length == 1 #because only one gender will affect the response, if both selected, is the same as no gender selected
         personalFilters.push
-          match:
-            gender: gender[0].get("value")
-      
+          query:
+            match:
+              gender: gender[0].get("value")
+        
       if age_ranges.length > 0                 
         ranges = []
         _.each age_ranges, (model, i)->           
@@ -77,7 +78,7 @@
 
       query =         
         bool:
-          must: personalFilters
+          musty: personalFilters
 
       @trigger "search", query     
 
