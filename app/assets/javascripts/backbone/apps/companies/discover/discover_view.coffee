@@ -128,13 +128,12 @@
 
       tagName = 'div'
       template = "companies/discover/templates/_card"
-      className = "col-xs-12 col-md-4 margin_bottom_small"
+      className = "col-xs-12 col-md-6 margin_bottom_small"
 
       if @type == "list"
         tagName = 'tr'
         template = "companies/discover/templates/_row"
         className = ""
-
 
       className: className
       tagName: tagName
@@ -143,8 +142,8 @@
     ui:
       'loading': '.throbber-loader'
 
-    initialize: ()->
-      @type = "cards" #default view
+    initialize: (options)->
+      @type = options.type
     
     onRender: ->
       $(window).unbind('scroll')
@@ -157,15 +156,12 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      console.log "endPagination"
       @ui.loading.hide()
       @collection.page = 1
       $(window).unbind('scroll')       
 
     loadMoreCompanies: (e)->
-      console.log "load"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        console.log "entro load"
         @trigger 'companies:reload'
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
@@ -178,11 +174,10 @@
     events:
       'click .js-changeGrid' : 'changeGridView'
 
-
     changeGridView: (e)->
       e.preventDefault()
       element = $(e.currentTarget)
       element.siblings().removeClass("searchBar__renderOptions__iconActive")
       element.addClass("searchBar__renderOptions__iconActive")
-      type = element.attr("data-grid")
-      @trigger "changeGrid", type
+      @type = element.attr("data-grid")
+      @trigger "changeGrid", @type
