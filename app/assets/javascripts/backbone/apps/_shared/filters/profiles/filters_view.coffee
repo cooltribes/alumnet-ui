@@ -193,11 +193,11 @@
           item.get "value"
 
         search_term =   
-          my_skills: ids_for_search 
+          skill_ids: ids_for_search 
 
         if @type == "languages"     
           search_term =   
-            my_languages: ids_for_search 
+            language_ids: ids_for_search 
 
         query =         
           terms: search_term
@@ -276,6 +276,7 @@
       , @ 
 
       @skills_view.on "search", (filter)->
+        console.log 'search skills'
         @updateChildQueries(filter, 3)
       , @ 
 
