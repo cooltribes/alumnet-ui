@@ -16,6 +16,7 @@
         self.showMenuUrl()
 
     showDiscoverEvents: ()->
+      AlumNet.navigate("events/discover")
       events = new AlumNet.Entities.EventsCollection
       events.fetch()
       eventsView = new AlumNet.EventsApp.Discover.EventsView
@@ -24,6 +25,7 @@
       @layoutEvents.meetups_region.show(eventsView)
 
     showMyEvents: (eventable_id)->
+      AlumNet.navigate("events/manage")
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
         eventable_id: @eventable_id

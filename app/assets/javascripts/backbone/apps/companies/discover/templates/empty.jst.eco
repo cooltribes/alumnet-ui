@@ -5,7 +5,7 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</div>
 			<div class="col-md-10">
-				<p class="lead">It seems that you don't have any company yet. Click on <a href="#companies" title="Discover companies">Discover</a> to find companies to join or you can also <a href="#companies/new" title="Create a new company">Create a new company</a></p>
+				<p class="lead">It seems that you don't have any company yet. Click on <a href="#companies/discover" title="Discover companies">Discover</a> to find companies to join or you can also <a href="#companies/new" title="Create a new company">Create a new company</a></p>
 			</div>
 		</div>
 	</div>

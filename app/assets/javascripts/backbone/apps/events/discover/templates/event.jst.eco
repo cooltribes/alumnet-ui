@@ -50,7 +50,7 @@
 
     <div class="col-md-2 col-xs-12 col-sm-3">
       <span class="ico-company"></span>
-      Attending: <%= @going_count %>
+      Attending: <%= @attendances_count %>
     </div>
 
     <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">

@@ -4,6 +4,7 @@
       appRoutes:
         #"companies": "about"
         "companies/discover": "discover"
+        "companies/manage": "manage"
         "my-companies": "myCompanies"
         "companies/new": "createCompany"
         "companies/:id/about": "about"
@@ -16,6 +17,11 @@
         AlumNet.setTitle('Companies')
         controller = new CompaniesApp.Main.Controller
         controller.showMainCompanies("discoverCompanies")
+
+      manage: ->
+        AlumNet.setTitle('Companies')
+        controller = new CompaniesApp.Main.Controller
+        controller.showMainCompanies("manageCompanies")
       
       myCompanies: ->
         AlumNet.setTitle('My Companies')
