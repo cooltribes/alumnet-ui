@@ -13,14 +13,22 @@
 
 				<li class="submenu__item">
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
-					<a href="#" title="My Companies" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="myEvents">
+					<a href="#" title="My Companies" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="myCompanies">
 						<i class="icon-entypo-suitcase"></i>
 						<span class="submenu__item__link--text"> My Companies </span>
 					</a>
 				</li>
-	
+
+				<li class="submenu__item">
+					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
+					<a href="#" title="Manage Companies" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(2)%>" id="js-groups" data-menu="manageCompanies">
+						<i class="icon-entypo-layout"></i>
+						<span class="submenu__item__link--text"> Manage Companies </span>
+					</a>
+				</li>
+				
 				<li role="presentation" class="submenu__item">
-					<a href="#events/new" class="submenu__item__link submenu__item__link" title="Create a Company">
+					<a href="#companies/new" class="submenu__item__link submenu__item__link" title="Create a Company">
 						<i class="icon-entypo-plus"></i>
 						<span class="submenu__item__link--text"> Create a Company </span>
 					</a>
@@ -30,12 +38,12 @@
 
 			<ul class="text-right" id="iconsTypeCompanies">
 				<li role="presentation" class="iconTypeGroup visible-md visible-lg" id="iconCards">
-					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-menu="cards">
+					<a class="searchBar__ViewCard js-viewCard" title="View results in cards" data-grid="cards">
 						<span class="glyphicon glyphicon-th-large padding_left_xsmall"></span>
 					</a>
 				</li>
 				<li role="presentation" class="iconTypeGroup visible-md visible-lg" id="iconList">
-					<a class="searchBar__ViewList js-viewList" title="View results in list" data-menu="list">
+					<a class="searchBar__ViewList js-viewList" title="View results in list" data-grid="list">
 						<span class="glyphicon glyphicon-align-justify"></span>
 					</a>
 				</li>

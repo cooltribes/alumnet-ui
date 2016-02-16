@@ -7,8 +7,20 @@
 
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
+      'click .js-changeGrid' : 'changeGridView'
+      'click .js-viewCard': 'viewCard'
+      'click .js-viewList': 'viewList'
+
+    # onRender: ()->
+    #   console.log "paso del menu"
+    #   console.log @stepMenu
+    #   if @stepMenu == "discoverCompanies" || @type == "discoverCompanies"
+    #     $("#iconsTypeCompanies").removeClass('hide')
+    #   else
+    #     $("#iconsTypeCompanies").addClass('hide')
 
     initialize: (options)->
+      @stepMenu = options.option
       @opcionInteger(options.option)
       @tab = @opcionInteger(options.option)
       @class = [
@@ -18,10 +30,12 @@
 
     opcionInteger: (optionMenu)->
       switch optionMenu
-        when "discoverEvents"
+        when "discoverCompanies"
           return 0
-        when "myEvents"
+        when "myCompanies"
           return 1
+        when "manageCompanies"
+          return 2
 
     templateHelpers: ->
       classOf: (step) =>
@@ -38,3 +52,15 @@
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
+
+    viewCard: (e)->
+      #$("#iconList").removeClass("iconTypeGroup--active iconTypeGroup")
+      #$("#iconCards").addClass("iconTypeGroup--active")
+      @type = "cards"
+      @trigger "changeGrid", @type
+
+    viewList: (e)->
+      #$("#iconCards").removeClass("iconTypeGroup--active iconTypeGroup")
+      #$("#iconList").addClass("iconTypeGroup--active")
+      @type = "list"
+      @trigger "changeGrid", @type
