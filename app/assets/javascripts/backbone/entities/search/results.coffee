@@ -84,26 +84,27 @@
     url: ->
       AlumNet.api_endpoint + '/search'
 
-    initialize: (models, options)->      
+    initialize: (models, options)->
       @changeSearchTerm(options.search_term)
 
     changeSearchTerm: (search_term)->
       @search_term = search_term
 
-    search: (type = "all")->      
+    search: (type = "all")->
       ###@fetch(
         data: 
           term: @search_term
           type: @type
-      )###      
-      fields_for_search = ["name", "description", "short_description", "email"]
+      )###
+
       query = 
         type: type
-        q:
-          query:
-            multi_match:
-              query: @search_term
-              fields: fields_for_search
+
+      if @getInternalQuery(@search_term)?
+        query.q = @getInternalQuery(@search_term)
+      else
+        query.q = {}
+        
 
       @search_by_filters(query)
 
@@ -118,3 +119,17 @@
           console.log errorText.responseText
           console.log "Sent data"
           console.log error.data
+
+    getInternalQuery: (term, fields = null)->
+      if fields?
+        fields_for_search = fields
+      else
+        fields_for_search = ["name", "description", "short_description", "email"]
+
+      if term != ""
+        query:
+          multi_match:
+            query: term
+            fields: fields_for_search
+      else
+        null
