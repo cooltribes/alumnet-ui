@@ -16,7 +16,9 @@
           when "suggestions"
             self.showSuggestions()
           when "filters"
-            self.showFilters()
+            results = new AlumNet.Entities.SearchResultCollection null,
+              search_term: ""
+            self.showFilters(results)
 
       @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
         collection.querySearch = querySearch
@@ -136,13 +138,18 @@
       AlumNet.navigate("alumni/discover")
       controller = @
       controller.querySearch = {}
-      users = AlumNet.request('user:entities', {})
-      users.page = 1
+      
+      controller.users = new AlumNet.Entities.SearchResultCollection null,
+        search_term: ""
+      controller.users.model = AlumNet.Entities.User
+      controller.users.url = AlumNet.api_endpoint + '/users'
+      controller.users.search("profile")
+
       usersView = new AlumNet.FriendsApp.Find.UsersView
-        collection: users
+        collection: controller.users
 
       #On fetch, delete current user from the list
-      users.on "sync", ()->
+      controller.users.on "sync", ()->
         models = this.filter (model)->
           model.get("id") != AlumNet.current_user.id
 
@@ -169,7 +176,8 @@
 
       usersView.on 'users:search', (querySearch)->
         controller.querySearch = querySearch
-        searchedFriends = AlumNet.request('user:entities', querySearch)
+        searchedFriends = new AlumNet.Entities.SearchResultCollection null,
+          search_term: ""
 
       @layoutAlumni.users_region.show(usersView)
 
@@ -190,8 +198,11 @@
 
       @layoutAlumni.filters_region.show(suggestions)
 
-    showFilters:->
-      filters = new AlumNet.FriendsApp.Filters.FriendsView
+    showFilters: (collection)->
+      controller = @
+      filters = new AlumNet.Shared.Views.Filters.Profiles.General
+        results_collection: controller.users
+      #filters = new AlumNet.FriendsApp.Filters.FriendsView
       @layoutAlumni.filters_region.show(filters)
 
     showMenuUrl: (optionMenu)->

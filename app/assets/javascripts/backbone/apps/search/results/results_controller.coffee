@@ -55,6 +55,6 @@
     _getEmptyFiltersView: ->    
       view = new Results.EmptyView
         for_filters: true
-        message: "Filters only available for Alumni"
+        message: "Filters only available for Alumni and Groups"
     
   
