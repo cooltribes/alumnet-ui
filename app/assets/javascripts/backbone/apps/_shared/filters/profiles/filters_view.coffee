@@ -1,11 +1,12 @@
 @AlumNet.module 'Shared.Views.Filters.Profiles', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
     
-  class Filters.PersonalContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
-    template: '_shared/filters/profiles/templates/personal'        
+  class Filters.PersonalContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup   
 
     initialize: (options)->          
       @model = new Backbone.Model
         all_selected: true
+        all_message: "All ages and gender"
+        title: "Personal"
       
       #Search for the initial cities and countries      
       ###,

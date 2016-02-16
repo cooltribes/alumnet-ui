@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-12">
       <label>
-        <input type="checkbox" id="all_selected"> All
+        <input type="checkbox" id="all_selected"> <%= @all_message %>
       </label>
     </div>
   </div>

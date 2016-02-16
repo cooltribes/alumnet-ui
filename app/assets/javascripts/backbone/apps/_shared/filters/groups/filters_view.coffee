@@ -1,12 +1,11 @@
 @AlumNet.module 'Shared.Views.Filters.Groups', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
   
   class Filters.Type extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
-    template: '_shared/filters/groups/templates/type'
-
     initialize: (options)->          
       @model = new Backbone.Model
         all_selected: true
-        title: options.title
+        title: "Type"
+        all_message: "All"
       
       rows = [
         name: "Official"        
@@ -31,12 +30,43 @@
 
       @trigger "search", query     
 
+  class Filters.Condition extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
+    initialize: (options)->          
+      @model = new Backbone.Model
+        all_selected: true
+        title: "Condition"
+        all_message: "All"
+      
+      rows = [
+        name: "Open" 
+        value: "open"
+      ,
+        name: "Closed"        
+        value: "closed"     
+      ]
+      
+      @collection = new AlumNet.Entities.SearchFiltersCollection rows     
+
+      @collection.on "checkStatus", @checkStatus, @
+      
+    
+    buildQuery: (active_rows = [])->
+      query = {}           
+
+      if active_rows.length == 1        
+        query =         
+          match:
+            group_type: active_rows[0].get "value"
+
+      @trigger "search", query     
+
 
   class Filters.General extends AlumNet.Shared.Views.Filters.Shared.General
     template: '_shared/filters/groups/templates/layout'
     regions:
       locations: "#locations"
       type: "#type"      
+      condition: "#condition"      
 
     child_queries: [
       {}, {}, {}, {}
@@ -57,7 +87,7 @@
         type: "other"
 
       @type_view = new Filters.Type
-        title: "Type"
+      @condition_view = new Filters.Condition
         
         
       @locations_view.on "search", (filter)->
@@ -68,7 +98,12 @@
         @updateChildQueries(filter, 1)
       , @  
       
+      @condition_view.on "search", (filter)->
+        @updateChildQueries(filter, 2)
+      , @  
+      
       
       @locations.show(@locations_view)
       @type.show(@type_view)
+      @condition.show(@condition_view)
       

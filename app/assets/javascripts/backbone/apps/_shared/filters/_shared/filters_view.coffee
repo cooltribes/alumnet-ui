@@ -19,6 +19,7 @@
 
 
   class Filters.FilterGroup extends Marionette.CompositeView
+    template: '_shared/filters/_shared/templates/filter_group'    
     childView: Filters.Row
     childViewContainer: '#rows-region'
     bindings:
@@ -33,6 +34,11 @@
     events: ->
       "click #all_selected": "clickAll"
 
+    initialize: ->
+      @model = new Backbone.Model
+        all_selected: true
+        all_message: "All"
+        title: ""
 
     onRender: ->
       @stickit()  
