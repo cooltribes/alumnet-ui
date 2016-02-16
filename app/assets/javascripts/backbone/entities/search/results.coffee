@@ -91,7 +91,6 @@
       @search_term = search_term
 
     search: (type = "all")->
-      console.log "search"
       ###@fetch(
         data: 
           term: @search_term
@@ -100,26 +99,33 @@
 
       query = 
         type: type
-        q: @getInternalQuery()
+
+      if @getInternalQuery(@search_term)?
+        query.q = @getInternalQuery(@search_term)
+      else
+        query.q = {}
+        
 
       @search_by_filters(query)
 
     
     search_by_filters: (query)->
-      console.log "search by filters"
-      console.log query
       @fetch(
         data: JSON.stringify(query)
         type: "POST"           
         contentType: "application/json"  
       )
 
-    getInternalQuery: ->
-      fields_for_search = ["name", "description", "short_description", "email"]
-      if @search_term != ""
+    getInternalQuery: (term, fields = null)->
+      if fields?
+        fields_for_search = fields
+      else
+        fields_for_search = ["name", "description", "short_description", "email"]
+
+      if term != ""
         query:
           multi_match:
-            query: @search_term
+            query: term
             fields: fields_for_search
       else
-        {}
+        null

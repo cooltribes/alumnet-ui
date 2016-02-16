@@ -172,17 +172,24 @@
       type = options.type
 
       @results_collection = options.results_collection  
+
+      filtered = 
+        filter:
+          bool:
+            must: @child_queries
+
+      if @results_collection.getInternalQuery("")?
+        filtered.query = @results_collection.getInternalQuery("")
       
       query =         
         query:
-          filtered:
-            query: #the part with the search term to be combined with filters
-              multi_match:
-                query: @results_collection.search_term
-                fields: searchable_fields
-            filter:
-              bool:
-                must: @child_queries                     
+          filtered: filtered
+            #query: 
+            # query: #the part with the search term to be combined with filters
+            #   multi_match:
+            #     query: @results_collection.search_term
+            #     fields: searchable_fields
+                        
 
       @querySearch = 
         type: type          

@@ -276,7 +276,6 @@
       , @ 
 
       @skills_view.on "search", (filter)->
-        console.log 'search skills'
         @updateChildQueries(filter, 3)
       , @ 
 

@@ -16,9 +16,6 @@
           when "suggestions"
             self.showSuggestions()
           when "filters"
-            console.log self
-            #self.showFilters(self.layoutAlumni.users_region.current_view.collection)
-            #self.showFilters(new AlumNet.Entities.UserCollection)
             results = new AlumNet.Entities.SearchResultCollection null,
               search_term: ""
             self.showFilters(results)
@@ -178,10 +175,7 @@
           container.append( $(viewInstance.el) ).masonry 'reloadItems'
 
       usersView.on 'users:search', (querySearch)->
-        console.log 'query search'
-        console.log querySearch
         controller.querySearch = querySearch
-        #searchedFriends = AlumNet.request('user:entities', querySearch)
         searchedFriends = new AlumNet.Entities.SearchResultCollection null,
           search_term: ""
 
