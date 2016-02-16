@@ -16,7 +16,22 @@
         </div>
       <% end %>
       
-      <div class="groupAbout__box margin_bottom groupAbout__titleSection margin_top">
+      <% if @userHasMembership && not @userIsApproved: %>
+        <div class="groupAbout__box margin_bottom groupAbout__colorTitle margin_top">
+          <h3>
+
+            <p>Status</p>
+
+            <% if @group_type.value== 1: %>
+              <small>Waiting for Approval.</small>
+              <br>
+              <small>You requested to join this group on <%= moment(@membership_created).format(' D MMM YYYY') %> </small>
+            <% end %>
+          </h3>
+        </div>
+      <% end %>
+
+      <div class="groupAbout__box margin_bottom groupAbout__titleSection">
         <p>Description</p>
         <div id="description"><%- @description %></div>
       </div>
@@ -119,20 +134,6 @@
         </h3>
 
       </div>
-      <% if @userHasMembership && not @userIsApproved: %>
-        <div class="groupAbout__box margin_bottom groupAbout__colorTitle">
-          <h3>
-
-            <p>Status</p>
-
-            <% if @group_type.value== 1: %>
-              <small>Waiting for Approval.</small>
-              <br>
-              <small>You requested to join this group on <%= moment(@membership_created).format(' D MMM YYYY') %> </small>
-            <% end %>
-          </h3>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
