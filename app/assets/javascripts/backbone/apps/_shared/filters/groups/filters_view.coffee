@@ -1,11 +1,12 @@
 @AlumNet.module 'Shared.Views.Filters.Groups', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
   
-  class Filters.Condition extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
-    template: '_shared/filters/groups/templates/condition'
+  class Filters.Type extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
+    template: '_shared/filters/groups/templates/type'
 
     initialize: (options)->          
       @model = new Backbone.Model
         all_selected: true
+        title: options.title
       
       rows = [
         name: "Official"        
@@ -21,36 +22,12 @@
       
     
     buildQuery: (active_rows = [])->
-      personalFilters = []
+      query = {}           
 
-      gender = _.filter active_rows, (el)->
-        el.get("type") == "gender"
-      
-      age_ranges = _.filter active_rows, (el)->
-        el.get("type") == "age"
-      
-      if gender.length == 1 #because only one gender will affect the response, both is the same as no gender filter
-        personalFilters.push
-          match:
-            gender: gender[0].get("value")
-      
-      if age_ranges.length > 0                 
-        ranges = []
-        _.each age_ranges, (model, i)->           
-          bounds = model.get("value").split("-")         
-          ranges.push
-            range:
-              age: 
-                gte: bounds[0]
-                lte: bounds[1]
-
-        personalFilters.push
-          bool:
-            should: ranges
-
-      query =         
-        bool:
-          must: personalFilters
+      if active_rows.length == 1        
+        query =         
+          term:
+            official: active_rows[0].get "value"
 
       @trigger "search", query     
 
@@ -59,9 +36,7 @@
     template: '_shared/filters/groups/templates/layout'
     regions:
       locations: "#locations"
-      personal: "#personal"
-      skills: "#skills"
-      languages: "#languages"
+      type: "#type"      
 
     child_queries: [
       {}, {}, {}, {}
@@ -80,11 +55,20 @@
     onRender: ->
       @locations_view = new AlumNet.Shared.Views.Filters.Shared.LocationContainer
         type: "other"
+
+      @type_view = new Filters.Type
+        title: "Type"
+        
         
       @locations_view.on "search", (filter)->
         @updateChildQueries(filter, 0)
       , @  
       
+      @type_view.on "search", (filter)->
+        @updateChildQueries(filter, 1)
+      , @  
+      
       
       @locations.show(@locations_view)
+      @type.show(@type_view)
       
