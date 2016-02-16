@@ -3,7 +3,9 @@
     <div class="col-md-8">
       <div class="groupAbout__box margin_bottom margin_top groupAbout__titleSection">
           <p><%= @name %></p>
-          <%= @short_description %>
+          <div id="description">
+            <%- @description %>
+          </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -18,7 +20,7 @@
       
       <div class="groupAbout__box margin_bottom groupAbout__titleSection margin_top">
         <p>Description</p>
-        <div id="description"><%- @description %></div>
+        <%= @short_description %>
       </div>
 
       <% if @admins.length > 0 : %>

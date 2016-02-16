@@ -1,6 +1,13 @@
 <div class="eventsTableView margin_bottom_xsmall">
-  <div class="row no-margin">
+  <% if @isPast: %>
+    <div class="flagEventPast">
+      <div class="box">
+        <div class="ribbon"><span>PAST</span></div>
+      </div>
+    </div>
+  <% end %>
 
+  <div class="row no-margin">
     <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
       <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
@@ -50,7 +57,7 @@
 
     <div class="col-md-2 col-xs-12 col-sm-3">
       <span class="ico-company"></span>
-      Attending: <%= @attendances_count %>
+      Attending: <%= @going_count %>
     </div>
 
     <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
