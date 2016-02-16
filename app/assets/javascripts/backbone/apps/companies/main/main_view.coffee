@@ -11,14 +11,6 @@
       'click .js-viewCard': 'viewCard'
       'click .js-viewList': 'viewList'
 
-    # onRender: ()->
-    #   console.log "paso del menu"
-    #   console.log @stepMenu
-    #   if @stepMenu == "discoverCompanies" || @type == "discoverCompanies"
-    #     $("#iconsTypeCompanies").removeClass('hide')
-    #   else
-    #     $("#iconsTypeCompanies").addClass('hide')
-
     initialize: (options)->
       @stepMenu = options.option
       @opcionInteger(options.option)
