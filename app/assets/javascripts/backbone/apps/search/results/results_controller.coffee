@@ -5,10 +5,12 @@
       controller = @
       controller.search_term = search_term ? {}
       
-      @results_collection = new AlumNet.Entities.SearchResultCollection null,
-        search_term: search_term
+      @results_collection = new AlumNet.Entities.SearchResultCollection null
 
-      @results_collection.search()
+      console.log 'collection'
+      console.log @results_collection
+
+      @results_collection.search(search_term)
       
       layoutView = @_getLayoutView()
       ###
@@ -29,7 +31,7 @@
 
       #when type of result has changed by user
       view.on "filter_type", (type)->
-        @results_collection.search(type)
+        @results_collection.search_by_type(type)
         view.filters.show(@_getFiltersView(type))
 
       , @  

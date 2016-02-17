@@ -228,41 +228,36 @@
   class Filters.General extends Marionette.LayoutView    
     className: "advancedFilters"
      
-
     initialize: (options)->    
 
-      searchable_fields = options.searchable_fields
-      type = options.type
+      @searchable_fields = options.searchable_fields
+      @type = options.type
 
       @results_collection = options.results_collection  
-
-      filtered = 
-        filter:
-          bool:
-            must: @child_queries
-
-      if @results_collection.getInternalQuery("")?
-        filtered.query = @results_collection.getInternalQuery("")
-      
-      query =         
-        query:
-          filtered: filtered
-            #query: 
-            # query: #the part with the search term to be combined with filters
-            #   multi_match:
-            #     query: @results_collection.search_term
-            #     fields: searchable_fields
-                        
-
-      @querySearch = 
-        type: type          
-        q: query                        
-      
+      @buildFilteredQuery()
 
     updateChildQueries: (query, index)->
       @child_queries[index] = query
       @search()
 
-
-    search: ->              
+    search: ->
+      @buildFilteredQuery()
       @results_collection.search_by_filters(@querySearch)
+
+    buildFilteredQuery: ()->
+      filtered = 
+        filter:
+          bool:
+            must: @child_queries
+
+      #the part with the search term to be combined with filters
+      internal_query = @results_collection.getInternalQuery(@searchable_fields)
+      if internal_query? then filtered.query = internal_query
+      
+      query =         
+        query:
+          filtered: filtered
+
+      @querySearch = 
+        type: @type          
+        q: query                        

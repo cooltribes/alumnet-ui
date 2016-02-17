@@ -80,34 +80,29 @@
   
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
-    search_term: ""        
+    search_term: ''
+    type: 'all'
+
+    initialize: (options)->
+      if options? && options.type?
+        @type = options.type
+
     url: ->
       AlumNet.api_endpoint + '/search'
 
-    initialize: (models, options)->
-      @changeSearchTerm(options.search_term)
-
-    changeSearchTerm: (search_term)->
+    search: (search_term = "")->
       @search_term = search_term
-
-    search: (type = "all")->
-      ###@fetch(
-        data: 
-          term: @search_term
-          type: @type
-      )###
-
       query = 
-        type: type
+        type: @type
 
-      if @getInternalQuery(@search_term)?
-        query.q = @getInternalQuery(@search_term)
-      else
-        query.q = {}
-        
+      internal_query = @getInternalQuery()
+      if internal_query? then query.q = internal_query else query.q = {}
 
       @search_by_filters(query)
 
+    search_by_type: (type = 'all')->
+      @type = type
+      @search(@search_term)
     
     search_by_filters: (query)->
       @fetch
@@ -115,16 +110,16 @@
         type: "POST"           
         contentType: "application/json"
 
-    getInternalQuery: (term, fields = null)->
+    getInternalQuery: (fields = null)->
       if fields?
         fields_for_search = fields
       else
         fields_for_search = ["name", "description", "short_description", "email"]
 
-      if term != ""
+      if @search_term != ""
         query:
           multi_match:
-            query: term
+            query: @search_term
             fields: fields_for_search
       else
         null
