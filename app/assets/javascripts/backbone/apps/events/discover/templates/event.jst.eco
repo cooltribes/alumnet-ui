@@ -1,12 +1,17 @@
-<div class="eventsTableView margin_bottom_xsmall">
-  <% if @isPast: %>
-    <div class="flagEventPast">
-      <div class="box">
-        <div class="ribbon"><span>PAST</span></div>
-      </div>
+<% if @isPast: %>
+  <div class="flagEventPast">
+    <div class="box">
+      <div class="ribbon"><span>PAST</span></div>
     </div>
-  <% end %>
-
+  </div>
+<% else: %>
+  <div class="flagEventUpcoming">
+    <div class="box">
+      <div class="ribbon"><span>UPCOMING</span></div>
+    </div>
+  </div>
+<% end %>
+<div class="eventsTableView margin_bottom_xsmall">
   <div class="row no-margin">
     <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
@@ -21,7 +26,7 @@
         <% else: %>
           <a href="#events/<%= @id %>/about" class="js-group eventsTableView__name"> <%= @name %> </a>
         <% end %>
-      </h2>
+      </h3>
     </div>
 
       <div class="col-md-2 col-xs-8 col-sm-3">

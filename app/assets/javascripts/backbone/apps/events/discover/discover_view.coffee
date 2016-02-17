@@ -85,10 +85,17 @@
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
 
+    templateHelpers: ()->
+      collection = @collection
+      #console.log collection
+
     initialize: ->
       AlumNet.setTitle('Discover Events')
 
     onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreEvents')      
+      $(window).scroll(@loadMoreEvents)
       seft = this
       eventsArray = seft.eventsMap(seft,@collection)
       eventsArray = seft.longEvents(seft,eventsArray)
@@ -101,7 +108,6 @@
         events: eventsArray
 
       $("#iconsTypeEvents").removeClass("hide")
-
 
     eventsMap: (seft,collection)->
       eventsArray = collection.models.map (model) ->
@@ -160,3 +166,17 @@
       else
         query = {}
       @searchUpcomingEvents(query)
+
+    remove: ->
+      $(window).unbind('scroll')
+      @collection.page = 1
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      @ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')       
+
+    loadMoreEvents: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'events:reload'

@@ -142,6 +142,10 @@
     ui:
       'loading': '.throbber-loader'
 
+    templateHelpers: ()->
+      collection = @collection
+      #console.log collection
+
     initialize: (options)->
       @type = options.type
     
