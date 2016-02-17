@@ -42,11 +42,11 @@
             container.masonry
               itemSelector: '.post'
           if checkNewPost
-            container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+            container.prepend( $(viewInstance.el) ).masonry().masonry('reloadItems')
             container.imagesLoaded ->
-              container.masonry 'layout'
+              container.masonry().masonry 'layout'
           else
-            container.append( $(viewInstance.el) ).masonry 'reloadItems'
+            container.append( $(viewInstance.el) ).masonry().masonry('reloadItems')
           checkNewPost = false
 
         posts.on "post:submit", (data)->
@@ -57,7 +57,7 @@
               checkNewPost = true
               posts.collection.add(model, {at: 0})
               container = $('#timeline')
-              container.masonry "reloadItems"
+              container.masonry().masonry "reloadItems"
 
         # AlumNet.mainRegion.show(posts)
         #AlumNet.execute('render:users:submenu')

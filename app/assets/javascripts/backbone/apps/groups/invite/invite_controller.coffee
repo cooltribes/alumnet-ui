@@ -22,15 +22,15 @@
               data: query
               success: (collection)->
                 usersView.collection.add(collection.models)
-                if collection.length < collection.rows 
-                  usersView.endPagination() 
+                if collection.length < collection.rows
+                  usersView.endPagination()
 
           usersView.on "add:child", (viewInstance)->
             container = $('#friends_list')
             container.imagesLoaded ->
               container.masonry
                 itemSelector: '.col-md-4'
-              container.append( $(viewInstance.el) ).masonry 'reloadItems'
+              container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
           #When invite link is clicked
           usersView.on 'childview:invite', (childView) ->

@@ -12,7 +12,7 @@
       @layoutGroups.on "click:type", (typeGroups)->
         self.showDiscoverGroups(typeGroups)
 
-      @layoutGroups.on "navigate:menu:groups", (valueClick)-> 
+      @layoutGroups.on "navigate:menu:groups", (valueClick)->
         self.showMenuUrl(valueClick)
 
       @layoutGroups.on "navigate:menuRight", (valueClick)->
@@ -30,7 +30,7 @@
       model = new Backbone.Model
       if optionMenu != "groupsDiscover"
         model.set "showDiscover", true
-      else 
+      else
         model.set "showDiscover", false
 
       suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
@@ -50,9 +50,9 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
-          if group.isClose() 
+          if group.isClose()
             AlumNet.trigger "groups:about", group.get('id')
-          else  
+          else
             AlumNet.trigger "groups:posts", group.get('id')
 
         request.on 'save:error', (response, options)->
@@ -77,8 +77,8 @@
           data: query
           success: (collection)->
             groupsView.collection.add(collection.models)
-            if collection.length < collection.rows 
-              groupsView.endPagination()             
+            if collection.length < collection.rows
+              groupsView.endPagination()
 
       checkNewPost = false #flag for new posts
       groupsView.on "add:child", (viewInstance)->
@@ -87,11 +87,11 @@
           container.masonry
             itemSelector: '.group_children'
         if checkNewPost
-          container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+          container.prepend( $(viewInstance.el) ).masonry().masonry 'reloadItems'
           container.imagesLoaded ->
-            container.masonry 'layout'
+            container.masonry().masonry 'layout'
         else
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
         checkNewPost = false
 
       groupsView.on 'childview:group:show', (childView)->
@@ -104,9 +104,9 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
-          if group.isClose()  
+          if group.isClose()
             AlumNet.trigger "groups:about", group.get('id')
-          else  
+          else
             AlumNet.trigger "groups:posts", group.get('id')
 
         request.on 'save:error', (response, options)->
@@ -153,7 +153,6 @@
         when "groupsManage"
           self.showManageGroups()
       @showSuggestionsGroups(optionMenu)
-      
 
-    
-        
+
+

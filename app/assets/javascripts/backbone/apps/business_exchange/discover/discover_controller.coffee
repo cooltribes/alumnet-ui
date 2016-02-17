@@ -24,7 +24,7 @@
       discoverView.on "business:reload", ->
         querySearch = controller.querySearch
         if view == "tasks"
-          newCollection = new AlumNet.Entities.BusinessExchangeCollection          
+          newCollection = new AlumNet.Entities.BusinessExchangeCollection
           newCollection.url = AlumNet.api_endpoint + '/business_exchanges'
           query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
         else
@@ -37,15 +37,15 @@
           data: query
           success: (collection)->
             discoverView.collection.add(collection.models)
-            if collection.length < collection.rows 
-              discoverView.endPagination()               
+            if collection.length < collection.rows
+              discoverView.endPagination()
 
       discoverView.on "add:child", (viewInstance)->
         container = $('#business-exchange-container')
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       discoverView.on 'business:search', (querySearch)->
 
@@ -54,7 +54,7 @@
           data: querySearch
           success: (collection)->
             container = $('.profiles-container')
-            container.masonry 'reloadItems'
+            container.masonry().masonry 'reloadItems'
 
       discoverLayout = new Discover.Layout
         view: view

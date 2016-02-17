@@ -25,8 +25,8 @@
           data: query
           success: (collection)->
             groupsView.collection.add(collection.models)
-            if collection.length < collection.rows 
-              groupsView.endPagination()             
+            if collection.length < collection.rows
+              groupsView.endPagination()
 
 
       checkNewPost = false #flag for new posts
@@ -36,11 +36,11 @@
           container.masonry
             itemSelector: '.group_children'
         if checkNewPost
-          container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+          container.prepend( $(viewInstance.el) ).masonry().masonry 'reloadItems'
           container.imagesLoaded ->
-            container.masonry 'layout'
+            container.masonry().masonry 'layout'
         else
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
         checkNewPost = false
       # attach events
 
@@ -58,9 +58,9 @@
         attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
         request = AlumNet.request('membership:create', attrs)
         request.on 'save:success', (response, options)->
-          if group.isClose()  
+          if group.isClose()
             AlumNet.trigger "groups:about", group.get('id')
-          else  
+          else
             AlumNet.trigger "groups:posts", group.get('id')
 
         request.on 'save:error', (response, options)->

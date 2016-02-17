@@ -38,7 +38,7 @@
         type: typeCompanies
 
       @layoutCompanies.companies_region.show(view)
-      
+
       controller = @
       controller.querySearch = {}
       view.on "companies:reload", ->
@@ -59,7 +59,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
       view
 
     showMyCompanies: (typeCompanies)->
@@ -101,7 +101,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
       view
 
       @layoutCompanies.companies_region.show(view)
@@ -138,11 +138,11 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
       view
 
       @layoutCompanies.companies_region.show(view)
-      
+
     showMenuUrl: ()->
       self = @
       switch @activeTab
@@ -152,8 +152,7 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
-  
-   
 
-  
-   
+
+
+

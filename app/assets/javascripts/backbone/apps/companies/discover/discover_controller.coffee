@@ -79,7 +79,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
       view
 
 
@@ -94,7 +94,7 @@
         data: query
         success: (collection)->
           container = $('#companies-container')
-          container.masonry 'layout'
+          container.masonry().masonry 'layout'
 
     _applyAdvancedSearch: (query)->
       @querySearch = query
@@ -102,4 +102,4 @@
         data: { q: query }
         success: (collection)->
           container = $('#companies-container')
-          container.masonry 'layout'
+          container.masonry().masonry 'layout'
