@@ -323,7 +323,6 @@
             @view.trigger "submit", data
 
         when 1, 2
-          console.log "aqui 2"
           data = Backbone.Syphon.serialize this
           @view.trigger "submit", data
 

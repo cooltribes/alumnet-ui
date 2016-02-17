@@ -203,9 +203,11 @@
 
         when 1, 2  #languages, contact infos
           view.on "submit", (data)->
-            #console.log data
+            console.log data
             #Add the language and level to the collection
+            console.log view.collection
             view.collection.create(data, {wait: true})
+            console.log view.collection
 
         when 3  #profile
           view.on "submit:name", ()->
@@ -251,10 +253,7 @@
 
 
           view.on "submit:password", ()->
-            console.log 'submit password'
             @model.url = AlumNet.api_endpoint + '/users/' + @model.id + '/change_password'
-            console.log @model
-            console.log @model.url
 
             @model.save
               "password": @model.profile.get "password"
@@ -262,7 +261,6 @@
             ,
               wait: true
               success: (response)=>
-                console.log response
                 @model.profile.url = @model.urlRoot() + @model.id + '/profile'
                 @model.fetch()
                 #Update current user

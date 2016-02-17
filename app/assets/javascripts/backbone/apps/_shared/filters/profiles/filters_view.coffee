@@ -79,7 +79,7 @@
 
       query =         
         bool:
-          musty: personalFilters
+          must: personalFilters
 
       @trigger "search", query     
 
@@ -221,7 +221,7 @@
       
     onRender: ->
       @locations_view = new AlumNet.Shared.Views.Filters.Shared.LocationContainer
-        type: "other"
+        type: "profile"
         
       @personal_view = new Filters.PersonalContainer
       @skills_view = new Filters.SkillLanguageContainer
