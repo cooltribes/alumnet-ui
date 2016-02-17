@@ -159,7 +159,7 @@
 
     state:
       pageSize: 10
-      sortKey: 'id'
+      sortKey: 'users.id'
 
     queryParams:
       order: "order_by"

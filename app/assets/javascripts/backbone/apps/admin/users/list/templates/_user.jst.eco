@@ -32,7 +32,7 @@
 <td class="hidden-xs hidden-sm"><%= @getGender() %></td>
 <td class="hidden-xs hidden-sm"><%= @getAge() %></td>
 <td class="" >
-<%= @status.text.charAt(0).toUpperCase() + @status.text.substring(1).toLowerCase() %></td>
+<%= s.capitalize(@status.text) %>
 <td class="hidden-xs" ><%= @getRoleText %></td>
 <td class="hidden-xs hidden-sm"><%= @getLastSignIn() %></td>
 <td class="hidden-xs hidden-sm"><%= @sign_in_count %></td>

@@ -295,6 +295,9 @@
 
     onShow: ->
       @pagination()
+      roles = [{value: "SystemAdmin", text: "system"}, {value: "AlumNetAdmin", text: "alumnet"}, {value: "RegionalAdmin", text: "regional"},
+               {value: "External", text: "external"}, {value: "NacionalAdmin", text: "nacional"}, {value: "Regular", text: "regular"}]
+
       @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
         { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
         { attribute: "email", type: "string", values: "" },
@@ -309,6 +312,7 @@
         { attribute: "profile_experiences_committee_name", type: "string", values: "" }
         { attribute: "profile_register_step", type: "option", values: [{value: 0, text: "Basic Information"}, {value: 1, text: "Languajes and Skills"}, {value: 2, text: "Aiesec Experiences"}, {value: 3, text: "Completed"}] }
         { attribute: "sign_in_count", type: "numeric", values: "" }
+        { attribute: "role", type: "option", values: roles }
       ])
 
     ui:
