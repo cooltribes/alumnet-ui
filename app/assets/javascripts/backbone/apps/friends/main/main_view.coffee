@@ -51,6 +51,12 @@
     initialize: (options)->
       @opcionInteger(options.option)
       @tab = @opcionInteger(options.option)
+      console.log @tab
+      if @tab == 0
+        console.log "entro"
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
       @class = [
         "", "", ""
       ]
@@ -69,7 +75,7 @@
       @current_user = AlumNet.current_user
       classOf: (step) =>
         @class[step]
-    
+
     onRender: ->
       @stickit()
 
@@ -79,6 +85,10 @@
       searchId = click.attr('id').substring(3)
       @filter = searchId
       valueClick = click.attr("data-menu")
+      if valueClick == "friendsDiscover"
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
       @trigger "navigate:menu",valueClick
       @toggleLink(click)
       
@@ -87,10 +97,14 @@
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
       @trigger "navigate:menuRight",valueClick
-      @toggleLink(click)
+      @toggleLinkRight(click)
 
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
+
+    toggleLinkRight: (element)->
+      $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
     performSearch: (e) ->

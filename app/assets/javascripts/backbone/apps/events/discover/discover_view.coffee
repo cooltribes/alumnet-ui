@@ -85,6 +85,10 @@
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
 
+    templateHelpers: ()->
+      collection = @collection
+      #console.log collection
+
     initialize: ->
       AlumNet.setTitle('Discover Events')
 
@@ -169,12 +173,10 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      console.log "entro endPagination"
       @ui.loading.hide()
       @collection.page = 1
       $(window).unbind('scroll')       
 
     loadMoreEvents: (e)->
-      console.log "entro loadMoreEvents"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'events:reload'

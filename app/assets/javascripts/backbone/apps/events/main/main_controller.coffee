@@ -18,7 +18,10 @@
     showDiscoverEvents: ()->
       AlumNet.navigate("events/discover")
       events = new AlumNet.Entities.EventsCollection
-      events.fetch()
+      events.page = 1
+      events.fetch
+        page: events.page
+        per_page: events.rows
       eventsView = new AlumNet.EventsApp.Discover.EventsView
         collection: events
 

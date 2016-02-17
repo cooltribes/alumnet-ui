@@ -14,12 +14,18 @@
       'click .js-viewList': 'viewList'
 
     initialize: (options)->
-      @opcionInteger(options.option)
-      @tab = @opcionInteger(options.option)
+      @stepMenu = options.option
+      @opcionInteger(@stepMenu)
+      @tab = @opcionInteger(@stepMenu)
       @class = [
         "", "", ""
       ]
       @class[parseInt(@tab)] = "--active"
+
+      if @tab == 0
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
 
     opcionInteger: (optionMenu)->
       switch optionMenu
@@ -36,11 +42,21 @@
       classOf: (step) =>
         @class[step]
 
+    onRender: ->
+      if @tab == 0
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
+
     goOptionMenuLeft: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
-      valueClick = click.attr("data-menu")
-      @trigger "navigate:menu:groups",valueClick
+      valueClickLeft = click.attr("data-menu")
+      if valueClickLeft == "groupsDiscover"
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
+      @trigger "navigate:menu:groups",valueClickLeft
       @toggleLink(click)
       
     goOptionMenuRight: (e)->
@@ -48,11 +64,14 @@
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
       @trigger "navigate:menuRight",valueClick
-      @toggleLink(click)
-
+      @toggleLinkRight(click)
 
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
+
+    toggleLinkRight: (element)->
+      $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
     performSearch: (e) ->
