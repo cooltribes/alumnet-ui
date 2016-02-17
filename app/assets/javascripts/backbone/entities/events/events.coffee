@@ -79,12 +79,12 @@
         required: true
       cover:
         required: true
-      country_id:
-        required: true
-        msg: 'Country is required'
-      city_id:
-        required: true
-        msg: 'City is required'
+      # country_id:
+      #   required: true
+      #   msg: 'Country is required'
+      # city_id:
+      #   required: true
+      #   msg: 'City is required'
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
