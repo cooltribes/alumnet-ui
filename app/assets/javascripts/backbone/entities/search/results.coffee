@@ -114,11 +114,6 @@
         data: JSON.stringify(query)
         type: "POST"           
         contentType: "application/json"
-        error: (xhr, errorText, error) ->          
-          console.log "ElasticSearch Error " + errorText.status
-          console.log errorText.responseText
-          console.log "Sent data"
-          console.log error.data
 
     getInternalQuery: (term, fields = null)->
       if fields?
