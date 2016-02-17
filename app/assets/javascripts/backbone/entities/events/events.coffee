@@ -88,6 +88,8 @@
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
+    rows: 6
+    page: 1
 
     initialize: (models, options)->
       @eventable = if options then options.eventable else null

@@ -156,11 +156,13 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
+      console.log "endPagination companies"
       @ui.loading.hide()
       @collection.page = 1
       $(window).unbind('scroll')       
 
     loadMoreCompanies: (e)->
+      console.log "loadMoreCompanies companies"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'companies:reload'
 

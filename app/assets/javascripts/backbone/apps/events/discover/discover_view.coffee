@@ -89,6 +89,9 @@
       AlumNet.setTitle('Discover Events')
 
     onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreEvents')      
+      $(window).scroll(@loadMoreEvents)
       seft = this
       eventsArray = seft.eventsMap(seft,@collection)
       eventsArray = seft.longEvents(seft,eventsArray)
@@ -101,7 +104,6 @@
         events: eventsArray
 
       $("#iconsTypeEvents").removeClass("hide")
-
 
     eventsMap: (seft,collection)->
       eventsArray = collection.models.map (model) ->
@@ -160,3 +162,19 @@
       else
         query = {}
       @searchUpcomingEvents(query)
+
+    remove: ->
+      $(window).unbind('scroll')
+      @collection.page = 1
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      console.log "entro endPagination"
+      @ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')       
+
+    loadMoreEvents: (e)->
+      console.log "entro loadMoreEvents"
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'events:reload'

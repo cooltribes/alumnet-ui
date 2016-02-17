@@ -24,6 +24,24 @@
 
       @layoutEvents.meetups_region.show(eventsView)
 
+      events.on "events:reload", ->
+        newCollection = new AlumNet.Entities.EventsCollection
+        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
+        newCollection.fetch
+          data: query
+          success: (collection)->
+            that.collection.add(collection.models)
+            if collection.length < collection.rows
+              that.endPagination()
+
+      events.on "add:child", (viewInstance)->
+        container = $('.main-events-area')
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.col-md-6'
+        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+      events
+
     showMyEvents: (eventable_id)->
       AlumNet.navigate("events/manage")
       events = new AlumNet.Entities.EventsCollection null,

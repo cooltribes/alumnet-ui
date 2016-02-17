@@ -1,5 +1,17 @@
+<% if @isPast: %>
+  <div class="flagEventPast">
+    <div class="box">
+      <div class="ribbon"><span>PAST</span></div>
+    </div>
+  </div>
+<% else: %>
+  <div class="flagEventUpcoming">
+    <div class="box">
+      <div class="ribbon"><span>UPCOMING</span></div>
+    </div>
+  </div>
+<% end %>
 <div class="eventsTableView margin_bottom_xsmall">
-
   <div class="row no-margin">
 
     <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
@@ -56,11 +68,12 @@
               </div>
               <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rightMyevents">
                 <span class="glyphicon glyphicon-cog"></span>
-                <span >EDIT</span>
               </div>
             </a>
             <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
-              <a href="#" id="js-attendance-cancel" class=" eventsTableView__isAdminCancel--paddingCancel">CANCEL</a>
+              <a href="#" id="js-attendance-cancel" class=" eventsTableView__isAdminCancel--paddingCancel">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
             </div>
         <% else: %>
           <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
