@@ -1,9 +1,9 @@
 @AlumNet.module 'Utilities', (Utilities, @AlumNet, Backbone, Marionette, $, _) ->
   _.extend AlumNet,
     startPusher: (key, user) ->
-      # if window.rails_env != 'production'
-      Pusher.log = (message) ->
-        window.console.log message  if window.console and window.console.log
+      if gon.environment != 'production'
+        Pusher.log = (message) ->
+          window.console.log message  if window.console and window.console.log
 
       @pusher = new Pusher(key)
       channel = AlumNet.pusher.subscribe("USER-#{user.id}")
