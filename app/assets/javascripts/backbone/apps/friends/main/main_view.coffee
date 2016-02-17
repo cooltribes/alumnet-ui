@@ -51,9 +51,9 @@
     initialize: (options)->
       @opcionInteger(options.option)
       @tab = @opcionInteger(options.option)
-      console.log @tab
+      #console.log @tab
       if @tab == 0
-        console.log "entro"
+        #console.log "entro"
         $("#filtersOpcion").removeClass("hide")
       else
         $("#filtersOpcion").addClass("hide")
