@@ -30,6 +30,7 @@
 
       @trigger "search", query     
 
+
   class Filters.Condition extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
     initialize: (options)->          
       @model = new Backbone.Model
@@ -65,8 +66,8 @@
     template: '_shared/filters/groups/templates/layout'
     regions:
       locations: "#locations"
-      type: "#type"      
-      condition: "#condition"      
+      region_2: "#type"      
+      region_3: "#condition"      
 
     child_queries: [
       {}, {}, {}, {}
@@ -104,6 +105,6 @@
       
       
       @locations.show(@locations_view)
-      @type.show(@type_view)
-      @condition.show(@condition_view)
+      @region_2.show(@type_view)
+      @region_3.show(@condition_view)
       
