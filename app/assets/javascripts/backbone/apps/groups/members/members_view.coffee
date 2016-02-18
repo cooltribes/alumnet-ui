@@ -132,12 +132,11 @@
 
     templateHelpers: ->
       userCanMakeAdmin: @group.canDo('make_admin')
+      userCanDeleteMember: @group.canDo('delete_member')
       userIsNotCurrentUser: not @memberIsCurrentUser()
 
     memberIsCurrentUser: ->
-      user = @model.get 'user'
-      current_user = AlumNet.current_user
-      user.id == current_user.id
+      @model.get('user').id == AlumNet.current_user.id
 
     ui:
       'removeMemberLink': '.js-remove-member'
@@ -159,7 +158,7 @@
       e.preventDefault()
       modal = new Members.Modal
         model: @model
-        current_user_permission: @group.get('permissions')
+        current_user_permission: @group.get('membership').permissions
       $('.js-modal-container').html(modal.render().el)
 
   class Members.MembersView extends Marionette.CompositeView

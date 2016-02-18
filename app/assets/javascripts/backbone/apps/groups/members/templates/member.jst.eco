@@ -11,29 +11,27 @@
 		</div>
 
 		<!-- Actions -->
-		<% if @userCanMakeAdmin and @userIsNotCurrentUser: %>
+		<% if @userIsNotCurrentUser: %>
 		<div class="col-md-2 col-sm-3 col-xs-3 userCard__GroupAdminActions js-admin-icons">
 			<ul class="list-unstyled">
-				<li>
-					<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole" class="js-change-type userCard__GroupAdminActions--changeRole">
-						<span class="userCard__GroupAdminActions__text">Change role</span> <span class="icon-entypo-key"></span>
-					</a>
-				</li>
-				<!-- <li>
-					<a href="#" title="Make admin" data-toggle="modal" data-target="#upgradeMembership" class="userCard__GroupAdminActions--upgradeMember" >
-						<span class="userCard__GroupAdminActions__text">Upgrade plan</span><span class="icon-entypo-star"></span>
-					</a>
-				</li> -->
-				<li>
-					<a href="#" title="" class="js-remove-member userCard__GroupAdminActions--removeMember">
-						<span class="userCard__GroupAdminActions__text">
-						Remove
-						</span>
-						<span class="icon-entypo-cancel">
+				<% if @userCanMakeAdmin: %>
+					<li>
+						<a href="#" title="Change role" data-toggle="modal" data-target="#changeRole" class="js-change-type userCard__GroupAdminActions--changeRole">
+							<span class="userCard__GroupAdminActions__text">Change role</span> <span class="icon-entypo-key"></span>
+						</a>
+					</li>
+				<% end %>
 
-						</span>
-					</a>
-				</li>
+				<% if @userCanDeleteMember: %>
+					<li>
+						<a href="#" title="" class="js-remove-member userCard__GroupAdminActions--removeMember">
+							<span class="userCard__GroupAdminActions__text">
+							Remove
+							</span>
+							<span class="icon-entypo-cancel"></span>
+						</a>
+					</li>
+				<% end %>
 			</ul>
 		</div>
 		<% end %>
