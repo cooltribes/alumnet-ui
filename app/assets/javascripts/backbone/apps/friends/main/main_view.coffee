@@ -51,16 +51,14 @@
     initialize: (options)->
       @opcionInteger(options.option)
       @tab = @opcionInteger(options.option)
-      #console.log @tab
-      if @tab == 0
-        #console.log "entro"
-        $("#filtersOpcion").removeClass("hide")
-      else
-        $("#filtersOpcion").addClass("hide")
       @class = [
         "", "", ""
       ]
       @class[parseInt(@tab)] = "--active"
+      if @tab == 0
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
 
     opcionInteger: (optionMenu)->
       switch optionMenu

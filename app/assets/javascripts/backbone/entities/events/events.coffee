@@ -88,7 +88,7 @@
 
   class Entities.EventsCollection extends Backbone.Collection
     model: Entities.Event
-    rows: 6
+    rows: 9
     page: 1
 
     initialize: (models, options)->

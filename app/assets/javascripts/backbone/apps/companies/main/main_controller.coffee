@@ -2,6 +2,9 @@
   class Main.Controller
     activeTab: "discoverCompanies"
     companiesType: "cards"
+    companiesCollection: null
+    myCompaniesCollection: null
+    manageCollection: null
 
     showMainCompanies: (optionMenu)->
       @activeTab = optionMenu
@@ -24,17 +27,36 @@
         else
           self.showManageCompanies(self.companiesType)
 
+      @layoutCompanies.on 'search', (querySearch)->
+        self.querySearch = querySearch
+        if self.activeTab == "discoverCompanies"
+          self.companiesCollection.fetch
+            data: querySearch
+            success: (collection)->
+            container = $('#companies-container')
+            container.masonry 'layout'
+        else if self.activeTab == "myCompanies"
+          self.myCompaniesCollection.fetch
+            data: querySearch
+            success: (collection)->
+            container = $('#companies-container')
+            container.masonry 'layout'
+        else
+          self.manageCollection.fetch
+            data: querySearch
+            url: AlumNet.api_endpoint + "/companies/managed"
+      
     showDiscoverCompanies: (typeCompanies)->
       AlumNet.navigate("companies/discover")
-      companies = new AlumNet.Entities.CompaniesCollection
-      companies.page = 1
-      companies.url = AlumNet.api_endpoint + "/companies"
-      companies.fetch
-        data: { page: companies.page, per_page: companies.rows }
+      @companiesCollection = new AlumNet.Entities.CompaniesCollection
+      @companiesCollection.page = 1
+      @companiesCollection.url = AlumNet.api_endpoint + "/companies"
+      @companiesCollection.fetch
+        data: { page: @companiesCollection.page, per_page: @companiesCollection.rows }
         reset: true
 
       view = new AlumNet.CompaniesApp.Discover.List
-        collection: companies
+        collection: @companiesCollection
         type: typeCompanies
 
       @layoutCompanies.companies_region.show(view)
@@ -66,21 +88,21 @@
       AlumNet.navigate("my-companies")
       controller = @
       controller.querySearch = {}
-      companies = new AlumNet.Entities.CompaniesCollection
-      companies.page = 1
-      companies.url = AlumNet.api_endpoint + "/companies"
+      @myCompaniesCollection = new AlumNet.Entities.CompaniesCollection
+      @myCompaniesCollection.page = 1
+      @myCompaniesCollection.url = AlumNet.api_endpoint + "/companies"
       @querySearch = { q: { company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } }
-      companies.fetch
+      @myCompaniesCollection.fetch
         reset: true
         data:
           q:
             company_admins_user_id_eq: AlumNet.current_user.id
             status_eq: 1
-          page: companies.page
-          per_page: companies.rows
+          page: @myCompaniesCollection.page
+          per_page: @myCompaniesCollection.rows
 
       view = new AlumNet.CompaniesApp.Discover.List
-        collection: companies
+        collection: @myCompaniesCollection
         type: typeCompanies
 
       view.on "companies:reload", ->
@@ -111,13 +133,13 @@
       AlumNet.navigate("companies/manage")
       controller = @
       controller.querySearch = {}
-      companies = new AlumNet.Entities.CompaniesCollection
-      companies.page = 1
-      companies.url = AlumNet.api_endpoint + "/companies/managed"
-      companies.fetch()
+      @manageCollection = new AlumNet.Entities.CompaniesCollection
+      @manageCollection.page = 1
+      @manageCollection.url = AlumNet.api_endpoint + "/companies/managed"
+      @manageCollection.fetch()
 
       view = new AlumNet.CompaniesApp.Discover.List
-        collection: companies
+        collection: @manageCollection
         type: typeCompanies
 
       view.on "companies:reload", ->
@@ -152,7 +174,3 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
-
-
-
-

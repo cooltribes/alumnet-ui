@@ -10,6 +10,7 @@
       'click .js-changeGrid' : 'changeGridView'
       'click .js-viewCard': 'viewCard'
       'click .js-viewList': 'viewList'
+      'submit #search-form': 'basicSearch'
 
     initialize: (options)->
       @stepMenu = options.option
@@ -37,7 +38,7 @@
       e.preventDefault()
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
-      @optionMain = @valueClick
+      @stepMenu = @valueClick
       @trigger "navigate:menu:companies",@valueClick
       @toggleLink(click)
 
@@ -56,3 +57,11 @@
       #$("#iconList").addClass("iconTypeGroup--active")
       @type = "list"
       @trigger "changeGrid", @type
+
+    basicSearch: (e)->
+      e.preventDefault()
+      value = $('#search_term').val()
+      if @stepMenu == "discoverCompanies" || @stepMenu == "manageCompanies" 
+        @trigger('search', { q: { name_cont: value } })
+      else if @stepMenu == "myCompanies"
+        @trigger('search', { q: { name_cont: value, company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } })
