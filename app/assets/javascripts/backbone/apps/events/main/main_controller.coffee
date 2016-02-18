@@ -20,16 +20,17 @@
       events = new AlumNet.Entities.EventsCollection
       events.page = 1
       events.fetch
-        page: events.page
-        per_page: events.rows
+        data: { page: events.page, per_page: events.rows }
+        reset: true
       eventsView = new AlumNet.EventsApp.Discover.EventsView
         collection: events
 
       @layoutEvents.meetups_region.show(eventsView)
 
-      events.on "events:reload", ->
+      eventsView.on "events:reload", ->
+        that = @
         newCollection = new AlumNet.Entities.EventsCollection
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
+        query = _.extend({ page: ++@collection.page, per_page: @collection.rows })
         newCollection.fetch
           data: query
           success: (collection)->
@@ -37,24 +38,47 @@
             if collection.length < collection.rows
               that.endPagination()
 
-      events.on "add:child", (viewInstance)->
+      eventsView.on "add:child", (viewInstance)->
         container = $('.main-events-area')
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
         container.append( $(viewInstance.el) ).masonry 'reloadItems'
-      events
+      eventsView
 
     showMyEvents: (eventable_id)->
       AlumNet.navigate("events/manage")
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
         eventable_id: @eventable_id
-      events.fetch()
+      events.page = 1
+      events.fetch
+        data: { page: events.page, per_page: events.rows }
+        reset: true
+
       eventsView = new AlumNet.EventsApp.Manage.EventsView
         collection: events
 
       @layoutEvents.meetups_region.show(eventsView)
+
+      eventsView.on "events:reload", ->
+        that = @
+        newCollection = new AlumNet.Entities.EventsCollection
+        query = _.extend({ page: ++@collection.page, per_page: @collection.rows })
+        newCollection.fetch
+          data: query
+          success: (collection)->
+            that.collection.add(collection.models)
+            if collection.length < collection.rows
+              that.endPagination()
+
+      eventsView.on "add:child", (viewInstance)->
+        container = $('.main-events-area')
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.col-md-6'
+        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+      eventsView
 
     showMenuUrl: ()->
       self = @
