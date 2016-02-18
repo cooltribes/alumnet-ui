@@ -5,7 +5,7 @@
         Pusher.log = (message) ->
           window.console.log message  if window.console and window.console.log
 
-      @pusher = new Pusher(key)
+      @pusher = new Pusher(key, {encrypted: true})
       channel = AlumNet.pusher.subscribe("USER-#{user.id}")
       channel.bind 'new_message', (data) =>
         count = user.get('unread_messages_count')
