@@ -85,6 +85,9 @@
       #'keypress @ui.searchInput': 'searchEvents'
 
     onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreEvents')      
+      $(window).scroll(@loadMoreEvents)
       $("#iconsTypeEvents").addClass("hide")
 
     searchEvents: (e)->
@@ -93,3 +96,17 @@
         query = { name_cont: @ui.searchInput.val() }
       else
         query = {}
+
+    remove: ->
+      $(window).unbind('scroll')
+      @collection.page = 1
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      #@ui.loading.hide()
+      @collection.page = 1
+      $(window).unbind('scroll')       
+
+    loadMoreEvents: (e)->
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @trigger 'events:reload'
