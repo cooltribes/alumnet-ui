@@ -117,7 +117,6 @@
 
     onChildviewCatchUp: ->
       search_term: @search_term
-      console.log "onChildviewCatchUp"+ @search_term
       view = @
       @collection.fetch
         success: (model)->

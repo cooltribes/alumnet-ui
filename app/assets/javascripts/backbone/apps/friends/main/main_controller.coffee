@@ -16,17 +16,19 @@
           when "suggestions"
             self.showSuggestions()
           when "filters"
-            results = new AlumNet.Entities.SearchResultCollection null,
-              search_term: ""
-            self.showFilters(results)
+            self.showFilters()
 
       @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
-        collection.querySearch = querySearch
-        collection.page = 1
         if filter == "sent" or filter == "received"
-          querySearch = _.extend querySearch, { filter: filter }
-        collection.fetch
-          data: querySearch
+          #
+        else
+          collection.search(querySearch)
+        # collection.querySearch = querySearch
+        # collection.page = 1
+        # if filter == "sent" or filter == "received"
+        #   querySearch = _.extend querySearch, { filter: filter }
+        # collection.fetch
+        #   data: querySearch
 
     showFriends: ->
       AlumNet.navigate("alumni/friends")
@@ -36,10 +38,27 @@
       friendsCollection.fetch
         data: { page: friendsCollection.page, per_page: friendsCollection.rows }
         reset: true
+
+      # uncomment this for elastic search
+
+      # friendsCollection = new AlumNet.Entities.SearchResultCollection null,
+      #   type: 'profile'
+      # friendsCollection.model = AlumNet.Entities.User
+      # friendsCollection.url = AlumNet.api_endpoint + '/users'
+      # friendsCollection.search()
+
+      #On fetch, delete current user from the list
+      friendsCollection.on "sync", ()->
+        models = this.filter (model)->
+          model.get("id") != AlumNet.current_user.id
+
+        this.reset(models)
+
       friendsView = new AlumNet.FriendsApp.Friends.FriendsView
         collection: friendsCollection
 
       friendsView.on "friends:reload", ->
+        console.log 'reload'
         newCollection = AlumNet.request('current_user:friendships:friends')
         newCollection.url = friendsView.collection.url
         @collection.querySearch.page = ++@collection.page
@@ -140,10 +159,10 @@
       controller.querySearch = {}
 
       controller.users = new AlumNet.Entities.SearchResultCollection null,
-        search_term: ""
+        type: 'profile'
       controller.users.model = AlumNet.Entities.User
       controller.users.url = AlumNet.api_endpoint + '/users'
-      controller.users.search("profile")
+      controller.users.search()
 
       usersView = new AlumNet.FriendsApp.Find.UsersView
         collection: controller.users
@@ -176,8 +195,6 @@
 
       usersView.on 'users:search', (querySearch)->
         controller.querySearch = querySearch
-        searchedFriends = new AlumNet.Entities.SearchResultCollection null,
-          search_term: ""
 
       @layoutAlumni.users_region.show(usersView)
 
@@ -198,7 +215,7 @@
 
       @layoutAlumni.filters_region.show(suggestions)
 
-    showFilters: (collection)->
+    showFilters: ()->
       controller = @
       filters = new AlumNet.Shared.Views.Filters.Profiles.General
         results_collection: controller.users

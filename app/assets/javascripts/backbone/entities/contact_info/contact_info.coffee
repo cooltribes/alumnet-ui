@@ -19,7 +19,7 @@
 
     customValidation: (value, attr, computedState)->
       contact_type = @get('contact_type')
-      pattern = /([+]\d+)/
+      pattern = /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
       if contact_type == '0'
         Backbone.Validation.validators.pattern(value, attr, 'email', @)
       else if contact_type == '1'
@@ -36,7 +36,7 @@
 
     contactTypes: [
       { value: 0, text: 'Email', placeholder: 'email@example.com'  }
-      { value: 1, text: 'Phone', placeholder: '+PhoneNumber'  }
+      { value: 1, text: 'Phone', placeholder: 'PhoneNumber'  }
       { value: 2, text: 'Skype', placeholder: 'Skype'  }
       { value: 3, text: 'Yahoo', placeholder: 'Yahoo account'  }
       { value: 4, text: 'Facebook', placeholder: '/Facebook'  }
