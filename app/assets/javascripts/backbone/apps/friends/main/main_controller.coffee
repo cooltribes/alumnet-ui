@@ -56,7 +56,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       @layoutAlumni.users_region.show(friendsView)
 
@@ -138,7 +138,7 @@
       AlumNet.navigate("alumni/discover")
       controller = @
       controller.querySearch = {}
-      
+
       controller.users = new AlumNet.Entities.SearchResultCollection null,
         search_term: ""
       controller.users.model = AlumNet.Entities.User
@@ -172,7 +172,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       usersView.on 'users:search', (querySearch)->
         controller.querySearch = querySearch
@@ -189,7 +189,7 @@
       model = new Backbone.Model
       if optionMenu != "friendsDiscover"
         model.set "showDiscover", true
-      else 
+      else
         model.set "showDiscover", false
 
       suggestions = new AlumNet.FriendsApp.Suggestions.FriendsView

@@ -72,7 +72,7 @@
 
     onShow: ->
       container = $('#timeline')
-      container.masonry 'layout'
+      container.masonry().masonry 'layout'
 
     ui: ->
       'likeLink': '.js-vote'

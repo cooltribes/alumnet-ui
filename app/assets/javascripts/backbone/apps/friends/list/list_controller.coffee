@@ -58,7 +58,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       layout.body.show(friendsView)
 

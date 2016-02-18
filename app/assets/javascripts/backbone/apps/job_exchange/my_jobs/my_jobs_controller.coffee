@@ -3,7 +3,7 @@
     myJobs: ->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.page = 1
-      tasks.url = AlumNet.api_endpoint + '/job_exchanges/my?page='+tasks.page+'&per_page='+tasks.rows      
+      tasks.url = AlumNet.api_endpoint + '/job_exchanges/my?page='+tasks.page+'&per_page='+tasks.rows
       tasks.fetch
         reset: true
 
@@ -23,8 +23,8 @@
         container = $('#tasks-container')
         container.imagesLoaded ->
           container.masonry
-            itemSelector: '.col-md-4'        
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+            itemSelector: '.col-md-4'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       # attach events
       AlumNet.mainRegion.show(myJobsView)

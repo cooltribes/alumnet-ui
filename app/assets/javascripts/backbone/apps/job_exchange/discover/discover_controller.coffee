@@ -19,7 +19,7 @@
           data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             that.collection.add(collection.models)
-            if collection.length < collection.rows 
+            if collection.length < collection.rows
               that.endPagination()
 
       checkNewPost = false #flag for new posts
@@ -30,11 +30,11 @@
           container.masonry
             itemSelector: '.col-md-4'
         if checkNewPost
-          container.prepend( $(viewInstance.el) ).masonry 'reloadItems'
+          container.prepend( $(viewInstance.el) ).masonry().masonry 'reloadItems'
           container.imagesLoaded ->
-            container.masonry 'layout'
+            container.masonry().masonry 'layout'
         else
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
         checkNewPost = false
       # attach events
 

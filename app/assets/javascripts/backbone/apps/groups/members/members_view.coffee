@@ -132,12 +132,11 @@
 
     templateHelpers: ->
       userCanMakeAdmin: @group.canDo('make_admin')
+      userCanDeleteMember: @group.canDo('delete_member')
       userIsNotCurrentUser: not @memberIsCurrentUser()
 
     memberIsCurrentUser: ->
-      user = @model.get 'user'
-      current_user = AlumNet.current_user
-      user.id == current_user.id
+      @model.get('user').id == AlumNet.current_user.id
 
     ui:
       'removeMemberLink': '.js-remove-member'
@@ -159,7 +158,7 @@
       e.preventDefault()
       modal = new Members.Modal
         model: @model
-        current_user_permission: @group.get('permissions')
+        current_user_permission: @group.get('membership').permissions
       $('.js-modal-container').html(modal.render().el)
 
   class Members.MembersView extends Marionette.CompositeView
@@ -193,7 +192,7 @@
 
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMore')      
+      _.bindAll(this, 'loadMore')
       $(window).scroll(@loadMore)
 
     remove: ->
@@ -234,7 +233,12 @@
         user_profile_last_experience: searchTerm
 
     updateMembersCounts: (collection)->
+      total_friends = @model.get("friends_in").length
+      total_members = @model.get("membership_users").length
       @friends = collection.where({is_friend: true})
       @members = collection.slice()
-      @ui.membersCount.html("All members(#{collection.length})")
-      @ui.friendsCount.html("Friends(#{@friends.length})")
+      @ui.membersCount.html("All members(#{total_members})")
+      @ui.friendsCount.html("Friends(#{total_friends})")
+      # Please dont delete this :armando
+      # @ui.membersCount.html("All members(#{collection.length})")
+      # @ui.friendsCount.html("Friends(#{@friends.length})")

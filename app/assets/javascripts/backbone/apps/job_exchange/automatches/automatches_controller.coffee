@@ -3,7 +3,7 @@
     automatches: ->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.page = 1
-      tasks.url = AlumNet.api_endpoint + '/job_exchanges/automatches?page='+tasks.page+'&per_page='+tasks.rows  
+      tasks.url = AlumNet.api_endpoint + '/job_exchanges/automatches?page='+tasks.page+'&per_page='+tasks.rows
       tasks.fetch
         reset: true
       automatchesView = new AutoMatches.List
@@ -21,8 +21,8 @@
         container = $('#tasks-container')
         container.imagesLoaded ->
           container.masonry
-            itemSelector: '.col-md-4'        
-          container.append( $(viewInstance.el) ).masonry 'reloadItems'
+            itemSelector: '.col-md-4'
+          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
       AlumNet.mainRegion.show(automatchesView)
       #AlumNet.execute('render:job_exchange:submenu', undefined, 1)
