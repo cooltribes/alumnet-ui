@@ -203,11 +203,8 @@
 
         when 1, 2  #languages, contact infos
           view.on "submit", (data)->
-            console.log data
             #Add the language and level to the collection
-            console.log view.collection
-            view.collection.create(data, {wait: true})
-            console.log view.collection
+            view.collection.create(data, wait: true)
 
         when 3  #profile
           view.on "submit:name", ()->

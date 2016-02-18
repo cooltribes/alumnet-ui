@@ -5,10 +5,9 @@
       controller = @
       controller.search_term = search_term ? {}
       
-      @results_collection = new AlumNet.Entities.SearchResultCollection null,
-        search_term: search_term
+      @results_collection = new AlumNet.Entities.SearchResultCollection null
 
-      @results_collection.search()
+      @results_collection.search(search_term)
       
       layoutView = @_getLayoutView()
       ###
@@ -29,9 +28,8 @@
 
       #when type of result has changed by user
       view.on "filter_type", (type)->
-        @results_collection.search(type)
         view.filters.show(@_getFiltersView(type))
-
+        @results_collection.search_by_type(type)
       , @  
           
 
@@ -43,19 +41,19 @@
     _getFiltersView: (type = "all")->
       view = @_getEmptyFiltersView()            
       if type == "profile"
-        view = new AlumNet.Shared.Views.Filters.Profiles.General   
+        view = new AlumNet.Shared.Views.Filters.Profiles.General
           results_collection: @results_collection     
       if type == "group"
-        view = new AlumNet.Shared.Views.Filters.Groups.General   
+        view = new AlumNet.Shared.Views.Filters.Groups.General
           results_collection: @results_collection     
       if type == "event"
-        view = new AlumNet.Shared.Views.Filters.Events.General   
+        view = new AlumNet.Shared.Views.Filters.Events.General
           results_collection: @results_collection     
       if type == "company"
-        view = new AlumNet.Shared.Views.Filters.Companies.General   
+        view = new AlumNet.Shared.Views.Filters.Companies.General
           results_collection: @results_collection     
       if type == "task"
-        view = new AlumNet.Shared.Views.Filters.Tasks.General   
+        view = new AlumNet.Shared.Views.Filters.Tasks.General
           results_collection: @results_collection     
 
       view    

@@ -207,16 +207,19 @@
 
     child_queries: [
       {}, {}, {}, {}
-      ]  
+      ]
 
     initialize: (options)->      
 
       searchable_fields = ["name", "email"]
       type = "profile"
-       
+      @child_queries = [
+        {}, {}, {}, {}
+      ]
+      
       super _.extend options,
         searchable_fields: searchable_fields
-        type: type                                        
+        type: type
       
       
     onRender: ->
@@ -232,19 +235,19 @@
 
       @locations_view.on "search", (filter)->
         @updateChildQueries(filter, 0)
-      , @  
+      , @
       
       @personal_view.on "search", (filter)->
         @updateChildQueries(filter, 1)
-      , @ 
+      , @
 
       @skills_view.on "search", (filter)->
         @updateChildQueries(filter, 3)
-      , @ 
+      , @
 
       @languages_view.on "search", (filter)->
         @updateChildQueries(filter, 4)
-      , @  
+      , @
 
       @locations.show(@locations_view)
       @personal.show(@personal_view)

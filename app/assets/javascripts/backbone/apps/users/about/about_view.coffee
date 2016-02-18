@@ -128,7 +128,7 @@
       return linkedInReg.test(link)
 
     isPhoneNumber: (phoneNumber)->
-      phoneNumberReg = /^\+\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
+      phoneNumberReg = /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/
       return phoneNumberReg.test(phoneNumber)
 
     isTwitter: (username)->
@@ -157,8 +157,8 @@
 
       $("#info").attr("placeholder", "")
       if value == "1"
-        $("#info").attr("placeholder", "+PhoneNumber")
-        $("#info").attr("title", "+PhoneNumber")
+        $("#info").attr("placeholder", "PhoneNumber")
+        $("#info").attr("title", "PhoneNumber")
       if value == "2"
         $("#info").attr("placeholder", "Skype user")
         $("#info").attr("title", "Skype user")
@@ -196,10 +196,6 @@
               skills = _.pluck(currentSkills.models, 'attributes')
               listOfNames = _.pluck(skills, 'name')              
               $("#skills-input",@$el).select2 "val", listOfNames 
-
-          # console.log @view.collection
-          # console.log $("#skills-input",@$el)   
-          # console.log listOfNames
 
         when 1
           slideItem = $("#slider", @el)
@@ -280,7 +276,7 @@
             return false
 
           if type == "1"
-            if !(@isPhoneNumber(info))              
+            if !(@isPhoneNumber(info))
               group.addClass('has-error')
               $("#js-help-info").html("PhoneNumber is incorrect")
               return false
@@ -406,14 +402,9 @@
         type: "POST"
         data: data
         success: (data) =>
-          console.log("success")
-          console.log(data)
           model.trigger('change:cover')
           if model.isCurrentUser()
             AlumNet.current_user.trigger('change:avatar')
-        error: (data) =>
-          console.log("error")
-          console.log(data)
 
     templateHelpers: ->
       model = @model
@@ -543,8 +534,6 @@
       #Types of modal (0-name)
       @type = options.type
 
-      console.log this
-
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -552,7 +541,6 @@
           $group.removeClass('has-error')
           $group.find('.help-block').html('').addClass('hidden')
         invalid: (view, attr, error, selector) ->
-          console.log 'invalid'
           $el = view.$("[name=#{attr}]")
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
