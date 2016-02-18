@@ -19,8 +19,6 @@
             self.showFilters()
 
       @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
-        console.log 'filter'
-        console.log filter
         if filter == "sent" or filter == "received"
           #
         else
@@ -40,10 +38,27 @@
       friendsCollection.fetch
         data: { page: friendsCollection.page, per_page: friendsCollection.rows }
         reset: true
+
+      # uncomment this for elastic search
+
+      # friendsCollection = new AlumNet.Entities.SearchResultCollection null,
+      #   type: 'profile'
+      # friendsCollection.model = AlumNet.Entities.User
+      # friendsCollection.url = AlumNet.api_endpoint + '/users'
+      # friendsCollection.search()
+
+      #On fetch, delete current user from the list
+      friendsCollection.on "sync", ()->
+        models = this.filter (model)->
+          model.get("id") != AlumNet.current_user.id
+
+        this.reset(models)
+
       friendsView = new AlumNet.FriendsApp.Friends.FriendsView
         collection: friendsCollection
 
       friendsView.on "friends:reload", ->
+        console.log 'reload'
         newCollection = AlumNet.request('current_user:friendships:friends')
         newCollection.url = friendsView.collection.url
         @collection.querySearch.page = ++@collection.page
