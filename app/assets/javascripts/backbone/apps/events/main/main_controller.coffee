@@ -22,6 +22,8 @@
       events.fetch
         data: { page: events.page, per_page: events.rows }
         reset: true
+        success: ->
+          events.setOrder()
       eventsView = new AlumNet.EventsApp.Discover.EventsView
         collection: events
 
@@ -37,14 +39,6 @@
             that.collection.add(collection.models)
             if collection.length < collection.rows
               that.endPagination()
-
-      eventsView.on "add:child", (viewInstance)->
-        container = $('.main-events-area').masonry()
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
-      eventsView
 
     showMyEvents: (eventable_id)->
       AlumNet.navigate("events/manage")
@@ -72,19 +66,12 @@
             if collection.length < collection.rows
               that.endPagination()
 
-      eventsView.on "add:child", (viewInstance)->
-        container = $('.main-events-area')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
-      eventsView
-
     showMenuUrl: ()->
       self = @
       switch @activeTab
         when "discoverEvents"
           self.showDiscoverEvents()
         when "myEvents"
-          self.showMyEvents(@eventable_id)
+          self.showMyEvents(self.eventable_id)
 
+     

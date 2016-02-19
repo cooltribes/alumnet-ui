@@ -113,6 +113,13 @@
       query = $.extend({}, query, { start_date_lt: today })
       @fetch( data: { q: query } )
 
+    setOrder: ->
+      @comparator = (a, b)->
+        end_dateA = a.get "start_date"
+        end_dateB = b.get "start_date"
+        dateA = moment(end_dateA)
+        dateB = moment(end_dateB)
+        -dateA.diff(dateB)
 
   class Entities.Attendance extends Backbone.Model
     urlRoot: ->
