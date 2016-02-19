@@ -252,7 +252,7 @@
 
       #the part with the search term to be combined with filters
       internal_query = @results_collection.getInternalQuery(@searchable_fields)
-      if internal_query? then filtered.query = internal_query
+      if internal_query? then filtered.query = internal_query.query
       
       query =         
         query:
