@@ -92,7 +92,7 @@
 
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreGroups')      
+      _.bindAll(this, 'loadMoreGroups')
       $(window).scroll(@loadMoreGroups)
       $("#iconsTypeGroups").removeClass("hide");
 
@@ -104,7 +104,7 @@
     endPagination: ->
       @ui.loading.hide()
       @collection.page = 1
-      $(window).unbind('scroll') 
+      $(window).unbind('scroll')
 
     ui:
       'loading': '.throbber-loader'

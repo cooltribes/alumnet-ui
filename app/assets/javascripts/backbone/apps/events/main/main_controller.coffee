@@ -39,7 +39,7 @@
               that.endPagination()
 
       eventsView.on "add:child", (viewInstance)->
-        container = $('.main-events-area')
+        container = $('.main-events-area').masonry()
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
@@ -88,4 +88,3 @@
         when "myEvents"
           self.showMyEvents(@eventable_id)
 
-     

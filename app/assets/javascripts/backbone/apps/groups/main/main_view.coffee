@@ -1,7 +1,7 @@
 @AlumNet.module 'GroupsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.GroupsView extends Marionette.LayoutView
     template: 'groups/main/templates/layout'
-    
+
     regions:
       groups_region: '#groups-region'
       filters_region: '#filters-region'
@@ -58,7 +58,7 @@
         $("#filtersOpcion").addClass("hide")
       @trigger "navigate:menu:groups",valueClickLeft
       @toggleLink(click)
-      
+
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
