@@ -77,11 +77,7 @@
               that.endPagination()
 
       view.on "add:child", (viewInstance)->
-        container = $('#companies-container').masonry()
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        controller.applyMasonry(viewInstance)
       view
 
     showMyCompanies: (typeCompanies)->
@@ -119,11 +115,7 @@
               that.endPagination()
 
       view.on "add:child", (viewInstance)->
-        container = $('#companies-container')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+        controller.applyMasonry(viewInstance)
       view
 
       @layoutCompanies.companies_region.show(view)
@@ -156,14 +148,18 @@
               that.endPagination()
 
       view.on "add:child", (viewInstance)->
+        controller.applyMasonry(viewInstance)
+      view
+
+      @layoutCompanies.companies_region.show(view)
+
+    applyMasonry: (view)->
+      if view.type == "cards"
         container = $('#companies-container')
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
-      view
-
-      @layoutCompanies.companies_region.show(view)
+        container.append( $(view.el) ).masonry().masonry 'reloadItems'
 
     showMenuUrl: ()->
       self = @

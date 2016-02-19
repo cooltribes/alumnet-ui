@@ -80,6 +80,9 @@
   class Discover.Company extends Marionette.ItemView
     template: 'companies/discover/templates/company'
 
+    initialize: (options)->
+      @type = options.type
+
     ui:
       'deleteLink': '.js-delete-company'
 
@@ -138,6 +141,7 @@
       className: className
       tagName: tagName
       template: template
+      type: @type
 
     ui:
       'loading': '.throbber-loader'
@@ -148,10 +152,10 @@
 
     initialize: (options)->
       @type = options.type
-    
+
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreCompanies')      
+      _.bindAll(this, 'loadMoreCompanies')
       $(window).scroll(@loadMoreCompanies)
 
     remove: ->
@@ -162,7 +166,7 @@
     endPagination: ->
       @ui.loading.hide()
       @collection.page = 1
-      $(window).unbind('scroll')       
+      $(window).unbind('scroll')
 
     loadMoreCompanies: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()

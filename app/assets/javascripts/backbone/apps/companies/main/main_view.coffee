@@ -61,7 +61,7 @@
     basicSearch: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      if @stepMenu == "discoverCompanies" || @stepMenu == "manageCompanies" 
+      if @stepMenu == "discoverCompanies" || @stepMenu == "manageCompanies"
         @trigger('search', { q: { name_cont: value } })
       else if @stepMenu == "myCompanies"
         @trigger('search', { q: { name_cont: value, company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } })
