@@ -80,19 +80,9 @@
             if collection.length < collection.rows
               groupsView.endPagination()
 
-      checkNewPost = false #flag for new posts
       groupsView.on "add:child", (viewInstance)->
-        container = $('#groups_container')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.group_children'
-        if checkNewPost
-          container.prepend( $(viewInstance.el) ).masonry().masonry 'reloadItems'
-          container.imagesLoaded ->
-            container.masonry().masonry 'layout'
-        else
-          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
-        checkNewPost = false
+        container = $('#groups_container').masonry({itemSelector: '.group_children'})
+        container.append( $(viewInstance.el) ).masonry 'reloadItems'
 
       groupsView.on 'childview:group:show', (childView)->
         id = childView.model.id

@@ -45,7 +45,7 @@
           self.manageCollection.fetch
             data: querySearch
             url: AlumNet.api_endpoint + "/companies/managed"
-      
+
     showDiscoverCompanies: (typeCompanies)->
       AlumNet.navigate("companies/discover")
       @companiesCollection = new AlumNet.Entities.CompaniesCollection
@@ -77,11 +77,11 @@
               that.endPagination()
 
       view.on "add:child", (viewInstance)->
-        container = $('#companies-container')
+        container = $('#companies-container').masonry()
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.col-md-6'
-        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+        container.append( $(viewInstance.el) ).masonry 'reloadItems'
       view
 
     showMyCompanies: (typeCompanies)->
