@@ -64,7 +64,7 @@
         $(e.target).removeClass('eventsTableView__status--else')
         $(e.target).removeClass('eventsTableView__status--going')
         $(e.target).addClass('eventsTableView__status--maybe')
-        
+
   class Discover.EmptyView extends Marionette.ItemView
     template: 'events/discover/templates/empty'
 
@@ -87,13 +87,13 @@
 
     templateHelpers: ()->
       collection = @collection
-      
+
     initialize: ->
       AlumNet.setTitle('Discover Events')
 
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreEvents')      
+      _.bindAll(this, 'loadMoreEvents')
       $(window).scroll(@loadMoreEvents)
       seft = this
       eventsArray = seft.eventsMap(seft,@collection)
@@ -154,6 +154,7 @@
     duracion: (dStart,dEnd)->
       start = dStart.split("-")
       end = dEnd.split("-")
+      # TODO: Usar plugin moment :diana :daniela
       diff = new Date(end[0]+"/"+end[1]+"/"+end[2]).getTime() - new Date(start[0]+"/"+start[1]+"/"+start[2]).getTime();
       dias = Math.floor(diff / (1000 * 60 * 60 * 24))
       return dias
@@ -174,7 +175,7 @@
     endPagination: ->
       #@ui.loading.hide()
       @collection.page = 1
-      $(window).unbind('scroll')       
+      $(window).unbind('scroll')
 
     loadMoreEvents: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()

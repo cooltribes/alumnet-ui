@@ -81,8 +81,11 @@
               groupsView.endPagination()
 
       groupsView.on "add:child", (viewInstance)->
-        container = $('#groups_container').masonry({itemSelector: '.group_children'})
-        container.append( $(viewInstance.el) ).masonry 'reloadItems'
+        container = $('#groups_container')
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.group_children'
+        container.append( $(viewInstance.el) ).masonry({itemSelector: '.group_children'}).masonry 'reloadItems'
 
       groupsView.on 'childview:group:show', (childView)->
         id = childView.model.id
