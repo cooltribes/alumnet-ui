@@ -23,12 +23,9 @@
       events.fetch
         data: { page: events.page, per_page: events.rows }
         reset: true
-        success: ->
-          events.setOrder()
+
       eventsView = new AlumNet.EventsApp.Discover.EventsView
         collection: events
-
-      @layoutEvents.meetups_region.show(eventsView)
 
       eventsView.on "events:reload", ->
         that = @
@@ -40,6 +37,8 @@
             that.collection.add(collection.models)
             if collection.length < collection.rows
               that.endPagination()
+
+      @layoutEvents.meetups_region.show(eventsView)
 
     showMyEvents: (eventable_id)->
       AlumNet.navigate("events/manage")
@@ -56,12 +55,16 @@
 
       @layoutEvents.meetups_region.show(eventsView)
 
+      self = @
       eventsView.on "events:reload", ->
         that = @
-        newCollection = new AlumNet.Entities.EventsCollection
+        newCollection = new AlumNet.Entities.EventsCollection null,
+          eventable: 'users'
+          eventable_id: self.eventable_id
         query = _.extend({ page: ++@collection.page, per_page: @collection.rows })
         newCollection.fetch
           data: query
+          reset: true
           success: (collection)->
             that.collection.add(collection.models)
             if collection.length < collection.rows
