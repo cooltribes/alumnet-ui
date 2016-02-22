@@ -56,7 +56,7 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      @ui.loading.hide()
+      #@ui.loading.hide()
       $(window).unbind('scroll')
 
     loadMoreUsers: (e)->

@@ -18,15 +18,17 @@
 
     showDiscoverEvents: ()->
       AlumNet.navigate("events/discover")
+      controller = @
+      eventsView = new AlumNet.EventsApp.Discover.EventsView
       events = new AlumNet.Entities.EventsCollection
       events.page = 1
       events.fetch
         data: { page: events.page, per_page: events.rows }
         reset: true
-
-      eventsView = new AlumNet.EventsApp.Discover.EventsView
-        collection: events
-
+        success: (collection)->
+          eventsView.collection = events
+          controller.layoutEvents.meetups_region.show(eventsView)
+          
       eventsView.on "events:reload", ->
         that = @
         newCollection = new AlumNet.Entities.EventsCollection
@@ -37,8 +39,6 @@
             that.collection.add(collection.models)
             if collection.length < collection.rows
               that.endPagination()
-
-      @layoutEvents.meetups_region.show(eventsView)
 
     showMyEvents: (eventable_id)->
       AlumNet.navigate("events/manage")
