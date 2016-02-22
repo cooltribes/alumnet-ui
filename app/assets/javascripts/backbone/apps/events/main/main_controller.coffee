@@ -11,7 +11,8 @@
       @showMenuUrl()
 
       self = @
-      @layoutEvents.on "navigate:menu:events", (valueClick)->
+      @layoutEvents.on "navigate:menu:events", (valueClick, current_user)->
+        self.eventable_id = current_user
         self.activeTab = valueClick
         self.showMenuUrl()
 

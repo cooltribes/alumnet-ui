@@ -33,7 +33,7 @@
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
       @optionMain = @valueClick
-      @trigger "navigate:menu:events",@valueClick
+      @trigger "navigate:menu:events",@valueClick, AlumNet.current_user.id
       @toggleLink(click)
 
     toggleLink: (element)->
