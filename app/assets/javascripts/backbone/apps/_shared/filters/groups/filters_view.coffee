@@ -55,9 +55,10 @@
       query = {}           
 
       if active_rows.length == 1        
-        query =         
-          match:
-            group_type: active_rows[0].get "value"
+        query =
+          query:
+            match:
+              group_type: active_rows[0].get "value"
 
       @trigger "search", query     
 
