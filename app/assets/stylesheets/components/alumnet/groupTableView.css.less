@@ -178,9 +178,9 @@ DESCRIPTION: CSS for styling a list of groups
 
     &__description{
       overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 570px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 570px;
     }
   
   &__marginText{
@@ -269,7 +269,9 @@ DESCRIPTION: CSS for styling a list of groups
       width: 90px;
     }
     &__description{
-      width: 70px;
+      width: 190px;
+      white-space: initial;
+      height: 40px;
     }
       & > tbody > tr{
 
@@ -287,7 +289,7 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 175px;
+      width: 295px;
     }
       & > tbody > tr{
 
@@ -308,7 +310,7 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 317px;
+      width: 350px;
     }
       & > tbody > tr{
 
@@ -325,7 +327,7 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 175px;
+      width: 190px;
     }
       & > tbody > tr{
       }
@@ -346,7 +348,7 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 220px;
+      width: 235px;
     }
       & > tbody > tr{
 
@@ -369,7 +371,7 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 357px;
+      width: 238px;
     }
       & > tbody > tr{
 
@@ -390,6 +392,11 @@ DESCRIPTION: CSS for styling a list of groups
 
 /*1366px*/
 @media (min-width: @media-mlarge-max) {
+  .groupTableView{
+    &__description{
+      width: 240px;
+   }
+  }
   .listGroupsTable{
     padding: 0 0 0 70px;
   }
@@ -400,7 +407,8 @@ DESCRIPTION: CSS for styling a list of groups
   .groupTableView{
 
     &__description{
-      width: 406px;
+      width: 310px;
+
     }
       & > tbody > tr{
 
@@ -419,6 +427,11 @@ DESCRIPTION: CSS for styling a list of groups
 }
 /*1700px*/
 @media (min-width: @media-largemm-min) {
+  .groupTableView{
+    &__description{
+      width: 350px;
+    }
+  }
   .listGroupsTable{
     width: 85%;
   }
