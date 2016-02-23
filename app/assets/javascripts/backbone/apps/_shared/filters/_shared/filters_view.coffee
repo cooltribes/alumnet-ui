@@ -137,6 +137,8 @@
     buildQuery: (active_locations = [])->
       
       locationTerms = []
+      console.log "@type"
+      console.log @type
 
       cities_array = _.filter active_locations, (el)->
         el.get("type") == "city"
@@ -145,20 +147,20 @@
         el.get("type") == "country"
 
       if cities_array.length > 0        
-        city_ids = _.pluck(cities_array, "id")                       
+        cities_ids = _.pluck(cities_array, "id")                       
 
         if @type == "profile"
           terms = [
             terms:
-              "residence_city_id": city_ids
+              "residence_city_id": cities_ids
           ,
             terms:
-              "birth_city_id": city_ids
+              "birth_city_id": cities_ids
           ]
         else
           terms = [
             terms:
-              "city_id": city_ids        
+              "city_id": cities_ids        
           ]
 
         locationTerms.push terms
@@ -177,7 +179,7 @@
         else
           terms = [
             terms:
-              "country_id": city_ids        
+              "country_id": countries_ids        
           ]
 
         locationTerms.push terms
