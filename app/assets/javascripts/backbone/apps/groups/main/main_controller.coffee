@@ -19,12 +19,15 @@
         switch valueClick
           when "suggestions"
             self.showSuggestionsGroups()
-          # when "filters"
-          #   self.showFilters()
+          when "filters"
+            self.showFilters()
 
-      @layoutGroups.on 'groups:search', (querySearch)->
-          self.querySearch = querySearch
-          searchedGroups = AlumNet.request("group:entities", querySearch)
+      # @layoutGroups.on 'groups:search', (querySearch)->
+      #     self.querySearch = querySearch
+      #     searchedGroups = AlumNet.request("group:entities", querySearch)
+
+      @layoutGroups.on 'groups:search', (querySearch, collection)->
+        collection.search(querySearch)
 
     showSuggestionsGroups: (optionMenu) ->
       model = new Backbone.Model
@@ -55,15 +58,24 @@
           else
             AlumNet.trigger "groups:posts", group.get('id')
 
-        request.on 'save:error', (response, options)->
-          console.log response.responseJSON
+    showFilters: ()->
+      controller = @
+      filters = new AlumNet.Shared.Views.Filters.Groups.General
+        results_collection: controller.groups
+      #filters = new AlumNet.FriendsApp.Filters.FriendsView
+      @layoutGroups.filters_region.show(filters)
 
     showDiscoverGroups: (type) ->
       AlumNet.navigate("groups/discover")
       controller = @
       controller.querySearch = {}
-      groups = AlumNet.request("group:entities", {})
-      groupsView = @getContainerView(groups, type)
+      #groups = AlumNet.request("group:entities", {})
+      controller.groups = new AlumNet.Entities.SearchResultCollection null,
+        type: 'group'
+      controller.groups.model = AlumNet.Entities.Group
+      controller.groups.url = AlumNet.api_endpoint + '/groups/search'
+      controller.groups.search()
+      groupsView = @getContainerView(controller.groups, type)
 
       @layoutGroups.groups_region.show(groupsView)
 
@@ -102,9 +114,6 @@
           else
             AlumNet.trigger "groups:posts", group.get('id')
 
-        request.on 'save:error', (response, options)->
-          console.log response.responseJSON
-
     getContainerView: (groups, type) ->
       new AlumNet.GroupsApp.Discover.GroupsView
         collection: groups
@@ -120,8 +129,6 @@
 
       groupsView.on 'childview:click:leave', (childView)->
         membership = AlumNet.request("membership:destroy", childView.model)
-        membership.on 'destroy:success', ->
-          console.log "Destroy Ok"
 
     showManageGroups:->
       AlumNet.navigate("groups/manage")
@@ -133,8 +140,6 @@
 
       groupsView.on 'childview:click:leave', (childView)->
         membership = AlumNet.request("membership:destroy", childView.model)
-        membership.on 'destroy:success', ->
-          console.log "Destroy Ok"
 
     showMenuUrl: (optionMenu)->
       self = @
