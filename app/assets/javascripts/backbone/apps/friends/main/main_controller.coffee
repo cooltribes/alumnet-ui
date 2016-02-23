@@ -58,7 +58,6 @@
         collection: friendsCollection
 
       friendsView.on "friends:reload", ->
-        console.log 'reload'
         newCollection = AlumNet.request('current_user:friendships:friends')
         newCollection.url = friendsView.collection.url
         @collection.querySearch.page = ++@collection.page
