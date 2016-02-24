@@ -79,6 +79,7 @@
 
     ui:
       'searchInput': '#js-search-input'
+      'loading': '.throbber-loader'
 
     events:
       'submit #js-search-form': 'searchEvents'
@@ -103,7 +104,7 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      #@ui.loading.hide()
+      @ui.loading.hide()
       @collection.page = 1
       $(window).unbind('scroll')       
 
