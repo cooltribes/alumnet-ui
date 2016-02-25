@@ -18,8 +18,6 @@
       ]
       @class[parseInt(@tab)] = "--active"
 
-      console.log 'initialize'
-      console.log @tab
       if @tab == 0
         $("#filters-region").show()
         $("#js-filters").show()
