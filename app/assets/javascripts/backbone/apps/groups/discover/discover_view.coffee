@@ -24,9 +24,6 @@
       @type = options.type
 
     templateHelpers: ->
-      console.log @model
-      userIsMember = @model.userIsMember()
-      console.log userIsMember
       userIsMember: @model.userIsMember()
 
     renderView: (e)->
