@@ -18,6 +18,17 @@
       ]
       @class[parseInt(@tab)] = "--active"
 
+      console.log 'initialize'
+      console.log @tab
+      if @tab == 0
+        $("#filters-region").show()
+        $("#js-filters").show()
+        $("#search-form").show()
+      else
+        $("#filters-region").hide()
+        $("#js-filters").hide()
+        $("#search-form").hide()
+
     opcionInteger: (optionMenu)->
       switch optionMenu
         when "discoverEvents"
@@ -33,6 +44,16 @@
       e.preventDefault()
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
+
+      if @valueClick == 'myEvents'
+        $("#filters-region").hide()
+        $("#js-filters").hide()
+        $("#search-form").hide()
+      else
+        $("#filters-region").show()
+        $("#js-filters").show()
+        $("#search-form").show()
+
       @trigger "navigate:menu:events", @valueClick, AlumNet.current_user.id
       @toggleLink(click)
 

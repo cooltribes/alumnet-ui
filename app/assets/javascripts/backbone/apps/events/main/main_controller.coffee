@@ -9,7 +9,6 @@
         option: @activeTab
       AlumNet.mainRegion.show(@layoutEvents)
       @showMenuUrl()
-      @showFilters()
 
       self = @
       @layoutEvents.on "navigate:menu:events", (valueClick, current_user)->
@@ -44,6 +43,7 @@
         collection: controller.events
 
       @layoutEvents.events_region.show(eventsView)
+      @showFilters()
           
       eventsView.on "events:reload", ->
         that = @
