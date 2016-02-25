@@ -56,8 +56,7 @@
       if @preview!=''
         console.log "else"
         @savePicture()
-      else        
-        console.log "entro"
+      else
         modal = new Shared.CropCoverModal
           model: @model
         @destroy()

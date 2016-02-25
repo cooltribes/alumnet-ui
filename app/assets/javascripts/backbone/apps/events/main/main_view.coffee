@@ -3,11 +3,12 @@
     template: 'events/main/templates/layout'
 
     regions:
-      meetups_region: '#meetups-region'
+      events_region: '#events-region'
+      filters_region: '#filters-region'
 
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
-      'click .js-search': 'search'
+      'click .js-search': 'performSearch'
 
     initialize: (options)->
       @opcionInteger(options.option)
@@ -32,10 +33,14 @@
       e.preventDefault()
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
-      @optionMain = @valueClick
-      @trigger "navigate:menu:events",@valueClick, AlumNet.current_user.id
+      @trigger "navigate:menu:events", @valueClick, AlumNet.current_user.id
       @toggleLink(click)
 
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
+
+    performSearch: (e) ->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      @trigger 'events:search', data.search_term, @events_region.currentView.collection

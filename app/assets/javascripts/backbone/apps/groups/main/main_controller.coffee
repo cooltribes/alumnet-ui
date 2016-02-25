@@ -69,7 +69,6 @@
       AlumNet.navigate("groups/discover")
       controller = @
       controller.querySearch = {}
-      #groups = AlumNet.request("group:entities", {})
       controller.groups = new AlumNet.Entities.SearchResultCollection null,
         type: 'group'
       controller.groups.model = AlumNet.Entities.Group

@@ -164,7 +164,6 @@
   $.fn.backgroundDraggable = function(options) {
     var options = options;
     var args = Array.prototype.slice.call(arguments, 1);
-    console.log("entro en drag");
     return this.each(function() {
       var $this = $(this);
 
