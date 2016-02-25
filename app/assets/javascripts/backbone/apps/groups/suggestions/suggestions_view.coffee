@@ -15,6 +15,9 @@
       @render()
       @trigger 'Catch:Up'
 
+    templateHelpers: ->
+      userIsMember: @model.userIsMember()
+
   class Suggestions.GroupsView extends Marionette.CompositeView
     template: 'groups/suggestions/templates/layout'
     childView: Suggestions.Group
