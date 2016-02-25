@@ -24,16 +24,6 @@
       controller = @
       controller.querySearch = {}
 
-      # events = new AlumNet.Entities.EventsCollection
-      # events.page = 1
-      # events.fetch
-      #   data: { page: events.page, per_page: events.rows }
-      #   reset: true
-      #   success: (collection)->
-      #     eventsView.collection = events
-      #     controller.layoutEvents.events_region.show(eventsView)
-      #     controller.groups = events
-
       controller.events = new AlumNet.Entities.SearchResultCollection null,
         type: 'event'
       controller.events.model = AlumNet.Entities.Event

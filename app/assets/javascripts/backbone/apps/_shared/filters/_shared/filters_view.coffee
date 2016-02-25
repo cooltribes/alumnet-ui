@@ -137,8 +137,6 @@
     buildQuery: (active_locations = [])->
       
       locationTerms = []
-      console.log "@type"
-      console.log @type
 
       cities_array = _.filter active_locations, (el)->
         el.get("type") == "city"

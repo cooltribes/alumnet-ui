@@ -90,7 +90,6 @@
 
       @ui.inputCompany.bind 'typeahead:select', (e, suggestion)->
         view.model.set(company_id: suggestion.id)
-        # console.log view.model.get("company_id")
 
       @cleanAllSelects()
       # if @model.get('exp_type') == 0
@@ -155,10 +154,7 @@
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
-      console.log 'load'
-      console.log @model
       city = @model.get('city')     
-      console.log city       
       placeholder: "Select a #{placeholder}"
       minimumInputLength: 2
       ajax:
