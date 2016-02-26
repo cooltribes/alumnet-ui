@@ -151,6 +151,7 @@
       #console.log collection
 
     initialize: (options)->
+      @reload = true
       @type = options.type
 
     onRender: ->
@@ -170,6 +171,8 @@
 
     loadMoreCompanies: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+      # if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
+        @reload = false
         @trigger 'companies:reload'
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
