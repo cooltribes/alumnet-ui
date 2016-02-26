@@ -79,6 +79,7 @@
 
     ui:
       'searchInput': '#js-search-input'
+      #'loading': '.throbber-loader'
 
     events:
       'submit #js-search-form': 'searchEvents'
