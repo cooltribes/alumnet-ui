@@ -23,12 +23,6 @@
           #
         else
           collection.search(querySearch)
-        # collection.querySearch = querySearch
-        # collection.page = 1
-        # if filter == "sent" or filter == "received"
-        #   querySearch = _.extend querySearch, { filter: filter }
-        # collection.fetch
-        #   data: querySearch
 
     showFriends: ->
       AlumNet.navigate("alumni/friends")
@@ -160,7 +154,7 @@
       controller.users = new AlumNet.Entities.SearchResultCollection null,
         type: 'profile'
       controller.users.model = AlumNet.Entities.User
-      controller.users.url = AlumNet.api_endpoint + '/users'
+      controller.users.url = AlumNet.api_endpoint + '/users/search'
       controller.users.search()
 
       usersView = new AlumNet.FriendsApp.Find.UsersView
