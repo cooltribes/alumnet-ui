@@ -83,12 +83,16 @@
 
     initialize: (options) ->
       # Initialize the type of grid to use (cards or list)
+      @querySearch = {}
       @type = options.typeGroup
       view = @
-      @collection.on 'fetch:success', ->
-        view.official = @where({official: true})
-        view.nonOfficial = @where({official: false})
-        view.all = @slice()
+      @page = 1
+      @collection.search({})
+
+      # @collection.on 'fetch:success', ->
+      #   view.official = @where({official: true})
+      #   view.nonOfficial = @where({official: false})
+      #   view.all = @slice()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -98,12 +102,12 @@
 
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
+      @page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
-      @collection.page = 1
+      @page = 1
       $(window).unbind('scroll')
 
     ui:
@@ -123,4 +127,27 @@
 
     loadMoreGroups: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'group:reload'
+        @reloadItems()
+
+    reloadItems: ->
+      search_options =
+        search_term: ""
+        page: ++@page
+      @collection.search(search_options)
+      # query = _.extend(@querySearch, { page: ++@collection.page, per_page: @collection.rows })
+      # newCollection.fetch
+      #   data: query
+      #   success: (collection)->
+      #     @collection.add(collection.models)
+      #     if @collection.length < @collection.rows
+      #       @endPagination()
+
+      # newCollection = AlumNet.request("group:pagination")
+      # newCollection.url = AlumNet.api_endpoint + '/groups'
+      # query = _.extend(@querySearch, { page: ++@collection.page, per_page: @collection.rows })
+      # newCollection.fetch
+      #   data: query
+      #   success: (collection)->
+      #     @collection.add(collection.models)
+      #     if @collection.length < @collection.rows
+      #       @endPagination()

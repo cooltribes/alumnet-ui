@@ -22,13 +22,6 @@
           when "filters"
             self.showFilters()
 
-      # @layoutGroups.on 'groups:search', (querySearch)->
-      #     self.querySearch = querySearch
-      #     searchedGroups = AlumNet.request("group:entities", querySearch)
-
-      @layoutGroups.on 'groups:search', (querySearch, collection)->
-        collection.search(querySearch)
-
     showSuggestionsGroups: (optionMenu) ->
       model = new Backbone.Model
       if optionMenu != "groupsDiscover"
@@ -73,23 +66,22 @@
         type: 'group'
       controller.groups.model = AlumNet.Entities.Group
       controller.groups.url = AlumNet.api_endpoint + '/groups/search'
-      controller.groups.search()
       groupsView = @getContainerView(controller.groups, type)
 
       @layoutGroups.groups_region.show(groupsView)
 
       # events for paginate
-      groupsView.on "group:reload", ->
-        querySearch = controller.querySearch
-        newCollection = AlumNet.request("group:pagination")
-        newCollection.url = AlumNet.api_endpoint + '/groups'
-        query = _.extend(querySearch, { page: ++groupsView.collection.page, per_page: groupsView.collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            groupsView.collection.add(collection.models)
-            if collection.length < collection.rows
-              groupsView.endPagination()
+      # groupsView.on "group:reload", ->
+      #   querySearch = controller.querySearch
+      #   newCollection = AlumNet.request("group:pagination")
+      #   newCollection.url = AlumNet.api_endpoint + '/groups'
+      #   query = _.extend(querySearch, { page: ++groupsView.collection.page, per_page: groupsView.collection.rows })
+      #   newCollection.fetch
+      #     data: query
+      #     success: (collection)->
+      #       groupsView.collection.add(collection.models)
+      #       if collection.length < collection.rows
+      #         groupsView.endPagination()
 
       groupsView.on "add:child", (viewInstance)->
         container = $('#groups_container')

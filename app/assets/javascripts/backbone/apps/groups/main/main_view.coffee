@@ -74,16 +74,19 @@
       $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
+    getCurrentSearchTerm: ->
+      Backbone.Syphon.serialize(this).search_term
+
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @trigger 'groups:search', data.search_term, @groups_region.currentView.collection
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        m: 'or'
-        name_cont: searchTerm
-        description_cont: searchTerm
+      @currentSearchTerm = @getCurrentSearchTerm()
+      search_options =
+        search_term: @currentSearchTerm
+        page: 1
+        remove: true
+        reset: true
+      @groups_region.currentView.page = 1
+      @groups_region.currentView.collection.search(search_options)
 
     viewCard: (e)->
       #$("#iconList").removeClass("iconTypeGroup--active iconTypeGroup")
