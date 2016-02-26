@@ -490,6 +490,7 @@
       postsView: @
 
     initialize: ->
+      @reload = true
       @picture_ids = []
 
     onRender: ->
@@ -506,7 +507,10 @@
       $(window).unbind('scroll')
 
     loadMorePost: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+      limit = ($(document).height() - $(window).height()) / 2
+      if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
+      # if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @reload = false
         @trigger 'post:reload'
 
     templateHelpers: ->
