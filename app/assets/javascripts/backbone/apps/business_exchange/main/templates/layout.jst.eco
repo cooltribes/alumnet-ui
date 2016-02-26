@@ -7,7 +7,7 @@
 				<li role="presentation" class="submenu__item">
 					<a href="#" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(0)%>" title="Discover Business Profiles" data-menu="businessProfiles">
 						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Business Profiles </span>
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Discover</span><span> Business Profiles</span></span>
 					</a>
 				</li>
 
@@ -15,7 +15,7 @@
 					<!-- Tip: add the class 'sortingMenu__item--active' for highlighting the link when active -->
 					<a href="#" title="Discover Tasks" class="optionMenuLeft submenu__item__link submenu__item__link<%= @classOf(1)%>" id="js-groups" data-menu="yourTasks">
 						<i class="glyphicon glyphicon-search"></i>
-						<span class="submenu__item__link--text"> Discover Tasks </span>
+						<span class="submenu__item__link--text"><span class="submenu__item__link--text--friendships"> Discover</span><span> Tasks</span></span>
 					</a>
 				</li>
 
@@ -47,19 +47,19 @@
 		<div class="col-xs-4 col-sm-5 col-md-4 text-right">
 			<ul class="submenu" id="filter-link-container">
 
-				<!-- <li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
-						<i class="icon-entypo-search-tasks"></i>
-						<span class="submenu__item__link--text"> Suggestions</span>		
-					</a>
-				</li> -->		
-
 				<li role="presentation" class="submenu__item">
+					<a href="#" class="submenu__item__link submenu__item__link--active optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="automatches">
+						<i class="fa fa-tasks"></i>
+						<span class="submenu__item__link--text"> Automatches</span>		
+					</a>
+				</li>		
+
+			<!-- 	<li role="presentation" class="submenu__item">
 					<a href="#" class="submenu__item__link optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
 						<i class="ico-user"></i>
 						<span class="submenu__item__link--text"> Filters</span>	
 					</a>
-				</li>	
+				</li> -->	
 
 				<li class="hidden-xs">
 		      <div class="searchBarSubMenu">

@@ -226,7 +226,7 @@
 
 
   class Filters.General extends Marionette.LayoutView    
-    className: "advancedFilters"
+    className: "advancedFilters marginFilters"
      
     initialize: (options)->    
 
