@@ -53,7 +53,6 @@
       $(window).unbind('scroll')
 
     loadMore: (e)->
-      console.log "entro"
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @trigger 'user:reload'
 
