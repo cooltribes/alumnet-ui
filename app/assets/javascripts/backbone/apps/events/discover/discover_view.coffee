@@ -86,8 +86,11 @@
     templateHelpers: ()->
       collection = @collection
 
-    initialize: ->
+    initialize: (options)->
       AlumNet.setTitle('Discover Events')
+
+      @parentView = options.parentView
+      @collection.search()
 
     onRender: ->
       $(window).unbind('scroll')

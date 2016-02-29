@@ -69,4 +69,4 @@
         page: 1
         remove: true
         reset: true
-      @users_region.currentView.collection.search(@currentSearchTerm, search_options)
+      @events_region.currentView.collection.search(@currentSearchTerm, search_options)
