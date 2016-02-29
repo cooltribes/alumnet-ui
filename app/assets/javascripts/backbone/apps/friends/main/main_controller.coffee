@@ -20,15 +20,8 @@
 
       @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
         if filter == "sent" or filter == "received"
-          #
         else
           collection.search(querySearch)
-        # collection.querySearch = querySearch
-        # collection.page = 1
-        # if filter == "sent" or filter == "received"
-        #   querySearch = _.extend querySearch, { filter: filter }
-        # collection.fetch
-        #   data: querySearch
 
     showFriends: ->
       AlumNet.navigate("alumni/friends")
