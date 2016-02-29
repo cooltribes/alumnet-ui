@@ -27,28 +27,21 @@
     template: 'friends/find/templates/users_container'
     childView: Find.UserView
     emptyView: Find.EmptyView
-    search_term: ""
-        
+    childViewContainer: '.users-list'
+
     emptyViewOptions: ->
       search_term: @search_term
-    #childViewOptions: ->
-    #  parentCollection: @collection
-    childViewContainer: '.users-list'
-    events:
-      'click .js-simple-search': 'performSearch'
-      'click .add-new-filter': 'addNewFilter'
-      'click .search': 'advancedSearch'
-      'click .clear': 'clear'
-      'change #filter-logic-operator': 'changeOperator'
-      # 'click #js-advance':'showBoxAdvanceSearch'
-      # 'click #js-basic' : 'showBoxAdvanceBasic'
+
+    initialize: (options)->
+      @parentView = options.parentView
+      @collection.search()
 
     ui:
       'loading': '.throbber-loader'
-      
+
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreUsers')      
+      _.bindAll(this, 'loadMoreUsers')
       $(window).scroll(@loadMoreUsers)
 
     remove: ->
@@ -61,7 +54,16 @@
 
     loadMoreUsers: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'user:reload'
+        @reloadItems()
+
+    reloadItems: ->
+      search_term =  @parentView.currentSearchTerm
+      nextPage = @collection.getCurrentPage() + 1
+      search_options =
+        page: nextPage
+        remove: false
+        reset: false
+      @collection.search_by_last_query(search_options)
 
     onShow: ->
       view = @
@@ -82,38 +84,6 @@
         beforeDisplayContacts: (contacts, source, owner)->
           view.formatContact(contacts)
           false
-      # Advanced search
-      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
-        { attribute: "profile_first_name_or_profile_last_name", type: "string", values: "" },
-        { attribute: "profile_residence_country_name", type: "string", values: "" },
-        { attribute: "profile_birth_country_name", type: "string", values: "" }
-        { attribute: "profile_residence_city_name", type: "string", values: "" }
-        { attribute: "profile_birth_city_name", type: "string", values: "" }
-        { attribute: "profile_experiences_committee_name", type: "string", values: "" }
-        { attribute: "profile_experiences_organization_name", type: "string", values: "" }
-      ])
-
-    addNewFilter: (e)->
-      e.preventDefault()
-      @searcher.addNewFilter()
-
-    changeOperator: (e)->
-      e.preventDefault()
-      if $(e.currentTarget).val() == "any"
-        @searcher.activateOr = false
-      else
-        @searcher.activateOr = true
-
-    advancedSearch: (e)->
-      e.preventDefault()
-      query = @searcher.getQuery()
-      @search_term = query.profile_first_name_or_profile_last_name_cont
-      @collection.fetch
-        data: { q: query }
-
-    clear: (e)->
-      e.preventDefault()
-      @collection.fetch()
 
     onChildviewCatchUp: ->
       search_term: @search_term
@@ -121,20 +91,6 @@
       @collection.fetch
         success: (model)->
           view.render()
-
-    performSearch: (e) ->
-      e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @search_term = data.search_term
-      @trigger('users:search', @buildQuerySearch(data.search_term))
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        m: 'or'
-        profile_first_name_cont_any: searchTerm.split(" ")
-        profile_last_name_cont_any: searchTerm.split(" ")
-        profile_residence_city_name_cont_any: searchTerm
-        email_cont_any: searchTerm
 
     formatContact: (contacts)->
       view = @
@@ -147,13 +103,3 @@
         data: { contacts: formatedContacts }
         success: (collection)->
           view.collection.set(collection.models)
-
-    # showBoxAdvanceSearch: (e)->
-    #   e.preventDefault()
-    #   $("#js-advance-search").slideToggle("slow")
-    #   $("#search-form").slideToggle("hide");
-
-    # showBoxAdvanceBasic: (e)->
-    #   e.preventDefault()
-    #   $("#search-form").slideToggle("slow");
-    #   $("#js-advance-search").slideToggle("hide")

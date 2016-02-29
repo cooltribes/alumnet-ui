@@ -21,30 +21,15 @@
 
     showDiscoverEvents: ()->
       AlumNet.navigate("events/discover")
-      controller = @
-      controller.querySearch = {}
+      events = AlumNet.request("results:events")
+      @results = events
 
-      controller.events = new AlumNet.Entities.SearchResultCollection null,
-        type: 'event'
-      controller.events.model = AlumNet.Entities.Event
-      controller.events.url = AlumNet.api_endpoint + '/events/search'
-      controller.events.search()
       eventsView = new AlumNet.EventsApp.Discover.EventsView
-        collection: controller.events
+        collection: events
+        parentView: @layoutEvents
 
       @layoutEvents.events_region.show(eventsView)
       @showFilters()
-          
-      eventsView.on "events:reload", ->
-        that = @
-        newCollection = new AlumNet.Entities.EventsCollection
-        query = _.extend({ page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            that.collection.add(collection.models)
-            if collection.length < collection.rows
-              that.endPagination()
 
     showMyEvents: (eveactiveTabntable_id)->
       AlumNet.navigate("events/manage")
@@ -76,6 +61,11 @@
             if collection.length < collection.rows
               that.endPagination()
 
+    showFilters: ()->
+      filters = new AlumNet.Shared.Views.Filters.Events.General
+        results_collection: @results
+      @layoutEvents.filters_region.show(filters)
+
     showMenuUrl: ()->
       self = @
       switch @activeTab
@@ -83,9 +73,3 @@
           self.showDiscoverEvents()
         when "myEvents"
           self.showMyEvents(self.eventable_id)
-
-    showFilters: ()->
-      controller = @
-      filters = new AlumNet.Shared.Views.Filters.Events.General
-        results_collection: controller.events
-      @layoutEvents.filters_region.show(filters)

@@ -80,47 +80,59 @@
 
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
-    search_term: ''
-    type: 'all'
 
     initialize: (options)->
-      if options? && options.type?
-        @type = options.type
-      @defaults =
+      @lastQuery = null
+      @per_page = 10
+      @default_search_settings =
         page: 1
-        per_page: 5
-        search_term: ""
         remove: false
         reset: false
+        type: "all"
 
     url: ->
       AlumNet.api_endpoint + '/search'
 
-    search: (search_options)->
-      options = _.extend(@defaults, search_options)
-      @page = options.page
-      @per_page = options.per_page
-      @search_term = options.search_term
-      @remove_items = options.remove
-      @reset_collection = options.reset
+    setSearchSettings: (options)->
+      @settings = _.extend(@default_search_settings, options)
+
+    search: (search_term = "", options = {})->
+      @search_term = search_term
+      @setSearchSettings(options)
+
       query =
         type: @type
 
       internal_query = @getInternalQuery()
       if internal_query? then query.q = internal_query else query.q = {}
 
-      @search_by_filters(query)
+      @fetchData(query)
 
     search_by_type: (type = 'all')->
       @type = type
       @search(@search_term)
 
-    search_by_filters: (query)->
+    search_by_filters: (query = "", options = {})->
+      @search_by_query(query, options)
+
+    search_by_query: (query = {}, options = {})->
+      @setSearchSettings(options)
+      @fetchData(query)
+
+    search_by_last_query: (options = {})->
+      @setSearchSettings(options)
+      if @lastQuery == undefined
+        @lastQuery = @getInternalQuery()
+      else
+        @fetchData(@lastQuery)
+
+    fetchData: (query)->
       query.per_page = @per_page
-      query.page = @page
+      query.page = @settings.page
+      @lastQuery = query
       @fetch
-        reset: @reset_collection
-        remove: @remove_items
+        reset: @settings.reset
+        remove: @settings.remove
         data: JSON.stringify(query)
         type: "POST"
         contentType: "application/json"
@@ -139,3 +151,41 @@
       else
         null
 
+    getCurrentPage: ->
+      @settings.page
+
+
+  API =
+
+    usersResultsCollection: ->
+      collection = new AlumNet.Entities.SearchResultCollection null,
+        type: 'profile'
+      collection.model = AlumNet.Entities.User
+      collection.per_page = 5
+      collection.url = AlumNet.api_endpoint + '/users/search'
+      collection
+
+    groupsResultsCollection: ->
+      collection = new AlumNet.Entities.SearchResultCollection null,
+        type: 'group'
+      collection.model = AlumNet.Entities.Group
+      collection.per_page = 5
+      collection.url = AlumNet.api_endpoint + '/groups/search'
+      collection
+
+    eventsResultsCollection: ->
+      collection = new AlumNet.Entities.SearchResultCollection null,
+        type: 'event'
+      collection.model = AlumNet.Entities.Event
+      collection.per_page = 5
+      collection.url = AlumNet.api_endpoint + '/events/search'
+      collection
+
+  AlumNet.reqres.setHandler 'results:users', ->
+    API.usersResultsCollection()
+
+  AlumNet.reqres.setHandler 'results:groups', ->
+    API.groupsResultsCollection()
+
+  AlumNet.reqres.setHandler 'results:events', ->
+    API.eventsResultsCollection()

@@ -14,6 +14,7 @@
       'click .js-viewList': 'viewList'
 
     initialize: (options)->
+      @currentSearchTerm = ""
       @stepMenu = options.option
       @opcionInteger(@stepMenu)
       @tab = @opcionInteger(@stepMenu)
@@ -81,12 +82,10 @@
       e.preventDefault()
       @currentSearchTerm = @getCurrentSearchTerm()
       search_options =
-        search_term: @currentSearchTerm
         page: 1
         remove: true
         reset: true
-      @groups_region.currentView.page = 1
-      @groups_region.currentView.collection.search(search_options)
+      @groups_region.currentView.collection.search(@currentSearchTerm, search_options)
 
     viewCard: (e)->
       #$("#iconList").removeClass("iconTypeGroup--active iconTypeGroup")

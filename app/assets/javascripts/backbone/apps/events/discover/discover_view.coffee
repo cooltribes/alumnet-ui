@@ -77,11 +77,9 @@
     childViewContainer: ".main-events-area"
 
     ui:
-      'searchInput': '#js-search-input'
       'calendario': '#calendar'
 
     events:
-      'submit #js-search-form': 'searchEvents'
       'click .js-viewtable': 'viewTable'
       'click .js-viewCalendar': 'viewCalendar'
 
@@ -94,10 +92,12 @@
     onRender: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreEvents')
+
       $(window).scroll(@loadMoreEvents)
-      seft = this
-      eventsArray = seft.eventsMap(seft,@collection)
-      eventsArray = seft.longEvents(seft,eventsArray)
+
+      self = this
+      eventsArray = self.eventsMap(self, @collection)
+      eventsArray = self.longEvents(self, eventsArray)
 
       $.each eventsArray, (id,content)->
         if content["duracion"]> 0
@@ -108,20 +108,20 @@
 
       $("#iconsTypeEvents").removeClass("hide")
 
-    eventsMap: (seft,collection)->
+    eventsMap: (self, collection)->
       eventsArray = collection.models.map (model) ->
         id: model.get("id")
         title: model.get("name")
         description: model.get("description")
-        datetime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
-        startime: seft.eventDate(model.get("start_date"),model.get("start_hour"))
-        endtime: seft.eventDate(model.get("end_date"),model.get("end_hour"))
+        datetime: self.eventDate(model.get("start_date"),model.get("start_hour"))
+        startime: self.eventDate(model.get("start_date"),model.get("start_hour"))
+        endtime: self.eventDate(model.get("end_date"),model.get("end_hour"))
         cover: model.get("cover").card
         official: model.get("official")
-        duracion: seft.duracion(model.get("start_date"),model.get("end_date"))
+        duracion: self.duracion(model.get("start_date"),model.get("end_date"))
       return eventsArray
 
-    longEvents: (seft, eventsArray) ->
+    longEvents: (self, eventsArray) ->
       $.each eventsArray, (id,content)->
         if content["duracion"]> 0
           for eventos in [1 .. content["duracion"]]
@@ -129,7 +129,7 @@
               id: content["id"]
               title: content["title"]
               description: content["description"]
-              datetime: seft.addDay(content["datetime"])
+              datetime: self.addDay(content["datetime"])
               startime: content["startime"]
               endtime: content["endtime"]
               cover: content["cover"]
@@ -159,26 +159,23 @@
       dias = Math.floor(diff / (1000 * 60 * 60 * 24))
       return dias
 
-    searchEvents: (e)->
-      e.preventDefault()
-      unless @ui.searchInput.val() == ""
-        query = { name_cont: @ui.searchInput.val() }
-      else
-        query = {}
-      @searchUpcomingEvents(query)
-
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       #@ui.loading.hide()
-      @collection.page = 1
       $(window).unbind('scroll')
 
     loadMoreEvents: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'events:reload'
+        @reloadItems()
 
-
+    reloadItems: ->
+      search_term =  @parentView.currentSearchTerm
+      nextPage = @collection.getCurrentPage() + 1
+      search_options =
+        page: nextPage
+        remove: false
+        reset: false
+      @collection.search_by_last_query(search_options)

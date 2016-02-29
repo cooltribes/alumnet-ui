@@ -18,12 +18,6 @@
           when "filters"
             self.showFilters()
 
-      @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
-        if filter == "sent" or filter == "received"
-          #
-        else
-          collection.search(querySearch)
-
     showFriends: ->
       AlumNet.navigate("alumni/friends")
       friendsCollection = AlumNet.request('current_user:friendships:friends')
@@ -148,36 +142,20 @@
 
     findUsers: ->
       AlumNet.navigate("alumni/discover")
-      controller = @
-      controller.querySearch = {}
-
-      controller.users = new AlumNet.Entities.SearchResultCollection null,
-        type: 'profile'
-      controller.users.model = AlumNet.Entities.User
-      controller.users.url = AlumNet.api_endpoint + '/users/search'
-      controller.users.search()
+      users = AlumNet.request("results:users")
+      @results = users
 
       usersView = new AlumNet.FriendsApp.Find.UsersView
-        collection: controller.users
+        collection: users
+        parentView: @layoutAlumni
+
+      @layoutAlumni.users_region.show(usersView)
 
       #On fetch, delete current user from the list
-      controller.users.on "sync", ()->
+      users.on "sync", ()->
         models = this.filter (model)->
           model.get("id") != AlumNet.current_user.id
-
         this.reset(models)
-
-      usersView.on "user:reload", ->
-        querySearch = controller.querySearch
-        newCollection = AlumNet.request("user:pagination")
-        newCollection.url = AlumNet.api_endpoint + '/users'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            usersView.collection.add(collection.models)
-            if collection.length < collection.rows
-              usersView.endPagination()
 
       usersView.on "add:child", (viewInstance)->
         container = $('#friends_list')
@@ -186,10 +164,6 @@
             itemSelector: '.col-md-4'
           container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
-      usersView.on 'users:search', (querySearch)->
-        controller.querySearch = querySearch
-
-      @layoutAlumni.users_region.show(usersView)
 
     showSuggestions:(optionMenu)->
       collection = new AlumNet.Entities.SuggestedUsersCollection
@@ -209,10 +183,8 @@
       @layoutAlumni.filters_region.show(suggestions)
 
     showFilters: ()->
-      controller = @
       filters = new AlumNet.Shared.Views.Filters.Profiles.General
-        results_collection: controller.users
-      #filters = new AlumNet.FriendsApp.Filters.FriendsView
+        results_collection: @results
       @layoutAlumni.filters_region.show(filters)
 
     showMenuUrl: (optionMenu)->

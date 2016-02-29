@@ -83,16 +83,10 @@
 
     initialize: (options) ->
       # Initialize the type of grid to use (cards or list)
-      @querySearch = {}
+      @parentView = options.parentView
       @type = options.typeGroup
       view = @
-      @page = 1
-      @collection.search({})
-
-      # @collection.on 'fetch:success', ->
-      #   view.official = @where({official: true})
-      #   view.nonOfficial = @where({official: false})
-      #   view.all = @slice()
+      @collection.search()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -102,52 +96,24 @@
 
     remove: ->
       $(window).unbind('scroll')
-      @page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
-      @page = 1
       $(window).unbind('scroll')
 
     ui:
       'loading': '.throbber-loader'
-
-    filterAll: (e)->
-      e.preventDefault()
-      @collection.reset(@all)
-
-    filterOfficial: (e)->
-      e.preventDefault()
-      @collection.reset(@official)
-
-    filterNonOfficial: (e)->
-      e.preventDefault()
-      @collection.reset(@nonOfficial)
 
     loadMoreGroups: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @reloadItems()
 
     reloadItems: ->
+      search_term =  @parentView.currentSearchTerm
+      nextPage = @collection.getCurrentPage() + 1
       search_options =
-        search_term: ""
-        page: ++@page
-      @collection.search(search_options)
-      # query = _.extend(@querySearch, { page: ++@collection.page, per_page: @collection.rows })
-      # newCollection.fetch
-      #   data: query
-      #   success: (collection)->
-      #     @collection.add(collection.models)
-      #     if @collection.length < @collection.rows
-      #       @endPagination()
-
-      # newCollection = AlumNet.request("group:pagination")
-      # newCollection.url = AlumNet.api_endpoint + '/groups'
-      # query = _.extend(@querySearch, { page: ++@collection.page, per_page: @collection.rows })
-      # newCollection.fetch
-      #   data: query
-      #   success: (collection)->
-      #     @collection.add(collection.models)
-      #     if @collection.length < @collection.rows
-      #       @endPagination()
+        page: nextPage
+        remove: false
+        reset: false
+      @collection.search_by_last_query(search_options)

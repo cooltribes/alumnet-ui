@@ -51,37 +51,17 @@
           else
             AlumNet.trigger "groups:posts", group.get('id')
 
-    showFilters: ()->
-      controller = @
-      filters = new AlumNet.Shared.Views.Filters.Groups.General
-        results_collection: controller.groups
-      #filters = new AlumNet.FriendsApp.Filters.FriendsView
-      @layoutGroups.filters_region.show(filters)
-
     showDiscoverGroups: (type) ->
       AlumNet.navigate("groups/discover")
-      controller = @
-      controller.querySearch = {}
-      controller.groups = new AlumNet.Entities.SearchResultCollection null,
-        type: 'group'
-      controller.groups.model = AlumNet.Entities.Group
-      controller.groups.url = AlumNet.api_endpoint + '/groups/search'
-      groupsView = @getContainerView(controller.groups, type)
+      groups = AlumNet.request("results:groups")
+      @results = groups
+
+      groupsView = new AlumNet.GroupsApp.Discover.GroupsView
+        collection: groups
+        typeGroup: type
+        parentView: @layoutGroups
 
       @layoutGroups.groups_region.show(groupsView)
-
-      # events for paginate
-      # groupsView.on "group:reload", ->
-      #   querySearch = controller.querySearch
-      #   newCollection = AlumNet.request("group:pagination")
-      #   newCollection.url = AlumNet.api_endpoint + '/groups'
-      #   query = _.extend(querySearch, { page: ++groupsView.collection.page, per_page: groupsView.collection.rows })
-      #   newCollection.fetch
-      #     data: query
-      #     success: (collection)->
-      #       groupsView.collection.add(collection.models)
-      #       if collection.length < collection.rows
-      #         groupsView.endPagination()
 
       groupsView.on "add:child", (viewInstance)->
         container = $('#groups_container')
@@ -105,11 +85,6 @@
           else
             AlumNet.trigger "groups:posts", group.get('id')
 
-    getContainerView: (groups, type) ->
-      new AlumNet.GroupsApp.Discover.GroupsView
-        collection: groups
-        typeGroup: type
-
     showMyGroups: ->
       AlumNet.navigate("groups/my_groups")
       current_user = AlumNet.current_user
@@ -131,6 +106,11 @@
 
       groupsView.on 'childview:click:leave', (childView)->
         membership = AlumNet.request("membership:destroy", childView.model)
+
+    showFilters: ()->
+      filters = new AlumNet.Shared.Views.Filters.Groups.General
+        results_collection: @results
+      @layoutGroups.filters_region.show(filters)
 
     showMenuUrl: (optionMenu)->
       self = @

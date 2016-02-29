@@ -1,7 +1,7 @@
 @AlumNet.module 'FriendsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.FriendsView extends Marionette.LayoutView
     template: 'friends/main/templates/layout'
-    
+
     regions:
       users_region: '#users-region'
       filters_region: '#filters-region'
@@ -20,7 +20,7 @@
             $el.find("#countFriendsShow").html(val)
           else
             $el.hide()
-            
+
       '#countApproval':
         observe: 'pending_approval_requests_count'
         update: ($el, val)->
@@ -89,7 +89,7 @@
         $("#filtersOpcion").addClass("hide")
       @trigger "navigate:menu",valueClick
       @toggleLink(click)
-      
+
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
@@ -105,29 +105,14 @@
       $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
+    getCurrentSearchTerm: ->
+      Backbone.Syphon.serialize(this).search_term
+
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @users_region.currentView.collection, @filter
-    
-    buildQuerySearch: (searchTerm, filter) ->
-      if filter == "sent"
-        q:
-          m: 'or'
-          friend_profile_first_name_cont: searchTerm
-          friend_profile_last_name_cont: searchTerm
-          friend_email_cont: searchTerm
-      else if filter == "received" || filter == "approval"
-        q:
-          m: 'or'
-          user_profile_first_name_cont: searchTerm
-          user_profile_last_name_cont: searchTerm
-          user_email_cont: searchTerm
-      else if filter == "myFriends"
-        q:
-          m: 'or'
-          profile_first_name_cont: searchTerm
-          profile_last_name_cont: searchTerm
-          email_cont: searchTerm
-      else
-        searchTerm
+      @currentSearchTerm = @getCurrentSearchTerm()
+      search_options =
+        page: 1
+        remove: true
+        reset: true
+      @users_region.currentView.collection.search(@currentSearchTerm, search_options)
