@@ -148,11 +148,11 @@
 
     templateHelpers: ()->
       collection = @collection
-      #console.log collection
 
     initialize: (options)->
-      @reload = true
       @type = options.type
+      @parentView = options.parentView
+      @collection.search()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -161,19 +161,24 @@
 
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
-      @collection.page = 1
       $(window).unbind('scroll')
 
     loadMoreCompanies: (e)->
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-      # if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
-        @reload = false
-        @trigger 'companies:reload'
+        @reloadItems()
+
+    reloadItems: ->
+      search_term =  @parentView.currentSearchTerm
+      nextPage = @collection.getCurrentPage() + 1
+      search_options =
+        page: nextPage
+        remove: false
+        reset: false
+      @collection.search_by_last_query(search_options)
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
     template: 'companies/discover/templates/my_companies_layout'

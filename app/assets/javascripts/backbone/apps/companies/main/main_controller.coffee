@@ -51,39 +51,20 @@
 
     showDiscoverCompanies: (typeCompanies)->
       AlumNet.navigate("companies/discover")
-      controller = @
-      controller.querySearch = {}
-
-      controller.companies = new AlumNet.Entities.SearchResultCollection null,
-        type: 'company'
-      controller.companies.model = AlumNet.Entities.Company
-      controller.companies.url = AlumNet.api_endpoint + '/companies/search'
-      controller.companies.search()
+      companies = AlumNet.request("results:companies")
+      @results = companies
 
       view = new AlumNet.CompaniesApp.Discover.List
-        collection: controller.companies
+        collection: companies
         type: typeCompanies
+        parentView: @layoutCompanies
 
       @layoutCompanies.companies_region.show(view)
-
       @showFilters()
 
-      view.on "companies:reload", ->
-        that = @
-        querySearch = controller.querySearch
-        newCollection = new AlumNet.Entities.CompaniesCollection
-        newCollection.url = AlumNet.api_endpoint + '/companies'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            that.collection.add(collection.models)
-            if collection.length < collection.rows
-              that.endPagination()
-
+      self = @
       view.on "add:child", (viewInstance)->
-        controller.applyMasonry(viewInstance)
-      view
+        self.applyMasonry(viewInstance)
 
     showMyCompanies: (typeCompanies)->
       AlumNet.navigate("my-companies")
@@ -166,6 +147,11 @@
             itemSelector: '.col-md-6'
         container.append( $(view.el) ).masonry().masonry 'reloadItems'
 
+    showFilters: ()->
+      filters = new AlumNet.Shared.Views.Filters.Companies.General
+        results_collection: @results
+      @layoutCompanies.filters_region.show(filters)
+
     showMenuUrl: ()->
       self = @
       switch @activeTab
@@ -175,9 +161,3 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
-
-    showFilters: ()->
-      controller = @
-      filters = new AlumNet.Shared.Views.Filters.Companies.General
-        results_collection: controller.companies
-      @layoutCompanies.filters_region.show(filters)

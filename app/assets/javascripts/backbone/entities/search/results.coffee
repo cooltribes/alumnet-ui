@@ -181,6 +181,14 @@
       collection.url = AlumNet.api_endpoint + '/events/search'
       collection
 
+    companiesResultsCollection: ->
+      collection = new AlumNet.Entities.SearchResultCollection null,
+        type: 'company'
+      collection.model = AlumNet.Entities.Company
+      collection.per_page = 5
+      collection.url = AlumNet.api_endpoint + '/companies/search'
+      collection
+
   AlumNet.reqres.setHandler 'results:users', ->
     API.usersResultsCollection()
 
@@ -189,3 +197,6 @@
 
   AlumNet.reqres.setHandler 'results:events', ->
     API.eventsResultsCollection()
+
+  AlumNet.reqres.setHandler 'results:companies', ->
+    API.companiesResultsCollection()
