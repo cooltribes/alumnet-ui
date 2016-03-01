@@ -27,14 +27,17 @@
         else
           self.showManageCompanies(self.companiesType)
 
+      @layoutCompanies.on 'discover:search', (querySearch, collection)->
+        collection.search(querySearch)
+        container = $('#companies-container')
+        container.masonry 'layout'
+
       @layoutCompanies.on 'search', (querySearch)->
         self.querySearch = querySearch
         if self.activeTab == "discoverCompanies"
-          self.companiesCollection.fetch
-            data: querySearch
-            success: (collection)->
-            container = $('#companies-container')
-            container.masonry 'layout'
+          collection.search(querySearch)
+          container = $('#companies-container')
+          container.masonry 'layout'
         else if self.activeTab == "myCompanies"
           self.myCompaniesCollection.fetch
             data: querySearch
@@ -48,21 +51,23 @@
 
     showDiscoverCompanies: (typeCompanies)->
       AlumNet.navigate("companies/discover")
-      @companiesCollection = new AlumNet.Entities.CompaniesCollection
-      @companiesCollection.page = 1
-      @companiesCollection.url = AlumNet.api_endpoint + "/companies"
-      @companiesCollection.fetch
-        data: { page: @companiesCollection.page, per_page: @companiesCollection.rows }
-        reset: true
+      controller = @
+      controller.querySearch = {}
+
+      controller.companies = new AlumNet.Entities.SearchResultCollection null,
+        type: 'company'
+      controller.companies.model = AlumNet.Entities.Company
+      controller.companies.url = AlumNet.api_endpoint + '/companies/search'
+      controller.companies.search()
 
       view = new AlumNet.CompaniesApp.Discover.List
-        collection: @companiesCollection
+        collection: controller.companies
         type: typeCompanies
 
       @layoutCompanies.companies_region.show(view)
 
-      controller = @
-      controller.querySearch = {}
+      @showFilters()
+
       view.on "companies:reload", ->
         that = @
         querySearch = controller.querySearch
@@ -170,3 +175,9 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
+
+    showFilters: ()->
+      controller = @
+      filters = new AlumNet.Shared.Views.Filters.Companies.General
+        results_collection: controller.companies
+      @layoutCompanies.filters_region.show(filters)

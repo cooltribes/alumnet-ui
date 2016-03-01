@@ -67,7 +67,7 @@
         <!-- End Mobile -->
 
         <div class="padding_right_small padding_left_small">
-
+          <% if @uploader: %>
           <div class="row hidden-xs">
             <div class="col-md-5 groupPost__avatar">
                 <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
@@ -96,6 +96,7 @@
             </div>
           </div>
           <!-- End Mobile -->
+          <% end %>
 
           <div class="row margin_top_small">
             <% if @getLocation: %>
@@ -156,7 +157,7 @@
           <div class="row commentsModal">
             <div class="col-md-12 commentsModal">
               <div id="comments-region"></div>
-            </div>    
+            </div>
           </div>
     </aside>
   </div>

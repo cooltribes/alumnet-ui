@@ -33,12 +33,14 @@
       layout.banners.show(bannersView)
 
       posts.on "post:reload", ->
+        self = @
         newCollection = AlumNet.request("post:current")
         newCollection.url = AlumNet.api_endpoint + '/me/posts'
         newCollection.fetch
           data: { page: ++@collection.page, per_page: @collection.rows }
           success: (collection)->
             posts.collection.add(collection.models)
+            self.reload = true
             if collection.length < collection.rows
               posts.endPagination()
 

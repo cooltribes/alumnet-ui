@@ -77,7 +77,7 @@
     performSearch: (e) ->
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
-      this.trigger('groups:search', this.buildQuerySearch(data.search_term))
+      @trigger 'groups:search', data.search_term, @groups_region.currentView.collection
 
     buildQuerySearch: (searchTerm) ->
       q:

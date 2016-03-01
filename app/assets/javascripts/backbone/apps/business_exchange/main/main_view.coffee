@@ -69,7 +69,6 @@
         @trigger('business:search', { q: { name_cont: value } } )
 
     showModal: (e)->
-      console.log "entro"
       e.preventDefault()
       modal = new Main.ModalBusiness
       $('#container-modal-business').html(modal.render().el)

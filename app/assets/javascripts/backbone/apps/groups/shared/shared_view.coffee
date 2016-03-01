@@ -52,12 +52,9 @@
 
     cropClicked: (e)->
       e.preventDefault()
-      console.log "cropClicked"
       if @preview!=''
-        console.log "else"
         @savePicture()
-      else        
-        console.log "entro"
+      else
         modal = new Shared.CropCoverModal
           model: @model
         @destroy()
@@ -74,7 +71,6 @@
 
     saveClicked: (e)->
       e.preventDefault()
-      console.log "saveClicked"
       @savePicture()
       #@model.trigger('change:cover')
 
@@ -133,7 +129,6 @@
       e.preventDefault()
       coverArea = @.$('.groupCoverArea')
       #coverArea = $(@ui.groupCover)
-      console.log @coverSaved
       if (@coverSaved)
         $(e.currentTarget).html('<span class="glyphicon glyphicon-edit"></span>  Save cover')
         coverArea.backgroundDraggable()

@@ -16,18 +16,24 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutEvents.on 'events:search', (querySearch, collection)->
+        collection.search(querySearch)
+
     showDiscoverEvents: ()->
       AlumNet.navigate("events/discover")
       controller = @
+      controller.querySearch = {}
+
+      controller.events = new AlumNet.Entities.SearchResultCollection null,
+        type: 'event'
+      controller.events.model = AlumNet.Entities.Event
+      controller.events.url = AlumNet.api_endpoint + '/events/search'
+      controller.events.search()
       eventsView = new AlumNet.EventsApp.Discover.EventsView
-      events = new AlumNet.Entities.EventsCollection
-      events.page = 1
-      events.fetch
-        data: { page: events.page, per_page: events.rows }
-        reset: true
-        success: (collection)->
-          eventsView.collection = events
-          controller.layoutEvents.meetups_region.show(eventsView)
+        collection: controller.events
+
+      @layoutEvents.events_region.show(eventsView)
+      @showFilters()
           
       eventsView.on "events:reload", ->
         that = @
@@ -40,7 +46,7 @@
             if collection.length < collection.rows
               that.endPagination()
 
-    showMyEvents: (eventable_id)->
+    showMyEvents: (eveactiveTabntable_id)->
       AlumNet.navigate("events/manage")
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
@@ -53,7 +59,7 @@
       eventsView = new AlumNet.EventsApp.Manage.EventsView
         collection: events
 
-      @layoutEvents.meetups_region.show(eventsView)
+      @layoutEvents.events_region.show(eventsView)
 
       self = @
       eventsView.on "events:reload", ->
@@ -78,4 +84,8 @@
         when "myEvents"
           self.showMyEvents(self.eventable_id)
 
-     
+    showFilters: ()->
+      controller = @
+      filters = new AlumNet.Shared.Views.Filters.Events.General
+        results_collection: controller.events
+      @layoutEvents.filters_region.show(filters)

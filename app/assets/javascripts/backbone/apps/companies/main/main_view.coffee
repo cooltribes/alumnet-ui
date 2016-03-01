@@ -4,6 +4,7 @@
 
     regions:
       companies_region: '#companies-region'
+      filters_region: '#filters-region'
 
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
@@ -60,8 +61,12 @@
 
     basicSearch: (e)->
       e.preventDefault()
+
       value = $('#search_term').val()
-      if @stepMenu == "discoverCompanies" || @stepMenu == "manageCompanies"
+      if @stepMenu == "discoverCompanies"
+        data = Backbone.Syphon.serialize(this)
+        @trigger 'discover:search', data.search_term, @companies_region.currentView.collection
+      else if @stepMenu == "manageCompanies"
         @trigger('search', { q: { name_cont: value } })
       else if @stepMenu == "myCompanies"
         @trigger('search', { q: { name_cont: value, company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } })

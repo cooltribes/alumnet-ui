@@ -51,7 +51,6 @@
         collection: friendsCollection
 
       friendsView.on "friends:reload", ->
-        console.log 'reload'
         newCollection = AlumNet.request('current_user:friendships:friends')
         newCollection.url = friendsView.collection.url
         @collection.querySearch.page = ++@collection.page
@@ -154,7 +153,7 @@
       controller.users = new AlumNet.Entities.SearchResultCollection null,
         type: 'profile'
       controller.users.model = AlumNet.Entities.User
-      controller.users.url = AlumNet.api_endpoint + '/users'
+      controller.users.url = AlumNet.api_endpoint + '/users/search'
       controller.users.search()
 
       usersView = new AlumNet.FriendsApp.Find.UsersView

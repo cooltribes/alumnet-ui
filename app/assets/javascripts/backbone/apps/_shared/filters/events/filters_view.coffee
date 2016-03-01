@@ -74,8 +74,7 @@
       {}
       ]  
 
-    initialize: (options)->      
-
+    initialize: (options)->
       searchable_fields = ["name", "description"]
       type = "events"
       

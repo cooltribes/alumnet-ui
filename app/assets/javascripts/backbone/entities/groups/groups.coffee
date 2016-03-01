@@ -47,7 +47,7 @@
           when 0, 1
             true
           when 2
-            if admin then true else false
+            if @userIsAdmin() then true else false
           else
             false
       else
