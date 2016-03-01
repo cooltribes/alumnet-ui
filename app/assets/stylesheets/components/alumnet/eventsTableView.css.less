@@ -351,6 +351,8 @@ DESCRIPTION: CSS for styling a list of events
     border-top: 3px solid #269ccb;
   }
 }
+
+
 @media (min-width: @media-smallest) {
   .eventsTableView{
     padding-bottom:0.5em;
@@ -369,6 +371,7 @@ DESCRIPTION: CSS for styling a list of events
 }
 
 }
+
 @media (min-width: @media-smedium-min) {
   .eventsTableView{
     padding-bottom:0px;
@@ -378,6 +381,9 @@ DESCRIPTION: CSS for styling a list of events
     &__isAdminCancel{
       font-size: 12px;
     }
+  }
+  .eventsList{
+    width: 70%;
   }
 }
 @media (min-width: @media-large-min) {
@@ -389,5 +395,23 @@ DESCRIPTION: CSS for styling a list of events
     &__isAdminCancel{
       font-size: 14px;
     }
+  }
+
+  .eventsList{
+    width: 70%;
+  }
+}
+
+/*1500px*/
+@media (min-width: @media-mxlarge-min) {
+  .eventsList{
+    width: 85%;
+  }
+}
+
+/*1700px*/
+@media (min-width: @media-largemm-max) {
+  .eventsList{
+    width: 95%;
   }
 }

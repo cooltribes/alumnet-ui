@@ -1,25 +1,25 @@
-<% if @isPast: %>
-  <div class="flagEventPast">
-    <div class="box">
-      <div class="ribbon"><span>PAST</span></div>
+<div class="eventsTableView margin_bottom_xsmall eventsList">
+  <% if @isPast: %>
+    <div class="flagEventPast">
+      <div class="box">
+        <div class="ribbon"><span>PAST</span></div>
+      </div>
     </div>
-  </div>
-<% else: %>
-  <div class="flagEventUpcoming">
-    <div class="box">
-      <div class="ribbon"><span>UPCOMING</span></div>
+  <% else: %>
+    <div class="flagEventUpcoming">
+      <div class="box">
+        <div class="ribbon"><span>UPCOMING</span></div>
+      </div>
     </div>
-  </div>
-<% end %>
-<div class="eventsTableView margin_bottom_xsmall">
+  <% end %>
   <div class="row no-margin">
-    <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
+    <div class="col-md-2 col-xs-4 col-sm-2 no-padding ">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
       <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
       </div>
     </div>
 
-    <div class="col-md-11 col-xs-8 col-sm-10">
+    <div class="col-md-10 col-xs-8 col-sm-10">
       <h3 class="margin_top_xsmall overfloadText">
         <% if @attendance_info: %>
           <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
@@ -29,27 +29,27 @@
       </h3>
     </div>
 
-      <div class="col-md-2 col-xs-8 col-sm-3">
-        <div class="row-fluid">
-          <div class="col-md-2 no-padding">
+    <div class="col-md-2 col-xs-8 col-sm-3 no-padding margin_top_xsmall">
+      <div class="row-fluid">
+        <div class="col-md-2 no-padding">
+        <% if @creator: %>
+          <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+        <% else: %>
+          <img src="images/avatar/large_default_avatar.png" alt="Deleted User" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+        <% end %>
+        </div>
+        <div class="col-md-10 no-padding">
+          <div>Invited by:</div>
           <% if @creator: %>
-            <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+            <a href="#users/<%= @creator.id %>/posts"><div class="creatorName overfloadText"><%= @creator.name %></div></a>
           <% else: %>
-            <img src="images/avatar/large_default_avatar.png" alt="Deleted User" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+            <div class="creatorName overfloadText">Deleted User</div>
           <% end %>
-          </div>
-          <div class="col-md-10">
-            <div>Invited by:</div>
-            <% if @creator: %>
-              <a href="#users/<%= @creator.id %>/posts"><div class="creatorName overfloadText"><%= @creator.name %></div></a>
-            <% else: %>
-              <div class="creatorName overfloadText">Deleted User</div>
-            <% end %>
-          </div>
         </div>
       </div>
+    </div>
 
-    <div class="col-md-4 col-xs-12 col-sm-4 margin_top_xsmall">
+    <div class="col-md-3 col-xs-12 col-sm-4 margin_top_xsmall no-padding">
       <div>
         <span class="glyphicon glyphicon-time"></span>
         <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
@@ -60,12 +60,12 @@
       </div>
     </div>
 
-    <div class="col-md-2 col-xs-12 col-sm-3">
+    <div class="col-md-2 col-xs-12 col-sm-3 no-padding margin_top_xsmall">
       <span class="ico-company"></span>
       Attending: <%= @going_count %>
     </div>
 
-    <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
+    <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right no-padding">
       <% if @admin && not @isPast: %>
         <a href="#events/<%= @id %>/about">
             <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
