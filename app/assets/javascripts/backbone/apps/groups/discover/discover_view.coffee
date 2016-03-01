@@ -82,10 +82,23 @@
       #className: "group_children"
 
     initialize: (options) ->
-      # Initialize the type of grid to use (cards or list)
       @parentView = options.parentView
       @type = options.typeGroup
       @collection.search()
+
+      @on 'childview:group:show', (childView)->
+        id = childView.model.id
+        AlumNet.trigger "groups:posts", id
+
+      @on 'childview:join', (childView) ->
+        group = childView.model
+        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
+        request = AlumNet.request('membership:create', attrs)
+        request.on 'save:success', (response, options)->
+          if group.isClose()
+            AlumNet.trigger "groups:about", group.get('id')
+          else
+            AlumNet.trigger "groups:posts", group.get('id')
 
     onRender: ->
       $(window).unbind('scroll')

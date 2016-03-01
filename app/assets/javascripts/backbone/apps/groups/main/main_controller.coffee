@@ -69,42 +69,30 @@
             itemSelector: '.group_children'
         container.append( $(viewInstance.el) ).masonry({itemSelector: '.group_children'}).masonry 'reloadItems'
 
-      groupsView.on 'childview:group:show', (childView)->
-        id = childView.model.id
-        AlumNet.trigger "groups:posts", id
-
-      #When join link is clicked
-      groupsView.on 'childview:join', (childView) ->
-        group = childView.model
-        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
-        request = AlumNet.request('membership:create', attrs)
-        request.on 'save:success', (response, options)->
-          if group.isClose()
-            AlumNet.trigger "groups:about", group.get('id')
-          else
-            AlumNet.trigger "groups:posts", group.get('id')
-
     showMyGroups: ->
       AlumNet.navigate("groups/my_groups")
-      current_user = AlumNet.current_user
-      groups = AlumNet.request("membership:groups", current_user.id, {})
+      query = { per_page: 10 }
+      groups = AlumNet.request("membership:groups", AlumNet.current_user.id, query)
+
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView
         collection: groups
+        parentView: @layoutGroups
+        query: query
+
       @layoutGroups.groups_region.show(groupsView)
 
-      groupsView.on 'childview:click:leave', (childView)->
-        membership = AlumNet.request("membership:destroy", childView.model)
 
     showManageGroups:->
       AlumNet.navigate("groups/manage")
-      current_user = AlumNet.current_user
-      groups = AlumNet.request("membership:created_groups", current_user.id, {})
+      query = { per_page: 10 }
+      groups = AlumNet.request("membership:created_groups", AlumNet.current_user.id, query)
+
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView
         collection: groups
-      @layoutGroups.groups_region.show(groupsView)
+        parentView: @layoutGroups
+        query: query
 
-      groupsView.on 'childview:click:leave', (childView)->
-        membership = AlumNet.request("membership:destroy", childView.model)
+      @layoutGroups.groups_region.show(groupsView)
 
     showFilters: ()->
       filters = new AlumNet.Shared.Views.Filters.Groups.General

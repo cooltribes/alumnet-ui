@@ -35,6 +35,38 @@
     childView: Groups.GroupView
     childViewContainer: ".groups-container"
     emptyView: Groups.EmptyView
-    
+
+    initialize: (options)->
+      @parentView = options.parentView
+      @query = options.query
+
+      @on 'childview:click:leave', (childView)->
+        membership = AlumNet.request("membership:destroy", childView.model)
+
     onRender: ->
       $("#iconsTypeGroups").addClass("hide")
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreUsers')
+      $(window).scroll(@loadMoreUsers)
+
+    remove: ->
+      $(window).unbind('scroll');
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      # @ui.loading.hide()
+      $(window).unbind('scroll')
+
+    loadMoreUsers: (e)->
+      if @collection.nextPage == null
+        @endPagination()
+      else
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
+
+    reloadItems: ->
+      @query.page = @collection.nextPage
+      @collection.fetch
+        data: @query
+        remove: false
+        reset: false
