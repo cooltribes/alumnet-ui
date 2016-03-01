@@ -77,7 +77,6 @@
 
       moment(@source.start_date).format('DD/MM/YYYY') + ", " + @source.start_hour
 
-
   class Entities.SearchResultCollection extends Backbone.Collection
     model: Entities.SearchResult
 
@@ -153,7 +152,6 @@
 
     getCurrentPage: ->
       @settings.page
-
 
   API =
 

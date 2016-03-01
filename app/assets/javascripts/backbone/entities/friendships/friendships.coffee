@@ -31,20 +31,19 @@
     getCurrentUserFriendship: (filter)->
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + '/me/friendships'
-      friendships.fetch(data: { filter: filter,page: friendships.page,per_page: friendships.rows })
       friendships
 
     friendsCurrentUserFriendship: ->
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + '/me/friendships/friends'
       friendships
-    
-    getUserFriends: (id)->      
+
+    getUserFriends: (id)->
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + "/users/#{id}/friendships/friends"
       friendships
 
-    getUserMutual: (id)->      
+    getUserMutual: (id)->
       friendships = new Entities.FriendshipCollection
       friendships.url = AlumNet.api_endpoint + "/users/#{id}/friendships/commons"
       friendships
@@ -54,7 +53,7 @@
     API.destroyCurrentUserFriendship(attrs)
 
   AlumNet.reqres.setHandler 'current_user:friendship:request', (attrs) ->
-    API.requestCurrentUserFriendship(attrs)  
+    API.requestCurrentUserFriendship(attrs)
 
   AlumNet.reqres.setHandler 'current_user:friendships:get', (filter) ->
     API.getCurrentUserFriendship(filter)

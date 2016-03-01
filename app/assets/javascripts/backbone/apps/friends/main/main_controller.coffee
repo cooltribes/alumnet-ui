@@ -7,7 +7,6 @@
         option: optionMenu
       AlumNet.mainRegion.show(@layoutAlumni)
       @showMenuUrl(optionMenu)
-      @showSuggestions(optionMenu)
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->
         self.showMenuUrl(valueClick)
@@ -20,124 +19,62 @@
 
     showFriends: ->
       AlumNet.navigate("alumni/friends")
-      friendsCollection = AlumNet.request('current_user:friendships:friends')
-      friendsCollection.page = 1
-      friendsCollection.url = AlumNet.api_endpoint + '/me/friendships/friends'
-      friendsCollection.fetch
-        data: { page: friendsCollection.page, per_page: friendsCollection.rows }
-        reset: true
-
-      # uncomment this for elastic search
-
-      # friendsCollection = new AlumNet.Entities.SearchResultCollection null,
-      #   type: 'profile'
-      # friendsCollection.model = AlumNet.Entities.User
-      # friendsCollection.url = AlumNet.api_endpoint + '/users'
-      # friendsCollection.search()
-
-      #On fetch, delete current user from the list
-      friendsCollection.on "sync", ()->
-        models = this.filter (model)->
-          model.get("id") != AlumNet.current_user.id
-
-        this.reset(models)
+      friends = AlumNet.request('current_user:friendships:friends')
+      query = { per_page: 12 }
 
       friendsView = new AlumNet.FriendsApp.Friends.FriendsView
-        collection: friendsCollection
-
-      friendsView.on "friends:reload", ->
-        newCollection = AlumNet.request('current_user:friendships:friends')
-        newCollection.url = friendsView.collection.url
-        @collection.querySearch.page = ++@collection.page
-        @collection.querySearch.per_page = @collection.rows
-        newCollection.fetch
-          data: @collection.querySearch
-          success: (collection)->
-            friendsView.collection.add(collection.models)
-            if collection.length < collection.rows
-              friendsView.endPagination()
-
-      friendsView.on "add:child", (viewInstance)->
-        container = $('#friends_list')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+        collection: friends
+        parentView: @layoutAlumni
+        query: query
 
       @layoutAlumni.users_region.show(friendsView)
+
+      friends.on "sync", ()->
+        models = this.filter (model)->
+          model.get("id") != AlumNet.current_user.id
+        this.reset(models)
+
+      self = @
+      friendsView.on "add:child", (viewInstance)->
+        self.applyMasonry
+
 
     showMyReceived: ->
       AlumNet.navigate("alumni/received")
       friendships = AlumNet.request('current_user:friendships:get', 'received')
+      query = { per_page: 12, filter: "received" }
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
-
-      self = @
-      requestsView.on 'childview:accept', (childView)->
-        friendship = childView.model
-        friendship.save()
-        friendships.remove(friendship)
-        self.layoutAlumni.model.decrementCount('pending_received_friendships')
-        self.layoutAlumni.model.incrementCount('friends')
-        $.growl.notice({ message: "Invitation accepted" })
-
-      requestsView.on 'childview:delete', (childView)->
-        friendship = childView.model
-        friendship.destroy()
-        friendships.remove(friendship)
-        self.layoutAlumni.model.decrementCount('pending_received_friendships')
-        $.growl.notice({ message: "Declined invitation" })
+        parentView: @layoutAlumni
+        query: query
+        friendship_type: "received"
 
       @layoutAlumni.users_region.show(requestsView)
 
     showMySent: ->
       AlumNet.navigate("alumni/sent")
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
+      query = { per_page: 12, filter: "sent" }
+
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
-
-      self = @
-      requestsView.on 'childview:delete', (childView)->
-        friendship = childView.model
-        friendship.destroy()
-        friendships.remove(friendship)
-        self.layoutAlumni.model.decrementCount('pending_sent_friendships')
+        parentView: @layoutAlumni
+        query: query
+        friendship_type: "sent"
 
       @layoutAlumni.users_region.show(requestsView)
 
     showApproval: ->
       AlumNet.navigate("alumni/approval")
-      current_user = AlumNet.current_user
-      requestsCollection = AlumNet.request('current_user:approval:received')
+      approvals = AlumNet.request('current_user:approval:received')
+      query { per_page: 12 }
+
       approvalView = new AlumNet.FriendsApp.Approval.RequestsView
-        collection: requestsCollection
+        collection: approvals
+        parentView: @layoutAlumni
+        query: query
 
-      requestsCollection.on "sync:complete", (collection)->
-        approvalCount = requestsCollection.length
-
-      requestsCollection.on "friends:reload", ->
-        newCollection = AlumNet.request('current_user:approval:received')
-        newCollection.url = requestsCollection.collection.url
-        newCollection.fetch
-          data: {page: ++@collection.page, per_page: @collection.rows}
-          success: (collection)->
-            requestsCollection.collection.add(collection.models)
-            if collection.length < collection.rows
-              requestsCollection.endPagination()
-
-      approvalView.on 'childview:accept', (childView)->
-        request = childView.model
-        request.save {},
-          success: ()->
-            requestsCollection.remove(request)
-            AlumNet.current_user.decrementCount('pending_approval_requests')
-
-      approvalView.on 'childview:decline', (childView)->
-        request = childView.model
-        request.destroy
-          success: ()->
-            AlumNet.current_user.decrementCount('pending_approval_requests')
       @layoutAlumni.users_region.show(approvalView)
 
     findUsers: ->
@@ -151,19 +88,21 @@
 
       @layoutAlumni.users_region.show(usersView)
 
-      #On fetch, delete current user from the list
       users.on "sync", ()->
         models = this.filter (model)->
           model.get("id") != AlumNet.current_user.id
         this.reset(models)
 
+      self = @
       usersView.on "add:child", (viewInstance)->
-        container = $('#friends_list')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-4'
-          container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+        self.applyMasonry
 
+    applyMasonry: (viewInstance)->
+      container = $('#friends_list')
+      container.imagesLoaded ->
+        container.masonry
+          itemSelector: '.col-md-4'
+      container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
 
     showSuggestions:(optionMenu)->
       collection = new AlumNet.Entities.SuggestedUsersCollection

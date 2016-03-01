@@ -5,7 +5,6 @@
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
       @showMenuUrl(optionMenu)
-      @showSuggestionsGroups(optionMenu)
       current_user = AlumNet.current_user
       self = @
 

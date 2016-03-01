@@ -113,7 +113,7 @@
         location.push(model.get("country").name) unless model.get("country").name == ""
         location.join(", ")
 
-  class Discover.List extends Marionette.CompositeView
+  class Discover.CompaniesView extends Marionette.CompositeView
     emptyView: Discover.EmptyView
     childView: Discover.Company
     childViewContainer: '#companies-container'
@@ -152,7 +152,16 @@
     initialize: (options)->
       @type = options.type
       @parentView = options.parentView
-      @collection.search()
+      @query = options.query
+
+      ##this is a hack until all collection be an ResultCollection
+      if @query
+        @collection.fetch
+          reset: true
+          remove: true
+          data: @query
+      else
+        @collection.search()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -165,20 +174,27 @@
 
     endPagination: ->
       @ui.loading.hide()
-      $(window).unbind('scroll')
 
     loadMoreCompanies: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @reloadItems()
+      if @collection.nextPage == null
+        @endPagination()
+      else
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
 
     reloadItems: ->
-      search_term =  @parentView.currentSearchTerm
-      nextPage = @collection.getCurrentPage() + 1
-      search_options =
-        page: nextPage
-        remove: false
-        reset: false
-      @collection.search_by_last_query(search_options)
+      if @query
+        @query.page = @collection.nextPage
+        @collection.fetch
+          data: @query
+          remove: false
+          reset: false
+      else
+        search_options =
+          page: @collection.nextPage
+          remove: false
+          reset: false
+        @collection.search_by_last_query(search_options)
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
     template: 'companies/discover/templates/my_companies_layout'

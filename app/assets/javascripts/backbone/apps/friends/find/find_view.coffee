@@ -49,18 +49,19 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      #@ui.loading.hide()
-      $(window).unbind('scroll')
+      @ui.loading.hide()
+      # $(window).unbind('scroll')
 
     loadMoreUsers: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @reloadItems()
+      if @collection.nextPage == null
+        @endPagination()
+      else
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
 
     reloadItems: ->
-      search_term =  @parentView.currentSearchTerm
-      nextPage = @collection.getCurrentPage() + 1
       search_options =
-        page: nextPage
+        page: @collection.nextPage
         remove: false
         reset: false
       @collection.search_by_last_query(search_options)
