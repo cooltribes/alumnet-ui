@@ -51,112 +51,56 @@
 
     showDiscoverCompanies: (typeCompanies)->
       AlumNet.navigate("companies/discover")
-      controller = @
-      controller.querySearch = {}
+      companies = AlumNet.request("results:companies")
+      @results = companies
 
-      controller.companies = new AlumNet.Entities.SearchResultCollection null,
-        type: 'company'
-      controller.companies.model = AlumNet.Entities.Company
-      controller.companies.url = AlumNet.api_endpoint + '/companies/search'
-      controller.companies.search()
-
-      view = new AlumNet.CompaniesApp.Discover.List
-        collection: controller.companies
+      companiesView = new AlumNet.CompaniesApp.Discover.CompaniesView
+        collection: companies
         type: typeCompanies
+        parentView: @layoutCompanies
 
-      @layoutCompanies.companies_region.show(view)
-
+      @layoutCompanies.companies_region.show(companiesView)
       @showFilters()
 
-      view.on "companies:reload", ->
-        that = @
-        querySearch = controller.querySearch
-        newCollection = new AlumNet.Entities.CompaniesCollection
-        newCollection.url = AlumNet.api_endpoint + '/companies'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            that.collection.add(collection.models)
-            if collection.length < collection.rows
-              that.endPagination()
-
-      view.on "add:child", (viewInstance)->
-        controller.applyMasonry(viewInstance)
-      view
+      self = @
+      companiesView.on "add:child", (viewInstance)->
+        self.applyMasonry(viewInstance)
 
     showMyCompanies: (typeCompanies)->
       AlumNet.navigate("my-companies")
-      controller = @
-      controller.querySearch = {}
-      @myCompaniesCollection = new AlumNet.Entities.CompaniesCollection
-      @myCompaniesCollection.page = 1
-      @myCompaniesCollection.url = AlumNet.api_endpoint + "/companies"
-      @querySearch = { q: { company_admins_user_id_eq: AlumNet.current_user.id, status_eq: 1 } }
-      @myCompaniesCollection.fetch
-        reset: true
-        data:
-          q:
-            company_admins_user_id_eq: AlumNet.current_user.id
-            status_eq: 1
-          page: @myCompaniesCollection.page
-          per_page: @myCompaniesCollection.rows
+      companies = new AlumNet.Entities.CompaniesCollection
+      companies.url = AlumNet.api_endpoint + "/companies"
+      query = { per_page: 8, q: { creator_id_eq: AlumNet.current_user.id } }
 
-      view = new AlumNet.CompaniesApp.Discover.List
-        collection: @myCompaniesCollection
+      companiesView = new AlumNet.CompaniesApp.Discover.CompaniesView
+        collection: companies
         type: typeCompanies
+        parentView: @layoutCompanies
+        query: query
 
-      view.on "companies:reload", ->
-        that = @
-        querySearch = controller.querySearch
-        newCollection = new AlumNet.Entities.CompaniesCollection
-        newCollection.url = AlumNet.api_endpoint + '/companies'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            that.collection.add(collection.models)
-            if collection.length < collection.rows
-              that.endPagination()
+      @layoutCompanies.companies_region.show(companiesView)
 
-      view.on "add:child", (viewInstance)->
-        controller.applyMasonry(viewInstance)
-      view
-
-      @layoutCompanies.companies_region.show(view)
-
+      self = @
+      companiesView.on "add:child", (viewInstance)->
+        self.applyMasonry(viewInstance)
 
     showManageCompanies:(typeCompanies) ->
       AlumNet.navigate("companies/manage")
-      controller = @
-      controller.querySearch = {}
-      @manageCollection = new AlumNet.Entities.CompaniesCollection
-      @manageCollection.page = 1
-      @manageCollection.url = AlumNet.api_endpoint + "/companies/managed"
-      @manageCollection.fetch()
+      companies = new AlumNet.Entities.CompaniesCollection
+      companies.url = AlumNet.api_endpoint + "/companies/managed"
+      query = { per_page: 8 }
 
-      view = new AlumNet.CompaniesApp.Discover.List
-        collection: @manageCollection
+      companiesView = new AlumNet.CompaniesApp.Discover.CompaniesView
+        collection: companies
         type: typeCompanies
+        parentView: @layoutCompanies
+        query: query
 
-      view.on "companies:reload", ->
-        that = @
-        querySearch = controller.querySearch
-        newCollection = new AlumNet.Entities.CompaniesCollection
-        newCollection.url = AlumNet.api_endpoint + '/companies'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            that.collection.add(collection.models)
-            if collection.length < collection.rows
-              that.endPagination()
+      @layoutCompanies.companies_region.show(companiesView)
 
-      view.on "add:child", (viewInstance)->
-        controller.applyMasonry(viewInstance)
-      view
-
-      @layoutCompanies.companies_region.show(view)
+      self = @
+      companiesView.on "add:child", (viewInstance)->
+        self.applyMasonry(viewInstance)
 
     applyMasonry: (view)->
       if view.type == "cards"
@@ -165,6 +109,11 @@
           container.masonry
             itemSelector: '.col-md-6'
         container.append( $(view.el) ).masonry().masonry 'reloadItems'
+
+    showFilters: ()->
+      filters = new AlumNet.Shared.Views.Filters.Companies.General
+        results_collection: @results
+      @layoutCompanies.filters_region.show(filters)
 
     showMenuUrl: ()->
       self = @
@@ -175,9 +124,3 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
-
-    showFilters: ()->
-      controller = @
-      filters = new AlumNet.Shared.Views.Filters.Companies.General
-        results_collection: controller.companies
-      @layoutCompanies.filters_region.show(filters)

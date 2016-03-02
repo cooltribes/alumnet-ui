@@ -1,5 +1,3 @@
-@AlumNet.module 'Utilities', (Utilities, @AlumNet, Backbone, Marionette, $, _) ->
-
 _.extend Marionette.Renderer,
 
   lookups: ['backbone/apps/']

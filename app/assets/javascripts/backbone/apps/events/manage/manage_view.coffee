@@ -77,37 +77,39 @@
     childViewOptions: ->
       collection: @collection
 
-    ui:
-      'searchInput': '#js-search-input'
-      #'loading': '.throbber-loader'
+    initialize: (options)->
+      @parentView = options.parentView
+      @query = options.query
 
-    events:
-      'submit #js-search-form': 'searchEvents'
-      #'keypress @ui.searchInput': 'searchEvents'
+      @collection.fetch
+        reset: true
+        remove: true
+        data: @query
 
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreEvents')      
+      _.bindAll(this, 'loadMoreEvents')
       $(window).scroll(@loadMoreEvents)
       $("#iconsTypeEvents").addClass("hide")
 
-    searchEvents: (e)->
-      e.preventDefault()
-      unless @ui.searchInput.val() == ""
-        query = { name_cont: @ui.searchInput.val() }
-      else
-        query = {}
-
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       #@ui.loading.hide()
-      @collection.page = 1
-      $(window).unbind('scroll')       
+      $(window).unbind('scroll')
 
     loadMoreEvents: (e)->
+      if @collection.nextPage == null
+        @endPagination()
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'events:reload'
+        @reloadItems()
+
+    reloadItems: ->
+      @query.page = @collection.nextPage
+      @collection.fetch
+        remove: false
+        reset: false
+        data: @query
+

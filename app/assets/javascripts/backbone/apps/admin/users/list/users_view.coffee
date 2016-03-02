@@ -277,7 +277,6 @@
           class_link = ''
           html = ""
           if (view.collection.state.totalPages > 1)
-            console.log "Páginas sin filtros: "+view.collection.state.totalPages
             html = '<nav id="pag"><ul class="pagination"><li><a href="#admin/users" id="prevButton" style="display:none">Prev</a></li>'
             for page in [1..view.collection.state.totalPages]
               if (page == 1)

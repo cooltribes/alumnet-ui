@@ -59,7 +59,14 @@
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
+    getCurrentSearchTerm: ->
+      Backbone.Syphon.serialize(this).search_term
+
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @trigger 'events:search', data.search_term, @events_region.currentView.collection
+      @currentSearchTerm = @getCurrentSearchTerm()
+      search_options =
+        page: 1
+        remove: true
+        reset: true
+      @events_region.currentView.collection.search(@currentSearchTerm, search_options)

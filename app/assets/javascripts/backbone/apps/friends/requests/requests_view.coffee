@@ -26,13 +26,45 @@
     emptyView: Requests.EmptyView
     childView: Requests.RequestView
 
-    ui:
-      'filterLinkContainer': '#filter-link-container'
-      'requestsSentLink':'#js-requests-sent'
-      'requestsReceivedLink':'#js-requests-received'
-      'loading': '.throbber-loader'
-    events:
-      'click #js-requests-sent, #js-requests-received':'getRequests'
+    initialize: (options)->
+      @parentView = options.parentView
+      @query = options.query
+      @friendship_type = options.friendship_type
+
+      if @query
+        @collection.fetch
+          reset: true
+          remove: true
+          data: @query
+
+      if @friendship_type == "received"
+        @on 'childview:accept', (childView)->
+          self = @
+          friendship = childView.model
+          friendship.save {},
+            success: ->
+              self.collection.remove(friendship)
+              AlumNet.current_user.decrementCount('pending_received_friendships')
+              AlumNet.current_user.incrementCount('friends')
+              $.growl.notice({ message: "Invitation accepted" })
+
+        @on 'childview:delete', (childView)->
+          self = @
+          friendship = childView.model
+          friendship.destroy
+            success: ->
+              self.collection.remove(friendship)
+              AlumNet.current_user.decrementCount('pending_received_friendships')
+              $.growl.notice({ message: "Declined invitation" })
+
+      if @friendship_type == "sent"
+        @on 'childview:delete', (childView)->
+          self = @
+          friendship = childView.model
+          friendship.destroy
+            success: ->
+              self.collection.remove(friendship)
+              AlumNet.current_user.decrementCount('pending_sent_friendships')
 
     onRender: ->
       $(window).unbind('scroll')
@@ -44,29 +76,20 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      #console.log @ui.loading
-      #@ui.loading.hide()
       $('.throbber-loader').hide()
       $(window).unbind('scroll')
 
     loadMoreUsers: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'requests:reload'
-
-    getRequests: (e)->
-      e.stopPropagation()
-      e.preventDefault()
-      if $(e.currentTarget).attr('id') == 'js-requests-sent'
-        filter = 'sent'
+      if @collection.nextPage == null
+        @endPagination()
       else
-        filter = 'received'
-      @trigger 'get:requests', filter
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
 
-    toggleLink: (filter)->
-      if filter == 'sent'
-        @ui.filterLinkContainer.html("<li role='presentation' class='sortingMenu__item sortingMenu__item--lg'>
-        <a href='#' class='sortingMenu__item__link' id='js-requests-received'>Resquests received</a></li>")
-      else
-        @ui.filterLinkContainer.html("<li role='presentation' class='sortingMenu__item sortingMenu__item--lg'>
-        <a href='#' class='sortingMenu__item__link' id='js-requests-sent'>Resquests sent</a></li>")
-
+    reloadItems: ->
+      if @query
+        @query.page = @collection.nextPage
+        @collection.fetch
+          remove: false
+          reset: false
+          data: @query

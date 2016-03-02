@@ -113,7 +113,7 @@
         location.push(model.get("country").name) unless model.get("country").name == ""
         location.join(", ")
 
-  class Discover.List extends Marionette.CompositeView
+  class Discover.CompaniesView extends Marionette.CompositeView
     emptyView: Discover.EmptyView
     childView: Discover.Company
     childViewContainer: '#companies-container'
@@ -148,11 +148,20 @@
 
     templateHelpers: ()->
       collection = @collection
-      #console.log collection
 
     initialize: (options)->
-      @reload = true
       @type = options.type
+      @parentView = options.parentView
+      @query = options.query
+
+      ##this is a hack until all collection be an ResultCollection
+      if @query
+        @collection.fetch
+          reset: true
+          remove: true
+          data: @query
+      else
+        @collection.search()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -161,19 +170,31 @@
 
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
-      @collection.page = 1
-      $(window).unbind('scroll')
 
     loadMoreCompanies: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-      # if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
-        @reload = false
-        @trigger 'companies:reload'
+      if @collection.nextPage == null
+        @endPagination()
+      else
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
+
+    reloadItems: ->
+      if @query
+        @query.page = @collection.nextPage
+        @collection.fetch
+          data: @query
+          remove: false
+          reset: false
+      else
+        search_options =
+          page: @collection.nextPage
+          remove: false
+          reset: false
+        @collection.search_by_last_query(search_options)
 
   class Discover.MyCompaniesLayout extends Marionette.LayoutView
     template: 'companies/discover/templates/my_companies_layout'

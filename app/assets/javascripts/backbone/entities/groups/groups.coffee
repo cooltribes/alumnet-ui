@@ -109,6 +109,7 @@
     url: ->
       AlumNet.api_endpoint + '/groups'
 
+
   class Entities.JoinGroup extends Backbone.Model
     url: ->
       AlumNet.api_endpoint + '/groups/' + @get('group_id') + '/join'

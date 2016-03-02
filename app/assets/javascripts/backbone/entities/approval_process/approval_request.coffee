@@ -17,7 +17,7 @@
           model.trigger('save:success', response, options)
       approval
 
-    getPendingRequests: (attrs)->
+    getPendingRequests: ->
       approval_request = new Entities.ApprovalCollection
       approval_request.url = AlumNet.api_endpoint + '/me/approval_requests'
       approval_request.fetch
@@ -33,13 +33,13 @@
         success: (collection)->
           collection.trigger("sync:complete", collection)
       approval_request
-  
+
 
   AlumNet.reqres.setHandler 'current_user:approval:request', (userId) ->
     API.requestForApproval(userId)
 
-  AlumNet.reqres.setHandler 'current_user:approval:received', (userId) ->
-    API.getPendingRequests(userId)
+  AlumNet.reqres.setHandler 'current_user:approval:received', ->
+    API.getPendingRequests()
 
   AlumNet.reqres.setHandler 'current_user:approval:sent', (userId) ->
     API.getSentRequests(userId)

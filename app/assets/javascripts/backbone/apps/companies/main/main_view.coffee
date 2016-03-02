@@ -11,7 +11,7 @@
       'click .js-changeGrid' : 'changeGridView'
       'click .js-viewCard': 'viewCard'
       'click .js-viewList': 'viewList'
-      'submit #search-form': 'basicSearch'
+      'submit #search-form': 'performSearch'
 
     initialize: (options)->
       @stepMenu = options.option
@@ -74,9 +74,20 @@
       @type = "list"
       @trigger "changeGrid", @type
 
+    getCurrentSearchTerm: ->
+      Backbone.Syphon.serialize(this).search_term
+
+    performSearch: (e) ->
+      e.preventDefault()
+      @currentSearchTerm = @getCurrentSearchTerm()
+      search_options =
+        page: 1
+        remove: true
+        reset: true
+      @companies_region.currentView.collection.search(@currentSearchTerm, search_options)
+
     basicSearch: (e)->
       e.preventDefault()
-
       value = $('#search_term').val()
       if @stepMenu == "discoverCompanies"
         data = Backbone.Syphon.serialize(this)

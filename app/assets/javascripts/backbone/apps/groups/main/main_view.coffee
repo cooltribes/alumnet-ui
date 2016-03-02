@@ -14,6 +14,7 @@
       'click .js-viewList': 'viewList'
 
     initialize: (options)->
+      @currentSearchTerm = ""
       @stepMenu = options.option
       @opcionInteger(@stepMenu)
       @tab = @opcionInteger(@stepMenu)
@@ -74,16 +75,17 @@
       $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
+    getCurrentSearchTerm: ->
+      Backbone.Syphon.serialize(this).search_term
+
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @trigger 'groups:search', data.search_term, @groups_region.currentView.collection
-
-    buildQuerySearch: (searchTerm) ->
-      q:
-        m: 'or'
-        name_cont: searchTerm
-        description_cont: searchTerm
+      @currentSearchTerm = @getCurrentSearchTerm()
+      search_options =
+        page: 1
+        remove: true
+        reset: true
+      @groups_region.currentView.collection.search(@currentSearchTerm, search_options)
 
     viewCard: (e)->
       #$("#iconList").removeClass("iconTypeGroup--active iconTypeGroup")

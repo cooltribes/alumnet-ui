@@ -82,13 +82,23 @@
       #className: "group_children"
 
     initialize: (options) ->
-      # Initialize the type of grid to use (cards or list)
+      @parentView = options.parentView
       @type = options.typeGroup
-      view = @
-      @collection.on 'fetch:success', ->
-        view.official = @where({official: true})
-        view.nonOfficial = @where({official: false})
-        view.all = @slice()
+      @collection.search()
+
+      @on 'childview:group:show', (childView)->
+        id = childView.model.id
+        AlumNet.trigger "groups:posts", id
+
+      @on 'childview:join', (childView) ->
+        group = childView.model
+        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
+        request = AlumNet.request('membership:create', attrs)
+        request.on 'save:success', (response, options)->
+          if group.isClose()
+            AlumNet.trigger "groups:about", group.get('id')
+          else
+            AlumNet.trigger "groups:posts", group.get('id')
 
     onRender: ->
       $(window).unbind('scroll')
@@ -98,29 +108,24 @@
 
     remove: ->
       $(window).unbind('scroll')
-      @collection.page = 1
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
       @ui.loading.hide()
-      @collection.page = 1
-      $(window).unbind('scroll')
 
     ui:
       'loading': '.throbber-loader'
 
-    filterAll: (e)->
-      e.preventDefault()
-      @collection.reset(@all)
-
-    filterOfficial: (e)->
-      e.preventDefault()
-      @collection.reset(@official)
-
-    filterNonOfficial: (e)->
-      e.preventDefault()
-      @collection.reset(@nonOfficial)
-
     loadMoreGroups: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'group:reload'
+      if @collection.nextPage == null
+        @endPagination()
+      else
+        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+          @reloadItems()
+
+    reloadItems: ->
+      search_options =
+        page: @collection.nextPage
+        remove: false
+        reset: false
+      @collection.search_by_last_query(search_options)
