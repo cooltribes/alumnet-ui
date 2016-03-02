@@ -39,6 +39,7 @@
       attrs = { friend_id: @model.id }
       friendship = AlumNet.request('current_user:friendship:request', attrs)
       friendship.on 'save:success', (response, options) ->
+        self.model.set("friendship",friendship)
         self.addCancelLink()
         AlumNet.current_user.incrementCount('pending_sent_friendships')
       friendship.on 'save:error', (response, options)->
