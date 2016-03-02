@@ -33,8 +33,8 @@
       controller.applied()
     automatchesBusinessExchange: ->
       AlumNet.setTitle('Tasks Automatches')
-      controller = new BusinessExchangeApp.AutoMatches.Controller
-      controller.automatches()
+      controller = new BusinessExchangeApp.Main.Controller
+      controller.showMainBusinessExchange("yourTasks")
     invitationsBusinessExchange: ->
       AlumNet.setTitle('Tasks Invitations')
       controller = new BusinessExchangeApp.Invitations.Controller

@@ -224,12 +224,10 @@
 
       return data.name + country
 
-
   class Filters.General extends Marionette.LayoutView
-    className: "advancedFilters"
+    className: "advancedFilters marginFilters"
 
     initialize: (options)->
-
       @searchable_fields = options.searchable_fields
       @type = options.type
 

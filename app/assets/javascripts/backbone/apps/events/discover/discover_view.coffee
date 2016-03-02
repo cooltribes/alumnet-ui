@@ -78,6 +78,7 @@
 
     ui:
       'calendario': '#calendar'
+      'loading': '.throbber-loader'
 
     events:
       'click .js-viewtable': 'viewTable'
@@ -167,8 +168,8 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      # @ui.loading.hide()
-      # $(window).unbind('scroll')
+      @ui.loading.hide()
+      $(window).unbind('scroll')
 
     loadMoreEvents: (e)->
       if @collection.nextPage == null

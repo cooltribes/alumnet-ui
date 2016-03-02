@@ -1,7 +1,7 @@
 @AlumNet.module 'BusinessExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
-    businessProfiles: null
-    businessTasks: null
+    businessProfilesCollection: null
+    businessTasksCollection: null
     activeTab: "businessProfiles"
 
     showMainBusinessExchange: (optionMenu)->
@@ -13,6 +13,7 @@
         current_user: current_user
       AlumNet.mainRegion.show(@layoutBusiness)
       @showMenuUrl()
+      @showAutomaches()
 
       # Check cookies for first visit
       if not Cookies.get('business_exchange_visit')
@@ -25,40 +26,78 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutBusiness.on "navigate:menuRight", (valueClick)->
+        switch valueClick
+          when "automatches"
+            self.showAutomaches()
+          # when "filters"
+          #   self.showFilters()
+
       @layoutBusiness.on 'business:search', (querySearch)->
         self.querySearch = querySearch
         if self.activeTab == "businessProfiles"
-          self.businessProfiles.fetch
+          self.businessProfilesCollection.fetch
             url: AlumNet.api_endpoint + "/business"
             data: querySearch  
         else if self.activeTab == "yourTasks"
-          self.businessTasks.fetch
+          self.businessTasksCollection.fetch
             data: querySearch
   
     showBusinessProfile: ()->
+      controller = @
+      controller.querySearch = {}
       AlumNet.navigate("business-exchange/profiles")
-      @businessProfiles = new AlumNet.Entities.BusinessCollection
-      @businessProfiles.fetch
+      @businessProfilesCollection = new AlumNet.Entities.BusinessCollection
+      @businessProfilesCollection.fetch
         url: AlumNet.api_endpoint + "/business"        
         data: 
           limit: 9      
 
       view = new AlumNet.BusinessExchangeApp.Profile.BusinessProfiles
-        collection: @businessProfiles
+        collection: @businessProfilesCollection
 
       @layoutBusiness.cards_region.show(view)
 
+      view.on "business:reload", ->
+        querySearch = controller.querySearch
+        newCollection = new AlumNet.Entities.BusinessCollection
+        newCollection.url = AlumNet.api_endpoint + '/business'
+        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
+        newCollection.fetch
+          data: query
+          success: (collection)->
+            view.collection.add(collection.models)
+            if collection.length < collection.rows
+              view.endPagination()
+
+      view.on "add:child", (viewInstance)->
+        container = $('#business-exchange-container')
+        container.imagesLoaded ->
+          container.masonry
+            itemSelector: '.col-md-4'
+        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+
     showYourTasks: ->
       AlumNet.navigate("business-exchange/tasks")
-      @businessTasks = new AlumNet.Entities.BusinessExchangeCollection
-      @businessTasks.fetch
+      @businessTasksCollection = new AlumNet.Entities.BusinessExchangeCollection
+      @businessTasksCollection.fetch
         data: 
           limit: 9      
 
       view = new AlumNet.BusinessExchangeApp.Home.Tasks
-        collection: @businessTasks
+        collection: @businessTasksCollection
 
-      @layoutBusiness.cards_region.show(view) 
+      @layoutBusiness.cards_region.show(view)
+
+    showAutomaches: ->
+      automachesCollection = new AlumNet.Entities.BusinessExchangeCollection
+      automachesCollection.fetch
+        url: AlumNet.api_endpoint + '/business_exchanges/automatches'
+      
+      automatchesView = new  AlumNet.BusinessExchangeApp.AutoMatches.List
+        collection: automachesCollection
+
+      @layoutBusiness.filters_region.show(automatchesView)
 
     showMenuUrl: ()->
       self = @

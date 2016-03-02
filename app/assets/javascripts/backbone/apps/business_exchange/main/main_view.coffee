@@ -4,7 +4,7 @@
     
     regions:
       cards_region: '#groups-region'
-      #filters_region: '#filters-region'
+      filters_region: '#filters-region'
 
     ui:
       'modalBusiness':'#js-modal-business'
@@ -12,7 +12,7 @@
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
       'click .js-search': 'search'
-      #'click .optionMenuRight' : 'goOptionMenuRight'
+      'click .optionMenuRight' : 'goOptionMenuRight'
       'click @ui.modalBusiness': 'showModal'
    
     initialize: (options)->
@@ -45,8 +45,19 @@
       @trigger "navigate:menu:programs",@valueClick
       @toggleLink(click)
 
+    goOptionMenuRight: (e)->
+      e.preventDefault()
+      click = $(e.currentTarget)
+      valueClick = click.attr("data-menu")
+      @trigger "navigate:menuRight",valueClick
+      @toggleLinkRight(click)
+
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
+
+    toggleLinkRight: (element)->
+      $(".optionMenuRight").removeClass("submenu__item__link--active")
       element.addClass("submenu__item__link--active")
 
     search: (e)->
