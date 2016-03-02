@@ -1,11 +1,6 @@
-<div class="suggestions__content">
-	<div class="suggestions__content--title">
-		<h3>Automatches</h3>
-	</div>
-	<hr class="no_margin_bottom">
+<div class="suggestions__content margin_top_xsmall">
 	<div class="suggestions__content--user userCardSuggestions">
 		<div class="tasks-container">
-		
 		</div>
 	</div>
 </div>
