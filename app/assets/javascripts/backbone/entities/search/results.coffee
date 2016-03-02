@@ -15,6 +15,15 @@
         when "task"
           null
 
+    getImageClass: ->
+      switch @get "_type"
+        when "profile", "company"
+          "img-circle avatarsize"
+        when "group", "event"
+          "img-circle searchResultImg"
+        when "task"
+          null
+
     getUrl: ->
       AlumNet.buildUrlFromModel(@) #method implemented in libs/helpers
 
@@ -40,9 +49,10 @@
     getDescription: ->
       description = null
       switch @get "_type"
-        when "group", "event", "task", "company"
+        when "event", "task", "company"
           description = @source.description
-
+        when "group"
+          description = @source.short_description
       description
 
     ## ------- Functions only for profiles

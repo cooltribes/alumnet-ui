@@ -3,7 +3,7 @@
    <div class=" row">
       <div class="userCard__avatar col-md-2 col-xs-3">
         <% if @image: %>
-          <img src="<%= @image %>" alt="<%= @title %>" class="img-circle avatarsize">        
+          <img src="<%= @image %>" alt="<%= @title %>" class="<%= @imageClass %>">        
         <% end %>
 
       </div>
