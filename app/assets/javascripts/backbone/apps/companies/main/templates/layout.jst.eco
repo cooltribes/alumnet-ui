@@ -61,7 +61,7 @@
 				</li> -->		
 
 				<li role="presentation" class="submenu__item" id="filtersOpcion">
-					<a href="#" class="submenu__item__link--active optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
+					<a href="#" class="submenu__item__link submenu__item__link--active optionMenuRight" title="Filters" id="js-filters" data-menu="filters">
 						<i class="ico-user"></i>
 						<span class="submenu__item__link--text"> Filters</span>	
 					</a>

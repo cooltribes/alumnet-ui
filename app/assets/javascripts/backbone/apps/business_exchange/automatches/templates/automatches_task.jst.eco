@@ -1,0 +1,28 @@
+<div class="groupCardSuggestions row no-margin paddingAutomatches">
+  <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 suggestionsAutomatches__title overfloadText no-padding">
+    <a href="#business-exchange/<%= @id %>">
+      <%= @name %>
+    </a><br>
+    <div class="row">
+      <div class="col-md-2 no-padding imgTask text-center margin_left_xsmall">
+        <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
+      </div>
+      <div class="col-md-9 no-padding">
+        <span class="suggestionsAutomatches__postedBy">
+          <p class="no-margin">Posted by: <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a></p>
+          <p class="no-margin">On <%= moment(@created_at).format('MMM Do YYYY') %></p>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 buttonOffer margin_top_small">
+    <% if @canApply: %>
+      <a href="#" class="btn btn-primary js-job-apply" >
+        <p class="no-margin">
+          Offer help & <br>
+          start chat
+        </p>
+      </a>
+    <% end %>
+  </div>
+</div>
