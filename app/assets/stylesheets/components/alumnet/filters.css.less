@@ -161,7 +161,7 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 }
 
 .regionAutomatches{
-	height: 85px;
+	height: 135px;
 	border-bottom: 1px solid @lighter-gray;
 }
 
@@ -170,6 +170,7 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 		font-size: 12px;
 		padding: 5px;
 		text-transform: uppercase;
+		margin: 0 auto;
 	}
 }
 
@@ -181,11 +182,14 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 }
 
 .paddingAutomatches{
-	padding: 4px 0 10px 7px;
+	padding: 4px 0 10px 10px;
 }
 
 .marginPosted{
 	margin: 2px 0 3px 0px;
+}
+.automatchesMeetup{
+	height: 85px;
 }
 
 /*768px*/
@@ -200,12 +204,34 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	}
 }
 
+/*992px*/
+@media (min-width: @media-smedium-min){
+	.suggestions{
+		&__content{
+			&--title{
+				h3{
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
+
 /*1200px*/
 @media (min-width: @media-large-min){
 	
 	.suggestionsGroups{
 		&__title{
 	    	padding: 5px 0 0 5px;	
+		}
+	}
+	.suggestions{
+		&__content{
+			&--title{
+				h3{
+					font-size: 24px;
+				}
+			}
 		}
 	}
 }

@@ -91,9 +91,7 @@
     showAutomaches: ->
       automachesCollection = new AlumNet.Entities.BusinessExchangeCollection
       automachesCollection.fetch
-        #url: AlumNet.api_endpoint + '/business_exchanges/automatches'
-        data: 
-          limit: 9 
+        url: AlumNet.api_endpoint + '/business_exchanges/automatches'   
     
       automatchesView = new  AlumNet.BusinessExchangeApp.AutoMatches.List
         collection: automachesCollection

@@ -3,11 +3,22 @@
     <a href="#business-exchange/<%= @id %>">
       <%= @name %>
     </a><br>
-    <div class="row margin_top_xsmall no_margin_left">
-      <div class="col-md-2 no-padding imgTask text-center">
+    <div class="row margin_top_xsmall">
+      <div class="col-md-12 overfloadText" > 
+        <div class="yourTaskCard__deadline">
+          <b><%= @daysRemaining %> days left</b>/ <span>deadline <%= moment(@post_until).format('MMM Do YYYY') %></span>
+          <div class="progress yourTaskCard__deadlineProgress">
+            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="<%= @porcentdays %>" aria-valuemin="0" aria-valuemax="<%= @daysTotal %>" style="width: <%= @porcentdays %>%">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="row margin_top_small no_margin_left">
+      <div class="col-xs-3 col-sm-2 col-md-3 col-lg-2 no-padding imgTask text-left">
         <img src="<%= @user.avatar %>" alt="<%= @user.name %>" class="img-circle jobPostDetail__avatar">
       </div>
-      <div class="col-md-9 no-padding margin_left_xsmall">
+      <div class="col-xs-9 col-sm-10 col-md-9 col-lg-10 no-padding">
         <span class="suggestionsAutomatches__postedBy">
           <p class="marginPosted overfloadText">Posted by: <a href="#users/<%= @user.id %>/posts" title="<%= @user.name %>"><%= @user.name %></a></p>
           <p class="no-margin"><span class="ico-calendar"></span> On <%= moment(@created_at).format('MMM Do YYYY') %></p>
@@ -15,7 +26,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 buttonOffer margin_top_small">
+  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 buttonOffer margin_top">
     <% if @canApply: %>
       <a href="#" class="btn btn-primary js-job-apply" >
         <p class="no-margin">
