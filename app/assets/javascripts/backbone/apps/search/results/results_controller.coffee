@@ -7,7 +7,7 @@
       
       @results_collection = new AlumNet.Entities.SearchResultCollection null
 
-      @results_collection.search(search_term)
+      @results_collection.search(search_term, {reset: true, remove: true})
       
       layoutView = @_getLayoutView()
       ###

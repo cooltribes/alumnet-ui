@@ -43,8 +43,6 @@
     template: 'search/results/templates/_result'
 
     templateHelpers: ->
-      # console.log @model
-      
       industry: @model.getIndustry()
       image: @model.getImage()
       title: @model.getTitle()
@@ -54,6 +52,7 @@
       description: @model.getDescription()
       eventStart: @model.getEventStart()
       url: @model.getUrl()
+      imageClass: @model.getImageClass()
 
   class Results.EmptyView extends Marionette.ItemView
     template: 'search/results/templates/_empty'  
