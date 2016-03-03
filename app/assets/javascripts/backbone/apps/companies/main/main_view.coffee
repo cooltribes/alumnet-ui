@@ -22,6 +22,17 @@
       ]
       @class[parseInt(@tab)] = "--active"
 
+      if @tab == 0
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
+
+    onRender: ->
+      if @tab == 0
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
+
     opcionInteger: (optionMenu)->
       switch optionMenu
         when "discoverCompanies"
@@ -39,6 +50,10 @@
       e.preventDefault()
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
+      if @valueClick == "groupsDiscover"
+        $("#filtersOpcion").removeClass("hide")
+      else
+        $("#filtersOpcion").addClass("hide")
       @stepMenu = @valueClick
       @trigger "navigate:menu:companies",@valueClick
       @toggleLink(click)

@@ -4,12 +4,14 @@
     
     regions:
       meetup_region: '#meetup-region'
-
+      suggestions_regions: '#suggestions-regions'
+    
     ui:
       'modalMeetups':'#js-modal-meetups'
     
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
+      'click .optionMenuRight' : 'goOptionMenuRight'
       'click @ui.modalMeetups': 'showModal'
       'click .js-search': 'search'
 
@@ -42,6 +44,17 @@
       @optionMain = @valueClick
       @trigger "navigate:menu:meetup",@valueClick
       @toggleLink(click)
+
+    goOptionMenuRight: (e)->
+      e.preventDefault()
+      click = $(e.currentTarget)
+      valueClick = click.attr("data-menu")
+      @trigger "navigate:menuRight",valueClick
+      @toggleLinkRight(click)
+
+    toggleLinkRight: (element)->
+      $(".optionMenuRight").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
 
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")

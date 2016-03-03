@@ -17,6 +17,11 @@
           when "filters"
             self.showFilters()
 
+      @layoutAlumni.on 'friends:search', (querySearch, collection, filter)->
+        if filter == "sent" or filter == "received"
+        else
+          collection.search(querySearch)
+          
     showFriends: ->
       AlumNet.navigate("alumni/friends")
       friends = AlumNet.request('current_user:friendships:friends')

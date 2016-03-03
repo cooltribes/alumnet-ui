@@ -11,6 +11,7 @@
         option: @activeTab
       AlumNet.mainRegion.show(@layoutMeetupExchange)
       @showMenuUrl()
+      @showAutomatches()
 
       # Check cookies for first visit
       if not Cookies.get('meetup_exchange_visit')
@@ -22,6 +23,11 @@
       @layoutMeetupExchange.on "navigate:menu:meetup", (valueClick)->
         self.activeTab = valueClick
         self.showMenuUrl()
+
+      @layoutMeetupExchange.on "navigate:menuRight", (valueClick)->
+        switch valueClick
+          when "automatches"
+            self.showAutomatches()
 
       @layoutMeetupExchange.on 'meetups:search', (querySearch)->
         self.querySearch = querySearch
@@ -66,6 +72,15 @@
         collection: @manageMeetups
 
       @layoutMeetupExchange.meetup_region.show(myTasksView)
+
+    showAutomatches: ()->
+      tasks = new AlumNet.Entities.MeetupExchangeCollection
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/meetup_exchanges/automatches'
+      automatchesView = new AlumNet.MeetupExchangeApp.AutoMatches.List
+        collection: tasks
+
+      @layoutMeetupExchange.suggestions_regions.show(automatchesView)
 
     showMenuUrl: ()->
       self = @

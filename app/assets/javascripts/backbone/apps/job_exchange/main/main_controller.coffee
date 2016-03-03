@@ -11,6 +11,7 @@
         option: @activeTab
       AlumNet.mainRegion.show(@layoutJobExchange)
       @showMenuUrl()
+      @showAutomatches()
 
       # Check cookies for first visit
       if not Cookies.get('job_exchange_visit')
@@ -23,6 +24,11 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutJobExchange.on "navigate:menuRight", (valueClick)->
+        switch valueClick
+          when "automatches"
+            self.showAutomatches()
+  
       @layoutJobExchange.on 'jobs:search', (querySearch)->
         self.querySearch = querySearch
 
@@ -75,6 +81,17 @@
         collection: @manageJobs
 
       @layoutJobExchange.jobs_region.show(myJobsView)
+
+    showAutomatches: ->
+      tasks = new AlumNet.Entities.JobExchangeCollection
+      tasks.page = 1
+      tasks.url = AlumNet.api_endpoint + '/job_exchanges/automatches?page='+tasks.page+'&per_page='+tasks.rows
+      tasks.fetch
+        reset: true
+      automatchesView = new AlumNet.JobExchangeApp.AutoMatches.List
+        collection: tasks
+
+      @layoutJobExchange.suggestions_regions.show(automatchesView)
 
     showMenuUrl: ()->
       self = @

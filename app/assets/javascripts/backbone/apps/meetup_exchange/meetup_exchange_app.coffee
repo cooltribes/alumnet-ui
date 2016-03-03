@@ -25,8 +25,8 @@
       controller.showMainMeetupExchange("myApplications")
     automatchesMeetupExchange: ->
       AlumNet.setTitle('Meetups Sugestions')
-      controller = new MeetupExchangeApp.AutoMatches.Controller
-      controller.automatches()
+      controller = new MeetupExchangeApp.Main.Controller
+      controller.showMainMeetupExchange("automatches")
     invitationsMeetupExchange: ->
       AlumNet.setTitle('Meetups Invitations')
       controller = new MeetupExchangeApp.Invitations.Controller

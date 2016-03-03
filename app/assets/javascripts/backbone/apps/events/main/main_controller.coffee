@@ -11,14 +11,13 @@
 
       self = @
       @layoutEvents.on "navigate:menu:events", (valueClick, current_user)->
-        self.eventable_id = current_user
         self.activeTab = valueClick
         self.showMenuUrl()
 
       @layoutEvents.on 'events:search', (querySearch, collection)->
         collection.search(querySearch)
 
-    showDiscoverEvents: ()->
+    showDiscoverEvents: ->
       AlumNet.navigate("events/discover")
       events = AlumNet.request("results:events")
       @results = events
@@ -30,7 +29,7 @@
       @layoutEvents.events_region.show(eventsView)
       @showFilters()
 
-    showMyEvents: (eveactiveTabntable_id)->
+    showMyEvents: ->
       AlumNet.navigate("events/manage")
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
@@ -44,15 +43,15 @@
 
       @layoutEvents.events_region.show(eventsView)
 
-    showFilters: ()->
+    showFilters: ->
       filters = new AlumNet.Shared.Views.Filters.Events.General
         results_collection: @results
       @layoutEvents.filters_region.show(filters)
 
-    showMenuUrl: ()->
+    showMenuUrl: ->
       self = @
       switch @activeTab
         when "discoverEvents"
           self.showDiscoverEvents()
         when "myEvents"
-          self.showMyEvents(self.eventable_id)
+          self.showMyEvents()

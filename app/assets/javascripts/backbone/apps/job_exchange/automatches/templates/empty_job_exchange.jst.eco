@@ -1,0 +1,10 @@
+<div class="col-md-12 no-padding suggestionsAutomatches">
+	<div class="row">
+		<div class="col-md-3 lead fontSize--xl text-center">
+			<span class="glyphicon glyphicon-info-sign"></span>
+		</div>
+		<div class="col-md-9">
+			<p class="lead">You don't have any matches yet.</p>
+		</div>
+	</div>
+</div>

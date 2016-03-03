@@ -26,8 +26,8 @@
       controller.showMainJobExchange("myApplications")
     automatchesJobExchange: ->
       AlumNet.setTitle('Automatches')
-      controller = new JobExchangeApp.AutoMatches.Controller
-      controller.automatches()
+      controller = new JobExchangeApp.Main.Controller
+      controller.showMainJobExchange("automatches")
     invitationsJobExchange: ->
       AlumNet.setTitle('Job invitations')
       controller = new JobExchangeApp.Invitations.Controller

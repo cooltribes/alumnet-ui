@@ -1,6 +1,5 @@
 @AlumNet.module 'MeetupExchangeApp.Shared', (Shared, @AlumNet, Backbone, Marionette, $, _) ->
   class Shared.Task extends Marionette.CompositeView
-    className: 'container'
 
     initialize: (options)->
       @mode = options.mode
