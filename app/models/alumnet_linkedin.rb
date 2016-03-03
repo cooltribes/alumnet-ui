@@ -1,8 +1,6 @@
 class AlumnetLinkedin
   attr_accessor :client, :valid
 
-  API_KEY = "77m01gfshs64pi"
-  API_SECRET = "7f9vbnhJJa4Lu9DD"
   CONFIG = { site: 'https://api.linkedin.com',
     authorize_path: '/uas/oauth/authenticate',
     request_token_path: '/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress',
@@ -15,7 +13,7 @@ class AlumnetLinkedin
     "educations", "location"]
 
   def initialize
-    @client = LinkedIn::Client.new(API_KEY, API_SECRET, CONFIG)
+    @client = LinkedIn::Client.new(Settings.linkedin_api_key, Settings.linkedin_api_secret, CONFIG)
     @valid = true
   end
 
