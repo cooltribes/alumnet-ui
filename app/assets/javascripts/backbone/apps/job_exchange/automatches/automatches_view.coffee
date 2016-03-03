@@ -1,7 +1,6 @@
 @AlumNet.module 'JobExchangeApp.AutoMatches', (AutoMatches, @AlumNet, Backbone, Marionette, $, _) ->
   class AutoMatches.Task extends AlumNet.JobExchangeApp.Shared.Task
-    template: 'job_exchange/_shared/templates/discover_task'
-    className: 'col-md-4'
+    template: 'job_exchange/automatches/templates/automatches_job_exchange'
 
   class AutoMatches.EmptyView extends Marionette.ItemView
     template: 'job_exchange/automatches/templates/empty_job_exchange'

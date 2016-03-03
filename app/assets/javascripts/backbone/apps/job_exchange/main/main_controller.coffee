@@ -85,8 +85,10 @@
     showAutomatches: ->
       tasks = new AlumNet.Entities.JobExchangeCollection
       tasks.page = 1
-      tasks.url = AlumNet.api_endpoint + '/job_exchanges/automatches?page='+tasks.page+'&per_page='+tasks.rows
+      tasks.url = AlumNet.api_endpoint + '/job_exchanges'
+      #AlumNet.api_endpoint + '/job_exchanges/automatches?page='+tasks.page+'&per_page='+tasks.rows
       tasks.fetch
+        data: { page: @discoverCollection.page, per_page: @discoverCollection.rows }
         reset: true
       automatchesView = new AlumNet.JobExchangeApp.AutoMatches.List
         collection: tasks

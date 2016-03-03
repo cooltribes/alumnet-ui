@@ -75,8 +75,8 @@
 
     showAutomatches: ()->
       tasks = new AlumNet.Entities.MeetupExchangeCollection
-      tasks.fetch()
-        #url: AlumNet.api_endpoint + '/meetup_exchanges/automatches'
+      tasks.fetch
+        url: AlumNet.api_endpoint + '/meetup_exchanges/automatches'
       automatchesView = new AlumNet.MeetupExchangeApp.AutoMatches.List
         collection: tasks
 
