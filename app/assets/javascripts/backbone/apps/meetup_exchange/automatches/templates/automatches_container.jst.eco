@@ -1,6 +1,6 @@
 <div class="suggestions__content">
 	<div class="suggestions__content--title">
-		<h3>These meetups match with you</h3>
+		<h3>These Meet-ups match with you</h3>
 	</div>
 	<hr class="no_margin_bottom">
 	<div class="suggestions__content--user userCardSuggestions">
