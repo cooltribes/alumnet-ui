@@ -2,7 +2,6 @@
 
   class Discover.EventView extends Marionette.ItemView
     template: 'events/discover/templates/event'
-    className: 'container'
 
     templateHelpers: ->
       model = @model

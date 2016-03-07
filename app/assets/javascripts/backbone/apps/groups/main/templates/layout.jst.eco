@@ -53,7 +53,7 @@
 			<ul class="submenu" id="filter-link-container">
 
 				<li role="presentation" class="submenu__item">
-					<a href="#" class="submenu__item__link submenu__item__link optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
+					<a href="#" class="submenu__item__link submenu__item__link--active optionMenuRight" title="Suggestions" id="js-suggestions" data-menu="suggestions">
 						<i class="icon-entypo-search-tasks"></i>
 						<span class="submenu__item__link--text"> Suggestions</span>		
 					</a>

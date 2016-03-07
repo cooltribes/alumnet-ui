@@ -14,6 +14,13 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutEvents.on "navigate:menuRight", (valueClick)->
+        switch valueClick
+          when "suggestions"
+            self.showSuggestions(self.activeTab)
+          when "filters"
+            self.showFilters()
+
       @layoutEvents.on 'events:search', (querySearch, collection)->
         collection.search(querySearch)
 
@@ -27,14 +34,13 @@
         parentView: @layoutEvents
 
       @layoutEvents.events_region.show(eventsView)
-      @showFilters()
 
     showMyEvents: ->
-      AlumNet.navigate("events/manage")
+      AlumNet.navigate("events/my_events")
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
         eventable_id: AlumNet.current_user.id
-      query = { per_page: 1 }
+      query = { per_page: 10 }
 
       eventsView = new AlumNet.EventsApp.Manage.EventsView
         collection: events
@@ -42,6 +48,29 @@
         query: query
 
       @layoutEvents.events_region.show(eventsView)
+
+    showManageEvents: ->
+      AlumNet.navigate("events/manage")
+      events = new AlumNet.Entities.EventsCollection
+      events.url = AlumNet.api_endpoint + "/me/events/managed"
+
+      window.events = events
+      query = { per_page: 10 }
+
+      eventsView = new AlumNet.EventsApp.Manage.EventsView
+        collection: events
+        parentView: @layoutEvents
+        query: query
+
+      @layoutEvents.events_region.show(eventsView)
+
+    showSuggestions: (optionMenuLeft)->
+      collection = new AlumNet.Entities.SuggestedEventsCollection
+
+      suggestionsView = new AlumNet.EventsApp.Suggestions.EventsView 
+        collection: collection
+        
+      @layoutEvents.filters_region.show(suggestionsView)
 
     showFilters: ->
       filters = new AlumNet.Shared.Views.Filters.Events.General
@@ -55,3 +84,7 @@
           self.showDiscoverEvents()
         when "myEvents"
           self.showMyEvents()
+        when "manageEvents"
+          self.showManageEvents()
+      @showSuggestions(@activeTab)
+
