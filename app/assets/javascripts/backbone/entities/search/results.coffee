@@ -145,6 +145,8 @@
         data: JSON.stringify(query)
         type: "POST"
         contentType: "application/json"
+        success: (collection, response, options)->
+          collection.trigger "fetch:success"
 
     getInternalQuery: (fields = null)->
       if fields?

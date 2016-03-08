@@ -91,6 +91,9 @@
 
       @parentView = options.parentView
       @collection.search()
+      self = @
+      @collection.on "fetch:success", () ->
+        self.eventsCalendar()
 
     onRender: ->
       $(window).unbind('scroll')
@@ -98,6 +101,9 @@
 
       $(window).scroll(@loadMoreEvents)
 
+      $("#iconsTypeEvents").removeClass("hide")
+
+    eventsCalendar: ()->
       self = this
       eventsArray = self.eventsMap(self, @collection)
       eventsArray = self.longEvents(self, eventsArray)
@@ -108,8 +114,6 @@
 
       $(@ui.calendario).eCalendar
         events: eventsArray
-
-      $("#iconsTypeEvents").removeClass("hide")
 
     eventsMap: (self, collection)->
       eventsArray = collection.models.map (model) ->
