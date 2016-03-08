@@ -50,7 +50,7 @@
           success: (model)->
             initialValue = { id: model.id, name: model.get('name') }
             view.destroy()
-            view.ui.showModalLink.hide()
+            view.taskView.ui.showModalLink.hide()
             view.taskView.selectCompany view.taskView.ui.selectCompany, initialValue
           error: (model, response)->
             errors = response.responseJSON
