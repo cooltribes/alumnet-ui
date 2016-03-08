@@ -34,7 +34,7 @@
       events = new AlumNet.Entities.EventsCollection null,
         eventable: 'users'
         eventable_id: AlumNet.current_user.id
-      query = { per_page: 1 }
+      query = { per_page: 10 }
 
       eventsView = new AlumNet.EventsApp.Manage.EventsView
         collection: events
