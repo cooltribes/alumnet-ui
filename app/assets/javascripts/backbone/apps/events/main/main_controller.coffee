@@ -69,6 +69,7 @@
 
       suggestionsView = new AlumNet.EventsApp.Suggestions.EventsView 
         collection: collection
+        optionMenuLeft: optionMenuLeft
         
       @layoutEvents.filters_region.show(suggestionsView)
 

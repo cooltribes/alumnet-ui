@@ -1,0 +1,24 @@
+<div class="groupCardSuggestions row no-margin">
+  <div class="col-xs-3 col-sm-2 col-md-3 col-lg-2 suggestionsGroups__cover">
+    <a href="#companies/<%= @id %>/about">
+      <img src="<%= @logo.card %>">
+    </a>
+  </div>
+  <div class="col-xs-6 col-sm-7 col-md-6 col-lg-7 suggestionsGroups__title overfloadText">
+    <a href="#companies/<%= @id %>/about">
+      <%= @name %>
+    </a>
+    <br>
+    <p class="no-margin">
+      <span class="glyphicon glyphicon-map-marker suggestionsGroups__title--description"></span>
+      <span class="suggestionsGroups__title--description"><%= @location %></span>
+    </p>
+    <p class="no-margin">
+      <span class="ico-sector suggestionsGroups__title--description"></span>
+      <span lass="suggestionsGroups__title--description"><%= @sector.text %></span>
+    </p>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 suggestionsGroups__buttons--paddingButtons">
+   
+  </div>
+</div>

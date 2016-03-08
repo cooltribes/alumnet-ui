@@ -100,6 +100,8 @@
 
     templateHelpers: ->
       model = @model
+      console.log "discover model"
+      console.log model
       userIsAdmin: @model.userIsAdmin()
       employees_count: @model.employees_count()
       branches_count: @model.branches_count()

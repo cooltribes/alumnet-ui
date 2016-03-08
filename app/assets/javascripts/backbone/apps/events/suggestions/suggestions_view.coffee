@@ -26,6 +26,7 @@
       collection: @collection
 
     initialize: (options)->
+      @optionsMenuLeft = options.optionMenuLeft
       @parentView = options.parentView
       @query = options.query
 
@@ -33,3 +34,12 @@
         reset: true
         remove: true
         data: @query
+
+    templateHelpers: ->
+      showDiscover: @showButtonDiscover()
+
+    showButtonDiscover: ->
+      if @optionsMenuLeft == "discoverEvents"
+        showDiscover = true
+      else
+        showDiscover = false

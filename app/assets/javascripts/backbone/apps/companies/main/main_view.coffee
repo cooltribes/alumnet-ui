@@ -8,6 +8,7 @@
 
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
+      'click .optionMenuRight' : 'goOptionMenuRight'
       'click .js-changeGrid' : 'changeGridView'
       'click .js-viewCard': 'viewCard'
       'click .js-viewList': 'viewList'
@@ -57,6 +58,17 @@
       @stepMenu = @valueClick
       @trigger "navigate:menu:companies",@valueClick
       @toggleLink(click)
+
+    goOptionMenuRight: (e)->
+      e.preventDefault()
+      click = $(e.currentTarget)
+      valueClick = click.attr("data-menu")
+      @trigger "navigate:menuRight",valueClick
+      @toggleLinkRight(click)
+
+    toggleLinkRight: (element)->
+      $(".optionMenuRight").removeClass("submenu__item__link--active")
+      element.addClass("submenu__item__link--active")
 
     toggleLink: (element)->
       $(".optionMenuLeft").removeClass("submenu__item__link--active")

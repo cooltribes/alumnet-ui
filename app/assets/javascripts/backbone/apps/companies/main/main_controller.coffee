@@ -18,6 +18,13 @@
         self.activeTab = valueClick
         self.showMenuUrl()
 
+      @layoutCompanies.on "navigate:menuRight", (valueClick)->
+        switch valueClick
+          when "suggestions"
+            self.showSuggestions(self.activeTab)
+          when "filters"
+            self.showFilters()
+
       @layoutCompanies.on "changeGrid", (typeCompanies)->
         self.companiesType = typeCompanies
         if self.activeTab == "myCompanies"
@@ -110,12 +117,21 @@
             itemSelector: '.col-md-6'
         container.append( $(view.el) ).masonry().masonry 'reloadItems'
 
-    showFilters: ()->
+    showFilters: ->
       filters = new AlumNet.Shared.Views.Filters.Companies.General
         results_collection: @results
       @layoutCompanies.filters_region.show(filters)
 
-    showMenuUrl: ()->
+    showSuggestions: (optionMenuLeft)->
+      collection = new AlumNet.Entities.SuggestedCompaniesCollection
+
+      suggestionsView = new AlumNet.CompaniesApp.Suggestions.CompaniesView 
+        collection: collection
+        optionMenuLeft: optionMenuLeft
+        
+      @layoutCompanies.filters_region.show(suggestionsView)
+
+    showMenuUrl: ->
       self = @
       switch @activeTab
         when "discoverCompanies"
@@ -124,3 +140,4 @@
           self.showMyCompanies("cards")
         when "manageCompanies"
           self.showManageCompanies("cards")
+      @showSuggestions(@activeTab)

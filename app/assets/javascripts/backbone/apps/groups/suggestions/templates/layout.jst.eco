@@ -10,7 +10,7 @@
 			<% if @showDiscover: %>
 				<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
 			<% else: %>
-				<a class="btn btn-primary btn-lg" href="#groups/my_groups">SEARCH AMONG YOUR GROUPS</a>
+				<a class="btn btn-primary btn-lg" href="#groups/my_groups"><span class="visibleTextButton">SEARCH AMONG</span> YOUR GROUPS</a>
 			<% end %>
 		</div>
 	</div>
