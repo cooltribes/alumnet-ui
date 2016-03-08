@@ -93,6 +93,12 @@ DESCRIPTION:diferents styles for events
   height: 240px;
 
 }
+
+.goButtonEvents{
+  font-size: 12px;
+}
+
+
  /* Small devices (tablets, 768px and up) */
 @media (min-width: @media-small-min) {
   .previewEvents > img{
@@ -109,7 +115,7 @@ DESCRIPTION:diferents styles for events
   }
 }
 
-
+/*1200px*/
 @media (min-width: @media-large-min){
   .previewEvents > img{
     width: 300px;
@@ -122,6 +128,8 @@ DESCRIPTION:diferents styles for events
   }
 }
 
+
+/*1400px*/
 @media (min-width: @media-mmlarge-min) {
   .previewEvents > img{
     width: 300px;
@@ -132,5 +140,24 @@ DESCRIPTION:diferents styles for events
     h1{
       font-size: 60px;
     } 
+  }
+
+  .goButtonEvents{
+    font-size: 14px;
+  }
+}
+
+/*1700px*/
+@media (min-width: @media-largemm-max) {
+  .goButtonEvents{
+    font-size: 16px;
+  }
+}
+
+
+/*1900px*/
+@media (min-width: @media-xxlarge-min) {
+  .goButtonEvents{
+    font-size: 18px;
   }
 }

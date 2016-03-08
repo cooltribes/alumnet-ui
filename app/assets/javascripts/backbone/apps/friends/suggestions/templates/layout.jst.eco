@@ -15,7 +15,7 @@
 			<% if @showDiscover: %>
 				<a class="btn btn-primary btn-lg" href="#alumni/discover">DISCOVER MORE ALUMNI</a>
 			<% else: %>
-				<a class="btn btn-primary btn-lg" href="#alumni/friends">SEARCH AMONG YOUR FRIENDS</a>
+				<a class="btn btn-primary btn-lg" href="#alumni/friends"><span class="visibleTextButton">SEARCH AMONG</span> YOUR FRIENDS</a>
 			<% end %>
 		</div>
 	</div>

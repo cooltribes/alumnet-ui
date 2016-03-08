@@ -8,6 +8,7 @@
       "events/:id/photos": "listAlbums"
       "events/:id/payment": "paymentEvent"
       "events/:id/files": "showFiles"
+      "events/my_events": "myEvents"
       "events/manage": "manageEvents"
       "events/new": "createEvent"
       "events/discover": "discoverEvents"
@@ -29,10 +30,15 @@
       controller = new EventsApp.Attendances.Controller
       controller.showAttendances(id)
 
-    manageEvents: (id)->
+    myEvents: ->
+      AlumNet.setTitle('My Events')
+      controller = new EventsApp.Main.Controller
+      controller.showMainEvents("myEvents")
+
+    manageEvents: ->
       AlumNet.setTitle('Manage Events')
       controller = new EventsApp.Main.Controller
-      controller.showMainEvents("myEvents", AlumNet.current_user.id)
+      controller.showMainEvents("manageEvents")
 
     createEvent: ->
       AlumNet.setTitle('Create Event')

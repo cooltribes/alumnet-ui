@@ -1,22 +1,22 @@
 <div class="suggestions__content margin_top_xsmall">
 	<div class="suggestions__content--user userCardSuggestions">
-		<div class="groups-container">
+		<div class="companies-container">
 		</div>
 	</div>
 </div>
 <div class="col-md-12 no-padding margin_top margin_bottom">
 	<div class="col-md-6 buttonSuggestionsPadding--left text-left">
 		<div class="buttonSuggestions">
-			<% if @showDiscover: %>
-				<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
+			<% unless @showDiscover: %>
+				<a class="btn btn-primary btn-lg" href="#companies/discover">DISCOVER MORE COMPANIES</a>
 			<% else: %>
-				<a class="btn btn-primary btn-lg" href="#groups/my_groups"><span class="visibleTextButton">SEARCH AMONG</span> YOUR GROUPS</a>
+				<a class="btn btn-primary btn-lg" href="#my-companies">SEARCH AMONG YOUR COMPANIES</a>
 			<% end %>
 		</div>
 	</div>
 	<div class="col-md-6 buttonSuggestionsPadding--right text-right">
 		<div class="buttonSuggestions">
-			<a class="btn btn-primary btn-lg" href="#groups/new">CREATE A GROUP</a>
+			<a class="btn btn-primary btn-lg" href="#companies/new">CREATE A COMPANY</a>
 		</div>
 	</div>
 </div> 

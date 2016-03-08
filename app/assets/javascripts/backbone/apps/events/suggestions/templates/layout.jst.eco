@@ -1,6 +1,6 @@
 <div class="suggestions__content margin_top_xsmall">
 	<div class="suggestions__content--user userCardSuggestions">
-		<div class="groups-container">
+		<div class="events-container">
 		</div>
 	</div>
 </div>
@@ -8,15 +8,15 @@
 	<div class="col-md-6 buttonSuggestionsPadding--left text-left">
 		<div class="buttonSuggestions">
 			<% if @showDiscover: %>
-				<a class="btn btn-primary btn-lg" href="#groups/discover">DISCOVER MORE GROUPS</a>
+				<a class="btn btn-primary btn-lg" href="#events/discover">DISCOVER MORE EVENTS</a>
 			<% else: %>
-				<a class="btn btn-primary btn-lg" href="#groups/my_groups"><span class="visibleTextButton">SEARCH AMONG</span> YOUR GROUPS</a>
+				<a class="btn btn-primary btn-lg" href="#events/my_events"><span class="visibleTextButton">SEARCH AMONG</span> YOUR EVENTS</a>
 			<% end %>
 		</div>
 	</div>
 	<div class="col-md-6 buttonSuggestionsPadding--right text-right">
 		<div class="buttonSuggestions">
-			<a class="btn btn-primary btn-lg" href="#groups/new">CREATE A GROUP</a>
+			<a class="btn btn-primary btn-lg" href="#events/new">CREATE A EVENT</a>
 		</div>
 	</div>
 </div> 
