@@ -28,27 +28,28 @@
       else
         model.set "showDiscover", false
 
-      suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
-        model: model
-      collection = new AlumNet.Entities.SuggestedGroupsCollection
-      collection.fetch
+      initialCollection = new AlumNet.Entities.SuggestedGroupsCollection
+      self = @
+      initialCollection.fetch
         success: (collection)->
-          array_groups = collection.where(membership_status: "none")
-          collection_groups = new AlumNet.Entities.SuggestedGroupsCollection(array_groups)
-          suggestions.collection = collection_groups
-          suggestions.render()
+          array = collection.where(membership_status: "none")
+          filteredGroups = new AlumNet.Entities.SuggestedGroupsCollection(array)
+          suggestions = new AlumNet.GroupsApp.Suggestions.GroupsView
+            model: model
+            collection: filteredGroups
 
-      @layoutGroups.filters_region.show(suggestions)
+          self.layoutGroups.filters_region.show(suggestions)
+          initialCollection = null
 
-      suggestions.on 'childview:join', (childView) ->
-        group = childView.model
-        attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
-        request = AlumNet.request('membership:create', attrs)
-        request.on 'save:success', (response, options)->
-          if group.isClose()
-            AlumNet.trigger "groups:about", group.get('id')
-          else
-            AlumNet.trigger "groups:posts", group.get('id')
+          suggestions.on 'childview:join', (childView) ->
+            group = childView.model
+            attrs = { group_id: group.get('id'), user_id: AlumNet.current_user.id }
+            request = AlumNet.request('membership:create', attrs)
+            request.on 'save:success', (response, options)->
+              if group.isClose()
+                AlumNet.trigger "groups:about", group.get('id')
+              else
+                AlumNet.trigger "groups:posts", group.get('id')
 
     showDiscoverGroups: (type) ->
       AlumNet.navigate("groups/discover")
