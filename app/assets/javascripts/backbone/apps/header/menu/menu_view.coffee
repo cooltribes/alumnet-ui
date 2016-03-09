@@ -123,6 +123,8 @@
 
     templateHelpers: ->
       model = @model
+      environment = AlumNet.environment
+      environment: AlumNet.environment
       first_name: @model.profile.get("first_name")
       isAdmin: @model.isAdmin()
       points: @points
