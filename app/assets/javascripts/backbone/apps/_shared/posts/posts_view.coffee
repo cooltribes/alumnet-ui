@@ -556,7 +556,7 @@
               profile_last_name_cont: term
           results: (data, page) ->
             results:
-              data
+              data.data
         formatResult: (data)->
           "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
         formatSelection: (data)->
