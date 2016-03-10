@@ -72,3 +72,5 @@
         profile_first_name_cont: searchTerm
         profile_last_name_cont: searchTerm
         email_cont: searchTerm
+        profile_birth_city_name_cont: searchTerm
+        profile_residence_city_name_cont: searchTerm
