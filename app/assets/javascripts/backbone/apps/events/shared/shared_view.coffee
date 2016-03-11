@@ -20,7 +20,6 @@
           model.trigger('change:cover')
 
       cropper = new Croppic('croppic', options)
-      console.log cropper
 
   class Shared.Modal extends Backbone.Modal
     template: 'events/shared/templates/upload_modal'
@@ -148,7 +147,6 @@
     saveCover: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize this
-      console.log data.cover
       if data.cover != ""
         model = @model
         modal = @
