@@ -18,7 +18,7 @@
     businessExchangeTasks: ->
       AlumNet.setTitle('Business Exchange Tasks')
       controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange("yourTasks")
+      controller.showMainLayout("yourTasks")
     discoverBusinessExchange: (view)->
       AlumNet.setTitle('Discover Tasks')
       controller = new BusinessExchangeApp.Discover.Controller
@@ -26,7 +26,7 @@
     yourTasksBusinessExchange: ->
       AlumNet.setTitle('Your Tasks')
       controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange("yourTasks")
+      controller.showMainLayout("yourTasks")
     appliedBusinessExchange: ->
       AlumNet.setTitle('Applied Tasks')
       controller = new BusinessExchangeApp.Applied.Controller
@@ -34,7 +34,7 @@
     automatchesBusinessExchange: ->
       AlumNet.setTitle('Tasks Automatches')
       controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange("yourTasks")
+      controller.showMainLayout("yourTasks")
     invitationsBusinessExchange: ->
       AlumNet.setTitle('Tasks Invitations')
       controller = new BusinessExchangeApp.Invitations.Controller
@@ -57,7 +57,7 @@
     profilesBusinessExchange: ()->
       AlumNet.setTitle('Business Exchange Profiles')
       controller = new BusinessExchangeApp.Main.Controller
-      controller.showMainBusinessExchange("businessProfiles")
+      controller.showMainLayout("businessProfiles")
 
   AlumNet.on "program:business:my", ->
     AlumNet.navigate("business-exchange/your-tasks")

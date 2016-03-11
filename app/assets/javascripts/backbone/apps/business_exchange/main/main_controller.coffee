@@ -4,7 +4,7 @@
     businessTasksCollection: null
     activeTab: "businessProfiles"
 
-    showMainBusinessExchange: (optionMenu)->
+    showMainLayout: (optionMenu)->
       @activeTab = optionMenu
       current_user = AlumNet.current_user
       
@@ -12,7 +12,7 @@
         option: @activeTab
         current_user: current_user
       AlumNet.mainRegion.show(@layoutBusiness)
-      @showMenuUrl()
+      @showRegionMenu()
       @showAutomaches()
 
       # Check cookies for first visit
@@ -22,16 +22,14 @@
         Cookies.set('business_exchange_visit', 'true')
 
       self = @
-      @layoutBusiness.on "navigate:menu:programs", (valueClick)-> 
+      @layoutBusiness.on "navigate:menu:left", (valueClick)-> 
         self.activeTab = valueClick
-        self.showMenuUrl()
+        self.showRegionMenu()
 
-      @layoutBusiness.on "navigate:menuRight", (valueClick)->
+      @layoutBusiness.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "automatches"
             self.showAutomaches()
-          # when "filters"
-          #   self.showFilters()
 
       @layoutBusiness.on 'business:search', (querySearch)->
         self.querySearch = querySearch
@@ -61,7 +59,7 @@
       self = @
       view.on "add:child", (viewInstance)->
         self.applyMasonry(viewInstance)
-
+  
     showTasks: ->
       AlumNet.navigate("business-exchange/tasks")
       @businessTasksCollection = new AlumNet.Entities.BusinessExchangeCollection
@@ -72,10 +70,6 @@
         collection: @businessTasksCollection
 
       @layoutBusiness.cards_region.show(view)
-
-      self = @
-      view.on "add:child", (viewInstance)->
-        self.applyMasonry(viewInstance)
 
     showAutomaches: ->
       automachesCollection = new AlumNet.Entities.BusinessExchangeCollection
@@ -94,7 +88,7 @@
           itemSelector: '.col-md-6'
       container.append( $(view.el) ).masonry 'reloadItems'
 
-    showMenuUrl: ()->
+    showRegionMenu: ()->
       self = @
       switch @activeTab
         when "businessProfiles"

@@ -1,6 +1,6 @@
 @AlumNet.module 'BusinessExchangeApp.Profile', (Profile, @AlumNet, Backbone, Marionette, $, _) ->
   class Profile.BusinessProfiles extends Marionette.CompositeView
-    template: 'business_exchange/profiles/templates/profiles_container'
+    template: 'business_exchange/main/templates/profiles_container'
     childView: AlumNet.BusinessExchangeApp.Shared.Profile
     childViewContainer: '.profiles-container'
 
