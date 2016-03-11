@@ -58,24 +58,9 @@
 
       @layoutBusiness.cards_region.show(view)
 
-      view.on "business:reload", ->
-        querySearch = controller.querySearch
-        newCollection = new AlumNet.Entities.BusinessCollection
-        newCollection.url = AlumNet.api_endpoint + '/business'
-        query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-        newCollection.fetch
-          data: query
-          success: (collection)->
-            view.collection.add(collection.models)
-            if collection.length < collection.rows
-              view.endPagination()
-
+      self = @
       view.on "add:child", (viewInstance)->
-        container = $('#business-exchange-container')
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.col-md-4'
-        container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
+        self.applyMasonry(viewInstance)
 
     showTasks: ->
       AlumNet.navigate("business-exchange/tasks")
@@ -87,6 +72,10 @@
         collection: @businessTasksCollection
 
       @layoutBusiness.cards_region.show(view)
+
+      self = @
+      view.on "add:child", (viewInstance)->
+        self.applyMasonry(viewInstance)
 
     showAutomaches: ->
       automachesCollection = new AlumNet.Entities.BusinessExchangeCollection
@@ -103,7 +92,7 @@
       container.imagesLoaded ->
         container.masonry
           itemSelector: '.col-md-6'
-      container.append( $(view.el) ).masonry().masonry 'reloadItems'
+      container.append( $(view.el) ).masonry 'reloadItems'
 
     showMenuUrl: ()->
       self = @
