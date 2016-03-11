@@ -36,7 +36,8 @@
         collection = @collection
         model = @model
         Backbone.ajax
-          url: @model.url()
+          #url: @model.url()
+          url: AlumNet.api_endpoint + '/events/' + model.id
           method: 'DELETE'
           success: (data, textStatus, xhr)->
             collection.remove(model)

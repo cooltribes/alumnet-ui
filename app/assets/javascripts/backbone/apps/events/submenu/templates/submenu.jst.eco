@@ -18,7 +18,7 @@
         
         <!-- <li ><a href="#" class="navTopSubBar__link" title="Invites"><span class="navTopSubBar__icon glyphicon glyphicon-envelope"></span> Invites</a></li> -->
         <!-- CREATE A NEW GROUP BTN -->
-        <a href="#events/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create a event</a>
+        <a href="#events/new" class="navTopSubBar__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new group">+ Create an event</a>
         <!-- ./ -->
       </ul>
     </div>
