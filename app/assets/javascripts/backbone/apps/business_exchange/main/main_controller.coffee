@@ -98,6 +98,13 @@
 
       @layoutBusiness.filters_region.show(automatchesView)
 
+    applyMasonry: (view)->
+      container = $('.profiles-container')
+      container.imagesLoaded ->
+        container.masonry
+          itemSelector: '.col-md-6'
+      container.append( $(view.el) ).masonry().masonry 'reloadItems'
+
     showMenuUrl: ()->
       self = @
       switch @activeTab
