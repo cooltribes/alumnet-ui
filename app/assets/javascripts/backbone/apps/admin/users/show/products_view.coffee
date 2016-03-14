@@ -165,7 +165,11 @@
     templateHelpers: () ->
       subscriptions: @subscriptions
 
+    events: ->
+      'click .product': 'clickProduct'
+
     submit: () ->
+      $('#save-status').attr('disabled', 'disabled')
       view = @
       data = Backbone.Syphon.serialize(this)
       id = data.product_id
@@ -183,3 +187,6 @@
           view.trigger 'added'
         error: (data) =>
           console.log(data)
+
+    clickProduct: ->
+      $('#save-status').removeAttr('disabled')
