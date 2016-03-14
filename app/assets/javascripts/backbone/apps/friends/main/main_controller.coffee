@@ -73,7 +73,7 @@
     showApproval: ->
       AlumNet.navigate("alumni/approval")
       approvals = AlumNet.request('current_user:approval:received')
-      query { per_page: 12 }
+      query = { per_page: 12 }
 
       approvalView = new AlumNet.FriendsApp.Approval.RequestsView
         collection: approvals
