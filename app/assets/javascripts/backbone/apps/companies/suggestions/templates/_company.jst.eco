@@ -9,16 +9,16 @@
       <%= @name %>
     </a>
     <br>
-    <p class="no-margin">
-      <span class="glyphicon glyphicon-map-marker suggestionsGroups__title--description"></span>
-      <span class="suggestionsGroups__title--description"><%= @location %></span>
+    <p class="no-margin suggestionsGroups__title--description">
+      <span class="glyphicon glyphicon-map-marker"></span>
+      <span><%= @location %></span>
     </p>
-    <p class="no-margin">
-      <span class="ico-sector suggestionsGroups__title--description"></span>
-      <span lass="suggestionsGroups__title--description"><%= @sector.text %></span>
+    <p class="no-margin suggestionsGroups__title--description">
+      <span class="ico-sector"></span>
+      <span><%= @sector.text %></span>
     </p>
   </div>
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 suggestionsGroups__buttons--paddingButtons">
-   
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 no-padding">
+    <div class="text-right padding_right_xsmall"><a href="#"><span class="fa fa-times"></span></a></div>
   </div>
 </div>

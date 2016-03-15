@@ -13,13 +13,13 @@
     </div>
   <% end %>
   <div class="row no-margin">
-    <div class="col-md-2 col-xs-4 col-sm-2 no-padding ">
+    <div class="col-md-2 col-xs-4 col-sm-2 no-padding">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
       <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
       </div>
     </div>
 
-    <div class="col-md-10 col-xs-8 col-sm-10">
+    <div class="col-md-10 col-xs-8 col-sm-10 no-padding">
       <h3 class="margin_top_xsmall overfloadText">
         <% if @attendance_info: %>
           <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>

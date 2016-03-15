@@ -17,14 +17,17 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 text-center buttonOffer margin_top_small">
-    <% if @canApply: %>
-      <a href="#" class="btn btn-default js-job-apply btn-primary">
-        <p class="no-margin">
-          APPLY FOR<br>
-          A JOB 
-        </p>
-      </a>
-    <% end %>
+  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 text-center buttonOffer">
+    <div class="text-right"><a href="#"><span class="fa fa-times"></span></a></div>
+    <div class="margin_top_xsmall">
+      <% if @canApply: %>
+        <a href="#" class="btn btn-default js-job-apply btn-primary">
+          <p class="no-margin">
+            APPLY FOR<br>
+            A JOB 
+          </p>
+        </a>
+      <% end %>
+    </div>
   </div>
 </div>

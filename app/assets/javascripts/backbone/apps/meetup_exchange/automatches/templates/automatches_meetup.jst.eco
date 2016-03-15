@@ -17,13 +17,16 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 text-center margin_top">
-    <% if @canApply: %>
-      <a href="#" class="btn btn-primary js-job-apply" >MEET</a>
-    <% else: %>
-      <% unless @canDelete: %>
-        <a href="#" class="btn btn-default-gray">APPLIED</a>
+  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 text-center">
+    <div class="text-right"><a href="#"><span class="fa fa-times"></span></a></div>
+    <div class="margin_top_small">
+      <% if @canApply: %>
+        <a href="#" class="btn btn-primary js-job-apply" >MEET</a>
+      <% else: %>
+        <% unless @canDelete: %>
+          <a href="#" class="btn btn-default-gray">APPLIED</a>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+    </div>
 </div>

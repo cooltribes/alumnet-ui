@@ -9,12 +9,13 @@
       <span class="glyphicon glyphicon-time suggestionsGroups__title--description"></span>
       <span class="suggestionsGroups__title--description"><%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %></span>
     </p>
-    <p class="no-margin">
+    <p class="no-margin overfloadText suggestionsGroups__title--description">
       <span class="glyphicon glyphicon-map-marker suggestionsGroups__title--description"></span>
       <span class="suggestionsGroups__title--description"><%= @location %></span>
     </p>
   </div>
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 margin_top_small no-padding">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 no-padding">
+    <div class="text-right padding_right_xsmall"><a href="#"><span class="fa fa-times"></span></a></div>
     <% if @userCanAttend && not @isPast && (@capacity > @going_count || not @capacity): %>
       <select class="goButtonEvents form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" || @attendance_status() == "pending_payment" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
         <option value="invited">RSVP</option>
