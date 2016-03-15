@@ -4,8 +4,7 @@
 
   class Manage.EventView extends Marionette.ItemView
     template: 'events/manage/templates/event'
-    className: 'container'
-
+    
     initialize: (options)->
       @collection =  options.collection
 

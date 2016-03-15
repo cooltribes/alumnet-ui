@@ -14,13 +14,13 @@
 <div class="eventsTableView margin_bottom_xsmall">
   <div class="row no-margin">
 
-    <div class="col-md-1 col-xs-4 col-sm-2 no-padding ">
+    <div class="col-md-2 col-xs-4 col-sm-2 col-lg-2 no-padding">
       <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
       <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
       </div>
     </div>
 
-    <div class="col-md-8 col-xs-8 col-sm-10">
+    <div class="col-md-9 col-xs-8 col-sm-10 col-lg-10 no-padding">
       <div class="row">
         <div  class="col-md-12" >
           <h3 class="margin_top_xsmall overfloadText">
@@ -29,12 +29,12 @@
         </div>  
       </div>
       <div class="row">
-        <div class="col-md-3 col-xs-8 col-sm-3">
+        <div class="col-xs-8 col-sm-3 col-md-3 col-lg-2 no-padding">
           <div class="row-fluid">
-            <div class="col-md-2 no-padding">
+            <div class="col-md-2 col-lg-2 no-padding">
               <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 col-lg-10 no-padding">
               <div>Invited by:</div>
               <a href="#users/<%= @creator.id %>/posts">
                 <div class="creatorName overfloadText">
@@ -44,7 +44,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-xs-12 col-sm-4 margin_top_xsmall">
+        <div class="col-md-4 col-xs-12 col-sm-4 no-padding">
           <div>
             <span class="glyphicon glyphicon-time"></span>
             <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
@@ -54,12 +54,12 @@
             <%= @location %>
           </div>
         </div>
-        <div class="col-md-2 col-xs-12 col-sm-3">
+        <div class="col-md-2 col-xs-12 col-sm-3 no-padding">
           <span class="ico-company"></span>
           Attending:<%= @attendances_count %>
         </div>
 
-        <div class="col-md-3 col-xs-12 margin_top_xsmall margin_bottom_xsmall text-right">
+        <div class="col-md-3 col-xs-11 margin_top_xsmall margin_bottom_xsmall text-right no-padding">
         <% unless @isPast: %>
           <% if @admin: %>
             <a href="#events/<%= @id %>/about">

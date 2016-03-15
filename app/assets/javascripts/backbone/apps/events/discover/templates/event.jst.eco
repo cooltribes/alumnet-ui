@@ -1,4 +1,4 @@
-<div class="eventsTableView margin_bottom_xsmall eventsList">
+<div class="eventsTableView margin_bottom_xsmall">
   <% if @isPast: %>
     <div class="flagEventPast">
       <div class="box">
