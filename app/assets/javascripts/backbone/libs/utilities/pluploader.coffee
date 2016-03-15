@@ -16,14 +16,14 @@
           
       uploader.bind 'FilesAdded',(up, files)->
         html = $( "div#js-filelist" ).html()
-        addAnotherPhoto = "
-          <div class='col-md-3 col-sm-3' id='js-another-photo'>
-            <div class='anotherPhoto'>
-              <div class='anotherPhoto__text '>
-              <a id='js-add-picture'><span><i class='fa fa-plus'></i><br>ADD ANOTHER PHOTO </span></a><br><b></b> 
+        addAnotherPhoto = '
+          <div class="col-md-3">
+            <a href="javascript:;" id="js-add-picture-block">
+              <div class="styleAddNewImage">
+                <div><span class="glyphicon glyphicon-plus"></span></div>
               </div>
-            </div>
-          </div>"
+            </a>
+          </div>'
   
         lengthFile = files.length 
       
@@ -35,8 +35,9 @@
                 <span> </span><br><b></b> 
               </div>
             </div>
-            "      
+            "
             view.$el.find("div#js-filelist")
+            view.ui.newImageButton.show()
           else
             html = html + "<div class='col-md-3 col-sm-3 text-center' id=#{file.id}>
               <div class='previewImage'>
