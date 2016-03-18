@@ -242,8 +242,8 @@
         options:
           'legend': {'position': 'bottom', 'alignment':'center'}
           'height': 270
-          'hAxis': {'title':'Years'}
-          'vAxis': {'title':'Alumnis'}
+          'hAxis': {'title':'Alumnis'}
+          'vAxis': {'title':'Years'}
           animation:
             duration: 1000
             easing: 'out'
