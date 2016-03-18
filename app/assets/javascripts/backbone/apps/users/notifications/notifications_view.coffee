@@ -187,7 +187,7 @@
       @model.save()
       
 
-  class Notifications.MessagesMembers extends Marionette.CompositeView
+  class Notifications.MessagesView extends Marionette.CompositeView
     template: 'users/notifications/templates/messages_members'
     childView: Notifications.Preference
     childViewContainer: '.js-list'
@@ -232,8 +232,41 @@
   class Notifications.groupsDigest extends Marionette.CompositeView
     template: 'users/notifications/templates/groups_digest'
 
-  class Notifications.notificationsView extends Marionette.CompositeView
+  class Notifications.NewsView extends Marionette.CompositeView
     template: 'users/notifications/templates/notifications'
+    childView: Notifications.Preference
+    childViewContainer: '.js-list'
+    className: 'container-fluid'
+
+    ui:
+      'submitLink': '.js-submit'
+      'cancelLink': '.js-cancel'
+      'invitations_to_join_groups': '#invitations_to_join_groups'
+
+    events:
+      'click @ui.submitLink': 'submitClicked'
+      'click @ui.cancelLink': 'cancelClicked'
+
+    submitClicked: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      success = true
+      _.each data, (value, key, list)->
+        preference = new AlumNet.Entities.EmailPreference
+          name: key
+          value: value
+          user_id: AlumNet.current_user.id
+
+        if not preference.save null
+          success = false
+
+      if success
+        $.growl.notice({ message: 'Preferences saved successfully' })
+      else
+        $.growl.error({ message: 'Error saving preferences. Please try again or contact an admin.' })
+
+    cancelClicked: (e)->
+      e.preventDefault()
 
   class Notifications.update extends Marionette.CompositeView
     template: 'users/notifications/templates/update'

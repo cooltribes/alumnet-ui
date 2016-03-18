@@ -16,6 +16,11 @@
                   Members Messages
                 </a>
               </li>
+              <li>
+                <a id="tonotifications" class="text-uppercase smoothClick">
+                  News and updates
+                </a>
+              </li>
               <!-- <li>
                 <a id="tomessages_alumnet" class="text-uppercase smoothClick">
                   Messages AlumNet
