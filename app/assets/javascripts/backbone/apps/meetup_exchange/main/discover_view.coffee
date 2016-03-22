@@ -4,11 +4,11 @@
     template: 'meetup_exchange/_shared/templates/discover_task'
 
   class Discover.EmptyView extends Marionette.ItemView
-    template: 'meetup_exchange/discover/templates/empty'
+    template: 'meetup_exchange/main/templates/empty_discover'
 
   class Discover.List extends Marionette.CompositeView
     emptyView: Discover.EmptyView
-    template: 'meetup_exchange/discover/templates/discover_container'
+    template: 'meetup_exchange/main/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'

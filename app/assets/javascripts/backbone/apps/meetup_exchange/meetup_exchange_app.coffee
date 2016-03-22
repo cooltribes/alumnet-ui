@@ -14,19 +14,19 @@
     discoverMeetupExchange: ->
       AlumNet.setTitle('Discover Meetups')
       controller = new MeetupExchangeApp.Main.Controller
-      controller.showMainMeetupExchange("discoverMeetups")
+      controller.showMainLayout("discoverMeetups")
     yourTasksMeetupExchange: ->
       AlumNet.setTitle('My Meetups')
       controller = new MeetupExchangeApp.Main.Controller
-      controller.showMainMeetupExchange("manageMeetups")
+      controller.showMainLayout("manageMeetups")
     appliedMeetupExchange: ->
       AlumNet.setTitle('Applied Meetups')
       controller = new MeetupExchangeApp.Main.Controller
-      controller.showMainMeetupExchange("myApplications")
+      controller.showMainLayout("myApplications")
     automatchesMeetupExchange: ->
       AlumNet.setTitle('Meetups Sugestions')
       controller = new MeetupExchangeApp.Main.Controller
-      controller.showMainMeetupExchange("automatches")
+      controller.showMainLayout("automatches")
     invitationsMeetupExchange: ->
       AlumNet.setTitle('Meetups Invitations')
       controller = new MeetupExchangeApp.Invitations.Controller
