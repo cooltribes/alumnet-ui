@@ -1,13 +1,12 @@
 @AlumNet.module 'CompaniesApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Companies extends Marionette.ItemView
-    template: 'companies/suggestions/templates/_company'
+    template: 'companies/main/templates/_company_suggested'
 
     templateHelpers: ->
-      console.log @model
       location: @model.getLocation()
 
   class Suggestions.CompaniesView extends Marionette.CompositeView
-    template: 'companies/suggestions/templates/layout'
+    template: 'companies/main/templates/suggestions_container'
     childView: Suggestions.Companies
     childViewContainer: '.companies-container'
 
@@ -23,8 +22,6 @@
         reset: true
         remove: true
         data: @query
-
-      console.log @collection
 
     templateHelpers: ->
       showDiscover: @showButtonDiscover()

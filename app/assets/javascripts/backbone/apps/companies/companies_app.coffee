@@ -16,17 +16,17 @@
       discover: ->
         AlumNet.setTitle('Companies')
         controller = new CompaniesApp.Main.Controller
-        controller.showMainCompanies("discoverCompanies")
+        controller.showMainLayout("discoverCompanies")
 
       manage: ->
         AlumNet.setTitle('Companies')
         controller = new CompaniesApp.Main.Controller
-        controller.showMainCompanies("manageCompanies")
+        controller.showMainLayout("manageCompanies")
       
       myCompanies: ->
         AlumNet.setTitle('My Companies')
         controller = new CompaniesApp.Main.Controller
-        controller.showMainCompanies("myCompanies")
+        controller.showMainLayout("myCompanies")
 
       about: (id)->
         AlumNet.setTitle('Companies')
