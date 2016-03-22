@@ -3,8 +3,12 @@
     template: 'job_exchange/_shared/templates/discover_task'
     className: 'col-md-6'
 
+  class Applied.EmptyView extends Marionette.ItemView
+    template: 'job_exchange/main/templates/empty_applied'
+
   class Applied.List extends Marionette.CompositeView
-    template: 'job_exchange/applied/templates/applied_container'
+    emptyView: Applied.EmptyView
+    template: 'job_exchange/main/templates/applied_container'
     childView: Applied.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'

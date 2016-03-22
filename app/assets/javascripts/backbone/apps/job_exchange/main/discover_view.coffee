@@ -5,11 +5,11 @@
     className: 'col-lg-6 col-md-6 col-sm-6 col-xs-12'
 
   class Discover.EmptyView extends Marionette.ItemView
-    template: 'job_exchange/discover/templates/empty'
+    template: 'job_exchange/main/templates/empty_discover'
 
   class Discover.List extends Marionette.CompositeView
     emptyView: Discover.EmptyView
-    template: 'job_exchange/discover/templates/discover_container'
+    template: 'job_exchange/main/templates/discover_container'
     childView: Discover.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'

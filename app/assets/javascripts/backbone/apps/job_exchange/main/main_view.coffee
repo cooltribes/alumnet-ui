@@ -42,14 +42,14 @@
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
       @optionMain = @valueClick
-      @trigger "navigate:menu:job",@valueClick
+      @trigger "navigate:menu:left",@valueClick
       @toggleLink(click)
 
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
-      @trigger "navigate:menuRight",valueClick
+      @trigger "navigate:menu:right",valueClick
       @toggleLinkRight(click)
 
     toggleLink: (element)->

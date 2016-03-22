@@ -1,12 +1,12 @@
 @AlumNet.module 'JobExchangeApp.AutoMatches', (AutoMatches, @AlumNet, Backbone, Marionette, $, _) ->
   class AutoMatches.Task extends AlumNet.JobExchangeApp.Shared.Task
-    template: 'job_exchange/automatches/templates/automatches_job_exchange'
+    template: 'job_exchange/main/templates/_job_exchange_automatches'
 
   class AutoMatches.EmptyView extends Marionette.ItemView
-    template: 'job_exchange/automatches/templates/empty_job_exchange'
+    template: 'job_exchange/main/templates/empty_automatches'
 
   class AutoMatches.List extends Marionette.CompositeView
-    template: 'job_exchange/automatches/templates/automatches_container'
+    template: 'job_exchange/main/templates/automatches_container'
     childView: AutoMatches.Task
     childViewContainer: '.tasks-container'
     className: 'container-fluid'

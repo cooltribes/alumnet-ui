@@ -4,10 +4,10 @@
     className: 'col-md-6'
 
   class MyJobs.EmptyView extends Marionette.ItemView
-    template: 'job_exchange/my_jobs/templates/empty'
+    template: 'job_exchange/main/templates/empty_my_jobs_exchange'
 
   class MyJobs.List extends Marionette.CompositeView
-    template: 'job_exchange/my_jobs/templates/my_jobs_container'
+    template: 'job_exchange/main/templates/my_jobs_container'
     childView: MyJobs.Task
     childViewContainer: '.tasks-container'
     emptyView: MyJobs.EmptyView
