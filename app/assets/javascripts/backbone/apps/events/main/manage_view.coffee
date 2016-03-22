@@ -1,9 +1,9 @@
 @AlumNet.module 'EventsApp.Manage', (Manage, @AlumNet, Backbone, Marionette, $, _) ->
   class Manage.Empty extends Marionette.ItemView
-    template: 'events/manage/templates/empty'
+    template: 'events/main/templates/empty_manage'
 
   class Manage.EventView extends Marionette.ItemView
-    template: 'events/manage/templates/event'
+    template: 'events/main/templates/_event_manage'
     
     initialize: (options)->
       @collection =  options.collection
@@ -69,7 +69,7 @@
   class Manage.EventsView extends Marionette.CompositeView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'events/manage/templates/events_container'
+    template: 'events/main/templates/manage_container'
     childView: Manage.EventView
     childViewContainer: ".main-events-area"
     emptyView: Manage.Empty

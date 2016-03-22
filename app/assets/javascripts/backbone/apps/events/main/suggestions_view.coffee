@@ -1,6 +1,6 @@
 @AlumNet.module 'EventsApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Events extends AlumNet.EventsApp.Discover.EventView
-    template: 'events/suggestions/templates/_event'
+    template: 'events/main/templates/_event_suggested'
 
     templateHelpers: ->
       model = @model
@@ -18,7 +18,7 @@
           null
 
   class Suggestions.EventsView extends Marionette.CompositeView
-    template: 'events/suggestions/templates/layout'
+    template: 'events/main/templates/suggestions_container'
     childView: Suggestions.Events
     childViewContainer: '.events-container'
 

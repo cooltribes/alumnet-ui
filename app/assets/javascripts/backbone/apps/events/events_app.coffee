@@ -33,12 +33,12 @@
     myEvents: ->
       AlumNet.setTitle('My Events')
       controller = new EventsApp.Main.Controller
-      controller.showMainEvents("myEvents")
+      controller.showMainLayout("myEvents")
 
     manageEvents: ->
       AlumNet.setTitle('Manage Events')
       controller = new EventsApp.Main.Controller
-      controller.showMainEvents("manageEvents")
+      controller.showMainLayout("manageEvents")
 
     createEvent: ->
       AlumNet.setTitle('Create Event')
@@ -56,7 +56,7 @@
     discoverEvents: ->
       AlumNet.setTitle('Discover Events')
       controller = new EventsApp.Main.Controller
-      controller.showMainEvents("discoverEvents")
+      controller.showMainLayout("discoverEvents")
 
     inviteEvent: (event, users)->
       controller = new EventsApp.Create.Controller

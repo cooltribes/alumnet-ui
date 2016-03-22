@@ -1,7 +1,7 @@
 @AlumNet.module 'EventsApp.Discover', (Discover, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Discover.EventView extends Marionette.ItemView
-    template: 'events/discover/templates/event'
+    template: 'events/main/templates/_event_discover'
 
     templateHelpers: ->
       model = @model
@@ -65,13 +65,13 @@
         $(e.target).addClass('eventsTableView__status--maybe')
 
   class Discover.EmptyView extends Marionette.ItemView
-    template: 'events/discover/templates/empty'
+    template: 'events/main/templates/empty_discover'
 
   class Discover.EventsView extends Marionette.CompositeView
     emptyView: Discover.EmptyView
     className: 'ng-scope'
     idName: 'wrapper'
-    template: 'events/discover/templates/events_container'
+    template: 'events/main/templates/events_container'
     childView: Discover.EventView
     childViewContainer: ".main-events-area"
 
