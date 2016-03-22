@@ -57,14 +57,14 @@
         $("#filtersOpcion").removeClass("hide")
       else
         $("#filtersOpcion").addClass("hide")
-      @trigger "navigate:menu:groups",valueClickLeft
+      @trigger "navigate:menu:left",valueClickLeft
       @toggleLink(click)
 
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
-      @trigger "navigate:menuRight",valueClick
+      @trigger "navigate:menu:right",valueClick
       @toggleLinkRight(click)
 
     toggleLink: (element)->

@@ -1,10 +1,10 @@
 @AlumNet.module 'GroupsApp.Groups', (Groups, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Groups.EmptyView extends Marionette.ItemView
-    template: 'groups/groups/templates/empty'
+    template: 'groups/main/templates/empty_my_groups'
 
   class Groups.GroupView extends Marionette.ItemView
-    template: 'groups/groups/templates/group'
+    template: 'groups/main/templates/_my_group'
     className: 'listGroups'
 
     ui:
@@ -31,7 +31,7 @@
       @ui.description.linkify()
 
   class Groups.GroupsView extends Marionette.CompositeView
-    template: 'groups/groups/templates/groups_container'
+    template: 'groups/main/templates/my_groups_container'
     childView: Groups.GroupView
     childViewContainer: ".groups-container"
     emptyView: Groups.EmptyView
@@ -54,7 +54,6 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      # @ui.loading.hide()
       $(window).unbind('scroll')
 
     loadMoreUsers: (e)->

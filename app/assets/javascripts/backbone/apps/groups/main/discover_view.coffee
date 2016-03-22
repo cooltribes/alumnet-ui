@@ -16,9 +16,9 @@
 
     getTemplate: ()-> #Get the template of the groups based on the "type" property of the view
       if @type == "cards"
-        'groups/discover/templates/group'
+        'groups/main/templates/_group_card'
       else if @type == "list"
-        'groups/discover/templates/groupList'
+        'groups/main/templates/_group_list'
 
     initialize: (options)-> #get the options from the parent to select the template
       @type = options.type
@@ -54,7 +54,7 @@
 
 
   class Discover.EmptyView extends Marionette.ItemView
-    template: 'groups/discover/templates/empty'
+    template: 'groups/main/templates/empty_discover'
 
   class Discover.GroupsView extends Marionette.CompositeView
     emptyView: Discover.EmptyView
@@ -65,9 +65,9 @@
 
     getTemplate: ()-> #Get the template of the groups based on the "type" property of the view
       if @type == "cards"
-        'groups/discover/templates/groups_container'
+        'groups/main/templates/groups_container_card'
       else if @type == "list"
-        'groups/discover/templates/groups_containerList'
+        'groups/main/templates/groups_container_list'
 
     childViewOptions: (model, index)-> #Set the options for changineg the template of each itemView
       tagName = 'div'

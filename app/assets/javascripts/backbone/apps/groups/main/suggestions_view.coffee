@@ -1,6 +1,6 @@
 @AlumNet.module 'GroupsApp.Suggestions', (Suggestions, @AlumNet, Backbone, Marionette, $, _) ->
   class Suggestions.Group extends Marionette.ItemView
-    template: 'groups/suggestions/templates/_group'
+    template: 'groups/main/templates/_group_suggested'
 
     events:
       'click .js-join':'sendJoin'
@@ -16,6 +16,6 @@
       @trigger 'Catch:Up'
 
   class Suggestions.GroupsView extends Marionette.CompositeView
-    template: 'groups/suggestions/templates/layout'
+    template: 'groups/main/templates/suggestions_container'
     childView: Suggestions.Group
     childViewContainer: '.groups-container'
