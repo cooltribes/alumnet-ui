@@ -186,6 +186,33 @@
     modelChange: (e)->
       @model.save()
       
+  class Notifications.GroupPreference extends Marionette.ItemView
+    #className: 'col-md-4'
+    template: 'users/notifications/templates/_group_preference'
+
+    bindings:
+      ".js-group":
+        observe: "value"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "Individual email"
+          ,
+            value: 1
+            label: "No Email"
+          ,
+          ]
+
+    templateHelpers: ->
+      model = @model
+      getTitle: ->
+        model.get('group_name')
+
+    onRender: ->
+      @stickit()
+
+    modelChange: (e)->
+      @model.save()
 
   class Notifications.MessagesView extends Marionette.CompositeView
     template: 'users/notifications/templates/messages_members'
@@ -229,8 +256,40 @@
   class Notifications.eventsDigest extends Marionette.CompositeView
     template: 'users/notifications/templates/events_digest'
 
-  class Notifications.groupsDigest extends Marionette.CompositeView
+  class Notifications.GroupsView extends Marionette.CompositeView
     template: 'users/notifications/templates/groups_digest'
+    childView: Notifications.GroupPreference
+    childViewContainer: '.js-list'
+    className: 'container-fluid'
+
+    ui:
+      'submitLink': '.js-submit'
+      'cancelLink': '.js-cancel'
+
+    events:
+      'click @ui.submitLink': 'submitClicked'
+      'click @ui.cancelLink': 'cancelClicked'
+
+    submitClicked: (e)->
+      e.preventDefault()
+      data = Backbone.Syphon.serialize(this)
+      success = true
+      _.each data, (value, key, list)->
+        preference = new AlumNet.Entities.GroupEmailPreference
+          group_id: key
+          value: value[0]
+          user_id: AlumNet.current_user.id
+
+        if not preference.save null
+          success = false
+
+      if success
+        $.growl.notice({ message: 'Preferences saved successfully' })
+      else
+        $.growl.error({ message: 'Error saving preferences. Please try again or contact an admin.' })
+
+    cancelClicked: (e)->
+      e.preventDefault()
 
   class Notifications.NewsView extends Marionette.CompositeView
     template: 'users/notifications/templates/notifications'
