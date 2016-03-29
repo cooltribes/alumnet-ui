@@ -26,14 +26,17 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 buttonOffer margin_top">
-    <% if @canApply: %>
-      <a href="#" class="btn btn-primary js-job-apply" >
-        <p class="no-margin">
-          Offer help & <br>
-          start chat
-        </p>
-      </a>
-    <% end %>
+  <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 buttonOffer">
+    <div class="text-right"><a href="#"><span class="fa fa-times"></span></a></div>
+    <div class="margin_top_medium">
+      <% if @canApply: %>
+        <a href="#" class="btn btn-primary js-job-apply" >
+          <p class="no-margin">
+            Offer help & <br>
+            start chat
+          </p>
+        </a>
+      <% end %>
+    </div>
   </div>
 </div>

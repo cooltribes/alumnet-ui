@@ -1,0 +1,41 @@
+<div class="groupCardSuggestions row no-margin">
+  <div class="col-xs-3 col-sm-2 col-md-3 col-lg-2 suggestionsGroups__cover">
+    <a href="#events/<%= @id %>/posts" class="js-group" title="<%= @name %>"><img src="<%= @cover.card %>" alt="<%= @name %>"></a>
+  </div>
+  <div class="col-xs-6 col-sm-7 col-md-6 col-lg-6 suggestionsGroups__title overfloadText">
+    <a href="#events/<%= @id %>/posts" class="js-group" title="<%= @name %>"> <%= @name %> </a>
+    <br>
+    <p class="no-margin">
+      <span class="glyphicon glyphicon-time suggestionsGroups__title--description"></span>
+      <span class="suggestionsGroups__title--description"><%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %></span>
+    </p>
+    <p class="no-margin overfloadText suggestionsGroups__title--description">
+      <span class="glyphicon glyphicon-map-marker suggestionsGroups__title--description"></span>
+      <span class="suggestionsGroups__title--description"><%= @location %></span>
+    </p>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 no-padding">
+    <div class="text-right padding_right_xsmall"><a href="#"><span class="fa fa-times"></span></a></div>
+    <% if @userCanAttend && not @isPast && (@capacity > @going_count || not @capacity): %>
+      <select class="goButtonEvents form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" || @attendance_status() == "pending_payment" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
+        <option value="invited">RSVP</option>
+        <option value="going" <%= @select(@attendance_status(), "going") %>>
+              ATTENDING
+        </option>
+        <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
+            MAYBE
+        </option>
+        <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
+            NOT ATTENDING
+        </option>
+        <% if @attendance_status() == "pending_payment": %>
+          <option value="pending_payment" <%= @select(@attendance_status(), "pending_payment") %>>
+              PENDING FEE
+          </option>
+        <% end %>
+      </select>
+      <span class="ico-triangle-down form-control-feedback" aria-hidden="true"></span>
+      <span id="attendance-status" class="sr-only">(success)</span>
+  <% end %>
+  </div>
+</div>

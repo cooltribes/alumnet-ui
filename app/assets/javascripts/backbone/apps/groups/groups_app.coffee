@@ -24,11 +24,11 @@
     manageGroups: ->
       AlumNet.setTitle('Manage groups')
       controller = new GroupsApp.Main.Controller
-      controller.showMainGroups("groupsManage")
+      controller.showMainLayout("groupsManage")
     discoverGroups: ->
       AlumNet.setTitle('Discover groups')
       controller = new GroupsApp.Main.Controller
-      controller.showMainGroups("groupsDiscover")
+      controller.showMainLayout("groupsDiscover")
     createGroup: ->
       AlumNet.setTitle('Create groups')
       controller = new GroupsApp.Create.Controller
@@ -78,7 +78,7 @@
     myGroups: ->
       AlumNet.setTitle('My groups')
       controller = new GroupsApp.Main.Controller
-      controller.showMainGroups("myGroups")
+      controller.showMainLayout("myGroups")
 
   AlumNet.on "groups:create",  ->
     AlumNet.navigate("groups/new")

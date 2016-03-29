@@ -68,17 +68,17 @@
 				</li>	
 
 				<li class="hidden-xs">
-		      <div class="searchBarSubMenu">
-		        <form id="search-form">
-		          <div class="input-group">
-		            <input type="text" name="search_term" id="search_term" class="form-control searchBarSubMenu__searchInput" placeholder="Write a name or email">
-		            <span class="input-group-btn">
-		            <button class="searchBarSubMenu__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
-		            </span>
-		          </div>
-        		</form>
-      		</div>
-  			</li>
+			      	<div class="searchBarSubMenu">
+				        <form id="search-form">
+				          <div class="input-group">
+				            <input type="text" name="search_term" id="search_term" class="form-control searchBarSubMenu__searchInput" placeholder="Write a name or email">
+				            <span class="input-group-btn">
+				            <button class="searchBarSubMenu__searchBtn btn btn-default js-search"><span class="glyphicon glyphicon-search"></span></button>
+				            </span>
+				          </div>
+		        		</form>
+	      			</div>
+  				</li>
 			</ul>
 		</div>
 	</div>

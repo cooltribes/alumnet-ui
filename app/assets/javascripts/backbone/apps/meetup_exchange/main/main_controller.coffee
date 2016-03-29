@@ -5,12 +5,12 @@
     myApplications: null
     manageMeetups: null
 
-    showMainMeetupExchange: (optionMenu)->
+    showMainLayout: (optionMenu)->
       @activeTab = optionMenu
       @layoutMeetupExchange = new Main.MeetupExchange
         option: @activeTab
       AlumNet.mainRegion.show(@layoutMeetupExchange)
-      @showMenuUrl()
+      @showRegionMenu()
       @showAutomatches()
 
       # Check cookies for first visit
@@ -20,11 +20,11 @@
         Cookies.set('meetup_exchange_visit', 'true')
 
       self = @
-      @layoutMeetupExchange.on "navigate:menu:meetup", (valueClick)->
+      @layoutMeetupExchange.on "navigate:menu:left", (valueClick)->
         self.activeTab = valueClick
-        self.showMenuUrl()
+        self.showRegionMenu()
 
-      @layoutMeetupExchange.on "navigate:menuRight", (valueClick)->
+      @layoutMeetupExchange.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "automatches"
             self.showAutomatches()
@@ -82,7 +82,7 @@
 
       @layoutMeetupExchange.suggestions_regions.show(automatchesView)
 
-    showMenuUrl: ()->
+    showRegionMenu: ()->
       self = @
       switch @activeTab
         when "discoverMeetups"

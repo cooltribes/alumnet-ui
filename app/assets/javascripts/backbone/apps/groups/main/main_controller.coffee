@@ -1,20 +1,20 @@
 @AlumNet.module 'GroupsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
-    showMainGroups: (optionMenu)->
+    showMainLayout: (optionMenu)->
       @layoutGroups = new Main.GroupsView
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
-      @showMenuUrl(optionMenu)
+      @showRegionMenu(optionMenu)
       current_user = AlumNet.current_user
       self = @
 
       @layoutGroups.on "click:type", (typeGroups)->
         self.showDiscoverGroups(typeGroups)
 
-      @layoutGroups.on "navigate:menu:groups", (valueClick)->
-        self.showMenuUrl(valueClick)
+      @layoutGroups.on "navigate:menu:left", (valueClick)->
+        self.showRegionMenu(valueClick)
 
-      @layoutGroups.on "navigate:menuRight", (valueClick)->
+      @layoutGroups.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "suggestions"
             self.showSuggestionsGroups()
@@ -100,7 +100,7 @@
         results_collection: @results
       @layoutGroups.filters_region.show(filters)
 
-    showMenuUrl: (optionMenu)->
+    showRegionMenu: (optionMenu)->
       self = @
       switch optionMenu
         when "groupsDiscover"

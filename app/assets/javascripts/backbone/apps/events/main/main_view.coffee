@@ -47,14 +47,14 @@
       else
         $("#js-filters").hide()
 
-      @trigger "navigate:menu:events", @valueClick, AlumNet.current_user.id
+      @trigger "navigate:menu:left", @valueClick, AlumNet.current_user.id
       @toggleLink(click)
 
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
-      @trigger "navigate:menuRight",valueClick
+      @trigger "navigate:menu:right",valueClick
       @toggleLinkRight(click)
 
     toggleLink: (element)->

@@ -124,16 +124,16 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
             color: darken(#e1ecf1, 50%);
             background-color: darken(#e1ecf1, 10%);
             text-align: center;
-            padding: 5px;
+            padding: 3px 5px 3px 0;
             display: block;
 			&:hover{
 				background-color: @blue;
 				color: @white;
 			}
-        }
-        &--paddingButtons{
-            padding: 10px 5px 10px 0;
-        }
+    }
+    &--paddingButtons{
+      padding: 0px 5px 10px 0;
+    }
 	}
 }
 
@@ -193,18 +193,6 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	border-bottom: 1px solid @lighter-gray;
 }
 
-/*768px*/
-@media (min-width: @media-small-min){
-	
-	.suggestionsGroups{
-		&__buttons{
-	        &--paddingButtons{
-	            padding: 10px 5px 10px 0;
-	        }
-		}
-	}
-}
-
 /*992px*/
 @media (min-width: @media-smedium-min){
 	.suggestions{
@@ -246,6 +234,13 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	.visibleTextButton{
 		display: inline;
 	}
+	.suggestionsGroups{
+		&__buttons{
+      &--paddingButtons{
+        padding: 0px 5px 5px 0px;
+      }
+		}
+	}
 }
 
 /*1400px*/
@@ -253,12 +248,11 @@ DESCRIPTION: Style to filters in Discover of Meetups and Jobpost.
 	
 	.suggestionsGroups{
 		&__buttons{
-	        &--paddingButtons{
-	                padding: 20px 5px 10px 0;
-	        }
+      &--paddingButtons{
+        padding: 3px 5px 10px 0px;
+      }
 		}
 	}
-
 }
 
 /*1900px*/

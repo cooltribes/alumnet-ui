@@ -2,19 +2,19 @@
   class Main.Controller
     activeTab: "discoverEvents"
 
-    showMainEvents: (optionMenu, current_user)->
+    showMainLayout: (optionMenu, current_user)->
       @activeTab = optionMenu
       @layoutEvents = new Main.EventsView
         option: @activeTab
       AlumNet.mainRegion.show(@layoutEvents)
-      @showMenuUrl()
+      @showRegionMenu()
 
       self = @
-      @layoutEvents.on "navigate:menu:events", (valueClick, current_user)->
+      @layoutEvents.on "navigate:menu:left", (valueClick, current_user)->
         self.activeTab = valueClick
-        self.showMenuUrl()
+        self.showRegionMenu()
 
-      @layoutEvents.on "navigate:menuRight", (valueClick)->
+      @layoutEvents.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "suggestions"
             self.showSuggestions(self.activeTab)
@@ -78,7 +78,7 @@
         results_collection: @results
       @layoutEvents.filters_region.show(filters)
 
-    showMenuUrl: ->
+    showRegionMenu: ->
       self = @
       switch @activeTab
         when "discoverEvents"

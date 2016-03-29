@@ -15,19 +15,19 @@
     discoverJobExchange: ->
       AlumNet.setTitle('Discover jobs')
       controller = new JobExchangeApp.Main.Controller
-      controller.showMainJobExchange("discoverJobExchange")
+      controller.showMainLayout("discoverJobExchange")
     myJobExchange: ->
       AlumNet.setTitle('My jobs')
       controller = new JobExchangeApp.Main.Controller
-      controller.showMainJobExchange("manageJobExchange")
+      controller.showMainLayout("manageJobExchange")
     appliedJobExchange: ->
       AlumNet.setTitle('Applied jobs')
       controller = new JobExchangeApp.Main.Controller
-      controller.showMainJobExchange("myApplications")
+      controller.showMainLayout("myApplications")
     automatchesJobExchange: ->
       AlumNet.setTitle('Automatches')
       controller = new JobExchangeApp.Main.Controller
-      controller.showMainJobExchange("automatches")
+      controller.showMainLayout("automatches")
     invitationsJobExchange: ->
       AlumNet.setTitle('Job invitations')
       controller = new JobExchangeApp.Invitations.Controller
@@ -47,7 +47,7 @@
       controller.show(id)
     showJobExchangeHome: (id)->
       controller = new JobExchangeApp.Main.Controller
-      controller.showMainJobExchange()
+      controller.showMainLayout()
 
   AlumNet.on "program:job:my", ->
     AlumNet.navigate("job-exchange/my-posts")

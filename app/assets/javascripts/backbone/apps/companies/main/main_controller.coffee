@@ -6,19 +6,19 @@
     myCompaniesCollection: null
     manageCollection: null
 
-    showMainCompanies: (optionMenu)->
+    showMainLayout: (optionMenu)->
       @activeTab = optionMenu
       @layoutCompanies = new Main.CompaniesView
         option: @activeTab
       AlumNet.mainRegion.show(@layoutCompanies)
-      @showMenuUrl()
+      @showRegionMenu()
 
       self = @
-      @layoutCompanies.on "navigate:menu:companies", (valueClick)->
+      @layoutCompanies.on "navigate:menu:left", (valueClick)->
         self.activeTab = valueClick
-        self.showMenuUrl()
+        self.showRegionMenu()
 
-      @layoutCompanies.on "navigate:menuRight", (valueClick)->
+      @layoutCompanies.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "suggestions"
             self.showSuggestions(self.activeTab)
@@ -67,7 +67,6 @@
         parentView: @layoutCompanies
 
       @layoutCompanies.companies_region.show(companiesView)
-      @showFilters()
 
       self = @
       companiesView.on "add:child", (viewInstance)->
@@ -131,7 +130,7 @@
         
       @layoutCompanies.filters_region.show(suggestionsView)
 
-    showMenuUrl: ->
+    showRegionMenu: ->
       self = @
       switch @activeTab
         when "discoverCompanies"

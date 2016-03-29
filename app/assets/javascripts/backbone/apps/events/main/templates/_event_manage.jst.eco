@@ -1,0 +1,105 @@
+<% if @isPast: %>
+  <div class="flagEventPast">
+    <div class="box">
+      <div class="ribbon"><span>PAST</span></div>
+    </div>
+  </div>
+<% else: %>
+  <div class="flagEventUpcoming">
+    <div class="box">
+      <div class="ribbon"><span>UPCOMING</span></div>
+    </div>
+  </div>
+<% end %>
+<div class="eventsTableView margin_bottom_xsmall">
+  <div class="row no-margin">
+
+    <div class="col-md-2 col-xs-4 col-sm-2 col-lg-2 no-padding">
+      <div class="eventsTableView__cover overhidden" style="background: url('<%= @cover.card %>') no-repeat; background-size: cover;" >
+      <% if @official: %><span class="eventsTableView__ribbon"></span><% end %>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-xs-8 col-sm-10 col-lg-10 no-padding">
+      <div class="row">
+        <div  class="col-md-12" >
+          <h3 class="margin_top_xsmall overfloadText">
+            <a href="#events/<%= @id %>/posts" class="js-group eventsTableView__name"> <%= @name %> </a>
+          </h3>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-xs-8 col-sm-3 col-md-3 col-lg-2 no-padding">
+          <div class="row-fluid">
+            <div class="col-md-2 col-lg-2 no-padding">
+              <img src="<%=  @creator.avatar %>" alt="<%= @creator.name %>" class="img-circle img-responsive eventsTableView__eventOwnerImg margin_right_xsmall" height="100%">
+            </div>
+            <div class="col-md-10 col-lg-10 no-padding">
+              <div>Invited by:</div>
+              <a href="#users/<%= @creator.id %>/posts">
+                <div class="creatorName overfloadText">
+                  <%= @creator.name %>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-4 no-padding">
+          <div>
+            <span class="glyphicon glyphicon-time"></span>
+            <%= moment(@start_date).format('DD/MM/YYYY') %>, <%= @start_hour %>
+          </div>
+          <div class="overfloadText">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <%= @location %>
+          </div>
+        </div>
+        <div class="col-md-2 col-xs-12 col-sm-3 no-padding">
+          <span class="ico-company"></span>
+          Attending:<%= @attendances_count %>
+        </div>
+
+        <div class="col-md-3 col-xs-11 margin_top_xsmall margin_bottom_xsmall text-right no-padding">
+        <% unless @isPast: %>
+          <% if @admin: %>
+            <a href="#events/<%= @id %>/about">
+              <div class="eventsTableView__isAdmin eventsTableView__isAdmin--left">
+                <span class="ico-company"></span>
+              </div>
+              <div class="eventsTableView__isAdmin eventsTableView__isAdmin--rightMyevents">
+                <span class="glyphicon glyphicon-cog"></span>
+              </div>
+            </a>
+            <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
+              <a href="#" id="js-attendance-cancel" class=" eventsTableView__isAdminCancel--paddingCancel">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+            </div>
+        <% else: %>
+          <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">
+            <option value="invited">RSVP</option>
+            <option value="going" <%= @select(@attendance_status(), "going") %>>
+                  ATTENDING
+            </option>
+            <option value="maybe" <%= @select(@attendance_status(), "maybe") %>>
+                MAYBE
+            </option>
+            <option value="not_going" <%= @select(@attendance_status(), "not_going") %>>
+                NOT ATTENDING
+            </option>
+          </select>
+          <span class="ico-triangle-down form-control-feedback margin_right_xsmall" aria-hidden="true"></span>
+          <span id="attendance-status" class="sr-only">(success)</span>
+        <% end %>
+      <% else: %>
+        <% if @admin: %>
+          <div class="eventsTableView__isAdminCancel eventsTableView__isAdminCancel--rigth">
+            <a href="#" id="js-attendance-cancel" class="eventsTableView__isAdminCancel--paddingCancel">DELETE</a>
+          </div>
+        <% end %>
+    <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

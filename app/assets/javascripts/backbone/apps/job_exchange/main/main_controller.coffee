@@ -5,12 +5,12 @@
     myApplications: null
     manageJobs: null
 
-    showMainJobExchange: (optionMenu)->
+    showMainLayout: (optionMenu)->
       @activeTab = optionMenu
       @layoutJobExchange = new Main.JobExchange
         option: @activeTab
       AlumNet.mainRegion.show(@layoutJobExchange)
-      @showMenuUrl()
+      @showRegionMenu()
       @showAutomatches()
 
       # Check cookies for first visit
@@ -20,11 +20,11 @@
         Cookies.set('job_exchange_visit', 'true')
 
       self = @
-      @layoutJobExchange.on "navigate:menu:job", (valueClick)->
+      @layoutJobExchange.on "navigate:menu:left", (valueClick)->
         self.activeTab = valueClick
-        self.showMenuUrl()
+        self.showRegionMenu()
 
-      @layoutJobExchange.on "navigate:menuRight", (valueClick)->
+      @layoutJobExchange.on "navigate:menu:right", (valueClick)->
         switch valueClick
           when "automatches"
             self.showAutomatches()
@@ -93,7 +93,7 @@
 
       @layoutJobExchange.suggestions_regions.show(automatchesView)
 
-    showMenuUrl: ()->
+    showRegionMenu: ()->
       self = @
       switch @activeTab
         when "discoverJobExchange"

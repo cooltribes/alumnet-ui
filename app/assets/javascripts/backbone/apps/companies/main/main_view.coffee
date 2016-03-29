@@ -16,8 +16,8 @@
 
     initialize: (options)->
       @stepMenu = options.option
-      @opcionInteger(options.option)
-      @tab = @opcionInteger(options.option)
+      @opcionInteger(@stepMenu)
+      @tab = @opcionInteger(@stepMenu)
       @class = [
         "", "", ""
       ]
@@ -51,19 +51,19 @@
       e.preventDefault()
       click = $(e.currentTarget)
       @valueClick = click.attr("data-menu")
-      if @valueClick == "groupsDiscover"
+      if @valueClick == "discoverCompanies"
         $("#filtersOpcion").removeClass("hide")
       else
         $("#filtersOpcion").addClass("hide")
       @stepMenu = @valueClick
-      @trigger "navigate:menu:companies",@valueClick
+      @trigger "navigate:menu:left",@valueClick
       @toggleLink(click)
 
     goOptionMenuRight: (e)->
       e.preventDefault()
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
-      @trigger "navigate:menuRight",valueClick
+      @trigger "navigate:menu:right",valueClick
       @toggleLinkRight(click)
 
     toggleLinkRight: (element)->
