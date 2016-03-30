@@ -196,10 +196,16 @@
         selectOptions:
           collection: [
             value: 0
-            label: "Individual email"
+            label: "No Email"
           ,
             value: 1
-            label: "No Email"
+            label: "Daily"
+          ,
+            value: 2
+            label: "Weekly"
+          ,
+            value: 3
+            label: "Monthly"
           ,
           ]
 

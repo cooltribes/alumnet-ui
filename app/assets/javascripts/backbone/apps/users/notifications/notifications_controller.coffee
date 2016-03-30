@@ -45,7 +45,7 @@
 				groups_preferences.on 'fetch:success', (collection)->
 					user_groups.each (model)->
 						if not collection.findWhere(group_id: model.get('group_id'))
-							collection.add({group_id: model.get('group_id'), value: 0, user_id: AlumNet.current_user.id, group_name: model.get('group').name})
+							collection.add({group_id: model.get('group_id'), value: 2, user_id: AlumNet.current_user.id, group_name: model.get('group').name})
 
 					groups_view = new Notifications.GroupsView
 						collection: collection
