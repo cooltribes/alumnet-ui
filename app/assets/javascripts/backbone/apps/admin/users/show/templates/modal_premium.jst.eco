@@ -7,13 +7,13 @@
       <form class="clearfix">
         <div class="col-md-6">
           <% for item in @items: %>
-          	<input type="radio" name="product_id" value="<%= item.id %>"> <%= item.name %></br>
+          	<input type="radio" name="product_id" value="<%= item.id %>" class="product"> <%= item.name %></br>
 	      <% end %>
         </div>       
       </form>
 </div>
 
 <div class="bbm-modal__bottombar">
-  <a href="#" class="btn btn-primary" id="save-status">Save</a>
+  <a href="#" class="btn btn-primary" id="save-status" disabled>Save</a>
   <a href="#" class="btn btn-default" id="goBack">Go back</a>
 </div>

@@ -531,6 +531,7 @@
       'preview_description': '#url_description'
       'preview_image': '#url_image'
       'loading': '.throbber-loader'
+      'newImageButton': '#js-new-image'
 
     events: ->
       'click a#js-post-submit': 'submitClicked'
@@ -541,6 +542,9 @@
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
+
+      uploader2 = new AlumNet.Utilities.Pluploader('js-add-picture-block', view).uploader
+      uploader2.init()
 
       @ui.tagsInput.select2
         placeholder: "Tag a Friend"
