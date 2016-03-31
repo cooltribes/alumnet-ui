@@ -46,6 +46,10 @@
       members.url = AlumNet.api_endpoint + '/users/' + user_id + '/memberships/groups'
       members.fetch
         data: querySearch
+        error: (collection, response, options)->
+          collection.trigger('fetch:error')
+        success: (collection, response, options) ->
+          collection.trigger('fetch:success', collection)
       members
 
     getCreatedGroups: (user_id, querySearch)->

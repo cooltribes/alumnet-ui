@@ -7,37 +7,24 @@
 
 			messages_preferences = AlumNet.request("email_preferences:messages", AlumNet.current_user.id)
 			messages_preferences.on 'fetch:success', (collection)->
-				if collection.length == 0
-					collection.add([
-						{name: 'approval', value: 0, user_id: AlumNet.current_user.id},
-						{name: 'friendship', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'friendship_accepted', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'join_group_invitation', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'message', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'join_event', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'apply_job_post', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'commented_post_edit', value: 0, user_id: AlumNet.current_user.id}
-						{name: 'commented_or_liked_post_comment', value: 0, user_id: AlumNet.current_user.id}
-					])
-				else
-					if not collection.findWhere(name: 'approval')
-						collection.add({name: 'approval', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'friendship')
-						collection.add({name: 'friendship', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'friendship_accepted')
-						collection.add({name: 'friendship_accepted', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'join_group_invitation')
-						collection.add({name: 'join_group_invitation', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'message')
-						collection.add({name: 'message', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'join_event')
-						collection.add({name: 'join_event', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'apply_job_post')
-						collection.add({name: 'apply_job_post', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'commented_post_edit')
-						collection.add({name: 'commented_post_edit', value: 0, user_id: AlumNet.current_user.id})
-					if not collection.findWhere(name: 'commented_or_liked_post_comment')
-						collection.add({name: 'commented_or_liked_post_comment', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'approval')
+					collection.add({name: 'approval', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'friendship')
+					collection.add({name: 'friendship', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'friendship_accepted')
+					collection.add({name: 'friendship_accepted', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'join_group_invitation')
+					collection.add({name: 'join_group_invitation', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'message')
+					collection.add({name: 'message', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'join_event')
+					collection.add({name: 'join_event', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'apply_job_post')
+					collection.add({name: 'apply_job_post', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'commented_post_edit')
+					collection.add({name: 'commented_post_edit', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'commented_or_liked_post_comment')
+					collection.add({name: 'commented_or_liked_post_comment', value: 0, user_id: AlumNet.current_user.id})
 
 				messages_members = new Notifications.MessagesView
 					collection: collection
@@ -45,26 +32,21 @@
 
 			news_preferences = AlumNet.request("email_preferences:news", AlumNet.current_user.id)
 			news_preferences.on 'fetch:success', (collection)->
-				if collection.length == 0
-					collection.add([
-						{name: 'join_group_request', value: 0, user_id: AlumNet.current_user.id}
-					])
-				else
-					if not collection.findWhere(name: 'join_group_request')
-						collection.add({name: 'join_group_request', value: 0, user_id: AlumNet.current_user.id})
+				if not collection.findWhere(name: 'join_group_request')
+					collection.add({name: 'join_group_request', value: 0, user_id: AlumNet.current_user.id})
 
-				messages_members = new Notifications.NewsView
+				news_view = new Notifications.NewsView
 					collection: collection
-				layout.notifications.show(messages_members)
+				layout.notifications.show(news_view)
 
-			# messages_alument = new Notifications.messagesAlumnet
-			# events_digest = new Notifications.eventsDigest
-			# groups_digest = new Notifications.groupsDigest
-			# notifications = new Notifications.notificationsView
-			# update = new Notifications.update	
-			
-			# layout.messages_alumnet.show(messages_alument)
-			# layout.events_digest.show(events_digest)
-			# layout.groups_digest.show(groups_digest)
-			# layout.notifications.show(notifications)
-			# layout.update.show(update)
+			user_groups = AlumNet.request("membership:groups", AlumNet.current_user.id, {})
+			user_groups.on 'fetch:success', (groups_collection)->
+				groups_preferences = AlumNet.request("email_preferences:groups", AlumNet.current_user.id)
+				groups_preferences.on 'fetch:success', (collection)->
+					user_groups.each (model)->
+						if not collection.findWhere(group_id: model.get('group_id'))
+							collection.add({group_id: model.get('group_id'), value: 2, user_id: AlumNet.current_user.id, group_name: model.get('group').name})
+
+					groups_view = new Notifications.GroupsView
+						collection: collection
+					layout.groups_digest.show(groups_view)
