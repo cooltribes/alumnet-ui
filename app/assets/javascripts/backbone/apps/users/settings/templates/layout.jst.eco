@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Settings</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="submenuSettings">
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link submenuSettings__item__link<%= @classOf(0)%>" data-menu="manageNotifications">
+						<span>Manage Notifications</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link submenuSettings__item__link<%= @classOf(1)%>" data-menu="privacy">
+						<span>Privacy Settings</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link submenuSettings__item__link<%= @classOf(2)%>" data-menu="billing">
+						<span>Billing</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="region_content"></div>
+		</div>
+	</div>	
+</div>
+
+
+
+

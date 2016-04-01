@@ -88,7 +88,7 @@
           itemSelector: '.col-md-6'
       container.append( $(view.el) ).masonry 'reloadItems'
 
-    showRegionMenu: ()->
+    showRegionMenu: ->
       self = @
       switch @activeTab
         when "businessProfiles"

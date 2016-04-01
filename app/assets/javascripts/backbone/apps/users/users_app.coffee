@@ -12,6 +12,7 @@
       "users/:id/business-exchange": "userBusiness"
       "users/:id/profile": "publicProfile"
       "users/:id/notifications": "userNotifications"
+      "users/:id/settings": "userSettings"
 
   API =
     userPost: (user_id, id)->
@@ -70,6 +71,10 @@
     userNotifications: (id)->
       controller = new UsersApp.Notifications.Controller
       controller.showNotifications(id)
+
+    userSettings: (id)->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")

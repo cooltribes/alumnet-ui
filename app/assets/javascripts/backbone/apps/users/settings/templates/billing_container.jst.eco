@@ -1,0 +1,32 @@
+<div class= "col-sm-12 col-xs-12 no-padding">
+  <table class="table billingTable">    
+    <thead>
+      <tr>
+        <th>
+          <i class="fa fa-hashtag"></i><br>
+          <span> ID</span>
+        </th>
+        <th>
+          <i class="fa fa-asterisk"></i><br>
+          <span> PRODUCT NAME</span>
+        </th>
+        <th>
+          <i class="fa fa-calendar"></i><br>
+          <span> PAYMENT DATE</span>
+        </th>
+        <th>
+          <i class="fa fa-money"></i><br>
+          <span> AMOUNT</span>
+        </th>
+        <th>
+          <i class="fa fa-file-text-o"></i><br>
+          <span> VIEW</span>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody id="billing-container">
+    
+    </tbody>
+  </table>
+</div> 
