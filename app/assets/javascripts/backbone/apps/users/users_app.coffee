@@ -13,6 +13,7 @@
       "users/:id/profile": "publicProfile"
       "users/:id/notifications": "userNotifications"
       "users/:id/settings": "userSettings"
+      "privacy/settings": "settings"
 
   API =
     userPost: (user_id, id)->
@@ -76,6 +77,10 @@
       controller = new UsersApp.Settings.Controller
       controller.showLayoutSettings(id, "manageNotifications")
 
+    settings: ()->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+  
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")
     API.userPosts(user_id)
