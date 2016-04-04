@@ -23,6 +23,7 @@
       "admin/emails-sent":"emailsSent"
       "admin/groups/:group_id/campaigns/:id":"showCampaign"
       "admin/emails-segment":"emailsSegment"
+      "admin/invoices": "invoices"
 
   API =
     usersList: ->
@@ -80,6 +81,9 @@
     emailsSegment: ->
       controller = new AdminApp.EmailsSegment.Controller
       controller.emailsSegment()
+    invoices:->
+      controller = new AdminApp.Invoices.Controller
+      controller.showLayoutInvoices()
 
   AlumNet.addInitializer ->
     new AdminApp.Router

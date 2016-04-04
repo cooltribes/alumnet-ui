@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Invoices</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="submenuSettings">
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(0)%>" data-menu="all">
+						<span>All</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(1)%>" data-menu="paid">
+						<span>Paid</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(2)%>" data-menu="pending">
+						<span>Pending</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(3)%>" data-menu="canceled">
+						<span>Canceled</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="region_content"></div>
+		</div>
+	</div>	
+</div>

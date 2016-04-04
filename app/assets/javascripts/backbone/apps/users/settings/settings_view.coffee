@@ -3,7 +3,6 @@
     template: 'users/settings/templates/layout'
 
     regions:
-      main_region: "#region_main"
       content_region: "#region_content"
 
     events:
