@@ -1,0 +1,105 @@
+@import 'conf/conf.css.less';
+
+
+.invoicesTable{
+
+  tr {
+    border: none;
+    display: block;
+  }
+  
+  table& > thead > tr{
+    padding: 10px;
+    & > th{
+      font-size: 15px;
+      color: #667E8A;
+      font-weight: 200;
+      border: none;
+
+      &:nth-child(1){
+        width: 2em;
+      }
+      &:nth-child(2){
+        width: 18em;
+      }
+      &:nth-child(3){
+        width: 14em;      
+      }
+      &:nth-child(4){
+        width: 13em;      
+      }
+      &:nth-child(5){
+        width: 11em;      
+      }
+      &:nth-child(6){
+        width: 10em;      
+      }
+    }
+  }
+
+  table& > tbody > tr {
+    background-color: @white;
+    margin-bottom: 3px;
+    color: @black;
+
+    &:hover{
+      background-color: @blue;
+      color: @white;
+    }
+
+    & > td {
+      border: none;
+      vertical-align: inherit;
+      font-weight: 200;
+
+      &:nth-child(1){
+        width: 4em;
+        padding: 0px 0px 0px 18px;  
+      }
+
+      &:nth-child(2){
+        width: 41em;
+        a {
+          display: block;
+        }
+      }
+      &:nth-child(3){
+        width: 30em;    
+      }
+      &:nth-child(4){
+        width: 33em;   
+      }
+      &:nth-child(5){
+        width: 25em;     
+      }
+      &:nth-child(6){
+        width: 25em;  
+      } 
+      &:nth-child(7){
+        width: 7em;  
+        font-size: 25px;
+        color: #667E8A;
+        padding-right: 20px;    
+      }  
+    }
+      .statusColor{
+      &__green{
+        i{
+          color: @green;
+        }
+      }
+      &__red{
+        i{
+          color: #AE0001;
+        }
+      }
+      &__yellow{
+        i{
+          color: @yellow;
+        }
+      }
+    } 
+  }
+}
+
+    

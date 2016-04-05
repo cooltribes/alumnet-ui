@@ -83,7 +83,7 @@
       controller.emailsSegment()
     invoices:->
       controller = new AdminApp.Invoices.Controller
-      controller.showLayoutInvoices()
+      controller.showLayoutInvoices("all")
 
   AlumNet.addInitializer ->
     new AdminApp.Router
