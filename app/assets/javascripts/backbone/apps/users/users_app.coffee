@@ -71,6 +71,7 @@
         url: AlumNet.api_endpoint + "/users/#{id}/register_visit"
     
     userNotifications: (id)->
+      AlumNet.setTitle('Manage notifications')
       controller = new UsersApp.Notifications.Controller
       controller.showNotifications(id)
 
