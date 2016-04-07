@@ -6,6 +6,7 @@
       @layoutView = new Settings.Layout
         option: @optionSubMenu
       AlumNet.mainRegion.show(@layoutView)
+      @showDetailBill()
 
       self = @ 
       @layoutView.on "navigate:menu", (option)->
@@ -34,6 +35,10 @@
       privacyView = new AlumNet.UsersApp.Privacy.View
         collection: privCollection
       @layoutView.content_region.show(privacyView)
+
+    showDetailBill: ->
+      view = new AlumNet.UsersApp.Billing.DetailsBill
+      @layoutView.content_region.show(view)
 
     showRegionMenu: ->
       self = @

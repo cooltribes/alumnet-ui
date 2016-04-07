@@ -14,6 +14,7 @@
       "users/:id/notifications": "userNotifications"
       "users/:id/settings": "userSettings"
       "privacy/settings": "settings"
+      "users/1/details-bill": "detailsBill"
 
   API =
     userPost: (user_id, id)->
@@ -78,6 +79,10 @@
       controller.showLayoutSettings(id, "manageNotifications")
 
     settings: ()->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+
+    detailsBill: ()->
       controller = new UsersApp.Settings.Controller
       controller.showLayoutSettings(id, "manageNotifications")
   

@@ -1,0 +1,97 @@
+<div class="container-fludi">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Invoices no 12345</h1>
+		</div>
+		<hr>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+					<i class="fa fa-spinner"></i><br>
+					<span>PAYMENT STATUS</span><br>
+					<span>PAID</span><i class="fa fa-circle"></i>
+				</div>
+				<div class="col-md-3">
+					<i class="fa fa-calendar"></i><br>
+					<span>PAYMENT DATE</span><br>
+					<span>12/10/2016</span>
+				</div>
+				<div class="col-md-3 col-md-offset-3">
+					<i class="fa fa-calendar"></i><br>
+					<span>DATE</span><br>
+					<span>12/10/2016</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+					<i class="fa fa-money"></i><br>
+					<span>PAYMENT METHOD</span><br>
+					<span>PayPal</span>
+				</div>
+				<div class="col-md-3 col-md-offset-6">
+					<i class="fa fa-book"></i><br>
+					<span>FOR</span><br>
+					<span>Stephen Stephenapoulos</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row margin_top">
+		<table>
+			<thead>
+				<tr>
+					<th>
+						<span>PRODUCT</span>
+					</th>
+					<th>
+						<span>QUANTITY</span>
+					</th>
+					<th>
+						<span>TAX 23%</span>
+					</th>
+					<th>
+						<span>AMOUNT</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<span>Yearly subscription</span><br>
+						<span>12/10/2016 - 12/10/2017</span>
+					</td>
+					<td>
+						<span>1</span>
+					</td>
+					<td>
+						<span>115</span>
+						<i class="fa fa-eur"></i>
+					</td>
+					<td>
+						<span>500</span>
+						<i class="fa fa-eur"></i>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="row">
+				<div class="col-md-3">
+					<button class="btn-addFilter" type="button">
+						<i class="fa fa-print"></i>
+						<span> PRINT</span> 
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
