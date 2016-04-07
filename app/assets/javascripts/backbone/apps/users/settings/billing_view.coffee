@@ -11,3 +11,6 @@
   class Billing.DetailsBill extends Marionette.LayoutView
     template: 'users/settings/templates/detail_bill'
  
+
+ 
+

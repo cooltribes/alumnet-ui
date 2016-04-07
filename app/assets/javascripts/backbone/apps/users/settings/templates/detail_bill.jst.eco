@@ -1,69 +1,70 @@
-<div class="container-fludi">
+<div class="container-fluid detailBill">
 	<div class="row">
 		<div class="col-md-12 text-center">
 			<h1>Invoices no 12345</h1>
+			<hr>
 		</div>
-		<hr>
+		
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-					<i class="fa fa-spinner"></i><br>
-					<span>PAYMENT STATUS</span><br>
-					<span>PAID</span><i class="fa fa-circle"></i>
+					<i class="fa fa-spinner titleDetails"></i><br>
+					<span class="titleDetails">PAYMENT STATUS</span><br>
+					<span class="dateDetails">PAID</span><i class="fa fa-circle"></i>
 				</div>
 				<div class="col-md-3">
-					<i class="fa fa-calendar"></i><br>
-					<span>PAYMENT DATE</span><br>
-					<span>12/10/2016</span>
+					<i class="fa fa-calendar titleDetails"></i><br>
+					<span class="titleDetails">PAYMENT DATE</span><br>
+					<span class="dateDetails">12/10/2016</span>
 				</div>
 				<div class="col-md-3 col-md-offset-3">
-					<i class="fa fa-calendar"></i><br>
-					<span>DATE</span><br>
-					<span>12/10/2016</span>
+					<i class="fa fa-calendar titleDetails"></i><br>
+					<span class="titleDetails">DATE</span><br>
+					<span class="dateDetails">12/10/2016</span>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row margin_top_small">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-					<i class="fa fa-money"></i><br>
-					<span>PAYMENT METHOD</span><br>
-					<span>PayPal</span>
+					<i class="fa fa-money titleDetails"></i><br>
+					<span class="titleDetails">PAYMENT METHOD</span><br>
+					<span class="dateDetails">PayPal</span>
 				</div>
 				<div class="col-md-3 col-md-offset-6">
-					<i class="fa fa-book"></i><br>
-					<span>FOR</span><br>
-					<span>Stephen Stephenapoulos</span>
+					<i class="fa fa-book titleDetails"></i><br>
+					<span class="titleDetails">FOR</span><br>
+					<span class="dateDetails">Stephen Stephenapoulos</span>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row margin_top">
-		<table>
+		<table class="detailsTable">
 			<thead>
 				<tr>
 					<th>
-						<span>PRODUCT</span>
+						<span class="titleDetails">PRODUCT</span>
 					</th>
 					<th>
-						<span>QUANTITY</span>
+						<span class="titleDetails">QUANTITY</span>
 					</th>
 					<th>
-						<span>TAX 23%</span>
+						<span class="titleDetails">TAX 23%</span>
 					</th>
 					<th>
-						<span>AMOUNT</span>
+						<span class="titleDetails">AMOUNT</span>
 					</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr class="dateDetails">
 					<td>
-						<span>Yearly subscription</span><br>
+						<b>Yearly subscription</b><br>
 						<span>12/10/2016 - 12/10/2017</span>
 					</td>
 					<td>
@@ -83,15 +84,13 @@
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="row">
-				<div class="col-md-3">
-					<button class="btn-addFilter" type="button">
-						<i class="fa fa-print"></i>
-						<span> PRINT</span> 
-					</button>
-				</div>
-			</div>
+		<div class="col-md-2 col-md-offset-4">
+			
+			<button class="btn-addFilter" type="button">
+				<i class="fa fa-print"></i>
+				<span> PRINT</span> 
+			</button>
+	
 		</div>
 	</div>
 </div>

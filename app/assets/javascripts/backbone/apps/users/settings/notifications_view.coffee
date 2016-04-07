@@ -1,6 +1,6 @@
 @AlumNet.module 'UsersApp.Notifications', (Notifications, @AlumNet, Backbone, Marionette, $, _) ->
   class Notifications.Layout extends Marionette.LayoutView
-    template: 'users/notifications/templates/notifications_management'
+    template: 'users/settings/templates/notifications_management'
     className: 'container'
 
     regions:
@@ -48,7 +48,7 @@
 
   class Notifications.Preference extends Marionette.ItemView
     #className: 'col-md-4'
-    template: 'users/notifications/templates/_preference'
+    template: 'users/settings/templates/_preference'
 
     # modelEvents:
     #   "change": "modelChange"
@@ -188,7 +188,7 @@
       
   class Notifications.GroupPreference extends Marionette.ItemView
     #className: 'col-md-4'
-    template: 'users/notifications/templates/_group_preference'
+    template: 'users/settings/templates/_group_preference'
 
     bindings:
       ".js-group":
@@ -221,7 +221,7 @@
       @model.save()
 
   class Notifications.MessagesView extends Marionette.CompositeView
-    template: 'users/notifications/templates/messages_members'
+    template: 'users/settings/templates/messages_members'
     childView: Notifications.Preference
     childViewContainer: '.js-list'
     className: 'container-fluid'
@@ -257,13 +257,13 @@
       e.preventDefault()
 
   class Notifications.messagesAlumnet extends Marionette.CompositeView
-    template: 'users/notifications/templates/messages_alumnet'
+    template: 'users/settings/templates/messages_alumnet'
 
   class Notifications.eventsDigest extends Marionette.CompositeView
-    template: 'users/notifications/templates/events_digest'
+    template: 'users/settings/templates/events_digest'
 
   class Notifications.GroupsView extends Marionette.CompositeView
-    template: 'users/notifications/templates/groups_digest'
+    template: 'users/settings/templates/groups_digest'
     childView: Notifications.GroupPreference
     childViewContainer: '.js-list'
     className: 'container-fluid'
@@ -298,7 +298,7 @@
       e.preventDefault()
 
   class Notifications.NewsView extends Marionette.CompositeView
-    template: 'users/notifications/templates/notifications'
+    template: 'users/settings/templates/notifications'
     childView: Notifications.Preference
     childViewContainer: '.js-list'
     className: 'container-fluid'
@@ -334,5 +334,5 @@
       e.preventDefault()
 
   class Notifications.update extends Marionette.CompositeView
-    template: 'users/notifications/templates/update'
+    template: 'users/settings/templates/update'
 
