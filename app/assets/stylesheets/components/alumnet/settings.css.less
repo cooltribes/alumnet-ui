@@ -91,6 +91,7 @@
 .detailBill{
 	.titleDetails{
 		color: #667E8A;
+		font-weight: lighter;
 	}
 	.dateDetails{
 		color: @black;
@@ -99,6 +100,39 @@
 	}
 
 	.detailsTable{
-		
+		tbody >	tr{
+		    border-top: 1px solid black;
+		}
+		.thProducto{
+			width: 50em;
+			padding: 10px 0px;
+		}
+		.thNumbers{
+			width: 10em;
+			padding: 10px 0px;
+		}
+
+		.tdProducto{
+			padding: 10px 0px;
+		}
+		.tdNumbers{
+			padding: 10px 0px;
+		}
+	}
+	.buttonPrint{
+		padding: 10px 25px 10px 25px;
+		font-size: 18px;
+	}
+
+	.statusColor{
+		&__green{
+          	color: @green;
+      	}
+      	&__red{
+          	color: #AE0001;
+      	}
+      	&__yellow{
+          	color: @yellow;
+      	}
 	}
 }

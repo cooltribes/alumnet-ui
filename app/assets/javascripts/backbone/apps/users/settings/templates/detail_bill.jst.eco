@@ -12,7 +12,8 @@
 				<div class="col-md-3">
 					<i class="fa fa-spinner titleDetails"></i><br>
 					<span class="titleDetails">PAYMENT STATUS</span><br>
-					<span class="dateDetails">PAID</span><i class="fa fa-circle"></i>
+					<span class="dateDetails">PAID </span>
+					<i class="fa fa-circle statusColor__green"></i>
 				</div>
 				<div class="col-md-3">
 					<i class="fa fa-calendar titleDetails"></i><br>
@@ -27,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row margin_top_small">
+	<div class="row margin_top_small margin_bottom_large">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
@@ -44,49 +45,62 @@
 		</div>
 	</div>
 	<div class="row margin_top">
-		<table class="detailsTable">
-			<thead>
-				<tr>
-					<th>
-						<span class="titleDetails">PRODUCT</span>
-					</th>
-					<th>
-						<span class="titleDetails">QUANTITY</span>
-					</th>
-					<th>
-						<span class="titleDetails">TAX 23%</span>
-					</th>
-					<th>
-						<span class="titleDetails">AMOUNT</span>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="dateDetails">
-					<td>
-						<b>Yearly subscription</b><br>
-						<span>12/10/2016 - 12/10/2017</span>
-					</td>
-					<td>
-						<span>1</span>
-					</td>
-					<td>
-						<span>115</span>
-						<i class="fa fa-eur"></i>
-					</td>
-					<td>
-						<span>500</span>
-						<i class="fa fa-eur"></i>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="col-md-12">
+			<table class="detailsTable">
+				<thead>
+					<tr>
+						<th class="thProducto class="thNumbers"">
+							<span class="titleDetails">PRODUCT</span>
+						</th>
+						<th class="thNumbers">
+							<span class="titleDetails">QUANTITY</span>
+						</th>
+						<th class="thNumbers">
+							<span class="titleDetails">TAX 23%</span>
+						</th>
+						<th class="thNumbers">
+							<span class="titleDetails">AMOUNT</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="dateDetails">
+						<td class="tdProducto">
+							<b>Yearly subscription</b><br>
+							<span>12/10/2016 - 12/10/2017</span>
+						</td>
+						<td class="tdNumbers">
+							<span>1</span>
+						</td>
+						<td class="tdNumbers">
+							<span>115</span>
+							<i class="fa fa-eur"></i>
+						</td>
+						<td class="tdNumbers">
+							<span>500</span>
+							<i class="fa fa-eur"></i>
+						</td>
+					</tr>
+					<tr class="dateDetails">
+						<td class="tdProducto"></td>
+						<td class="tdNumbers"></td>
+						<td class="tdNumbers text-right">
+							<b>Total:&nbsp;</b>
+						</td>
+						<td class="tdNumbers">
+							<b>615</b>
+							<i class="fa fa-eur"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-2 col-md-offset-4">
+		<div class="col-md-2 col-md-offset-5">
 			
-			<button class="btn-addFilter" type="button">
+			<button class="btn btn-primary buttonPrint" type="button">
 				<i class="fa fa-print"></i>
 				<span> PRINT</span> 
 			</button>
