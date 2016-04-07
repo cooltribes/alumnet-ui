@@ -23,6 +23,8 @@
       "admin/emails-sent":"emailsSent"
       "admin/groups/:group_id/campaigns/:id":"showCampaign"
       "admin/emails-segment":"emailsSegment"
+      "admin/categories": "categoriesList"
+      "admin/categories/new": "categoriesCreate"
 
   API =
     usersList: ->
@@ -80,6 +82,12 @@
     emailsSegment: ->
       controller = new AdminApp.EmailsSegment.Controller
       controller.emailsSegment()
+    categoriesList: ->
+      controller = new AdminApp.CategoriesList.Controller
+      controller.categoriesList()
+    categoriesCreate: ->
+      controller = new AdminApp.CategoriesList.Controller
+      controller.create()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -117,3 +125,7 @@
     #AlumNet.navigate("admin/emails/#{id}")
     #API.showCampaign(group_id, id)
     API.emailsSent()
+
+  AlumNet.on "admin:categories", ->
+    AlumNet.navigate("admin/categories")
+    API.categoriesList()
