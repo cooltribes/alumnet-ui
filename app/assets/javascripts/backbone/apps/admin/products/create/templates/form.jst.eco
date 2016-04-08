@@ -43,32 +43,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label class="control-label">Type</label>
-          <select name="product_type" class="form-control input-lg ">
-            <option value="0">Time remaining</option>
-            <option value="1">Times used</option>
-          </select>
-          <span class="help-block"></span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label class="control-label">Quantity</label>
-          <input type="text" id="quantity" name="quantity" class="form-control input-lg" value="<%= @quantity %>">
-          <span class="help-block"></span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label class="control-label">Feature</label>
-          <select name="feature" class="form-control input-lg ">
-            <option value="subscription">Subscription</option>
-            <option value="job_post">Job Post</option>
-          </select>
+          <label class="control-label">Category</label>
+          <input class="js-categories" type="hidden" name="category_id" id="category_id" style="width: 100%">
           <span class="help-block"></span>
         </div>
       </div>
@@ -77,9 +53,6 @@
 </div>
 
 <div class="bbm-modal__bottombar">
-  <% unless @productIsNew: %>
-    <a href="#" class="btn btn-danger pull-left" id="js-modal-delete">Delete</a>
-  <% end %>
-  <a href="#" class="btn btn-primary" id="js-modal-save">Save</a>
-  <a href="#" class="btn btn-default" id="js-modal-close">Cancel</a>
+  <a href="#" class="btn btn-primary js-save">Save</a>
+  <a href="#" class="btn btn-default js-close">Cancel</a>
 </div>

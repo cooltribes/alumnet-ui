@@ -42,8 +42,19 @@
           model.trigger('find:success')
       category
 
+    getCategoriesForSelect: ->
+      categories = new Entities.CategoryCollection
+      categories.fetch
+        async: false
+      categories.map (model)->
+        id: model.id
+        text: model.get('name')
+
   AlumNet.reqres.setHandler 'categories:entities', (querySearch) ->
     API.getCategories(querySearch)
+
+  AlumNet.reqres.setHandler 'categories:entities:select', () ->
+    API.getCategoriesForSelect()
 
   AlumNet.reqres.setHandler 'category:find', (id)->
     API.findCategory(id)

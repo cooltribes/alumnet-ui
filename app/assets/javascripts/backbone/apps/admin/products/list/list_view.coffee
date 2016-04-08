@@ -12,6 +12,19 @@
     modelEvents:
       "change": "modelChange"
 
+    initialize: ->
+      # @categories = [
+      #       value: "inactive"
+      #       label: "inactive"
+      #     ,
+      #       value: "active"
+      #       label: "active"
+      #     ,
+      #     ]
+      @categories = AlumNet.request("categories:entities")
+      console.log 'init'
+      console.log @categories
+
     bindings:
       ".js-sku": 
         observe: "sku"
@@ -36,31 +49,10 @@
             label: "active"
           ,
           ]
-      ".js-type": 
-        observe: "product_type"
+      ".js-category": 
+        observe: "category_id"
         selectOptions:
-          collection: [
-            value: 0
-            label: "Time remaining"
-          ,
-            value: 1
-            label: "Times used"
-          ,
-          ]
-      ".js-quantity": 
-        observe: "quantity"
-        events: ['blur']
-      ".js-feature": 
-        observe: "feature"
-        selectOptions:
-          collection: [
-            value: "subscription"
-            label: "Subscription"
-          ,
-            value: "job_post"
-            label: "Job Post"
-          ,
-          ]
+          collection: 'this.categories'
 
     onRender: ->
       @stickit()

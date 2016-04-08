@@ -23,8 +23,9 @@
       "admin/emails-sent":"emailsSent"
       "admin/groups/:group_id/campaigns/:id":"showCampaign"
       "admin/emails-segment":"emailsSegment"
-      "admin/categories": "categoriesList"
+      "admin/products/new": "productsCreate"
       "admin/categories/new": "categoriesCreate"
+      "admin/categories": "categoriesList"
 
   API =
     usersList: ->
@@ -87,6 +88,9 @@
       controller.categoriesList()
     categoriesCreate: ->
       controller = new AdminApp.CategoriesList.Controller
+      controller.create()
+    productsCreate: ->
+      controller = new AdminApp.ProductsCreate.Controller
       controller.create()
 
   AlumNet.addInitializer ->

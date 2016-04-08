@@ -16,16 +16,6 @@
       classOf: (step) =>
         @class[step]
 
-    events:
-      'click #js-new-product': 'newProduct'
-
-    newProduct: (e)->
-      e.preventDefault()
-      modal = new AlumNet.AdminApp.ProductsList.ModalProduct
-        model: new AlumNet.Entities.Product
-        productTable: @productTable
-      $('#container-modal').html(modal.render().el)
-
   API =
     renderSubmenu: (view, tab, table)->
       if view == null
