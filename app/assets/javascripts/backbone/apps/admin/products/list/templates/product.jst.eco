@@ -2,8 +2,7 @@
 <td class="tableAdminGroups__colText js-name" contenteditable="true"></td>
 <td class="tableAdminGroups__colText js-description" contenteditable="true"></td>
 <td class="tableAdminGroups__colText">
-	<select class="metaInfoCard__dropdown js-category" name="category_id">    
-  	</select>
+	<%= @category_name() %>
 </td>
 <td class="tableAdminGroups__colText">
 	<select class="metaInfoCard__dropdown js-status" name="status">    

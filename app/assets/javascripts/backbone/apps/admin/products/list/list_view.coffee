@@ -12,19 +12,6 @@
     modelEvents:
       "change": "modelChange"
 
-    initialize: ->
-      # @categories = [
-      #       value: "inactive"
-      #       label: "inactive"
-      #     ,
-      #       value: "active"
-      #       label: "active"
-      #     ,
-      #     ]
-      @categories = AlumNet.request("categories:entities")
-      console.log 'init'
-      console.log @categories
-
     bindings:
       ".js-sku": 
         observe: "sku"
@@ -49,10 +36,18 @@
             label: "active"
           ,
           ]
-      ".js-category": 
-        observe: "category_id"
-        selectOptions:
-          collection: 'this.categories'
+      # ".js-category": 
+      #   observe: "category_id"
+      #   selectOptions:
+      #     collection: 'this.categories'
+
+    templateHelpers: ->
+      model = @model
+      category_name: ->
+        if model.get('category')
+          model.get('category').name
+        else
+          'No category'
 
     onRender: ->
       @stickit()
