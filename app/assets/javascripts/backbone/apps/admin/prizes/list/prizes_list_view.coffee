@@ -66,7 +66,6 @@
       @model.save()
 
     previewImage: (e)->
-      console.log e
       $(e.currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','inline-block')
       $(e.currentTarget).siblings('.uploadF--blue').css('display','none')
       $(e.currentTarget).siblings('img').css('top',0)
@@ -78,7 +77,6 @@
       formData = new FormData()
       file = @$('#prize-photo')
       formData.append('image', file[0].files[0])
-      console.log formData
 
       options_for_save =
         wait: true

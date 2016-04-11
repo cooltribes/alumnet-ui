@@ -12,6 +12,9 @@
     modelEvents:
       "change": "modelChange"
 
+    events:
+      'change #product-image': 'previewImage'
+
     bindings:
       ".js-sku": 
         observe: "sku"
@@ -41,8 +44,12 @@
       #   selectOptions:
       #     collection: 'this.categories'
 
+    initialize: (options) ->
+      @productImage = options.model.get('image').image.card.url
+
     templateHelpers: ->
       model = @model
+      productImage: @productImage
       category_name: ->
         if model.get('category')
           model.get('category').name
@@ -54,6 +61,36 @@
 
     modelChange: (e)->
       @model.save()
+
+    previewImage: (e)->
+      $(e.currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','inline-block')
+      $(e.currentTarget).siblings('.uploadF--blue').css('display','none')
+      $(e.currentTarget).siblings('img').css('top',0)
+      input = @.$('#product-image')
+      preview = @.$('#prewiev-product-image')
+      model = @model
+      currentTarget= e.currentTarget
+
+      formData = new FormData()
+      file = @$('#product-image')
+      formData.append('image', file[0].files[0])
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          if input[0] && input[0].files[0]
+           reader = new FileReader()
+           reader.onload = (e)->
+              preview.attr("src", e.target.result)
+              $(currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','none')
+              $(currentTarget).siblings('.uploadF--blue').css('display','inline-block')
+              $(currentTarget).siblings('img').css('top',-30)
+           reader.readAsDataURL(input[0].files[0])
+
+      model.save(formData, options_for_save)
 
   class ProductsList.ProductsTable extends Marionette.CompositeView
     template: 'admin/products/list/templates/products_table'
