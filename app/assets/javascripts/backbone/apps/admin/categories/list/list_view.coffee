@@ -63,6 +63,16 @@
       'click @ui.cancelLink': 'cancelClicked'
       'click @ui.submitLink': 'submitClicked'
 
+    onRender: ->
+      view = @
+      data = AlumNet.request("categories:entities:select")
+      console.log data
+      data.unshift({id: 0, text: 'None'})
+      console.log data
+      view.$('.js-categories').select2
+        placeholder: "Empty for top category"
+        data: data
+
     cancelClicked: (e)->
       e.preventDefault()
 

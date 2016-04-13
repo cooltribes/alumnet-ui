@@ -23,6 +23,16 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label class="control-label">Parent Category</label>
+              <input class="js-categories" type="hidden" name="father_id" id="father_id" style="width: 100%">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block hidden"></span>
+            </div>
+          </div>
+        </div>
         <hr>
         <!-- ACTIONS ON -->
         <div class="text-right">
