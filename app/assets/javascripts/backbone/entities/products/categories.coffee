@@ -21,10 +21,14 @@
 
   API =
     getCategories: (querySearch)->
+      console.log 'query'
+      console.log querySearch
       categories = new Entities.CategoryCollection
       categories.fetch
         data: querySearch
         success: (collection, response, options) ->
+          console.log 'success'
+          console.log collection
           categories.trigger('fetch:success', collection)
       categories
 

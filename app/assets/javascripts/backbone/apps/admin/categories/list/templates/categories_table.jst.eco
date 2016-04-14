@@ -3,6 +3,7 @@
 		<tr>
 		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Name</th>
 		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Description</th>
+		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Parent Category</th>
 		  <th class="<% if _.size(@links) > 0 : %> tableAdminGroups__SubGruopHeader <% end %> ">Status</th>
 		</tr>
 	</thead>

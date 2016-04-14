@@ -30,6 +30,22 @@
             label: "active"
           ,
           ]
+      ".js-category": 
+        observe: "category_id"
+        selectOptions:
+          collection: 'this.categories'
+
+    initialize: ->
+      console.log 'initialize'
+      console.log @model
+
+    templateHelpers: ->
+      model = @model
+      parent_category_name: ->
+        if model.get('parent')
+          model.get('parent').name
+        else
+          'Parent category'
 
     onRender: ->
       @stickit()
@@ -66,9 +82,7 @@
     onRender: ->
       view = @
       data = AlumNet.request("categories:entities:select")
-      console.log data
       data.unshift({id: 0, text: 'None'})
-      console.log data
       view.$('.js-categories').select2
         placeholder: "Empty for top category"
         data: data
