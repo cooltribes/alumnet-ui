@@ -21,14 +21,10 @@
 
   API =
     getCategories: (querySearch)->
-      console.log 'query'
-      console.log querySearch
       categories = new Entities.CategoryCollection
       categories.fetch
         data: querySearch
         success: (collection, response, options) ->
-          console.log 'success'
-          console.log collection
           categories.trigger('fetch:success', collection)
       categories
 
@@ -51,6 +47,14 @@
       categories.fetch
         async: false
       categories.map (model)->
+        value: model.id
+        label: model.get('name')
+
+    getCategoriesForSelect2: ->
+      categories = new Entities.CategoryCollection
+      categories.fetch
+        async: false
+      categories.map (model)->
         id: model.id
         text: model.get('name')
 
@@ -59,6 +63,9 @@
 
   AlumNet.reqres.setHandler 'categories:entities:select', () ->
     API.getCategoriesForSelect()
+
+  AlumNet.reqres.setHandler 'categories:entities:select2', () ->
+    API.getCategoriesForSelect2()
 
   AlumNet.reqres.setHandler 'category:find', (id)->
     API.findCategory(id)

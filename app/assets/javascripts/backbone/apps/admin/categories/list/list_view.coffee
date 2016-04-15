@@ -31,13 +31,13 @@
           ,
           ]
       ".js-category": 
-        observe: "category_id"
+        observe: "father_id"
         selectOptions:
           collection: 'this.categories'
 
-    initialize: ->
-      console.log 'initialize'
-      console.log @model
+    initialize: (options)->
+      @categories = options.categories
+      
 
     templateHelpers: ->
       model = @model
@@ -56,7 +56,12 @@
   class CategoriesList.CategoriesTable extends Marionette.CompositeView
     template: 'admin/categories/list/templates/categories_table'
     childView: CategoriesList.CategoryView
+    childViewOptions: (model)->
+      { categories: this.options.select_data }
     childViewContainer: "#categories-table tbody"
+
+    initialize: (options)->
+      @collection = options.collection
 
   class CategoriesList.CreateForm extends Marionette.ItemView
     template: 'admin/categories/list/templates/form'
@@ -81,7 +86,7 @@
 
     onRender: ->
       view = @
-      data = AlumNet.request("categories:entities:select")
+      data = AlumNet.request("categories:entities:select2")
       data.unshift({id: 0, text: 'None'})
       view.$('.js-categories').select2
         placeholder: "Empty for top category"

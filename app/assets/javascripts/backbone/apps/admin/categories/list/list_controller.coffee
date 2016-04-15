@@ -2,9 +2,13 @@
 	class CategoriesList.Controller
 		categoriesList: ->
 			categories = AlumNet.request('categories:entities', {})
+			select_data = AlumNet.request('categories:entities:select', {})
+			select_data.unshift({value: 0, label: 'None'})
+
 			layoutView = new CategoriesList.Layout
 			categoriesTable = new CategoriesList.CategoriesTable
 				collection: categories
+				select_data: select_data
 
 			AlumNet.mainRegion.show(layoutView)
 			layoutView.table.show(categoriesTable)
