@@ -26,6 +26,7 @@
       "admin/products/new": "productsCreate"
       "admin/categories/new": "categoriesCreate"
       "admin/categories": "categoriesList"
+      "admin/attributes": "attributesList"
 
   API =
     usersList: ->
@@ -92,6 +93,9 @@
     productsCreate: ->
       controller = new AdminApp.ProductsCreate.Controller
       controller.create()
+    attributesList: ->
+      controller = new AdminApp.AttributesList.Controller
+      controller.attributesList()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
