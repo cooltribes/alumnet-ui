@@ -18,7 +18,7 @@
 			layoutView = new CategoriesList.Layout
 			category = new AlumNet.Entities.Category
 			createForm = new CategoriesList.CreateForm
-        model: category
+        		model: category
 
 			AlumNet.mainRegion.show(layoutView)
 			layoutView.table.show(createForm)

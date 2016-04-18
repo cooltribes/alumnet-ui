@@ -27,6 +27,7 @@
       "admin/categories/new": "categoriesCreate"
       "admin/categories": "categoriesList"
       "admin/attributes": "attributesList"
+      "admin/attributes/new": "attributesCreate"
 
   API =
     usersList: ->
@@ -96,6 +97,9 @@
     attributesList: ->
       controller = new AdminApp.AttributesList.Controller
       controller.attributesList()
+    attributesCreate: ->
+      controller = new AdminApp.AttributesCreate.Controller
+      controller.create()
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -137,3 +141,7 @@
   AlumNet.on "admin:categories", ->
     AlumNet.navigate("admin/categories")
     API.categoriesList()
+
+  AlumNet.on "admin:attributes", ->
+    AlumNet.navigate("admin/attributes")
+    API.attributesList()

@@ -6,7 +6,7 @@
       table: '#table-region'
 
   class AttributesList.AttributeView extends Marionette.ItemView
-    template: 'admin/attributes/list/templates/category'
+    template: 'admin/attributes/list/templates/attribute'
     tagName: "tr"
 
     modelEvents:
@@ -25,6 +25,28 @@
           ,
             value: "active"
             label: "active"
+          ,
+          ]
+      ".js-mandatory": 
+        observe: "mandatory"
+        selectOptions:
+          collection: [
+            value: 0
+            label: "No"
+          ,
+            value: 1
+            label: "Yes"
+          ,
+          ]
+      ".js-measure-unit": 
+        observe: "measure_unit"
+        selectOptions:
+          collection: [
+            value: "days"
+            label: "Days"
+          ,
+            value: "months"
+            label: "Months"
           ,
           ]
 
