@@ -1,0 +1,23 @@
+<div class="container createProduct">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Create Product - <span id="step"=><%= @step %></span></h1>
+			<hr>
+		</div>
+		<div class="col-md-12 margin_bottom">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid no-padding">
+			    <ul class="nav navbar-nav">
+			      <li class="active" id="active"><a href="#" class="optionMenu" data-menu="General">General</a></li>
+			      <li><a href="#" class="optionMenu" data-menu="Prices">Prices</a></li>
+			      <li><a href="#" class="optionMenu" data-menu="Categories">Categories</a></li> 
+			      <li><a href="#" class="optionMenu" data-menu="Attributes">Attributes</a></li> 
+			    </ul>
+			  </div>
+			</nav>
+		</div>
+		<div class="col-md-12">
+			<div id="region_content"></div>
+		</div>
+	</div>
+</div>
