@@ -16,7 +16,7 @@
           </a>
         </li>
       </ul>
-      <a href="#" class="navTopSubBarAdmin__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new product" id="js-new-product">+ Create a new product</a>
+      <a href="#admin/create/product" class="navTopSubBarAdmin__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new product">+ Create a new product</a>
     </div>
   </div>
 </nav>

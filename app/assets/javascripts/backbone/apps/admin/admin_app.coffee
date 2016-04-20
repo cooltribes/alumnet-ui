@@ -17,6 +17,7 @@
       "admin/features": "featuresList"
       "admin/users/:id": "userShow"
       "admin/products": "productsList"
+      "admin/create/product": "createProduct"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
       "admin/emails":"emailsNew"
@@ -65,6 +66,9 @@
     productsList: ->
       controller = new AdminApp.ProductsList.Controller
       controller.productsList()
+    createProduct: ->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.showLayoutCreate()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
     dashboardPosts: ->
