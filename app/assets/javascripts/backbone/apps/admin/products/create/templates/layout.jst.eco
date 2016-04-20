@@ -1,8 +1,17 @@
+<div class="container-fluid marginBody">
+	<div class="row">
+		<div class="text-left col-md-2">
+	      	<a href="#admin/products" class="btn btn-lg btn-import margin_left_small paddingButton">
+	        	<span class="icon-char">‹</span>Go back
+	      	</a>
+	    </div>
+	</div>
+</div>
 <div class="container createProduct">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Create Product - <span id="step"=><%= @step %></span></h1>
-			<hr>
+			<h2>Create Product - <span id="step"=><%= @step %></span></h2>
+			<hr class="no_margin_top">
 		</div>
 		<div class="col-md-12 margin_bottom">
 			<nav class="navbar navbar-default">

@@ -3,26 +3,9 @@
 		<div class="form-group has-feedback formCreate">
 			<div class="row">
 				<div class="col-md-12 margin_bottom_medium categories">
-					<div id="list-categories">
-						<li class="list margin_bottom_small">
-							<input type="checkbox" value="">
-							<span>Category </span>
-							<ul class="list">
-								<li>
-									<input type="checkbox" value="">
-									<span>Option </span>
-								</li>
-								<li>
-									<input type="checkbox" value="">
-									<span>Option </span>
-								</li>
-								<li>
-									<input type="checkbox" value="">
-									<span>Option </span>
-								</li>
-							</ul>
-						</li>
-					</div>
+					<ul id="list-categories">
+						
+					</ul>
 				</div>			
 			</div>
 		</div>

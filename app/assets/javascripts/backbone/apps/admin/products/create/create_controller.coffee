@@ -21,6 +21,10 @@
       view = new ProductCreate.Categories
       @layoutView.content_region.show(view)
 
+    showAttributes: ->
+      view = new ProductCreate.Attributes
+      @layoutView.content_region.show(view)
+
     showRegionMenu: (valueClick) ->
       self = @
       switch valueClick
@@ -30,7 +34,6 @@
           self.showPrices()
         when "Categories"
           self.showCategories()
-        # when Attributes
+        when "Attributes"
+          self.showAttributes()
          
-
-      
