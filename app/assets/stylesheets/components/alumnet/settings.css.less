@@ -1,0 +1,138 @@
+@import 'conf/conf.css.less';
+
+.submenuSettings{
+	position: relative;
+	padding: 5px 0 0 0;
+	list-style: outside none none;
+	margin-bottom: 0px;
+
+	&__item{
+		position: relative;
+    display: block;
+    float: left;
+    list-style: none;
+     &__link
+    {
+	    font-size: 18px;
+	    padding: 0 9px 0px 9px;
+	    color: #667E8A;
+	    font-weight: 200;
+
+	    &--active
+      {
+      	color: @black;
+        background-color: transparent;
+        -webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        -moz-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        text-decoration: none;
+        padding: 20px 10px;
+      }
+
+      &:hover,&:focus{
+        text-decoration: none;
+      }
+
+	    &--invoices{
+	    	font-size: 30px;
+		    padding: 0px 30px 0px 0px;
+		    color: #667E8A;
+		    font-weight: lighter;
+	    }
+
+	    &--activeInvoices
+      {
+      	color: @black;
+        background-color: transparent;
+        -webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        -moz-box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        box-shadow: 0 3px 0 0 rgba(0,0,0,.75);
+        text-decoration: none;
+        padding: 0px 30px 19px 0px;
+      }
+	  }
+	}
+}
+
+.invoices{
+
+	&__advanceFilters{
+		background-color: #DAE3E8;
+		margin-bottom: 20px;
+	}
+
+	.filter{
+		.input-lg + .form-control-feedback {
+    	width: 80px;	
+		}
+	}
+	.advancedFiltersButton{
+		.btn-addFilter{
+			padding: 12px 15px 12px 10px;
+			margin-top: 0px;
+			&:hover{
+				background-color: @blue;
+				color: @white;
+			}
+
+		}
+	}
+	.buttonShow{
+		width: 100%;
+    padding: 10px 16px;
+    font-size: 18px;
+	}
+
+	.buttonClose{
+		margin-top: 15px;
+	}
+}
+
+.detailBill{
+	.titleDetails{
+		color: #667E8A;
+		font-weight: lighter;
+	}
+	.dateDetails{
+		color: @black;
+		font-size: 20px;
+		font-weight: lighter;
+	}
+
+	.detailsTable{
+		tbody >	tr{
+		    border-top: 1px solid black;
+		}
+		.thProducto{
+			width: 50em;
+			padding: 10px 0px;
+		}
+		.thNumbers{
+			width: 10em;
+			padding: 10px 0px;
+		}
+
+		.tdProducto{
+			padding: 10px 0px;
+		}
+		.tdNumbers{
+			padding: 10px 0px;
+		}
+	}
+	.buttonPrint{
+		padding: 10px 25px 10px 25px;
+		font-size: 18px;
+	}
+
+	.statusColor{
+		&__green{
+          	color: @green;
+      	}
+      	&__red{
+          	color: #AE0001;
+      	}
+      	&__yellow{
+          	color: @yellow;
+      	}
+	}
+}

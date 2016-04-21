@@ -1,0 +1,119 @@
+
+@import 'conf/conf.css.less';
+
+.createProduct{
+	.navbar-default .navbar-nav > li > a{
+		color: @black;
+		font-size: 16px; 
+
+		&:active, &:focus{
+			background-color: #E6E6E8;
+			border-right: 1px solid #CCCCCC;
+   			border-left: 1px solid #CCCCCC;	
+		}
+	}
+		
+	.formCreate{
+		background-color: @white;
+		color: @black;
+		border: 1px solid @gray;
+		height: 100%;
+		padding: 20px 10px;
+		.labelAlign{
+			text-align: left;
+		}
+		.control-label{
+			color: black;
+	   	 	font-family: sans-serif;
+	      	font-weight: 400;
+		}
+		.inputProduct{
+			height: 35px;
+			padding: 5px 15px 5px 5px;
+		}
+		.selectProduct{
+			-moz-appearance: none;
+    		-webkit-appearance: none;
+    		box-shadow: none;
+    		background-color: white;
+    		height: 35px;
+    		border-radius: 0px;
+    		padding: 5px 15px 5px 5px;
+    		border: 1px solid #CCCCCC;
+    		width: 172px;
+		}
+		.icoDropdown{
+			margin-left: -25px;
+		}
+		.imageProduct{
+			.form-group{
+				height: 160px;
+				margin-bottom: 5px;
+			}
+			.upload{
+				padding: 0;
+			    left: 0;
+			    height: 155px;
+			    cursor: pointer;
+			}
+			.uploadFile{
+				position: relative;
+				text-align: center;
+			    background-color: #2099d0;
+			    color: #fff;
+			    width: 100%;
+			    .uploadImage{
+			    	position: relative;
+    				z-index: 2;
+			    }
+			}
+			.uploadLabel{
+				position: relative;
+			    z-index: 3;
+			    color: #fff;
+			    font-weight: 500;
+			    font-size: 17px;
+			    top: -116px;
+			    text-align: center;
+			    cursor: pointer;
+			    small{
+			    	font-size: 70%;
+			    }
+			}
+		}
+	}
+	.buttonsProduct{
+		border-radius: 0px;
+		width: 100%;
+		font-size: 16px; 
+	}
+
+	.fixed {
+		position: fixed;
+	    top: 65px;
+	    width: 18.5em;
+
+	}
+	.active{
+		background-color: #E6E6E8;
+		border-right: 1px solid #CCCCCC;
+   		border-left: 1px solid #CCCCCC;	
+	}
+
+	.categories{
+		 padding: 0px 30px;
+		.list{
+			list-style: none;
+		}
+	}
+}
+		
+@media (min-width: @media-smedium-max) {
+ 	.createProduct{
+		.formCreate{
+			.labelAlign{
+		      	text-align: right;
+			}
+		}	
+	}
+}

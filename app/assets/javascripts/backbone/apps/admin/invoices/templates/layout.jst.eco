@@ -1,0 +1,133 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Invoices</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="submenuSettings">
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(0)%>" data-menu="all">
+						<span>All</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(1)%>" data-menu="paid">
+						<span>Paid</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(2)%>" data-menu="pending">
+						<span>Pending</span>
+					</a>
+				</li>
+				<li role="presentation" class="submenuSettings__item">
+					<a href="#" class="optionMenu submenuSettings__item__link--invoices submenuSettings__item__link<%= @classOf(3)%>" data-menu="canceled">
+						<span>Canceled</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr class="no-margin-bottom">
+</div>
+
+<div id="region_filters">
+
+	<div class="container-fluid invoices__advanceFilters hide" id="formAdvancedFilters">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container">
+					<div class="row row margin_top_xsmall margin_bottom_small">
+						<div class="col-md-4 col-md-offset-4 text-center">
+							<h2>Advanced filters</h2>
+						</div>
+						<div class="col-md-4 text-right">
+							<button class="btn btn-default-gray margin_top_small" type="button" id="js-close">CLOSE <span class="glyphicon glyphicon-remove"></span></button>	
+						</div>
+					</div>
+					<div class="row margin_bottom_small margin_top_small">
+						<div class="col-md-3">
+							<select type="text" class="filters__input filters__input--lg form-control input-lg">
+								<option value="All">All</option>
+							</select>
+							<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="filters__input--lg form-control input-lg" placeholder="First name">
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="filters__input--lg form-control input-lg" placeholder="Last name">
+						</div>
+
+					</div>
+					<div class="row margin_bottom invoices">
+						<div class="col-md-5">
+							<select type="text" class="filters__input filters__input--lg form-control input-lg">
+								<option value="All">All</option>
+							</select>
+							<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+
+						</div>
+						<div class="col-md-5">
+							<select type="text" class="filters__input filters__input--lg form-control input-lg">
+								<option value="All">All</option>
+							</select>
+							<span class="ico-triangle-down filters__selectIcon filters__selectIcon--grey" aria-hidden="true"></span>
+
+						</div>
+						<div class="col-md-2">
+							<button class="buttonShow btn btn-primary" type="button">SHOW</button>	
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+			
+
+	<div class="container margin_top">
+		<div class="row invoices">
+			<div class="col-md-3 filter">
+				<input type="text" class="filters__input--lg form-control input-lg" placeholder="From">
+				<span class="formANet__input__icon fa fa-calendar form-control-feedback"></span>
+			</div>
+			<div class="col-md-3 filter">
+				<input type="text" class="filters__input--lg form-control input-lg" placeholder="To">
+				<span class="formANet__input__icon fa fa-calendar form-control-feedback"></span>
+			</div>
+			<div class="col-md-3 col-md-offset-3 text-right advancedFiltersButton">
+				<button class="btn-addFilter" type="button" id="advancedFilters">ADVANCED FILTERS</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div id="region_content">
+			
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row invoices">
+				<div class="col-md-3 advancedFiltersButton">
+					<button class="btn-addFilter" type="button">
+						<span class="fa fa-file-excel-o"></span> DOWNLOAD SELECTED AS .CSV
+					</button>
+				</div>
+				<div class="col-md-3 advancedFiltersButton">
+					<button class="btn-addFilter" type="button">
+						<span class="fa fa-file-archive-o"></span> DOWNLOAD SELECTED AS .ZIP
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

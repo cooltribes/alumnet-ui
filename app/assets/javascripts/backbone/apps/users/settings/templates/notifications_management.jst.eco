@@ -1,11 +1,5 @@
 <div class="row">
-  <div class="col-md-12 col-sm-12 text-left">
-   <h2 class="no-margin">Notifications Management</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-12 ">
+  <div class="col-md-12">
     <div class="row margin_top_medium">
       <div class="col-md-3 col-sm-4 hidden-xs">
         <div class="notificationsAffix">

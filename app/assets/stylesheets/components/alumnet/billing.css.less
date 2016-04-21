@@ -1,0 +1,81 @@
+@import 'conf/conf.css.less';
+
+
+.billingTable{
+
+  tr {
+    border: none;
+    display: block;
+    padding-bottom: 2px;
+  }
+  
+  table& > thead > tr{
+    padding: 10px;
+    & > th{
+      font-size: 15px;
+      color: #667E8A;
+      font-weight: 200;
+      border: none;
+
+      &:nth-child(1){
+        width: 25em;
+      }
+      &:nth-child(2){
+        width: 30em;      
+      }
+      &:nth-child(3){
+        width: 15em;      
+      }
+      &:nth-child(4){
+        width: 15em;      
+      }
+      &:nth-child(5){
+        width: 15em;      
+      }
+    }
+  }
+
+  table& > tbody > tr {
+    background-color: @white;
+    padding: 10px;
+    margin-bottom: 2px;
+    color: @black;
+
+    &:hover{
+      background-color: @blue;
+      color: @white;
+    }
+
+    & > td {
+      border: none;
+      vertical-align: inherit;
+      font-weight: 200;
+
+      &:nth-child(1){
+        width: 12em;
+        font-size: 22px;
+        a {
+          display: block;
+        }
+      }
+      &:nth-child(2){
+        width: 22em; 
+        font-size: 15px;     
+      }
+      &:nth-child(3){
+        width: 12em; 
+        font-size: 15px;     
+      }
+      &:nth-child(4){
+        width: 7em; 
+        font-size: 25px;      
+      }
+      &:nth-child(5){
+        width: 5em;
+        font-size: 25px;
+      }   
+    }
+  }
+}
+
+    

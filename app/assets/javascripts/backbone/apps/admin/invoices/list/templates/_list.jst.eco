@@ -1,0 +1,104 @@
+<tr>
+  <td>
+    <input type="checkbox">
+  </td>
+
+  <td class="text-left">
+    <b> Stephen</b><br>
+    <b> Stephenapoulos</b>
+  </td>
+
+  <td class="text-left">
+    <span>
+    <span> Yearly membership</span>
+  </td>
+
+  <td class="text-left">
+    <span>PayPal</span>
+  </td>
+
+  <td class="text-left">
+    <b>France,</b><br>
+    <span>Paris</span>
+  </td>
+
+  <td class="statusColor__yellow text-left">
+    <i class="fa fa-circle"></i>
+    <span>Pending</span>
+  </td>
+
+  <td class="text-right">
+    <i class="fa fa-file-text-o margin_right_xsmall"> </i>
+    <i class="fa fa-print"></i>
+  </td>
+</tr>
+
+
+<tr class="success">
+  <td>
+    <input type="checkbox">
+  </td>
+
+  <td class="text-left">
+    <b> Stephen</b><br>
+    <b> Stephenapoulos</b>
+  </td>
+
+  <td class="text-left">
+    <span>
+    <span> Yearly membership</span>
+  </td>
+
+  <td class="text-left">
+    <span>PayPal</span>
+  </td>
+
+  <td class="text-left">
+    <b>France,</b><br>
+    <span>Paris</span>
+  </td>
+
+  <td class="statusColor__green text-left">
+    <i class="fa fa-circle"> </i>
+    <span> Paid</span>
+  </td>
+
+  <td class="text-right">
+    <i class="fa fa-file-text-o margin_right_xsmall"> </i>
+    <i class="fa fa-print"></i>
+  </td>
+</tr>
+
+
+<tr class="danger">
+  <td>
+    <input type="checkbox">
+  </td>
+
+  <td class="text-left">
+    <b> Stephen</b><br>
+    <b> Stephenapoulos</b>
+  </td>
+
+  <td class="text-left">
+    <span> Yearly membership</span>
+  </td>
+
+  <td class="text-left">
+    <span>PayPal</span>
+  </td>
+
+  <td class="text-left">
+    <b>France,</b><br>
+    <span>Paris</span>
+  </td>
+
+  <td class="statusColor__red text-left">
+    <i class="fa fa-circle"> </i>
+    <span> Canceled</span>
+  </td>
+
+  <td class="text-right statusColor__red">
+    <i class="fa fa-trash-o"></i>
+  </td>
+</tr>

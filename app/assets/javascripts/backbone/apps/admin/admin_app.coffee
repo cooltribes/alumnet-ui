@@ -17,6 +17,7 @@
       "admin/features": "featuresList"
       "admin/users/:id": "userShow"
       "admin/products": "productsList"
+      "admin/create/product": "createProduct"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
       "admin/emails":"emailsNew"
@@ -28,6 +29,7 @@
       "admin/categories": "categoriesList"
       "admin/attributes": "attributesList"
       "admin/attributes/new": "attributesCreate"
+      "admin/invoices": "invoices"
 
   API =
     usersList: ->
@@ -69,6 +71,9 @@
     productsList: ->
       controller = new AdminApp.ProductsList.Controller
       controller.productsList()
+    createProduct: ->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.showLayoutCreate()
     dashboardUsers: ->
       new AdminApp.Dashboard.Users.Controller
     dashboardPosts: ->
@@ -100,6 +105,9 @@
     attributesCreate: ->
       controller = new AdminApp.AttributesCreate.Controller
       controller.create()
+    invoices:->
+      controller = new AdminApp.Invoices.Controller
+      controller.showLayoutInvoices("all")
 
   AlumNet.addInitializer ->
     new AdminApp.Router

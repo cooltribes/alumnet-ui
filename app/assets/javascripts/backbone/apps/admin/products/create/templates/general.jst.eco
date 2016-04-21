@@ -1,0 +1,107 @@
+<div class="row">
+	<div class="col-md-9">
+		<div class="form-group has-feedback formCreate">
+			<div class="row">
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label margin_top_xsmall">SKU</label>
+						</div>
+						<div class="col-md-10 text-left">
+							<input type="text" name="sku" id="sku" class="inputProduct" value="<%= @sku %>">
+              				<span class="help-block hidden"></span>
+						</div>
+					</div>	
+				</div>
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label margin_top_xsmall">Name</label>
+						</div>
+						<div class="col-md-10 text-left">
+							<input type="text" name="name" id="name" class="inputProduct" value="<%= @name %>">
+              				<span class="help-block hidden"></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label margin_top_xsmall">Description</label>
+						</div>
+						<div class="col-md-6 text-left">
+            				<textarea name="description" id="description" class="form-control input-lg" rows="5" style="resizenone" value="<%= @description %>"></textarea>
+						</div>
+					</div>	
+				</div>
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label margin_top_xsmall">Image</label>
+						</div>
+						<div class="col-md-4 text-left imageProduct">
+				            <div class="form-group has-feedback">
+				              	<div class="add-logo">
+					                <label class="upload uploadFile">
+					                  <input type="file" name="logo" id="logo">
+					                  <div class="uploadImage">
+					                    <img src="" alt="" width="100%" height="155px" id="preview-logo">
+					                  </div>
+					                </label>
+					                <div class="uploadLabel text-center" id="js-span-file">
+					                  <span class="glyphicon glyphicon-open"></span>
+					                  <span>Upload Image</span><br>
+					                  <small>Restrictions, e.g. jpg, gif, max 2000px wide.</small>
+					                </div>
+				              	</div>
+				            </div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label">Status</label>
+						</div>
+						<div class="col-md-10 text-left">
+            				<form>
+							  <input type="radio" name="status" value="active" checked> active &nbsp;
+							  <input type="radio" name="status" value="inactive"> inactive &nbsp;
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 margin_bottom_medium">
+					<div class="row">
+						<div class="col-md-2 labelAlign">
+							<label class="control-label">Highlight</label>
+						</div>
+						<div class="col-md-10 text-left">
+            				<form>
+							  <input type="radio" name="highlight" value="yes" checked> yes &nbsp;
+							  <input type="radio" name="highlight" value="no"> no &nbsp;
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 text-center">
+		<div id="smoothScroll">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#" class="btn btn-primary btn-lg buttonsProduct">CREATE PRODUCT</a>
+				</div>
+			</div>
+			<div class="row margin_top">
+				<div class="col-md-12">
+					<a href="#" class="btn btn-default btn-lg buttonsProduct">SAVE AND CONTINUE</a>
+				</div>
+				<div class="col-md-12">
+					<a href="#" class="btn btn-default btn-lg buttonsProduct">CLEAR FORM</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

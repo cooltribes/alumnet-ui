@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-9">
+        <div class="formCreate">
+            <div class="row">
+                <div class="col-xs-5">
+                    <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
+                        <option value="1">Item 1</option>
+                        <option value="2">Item 5</option>
+                        <option value="2">Item 2</option>
+                        <option value="2">Item 4</option>
+                        <option value="3">Item 3</option>
+                    </select>
+                </div>
+                
+                <div class="col-xs-2 text-center">
+                    <button type="button" id="js_right_All_1" class="btn btn-primary margin_top_xsmall"><i class="glyphicon glyphicon-forward"></i></button><br>
+                    <button type="button" id="js_right_Selected_1" class="btn btn-primary margin_top_xsmall"><i class="glyphicon glyphicon-chevron-right"></i></button><br>
+                    <button type="button" id="js_left_Selected_1" class="btn btn-primary margin_top_xsmall"><i class="glyphicon glyphicon-chevron-left"></i></button><br>
+                    <button type="button" id="js_left_All_1" class="btn btn-primary margin_top_xsmall"><i class="glyphicon glyphicon-backward"></i></button>
+                </div>
+                
+                <div class="col-xs-5">
+                    <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 text-center">
+        <div id="smoothScroll">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="#" class="btn btn-primary btn-lg buttonsProduct">SAVE</a>
+                </div>
+            </div>
+            <div class="row margin_top_xsmall">
+                <div class="col-md-12">
+                    <a href="#" class="btn btn-default btn-lg buttonsProduct">CLEAR FORM</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

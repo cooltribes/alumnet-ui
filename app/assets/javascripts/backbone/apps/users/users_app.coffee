@@ -12,6 +12,10 @@
       "users/:id/business-exchange": "userBusiness"
       "users/:id/profile": "publicProfile"
       "users/:id/notifications": "userNotifications"
+      "users/:id/settings": "userSettings"
+      "privacy/settings": "settings"
+      "users/1/details-bill": "detailsBill"
+      "users/shopping-cart": "shoppingCart"
 
   API =
     userPost: (user_id, id)->
@@ -71,6 +75,26 @@
       AlumNet.setTitle('Manage notifications')
       controller = new UsersApp.Notifications.Controller
       controller.showNotifications(id)
+
+    userSettings: (id)->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+
+    settings: ()->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+
+    detailsBill: ()->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+
+    detailsBill: ()->
+      controller = new UsersApp.Settings.Controller
+      controller.showLayoutSettings(id, "manageNotifications")
+
+    shoppingCart: ()->
+      controller = new UsersApp.ShoppingCart.Controller
+      controller.showLayoutShoppingCart()
 
   AlumNet.on "user:posts", (user_id) ->
     AlumNet.navigate("user/#{user_id}/posts")

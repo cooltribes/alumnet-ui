@@ -1,8 +1,8 @@
-@AlumNet.module 'PrivacyApp.Settings', (Settings, @AlumNet, Backbone, Marionette, $, _) ->
+@AlumNet.module 'UsersApp.Privacy', (Privacy, @AlumNet, Backbone, Marionette, $, _) ->
 
 
-  class Settings.Privacy extends Marionette.ItemView
-    template: 'privacy/settings/templates/_privacy'
+  class Privacy.PrivacyView extends Marionette.ItemView
+    template: 'users/settings/templates/_privacy'
     tagName: "li"
 
     # events:
@@ -71,8 +71,8 @@
       @stickit()
 
 
-  class Settings.Empty extends Marionette.ItemView
-    template: 'privacy/settings/templates/_empty'
+  class Privacy.Empty extends Marionette.ItemView
+    template: 'users/settings/templates/empty_privacy'
     
     initialize: (options)->
       @message = options.message
@@ -80,13 +80,13 @@
     templateHelpers: ->
       message: @message 
 
-  class Settings.View extends Marionette.CompositeView
-    template: 'privacy/settings/templates/privacy_settings'
-    childView: Settings.Privacy      
+  class Privacy.View extends Marionette.CompositeView
+    template: 'users/settings/templates/privacy_container'
+    childView: Privacy.PrivacyView      
     childViewContainer: "#js-list"
-    emptyView: Settings.Empty
+    emptyView: Privacy.Empty
     emptyViewOptions: 
-      message: "Currently you can not access your privacy settings, please contact the site administrator. (Your configuration is missing in the database)"
+      message: "Currently you can not access Privacyyour privacy settings, please contact the site administrator. (Your configuration is missing in the database)"
 
 
     # onRender: ->

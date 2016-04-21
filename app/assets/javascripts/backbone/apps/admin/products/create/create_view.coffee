@@ -1,112 +1,73 @@
-@AlumNet.module 'AdminApp.ProductsCreate', (ProductsCreate, @AlumNet, Backbone, Marionette, $, _) ->
-  class ProductsCreate.Layout extends Marionette.LayoutView
-    template: 'admin/products/list/templates/layout'
-    className: 'container'
+@AlumNet.module 'AdminApp.ProductCreate', (ProductCreate, @AlumNet, Backbone, Marionette, $, _) ->
+  class ProductCreate.Layout extends Marionette.LayoutView
+    template: 'admin/products/create/templates/layout'
+
     regions:
-      table: '#table-region'
-
-  class ProductsCreate.CreateForm extends Marionette.ItemView
-    template: 'admin/products/create/templates/form'
-
-    initialize: ->
-      Backbone.Validation.bind this,
-        valid: (view, attr, selector) ->
-          view.clearErrors(attr)
-        invalid: (view, attr, error, selector) ->
-          view.addErrors(attr, error)
-
-    templateHelpers: ->
-      model = @model
-
-    ui:
-      'cancelLink': '.js-cancel'
-      'submitLink': '.js-save'
+      content_region: "#region_content"
 
     events:
-      'click @ui.cancelLink': 'cancelClicked'
-      'click @ui.submitLink': 'submitClicked'
-      'change #product-image': 'previewImage'
+      'click .optionMenu': 'goOption'
 
-    onRender: ->
-      view = @
-      data = AlumNet.request("categories:entities:select")
-      view.$('.js-categories').select2
-        placeholder: "Select a Category"
-        data: data
-
-    cancelClicked: (e)->
+    initialize: ->
+      @tab = "General"
+  
+    goOption: (e)->  
       e.preventDefault()
+      click = $(e.currentTarget)
+      valueClick = click.attr("data-menu")
+      @tab = valueClick
+      @trigger "navigate:menu", valueClick
+      $("#step").html(@tab)
+      $('#active').removeClass('active')
 
-    submitClicked: (e)->
-      @ui.submitLink.add(@ui.cancelLink).attr("disabled", "disabled")
-      e.preventDefault()
+    templateHelpers: ->
+      step: @tab
 
-      view = @
-      model = @model
+  class ProductCreate.General extends Marionette.LayoutView
+    template: 'admin/products/create/templates/general'
 
-      #Guardar con imagen
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      console.log data
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = @$('#product-image')
-      formData.append('image', file[0].files[0])
-      console.log formData
+    events: 
+      'click #js-span-file' : 'inputFile'
+      'change #logo': 'previewLogo'
 
-      options_for_save =
-        wait: true
-        contentType: false
-        processData: false
-        data: formData
-        success: (model, response, options)->
-          $.growl.notice({ message: "Product successfully created" })
-          AlumNet.trigger "admin:products"
-      model.save(formData, options_for_save)
-
-
-      
-      # data = Backbone.Syphon.serialize(this)
-      # @model.set(data)
-      # if @model.isValid(true)
-      #   @model.save data,
-      #     success: (model)->
-      #       $.growl.notice({ message: "Product successfully created" })
-      #       AlumNet.trigger "admin:products"
-      #     error: (model, response)->
-      #       errors = response.responseJSON
-      #       _.each errors, (value, key, list)->
-      #         view.clearErrors(key)
-      #         view.addErrors(key, value[0])
-            # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
-
-
-      # @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
-
-    processData: (data)->
-      formData = new FormData()
-      _.each data, (value, key, list)->
-        formData.append(key, value)
-      formData
-
-    clearErrors: (attr)->
-      $el = @$("[name=#{attr}]")
-      $group = $el.closest('.form-group')
-      $group.removeClass('has-error')
-      $group.find('.help-block').html('').addClass('hidden')
-
-    addErrors: (attr, error)->
-      $el = @$("[name=#{attr}]")
-      $group = $el.closest('.form-group')
-      $group.addClass('has-error')
-      $group.find('.help-block').html(error).removeClass('hidden')
-      @ui.submitLink.add(@ui.cancelLink).removeAttr("disabled")
-
-    previewImage: (e)->
-      input = @.$('#product-image')
-      preview = @.$('#prewiev-product-image')
+    previewLogo: (e)->
+      input = @.$('#logo')
+      preview = @.$('#preview-logo')
       if input[0] && input[0].files[0]
         reader = new FileReader()
         reader.onload = (e)->
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
+
+    inputFile: (e)->
+      e.preventDefault()
+      $('#logo').click()
+
+    initialize: ->
+      $(window).scroll(()->
+        if ($(this).scrollTop() > 260) 
+          $('#smoothScroll').addClass("fixed").fadeIn()
+        else $('#smoothScroll').removeClass("fixed"))
+
+  class ProductCreate.Prices extends ProductCreate.General
+    template: 'admin/products/create/templates/prices'
+
+  class ProductCreate.Category extends Marionette.ItemView
+    template: 'admin/products/create/templates/_category'
+
+  class ProductCreate.Categories extends ProductCreate.General
+    template: 'admin/products/create/templates/categories'
+    childView: ProductCreate.Category
+    childViewContainer: "#list-categories"
+
+  class ProductCreate.Attributes extends ProductCreate.General
+    template: 'admin/products/create/templates/attributes'
+
+    onShow: ->
+      $('.js-multiselect').multiselect({
+        right: '#js_multiselect_to_1'
+        rightAll: '#js_right_All_1'
+        rightSelected: '#js_right_Selected_1'
+        leftSelected: '#js_left_Selected_1'
+        leftAll: '#js_left_All_1'
+      })
