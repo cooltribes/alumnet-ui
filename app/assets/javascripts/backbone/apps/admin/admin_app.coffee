@@ -17,7 +17,7 @@
       "admin/features": "featuresList"
       "admin/users/:id": "userShow"
       "admin/products": "productsList"
-      "admin/create/product": "createProduct"
+      "admin/products/create": "createProduct"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
       "admin/emails":"emailsNew"
@@ -30,6 +30,7 @@
       "admin/attributes": "attributesList"
       "admin/attributes/new": "attributesCreate"
       "admin/invoices": "invoices"
+      "admin/products/:id/update": "productUpdate"
 
   API =
     usersList: ->
@@ -108,6 +109,9 @@
     invoices:->
       controller = new AdminApp.Invoices.Controller
       controller.showLayoutInvoices("all")
+    productUpdate: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.update(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -153,3 +157,7 @@
   AlumNet.on "admin:attributes", ->
     AlumNet.navigate("admin/attributes")
     API.attributesList()
+
+  AlumNet.on "admin:products:update", (id)->
+    AlumNet.navigate("admin/products/#{id}/update")
+    API.productUpdate(id)

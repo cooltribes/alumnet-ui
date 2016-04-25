@@ -26,13 +26,17 @@
   class ProductCreate.General extends Marionette.LayoutView
     template: 'admin/products/create/templates/general'
 
+    ui:
+      'createButton': '.js-create'
+
     events: 
       'click #js-span-file' : 'inputFile'
-      'change #logo': 'previewLogo'
+      'change #product_image': 'previewLogo'
+      'click .js-create': 'createClicked'
 
     previewLogo: (e)->
-      input = @.$('#logo')
-      preview = @.$('#preview-logo')
+      input = @.$('#product_image')
+      preview = @.$('#preview_image')
       if input[0] && input[0].files[0]
         reader = new FileReader()
         reader.onload = (e)->
@@ -41,13 +45,51 @@
 
     inputFile: (e)->
       e.preventDefault()
-      $('#logo').click()
+      $('#product_image').click()
 
-    initialize: ->
+    initialize: (options)->
+      @model = options.model
       $(window).scroll(()->
         if ($(this).scrollTop() > 260) 
           $('#smoothScroll').addClass("fixed").fadeIn()
         else $('#smoothScroll').removeClass("fixed"))
+
+    onRender: ->
+      @$("#status_#{@model.get('status')}").attr('checked', 'checked')
+      @$("#highlight_#{@model.get('highlight')}").attr('checked', 'checked')
+
+    templateHelpers: ->
+      model = @model
+      productImage: ->
+        if model.get('image')
+          model.get('image').image.card.url
+
+    createClicked: (e)->
+      @ui.createButton.attr("disabled", "disabled")
+      e.preventDefault()
+
+      view = @
+      model = @model
+      console.log 'model'
+      console.log model
+
+      #Guardar con imagen
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = @$('#product_image')
+      formData.append('image', file[0].files[0])
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          $.growl.notice({ message: "Product successfully created" })
+          AlumNet.trigger "admin:products:update", model.id
+      model.save(formData, options_for_save)
 
   class ProductCreate.Prices extends ProductCreate.General
     template: 'admin/products/create/templates/prices'

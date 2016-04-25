@@ -1,3 +1,12 @@
+<div class="container-fluid marginBody">
+	<div class="row margin_bottom">
+		<div class="col-md-12 text-right">
+	      	<a href="#admin/products/create" class="btn btn-lg btn-import paddingButton">
+	        	<span class="icon-char">+</span>Create product
+	      	</a>
+	    </div>
+	</div>
+</div>
 <div class="row">
   <div id="table-region"></div>
   <div id="container-modal"></div>

@@ -9,8 +9,25 @@
       @layoutView.on "navigate:menu", (valueClick)->
         self.showRegionMenu(valueClick)
 
+    update: (id)->
+      product = AlumNet.request('product:find', id)
+      @layoutView = new ProductCreate.Layout
+      AlumNet.mainRegion.show(@layoutView)
+      @showUpdate(product)
+
+      self = @
+      @layoutView.on "navigate:menu", (valueClick)->
+        self.showRegionMenu(valueClick)
+
     showGeneral: ->
+      product = new AlumNet.Entities.Product
       view = new ProductCreate.General
+        model: product
+      @layoutView.content_region.show(view)
+
+    showUpdate: (product)->
+      view = new ProductCreate.General
+        model: product
       @layoutView.content_region.show(view)
 
     showPrices: ->
