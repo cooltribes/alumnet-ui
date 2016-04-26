@@ -31,6 +31,7 @@
       "admin/attributes/new": "attributesCreate"
       "admin/invoices": "invoices"
       "admin/products/:id/update": "productUpdate"
+      "admin/products/:id/prices": "productPrices"
 
   API =
     usersList: ->
@@ -112,6 +113,9 @@
     productUpdate: (id)->
       controller = new AdminApp.ProductCreate.Controller
       controller.update(id)
+    productPrices: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.prices(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -161,3 +165,7 @@
   AlumNet.on "admin:products:update", (id)->
     AlumNet.navigate("admin/products/#{id}/update")
     API.productUpdate(id)
+
+  AlumNet.on "admin:products:prices", (id)->
+    AlumNet.navigate("admin/products/#{id}/prices")
+    API.productPrices(id)

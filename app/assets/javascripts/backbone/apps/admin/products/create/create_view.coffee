@@ -28,11 +28,13 @@
 
     ui:
       'createButton': '.js-create'
+      'continueButton': '.js-continue'
 
     events: 
       'click #js-span-file' : 'inputFile'
       'change #product_image': 'previewLogo'
       'click .js-create': 'createClicked'
+      'click .js-continue': 'continueClicked'
 
     previewLogo: (e)->
       input = @.$('#product_image')
@@ -48,6 +50,7 @@
       $('#product_image').click()
 
     initialize: (options)->
+      AlumNet.setTitle('Product details')
       @model = options.model
       $(window).scroll(()->
         if ($(this).scrollTop() > 260) 
@@ -70,8 +73,6 @@
 
       view = @
       model = @model
-      console.log 'model'
-      console.log model
 
       #Guardar con imagen
       formData = new FormData()
@@ -87,12 +88,79 @@
         processData: false
         data: formData
         success: (model, response, options)->
-          $.growl.notice({ message: "Product successfully created" })
+          $.growl.notice({ message: "Product successfully saved!" })
           AlumNet.trigger "admin:products:update", model.id
       model.save(formData, options_for_save)
 
-  class ProductCreate.Prices extends ProductCreate.General
+    continueClicked: (e)->
+      @ui.continueButton.attr("disabled", "disabled")
+      e.preventDefault()
+
+      view = @
+      model = @model
+
+      #Guardar con imagen
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+      file = @$('#product_image')
+      formData.append('image', file[0].files[0])
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          $.growl.notice({ message: "Product successfully saved!" })
+          AlumNet.trigger "admin:products:prices", model.id
+      model.save(formData, options_for_save)
+
+  class ProductCreate.Prices extends Marionette.ItemView
     template: 'admin/products/create/templates/prices'
+
+    ui:
+      'saveButton': '.js-save'
+      'continueButton': '.js-continue'
+
+    events:
+      'click .js-save': 'saveClicked'
+      'click .js-continue': 'continueClicked'
+
+    initialize: (options)->
+      AlumNet.setTitle('Product prices')
+      $(window).scroll(()->
+        if ($(this).scrollTop() > 260) 
+          $('#smoothScroll').addClass("fixed").fadeIn()
+        else $('#smoothScroll').removeClass("fixed"))
+
+    templateHelpers: ->
+      selected: (option, value)->
+        if option == value then 'selected' else ''
+
+    saveClicked: (e)->
+      @ui.saveButton.attr("disabled", "disabled")
+      e.preventDefault()
+
+      view = @
+      model = @model
+
+      #Guardar con imagen
+      formData = new FormData()
+      data = Backbone.Syphon.serialize(this)
+      _.forEach data, (value, key, list)->
+        formData.append(key, value)
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          $.growl.notice({ message: "Product successfully saved!" })
+          AlumNet.trigger "admin:products:prices", model.id
+      model.save(formData, options_for_save)
 
   class ProductCreate.Category extends Marionette.ItemView
     template: 'admin/products/create/templates/_category'

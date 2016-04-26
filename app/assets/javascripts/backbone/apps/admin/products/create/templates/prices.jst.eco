@@ -1,99 +1,102 @@
-<div class="row">
-	<div class="col-md-9">
-		<div class="form-group has-feedback formCreate">
-			<div class="row">
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Sale Price</label>
-						</div>
-						<div class="col-md-10 text-left">
-							<input type="text" name="salePrice" id="salePrice" class="inputProduct">
-              				<span class="help-block hidden"></span>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Tax Rule</label>
-						</div>
-						<div class="col-md-10 text-left">
-							<select name="product_type" class="selectProduct">
-					            <option value="0">No Tax</option>
-					            <option value="1">Automatic</option>
-					         </select>
-					        <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
-              				<span class="help-block hidden"></span>
+<form>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="form-group has-feedback formCreate">
+				<div class="row">
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Sale Price</label>
+							</div>
+							<div class="col-md-10 text-left">
+								<input type="text" name="sale_price" id="sale_price" class="inputProduct" value="<%= @sale_price %>">
+	              <span class="help-block hidden"></span>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Tax Rule</label>
+							</div>
+							<div class="col-md-10 text-left">
+								<select name="tax_rule" class="selectProduct">
+						            <option value="no_tax" <%= @selected("no_tax", @tax_rule) %>>No Tax</option>
+						            <option value="automatic" <%= @selected("automatic", @tax_rule) %>>Automatic</option>
+						         </select>
+						        <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
+	              				<span class="help-block hidden"></span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Tax Value</label>
-						</div>
-						<div class="col-md-6 text-left">
-            				<input type="text" name="taxValue" id="taxValue" class="inputProduct">
-              				<span class="help-block hidden"></span>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Discount Type</label>
-						</div>
-						<div class="col-md-10 text-left">
-							<select name="product_type" class="selectProduct">
-					            <option value="0">Percentage</option>
-					            <option value="1">Amount</option>
-					         </select>
-					        <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
-              				<span class="help-block hidden"></span>
-						</div>
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Tax Value</label>
+							</div>
+							<div class="col-md-6 text-left">
+        				<input type="text" name="tax_value" id="tax_value" class="inputProduct" value="<%= @tax_value %>">
+          			<span class="help-block hidden"></span>
+							</div>
+						</div>	
 					</div>
-				</div>	
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Discount Value</label>
-						</div>
-						<div class="col-md-6 text-left">
-            				<input type="text" name="discountValue" id="discountValue" class="inputProduct">
-              				<span class="help-block hidden"></span>
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Discount Type</label>
+							</div>
+							<div class="col-md-10 text-left">
+								<select name="discount_type" class="selectProduct">
+			            <option value="no_discount" <%= @selected("no_discount", @discount_type) %>>No discount</option>
+			            <option value="percentage" <%= @selected("percentage", @discount_type) %>>Percentage</option>
+			            <option value="amount" <%= @selected("amount", @discount_type) %>>Amount</option>
+				        </select>
+				        <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
+	          				<span class="help-block hidden"></span>
+							</div>
 						</div>
 					</div>	
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Discount Value</label>
+							</div>
+							<div class="col-md-6 text-left">
+        				<input type="text" name="discount_value" id="discount_value" class="inputProduct" value="<%= @discount_value %>">
+          			<span class="help-block hidden"></span>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-12 margin_bottom_medium">
+						<div class="row">
+							<div class="col-md-2 labelAlign">
+								<label class="control-label margin_top_xsmall">Total Price</label>
+							</div>
+							<div class="col-md-6 text-left">
+	            				<input type="text" name="total_price" id="total_price" class="inputProduct" value="<%= @total_price %>">
+	              				<span class="help-block hidden"></span>
+							</div>
+						</div>	
+					</div>
 				</div>
-				<div class="col-md-12 margin_bottom_medium">
-					<div class="row">
-						<div class="col-md-2 labelAlign">
-							<label class="control-label margin_top_xsmall">Total Price</label>
-						</div>
-						<div class="col-md-6 text-left">
-            				<input type="text" name="taxValue" id="totalPrice" class="inputProduct">
-              				<span class="help-block hidden"></span>
-						</div>
-					</div>	
+			</div>
+		</div>
+		<div class="col-md-3 text-center">
+			<div id="smoothScroll">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#" class="btn btn-primary btn-lg buttonsProduct js-save">SAVE</a>
+					</div>
+				</div>
+				<div class="row margin_top">
+					<div class="col-md-12">
+						<a href="#" class="btn btn-default btn-lg buttonsProduct js-continue">SAVE AND CONTINUE</a>
+					</div>
+					<div class="col-md-12">
+						<a href="#" class="btn btn-default btn-lg buttonsProduct js-clear">CLEAR FORM</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-3 text-center">
-		<div id="smoothScroll">
-			<div class="row">
-				<div class="col-md-12">
-					<a href="#" class="btn btn-primary btn-lg buttonsProduct">SAVE</a>
-				</div>
-			</div>
-			<div class="row margin_top">
-				<div class="col-md-12">
-					<a href="#" class="btn btn-default btn-lg buttonsProduct">SAVE AND CONTINUE</a>
-				</div>
-				<div class="col-md-12">
-					<a href="#" class="btn btn-default btn-lg buttonsProduct">CLEAR FORM</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+</form>
