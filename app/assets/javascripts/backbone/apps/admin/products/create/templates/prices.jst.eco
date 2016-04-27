@@ -4,13 +4,15 @@
 			<div class="form-group has-feedback formCreate">
 				<div class="row">
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
-								<label class="control-label margin_top_xsmall">Sale Price</label>
+								<label class="control-label margin_top_xsmall">Sale Price (€)</label>
 							</div>
-							<div class="col-md-10 text-left">
-								<input type="text" name="sale_price" id="sale_price" class="inputProduct" value="<%= @sale_price %>">
-	              <span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+								<input class="form-control inputProduct" type="text" name="sale_price" id="sale_price" value="<%= @sale_price %>">
+							</div>
+							<div class="col-md-2 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
@@ -20,19 +22,19 @@
 								<label class="control-label margin_top_xsmall">Tax Rule</label>
 							</div>
 							<div class="col-md-10 text-left">
-								<select name="tax_rule" class="selectProduct">
-						            <option value="no_tax" <%= @selected("no_tax", @tax_rule) %>>No Tax</option>
-						            <option value="automatic" <%= @selected("automatic", @tax_rule) %>>Automatic</option>
-						         </select>
-						        <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
-	              				<span class="help-block hidden"></span>
+								<select name="tax_rule" id="tax_rule" class="selectProduct">
+				            <option value="no_tax" <%= @selected("no_tax", @tax_rule) %>>No Tax</option>
+				            <option value="automatic" <%= @selected("automatic", @tax_rule) %>>Automatic</option>
+				        </select>
+						    <span class="ico-triangle-down icoDropdown" aria-hidden="true"></span>
+	              <span class="help-block hidden"></span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12 margin_bottom_medium">
 						<div class="row">
 							<div class="col-md-2 labelAlign">
-								<label class="control-label margin_top_xsmall">Tax Value</label>
+								<label class="control-label margin_top_xsmall">Tax Value (%)</label>
 							</div>
 							<div class="col-md-6 text-left">
         				<input type="text" name="tax_value" id="tax_value" class="inputProduct" value="<%= @tax_value %>">
@@ -46,7 +48,7 @@
 								<label class="control-label margin_top_xsmall">Discount Type</label>
 							</div>
 							<div class="col-md-10 text-left">
-								<select name="discount_type" class="selectProduct">
+								<select name="discount_type" id="discount_type" class="selectProduct">
 			            <option value="no_discount" <%= @selected("no_discount", @discount_type) %>>No discount</option>
 			            <option value="percentage" <%= @selected("percentage", @discount_type) %>>Percentage</option>
 			            <option value="amount" <%= @selected("amount", @discount_type) %>>Amount</option>
@@ -70,7 +72,7 @@
 					<div class="col-md-12 margin_bottom_medium">
 						<div class="row">
 							<div class="col-md-2 labelAlign">
-								<label class="control-label margin_top_xsmall">Total Price</label>
+								<label class="control-label margin_top_xsmall">Total Price (€)</label>
 							</div>
 							<div class="col-md-6 text-left">
 	            				<input type="text" name="total_price" id="total_price" class="inputProduct" value="<%= @total_price %>">

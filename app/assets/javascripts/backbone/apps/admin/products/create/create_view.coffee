@@ -123,10 +123,19 @@
     ui:
       'saveButton': '.js-save'
       'continueButton': '.js-continue'
+      'taxRule': '#tax_rule'
+      'taxValue': '#tax_value'
+      'discountType': '#discount_type'
+      'discountValue': '#discount_value'
+      'salePrice': '#sale_price'
+      'totalPrice': '#total_price'
 
     events:
       'click .js-save': 'saveClicked'
       'click .js-continue': 'continueClicked'
+      'change @ui.taxRule': 'validateTaxRule'
+      'change @ui.discountType': 'validateDiscountType'
+      'keyup @ui.salePrice': 'calculatePrices'
 
     initialize: (options)->
       AlumNet.setTitle('Product prices')
@@ -134,33 +143,68 @@
         if ($(this).scrollTop() > 260) 
           $('#smoothScroll').addClass("fixed").fadeIn()
         else $('#smoothScroll').removeClass("fixed"))
+      @validPrices = true
 
     templateHelpers: ->
       selected: (option, value)->
         if option == value then 'selected' else ''
 
+    onRender: ->
+      @validateTaxRule()
+      @validateDiscountType()
+
+    validateTaxRule: ->
+      if @ui.taxRule.val() == 'no_tax'
+        @ui.taxValue.attr('disabled', 'disabled')
+      else
+        @ui.taxValue.removeAttr('disabled')
+
+    validateDiscountType: ->
+      if @ui.discountType.val() == 'no_discount'
+        @ui.discountValue.attr('disabled', 'disabled')
+      else
+        @ui.discountValue.removeAttr('disabled')
+
+    calculatePrices: (e)->
+      regex  = /^\d*\.?\d*$/
+      salePrice = @ui.salePrice.val()
+      target = $(e.currentTarget)
+      group = $(target.closest('.form-group'))
+      if regex.test(salePrice)
+        group.removeClass("has-error")
+        group.find('.help-block').html('').addClass('hidden')
+        @ui.totalPrice.val(salePrice)
+        @validPrices = true
+      else
+        group.addClass("has-error")
+        group.find('.help-block').html('Invalid format').removeClass('hidden')
+        @ui.totalPrice.val('0')
+        @validPrices = false
+
     saveClicked: (e)->
-      @ui.saveButton.attr("disabled", "disabled")
       e.preventDefault()
+      if @validPrices
+        @ui.saveButton.attr("disabled", "disabled")
+        view = @
+        model = @model
 
-      view = @
-      model = @model
+        #Guardar con imagen
+        formData = new FormData()
+        data = Backbone.Syphon.serialize(this)
+        _.forEach data, (value, key, list)->
+          formData.append(key, value)
 
-      #Guardar con imagen
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-
-      options_for_save =
-        wait: true
-        contentType: false
-        processData: false
-        data: formData
-        success: (model, response, options)->
-          $.growl.notice({ message: "Product successfully saved!" })
-          AlumNet.trigger "admin:products:prices", model.id
-      model.save(formData, options_for_save)
+        options_for_save =
+          wait: true
+          contentType: false
+          processData: false
+          data: formData
+          success: (model, response, options)->
+            $.growl.notice({ message: "Product successfully saved!" })
+            AlumNet.trigger "admin:products:prices", model.id
+        model.save(formData, options_for_save)
+      else
+        $.growl.error({ message: "Invalid parameters" })
 
   class ProductCreate.Category extends Marionette.ItemView
     template: 'admin/products/create/templates/_category'
