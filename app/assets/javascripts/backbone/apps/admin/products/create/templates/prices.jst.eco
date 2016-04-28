@@ -74,13 +74,15 @@
 						</div>	
 					</div>
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">Total Price (€)</label>
 							</div>
-							<div class="col-md-6 text-left">
-	            				<input type="text" name="total_price" id="total_price" class="inputProduct" value="<%= @total_price %>" disabled>
-	              				<span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+	            	<input type="text" name="total_price" id="total_price" class="form-control inputProduct" value="<%= @total_price %>" disabled>
+							</div>
+							<div class="col-md-2 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
@@ -91,12 +93,12 @@
 			<div id="smoothScroll">
 				<div class="row">
 					<div class="col-md-12">
-						<a href="#" class="btn btn-primary btn-lg buttonsProduct js-save">SAVE</a>
+						<a href="#" class="btn btn-primary btn-lg buttonsProduct js-save" data-action="save">SAVE</a>
 					</div>
 				</div>
 				<div class="row margin_top">
 					<div class="col-md-12">
-						<a href="#" class="btn btn-default btn-lg buttonsProduct js-continue">SAVE AND CONTINUE</a>
+						<a href="#" class="btn btn-default btn-lg buttonsProduct js-continue" data-action="continue">SAVE AND CONTINUE</a>
 					</div>
 					<div class="col-md-12">
 						<a href="#" class="btn btn-default btn-lg buttonsProduct js-clear">CLEAR FORM</a>

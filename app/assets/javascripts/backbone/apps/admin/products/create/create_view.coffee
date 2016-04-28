@@ -33,8 +33,9 @@
     events: 
       'click #js-span-file' : 'inputFile'
       'change #product_image': 'previewLogo'
-      'click .js-create': 'createClicked'
-      'click .js-continue': 'continueClicked'
+      'click .js-create': 'submitForm'
+      'click .js-continue': 'submitForm'
+      'click .js-clear': 'clearForm'
 
     previewLogo: (e)->
       input = @.$('#product_image')
@@ -57,6 +58,18 @@
           $('#smoothScroll').addClass("fixed").fadeIn()
         else $('#smoothScroll').removeClass("fixed"))
 
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
     onRender: ->
       @$("#status_#{@model.get('status')}").attr('checked', 'checked')
       @$("#highlight_#{@model.get('highlight')}").attr('checked', 'checked')
@@ -67,8 +80,8 @@
         if model.get('image')
           model.get('image').image.card.url
 
-    createClicked: (e)->
-      @ui.createButton.attr("disabled", "disabled")
+    submitForm: (e)->
+      #@ui.createButton.attr("disabled", "disabled")
       e.preventDefault()
 
       view = @
@@ -89,33 +102,17 @@
         data: formData
         success: (model, response, options)->
           $.growl.notice({ message: "Product successfully saved!" })
-          AlumNet.trigger "admin:products:update", model.id
+          if $(e.currentTarget).data('action') == 'continue'
+            AlumNet.trigger "admin:products:prices", model.id
+          else
+            AlumNet.trigger "admin:products:update", model.id
+
+      model.set(data)
       model.save(formData, options_for_save)
 
-    continueClicked: (e)->
-      @ui.continueButton.attr("disabled", "disabled")
+    clearForm: (e)->
       e.preventDefault()
-
-      view = @
-      model = @model
-
-      #Guardar con imagen
-      formData = new FormData()
-      data = Backbone.Syphon.serialize(this)
-      _.forEach data, (value, key, list)->
-        formData.append(key, value)
-      file = @$('#product_image')
-      formData.append('image', file[0].files[0])
-
-      options_for_save =
-        wait: true
-        contentType: false
-        processData: false
-        data: formData
-        success: (model, response, options)->
-          $.growl.notice({ message: "Product successfully saved!" })
-          AlumNet.trigger "admin:products:prices", model.id
-      model.save(formData, options_for_save)
+      $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio, select').val('')
 
   class ProductCreate.Prices extends Marionette.ItemView
     template: 'admin/products/create/templates/prices'
@@ -132,12 +129,13 @@
 
     events:
       'click .js-save': 'saveClicked'
-      'click .js-continue': 'continueClicked'
+      'click .js-continue': 'saveClicked'
       'change @ui.taxRule': 'validateTaxRule'
       'change @ui.discountType': 'validateDiscountType'
       'keyup @ui.salePrice': 'calculatePrices'
       'keyup @ui.taxValue': 'calculatePrices'
       'keyup @ui.discountValue': 'calculatePrices'
+      'click .js-clear': 'clearForm'
 
     initialize: (options)->
       AlumNet.setTitle('Product prices')
@@ -234,10 +232,24 @@
           data: formData
           success: (model, response, options)->
             $.growl.notice({ message: "Product successfully saved!" })
-            AlumNet.trigger "admin:products:prices", model.id
+            if $(e.currentTarget).data('action') == 'continue'
+              AlumNet.trigger "admin:products:categories", model.id
+            else
+              AlumNet.trigger "admin:products:prices", model.id
+            
         model.save(formData, options_for_save)
       else
         $.growl.error({ message: "Invalid parameters" })
+
+    clearForm: (e)->
+      e.preventDefault()
+      $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio, select').val('')
+      $('select').find('option:eq(0)').prop('selected', true)
+      @ui.discountValue.attr('disabled', 'disabled')
+      @ui.discountValue.val('0')
+      @ui.taxValue.attr('disabled', 'disabled')
+      @ui.taxValue.val('0')
+      @ui.totalPrice.val('0')
 
   class ProductCreate.Category extends Marionette.ItemView
     template: 'admin/products/create/templates/_category'

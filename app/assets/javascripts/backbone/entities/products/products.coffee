@@ -4,6 +4,9 @@
       AlumNet.api_endpoint + '/products/'
 
     validation:
+      sku:
+        required: true
+        msg: "Product sku is required."
       name:
         required: true
         maxLength: 250

@@ -116,6 +116,9 @@
     productPrices: (id)->
       controller = new AdminApp.ProductCreate.Controller
       controller.prices(id)
+    productCategories: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.categories(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -169,3 +172,7 @@
   AlumNet.on "admin:products:prices", (id)->
     AlumNet.navigate("admin/products/#{id}/prices")
     API.productPrices(id)
+
+  AlumNet.on "admin:products:categories", (id)->
+    AlumNet.navigate("admin/products/#{id}/categories")
+    API.productCategories(id)

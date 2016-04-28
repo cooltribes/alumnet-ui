@@ -4,34 +4,39 @@
 			<div class="form-group has-feedback formCreate">
 				<div class="row">
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">SKU</label>
 							</div>
-							<div class="col-md-10 text-left">
-								<input type="text" name="sku" id="sku" class="inputProduct" value="<%= @sku %>">
-	              				<span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+								<input type="text" name="sku" id="sku" class="form-control inputProduct" value="<%= @sku %>">
+							</div>
+							<div class="col-md-3 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">Name</label>
 							</div>
-							<div class="col-md-10 text-left">
-								<input type="text" name="name" id="name" class="inputProduct" value="<%= @name %>">
-	              				<span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+								<input type="text" name="name" id="name" class="form-control inputProduct" value="<%= @name %>">
+							</div>
+							<div class="col-md-6 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">Description</label>
 							</div>
 							<div class="col-md-6 text-left">
-	            				<textarea name="description" id="description" class="form-control input-lg" rows="5" style="resize: none"><%= @description %></textarea>
+	            	<textarea name="description" id="description" class="form-control input-lg" rows="5" style="resize: none"><%= @description %></textarea>
+	            	<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
@@ -88,7 +93,7 @@
 			<div id="smoothScroll">
 				<div class="row">
 					<div class="col-md-12">
-						<a href="#" class="btn btn-primary btn-lg buttonsProduct js-create">
+						<a href="#" class="btn btn-primary btn-lg buttonsProduct js-create" data-action="save">
 							<% if @isNew: %>
 								CREATE PRODUCT
 							<% else: %>
@@ -99,10 +104,10 @@
 				</div>
 				<div class="row margin_top">
 					<div class="col-md-12">
-						<a href="#" class="btn btn-default btn-lg buttonsProduct js-continue">SAVE AND CONTINUE</a>
+						<a href="#" class="btn btn-default btn-lg buttonsProduct js-continue" data-action="continue">SAVE AND CONTINUE</a>
 					</div>
 					<div class="col-md-12">
-						<a href="#" class="btn btn-default btn-lg buttonsProduct">CLEAR FORM</a>
+						<a href="#" class="btn btn-default btn-lg buttonsProduct js-clear">CLEAR FORM</a>
 					</div>
 				</div>
 			</div>
