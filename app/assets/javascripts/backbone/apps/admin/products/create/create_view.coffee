@@ -136,6 +136,8 @@
       'change @ui.taxRule': 'validateTaxRule'
       'change @ui.discountType': 'validateDiscountType'
       'keyup @ui.salePrice': 'calculatePrices'
+      'keyup @ui.taxValue': 'calculatePrices'
+      'keyup @ui.discountValue': 'calculatePrices'
 
     initialize: (options)->
       AlumNet.setTitle('Product prices')
@@ -156,34 +158,65 @@
     validateTaxRule: ->
       if @ui.taxRule.val() == 'no_tax'
         @ui.taxValue.attr('disabled', 'disabled')
+        @ui.taxValue.val('0')
+        @calculatePrices()
       else
         @ui.taxValue.removeAttr('disabled')
 
     validateDiscountType: ->
       if @ui.discountType.val() == 'no_discount'
         @ui.discountValue.attr('disabled', 'disabled')
+        @ui.discountValue.val('0')
+        @calculatePrices()
       else
         @ui.discountValue.removeAttr('disabled')
 
     calculatePrices: (e)->
+      if @validate_prices()
+        salePrice = parseFloat(@ui.salePrice.val())
+        taxValue = if @ui.taxValue.val() != '' then parseFloat(@ui.taxValue.val()) else 0
+        discountValue = if @ui.discountValue.val() != '' then parseFloat(@ui.discountValue.val()) else 0
+
+        totalTax = (salePrice * taxValue) / 100
+        totalDiscount = 0
+        if @ui.discountType.val() == 'percentage'
+          totalDiscount = (salePrice * discountValue) / 100
+        if @ui.discountType.val() == 'amount'
+          totalDiscount = discountValue
+
+        totalPrice = salePrice + totalTax - totalDiscount
+        @ui.totalPrice.val(totalPrice)
+      
+    validate_prices: ->
       regex  = /^\d*\.?\d*$/
-      salePrice = @ui.salePrice.val()
-      target = $(e.currentTarget)
-      group = $(target.closest('.form-group'))
-      if regex.test(salePrice)
-        group.removeClass("has-error")
-        group.find('.help-block').html('').addClass('hidden')
-        @ui.totalPrice.val(salePrice)
-        @validPrices = true
-      else
-        group.addClass("has-error")
-        group.find('.help-block').html('Invalid format').removeClass('hidden')
-        @ui.totalPrice.val('0')
-        @validPrices = false
+      valid = true
+      self = @
+      # each price input
+      @$('.inputProduct').each (key, value)->
+        target = $(value)
+        group = $(target.closest('.form-group'))
+        # validate not empty
+        if target.val() != ''
+          # validate number, optional decimal
+          if regex.test(target.val())
+            group.removeClass("has-error")
+            group.find('.help-block').html('').addClass('hidden')
+          else
+            group.addClass("has-error")
+            group.find('.help-block').html('Invalid format').removeClass('hidden')
+            self.ui.totalPrice.val('0')
+            valid = false
+        else
+          group.addClass("has-error")
+          group.find('.help-block').html('Required field').removeClass('hidden')
+          self.ui.totalPrice.val('0')
+          valid = false
+
+      valid
 
     saveClicked: (e)->
       e.preventDefault()
-      if @validPrices
+      if @validate_prices()
         @ui.saveButton.attr("disabled", "disabled")
         view = @
         model = @model

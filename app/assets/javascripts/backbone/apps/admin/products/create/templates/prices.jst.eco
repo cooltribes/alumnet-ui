@@ -32,13 +32,15 @@
 						</div>
 					</div>
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">Tax Value (%)</label>
 							</div>
-							<div class="col-md-6 text-left">
-        				<input type="text" name="tax_value" id="tax_value" class="inputProduct" value="<%= @tax_value %>">
-          			<span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+        				<input type="text" name="tax_value" id="tax_value" class="form-control inputProduct" value="<%= @tax_value %>">
+							</div>
+							<div class="col-md-2 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
@@ -59,13 +61,15 @@
 						</div>
 					</div>	
 					<div class="col-md-12 margin_bottom_medium">
-						<div class="row">
+						<div class="row form-group has-feedback no-margin-bottom">
 							<div class="col-md-2 labelAlign">
 								<label class="control-label margin_top_xsmall">Discount Value</label>
 							</div>
-							<div class="col-md-6 text-left">
-        				<input type="text" name="discount_value" id="discount_value" class="inputProduct" value="<%= @discount_value %>">
-          			<span class="help-block hidden"></span>
+							<div class="col-md-3 text-left">
+        				<input type="text" name="discount_value" id="discount_value" class="form-control inputProduct" value="<%= @discount_value %>">
+							</div>
+							<div class="col-md-2 text-left no-padding">
+								<span class="help-block hidden"></span>
 							</div>
 						</div>	
 					</div>
@@ -75,7 +79,7 @@
 								<label class="control-label margin_top_xsmall">Total Price (€)</label>
 							</div>
 							<div class="col-md-6 text-left">
-	            				<input type="text" name="total_price" id="total_price" class="inputProduct" value="<%= @total_price %>">
+	            				<input type="text" name="total_price" id="total_price" class="inputProduct" value="<%= @total_price %>" disabled>
 	              				<span class="help-block hidden"></span>
 							</div>
 						</div>	
