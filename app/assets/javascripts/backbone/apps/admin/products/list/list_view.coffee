@@ -14,6 +14,7 @@
 
     events:
       'change #product-image': 'previewImage'
+      'click .js-edit': 'updateProduct'
 
     bindings:
       ".js-sku": 
@@ -24,9 +25,6 @@
         events: ['blur']
       ".js-description": 
         observe: "description"
-        events: ['blur']
-      ".js-price": 
-        observe: "price"
         events: ['blur']
       ".js-status": 
         observe: "status"
@@ -39,10 +37,6 @@
             label: "active"
           ,
           ]
-      # ".js-category": 
-      #   observe: "category_id"
-      #   selectOptions:
-      #     collection: 'this.categories'
 
     initialize: (options) ->
       @productImage = options.model.get('image').image.card.url
@@ -91,6 +85,10 @@
            reader.readAsDataURL(input[0].files[0])
 
       model.save(formData, options_for_save)
+
+    updateProduct: (e)->
+      e.preventDefault()
+      AlumNet.trigger "admin:products:update", @model.id
 
   class ProductsList.ProductsTable extends Marionette.CompositeView
     template: 'admin/products/list/templates/products_table'

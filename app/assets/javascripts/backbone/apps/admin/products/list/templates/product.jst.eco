@@ -18,4 +18,4 @@
 	<select class="metaInfoCard__dropdown js-status" name="status">    
   	</select>
 </td>
-<td class="tableAdminGroups__colText js-price" contenteditable="true"></td>
+<td><a href="#" class="js-edit">Edit</a></td>

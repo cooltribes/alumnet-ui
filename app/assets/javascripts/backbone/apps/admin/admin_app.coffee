@@ -32,6 +32,7 @@
       "admin/invoices": "invoices"
       "admin/products/:id/update": "productUpdate"
       "admin/products/:id/prices": "productPrices"
+      "admin/products/:id/categories": "productCategories"
 
   API =
     usersList: ->

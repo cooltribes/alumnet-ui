@@ -10,6 +10,9 @@
 
     initialize: ->
       @tab = "General"
+
+    onRender: ->
+      $('body,html').animate({scrollTop: 0}, 600);
   
     goOption: (e)->  
       e.preventDefault()
@@ -254,10 +257,33 @@
   class ProductCreate.Category extends Marionette.ItemView
     template: 'admin/products/create/templates/_category'
 
-  class ProductCreate.Categories extends ProductCreate.General
+  class ProductCreate.Categories extends Marionette.CompositeView
     template: 'admin/products/create/templates/categories'
     childView: ProductCreate.Category
     childViewContainer: "#list-categories"
+
+    ui:
+      'saveButton': '.js-save'
+      'continueButton': '.js-continue'
+      
+    events:
+      'click .js-save': 'saveClicked'
+      'click .js-continue': 'saveClicked'
+      'click .js-clear': 'clearForm'
+
+    templateHelpers: ->
+      subcategories: @model.get('children')
+
+    saveClicked: (e)->
+      e.preventDefault()
+      if $(':input:checkbox:checked').length > 0
+        $.growl.notice({ message: "Product successfully saved!" })
+      else
+        $.growl.error({ message: "Please select at least one category" })
+
+    clearForm: (e)->
+      e.preventDefault()
+      $(':input').not(':button, :submit, :reset, :hidden').removeAttr('checked')
 
   class ProductCreate.Attributes extends ProductCreate.General
     template: 'admin/products/create/templates/attributes'

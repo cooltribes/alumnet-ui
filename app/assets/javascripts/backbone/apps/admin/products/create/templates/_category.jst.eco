@@ -1,18 +1,12 @@
 <li class="list margin_bottom_small">
-	<input type="checkbox" value="">
-	<span>Category </span>
+	<input type="checkbox" value="<%= @id %>">
+	<span><%= @name %></span>
 	<ul class="list">
-		<li>
-			<input type="checkbox" value="">
-			<span>Option </span>
-		</li>
-		<li>
-			<input type="checkbox" value="">
-			<span>Option </span>
-		</li>
-		<li>
-			<input type="checkbox" value="">
-			<span>Option </span>
-		</li>
+		<% for subcategory in @children: %>
+			<li>
+				<input type="checkbox" value="<%= subcategory.id %>">
+				<span><%= subcategory.name %></span>
+			</li>
+		<% end %>
 	</ul>
 </li>
