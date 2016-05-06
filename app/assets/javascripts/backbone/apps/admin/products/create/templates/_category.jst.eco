@@ -1,10 +1,11 @@
 <li class="list margin_bottom_small">
-	<input type="checkbox" value="<%= @id %>">
+	<input type="checkbox" value="<%= @id %>" class="js-category" id="category_<%= @id %>" <%= @productCategoryExists(@id) %>>
 	<span><%= @name %></span>
 	<ul class="list">
 		<% for subcategory in @children: %>
 			<li>
-				<input type="checkbox" value="<%= subcategory.id %>">
+				<input type="checkbox" value="<%= subcategory.id %>" class="js-category" 
+				id="category_<%= subcategory.id %>" <%= @productCategoryExists(subcategory.id) %>>
 				<span><%= subcategory.name %></span>
 			</li>
 		<% end %>

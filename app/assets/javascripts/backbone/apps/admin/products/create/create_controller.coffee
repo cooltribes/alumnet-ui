@@ -56,11 +56,15 @@
       @layoutView.content_region.show(view)
 
     showCategories: (product)->
+      self = @
       categories = AlumNet.request('categories:entities', {q: {father_id_eq: 0}})
-      view = new ProductCreate.Categories
-        model: product
-        collection: categories
-      @layoutView.content_region.show(view)
+      product_categories = AlumNet.request('product_categories:entities', {product_id: product.id})
+      product_categories.on 'fetch:success', (product_categories_collection)->
+        view = new ProductCreate.Categories
+          model: product
+          collection: categories
+          product_categories: product_categories_collection
+        self.layoutView.content_region.show(view)
 
     showAttributes: ->
       view = new ProductCreate.Attributes

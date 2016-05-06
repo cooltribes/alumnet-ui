@@ -257,10 +257,37 @@
   class ProductCreate.Category extends Marionette.ItemView
     template: 'admin/products/create/templates/_category'
 
+    events:
+      'click .js-category': 'saveCategory'
+
+    initialize: (options)->
+      @product = options.product
+      @product_categories = options.product_categories
+
+    templateHelpers: ->
+      product_categories = @product_categories
+      productCategoryExists: (category_id)->
+        if product_categories.findWhere({category_id: category_id})
+          'checked'
+
+    saveCategory: (e)->
+      if e.currentTarget.checked
+        product_category = new AlumNet.Entities.ProductCategory
+        product_category.set({category_id: e.currentTarget.value, product_id: @product.id})
+        product_category.save()
+      else
+        product_category = @product_categories.findWhere({category_id: parseInt(e.currentTarget.value), product_id: @product.id})
+        product_category.destroy()
+
+        
+      
+
   class ProductCreate.Categories extends Marionette.CompositeView
     template: 'admin/products/create/templates/categories'
     childView: ProductCreate.Category
     childViewContainer: "#list-categories"
+    childViewOptions: (model)->
+      { product: this.options.model, product_categories: this.options.product_categories }
 
     ui:
       'saveButton': '.js-save'
@@ -270,6 +297,9 @@
       'click .js-save': 'saveClicked'
       'click .js-continue': 'saveClicked'
       'click .js-clear': 'clearForm'
+
+    initialize: (options)->
+      @product_categories = options.product_categories
 
     templateHelpers: ->
       subcategories: @model.get('children')
