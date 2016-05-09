@@ -1,4 +1,4 @@
-<div id="" class="ng-scope marginCreate">
+<div id="" class="ng-scope marginCreate marginBody">
   <div class="row">
     <div class="text-left col-md-2">
       <a href="#groups/discover" class="btn btn-lg btn-import margin_left_small paddingButton">
@@ -9,16 +9,30 @@
   <div class="container">
     <form class="row form">
       <div class="col-md-12 no-padding">
-        <h1 class="textColor--blue margin_bottom_small margin_top_small text-left">Create a new group</h1>
+        <h2 class="textColor--blue margin_bottom_small text-left">Create a new group</h2>
       </div>
       <div class="row">
-        <div class="col-md-6 formANet">
+        <div class="col-md-8 formANet">
+          <div class="form-group has-feedback">
+            <label class="control-label">Name of the group</label>
+            <input type="text" name="name"  id="group-name"  class="form-control input-lg">
+            <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="control-label">Short Description</label>
+            <input type="text" name="short_description"  id="group-short-description" class="form-control input-lg" style="height: 85px">
+            <span class="formANet__input__icon icon-entypo-doc-text form-control-feedback"></span>
+            <span class="help-block"></span>
+          </div>
+        </div>
+        <div class="col-md-4 formANet">
           <div class="form-group">
             <div class="add-cover-photo">
               <label class="uploadFile uploadFile--cover">
                 <input type="file" name="cover" id="group-cover">
                 <div class="uploadFile--img">
-                    <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
+                  <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
                 </div>
               </label>
               <div class="uploadFile--textCompanies" id="js-file-groups">
@@ -29,25 +43,10 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 formANet">
-          <div class="form-group has-feedback">
-            <label class="control-label">Name of the group</label>
-            <input type="text" name="name"  id="group-name"  class="form-control input-lg">
-            <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
-
-            <span class="help-block"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <label class="control-label">Short Description</label>
-            <input type="text" name="short_description"  id="group-short-description" class="form-control input-lg" style="height: 85px">
-            <span class="formANet__input__icon icon-entypo-doc-text form-control-feedback"></span>
-            <span class="help-block"></span>
-          </div>
-        </div>
       </div> 
       <hr class="no-margin-top">
       <div class="row formANet"> 
-        <div class="col-md-6 textStyle">
+        <div class="col-md-8 textStyle">
           <div class="form-group has-feedback">
             <div class="margin_bottom_medium">
               <i class="fontSize--md icon-entypo-doc-text textColor--gray"></i>
@@ -60,7 +59,7 @@
             <span class="help-block"></span>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="col-md-12 textStyle margin_bottom_medium">
             <i class="fontSize--md glyphicon glyphicon-th-list textColor--gray"></i>
             <h3 class="textColor--black margin_top_xsmall textStyle__label">  Attributes & Permissions </h3>

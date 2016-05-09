@@ -28,9 +28,10 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	}
 	&__label{
 		display: inline;
+		font-size: 24px
 	}
 	.note-editing-area{
-		height: 301.172px;	
+		height: 476.172px;
 	}
 }
 
@@ -422,7 +423,13 @@ DESCRIPTION: Specific style for the forms of AlumNet
 			margin-top: 0;
 		}
 	}
+	.textStyle{
+		&__label{
+			font-size: 22px;
+		}
+	}
 }
+
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @media-large-min) {
@@ -445,6 +452,11 @@ DESCRIPTION: Specific style for the forms of AlumNet
 		}
 		&__margin-top{
 			margin-top: 0;
+		}
+	}
+	.textStyle{
+		&__label{
+			font-size: 24px;
 		}
 	}
 }
