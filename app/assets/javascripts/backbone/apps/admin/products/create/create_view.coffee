@@ -279,9 +279,6 @@
         product_category = @product_categories.findWhere({category_id: parseInt(e.currentTarget.value), product_id: @product.id})
         product_category.destroy()
 
-        
-      
-
   class ProductCreate.Categories extends Marionette.CompositeView
     template: 'admin/products/create/templates/categories'
     childView: ProductCreate.Category
@@ -300,6 +297,7 @@
 
     initialize: (options)->
       @product_categories = options.product_categories
+      @model = options.model
 
     templateHelpers: ->
       subcategories: @model.get('children')
@@ -308,12 +306,18 @@
       e.preventDefault()
       if $(':input:checkbox:checked').length > 0
         $.growl.notice({ message: "Product successfully saved!" })
+        if $(e.currentTarget).data('action') == 'continue'
+          AlumNet.trigger "admin:products:attributes", model.id
       else
         $.growl.error({ message: "Please select at least one category" })
 
     clearForm: (e)->
       e.preventDefault()
-      $(':input').not(':button, :submit, :reset, :hidden').removeAttr('checked')
+      self = @
+      $(':input:checkbox:checked').each (value) ->
+        product_category = self.product_categories.findWhere({category_id: parseInt($(this).val()), product_id: self.model.id})
+        product_category.destroy()
+      $(':input:checkbox:checked').removeAttr('checked')
 
   class ProductCreate.Attributes extends ProductCreate.General
     template: 'admin/products/create/templates/attributes'
