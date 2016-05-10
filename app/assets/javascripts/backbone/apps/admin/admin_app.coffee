@@ -17,14 +17,23 @@
       "admin/features": "featuresList"
       "admin/users/:id": "userShow"
       "admin/products": "productsList"
-      "admin/create/product": "createProduct"
+      "admin/products/create": "createProduct"
       "dashboard/alumni": "dashboardUsers"
       "dashboard/posts": "dashboardPosts"
       "admin/emails":"emailsNew"
       "admin/emails-sent":"emailsSent"
       "admin/groups/:group_id/campaigns/:id":"showCampaign"
       "admin/emails-segment":"emailsSegment"
+      "admin/products/new": "productsCreate"
+      "admin/categories/new": "categoriesCreate"
+      "admin/categories": "categoriesList"
+      "admin/attributes": "attributesList"
+      "admin/attributes/new": "attributesCreate"
       "admin/invoices": "invoices"
+      "admin/products/:id/update": "productUpdate"
+      "admin/products/:id/prices": "productPrices"
+      "admin/products/:id/categories": "productCategories"
+      "admin/products/:id/attributes": "productAttributes"
 
   API =
     usersList: ->
@@ -85,9 +94,36 @@
     emailsSegment: ->
       controller = new AdminApp.EmailsSegment.Controller
       controller.emailsSegment()
+    categoriesList: ->
+      controller = new AdminApp.CategoriesList.Controller
+      controller.categoriesList()
+    categoriesCreate: ->
+      controller = new AdminApp.CategoriesList.Controller
+      controller.create()
+    productsCreate: ->
+      controller = new AdminApp.ProductsCreate.Controller
+      controller.create()
+    attributesList: ->
+      controller = new AdminApp.AttributesList.Controller
+      controller.attributesList()
+    attributesCreate: ->
+      controller = new AdminApp.AttributesCreate.Controller
+      controller.create()
     invoices:->
       controller = new AdminApp.Invoices.Controller
       controller.showLayoutInvoices("all")
+    productUpdate: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.update(id)
+    productPrices: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.prices(id)
+    productCategories: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.categories(id)
+    productAttributes: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.attributes(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -125,3 +161,27 @@
     #AlumNet.navigate("admin/emails/#{id}")
     #API.showCampaign(group_id, id)
     API.emailsSent()
+
+  AlumNet.on "admin:categories", ->
+    AlumNet.navigate("admin/categories")
+    API.categoriesList()
+
+  AlumNet.on "admin:attributes", ->
+    AlumNet.navigate("admin/attributes")
+    API.attributesList()
+
+  AlumNet.on "admin:products:update", (id)->
+    AlumNet.navigate("admin/products/#{id}/update")
+    API.productUpdate(id)
+
+  AlumNet.on "admin:products:prices", (id)->
+    AlumNet.navigate("admin/products/#{id}/prices")
+    API.productPrices(id)
+
+  AlumNet.on "admin:products:categories", (id)->
+    AlumNet.navigate("admin/products/#{id}/categories")
+    API.productCategories(id)
+
+  AlumNet.on "admin:products:attributes", (id)->
+    AlumNet.navigate("admin/products/#{id}/attributes")
+    API.productAttributes(id)

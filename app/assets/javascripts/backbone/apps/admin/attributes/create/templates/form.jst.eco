@@ -1,0 +1,63 @@
+<div id="" class="ng-scope marginCreate">
+  <div class="container">
+    <form class="row formANet form ">
+      <div class="col-md-10 col-md-offset-1">
+        <h1>Create an Attribute</h1>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label class="control-label">Name</label>
+              <input type="text" name="name" id="name" class="form-control input-lg" value="<%= @name %>">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block hidden"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label class="control-label">Measure Unite</label>
+              <select name="measure_unit" class="form-control input-lg ">
+                <option value="days">Days</option>
+                <option value="months">Months</option>
+              </select>
+              <span class="help-block hidden"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label class="control-label">Status</label>
+              <select name="status" class="form-control input-lg ">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <span class="help-block hidden"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label class="control-label">Mandatory</label>
+              <select name="mandatory" class="form-control input-lg ">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+              <span class="help-block hidden"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- ACTIONS ON -->
+        <div class="text-right">
+          <button class="btn btn-default btn-lg js-cancel">CANCEL</button>
+          <button class="btn btn-primary btn-lg js-submit">SAVE</button>
+        </div>
+        <!-- ACTIONS OFF -->
+      </div>
+    </form>
+  </div>
+</div>

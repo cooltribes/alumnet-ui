@@ -12,6 +12,10 @@
     modelEvents:
       "change": "modelChange"
 
+    events:
+      'change #product-image': 'previewImage'
+      'click .js-edit': 'updateProduct'
+
     bindings:
       ".js-sku": 
         observe: "sku"
@@ -21,9 +25,6 @@
         events: ['blur']
       ".js-description": 
         observe: "description"
-        events: ['blur']
-      ".js-price": 
-        observe: "price"
         events: ['blur']
       ".js-status": 
         observe: "status"
@@ -36,37 +37,58 @@
             label: "active"
           ,
           ]
-      ".js-type": 
-        observe: "product_type"
-        selectOptions:
-          collection: [
-            value: 0
-            label: "Time remaining"
-          ,
-            value: 1
-            label: "Times used"
-          ,
-          ]
-      ".js-quantity": 
-        observe: "quantity"
-        events: ['blur']
-      ".js-feature": 
-        observe: "feature"
-        selectOptions:
-          collection: [
-            value: "subscription"
-            label: "Subscription"
-          ,
-            value: "job_post"
-            label: "Job Post"
-          ,
-          ]
+
+    initialize: (options) ->
+      @productImage = options.model.get('image').image.card.url
+
+    templateHelpers: ->
+      model = @model
+      productImage: @productImage
+      category_name: ->
+        if model.get('category')
+          model.get('category').name
+        else
+          'No category'
 
     onRender: ->
       @stickit()
 
     modelChange: (e)->
       @model.save()
+
+    previewImage: (e)->
+      $(e.currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','inline-block')
+      $(e.currentTarget).siblings('.uploadF--blue').css('display','none')
+      $(e.currentTarget).siblings('img').css('top',0)
+      input = @.$('#product-image')
+      preview = @.$('#prewiev-product-image')
+      model = @model
+      currentTarget= e.currentTarget
+
+      formData = new FormData()
+      file = @$('#product-image')
+      formData.append('image', file[0].files[0])
+
+      options_for_save =
+        wait: true
+        contentType: false
+        processData: false
+        data: formData
+        success: (model, response, options)->
+          if input[0] && input[0].files[0]
+           reader = new FileReader()
+           reader.onload = (e)->
+              preview.attr("src", e.target.result)
+              $(currentTarget).siblings('div.loadingAnimation__migrateUsers').css('display','none')
+              $(currentTarget).siblings('.uploadF--blue').css('display','inline-block')
+              $(currentTarget).siblings('img').css('top',-30)
+           reader.readAsDataURL(input[0].files[0])
+
+      model.save(formData, options_for_save)
+
+    updateProduct: (e)->
+      e.preventDefault()
+      AlumNet.trigger "admin:products:update", @model.id
 
   class ProductsList.ProductsTable extends Marionette.CompositeView
     template: 'admin/products/list/templates/products_table'

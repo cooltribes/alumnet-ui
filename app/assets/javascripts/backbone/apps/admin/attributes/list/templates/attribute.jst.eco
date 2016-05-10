@@ -1,0 +1,13 @@
+<td class="tableAdminGroups__colText js-name" contenteditable="true"></td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-mandatory" name="mandatory">    
+  </select>
+</td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-measure-unit" name="measure-unit">
+  </select>
+</td>
+<td class="tableAdminGroups__colText">
+	<select class="metaInfoCard__dropdown js-status" name="status">    
+  </select>
+</td>

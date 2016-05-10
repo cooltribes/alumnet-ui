@@ -4,11 +4,7 @@
             <div class="row">
                 <div class="col-xs-5">
                     <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
-                        <option value="1">Item 1</option>
-                        <option value="2">Item 5</option>
-                        <option value="2">Item 2</option>
-                        <option value="2">Item 4</option>
-                        <option value="3">Item 3</option>
+                        <%= @attributesList() %>
                     </select>
                 </div>
                 

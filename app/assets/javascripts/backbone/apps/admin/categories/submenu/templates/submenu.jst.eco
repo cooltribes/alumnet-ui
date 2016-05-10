@@ -11,12 +11,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav no-margin">
         <li class="<%= @classOf(0)%>">
-          <a href="#admin/prizes" class="navTopSubBarAdmin__link" title="Invites">
-            <span class="navTopSubBarAdmin__icon glyphicon"></span> Browse Prizes
+          <a href="#admin/categories" class="navTopSubBarAdmin__link" title="Categories">
+            <span class="navTopSubBarAdmin__icon glyphicon"></span> Browse Categories
           </a>
         </li>
       </ul>
-      <a href="#" class="navTopSubBarAdmin__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new prize" id="js-new-prize">+ Create a new prize</a>
+      <a href="#admin/categories/new" class="navTopSubBarAdmin__btnPrimary  btn margin_left pull-right btn-default navbar-btn" title="Create a new category" id="js-new-category">+ Create a new category</a>
     </div>
   </div>
 </nav>

@@ -8,4 +8,5 @@
 
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(productsTable)
-      AlumNet.execute('render:admin:products:submenu', undefined, 0, productsTable)
+      AlumNet.submenuRegion.empty()
+      #AlumNet.execute('render:admin:products:submenu', undefined, 0, productsTable)
