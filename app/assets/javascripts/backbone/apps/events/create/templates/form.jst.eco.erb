@@ -1,21 +1,32 @@
-<div id="" class="ng-scope marginCreate">
-  <div class="row">
-    <div class="text-left col-md-2">
-      <a href="#events/discover" class="btn btn-lg btn-import margin_left_small paddingButton">
-        <span class="icon-char">‹</span>Go back to Events
-      </a>
+<div id="" class="ng-scope marginBody">
+  <div class="container">
+    <div class="row margin_bottom_medium">
+      <div class="col-md-12 text-left">
+        <h2 class="textColor--blue no-margin">Create a new Event</h2>
+      </div>
     </div>
-  </div>
-  <div class="container-fluid">
     <form class="row formANet form ">
-      <div class="col-md-10 col-md-offset-1">
-        <h1 class="textColor--blue ">Create Event for <%%= @user_name %></h1>
+      <div class="col-md-12">
         <!-- ROW 1 ON -->
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row margin_top_small">
+          <div class="col-md-8">
+            <div class="form-group has-feedback">
+              <label class="control-label">Name of the Event</label>
+              <input type="text" name="name"  id="event-name"  class="form-control input-lg">
+              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <label class="control-label">Short Description</label>
+              <input type="text" name="short_description"  id="event-short-description" class="form-control input-lg" style="height: 108px">
+              <span class="formANet__input__icon icon-entypo-doc-text form-control-feedback"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label">Event's cover</label>
-              <div class="add-cover-photo">
+              <div class="add-cover-photo" style="height: 215px">
                 <label class="uploadFile uploadFile--cover">
                   <div class="uploadFile--img">
                       <%= image_tag("", alt: "", width: "100%", height: "215px", id: "preview-cover") %>
@@ -29,36 +40,62 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group has-feedback">
-              <label class="control-label">Name of the Event</label>
-              <input type="text" name="name"  id="event-name"  class="form-control input-lg">
-              <span class="formANet__input__icon glyphicon glyphicon-user form-control-feedback"></span>
-
-              <span class="help-block"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <label class="control-label">Event's Description</label>
-
-              <textarea name="description" id="event-description"
-              class="form-control input-lg" rows="5" style="resize:none"></textarea>
-              <span class="formANet__input__icon icon-entypo-dot-3 form-control-feedback"></span>
-              <span class="help-block"></span>
-            </div>
-          </div>
+          </div>  
         </div>
         <!-- ROW 1 OFF -->
         <hr>
         <!-- ROW 2 ON -->
 
         <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Attributes</h2>
+          <div class="col-md-8">
+            <div class="form-group has-feedback eventsDescription">
+              <div class="margin_bottom_medium">
+                <i class="fontSize--smd icon-entypo-doc-text textColor--gray"></i>
+                <h3 class="margin_top_xsmall textColor--black textStyle__label"> Full Description </h3> <br>
+              </div>
+              <textarea name="description" id="event-description"
+              class="form-control input-lg" rows="5" style="resize:none"></textarea>
+              <span class="help-block"></span>
+            </div>
           </div>
-          <div class="col-md-4 margin_top_medium ">
+          <div class="col-md-4">
+            <i class="fontSize--smd glyphicon glyphicon-time textColor--gray"></i>
+            <h3 class="textColor--black margin_top_xsmall textStyle__label"> Dates </h3> 
+            <div class="row">
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group no-padding">
+                  <label class="control-label">Start Date</label>
+                  <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group no-padding">
+                  <label class="control-label">Start Hour</label>
+                  <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">End Date</label>
+                  <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">End Hour</label>
+                  <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
+              <div class="col-md-12 textStyle margin_bottom_medium no-padding">
+                <i class="fontSize--smd glyphicon glyphicon-th-list textColor--gray"></i>
+                <h3 class="textColor--black margin_top_xsmall textStyle__label">&nbsp;Attributes & Permissions </h3>
+              </div>
               <label class="control-label">Type of Event</label>
               <select class="form-control input-lg" id="event-type" name="event_type">
                 <option value="open">Open</option>
@@ -67,163 +104,119 @@
               </select>
               <span class="help-block"></span>
             </div>
-          </div>
-          <div class="col-md-4 margin_top_medium">
-            <%% if @userIsAdmin: %>
-              <div class="form-group">
-                <label class="control-label">Official Event</label>
-                <select class="form-control input-lg" id="official" name="official">
-                  <option value="0">it's not an official event</option>
-                  <option value="1">it's an official event</option>
-                </select>
-              </div>
-            <%% end %>
-          </div>
-        </div>
-
-          <%% if @userIsAdmin: %>
-          <div class="row hide" id="admission-type-container">
-            <div class="col-md-4 col-md-offset-4 margin_top_medium">
-              <div class="form-group">
-                <label class="control-label">Admission Type</label>
-                <select class="form-control input-lg" id="admission-type" name="admission_type">
-                  <option value="0">Free</option>
-                  <option value="1">Paid</option>
-                </select>
+            <div class="row">
+              <div class="col-md-12">
+                <%% if @userIsAdmin: %>
+                  <div class="form-group">
+                    <label class="control-label">Official Event</label>
+                    <select class="form-control input-lg" id="official" name="official">
+                      <option value="0">it's not an official event</option>
+                      <option value="1">it's an official event</option>
+                    </select>
+                  </div>
+                <%% end %>
               </div>
             </div>
-            <div class="col-md-4"></div>
-          </div>
-          <div class="row hide" id="prices-container">
-            <div class="col-md-4 col-md-offset-4 margin_top_medium">
-              <div class="form-group">
-                <label class="control-label">Registrant fee ($)</label>
-                <input type="text" name="regular_price"  id="event-regular-price"  class="form-control input-lg" placeholder="e.g 45.99">
-                <span class="help-block"></span>
+            <div class="row">
+              <div class="col-md-12">
+                <%% if @userIsAdmin: %>
+                  <div class="row hide" id="admission-type-container">
+                    <div class="col-md-4 col-md-offset-4 margin_top_medium">
+                      <div class="form-group">
+                        <label class="control-label">Admission Type</label>
+                        <select class="form-control input-lg" id="admission-type" name="admission_type">
+                          <option value="0">Free</option>
+                          <option value="1">Paid</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                <div class="row hide" id="prices-container">
+                  <div class="col-md-4 col-md-offset-4 margin_top_medium">
+                    <div class="form-group">
+                      <label class="control-label">Registrant fee ($)</label>
+                      <input type="text" name="regular_price"  id="event-regular-price"  class="form-control input-lg" placeholder="e.g 45.99">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-4 margin_top_medium">
+                    <div class="form-group">
+                      <label class="control-label">Member fee ($)</label>
+                      <input type="text" name="premium_price"  id="event-premium-price" class="form-control input-lg" placeholder="e.g 25.99">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              <%% end %>
               </div>
             </div>
-            <div class="col-md-4 margin_top_medium">
-              <div class="form-group">
-                <label class="control-label">Member fee ($)</label>
-                <input type="text" name="premium_price"  id="event-premium-price" class="form-control input-lg" placeholder="e.g 25.99">
-                <span class="help-block"></span>
+          </div>
+        </div>
+        <hr> 
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
+                <i class="fontSize--smd glyphicon glyphicon-map-marker textColor--gray"></i>
+                <h3 class="textColor--black margin_top_xsmall textStyle__label"> Location </h3> 
+              </div>
+              <div class="col-md-6 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">Country</label>
+                  <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-6 margin_top_medium">
+                <div class="form-group">
+                  <label class="control-label">City</label>
+                  <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="col-md-12 margin_top_xsmall">
+                <div class="form-group">
+                  <label class="control-label">Address</label>
+                  <input type="text" name="address"  id="event-address"  class="form-control input-lg">
+                  <span class="help-block"></span>
+                </div>
               </div>
             </div>
           </div>
-          <%% end %>
-
-        <!-- ROW 2 OFF -->
-        <hr>
-        <!-- ROW 3 ON -->
-
-        <div class="row">
           <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-time textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Dates</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Start Date</label>
-              <input type="text" name="start_date"  id="event-start-date"  class="form-control input-lg">
-              <span class="help-block"></span>
+            <div class="row">
+              <div class="col-md-12">
+                <i class="fontSize--smd glyphicon glyphicon-th-list textColor--gray"></i>
+                <h3 class="textColor--black margin_top_xsmall textStyle__label">&nbsp;Capacity & Files Section</h3> 
+              </div>
+              <div class="col-md-12 margin_top_medium ">
+                <div class="form-group">
+                  <label class="control-label">Maximum of attendees</label>
+                  <input type="text" name="capacity"  id="event-capacity"  class="form-control input-lg" placeholder="e.g 200">
+                  <span class="help-block"></span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Start Hour</label>
-              <input type="text" name="start_hour"  id="event-start-hour"  class="form-control input-lg" readonly>
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4 col-md-offset-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">End Date</label>
-              <input type="text" name="end_date"  id="event-end-date"  class="form-control input-lg">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">End Hour</label>
-              <input type="text" name="end_hour"  id="event-end-hour"  class="form-control input-lg" readonly>
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 3 OFF -->
-        <hr>
-        <!-- ROW 4 ON -->
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--lg glyphicon glyphicon-map-marker textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Location</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Country</label>
-              <input class = "js-countries" type="hidden" name="country_id" id="country_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4 margin_top_medium">
-            <div class="form-group">
-              <label class="control-label">City</label>
-              <input class = "js-cities" type="hidden" name="city_id" id="city_id" style="width: 100%">
-              <span class="help-block"></span>
-            </div>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-8 margin_top_medium">
-            <div class="form-group">
-              <label class="control-label">Address</label>
-              <input type="text" name="address"  id="event-address"  class="form-control input-lg">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 4 OFF -->
-        <hr>
-        <!-- ROW 5 ON -->
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-th-list textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Capacity</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Maximum of attendees</label>
-              <input type="text" name="capacity"  id="event-capacity"  class="form-control input-lg" placeholder="e.g 200">
-              <span class="help-block"></span>
-            </div>
-          </div>
-        </div>
-        <!-- ROW 5 OFF -->
-        <hr>
-        <div class="row">
-          <div class="col-md-4">
-            <span class="fontSize--md glyphicon glyphicon-file textColor--gray "></span>
-            <h2 class="textColor--black margin_top_xsmall ">Files Section</h2>
-          </div>
-          <div class="col-md-4 margin_top_medium ">
-            <div class="form-group">
-              <label class="control-label">Who can upload files</label>
-              <select class="form-control input-lg" id="upload-files" name="upload_files">
-                <option value="0">Only administrators</option>
-                <option value="1">All members</option>
-              </select>
-              <span class="help-block"></span>
+            <div class="row">
+              <div class="col-md-12 margin_top_xsmall">
+                <div class="form-group">
+                  <label class="control-label">Who can upload files</label>
+                  <select class="form-control input-lg" id="upload-files" name="upload_files">
+                    <option value="0">Only administrators</option>
+                    <option value="1">All members</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <hr>
-        <!-- ACTIONS ON -->
         <div class="text-right">
           <a href="#" class="btn btn-default btn-lg js-cancel">CANCEL</a>
           <a href="#" class="btn btn-primary btn-lg js-submit">SAVE </a>
         </div>
-        <!-- ACTIONS OFF -->
       </div>
     </form>
   </div>
