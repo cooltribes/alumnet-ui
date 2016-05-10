@@ -32,18 +32,22 @@
             self.showAutomaches()
 
       @layoutBusiness.on 'business:search', (querySearch)->
-        self.querySearch = querySearch
+        querySearch.per_page = 8
+        view = self.layoutBusiness.cards_region.currentView
+        view.query = querySearch
+
         if self.activeTab == "businessProfiles"
-          self.businessProfilesCollection.fetch
-            url: AlumNet.api_endpoint + "/business"
-            data: querySearch
+          collection = self.businessProfilesCollection
         else if self.activeTab == "yourTasks"
-          self.businessTasksCollection.fetch
-            data: querySearch
+          collection = self.businessTasksCollection
+
+        collection.fetch
+          reset: true
+          remove: true
+          data: querySearch
 
     showBusinessProfile: ()->
       controller = @
-      controller.querySearch = {}
       AlumNet.navigate("business-exchange/profiles")
       @businessProfilesCollection = new AlumNet.Entities.BusinessCollection
       @businessProfilesCollection.url = AlumNet.api_endpoint + "/business"
@@ -62,7 +66,7 @@
     showTasks: ->
       AlumNet.navigate("business-exchange/tasks")
       @businessTasksCollection = new AlumNet.Entities.BusinessExchangeCollection
-      query = { per_page: 1 }
+      query = { per_page: 8 }
 
       view = new AlumNet.BusinessExchangeApp.Home.Tasks
         collection: @businessTasksCollection

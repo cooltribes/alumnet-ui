@@ -1,7 +1,7 @@
 @AlumNet.module 'BusinessExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.BusinessExchange extends Marionette.LayoutView
     template: 'business_exchange/main/templates/layout'
-    
+
     regions:
       cards_region: '#groups-region'
       filters_region: '#filters-region'
@@ -14,7 +14,7 @@
       'click .js-search': 'search'
       'click .optionMenuRight' : 'goOptionMenuRight'
       'click @ui.modalBusiness': 'showModal'
-   
+
     initialize: (options)->
       @current_user = options.current_user
       @optionMain = options.option
@@ -31,7 +31,7 @@
           return 0
         when "yourTasks"
           return 1
-        
+
     templateHelpers: ->
       current_user_id: @current_user.id
       classOf: (step) =>
@@ -63,10 +63,13 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      if @optionMain == "businessProfiles"
-        @trigger('business:search', { q: { m: 'or', profile_first_name_cont_any: value.split(" "), profile_last_name_cont_any: value.split(" ") } } )
-      else if @optionMain == "yourTasks"
-        @trigger('business:search', { q: { name_cont: value } } )
+      if value == ""
+        @trigger('business:search', {})
+      else
+        if @optionMain == "businessProfiles"
+          @trigger('business:search', { q: { m: 'or', profile_first_name_cont_any: value.split(" "), profile_last_name_cont_any: value.split(" ") } } )
+        else if @optionMain == "yourTasks"
+          @trigger('business:search', { q: { name_cont: value } } )
 
     showModal: (e)->
       e.preventDefault()
