@@ -7,7 +7,7 @@
     showMainLayout: (optionMenu)->
       @activeTab = optionMenu
       current_user = AlumNet.current_user
-      
+
       @layoutBusiness = new Main.BusinessExchange
         option: @activeTab
         current_user: current_user
@@ -22,7 +22,7 @@
         Cookies.set('business_exchange_visit', 'true')
 
       self = @
-      @layoutBusiness.on "navigate:menu:left", (valueClick)-> 
+      @layoutBusiness.on "navigate:menu:left", (valueClick)->
         self.activeTab = valueClick
         self.showRegionMenu()
 
@@ -36,46 +36,45 @@
         if self.activeTab == "businessProfiles"
           self.businessProfilesCollection.fetch
             url: AlumNet.api_endpoint + "/business"
-            data: querySearch  
+            data: querySearch
         else if self.activeTab == "yourTasks"
           self.businessTasksCollection.fetch
             data: querySearch
-  
+
     showBusinessProfile: ()->
       controller = @
       controller.querySearch = {}
       AlumNet.navigate("business-exchange/profiles")
       @businessProfilesCollection = new AlumNet.Entities.BusinessCollection
-      @businessProfilesCollection.fetch
-        url: AlumNet.api_endpoint + "/business"        
-        data: 
-          limit: 9      
+      @businessProfilesCollection.url = AlumNet.api_endpoint + "/business"
+      query = { per_page: 8 }
 
       view = new AlumNet.BusinessExchangeApp.Profile.BusinessProfiles
         collection: @businessProfilesCollection
+        query: query
 
       @layoutBusiness.cards_region.show(view)
 
       self = @
       view.on "add:child", (viewInstance)->
         self.applyMasonry(viewInstance)
-  
+
     showTasks: ->
       AlumNet.navigate("business-exchange/tasks")
       @businessTasksCollection = new AlumNet.Entities.BusinessExchangeCollection
-      @businessTasksCollection.fetch
-        data: 
-          limit: 9      
+      query = { per_page: 1 }
+
       view = new AlumNet.BusinessExchangeApp.Home.Tasks
         collection: @businessTasksCollection
+        query: query
 
       @layoutBusiness.cards_region.show(view)
 
     showAutomaches: ->
       automachesCollection = new AlumNet.Entities.BusinessExchangeCollection
       automachesCollection.fetch
-        url: AlumNet.api_endpoint + '/business_exchanges/automatches'   
-    
+        url: AlumNet.api_endpoint + '/business_exchanges/automatches'
+
       automatchesView = new  AlumNet.BusinessExchangeApp.AutoMatches.List
         collection: automachesCollection
 

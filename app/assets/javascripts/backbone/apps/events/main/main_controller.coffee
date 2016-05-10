@@ -54,7 +54,6 @@
       events = new AlumNet.Entities.EventsCollection
       events.url = AlumNet.api_endpoint + "/me/events/managed"
 
-      window.events = events
       query = { per_page: 10 }
 
       eventsView = new AlumNet.EventsApp.Manage.EventsView
@@ -67,10 +66,10 @@
     showSuggestions: (optionMenuLeft)->
       collection = new AlumNet.Entities.SuggestedEventsCollection
 
-      suggestionsView = new AlumNet.EventsApp.Suggestions.EventsView 
+      suggestionsView = new AlumNet.EventsApp.Suggestions.EventsView
         collection: collection
         optionMenuLeft: optionMenuLeft
-        
+
       @layoutEvents.filters_region.show(suggestionsView)
 
     showFilters: ->

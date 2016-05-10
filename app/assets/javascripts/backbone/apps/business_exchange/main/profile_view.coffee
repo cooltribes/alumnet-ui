@@ -7,6 +7,14 @@
     ui:
       'loading': '.throbber-loader'
 
+    initialize: (options)->
+      @query = options.query
+
+      @collection.fetch
+        reset: true
+        remove: true
+        data: @query
+
     onRender: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreBusinessProfiles')
@@ -21,5 +29,14 @@
       $(window).unbind('scroll')
 
     loadMoreBusinessProfiles: (e)->
+      if @collection.nextPage == null
+        @endPagination()
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'business:reload'
+        @reloadItems()
+
+    reloadItems: ->
+      @query.page = @collection.nextPage
+      @collection.fetch
+        remove: false
+        reset: false
+        data: @query
