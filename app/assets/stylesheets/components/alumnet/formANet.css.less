@@ -401,6 +401,7 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	}
 }
 
+
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @media-medium-min) {
 .formANet{
@@ -425,10 +426,17 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	}
 	.textStyle{
 		&__label{
-			font-size: 22px;
+			font-size: 21px;
+		}
+	}
+
+	.eventsDescription{
+		.note-editing-area{
+			height: 328px;
 		}
 	}
 }
+
 
 
 /* Large devices (large desktops, 1200px and up) */
@@ -457,6 +465,11 @@ DESCRIPTION: Specific style for the forms of AlumNet
 	.textStyle{
 		&__label{
 			font-size: 24px;
+		}
+	}
+	.eventsDescription{
+		.note-editing-area{
+			height: 363px;
 		}
 	}
 }
