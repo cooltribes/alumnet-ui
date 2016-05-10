@@ -1,14 +1,14 @@
 @AlumNet.module 'MeetupExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.MeetupExchange extends Marionette.LayoutView
     template: 'meetup_exchange/main/templates/layout'
-    
+
     regions:
       meetup_region: '#meetup-region'
       suggestions_regions: '#suggestions-regions'
-    
+
     ui:
       'modalMeetups':'#js-modal-meetups'
-    
+
     events:
       'click .optionMenuLeft': 'goOptionMenuLeft'
       'click .optionMenuRight' : 'goOptionMenuRight'
@@ -32,7 +32,7 @@
           return 1
         when "manageMeetups"
           return 2
-        
+
     templateHelpers: ->
       classOf: (step) =>
         @class[step]
@@ -68,7 +68,11 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      @trigger('meetups:search', { q: { name_cont: value } } )
+      if value
+        query = { q: { name_cont: value } }
+      else
+        query = {}
+      @trigger('meetups:search', query)
 
   class Main.ModalMeetups extends Backbone.Modal
     template: 'meetup_exchange/main/templates/modal'

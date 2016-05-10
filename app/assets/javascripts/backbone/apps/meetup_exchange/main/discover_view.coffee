@@ -13,43 +13,36 @@
     childViewContainer: '.tasks-container'
     className: 'container-fluid'
 
+    initialize: (options)->
+      @query = options.query
+
+      @collection.fetch
+        reset: true
+        remove: true
+        data: @query
+
     onRender: ->
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreJobs')
+      $(window).scroll(@loadMoreJobs)
       $("#iconModalMeetup").removeClass("hide")
 
-    onShow: ->
-      @searcher = new AlumNet.AdvancedSearch.Searcher("searcher", [
-        { attribute: "name", type: "string", values: "" },
-        { attribute: "arrival_date", type: "numeric", values: "" },
-        { attribute: "post_until", type: "numeric", values: "" },
-        { attribute: "task_attributes_value", type: "string", values: "" }
-      ])
+    remove: ->
+      $(window).unbind('scroll')
+      Backbone.View.prototype.remove.call(this)
 
-    events:
-      'click .add-new-filter': 'addNewFilter'
-      'click .js-search': 'search'
-      #'click .search': 'search'
-      'click .clear': 'clear'
-      'change #filter-logic-operator': 'changeOperator'
+    endPagination: ->
+      $(window).unbind('scroll')
 
-    changeOperator: (e)->
-      e.preventDefault()
-      if $(e.currentTarget).val() == "any"
-        @searcher.activateOr = false
-      else
-        @searcher.activateOr = true
+    loadMoreJobs: (e)->
+      if @collection.nextPage == null
+        @endPagination()
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @reloadItems()
 
-    addNewFilter: (e)->
-      e.preventDefault()
-      @searcher.addNewFilter()
-
-    search: (e)->
-      e.preventDefault()
-      query = @searcher.getQuery()
-      value = $('#search_term').val()            
+    reloadItems: ->
+      @query.page = @collection.nextPage
       @collection.fetch
-        #data: { q: query }
-        data: { q: { name_cont: value } }
-        
-    clear: (e)->
-      e.preventDefault()
-      @collection.fetch()
+        remove: false
+        reset: false
+        data: @query

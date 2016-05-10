@@ -15,24 +15,39 @@
 
     ui:
       'loading': '.throbber-loader'
-      
+
+    initialize: (options)->
+      @query = options.query
+
+      @collection.fetch
+        reset: true
+        remove: true
+        data: @query
+
     onRender: ->
       $(window).unbind('scroll')
-      _.bindAll(this, 'loadMoreJobs')      
+      _.bindAll(this, 'loadMoreJobs')
       $(window).scroll(@loadMoreJobs)
       $("#iconModalJob").addClass("hide")
-      
+
     remove: ->
-      @collection.page = 1
       $(window).unbind('scroll')
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      @collection.page = 1
       @ui.loading.hide()
-      $(window).unbind('scroll') 
+      $(window).unbind('scroll')
 
     loadMoreJobs: (e)->
+      if @collection.nextPage == null
+        @endPagination()
       if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'job:reload'
-  	
+        @reloadItems()
+
+    reloadItems: ->
+      @query.page = @collection.nextPage
+      @collection.fetch
+        remove: false
+        reset: false
+        data: @query
+

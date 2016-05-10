@@ -36,12 +36,7 @@
         view = self.layoutBusiness.cards_region.currentView
         view.query = querySearch
 
-        if self.activeTab == "businessProfiles"
-          collection = self.businessProfilesCollection
-        else if self.activeTab == "yourTasks"
-          collection = self.businessTasksCollection
-
-        collection.fetch
+        view.collection.fetch
           reset: true
           remove: true
           data: querySearch

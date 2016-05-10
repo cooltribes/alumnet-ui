@@ -12,15 +12,36 @@
     childViewContainer: '.tasks-container'
     emptyView: MyJobs.EmptyView
 
-    initialize: ->
-      $(window).unbind('scroll');
-      _.bindAll(this, 'loadMoreJobs')
-      $(window).scroll(@loadMoreJobs)
+    initialize: (options)->
+      @query = options.query
 
-    loadMoreJobs: (e)->
-      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-        @trigger 'job:reload'
+      @collection.fetch
+        reset: true
+        remove: true
+        data: @query
 
     onRender: ->
-      $("#iconModalJob").addClass("hide")
-      
+      $(window).unbind('scroll')
+      _.bindAll(this, 'loadMoreJobs')
+      $(window).scroll(@loadMoreJobs)
+      $("#iconModalJob").removeClass("hide")
+
+    remove: ->
+      $(window).unbind('scroll')
+      Backbone.View.prototype.remove.call(this)
+
+    endPagination: ->
+      $(window).unbind('scroll')
+
+    loadMoreJobs: (e)->
+      if @collection.nextPage == null
+        @endPagination()
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @reloadItems()
+
+    reloadItems: ->
+      @query.page = @collection.nextPage
+      @collection.fetch
+        remove: false
+        reset: false
+        data: @query

@@ -1,7 +1,7 @@
 @AlumNet.module 'JobExchangeApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.JobExchange extends Marionette.LayoutView
     template: 'job_exchange/main/templates/layout'
-    
+
     regions:
       jobs_region: '#jobs-region'
       suggestions_regions: '#suggestions-regions'
@@ -32,7 +32,7 @@
           return 1
         when "manageJobExchange"
           return 2
-        
+
     templateHelpers: ->
       classOf: (step) =>
         @class[step]
@@ -63,7 +63,11 @@
     search: (e)->
       e.preventDefault()
       value = $('#search_term').val()
-      @trigger('jobs:search', { q: { name_cont: value } } )
+      if value
+        query = {q: { name_cont: value }}
+      else
+        query = {}
+      @trigger('jobs:search', query)
 
     showModal: (e)->
       e.preventDefault()

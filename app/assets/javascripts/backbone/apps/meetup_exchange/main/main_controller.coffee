@@ -30,46 +30,47 @@
             self.showAutomatches()
 
       @layoutMeetupExchange.on 'meetups:search', (querySearch)->
-        self.querySearch = querySearch
-        if self.activeTab == "discoverMeetups"
-          self.discoverCollection.fetch
-            data: querySearch  
-        else if self.activeTab == "myApplications"
-          self.myApplications.fetch
-            data: querySearch
-            url: AlumNet.api_endpoint + '/meetup_exchanges/applied'
+        querySearch.per_page = 8
+        view = self.layoutMeetupExchange.meetup_region.currentView
+        view.query = querySearch
 
-        else if self.activeTab == "manageMeetups"
-          self.manageMeetups.fetch
-            data: querySearch 
-            url: AlumNet.api_endpoint + '/meetup_exchanges/my'
+        view.collection.fetch
+          reset: true
+          remove: true
+          data: querySearch
 
     showDiscoverMeetup: ()->
       AlumNet.navigate("meetup-exchange/discover")
       @discoverCollection = new AlumNet.Entities.MeetupExchangeCollection
-      @discoverCollection.fetch()
+      query =  query = { per_page: 8 }
+
       discoverView = new AlumNet.MeetupExchangeApp.Discover.List
         collection: @discoverCollection
+        query: query
 
       @layoutMeetupExchange.meetup_region.show(discoverView)
 
     showMyApplications: ()->
       AlumNet.navigate("meetup-exchange/applied")
       @myApplications = new AlumNet.Entities.MeetupExchangeCollection
-      @myApplications.fetch
-        url: AlumNet.api_endpoint + '/meetup_exchanges/applied'
+      @myApplications.url = AlumNet.api_endpoint + '/meetup_exchanges/applied'
+      query =  query = { per_page: 8 }
+
       appliedView = new AlumNet.MeetupExchangeApp.Applied.List
         collection: @myApplications
+        query: query
 
       @layoutMeetupExchange.meetup_region.show(appliedView)
 
     showManageMeetups: ()->
       AlumNet.navigate("meetup-exchange/your-tasks")
       @manageMeetups = new AlumNet.Entities.MeetupExchangeCollection
-      @manageMeetups.fetch
-        url: AlumNet.api_endpoint + '/meetup_exchanges/my'
+      @manageMeetups.url = AlumNet.api_endpoint + '/meetup_exchanges/my'
+      query =  query = { per_page: 8 }
+
       myTasksView = new AlumNet.MeetupExchangeApp.YourTasks.List
         collection: @manageMeetups
+        query: query
 
       @layoutMeetupExchange.meetup_region.show(myTasksView)
 
@@ -91,4 +92,4 @@
           self.showMyApplications()
         when "manageMeetups"
           self.showManageMeetups()
-    
+
