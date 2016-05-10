@@ -299,6 +299,13 @@
       @product_categories = options.product_categories
       @model = options.model
 
+      AlumNet.setTitle('Product categories')
+      $(window).scroll(()->
+        if ($(this).scrollTop() > 260) 
+          $('#smoothScroll').addClass("fixed").fadeIn()
+        else $('#smoothScroll').removeClass("fixed"))
+      @validPrices = true
+
     templateHelpers: ->
       subcategories: @model.get('children')
 
@@ -307,7 +314,7 @@
       if $(':input:checkbox:checked').length > 0
         $.growl.notice({ message: "Product successfully saved!" })
         if $(e.currentTarget).data('action') == 'continue'
-          AlumNet.trigger "admin:products:attributes", model.id
+          AlumNet.trigger "admin:products:attributes", @model.id
       else
         $.growl.error({ message: "Please select at least one category" })
 
@@ -319,10 +326,24 @@
         product_category.destroy()
       $(':input:checkbox:checked').removeAttr('checked')
 
-  class ProductCreate.Attributes extends ProductCreate.General
+  class ProductCreate.Attributes extends Marionette.ItemView
     template: 'admin/products/create/templates/attributes'
 
+    templateHelpers: ->
+      console.log 'helpers'
+      console.log @attributes
+      self = @
+      attributesList: ->
+        console.log 'each'
+        options = ''
+        self.attributes.each (attribute) ->
+          console.log attribute
+          options = '<option value="' + attribute.id + '">' + attribute.get('name') + '</option>'
+        options
+
     onShow: ->
+      @attributes.each (attribute) ->
+        $('.js-multiselect').append('<option value="1">Item 1</option>')
       $('.js-multiselect').multiselect({
         right: '#js_multiselect_to_1'
         rightAll: '#js_right_All_1'

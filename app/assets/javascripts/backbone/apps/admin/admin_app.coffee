@@ -33,6 +33,7 @@
       "admin/products/:id/update": "productUpdate"
       "admin/products/:id/prices": "productPrices"
       "admin/products/:id/categories": "productCategories"
+      "admin/products/:id/attributes": "productAttributes"
 
   API =
     usersList: ->
@@ -120,6 +121,9 @@
     productCategories: (id)->
       controller = new AdminApp.ProductCreate.Controller
       controller.categories(id)
+    productAttributes: (id)->
+      controller = new AdminApp.ProductCreate.Controller
+      controller.attributes(id)
 
   AlumNet.addInitializer ->
     new AdminApp.Router
@@ -177,3 +181,7 @@
   AlumNet.on "admin:products:categories", (id)->
     AlumNet.navigate("admin/products/#{id}/categories")
     API.productCategories(id)
+
+  AlumNet.on "admin:products:attributes", (id)->
+    AlumNet.navigate("admin/products/#{id}/attributes")
+    API.productAttributes(id)
