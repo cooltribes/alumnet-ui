@@ -15,11 +15,30 @@ DESCRIPTION: Style for filters used with elasticsearch
 		color: @info-gray;
 	}
 
-  h4 {
-    text-transform: uppercase;
+  &_group{
+    h4 {
+      text-transform: uppercase;
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }    
+    .row label {
+      font-weight: normal;
+    }
+    //Styles for select2
+    .select2-container {
+
+      .select2-choice {
+        padding: 3px;
+        height: 34px;
+        .select2-arrow b {
+          margin: 0;
+        }
+      }
+    }
+    
   }
 }
 
 .marginFilters{
-	margin: 0 30px;
+	margin: 0 25px;
 }

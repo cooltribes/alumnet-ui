@@ -202,7 +202,7 @@
     optionsForSelect2: ()->
       url = AlumNet.api_endpoint + '/countries/locations'
 
-      placeholder: "Select City or Country"
+      placeholder: "Add location"
       formatResult: @formatSelect2
       formatSelection: @formatSelect2
       minimumInputLength: 2

@@ -253,3 +253,4 @@
       @personal.show(@personal_view)
       @skills.show(@skills_view)
       @languages.show(@languages_view)
+      
