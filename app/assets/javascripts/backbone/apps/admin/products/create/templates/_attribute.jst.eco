@@ -1,0 +1,7 @@
+<li class="list margin_bottom_small">
+	<input type="checkbox" value="<%= @id %>" class="js-attribute" id="attribute_<%= @id %>" <%= @productAttributeChecked(@id) %>>
+	<span><%= @name %></span>
+	<input type="text" class="js-attribute-value" id="attribute_value_<%= @id %>" value="<%= @productAttributeValue(@id) %>" 
+		<%= @productAttributeDisabled(@id) %>>
+	<%= @measure_unit %>
+</li>

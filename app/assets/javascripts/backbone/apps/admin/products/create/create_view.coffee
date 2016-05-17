@@ -304,7 +304,6 @@
         if ($(this).scrollTop() > 260) 
           $('#smoothScroll').addClass("fixed").fadeIn()
         else $('#smoothScroll').removeClass("fixed"))
-      @validPrices = true
 
     templateHelpers: ->
       subcategories: @model.get('children')
@@ -326,28 +325,65 @@
         product_category.destroy()
       $(':input:checkbox:checked').removeAttr('checked')
 
-  class ProductCreate.Attributes extends Marionette.ItemView
-    template: 'admin/products/create/templates/attributes'
+  class ProductCreate.Attribute extends Marionette.ItemView
+    template: 'admin/products/create/templates/_attribute'
+
+    events:
+      'click .js-attribute': 'attributeClicked'
+
+    initialize: (options)->
+      @model = options.model
+      @product = options.product
+      @product_attributes = options.product_attributes
 
     templateHelpers: ->
-      console.log 'helpers'
-      console.log @attributes
-      self = @
-      attributesList: ->
-        console.log 'each'
-        options = ''
-        self.attributes.each (attribute) ->
-          console.log attribute
-          options = '<option value="' + attribute.id + '">' + attribute.get('name') + '</option>'
-        options
+      product_attribute = @product_attributes.findWhere({characteristic_id: @model.id})
+      productAttributeChecked: (attribute_id)->
+        if product_attribute
+          'checked'
+      productAttributeDisabled: (attribute_id)->
+        if not product_attribute
+          'disabled'
+      productAttributeValue: (attribute_id)->
+        if product_attribute
+          product_attribute.get('value')
+        else
+          ''
 
-    onShow: ->
-      @attributes.each (attribute) ->
-        $('.js-multiselect').append('<option value="1">Item 1</option>')
-      $('.js-multiselect').multiselect({
-        right: '#js_multiselect_to_1'
-        rightAll: '#js_right_All_1'
-        rightSelected: '#js_right_Selected_1'
-        leftSelected: '#js_left_Selected_1'
-        leftAll: '#js_left_All_1'
-      })
+    attributeClicked: (e)->
+      if e.currentTarget.checked
+        $('#attribute_value_'+$(e.currentTarget).val()).removeAttr('disabled')
+        $('#attribute_value_'+$(e.currentTarget).val()).focus()
+      else
+        $('#attribute_value_'+$(e.currentTarget).val()).attr('disabled', 'disabled')
+        $('#attribute_value_'+$(e.currentTarget).val()).val('')
+        product_attribute = @product_attributes.findWhere({characteristic_id: parseInt(e.currentTarget.value), product_id: @product.id})
+        product_attribute.destroy()
+
+  class ProductCreate.Attributes extends Marionette.CompositeView
+    template: 'admin/products/create/templates/attributes'
+    childView: ProductCreate.Attribute
+    childViewContainer: "#list-attributes"
+    childViewOptions: (model)->
+      { product: this.options.model, product_attributes: this.options.product_attributes }
+
+    events:
+      'click .js-save': 'saveClicked'
+      'click .js-continue': 'saveClicked'
+      'click .js-clear': 'clearForm'
+
+    initialize: (options)->
+      AlumNet.setTitle('Product attributes')
+      $(window).scroll(()->
+        if ($(this).scrollTop() > 260) 
+          $('#smoothScroll').addClass("fixed").fadeIn()
+        else $('#smoothScroll').removeClass("fixed"))
+
+    saveClicked: (e)->
+      e.preventDefault()
+      self = @
+      $('.js-attribute:checked').each (value) ->
+        product_attribute = new AlumNet.Entities.ProductAttribute
+        product_attribute.set({characteristic_id: $(this).val(), product_id: self.model.id, value: $('#attribute_value_'+$(this).val()).val()})
+        product_attribute.save()
+      $.growl.notice({ message: "Product successfully saved!" })

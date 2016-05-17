@@ -79,20 +79,14 @@
     showAttributes: (product)->
       self = @
       attributes = AlumNet.request('attributes:entities', {})
-      #product_categories = AlumNet.request('product_categories:entities', {product_id: product.id})
-      # product_categories.on 'fetch:success', (product_categories_collection)->
-      #   view = new ProductCreate.Categories
-      #     model: product
-      #     collection: categories
-      #     product_categories: product_categories_collection
-      #   self.layoutView.content_region.show(view)
-      attributes.on 'fetch:success', (attributes_collection)->
+      product_attributes = AlumNet.request('product_attributes:entities', {product_id: product.id})
+      product_attributes.on 'fetch:success', (product_attributes_collection)->
         view = new ProductCreate.Attributes
           model: product
-          attributes: attributes_collection
+          collection: attributes
+          product_attributes: product_attributes
 
         self.layoutView.content_region.show(view)
-        console.log attributes_collection
 
     showRegionMenu: (valueClick) ->
       self = @
