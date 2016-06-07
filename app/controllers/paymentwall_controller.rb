@@ -3,6 +3,8 @@ class PaymentwallController < ApplicationController
 
   def callback
     require 'paymentwall'
+    require 'digest/md5'
+    require 'httparty'
     Paymentwall::Base::setApiType(Paymentwall::Base::API_GOODS)
     Paymentwall::Base::setAppKey(Settings.paymentwall_project_key)
     Paymentwall::Base::setSecretKey(Settings.paymentwall_secret_key)
@@ -51,9 +53,34 @@ class PaymentwallController < ApplicationController
           @payment_text = { :user_id => @user_id, :paymentable_id => @response_product['id'], :paymentable_type => "Product", :subtotal => @pingback.getParameter('amount'), :iva => 0, :total => @pingback.getParameter('amount'), :reference => @reference, :country_id => @pingback.getParameter('country_id'), :city_id => @pingback.getParameter('city_id'), :address => @pingback.getParameter('address') }.to_json
           payment.create(JSON.parse(@payment_text), session, @auth_token)
           @response_payment = payment.response
-          render :text => "OK"
-          #render :text => @response_product['quantity']
-          #render json: @response_user
+
+          # create paymentwall invoice
+          # @invoice_date = Time.now.strftime("%d/%m/%Y")
+          # @invoice_params = 'contacts[0][email]=yroa@upsidecorp.chcontacts[0][first_name]=Testcontacts[0][last_name]=Developcurrency=EURdate='+@invoice_date+'due_date='+@invoice_date+'invoice_number=A-0003items[0][currency]=EURitems[0][quantity]=1items[0][title]=Membershipitems[0][unit_cost]=2key='+Settings.paymentwall_project_key+'sign_version=221ea499b579ed1fdae9fefd7b9fb3446'
+          # @invoice_sign = Digest::MD5.hexdigest(@invoice_params)
+          # @invoice_json = { 
+          #        "key": Settings.paymentwall_project_key, 
+          #        "sign_version": '2', 
+          #        "sign": @invoice_sign, 
+          #        "invoice_number": 'A-0003', 
+          #        "currency": 'EUR',
+          #        "date": @invoice_date,
+          #        "due_date": @invoice_date,
+          #        "contacts[0][email]": 'yroa@upsidecorp.ch',
+          #        "contacts[0][first_name]": 'Test',
+          #        "contacts[0][last_name]": 'Develop',
+          #        "items[0][quantity]": 1,
+          #        "items[0][unit_cost]": 2,
+          #        "items[0][currency]": 'EUR',
+          #        "items[0][title]": 'Membership'
+          #      }
+
+          # @invoice_result = HTTParty.post('https://api.paymentwall.com/developers/invoice-api/invoice', :body => @invoice_json)
+
+          #render :text => "OK"
+          #render :text => @invoice_sign
+          
+          render json: @invoice_result.to_json
         elsif(@pingback.getParameter('type') == '2') #deactivate membership
           payment = Payment.new
           @payment_text = { :status => 2 }.to_json
