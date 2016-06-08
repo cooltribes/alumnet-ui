@@ -1,0 +1,2 @@
+Conversations <%= @conversationCount %>
+<div class="conversationsContainer"></div>

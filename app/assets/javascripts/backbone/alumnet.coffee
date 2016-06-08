@@ -25,6 +25,10 @@
 
   App.on 'start', ->
     # App.loadReceptiveWidget()
+    ## Layer
+    App.execute('initialize:layer', App.current_user)
+    App.friends = new App.Entities.FriendshipCollection
+
     if Backbone.history
       Backbone.history.start()
       href = Cookies.get('original_href')
