@@ -7,7 +7,7 @@
       console.log 'Init Layer'
 
       AlumNet.layerClient = new layer.Client
-        appId: 'layer:///apps/staging/b92b9c98-27fe-11e6-a7ff-8c34b9167c29'
+        appId: 'layer:///apps/staging/13c942e8-2d88-11e6-8279-a6424d091611'
 
       AlumNet.layerClient.on 'challenge', (e)->
         callback = (token)->

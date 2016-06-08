@@ -50,7 +50,7 @@
 
     createConversation: (e)->
       e.preventDefault()
-      participants = [@model.id]
+      participants = ["#{@model.id}"]
       conversation = AlumNet.layerClient.createConversation
         participants: participants
         distinct: true
@@ -106,14 +106,15 @@
     getParticipants: ->
       self = @
       users = []
-      participants = _.without @model.get('participants'), AlumNet.current_user.id
+      participants = _.without @model.get('participants'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
-        user = AlumNet.friends.get(participant_id)
+        id = parseInt(participant_id)
+        user = AlumNet.friends.get(id)
         if user
           users.push user
           self.trigger 'add:user', users
         else
-          user = AlumNet.request('user:find', participant_id)
+          user = AlumNet.request('user:find', id)
           self.listenTo user, 'find:success', (response, options)->
             AlumNet.friends.add(user, {merge: true})
             users.push user
@@ -184,7 +185,7 @@
     template: 'chat/message'
 
     onBeforeRender: ->
-      # @getSender()
+      @getSender()
 
     templateHelpers: ->
       isCurrentUser: @model.isCurrentUser()
@@ -194,10 +195,11 @@
 
     getSender: ->
       sender_id = @model.get('sender').id
-      if @model.isCurrentUser()
+      sender_id = parseInt(sender_id)
+      if sender_id == AlumNet.current_user.id
         user = AlumNet.current_user
       else
-        user = AlumNet.friends.get(participant_id)
+        user = AlumNet.friends.get(sender_id)
 
       if user
         userInfo = { id: sender_id, fullname: user.get('name'), avatar_url: user.get('avatar').large }
@@ -215,7 +217,6 @@
     initialize: (options)->
       @conversation = options.conversation
       @data = options.data
-      console.log @conversation
 
     onRender: ->
       @setCollection()
@@ -241,5 +242,5 @@
     sendMessage: (conversation, text)->
       if conversation
         message = conversation.createMessage(text).send()
-        message.on 'messages:sent', (e)->
-          AlumNet.log "message sent: #{e.target.parts[0].body}"
+        # message.on 'messages:sent', (e)->
+        #   AlumNet.log "message sent: #{e.target.parts[0].body}"

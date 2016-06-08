@@ -1,5 +1,5 @@
 <div class="message-content" style="margin-top: 5px">
   <span class="bubble"> <%= @body %> </span>
-    <span style="font-size: 10px">    </span>
+    <span style="font-size: 10px"> <%= @sender.fullname %>   </span>
     <span style="font-size: 10px">  <%= @sentAt %>  </span>
 </div>
