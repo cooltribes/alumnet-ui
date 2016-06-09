@@ -36,9 +36,9 @@
     showBoxNewBanner:(e) ->
       e.preventDefault()
       $("#js-newBanner").slideToggle("slow")
-      $("#js-btnNewBanner").toggle("slow") 
+      $("#js-btnNewBanner").toggle("slow")
 
-    
+
     addBanner: (e)->
       e.preventDefault()
       view = @
@@ -48,8 +48,7 @@
         formData.append(key, value)
       file = @$('#BannerImg')
       formData.append('picture', file[0].files[0])
-      console.log data
-      
+
       @model.set(data)
 
       if @model.isValid(true)
@@ -62,7 +61,7 @@
             view.collection.add(model)
         @model.save(formData, options_for_save)
         @render()
-    
+
 
     previewImage: (e)->
       input = @.$('#BannerImg')
@@ -81,8 +80,8 @@
     ui:
       'buttonUp': '#js-move-up'
       'buttonDown':'#js-move-down'
-      'editBanner':'#js-edit-banner'      
-      'upload':'.uploadLabel' 
+      'editBanner':'#js-edit-banner'
+      'upload':'.uploadLabel'
       'update':'#js-update'
 
     events:
@@ -90,18 +89,18 @@
       'click #js-move-up': 'moveUp'
       'click #js-move-down': 'moveDown'
       'click @ui.editBanner': 'editClicked'
-      'click @ui.update':'updateClicked' 
+      'click @ui.update':'updateClicked'
       'change #BannerImg': 'previewImage'
       'click #js-editBanner':'showBoxEditBanner'
       'click #js-cancelEditBanner':'showBoxEditBanner'
-    
+
     showBoxEditBanner:(e)->
       e.preventDefault()
       $("#js-boxEditBanner").slideToggle("slow")
       $("#js-editImgBanner").slideToggle("slow")
-   
 
-    initialize: (options)->      
+
+    initialize: (options)->
       @collection = options.collection
       $(@ui.upload).hide()
       $(@ui.update).hide()
@@ -116,7 +115,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
-              
+
     editClicked: (e)->
       e.preventDefault()
       $("[name='title']").prop('disabled', false)
@@ -131,15 +130,15 @@
       resp = confirm("Are you sure?")
       if resp
         @model.destroy()
-        
+
     moveUp: (e)->
       e.preventDefault()
       e.stopPropagation()
       indexToUp = @model.collection.indexOf(@model)
       above = parseInt(indexToUp)
-      if indexToUp > 0 
+      if indexToUp > 0
         @trigger 'Swap:Up',indexToUp, indexToUp+1, above
-      
+
     moveDown: (e)->
       e.preventDefault()
       e.stopPropagation()
@@ -163,17 +162,17 @@
           contentType: false
           processData: false
           data: formData
-          success: (model, response, options)->          
-            view.model.set(formData)  
-        @model.save(formData, options_for_save)        
+          success: (model, response, options)->
+            view.model.set(formData)
+        @model.save(formData, options_for_save)
         @model.trigger 'banner:count'
         $("[name='title']").prop('disabled', true)
         $("[name='link']").prop('disabled', true)
         $("[name='description']").prop('disabled', true)
         $(@ui.upload).hide()
         $(@ui.update).hide()
- 
-  
+
+
     previewImage: (e)->
       input = @.$('#BannerImg')
       preview = @.$('#preview-banner')
@@ -181,7 +180,7 @@
         reader = new FileReader()
         reader.onload = (e)->
           preview.attr("src", e.target.result)
-        reader.readAsDataURL(input[0].files[0])  
+        reader.readAsDataURL(input[0].files[0])
 
 
   #Vista para lista de banners
@@ -191,29 +190,29 @@
     childView: BannerList.BannerView
     childViewContainer: "#banners-list"
 
-    
 
-      
+
+
     initialize: (options)->
-      AlumNet.setTitle('Banners Management')  
-      @collection.each (model)->     
-        attrs = { order: model.get('order')}   
-         
+      AlumNet.setTitle('Banners Management')
+      @collection.each (model)->
+        attrs = { order: model.get('order')}
+
     onChildviewSwapUp: (bannerToUp, currentIndex, indexAbove)->
       indexAbove = indexAbove-2
       bannerAbove = @collection.at(indexAbove)
-      bannerAbove = @collection.remove(bannerAbove) 
-      currentBanner = @collection.remove(bannerToUp) 
-      @collection.add(currentBanner, {at: indexAbove}) 
+      bannerAbove = @collection.remove(bannerAbove)
+      currentBanner = @collection.remove(bannerToUp)
+      @collection.add(currentBanner, {at: indexAbove})
       @collection.add(bannerAbove, at: currentIndex)
       @trigger 'banner:count'
-            
-        
+
+
     onChildviewSwapDown: (bannerToDown, currentIndex, indexBelow) ->
       bannerBelow = @collection.at(indexBelow)
-      bannerBelow = @collection.remove(bannerBelow) 
-      currentBanner = @collection.remove(bannerToDown) 
-      @collection.add(currentBanner, {at: indexBelow}) 
+      bannerBelow = @collection.remove(bannerBelow)
+      currentBanner = @collection.remove(bannerToDown)
+      @collection.add(currentBanner, {at: indexBelow})
       @collection.add(bannerBelow, at: currentIndex)
       @trigger 'banner:count'
 
@@ -224,14 +223,14 @@
 
     onShow: ->
       model = @model
-      image = @model.get('picture').original 
+      image = @model.get('picture').original
       options =
         loadPicture: image
         cropUrl: AlumNet.api_endpoint + "/banners/#{@model.id}/cropping"
         onAfterImgCrop: ->
           model.trigger('change:banner')
 
-      cropper = new Croppic('croppic', options)    
+      cropper = new Croppic('croppic', options)
 
 ###
   class BannerList.Modal extends Backbone.Modal
@@ -256,7 +255,7 @@
           $group = $el.closest('.form-group')
           $group.addClass('has-error')
           $group.find('.help-block').html(error).removeClass('hidden')
-  
+
 
     cropClicked: (e)->
       e.preventDefault()
@@ -274,7 +273,7 @@
           preview.attr("src", e.target.result)
         reader.readAsDataURL(input[0].files[0])
 
-        
+
     saveClicked: (e)->
       e.preventDefault()
       view = @
@@ -293,11 +292,10 @@
           processData: false
           data: formData
           success: (model, response, options)->
-            view.model.set(formData)       
+            view.model.set(formData)
             model.trigger('change:banner', file)
         @model.save(formData, options_for_save)
         @destroy()
 ###
-     
 
-      
+

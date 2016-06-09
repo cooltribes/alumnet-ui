@@ -19,7 +19,7 @@
 
       @trigger('tab_selected', tab_name)
 
-  
+
   class UserStats.GeneralGraph extends Marionette.ItemView
     template: 'admin/users/stats/view/templates/_graph'
 
@@ -61,7 +61,7 @@
       "change:location_id": "modelChangeLocation"
 
     bindings:
-      "#js-residence-region": "location_id"   
+      "#js-residence-region": "location_id"
 
 
     modelChange: (model)->
@@ -94,17 +94,17 @@
           placeholder: "Select a Region"
           data: data
 
-        @ui.selectRegion.select2('val', @model.get('location_id')) 
+        @ui.selectRegion.select2('val', @model.get('location_id'))
 
-        @stickit()     
+        @stickit()
 
     modelChangeLocation: (model)->
       model.set "q",
         profile_residence_country_region_id_eq: model.get "location_id"
-      
+
       model.fetch
-        data: 
-          q: model.get("q")    
+        data:
+          q: model.get("q")
 
   class UserStats.NationalGraph extends Marionette.ItemView
     template: 'admin/users/stats/view/templates/_graph'
@@ -118,14 +118,10 @@
       "change:location_id": "modelChangeLocation"
 
     bindings:
-      "#js-residence-countries": "location_id" 
+      "#js-residence-countries": "location_id"
 
-  
+
     modelChange: (model)->
-      # if !model.hasChanged("location_id")
-      # console.log "model changed"
-      # console.log model.previousAttributes()
-      # console.log model.attributes
       queryCounters = model.get("query_counters")
 
       if queryCounters?
@@ -145,7 +141,7 @@
             'titleTextStyle': { 'fontSize': 16 }
 
         @ui.graph_section.showAnimated(graph.render().el)
-        
+
 
     onRender: ->
 
@@ -155,17 +151,17 @@
           placeholder: "Select a Country"
           data: data
 
-        @ui.selectResidenceCountries.select2('val', @model.get('location_id')) 
+        @ui.selectResidenceCountries.select2('val', @model.get('location_id'))
 
-        @stickit()     
-      
+        @stickit()
+
 
     modelChangeLocation: (model)->
       model.set "q",
         profile_residence_country_id_eq: model.get "location_id"
-      
+
       model.fetch
-        data: 
+        data:
           q: model.get("q")
 
   class UserStats.Graphics extends Marionette.CompositeView
@@ -184,4 +180,3 @@
         UserStats.NationalGraph
 
     childViewContainer: ".graphs-list"
-    

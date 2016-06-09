@@ -51,7 +51,7 @@
     templateHelpers: ->
       userCanEdit: @model.userIsAdmin()
       employees_count: @model.employees_count()
-      
+
     ui:
       'companyDescription': '#description'
       'companySize': '#size'
@@ -117,7 +117,7 @@
                 $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle"> <a href="#companies/'+companies_id+'/employees" style="text-decoration: underline">more...</a>')
               else
                 $('#avatar-employees').append('<img src="'+avatar_user+'" class="img-circle">')
-            
+
       @ui.companyDescription.editable
         type: 'textarea'
         pk: view.model.id
@@ -154,7 +154,7 @@
             _.each data, (element, list)->
               values.push { value: element.id, text: element.name }
             view.fillEditableSectors(values)
-         
+
   #### SERVICES ####
 
   class About.ServiceView extends Marionette.ItemView
@@ -262,7 +262,6 @@
       $group.find('.help-block').html('').addClass('hidden')
 
     addErrors: (attr, error)->
-      console.log attr, error
       $el = @$("[name=#{attr}]")
       $group = $el.closest('.form-contact')
       $group.addClass('has-error')
@@ -807,4 +806,3 @@
         parentView: @
       $('#js-modal-link-container').html(modal.render().el)
 
-      

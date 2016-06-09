@@ -1,42 +1,40 @@
 <div class="container-fluid margin_top">
   <div class="row ">
-    
+
     <div class="col-md-8">
       <ul class="sortingMenu" id="filter-link-container">
-        
+
         <li class="sortingMenu__item sortingMenu__item--lg">
-          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%%= @name %> (<%%= @pictures_count %>) 
+          <div title="All" class="sortingMenu__item__link sortingMenu__item__link--active"><%%= @name %> (<%%= @pictures_count %>)
           </div>
-          
+
         </li>
-        
+
       </ul>
-      
+
     </div>
     <%% if @userCanEdit: %>
       <div class="col-md-4 text-right">
         <form>
-          <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">        
+          <input type="file" id="picture-file" style="margin-top: 15px; display:none;" name="picture" accept="image/*">
         </form>
-        
+
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
         <!-- <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary" id="js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a> -->
 
         <a href="#" title="Edit album" class="btn-primary-noBackground btn  btn-primary js-edit"><span class="icon-entypo-pencil"></span> EDIT ALBUM</a>
       </div>
-    <%% end %>  
-    
+    <%% end %>
+
   </div>
   <hr class="no_margin_top">
   <div class="row ">
-    
+
     <div class="col-md-12">
-      <a href="#" class="js-returnAlbums">Albums</a> - <%%= @name %> 
+      <a href="#" class="js-returnAlbums">Albums</a> - <%%= @name %>
     </div>
-      
+
   </div>
-    <%% #console.log this %>
-    <%% #console.log this.getLocation() %>
     <div class="row padding_top_small">
       <%% if @getLocation() || @date_taken: %>
 
@@ -46,7 +44,7 @@
             <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
               <span class="icon-entypo-location"></span>
             </div>
-            <div class="col-md-10 no_margin_left albumInfo__value"> 
+            <div class="col-md-10 no_margin_left albumInfo__value">
                <%%= @getLocation() %>
             </div>
           </div>
@@ -56,7 +54,7 @@
             <div class="col-md-2 text-right no_margin_right albumInfo__icon">
               <span class="icon-entypo-clock"></span>
             </div>
-            <div class="col-md-10 no_margin_left albumInfo__value"> 
+            <div class="col-md-10 no_margin_left albumInfo__value">
                 <%%= moment(@date_taken).format('MMMM Do, YYYY') %>
             </div>
           </div>
@@ -65,14 +63,14 @@
         <div id="js-album-desc" class="col-md-4 albumInfo__description">
           <%% if @description: %>
             <%%= @description %>
-          <%% end %> 
+          <%% end %>
         </div>
-        
+
         <%% else: %>
         <div class="col-md-4 albumInfo__description">
           <%% if @description: %>
             <%%= @description %>
-          <%% end %> 
+          <%% end %>
         </div>
 
 
@@ -86,20 +84,20 @@
   <div class="col-md-12">
     <h4>
       &nbsp
-               
+
     </h4>
 
   </div>
 </div>
 
   <div class="col-md-3 col-sm-6 albums-list__upload">
-  
+
 
   <div class="">
   <!-- <div class="albums-list__upload__bordedBox"> -->
     <div class=" row">
       <div class="col-md-12 text-center">
-        <%= image_tag("general/326x346.png", width: "100%", class: "albums-list__upload__bordedBox") %> 
+        <%= image_tag("general/326x346.png", width: "100%", class: "albums-list__upload__bordedBox") %>
         <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a>
         <!-- <a href="#" title="+ Upload photo" class="btn-primary-noBackground btn  btn-primary js-upload" id="js-upload"><span class="icon-entypo-upload"></span> UPLOAD NEW PHOTO</a> -->
       </div>
@@ -109,5 +107,5 @@
   </div>
 </div>
 <div id="js-modal-container">
-        
+
 </div>

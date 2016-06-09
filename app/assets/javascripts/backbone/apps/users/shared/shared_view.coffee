@@ -83,7 +83,7 @@
         #type: 3
         model: @model
       @ui.modalCont.html(modal.render().el)
-    
+
     coverSaved: true
     editCover: (e)->
       e.preventDefault()
@@ -109,7 +109,6 @@
     saveCover: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize this
-      console.log data.cover
       if data.cover != ""
         model = @model
         modal = @
@@ -143,7 +142,7 @@
     uploadCoverProfile: (e)->
       e.preventDefault()
       @ui.profileCover.click()
-      
+
 
 
   class Shared.Layout extends Marionette.LayoutView

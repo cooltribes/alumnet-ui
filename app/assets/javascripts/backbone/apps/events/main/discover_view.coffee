@@ -5,7 +5,6 @@
 
     templateHelpers: ->
       model = @model
-      console.log model
       location: @model.getLocation()
       isPast: @model.isPast()
       isOpen: @model.isOpen()

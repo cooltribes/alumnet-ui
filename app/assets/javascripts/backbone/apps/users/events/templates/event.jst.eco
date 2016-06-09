@@ -21,13 +21,13 @@
             <a href="#users/<%= @creator.id %>/posts">
               <div class="creatorName overfloadText">
                 <%= @creator.name %>
-              </div> 
+              </div>
             </a>
           </div>
 
         </div>
-        
-        
+
+
       </div>
       <div class="col-md-4">
         <div>
@@ -43,7 +43,6 @@
         <span class="ico-company"></span>
         Attending:<%= @attendances_count %>
       </div>
-      <% console.log "hola "+@isPast %>
       <div class="col-md-3">
       <% if @userCanAttend && not @isPast: %>
         <select class="form-control input-lg eventsTableView__status <% if @attendance_status() == "going": %> eventsTableView__status--going <% else if @attendance_status() == "maybe" : %> eventsTableView__status--maybe <% else if @attendance_status() == "not_going" : %> eventsTableView__status--not_going <% else: %> eventsTableView__status--else <% end %>" id="attendance-status" name="status" aria-describedby="attendance-status">

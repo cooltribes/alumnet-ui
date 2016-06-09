@@ -25,21 +25,20 @@
     onRender: ->
       $('body,html').animate({scrollTop: 0}, 600);
       view = this
-      console.log @current_user
-      
+
       profile = view.current_user.profile
 
       subscription = AlumNet.request('product:find', @data.subscription_id)
-      
+
       paymentwall_project_key = AlumNet.paymentwall_project_key
       paymentwall_secret_key = AlumNet.paymentwall_secret_key
       paymentwall_return_url = window.location.origin
       auth_token = AlumNet.current_token
-      
+
       birthday = profile.get('born')
       birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
 
-      
+
       parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=ccsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
       content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=cc&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
 
@@ -123,14 +122,14 @@
       if valid_address
         country = new AlumNet.Entities.Country
           id: data.country_id
-        
+
         country.fetch
           success: (model) ->
             paymentwall_project_key = AlumNet.paymentwall_project_key
             paymentwall_secret_key = AlumNet.paymentwall_secret_key
             paymentwall_return_url = window.location.origin
             auth_token = AlumNet.current_token
-            
+
             profile = view.current_user.profile
             birthday = profile.get('born')
             birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)

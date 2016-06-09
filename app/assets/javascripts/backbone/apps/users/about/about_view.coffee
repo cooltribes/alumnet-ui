@@ -119,11 +119,11 @@
       return emailReg.test(email)
 
     isLink: (link)->
-      linkReg = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/  
+      linkReg = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/
       return linkReg.test(link)
 
     isLinkedIn: (link)->
-    
+
       linkedInReg = /^(https?:\/\/)+((www.)|([a-z\.]{2,6}))?(linkedin\.com)+([\/\w \?=.-]*)*\/?$/
       return linkedInReg.test(link)
 
@@ -132,7 +132,7 @@
       return phoneNumberReg.test(phoneNumber)
 
     isTwitter: (username)->
-  
+
       userNameReg = /^\@[a-z0-9_-]{3,16}$/
 
       return userNameReg.test(username)
@@ -141,7 +141,7 @@
       'change #js-contact-type': 'contactClicked'
 
     contactClicked: (e)->
-    
+
       value = $("#js-contact-type").val()
       elementContacType = this.$("[name=contact_type]")
       group = elementContacType.closest('.form-group')
@@ -151,7 +151,7 @@
       group = elementInfo.closest('.form-group')
       group.removeClass('has-error')
       elementInfo.val("")
-      
+
       $("#js-help-select").html("")
       $("#js-help-info").html("")
 
@@ -183,7 +183,7 @@
       if value == "9"
         $("#info").attr("placeholder", "user@example.com")
         $("#info").attr("title", "user@example.com")
-  
+
     onRender: ->
       switch @type
         when 0
@@ -192,10 +192,10 @@
             success: =>
               @fillSkills(skillsList)
               currentSkills = @view.collection
-              
+
               skills = _.pluck(currentSkills.models, 'attributes')
-              listOfNames = _.pluck(skills, 'name')              
-              $("#skills-input",@$el).select2 "val", listOfNames 
+              listOfNames = _.pluck(skills, 'name')
+              $("#skills-input",@$el).select2 "val", listOfNames
 
         when 1
           slideItem = $("#slider", @el)
@@ -230,7 +230,7 @@
           content = AlumNet.request("languages:html")
           dropdown.html(content)
 
-    
+
 
     beforeSubmit: ()->
       #Validations
@@ -282,15 +282,15 @@
               return false
 
           if type == "3"
-            if !(@isYahoo(info))              
+            if !(@isYahoo(info))
               group.addClass('has-error')
               $("#js-help-info").html("Yahoo email is incorrect")
               return false
           if type == "5"
-            if !(@isTwitter(info))   
+            if !(@isTwitter(info))
               group.addClass('has-error')
               $("#js-help-info").html("Twitter username is incorrect")
-              return false 
+              return false
           if type == "7"
             if !(@isLink(info))
               group.addClass('has-error')
@@ -338,7 +338,7 @@
     ui:
       'avatarImagen': "#croppic > img"
       'changeProfilePicture': '#js-change-picture'
-    
+
     events:
       'click #js-crop-btn': 'saveImage'
       'change #profile-avatar': 'previewImage'
@@ -418,7 +418,7 @@
         zoomable: false
         rotatable: false
         scalable: false
-      
+
       #model = @model
       #image = @model.get('avatar').original + "?#{ new Date().getTime() }"
       #options =
@@ -426,7 +426,7 @@
       #  cropData: { "image": 'avatar' }
       #  cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
       #  doubleZoomControls:false
-      #  rotateControls:false 
+      #  rotateControls:false
       #  onAfterImgCrop: ()->
       #    model.trigger('change:cover')
       #    if model.isCurrentUser()
@@ -453,10 +453,10 @@
         uploadUrl: AlumNet.api_endpoint + "/tempfile"
         cropUrl: AlumNet.api_endpoint + "/profiles/#{@model.profile.id}/cropping"
         doubleZoomControls: false
-        rotateControls: false 
+        rotateControls: false
         customUploadButtonId: 'js-upload-btn'
         onAfterImgUpload: ->
-          console.log "imagen upload"
+          console.log "image uploaded"
         onAfterImgCrop: ->
           model.trigger('change:cover')
 
@@ -670,7 +670,7 @@
       data = Backbone.Syphon.serialize this
       @model.set(data)
       @model.set({valid_current_password: "true"})
-      
+
       if @model.isValid(true)
         url = AlumNet.api_endpoint + "/users/#{@user.id}/change_password"
         data.user_id = @user.id
@@ -1034,7 +1034,7 @@
 
     initialize: (options)->
       @userCanEdit = options.userCanEdit
-      @model.decodeDates()      
+      @model.decodeDates()
 
     templateHelpers: ->
       model = @model
@@ -1074,7 +1074,7 @@
       @model.set "first", true
       @model.collection.trigger "reset" #For re-render the itemview
       $('body,html').animate({scrollTop: pos.top + 750}, 400);
-      
+
 
     removeItem: (e)->
       if @model.canBeDeleted()

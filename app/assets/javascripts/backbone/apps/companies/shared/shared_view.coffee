@@ -6,7 +6,7 @@
     ui:
       'avatarImagen': "#croppic > img"
       'changeProfilePicture': '#js-change-picture'
-    
+
     events:
       'click #js-crop-btn': 'saveImage'
       'change #profile-avatar': 'previewImage'
@@ -82,7 +82,6 @@
         model.get('logo').original + "?#{ new Date().getTime() }"
 
     onShow: ->
-      console.log @ui.avatarImagen
       $(@ui.avatarImagen).cropper
         aspectRatio: 1 / 1
         movable: false
@@ -92,13 +91,13 @@
 
   class Shared.CropModalOLD extends Backbone.Modal
     template: 'companies/shared/templates/crop_modal'
-    cancelEl: '#js-close-btn'    
+    cancelEl: '#js-close-btn'
     events:
       'click #js-crop-btn': 'clickCropAvatar'
 
     clickCropAvatar: (e)->
       @cropper.crop()
-   
+
     initialize: (options)->
       @uploader = options.uploader
 
@@ -113,7 +112,7 @@
         cropData: { 'image': @uploader }
         cropUrl: AlumNet.api_endpoint + "/companies/#{@model.id}/cropping"
         doubleZoomControls:false
-        rotateControls:false         
+        rotateControls:false
         onAfterImgCrop: ->
           model.trigger('change:logo')
       cropper = new Croppic('croppic', options)
@@ -226,13 +225,13 @@
         if cover.main
           "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
         else
-          "background-color: #2b2b2b;"          
+          "background-color: #2b2b2b;"
 
     ui:
       'requestLink':'#js-request-admin-company'
       'editLogo':'#js-edit-logo'
-      'name':'#name'    
-      'coverArea':'.userCoverArea'  
+      'name':'#name'
+      'coverArea':'.userCoverArea'
       'editCover': '#js-editCover'
       'uploadCover': '#js-changeCover'
       'eventCover': '#profile-cover'
@@ -242,7 +241,7 @@
       'click @ui.editLogo': 'editLogoClicked'
       'click @ui.editCover': 'editCover'
       'change @ui.eventCover': 'saveCover'
-      'click @ui.uploadCover' : 'uploadClicked'      
+      'click @ui.uploadCover' : 'uploadClicked'
 
     onRender: ->
       model = @model
@@ -306,7 +305,6 @@
     saveCover: (e)->
       e.preventDefault()
       data = Backbone.Syphon.serialize this
-      console.log data.cover
       if data.cover != ""
         model = @model
         modal = @
@@ -327,7 +325,7 @@
       modal = new Shared.CoverModal
         model: @model
       $('#js-modal-container').html(modal.render().el)
-    
+
     _changeButton: ()->
       @ui.requestLink.attr("disabled", true)
       @ui.requestLink.text("Waiting for admins response")

@@ -2,7 +2,7 @@
   class Create.Controller
     create: ->
       controller = @
-      
+
       url = AlumNet.api_endpoint + "/features/validate"
       current_user = AlumNet.current_user
       Backbone.ajax
@@ -18,14 +18,7 @@
           else
             controller.showForm()
         error: (data) =>
-          console.log data
           $.growl.error({ message: 'Unknow error, please try again' })
-
-      ###createForm = new Create.Form
-        model: task
-
-      AlumNet.mainRegion.show(createForm)
-      AlumNet.execute('render:business_exchange:submenu')###
 
     showForm: ->
       task = new AlumNet.Entities.BusinessExchange

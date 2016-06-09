@@ -21,7 +21,6 @@
       'linkCancel': '#js-cancel'
 
     downloadCVS: (e)->
-      console.log e
       e.preventDefault()
       document.location = $(e.currentTarget).attr("href")
 

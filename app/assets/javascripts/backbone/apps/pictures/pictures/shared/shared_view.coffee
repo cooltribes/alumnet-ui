@@ -49,7 +49,6 @@
     templateHelpers: ->
 
       model = @model
-      console.log model
       img = $("<img>").attr("src", @model.attributes.picture.original).load()
       proportion = parseFloat(parseInt(img[0].width,10) / parseInt(img[0].height,10))*5
       h= parseInt(img[0].width,10) > parseInt(img[0].height,10)  && proportion > 8
@@ -80,10 +79,7 @@
       like = AlumNet.request("like:picture:new", picture.id)
       like.save {},
         success: ->
-          # console.log thisView
-          # picture.sumLike()
           thisView.sumLike()
-          # console.log thisView
 
     clickedUnLike: (e)->
       e.stopPropagation()
@@ -93,7 +89,6 @@
       unlike = AlumNet.request("unlike:picture:new", picture.id)
       unlike.save {},
         success: ->
-          # picture.remLike()
           thisView.remLike()
 
     sumLike:()->
@@ -118,7 +113,6 @@
     Tagging: (e)->
       e.preventDefault()
       link = $(e.currentTarget)
-      console.log link
       if link.html() == "STOP TAGGING"
         link.html("TAG A FRIEND")
         @tagger.inactiveTagger()
@@ -305,13 +299,11 @@
         e.preventDefault()
         data = Backbone.Syphon.serialize(this)
         if data.body != ''
-          console.log data, @model
           view = @
           comment = AlumNet.request('comment:picture:new', @model.id)
           data.comment = @ui.commentInput.mentionsInput('getRawValue')
           data.markup_comment = @ui.commentInput.mentionsInput('getValue')
           data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
-          console.log data, comment
           comment.save data,
             success: (model, response, options)->
               view.ui.commentInput.val('')
@@ -322,13 +314,11 @@
       e.preventDefault()
       data = Backbone.Syphon.serialize(this)
       if data.body != ''
-        console.log data, @model
         view = @
         comment = AlumNet.request('comment:picture:new', @model.id)
         data.comment = @ui.commentInput.mentionsInput('getRawValue')
         data.markup_comment = @ui.commentInput.mentionsInput('getValue')
         data.user_tags_list = @extractMentions @ui.commentInput.mentionsInput('getMentions')
-        console.log data, comment
         comment.save data,
           success: (model, response, options)->
             view.ui.commentInput.val('')

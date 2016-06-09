@@ -16,16 +16,16 @@
       'change #prize-photo': 'previewImage'
 
     bindings:
-      ".js-name": 
+      ".js-name":
         observe: "name"
         events: ['blur']
-      ".js-description": 
+      ".js-description":
         observe: "description"
         events: ['blur']
-      ".js-price": 
+      ".js-price":
         observe: "price"
         events: ['blur']
-      ".js-status": 
+      ".js-status":
         observe: "status"
         selectOptions:
           collection: [
@@ -36,7 +36,7 @@
             label: "active"
           ,
           ]
-      ".js-type": 
+      ".js-type":
         observe: "prize_type"
         selectOptions:
           collection: [
@@ -47,7 +47,7 @@
             label: "Times used"
           ,
           ]
-      ".js-quantity": 
+      ".js-quantity":
         observe: "quantity"
         events: ['blur']
 
@@ -132,12 +132,10 @@
       #Guardar con imagen
       formData = new FormData()
       data = Backbone.Syphon.serialize(this)
-      console.log data
       _.forEach data, (value, key, list)->
         formData.append(key, value)
       file = @$('#prize-photo')
       formData.append('image', file[0].files[0])
-      console.log formData
 
       options_for_save =
         wait: true

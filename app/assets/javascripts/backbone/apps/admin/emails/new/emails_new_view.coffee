@@ -20,7 +20,7 @@
       'click @ui.select_user': 'selectUser'
       'click @ui.deselect_user': 'deselectUser'
 
-    selectUser: -> 
+    selectUser: ->
       #$("#js-select-user").removeClass("emails__user").addClass("emails__user--active")
       #$("#js-select-user").attr("id","js-deselect-user")
 
@@ -114,7 +114,7 @@
         @ui.mailchimpDetails.hide()
         @ui.mailchimpAssociate.hide()
         view.collection.set []
-      
+
     sendCampaign: (e)->
       e.preventDefault()
       @disableButtons()
@@ -240,8 +240,8 @@
             $.growl.error({ message: 'Error getting preview' })
             @enableButtons()
 
-    addFilter: (e)->
-      #console.log "PRESIONO AGREGAR FILTRO"
+    # addFilter: (e)->
+
 
     disableButtons: ->
       $('#js-submit').prop('disabled', true)

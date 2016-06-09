@@ -29,9 +29,9 @@
       'click @ui.nextLink': 'nextClicked'
 
     onRender: ->
-   
+
       @currentView = @getCurrentView(@step)
-   
+
 
       if @currentView? #Solo si es un paso valido
         profile = AlumNet.current_user.profile
@@ -42,7 +42,7 @@
         @side_region.empty()
         @form_region.empty()
         @side_region.show(@getSidebarView(@registration_steps, @indexStep + 1))
-        
+
         @form_region.show(@currentView) if @currentView
 
     navigateStep: (step, indexStep) ->
@@ -70,15 +70,15 @@
       layout = @
       sidebarView.on  "navigate:registration", (valueStep, valueIndexStep) ->
         valueIndexStep = parseInt(valueIndexStep)
-        
+
         if valueIndexStep >= layout.indexStep
           indexStep = parseInt(valueIndexStep)
           unless layout.isLastStep()
-            
+
             layout.currentView.saveStepData(valueStep, valueIndexStep) if layout.currentView
         else
           layout.navigateStep(valueStep, valueIndexStep)
-        
+
       sidebarView
 
     isFirstStep: ->
@@ -121,7 +121,7 @@
             AlumNet.trigger "registration:activate:user"
           else
             @approval_process()
-       
+
             #@approval_process_regionForm()
             #@approval_process_region()
         else
@@ -218,80 +218,5 @@
 
     approval_process: ()->
       users = AlumNet.request('user:entities', {}, {fetch: false})
-
       layout_view = new Main.LayoutView
-     
       layout_view
-
-    # approval_process_regionForm: ()->
-
-    #   form = new Main.FormBasic
-    #   console.log "Imprimiendo"
-    #   @approval_process().requests_region.show(form)
-
-
-
-    # approval_process_region: ()->
-
-    #   users = AlumNet.request('user:entities', {}, {fetch: false})
-    #   approval_view = new Main.ApprovalView
-    #     model: AlumNet.current_user
-    #     layout: @approval_process()
-    #     collection: users
-
-    #   layout.requests_region.show(approval_view)
-
-    #   approval_view.on 'users:search', (querySearch)->
-    #     AlumNet.request('user:entities', querySearch)
-
-    #   approval_view.on 'contacts:search', (contacts)->
-    #     approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
-    #     approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
-    #     approval_view.render()
-
-    #   approval_view.on 'request:admin', ()->
-    #     url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
-    #     Backbone.ajax
-    #       url: url
-    #       type: "PUT"
-
-
-    #   approval_view.on 'childview:request', (childView)->
-    #     childView.ui.actionsContainer.html('Sending request...')
-
-    #     userId = childView.model.id
-    #     approvalR = AlumNet.request("current_user:approval:request", userId)
-    #     approvalR.on "save:success", ()->
-    #       childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
-
-
-    # approval_process: ()->
-
-      # users = AlumNet.request('user:entities', {}, {fetch: false})
-      # approval_view = new Main.ApprovalView
-      #   model: AlumNet.current_user
-      #   layout: @
-      #   collection: users
-
-      # approval_view.on 'users:search', (querySearch)->
-      #   AlumNet.request('user:entities', querySearch)
-
-      # approval_view.on 'contacts:search', (contacts)->
-      #   approval_view.collection = new AlumNet.Entities.ContactsInAlumnet
-      #   approval_view.collection.fetch({ method: 'POST', data: { contacts: contacts }})
-      #   approval_view.render()
-
-      # approval_view.on 'request:admin', ()->
-      #   url = AlumNet.api_endpoint + "/me/approval_requests/notify_admins"
-      #   Backbone.ajax
-      #     url: url
-      #     type: "PUT"
-
-
-      # approval_view.on 'childview:request', (childView)->
-      #   childView.ui.actionsContainer.html('Sending request...')
-
-      #   userId = childView.model.id
-      #   approvalR = AlumNet.request("current_user:approval:request", userId)
-      #   approvalR.on "save:success", ()->
-      #     childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')

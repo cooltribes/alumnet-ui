@@ -17,7 +17,6 @@
       Backbone.View.prototype.remove.call(this)
 
     endPagination: ->
-      #console.log @ui.loading
       #@ui.loading.hide()
       $('.throbber-loader').hide()
       $(window).unbind('scroll')

@@ -19,7 +19,6 @@
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreBusinessProfiles')
       $(window).scroll(@loadMoreBusinessProfiles)
-      console.log @collection
 
     remove: ->
       $(window).unbind('scroll');

@@ -30,8 +30,6 @@
       e.preventDefault()
 
     submitClicked: (e)->
-      console.log 'submit'
-      console.log @model
       @ui.submitLink.attr("disabled", "disabled")
       e.preventDefault()
       view = @

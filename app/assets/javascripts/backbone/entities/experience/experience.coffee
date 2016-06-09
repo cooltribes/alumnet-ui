@@ -217,46 +217,10 @@
                 resp = -1
               else
                 if end_dateB != null
-                  # console.log dateA
-                  # console.log dateB
-                  # console.log ""
-
                   resp = -dateA.diff(dateB)
-                  # console.log resp
-
                 else
                   resp = 1
 
             else
               resp = 1
-
-            # return 1
-
         resp
-
-      # @trigger "reset"
-
-    # addExperiencesTitles: ->
-    #   missing = [0..3]
-    #   @each (model, index)->
-    #     # console.log model
-    #     #First delete previous titles
-    #     # if model.isNew() && model.get ("asTitle")
-    #     #   model.destroy()
-    #     # else
-    #     type = model.get "exp_type"
-    #     indexOf = missing.indexOf(type)
-    #     if indexOf > -1
-    #       missing.splice(indexOf, 1)
-
-    #   #Put titles for every missing experience
-    #   _.forEach missing, (element)  ->
-    #     newExperience = new AlumNet.Entities.Experience
-    #       exp_type: element
-    #       first: true
-    #       asTitle: true
-
-    #     @push newExperience
-    #   ,
-    #     this
-

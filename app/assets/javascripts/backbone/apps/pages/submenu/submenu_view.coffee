@@ -4,7 +4,7 @@
     className: 'navTopSubBar'
 
   API =
-    renderSubmenu: (view)->            
+    renderSubmenu: (view)->
       if view == null
         AlumNet.submenuRegion.empty()
       else
@@ -12,8 +12,7 @@
           submenu = new Submenu.Menu
         else
           submenu = view
-        # console.log submenu  
         AlumNet.submenuRegion.show(submenu)
 
-  AlumNet.commands.setHandler 'render:pages:submenu',(view) ->    
+  AlumNet.commands.setHandler 'render:pages:submenu',(view) ->
     API.renderSubmenu(view)

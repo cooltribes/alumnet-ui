@@ -1,7 +1,7 @@
 @AlumNet.module 'RegistrationApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
 
   class Main.FormExperience extends Marionette.ItemView
-    template: "registration/experience/templates/aiesecExperience"    
+    template: "registration/experience/templates/aiesecExperience"
 
     tagName: 'form'
 
@@ -41,8 +41,8 @@
           $el.focus()
 
       @inProfile = options.inProfile ? false
-      
-      @model.decodeDates()      
+
+      @model.decodeDates()
 
 
     templateHelpers: ->
@@ -79,9 +79,6 @@
       @ui.selectCountries.select2
         placeholder: "Select a Country"
         data: dataCountries
-        # initSelection: (element, callback)->
-        #   console.log element
-        #   callback(3)
 
       @ui.selectCountries.select2('val', @model.get("country_id"), true)
       if @model.get('exp_type') == 0 && @model.get("aiesec_experience")
@@ -143,7 +140,7 @@
       @ui.selectCities.select2(@optionsForSelect2(cities_url, 'City'))
 
     optionsForSelect2: (url, placeholder)->
-      city = @model.get('city')      
+      city = @model.get('city')
       placeholder: "Select a #{placeholder}"
       minimumInputLength: 2
       ajax:
@@ -159,7 +156,7 @@
         data.name
       formatSelection: (data)->
         data.name
-      initSelection: (element, callback)->        
+      initSelection: (element, callback)->
         callback(city) if city
 
     optionsForCommittee: (country_id, aiesecExp)->
@@ -200,7 +197,7 @@
 
     initialize: (options) ->
       @exp_type = options.exp_type
-      @layout = options.layout  
+      @layout = options.layout
 
       @title = 'Experience in AIESEC'
 
@@ -261,7 +258,7 @@
 
     saveStepData: (step, indexStep)->
       #retrieve each itemView data
-     
+
       @children.each (itemView)->
         data = Backbone.Syphon.serialize itemView
         itemView.model.set data
@@ -293,7 +290,7 @@
               $.growl.error { message: data.status }
           profile.set("register_step", stepActual)
         @layout.navigateStep(step, indexStep)
-        
+
 
     linkedinClicked: (e)->
       if gon.linkedin_profile && gon.linkedin_profile.experiences.length > 0 && @exp_type == 3

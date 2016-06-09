@@ -57,8 +57,7 @@
           container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
         checkNewPost = false
 
-      posts.on "render:collection", ->
-        #console.log "render"
+      # posts.on "render:collection", ->
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)

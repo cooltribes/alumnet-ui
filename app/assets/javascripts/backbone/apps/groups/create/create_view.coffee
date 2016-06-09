@@ -49,7 +49,6 @@
 
     showMailchimpParamaters: (e)->
       check = $(e.currentTarget)
-      console.log(check.is(':checked'))
       if(check.is(':checked'))
         @ui.mailchimpParameters.removeClass('hide')
       else

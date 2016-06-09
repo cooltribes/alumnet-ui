@@ -36,12 +36,7 @@
         url: url
         type: "POST"
         data: data
-        success: (data) =>
-          console.log("success")
-          console.log(data)
-        error: (data) =>
-          console.log("error")
-          console.log(data)
+
 
     onRender: ->
       @$(".js-date-start-date").Zebra_DatePicker
@@ -415,7 +410,6 @@
       @collectionFilter.getPreviousPage()
 
     #nextButton: (e)->
-    #  console.log "entro"
     #  @collection.queryParams.q = @queryParams
     #  @removeClass()
     #  topage = parseInt(@collection.state.currentPage)+1
@@ -461,8 +455,6 @@
       @collection.getPage(topage)
 
     toPageFilterButton: (e)->
-      console.log "toPageFilterButton"
-      console.log @collectionFilter
       #@collectionFilter.queryParams.q = @queryParams
       topage = parseInt(e.currentTarget.innerText)
       @removeFilterClass()
@@ -482,14 +474,11 @@
       @collectionFilter.getPage(topage)
 
     pagination_filters: (collection) ->
-
-      console.log "aqui"
       $("#pag-filter").remove()
       class_li = ''
       class_link = ''
       html = ""
       if (collection.state.totalPages > 1)
-        console.log "Páginas con filtros: "+collection.state.totalPages
         html = '<nav id="pag-filter"><ul class="pagination"><li><a href="#admin/users" id="prevFilterButton" style="display:none">Prev</a></li>'
         for page in [1..collection.state.totalPages]
           if (page == 1)

@@ -183,10 +183,10 @@
         url: url
         type: "POST"
         data: data
-        success: (data) =>
+        success: =>
           view.trigger 'added'
-        error: (data) =>
-          console.log(data)
+        error: (response) =>
+          console.log(response)
 
     clickProduct: ->
       $('#save-status').removeAttr('disabled')

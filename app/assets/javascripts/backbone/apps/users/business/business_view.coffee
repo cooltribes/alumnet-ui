@@ -63,7 +63,6 @@
         type: 'text'
         toggle: 'manual'
         validate: (value)->
-          console.log view.model.company
           view.model.company.set "name", value
           errors = view.model.company.validate()
           if errors?
@@ -269,7 +268,6 @@
         @collection.create @model.attributes,
           wait: true
         @model.clear()
-        # console.log "listo"
         $(".userBusiness__form").css("display", "none");
         $("#js-addLink").css("display", "block");
 

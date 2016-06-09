@@ -1,16 +1,16 @@
 @AlumNet.module 'PicturesApp.AlbumDetail', (AlbumDetail, @AlumNet, Backbone, Marionette, $, _) ->
   class AlbumDetail.Controller
     showAlbum: (layout, album)->
-      
+
       albumable = layout.model
       userCanEdit = album.collection.userCanEdit
 
-      photosCollection = new AlumNet.Entities.PictureCollection     
+      photosCollection = new AlumNet.Entities.PictureCollection
       photosCollection.url = AlumNet.api_endpoint + '/albums/' + album.id + "/pictures"
       #Associate album to photos collection
       photosCollection.album = album
 
-      photosCollection.fetch()  
+      photosCollection.fetch()
 
       albumView = new AlbumDetail.DetailView
         model: album
@@ -32,20 +32,12 @@
           data: data
           contentType: false
           processData: false
-          
-      albumView.on "submit:album", (data)->        
-        # console.log data
+
+      albumView.on "submit:album", (data)->
         data.save data.attributes,
-          # wait: true
           success: (model, response) ->
-            
             AlumNet.trigger "albums:show:detail", layout, data
           error: (model, response, options) ->
             console.error response
 
-        console.log data
-
-
       layout.body.show(albumView)
-
-    

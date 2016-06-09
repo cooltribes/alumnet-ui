@@ -87,10 +87,4 @@
       new Suggestions.Alumni
 
     member: (step)->
-      # subscriptions = AlumNet.request('product:entities', {q: { feature_eq: 'subscription', status_eq: 1 }})
-      # subscriptions.on 'fetch:success', (collection)->
-      #   console.log collection
-        # new Suggestions.SubscriptionsView
-        #   current_user: AlumNet.current_user
-        #   collection: collection
       new Suggestions.Member

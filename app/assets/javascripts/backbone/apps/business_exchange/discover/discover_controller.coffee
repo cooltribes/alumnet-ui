@@ -31,8 +31,6 @@
           newCollection = new AlumNet.Entities.BusinessCollection
           newCollection.url = AlumNet.api_endpoint + '/business'
           query = _.extend(querySearch, { page: ++@collection.page, per_page: @collection.rows })
-          console.log query
-        console.log query
         newCollection.fetch
           data: query
           success: (collection)->
