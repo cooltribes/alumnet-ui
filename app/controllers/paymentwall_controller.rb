@@ -63,20 +63,20 @@ class PaymentwallController < ApplicationController
           @invoice_params = 'contacts[0][email]='+@response_user['email']+'contacts[0][first_name]='+@first_name+'contacts[0][last_name]='+@last_name+'currency=EURdate='+@invoice_date+'due_date='+@invoice_date+'invoice_number=A-'+@response_payment['id'].to_s+'items[0][currency]=EURitems[0][quantity]=1items[0][title]='+@response['product']['name']+'items[0][unit_cost]='+@response['product']['total_price'].to_s+'key='+Settings.paymentwall_project_key+'sign_version=221ea499b579ed1fdae9fefd7b9fb3446'
           @invoice_sign = Digest::MD5.hexdigest(@invoice_params)
           @invoice_json = { 
-                 "key": Settings.paymentwall_project_key, 
-                 "sign_version": '2', 
-                 "sign": @invoice_sign, 
-                 "invoice_number": 'A-'+@response_payment['id'].to_s, 
-                 "currency": 'EUR',
-                 "date": @invoice_date,
-                 "due_date": @invoice_date,
-                 "contacts[0][email]": @response_user['email'],
-                 "contacts[0][first_name]": @first_name,
-                 "contacts[0][last_name]": @last_name,
-                 "items[0][quantity]": 1,
-                 "items[0][unit_cost]": @response['product']['total_price'].to_s,
-                 "items[0][currency]": 'EUR',
-                 "items[0][title]": @response['product']['name']
+                 "key" => Settings.paymentwall_project_key, 
+                 "sign_version" => '2', 
+                 "sign" => @invoice_sign, 
+                 "invoice_number" => 'A-'+@response_payment['id'].to_s, 
+                 "currency" => 'EUR',
+                 "date" => @invoice_date,
+                 "due_date" => @invoice_date,
+                 "contacts[0][email]" => @response_user['email'],
+                 "contacts[0][first_name]" => @first_name,
+                 "contacts[0][last_name]" => @last_name,
+                 "items[0][quantity]" => 1,
+                 "items[0][unit_cost]" => @response['product']['total_price'].to_s,
+                 "items[0][currency]" => 'EUR',
+                 "items[0][title]" => @response['product']['name']
                }
 
           @invoice_result = HTTParty.post('https://api.paymentwall.com/developers/invoice-api/invoice', :body => @invoice_json)
