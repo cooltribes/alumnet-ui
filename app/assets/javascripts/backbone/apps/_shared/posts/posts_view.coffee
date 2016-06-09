@@ -176,19 +176,7 @@
         @postable = null
 
       @postPictures = @model.get('pictures')
-
-      self = @
-      self.collection = new AlumNet.Entities.CommentsCollection
-      self.collection.comparator = 'created_at'
-
-      @model.comments.fetch
-        success: (collection)->
-          if collection.length > 3
-            self.collection.add(collection.slice((collection.length-3),collection.length))
-            $(self.ui.moreComment).show()
-          else
-            self.collection.add(collection.models)
-            $(self.ui.moreComment).hide()
+      @collection = @model.comments
 
     templateHelpers: ->
       view = @
@@ -244,6 +232,11 @@
           model: content
           postsView: @postsView
         @$('.content-container').html(contentView.render().el)
+
+      if @model.get('comments_count') > 3
+        $(@ui.moreComment).show()
+      else
+        $(@ui.moreComment).hide()
 
 
     reloadMasonry: ->
@@ -470,9 +463,9 @@
       e.stopPropagation()
       e.preventDefault()
       self = @
-      @model.comments.fetch
+      @collection.fetch
         success: (collection)->
-          self.collection.add(collection.models)
+          $(self.moreComment).hide()
 
     hidePopover: ->
       @$("#userPopover"+@model.id).popover('hide');

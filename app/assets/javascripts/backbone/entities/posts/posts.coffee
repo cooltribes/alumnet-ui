@@ -1,20 +1,19 @@
 @AlumNet.module 'Entities', (Entities, @AlumNet, Backbone, Marionette, $, _) ->
   class Entities.Post extends Backbone.Model
     initialize: ->
-      @comments = new Entities.CommentsCollection
-      @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
 
       @likesCollection = new Entities.LikesCollection
       @likesCollection.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/likes'
 
       @likes = @get('likes') || []
 
-      @on 'change', ->
-        @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
+      @listenTo @, 'change', ->
+        @setComments()
         @setPictures()
 
       unless @isNew()
         @setPictures()
+        @setComments()
 
     # validation:
     #   body:
@@ -71,6 +70,12 @@
         @picture_collection = new Entities.PictureCollection pictures
       else
         @picture_collection = new Entities.PictureCollection
+
+    setComments: ->
+      comments = @get('comments')
+      @comments = new Entities.CommentsCollection comments,
+        comparator: 'created_at'
+      @comments.url = AlumNet.api_endpoint + '/posts/' + @get('id') + '/comments'
 
     infoLink: ->
       info = @get('postable_info')
