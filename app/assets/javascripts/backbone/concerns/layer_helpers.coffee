@@ -13,7 +13,8 @@ class AlumNet.FormatLayerData
 
 
   createMessage: (data)->
-    attrs =
+    new AlumNet.Entities.LayerMessage
+      id: data.id
       sender:
         id: data.sender.userId
         fullname: 'unknow'
@@ -22,4 +23,10 @@ class AlumNet.FormatLayerData
       sentAt: data.sentAt
       layerObject: data
 
-    new AlumNet.Entities.LayerMessage attrs
+  constructor: (type, data)->
+    switch type
+      when 'message'
+        return @createMessage(data)
+      when 'conversation'
+        return @createConversation(data)
+
