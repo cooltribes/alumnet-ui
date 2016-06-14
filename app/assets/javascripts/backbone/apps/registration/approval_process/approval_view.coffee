@@ -3,7 +3,7 @@
   class Main.LayoutView extends Marionette.LayoutView
     template: 'registration/approval_process/templates/layout'
 
-   
+
     regions:
       sent_request_region: '#sent-request-region'
       approved_request_region: '#approved-request-region'
@@ -20,25 +20,24 @@
       @findUsers()
       @suggestedProfiles()
 
-    sentRequest: ->  
+    sentRequest: ->
       layout = @
       users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
       users.on 'sync:complete':->
-        layout.views.sent_request_view = new Main.SentRequest    
+        layout.views.sent_request_view = new Main.SentRequest
           collection: users
-          console.log users
         layout.sent_request_region.show(layout.views.sent_request_view)
-  
+
 
     approvedRequest: ->
       layout = @
 
       friendsCollection = AlumNet.request('current_user:friendships:friends')
       friendsCollection.fetch()
-        
-      layout.views.approved_request_view = new  Main.ApprovedRequest      
+
+      layout.views.approved_request_view = new  Main.ApprovedRequest
         collection: friendsCollection
-       
+
       layout.approved_request_region.show(layout.views.approved_request_view)
 
     findUsers: ->
@@ -77,7 +76,7 @@
           $("#sent").show()
           $("#approved").show()
           $("#js-hr-requests").show()
-    
+
     suggestedProfiles: ->
       layout = @
       usersSuggested = new AlumNet.Entities.SuggestedUsersCollection
@@ -86,7 +85,7 @@
       suggested_profiles = new Main.SuggestedProfiles
         model: AlumNet.current_user
         layout: @
-        collection: usersSuggested   
+        collection: usersSuggested
 
       layout.suggested_region.show(suggested_profiles)
 
@@ -102,8 +101,8 @@
 
         userId = childView.model.id
         approvalR = AlumNet.request("current_user:approval:request", userId)
-        approvalR.on "save:success", ()->    
-      
+        approvalR.on "save:success", ()->
+
           childView.ui.actionsContainer.html('Your request has been sent <span class="icon-entypo-paper-plane"></span>')
           layout.views.sent_request_view.collection.fetch()
           $("#sent").show()
@@ -111,7 +110,7 @@
           $("#js-hr-requests").show()
 
 
-   
+
   class Main.SentRequestUserView extends Marionette.ItemView
     template: 'registration/approval_process/templates/user_sent_request'
 
@@ -143,7 +142,7 @@
       @showSentRequest()
 
     showSentRequest: ()->
-  
+
       countSentRequest = 0
       users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
       users.on 'sync:complete':->
@@ -152,12 +151,12 @@
         if countSentRequest > 0
           $("#sent").show()
           $("#js-hr-requests").show()
-          
+
   class Main.ApprovedRequest extends Marionette.CompositeView
     template: 'registration/approval_process/templates/approved_request'
     childView: Main.ApprovedRequestUserView
     childViewContainer: '.users-list'
-  
+
     templateHelpers: ->
       @approvedRequestsCount()
       @showApprovedRequest()
@@ -173,28 +172,28 @@
           approved_requests_count = friendsCollection.length
           $("#approved_requests_count").html(approved_requests_count)
           html= ''
-          for i in [approved_requests_count..2] 
+          for i in [approved_requests_count..2]
             html = html + '<div class="userCardSentApproved">
                       <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3 userCardSentApproved__avatar">
                           <img src="/images/avatar/large_default_avatar.png" class="img-circle">
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-9 col-xs-9 userCardSentApproved__name--waiting">
-                          <h4 class="overfloadText no-margin"><i>waiting... </i></h4>       
+                          <h4 class="overfloadText no-margin"><i>waiting... </i></h4>
                           </p>
                         </div>
                       </div>
                     </div>'
           $("#waiting").html(html)
 
-            
-          
+
+
 
 
       approved_requests_count
 
     showApprovedRequest: ()->
-  
+
       countSentRequest = 0;
       users = AlumNet.request("current_user:approval:sent", AlumNet.current_user.id)
       users.on 'sync:complete':->
@@ -202,7 +201,7 @@
         if countSentRequest > 0
           $("#approved").show()
           $("#js-hr-requests").show()
- 
+
   class Main.ApprovalView extends Marionette.CompositeView
     template: 'registration/approval_process/templates/form'
     childView: Main.UserView
@@ -217,7 +216,7 @@
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
     initialize: ->
-       
+
       document.title = " AlumNet - Registration"
       @layout = options.layout
 
@@ -299,7 +298,7 @@
       'submit #search-form': 'performSearchKeyPress'
 
     initialize: ->
-       
+
       document.title = " AlumNet - Registration"
       @layout = options.layout
 
@@ -338,7 +337,7 @@
 
     performSearch: (e) ->
       e.preventDefault()
-     
+
       $("#search").show()
       data = Backbone.Syphon.serialize(this)
       @trigger('users:search', @buildQuerySearch(data))
@@ -346,12 +345,12 @@
     performSearchKeyPress: (e) ->
       e.preventDefault()
       $("#search").show()
-      
+
       data = Backbone.Syphon.serialize(this)
       console.log data
       @trigger('users:search', @buildQuerySearch(data))
-    
-        
+
+
 
     buildQuerySearch: (data) ->
       q:
@@ -379,7 +378,7 @@
           @bandera = false
 
   class Main.SuggestedProfiles extends Marionette.CompositeView
-    
+
     template: 'registration/approval_process/templates/suggested_profiles'
     childView: Main.UserView
     childViewContainer: '.users-list'
@@ -393,7 +392,7 @@
       'click @ui.adminRequestBtn':'clickedRequestAdmin'
 
     initialize: ->
-       
+
       document.title = " AlumNet - Registration"
       @layout = options.layout
 
@@ -432,7 +431,7 @@
 
     performSearch: (e) ->
       e.preventDefault()
-     
+
       $("#search").show()
       data = Backbone.Syphon.serialize(this)
       @trigger('users:search', @buildQuerySearch(data))
