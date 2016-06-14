@@ -16,7 +16,7 @@
           data: messagesQuery.data
           collection: messageCollection
 
-        messagesQuery.on 'change', (evt)->
+        @listenTo messagesQuery, 'change', (evt)->
           if evt.type == 'data'
             models = []
             _.each evt.data.concat().reverse(), (message)->
@@ -26,6 +26,11 @@
           if evt.type == 'insert'
               model = new AlumNet.FormatLayerData('message', evt.target)
               messageCollection.add(model, {merge: true})
+
+        @listenTo AlumNet.layerClient, 'typing-indicator-change', (evt)->
+          if evt.conversationId == conversation.id
+            messagesView.trigger 'typing', evt.typing[0]
+            messagesView.trigger 'paused', evt.paused[0]
 
         @parentView.chatRegion.show(messagesView)
 
@@ -67,7 +72,7 @@
         data: conversationQuery.data
         collection: conversationCollection
 
-      conversationQuery.on 'change', (evt)->
+      @listenTo conversationQuery, 'change', (evt)->
         if evt.type == 'data'
           models = []
           _.each evt.data, (conversation)->
@@ -223,6 +228,23 @@
     initialize: (options)->
       @conversation = options.conversation
       @data = options.data
+
+    onShow: ->
+      typing = AlumNet.layerClient.createTypingListener(document.getElementById('chat-message'))
+      typing.setConversation(@conversation)
+
+      @listenTo @, 'typing', (userId)->
+        id = parseInt(userId)
+        user = AlumNet.friends.get(id)
+        if user
+          text = "#{user.get('name')} is typing..."
+          @$('#js-typing').html(text)
+        else
+          @$('#js-typing').html('')
+
+      @listenTo @, 'paused', (userId)->
+        if userId
+          @$('#js-typing').html('')
 
     CheckKey: (e)->
       textarea = $(e.currentTarget)

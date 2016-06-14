@@ -2,4 +2,5 @@
 </div>
 <form>
   <textarea name="message" id="chat-message" rows="1" style="width: 100%"></textarea>
+  <p class="text-muted pull-right" id="js-typing" style="font-size: 10px"></p>
 </form>
