@@ -34,15 +34,26 @@
 
     initialize: (options)->
       @parentView = options.parentView
-      @collection.search()
 
     ui:
       'loading': '.throbber-loader'
 
     onRender: ->
+      self = @
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreUsers')
       $(window).scroll(@loadMoreUsers)
+      @showLoading()
+      @collection.search()
+
+      @listenTo @collection, 'request', @showLoading
+      @listenTo @collection, 'sync', @hideLoading
+
+    showLoading: ->
+      @ui.loading.show()
+
+    hideLoading: ->
+      @ui.loading.hide()
 
     remove: ->
       $(window).unbind('scroll');
