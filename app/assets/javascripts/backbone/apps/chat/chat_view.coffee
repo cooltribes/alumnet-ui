@@ -1,54 +1,34 @@
 @AlumNet.module 'ChatApp.Chat', (Chat, @AlumNet, Backbone, Marionette, $, _) ->
-  class Chat.RenderConversation extends Marionette.ItemView
-
-    renderConversation: (conversation)->
-      if @checkViewConversation(conversation)
-        messagesQuery = AlumNet.layerClient.createQuery
-          model: layer.Query.Message
-
-        messagesQuery.update
-          predicate: "conversation.id = '#{conversation.id}'"
-
-        messageCollection = new AlumNet.Entities.LayerMessageCollection
-
-        messagesView = new AlumNet.ChatApp.Chat.Messages
-          conversation: conversation
-          data: messagesQuery.data
-          collection: messageCollection
-
-        @listenTo messagesQuery, 'change', (evt)->
-          if evt.type == 'data'
-            models = []
-            _.each evt.data.concat().reverse(), (message)->
-              model = new AlumNet.FormatLayerData('message', message)
-              models.push model
-            messageCollection.set models
-          if evt.type == 'insert'
-              model = new AlumNet.FormatLayerData('message', evt.target)
-              messageCollection.add(model, {merge: true})
-
-        @listenTo AlumNet.layerClient, 'typing-indicator-change', (evt)->
-          if evt.conversationId == conversation.id
-            messagesView.trigger 'typing', evt.typing[0]
-            messagesView.trigger 'paused', evt.paused[0]
-
-        @parentView.chatRegion.show(messagesView)
-
-    checkViewConversation: (conversation)->
-      view = @parentView.chatRegion.currentView
-      if view && view.conversation.id == conversation.id
-        false
-      else
-        true
-
   class Chat.Layout extends Marionette.LayoutView
     template: 'chat/layout'
     regions:
-      usersRegion: '#chat-users-region'
-      conversationsRegion: '#chat-conversations-region'
-      chatRegion: '#chat-region'
+      messagesRegion: '#messages-region'
+      usersRegion: '#users-region'
+      conversationsRegion: '#conversations-region'
+
+    events:
+      'click .js-action': 'renderContent'
+
+    renderContent: (e)->
+      e.preventDefault()
+      action = $(e.currentTarget).data('action')
+      @showRegion(action)
+
+    templateHelpers: ->
+      name: AlumNet.current_user.get("name")
+
+    showRegion: (region)->
+      self = @
+      names = ['users', 'conversations', 'messages']
+      _.each names, (name)->
+        self.$("##{name}-region").hide()
+      @$("##{region}-region").show()
 
     onBeforeShow: ->
+      @showFriends()
+      @showConversations()
+
+    showFriends: ->
       self = @
       friends = AlumNet.request('current_user:friendships:friends')
       friendsView = new AlumNet.ChatApp.Chat.Users
@@ -61,9 +41,9 @@
         AlumNet.friends.set(friends.models, {remove: false})
         self.usersRegion.show(friendsView)
 
+    showConversations: ->
       conversationQuery = AlumNet.layerClient.createQuery
         model: layer.Query.Conversation
-
 
       conversationCollection = new AlumNet.Entities.LayerConversationCollection
 
@@ -81,10 +61,61 @@
           conversationCollection.set models
 
         if evt.type == 'insert' || evt.type == 'property'
-          mmodel = new AlumNet.FormatLayerData('conversation', evt.target)
+          model = new AlumNet.FormatLayerData('conversation', evt.target)
           conversationCollection.add(model, {merge: true})
 
       @conversationsRegion.show(conversationsView)
+
+    setUnreadCount: (count)->
+      if count > 0
+        console.log count
+
+  #-----------------------
+  #  SHARE VIEW
+  #-----------------------
+
+  class Chat.RenderConversation extends Marionette.ItemView
+
+    renderConversation: (conversation)->
+      # if @checkViewConversation(conversation)
+      messagesQuery = AlumNet.layerClient.createQuery
+        model: layer.Query.Message
+
+      messagesQuery.update
+        predicate: "conversation.id = '#{conversation.id}'"
+
+      messageCollection = new AlumNet.Entities.LayerMessageCollection
+
+      messagesView = new AlumNet.ChatApp.Chat.Messages
+        conversation: conversation
+        data: messagesQuery.data
+        collection: messageCollection
+
+      @listenTo messagesQuery, 'change', (evt)->
+        if evt.type == 'data'
+          models = []
+          _.each evt.data.concat().reverse(), (message)->
+            model = new AlumNet.FormatLayerData('message', message)
+            models.push model
+          messageCollection.set models
+        if evt.type == 'insert'
+            model = new AlumNet.FormatLayerData('message', evt.target)
+            messageCollection.add(model, {merge: true})
+
+      @listenTo AlumNet.layerClient, 'typing-indicator-change', (evt)->
+        if evt.conversationId == conversation.id
+          messagesView.trigger 'typing', evt.typing[0]
+          messagesView.trigger 'paused', evt.paused[0]
+
+      @parentView.messagesRegion.show(messagesView)
+      @parentView.showRegion('messages')
+
+    checkViewConversation: (conversation)->
+      view = @parentView.messagesRegion.currentView
+      if view && view.conversation.id == conversation.id
+        false
+      else
+        true
 
 
   #-----------------------
