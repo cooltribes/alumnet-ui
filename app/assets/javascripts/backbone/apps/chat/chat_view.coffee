@@ -170,7 +170,7 @@
       @listenTo @model, 'change', @render
 
     onRender: ->
-      @listenTo @, 'add:user', @setTitle
+      @listenTo @, 'add:user', @updateConversation
       @getParticipants()
 
     getParticipants: ->
@@ -190,11 +190,22 @@
             users.push user
             self.trigger 'add:user', users
 
-    setTitle: (users)->
+    updateConversation: (users)->
       names = _.map users, (user)->
         user.get('name')
+
+      avatars = _.map users, (user)->
+        ## OJO AQUI BUSCAR EL AVATAR_URL EN CONNEXA ES ASI
+        ## PERO NO ME ACUERDO COMO ES EN ALUMNET ADEMAS QUE VIENEN VARIOS CREO.
+        user.get('avatar_url')
+
+
       @model.set('title', names.join(', '))
+      @model.set('participants', users)
+
       @$('.title').html names.join(', ')
+
+      ##DANI: POR AQUI TIENES QUE HACER ALGO CON EL ARRAY DE URLS avatars
 
     getConversation: (e)->
       e.preventDefault()
