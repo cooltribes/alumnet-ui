@@ -9,25 +9,20 @@
     events:
       'click .js-action': 'renderContent'
 
-
     renderContent: (e)->
       e.preventDefault()
       action = $(e.currentTarget).data('action')
-      if action == "friends"
-        @$('#users-region').show()
-        @$('#conversations-region').hide()
-        @$('#chat-region').hide()
-
-      else if action == "conversations"
-        @$('#users-region').hide()
-        @$('#conversations-region').show()
-        @$('#chat-region').hide()
+      @showRegion(action)
 
     templateHelpers: ->
       name: AlumNet.current_user.get("name")
 
     showRegion: (region)->
-      regions = ['']
+      self = @
+      names = ['users', 'conversations', 'messages']
+      _.each names, (name)->
+        self.$("##{name}-region").hide()
+      @$("##{region}-region").show()
 
     onBeforeShow: ->
       @showFriends()
@@ -71,6 +66,10 @@
 
       @conversationsRegion.show(conversationsView)
 
+    setUnreadCount: (count)->
+      if count > 0
+        console.log count
+
   #-----------------------
   #  SHARE VIEW
   #-----------------------
@@ -109,6 +108,7 @@
           messagesView.trigger 'paused', evt.paused[0]
 
       @parentView.messagesRegion.show(messagesView)
+      @parentView.showRegion('messages')
 
     checkViewConversation: (conversation)->
       view = @parentView.messagesRegion.currentView
@@ -261,10 +261,6 @@
       @data = options.data
 
     onShow: ->
-      $('#users-region').hide()
-      $('#conversations-region').hide()
-      $('#chat-region').show()
-
       typing = AlumNet.layerClient.createTypingListener(document.getElementById('chat-message'))
       typing.setConversation(@conversation)
 
