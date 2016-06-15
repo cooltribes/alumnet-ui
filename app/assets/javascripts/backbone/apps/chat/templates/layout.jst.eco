@@ -1,16 +1,16 @@
-<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 content">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="header">
-        <%= @name %> X
-      </div>
+<div class="row chat hidden-xs">
+  <div class="col-md-12 no-padding">
+    <div class="chat__header">
+      AlumNet Chat <%= @name %>
+    </div>
+    <div class="chat__content">
       <div style="display:none" id="messages-region"></div>
       <div style="display:none" id="conversations-region"></div>
       <div id="users-region"></div>
-      <div class="footer">
-        <a href="#" class="btn btn-default js-action" data-action="users">Friends</a>
-        <a href="#" class="btn btn-default js-action" data-action="conversations">Chats</a>
-      </div>
+    </div>
+    <div class="chat__footer">
+      <a href="#" class="btn btn-default js-action" data-action="users"><i class="icon-entypo-user"></i> Friends</a>
+      <a href="#" class="btn btn-default js-action" data-action="conversations"><i class="fa fa-comments" aria-hidden="true"></i> Chats</a>
     </div>
   </div>
 </div>

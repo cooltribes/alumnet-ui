@@ -56,6 +56,7 @@
       selector: "#main-region"
       # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
+    chatRegion: "#chat-region"
 
   App.reqres.setHandler 'default:region', -> App.mainRegion
 

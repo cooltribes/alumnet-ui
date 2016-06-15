@@ -1,0 +1,69 @@
+@import 'conf/conf.css.less';
+
+.chat{
+  width: 250px;
+  height: 100%;
+  position: absolute;
+  top: 62px;
+  right: 15px;
+  z-index: 2;
+  &__header{
+    background-color: @blue;
+    color: @white;
+    font-size: 13px;
+    padding: 10px;
+  }
+  &__content{
+    background-color: #e6e6e8;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    height: 400px;
+    overflow-y: auto;
+    &--users{
+      .name{    
+        margin-top: 10px;       
+        a{
+          color: @black;
+          font-weight: 100;
+        }
+      }
+      .online{
+        margin-top: 10px;
+        color: @green;
+      }
+    }
+    &--chats{
+      .name{
+        a{
+          color: #111111;
+          font-weight: 100;
+        }
+        .body{
+          color: #111111;
+          font-weight: 100;
+          font-size: 12px;
+        }
+      }
+    }   
+  } 
+  &__footer{
+    border: solid #cccccc;
+    border-width: 0px 1px 1px;
+    background-color: @white;
+    .btn-default{
+      border-width: 0px 1px 0px 0px;
+      padding: 12px;
+      &:nth-child(2){
+        margin-left: -4px;
+      }  
+    }  
+  }
+
+  // &__search{
+  //   background-color: @white;
+  //       padding: 10px;
+  //       border: solid #cccccc;
+  //       border-width: 1px 1px 0px 1px;
+  // }  
+}
+  

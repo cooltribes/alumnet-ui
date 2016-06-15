@@ -1,9 +1,16 @@
-<div>
-  <a href="#" class="title"></a><br>
-  <% if @unreadCount > 0: %>
-    <span style="font-size: 10px"><b><%= @lastMessageBody %></b></span>
-    <span class="badge"><%= @unreadCount %></span>
-  <% else: %>
-    <span style="font-size: 10px"><%= @lastMessageBody %></span>
-  <% end %>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin_bottom_small chat__content--conversations">
+	<div class="row">
+		<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 image">
+			<img src="" alt="">		
+		</div>
+		<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 overfloadText text-left name">
+			<a href="#" class="title"></a><br>
+			<% if @unreadCount > 0: %>
+		    <span class="body"><b><%= @lastMessageBody %></b></span>
+		    <span class="badge"><%= @unreadCount %></span>
+		  <% else: %>
+		    <span class="body"><%= @lastMessageBody %></span>
+		  <% end %>
+		</div>
+	</div>
 </div>
