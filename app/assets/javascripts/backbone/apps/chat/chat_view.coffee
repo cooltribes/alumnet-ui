@@ -245,7 +245,6 @@
     onShow: ->
       if @model.get('sender').id == AlumNet.current_user.id
         @$('#body').attr class: 'bubble blue'
-        @user = true
       @model.get('layerObject').isRead = true
       container = $('.messagesContainer')
       container.scrollTop(container.prop('scrollHeight'))
