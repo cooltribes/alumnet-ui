@@ -1,26 +1,53 @@
 @import 'conf/conf.css.less';
 
 .chat{
-  width: 250px;
+  width: 280px;
   height: 100%;
   position: absolute;
   top: 62px;
   right: 15px;
   z-index: 2;
+  
+
+  .chatHeader{
+    text-decoration: none;
+    cursor: pointer;
+  }
   &__header{
     background-color: @blue;
     color: @white;
-    font-size: 13px;
+    font-size: 15px;
     padding: 10px;
+    font-weight: 100;
+    .title{
+      display: initial;
+    }
+    .online{
+      color: @green;
+      margin-left: 13px;
+    }
   }
   &__content{
     background-color: #e6e6e8;
-    padding: 10px;
     border: 1px solid #cccccc;
     height: 400px;
     overflow-y: auto;
+    overflow-x: hidden;
+    &--search{
+      background-color: @white;
+      padding: 10px;
+      border-bottom: 1px solid #cccccc;
+      .js-search-input{
+        display: initial;
+      }
+    }
+    .searchMenu input{
+      width: 86%;
+    } 
     &--users{
-      .name{    
+      padding: 10px;
+      .name{   
+        display: initial; 
         margin-top: 10px;       
         a{
           color: @black;
@@ -28,12 +55,17 @@
         }
       }
       .online{
+        display: initial;
         margin-top: 10px;
         color: @green;
       }
     }
     &--conversations{
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid #cccccc;
       .name{
+        display: initial;
         a{
           color: #111111;
           font-weight: 100;
@@ -43,6 +75,53 @@
           font-weight: 100;
           font-size: 12px;
         }
+        .badge{
+          color: @white;
+          background-color: @blue;
+          padding: 3px 7px;
+        }
+      }
+    }
+    &--messages{
+      .name{
+        display: initial;
+        font-weight: 100;
+        color: @black;
+        .blue{
+          color: @white;
+          background-color: @blue;
+        }
+        .messagesDate{
+          font-size: 10px;
+          font-weight: 100;
+        }
+      }
+      .typing{
+        font-size: 12px;
+        font-weight: 100;
+        position: absolute;
+        bottom: 90px;
+        color: @black;
+        right: 0px;
+      }
+      .messagesContainer{
+        width: 100%;
+        height: 320px; 
+        overflow: auto;
+        margin-top: 10px;
+      }
+      .messagesInput{
+        border: solid #cccccc;
+        border-width: 1px 1px 0px 0px;
+        background-color: #ffffff;
+        padding: 8px;
+        position: absolute;
+        bottom: 46px;
+        width: 100%;
+        height: 45px;
+        textarea{
+          border-color: #cccccc;
+        }
       }
     }   
   } 
@@ -51,6 +130,7 @@
     border-width: 0px 1px 1px;
     background-color: @white;
     .btn-default{
+      display: inline-block;
       border-width: 0px 1px 0px 0px;
       padding: 12px;
       &:nth-child(2){
@@ -58,12 +138,47 @@
       }  
     }  
   }
+}
 
-  // &__search{
-  //   background-color: @white;
-  //       padding: 10px;
-  //       border: solid #cccccc;
-  //       border-width: 1px 1px 0px 1px;
-  // }  
+.chatReduce{
+  .chat{
+    transition: width 1s;
+    width: 60px;
+    &__header{
+      .title{
+        display: none;
+      }
+    }
+    &__content{
+      &--search{
+        .js-search-input{
+          display: none;
+        }
+      }
+      &--users{
+        .name{ 
+          display: none;    
+        }
+        .online{
+          display: none;
+        }
+      }
+      &--conversations{
+        .name{ 
+          display: none;    
+        }
+      }
+      &--messages{
+        .name{
+          display: none; 
+        }
+      }
+    }
+    &__footer{
+      .btn-default{
+        display: none;
+      }
+    }
+  }
 }
   

@@ -1,1 +1,7 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center chat__content--search searchMenu">     
+  <input type="text" class="js-search-input" placeholder="Search friend">
+  <button class="btn btn-primary js-globalsearch-btn" type="button">
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+  </button>
+</div>
 <div class="friendsContainer"></div>

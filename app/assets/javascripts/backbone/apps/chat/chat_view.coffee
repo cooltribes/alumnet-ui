@@ -8,6 +8,7 @@
 
     events:
       'click .js-action': 'renderContent'
+      'click #js-chat-reduce': 'reduceContent'
 
     renderContent: (e)->
       e.preventDefault()
@@ -69,6 +70,10 @@
     setUnreadCount: (count)->
       if count > 0
         console.log count
+
+    reduceContent: (e)->
+      e.preventDefault()
+      @$('#chat').toggleClass('chatReduce')
 
   #-----------------------
   #  SHARE VIEW
@@ -163,7 +168,7 @@
     defaultOptions: ['parentView']
 
     events:
-      'click .title': 'getConversation'
+      'click #js-conversation': 'getConversation'
 
     initialize: (options)->
       @parentView = options.parentView
@@ -176,7 +181,7 @@
     getParticipants: ->
       self = @
       users = []
-      participants = _.without @model.get('participants'), "#{AlumNet.current_user.id}"
+      participants = _.without @model.get('participant_ids'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
         user = AlumNet.friends.get(id)
@@ -195,17 +200,13 @@
         user.get('name')
 
       avatars = _.map users, (user)->
-        ## OJO AQUI BUSCAR EL AVATAR_URL EN CONNEXA ES ASI
-        ## PERO NO ME ACUERDO COMO ES EN ALUMNET ADEMAS QUE VIENEN VARIOS CREO.
-        user.get('avatar_url')
-
+        user.get('avatar').medium
 
       @model.set('title', names.join(', '))
       @model.set('participants', users)
 
       @$('.title').html names.join(', ')
-
-      ##DANI: POR AQUI TIENES QUE HACER ALGO CON EL ARRAY DE URLS avatars
+      @$('.image').attr src: avatars
 
     getConversation: (e)->
       e.preventDefault()
@@ -242,6 +243,9 @@
       isCurrentUser: @model.isCurrentUser()
 
     onShow: ->
+      if @model.get('sender').id == AlumNet.current_user.id
+        @$('#body').attr class: 'bubble blue'
+        @user = true
       @model.get('layerObject').isRead = true
       container = $('.messagesContainer')
       container.scrollTop(container.prop('scrollHeight'))

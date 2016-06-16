@@ -1,16 +1,17 @@
 class AlumNet.FormatLayerData
+
   createConversation: (data)->
     if data.lastMessage?
       lastMessage = data.lastMessage.parts[0].body
     else
       lastMessage = null
-    new AlumNet.Entities.LayerConversation
+    new AlumNet.Entities.Conversation
       id: data.id
-      participants: data.participants
       unreadCount: data.unreadCount
       layerObject: data
+      participant_ids: data.participants
+      participants: []
       lastMessageBody: lastMessage
-
 
   createMessage: (data)->
     new AlumNet.Entities.LayerMessage
