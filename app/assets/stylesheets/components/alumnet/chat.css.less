@@ -30,7 +30,7 @@
   &__content{
     background-color: #e6e6e8;
     border: 1px solid #cccccc;
-    height: 400px;
+    height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
     &--search{
@@ -63,7 +63,7 @@
     }
     .conversationsContainer{
       width: 100%;
-      height: 400px; 
+      height: 500px; 
       overflow: auto;
     }
     &--conversations{
@@ -112,11 +112,12 @@
       }
       .messagesContainer{
         width: 100%;
-        height: 320px; 
+        height: 420px; 
         overflow: auto;
         margin-top: 10px;
       }
       .messagesInput{
+        display: inline-block;
         border: solid #cccccc;
         border-width: 1px 1px 0px 0px;
         background-color: #ffffff;
@@ -181,6 +182,9 @@
         }
         .name{
           display: none; 
+        }
+        .messagesInput{
+          display: none;
         }
       }
     }
