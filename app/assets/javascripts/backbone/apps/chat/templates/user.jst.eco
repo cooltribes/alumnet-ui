@@ -7,7 +7,9 @@
 			<a href="#" class="user-card"><%= @name %></a>
 		</div>
 		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 online">
+			<% if @online: %>
 			<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+			<% end %>
 		</div>
 	</div>
 </div>
