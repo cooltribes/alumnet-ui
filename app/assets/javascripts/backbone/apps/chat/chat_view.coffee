@@ -136,7 +136,7 @@
 
     initialize: (options)->
       @parentView = options.parentView
-
+      @listenTo @model, 'change', @render
 
     createConversation: (e)->
       e.preventDefault()

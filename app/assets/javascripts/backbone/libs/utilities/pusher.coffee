@@ -19,3 +19,8 @@
         count++
         user.set('unread_notifications_count', count)
         user.notifications.fetch()
+      channel.bind 'user_online', (data) =>
+        user = AlumNet.friends.get(data.user_id)
+        if user
+          console.log user
+          user.set('online', data.online)
