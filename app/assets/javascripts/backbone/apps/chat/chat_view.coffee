@@ -282,7 +282,7 @@
         id = parseInt(userId)
         user = AlumNet.friends.get(id)
         if user
-          text = "#{user.get('name')} is typing..."
+          text = "<b>#{user.get('name')}</b> is typing..."
           @$('#js-typing').html(text)
         else
           @$('#js-typing').html('')

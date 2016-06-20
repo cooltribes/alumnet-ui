@@ -19,7 +19,6 @@
         chatLayout = new AlumNet.ChatApp.Chat.Layout
         AlumNet.chatRegion.show(chatLayout)
 
-
     getIdentityToken: (nonce, callback)->
       Backbone.ajax
         url: AlumNet.api_endpoint + '/me/identity_layer'

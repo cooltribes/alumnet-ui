@@ -30,7 +30,7 @@
   &__content{
     background-color: #e6e6e8;
     border: 1px solid #cccccc;
-    height: 400px;
+    height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
     &--search{
@@ -55,15 +55,21 @@
           text-decoration: none;
         }
       }
-      .online{
-        display: initial;
-        margin-top: 10px;
-        color: @green;
+      .status{
+        padding-top: 10px;
+        .online{
+          display: initial;
+          color: @green;
+        }
+        .offline{
+          display: initial;
+          color: @gray;
+        }
       }
     }
     .conversationsContainer{
       width: 100%;
-      height: 400px; 
+      height: 500px; 
       overflow: auto;
     }
     &--conversations{
@@ -108,16 +114,16 @@
         font-weight: 100;
         position: absolute;
         bottom: 90px;
-        color: @black;
         right: 0px;
       }
       .messagesContainer{
         width: 100%;
-        height: 320px; 
+        height: 420px; 
         overflow: auto;
         margin-top: 10px;
       }
       .messagesInput{
+        display: inline-block;
         border: solid #cccccc;
         border-width: 1px 1px 0px 0px;
         background-color: #ffffff;
@@ -149,7 +155,7 @@
 
 .chatReduce{
   .chat{
-    transition: width 1s;
+    transition: width 0.7s;
     width: 60px;
     &__header{
       .title{
@@ -169,6 +175,9 @@
         .online{
           display: none;
         }
+        .offline{
+          display: none;
+        }
       }
       &--conversations{
         .name{ 
@@ -182,6 +191,9 @@
         }
         .name{
           display: none; 
+        }
+        .messagesInput{
+          display: none;
         }
       }
     }
