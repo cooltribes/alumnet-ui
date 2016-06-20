@@ -6,6 +6,7 @@
       @layoutView = new Settings.Layout
         option: @optionSubMenu
       AlumNet.mainRegion.show(@layoutView)
+
       @showRegionMenu()
 
       self = @ 

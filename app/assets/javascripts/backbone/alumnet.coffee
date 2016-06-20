@@ -57,6 +57,7 @@
       # regionClass: AnimatedRegion
     tableRegion: "#groups-table"
     chatRegion: "#chat-region"
+    footerRegion: "#footer-region"
 
   App.reqres.setHandler 'default:region', -> App.mainRegion
 
