@@ -43,7 +43,7 @@
     childView: Discover.Company
     childViewContainer: '#companies-container'
 
-    getTemplate: ()-> #Get the template based on the "type" property of the view
+    getTemplate: -> #Get the template based on the "type" property of the view
       if @type == "cards"
         'companies/main/templates/gridContainer'
       else if @type == "list"
@@ -79,33 +79,38 @@
       @parentView = options.parentView
       @query = options.query
 
-      ##this is a hack until all collection be an ResultCollection
-      if @query
-        @collection.fetch
-          reset: true
-          remove: true
-          data: @query
-      else
-        @collection.search()
-
     onRender: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreCompanies')
       $(window).scroll(@loadMoreCompanies)
 
+      ##this is a hack until all collection be an ResultCollection
+      if @query
+        @showLoading()
+        @collection.fetch
+          reset: true
+          remove: true
+          data: @query
+      else
+        @showLoading()
+        @collection.search()
+
+      @listenTo @collection, 'request', @showLoading
+      @listenTo @collection, 'sync', @hideLoading
+
+    showLoading: ->
+      @ui.loading.show()
+
+    hideLoading: ->
+      @ui.loading.hide()
+
     remove: ->
       $(window).unbind('scroll')
       Backbone.View.prototype.remove.call(this)
 
-    endPagination: ->
-      @ui.loading.hide()
-
     loadMoreCompanies: (e)->
-      if @collection.nextPage == null
-        @endPagination()
-      else
-        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-          @reloadItems()
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @reloadItems()
 
     reloadItems: ->
       if @query

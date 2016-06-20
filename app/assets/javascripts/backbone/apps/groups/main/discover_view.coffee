@@ -63,6 +63,9 @@
     childView: Discover.GroupView
     childViewContainer: ".main-groups-area"
 
+    ui:
+      'loading': '.throbber-loader'
+
     getTemplate: ()-> #Get the template of the groups based on the "type" property of the view
       if @type == "cards"
         'groups/main/templates/groups_container_card'
@@ -84,7 +87,6 @@
     initialize: (options) ->
       @parentView = options.parentView
       @type = options.typeGroup
-      @collection.search()
 
       @on 'childview:group:show', (childView)->
         id = childView.model.id
@@ -104,24 +106,27 @@
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreGroups')
       $(window).scroll(@loadMoreGroups)
-      $("#iconsTypeGroups").removeClass("hide");
+      $("#iconsTypeGroups").removeClass("hide")
+
+      @showLoading()
+      @collection.search()
+
+      @listenTo @collection, 'request', @showLoading
+      @listenTo @collection, 'sync', @hideLoading
+
+    showLoading: ->
+      @ui.loading.show()
+
+    hideLoading: ->
+      @ui.loading.hide()
 
     remove: ->
       $(window).unbind('scroll')
       Backbone.View.prototype.remove.call(this)
 
-    endPagination: ->
-      @ui.loading.hide()
-
-    ui:
-      'loading': '.throbber-loader'
-
     loadMoreGroups: (e)->
-      if @collection.nextPage == null
-        @endPagination()
-      else
-        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
-          @reloadItems()
+      if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        @reloadItems()
 
     reloadItems: ->
       search_options =
