@@ -8,7 +8,8 @@
         user: current_user
 
       AlumNet.mainRegion.show(createForm)
-      
+      AlumNet.execute 'show:footer'
+
       createForm.on "form:submit", (model, data)->
         if model.isValid(true)
           options_for_save =
