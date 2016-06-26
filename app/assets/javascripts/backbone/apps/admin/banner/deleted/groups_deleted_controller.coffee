@@ -8,5 +8,6 @@
         collection: groupsDeleted
 
       AlumNet.mainRegion.show(layoutView)
+      AlumNet.execute 'show:footer'
       layoutView.table.show(groupsTable)
       AlumNet.execute('render:admin:groups:submenu', undefined, 1)

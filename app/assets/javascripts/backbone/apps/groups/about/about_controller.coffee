@@ -18,6 +18,7 @@
             current_user: current_user
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(body)
           #AlumNet.execute('render:groups:submenu')

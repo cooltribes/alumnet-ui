@@ -7,3 +7,4 @@
 	      	current_user: AlumNet.current_user
 	      	collection: collection
 	      AlumNet.mainRegion.show(subscriptionsView)
+      	AlumNet.execute 'show:footer'

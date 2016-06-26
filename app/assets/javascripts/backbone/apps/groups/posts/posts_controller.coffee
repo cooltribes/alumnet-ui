@@ -26,6 +26,7 @@
 
           #render each view on your own region
           AlumNet.mainRegion.show(layout)
+          AlumNet.footerRegion.empty()
           layout.header.show(header)
           layout.body.show(posts)
           #AlumNet.execute('render:groups:submenu')

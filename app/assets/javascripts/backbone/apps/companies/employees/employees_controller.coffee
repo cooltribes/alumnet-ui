@@ -17,6 +17,7 @@
 
           AlumNet.mainRegion.show(layout)
           layout.header.show(header)
+          AlumNet.execute 'show:footer'
           layout.body.show(body)
           body.employees.show(employeesView)
 

@@ -4,6 +4,7 @@
       @layoutGroups = new Main.GroupsView
         option: optionMenu
       AlumNet.mainRegion.show(@layoutGroups)
+      AlumNet.footerRegion.empty()
       @showRegionMenu(optionMenu)
       current_user = AlumNet.current_user
       self = @

@@ -10,6 +10,7 @@
       @layoutMeetupExchange = new Main.MeetupExchange
         option: @activeTab
       AlumNet.mainRegion.show(@layoutMeetupExchange)
+      AlumNet.footerRegion.empty()
       @showRegionMenu()
       @showAutomatches()
 

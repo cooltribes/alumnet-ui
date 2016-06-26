@@ -15,6 +15,7 @@
             collection: tasks
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(tasksView)
 

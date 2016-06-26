@@ -6,5 +6,6 @@
         subject: subject
         user: user
       AlumNet.mainRegion.show(layout)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:home:submenu')
 

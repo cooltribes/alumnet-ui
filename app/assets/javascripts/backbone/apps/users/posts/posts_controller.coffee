@@ -19,6 +19,7 @@
           collection: user.posts
 
         AlumNet.mainRegion.show(layout)
+        AlumNet.footerRegion.empty()
         layout.header.show(header)
         layout.body.show(posts)
 

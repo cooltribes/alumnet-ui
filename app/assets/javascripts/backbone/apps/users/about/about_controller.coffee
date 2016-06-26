@@ -96,8 +96,10 @@
 
 
         AlumNet.mainRegion.show(layout)
+        AlumNet.footerRegion.empty()
         layout.header.show(header)
         layout.body.show(body)
+        AlumNet.execute 'show:footer'
 
         #Show each region of the about page
         body.profile.show(profileView)
@@ -171,6 +173,7 @@
           userCanEdit: userCanEdit
 
         AlumNet.mainRegion.show(body)
+        AlumNet.footerRegion.empty()
         # layout.header.show(header)
         # layout.body.show(body)
 

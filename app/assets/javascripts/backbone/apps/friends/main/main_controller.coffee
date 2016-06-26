@@ -6,6 +6,7 @@
         model: AlumNet.current_user
         option: optionMenu
       AlumNet.mainRegion.show(@layoutAlumni)
+      AlumNet.footerRegion.empty()
       @showMenuUrl(optionMenu)
       self = @
       @layoutAlumni.on "navigate:menu", (valueClick)->

@@ -17,6 +17,7 @@
             current_user: AlumNet.current_user
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(receiptView)
           #AlumNet.execute('render:events:submenu')

@@ -4,3 +4,4 @@
       formView = new UsersCreate.FormView
       AlumNet.mainRegion.show(formView)
       AlumNet.execute('render:admin:users:submenu', undefined, 3)
+      AlumNet.execute 'show:footer'

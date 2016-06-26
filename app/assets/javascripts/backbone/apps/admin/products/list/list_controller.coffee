@@ -9,4 +9,5 @@
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(productsTable)
       AlumNet.submenuRegion.empty()
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:admin:products:submenu', undefined, 0, productsTable)

@@ -17,6 +17,7 @@
 
           # render the layouts firsts
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(membersLayout)
 

@@ -3,6 +3,7 @@
     showLayoutCreate: ->
       @layoutView = new ProductCreate.Layout
       AlumNet.mainRegion.show(@layoutView)
+      AlumNet.execute 'show:footer'
       @showGeneral()
 
       self = @

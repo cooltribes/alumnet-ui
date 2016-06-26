@@ -8,3 +8,4 @@
 
       layout = new Posts.Layout
       AlumNet.mainRegion.show(layout)
+      AlumNet.execute 'show:footer'

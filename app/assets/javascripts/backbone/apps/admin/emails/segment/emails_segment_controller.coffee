@@ -14,6 +14,7 @@
       	collection: collection
 
       AlumNet.mainRegion.show(layout)
+      AlumNet.execute 'show:footer'
       layout.tableSegment.show(sent_table)
 
       AlumNet.execute('render:admin:emails:submenu', undefined, 2)

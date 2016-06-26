@@ -11,6 +11,8 @@
       @layoutCompanies = new Main.CompaniesView
         option: @activeTab
       AlumNet.mainRegion.show(@layoutCompanies)
+      AlumNet.footerRegion.empty()
+
       @showRegionMenu()
 
       self = @

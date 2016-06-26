@@ -7,6 +7,7 @@
       @layoutEvents = new Main.EventsView
         option: @activeTab
       AlumNet.mainRegion.show(@layoutEvents)
+      AlumNet.footerRegion.empty()
       @showRegionMenu()
 
       self = @

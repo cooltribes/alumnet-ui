@@ -11,6 +11,7 @@
           current_user: current_user
 
         AlumNet.mainRegion.show(layout)
+        AlumNet.execute 'show:footer'
         layout.groups_users.show(groups_users)
 
         groups_users.on 'group:edit:api_key', (model, newValue) ->

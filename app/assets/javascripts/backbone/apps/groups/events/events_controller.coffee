@@ -10,6 +10,7 @@
           model: event
           user: current_user
         AlumNet.mainRegion.show(createForm)
+        AlumNet.execute 'show:footer'
         #AlumNet.execute('render:groups:submenu', null)
 
         createForm.on 'form:submit', (model, data)->
@@ -42,6 +43,7 @@
             model: group
             collection: events
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(eventsView)
           # AlumNet.execute('render:groups:submenu')
@@ -59,6 +61,7 @@
         collection: users
         model: event
       AlumNet.mainRegion.show(usersView)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:groups:submenu', null)
 
 

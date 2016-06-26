@@ -19,6 +19,7 @@
             current_user: current_user
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(layoutAbout)
           layoutAbout.info.show(info)
