@@ -16,6 +16,7 @@
 
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           AlumNet.trigger "albums:event:list", layout, event        
 

@@ -16,8 +16,9 @@
 
           # render the layouts first
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
-
+          
           #Show user's folders inside "files" tab
           AlumNet.trigger "folders:list", layout.body, group        
           

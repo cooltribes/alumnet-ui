@@ -26,6 +26,7 @@
         model: task
 
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:business_exchange:submenu')
 
     update: (id)->

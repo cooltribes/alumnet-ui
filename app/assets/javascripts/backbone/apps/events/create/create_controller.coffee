@@ -7,6 +7,7 @@
         model: event
         user: user
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:events:submenu')
 
       createForm.on 'form:submit', (model, data)->

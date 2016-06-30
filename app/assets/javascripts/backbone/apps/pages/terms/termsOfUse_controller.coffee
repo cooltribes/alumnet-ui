@@ -3,6 +3,7 @@
     showTermsOfUse: ->
       page = new Terms.View
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
 
 
 

@@ -11,6 +11,7 @@
             model: subgroup
             user: current_user
           AlumNet.mainRegion.show(createForm)
+          AlumNet.execute 'show:footer'
           #AlumNet.execute('render:groups:submenu')
 
           createForm.on 'form:submit', (model, data)->
@@ -42,6 +43,7 @@
             model: group
             collection: subgroups
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(subgroupsView)
           #AlumNet.execute('render:groups:submenu')

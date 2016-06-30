@@ -30,6 +30,7 @@
 
           #Se asigna las vistas a las regiones correspondientes
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(body)
 

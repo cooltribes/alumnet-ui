@@ -11,6 +11,7 @@
           collection: events
 
         AlumNet.mainRegion.show(layout)
+        AlumNet.execute 'show:footer'
         layout.header.show(header)
         layout.body.show(eventsView)
 

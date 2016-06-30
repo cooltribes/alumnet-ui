@@ -33,6 +33,7 @@
       createForm = new Create.Form
         model: task
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:job_exchange:submenu')
 
     showBuyForm: ->

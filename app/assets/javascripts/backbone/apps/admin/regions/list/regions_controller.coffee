@@ -11,4 +11,5 @@
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(regionsTable)
       AlumNet.execute('render:admin:regions:submenu', undefined, 0, regionsTable)
+      AlumNet.execute 'show:footer'
 

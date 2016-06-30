@@ -8,6 +8,7 @@
       notificationsView = new Notifications.NotificationsView
         collection: notifications
       AlumNet.mainRegion.show(notificationsView)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:home:submenu')
 
     showCurrentUserRequests: ->
@@ -18,5 +19,6 @@
         notificationsView = new Notifications.NotificationsView
           collection: notifications
         AlumNet.mainRegion.show(notificationsView)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:home:submenu')
 

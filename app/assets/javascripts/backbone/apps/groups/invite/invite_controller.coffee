@@ -11,6 +11,7 @@
             model: group
             collection: users
           AlumNet.mainRegion.show(usersView)
+          AlumNet.execute 'show:footer'
           
           usersView.on "user:reload", ->
             querySearch = controller.querySearch

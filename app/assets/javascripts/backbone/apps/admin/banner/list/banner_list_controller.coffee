@@ -18,6 +18,7 @@
 
 
       AlumNet.mainRegion.show(layoutView)
+      AlumNet.execute 'show:footer'
       layoutView.table.show(bannerTable)
 
       layoutView.create.show(createBanner)

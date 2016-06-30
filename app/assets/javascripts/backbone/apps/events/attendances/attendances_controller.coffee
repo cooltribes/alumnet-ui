@@ -18,6 +18,7 @@
             model: event
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           layout.body.show(attendancesView)
           #AlumNet.execute('render:events:submenu')

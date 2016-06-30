@@ -16,6 +16,7 @@
 
           # render the layouts first
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
 
           #Show user's albums inside "pictures" region

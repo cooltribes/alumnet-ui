@@ -6,7 +6,8 @@
       @layoutView = new Settings.Layout
         option: @optionSubMenu
       AlumNet.mainRegion.show(@layoutView)
-
+      AlumNet.execute 'show:footer'
+      
       @showRegionMenu()
 
       self = @ 
