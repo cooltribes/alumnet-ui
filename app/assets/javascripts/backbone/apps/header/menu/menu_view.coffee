@@ -84,7 +84,7 @@
       'notificationsMarkAll': '#js-notifications-mark-all'
       'requestsMarkAll': '#js-friendship-notifications-mark-all'
       'avatarImg': '#header-avatar'
-      'searchInput': '.js-search-input'
+      'searchInput': '#js-search-input'
       'searchBar': '.js-searchBar'
       'searchBtn': '.js-globalsearch-btn'
 
@@ -138,12 +138,12 @@
           return "Lifetime member"
         return "Not a member"
 
-    focusSearchBar: (e)-> 
+    focusSearchBar: (e)->
       input = e.currentTarget
       $(input).closest(".js-searchBar").addClass("wideBar")
 
 
-    blurSearchBar: (e)-> 
+    blurSearchBar: (e)->
       input = e.currentTarget
       $(input).closest(".js-searchBar").removeClass("wideBar")
 
@@ -213,6 +213,8 @@
       else
         @ui.friendshipNotificationsBadge.hide()
 
+    onShow: ->
+      view = @
       @ui.searchInput.autocomplete(
         source: AlumNet.api_endpoint + "/suggestions"
         minLength: 2
@@ -226,11 +228,11 @@
         .append(link)
         .appendTo(ul)
 
-      
+
     searchInAlumNet: (search_term)->
       if search_term != ""
-        AlumNet.execute("search:show:results", search_term)  
-      
+        AlumNet.execute("search:show:results", search_term)
+
 
     autocompleteLink: (item)->
       if item.type == "profile"
@@ -242,7 +244,7 @@
         "<img src='#{item.image}'> - <a href='#{url}'>#{item.name}</a> - #{item.type}"
       else
         "<a href='#{url}'>#{item.name}</a> - #{item.type}"
-      
+
     changeHeader: (e)->
       # e.preventDefault()
       # alert "Changing header to regular user"
@@ -260,8 +262,8 @@
     dropdownClickedAlumni: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
       $('#alumniLayoutOption').addClass "navTopBar__left__item--active"
-      
-    dropdownClickedGroups: (e)->      
+
+    dropdownClickedGroups: (e)->
       $('.navTopBar__left__item').removeClass "navTopBar__left__item--active"
       $('#groupsLayoutOption').addClass "navTopBar__left__item--active"
 
