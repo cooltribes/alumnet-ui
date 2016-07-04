@@ -29,12 +29,6 @@
         <!-- <a href="#" title="Search for..." id="searchIcon">
           <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
         </a> -->
-        <div class="ui-widget searchMenu js-searchBar">          
-          <input type="text" class="js-search-input" placeholder="Search for...">
-          <button class="btn btn-primary js-globalsearch-btn" type="button">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          </button>
-        </div>
         <a href="#notifications" title="Notifications">
           <span class="glyphicon glyphicon-bell" style="font-size: 20px;"></span>
           <span class="navTopBarMobile__badge badge" id="js-notifications-badge">
@@ -52,7 +46,7 @@
       </div>
     </div>
   </div>
-   
+
   <nav class="navTopBar__left collapse navbar-collapse">
  <!--    Movil -->
     <ul class="navTopBar__left__list nav navbar-nav js-left-menu visible-xs">
@@ -148,7 +142,7 @@
       <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#groups/discover" id="groupsLayoutOption">
           <i class="ico-alumnet-nav_groups groupsSize"></i>
-          <span class="nameItemMenu">Groups</span>   
+          <span class="nameItemMenu">Groups</span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="groupsList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#groups/discover"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
@@ -160,7 +154,7 @@
       <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#events/discover" id="eventsLayoutOption">
           <i class="ico-calendar"></i>
-          <span class="nameItemMenu">Events</span>           
+          <span class="nameItemMenu">Events</span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="eventsList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#events/discover"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
@@ -172,22 +166,22 @@
       <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" role="menu" href="#companies/discover" id="companiesLayoutOption">
           <i class="icon-entypo-suitcase"></i>
-          <span class="nameItemMenu">Companies</span>           
+          <span class="nameItemMenu">Companies</span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu" role="menu" aria-labelledby="programs" id="companiesList">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/discover"><span class="glyphicon glyphicon-search"></span> Discover</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#my-companies"><span class="icon-entypo-suitcase"></span> My Companies</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/manage"><span class="icon-entypo-layout"></span> Manage Companies</a></li> 
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/manage"><span class="icon-entypo-layout"></span> Manage Companies</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#companies/new"><span class="icon-entypo-plus"></span> Add new Company</a></li>
         </ul>
       </li>
       <li class="hidden-xs drophover">
         <a class="navTopBar__left__item dropdown-toggle" href="#programs" role="menu" aria-labelledby="programs" id="programsLayoutOption">
           <i class="ico-give-help"></i>
-          <span class="nameItemMenu">Programs</span>             
+          <span class="nameItemMenu">Programs</span>
         </a>
         <ul class="navTopBar__dropdownMenu dropdown-menu multi-level" role="menu" aria-labelledby="programs" id="programsList">
-          
+
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#business-exchange/profiles"><span class="icon-entypo-bookmark"></span> Global Business Exchange </a>
           </li>
 
@@ -232,18 +226,18 @@
 
       <li>
       <!-- SEARCH INPUT -->
-        <div class="ui-widget searchMenu hidden-xs js-searchBar">          
-          <input type="text" class="js-search-input" placeholder="Search for...">
+        <div class="ui-widget searchMenu hidden-xs js-searchBar">
+          <input type="text" id="js-search-input" placeholder="Search for...">
           <button class="btn btn-primary js-globalsearch-btn" type="button">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button>
         </div>
-      <!--  -->  
+      <!--  -->
       </li>
 
-      <!-- 
+      <!--
       <li class="drophover hidden-xs">
-         shopping Cart ICON 
+         shopping Cart ICON
         <a href="#users/shopping-cart" class="navTopBar__right__item" title="Shopping Cart">
           <span class="navTopBar__right__item__icon fa fa-shopping-cart navTopBar__right__item__icon--iconChatSize"></span>
           <span class="navTopBar__badge badge"></span>
@@ -327,7 +321,7 @@
         <%% if @member==2: %>
           <a href="#premium" class="navTopBar__right__item--membershipWrapper member" title="<%%= @memberTitle()%>" style="padding-left: 60px;">
           <div class="row navTopBar__right__item--renew " >
-            
+
             <div class=" col-md-8" >
                <span class="renewMembership">Renew Membership</span>
             </div>
