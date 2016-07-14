@@ -10,6 +10,7 @@
       @layoutJobExchange = new Main.JobExchange
         option: @activeTab
       AlumNet.mainRegion.show(@layoutJobExchange)
+      AlumNet.footerRegion.empty()
       @showRegionMenu()
       @showAutomatches()
 

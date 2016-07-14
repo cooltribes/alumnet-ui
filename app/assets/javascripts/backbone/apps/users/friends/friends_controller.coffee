@@ -26,6 +26,7 @@
         collection.fetch(data: querySearch)
 
       AlumNet.mainRegion.show(layout)
+      AlumNet.execute 'show:footer'
       #Show the main profile layout with the body of friends
       layout.header.show(header)
       layout.body.show(friendsLayout)

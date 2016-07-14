@@ -4,4 +4,5 @@
       layoutView = new Users.Layout
       AlumNet.mainRegion.show(layoutView)
       AlumNet.execute('render:admin:users:submenu', undefined, 0)
+      AlumNet.execute 'show:footer'
 

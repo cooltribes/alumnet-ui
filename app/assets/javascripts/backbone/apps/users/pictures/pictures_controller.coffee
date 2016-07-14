@@ -12,6 +12,7 @@
         header = AlumNet.request("user:header", user)
 
         AlumNet.mainRegion.show(layout)
+        AlumNet.execute 'show:footer'
         
         layout.header.show(header)
 

@@ -3,4 +3,5 @@
     importContacts: ->
       page = new Import.Contacts
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:friends:submenu', undefined, 2)

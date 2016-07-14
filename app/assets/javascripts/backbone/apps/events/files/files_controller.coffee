@@ -16,6 +16,7 @@
 
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.header.show(header)
           
           #Show user's folders inside "files" tab

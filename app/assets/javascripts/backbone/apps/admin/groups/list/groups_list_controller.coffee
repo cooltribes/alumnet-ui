@@ -13,6 +13,7 @@
       layoutView.search.show(searchView)
       layoutView.table.show(groupsTable)
       AlumNet.execute('render:admin:groups:submenu', undefined, 0)
+      AlumNet.execute 'show:footer'
 
       searchView.on 'search', (term)->
         querySearch = { q: name_cont: term }

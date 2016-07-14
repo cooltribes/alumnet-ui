@@ -6,6 +6,7 @@
       createForm = new Create.Form
         model: company
       AlumNet.mainRegion.show(createForm)
+      AlumNet.execute 'show:footer'
 
     # update: (id)->
     #   current_user = AlumNet.current_user

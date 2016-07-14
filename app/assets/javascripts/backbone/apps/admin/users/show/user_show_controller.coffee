@@ -12,3 +12,5 @@
           AlumNet.mainRegion.show(layout)
           layout.content.show(overview)
           AlumNet.execute('render:admin:users:submenu', undefined, 0)
+          AlumNet.execute 'show:footer'
+

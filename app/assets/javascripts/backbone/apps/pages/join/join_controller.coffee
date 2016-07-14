@@ -3,4 +3,5 @@
     showJoin: ->
       page = new Join.View
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:pages:submenu')

@@ -1,0 +1,18 @@
+<a href="#" id="js-chat-show" class="chatHeader">
+  <div id="chat" class="chatReduce">
+    <div class="row chat visible-md visible-lg">
+      <div class="col-md-12 no-padding">
+        <div class="chat__content">
+          <div style="display:none" id="messages-region"></div>
+          <div style="display:none" id="conversations-region"></div>
+          <div id="users-region"></div>
+        </div>
+        <div class="chat__footer">
+          <a href="#" class="btn btn-default js-action friends" data-action="users"><i class="icon-entypo-user"></i><span class="friendsText">Friends</span></a>
+          <a href="#" class="btn btn-default js-action conversations" data-action="conversations"><i class="fa fa-comments" aria-hidden="true"></i> Chats</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+

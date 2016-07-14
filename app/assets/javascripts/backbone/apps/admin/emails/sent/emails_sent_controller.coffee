@@ -9,6 +9,7 @@
           	collection: collection
 
           AlumNet.mainRegion.show(layout)
+          AlumNet.execute 'show:footer'
           layout.tableSentEmails.show(sent_table)
 
       AlumNet.execute('render:admin:emails:submenu', undefined, 1)

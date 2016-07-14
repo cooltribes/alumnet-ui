@@ -7,4 +7,5 @@
          collection: actions
 
       AlumNet.mainRegion.show(layoutView)
+      AlumNet.execute 'show:footer'
       layoutView.table.show(actionsTable)

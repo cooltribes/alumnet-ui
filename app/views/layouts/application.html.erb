@@ -14,7 +14,7 @@
   <title><%= yield(:title) %></title>
   <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <script src='http://www.google.com/jsapi' type='text/javascript'></script>
-  
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
 
@@ -38,68 +38,30 @@
 
   <%= csrf_meta_tags %>
   <%= include_gon %>
-  <script>
-  (function() {var s=document.createElement('script');
-    s.type='text/javascript';s.async=true;
-    s.src=('https:'==document.location.protocol?'https':'http') +
-    '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
+<script>
+//   (function() {var s=document.createElement('script');
+//     s.type='text/javascript';s.async=true;
+//     s.src=('https:'==document.location.protocol?'https':'http') +
+//     '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
 </script>
 
 </head>
 <body>
   <div id="header-region">
-
     <header class="ErrorHeader">
       <%= image_tag("general/alumnet_logo.png", class: "ErrorHeader__Logo", alt: "AlumNet") %>
     </header>
-
   </div>
-  <div id="main-region">
-    <%= yield %>
-  </div>
-  <div id="footer-region">
-    <footer class="alumNetFooter">
-      <div class="container-fluid">
-        <div class="row">
-          <div class=" col-md-4 col-lg-4">
-            <%= image_tag("home/alumNetLogo.png", alt: "Company Logo AlumNet",width:"190px" ) %>
-            <br>
-            <p><strong>AIESEC Alumni International</strong></p>
-            <small><p>Boulevard du Souverain N° 280, B-1160 Brussels, Belgium.</p></small>
-            <small><p>International Non Profit Organisation recognized by Belgian Royal Decree 16/05/1991 iVZW- AiSBL.</p></small>
-            <small><p>Registered in Belgium under 0456.060.148, RPR/RPM Brussels.</p></small>
-          </div>
-          <div class="col-md-8 col-lg-8 text-right">
-            <div class="clearfix">
-              <ul class=" hidden-xs hidden-sm alumNetFooter__navigation navbar-right nav nav-pills">
-                <li>
-                  <a href="#about" title="About Us"> About Us</a>
-                </li>
-                <li>
-                  <a href="http://aiesec-alumni.org/blog/" title="Blog" target="new">Blog</a>
-                </li>
-                <li>
-                  <a href="#termsOfUse" title="Terms of Use">Terms of Use</a>
-                </li>
-                <li>
-                  <a href="#privacyPolicy" title="Privacy Policy">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#joinAAI" title="Join AAI">Join AAI Team</a>
-                </li>
-                <li>
-                  <a href="#donate" title="Donate">Donate</a>
-                </li>
-                <li>
-                  <a href="#contact" title="Contact">Contact</a>
-                </li>
-              </ul>
-            </div>
-            <p class="hidden-xs"><small> Copyright © <script>document.write(new Date().getFullYear())</script> AIESEC Alumni International. All rights reserved. </small></p>
-          </div>
+  <div class="container-fluid no_padding">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="main-region">
+          <%= yield %>
         </div>
+        <div id="chat-region"></div>
+        <div id="footer-region"></div>
       </div>
-    </footer>
+    </div>
   </div>
 
 <!-- Piwik -->
@@ -116,6 +78,6 @@
     })();
   </script>
   <noscript><p><img src="//analytics.alumnet-test.aiesec-alumni.org/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-  <!-- End Piwik Code -->  
+  <!-- End Piwik Code -->
 </body>
 </html>

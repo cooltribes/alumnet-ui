@@ -29,6 +29,7 @@
 
       layout = new Posts.Layout
       AlumNet.mainRegion.show(layout)
+      AlumNet.footerRegion.empty()
       layout.posts.show(posts)
       layout.banners.show(bannersView)
 

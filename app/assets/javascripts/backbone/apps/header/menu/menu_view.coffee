@@ -215,24 +215,23 @@
 
     onShow: ->
       view = @
-      @ui.searchInput.autocomplete(
+      @ui.searchInput.autocomplete
+        add_layer_chat
         source: AlumNet.api_endpoint + "/suggestions"
         minLength: 2
         select: (event, ui)->
           $(@).val(ui.item.name)
           false
 
-      ).autocomplete("instance")._renderItem = (ul, item)->
+      @ui.searchInput.autocomplete("instance")._renderItem = (ul, item)->
         link = view.autocompleteLink(item)
         $("<li>").data("item.autocomplete", item)
         .append(link)
         .appendTo(ul)
 
-
     searchInAlumNet: (search_term)->
       if search_term != ""
         AlumNet.execute("search:show:results", search_term)
-
 
     autocompleteLink: (item)->
       if item.type == "profile"

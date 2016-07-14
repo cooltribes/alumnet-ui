@@ -5,6 +5,7 @@
       @layoutView = new Invoices.Layout
         option: @optionMenu
       AlumNet.mainRegion.show(@layoutView)
+      AlumNet.execute 'show:footer'
       @showAll()
 
     showAll: ->

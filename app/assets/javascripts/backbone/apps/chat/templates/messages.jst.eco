@@ -1,0 +1,10 @@
+<div class="chat__content--messages">
+	<div class="messagesContainer">
+	</div>
+	<p class="text-muted typing" id="js-typing"></p>
+	<div class="messagesInput">
+		<form>
+	  	<textarea name="message" id="chat-message" rows="1" style="width: 100%"></textarea>
+		</form>
+	</div>
+</div>

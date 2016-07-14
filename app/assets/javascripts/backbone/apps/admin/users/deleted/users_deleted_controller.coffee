@@ -9,3 +9,4 @@
       AlumNet.mainRegion.show(layoutView)
       layoutView.table.show(groupsTable)
       AlumNet.execute('render:admin:users:submenu', undefined, 1)
+      AlumNet.execute 'show:footer'

@@ -12,6 +12,8 @@
         option: @activeTab
         current_user: current_user
       AlumNet.mainRegion.show(@layoutBusiness)
+      AlumNet.footerRegion.empty()
+
       @showRegionMenu()
       @showAutomaches()
 

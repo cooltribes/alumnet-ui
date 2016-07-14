@@ -7,6 +7,7 @@
     showHome: ->
       page = new Programs.Home
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
 
       # Check cookies for first visit
       if not Cookies.get('home_exchange_visit')
@@ -26,9 +27,11 @@
     showAGroups: ->
       page = new Programs.AGroups
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:pages:submenu')
     showAlumNite: ->
       page = new Programs.AlumNite
       AlumNet.mainRegion.show(page)
+      AlumNet.execute 'show:footer'
       #AlumNet.execute('render:pages:submenu')
     
