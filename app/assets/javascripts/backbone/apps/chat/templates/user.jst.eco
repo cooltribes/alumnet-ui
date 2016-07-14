@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat__content--users">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat__content--users__user">
 	<div class="row">
 		<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 image">
 			<img src="<%= @avatar.medium %>" alt="" class="img-circle">

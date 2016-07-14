@@ -16,8 +16,8 @@
 
       AlumNet.layerClient.on 'ready', (e)->
         console.log "Initialize Chat"
-        chatLayout = new AlumNet.ChatApp.Chat.Layout
-        AlumNet.chatRegion.show(chatLayout)
+        # chatLayout = new AlumNet.ChatApp.Chat.Layout
+        # AlumNet.chatRegion.show(chatLayout)
 
     getIdentityToken: (nonce, callback)->
       Backbone.ajax
@@ -26,7 +26,6 @@
         data: { nonce: nonce }
         success: (token)->
           callback(token)
-
 
   AlumNet.commands.setHandler 'initialize:layer', (user)->
     login = new Login

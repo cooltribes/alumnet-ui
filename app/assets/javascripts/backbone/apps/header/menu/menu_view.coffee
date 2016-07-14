@@ -213,15 +213,20 @@
       else
         @ui.friendshipNotificationsBadge.hide()
 
-      @ui.searchInput.autocomplete(
+      @ui.searchInput.autocomplete
         source: AlumNet.api_endpoint + "/suggestions"
         minLength: 2
         select: (event, ui)->
           $(@).val(ui.item.name)
           false
 
-      ).autocomplete("instance")._renderItem = (ul, item)->
+      @ui.searchInput.autocomplete("instance")._renderItem = (ul, item)->
+        console.log "entro"
+        console.log "item"
+        console.log item
         link = view.autocompleteLink(item)
+        console.log "link"
+        console.log link
         $("<li>").data("item.autocomplete", item)
         .append(link)
         .appendTo(ul)

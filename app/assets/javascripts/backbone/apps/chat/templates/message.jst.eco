@@ -3,9 +3,10 @@
 		<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 text-right no-padding image" id="image">
 			<img src="<%= @sender.avatar_url %>" class="img-circle" height="30px">
 		</div>
-		<div class="col-xs-6 col-sm-10 col-md-10 col-lg-10 text-left name" id="name">
-			<span id="body" class="bubble"> <%= @body %> </span>
-			<span class="pull-right messagesDate"> <%= moment(@sentAt).format('MMM Do YYYY') %> </span>
+		<div class="col-xs-6 col-sm-10 col-md-10 col-lg-10 text-left name">
+		 	<div id="name">
+		 		<span id="body" class="bubble"> <%= @body %> </span>
+		 	</div>
 		</div>
 	</div>
 </div>
