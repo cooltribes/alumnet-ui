@@ -216,7 +216,6 @@
     onShow: ->
       view = @
       @ui.searchInput.autocomplete
-        add_layer_chat
         source: AlumNet.api_endpoint + "/suggestions"
         minLength: 2
         select: (event, ui)->
