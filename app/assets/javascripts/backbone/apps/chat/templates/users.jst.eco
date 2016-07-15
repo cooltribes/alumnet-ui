@@ -4,4 +4,6 @@
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
   </button>
 </div>
-<div class="friendsContainer"></div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat__content--users">
+	<div class="friendsContainer row"></div>
+</div>

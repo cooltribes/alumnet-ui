@@ -38,27 +38,32 @@
 
   <%= csrf_meta_tags %>
   <%= include_gon %>
-  <script>
-  (function() {var s=document.createElement('script');
-    s.type='text/javascript';s.async=true;
-    s.src=('https:'==document.location.protocol?'https':'http') +
-    '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
+<script>
+//   (function() {var s=document.createElement('script');
+//     s.type='text/javascript';s.async=true;
+//     s.src=('https:'==document.location.protocol?'https':'http') +
+//     '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
 </script>
 
 </head>
 <body>
   <div id="header-region">
-
     <header class="ErrorHeader">
       <%= image_tag("general/alumnet_logo.png", class: "ErrorHeader__Logo", alt: "AlumNet") %>
     </header>
+  </div>
+  <div class="container-fluid no_padding">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="main-region">
+          <%= yield %>
+        </div>
+        <div id="chat-region"></div>
+        <div id="footer-region"></div>
+      </div>
+    </div>
+  </div>
 
-  </div>
-  <div id="main-region">
-    <%= yield %>
-  </div>
-  <div id="chat-region"></div>
-  <div id="footer-region"></div>
 <!-- Piwik -->
   <script type="text/javascript">
     var _paq = _paq || [];

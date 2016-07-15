@@ -6,15 +6,25 @@
       usersRegion: '#users-region'
       conversationsRegion: '#conversations-region'
 
+    ui:
+      'toggleChat': '#chat' 
+
     events:
       'click .js-action': 'renderContent'
-      'click #js-chat-reduce': 'reduceContent'
+      'click #js-chat-show': 'extendContentChat'
 
     renderContent: (e)->
       e.preventDefault()
       action = $(e.currentTarget).data('action')
       @showRegion(action)
 
+    onAttach: ->
+      self = @
+      $('#main-region').click ()->
+        self.ui.toggleChat.addClass('chatReduce')
+      $('#header-region').click ()->
+        self.ui.toggleChat.addClass('chatReduce')
+  
     templateHelpers: ->
       name: AlumNet.current_user.get("name")
 
@@ -28,6 +38,9 @@
     onBeforeShow: ->
       @showFriends()
       @showConversations()
+
+    onShow: ->
+      $('.chat__content').css('min-height', ($(".chat").height() - 110))
 
     showFriends: ->
       self = @
@@ -71,9 +84,9 @@
       if count > 0
         console.log count
 
-    reduceContent: (e)->
+    extendContentChat: (e)->
       e.preventDefault()
-      @$('#chat').toggleClass('chatReduce')
+      @ui.toggleChat.removeClass('chatReduce')
 
   #-----------------------
   #  SHARE VIEW
@@ -244,7 +257,9 @@
 
     onShow: ->
       if @model.get('sender').id == AlumNet.current_user.id
-        @$('#body').attr class: 'bubble blue'
+        @$('#body').addClass('bubble blue')
+        @$('#image').addClass('image pull-right').removeClass('text-right')
+        @$('#name').addClass('name pull-right')
       @model.get('layerObject').isRead = true
       container = $('.messagesContainer')
       container.scrollTop(container.prop('scrollHeight'))
