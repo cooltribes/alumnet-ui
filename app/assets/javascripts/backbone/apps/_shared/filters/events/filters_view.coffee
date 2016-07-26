@@ -62,12 +62,93 @@
       @trigger "search", query     
 
 
+  class Filters.Date extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
+    initialize: (options)->          
+      @model = new Backbone.Model
+        all_selected: true
+        title: "Date"
+        all_message: "All"
+      
+      rows = [
+        name: "Upcoming" 
+        value: "upcoming"
+      ,
+        name: "Past"        
+        value: "past"     
+      ,
+        name: "Today"        
+        value: "today"     
+      ,
+        name: "This Week"        
+        value: "week"     
+      ,
+        name: "This Month"        
+        value: "month"     
+      ,
+        name: "Next month"        
+        value: "nextm"     
+      ]
+      
+      @collection = new AlumNet.Entities.SearchFiltersCollection rows     
+
+      @collection.on "checkStatus", @checkStatus, @
+      
+    
+    buildQuery: (active_rows = [])->
+      query = {}           
+      
+      periods = active_rows.map (item)->
+        
+        value = item.get("value")
+        
+        if value == "upcoming"
+          range = 
+            gte: "now/d"
+
+        else if value == "past"
+          range = 
+            lt: "now/d"
+
+        else if value == "today"
+          range = 
+            lte: "now/d"
+            gte: "now/d"
+
+        else if value == "week"
+          range = 
+            lte: "now/w"
+            gte: "now/w"            
+
+        else if value == "month"
+          range = 
+            lte: "now/M"
+            gte: "now/M"      
+
+        else if value == "nextm"
+          range = 
+            lte: "now+1M/M"
+            gte: "now+1M/M"      
+          
+        range =
+          range:
+            start_date: range 
+
+      console.log periods
+
+      query =
+        bool:
+          should: periods
+
+      @trigger "search", query         
+
+  
   class Filters.General extends AlumNet.Shared.Views.Filters.Shared.General
     template: '_shared/filters/events/templates/layout'
     regions:
       locations: "#locations"
       region_2: "#type"      
       region_3: "#condition"      
+      region_4: "#date"      
 
 
     child_queries: [
@@ -89,6 +170,7 @@
       
       @type_view = new Filters.Type
       @condition_view = new Filters.Condition
+      @date_view = new Filters.Date
         
         
       @locations_view.on "search", (filter)->
@@ -103,8 +185,24 @@
         @updateChildQueries(filter, 2)
       , @  
       
+      @date_view.on "search", (filter)->
+        @updateChildQueries(filter, 3)
+      , @  
+      
       
       @locations.show(@locations_view)
       @region_2.show(@type_view)
       @region_3.show(@condition_view)
+      @region_4.show(@date_view)
       
+
+      ###
+        All
+        Upcoming
+        Past
+        Today
+        This week
+        This month
+        Next month
+
+      ###
