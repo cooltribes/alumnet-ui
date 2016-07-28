@@ -224,6 +224,7 @@
 
       return data.name + country
 
+  
   class Filters.General extends Marionette.LayoutView
     className: "advancedFilters marginFilters"
 
