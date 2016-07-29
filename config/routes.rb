@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get '/profiles/:slug', to: 'profiles#show'
   # get '/profiles', to: 'facebook#callback'
 
+  # donations
+  get '/donations', to: 'donations#show'
 
   #error pages
   get '/500', to: 'errors#e500', as: :e500
