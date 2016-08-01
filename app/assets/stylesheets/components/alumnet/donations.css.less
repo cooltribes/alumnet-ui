@@ -1,0 +1,151 @@
+@import 'conf/conf.css.less';
+
+.donations{
+  &__header{
+    background-color: @blue-aiesec;
+    height: auto;
+    padding: 50px;
+    h3{
+      color: @white;
+      font-weight: 400;
+    }
+    p{
+      color: @white;
+      font-weight: 100;
+      font-size: 18px;
+    }
+    &--donate{
+      background-color: @white;
+      height: auto;
+      padding: 20px;
+      border-radius: 10px;
+      h3{
+        color: @black-lighter;
+        font-weight: bold;
+        font-size: 30px;
+      }
+      p{
+        color: @black-lighter;
+        font-size: 14px;
+        line-height: 22px;
+      }
+      .number{
+        color: @black-lighter;
+        font-size: 27px;
+        font-weight: 400;
+      }
+      .numberSmall{
+        color: @black-lighter;
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .text{
+        color: @black-lighter;
+        font-weight: 100;
+        font-size: 14px;
+      }
+      .textLarge{
+        color: @black-lighter;
+        font-weight: 300;
+        font-size: 19px;
+      }
+    }
+  }
+  &__information{
+    background-color: @white;
+    height: auto;
+    padding: 50px;
+    .title{
+      color: @black-lighter;
+      font-weight: 500;
+    }
+    .text{
+      color: @black-lighter;
+      font-weight: 100;
+      font-size: 18px;
+    }
+    .numberShared{
+      color: @black-lighter;
+    }
+    .btn-primary{
+      width: 100%;
+      border-radius: 6px;
+      padding: 10px;
+      background-color: #375090;
+      border-color: #375090;
+    }
+    .btnTwitter{
+      background-color: #4aa7ed !important;
+      border-color: #4aa7ed !important;
+    }
+    &--shared{
+      border: 1px solid @blue-aiesec;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    &--menu{
+      color: @black-lighter;
+      font-weight: 500;
+      .nav-tabs{
+        border-bottom: 1px solid @blue-aiesec;
+        li{
+          margin-right: 20px;
+          margin-bottom: 15px;
+          a{
+            font-size: 16px;
+            border: 1px solid @blue-aiesec;
+            border-radius: 6px;
+            font-weight: 100;
+          }
+          a:hover{
+            font-size: 14px;
+            border-radius: 4px;
+          }
+        }
+        li.active{
+          a {
+            font-size: 14px;
+            border-radius: 4px;
+          }
+          a:hover, a:focus{
+            font-size: 14px;
+            border-radius: 4px;
+          }
+        }
+      }
+      .tab-content{
+        p{
+          font-size: 18px;
+          line-height: 26px;
+          font-weight: lighter;
+        }
+      }
+    }
+  }
+  .boxDonate{
+    border: 1px solid @gray;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    h3{
+      color: @black-lighter;
+      font-weight: bold;
+    }
+    .text{
+      font-size: 14px;
+      font-weight: 100;
+      line-height: 22px;
+    }
+    .btnSelect{
+      width: 50%;
+      padding: 10px;
+    }
+  }
+  .btn-orange{
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    padding: 15px;
+  }
+}
+  
