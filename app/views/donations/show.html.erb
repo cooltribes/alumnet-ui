@@ -114,12 +114,17 @@
 		    </div>
 		    <div class="col-md-4">
 		    	<h3 class="title margin_bottom_small">Rewards</h3>
-		    	<div class="boxDonate">
-	    			<h3 class="text-left no-margin-top"><i class="fa fa-eur" aria-hidden="true"></i><span> 25</span></h3>
-	    			<p class="text margin_bottom_small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-	    			<button class="btn-orange btnSelect">SELECT</button>
-	    			<p class="text margin_top_small">18 Backer(s)</p>
-		    	</div>
+
+          <% @products.each do |product| %>
+  		    	<div class="boxDonate">
+  	    			<h3 class="text-left no-margin-top">
+                <span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
+              </h3>
+  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
+  	    			<button class="btn-orange btnSelect">SELECT</button>
+  	    			<p class="text margin_top_small">18 Backer(s)</p>
+  		    	</div>
+          <% end %>
 		    	<div class="boxDonate">
 	    			<h3 class="text-left no-margin-top"><i class="fa fa-eur" aria-hidden="true"></i><span> 50</span></h3>
 	    			<p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
