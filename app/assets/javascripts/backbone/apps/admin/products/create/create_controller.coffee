@@ -68,7 +68,7 @@
 
     showCategories: (product)->
       self = @
-      categories = AlumNet.request('categories:entities', {q: {father_id_eq: 0}})
+      categories = AlumNet.request('categories:entities', {q: {father_id_eq: null, 'm': 'or'}})
       product_categories = AlumNet.request('product_categories:entities', {product_id: product.id})
       product_categories.on 'fetch:success', (product_categories_collection)->
         view = new ProductCreate.Categories
