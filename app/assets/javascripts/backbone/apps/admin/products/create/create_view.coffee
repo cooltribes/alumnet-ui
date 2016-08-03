@@ -8,8 +8,11 @@
     events:
       'click .optionMenu': 'goOption'
 
-    initialize: ->
-      @tab = "General"
+    initialize: (options)->
+      console.log 'initialize'
+      console.log options
+      @tab = 'General'
+      @product = options.product
 
     onRender: ->
       $('body,html').animate({scrollTop: 0}, 600);
@@ -19,7 +22,7 @@
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
       @tab = valueClick
-      @trigger "navigate:menu", valueClick
+      @trigger "navigate:menu", valueClick, @product
       $("#step").html(@tab)
       $('#active').removeClass('active')
 
@@ -387,3 +390,4 @@
         product_attribute.set({characteristic_id: $(this).val(), product_id: self.model.id, value: $('#attribute_value_'+$(this).val()).val()})
         product_attribute.save()
       $.growl.notice({ message: "Product successfully saved!" })
+      AlumNet.trigger "admin:products"
