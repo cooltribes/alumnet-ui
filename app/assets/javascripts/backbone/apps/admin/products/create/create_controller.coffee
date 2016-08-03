@@ -28,6 +28,7 @@
     prices: (id)->
       product = AlumNet.request('product:find', id)
       @layoutView = new ProductCreate.Layout
+        product: product
       AlumNet.mainRegion.show(@layoutView)
       @showPrices(product)
 
@@ -38,6 +39,7 @@
     categories: (id)->
       product = AlumNet.request('product:find', id)
       @layoutView = new ProductCreate.Layout
+        product: product
       AlumNet.mainRegion.show(@layoutView)
       @showCategories(product)
 
@@ -48,6 +50,7 @@
     attributes: (id)->
       product = AlumNet.request('product:find', id)
       @layoutView = new ProductCreate.Layout
+        product: product
       AlumNet.mainRegion.show(@layoutView)
       @showAttributes(product)
 
