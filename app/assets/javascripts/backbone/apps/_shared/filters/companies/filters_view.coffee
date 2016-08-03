@@ -1,8 +1,6 @@
 @AlumNet.module 'Shared.Views.Filters.Companies', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
  
-  class Filters.Sector extends AlumNet.Shared.Views.Filters.Shared.FilterGroup
-    template: '_shared/filters/companies/templates/sectors'
-    
+  class Filters.Sector extends AlumNet.Shared.Views.Filters.Shared.FilterGroup    
     ui:
       'selectList':'.js-list'
 
@@ -18,11 +16,6 @@
 
 
     initialize: (options)->
-      @model = new Backbone.Model
-        all_selected: true
-        all_message: "All"
-        title: "Sector"
-      
       @collection = new AlumNet.Entities.SearchFiltersCollection @preloadItems()
 
       #When a new item is added, trigger the search as if it was clicked
@@ -30,6 +23,12 @@
         @trigger("checkStatus")
 
       @collection.on "checkStatus", @checkStatus, @
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Sector"
+        with_list: true     
+         
 
 
     preloadItems: ()->

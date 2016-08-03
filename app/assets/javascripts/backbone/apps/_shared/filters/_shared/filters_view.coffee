@@ -34,11 +34,16 @@
     events: ->
       "click #all_selected": "clickAll"
 
-    initialize: ->
+    initialize: (model_options)->
       @model = new Backbone.Model
         all_selected: true
         all_message: "All"
-        title: ""
+        title: "filter group"
+        with_list: false
+        collapseId: _.uniqueId()
+
+      @model.set model_options
+
 
     onRender: ->
       @stickit()
@@ -69,26 +74,22 @@
 
 
   class Filters.LocationContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup
-    template: '_shared/filters/_shared/templates/locations'
+    ###template: '_shared/filters/_shared/templates/list_group'###
     ui:
-      'selectCountries':'.js-countries'
+      'selectList':'.js-list'
 
     events: ->
       events =
-        "select2-selecting @ui.selectCountries": "addLocationFromSelect"
+        "select2-selecting @ui.selectList": "addItemFromList"
       _.extend super(), events
 
 
     onRender: ->
-      @ui.selectCountries.select2 @optionsForSelect2()
-
+      @ui.selectList.select2 @optionsForSelect2()
       super()
 
 
     initialize: (options)->
-      @model = new Backbone.Model
-        all_selected: true
-
       @type = options.type  #[profile, other] because the query is built in a different way for each type of model
 
       #Search for the initial cities and countries
@@ -133,9 +134,13 @@
 
       @collection.on "checkStatus", @checkStatus, @
 
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Locations"
+        with_list: true
+
 
     buildQuery: (active_locations = [])->
-
       locationTerms = []
 
       cities_array = _.filter active_locations, (el)->
@@ -147,40 +152,38 @@
       if cities_array.length > 0
         cities_ids = _.pluck(cities_array, "id")
 
-        if @type == "profile"
-          terms = [
+        if @type == "profile" or @type == "all"
+          locationTerms.push [
             terms:
               "residence_city_id": cities_ids
           ,
             terms:
               "birth_city_id": cities_ids
           ]
-        else
-          terms = [
+        
+        if @type == "other" or @type == "all"        
+          locationTerms.push [
             terms:
               "city_id": cities_ids
           ]
 
-        locationTerms.push terms
-
       if countries_array.length > 0
         countries_ids = _.pluck(countries_array, "id")
 
-        if @type == "profile"
-          terms = [
+        if @type == "profile" or @type == "all"
+          locationTerms.push [
             terms:
               "residence_country_id": countries_ids
           ,
             terms:
               "birth_country_id": countries_ids
           ]
-        else
-          terms = [
+
+        if @type == "other" or @type == "all"        
+          locationTerms.push [
             terms:
               "country_id": countries_ids
           ]
-
-        locationTerms.push terms
 
       query =
         bool:
@@ -189,7 +192,7 @@
       @trigger "search", query
 
 
-    addLocationFromSelect: (e)->
+    addItemFromList: (e)->
       location =
         id: e.choice.id
         name: e.choice.name
