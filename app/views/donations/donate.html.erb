@@ -1,5 +1,116 @@
-Product details
+<% content_for :title, "AlumNet - Donate" %>
+<article class="donate">
+	<div class="donate__header">
+		<div class="container">
+		  <div class="row">
+		  	<div class="col-md-10 col-md-offset-1 text-center">
+		  		<%= image_tag('static_pages/aiesec-logo.png', alt: "AIESEC", height: "100") %>
+		  		<h3 class="title margin_top_medium">THE AIESEC ALUMNI CROWDFUNDING CAMPAING</h3>
+		  	</div>
+		  </div>
+		</div>
+	</div>
+	<div class="donate__steps padding_bottom_xlarge">
+		<div class="container">
+			<div class="row">
+	  		<div class="col-md-10 col-md-offset-1">
 
-Login form
+	  			<ul class="nav nav-tabs">
+					  <li class="active"><a data-toggle="tab" href="#step1">STEP 1: Donate</a></li>
+					  <li><a data-toggle="tab" href="#step2">STEP 2: Pay</a></li>
+					  <li><a data-toggle="tab" href="#step3">STEP 3: Share</a></li>
+					</ul>
 
-Sign up form
+					<!-- STEP 1 -->
+					<div class="tab-content">
+					  <div id="step1" class="tab-pane fade in active">
+					    <h3 class="margin_bottom_small title">Confirm Your Donation</h3>
+				    	<div class="col-md-12 total">
+				    		<div class="row">
+				    			<div class="col-md-3">
+						    		<img src="" alt="">
+						    	</div>
+						    	<div class="col-md-9">
+						    		<div class="row">
+						    			<div class="col-md-8">
+						    				<h3>Perk Title</h3>
+						    				<p>On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
+						    			</div>
+						    			<div class="col-md-4">
+						    				<div class="amount text-right">
+						    					<span><i class="fa fa-eur" aria-hidden="true"></i> 1000</span>
+						    				</div>
+						    				<div class="time">
+						    					<input type="checkbox" name="" value="" checked> One Time <br>
+		  										<input type="checkbox" name="" value=""> Monthly
+						    				</div>
+						    			</div>
+						    		</div>
+				    				<hr>
+						    		<div>
+						    			<input type="checkbox" name="" value="" checked> Make this donation anonimous <br>
+		  								<input type="checkbox" name="" value=""> Make my donation in honor or in memory of someone
+						    		</div>	
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="col-md-12 login margin_top_medium data">
+				    		<div class="row">
+				    			<div class="col-md-6 text-center login">
+				    				<h3 class="margin_top_xsmall">Login with AlumNet</h3>
+						    		<p>If you already registered into AlumNet use you seted credentials</p>
+						    		<form action="action_page.php">
+										  <input type="text" name="email" value="" placeholder="Enter Email"><br><br>
+										  <input type="text" name="password" value="" placeholder="Enter Password"><br><br>
+										  <button class="btn-orange">DONATE</button>
+										</form>
+				    			</div>
+				    			<div class="col-md-6 text-center information">
+				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
+				    				<p class="margin_bottom">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
+				    				<form action="">
+				    					<p>
+				    						My full name is <input type="text" name="name" value="">. <br>
+				    						I was born on <input type="text" name="born_date" id="js-born-date"> 
+				    						and I'm a 
+				    						<select>
+												  <option value="male">Male</option>
+												  <option value="female">Female</option>
+											  </select>
+											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+   											who joined AIESEC in 
+   											<select>
+												  <option value="">AIESEC EXPERIENCE COUNTRY 1</option>
+												  <option value="">AIESEC EXPERIENCE COUNTRY 2</option>
+											  </select>
+											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+				    						in the year <input type="text" name="year_aiesec" id="js-year-aiesec"> 
+												being part of the LC 
+												<select>
+												  <option value="">AIESEC CHAPTER 1</option>
+												  <option value="">AIESEC CHAPTER 2</option>
+											  </select>
+											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+												Currently I am living in 
+												<select>
+												  <option value="">CITY OF RESIDENCE 1</option>
+												  <option value="">CITY OF RESIDENCE 2</option>
+											  </select>
+											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+												and I’ll be really happy to support AIESEC Alumni International <br>
+												on its labour to reconnect all Alumni around the world!
+											</p>
+				    				</form>
+				    				<button class="btn-orange">Create an account and DONATE</button>
+				    			</div>
+				    		</div>
+				    	</div>
+					  </div>
+					</div>
+					<!-- END STEP 1 -->
+
+	  		</div>
+	  	</div>
+		</div>
+	</div>
+</article>

@@ -1,0 +1,113 @@
+@import 'conf/conf.css.less';
+
+.donate{
+  &__header{
+    background-color: #f5f5f5;
+    height: auto;
+    padding: 20px;
+    h3{
+      color: #054984;
+      font-weight: 400;
+    }
+    p{
+      color: #054984;
+      font-weight: 100;
+      font-size: 18px;
+    }
+  }
+  &__steps{
+    background-color: #FFF;
+    height: auto;
+    padding: 30px;
+    h3{
+      color: @black;
+      font-weight: 500;
+      font-size: 25px;
+    }
+    .nav-tabs, .nav-pills{
+      border-bottom: 1px solid #3288b9;
+      text-align: center;
+      li{
+        margin-right: 20px;
+        margin-bottom: 15px;
+        a{
+          font-size: 16px;
+          border: 1px solid #3288b9;
+          border-radius: 6px;
+          font-weight: 100;
+        }
+        a:hover{
+          font-size: 16px;
+          border-radius: 4px;
+        }
+      }
+      li.active{
+        a {
+          font-size: 16px;
+          border-radius: 4px;
+        }
+        a:hover, a:focus{
+          font-size: 16px;
+          border-radius: 4px;
+        }
+      }
+    }
+    .total, .data{
+      border: 1px solid #3288b9;
+      padding: 20px;
+      border-radius: 5px;
+      color: @black;
+      font-weight: lighter;
+      font-size: 13px;
+      hr{
+        border-color: #3288b9;
+      }
+      .amount{
+        border: 1px solid #3288b9;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 25px;
+      }
+    }
+    .data{
+      h3{
+        color: #444;
+        font-weight: 100;
+        font-size: 25px;
+      }
+      .login{
+        border: solid #3288b9;
+        border-width: 0px 1px 0px 0px;
+        input{
+          border-color: #3288b9;
+          border-width: 1px;
+          padding: 10px;
+          border-radius: 5px;
+          width: 85%;
+        }
+      }
+      .information{
+        input{
+          border: none;
+          border-bottom: 1px solid @black;
+        }
+        p{
+          line-height: 27px; 
+        }
+        select{
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border: none;
+        }
+      }
+    }
+  }
+  .btn-orange{
+    width: 55%;
+    border: none;
+    border-radius: 6px;
+    padding: 15px;
+  } 
+}
