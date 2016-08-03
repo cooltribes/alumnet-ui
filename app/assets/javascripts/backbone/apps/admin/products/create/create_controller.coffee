@@ -1,24 +1,29 @@
 @AlumNet.module 'AdminApp.ProductCreate', (ProductCreate, @AlumNet, Backbone, Marionette, $, _) ->
   class ProductCreate.Controller
     showLayoutCreate: ->
+      product = new AlumNet.Entities.Product
       @layoutView = new ProductCreate.Layout
+        product: product,
+        tab: 'General'
       AlumNet.mainRegion.show(@layoutView)
       AlumNet.execute 'show:footer'
-      @showGeneral()
+      @showGeneral(product)
 
       self = @
-      @layoutView.on "navigate:menu", (valueClick)->
-        self.showRegionMenu(valueClick)
+      @layoutView.on "navigate:menu", (valueClick, product)->
+        self.showRegionMenu(valueClick, product)
 
     update: (id)->
       product = AlumNet.request('product:find', id)
       @layoutView = new ProductCreate.Layout
+        product: product,
+        tab: 'General'
       AlumNet.mainRegion.show(@layoutView)
       @showUpdate(product)
 
       self = @
-      @layoutView.on "navigate:menu", (valueClick)->
-        self.showRegionMenu(valueClick)
+      @layoutView.on "navigate:menu", (valueClick, product)->
+        self.showRegionMenu(valueClick, product)
 
     prices: (id)->
       product = AlumNet.request('product:find', id)
@@ -27,8 +32,8 @@
       @showPrices(product)
 
       self = @
-      @layoutView.on "navigate:menu", (valueClick)->
-        self.showRegionMenu(valueClick)
+      @layoutView.on "navigate:menu", (valueClick, product)->
+        self.showRegionMenu(valueClick, product)
 
     categories: (id)->
       product = AlumNet.request('product:find', id)
@@ -37,8 +42,8 @@
       @showCategories(product)
 
       self = @
-      @layoutView.on "navigate:menu", (valueClick)->
-        self.showRegionMenu(valueClick)
+      @layoutView.on "navigate:menu", (valueClick, product)->
+        self.showRegionMenu(valueClick, product)
 
     attributes: (id)->
       product = AlumNet.request('product:find', id)
@@ -47,11 +52,10 @@
       @showAttributes(product)
 
       self = @
-      @layoutView.on "navigate:menu", (valueClick)->
-        self.showRegionMenu(valueClick)
+      @layoutView.on "navigate:menu", (valueClick, product)->
+        self.showRegionMenu(valueClick, product)
 
-    showGeneral: ->
-      product = new AlumNet.Entities.Product
+    showGeneral: (product)->
       view = new ProductCreate.General
         model: product
       @layoutView.content_region.show(view)
@@ -89,14 +93,14 @@
 
         self.layoutView.content_region.show(view)
 
-    showRegionMenu: (valueClick) ->
+    showRegionMenu: (valueClick, product) ->
       self = @
       switch valueClick
         when "General"
-          self.showGeneral()
+          self.showGeneral(product)
         when "Prices"
-          self.showPrices()
+          self.showPrices(product)
         when "Categories"
-          self.showCategories()
+          self.showCategories(product)
         when "Attributes"
-          self.showAttributes()
+          self.showAttributes(product)
