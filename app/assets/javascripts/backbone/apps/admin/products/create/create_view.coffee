@@ -387,3 +387,4 @@
         product_attribute.set({characteristic_id: $(this).val(), product_id: self.model.id, value: $('#attribute_value_'+$(this).val()).val()})
         product_attribute.save()
       $.growl.notice({ message: "Product successfully saved!" })
+      AlumNet.trigger "admin:products"
