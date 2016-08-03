@@ -15,5 +15,9 @@ class DonationsController < ApplicationController
     # end
   end
 
+  def donate
+    
+  end
+
 
 end
