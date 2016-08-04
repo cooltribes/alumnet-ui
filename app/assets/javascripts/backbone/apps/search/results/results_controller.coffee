@@ -55,6 +55,9 @@
       if type == "task"
         view = new AlumNet.Shared.Views.Filters.Tasks.General
           results_collection: @results_collection     
+      if type == "all"
+        view = new AlumNet.Shared.Views.Filters.All.General
+          results_collection: @results_collection     
 
       view    
     

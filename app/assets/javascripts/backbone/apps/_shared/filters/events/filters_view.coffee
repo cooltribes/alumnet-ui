@@ -1,12 +1,7 @@
 @AlumNet.module 'Shared.Views.Filters.Events', (Filters, @AlumNet, Backbone, Marionette, $, _) ->
  
   class Filters.Type extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
-    initialize: (options)->          
-      @model = new Backbone.Model
-        all_selected: true
-        title: "Type"
-        all_message: "All"
-      
+    initialize: (options)->                
       rows = [
         name: "Official"        
         value: true
@@ -18,6 +13,10 @@
       @collection = new AlumNet.Entities.SearchFiltersCollection rows     
 
       @collection.on "checkStatus", @checkStatus, @
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Type"       
       
     
     buildQuery: (active_rows = [])->
@@ -33,11 +32,6 @@
 
   class Filters.Condition extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
     initialize: (options)->          
-      @model = new Backbone.Model
-        all_selected: true
-        title: "Condition"
-        all_message: "All"
-      
       rows = [
         name: "Open" 
         value: "open"
@@ -49,6 +43,10 @@
       @collection = new AlumNet.Entities.SearchFiltersCollection rows     
 
       @collection.on "checkStatus", @checkStatus, @
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Condition" 
       
     
     buildQuery: (active_rows = [])->
@@ -64,11 +62,6 @@
 
   class Filters.Date extends AlumNet.Shared.Views.Filters.Shared.FilterGroup 
     initialize: (options)->          
-      @model = new Backbone.Model
-        all_selected: true
-        title: "Date"
-        all_message: "All"
-      
       rows = [
         name: "Upcoming" 
         value: "upcoming"
@@ -92,7 +85,11 @@
       @collection = new AlumNet.Entities.SearchFiltersCollection rows     
 
       @collection.on "checkStatus", @checkStatus, @
-      
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Date"     
+         
     
     buildQuery: (active_rows = [])->
       query = {}           

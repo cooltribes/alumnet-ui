@@ -35,6 +35,28 @@ DESCRIPTION: Style for filters used with elasticsearch
         }
       }
     }
+
+    .group_title {
+
+      h4 {
+        color: #818181;
+      }
+      .arrow:after {
+        /* symbol for "opening" panels */
+        font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+        content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+        float: right;        /* adjust as needed */
+        color: grey;         /* adjust as needed */
+        font-size: 10px;
+
+      }
+      &.collapsed {
+        .arrow:after {
+          /* symbol for "collapsed" panels */
+          content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+        }
+      }
+    }
     
   }
 }

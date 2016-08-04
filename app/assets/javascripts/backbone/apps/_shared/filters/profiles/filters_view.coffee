@@ -3,10 +3,10 @@
   class Filters.PersonalContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup   
 
     initialize: (options)->          
-      @model = new Backbone.Model
+      ###@model = new Backbone.Model
         all_selected: true
         all_message: "All ages and gender"
-        title: "Personal"
+        title: "Personal"###
       
       #Search for the initial cities and countries      
       ###,
@@ -46,6 +46,12 @@
       @collection = new AlumNet.Entities.SearchFiltersCollection filters     
 
       @collection.on "checkStatus", @checkStatus, @
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: "Personal"    
+        all_message: "All ages and gender"
+
       
     
     buildQuery: (active_rows = [])->
@@ -85,9 +91,8 @@
 
 
   class Filters.SkillLanguageContainer extends AlumNet.Shared.Views.Filters.Shared.FilterGroup
-    template: '_shared/filters/profiles/templates/skills_languages'       
     ui:
-      'select2':'#js-select' 
+      'select2':'.js-list' 
     
     events: ->
       events =
@@ -95,9 +100,9 @@
       _.extend super(), events         
     
     
-    templateHelpers: ->
-      text: @settings.text
+    templateHelpers: ->      
       title: @settings.title
+
 
     initialize: (options)->   
       @type = options.type
@@ -105,11 +110,7 @@
       @settings = 
         endpoint_for_profile: "skills"
         title: "Skills"
-        text: "skills"
-
-      @model = new Backbone.Model
-        all_selected: true  
-
+      
       @collection = new AlumNet.Entities.SearchFiltersCollection
       
       @collection.on "add", (model) ->        
@@ -122,7 +123,6 @@
       if @type == "languages"        
         @settings.endpoint_for_profile = "language_levels" 
         @settings.title = "Languages"
-        @settings.text = "language"
 
       @preloaded_rows = new Backbone.Collection
       @preloaded_rows.url = AlumNet.api_endpoint + '/profiles/' + AlumNet.current_user.profile.id + "/#{@settings.endpoint_for_profile}"  
@@ -142,7 +142,12 @@
 
             object
           )
-    
+
+      #Call parent constructor and pass options for the view model.
+      super
+        title: @settings.title
+        with_list: true    
+
 
     buildQuery: (active_rows = [])->
       ids_for_search = []
