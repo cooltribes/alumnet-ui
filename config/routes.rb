@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   # donations
   get '/donations', to: 'donations#show'
-  get '/donations/donate', to: 'donations#donate'
+  get '/donations/donate/:id', to: 'donations#donate'
 
   #error pages
   get '/500', to: 'errors#e500', as: :e500

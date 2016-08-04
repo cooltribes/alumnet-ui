@@ -28,17 +28,17 @@
 				    	<div class="col-md-12 total">
 				    		<div class="row">
 				    			<div class="col-md-3">
-						    		<img src="" alt="">
+						    		<img src="<%= @product['image']['image']['card']['url'] %>" alt="">
 						    	</div>
 						    	<div class="col-md-9">
 						    		<div class="row">
 						    			<div class="col-md-8">
-						    				<h3>Perk Title</h3>
-						    				<p>On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
+						    				<h3><%= @product["name"] %></h3>
+						    				<p><%= @product["description"] %></p>
 						    			</div>
 						    			<div class="col-md-4">
 						    				<div class="amount text-right">
-						    					<span><i class="fa fa-eur" aria-hidden="true"></i> 1000</span>
+						    					<span><%= number_to_currency(@product["sale_price"], unit: "€") %></span>
 						    				</div>
 						    				<div class="time">
 						    					<input type="checkbox" name="" value="" checked> One Time <br>
@@ -58,7 +58,7 @@
 				    		<div class="row">
 				    			<div class="col-md-6 text-center login">
 				    				<h3 class="margin_top_xsmall">Login with AlumNet</h3>
-						    		<p>If you already registered into AlumNet use you seted credentials</p>
+						    		<p>If you already registered into AlumNet use your credentials</p>
 						    		<form action="action_page.php">
 										  <input type="text" name="email" value="" placeholder="Enter Email"><br><br>
 										  <input type="text" name="password" value="" placeholder="Enter Password"><br><br>

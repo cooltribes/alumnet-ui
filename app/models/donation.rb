@@ -15,6 +15,12 @@ class Donation
     return @last_response
   end
 
+  def get_product(id)
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: {} }
+    @last_response = self.class.get("/donations/products/#{id}", options)
+    return @last_response.success? ? @last_response : nil
+  end
+
   def success_of_last_response
     errors.add(:base, last_response["error"]) unless last_response.success?
   end

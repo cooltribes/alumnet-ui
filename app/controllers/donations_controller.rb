@@ -16,7 +16,12 @@ class DonationsController < ApplicationController
   end
 
   def donate
-    
+    donation = Donation.new
+    @product = donation.get_product(params[:id])
+
+    unless @product.present?
+      render 'errors/e404'
+    end
   end
 
 
