@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   # donations
   get '/donations', to: 'donations#show'
   get '/donations/donate/:id', to: 'donations#donate'
+  post '/donations/sign_in', to: 'donations#sign_in'
 
   #error pages
   get '/500', to: 'errors#e500', as: :e500

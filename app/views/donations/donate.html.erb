@@ -59,11 +59,12 @@
 				    			<div class="col-md-6 text-center login">
 				    				<h3 class="margin_top_xsmall">Login with AlumNet</h3>
 						    		<p>If you already registered into AlumNet use your credentials</p>
-						    		<form action="action_page.php">
-										  <input type="text" name="email" value="" placeholder="Enter Email"><br><br>
-										  <input type="text" name="password" value="" placeholder="Enter Password"><br><br>
-										  <button class="btn-orange">DONATE</button>
-										</form>
+									<%= form_tag '/donations/sign_in' do %>
+										<%= text_field_tag 'user[email]', @email, placeholder: "Enter email" %><br><br>
+										<%= password_field_tag 'user[password]', '', placeholder: "Enter password" %><br><br>
+										<%= hidden_field_tag "product_id", @product['id'] %>
+										<%= submit_tag "DONATE", class: "btn-orange" %>
+									<% end %>
 				    			</div>
 				    			<div class="col-md-6 text-center information">
 				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
