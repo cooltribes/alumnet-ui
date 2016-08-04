@@ -77,8 +77,6 @@
         font-size: 25px;
       }
       .login{
-        border: solid #3288b9;
-        border-width: 0px 1px 0px 0px;
         input{
           border-color: #3288b9;
           border-width: 1px;
@@ -88,6 +86,7 @@
         }
       }
       .information{
+        border: none;
         input{
           border: none;
           border-bottom: 1px solid @black;
@@ -113,4 +112,18 @@
     border-radius: 6px;
     padding: 15px;
   } 
+}
+
+// 992px
+@media (min-width: @media-medium-min){
+  .donate{
+    &__steps{
+      .data{
+        .information{
+          border: solid #3288b9;
+          border-width: 0px 0px 0px 1px;
+        }
+      }
+    }
+  }
 }
