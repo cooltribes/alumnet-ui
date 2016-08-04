@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<script>
+	$(document).ready(function() {
+   	$('#js-born-date').Zebra_DatePicker({
+   		format: 'd/m/Y',
+	    show_icon: false,
+	    show_select_today: false,
+	    //Dejo la función para que sepa en que formato va a guardar la fecha.
+	    onSelect: function(date, standarDate, jsDate, input) {
+	      console.log(date);
+	    }
+   	});
+  });
+</script>
 <% content_for :title, "AlumNet - Donate" %>
 <article class="donate">
 	<div class="donate__header">
@@ -67,36 +81,41 @@
 				    			</div>
 				    			<div class="col-md-6 text-center information">
 				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
-				    				<p class="margin_bottom">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
+				    				<p class="margin_bottom_medium">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
 				    				<form action="">
 				    					<p>
-				    						My full name is <input type="text" name="name" value="">. <br>
-				    						I was born on <input type="text" name="born_date" id="js-born-date"> 
+				    						My full name is <input type="text" name="name">. <br>
+				    						I was born on <input type="text" id="js-born-date"> 
 				    						and I'm a 
 				    						<select>
 												  <option value="male">Male</option>
 												  <option value="female">Female</option>
 											  </select>
-											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
    											who joined AIESEC in 
    											<select>
 												  <option value="">AIESEC EXPERIENCE COUNTRY 1</option>
 												  <option value="">AIESEC EXPERIENCE COUNTRY 2</option>
 											  </select>
-											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
-				    						in the year <input type="text" name="year_aiesec" id="js-year-aiesec"> 
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+				    						in the year 
+				    						<select>
+												  <option value="">AIESEC YEAR 1</option>
+												  <option value="">AIESEC YEAR 2</option>
+											  </select>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												being part of the LC 
 												<select>
 												  <option value="">AIESEC CHAPTER 1</option>
 												  <option value="">AIESEC CHAPTER 2</option>
 											  </select>
-											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												Currently I am living in 
 												<select>
 												  <option value="">CITY OF RESIDENCE 1</option>
 												  <option value="">CITY OF RESIDENCE 2</option>
 											  </select>
-											  <span><i class="fa fa-caret-down" aria-hidden="true"></i></span> <br>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												and I’ll be really happy to support AIESEC Alumni International <br>
 												on its labour to reconnect all Alumni around the world!
 											</p>
