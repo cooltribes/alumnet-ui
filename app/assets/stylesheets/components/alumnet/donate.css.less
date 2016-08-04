@@ -113,6 +113,41 @@
       }
     }
   }
+  
+  &__error{
+    background-color: @white;
+    height: auto;
+    padding: 20px;
+    padding-bottom: 6em;
+    .text{
+      color: #999999;
+      position: absolute;
+      padding-top: 40px;
+      .textLarge{
+        color: #D39EA4;
+        font-size: 80px;
+        font-family: sans-serif;
+        font-weight: 500;
+      }
+      .textMedium{
+        font-size: 20px;
+      }
+      .textSmall{
+        font-size: 18px;
+        font-weight: lighter;
+      }
+      ul{
+        padding-left: 0px;
+        li {
+          list-style: none;
+          a{
+            color: #3288b9;
+            text-decoration: none;
+          }
+        } 
+      } 
+    }
+  }
 
   .btn-orange{
     width: 55%;
