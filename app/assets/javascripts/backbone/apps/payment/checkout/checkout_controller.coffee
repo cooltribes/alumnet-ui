@@ -13,3 +13,9 @@
         data: data
         type: type
       AlumNet.mainRegion.show(checkoutView)
+
+    donation_checkout: (product_id)->
+      checkoutView = new Checkout.DonationPaymentView
+        current_user: AlumNet.current_user
+        product_id: product_id
+      AlumNet.mainRegion.show(checkoutView)
