@@ -24,6 +24,13 @@
       font-weight: 500;
       font-size: 25px;
     }
+    .nav-tabs > li, .nav-pills > li {
+      float:none;
+      display:inline-block;
+      *display:inline; /* ie7 fix */
+       zoom:1; /* hasLayout ie7 trigger */
+    }
+    
     .nav-tabs, .nav-pills{
       border-bottom: 1px solid #3288b9;
       text-align: center;
@@ -77,8 +84,6 @@
         font-size: 25px;
       }
       .login{
-        border: solid #3288b9;
-        border-width: 0px 1px 0px 0px;
         input{
           border-color: #3288b9;
           border-width: 1px;
@@ -88,26 +93,87 @@
         }
       }
       .information{
+        border: none;
         input{
           border: none;
           border-bottom: 1px solid @black;
+          text-align: center;
         }
         p{
-          line-height: 27px; 
+          line-height: 30px; 
         }
         select{
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
           border: none;
+          border-radius: 0px;
+          border-bottom: 1px solid @black;
         }
       }
     }
+    .step3{
+      .back{
+        font-size: 18px;
+        font-weight: 100;
+        text-decoration: underline;
+      }
+    }
   }
+  
+  &__error{
+    background-color: @white;
+    height: auto;
+    padding: 20px;
+    padding-bottom: 6em;
+    .text{
+      color: #999999;
+      position: absolute;
+      padding-top: 40px;
+      .textLarge{
+        color: #D39EA4;
+        font-size: 80px;
+        font-family: sans-serif;
+        font-weight: 500;
+      }
+      .textMedium{
+        font-size: 20px;
+      }
+      .textSmall{
+        font-size: 18px;
+        font-weight: lighter;
+      }
+      ul{
+        padding-left: 0px;
+        li {
+          list-style: none;
+          a{
+            color: #3288b9;
+            text-decoration: none;
+          }
+        } 
+      } 
+    }
+  }
+
   .btn-orange{
     width: 55%;
     border: none;
     border-radius: 6px;
     padding: 15px;
   } 
+}
+
+// 992px
+@media (min-width: @media-medium-min){
+  .donate{
+    &__steps{
+      .data{
+        .information{
+          border: solid #3288b9;
+          border-width: 0px 0px 0px 1px;
+        }
+      }
+    }
+  }
 }

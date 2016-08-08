@@ -1,0 +1,84 @@
+@import 'conf/conf.css.less'; 
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.timeline ul li {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 0px;
+  background: #4aa7ed;
+}
+
+.timeline ul li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.timeline ul li:last-child:after {
+  font-family: 'FontAwesome';
+  content: '\f00c';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #36b741;
+  color: @white;
+  text-align: center;
+  padding-top: 10px;
+  color: white;
+  font-size: 20px;
+}
+
+.timeline ul li div {
+  position: relative;
+  bottom: 0;
+  width: 280px;
+  padding: 15px;
+  background: #E4E4E4;
+  border-radius: 10px;
+  .paragraph{
+    font-style: 13px !important;
+    font-weight: 100;
+  }
+}
+
+.timeline ul li div::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.timeline ul li:nth-child(odd) div {
+  left: 45px;
+}
+
+.timeline ul li:nth-child(odd) div::before {
+  left: -15px;
+  border-width: 20px 20px 20px 5px;
+  border-color: transparent #E4E4E4 transparent transparent;
+}
+
+.timeline ul li:nth-child(even) div {
+  left: -320px;
+}
+
+.timeline ul li:nth-child(even) div::before {
+  right: -15px;
+  border-width: 20px 5px 20px 20px;
+  border-color: transparent transparent transparent #E4E4E4;
+}

@@ -19,6 +19,7 @@
       height: auto;
       padding: 20px;
       border-radius: 10px;
+      border: 1px solid #bfc3c7;
       h3{
         color: @black-lighter;
         font-weight: bold;
@@ -71,6 +72,8 @@
       width: 100%;
       border-radius: 6px;
       padding: 10px;
+    }
+    .btnFacebook{
       background-color: #375090;
       border-color: #375090;
     }
@@ -118,6 +121,71 @@
           font-size: 18px;
           line-height: 26px;
           font-weight: lighter;
+        }
+      }
+    }
+
+    //Section Comments
+    .comments{
+      margin-top: 20px;
+      .createComment{
+        border: 1px solid #3288b9;
+        border-radius: 5px;
+        padding: 10px;
+        input{
+          color: @black;
+          border: none;
+          width: 100%;
+          font-size: 18px;
+          height: 30px;
+          font-weight: lighter;          
+        }
+        .inputComment::-webkit-input-placeholder{
+          color: @black;
+        }
+        .inputComment:-moz-placeholder{
+          color: @black;
+        }
+        .inputComment::-moz-placeholder{
+          color: @black;
+        }
+        .inputComment:-ms-input-placeholder {
+          color: @black;
+        }
+        .btn-primary{
+          padding: 6px;
+        }
+      }
+      .listComments{  
+        padding: 10px;
+        .comment{
+          margin-bottom: 35px;
+          .text{
+            font-size: 18px;
+            font-weight: lighter;
+            .time{
+              color: @gray;
+            }
+          }
+        }
+      }
+    }
+
+    //Section Backers
+    .backers{
+      .listBackers{
+        padding: 10px;
+        .backer{
+          margin-bottom: 20px;
+          border-bottom: 1px solid @black;
+          padding: 25px 0px;
+          .text{
+            font-size: 18px;
+            font-weight: lighter;
+          }
+          .mount{
+            font-size: 25px;
+          }
         }
       }
     }
