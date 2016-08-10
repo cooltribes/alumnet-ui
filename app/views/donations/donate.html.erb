@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <script>
 	$(document).ready(function() {
-   	$('#js-born-date').Zebra_DatePicker({
-   		format: 'd/m/Y',
-	    show_icon: false,
-	    show_select_today: false,
-	    //Dejo la función para que sepa en que formato va a guardar la fecha.
-	    onSelect: function(date, standarDate, jsDate, input) {
-	      console.log(date);
-	    }
-   	});
-  });
+	   	$('#js-born-date').Zebra_DatePicker({
+	   		format: 'd/m/Y',
+		    show_icon: false,
+		    show_select_today: false,
+		    view: 'years',
+		    direction: -7306
+		    //Dejo la función para que sepa en que formato va a guardar la fecha.
+		    // onSelect: function(date, standarDate, jsDate, input) {
+		    //   console.log(date);
+		    // }
+	   	});
+
+		$.ajax({
+			url: "/donations/cities",
+			type: "GET",
+			data: { country_id: $('#experience_country').val() },
+			dataType: 'json',
+			success: function(data){
+				$('#experience_city').empty();
+				$.each(data, function(i, city) {
+		            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
+		        });
+			}
+		});
+
+		$.ajax({
+			url: "/donations/committees",
+			type: "GET",
+			data: { country_id: $('#experience_country').val() },
+			dataType: 'json',
+			success: function(data){
+				$('#experience_committee').empty();
+				$.each(data, function(i, committee) {
+		            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
+		        });
+			}
+		});
+
+	   	$('#experience_country').change(function(){
+			$.ajax({
+				url: "/donations/cities",
+				type: "GET",
+				data: { country_id: $('#experience_country').val() },
+				dataType: 'json',
+				success: function(data){
+					$('#experience_city').empty();
+					$.each(data, function(i, city) {
+			            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
+			        });
+				}
+			});
+
+			$.ajax({
+				url: "/donations/committees",
+				type: "GET",
+				data: { country_id: $('#experience_country').val() },
+				dataType: 'json',
+				success: function(data){
+					$('#experience_committee').empty();
+					$.each(data, function(i, committee) {
+			            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
+			        });
+				}
+			});
+		});
+	});
 </script>
 <% content_for :title, "AlumNet - Donate" %>
 <article class="donate">
@@ -88,45 +144,38 @@
 				    			<div class="col-md-6 text-center information">
 				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
 				    				<p class="margin_bottom_medium">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
-				    				<form action="">
+									<% if @errors_registration && @errors_registration.any? %>
+										<div class="alert alert-danger ">
+											<% @errors_registration.full_messages.each do |msg| %>
+												<%= msg %><br>
+											<% end %>
+										</div>
+									<% end %>
+				    				<%= form_tag '/donations/sign_up' do %>
 				    					<p>
-				    						My full name is <input type="text" name="name">. <br>
-				    						I was born on <input type="text" id="js-born-date"> 
+				    						My full name is <%= text_field_tag 'user[name]', '', placeholder: "Jhon Doe" %><br>and my email is <%= text_field_tag 'user[email]', '', placeholder: "jhondoe@example.com" %>. <br>
+				    						I was born on <%= text_field_tag 'user[birthdate]', '', placeholder: "01/01/1990", id: 'js-born-date' %>
 				    						and I'm a 
-				    						<select>
-												  <option value="male">Male</option>
-												  <option value="female">Female</option>
-											  </select>
+				    						<%= select_tag 'user[gender]', options_for_select({'Male'=>'M', 'Female'=>'F'}) %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
    											who joined AIESEC in 
-   											<select>
-												  <option value="">AIESEC EXPERIENCE COUNTRY 1</option>
-												  <option value="">AIESEC EXPERIENCE COUNTRY 2</option>
-											  </select>
+   											<%= select_tag 'experience[country]', options_for_select(@countries.collect {|item| [item['name'], item['id']]}) %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 				    						in the year 
-				    						<select>
-												  <option value="">AIESEC YEAR 1</option>
-												  <option value="">AIESEC YEAR 2</option>
-											  </select>
+				    						<%= select_tag 'experience[start_year]', options_for_select((2000..Date.today.year).to_a) %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												being part of the LC 
-												<select>
-												  <option value="">AIESEC CHAPTER 1</option>
-												  <option value="">AIESEC CHAPTER 2</option>
-											  </select>
+												<%= select_tag 'experience[committee]', options_for_select(''), prompt: 'Select a country' %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												Currently I am living in 
-												<select>
-												  <option value="">CITY OF RESIDENCE 1</option>
-												  <option value="">CITY OF RESIDENCE 2</option>
-											  </select>
+												<%= select_tag 'experience[city]', options_for_select(''), prompt: 'Select a country' %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												and I’ll be really happy to support AIESEC Alumni International <br>
 												on its labour to reconnect all Alumni around the world!
-											</p>
-				    				</form>
-				    				<button class="btn-orange">Create an account and DONATE</button>
+										</p>
+										<%= hidden_field_tag "product_id", @product['id'] %>
+										<%= submit_tag "Create an account and DONATE", class: "btn-orange" %>
+									<% end %>
 				    			</div>
 				    		</div>
 				    	</div>

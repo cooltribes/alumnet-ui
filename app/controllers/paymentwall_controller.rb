@@ -137,9 +137,11 @@ class PaymentwallController < ApplicationController
           :reference => @reference, 
           :feature => 'donation'
         }.to_json
-        @user_text = { :member => @member }.to_json
+        @user_text = { :member => @member, :status => 'active' }.to_json
+        @profile_text = { :register_step => 3 }.to_json
         user_product.create(JSON.parse(@data_text), session, @user_id, @auth_token)
         user_product.update_user(JSON.parse(@user_text), session, @user_id, @auth_token)
+        #user_product.update_profile(JSON.parse(@profile_text), session, @user_id, @auth_token)
 
         @response = JSON.parse(user_product.response.body)
         @response_user = JSON.parse(user_product.response_user.body)
