@@ -30,9 +30,6 @@
 
       subscription = AlumNet.request('product:find', @data.subscription_id)
 
-      console.log 'subscription'
-      console.log subscription
-
       paymentwall_project_key = AlumNet.paymentwall_project_key
       paymentwall_secret_key = AlumNet.paymentwall_secret_key
       paymentwall_return_url = window.location.origin
@@ -46,8 +43,9 @@
       content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=cc&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
 
       # develop settings
-      #parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=testsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
-      #content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=test&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+      if AlumNet.environment == 'development'
+        parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=testsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
+        content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=test&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
 
       view.ui.paymentwallContent.html(content_html)
 
@@ -176,10 +174,11 @@
       
       profile = view.current_user.profile
 
-      subscription = AlumNet.request('product:find', @product_id)
+      console.log 'env'
+      console.log AlumNet
+      console.log AlumNet.environment
 
-      console.log 'subscription'
-      console.log subscription
+      subscription = AlumNet.request('product:find', @product_id)
 
       paymentwall_project_key = AlumNet.paymentwall_project_key
       paymentwall_secret_key = AlumNet.paymentwall_secret_key
@@ -190,11 +189,12 @@
       birthday_object = new Date(birthday.year, birthday.month-1, birthday.day)
 
       # regular settings
-      #parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=ccsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
-      #content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=cc&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+      parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=ccsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
+      content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=cc&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
 
       # develop settings
-      parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=testsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
-      content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=test&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
+      if AlumNet.environment == 'development'
+        parameters_string = 'ag_external_id='+subscription.get('sku')+'ag_name='+subscription.get('name')+'ag_type=fixed'+'amount='+subscription.get('total_price')+'auth_token='+auth_token+'country_code=UScurrencyCode=EUR'+'customer[birthday]='+birthday_object.getTime()+'customer[firstname]='+profile.get('first_name')+'customer[lastname]='+profile.get('last_name')+'email='+view.current_user.get("email")+'key='+paymentwall_project_key+'lang=enpayment_type='+view.type+'ps=testsign_version=2success_url='+paymentwall_return_url+'uid='+view.current_user.get("id")+'widget=p2_1'+paymentwall_secret_key
+        content_html = '<iframe src="https://api.paymentwall.com/api/subscription/?key='+paymentwall_project_key+'&success_url='+paymentwall_return_url+'&widget=p2_1&country_code=US&ps=test&uid='+view.current_user.get("id")+'&email='+view.current_user.get("email")+'&customer[firstname]='+profile.get('first_name')+'&customer[lastname]='+profile.get('last_name')+'&customer[birthday]='+birthday_object.getTime()+'&amount='+subscription.get('total_price')+'&currencyCode=EUR&ag_name='+subscription.get('name')+'&ag_external_id='+subscription.get('sku')+'&ag_type=fixed&payment_type='+view.type+'&lang=en&auth_token='+auth_token+'&sign_version=2&sign='+CryptoJS.MD5(parameters_string).toString()+'" width="750" height="800" frameborder="0"></iframe>'
 
       view.ui.paymentwallContent.html(content_html)
