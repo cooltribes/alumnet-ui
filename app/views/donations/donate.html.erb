@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<script>
+	$(document).ready(function() {
+	   	$('#js-born-date').Zebra_DatePicker({
+	   		format: 'd/m/Y',
+		    show_icon: false,
+		    show_select_today: false,
+		    view: 'years',
+		    direction: -7306
+		    //Dejo la función para que sepa en que formato va a guardar la fecha.
+		    // onSelect: function(date, standarDate, jsDate, input) {
+		    //   console.log(date);
+		    // }
+	   	});
+
+		$.ajax({
+			url: "/donations/cities",
+			type: "GET",
+			data: { country_id: $('#experience_country').val() },
+			dataType: 'json',
+			success: function(data){
+				$('#experience_city').empty();
+				$.each(data, function(i, city) {
+		            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
+		        });
+			}
+		});
+
+		$.ajax({
+			url: "/donations/committees",
+			type: "GET",
+			data: { country_id: $('#experience_country').val() },
+			dataType: 'json',
+			success: function(data){
+				$('#experience_committee').empty();
+				$.each(data, function(i, committee) {
+		            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
+		        });
+			}
+		});
+
+	   	$('#experience_country').change(function(){
+			$.ajax({
+				url: "/donations/cities",
+				type: "GET",
+				data: { country_id: $('#experience_country').val() },
+				dataType: 'json',
+				success: function(data){
+					$('#experience_city').empty();
+					$.each(data, function(i, city) {
+			            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
+			        });
+				}
+			});
+
+			$.ajax({
+				url: "/donations/committees",
+				type: "GET",
+				data: { country_id: $('#experience_country').val() },
+				dataType: 'json',
+				success: function(data){
+					$('#experience_committee').empty();
+					$.each(data, function(i, committee) {
+			            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
+			        });
+				}
+			});
+		});
+	});
+</script>
+<% content_for :title, "AlumNet - Donate" %>
+<article class="donate">
+
+	<!-- HEADER -->
+	<div class="donate__header">
+		<div class="container">
+		  <div class="row">
+		  	<div class="col-md-10 col-md-offset-1 text-center">
+		  		<%= image_tag('static_pages/aiesec-logo.png', alt: "AIESEC", height: "100") %>
+		  		<h3 class="title margin_top_medium">THE AIESEC ALUMNI CROWDFUNDING CAMPAING</h3>
+		  	</div>
+		  </div>
+		</div>
+	</div>
+	<!-- END HEADER -->
+
+	<div class="donate__steps padding_bottom_xlarge">
+		<div class="container">
+			<div class="row">
+	  		<div class="col-md-10 col-md-offset-1">
+
+	  			<ul class="nav nav-tabs">
+					  <li class="active"><a data-toggle="tab" href="#">STEP 1: Donate</a></li>
+					  <li><a data-toggle="tab" href="#">STEP 2: Pay</a></li>
+					  <li><a data-toggle="tab" href="#">STEP 3: Share</a></li>
+					</ul>
+
+					<div class="tab-content">
+
+						<!-- STEP 1 -->
+					  <div id="step1" class="tab-pane fade in active">
+					    <h3 class="margin_bottom_small title">Confirm Your Donation</h3>
+				    	<div class="col-md-12 total">
+				    		<div class="row">
+				    			<div class="col-md-3">
+						    		<img src="<%= @product['image']['image']['card']['url'] %>" alt="">
+						    	</div>
+						    	<div class="col-md-9">
+						    		<div class="row">
+						    			<div class="col-md-8">
+						    				<h3><%= @product["name"] %></h3>
+						    				<p><%= @product["description"] %></p>
+						    			</div>
+						    			<div class="col-md-4">
+						    				<div class="amount text-right">
+						    					<span><%= number_to_currency(@product["sale_price"], unit: "€") %></span>
+						    				</div>
+						    				<div class="time">
+						    					<input type="checkbox" name="" value="" checked> One Time <br>
+		  										<input type="checkbox" name="" value=""> Monthly
+						    				</div>
+						    			</div>
+						    		</div>
+				    				<hr>
+						    		<div>
+						    			<input type="checkbox" name="" value="" checked> Make this donation anonimous <br>
+		  								<input type="checkbox" name="" value=""> Make my donation in honor or in memory of someone
+						    		</div>	
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="col-md-12 login margin_top_medium data">
+				    		<div class="row">
+				    			<div class="col-md-6 text-center login">
+				    				<h3 class="margin_top_xsmall">Login with AlumNet</h3>
+						    		<p>If you already registered into AlumNet use your credentials</p>
+									<%= form_tag '/donations/sign_in' do %>
+										<%= text_field_tag 'user[email]', @email, placeholder: "Enter email" %><br><br>
+										<%= password_field_tag 'user[password]', '', placeholder: "Enter password" %><br><br>
+										<%= hidden_field_tag "product_id", @product['id'] %>
+										<%= submit_tag "DONATE", class: "btn-orange" %>
+									<% end %>
+				    			</div>
+				    			<div class="col-md-6 text-center information">
+				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
+				    				<p class="margin_bottom_medium">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
+									<% if @errors_registration && @errors_registration.any? %>
+										<div class="alert alert-danger ">
+											<% @errors_registration.full_messages.each do |msg| %>
+												<%= msg %><br>
+											<% end %>
+										</div>
+									<% end %>
+				    				<%= form_tag '/donations/sign_up' do %>
+				    					<p>
+				    						My full name is <%= text_field_tag 'user[name]', '', placeholder: "Jhon Doe" %><br>and my email is <%= text_field_tag 'user[email]', '', placeholder: "jhondoe@example.com" %>. <br>
+				    						I was born on <%= text_field_tag 'user[birthdate]', '', placeholder: "01/01/1990", id: 'js-born-date' %>
+				    						and I'm a 
+				    						<%= select_tag 'user[gender]', options_for_select({'Male'=>'M', 'Female'=>'F'}) %>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+   											who joined AIESEC in 
+   											<%= select_tag 'experience[country]', options_for_select(@countries.collect {|item| [item['name'], item['id']]}) %>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+				    						in the year 
+				    						<%= select_tag 'experience[start_year]', options_for_select((2000..Date.today.year).to_a) %>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+												being part of the LC 
+												<%= select_tag 'experience[committee]', options_for_select(''), prompt: 'Select a country' %>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+												Currently I am living in 
+												<%= select_tag 'experience[city]', options_for_select(''), prompt: 'Select a country' %>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+												and I’ll be really happy to support AIESEC Alumni International <br>
+												on its labour to reconnect all Alumni around the world!
+										</p>
+										<%= hidden_field_tag "product_id", @product['id'] %>
+										<%= submit_tag "Create an account and DONATE", class: "btn-orange" %>
+									<% end %>
+				    			</div>
+				    		</div>
+				    	</div>
+					  </div>
+					  <!-- END STEP 1 -->
+
+					  <!-- STEP 2 PAYMENTWALL -->
+						<div id="step2" class="tab-pane fade text-center step2"></div>
+						<!-- END STEP 2 PAYMENTWALL -->
+
+						<!-- STEP 3 -->
+					  <div id="step3" class="tab-pane fade text-center step3">
+							<h3>Thank you for your donation</h3>
+							<div class="donations">
+								<div class="donations__information">
+									<div class="donations__information--shared">
+						    		<div class="row">
+							    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
+							    			<span class="text pull-left">Any amount of money you can contribute to this fund is greatly appreciated. Help spread the word!</span>
+							    		</div>
+							    	</div>
+							    	<div class="row">
+							    		<div class="col-md-4">
+							    			<button class="btn btn-primary btnFacebook"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</button>
+							    		</div>
+							    		<div class="col-md-4">
+							    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
+							    		</div>
+							    		<div class="col-md-4 numberShared padding_top_small">
+							    			<span><b>58K</b> total shares</span>
+							    		</div>
+							    	</div>
+							    </div>
+								</div>
+							</div>
+							<a href="#" class="back">Back to	Campaing</a>
+						</div>
+						<!-- END STEP 3 -->
+
+					</div>
+	  		</div>
+	  	</div>
+		</div>
+	</div>
+	
+</article>

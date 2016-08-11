@@ -316,6 +316,21 @@ input.uploadBox::before {
 	}
 }
 
+.btn-orange{
+	background: #ff6f00;
+	border-color: #ff6f00;
+	color: @white;
+	&:hover{
+		border-color: darken(#ff6f00, 10%);
+		color: darken(@white, 10%);
+		background-color: #ff6f00;
+	}
+
+	&--borderBlue{
+		border: 3px solid @blue;
+	}
+}
+
 @media (min-width: @media-smallest) {
 	.btn-onboarding
 	{

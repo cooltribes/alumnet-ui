@@ -4,9 +4,10 @@
     before: (route, args)->
       current_user = AlumNet.current_user
       if current_user.isInactive()
-        step = current_user.profile.get('register_step')
-        AlumNet.trigger 'registration:goto', step
-        false
+        if route != 'donations/:product_id'
+          step = current_user.profile.get('register_step')
+          AlumNet.trigger 'registration:goto', step
+          false
       else if current_user.isBanned()
         AlumNet.trigger 'show:banned'
         false
