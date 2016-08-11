@@ -46,6 +46,10 @@ class Donation
     return @last_response
   end
 
+  def thankyou
+    
+  end
+
   def success_of_last_response
     errors.add(:base, last_response["error"]) unless last_response.success?
   end

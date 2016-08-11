@@ -183,7 +183,7 @@
 
       paymentwall_project_key = AlumNet.paymentwall_project_key
       paymentwall_secret_key = AlumNet.paymentwall_secret_key
-      paymentwall_return_url = window.location.origin
+      paymentwall_return_url = window.location.origin+'/donations/thankyou'
       auth_token = AlumNet.current_token
 
       birthday = profile.get('born')
