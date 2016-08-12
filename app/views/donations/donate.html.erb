@@ -70,6 +70,14 @@
 				}
 			});
 		});
+
+		$("#signup-form").validate({
+			rules: {
+				"user[email]": {required: true, email: true},
+				"user[name]": {required: true},
+				"user[birthdate]": {required: true}
+			}
+		});
 	});
 </script>
 <% content_for :title, "AlumNet - Donate" %>
@@ -155,14 +163,14 @@
 				    			<div class="col-md-6 text-center information">
 				    				<h3 class="margin_top_xsmall">Tell us your Alumni Story</h3>
 				    				<p class="margin_bottom_medium">On top of that, you will gain acces to the exclusive social platform of AIESEC Alumni International, AlumNet</p>
-									<% if @errors_registration && @errors_registration.any? %>
-										<div class="alert alert-danger ">
-											<% @errors_registration.full_messages.each do |msg| %>
-												<%= msg %><br>
+									<% if @registration_errors && @registration_errors.any? %>
+										<div class="text-danger alert alert-danger">
+											<% @registration_errors.full_messages.each do |msg| %>
+											<span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
 											<% end %>
 										</div>
 									<% end %>
-				    				<%= form_tag '/donations/sign_up' do %>
+				    				<%= form_tag '/donations/sign_up', :id => 'signup-form' do %>
 				    					<p>
 				    						My full name is <%= text_field_tag 'user[name]', '', placeholder: "Jhon Doe" %><br>and my email is <%= text_field_tag 'user[email]', '', placeholder: "jhondoe@example.com" %>. <br>
 				    						I was born on <%= text_field_tag 'user[birthdate]', '', placeholder: "01/01/1990", id: 'js-born-date' %>

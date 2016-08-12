@@ -55,8 +55,6 @@ class DonationsController < ApplicationController
 
       render 'errors/e404' unless @product.present?
       render :donate
-      #redirect_to "/donations/donate/#{params[:product_id]}"
-      #redirect_to controller: 'donations', action: 'donate', id: params[:product_id], errors: @errors_login
     end
   end
 
@@ -72,8 +70,13 @@ class DonationsController < ApplicationController
       redirect_to "#donations/#{params[:product_id]}"
     else
       @signup_email = params[:user][:email]
-      @errors_registration = registration.errors
-      redirect_to "/donations/donate/#{params[:product_id]}"
+      @registration_errors = registration.errors
+      donation = Donation.new
+      @product = donation.get_product(params[:product_id])
+      @countries = donation.countries
+
+      render 'errors/e404' unless @product.present?
+      render :donate
     end
   end
 
