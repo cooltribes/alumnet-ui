@@ -1,3 +1,13 @@
+<script>
+	$(document).ready(function() {
+	   	$('.btnFacebook').click(function(){
+			FB.ui({
+			  method: 'share',
+			  href: 'http://alumnet.aiesec-alumni.org',
+			}, function(response){});
+		});
+	});
+</script>
 <% content_for :title, "AlumNet - Donate" %>
 <article class="donations">
 

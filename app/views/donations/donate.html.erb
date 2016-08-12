@@ -7,11 +7,15 @@
 		    show_select_today: false,
 		    view: 'years',
 		    direction: -7306
-		    //Dejo la función para que sepa en que formato va a guardar la fecha.
-		    // onSelect: function(date, standarDate, jsDate, input) {
-		    //   console.log(date);
-		    // }
 	   	});
+
+	   	$('.btnFacebook').click(function(){
+			console.log('fb');
+			FB.ui({
+			  method: 'share',
+			  href: 'http://alumnet.aiesec-alumni.org',
+			}, function(response){});
+		});
 
 		$.ajax({
 			url: "/donations/cities",

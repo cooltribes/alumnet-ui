@@ -1,3 +1,13 @@
+<script>
+	$(document).ready(function() {
+	   	$('.btnFacebook').click(function(){
+			FB.ui({
+			  method: 'share',
+			  href: 'http://alumnet.aiesec-alumni.org',
+			}, function(response){});
+		});
+	});
+</script>
 <% content_for :title, "AlumNet - Thank you" %>
 <div class="donate__steps padding_bottom_xlarge">
 	<div class="container">
@@ -28,23 +38,23 @@
 						<div class="donations">
 							<div class="donations__information">
 								<div class="donations__information--shared">
-					    		<div class="row">
-						    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
-						    			<span class="text pull-left">Any amount of money you can contribute to this fund is greatly appreciated. Help spread the word!</span>
-						    		</div>
-						    	</div>
-						    	<div class="row">
-						    		<div class="col-md-4">
-						    			<button class="btn btn-primary btnFacebook"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</button>
-						    		</div>
-						    		<div class="col-md-4">
-						    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
-						    		</div>
-						    		<div class="col-md-4 numberShared padding_top_small">
-						    			<span><b>58K</b> total shares</span>
-						    		</div>
-						    	</div>
-						    </div>
+						    		<div class="row">
+							    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
+							    			<span class="text pull-left">Any amount of money you can contribute to this fund is greatly appreciated. Help spread the word!</span>
+							    		</div>
+							    	</div>
+							    	<div class="row">
+							    		<div class="col-md-4">
+							    			<button class="btn btn-primary btnFacebook"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</button>
+							    		</div>
+							    		<div class="col-md-4">
+							    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
+							    		</div>
+							    		<div class="col-md-4 numberShared padding_top_small">
+							    			<span><b>58K</b> total shares</span>
+							    		</div>
+							    	</div>
+							    </div>
 							</div>
 						</div>
 						<a href="/donations" class="back">Back to	Campaing</a>
