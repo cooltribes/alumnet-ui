@@ -47,9 +47,14 @@ class DonationsController < ApplicationController
       end
       redirect_to "#donations/#{params[:product_id]}"
     else
+      donation = Donation.new
       @email = signin_params[:email]
       @errors_login = user_session.errors
-      redirect_to "/donations/donate/#{params[:product_id]}"
+      @product = donation.get_product(params[:product_id])
+      @countries = donation.countries
+
+      render 'errors/e404' unless @product.present?
+      render :donate
     end
   end
 
@@ -65,8 +70,13 @@ class DonationsController < ApplicationController
       redirect_to "#donations/#{params[:product_id]}"
     else
       @signup_email = params[:user][:email]
-      @errors_registration = registration.errors
-      redirect_to "/donations/donate/#{params[:product_id]}"
+      @registration_errors = registration.errors
+      donation = Donation.new
+      @product = donation.get_product(params[:product_id])
+      @countries = donation.countries
+
+      render 'errors/e404' unless @product.present?
+      render :donate
     end
   end
 
