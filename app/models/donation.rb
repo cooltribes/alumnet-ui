@@ -46,8 +46,10 @@ class Donation
     return @last_response
   end
 
-  def thankyou
-    
+  def get_campaign_details
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: {} }
+    @last_response = self.class.get("/donations/details", options)
+    return @last_response
   end
 
   def success_of_last_response
