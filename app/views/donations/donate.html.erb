@@ -10,52 +10,40 @@
 	   	});
 
 	   	$('.btnFacebook').click(function(){
-			console.log('fb');
 			FB.ui({
 			  method: 'share',
 			  href: 'http://alumnet.aiesec-alumni.org',
 			}, function(response){});
 		});
 
-		$.ajax({
-			url: "/donations/cities",
-			type: "GET",
-			data: { country_id: $('#experience_country').val() },
-			dataType: 'json',
-			success: function(data){
-				$('#experience_city').empty();
-				$.each(data, function(i, city) {
-		            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
-		        });
-			}
-		});
+		// $.ajax({
+		// 	url: "/donations/cities",
+		// 	type: "GET",
+		// 	data: { country_id: $('#experience_country').val() },
+		// 	dataType: 'json',
+		// 	success: function(data){
+		// 		$('#experience_city').empty();
+		// 		$.each(data, function(i, city) {
+		//             $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
+		//         });
+		// 	}
+		// });
 
-		$.ajax({
-			url: "/donations/committees",
-			type: "GET",
-			data: { country_id: $('#experience_country').val() },
-			dataType: 'json',
-			success: function(data){
-				$('#experience_committee').empty();
-				$.each(data, function(i, committee) {
-		            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
-		        });
-			}
-		});
+		// $.ajax({
+		// 	url: "/donations/committees",
+		// 	type: "GET",
+		// 	data: { country_id: $('#experience_country').val() },
+		// 	dataType: 'json',
+		// 	success: function(data){
+		// 		$('#experience_committee').empty();
+		// 		$.each(data, function(i, committee) {
+		//             $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
+		//         });
+		// 	}
+		// });
 
 	   	$('#experience_country').change(function(){
-			$.ajax({
-				url: "/donations/cities",
-				type: "GET",
-				data: { country_id: $('#experience_country').val() },
-				dataType: 'json',
-				success: function(data){
-					$('#experience_city').empty();
-					$.each(data, function(i, city) {
-			            $('#experience_city').append($('<option>').text(city.name).attr('value', city.id));
-			        });
-				}
-			});
+			$('#residence_country').val($('#experience_country').val())
 
 			$.ajax({
 				url: "/donations/committees",
@@ -64,6 +52,7 @@
 				dataType: 'json',
 				success: function(data){
 					$('#experience_committee').empty();
+					$('#experience_committee').append($('<option>').text("Select chapter").attr('value', ''));
 					$.each(data, function(i, committee) {
 			            $('#experience_committee').append($('<option>').text(committee.name).attr('value', committee.id));
 			        });
@@ -75,7 +64,12 @@
 			rules: {
 				"user[email]": {required: true, email: true},
 				"user[name]": {required: true},
-				"user[birthdate]": {required: true}
+				"user[birthdate]": {required: true},
+				"residence[country]": {required: true},
+				"experience[country]": {required: true},
+				"experience[city]": {required: true},
+				"experience[start_year]": {required: true},
+				"experience[committee]": {required: true}
 			}
 		});
 	});
@@ -178,16 +172,16 @@
 				    						<%= select_tag 'user[gender]', options_for_select({'Male'=>'M', 'Female'=>'F'}) %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
    											who joined AIESEC in 
-   											<%= select_tag 'experience[country]', options_for_select(@countries.collect {|item| [item['name'], item['id']]}) %>
+   											<%= select_tag 'experience[country]', options_for_select(@countries.collect {|item| [item['name'], item['id']]}), prompt: 'Select a country' %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 				    						in the year 
-				    						<%= select_tag 'experience[start_year]', options_for_select((2000..Date.today.year).to_a) %>
+				    						<%= select_tag 'experience[start_year]', options_for_select((1948..Date.today.year).to_a), prompt: 'Select year' %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												being part of the LC 
 												<%= select_tag 'experience[committee]', options_for_select(''), prompt: 'Select a country' %>
-											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
+											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br><br>
 												Currently I am living in 
-												<%= select_tag 'experience[city]', options_for_select(''), prompt: 'Select a country' %>
+												<%= select_tag 'residence[country]', options_for_select(@countries.collect {|item| [item['name'], item['id']]}), prompt: 'Select a country' %>
 											  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> <br>
 												and I’ll be really happy to support AIESEC Alumni International <br>
 												on its labour to reconnect all Alumni around the world!

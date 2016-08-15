@@ -7,12 +7,11 @@ class DonationsController < ApplicationController
   def show
     donation = Donation.new
     @products = donation.products()
-    # public_profile = PublicProfile.new
-    # @user = public_profile.user(params[:slug])
-
-    # unless public_profile.valid?
-    #   render 'errors/e404'
-    # end
+    @campaign_details = donation.get_campaign_details()
+    @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 300000
+    @days_left = (DateTime.new(2016, 9, 30) - DateTime.now).to_i
+    @donors = @campaign_details['donors']
+    @countries = @campaign_details['countries']
   end
 
   def donate
@@ -65,7 +64,7 @@ class DonationsController < ApplicationController
     attributes = { email: params[:user][:email], password: password, password_confirmation: password }
     registration.register(attributes)
     if registration.valid?
-      donation.update_user(registration.user.id, params[:user], password, params[:experience])
+      donation.update_user(registration.user.id, params[:user], password, params[:experience], params[:residence])
       session[:auth_token] = registration.user.auth_token
       redirect_to "#donations/#{params[:product_id]}"
     else

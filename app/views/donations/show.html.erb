@@ -6,6 +6,11 @@
 			  href: 'http://alumnet.aiesec-alumni.org',
 			}, function(response){});
 		});
+
+		//var divPosition = $('#divId').offset();
+		$('.js-donate-now').click(function(){
+			$('html, body').animate({scrollTop: $('#rewards').offset().top}, "slow");
+		});
 	});
 </script>
 <% content_for :title, "AlumNet - Donate" %>
@@ -33,34 +38,34 @@
 						<!-- DONATE NOW -->
 		  			<div class="col-md-4">
 		  				<div class="donations__header--donate text-center">
-		  					<h3 class="text-left no-margin-top"><i class="fa fa-eur" aria-hidden="true"></i><span> 250.84</span></h3>
+		  					<h3 class="text-left no-margin-top"><span><%= number_to_currency(@campaign_details["total_sold"], unit: "€") %></span></h3>
 		  					<p class="margin_bottom_small text-left">
-		  						12% already raised from our goal. <br>
+		  						<%= @goal_percentage %>% already raised from our goal. <br>
 		  						We're asking for you help to raise the <b>300k</b> needed for oritical investments
 		  					</p>
 	  						<div class="progress margin_bottom_small">
-								  <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-	    							<span class="sr-only">60% Complete</span>
+								  <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: <%= @goal_percentage %>%">
+	    							<span class="sr-only"><%= @goal_percentage %>% Complete</span>
 	  							</div>
 								</div>
-								<span class="numberSmall">60</span><span class="textLarge"> Days Left</span><br>
+								<span class="numberSmall"><%= @days_left %></span><span class="textLarge"> Days Left</span><br>
 								<div class="row margin_top_medium">
 									<div class="col-md-4 text-center">
-										<span class="number">135</span><br>
+										<span class="number"><%= @donors %></span><br>
 										<span class="text">Donors</span>
 									</div>
 									<div class="col-md-4 text-center">
-										<span class="number">128</span><br>
+										<span class="number"><%= @donors %></span><br>
 										<span class="text">Alumni</span>
 									</div>
 									<div class="col-md-4 text-center">
-										<span class="number">45</span><br>
+										<span class="number"><%= @countries %></span><br>
 										<span class="text">Countries</span>
 									</div>
 								</div>
 								<div class="row margin_top_medium">
 									<div class="col-md-12">
-										<button class="btn-orange">DONATE NOW</button>
+										<button class="btn-orange js-donate-now">DONATE NOW</button>
 									</div>
 								</div>
 		  				</div>
@@ -107,9 +112,9 @@
 
 			    			<ul class="nav nav-tabs">
 								  <li class="active"><a data-toggle="tab" href="#summary">Summary</a></li>
-								  <li><a data-toggle="tab" href="#timeline">Timeline</a></li>
+								  <!-- <li><a data-toggle="tab" href="#timeline">Timeline</a></li>
 								  <li><a data-toggle="tab" href="#comments">Comments</a></li>
-								  <li><a data-toggle="tab" href="#backers">Backers</a></li>
+								  <li><a data-toggle="tab" href="#backers">Backers</a></li> -->
 								</ul>
 
 								<div class="tab-content">
@@ -223,19 +228,19 @@
 		    </div>
 
 		    <!-- REWARDS -->
-		    <div class="col-md-4">
+		    <div class="col-md-4" id="rewards">
 		    	<h3 class="title margin_bottom_small">Rewards</h3>
 
-          <% @products.each do |product| %>
-  		    	<div class="boxDonate">
-  	    			<h3 class="text-left no-margin-top">
-                <span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
-              </h3>
-  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
-  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">SELECT</a>
-  	    			<p class="text margin_top_small">18 Backer(s)</p>
-  		    	</div>
-          <% end %>
+          		<% @products.each do |product| %>
+	  		    	<div class="boxDonate">
+	  	    			<h3 class="text-left no-margin-top">
+	                		<span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
+	              		</h3>
+	  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
+	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">SELECT</a>
+	  	    			<p class="text margin_top_small">18 Backer(s)</p>
+	  		    	</div>
+          		<% end %>
 
 		  	</div>
 		  	<!-- END REWARDS -->

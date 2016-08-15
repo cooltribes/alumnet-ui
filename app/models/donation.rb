@@ -39,15 +39,17 @@ class Donation
     return @last_response
   end
 
-  def update_user(user_id, user, password, experience)
-    params = { user_id: user_id, user: user, password: password, experience: experience }
+  def update_user(user_id, user, password, experience, residence)
+    params = { user_id: user_id, user: user, password: password, experience: experience, residence: residence }
     options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: params }
     @last_response = self.class.post("/donations/update_user", options)
     return @last_response
   end
 
-  def thankyou
-    
+  def get_campaign_details
+    options = { headers: { "Accept" => "application/vnd.alumnet+json;version=1" }, body: {} }
+    @last_response = self.class.get("/donations/details", options)
+    return @last_response
   end
 
   def success_of_last_response
