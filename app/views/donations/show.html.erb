@@ -6,6 +6,11 @@
 			  href: 'http://alumnet.aiesec-alumni.org',
 			}, function(response){});
 		});
+
+		//var divPosition = $('#divId').offset();
+		$('.js-donate-now').click(function(){
+			$('html, body').animate({scrollTop: $('#rewards').offset().top}, "slow");
+		});
 	});
 </script>
 <% content_for :title, "AlumNet - Donate" %>
@@ -60,7 +65,7 @@
 								</div>
 								<div class="row margin_top_medium">
 									<div class="col-md-12">
-										<button class="btn-orange">DONATE NOW</button>
+										<button class="btn-orange js-donate-now">DONATE NOW</button>
 									</div>
 								</div>
 		  				</div>
@@ -223,19 +228,19 @@
 		    </div>
 
 		    <!-- REWARDS -->
-		    <div class="col-md-4">
+		    <div class="col-md-4" id="rewards">
 		    	<h3 class="title margin_bottom_small">Rewards</h3>
 
-          <% @products.each do |product| %>
-  		    	<div class="boxDonate">
-  	    			<h3 class="text-left no-margin-top">
-                <span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
-              </h3>
-  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
-  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">SELECT</a>
-  	    			<p class="text margin_top_small">18 Backer(s)</p>
-  		    	</div>
-          <% end %>
+          		<% @products.each do |product| %>
+	  		    	<div class="boxDonate">
+	  	    			<h3 class="text-left no-margin-top">
+	                		<span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
+	              		</h3>
+	  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
+	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">SELECT</a>
+	  	    			<p class="text margin_top_small">18 Backer(s)</p>
+	  		    	</div>
+          		<% end %>
 
 		  	</div>
 		  	<!-- END REWARDS -->
