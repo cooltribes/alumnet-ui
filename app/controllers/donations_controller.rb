@@ -64,7 +64,7 @@ class DonationsController < ApplicationController
     attributes = { email: params[:user][:email], password: password, password_confirmation: password }
     registration.register(attributes)
     if registration.valid?
-      donation.update_user(registration.user.id, params[:user], password, params[:experience])
+      donation.update_user(registration.user.id, params[:user], password, params[:experience], params[:residence])
       session[:auth_token] = registration.user.auth_token
       redirect_to "#donations/#{params[:product_id]}"
     else
