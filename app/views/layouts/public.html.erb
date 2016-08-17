@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% end %>
+  
   <meta property="og:title" content="AlumNet" />
   <meta property="og:type" content="social network" />
   <meta property="og:url" content="http://alumnet.aiesec-alumni.org/" />
@@ -32,10 +37,6 @@
 <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32">
 <meta name="msapplication-TileColor" content="#444444">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-
-<% if content_for?(:head) %>
-  <%= yield(:head) %>
-<% end %>
 <!-- <link rel="shortcut icon" href="assets/favicon/favicon.ico"> -->
   <% if Rails.env.production? %>
     <%= favicon_link_tag 'favicon/favicon.ico' %>
