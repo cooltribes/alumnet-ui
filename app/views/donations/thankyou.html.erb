@@ -1,9 +1,19 @@
 <script>
 	$(document).ready(function() {
-	   	$('.btnFacebook').click(function(){
+	   	$('.fb-invite').click(function(){
 			FB.ui({
 			  method: 'share',
-			  href: 'http://alumnet.aiesec-alumni.org',
+			  href: 'http://alumnet.aiesec-alumni.org/donations',
+			}, function(response){
+				$('html, body').animate({scrollTop: $('#challenge').offset().top}, "slow");
+			});
+		});
+	});
+	$(document).ready(function() {
+	   	$('.fb-challenge').click(function(){
+			FB.ui({
+			  method: 'share',
+			  href: 'http://alumnet.aiesec-alumni.org/donations',
 			}, function(response){});
 		});
 	});
@@ -33,31 +43,66 @@
 					<!-- END STEP 2 PAYMENTWALL -->
 
 					<!-- STEP 3 -->
-				  <div id="step3" class="tab-pane fade in active text-center">
-						<h3>Thank you for your donation</h3>
-						<div class="donations">
-							<div class="donations__information">
-								<div class="donations__information--shared">
-						    		<div class="row">
-							    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
-							    			<span class="text pull-left">Any amount of money you can contribute to this fund is greatly appreciated. Help spread the word!</span>
-							    		</div>
-							    	</div>
-							    	<div class="row">
-							    		<div class="col-md-4">
-							    			<button class="btn btn-primary btnFacebook"><i class="fa fa-facebook-official" aria-hidden="true"></i> Share</button>
-							    		</div>
-							    		<div class="col-md-4">
-							    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
-							    		</div>
-							    		<div class="col-md-4 numberShared padding_top_small">
-							    			<span><b>58K</b> total shares</span>
-							    		</div>
-							    	</div>
-							    </div>
+				  <div id="step3" class="tab-pane fade in active">
+				  		<div id="invite">
+					  		<div class="text-center"><h3>Invite your team to the challenge</h3></div>
+							<div class="donations">
+								<div class="donations__information">
+									<div class="donations__information--shared">
+							    		<div class="row">
+								    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
+								    			<ul>
+								    				<li>A Facebook window will pop up (you have to login if you are not logged in to Facebook already)</li>
+								    				<li>Tag your AIESEC team (using @ sign) from back in the day </li>
+								    				<li>When you finish tagging, write the name of your team or the year you shared with them</li>
+								    			</ul>
+								    		</div>
+								    	</div>
+								    	<div class="row">
+								    		<div class="col-md-6 col-md-offset-3">
+								    			<button class="btn btn-primary btnFacebook fb-invite"><i class="fa fa-facebook-official" aria-hidden="true"></i> Invite</button>
+								    		</div>
+								    		<!-- <div class="col-md-4">
+								    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
+								    		</div>
+								    		<div class="col-md-4 numberShared padding_top_small">
+								    			<span><b>58K</b> total shares</span>
+								    		</div> -->
+								    	</div>
+								    </div>
+								</div>
 							</div>
 						</div>
-						<a href="/donations" class="back">Back to	Campaing</a>
+						<div id="challenge">
+					  		<div class="text-center"><h3>Challenge another team</h3></div>
+							<div class="donations">
+								<div class="donations__information">
+									<div class="donations__information--shared">
+							    		<div class="row">
+								    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
+								    			<ul>
+								    				<li>Another Facebook window will pop up (you have to login if you are not logged in to Facebook already)</li>
+								    				<li>Tag people from other teams (using @ sign). May be from your local committee or national committee in another year, or from another local or national committee, an AI team?</li>
+								    				<li>When you finish tagging, write the name or the year of the team you are are challenging</li>
+								    			</ul>
+								    		</div>
+								    	</div>
+								    	<div class="row">
+								    		<div class="col-md-6 col-md-offset-3">
+								    			<button class="btn btn-primary btnFacebook fb-challenge"><i class="fa fa-facebook-official" aria-hidden="true"></i> Challenge</button>
+								    		</div>
+								    		<!-- <div class="col-md-4">
+								    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
+								    		</div>
+								    		<div class="col-md-4 numberShared padding_top_small">
+								    			<span><b>58K</b> total shares</span>
+								    		</div> -->
+								    	</div>
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="text-center"><a href="/donations" class="back">Back to Campaing</a></div>
 					</div>
 					<!-- END STEP 3 -->
 

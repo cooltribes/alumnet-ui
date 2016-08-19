@@ -17,7 +17,7 @@
 <% content_for :head do %>
   <!-- your tags -->
   <meta property="og:title" content="Invite your team" />
-  <meta property="og:type" content="social network" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="http://alumnet.aiesec-alumni.org/donations" />
   <meta property="og:image" content="assets/images/home/homeBackground.png" />
   <meta property="og:description" content="I am participating in the 1% challenge and I want my team to join me being pioneers again!" />
@@ -54,7 +54,7 @@
 		  				<div class="donations__header--donate text-center">
 		  					<h3 class="text-left no-margin-top"><span><%= number_to_currency(@campaign_details["total_sold"], unit: "€") %></span></h3>
 		  					<p class="margin_bottom_small text-left">
-		  						<%= @goal_percentage %>% already raised from our goal. <br>
+		  						<%= number_to_percentage(@goal_percentage, precision: 2) %> already raised from our goal. <br>
 		  						The first 1% of the alumni network will raise <strong>250k</strong> to unleash the real potential of our network!
 		  					</p>
 	  						<div class="progress margin_bottom_small">
@@ -251,7 +251,7 @@
 	                		<span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
 	              		</h3>
 	  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
-	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">SELECT</a>
+	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">DONATE</a>
 	  	    			<p class="text margin_top_small">18 Backer(s)</p>
 	  		    	</div>
           		<% end %>
