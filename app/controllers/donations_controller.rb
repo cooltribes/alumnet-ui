@@ -8,7 +8,7 @@ class DonationsController < ApplicationController
     donation = Donation.new
     @products = donation.products()
     @campaign_details = donation.get_campaign_details()
-    @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 300000
+    @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 250000
     @days_left = (DateTime.new(2016, 9, 30) - DateTime.now).to_i
     @donors = @campaign_details['donors']
     @countries = @campaign_details['countries']
