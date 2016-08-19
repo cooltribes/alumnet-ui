@@ -70,7 +70,18 @@
 				"experience[city]": {required: true},
 				"experience[start_year]": {required: true},
 				"experience[committee]": {required: true}
-			}
+			},
+			messages: {
+			    "user[email]": "*",
+				"user[name]": "*",
+				"user[birthdate]": "*",
+				"residence[country]": "*",
+				"experience[country]": "*",
+				"experience[city]": "*",
+				"experience[start_year]": "*",
+				"experience[committee]": "*"
+			},
+			errorClass: "text-danger",
 		});
 	});
 </script>
