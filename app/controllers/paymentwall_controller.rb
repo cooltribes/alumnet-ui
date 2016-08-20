@@ -135,7 +135,8 @@ class PaymentwallController < ApplicationController
           :transaction_type => 1, 
           :creator_id => @user_id, 
           :reference => @reference, 
-          :feature => 'donation'
+          :feature => 'donation',
+          :total_price => @response_product['total_price']
         }.to_json
         @user_text = { :member => @member, :status => 'active' }.to_json
         @profile_text = { :register_step => 3 }.to_json
