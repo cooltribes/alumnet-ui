@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   # donations
   get '/donations', to: 'donations#show'
+  get '/donations/challenge', to: 'donations#challenge'
   get '/donations/donate/:id', to: 'donations#donate'
   post '/donations/sign_in', to: 'donations#sign_in'
   get '/donations/cities', to: 'donations#cities'
