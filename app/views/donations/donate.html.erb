@@ -72,14 +72,14 @@
 				"experience[committee]": {required: true}
 			},
 			messages: {
-			    "user[email]": "*",
-				"user[name]": "*",
-				"user[birthdate]": "*",
-				"residence[country]": "*",
-				"experience[country]": "*",
-				"experience[city]": "*",
-				"experience[start_year]": "*",
-				"experience[committee]": "*"
+			    "user[email]": "&nbsp;*",
+				"user[name]": "&nbsp;*",
+				"user[birthdate]": "&nbsp;*",
+				"residence[country]": "&nbsp;*",
+				"experience[country]": "&nbsp;*",
+				"experience[city]": "&nbsp;*",
+				"experience[start_year]": "&nbsp;*",
+				"experience[committee]": "&nbsp;*"
 			},
 			errorClass: "text-danger",
 		});
@@ -152,7 +152,7 @@
 				    				<h3 class="margin_top_xsmall">Login with AlumNet</h3>
 						    		<p>If you already registered into AlumNet use your credentials</p>
 									<% if @errors_login && @errors_login.any? %>
-										<div class="text-danger alert alert-danger">
+										<div class="text-danger alert alert-danger error_message margin_bottom_medium">
 											<% @errors_login.full_messages.each do |msg| %>
 											<span class="glyphicon glyphicon-warning-sign"></span>   <%= msg %>
 											<% end %>
