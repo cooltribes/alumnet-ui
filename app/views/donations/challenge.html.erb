@@ -264,7 +264,11 @@
 	              		</h3>
 	  	    			<p class="text margin_bottom_small"><%= product["description"] %></p>
 	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn-orange btnSelect">DONATE</a>
-	  	    			<p class="text margin_top_small">18 Backer(s)</p>
+	  	    			<% if product["backers"] > 0 %>
+	  	    				<p class="text margin_top_small">
+	  	    					<%= product["backers"] %> <%= product["backers"] > 1 ? " Backers" : " Backer" %>
+	  	    				</p>
+	  	    			<% end %>
 	  		    	</div>
           		<% end %>
 
