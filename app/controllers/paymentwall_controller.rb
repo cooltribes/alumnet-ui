@@ -117,9 +117,12 @@ class PaymentwallController < ApplicationController
         #paymentwall.save_donation(@pingback, @auth_token, @user_id, @reference, @session)
         product = Product.new
         @response_product = product.get(@pingback.getParameter('goodsid'), @auth_token)
+
+        @characteristic = @response_product['characteristics'].find { |characteristic| characteristic['name'] == 'Duration' }
+        @product_characteristic = @response_product['product_characteristics'].find { |product_characteristic| product_characteristic['characteristic_id'] == @characteristic['id'] }
         
         if(@pingback.getParameter('amount').to_f < 1000)
-          @end = DateTime.now + 12.months
+          @end = @product_characteristic.present? ? DateTime.now + @product_characteristic['value'].to_i.months : DateTime.now + 12.months
         else
           @lifetime = true
           @member = 3
