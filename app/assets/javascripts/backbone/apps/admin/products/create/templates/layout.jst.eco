@@ -17,10 +17,10 @@
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid no-padding">
 			    <ul class="nav navbar-nav">
-			      <li class="active" id="active"><a href="#" class="optionMenu" data-menu="General">General</a></li>
-			      <li><a href="#" class="optionMenu" data-menu="Prices">Prices</a></li>
-			      <li><a href="#" class="optionMenu" data-menu="Categories">Categories</a></li> 
-			      <li><a href="#" class="optionMenu" data-menu="Attributes">Attributes</a></li> 
+			      <li id="active"><a href="#" class="active optionMenu general" data-menu="General">General</a></li>
+			      <li><a href="#" class="optionMenu prices" data-menu="Prices">Prices</a></li>
+			      <li><a href="#" class="optionMenu" data-menu="Categories">Categories</a></li>
+			      <li><a href="#" class="optionMenu attributes" data-menu="Attributes">Attributes</a></li>
 			    </ul>
 			  </div>
 			</nav>

@@ -9,8 +9,6 @@
       'click .optionMenu': 'goOption'
 
     initialize: (options)->
-      console.log 'initialize'
-      console.log options
       @tab = 'General'
       @product = options.product
 
@@ -22,6 +20,10 @@
       click = $(e.currentTarget)
       valueClick = click.attr("data-menu")
       @tab = valueClick
+      if @product.isNew()
+        if @tab != 'General'
+          $.growl.warning({ message: "Please complete general info first!" })
+          return false
       @trigger "navigate:menu", valueClick, @product
       $("#step").html(@tab)
       $('#active').removeClass('active')
