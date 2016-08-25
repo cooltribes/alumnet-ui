@@ -15,6 +15,7 @@
       AlumNet.mainRegion.show(checkoutView)
 
     donation_checkout: (product_id)->
+      AlumNet.setTitle('Donations')
       checkoutView = new Checkout.DonationPaymentView
         current_user: AlumNet.current_user
         product_id: product_id
