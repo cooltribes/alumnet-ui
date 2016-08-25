@@ -29,7 +29,7 @@
       "admin/categories": "categoriesList"
       "admin/attributes": "attributesList"
       "admin/attributes/new": "attributesCreate"
-      "admin/invoices": "invoices"
+      "admin/payments": "payments"
       "admin/products/:id/update": "productUpdate"
       "admin/products/:id/prices": "productPrices"
       "admin/products/:id/categories": "productCategories"
@@ -109,9 +109,9 @@
     attributesCreate: ->
       controller = new AdminApp.AttributesCreate.Controller
       controller.create()
-    invoices:->
-      controller = new AdminApp.Invoices.Controller
-      controller.showLayoutInvoices("all")
+    payments:->
+      controller = new AdminApp.Payments.Controller
+      controller.showLayoutPayments()
     productUpdate: (id)->
       controller = new AdminApp.ProductCreate.Controller
       controller.update(id)

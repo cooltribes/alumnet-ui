@@ -26,5 +26,17 @@
           collection.trigger('fetch:success', collection)
       payments
 
+    getPaymentEntities: (querySearch)->
+      payments = new Entities.PaymentsCollection
+      payments.url = AlumNet.api_endpoint + '/payments'
+      payments.fetch
+        data: querySearch
+        success: (collection, response, options) ->
+          payments.trigger('fetch:success', collection)
+      payments
+
   AlumNet.reqres.setHandler 'payment:create', (attrs) ->
     API.createPayment(attrs)
+
+  AlumNet.reqres.setHandler 'payment:entities', (querySearch) ->
+    API.getPaymentEntities(querySearch)
