@@ -40,3 +40,15 @@
     </tbody>
   </table>
 </div> 
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="row invoices">
+        <div class="col-md-3 advancedFiltersButton">
+          <button class="btn-addFilter js-download" type="button">
+            <span class="fa fa-file-excel-o"></span> DOWNLOAD AS .CSV
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
