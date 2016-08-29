@@ -9,23 +9,30 @@
           <i class="fa fa-book"></i><br>
           <span>USER</span>
         </th>
-        <th style="width: 20%;">
+        <th style="width: 21%;">
           <i class="fa fa-asterisk"></i><br>
           <span>PRODUCT NAME</span>
         </th>
-        <th>
+        <th style="width: 10%;">
           <i class="fa fa-money"></i><br>
           <span>METHOD</span>
         </th>
-        <th>
+        <th style="width: 10%;">
           <i class="fa fa-euro"></i><br>
           <span>TOTAL</span>
         </th>
-        <th>
+        <th style="width: 14%;">
+          <i class="fa fa-calendar"></i><br>
+          <span>DATE</span>
+        </th>
+        <th style="width: 15%;">
+          <i class="fa fa-map-marker"></i><br>
+          <span>COUNTRY</span>
+        </th>
+        <th style="width: 10%;">
           <i class="fa fa-spinner"></i><br>
           <span>STATUS</span>
         </th>
-        <th>ACTIONS</th>
       </tr>
     </thead>
     <tbody id="list-container">

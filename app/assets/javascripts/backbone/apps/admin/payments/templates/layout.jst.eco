@@ -87,21 +87,21 @@
 	</div>
 			
 
-	<!-- <div class="container margin_top">
+	<div class="container margin_top">
 		<div class="row invoices">
 			<div class="col-md-3 filter">
-				<input type="text" class="filters__input--lg form-control input-lg" placeholder="From">
+				<input type="text" class="filters__input--lg form-control input-lg js-from-date" placeholder="From">
 				<span class="formANet__input__icon fa fa-calendar form-control-feedback"></span>
 			</div>
 			<div class="col-md-3 filter">
-				<input type="text" class="filters__input--lg form-control input-lg" placeholder="To">
+				<input type="text" class="filters__input--lg form-control input-lg js-to-date" placeholder="To">
 				<span class="formANet__input__icon fa fa-calendar form-control-feedback"></span>
 			</div>
-			<div class="col-md-3 col-md-offset-3 text-right advancedFiltersButton">
+			<!-- <div class="col-md-3 col-md-offset-3 text-right advancedFiltersButton">
 				<button class="btn-addFilter" type="button" id="advancedFilters">ADVANCED FILTERS</button>
-			</div>
+			</div> -->
 		</div>
-	</div> -->
+	</div>
 
 </div>
 
