@@ -14,6 +14,10 @@
     template: 'admin/payments/list/templates/list_container'
     childView: ListPayments.Payment 
     childViewContainer: '#list-container'
+    currentQuery: {}
+
+    events:
+      'click .js-download': 'exportCSV'
 
     onRender: ->
       view = @
@@ -40,3 +44,13 @@
       view = @
       view.collection.fetch
         data: { q: query }
+
+    exportCSV: (e)->
+      e.preventDefault()
+      Backbone.ajax
+        method: 'POST'
+        url: AlumNet.api_endpoint + "/payments/csv"
+        data: { q: @currentQuery }
+        success: (csvData)->
+          blob = new Blob([csvData], { type: 'text/csv' })
+          saveAs(blob, "alumnet_users_#{moment().format('DDMMYYYYHHmm')}.csv")
