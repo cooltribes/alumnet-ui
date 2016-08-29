@@ -9,15 +9,9 @@
       controller = new PaymentApp.Checkout.Controller
       controller.checkout(data, type)
     cc_checkout: (data, type)->
-      console.log 'data'
-      console.log data
-      console.log 'type'
-      console.log type
       controller = new PaymentApp.Checkout.Controller
       controller.cc_checkout(data, type)
     donation_checkout: (product_id)->
-      console.log 'donations'
-      console.log product_id
       controller = new PaymentApp.Checkout.Controller
       controller.donation_checkout(product_id)
 

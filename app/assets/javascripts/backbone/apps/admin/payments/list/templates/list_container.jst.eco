@@ -1,0 +1,54 @@
+<div class= "col-sm-12 col-xs-12 no-padding margin_top_xsmall">
+  <table class="table invoicesTable">    
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th style="width: 25%;">
+          <i class="fa fa-book"></i><br>
+          <span>USER</span>
+        </th>
+        <th style="width: 21%;">
+          <i class="fa fa-asterisk"></i><br>
+          <span>PRODUCT NAME</span>
+        </th>
+        <th style="width: 10%;">
+          <i class="fa fa-money"></i><br>
+          <span>METHOD</span>
+        </th>
+        <th style="width: 10%;">
+          <i class="fa fa-euro"></i><br>
+          <span>TOTAL</span>
+        </th>
+        <th style="width: 14%;">
+          <i class="fa fa-calendar"></i><br>
+          <span>DATE</span>
+        </th>
+        <th style="width: 15%;">
+          <i class="fa fa-map-marker"></i><br>
+          <span>COUNTRY</span>
+        </th>
+        <th style="width: 10%;">
+          <i class="fa fa-spinner"></i><br>
+          <span>STATUS</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="list-container">
+     
+    </tbody>
+  </table>
+</div> 
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="row invoices">
+        <div class="col-md-3 advancedFiltersButton">
+          <button class="btn-addFilter js-download" type="button">
+            <span class="fa fa-file-excel-o"></span> DOWNLOAD AS .CSV
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
