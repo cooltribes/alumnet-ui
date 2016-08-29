@@ -10,20 +10,28 @@
   <%= @paymentable.name %>
 </td>
 
-<td class="text-left">
+<td class="text-left" style="width: 10%;">
   TDC
 </td>
 
-<td class="text-left">
-  €<%= @total %>
+<td class="text-left" style="width: 10%;">
+  € <%= parseFloat(@total).toFixed(2) %>
 </td>
 
-<td class="statusColor__green text-left">
+<td class="text-left" style="width: 15%;">
+  <%= moment(@created_at).format('MMM Do YYYY') %>
+</td>
+
+<td class="text-left" style="width: 15%;">
+  <%= @location() %>
+</td>
+
+<td class="statusColor__green text-left" style="width: 10%;">
   <i class="fa fa-circle"></i>
   <span>Paid</span>
 </td>
 
-<td class="text-right">
-  <!-- <i class="fa fa-file-text-o margin_right_xsmall"> </i>
-  <i class="fa fa-print"></i> -->
-</td>
+<!-- <td class="text-right">
+  <i class="fa fa-file-text-o margin_right_xsmall"> </i>
+  <i class="fa fa-print"></i>
+</td> -->
