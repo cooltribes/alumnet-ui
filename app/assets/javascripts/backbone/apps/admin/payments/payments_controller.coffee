@@ -8,7 +8,9 @@
       @showAll()
 
     showAll: ->
+      self = @
       payments = AlumNet.request('payment:entities', {})
-      view = new AlumNet.AdminApp.ListPayments.Layout
-        collection: payments
-      @layoutView.content_region.show(view)
+      payments.on 'fetch:success', (collection)->
+        view = new AlumNet.AdminApp.ListPayments.Layout
+          collection: collection
+        self.layoutView.content_region.show(view)

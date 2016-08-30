@@ -6,6 +6,20 @@
   class Entities.PaymentsCollection extends Backbone.Collection
     model: Entities.Payment
 
+    state:
+      pageSize: 10
+      sortKey: 'payments.id'
+
+    queryParams:
+      order: "order_by"
+
+    parseState: (response, queryParams, state, options)->
+      { totalRecords: response.totalRecords }
+
+    parseRecords: (response, options)->
+      @totalRecords = response.totalRecords
+      response.payments
+
   API =
     createPayment: (attrs)->
       payment = new Entities.Payment(attrs)

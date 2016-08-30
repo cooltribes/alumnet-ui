@@ -16,8 +16,25 @@
     childViewContainer: '#list-container'
     currentQuery: {}
 
+    ui:
+      #'prevButton': '#prevButton'
+      #'nextButton': '#nextButton'
+      'prevFilterButton': '#prevFilterButton'
+      'nextFilterButton': '#nextFilterButton'
+      'totalRecords': '.js-total-records'
+
     events:
       'click .js-download': 'exportCSV'
+
+    initialize: (options) ->
+      AlumNet.setTitle('Payments Management')
+      @listenTo this, 'change:total', @updateTotal
+
+    updateTotal: ->
+      @ui.totalRecords.html(@collection.length)
+
+    templateHelpers: ->
+      totalRecords: @collection.length
 
     onRender: ->
       view = @
@@ -44,6 +61,8 @@
       view = @
       view.collection.fetch
         data: { q: query }
+        success: ->
+          view.trigger 'change:total'
 
     exportCSV: (e)->
       e.preventDefault()
