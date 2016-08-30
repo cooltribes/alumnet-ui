@@ -1,5 +1,10 @@
 <div class= "col-sm-12 col-xs-12 no-padding margin_top_xsmall">
-  <table class="table invoicesTable">    
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <div class="resultUser">Results: <span class="js-total-records"><%= @totalRecords %></span></div>
+    </div>
+  </div>
+  <table class="table invoicesTable">
     <thead>
       <tr>
         <th>
@@ -42,13 +47,16 @@
 </div> 
 
 <div class="row">
-    <div class="col-md-12">
-      <div class="row invoices">
-        <div class="col-md-3 advancedFiltersButton">
-          <button class="btn-addFilter js-download" type="button">
-            <span class="fa fa-file-excel-o"></span> DOWNLOAD AS .CSV
-          </button>
-        </div>
+  <div class="col-xs-8 col-sm-10 col-md-12 text-right">
+    <ul id="pagination" class="pagination-md no-margin"></ul>
+  </div>
+  <div class="col-md-12">
+    <div class="row invoices">
+      <div class="col-md-3 advancedFiltersButton">
+        <button class="btn-addFilter js-download" type="button">
+          <span class="fa fa-file-excel-o"></span> DOWNLOAD AS .CSV
+        </button>
       </div>
     </div>
   </div>
+</div>
