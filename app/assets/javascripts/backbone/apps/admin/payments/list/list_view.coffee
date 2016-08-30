@@ -84,11 +84,18 @@
 
     advancedSearch: ->
       query = {created_at_gteq: $('.js-from-date').val(), created_at_lteq: $('.js-to-date').val()}
+      @currentQuery = query
       view = @
       view.collection.fetch
         data: { q: query }
         success: ->
           view.trigger 'change:total'
+          view.pagination()
+      view.total_collection.fetch
+        data: { q: query }
+        success: ->
+          view.pagination()
+          view.updateTotal()
 
     exportCSV: (e)->
       e.preventDefault()
@@ -107,4 +114,5 @@
         onPageClick: (event, page) ->
           that.collection.page = page
           that.collection.url = AlumNet.api_endpoint + '/payments?page='+page+'&per_page='+that.collection.per_page
-          that.collection.fetch()
+          that.collection.fetch
+            data: { q: that.currentQuery }
