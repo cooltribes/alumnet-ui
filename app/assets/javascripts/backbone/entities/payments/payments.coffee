@@ -5,6 +5,8 @@
 
   class Entities.PaymentsCollection extends Backbone.Collection
     model: Entities.Payment
+    page: 1
+    per_page: 3
 
   API =
     createPayment: (attrs)->
@@ -28,7 +30,7 @@
 
     getPaymentEntities: (querySearch)->
       payments = new Entities.PaymentsCollection
-      payments.url = AlumNet.api_endpoint + '/payments'
+      payments.url = AlumNet.api_endpoint + '/payments?page='+payments.page+'&per_page='+payments.per_page
       payments.fetch
         data: querySearch
         success: (collection, response, options) ->
