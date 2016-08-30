@@ -6,7 +6,7 @@
   class Entities.PaymentsCollection extends Backbone.Collection
     model: Entities.Payment
     page: 1
-    per_page: 3
+    per_page: 10
 
   API =
     createPayment: (attrs)->

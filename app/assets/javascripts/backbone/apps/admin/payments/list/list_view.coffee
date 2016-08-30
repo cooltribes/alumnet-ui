@@ -110,7 +110,7 @@
     pagination: ->
       that = @
       $('#pagination').twbsPagination
-        totalPages: that.total_collection.length / that.collection.per_page
+        totalPages: Math.ceil(that.total_collection.length / that.collection.per_page)
         onPageClick: (event, page) ->
           that.collection.page = page
           that.collection.url = AlumNet.api_endpoint + '/payments?page='+page+'&per_page='+that.collection.per_page
