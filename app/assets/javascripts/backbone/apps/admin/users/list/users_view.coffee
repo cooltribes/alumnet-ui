@@ -423,6 +423,7 @@
     #  @collection.getNextPage()
 
     nextFilterButton: (e)->
+      console.log 'click'
       #@collectionFilter.queryParams.q = @queryParams
       @removeFilterClass()
       topage = parseInt(@collectionFilter.state.currentPage)+1

@@ -5,20 +5,8 @@
 
   class Entities.PaymentsCollection extends Backbone.Collection
     model: Entities.Payment
-
-    state:
-      pageSize: 10
-      sortKey: 'payments.id'
-
-    queryParams:
-      order: "order_by"
-
-    parseState: (response, queryParams, state, options)->
-      { totalRecords: response.totalRecords }
-
-    parseRecords: (response, options)->
-      @totalRecords = response.totalRecords
-      response.payments
+    page: 1
+    per_page: 2
 
   API =
     createPayment: (attrs)->
@@ -42,7 +30,7 @@
 
     getPaymentEntities: (querySearch)->
       payments = new Entities.PaymentsCollection
-      payments.url = AlumNet.api_endpoint + '/payments'
+      payments.url = AlumNet.api_endpoint + '/payments?page='+payments.page+'&per_page='+payments.per_page
       payments.fetch
         data: querySearch
         success: (collection, response, options) ->
