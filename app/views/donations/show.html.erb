@@ -125,8 +125,8 @@
 			    			<ul class="nav nav-tabs">
 								  <li class="active"><a data-toggle="tab" href="#summary">Summary</a></li>
 								  <!-- <li><a data-toggle="tab" href="#timeline">Timeline</a></li>
-								  <li><a data-toggle="tab" href="#comments">Comments</a></li>
-								  <li><a data-toggle="tab" href="#backers">Backers</a></li> -->
+								  <li><a data-toggle="tab" href="#comments">Comments</a></li> -->
+								  <li><a data-toggle="tab" href="#backers">Backers</a></li>
 								</ul>
 
 								<div class="tab-content">
@@ -162,7 +162,7 @@
 										  <ul>
 										    <li>
 										      <div>
-										        <time>May 2016</time> <br>
+										        <time>August 2016</time> <br>
 										        <span class="title">1st Generation Prototype</span>	<br>									        
 										        <span class="paragraph">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</span>
 										      </div>
@@ -228,18 +228,20 @@
 								  <!-- STEP 4 -->
 								  <div id="backers" class="tab-pane fade backers">
 								    <div class="listBackers">
-									  	<div class="row backer">
-								    		<div class="col-md-1">
-								    			<img src="http://lorempixel.com/output/people-h-c-173-182-7.jpg" alt="" class="img-circle" height="50px" width="50px">
-								    		</div>
-								    		<div class="col-md-8 text">
-								    			<b>Mike John</b><br>
-								    			<span>10 hours ago</span>
-								    		</div>
-								    		<div class="col-md-2 text-right mount">
-								    			<span><b><i class="fa fa-eur" aria-hidden="true"></i> 50</b></span>
-								    		</div>
-									    </div>
+								    	<% @backers.each do |backer| %>
+										  	<div class="row backer">
+									    		<div class="col-md-1">
+									    			<img src="<%= backer["user_avatar"] %>" alt="" class="img-circle" height="50px" width="50px">
+									    		</div>
+									    		<div class="col-md-8 text">
+									    			<b><%= backer["user_name"] %></b><br>
+									    			<span><%= DateTime.parse(backer["created_at"]).strftime("%d/%m/%Y %H:%M") %></span>
+									    		</div>
+									    		<div class="col-md-2 text-right mount">
+									    			<span><b><%= number_to_currency(backer["total_price"], unit: "€") %></b></span>
+									    		</div>
+										    </div>
+									    <% end %>
 									  </div>
 								  </div>
 								  <!-- END STEP 4 -->

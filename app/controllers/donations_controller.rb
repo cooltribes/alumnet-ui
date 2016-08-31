@@ -11,6 +11,7 @@ class DonationsController < ApplicationController
     @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 250000
     @days_left = (DateTime.new(2016, 9, 30) - DateTime.now).to_i
     @donors = @campaign_details['donors']
+    @backers = @campaign_details['backers']
     @countries = @campaign_details['countries']
   end
 
@@ -21,6 +22,7 @@ class DonationsController < ApplicationController
     @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 250000
     @days_left = (DateTime.new(2016, 9, 30) - DateTime.now).to_i
     @donors = @campaign_details['donors']
+    @backers = @campaign_details['backers']
     @countries = @campaign_details['countries']
   end
 
