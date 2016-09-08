@@ -157,8 +157,7 @@
 
     clickSearchBtn: (e)->
       btn = e.currentTarget
-      input = $(btn).siblings(".js-search-input")
-      search_term = input.val().trim()
+      search_term = @ui.searchInput.val().trim()
       @searchInAlumNet(search_term)
 
 
