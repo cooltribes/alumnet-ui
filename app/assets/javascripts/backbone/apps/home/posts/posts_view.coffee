@@ -45,7 +45,6 @@
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
 
-
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'
     regions:

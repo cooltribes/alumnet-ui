@@ -12,6 +12,9 @@
       current_user.posts.fetch
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
+        success: ->
+          $('.lazy').lazyload
+            skip_invisible : true
       current_user.posts.page = 1
 
       posts = new Posts.PostsView
