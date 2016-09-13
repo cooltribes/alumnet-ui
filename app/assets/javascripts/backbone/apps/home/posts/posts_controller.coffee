@@ -14,7 +14,8 @@
         reset: true
         success: ->
           $('.lazy').lazyload
-            skip_invisible : true
+            skip_invisible : true,
+            effect : "fadeIn"
       current_user.posts.page = 1
 
       posts = new Posts.PostsView
