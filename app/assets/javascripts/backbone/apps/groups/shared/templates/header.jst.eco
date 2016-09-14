@@ -1,4 +1,7 @@
 <div class="groupCoverArea" style="<%= @cover_style() %>">
+  <% if @parent: %>
+    <h3><a href="#groups/<%= @parent.id %>/posts" id="name"><%= @parent.name %></a></h3>
+  <% end %>
 	<h1 class="groupCoverArea__title 
 .overfloadText  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
     <% if @canEditInformation: %>
