@@ -15,7 +15,18 @@
         success: ->
           $('.lazy').lazyload
             skip_invisible : true,
-            effect : "fadeIn"
+            effect : "fadeIn",
+            threshold : 100,
+            failure_limit : 10
+          $('img.lazy').load ->
+            console.log 'image'
+            console.log this
+            console.log this.height
+            console.log this.width
+            $('#timeline').masonry
+              itemSelector: '.post'
+            #this.height = this.height
+            #this.width = this.width
       current_user.posts.page = 1
 
       posts = new Posts.PostsView
