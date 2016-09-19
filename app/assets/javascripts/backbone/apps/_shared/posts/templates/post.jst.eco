@@ -112,9 +112,9 @@
             <% for picture in @picturesToShow(): %>
               <% counter = counter + 1 %>
               <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
-                <img data-original="<%= picture.picture.main %>" class="first-item picture-post lazy" data-id="<%= picture.id %>">
+                <img data-original="<%= picture.picture.main %>" class="first-item picture-post lazy" data-id="<%= picture.id %>" width="557" height="auto">
               <% else: %>
-                <img src="<%= picture.picture.card %>" class="item picture-post" data-id="<%= picture.id %>">
+                <img data-original="<%= picture.picture.main %>" class="item picture-post lazy" data-id="<%= picture.id %>" width="278" height="auto">
               <% end %>
             <% end %>
           </div>
