@@ -216,7 +216,7 @@
         container = @ui.picturesContainer
         container.imagesLoaded ->
           container.masonry
-            columnWidth: '.item'
+            itemSelector: '.item'
             gutter: 1
 
       # Autosize
