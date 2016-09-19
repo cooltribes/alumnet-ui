@@ -19,9 +19,13 @@
             threshold : 100,
             failure_limit : 10
           $('img.lazy').load ->
-            $('#timeline').masonry
-              itemSelector: '.post'
-            
+            $('.pictures-container').each (key, value)->
+              $(value).masonry
+                itemSelector: '.item'
+                columnWidth: 278
+              $('#timeline').masonry
+                itemSelector: '.post'
+
       current_user.posts.page = 1
 
       posts = new Posts.PostsView
