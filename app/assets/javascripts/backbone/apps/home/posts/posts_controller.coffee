@@ -19,10 +19,16 @@
             threshold : 100,
             failure_limit : 10
           $('img.lazy').load ->
-            $('.pictures-container').each (key, value)->
+            $('.post-pictures-container').each (key, value)->
               $(value).masonry
                 itemSelector: '.item'
                 columnWidth: 278
+              $('#timeline').masonry
+                itemSelector: '.post'
+            $('.shared-pictures-container').each (key, value)->
+              $(value).masonry
+                itemSelector: '.item'
+                columnWidth: 258
               $('#timeline').masonry
                 itemSelector: '.post'
 
