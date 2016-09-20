@@ -6,6 +6,7 @@
       #2 banner composite
       #3
       #AlumNet.execute('render:home:submenu')
+      controller = @
       checkNewPost = false
       current_user = AlumNet.current_user
       current_user.posts.url = AlumNet.api_endpoint + '/me/posts'
@@ -13,24 +14,7 @@
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
         success: ->
-          $('.lazy').lazyload
-            skip_invisible : true,
-            effect : "fadeIn",
-            threshold : 100,
-            failure_limit : 10
-          $('img.lazy').load ->
-            $('.post-pictures-container').each (key, value)->
-              $(value).masonry
-                itemSelector: '.item'
-                columnWidth: 278
-              $('#timeline').masonry
-                itemSelector: '.post'
-            $('.shared-pictures-container').each (key, value)->
-              $(value).masonry
-                itemSelector: '.item'
-                columnWidth: 258
-              $('#timeline').masonry
-                itemSelector: '.post'
+          controller.fixMasonry()
 
       current_user.posts.page = 1
 
@@ -65,6 +49,7 @@
             self.reload = true
             if collection.length < collection.rows
               posts.endPagination()
+            controller.fixMasonry()
 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
@@ -95,3 +80,23 @@
       start = page * rows
       end = start + rows
       @collection.slice(start,end)
+
+    fixMasonry: ->
+      $('.lazy').lazyload
+        skip_invisible : true,
+        effect : "fadeIn",
+        threshold : 100,
+        failure_limit : 10
+      $('img.lazy').load ->
+        $('.post-pictures-container').each (key, value)->
+          $(value).masonry
+            itemSelector: '.item'
+            columnWidth: 278
+          $('#timeline').masonry
+            itemSelector: '.post'
+        $('.shared-pictures-container').each (key, value)->
+          $(value).masonry
+            itemSelector: '.item'
+            columnWidth: 258
+          $('#timeline').masonry
+            itemSelector: '.post'
