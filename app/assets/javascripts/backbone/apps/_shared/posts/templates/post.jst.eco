@@ -107,7 +107,7 @@
     <% if @pictures: %>
       <div class="row">
         <div class="col-md-12">
-          <div class="pictures-container">
+          <div class="pictures-container post-pictures-container">
             <% counter = 0 %>
             <% for picture in @picturesToShow(): %>
               <% counter = counter + 1 %>

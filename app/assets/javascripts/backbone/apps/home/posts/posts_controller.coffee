@@ -19,10 +19,16 @@
             threshold : 100,
             failure_limit : 10
           $('img.lazy').load ->
-            $('.pictures-container').each (key, value)->
+            $('.post-pictures-container').each (key, value)->
               $(value).masonry
                 itemSelector: '.item'
                 columnWidth: 278
+              $('#timeline').masonry
+                itemSelector: '.post'
+            $('.shared-pictures-container').each (key, value)->
+              $(value).masonry
+                itemSelector: '.item'
+                columnWidth: 258
               $('#timeline').masonry
                 itemSelector: '.post'
 
@@ -36,7 +42,8 @@
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
       bannerCollection.fetch
         success: (collection)->
-          collection.at(0).set("activeSlide", true)
+          if collection.length > 0
+            collection.at(0).set("activeSlide", true)
 
       bannersView = new Posts.BannersView #compositeView - region 1
         collection: bannerCollection

@@ -40,7 +40,7 @@
           <h4 class="postCard__userName">
             <a href="#users/<%= @user.id %>/posts" id="userPopover<%= @id %>" class="js-popover"><%= @user.name %></a>
           </h4>
-          share the post of <a href="#users/<%= @content.user.id %>/posts"><%= @content.user.name %></a><br>
+          shared <a href="#users/<%= @content.user.id %>/posts"><%= @content.user.name %></a>'s post<br>
           <!-- TAGS       -->
           <% if @tagsLinks: %>
             <div class="tags" >
