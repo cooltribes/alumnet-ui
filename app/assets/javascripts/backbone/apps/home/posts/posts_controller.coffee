@@ -42,7 +42,8 @@
       bannerCollection.url = AlumNet.api_endpoint + '/banners'
       bannerCollection.fetch
         success: (collection)->
-          collection.at(0).set("activeSlide", true)
+          if collection.length > 0
+            collection.at(0).set("activeSlide", true)
 
       bannersView = new Posts.BannersView #compositeView - region 1
         collection: bannerCollection
