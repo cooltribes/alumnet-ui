@@ -217,7 +217,7 @@
         container.imagesLoaded ->
           container.masonry
             itemSelector: '.item'
-            gutter: 1
+            
 
       # Autosize
       @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
@@ -490,7 +490,7 @@
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMorePost')
       $(window).scroll(@loadMorePost)
-      @fixMasonry()
+      @fixPictures()
 
     remove: ->
       $(window).unbind('scroll');
@@ -501,26 +501,29 @@
       $(window).unbind('scroll')
 
     loadMorePost: (e)->
-      @fixMasonry()
+      @fixPictures()
       limit = ($(document).height() - $(window).height()) / 2
       if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
       # if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @reload = false
         @trigger 'post:reload'
 
-    fixMasonry: ->
+    fixPictures: ->
+      self = @
       $('.post-pictures-container').each (key, value)->
         $(value).masonry
           itemSelector: '.item'
           columnWidth: 278
-        $('#timeline').masonry
-          itemSelector: '.post'
+        self.reloadMasonry()
       $('.shared-pictures-container').each (key, value)->
         $(value).masonry
           itemSelector: '.item'
           columnWidth: 258
-        $('#timeline').masonry
-          itemSelector: '.post'
+        self.reloadMasonry()
+
+    reloadMasonry: ->
+      $('#timeline').masonry
+        itemSelector: '.post'
 
     templateHelpers: ->
       userCanPost: true
