@@ -21,7 +21,6 @@
       @model.url = AlumNet.api_endpoint + @model.get('resource_path')
 
 
-
   # POSTS COLLECTION
   class Posts.PostsView extends AlumNet.Shared.Views.PostsView
     childView: Posts.PostView
@@ -50,7 +49,6 @@
     regions:
       banners: '#banners-container'
       posts: '#posts-container'
-    initialize: ->
 
 
   class Posts.BannerView extends Marionette.ItemView
