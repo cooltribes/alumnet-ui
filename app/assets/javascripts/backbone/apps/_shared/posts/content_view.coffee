@@ -37,10 +37,10 @@
     onRender: ->
       if @postPictures && @postPictures.length > 1
         container = @ui.picturesContainer
-        container.imagesLoaded ->
-          container.masonry
-            columnWidth: '.item'
-            gutter: 1
+        # container.imagesLoaded ->
+        #   container.masonry
+        #     columnWidth: '.item'
+        #     gutter: 1
 
       validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation

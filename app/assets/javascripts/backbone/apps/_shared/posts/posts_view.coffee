@@ -176,10 +176,13 @@
         @postable = null
 
       @postPictures = @model.get('pictures')
+      console.log @postPictures
       @collection = @model.comments
 
     templateHelpers: ->
       view = @
+      console.log 'firts'
+      console.log _.first(view.postPictures)
       model = @model
       permissions = @model.get('permissions')
       today = moment()
@@ -200,6 +203,24 @@
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
       commentsCount: @model.comments.length
+      
+      # picturesCount: -> 
+      #   if @postPictures
+      #     @postPictures.length
+      #   else
+      #     0
+      
+      picturesToShow: -> 
+        view.postPictures if view.postPictures.length > 0
+      firstPicture: ->
+        #if view.postPictures.length == 1
+        
+        _.first(view.postPictures) if view.postPictures.length > 0
+      restPictures: ->
+        console.log 'rest'
+        console.log _.rest(view.postPictures, 1)
+        _.rest(view.postPictures, 1) if view.postPictures.length > 0
+
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -208,15 +229,15 @@
         if view.postPictures.length > 5
           _.first(view.postPictures, 5)
         else
-          view.postPictures
+          
 
     onShow: ->
       self = @
-      if @postPictures && @postPictures.length > 1
-        container = @ui.picturesContainer
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.item'
+      # if @postPictures && @postPictures.length > 1
+      #   container = @ui.picturesContainer
+      #   container.imagesLoaded ->
+      #     container.masonry
+      #       itemSelector: '.item'
             
 
       # Autosize
@@ -510,16 +531,16 @@
 
     fixPictures: ->
       self = @
-      $('.post-pictures-container').each (key, value)->
-        $(value).masonry
-          itemSelector: '.item'
-          columnWidth: 278
-        self.reloadMasonry()
-      $('.shared-pictures-container').each (key, value)->
-        $(value).masonry
-          itemSelector: '.item'
-          columnWidth: 258
-        self.reloadMasonry()
+      # $('.post-pictures-container').each (key, value)->
+      #   $(value).masonry
+      #     itemSelector: '.item'
+      #     columnWidth: 278
+      #   self.reloadMasonry()
+      # $('.shared-pictures-container').each (key, value)->
+      #   $(value).masonry
+      #     itemSelector: '.item'
+      #     columnWidth: 258
+      #   self.reloadMasonry()
 
     reloadMasonry: ->
       $('#timeline').masonry

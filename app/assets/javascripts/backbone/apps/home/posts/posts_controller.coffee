@@ -14,7 +14,7 @@
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
         success: ->
-          $('body,html').animate({scrollTop: 0}, 600);
+          #$('body,html').animate({scrollTop: 0}, 600);
           controller.setLazyLoad()
 
       current_user.posts.page = 1
