@@ -13,9 +13,10 @@
       current_user.posts.fetch
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
-        success: ->
+        success: (collection)->
+          collection.trigger('fetch:success')
           #$('body,html').animate({scrollTop: 0}, 600);
-          controller.setLazyLoad()
+          #controller.setLazyLoad()
 
       current_user.posts.page = 1
 
@@ -40,6 +41,7 @@
       layout.banners.show(bannersView)
 
       posts.on "post:reload", ->
+        console.log 'post reload'
         self = @
         newCollection = AlumNet.request("post:current")
         newCollection.url = AlumNet.api_endpoint + '/me/posts'
@@ -50,7 +52,8 @@
             self.reload = true
             if collection.length < collection.rows
               posts.endPagination()
-            controller.setLazyLoad()
+            posts.collection.trigger('fetch:success')
+            #controller.setLazyLoad()
 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
@@ -83,7 +86,16 @@
       @collection.slice(start,end)
 
     setLazyLoad: ->
+      console.log 'set lazy load'
       $('.lazy').lazyload
         skip_invisible : true,
         effect : "fadeIn",
         failure_limit : 10
+      $('#timeline').masonry()
+      #console.log 'js-thumbnails'
+      #console.log $('.js-thumbnail')
+      $('.js-thumbnail').each (key, value)->
+        $(value).nailthumb()
+      # $('picture-post').load ->
+      #   console.log 'load'
+      #   $('#timeline').masonry()
