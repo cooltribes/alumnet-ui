@@ -212,42 +212,23 @@
       
       picturesToShow: -> 
         view.postPictures if view.postPictures.length > 0
+
       firstPicture: ->
         #if view.postPictures.length == 1
-        
         _.first(view.postPictures) if view.postPictures.length > 0
-      restPictures: ->
-        #console.log 'rest'
-        #console.log _.rest(view.postPictures, 1)
-        _.rest(view.postPictures, 1) if view.postPictures.length > 0
 
+      restPictures: ->
+        _.rest(view.postPictures, 1) if view.postPictures.length > 0
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
 
-      picturesToShow: ->
-        if view.postPictures.length > 5
-          _.first(view.postPictures, 5)
-        else
+      # picturesToShow: ->
+      #   if view.postPictures.length > 5
+      #     _.first(view.postPictures, 5)
           
 
     onShow: ->
-      self = @
-      #$('#timeline').masonry()
-      #console.log $('.js-thumbnail')
-      #$('.js-thumbnail').each (key, value)->
-        #$(value).nailthumb()
-      # $('#timeline').masonry()
-      # console.log $('.js-thumbnail')
-      # $('.js-thumbnail').each (key, value)->
-      #   $(value).nailthumb()
-      # if @postPictures && @postPictures.length > 1
-      #   container = @ui.picturesContainer
-      #   container.imagesLoaded ->
-      #     container.masonry
-      #       itemSelector: '.item'
-            
-
       # Autosize
       @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
@@ -520,8 +501,6 @@
         view.setLazyImages()
         view.setThumbnails()
         view.reloadMasonry()
-        console.log 'fetch success fired'
-        console.log view
 
     onRender: ->
       $(window).unbind('scroll')
@@ -539,7 +518,6 @@
       @reloadMasonry()
 
     loadMorePost: (e)->
-      #console.log 'load more'
       @reloadMasonry()
       limit = ($(document).height() - $(window).height()) / 2
       if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
@@ -547,22 +525,7 @@
         @reload = false
         @trigger 'post:reload'
 
-    fixPictures: ->
-      self = @
-      @reloadMasonry()
-      # $('.post-pictures-container').each (key, value)->
-      #   $(value).masonry
-      #     itemSelector: '.item'
-      #     columnWidth: 278
-      #   self.reloadMasonry()
-      # $('.shared-pictures-container').each (key, value)->
-      #   $(value).masonry
-      #     itemSelector: '.item'
-      #     columnWidth: 258
-      #   self.reloadMasonry()
-
     reloadMasonry: ->
-      #console.log 'reloadMasonry'
       $('#timeline').masonry
         itemSelector: '.post'
 
@@ -573,7 +536,6 @@
         effect : "fadeIn",
         failure_limit : 10
       $('img.lazy').load ->
-        console.log 'image loaded'
         self.reloadMasonry()
 
     setThumbnails: ->
@@ -606,10 +568,6 @@
       'keyup @ui.bodyInput': 'checkInput'
 
     onShow: ->
-      #console.log 'show postsvoew'
-      #console.log $('.js-thumbnail')
-      #$('.js-thumbnail').each (key, value)->
-        #$(value).nailthumb()
       view = @
       uploader = new AlumNet.Utilities.Pluploader('js-add-picture', view).uploader
       uploader.init()
@@ -639,9 +597,6 @@
 
       @ui.bodyInput.mentionsInput
         source: AlumNet.api_endpoint + '/me/friendships/suggestions'
-
-      console.log 'show'
-      console.log $('.lazy')
 
     showTagging: (e)->
       e.preventDefault()
