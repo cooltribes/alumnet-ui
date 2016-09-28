@@ -201,11 +201,11 @@
       restLikeLink: @model.restLikeLink()
       commentsCount: @model.comments.length
       
-      # picturesCount: -> 
-      #   if @postPictures
-      #     @postPictures.length
-      #   else
-      #     0
+      picturesCount: -> 
+        if view.postPictures
+          view.postPictures.length
+        else
+          0
       
       picturesToShow: -> 
         view.postPictures if view.postPictures.length > 0
@@ -216,6 +216,9 @@
 
       restPictures: ->
         _.rest(view.postPictures, 1) if view.postPictures.length > 0
+
+      thumbsToShow: ->
+        _.first(_.rest(view.postPictures, 1), 3) if view.postPictures.length > 0
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
@@ -245,6 +248,9 @@
         $(@ui.moreComment).show()
       else
         $(@ui.moreComment).hide()
+
+      @setLazyImages()
+      @setThumbnails()
 
 
     reloadMasonry: ->
@@ -338,6 +344,17 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
+      'click .js-thumbnail h2': 'clickedPictureText'
+
+    setLazyImages: ->
+      self = @
+      @$('.lazy').lazyload
+        skip_invisible : true,
+        effect : "fadeIn",
+        failure_limit : 10
+
+    setThumbnails: ->
+      $('.js-thumbnail').nailthumb()
 
     showShare: (e)->
       e.preventDefault()
@@ -368,7 +385,18 @@
       id = element.data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture
-      @ui.modalContainer.html(modal.render().el)
+      $('.new-modal-container').html(modal.render().el)
+
+    clickedPictureText: (e)->
+      e.preventDefault()
+      console.log e
+      console.log e.currentTarget
+      element = $(e.currentTarget).closest('img')
+      console.log element
+      id = element.data('id')
+      picture = @model.picture_collection.get(id)
+      modal = AlumNet.request "picture:modal", picture
+      $('.new-modal-container').html(modal.render().el)
 
     commentSend: (e)->
       e.stopPropagation()

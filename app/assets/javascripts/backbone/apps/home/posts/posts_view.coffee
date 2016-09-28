@@ -43,7 +43,6 @@
         @ui.videoContainer.html('')
         @ui.tagsInput.select2('val', '')
         @ui.tagging.hide()
-        @setLazyImages()
 
   class Posts.Layout extends Marionette.LayoutView
     template: 'home/posts/templates/layout'

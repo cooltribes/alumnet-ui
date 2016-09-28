@@ -27,9 +27,13 @@
             <% if @pictures.length > 1: %>
               <div class="thumbs-container">
                 <% counter = 0 %>
-                <% for picture in @restPictures(): %>
+                <% for picture in @thumbsToShow(): %>
+                  <% counter++ %>
                   <div class="shared-thumb js-thumbnail">
-                    <img src="<%= picture.picture.main %>" class="picture-post" data-id="<%= picture.id %>" >
+                    <img src="<%= picture.picture.card %>" class="picture-post" data-id="<%= picture.id %>" >
+                    <% if counter == 3 && @picturesCount() > 4: %>
+                      <h2>+<%= @picturesCount() - 4 %></h2>
+                    <% end %>
                   </div>
                 <% end %>
               </div>
