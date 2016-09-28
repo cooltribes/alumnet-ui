@@ -18,23 +18,23 @@
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
 
-      # picturesToShow: ->
-      #   if view.postPictures.length > 5
-      #     _.first(view.postPictures, 5)
-      #   else
-      #     view.postPictures
-
+      picturesCount: -> 
+        if view.postPictures
+          view.postPictures.length
+        else
+          0
+      
       picturesToShow: -> 
         view.postPictures if view.postPictures.length > 0
         
       firstPicture: ->
-        #if view.postPictures.length == 1
-        
         _.first(view.postPictures) if view.postPictures.length > 0
+
       restPictures: ->
-        #console.log 'rest'
-        #console.log _.rest(view.postPictures, 1)
         _.rest(view.postPictures, 1) if view.postPictures.length > 0
+
+      thumbsToShow: ->
+        _.first(_.rest(view.postPictures, 1), 3) if view.postPictures.length > 0
 
     ui: ->
       'item': '.item'
