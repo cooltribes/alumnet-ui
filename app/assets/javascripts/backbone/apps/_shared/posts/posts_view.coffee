@@ -249,6 +249,9 @@
       else
         $(@ui.moreComment).hide()
 
+      @setLazyImages()
+      @setThumbnails()
+
 
     reloadMasonry: ->
       $('#timeline').masonry()
@@ -341,6 +344,17 @@
       'click .js-show-likes': 'showLikes'
       'click .js-share-post': 'showShare'
       'click .js-popover': 'hidePopover'
+      'click .js-thumbnail h2': 'clickedPictureText'
+
+    setLazyImages: ->
+      self = @
+      @$('.lazy').lazyload
+        skip_invisible : true,
+        effect : "fadeIn",
+        failure_limit : 10
+
+    setThumbnails: ->
+      $('.js-thumbnail').nailthumb()
 
     showShare: (e)->
       e.preventDefault()
@@ -368,6 +382,17 @@
     clickedPicture: (e)->
       e.preventDefault()
       element = $(e.currentTarget)
+      id = element.data('id')
+      picture = @model.picture_collection.get(id)
+      modal = AlumNet.request "picture:modal", picture
+      $('.new-modal-container').html(modal.render().el)
+
+    clickedPictureText: (e)->
+      e.preventDefault()
+      console.log e
+      console.log e.currentTarget
+      element = $(e.currentTarget).closest('img')
+      console.log element
       id = element.data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture

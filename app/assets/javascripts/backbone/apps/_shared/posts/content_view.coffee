@@ -73,7 +73,8 @@
       id = element.data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture
-      @ui.modalContainer.html(modal.render().el)
+      $('.new-modal-container').html(modal.render().el)
+      #@ui.modalContainer.html(modal.render().el)
 
     # showShare: (e)->
     #   e.preventDefault()
