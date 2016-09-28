@@ -13,9 +13,8 @@
       current_user.posts.fetch
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
-        success: ->
-          $('body,html').animate({scrollTop: 0}, 600);
-          controller.setLazyLoad()
+        success: (collection)->
+          collection.trigger('fetch:success')
 
       current_user.posts.page = 1
 
@@ -50,7 +49,7 @@
             self.reload = true
             if collection.length < collection.rows
               posts.endPagination()
-            controller.setLazyLoad()
+            posts.collection.trigger('fetch:success')
 
       posts.on "add:child", (viewInstance)->
         container = $('#timeline')
@@ -64,8 +63,6 @@
         else
           container.append( $(viewInstance.el) ).masonry().masonry 'reloadItems'
         checkNewPost = false
-
-      # posts.on "render:collection", ->
 
       posts.on "post:submit", (data)->
         post = AlumNet.request("post:user:new", current_user.id)
@@ -81,9 +78,3 @@
       start = page * rows
       end = start + rows
       @collection.slice(start,end)
-
-    setLazyLoad: ->
-      $('.lazy').lazyload
-        skip_invisible : true,
-        effect : "fadeIn",
-        failure_limit : 10

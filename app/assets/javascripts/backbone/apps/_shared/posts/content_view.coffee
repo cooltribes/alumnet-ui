@@ -18,11 +18,23 @@
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
 
-      picturesToShow: ->
-        if view.postPictures.length > 5
-          _.first(view.postPictures, 5)
-        else
-          view.postPictures
+      # picturesToShow: ->
+      #   if view.postPictures.length > 5
+      #     _.first(view.postPictures, 5)
+      #   else
+      #     view.postPictures
+
+      picturesToShow: -> 
+        view.postPictures if view.postPictures.length > 0
+        
+      firstPicture: ->
+        #if view.postPictures.length == 1
+        
+        _.first(view.postPictures) if view.postPictures.length > 0
+      restPictures: ->
+        #console.log 'rest'
+        #console.log _.rest(view.postPictures, 1)
+        _.rest(view.postPictures, 1) if view.postPictures.length > 0
 
     ui: ->
       'item': '.item'
@@ -37,10 +49,10 @@
     onRender: ->
       if @postPictures && @postPictures.length > 1
         container = @ui.picturesContainer
-        container.imagesLoaded ->
-          container.masonry
-            columnWidth: '.item'
-            gutter: 1
+        # container.imagesLoaded ->
+        #   container.masonry
+        #     columnWidth: '.item'
+        #     gutter: 1
 
       validation = @ytVidId(@ui.bodyPost.html().split(" ").pop())
       if validation

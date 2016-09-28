@@ -200,25 +200,33 @@
       likesLinks: @model.firstLikeLinks()
       restLikeLink: @model.restLikeLink()
       commentsCount: @model.comments.length
+      
+      # picturesCount: -> 
+      #   if @postPictures
+      #     @postPictures.length
+      #   else
+      #     0
+      
+      picturesToShow: -> 
+        view.postPictures if view.postPictures.length > 0
+
+      firstPicture: ->
+        #if view.postPictures.length == 1
+        _.first(view.postPictures) if view.postPictures.length > 0
+
+      restPictures: ->
+        _.rest(view.postPictures, 1) if view.postPictures.length > 0
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
 
-      picturesToShow: ->
-        if view.postPictures.length > 5
-          _.first(view.postPictures, 5)
-        else
-          view.postPictures
+      # picturesToShow: ->
+      #   if view.postPictures.length > 5
+      #     _.first(view.postPictures, 5)
+          
 
     onShow: ->
-      self = @
-      if @postPictures && @postPictures.length > 1
-        container = @ui.picturesContainer
-        container.imagesLoaded ->
-          container.masonry
-            itemSelector: '.item'
-            gutter: 1
-
+      view = @
       # Autosize
       @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
@@ -316,6 +324,7 @@
       'moreComment':'#js-load-more'
       'likesLinks':'.js-like-links'
       'options':'.js-options'
+      'thumbnails':'.js-thumbnail'
 
     events: ->
       'keypress .comment': 'commentSend'
@@ -483,14 +492,20 @@
       postsView: @
 
     initialize: ->
+      view = @
       @reload = true
       @picture_ids = []
+
+      this.collection.on 'fetch:success': ->
+        view.setLazyImages()
+        view.setThumbnails()
+        view.reloadMasonry()
 
     onRender: ->
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMorePost')
       $(window).scroll(@loadMorePost)
-      @fixMasonry()
+      @reloadMasonry()
 
     remove: ->
       $(window).unbind('scroll');
@@ -499,28 +514,31 @@
     endPagination: ->
       @ui.loading.hide()
       $(window).unbind('scroll')
+      @reloadMasonry()
 
     loadMorePost: (e)->
-      @fixMasonry()
+      @reloadMasonry()
       limit = ($(document).height() - $(window).height()) / 2
       if @reload && $(window).scrollTop()!=0 && $(window).scrollTop() > limit
       # if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
         @reload = false
         @trigger 'post:reload'
 
-    fixMasonry: ->
-      $('.post-pictures-container').each (key, value)->
-        $(value).masonry
-          itemSelector: '.item'
-          columnWidth: 278
-        $('#timeline').masonry
-          itemSelector: '.post'
-      $('.shared-pictures-container').each (key, value)->
-        $(value).masonry
-          itemSelector: '.item'
-          columnWidth: 258
-        $('#timeline').masonry
-          itemSelector: '.post'
+    reloadMasonry: ->
+      $('#timeline').masonry
+        itemSelector: '.post'
+
+    setLazyImages: ->
+      self = @
+      $('.lazy').lazyload
+        skip_invisible : true,
+        effect : "fadeIn",
+        failure_limit : 10
+      $('img.lazy').load ->
+        self.reloadMasonry()
+
+    setThumbnails: ->
+      $('.js-thumbnail').nailthumb()
 
     templateHelpers: ->
       userCanPost: true

@@ -23,14 +23,16 @@
         <div class="col-md-12">
           <div class="modal-container"></div>
           <div class="pictures-container shared-pictures-container">
-            <% counter = 0 %>
-            <% for picture in @picturesToShow(): %>
-              <% counter = counter + 1 %>
-              <% if counter == 1 && (@pictures_is_odd(@picturesToShow())) : %>
-                <img data-original="<%= picture.picture.main %>" class="item first-item picture-post lazy" data-id="<%= picture.id %>" width="515" height="auto">
-              <% else: %>
-                <img data-original="<%= picture.picture.main %>" class="item picture-post lazy" data-id="<%= picture.id %>" width="256" height="auto">
-              <% end %>
+            <img data-original="<%= @firstPicture().picture.main %>" class="item first-item picture-post lazy" data-id="<%= @firstPicture().id %>" width="auto">
+            <% if @pictures.length > 1: %>
+              <div class="thumbs-container">
+                <% counter = 0 %>
+                <% for picture in @restPictures(): %>
+                  <div class="shared-thumb js-thumbnail">
+                    <img src="<%= picture.picture.main %>" class="picture-post" data-id="<%= picture.id %>" >
+                  </div>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
