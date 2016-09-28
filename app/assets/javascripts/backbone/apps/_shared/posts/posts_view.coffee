@@ -176,13 +176,10 @@
         @postable = null
 
       @postPictures = @model.get('pictures')
-      #console.log @postPictures
       @collection = @model.comments
 
     templateHelpers: ->
       view = @
-      #console.log 'firts'
-      #console.log _.first(view.postPictures)
       model = @model
       permissions = @model.get('permissions')
       today = moment()
@@ -229,6 +226,7 @@
           
 
     onShow: ->
+      view = @
       # Autosize
       @ui.commentInput.autoResize(onResize: -> setTimeout(self.reloadMasonry, 400))
 
@@ -326,6 +324,7 @@
       'moreComment':'#js-load-more'
       'likesLinks':'.js-like-links'
       'options':'.js-options'
+      'thumbnails':'.js-thumbnail'
 
     events: ->
       'keypress .comment': 'commentSend'
@@ -539,8 +538,7 @@
         self.reloadMasonry()
 
     setThumbnails: ->
-      $('.js-thumbnail').each (key, value)->
-        $(value).nailthumb()
+      $('.js-thumbnail').nailthumb()
 
     templateHelpers: ->
       userCanPost: true

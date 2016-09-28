@@ -114,7 +114,7 @@
                 <% counter = 0 %>
                 <% for picture in @restPictures(): %>
                   <div class="thumb js-thumbnail">
-                    <img data-original="<%= picture.picture.main %>" class="picture-post lazy" data-id="<%= picture.id %>" >
+                    <img src="<%= picture.picture.card %>" class="picture-post" data-id="<%= picture.id %>" >
                   </div>
                 <% end %>
               </div>
