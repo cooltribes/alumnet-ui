@@ -201,11 +201,11 @@
       restLikeLink: @model.restLikeLink()
       commentsCount: @model.comments.length
       
-      # picturesCount: -> 
-      #   if @postPictures
-      #     @postPictures.length
-      #   else
-      #     0
+      picturesCount: -> 
+        if view.postPictures
+          view.postPictures.length
+        else
+          0
       
       picturesToShow: -> 
         view.postPictures if view.postPictures.length > 0
@@ -216,6 +216,9 @@
 
       restPictures: ->
         _.rest(view.postPictures, 1) if view.postPictures.length > 0
+
+      thumbsToShow: ->
+        _.first(_.rest(view.postPictures, 1), 3) if view.postPictures.length > 0
 
       pictures_is_odd: (pictures)->
         pictures.length % 2 != 0
