@@ -389,11 +389,8 @@
 
     clickedPictureText: (e)->
       e.preventDefault()
-      console.log e
-      console.log e.currentTarget
-      element = $(e.currentTarget).closest('img')
-      console.log element
-      id = element.data('id')
+      element = $($(e.currentTarget).parent()[0]).find('img')[0]
+      id = $(element).data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture
       $('.new-modal-container').html(modal.render().el)

@@ -14,6 +14,7 @@
         data: { page: current_user.posts.page, per_page: current_user.posts.rows }
         reset: true
         success: (collection)->
+          console.log collection
           collection.trigger('fetch:success')
 
       current_user.posts.page = 1
