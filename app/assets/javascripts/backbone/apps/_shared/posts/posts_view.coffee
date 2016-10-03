@@ -249,8 +249,17 @@
       else
         $(@ui.moreComment).hide()
 
+
+      $('.nailthumb-image').parent().css({ height: $($(_.first($('.nailthumb-image'))).parent()).width()+"px" })
       @setLazyImages()
       @setThumbnails()
+      @reloadMasonry()
+
+      $(window).resize ->
+        $('.nailthumb-image').parent().css({ height: $($(_.first($('.nailthumb-image'))).parent()).width()+"px" })
+        view.setThumbnails()
+        view.reloadMasonry()
+
 
 
     reloadMasonry: ->
@@ -356,6 +365,10 @@
     setThumbnails: ->
       $('.js-thumbnail').nailthumb()
 
+    reloadMasonry: ->
+      $('#timeline').masonry
+        itemSelector: '.post'
+
     showShare: (e)->
       e.preventDefault()
       modal = new AlumNet.Shared.Views.ShareModal
@@ -389,11 +402,8 @@
 
     clickedPictureText: (e)->
       e.preventDefault()
-      console.log e
-      console.log e.currentTarget
-      element = $(e.currentTarget).closest('img')
-      console.log element
-      id = element.data('id')
+      element = $($(e.currentTarget).parent()[0]).find('img')[0]
+      id = $(element).data('id')
       picture = @model.picture_collection.get(id)
       modal = AlumNet.request "picture:modal", picture
       $('.new-modal-container').html(modal.render().el)
@@ -525,6 +535,11 @@
       @picture_ids = []
 
       this.collection.on 'fetch:success': ->
+        setTimeout ->
+          view.setImagesHeight()
+          view.setThumbnails()
+          view.reloadMasonry()
+        , 2000
         view.setLazyImages()
         view.setThumbnails()
         view.reloadMasonry()
@@ -567,6 +582,9 @@
 
     setThumbnails: ->
       $('.js-thumbnail').nailthumb()
+
+    setImagesHeight: ->
+      $('.nailthumb-image').parent().css({ height: $($(_.first($('.nailthumb-image'))).parent()).width()+"px" })
 
     templateHelpers: ->
       userCanPost: true

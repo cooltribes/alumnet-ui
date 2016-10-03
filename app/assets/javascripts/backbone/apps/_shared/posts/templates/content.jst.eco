@@ -22,14 +22,14 @@
       <div class="row">
         <div class="col-md-12">
           <div class="modal-container"></div>
-          <div class="pictures-container shared-pictures-container">
+          <div class="pictures-container post-pictures-container">
             <img data-original="<%= @firstPicture().picture.main %>" class="item first-item picture-post lazy" data-id="<%= @firstPicture().id %>" width="auto">
             <% if @pictures.length > 1: %>
               <div class="thumbs-container">
                 <% counter = 0 %>
                 <% for picture in @thumbsToShow(): %>
                   <% counter++ %>
-                  <div class="shared-thumb js-thumbnail">
+                  <div class="thumb js-thumbnail">
                     <img src="<%= picture.picture.card %>" class="picture-post" data-id="<%= picture.id %>" >
                     <% if counter == 3 && @picturesCount() > 4: %>
                       <h2>+<%= @picturesCount() - 4 %></h2>
