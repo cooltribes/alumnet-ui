@@ -103,23 +103,25 @@
 
     markAllNotifications: (e)->
       e.preventDefault()
+      @ui.notificationsBadge.hide()
       AlumNet.current_user.notifications.markAllAsRead()
       view = @
       @model.fetch
         success: ->
-          view.updateNotificationsCountBadge()
           title = document.title.split('-')
           AlumNet.setTitle(title[1])
+          #view.updateNotificationsCountBadge()
 
     markAllRequests: (e)->
       e.preventDefault()
+      @ui.friendshipNotificationsBadge.hide()
       AlumNet.current_user.friendship_notifications.markAllAsRead()
       view = @
       @model.fetch
         success: ->
-          view.updateFriendshipNotificationsCountBadge()
           title = document.title.split('-')
           AlumNet.setTitle(title[1])
+          #view.updateFriendshipNotificationsCountBadge()
 
     templateHelpers: ->
       model = @model
