@@ -2,11 +2,7 @@
 
     <div class="row-fluid" style="height:100%">
       <div class="col-md-8 picture hidden-xs" style="height:100%" >
-        <% if @horizontal: %>
-          <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
-        <% else: %>
-          <img height="100%" src="<%= @picture.original %>">
-        <% end %>
+        <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
         <% if @showMorePics: %>
           <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
               margin-right:3px;
@@ -28,11 +24,7 @@
       <div class="picture visible-xs" style="height:auto">
         <div class="row">
           <div class="col-xs-12">
-            <% if @horizontal: %>
-              <img width="100%" style="padding-top:<%= @top %>%" src="<%= @picture.original %>">
-            <% else: %>
-              <img height="300px" src="<%= @picture.original %>">
-            <% end %>
+            <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
             <% if @showMorePics: %>
               <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
                   margin-right:3px;

@@ -4,7 +4,7 @@
     className: "picture-modal"
     cancelEl: '.js-close'
     # submitEl: '#js-save'
-    keyControl: false
+    keyControl: true
     # prefix: "picture"
 
     ui:
