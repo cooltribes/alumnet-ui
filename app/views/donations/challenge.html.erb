@@ -266,7 +266,7 @@
 	  	    			<h3 class="text-left no-margin-top">
 	                		<span><%= number_to_currency(product["sale_price"], unit: "€") %></span>
 	              		</h3>
-	  	    			<p class="text text-left margin_bottom_small"><%= product["description"] %></p>
+	  	    			<%= simple_format(product["description"], class: 'text-left text margin_bottom_small') %>
 	  	    			<a href="/donations/donate/<%= product['id'] %>" class="btn btn-orange btnSelect">DONATE</a>
 	  	    			<% if product["backers"] > 0 %>
 	  	    				<p class="text margin_top_small text-left">
