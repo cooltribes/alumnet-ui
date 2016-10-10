@@ -16,7 +16,7 @@
       'click .js-unlike': 'clickedUnLike'
       "click .js-next-picture": "nextPicture"
       "click .js-prev-picture": "prevPicture"
-      'click .js-tag-friend': "Tagging"
+      'click .js-tag-friend': "tagging"
       'mouseover .js-tags a': "showTag"
       'mouseout .js-tags a': "hideTag"
 
@@ -110,7 +110,7 @@
         html('<span class="icon-entypo-thumbs-up"></span> Like')
 
     #TAGGING
-    Tagging: (e)->
+    tagging: (e)->
       e.preventDefault()
       link = $(e.currentTarget)
       if link.html() == "STOP TAGGING"
@@ -157,7 +157,7 @@
               profile_last_name_cont: term
           results: (data, page) ->
             results:
-              data
+              data.data
         formatResult: (data)->
           "<img class='flag' src='#{data.avatar.small}'/>" + data.name;
         formatSelection: (data)->
