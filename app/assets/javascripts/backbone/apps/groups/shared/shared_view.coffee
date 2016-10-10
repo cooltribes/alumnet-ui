@@ -93,6 +93,11 @@
           "background-image: url('#{cover.main}?#{date.getTime()}');background-position: #{cover.position};"
         else
           "background-color: #2b2b2b;"
+      get_parents: ->
+        array = []
+        _.each model.get('parents'), (parent)->
+          array.push parent.name
+        array.join(" | ")
 
     modelEvents:
       'change:cover': 'coverChanged'
