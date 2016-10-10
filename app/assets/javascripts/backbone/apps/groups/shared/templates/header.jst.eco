@@ -1,15 +1,13 @@
 <div class="groupCoverArea" style="<%= @cover_style() %>">
-  <% if @parent: %>
-    <h3><a href="#groups/<%= @parent.id %>/posts" id="name"><%= @parent.name %></a></h3>
-  <% end %>
-	<h1 class="groupCoverArea__title 
+	<div class="groupCoverArea__title 
 .overfloadText  <% if @official: %>groupCoverArea__title--ribbon	<% end %>">
+    <span id="breadcrumbs" class="breadcrumbs"></span><br>
     <% if @canEditInformation: %>
       <a href="#" id="name"><%= @name %></a>
     <% else: %>
-      <%= @name %>
+      <h3><%= @name %></h3>
     <% end %>
-  </h1>
+  </div>
   <% if @canEditInformation: %>
      <form>
       <span id="js-changeCover" class="btn btn-lg btn-alert btn-alert--edit" style="position: absolute; left: 0px; bottom: 0px;"><span class="glyphicon glyphicon-edit"></span>  Change cover
