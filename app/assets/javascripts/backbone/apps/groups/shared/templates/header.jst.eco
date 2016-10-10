@@ -5,7 +5,7 @@
     <% if @canEditInformation: %>
       <a href="#" id="name"><%= @name %></a>
     <% else: %>
-      <%= @name %>
+      <h3><%= @name %></h3>
     <% end %>
   </div>
   <% if @canEditInformation: %>
