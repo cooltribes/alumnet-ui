@@ -9,6 +9,8 @@
       AlumNet.layerClient = new layer.Client
         appId: 'layer:///apps/staging/13c942e8-2d88-11e6-8279-a6424d091611'
 
+      AlumNet.layerClient.connect()
+
       AlumNet.layerClient.on 'challenge', (e)->
         callback = (token)->
           e.callback(token)

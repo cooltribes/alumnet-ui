@@ -1,82 +1,82 @@
 <div class="bbm-modal__section clearfix">
 
-    <div class="row-fluid" style="height:100%">
-      <div class="col-md-8 picture hidden-xs" style="height:100%" >
-        <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
-        <% if @showMorePics: %>
-          <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+  <div class="row-fluid" style="height:100%">
+    <div class="col-md-8 picture hidden-xs" style="height:100%" >
+      <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
+      <% if @showMorePics: %>
+        <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
+          margin-right:3px;
+          right: 0;
+          position: absolute;
+          top: 50%;
+        "><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+          margin-left:3px;
+          left: 0;
+          position: absolute;
+          top: 50%;
+        "><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <% end %>
+    </div>
+
+
+    <div class="picture visible-xs" style="height:auto">
+      <div class="row">
+        <div class="col-xs-12">
+          <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
+          <% if @showMorePics: %>
+            <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
               margin-right:3px;
               right: 0;
               position: absolute;
               top: 50%;
-          "><span class="glyphicon glyphicon-chevron-right"></span></a>
+            "><span class="glyphicon glyphicon-chevron-right"></span></a>
 
-          <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
+            <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
               margin-left:3px;
               left: 0;
               position: absolute;
               top: 50%;
-          "><span class="glyphicon glyphicon-chevron-left"></span></a>
-        <% end %>
-      </div>
-
-
-      <div class="picture visible-xs" style="height:auto">
-        <div class="row">
-          <div class="col-xs-12">
-            <img style="height: 100%; width: 100%; object-fit: contain" src="<%= @picture.original %>">
-            <% if @showMorePics: %>
-              <a href="#" title="Next picture" class="btn-alert btn-alert--edit btn-alert--rounded js-next-picture" style="
-                  margin-right:3px;
-                  right: 0;
-                  position: absolute;
-                  top: 50%;
-              "><span class="glyphicon glyphicon-chevron-right"></span></a>
-
-              <a href="#" title="Previous picture" class="btn-alert btn-alert--edit btn-alert--rounded js-prev-picture" style="
-                  margin-left:3px;
-                  left: 0;
-                  position: absolute;
-                  top: 50%;
-              "><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <% end %>
-          </div>
+            "><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <% end %>
         </div>
       </div>
+    </div>
 
 
-      <aside class="col-md-4 col-xs-12" style="height:100%; overflow-y: auto;">
-        <div class="row">
-          <div class="col-md-12 toClose hidden-xs">
-            <button type="button" class="js-rmvRow pull-right js-close btn btn-lg btn-commentImage btn-commentImage--close">CLOSE <span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
-          </div>
+    <aside class="col-md-4 col-xs-12" style="height:100%; overflow-y: auto;">
+      <div class="row">
+        <div class="col-md-12 toClose hidden-xs">
+          <button type="button" class="js-rmvRow pull-right js-close btn btn-lg btn-commentImage btn-commentImage--close">CLOSE <span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+        </div>
 
         <!-- Mobile -->
-          <div class="col-xs-12 toClose visible-xs">
-            <a href="#" class="js-rmvRow pull-right js-close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Close</span></a>
-          </div>
+        <div class="col-xs-12 toClose visible-xs">
+          <a href="#" class="js-rmvRow pull-right js-close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Close</span></a>
         </div>
-        <!-- End Mobile -->
+      </div>
+      <!-- End Mobile -->
 
-        <div class="padding_right_small padding_left_small">
-          <% if @uploader: %>
+      <div class="padding_right_small padding_left_small">
+        <% if @uploader: %>
           <div class="row hidden-xs">
             <div class="col-md-5 groupPost__avatar">
-                <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
+              <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle">
             </div>
             <div class="col-md-7 margin_top_small">
               <div class="row">
-                  <h3>
-                    <%= @uploader.name %>
-                  </h3>
-                  <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
+                <h3>
+                  <%= @uploader.name %>
+                </h3>
+                <span class="glyphicon glyphicon-time"></span> <%= moment(@created_at).fromNow() %>
               </div>
             </div>
           </div>
           <!-- Mobile -->
           <div class="row visible-xs">
             <div class="col-xs-4">
-                <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle" style="width: 60px;">
+              <img src="<%= @uploader.avatar.large %>" alt="" class="img-circle" style="width: 60px;">
             </div>
             <div class="col-xs-8">
               <h3>
@@ -88,69 +88,71 @@
             </div>
           </div>
           <!-- End Mobile -->
+        <% end %>
+      </div>  <!-- Added  -->
+
+      <div class="row margin_top_small">
+        <% if @getLocation: %>
+          <div class="row-fluid clearfix albumInfo">
+            <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
+              <span class="icon-entypo-location"></span>
+            </div>
+            <div class="col-md-10 no_margin_left albumInfo__value">
+              <%= @getLocation %>
+            </div>
+          </div>
+        <% end %>
+        <% if @date_taken: %>
+          <div class="row-fluid albumInfo">
+            <div class="col-md-2 text-right no_margin_right albumInfo__icon">
+              <span class="icon-entypo-clock"></span>
+            </div>
+            <div class="col-md-10 no_margin_left albumInfo__value">
+              <%= moment(@date_taken).format('MMMM Do, YYYY') %>
+            </div>
+          </div>
+        <% end %>
+        <div class="js-tags"></div>
+      </div>
+
+
+      <form>
+      <div class="row margin_top hidden-xs">
+        <div class="col-md-12 no-padding">
+          <a href="#" class="btn-tagFriends js-tag-friend" style="color: #f38e00;">TAG A FRIEND</a>
+          <div class="groupPost__btn--like">
+            <% if @you_like: %>
+              <a href="#" class="js-unlike js-vote" title="Unlike">Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
+            <% else: %>
+              <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
+            <% end %>
+          </div>
+          <% if @likes_count > 0 : %>
+          <span class="fontsize">(<span class="js-likes-counter"><%= @likes_count %></span> likes)</span>
           <% end %>
+        </div>
+      </div>
 
-          <div class="row margin_top_small">
-            <% if @getLocation: %>
-              <div class="row-fluid clearfix albumInfo">
-                <div class="col-md-2 text-right no_margin_right albumInfo__icon" >
-                  <span class="icon-entypo-location"></span>
-                </div>
-                <div class="col-md-10 no_margin_left albumInfo__value">
-                   <%= @getLocation %>
-                </div>
-              </div>
+      <!-- Mobile -->
+      <div class="row visible-xs">
+        <div class="col-xs-12">
+          <div class="like">
+            <% if @you_like: %>
+              <a href="#" class="js-unlike js-vote" title="Unlike"> Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
+            <% else: %>
+              <a href="#" class="js-like js-vote" title="Like"> Like <span class="icon-entypo-thumbs-up"></span></a>
             <% end %>
-            <% if @date_taken: %>
-              <div class="row-fluid albumInfo">
-                <div class="col-md-2 text-right no_margin_right albumInfo__icon">
-                  <span class="icon-entypo-clock"></span>
-                </div>
-                <div class="col-md-10 no_margin_left albumInfo__value">
-                    <%= moment(@date_taken).format('MMMM Do, YYYY') %>
-                </div>
-              </div>
-            <% end %>
-            <div class="js-tags"></div>
+            (<span class="js-likes-counter"><%= @likes_count %></span> likes)
           </div>
+        </div>
+      </div>
+      <!-- End Mobile -->
 
-          <form>
-          <div class="row margin_top hidden-xs">
-            <div class="col-md-12 no-padding">
-              <a href="#" class="btn-tagFriends js-tag-friend" style="color: #f38e00;">TAG A FRIEND</a>
-              <div class="groupPost__btn--like">
-                <% if @you_like: %>
-                  <a href="#" class="js-unlike js-vote" title="Unlike">Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
-                <% else: %>
-                  <a href="#" class="js-like js-vote" title="Like">Like <span class="icon-entypo-thumbs-up"></span></a>
-                <% end %>
-              </div>
-              <% if @likes_count > 0 : %>
-                <span class="fontsize">(<span class="js-likes-counter"><%= @likes_count %></span> likes)</span>
-              <% else: %>
-            </div>
-          </div>
-
-          <!-- Mobile -->
-           <div class="row visible-xs">
-            <div class="col-xs-12">
-              <div class="like">
-                <% if @you_like: %>
-                  <a href="#" class="js-unlike js-vote" title="Unlike"> Unlike <span class="glyphicon glyphicon-thumbs-down"></span></a>
-                <% else: %>
-                  <a href="#" class="js-like js-vote" title="Like"> Like <span class="icon-entypo-thumbs-up"></span></a>
-                <% end %>
-                (<span class="js-likes-counter"><%= @likes_count %></span> likes)
-              </div>
-            </div>
-          </div>
-          <!-- End Mobile -->
-
-          <div class="row commentsModal">
-            <div class="col-md-12 commentsModal">
-              <div id="comments-region"></div>
-            </div>
-          </div>
+      <div class="row commentsModal">
+        <div class="col-md-12 commentsModal">
+          <div id="comments-region"></div>
+        </div>
+      </div>
     </aside>
   </div>
 

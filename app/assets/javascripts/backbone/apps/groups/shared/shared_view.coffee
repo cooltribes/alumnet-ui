@@ -77,6 +77,22 @@
   class Shared.Header extends Marionette.ItemView
     template: 'groups/shared/templates/header'
 
+    modelEvents:
+      'change:cover': 'coverChanged'
+
+    ui:
+      'groupName':'#name'
+      'uploadCover':'#js-changeCover'
+      'coverArea':'.groupCoverArea'
+      'groupCover':'#group-cover'
+      'editCover': "#js-editCover"
+      'breadcrumbs': '#breadcrumbs'
+
+    events:
+      'click @ui.uploadCover': 'uploadClicked'
+      'change @ui.groupCover': 'saveCover'
+      "click @ui.editCover": "editCover"
+
     initialize: (options)->
       @model = options.model
       AlumNet.setTitle(@model.get("name"))
@@ -94,20 +110,35 @@
         else
           "background-color: #2b2b2b;"
 
-    modelEvents:
-      'change:cover': 'coverChanged'
+    onBeforeShow: ->
+      @ui.breadcrumbs.html @get_parents()
 
-    ui:
-      'groupName':'#name'
-      'uploadCover':'#js-changeCover'
-      'coverArea':'.groupCoverArea'
-      'groupCover':'#group-cover'
-      'editCover': "#js-editCover"
+    onRender: ->
+      model = this.model
 
-    events:
-      'click @ui.uploadCover': 'uploadClicked'
-      'change @ui.groupCover': 'saveCover'
-      "click @ui.editCover": "editCover"
+      @ui.groupName.editable
+        type: "text"
+        pk: model.id
+        title: "Enter the name of Group"
+        validate: (value)->
+          if $.trim(value) == ""
+            "this field is required"
+        success: (response, newValue)->
+          model.save({'name': newValue})
+      
+
+    get_parents: ->
+      array = []
+      console.log @model.get('parents')
+      _.each @model.get('parents'), (parent, index)->
+        console.log parent
+        console.log index
+        if index is 2
+          array.unshift '...'
+        else if index < 2
+          array.unshift "<a href='#groups/#{parent.id}/about'>#{parent.name}</a>"
+      console.log array
+      array.join(" / ")
 
     coverChanged: ->
       # cover = @model.get('cover')
@@ -168,17 +199,6 @@
           #$('#js-modal-cover-container').html(modalCrop.render().el)
       @model.save {}, options
 
-    onRender: ->
-      model = this.model
-      @ui.groupName.editable
-        type: "text"
-        pk: model.id
-        title: "Enter the name of Group"
-        validate: (value)->
-          if $.trim(value) == ""
-            "this field is required"
-        success: (response, newValue)->
-          model.save({'name': newValue})
 
 
   class Shared.Layout extends Marionette.LayoutView

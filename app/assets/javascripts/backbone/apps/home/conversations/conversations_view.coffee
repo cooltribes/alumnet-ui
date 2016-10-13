@@ -145,7 +145,7 @@
               profile_last_name_cont: term
           results: (data, page) ->
             results:
-              data
+              data.data
         formatResult: (data)->
           data.name
         formatSelection: (data)->
