@@ -129,15 +129,11 @@
 
     get_parents: ->
       array = []
-      console.log @model.get('parents')
       _.each @model.get('parents'), (parent, index)->
-        console.log parent
-        console.log index
         if index is 2
           array.unshift '...'
         else if index < 2
-          array.unshift "<a href='#groups/#{parent.id}/about'>#{parent.name}</a>"
-      console.log array
+          array.unshift "<a href='#groups/#{parent.id}/posts'>#{parent.name}</a>"
       array.join(" / ")
 
     coverChanged: ->
