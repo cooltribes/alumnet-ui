@@ -3,18 +3,10 @@
 	   	$('.fb-invite').click(function(){
 			FB.ui({
 			  method: 'share',
-			  href: 'http://alumnet.aiesec-alumni.org/donations',
+			  href: 'http://alumnet.aiesec-alumni.org/donations/challenge',
 			}, function(response){
 				$('html, body').animate({scrollTop: $('#challenge').offset().top}, "slow");
 			});
-		});
-	});
-	$(document).ready(function() {
-	   	$('.fb-challenge').click(function(){
-			FB.ui({
-			  method: 'share',
-			  href: 'http://alumnet.aiesec-alumni.org/donations/challenge',
-			}, function(response){});
 		});
 	});
 </script>
@@ -89,10 +81,10 @@
 								    		<div class="col-md-10 col-md-offset-1 margin_bottom_small">
 								    			<p>It takes tremendous global community support to fund a dream like this! Let your alumni friends know about this. Crowdfunding is about lots of people getting together to donate modest amounts of money. So, please, share this page on your social networks and via email.</p>
 								    		<div class="text-center">
-								    			<span class='st_twitter_large' displayText='Tweet' st_url='http://alumnet.aiesec-alumni.org/donations/challenge' st_via=''></span>
-												<span class='st_facebook_large' displayText='Facebook' st_url='http://alumnet.aiesec-alumni.org/donations/challenge'></span>
-												<span class='st_googleplus_large' displayText='Google +' st_url='http://alumnet.aiesec-alumni.org/donations/challenge'></span>
-												<span class='st_email_large' displayText='Email' st_url='http://alumnet.aiesec-alumni.org/donations/challenge'></span>
+								    			<span class='st_twitter_large' displayText='Tweet' st_url='http://alumnet.aiesec-alumni.org/donations' st_via=''></span>
+												<span class='st_facebook_large' displayText='Facebook' st_url='http://alumnet.aiesec-alumni.org/donations'></span>
+												<span class='st_googleplus_large' displayText='Google +' st_url='http://alumnet.aiesec-alumni.org/donations'></span>
+												<span class='st_email_large' displayText='Email' st_url='http://alumnet.aiesec-alumni.org/donations'></span>
 								    		</div>
 								    		<!-- <div class="col-md-4">
 								    			<button class="btn btn-primary btnTwitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
