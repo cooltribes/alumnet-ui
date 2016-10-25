@@ -46,6 +46,9 @@
 
       @comments.show @commentsView
 
+    onRender: ->
+      @comments.reset()
+      
     templateHelpers: ->
 
       model = @model
