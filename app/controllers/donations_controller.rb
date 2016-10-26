@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
     @products = donation.products()
     @campaign_details = donation.get_campaign_details()
     @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 250000
-    @days_left = (DateTime.new(2016, 11, 29) - DateTime.now).to_i
+    @days_left = (DateTime.new(2016, 12, 27) - DateTime.now).to_i
     @donors = @campaign_details['donors']
     @backers = @campaign_details['backers']
     @countries = @campaign_details['countries']
@@ -20,7 +20,7 @@ class DonationsController < ApplicationController
     @products = donation.products()
     @campaign_details = donation.get_campaign_details()
     @goal_percentage = (@campaign_details['total_sold'].to_f * 100) / 250000
-    @days_left = (DateTime.new(2016, 11, 29) - DateTime.now).to_i
+    @days_left = (DateTime.new(2016, 12, 27) - DateTime.now).to_i
     @donors = @campaign_details['donors']
     @backers = @campaign_details['backers']
     @countries = @campaign_details['countries']
