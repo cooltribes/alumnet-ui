@@ -308,6 +308,7 @@
         { attribute: "sign_in_count", type: "numeric", values: "" }
         { attribute: "role", type: "option", values: roles }
       ])
+      @searcher.activateOr = true
 
     ui:
       #'prevButton': '#prevButton'
@@ -501,9 +502,9 @@
     changeOperator: (e)->
       e.preventDefault()
       if $(e.currentTarget).val() == "any"
-        @searcher.activateOr = false
-      else
         @searcher.activateOr = true
+      else
+        @searcher.activateOr = false
 
     searchTags: (e)->
       e.preventDefault()
