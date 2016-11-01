@@ -333,6 +333,8 @@
       #'click .page > a': 'toPageButton'
       'click .page_filter_button': 'toPageFilterButton'
       'click .js-export-csv': 'exportCSV'
+      'change .filter-attribute': 'checkAttributeAndComparator'
+      'change .filter-comparator': 'checkAttributeAndComparator'      
 
     pagination: ->
       that = @
@@ -505,6 +507,13 @@
         @searcher.activateOr = true
       else
         @searcher.activateOr = false
+
+    checkAttributeAndComparator: (e)->            
+      filter= $(e.target).closest('.filter')
+      attribute= filter.find('.filter-attribute').val()
+      comparator= filter.find('.filter-comparator')            
+      if (@searcher.checkAttributeAndComparator(attribute,comparator.val()) )
+        comparator.val('')
 
     searchTags: (e)->
       e.preventDefault()
