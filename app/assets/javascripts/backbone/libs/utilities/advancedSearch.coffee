@@ -79,7 +79,8 @@
       if options.type == "date"
         @_initializeDateInput(valueContainer)
 
-    getQuery: ->      
+    getQuery: ->  
+      query = {}    
       @container.find('.filter').each (index)->
         filter = $(@)
         attribute = filter.find('.filter-attribute').val()

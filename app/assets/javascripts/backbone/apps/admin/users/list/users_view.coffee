@@ -11,13 +11,13 @@
 
     onShow: ->
       view = @
-      users = AlumNet.request("admin:user:entities", {})
+      users = AlumNet.request("admin:user:entities", {})      
       users.fetch
         success: ->
           usersView = new Users.UsersTable
             collection: users
             modals: view.modals
-          view.main.show(usersView)
+          view.main.show(usersView)      
 
   #----Modal para cambiar suscripcion
   class Users.ModalPremium extends Backbone.Modal
@@ -261,7 +261,7 @@
       AlumNet.setTitle('Users Management')
       @listenTo this, 'change:total', @updateTotal
 
-    updateTotal: ->
+    updateTotal: ->      
       @ui.totalRecords.html(@collection.totalRecords)
 
     templateHelpers: ->
