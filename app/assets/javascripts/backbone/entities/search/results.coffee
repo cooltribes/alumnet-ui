@@ -171,7 +171,11 @@
       collection = new AlumNet.Entities.SearchResultCollection null,
         type: 'profile'
       collection.model = AlumNet.Entities.User
-      collection.per_page = 10
+      if( $(window).height()> 800)
+        collection.per_page= 20
+      else
+        collection.per_page= 10
+
       collection.url = AlumNet.api_endpoint + '/users/search'
       collection
 
