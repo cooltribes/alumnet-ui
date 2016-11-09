@@ -54,12 +54,16 @@
 
   <%= csrf_meta_tags %>
   <%= include_gon %>
-<script>
-  // (function() {var s=document.createElement('script');
-  //   s.type='text/javascript';s.async=true;
-  //   s.src=('https:'==document.location.protocol?'https':'http') +
-  //   '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
+
+<!-- BEGIN GROOVE WIDGET CODE -->
+<script id="grv-widget">
+  /*<![CDATA[*/
+  window.groove = window.groove || {}; groove.widget = function(){ groove._widgetQueue.push(Array.prototype.slice.call(arguments)); }; groove._widgetQueue = [];
+  groove.widget('setWidgetId', 'cfe384ca-09f1-46af-910f-4e9cca0a872e');
+  !function(g,r,v){var a,c,n=r.createElement("iframe");(n.frameElement||n).style.cssText="width: 0; height: 0; border: 0",n.title="",n.role="presentation",n.src="javascript:false",r.body.appendChild(n);try{a=n.contentWindow.document}catch(b){c=r.domain;var d="javascript:document.write('<head><script>document.domain=\""+c+"\";</",i="script></head><body></body>')";n.src=d+i,a=n.contentWindow.document}var s="https:"==r.location.protocol?"https://":"http://",p="http://groove-widget-production.s3.amazonaws.com".replace("http://",s);n.className="grv-widget-tag",a.open()._l=function(){c&&(this.domain=c);var t=this.createElement("script");t.type="text/javascript",t.charset="utf-8",t.async=!0,t.src=p+"/loader.js",this.body.appendChild(t)},a.write('<body onload="document._l();">'),a.close()}(window,document);
+  /*]]>*/
 </script>
+<!-- END GROOVE WIDGET CODE -->
 <script>
   window.fbAsyncInit = function() {
     FB.init({
