@@ -230,6 +230,8 @@
 
 								  <!-- STEP 4 -->
 								  <div id="backers" class="tab-pane fade backers">
+								  	<div id='donations-per-country'>							  		
+								  	</div>								  	    
 								    <div class="listBackers">
 								    	<% @backers.each do |backer| %>
 										  	<div class="row backer">
@@ -283,3 +285,18 @@
 	</div>
 
 </article>
+<!--Geo chart donations campaign-->
+<script type="text/javascript">
+   google.charts.load('upcoming', {'packages':['geochart']});
+   google.charts.setOnLoadCallback(drawRegionsMap);
+
+   function drawRegionsMap() {
+   	 var data = google.visualization.arrayToDataTable(<%=raw @donation_stats %>);
+
+     var options = {colorAxis: {colors: ['white', 'orange']}};
+
+     var chart = new google.visualization.GeoChart(document.getElementById('donations-per-country'));
+
+     chart.draw(data, options);
+   }
+</script>

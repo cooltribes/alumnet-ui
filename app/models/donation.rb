@@ -7,6 +7,10 @@ class Donation
 
   validate :success_of_last_response
 
+  ### Relations
+  #belongs_to :users, dependent: :destroy
+
+
   attr_accessor :last_response
 
   def products()
