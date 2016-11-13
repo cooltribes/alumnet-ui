@@ -4,9 +4,11 @@
       <div class="userCard__avatar  col-md-3 col-xs-3">
         <img src="<%=  @user.avatar %>" alt="<%= @user.name %>" class="img-circle">
       </div>
-      <div class="col-md-6 col-xs-6">
-        <h4 class="userCard__name overfloadText"><%= @user.name %></h4>
-        <p class="member-position text-small"><% @user.last_experience %></p>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <h4 class="userCard__name overfloadText">
+        <a href="#users/<%= @user.id %>/posts"><%= @user.name %></a></h4>
+        <p title="<%= @user.last_experience %>" class="member-position overfloadText text-small"><%= @user.last_experience %></p>
+        <p class="userCard__position member-position text-small margin_top_xsmall_minus"><%= @user.first_committee %></p>
       </div>
       <div class=" col-md-3 col-xs-3">
       <a href="#" id="js-accept-membership" title="Approve request">
