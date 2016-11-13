@@ -293,7 +293,7 @@
    function drawRegionsMap() {
    	 var data = google.visualization.arrayToDataTable(<%=raw @donation_stats %>);
 
-     var options = {colorAxis: {colors: ['white', 'orange']}};
+     var options = {colorAxis: {colors: ['white', '#ff6f00']}};
 
      var chart = new google.visualization.GeoChart(document.getElementById('donations-per-country'));
 
