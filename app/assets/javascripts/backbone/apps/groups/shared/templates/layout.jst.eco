@@ -9,33 +9,33 @@
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
 				<% else : %>
-					<li>  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link<%= @classOf(0)%>">
+					<li class="<%= @classOf(0)%>" >  <a href="#groups/<%= @id %>/posts" id="js-posts" class="groupMenu__link">
 						<span class="glyphicon glyphicon-list-alt"></span>
 					Activity</a></li>
-					<li>  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link<%= @classOf(1)%>">
+					<li class="<%= @classOf(1)%>" >  <a href="#groups/<%= @id %>/about" id="js-about" class="groupMenu__link">
 						<span class="icon-entypo-dot-3"></span>
 					About</a></li>
-					<li>  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link<%= @classOf(2)%>">
+					<li class="<%= @classOf(2)%>" >  <a href="#groups/<%= @id %>/members" id="js-members" class="groupMenu__link">
 						<span class="ico-company"></span>
 					Alumni in Group</a></li>
-					<li>  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link<%= @classOf(3)%>">
+					<li class="<%= @classOf(3)%>" >  <a href="#groups/<%= @id %>/photos" id="js-pictures" class="groupMenu__link">
 						<span class="icon-entypo-picture"></span>
 					Pictures</a></li>
-					<li>  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link<%= @classOf(4)%>">
+					<li class="<%= @classOf(4)%>" >  <a href="#groups/<%= @id %>/subgroups" id="js-subgroups" class="groupMenu__link">
 						<span class="glyphicon glyphicon-align-left"></span>
 					SubGroup</a></li>
-					<li>  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link<%= @classOf(5)%>">
+					<li class="<%= @classOf(5)%>" >  <a href="#groups/<%= @id %>/events" id="js-events" class="groupMenu__link">
 						<span class="ico-calendar"></span>
 					Events</a></li>
 					
-					<li>
-					  <a href="#groups/<%= @id %>/files" class="groupMenu__link<%= @classOf(6)%>">
+					<li class="<%= @classOf(6)%>" >
+					  <a href="#groups/<%= @id %>/files" class="groupMenu__link">
 						<span class="glyphicon glyphicon-file"></span>
 						Files</a>
 					</li>
 					<% if @isAdmin: %>
-						<li>
-							<a href="#groups/<%= @id %>/settings" class="groupMenu__link<%= @classOf(7)%>">
+						<li class="<%= @classOf(7)%>" >
+							<a href="#groups/<%= @id %>/settings" class="groupMenu__link">
 							<span class="glyphicon glyphicon-cog"></span>
 							Settings</a>
 						</li>

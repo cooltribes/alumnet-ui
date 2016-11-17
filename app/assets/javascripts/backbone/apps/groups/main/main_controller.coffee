@@ -73,7 +73,7 @@
 
     showMyGroups: ->
       AlumNet.navigate("groups/my_groups")
-      query = { per_page: 10 }
+      query = { per_page: 20 }
       groups = AlumNet.request("membership:groups", AlumNet.current_user.id, query)
 
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView
@@ -86,7 +86,7 @@
 
     showManageGroups:->
       AlumNet.navigate("groups/manage")
-      query = { per_page: 10 }
+      query = { per_page: 20 }
       groups = AlumNet.request("membership:created_groups", AlumNet.current_user.id, query)
 
       groupsView = new AlumNet.GroupsApp.Groups.GroupsView

@@ -70,7 +70,7 @@
       if @collection.nextPage == null
         endPagination()
       else
-        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        if $(window).scrollTop()!=0 && ($(window).scrollTop() / ($(document).height() - $(window).height() )) > 0.97 
           @reloadItems()
 
     reloadItems: ->

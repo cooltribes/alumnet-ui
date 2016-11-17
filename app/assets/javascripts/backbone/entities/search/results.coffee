@@ -171,7 +171,11 @@
       collection = new AlumNet.Entities.SearchResultCollection null,
         type: 'profile'
       collection.model = AlumNet.Entities.User
-      collection.per_page = 10
+      if( $(window).height()> 800)
+        collection.per_page= 20
+      else
+        collection.per_page= 10
+
       collection.url = AlumNet.api_endpoint + '/users/search'
       collection
 
@@ -179,7 +183,10 @@
       collection = new AlumNet.Entities.SearchResultCollection null,
         type: 'group'
       collection.model = AlumNet.Entities.Group
-      collection.per_page = 10
+      if( $(window).height()> 800)
+        collection.per_page= 20
+      else
+        collection.per_page= 10
       collection.url = AlumNet.api_endpoint + '/groups/search'
       collection
 
@@ -187,7 +194,10 @@
       collection = new AlumNet.Entities.SearchResultCollection null,
         type: 'event'
       collection.model = AlumNet.Entities.Event
-      collection.per_page = 10
+      if( $(window).height()> 800)
+        collection.per_page= 20
+      else
+        collection.per_page= 10
       collection.url = AlumNet.api_endpoint + '/events/search'
       collection
 
@@ -195,7 +205,10 @@
       collection = new AlumNet.Entities.SearchResultCollection null,
         type: 'company'
       collection.model = AlumNet.Entities.Company
-      collection.per_page = 10
+      if( $(window).height()> 800)
+        collection.per_page= 20
+      else
+        collection.per_page= 10
       collection.url = AlumNet.api_endpoint + '/companies/search'
       collection
 

@@ -55,6 +55,8 @@
           AlumNet.trigger "user:friends:mutual", layout, id                            
 
         friendsLayout.on 'friends:search', (querySearch)->
+          friendsCollection = AlumNet.request('current_user:friendships:friends')
+          friendsCollection.fetch()
           friendsCollection.fetch(data: querySearch)
 
         AlumNet.mainRegion.show(layout)
@@ -70,11 +72,12 @@
       user.on 'find:error', (response, options)->
         AlumNet.trigger('show:error', response.status) 
 
-    showMyFriends: (layout)->
-      friendsCollection = AlumNet.request('current_user:friendships:friends')
-      friendsCollection.fetch()
+    showMyFriends: (layout)->      
+      @friendsCollection = AlumNet.request('current_user:friendships:friends')
+      @friendsCollection.fetch()
+
       friendsView = new AlumNet.FriendsApp.List.FriendsView
-        collection: friendsCollection
+        collection: @friendsCollection
       
       layout.body.show(friendsView)
 

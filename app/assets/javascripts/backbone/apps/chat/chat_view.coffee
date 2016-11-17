@@ -60,7 +60,7 @@
         model: layer.Query.Conversation
 
       conversationCollection = new AlumNet.Entities.LayerConversationCollection
-
+      console.info(conversationCollection)
       conversationsView = new AlumNet.ChatApp.Chat.Conversations
         parentView: @
         data: conversationQuery.data
@@ -203,10 +203,11 @@
           self.trigger 'add:user', users
         else
           user = AlumNet.request('user:find', id)
-          self.listenTo user, 'find:success', (response, options)->
-            AlumNet.friends.add(user, {merge: true})
-            users.push user
-            self.trigger 'add:user', users
+          if user
+            self.listenTo user, 'find:success', (response, options)->
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users
 
     updateConversation: (users)->
       names = _.map users, (user)->

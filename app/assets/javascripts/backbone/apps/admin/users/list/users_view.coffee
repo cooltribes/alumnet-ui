@@ -11,13 +11,13 @@
 
     onShow: ->
       view = @
-      users = AlumNet.request("admin:user:entities", {})
+      users = AlumNet.request("admin:user:entities", {})      
       users.fetch
         success: ->
           usersView = new Users.UsersTable
             collection: users
             modals: view.modals
-          view.main.show(usersView)
+          view.main.show(usersView)      
 
   #----Modal para cambiar suscripcion
   class Users.ModalPremium extends Backbone.Modal
@@ -261,7 +261,7 @@
       AlumNet.setTitle('Users Management')
       @listenTo this, 'change:total', @updateTotal
 
-    updateTotal: ->
+    updateTotal: ->      
       @ui.totalRecords.html(@collection.totalRecords)
 
     templateHelpers: ->
@@ -308,6 +308,7 @@
         { attribute: "sign_in_count", type: "numeric", values: "" }
         { attribute: "role", type: "option", values: roles }
       ])
+      @searcher.activateOr = true
 
     ui:
       #'prevButton': '#prevButton'
@@ -332,6 +333,8 @@
       #'click .page > a': 'toPageButton'
       'click .page_filter_button': 'toPageFilterButton'
       'click .js-export-csv': 'exportCSV'
+      'change .filter-attribute': 'checkAttributeAndComparator'
+      'change .filter-comparator': 'checkAttributeAndComparator'      
 
     pagination: ->
       that = @
@@ -501,9 +504,16 @@
     changeOperator: (e)->
       e.preventDefault()
       if $(e.currentTarget).val() == "any"
-        @searcher.activateOr = false
-      else
         @searcher.activateOr = true
+      else
+        @searcher.activateOr = false
+
+    checkAttributeAndComparator: (e)->            
+      filter= $(e.target).closest('.filter')
+      attribute= filter.find('.filter-attribute').val()
+      comparator= filter.find('.filter-comparator')            
+      if (@searcher.checkAttributeAndComparator(attribute,comparator.val()) )
+        comparator.val('')
 
     searchTags: (e)->
       e.preventDefault()

@@ -1,7 +1,7 @@
 @AlumNet.module 'FriendsApp.Main', (Main, @AlumNet, Backbone, Marionette, $, _) ->
   class Main.Controller
 
-    showMainAlumni: (optionMenu)->
+    showMainAlumni: (optionMenu)->      
       @layoutAlumni = new Main.FriendsView
         model: AlumNet.current_user
         option: optionMenu
@@ -24,9 +24,14 @@
           collection.search(querySearch)
           
     showFriends: ->
+
       AlumNet.navigate("alumni/friends")
       friends = AlumNet.request('current_user:friendships:friends')
-      query = { per_page: 12 }
+      if( $(window).height()> 800)
+        query = { per_page: 20 }
+      else
+        query = { per_page: 12 }
+
 
       friendsView = new AlumNet.FriendsApp.Friends.FriendsView
         collection: friends
@@ -48,7 +53,10 @@
     showMyReceived: ->
       AlumNet.navigate("alumni/received")
       friendships = AlumNet.request('current_user:friendships:get', 'received')
-      query = { per_page: 12, filter: "received" }
+      if( $(window).height()> 800)
+        query = { per_page: 20, filter: "received" }
+      else
+        query = { per_page: 12, filter: "received" }
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
@@ -61,7 +69,10 @@
     showMySent: ->
       AlumNet.navigate("alumni/sent")
       friendships = AlumNet.request('current_user:friendships:get', 'sent')
-      query = { per_page: 12, filter: "sent" }
+      if( $(window).height()> 800)
+        query = { per_page: 20, filter: "sent" }
+      else
+        query = { per_page: 12, filter: "sent" }
 
       requestsView = new AlumNet.FriendsApp.Requests.RequestsView
         collection: friendships
@@ -74,7 +85,10 @@
     showApproval: ->
       AlumNet.navigate("alumni/approval")
       approvals = AlumNet.request('current_user:approval:received')
-      query = { per_page: 12 }
+      if( $(window).height()> 800)
+        query = { per_page: 20 }
+      else
+        query = { per_page: 12 }
 
       approvalView = new AlumNet.FriendsApp.Approval.RequestsView
         collection: approvals

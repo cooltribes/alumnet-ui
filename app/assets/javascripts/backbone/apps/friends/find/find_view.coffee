@@ -38,7 +38,7 @@
     ui:
       'loading': '.throbber-loader'
 
-    onRender: ->
+    onRender: ->      
       self = @
       $(window).unbind('scroll')
       _.bindAll(this, 'loadMoreUsers')
@@ -63,11 +63,11 @@
       @ui.loading.hide()
       # $(window).unbind('scroll')
 
-    loadMoreUsers: (e)->
+    loadMoreUsers: (e)->         
       if @collection.nextPage == null
         @endPagination()
       else
-        if $(window).scrollTop()!=0 && $(window).scrollTop() == $(document).height() - $(window).height()
+        if $(window).scrollTop()!=0 && ($(window).scrollTop() / ($(document).height() - $(window).height() )) > 0.97 
           @reloadItems()
 
     reloadItems: ->

@@ -79,8 +79,8 @@
       if options.type == "date"
         @_initializeDateInput(valueContainer)
 
-    getQuery: ->
-      query = {}
+    getQuery: ->  
+      query = {}    
       @container.find('.filter').each (index)->
         filter = $(@)
         attribute = filter.find('.filter-attribute').val()
@@ -88,7 +88,7 @@
         value = filter.find('.filter-value').val()
         unless attribute == "" || comparator == "" || value == ""
           query["#{attribute}_#{comparator}"] = value
-      query['m'] = 'or' if @activateOr
+      query['m'] = 'or' if @activateOr      
       query
 
     initializeEvents: ->
@@ -101,3 +101,14 @@
         value = $(@).val()
         filterContainer = $(@).closest('.filter')
         self.generateOptions(filterContainer, value)
+
+    checkAttributeAndComparator: (attr, compar)->
+      cont= 0
+      @container.find('.filter').each (index)->
+        filter = $(@)
+        attribute = filter.find('.filter-attribute').val()
+        comparator = filter.find('.filter-comparator').val()           
+        if(attribute== attr and comparator==compar )
+          cont=cont+1
+      cont>1 ? true : false
+     

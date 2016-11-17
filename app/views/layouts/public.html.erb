@@ -19,6 +19,15 @@
   <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    'public', media: 'all' %>
   <%= javascript_include_tag 'public' %>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52KPXL');
+  </script>
+  <!-- End Google Tag Manager -->
+  
 <!--   <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'> -->
 
 <!-- Twitter meta tags -->
@@ -54,12 +63,7 @@
 
   <%= csrf_meta_tags %>
   <%= include_gon %>
-<script>
-  // (function() {var s=document.createElement('script');
-  //   s.type='text/javascript';s.async=true;
-  //   s.src=('https:'==document.location.protocol?'https':'http') +
-  //   '://aiesec-alumni.groovehq.com/widgets/48a7887c-0317-40a9-bffc-bfc81d174c4e/ticket.js'; var q = document.getElementsByTagName('script')[0];q.parentNode.insertBefore(s, q);})();
-</script>
+
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -90,8 +94,15 @@
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "9cadc842-a85f-43ec-a58a-dd2898069d61", doNotHash: false, doNotCopy: false, hashAddressBar: true, popup: true, servicePopup: true});</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KPXL"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->  
   <div id="header-region">
     <header class="staticContentBox__header">
     <a href="/" title="ALUMNET">
@@ -150,5 +161,14 @@
       </div>
     </footer>
   </div>
+<!-- BEGIN GROOVE WIDGET CODE -->
+<script id="grv-widget">
+ /*<![CDATA[*/
+ window.groove = window.groove || {}; groove.widget = function(){ groove._widgetQueue.push(Array.prototype.slice.call(arguments)); }; groove._widgetQueue = [];
+ groove.widget('setWidgetId', '73a4f222-c996-4f26-64e2-7e08368f1a0b');
+ !function(g,r,v){var a,c,n=r.createElement("iframe");(n.frameElement||n).style.cssText="width: 0; height: 0; border: 0",n.title="",n.role="presentation",n.src="javascript:false",r.body.appendChild(n);try{a=n.contentWindow.document}catch(b){c=r.domain;var d="javascript:document.write('<head><script>document.domain=\""+c+"\";</",i="script></head><body></body>')";n.src=d+i,a=n.contentWindow.document}var s="https:"==r.location.protocol?"https://":"http://",p="http://groove-widget-production.s3.amazonaws.com".replace("http://",s);n.className="grv-widget-tag",a.open()._l=function(){c&&(this.domain=c);var t=this.createElement("script");t.type="text/javascript",t.charset="utf-8",t.async=!0,t.src=p+"/loader.js",this.body.appendChild(t)},a.write('<body onload="document._l();">'),a.close()}(window,document);
+ /*]]>*/
+</script>
+<!-- END GROOVE WIDGET CODE -->
 </body>
 </html>
