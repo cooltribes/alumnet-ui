@@ -60,7 +60,7 @@
         model: layer.Query.Conversation
 
       conversationCollection = new AlumNet.Entities.LayerConversationCollection
-
+      console.info(conversationCollection)
       conversationsView = new AlumNet.ChatApp.Chat.Conversations
         parentView: @
         data: conversationQuery.data
