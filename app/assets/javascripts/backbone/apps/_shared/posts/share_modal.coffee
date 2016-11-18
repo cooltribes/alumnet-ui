@@ -86,9 +86,9 @@
           data: (term)->
             q:
               name_cont: term
-          results: (data, page) ->
+          results: (resp, page) ->            
             results:
-              data
+              resp.data
         formatResult: (data)->
           data.name
         formatSelection: (data)->
@@ -104,11 +104,11 @@
           data: (term)->
             q:
               group_name_cont: term
-          results: (data, page) ->
-            groups = _.map data, (element)->
+          results: (resp, page) ->             
+            groups = _.map resp.data, (element)->
               element.group
             results:
-              groups
+              groups                       
         formatResult: (data)->
           data.name
         formatSelection: (data)->
@@ -126,9 +126,9 @@
               m: 'or'
               profile_first_name_cont: term
               profile_last_name_cont: term
-          results: (data, page) ->
+          results: (resp, page) ->            
             results:
-              data
+              resp.data
         formatResult: (data)->
           data.name
         formatSelection: (data)->
