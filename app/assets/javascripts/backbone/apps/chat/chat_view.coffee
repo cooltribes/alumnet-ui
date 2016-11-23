@@ -209,8 +209,8 @@
               self.trigger 'add:user', users
           else
             self.listenTo user, 'find:error', (response, options)->
-              user.set(name,'User deleted')
-              user.set(avatar,'images/avatar/large_default_avatar.png')
+              user.set('name','User deleted')
+              user.set('avatar','images/avatar/large_default_avatar.png')
               console.info(user)
               AlumNet.friends.add(user, {merge: true})
               users.push user
