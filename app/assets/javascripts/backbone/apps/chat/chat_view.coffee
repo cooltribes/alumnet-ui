@@ -200,21 +200,7 @@
         if user
           users.push user
           self.trigger 'add:user', users
-        else
-          user = AlumNet.request('user:find', id)
-          if user
-            self.listenTo user, 'find:success', (response, options)->
-              AlumNet.friends.add(user, {merge: true})
-              users.push user
-              self.trigger 'add:user', users
-          else
-            self.listenTo user, 'find:error', (response, options)->
-              user.set('name','User deleted')
-              user.set('avatar','images/avatar/large_default_avatar.png')
-              console.info(user)
-              AlumNet.friends.add(user, {merge: true})
-              users.push user
-              self.trigger 'add:user', users
+        
 
     updateConversation: (users)->
       names = _.map users, (user)->
