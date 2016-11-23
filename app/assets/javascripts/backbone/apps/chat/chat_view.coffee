@@ -282,7 +282,9 @@
 
       if user
         userInfo = { id: sender_id, fullname: user.get('name'), avatar_url: user.get('avatar').large }
-        @model.set('sender', userInfo)
+      else
+        userInfo = { id: sender_id, fullname: 'User deleted', avatar_url: '' }        
+      @model.set('sender', userInfo)      
 
   class Chat.Messages extends Marionette.CompositeView
     template: 'chat/messages'
