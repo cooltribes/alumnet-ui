@@ -200,7 +200,14 @@
         if user
           users.push user
           self.trigger 'add:user', users
-        
+        else
+          user = new Entities.User { id: id }
+          user.fetch
+          success: ->
+            AlumNet.friends.add(user, {merge: true})
+            users.push user
+            self.trigger 'add:user', users
+
 
     updateConversation: (users)->
       names = _.map users, (user)->
