@@ -187,7 +187,7 @@
       @listenTo @model, 'change', @render
 
     onRender: ->
-      @listenTo @, 'add:user', @updateConversation
+      #@listenTo @, 'add:user', @updateConversation
       @getParticipants()
 
     getParticipants: ->
@@ -209,7 +209,7 @@
               users.push user
               self.trigger 'add:user', users
           else
-            console.info('user deleted 1')
+            console.info('user deleted')
 
     updateConversation: (users)->
       names = _.map users, (user)->
@@ -222,7 +222,7 @@
       @model.set('participants', users)
 
       @$('.title').html names.join(', ')
-      @$('.image').attr src: avatars
+      #@$('.image').attr src: avatars
 
     getConversation: (e)->
       e.preventDefault()
