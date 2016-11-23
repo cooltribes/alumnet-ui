@@ -187,7 +187,7 @@
       @listenTo @model, 'change', @render
 
     onRender: ->
-      #@listenTo @, 'add:user', @updateConversation
+      @listenTo @, 'add:user', @updateConversation
       @getParticipants()
 
     getParticipants: ->
@@ -196,8 +196,7 @@
       participants = _.without @model.get('participant_ids'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
-        user = AlumNet.friends.get(id)
-        console.info(user)
+        user = AlumNet.friends.get(id)        
         if user
           users.push user
           self.trigger 'add:user', users
@@ -209,7 +208,13 @@
               users.push user
               self.trigger 'add:user', users
           else
-            console.info('user deleted')
+            self.listenTo user, 'find:error', (response, options)->
+              user.set(name,'User deleted')
+              user.set(avatar,'images/avatar/large_default_avatar.png')
+              console.info(user)
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users
 
     updateConversation: (users)->
       names = _.map users, (user)->
@@ -222,7 +227,7 @@
       @model.set('participants', users)
 
       @$('.title').html names.join(', ')
-      #@$('.image').attr src: avatars
+      @$('.image').attr src: avatars
 
     getConversation: (e)->
       e.preventDefault()
