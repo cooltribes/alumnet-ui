@@ -197,6 +197,7 @@
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
         user = AlumNet.friends.get(id)
+        console.info(user)
         if user
           users.push user
           self.trigger 'add:user', users
@@ -207,6 +208,8 @@
               AlumNet.friends.add(user, {merge: true})
               users.push user
               self.trigger 'add:user', users
+          else
+            console.info('user deleted 1')
 
     updateConversation: (users)->
       names = _.map users, (user)->
