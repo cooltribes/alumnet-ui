@@ -209,20 +209,20 @@
             self.trigger 'add:user', users
           error: ->
             user.set('name','Deleted user')
-            user.set('avatar','images/avatar/large_default_avatar.png')
+            user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/large_default_avatar.png' } )
             AlumNet.friends.add(user, {merge: true})
             users.push user
             self.trigger 'add:user', users
 
 
     updateConversation: (users)->
-      console.info(users)
+      
       names = _.map users, (user)->
         user.get('name')
 
       avatars = _.map users, (user)->
         user.get('avatar').medium
-
+      console.info(avatars)
       @model.set('title', names.join(', '))
       @model.set('participants', users)
 
@@ -281,10 +281,8 @@
         user = AlumNet.friends.get(sender_id)
 
       if user
-        userInfo = { id: sender_id, fullname: user.get('name'), avatar_url: user.get('avatar').large }
-      else
-        userInfo = { id: sender_id, fullname: 'Deleted user', avatar_url: 'images/avatar/large_default_avatar.png' }        
-      @model.set('sender', userInfo)      
+        userInfo = { id: sender_id, fullname: user.get('name'), avatar_url: user.get('avatar').large }      
+        @model.set('sender', userInfo)      
 
   class Chat.Messages extends Marionette.CompositeView
     template: 'chat/messages'
