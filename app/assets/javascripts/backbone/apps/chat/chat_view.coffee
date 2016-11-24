@@ -226,7 +226,7 @@
       @model.set('participants', users)
 
       @$('.title').html names.join(', ')
-      @$('.image').attr src: avatars
+      #@$('.image').attr src: avatars
 
     getConversation: (e)->
       e.preventDefault()
@@ -282,7 +282,7 @@
       if user
         userInfo = { id: sender_id, fullname: user.get('name'), avatar_url: user.get('avatar').large }
       else
-        userInfo = { id: sender_id, fullname: 'User deleted', avatar_url: '' }        
+        userInfo = { id: sender_id, fullname: 'Deleted user', avatar_url: 'images/avatar/large_default_avatar.png' }        
       @model.set('sender', userInfo)      
 
   class Chat.Messages extends Marionette.CompositeView
