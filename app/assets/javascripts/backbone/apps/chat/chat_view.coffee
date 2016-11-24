@@ -216,6 +216,7 @@
 
 
     updateConversation: (users)->
+      console.info(users)
       names = _.map users, (user)->
         user.get('name')
 
@@ -226,7 +227,7 @@
       @model.set('participants', users)
 
       @$('.title').html names.join(', ')
-      #@$('.image').attr src: avatars
+      @$('.image').attr src: avatars
 
     getConversation: (e)->
       e.preventDefault()
