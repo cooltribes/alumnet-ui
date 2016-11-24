@@ -207,6 +207,12 @@
             AlumNet.friends.add(user, {merge: true})
             users.push user
             self.trigger 'add:user', users
+          error: ->
+            user.set('name','Deleted user')
+            user.set('avatar','images/avatar/large_default_avatar.png')
+            AlumNet.friends.add(user, {merge: true})
+            users.push user
+            self.trigger 'add:user', users
 
 
     updateConversation: (users)->
