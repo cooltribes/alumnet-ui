@@ -201,7 +201,7 @@
           users.push user
           self.trigger 'add:user', users
         else
-          user = new Entities.User { id: id }
+          user = new AlumNet.Entities.User { id: id }
           user.fetch
           success: ->
             AlumNet.friends.add(user, {merge: true})
