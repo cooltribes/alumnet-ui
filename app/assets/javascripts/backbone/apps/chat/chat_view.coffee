@@ -32,7 +32,7 @@
       self = @
       names = ['users', 'conversations', 'messages']
       _.each names, (name)->
-        self.$("##{name}-region").hide()
+        self.$("##{name}-region").hide()        
       @$("##{region}-region").show()
 
     onBeforeShow: ->
@@ -55,7 +55,7 @@
         AlumNet.friends.set(friends.models, {remove: false})
         self.usersRegion.show(friendsView)
 
-    showConversations: ->
+    showConversations: ->      
       conversationQuery = AlumNet.layerClient.createQuery
         model: layer.Query.Conversation
 
@@ -127,6 +127,7 @@
       @parentView.messagesRegion.show(messagesView)
       @parentView.showRegion('messages')
 
+
     checkViewConversation: (conversation)->
       view = @parentView.messagesRegion.currentView
       if view && view.conversation.id == conversation.id
@@ -186,9 +187,9 @@
       @parentView = options.parentView
       @listenTo @model, 'change', @render
 
-    onRender: ->
+    onRender: ->      
       @listenTo @, 'add:user', @updateConversation
-      @getParticipants()
+      @getParticipants()      
 
     getParticipants: ->
       self = @
@@ -196,38 +197,37 @@
       participants = _.without @model.get('participant_ids'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
-        user = AlumNet.friends.get(id)        
-        if user
+        user = AlumNet.friends.get(id)                
+        if user          
           users.push user
           self.trigger 'add:user', users
-        else
+        else          
           user = new AlumNet.Entities.User { id: id }
-          user.fetch
-          success: ->
-            AlumNet.friends.add(user, {merge: true})
-            users.push user
-            self.trigger 'add:user', users
-          error: ->
-            user.set('name','Deleted user')
-            user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/large_default_avatar.png' } )
-            AlumNet.friends.add(user, {merge: true})
-            users.push user
-            self.trigger 'add:user', users
+          user.fetch                    
+            success: ->
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users
+            error: ->
+              user.set('name','user deleted')
+              user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users
 
 
-    updateConversation: (users)->
-      
+
+    updateConversation: (users)->      
       names = _.map users, (user)->
         user.get('name')
 
       avatars = _.map users, (user)->
         user.get('avatar').medium
-      console.info(avatars)
+      
       @model.set('title', names.join(', '))
-      @model.set('participants', users)
-
+      @model.set('participants', users)  
       @$('.title').html names.join(', ')
-      @$('.image').attr src: avatars
+      @$('.image').attr src: avatars[0]      
 
     getConversation: (e)->
       e.preventDefault()
