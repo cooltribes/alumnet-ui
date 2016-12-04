@@ -196,23 +196,24 @@
       participants = _.without @model.get('participant_ids'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
-        user = AlumNet.friends.get(id)        
+        user = AlumNet.friends.get(id)           
         if user
           users.push user
           self.trigger 'add:user', users
         else
           user = new AlumNet.Entities.User { id: id }
           user.fetch
-          success: ->
-            AlumNet.friends.add(user, {merge: true})
-            users.push user
-            self.trigger 'add:user', users
-          error: ->
-            user.set('name','Deleted user')
-            user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/large_default_avatar.png' } )
-            AlumNet.friends.add(user, {merge: true})
-            users.push user
-            self.trigger 'add:user', users
+            success: ->
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users          
+            error: ->
+              user.set('name','-deleted user-')
+              user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )
+              AlumNet.friends.add(user, {merge: true})
+              users.push user
+              self.trigger 'add:user', users
+          user
 
 
     updateConversation: (users)->
@@ -222,7 +223,7 @@
 
       avatars = _.map users, (user)->
         user.get('avatar').medium
-      console.info(avatars)
+      
       @model.set('title', names.join(', '))
       @model.set('participants', users)
 

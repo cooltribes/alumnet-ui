@@ -1,0 +1,18 @@
+<div class="bbm-modal__topbar">  
+  <h3 class="bbm-modal__title">Edit email <a href="#" class="bbm-button pull-right" id="js-close-btn">close</a></h3>
+</div>
+
+<div class="bbm-modal__section">
+  <form>    
+    
+      <div class="form-group has-feedback">
+        <label class="control-label" for="inputName">Email</label>
+        <input type="text" value="<%= @email %>" class="form-control input-lg" id="email" name="email" placeholder="Enter email">       
+        <span class="help-block"></span>
+      </div>
+  </form>
+</div>
+
+<div class="bbm-modal__bottombar">  
+  <a href="#" class="bbm-button" id="js-save">Save</a>
+</div>
