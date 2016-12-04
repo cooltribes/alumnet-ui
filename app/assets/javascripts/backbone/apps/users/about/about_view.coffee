@@ -702,12 +702,15 @@
       "editBorn": "#js-editBorn"
       "editResidence": "#js-editResidence"
       "editPosition": "#js-editPosition"
+      "editEmail": "#js-editEmail"
       "changePassword": "#js-changePassword"
+      
 
     events:
       "click @ui.editName": "editName"
       "click @ui.editBorn": "editBorn"
       "click @ui.editResidence": "editResidence"
+      "click @ui.editEmail": "editEmail"
       "click @ui.changePassword": "changePassword"
 
     initialize: (options)->
@@ -820,6 +823,15 @@
         view: this
         type: 2
         model: @model.profile
+
+      @ui.modalCont.html(modal.render().el)
+
+    editEmail: (e)->
+      e.preventDefault()      
+      modal = new About.EmailModal
+        view: this
+        model: new AlumNet.Entities.EmailEdit
+        user: @model
 
       @ui.modalCont.html(modal.render().el)
 
@@ -1141,4 +1153,63 @@
     sendMensagge: (e)->
       e.preventDefault()
       AlumNet.trigger('conversation:recipient', null, @model)
+
+  class About.EmailModal extends Backbone.Modal
+    template: 'users/about/templates/_emailModal'
+
+    cancelEl: '#js-close-btn'
+    submitEl: '#js-save'
+    keyControl: true
+
+    initialize: (options)->
+      @view = options.view
+      @user = options.user
+
+      Backbone.Validation.bind this,
+        valid: (view, attr, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.removeClass('has-error')
+          $group.find('.help-block').html('').addClass('hidden')
+        invalid: (view, attr, error, selector) ->
+          $el = view.$("[name=#{attr}]")
+          $group = $el.closest('.form-group')
+          $group.addClass('has-error')
+          $group.find('.help-block').html(error).removeClass('hidden')
+
+    beforeSubmit: ()->
+      data = Backbone.Syphon.serialize this
+      @model.set(data)    
+
+      if @model.isValid(true)
+        url = AlumNet.api_endpoint + "/users/#{@user.id}/change_email"
+        data.id = @user.id
+        view=@  
+        Backbone.ajax
+          url: url
+          type: "POST"
+          data: data
+          success: (data) =>       
+            view.user.fetch()
+            $.growl.notice({ message: 'Email changed successfully' })
+            this.destroy()            
+          error: (data) =>            
+            if data.responseJSON.errors
+              errors = data.responseJSON.errors
+              _.each errors, (value, key, list)->
+                view.showErrors(key, value[0])
+            else
+              $.growl.error({ message: 'Unknown error, please contact an admin' })
+        return false
+      else
+        return false
+
+    showErrors: (attr, error)->
+      $el = @.$("[name=#{attr}]")
+      $group = $el.closest('.form-group')
+      $group.addClass('has-error')
+      $group.find('.help-block').html(error).removeClass('hidden')
+
+    templateHelpers: ->
+      email: @user.getEmail()
 

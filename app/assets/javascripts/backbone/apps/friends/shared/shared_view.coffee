@@ -37,10 +37,10 @@
 
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)
-      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @body.currentView.collection, @filter
+      data = Backbone.Syphon.serialize(this)      
+      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @body.currentView.collection
 
-    showList: (e)->
+    showList: (e)->      
       e.stopPropagation()
       e.preventDefault()
       actionId = $(e.currentTarget).attr('id').substring(3)
@@ -85,7 +85,7 @@
       message = "Friends (#{@model.get('friends_count')})"
       $(@ui.changedCount).html(message)
 
-    onRender: ()->
+    onRender: ()->      
       @stickit()
 
     bindings:
