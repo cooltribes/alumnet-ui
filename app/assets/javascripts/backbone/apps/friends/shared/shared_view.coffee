@@ -37,8 +37,8 @@
 
     performSearch: (e) ->
       e.preventDefault()
-      data = Backbone.Syphon.serialize(this)      
-      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @body.currentView.collection
+      data = Backbone.Syphon.serialize(this)         
+      @trigger 'friends:search', @buildQuerySearch(data.search_term, @filter), @body.currentView.collection, @filter
 
     showList: (e)->      
       e.stopPropagation()

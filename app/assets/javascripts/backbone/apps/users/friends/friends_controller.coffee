@@ -22,7 +22,7 @@
       friendsLayout.on "show:approval:requests", (layout)=>        
         AlumNet.trigger "my:approval:requests", layout
 
-      friendsLayout.on 'friends:search', (querySearch, collection)->        
+      friendsLayout.on 'friends:search', (querySearch, collection)->               
         collection.fetch(data: querySearch)
 
       AlumNet.mainRegion.show(layout)
@@ -54,10 +54,9 @@
         friendsLayout.on "friends:show:mutual", (layout)=>        
           AlumNet.trigger "user:friends:mutual", layout, id                            
 
-        friendsLayout.on 'friends:search', (querySearch)->
-          friendsCollection = AlumNet.request('current_user:friendships:friends')
-          friendsCollection.fetch()
-          friendsCollection.fetch(data: querySearch)
+        friendsLayout.on 'friends:search', (querySearch,collection)->
+          collection.fetch
+            data: querySearch
 
         AlumNet.mainRegion.show(layout)
         #Show the main profile layout with the body of friends
