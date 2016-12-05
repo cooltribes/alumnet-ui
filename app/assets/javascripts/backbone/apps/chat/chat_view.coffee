@@ -208,12 +208,12 @@
               AlumNet.friends.add(user, {merge: true})
               users.push user
               self.trigger 'add:user', users          
-            error: ->
-              user.set('name','-deleted user-')
-              user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )
-              AlumNet.friends.add(user, {merge: true})
-              users.push user
-              self.trigger 'add:user', users
+            # error: ->
+            #   user.set('name','-deleted user-')
+            #   user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )
+            #   AlumNet.friends.add(user, {merge: true})
+            #   users.push user
+            #   self.trigger 'add:user', users
           user
 
 
