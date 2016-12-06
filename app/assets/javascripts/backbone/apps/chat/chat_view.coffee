@@ -179,7 +179,6 @@
   class Chat.Conversation extends Chat.RenderConversation
     template: 'chat/conversation'
     defaultOptions: ['parentView']
-
     events:
       'click #js-conversation': 'getConversation'
 
@@ -187,48 +186,64 @@
       @parentView = options.parentView
       @listenTo @model, 'change', @render
 
+<<<<<<< HEAD
     onRender: ->      
       @listenTo @, 'add:user', @updateConversation
       @getParticipants()      
+=======
+    onRender: ->            
+      @getParticipants()    
+>>>>>>> ciria
 
     getParticipants: ->
       self = @
-      users = []
+      users= []
       participants = _.without @model.get('participant_ids'), "#{AlumNet.current_user.id}"
       _.each participants, (participant_id)->
         id = parseInt(participant_id)
         user = AlumNet.friends.get(id)                
         if user          
+<<<<<<< HEAD
           users.push user
           self.trigger 'add:user', users
+=======
+          users.push user       
+          #self.updateConversation(users)    
+>>>>>>> ciria
         else          
           user = new AlumNet.Entities.User { id: id }
           user.fetch
-            success: ->
-              AlumNet.friends.add(user, {merge: true})
+            success: (model)->
+              AlumNet.friends.add(model, {merge: true})
+              users.push model                    
+              self.updateConversation(users)                                 
+            error: (model)->              
+              user.set('name','-unknow-')
+              user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )                            
               users.push user
-              self.trigger 'add:user', users          
-            error: ->
-              user.set('name','-deleted user-')
-              user.set('avatar',{ large: 'images/avatar/large_default_avatar.png', medium: 'images/avatar/medium_default_avatar.png' } )
-              AlumNet.friends.add(user, {merge: true})
-              users.push user
-              self.trigger 'add:user', users
-          user
+              AlumNet.friends.add(user, {merge: true})                                                
+              self.updateConversation(users)      
+      self.updateConversation(users) 
 
+    updateConversation: (users)->     
 
-    updateConversation: (users)->
-      
       names = _.map users, (user)->
         user.get('name')
-
       avatars = _.map users, (user)->
         user.get('avatar').medium
+<<<<<<< HEAD
       
       @model.set('title', names.join(', '))
       @model.set('participants', users)  
       @$('.title').html names.join(', ')
       @$('.image').attr src: avatars[0]      
+=======
+
+      @model.set('title', names.join(', '))
+      @model.set('participants', users)  
+      @$('.title').html names.join(', ')
+      @$('.image').attr src: avatars[0]
+>>>>>>> ciria
 
     getConversation: (e)->
       e.preventDefault()
