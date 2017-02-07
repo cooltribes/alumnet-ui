@@ -186,14 +186,8 @@
       @parentView = options.parentView
       @listenTo @model, 'change', @render
 
-<<<<<<< HEAD
-    onRender: ->      
-      @listenTo @, 'add:user', @updateConversation
-      @getParticipants()      
-=======
     onRender: ->            
       @getParticipants()    
->>>>>>> ciria
 
     getParticipants: ->
       self = @
@@ -203,13 +197,8 @@
         id = parseInt(participant_id)
         user = AlumNet.friends.get(id)                
         if user          
-<<<<<<< HEAD
-          users.push user
-          self.trigger 'add:user', users
-=======
           users.push user       
           #self.updateConversation(users)    
->>>>>>> ciria
         else          
           user = new AlumNet.Entities.User { id: id }
           user.fetch
@@ -231,19 +220,11 @@
         user.get('name')
       avatars = _.map users, (user)->
         user.get('avatar').medium
-<<<<<<< HEAD
-      
-      @model.set('title', names.join(', '))
-      @model.set('participants', users)  
-      @$('.title').html names.join(', ')
-      @$('.image').attr src: avatars[0]      
-=======
 
       @model.set('title', names.join(', '))
       @model.set('participants', users)  
       @$('.title').html names.join(', ')
       @$('.image').attr src: avatars[0]
->>>>>>> ciria
 
     getConversation: (e)->
       e.preventDefault()
