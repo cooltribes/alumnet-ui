@@ -7,7 +7,7 @@
 
     initialize:(options)->
       @group = options.group
-      @user = options.user
+      @user = options.user      
       Backbone.Validation.bind this,
         valid: (view, attr, selector) ->
           $el = view.$("[name=#{attr}]")
@@ -22,7 +22,7 @@
 
     templateHelpers: ->
       group_name: @group.get('name')
-      userIsAdmin: @user.isAlumnetAdmin()
+      userIsAdmin: @user.isAdmin()
       group_official: @group.get('official')
 
     ui:
