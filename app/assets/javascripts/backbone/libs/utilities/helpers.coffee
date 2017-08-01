@@ -111,6 +111,8 @@
     page = "posts"
     location = model.get('_type')
     id = model.get("_id")
+    if location == 'profile'
+      id = model.get("_source").user.id
     
     switch location
       when "profile"

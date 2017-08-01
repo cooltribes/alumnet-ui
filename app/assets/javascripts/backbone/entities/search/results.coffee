@@ -25,10 +25,7 @@
           null
 
     getUrl: ->
-      if @get "_type" == "profile"
-        AlumNet.buildUrlFromModel(@source.user.id) #method implemented in libs/helpers
-      else
-        AlumNet.buildUrlFromModel(@) #method implemented in libs/helpers
+      AlumNet.buildUrlFromModel(@) #method implemented in libs/helpers
 
     getTitle: ->
       @source.name
